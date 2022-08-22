@@ -4,7 +4,6 @@ public class ToDo extends Task {
         super(task);
     }
 
-
     @Override
     public String toString() {
         return "[T]" + super.toString();

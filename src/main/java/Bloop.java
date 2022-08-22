@@ -3,67 +3,98 @@ import java.util.Scanner;
 
 public class Bloop {
 
-    private static final String hiMessage = "Hey! I'm Bloop\n" + "\tWhat can I do for you?";
+    private static final String HI_MESSAGE = "Hey! I'm Bloop\n" + "\tWhat can I do for you?";
 
-    private static final String byeMessage = "Goodbye! Hope to see you soon :)";
+    private static final String BYE_MESSAGE = "Goodbye! Hope to see you soon :)";
 
-    private static final String separator = "\t------------------------------------------------------";
+    private static final String SEPARATOR = "\t-------------------------------------------------------";
 
-    private static ArrayList<Task> list = new ArrayList<Task>();
+    private static ArrayList<Task> list = new ArrayList<>();
 
     private static void chat() {
-        System.out.println(separator + "\n\t" + hiMessage + "\n" + separator);
+        print(HI_MESSAGE);
         Scanner sc = new Scanner(System.in);
-        while(true) {
-            String s = sc.nextLine();
-            System.out.println(separator);
-            if (s.compareTo("bye") == 0) {
-                break;
-            }
-            if (s.compareTo("list") == 0) {
-                listOut();
-            } else if (s.length() > 6 && s.substring(0, 6).equals("unmark")) {
-                list.get(s.charAt(s.length() - 1) - 48 - 1).unmark();
-                System.out.println(separator);
-            } else if (s.length() > 4 && s.substring(0, 4).equals("mark")) {
-                list.get(s.charAt(s.length() - 1) - 48 - 1).mark();
-                System.out.println(separator);
-            } else {
-                Task task;
-                if(s.substring(0, 4).equals("todo")) {
-                    task = new ToDo(s.substring(5));
-                } else {
-                    int index = findBy(s);
-                    if(s.substring(0, 5).equals("event")) {
-                        task = new Event(s.substring(6, index), s.substring(index + 3));
-                    } else {
-                        task = new Deadline(s.substring(9, index), s.substring(index + 3));
-                    }
+        String text = sc.nextLine();
+
+        while(text.compareTo("bye") != 0) {
+            try {
+                String[] textArr = text.split(" ");
+                String command = textArr[0];
+
+                switch (command) {
+                case "list":
+                    listOut();
+                    break;
+
+                case "unmark":
+                    Task task1 = list.get(Integer.parseInt(textArr[1]) - 1);
+                    task1.unmark();
+                    print("This task has been marked as not done -\n\t\t" + task1);
+                    break;
+
+                case "mark":
+                    Task task2 = list.get(Integer.parseInt(textArr[1]) -1 );
+                    task2.mark();
+                    print("This task has been marked as done -\n\t\t" + task2);
+                    break;
+
+                case "todo":
+                    addTask(text, 'T');
+                    break;
+
+                case "event":
+                    addTask(text, 'E');
+                    break;
+                case "deadline":
+                    addTask(text, 'D');
+                    break;
                 }
-                System.out.println("\tI've added this task -");
-                list.add(task);
-                System.out.println("\t" + task);
-                System.out.println("\tNow you have " + task.getId() + " tasks in the list\n" + separator);
+            } catch (BloopException be) {
+                print(be.getMessage());
             }
+            text = sc.nextLine();
         }
-        System.out.println("\t" + byeMessage + "\n" + separator);
+        print(BYE_MESSAGE);
     }
 
-    private static int findBy(String task) {
-        for(int i = 0; i < task.length(); i++) {
-            if(task.charAt(i) == '/') {
-                return i;
+    private static void addTask(String input, char type) throws BloopException {
+        Task task;
+        if(type == 'T') {
+            if(input.trim().length() == 4) {
+                throw new BloopException("There is no task to do");
+            }
+            task = new ToDo(input.substring(5));
+        } else {
+            int index = input.indexOf('/');
+            if(type == 'E') {
+                if(input.trim().length() == 5) {
+                    throw new BloopException("No event specified");
+                }
+                task = new Event(input.substring(6, index), input.substring(index + 3));
+            } else {
+                if(input.trim().length() == 8) {
+                    throw new BloopException("No deadline specified");
+                }
+                task = new Deadline(input.substring(9, index), input.substring(index + 3));
             }
         }
-        return 0;
+        list.add(task);
+        print("I've added this task -\n\t\t" + task + "\n\tNow you have " + task.getId() + " tasks in the list");
     }
 
     private static void listOut() {
-        System.out.println("Tasks in your list -");
+        System.out.println(SEPARATOR);
+        System.out.println("\tTasks in your list -");
         for(Task a : list) {
-            System.out.println("\t" + a.getId() + ". " + a);
+            System.out.println("\t\t" + a.getId() + ". " + a);
         }
-        System.out.println(separator);
+        System.out.println(SEPARATOR);
+    }
+
+    private static void print(String message) {
+        System.out.println(SEPARATOR);
+        System.out.println("\t" + message);
+        System.out.println(SEPARATOR);
     }
 
     public static void main(String[] args) {

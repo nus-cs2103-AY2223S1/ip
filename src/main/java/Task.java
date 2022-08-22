@@ -3,13 +3,13 @@ public class Task {
     private String task;
     private int id;
     private static int counter = 0;
-    private boolean done;
+    private boolean isDone;
 
     public Task(String task) {
         this.task = task;
         counter ++;
         id = counter;
-        done = false;
+        isDone = false;
     }
 
     protected String getTask() {
@@ -21,23 +21,15 @@ public class Task {
     }
 
     protected String getStatus() {
-        return done ? "[X]" : "[ ]";
-    }
-
-    protected void toggleStatus() {
-        done = !done;
+        return isDone ? "[X]" : "[ ]";
     }
 
     protected void mark() {
-        System.out.println("\tThis task has been marked as done -");
-        toggleStatus();
-        System.out.println("\t\t" + this);
+        isDone = true;
     }
 
     protected void unmark() {
-        System.out.println("\tThis task has been marked as not done -");
-        toggleStatus();
-        System.out.println("\t\t" + this);
+        isDone = false;
     }
 
     @Override
