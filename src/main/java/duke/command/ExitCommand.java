@@ -11,7 +11,7 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
     /**
      * Ends the session with the user, printing out
-     *     the corresponding message to the user and saving data to the file.
+     *     the corresponding message to the user.
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
      * @param ui The Ui of Duke.

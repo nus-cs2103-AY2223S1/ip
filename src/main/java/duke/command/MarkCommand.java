@@ -16,7 +16,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Marks the task from the taskList as completed.
+     * Marks the task from the taskList as completed, saves to file.
      *     and prints out the corresponding message to the user.
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.

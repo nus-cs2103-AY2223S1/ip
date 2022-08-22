@@ -15,7 +15,7 @@ public class EventCommand extends Command {
         this.task = task;
     }
     /**
-     * Adds an event task to the taskList.
+     * Adds an event task to the taskList, saves to file.
      *     and prints out the corresponding message to the user.
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.

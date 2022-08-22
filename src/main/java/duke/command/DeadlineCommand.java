@@ -17,7 +17,7 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Adds a deadline task to the taskList.
+     * Adds a deadline task to the taskList, saves to file.
      *     and prints out the corresponding message to the user.
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.

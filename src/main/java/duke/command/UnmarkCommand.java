@@ -16,7 +16,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Marks the task from the taskList as uncompleted.
+     * Marks the task from the taskList as uncompleted, saves to file.
      *     and prints out the corresponding message to the user.
      * @param list The taskList of Duke.
      * @param storage The fileStorage of Duke.
