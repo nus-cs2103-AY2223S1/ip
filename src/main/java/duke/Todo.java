@@ -1,5 +1,11 @@
 package duke;
 
+/**
+ * This class encapsulates a To-do task.
+ *
+ * @author Andrew Lo Zhi Sheng
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Todo extends Task {
     /**
      * Constructor for a to-do instance.

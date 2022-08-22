@@ -56,6 +56,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Gets the list of tasks stored in the data file.
+     *
+     * @return An ArrayList containing the stored tasks
+     */
     public ArrayList<Task> getTasks() {
         Scanner reader = null;
         ArrayList<Task> output = new ArrayList<>();

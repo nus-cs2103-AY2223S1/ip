@@ -2,6 +2,12 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * This class encapsulates the Duke chatbot.
+ *
+ * @author Andrew Lo Zhi Sheng
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Duke {
     private static ArrayList<Task> inputs = new ArrayList<>();
     private Storage storage;
@@ -43,15 +49,6 @@ public class Duke {
      * @param args
      */
     public static void main(String[] args) {
-//        File currentDirFile = new File(".");
-//        String helper = currentDirFile.getAbsolutePath();
-//        String currentDir = "";
-//        try {
-//            currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());
-//        } catch (java.io.IOException e) {
-//            System.out.println(e);
-//        }
-
         String filePath = System.getProperty("user.home") + "/duke.txt";
         Duke duke = new Duke(filePath);
         duke.run();

@@ -1,5 +1,11 @@
 package duke;
 
+/**
+ * This class handles the parsing of the user's CLI inputs.
+ *
+ * @author Andrew Lo Zhi Sheng
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Parser {
     private TaskList taskList;
 

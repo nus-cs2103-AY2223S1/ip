@@ -4,17 +4,37 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * This class stores the Tasks and handles operations involving its modification.
+ *
+ * @author Andrew Lo Zhi Sheng
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class TaskList {
     private ArrayList<Task> list;
     private Ui ui;
     private Storage storage;
 
+    /**
+     * Constructor for a TaskList instance.
+     *
+     * @param list The ArrayList storing the tasks
+     * @param ui The Ui handling the user inputs
+     * @param storage The Storage instance handling the file saving and loading
+     */
     public TaskList(ArrayList<Task> list, Ui ui, Storage storage) {
         this.list = list;
         this.ui = ui;
         this.storage = storage;
     }
 
+    /**
+     * Add a to-do to the task list.
+     *
+     * @param input the description of the to-do
+     *
+     * @throws DukeException if the desc is empty.
+     */
     public void addTodo(String input) throws DukeException {
         // Check if input is empty
         if (input.length() == 0) {
@@ -71,7 +91,7 @@ public class TaskList {
     }
 
     /**
-     * Add a duke.Deadline to the items list.
+     * Add a duke Event to the items list.
      *
      * @param input A String to be added to the list.
      *
@@ -132,6 +152,11 @@ public class TaskList {
 
     }
 
+    /**
+     * Prints all tasks on a specified date.
+     *
+     * @param input a String representing the desired date.
+     */
     public void printAllOnDate(String input) {
         LocalDate date = LocalDate.parse(input);
 
@@ -204,6 +229,13 @@ public class TaskList {
         this.storage.saveTasks(this.list);
     }
 
+    /**
+     * Remove a task from the task list.
+     *
+     * @param index The index of the task to be removed.
+     *
+     * @throws DukeException if the index is invalid.
+     */
     public void delete(int index) throws DukeException {
         // Check if the index is within the bounds of the list
         if (index <= 0 || index > this.list.size()) {

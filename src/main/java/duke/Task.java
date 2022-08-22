@@ -4,6 +4,9 @@ import java.time.LocalDate;
 
 /**
  * This class encapsulates a task created in the Chatbot.
+ *
+ * @author Andrew Lo Zhi Sheng
+ * @version CS2103T AY22/23 Semester 1
  */
 abstract class Task {
 

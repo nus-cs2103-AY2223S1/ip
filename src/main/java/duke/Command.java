@@ -1,5 +1,11 @@
 package duke;
 
+/**
+ * This enum encapsulates a Command given by the user to Duke.
+ *
+ * @author Andrew Lo Zhi Sheng
+ * @version CS2103T AY22/23 Semester 1
+ */
 public enum Command {
     BYE("bye"),
     LIST("list"),

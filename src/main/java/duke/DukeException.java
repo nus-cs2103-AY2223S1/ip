@@ -1,5 +1,11 @@
 package duke;
 
+/**
+ * This class encapsulates the Exceptions thrown by the Duke chatbot.
+ *
+ * @author Andrew Lo Zhi Sheng
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class DukeException extends Exception {
     private String message;
 

@@ -3,8 +3,16 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * This class encapsulates a Deadline task.
+ *
+ * @author Andrew Lo Zhi Sheng
+ * @version CS2103T AY22/23 Semester 1
+ */
 public class Deadline extends Task {
+    // Fields
     protected LocalDate by;
+
     /**
      * Constructor for a deadline instance.
      *
