@@ -17,17 +17,46 @@ public class Duke {
 
     public void chatDuke(){
         Scanner sc = new Scanner(System.in);
-
+        ArrayList<String> strArray = new ArrayList<>();
         String str = sc.nextLine();
-        if (str.equals("bye")){
+        if (str.equals("bye")) {
+            System.out.println("Bye. Hope to see you again soon");
+        }
+        while (!str.equals("bye")){
+            if (str.equals("list")) {
+                returnArrayStrings(strArray);
+                str = sc.nextLine();
+            } else {
+                strArray.add(str);
+                System.out.println("added: " + str);
+                str = sc.nextLine();
+            }
+
+
+
+        }
+        if (str.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon");
         } else {
-            System.out.println(str);
-            chatDuke();
+            strArray.add(str);
+            str = sc.nextLine();
         }
+
+
 
 
     }
 
+    public void returnArrayStrings(ArrayList<String> strArray){
+        for (int i = 0; i < strArray.size(); i++){
+            if (strArray.get(i) != null) {
+                System.out.println(Integer.toString(i + 1) + ". " + strArray.get(i));
+            } else {
+                return;
+            }
+        }
+    }
+
 
 }
+
