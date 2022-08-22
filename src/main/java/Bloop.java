@@ -48,6 +48,12 @@ public class Bloop {
                 case "deadline":
                     addTask(text, 'D');
                     break;
+
+                case "delete":
+                    Task task3 = list.get(Integer.parseInt(textArr[1]) - 1);
+                    list.remove(task3);
+                    print("This task has been removed -\n\t\t" + task3 + "\n\tNow you have " + list.size() + " tasks in the list");
+
                 }
             } catch (BloopException be) {
                 print(be.getMessage());
@@ -79,14 +85,14 @@ public class Bloop {
             }
         }
         list.add(task);
-        print("I've added this task -\n\t\t" + task + "\n\tNow you have " + task.getId() + " tasks in the list");
+        print("I've added this task -\n\t\t" + task + "\n\tNow you have " + list.size() + " tasks in the list");
     }
 
     private static void listOut() {
         System.out.println(SEPARATOR);
         System.out.println("\tTasks in your list -");
-        for(Task a : list) {
-            System.out.println("\t\t" + a.getId() + ". " + a);
+        for(int i = 0; i < list.size(); i++) {
+            System.out.println("\t\t" + (i + 1) + ". " + list.get(i));
         }
         System.out.println(SEPARATOR);
     }
