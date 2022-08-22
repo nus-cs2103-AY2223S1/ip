@@ -19,13 +19,11 @@ Here are the tasks in your list:
 1. [T][X] borrow book
 _______________________________________
 _______________________________________
-Unsuccessful write
 Got it. I've added this task:
   [D][X] return book  (by:  Sunday)
 Now you have 2 tasks in your list
 _______________________________________
 _______________________________________
-Unsuccessful write
 Got it. I've added this task:
   [E][X] project meeting  (at:  Mon 2-4pm)
 Now you have 3 tasks in your list
@@ -41,33 +39,25 @@ _______________________________________
 _______________________________________
 _______________________________________
 Nice! I've marked this task as done:
-java.io.IOException: Stream closed
 [T][/] borrow book
 _______________________________________
 _______________________________________
-Unsuccessful write
 Got it. I've added this task:
   [D][X] return to home  (by:  idk)
 Now you have 4 tasks in your list
 _______________________________________
 _______________________________________
 The following task has been deleted:
-java.io.IOException: Stream closed
 [T][/] borrow book
 _______________________________________
 _______________________________________
-The following task has been deleted:
-_______________________________________
  Please provide input that is within the length of the list.
 _______________________________________
-_______________________________________
-Nice! I've marked this task as done:
 _______________________________________
 ohai, please provide proper input :<<<<<
 _______________________________________
 _______________________________________
 Nice! I've marked this task as done:
-java.io.IOException: Stream closed
 [D][/] return to home  (by:  idk)
 _______________________________________
 _______________________________________

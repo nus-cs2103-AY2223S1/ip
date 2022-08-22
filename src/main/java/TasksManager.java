@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class TasksManager {
     private String line = "_______________________________________";
 
+    private File directory;
     private File tasklist;
     private FileWriter fileWriter;
     private PrintWriter printWriter;
@@ -16,6 +17,11 @@ public class TasksManager {
 
     public TasksManager() {
         try {
+            directory = new File("data");
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+
             tasklist = new File("data/tasklist.txt");
             if (!tasklist.exists()) {
                 tasklist.createNewFile();
@@ -33,6 +39,13 @@ public class TasksManager {
         tasks.add(task);
         //write to file
         printWriter.println(task.fileForm());
+        //print to console
+        System.out.println(line);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("  " + task);
+        System.out.println("Now you have " + numTasks() + " tasks in your list");
+        System.out.println(line);
+
         return true;
     }
 
@@ -55,7 +68,11 @@ public class TasksManager {
 
         // rewrite file entirely
         rewriteFile();
+        //print to the console
+        System.out.println(line);
+        System.out.println("Nice! I've marked this task as done:");
         System.out.println(doneTask);
+        System.out.println(line);
     }
 
     public void deleteTask(int n) throws BadTaskOperationException {
@@ -65,7 +82,11 @@ public class TasksManager {
         Task deleted = this.tasks.remove(n - 1);
         //rewrite file entirely
         rewriteFile();
+        //print to console
+        System.out.println(line);
+        System.out.println("The following task has been deleted:");
         System.out.println(deleted);
+        System.out.println(line);
     }
 
     public boolean readfile() {
