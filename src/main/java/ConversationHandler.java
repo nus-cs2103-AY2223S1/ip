@@ -35,10 +35,10 @@ public class ConversationHandler {
             case "mark":
             case "Mark":
                 return this.markCommand(input);
-//            case
-//
-//            case
-//            case
+
+            case "unmark":
+            case "Unmark":
+                return this.unMarkCommand(input);
             default:
                 this.list.add(new Task(input));
                 return "added: " + input;
@@ -55,9 +55,16 @@ public class ConversationHandler {
 
         return "Nice! I've marked this as done: \n" + task;
     }
-//    private String unMarkCommand() {
-//
-//    }
+    private String unMarkCommand(String input) {
+//        TODO: error handling here
+        int index = Integer.parseInt(input.split(" ")[1]);
+
+//        List is 1-indexed in cli
+        Task task = this.list.get(index - 1);
+        task.setNotDone();
+
+        return "OK, I've marked this task as not done yet: \n" + task;
+    }
 
     private String listCommand(String input) {
         String returnMsg = "";
