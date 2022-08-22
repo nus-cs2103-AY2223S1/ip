@@ -1,5 +1,6 @@
 package commands;
 
+import data.exception.DukeException;
 import storage.Storage;
 import data.TaskList;
 import ui.Ui;
@@ -21,7 +22,7 @@ public class EventCommand extends Command{
     }
 
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
+    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Event event = new Event(this.description, this.at);
         taskList.addToList(event);
         storage.save(taskList);

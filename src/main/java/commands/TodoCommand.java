@@ -1,5 +1,6 @@
 package commands;
 
+import data.exception.DukeException;
 import storage.Storage;
 import data.TaskList;
 import ui.Ui;
@@ -19,7 +20,7 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
+    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         ToDo toDo = new ToDo(this.description);
         taskList.addToList(toDo);
         storage.save(taskList);

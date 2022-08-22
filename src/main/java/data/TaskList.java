@@ -58,12 +58,15 @@ public class TaskList {
         return this.tasks.size();
     }
 
-    public Task getTask(int i) {
+    public Task getTask(int i) throws DukeException {
+        if (i > this.tasks.size() || i < 0) {
+            throw new DukeException("No such task exists!");
+        }
         return this.tasks.get(i);
     }
 
     public Task deleteTask(int i) throws DukeException {
-        if (i > this.tasks.size()) {
+        if (i > this.tasks.size() || i < 0) {
             throw new DukeException("No such task exist!");
         }
         Task task = this.tasks.get(i - 1);

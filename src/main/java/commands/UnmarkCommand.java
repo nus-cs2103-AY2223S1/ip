@@ -1,5 +1,6 @@
 package commands;
 
+import data.exception.DukeException;
 import storage.Storage;
 import data.TaskList;
 import ui.Ui;
@@ -19,7 +20,7 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) {
+    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         Task taskToUnmark = taskList.getTask(taskNumber - 1);
         taskToUnmark.markAsNotDone();
         storage.save(taskList);

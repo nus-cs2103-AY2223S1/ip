@@ -1,6 +1,7 @@
 package storage;
 
 import data.TaskList;
+import data.exception.DukeException;
 import tasks.*;
 import java.io.*;
 import java.time.LocalDate;
@@ -88,7 +89,7 @@ public class Storage {
         }
     }
 
-    public void save(TaskList tasks) {
+    public void save(TaskList tasks) throws DukeException {
         File file = new File(this.filePath);
         FileWriter fileWriter = null;
 
