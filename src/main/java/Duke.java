@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,17 +9,30 @@ public class Duke {
     private static final String NAME = "Shanice:)";
     private static String[] segments;
     private static ArrayList<Task> tasks = new ArrayList<Task>();
-
     private static SaveFile saveFile = new SaveFile();
 
+    /**
+     * Prints the message in the correct style
+     *
+     * @param message
+     */
     public static void printMessage(String message) {
         System.out.println(LINE + message + LINE);
     }
 
+    /**
+     * Prints the end message after user inputs "bye"
+     */
     public static void endProgram() {
         printMessage("Bye. Hope to see you again soon!\n");
     }
 
+    /**
+     * Displays the list of tasks in the correct style
+     *
+     * @param tasks
+     * @throws DukeException
+     */
     public static void displayList(ArrayList<Task> tasks) throws DukeException {
         if (tasks.size() != 0) {
             System.out.println(LINE + "Here are the tasks in your list: ");
@@ -31,6 +46,15 @@ public class Duke {
         }
     }
 
+
+    /**
+     * Marks or Unmarks a task according to the input given
+     *
+     * @param tasks
+     * @param keyword
+     * @param description
+     * @throws DukeException
+     */
     public static void markOrUnmarkTask(ArrayList<Task> tasks, String keyword, String description) throws DukeException {
             int index = Integer.parseInt(description);
             if (index <= tasks.size()) {
@@ -49,22 +73,38 @@ public class Duke {
 
     }
 
+    /**
+     * Creates new deadline and event tasks according to input given
+     *
+     * @param tasks
+     * @param input
+     * @param keyword
+     * @param description
+     * @throws DukeException
+     */
     public static void createOtherTask(ArrayList<Task> tasks, String input, String keyword, String description) throws DukeException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Task t;
         if (keyword.equals("deadline")) {
             description = description.replace("by ", "");
-            t = new Deadline(input, description);
+            t = new Deadline(input, LocalDate.parse(description, formatter));
         }
         else {
             description = description.replace("at ", "");
-            t = new Events(input, description);
+            t = new Event(input, LocalDate.parse(description, formatter));
         }
         tasks.add(t);
         printMessage("Got it. I've added this task:\n" + t + "\nNow you have " + tasks.size() + " tasks in the list.\n");
         saveFile.writeFile(tasks);
     }
 
-    public static void createTodoTask(ArrayList<Task> tasks, String input) throws DukeException {
+    /**
+     * Creates a new todo task according to input given
+     *
+     * @param tasks
+     * @param input
+     */
+    public static void createTodoTask(ArrayList<Task> tasks, String input) {
         Task t;
         t = new Todo(input);
         tasks.add(t);
@@ -72,6 +112,13 @@ public class Duke {
         saveFile.writeFile(tasks);
     }
 
+    /**
+     * Deletes a task according to the input given
+     *
+     * @param tasks
+     * @param description
+     * @throws DukeException
+     */
     public static void deleteTask(ArrayList<Task> tasks, String description) throws DukeException {
         int index = Integer.parseInt(description);
         if (index <= tasks.size()) {
