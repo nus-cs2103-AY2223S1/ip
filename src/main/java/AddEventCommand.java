@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class AddEventCommand implements Command {
 
     private TaskList tasks;
@@ -9,16 +12,8 @@ public class AddEventCommand implements Command {
     }
 
     public AddEventCommand(TaskList tasks, String input) throws DaveException {
-        if (input.equals("")) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! The description of an event cannot be empty!");
-        }
-        String[] args = input.split("/at ");
-        if (args.length > 2) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! Too many timings given, Dave's brain is fried!");
-        } else if (args.length < 2) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! Please provide a timing for the event!");
-        }
-        this.task = new Events(args[0], args[1]);
+        Pair<String, LocalDateTime> taskDetails = Parser.parseEvent(input);
+        this.task = new Events(taskDetails.getHead(), taskDetails.getTail());
         this.tasks = tasks;
     }
 

@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class AddDeadlineCommand implements Command {
 
     private TaskList tasks;
@@ -9,16 +11,8 @@ public class AddDeadlineCommand implements Command {
     }
 
     public AddDeadlineCommand(TaskList tasks, String input) throws DaveException {
-        if (input.equals("")) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! The description of an event cannot be empty!");
-        }
-        String[] args = input.split("/by ");
-        if (args.length > 2) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! Too many deadlines, Dave's brain is fried!");
-        } else if (args.length < 2) {
-            throw new DaveException("( ; ω ; ) Oh nyo!!! Please provide the time of the deadline!");
-        }
-        this.task = new Deadlines(args[0], args[1]);
+        Pair<String, LocalDateTime> taskDetails = Parser.parseDeadline(input);
+        this.task = new Deadlines(taskDetails.getHead(), taskDetails.getTail());
         this.tasks = tasks;
     }
 
