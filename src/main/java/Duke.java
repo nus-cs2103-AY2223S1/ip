@@ -2,12 +2,6 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Duke {
-    private static final String LOGO = " ____        _\n"
-            + "|  _ \\ _   _| | _____\n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String GREET_MESSAGE = "Hello! I am Duke. How can I help you?";
 
     private final TaskList tasks;
     private final Scanner scanner;
@@ -18,20 +12,22 @@ public class Duke {
     }
 
     public void run() {
-        IOHelper.printWithoutPrompt(LOGO);
-        IOHelper.print(GREET_MESSAGE);
-
+        UI.greet();
         while (true) {
             try {
-                Command command = Command.of(IOHelper.read(scanner));
+                Command command = Command.of(UI.read(scanner));
                 command.execute(tasks);
 
                 if (command.command == CommandType.BYE) {
                     break;
                 }
             } catch (DukeException e) {
-                IOHelper.print(e.toString());
+                UI.print(e.toString());
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Duke().run();
     }
 }

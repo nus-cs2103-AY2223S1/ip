@@ -95,7 +95,7 @@ public class TaskList {
                 response.append("\n");
             }
         }
-        IOHelper.print(response.toString());
+        UI.print(response.toString());
     }
 
     public int size() {

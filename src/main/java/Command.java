@@ -67,7 +67,6 @@ abstract class Command {
         }
     }
 
-
     private static class UpdateStatusCommand extends Command {
         private final String WRONG_ARGUMENT = "This command expects a number argument!";
         private final String INDEX_OUT_OF_BOUND = "This command expects an index between 1 and number of tasks.";
@@ -93,7 +92,7 @@ abstract class Command {
             Task task = tasks.get(index);
             task.setDone(isDone);
             tasks.save();
-            IOHelper.print(String.format("I've %s this task\n\t", this.isDone ? "checked" : "unchecked") + task);
+            UI.print(String.format("I've %s this task\n\t", this.isDone ? "checked" : "unchecked") + task);
         }
     }
 
@@ -107,7 +106,7 @@ abstract class Command {
             Task task = Task.of(this.command, this.args);
             tasks.add(task);
             tasks.save();
-            IOHelper.print("I've added the following task:\n\t" + task);
+            UI.print("I've added the following task:\n\t" + task);
         }
     }
 
@@ -134,7 +133,7 @@ abstract class Command {
             Task task = tasks.get(index);
             tasks.remove(index);
             tasks.save();
-            IOHelper.print("I've removed this task\n\t" + task);
+            UI.print("I've removed this task\n\t" + task);
         }
     }
 
@@ -147,7 +146,7 @@ abstract class Command {
 
         @Override
         public void runSpecialTask(TaskList tasks) {
-            IOHelper.print(BYE_MESSAGE);
+            UI.print(BYE_MESSAGE);
         }
     }
 
