@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Drake {
-    public static void main(String[] args)  {
+    public static void main(String[] args) throws DrakeException {
 
 
         System.out.println("------------------------------------------------------");
@@ -34,35 +34,60 @@ public class Drake {
                     System.out.println(i++ + ". " + item);
             } else if (command.startsWith("mark")) {
                 String[] commands = command.split(" ");
-                int taskNo = Integer.parseInt(commands[1]);
-                System.out.println("I've marked this task as done!");
-                list.get(taskNo - 1).markAsDone();
-                System.out.println(list.get(taskNo - 1));
+                try {
+                    int taskNo = Integer.parseInt(commands[1]);
+                    if (taskNo <= list.size()) {
+                        System.out.println("I've marked this task as done!");
+                        list.get(taskNo - 1).markAsDone();
+                        System.out.println(list.get(taskNo - 1));
+                    } else {
+                        throw new IncompatibleCommandException("That task number doesn't exist!");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new IncompatibleCommandException("Where's the number?");
+                }
             } else if (command.startsWith("unmark")) {
                 String[] commands = command.split(" ");
-                int taskNo = Integer.parseInt(commands[1]);
-                System.out.println("I've marked this task as not done (yet ;))");
-                list.get(taskNo - 1).unmarkAsDone();
-                System.out.println(list.get(taskNo - 1));
+                try {
+                    int taskNo = Integer.parseInt(commands[1]);
+                    if (taskNo <= list.size()) {
+                        System.out.println("I've marked this task as not done (yet ;))");
+                        list.get(taskNo - 1).unmarkAsDone();
+                        System.out.println(list.get(taskNo - 1));
+                    } else {
+                        throw new IncompatibleCommandException("That task number doesn't exist!");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new IncompatibleCommandException("Where's the number?");
+                }
             } else if (command.startsWith("todo")) {
+                String description = command.substring("todo ".length());
+                if (description.length() == 0)
+                    throw new EmptyDescriptionException();
                 System.out.println("I've added this task:");
-                list.add(new Todo(command.substring("todo ".length())));
+                list.add(new Todo(description));
                 System.out.println(list.get(list.size() - 1));
                 System.out.println("You now have " + list.size() + " tasks in the list");
             } else if (command.startsWith("deadline")) {
-                System.out.println("I've added this task:");
                 String filtered = command.substring("deadline ".length());
                 String[] commands = filtered.split("/by");
+                if (commands.length == 1)
+                    throw new IncompatibleCommandException("A deadline task without a deadline?");
+                System.out.println("I've added this task:");
                 list.add(new Deadline(commands[0], commands[1]));
                 System.out.println(list.get(list.size() - 1));
                 System.out.println("You now have " + list.size() + " tasks in the list");
             } else if (command.startsWith("event")) {
-                System.out.println("I've added this task:");
                 String filtered = command.substring("event ".length());
                 String[] commands = filtered.split("/at");
+                if (commands.length == 1)
+                    throw new IncompatibleCommandException("An event task without an event time?");
+                System.out.println("I've added this task:");
                 list.add(new Event(commands[0], commands[1]));
                 System.out.println(list.get(list.size() - 1));
                 System.out.println("You now have " + list.size() + " tasks in the list");
+            } else {
+                throw new UnknownCommandException();
             }
             System.out.println("------------------------------------------------------");
             command = sc.nextLine();
