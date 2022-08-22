@@ -25,11 +25,13 @@ public class DukeException extends Exception {
         } else if (message.equals("event")) {
             this.msg = "OOPS!!! The description of an event cannot be empty.";
         } else if (message.equals("delete")) {
-            this.msg = "OOPS!!! The description of an event cannot be empty.";
+            this.msg = "OOPS!!! The description of a delete cannot be empty.";
         } else if (message.equals("mark")) {
-            this.msg = "OOPS!!! The description of an event cannot be empty.";
+            this.msg = "OOPS!!! The description of a mark cannot be empty.";
         } else if (message.equals("unmark")) {
-            this.msg = "OOPS!!! The description of an event cannot be empty.";
+            this.msg = "OOPS!!! The description of an unmark cannot be empty.";
+        } else if (message.equals("find")) {
+            this.msg = "OOPS!!! The description of a find cannot be empty.";
         } else if (message.equals("deadline format")) {
             this.msg = "OOPS!!! The formatting of the deadline message is wrong (deadline 'thing' /by yyyy-mm-dd).";
         } else if (message.equals("event format")) {

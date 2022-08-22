@@ -151,6 +151,16 @@ public abstract class Task {
         public String textFileMessage() {
             return craftStringForFile(new String[]{"T", completionStatusForFile(), this.todo});
         }
+
+        /**
+         * Checks whether task contains certain String
+         * @param s String
+         * @return boolean
+         */
+        @Override
+        public boolean contains (String s) {
+            return this.todo.contains(s);
+        }
     }
 
     /**
@@ -208,6 +218,16 @@ public abstract class Task {
         @Override
         public String textFileMessage() {
             return craftStringForFile(new String[]{"D", completionStatusForFile(), this.todo, String.valueOf(this.date)});
+        }
+
+        /**
+         * Checks whether task contains certain String
+         * @param s String
+         * @return boolean
+         */
+        @Override
+        public boolean contains (String s) {
+            return this.todo.contains(s) || this.date.toString().contains(s);
         }
     }
 
@@ -267,6 +287,16 @@ public abstract class Task {
         public String textFileMessage() {
             return craftStringForFile(new String[]{"E", completionStatusForFile(), this.todo, String.valueOf(this.date)});
         }
+
+        /**
+         * Checks whether task contains certain String
+         * @param s String
+         * @return boolean
+         */
+        @Override
+        public boolean contains (String s) {
+            return this.todo.contains(s) || this.date.toString().contains(s);
+        }
     }
 
     /**
@@ -282,4 +312,11 @@ public abstract class Task {
      * @return String message
      */
     public abstract String textFileMessage();
+
+    /**
+     * Checks whether task contains certain String
+     * @param s String
+     * @return boolean
+     */
+    public abstract boolean contains(String s);
 }
