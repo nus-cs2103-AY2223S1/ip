@@ -10,8 +10,19 @@ public class ToDo extends Task {
      *
      * @return "T" indicating ToDo.
      */
+    @Override
     public String getTaskType() {
         return "T";
+    }
+
+    /**
+     * Get time of the ToDo.
+     *
+     * @return empty String
+     */
+    @Override
+    public String getTime() {
+        return "";
     }
 
     /**

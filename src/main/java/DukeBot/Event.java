@@ -13,8 +13,19 @@ public class Event extends Task {
      *
      * @return "E" indicating Event.
      */
+    @Override
     public String getTaskType() {
         return "E";
+    }
+
+    /**
+     * Get the time of the Event.
+     *
+     * @return timing The time of the Event.
+     */
+    @Override
+    public String getTime() {
+        return timing;
     }
 
     /**

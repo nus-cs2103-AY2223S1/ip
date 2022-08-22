@@ -13,8 +13,19 @@ public class Deadline extends Task {
      *
      * @return "D" indicating Deadline.
      */
+    @Override
     public String getTaskType() {
         return "D";
+    }
+
+    /**
+     * Get the time of the Deadline.
+     *
+     * @return by The time of the Deadline.
+     */
+    @Override
+    public String getTime() {
+        return by;
     }
 
     /**

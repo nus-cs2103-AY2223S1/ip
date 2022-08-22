@@ -28,7 +28,7 @@ public abstract class Task {
     /**
      * Mark Task as complete.
      *
-     * @throws MarkToggleException if Task is already complete.
+     * @throws DukeException if Task is already complete.
      */
     public void markComplete() throws DukeException {
         if (this.isComplete) {
@@ -62,7 +62,7 @@ public abstract class Task {
     /**
      * Mark Task as incomplete.
      *
-     * @throws MarkToggleException if Task is incomplete.
+     * @throws DukeException if Task is incomplete.
      */
     public void markIncomplete() throws DukeException {
         if (!this.isComplete) {
@@ -80,4 +80,17 @@ public abstract class Task {
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
+
+
+    /**
+     * Get the description of the Task.
+     *
+     * @return description.
+     */
+    public String getDescription() {
+        return description;
+    }
+
+    public abstract String getTime();
+    public abstract String getTaskType();
 }
