@@ -6,32 +6,30 @@ package duke;
  */
 public class Ui {
     /** <Code>String</Code> of application logo. */
-    private static final String LOGO =
-            " ____        _        \n" +
-            "|  _ \\ _   _| | _____ \n" +
-            "| | | | | | | |/ / _ \\\n" +
-            "| |_| | |_| |   <  __/\n" +
-            "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String LOGO
+            = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
 
     /** <Code>String</Code> of all available commands and their format. */
-    private static final String AVAILABLE_COMMANDS =
-            "Available commands:\n" +
-                    "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n" +
-                    "   event    [TASK DESCRIPTION] /at [VENUE]\n" +
-                    "   todo     [TASK DESCRIPTION]\n" +
-                    "   delete   [TASK NUMBER]\n" +
-                    "   mark     [TASK NUMBER]\n" +
-                    "   unmark   [TASK NUMBER]\n" +
-                    "   list\n" +
-                    "   bye\n";
+    private static final String AVAILABLE_COMMANDS
+            = "Available commands:\n"
+            + "   deadline [TASK DESCRIPTION] /by [DUE DATE]\n"
+            + "   event    [TASK DESCRIPTION] /at [VENUE]\n"
+            + "   todo     [TASK DESCRIPTION]\n"
+            + "   delete   [TASK NUMBER]\n"
+            + "   mark     [TASK NUMBER]\n"
+            + "   unmark   [TASK NUMBER]\n"
+            + "   list\n"
+            + "   bye\n";
 
     /**
      * Constructor for <Code>Ui</Code>.
      */
     public Ui() {
-        System.out.println("Hello from\n" +
-                LOGO +
-                AVAILABLE_COMMANDS);
+        System.out.println("Hello from\n" + LOGO + AVAILABLE_COMMANDS);
     }
 
     /**
@@ -47,5 +45,4 @@ public class Ui {
     public void showUser(String string) {
         System.out.println(string);
     }
-
 }
