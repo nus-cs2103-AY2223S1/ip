@@ -1,12 +1,10 @@
 package duke.command;
 
-public enum Command {
-    BYE,
-    LIST,
-    MARK,
-    UNMARK,
-    DELETE,
-    TODO,
-    DEADLINE,
-    EVENT,
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
+public interface Command {
+    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
 }

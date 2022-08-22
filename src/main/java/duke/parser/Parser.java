@@ -4,11 +4,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyCommandException;
-
-import duke.command.Command;
-import duke.command.CommandPair;
 
 public class Parser {
     private boolean isListening;
@@ -17,7 +23,7 @@ public class Parser {
         this.isListening = true;
     }
 
-    public CommandPair parseText(String text) throws DukeException {
+    public Command parseText(String text) throws DukeException {
         List<String> commands = Arrays.stream(text.trim().split(" ", 2))
                 .map(String::trim).collect(Collectors.toList());
         String mainCommand = commands.get(0);
@@ -25,21 +31,21 @@ public class Parser {
 
         if (mainCommand.equals("bye")) {
             this.isListening = false;
-            return new CommandPair(Command.BYE);
+            return new ByeCommand();
         } else if (mainCommand.equals("list")) {
-            return new CommandPair(Command.LIST);
+            return new ListCommand();
         } else if (mainCommand.equals("mark")) {
-            return new CommandPair(Command.MARK, description);
+            return new MarkCommand(description);
         } else if (mainCommand.equals("unmark")) {
-            return new CommandPair(Command.UNMARK, description);
+            return new UnmarkCommand(description);
         } else if (mainCommand.equals("delete")) {
-            return new CommandPair(Command.DELETE, description);
+            return new DeleteCommand(description);
         } else if (mainCommand.equals("todo")) {
-            return new CommandPair(Command.TODO, description);
+            return new ToDoCommand(description);
         } else if (mainCommand.equals("deadline")) {
-            return new CommandPair(Command.DEADLINE, description);
+            return new DeadlineCommand(description);
         } else if (mainCommand.equals("event")) {
-            return new CommandPair(Command.EVENT, description);
+            return new EventCommand(description);
         } else if (mainCommand.isEmpty()) {
             throw new EmptyCommandException();
         } else {
