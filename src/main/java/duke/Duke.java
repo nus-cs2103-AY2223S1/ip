@@ -1,25 +1,22 @@
 package duke;
 
-import java.io.IOException;
-
 import duke.command.Command;
 import duke.parser.Parser;
 
 public class Duke {
+    public static final String DEFAULT_FILE_NAME = "todolist.txt";
     private final Ui ui;
     private final Storage storage;
 
     /**
      * Constructs an instance of Duke, creates a Ui and Storage instance.
      * @return Duke object instance.
-     * @throws Storage.InvalidStorageFilePathException
-     * @throws IOException
      * @see Ui
      * @see Storage
      */
-    public Duke() throws Storage.InvalidStorageFilePathException, IOException {
+    public Duke() {
         this.ui = new Ui(System.in, System.out);
-        this.storage = new Storage();
+        this.storage = Storage.of(DEFAULT_FILE_NAME);
     }
 
     /**
@@ -44,10 +41,8 @@ public class Duke {
     /**
      * Start point for the Duke class
      * @param args
-     * @throws Storage.InvalidStorageFilePathException
-     * @throws IOException
      */
-    public static void main(String[] args) throws Storage.InvalidStorageFilePathException, IOException {
+    public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();
     }

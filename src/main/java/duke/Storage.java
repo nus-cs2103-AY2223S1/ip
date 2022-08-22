@@ -9,26 +9,42 @@ import java.util.List;
 import duke.task.TaskList;
 
 public class Storage {
-    public static final String DEFAULT_FILE_NAME = "todolist.txt";
     private final Path path;
 
-    Storage() throws InvalidStorageFilePathException, IOException {
-        this(DEFAULT_FILE_NAME);
-    }
-
-    Storage(String filePath) throws InvalidStorageFilePathException, IOException {
+    Storage(String filePath) {
         this.path = Paths.get(System.getProperty("user.dir"), filePath);
-        if (!validPath(filePath)) {
-            throw new InvalidStorageFilePathException(
-                    "duke.task.Storage file needs to end with .txt, please try again.");
-        }
-        if (!Files.exists(path) || !Files.isRegularFile(path)) {
-            // Create a new file
-            Files.createFile(path);
+    }
+
+    /**
+     * Returns a new Storage instance based on given filepath
+     * @param filePath
+     * @return new Storage instance
+     */
+    public static Storage of(String filePath) {
+        try {
+            Storage newStorage = new Storage(filePath);
+            Path storagePath = newStorage.path;
+
+            if (!validPath(filePath)) {
+                throw new InvalidStorageFilePathException(
+                        "duke.task.Storage file needs to end with .txt, please try again.");
+            }
+
+            if (!Files.exists(storagePath) || !Files.isRegularFile(storagePath)) {
+                // Create a new file
+                Files.createFile(storagePath);
+            }
+            return new Storage(filePath);
+        } catch (InvalidStorageFilePathException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
+        } finally {
+            return new Storage(filePath);
         }
     }
 
-    private boolean validPath(String filePath) {
+    private static boolean validPath(String filePath) {
         return filePath.contains(".txt");
     }
 
