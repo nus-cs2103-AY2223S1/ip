@@ -1,4 +1,6 @@
 import java.sql.SQLOutput;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -68,8 +70,16 @@ public class Duke {
                         if(s.length() == 8){
                             throw new DukeDeadlineEmptyException();
                         }
-                        Task t = new Deadlines(s.substring(9, index - 1), s.substring(index + 1));
-                        addList(t);
+                        String subS = s.substring(9, index - 1);
+                        try {
+                            LocalDate date = LocalDate.parse(s.substring(index + 4));
+
+                            Task t = new Deadlines(subS, date);
+                            addList(t);
+                        } catch (DateTimeException e) {
+                            Task t = new Deadlines(subS, s.substring(index + 4));
+                            addList(t);
+                        }
                     } else if (s.length() >= 5 && s.substring(0, 5).equals("event")) {
                         if(s.length() == 5){
                             throw new DukeEventEmptyException();
