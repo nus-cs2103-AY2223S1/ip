@@ -63,7 +63,8 @@ public class Duke {
                     description = description + temp +" ";
                 }
                 dateline = scanner.nextLine();
-                Task task = new Deadline(description, dateline);
+                LocalDate d1 = LocalDate.parse(dateline.substring(1));
+                Task task = new Deadline(description, d1);
                 lst.add(task);
                 count++;
                 System.out.println(task.toString());
