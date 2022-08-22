@@ -54,4 +54,17 @@ public class Deadline extends Task {
                 + super.toFileFormat() + "|"
                 + this.by;
     }
+
+    /**
+     * Returns whether <Code>Deadline</Code>'s description or deadline contains
+     * given word.
+     * @param word Word to search for.
+     * @return     <Code>Boolean</Code> value of whether
+     *             <Code>Deadline</Code>'s description or date contains given
+     *             word.
+     */
+    @Override
+    public Boolean hasWord(String word) {
+        return super.hasWord(word) || this.by.toString().contains(word);
+    }
 }
