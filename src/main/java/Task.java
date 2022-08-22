@@ -18,11 +18,12 @@ public abstract class Task {
         return "[" + (this.isDone ? "x" : " ") + "] " + this.description;
     }
 
-    public boolean changeStatus(Duke.TaskStatus status) {
-        if (status == Duke.TaskStatus.MARK) {
-            return this.markDone();
-        }
-        return this.markUndone();
+    public void changeStatus(boolean isDone) {
+        this.isDone = isDone;
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
     }
 
     public String getIsDoneString() {
@@ -31,18 +32,6 @@ public abstract class Task {
 
     public String getDescription() {
         return this.description;
-    }
-
-    private boolean markDone() {
-        boolean temp = this.isDone;
-        this.isDone = true;
-        return !temp;
-    }
-
-    private boolean markUndone() {
-        boolean temp = this.isDone;
-        this.isDone = false;
-        return temp;
     }
 
     public abstract String toSave();

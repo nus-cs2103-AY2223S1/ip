@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 
 public class Deadline extends Task {
+    public static String DELIMITER = " /by ";
+
     private LocalDate time;
 
     public Deadline(String description, LocalDate time) {

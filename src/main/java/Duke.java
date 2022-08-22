@@ -1,219 +1,58 @@
-import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Duke {
 
-    private ArrayList<Task> taskList = new ArrayList<>();
-    private int messageState = 0;
+    private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
 
-    public enum TaskStatus {MARK, UNMARK}
-    public enum TaskType {TODO, DEADLINE, EVENT}
-
-    private static String DEADLINE_TAG = " /by ";
-    private static String EVENT_TAG = " /at ";
-
-    public Duke(ArrayList<Task> taskList) {
-        this.taskList = taskList;
-    }
-
-    public ArrayList<Task> getTaskList() {
-        return this.taskList;
-    }
-
-    private void outputMessage(String message) {
-        String[] messageLines = message.split("\n");
-        for (String line : messageLines) {
-            System.out.println("Duke: " + line);
-        }
-    }
-
-    private boolean parseMessage(String message) {
-        String[] command = message.split(" ", 2);
-        switch (command[0]) {
-        case "bye":
-            this.outputMessage(Messages.BYE[this.messageState]);
-            return false;
-        case "list":
-            this.outputMessage(Messages.BEFORE_LIST[this.messageState]);
-            this.printList();
-            this.outputMessage(Messages.AFTER_LIST[this.messageState]);
-            break;
-        case "mark":
-            try {
-                this.handleTaskStatus(command, TaskStatus.MARK);
-            } catch (InvalidIndexException e) {
-                this.outputMessage(Messages.INVALID_INDEX[messageState]);
-            } catch (MissingDescriptionException e) {
-                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-            } catch (NumberFormatException e) {
-                this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
-            }
-            break;
-        case "unmark":
-            try {
-                this.handleTaskStatus(command, TaskStatus.UNMARK);
-            } catch (InvalidIndexException e) {
-                this.outputMessage(Messages.INVALID_INDEX[messageState]);
-            } catch (MissingDescriptionException e) {
-                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-            } catch (NumberFormatException e) {
-                this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
-            }
-            break;
-        case "todo":
-            try {
-                this.handleTaskType(command, TaskType.TODO);
-            } catch (MissingDescriptionException e) {
-                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-            } catch (MissingArgumentException e) {
-                e.printStackTrace();
-            }
-            break;
-        case "deadline":
-            try {
-                this.handleTaskType(command, TaskType.DEADLINE);
-            } catch (MissingDescriptionException e) {
-                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-            } catch (MissingArgumentException e) {
-                this.outputMessage(Messages.MISSING_TIME[messageState]);
-            } catch (DateTimeParseException e) {
-                this.outputMessage(Messages.INVALID_TIME[messageState]);
-            }
-            break;
-        case "event":
-            try {
-                this.handleTaskType(command, TaskType.EVENT);
-            } catch (MissingDescriptionException e) {
-                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-            } catch (MissingArgumentException e) {
-                this.outputMessage(Messages.MISSING_TIME[messageState]);
-            } catch (DateTimeParseException e) {
-                this.outputMessage(Messages.INVALID_TIME[messageState]);
-            }
-            break;
-        case "delete":
-            try {
-                handleDelete(command);
-            } catch (InvalidIndexException e) {
-                this.outputMessage(Messages.INVALID_INDEX[messageState]);
-            } catch (MissingDescriptionException e) {
-                this.outputMessage(Messages.WRONG_COMMAND_FORMAT[messageState]);
-            } catch (NumberFormatException e) {
-                this.outputMessage(Messages.NOT_A_NUMBER[messageState]);
-            }
-            break;
-        default:
-            this.outputMessage(Messages.INVALID_COMMAND[this.messageState]);
-        }
-        return true;
-    }
-
-    private void greet() {
-        this.outputMessage(Messages.GREETING[this.messageState]);
-    }
-
-    private void printList() {
-        int index = 1;
-        for (Task task : this.taskList) {
-            this.outputMessage(index + ". " + task.toString());
-            index++;
-        }
-    }
-
-    private void checkCommandArgs(String[] command, int length) throws MissingDescriptionException{
-        if (command.length < length) {
-            throw new MissingDescriptionException("Missing Arguments");
-        }
-    }
-
-    private void checkCommandInt(String[] command) throws InvalidIndexException, MissingDescriptionException {
-        checkCommandArgs(command, 2);
-        int index = Integer.parseInt(command[1]);
-        if (index > taskList.size() || index < 1) {
-            throw new InvalidIndexException("Index out of bounds.");
-        }
-    }
-
-    private String[] splitTag(String message, String tag) {
-        return message.split(tag, 2);
-    }
-
-    private void checkCommandTag(String[] command, String tag) throws MissingArgumentException, MissingDescriptionException {
-        checkCommandArgs(command, 2);
-        String[] args = splitTag(command[1], tag);
+    public Duke(String path) {
+        this.ui = new Ui();
         try {
-            checkCommandArgs(args, 2);
-        } catch (MissingDescriptionException e) {
-            throw new MissingArgumentException("Missing " + tag);
+            this.storage = new Storage(path);
+        } catch (DukeException e) {
+            this.ui.showSavingError();
         }
+        this.taskList = new TaskList(this.storage.load());
     }
 
-    private void handleTaskStatus(String[] command, TaskStatus status) throws InvalidIndexException, MissingDescriptionException {
-        checkCommandInt(command);
-        String message;
-        String message2;
-        if (status == TaskStatus.MARK) {
-            message = Messages.MARK_DONE[this.messageState];
-            message2 = Messages.PREV_DONE[this.messageState];
-        } else {
-            message = Messages.MARK_UNDONE[this.messageState];
-            message2 = Messages.PREV_UNDONE[this.messageState];
-        }
-        this.outputMessage(message);
-        Task task = taskList.get(Integer.parseInt(command[1]) - 1);
-        boolean change = task.changeStatus(status);
-        this.outputMessage(task.toString());
-        if (!change) {
-            this.outputMessage(message2);
-        }
-    }
-
-    private void handleTaskType(String[] command, TaskType type) throws MissingDescriptionException, MissingArgumentException {
-        Task task;
-        if (type == TaskType.TODO) {
-            checkCommandArgs(command, 2);
-            task = new ToDo(command[1]);
-        } else if (type == TaskType.DEADLINE) {
-            checkCommandTag(command, DEADLINE_TAG);
-            String[] args = splitTag(command[1], DEADLINE_TAG);
-            task = new Deadline(args[0], LocalDate.parse(args[1]));
-        } else {
-            checkCommandTag(command, EVENT_TAG);
-            String[] args = splitTag(command[1], EVENT_TAG);
-            task = new Event(args[0], LocalDate.parse(args[1]));
-        }
-        this.taskList.add(task);
-        this.outputMessage(Messages.ADD_LIST[this.messageState]);
-        this.outputMessage(task.toString());
-        this.outputMessage(Messages.getListSizeMsg(taskList.size(), messageState));
-    }
-
-    private void handleDelete(String[] command) throws InvalidIndexException, MissingDescriptionException {
-        checkCommandInt(command);
-        int index = Integer.parseInt(command[1]) - 1;
-        Task task = taskList.get(index);
-        this.outputMessage(Messages.DELETE_LIST[messageState]);
-        this.outputMessage(task.toString());
-        taskList.remove(index);
-        this.outputMessage(Messages.getListSizeMsg(taskList.size(), messageState));
-    }
-
-    public static void main(String[] args) {
+    public void run() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println(logo);
-        SaveManager saveManager = new SaveManager(SaveManager.FILE_PATH);
-        Duke duke = new Duke(saveManager.load());
-        duke.greet();
-        Scanner scanner = new Scanner(System.in);
-        do {
-            saveManager.save(duke.getTaskList());
-            System.out.print("You: ");
-        } while (duke.parseMessage(scanner.nextLine()));
+        this.ui.showGreeting();
+        boolean isExit = false;
+        while (!isExit) {
+            this.ui.showYou();
+            String fullCommand = this.ui.readCommand();
+            try {
+                Command c = Parser.parse(fullCommand);
+                c.execute(this.taskList, this.ui, this.storage);
+                isExit = c.isExit();
+            } catch (NumberFormatException e) {
+                this.ui.showNotANumber();
+            } catch (MissingIndexException e) {
+                this.ui.showMissingIndex();
+            } catch (MissingDescriptionException e) {
+                this.ui.showMissingDescription();
+            } catch (MissingTimeException e) {
+                this.ui.showMissingTime();
+            } catch (DateTimeParseException e) {
+                this.ui.showInvalidTime();
+            }
+
+            try {
+                this.storage.save(this.taskList);
+            } catch (DukeException e) {
+                this.ui.showSavingError();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new Duke(Storage.FILE_PATH).run();
     }
 }

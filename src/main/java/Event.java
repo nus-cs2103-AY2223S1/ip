@@ -1,6 +1,8 @@
 import java.time.LocalDate;
 
 public class Event extends Task {
+    public static String DELIMITER = " /at ";
+
     private LocalDate time;
 
     public Event(String description, LocalDate time) {
