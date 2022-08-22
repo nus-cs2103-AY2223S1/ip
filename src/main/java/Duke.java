@@ -1,6 +1,8 @@
+import DukeException.DukeException;
+import DukeException.InvalidInput;
+import DukeException.UnknownCommand;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -40,7 +42,7 @@ public class Duke {
             data.add(task);
             return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
         } catch (DateTimeParseException e) {
-            throw new DukeException("Incorrect date format. Format should be yyyy-mm-dd");
+            throw new InvalidInput("Date format should be yyyy-mm-dd");
         }
     }
 
@@ -57,7 +59,7 @@ public class Duke {
             data.add(task);
             return "Got it. I've added this task:\n" + task + "\nNow you have " + data.size() + " tasks.";
         } catch (DateTimeParseException e) {
-            throw new DukeException("Incorrect date format. Format should be yyyy-mm-dd");
+            throw new InvalidInput("Date format should be yyyy-mm-dd");
         }
     }
 

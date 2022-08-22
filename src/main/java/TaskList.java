@@ -1,8 +1,10 @@
+import DukeException.DukeException;
+import DukeException.InvalidInput;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.io.IOException;
 import java.nio.file.Path;
@@ -11,7 +13,7 @@ import java.util.Scanner;
 public class TaskList {
     private final ArrayList<Task> data;
 
-    TaskList() throws DukeException{
+    TaskList() throws DukeException {
         this.data = new ArrayList<>();
         String home = System.getProperty("user.dir");
         Path path = Paths.get(home, "data");
@@ -52,10 +54,10 @@ public class TaskList {
                         task = new ToDo(taskData[2]);
                         break;
                     case "D":
-                        task = new Deadline(taskData[2], taskData[3]);
+                        task = new Deadline(taskData[2], LocalDate.parse(taskData[3]));
                         break;
                     case "E":
-                        task = new Event(taskData[2], taskData[3]);
+                        task = new Event(taskData[2], LocalDate.parse(taskData[3]));
                         break;
                 }
                 if (task != null) {
