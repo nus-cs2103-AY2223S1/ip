@@ -17,4 +17,16 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    /**
+     * Gets the string representation of this task for storage in a file.
+     *
+     * @return a String containing the task name, description and whether it is completed.
+     */
+    @Override
+    public String encode() {
+        return String.format("%s # %s",
+                             "T",
+                             super.encode());
+    }
 }

@@ -1,7 +1,7 @@
 /**
  * This class encapsulates a task created in the Chatbot.
  */
-public class Task {
+abstract class Task {
 
     // Fields
     protected boolean isDone; // Indicates if task is completed
@@ -49,5 +49,16 @@ public class Task {
      */
     private String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
+    }
+
+    /**
+     * Gets the string representation of this task for storage in a file.
+     *
+     * @return a String containing the task description and whether it is completed.
+     */
+    public String encode() {
+        return String.format("%s # %s",
+                             this.isDone ? "done" : "not done",
+                             this.description);
     }
 }
