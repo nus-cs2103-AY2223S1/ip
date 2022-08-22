@@ -7,36 +7,36 @@ public class Calendar {
         this.cache=new ArrayList<>();
     }
 
-    public int add_entry(CalendarEntry to_add){
+    public int addEntry(CalendarEntry to_add){
         this.cache.add(to_add);
         return 200;
     }
 
-    public CalendarEntry get_entry(int index){
+    public CalendarEntry getEntry(int index){
         return cache.get(index-1);
     }
 
-    public CalendarEntry delete_entry(int index){
+    public CalendarEntry deleteEntry(int index){
         if (index>this.cache.size()){
             throw new IndexOutOfBoundsException("Es tut mir leid. There is no event "+index+" in the current calendar\n");
         }
         return this.cache.remove(index-1);
     }
 
-    public int mark_as_done(int index){
+    public int markAsDone(int index){
         if (index>this.cache.size()){
             throw new IndexOutOfBoundsException("Es tut mir leid. There is no event "+index+" in the current calendar\n");
             //return 417;
         }
-        return this.get_entry(index).markAsCompleted();
+        return this.getEntry(index).markAsCompleted();
     }
 
-    public int mark_as_undone(int index){
+    public int markAsUndone(int index){
         if (index>this.cache.size()){
             throw new IndexOutOfBoundsException("Es tut mir leid. There is no event "+index+" in the current calendar\n");
             //return 417;
         }
-        return this.get_entry(index).markAsIncomplete();
+        return this.getEntry(index).markAsIncomplete();
     }
 
     @Override

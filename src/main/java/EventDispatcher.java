@@ -22,7 +22,7 @@ public class EventDispatcher {
     @Deprecated
     private int add(String[] entry_info){
         CalendarEntry entry=new CalendarEntry(entry_info[0]);
-        this.table.add_entry(entry);
+        this.table.addEntry(entry);
         ui.cout(UiHandler.generateSection("Added: "+entry.toString()+"\n"));
         return 200;
     }
@@ -34,18 +34,18 @@ public class EventDispatcher {
             //return 400;
         }
         if (args[0].equals("mark")){
-            int status=this.table.mark_as_done(Integer.parseInt(args[1]));
+            int status=this.table.markAsDone(Integer.parseInt(args[1]));
             if (status==200 || status==208) {
                 ui.cout(UiHandler.generateSection("Jawohl, I have marked the following event as completed:\n     " +
-                        this.table.get_entry(Integer.parseInt(args[1]))+"\n"));
+                        this.table.getEntry(Integer.parseInt(args[1]))+"\n"));
             }
             return status;
         }
         if (args[0].equals("unmark")){
-            int status=this.table.mark_as_undone(Integer.parseInt(args[1]));
+            int status=this.table.markAsUndone(Integer.parseInt(args[1]));
             if (status==200 || status==208) {
                 ui.cout(UiHandler.generateSection("Jawohl, I have marked the following event as incomplete:\n     " +
-                        this.table.get_entry(Integer.parseInt(args[1]))+"\n"));
+                        this.table.getEntry(Integer.parseInt(args[1]))+"\n"));
             }
             return status;
         }
@@ -62,7 +62,7 @@ public class EventDispatcher {
             //return 400;
         }
         ui.cout(UiHandler.generateSection("Jawohl, I have removed the following entry from your calendar:\n     " +
-                this.table.delete_entry(Integer.parseInt(args[1]))+"\n"));
+                this.table.deleteEntry(Integer.parseInt(args[1]))+"\n"));
         return 200;
     }
 
@@ -70,7 +70,7 @@ public class EventDispatcher {
         String[] args=input.toLowerCase().split(" ");
         if (args[0].equals("todo") && args.length>=2){
             CalendarEntryTodo entry=new CalendarEntryTodo(input.substring(5));
-            int status=this.table.add_entry(entry);
+            int status=this.table.addEntry(entry);
             if (status==200){
                 ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
@@ -85,7 +85,7 @@ public class EventDispatcher {
             String time=input.substring(input.indexOf("/by")+4);
             String title=input.substring(0, input.indexOf("/by")-1);
             CalendarEntryDeadline entry=new CalendarEntryDeadline(title, time);
-            int status=this.table.add_entry(entry);
+            int status=this.table.addEntry(entry);
             if (status==200){
                 ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
@@ -100,7 +100,7 @@ public class EventDispatcher {
             String time=input.substring(input.indexOf("/at")+4);
             String title=input.substring(0, input.indexOf("/at")-1);
             CalendarEntryEvent entry=new CalendarEntryEvent(title, time.split(" - ")[0], time.split(" - ")[1]);
-            int status=this.table.add_entry(entry);
+            int status=this.table.addEntry(entry);
             if (status==200){
                 ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
