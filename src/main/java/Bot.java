@@ -42,10 +42,10 @@ public class Bot {
                         task = new Todo(name);
                     } else if (command.equals("deadline")) {
                         String[] details = name.split("\\s+/by\\s+");
-                        task = new Deadline(details[0], this.parser.parseDate(details[1]));
+                        task = new Deadline(details[0], this.parser.parseTime(details[1]));
                     } else {
                         String[] details = name.split("\\s+/at\\s+");
-                        task = new Event(details[0], this.parser.parseDate(details[1]));
+                        task = new Event(details[0], this.parser.parseTime(details[1]));
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw DukeException.DukeInvalidFormatException();

@@ -1,18 +1,21 @@
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 public class Parser {
 
+    protected static final String[] DATEPATTERNS = {"yyyy-MM-d HH:mm", "yyyy/MM/d HH:mm", "yyyy MM d HH:mm",
+            "d-MM-yyyy HH:mm", "d/MM/yyyy HH:mm", "d MM yyyy HH:mm",
+            "yyyy-MMM-d HH:mm", "yyyy/MMM/d HH:mm", "yyyy MMM d HH:mm",
+            "d-MMM-yyyy HH:mm", "d/MMM/yyyy HH:mm", "d MMM yyyy HH:mm",
+            "yyyy-MMMM-d HH:mm", "yyyy/MMMM/d HH:mm", "yyyy MMMM d HH:mm",
+            "d-MMMM-yyyy HH:mm", "d/MMMM/yyyy HH:mm", "d MMMM yyyy HH:mm"};
     public Parser() {
     }
 
-    public LocalDate parseDate(String date) throws DukeException {
-        String[] datePatterns = {"yyyy-MM-d", "yyyy/MM/d", "yyyy MM d", "d-MM-yyyy", "d/MM/yyyy", "d MM yyyy",
-                "yyyy-MMM-d", "yyyy/MMM/d", "yyyy MMM d", "d-MMM-yyyy", "d/MMM/yyyy", "d MMM yyyy",
-                "yyyy-MMMM-d", "yyyy/MMMM/d", "yyyy MMMM d", "d-MMMM-yyyy", "d/MMMM/yyyy", "d MMMM yyyy"};
-        for (String pattern : datePatterns) {
+    public LocalDateTime parseTime(String date) throws DukeException {
+        for (String pattern : DATEPATTERNS) {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
-                return LocalDate.parse(date, formatter);
+                return LocalDateTime.parse(date, formatter);
             } catch (Exception e) {
 
             }
