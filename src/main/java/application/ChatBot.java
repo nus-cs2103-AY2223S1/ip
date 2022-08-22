@@ -42,22 +42,22 @@ public class ChatBot {
         Task task;
 
         switch (cs) {
-            case TODO:
-                task = new ToDo(parsedLine.get(0));
-                break;
-            case DEADLINE:
-                task = new Deadline(parsedLine.get(0), parsedLine.get(1));
-                break;
-            case EVENT:
-                task = new Event(parsedLine.get(0), parsedLine.get(1));
-                break;
-            default:
-                throw new InvalidCaseException();
+        case TODO:
+            task = new ToDo(parsedLine.get(0));
+            break;
+        case DEADLINE:
+            task = new Deadline(parsedLine.get(0), parsedLine.get(1));
+            break;
+        case EVENT:
+            task = new Event(parsedLine.get(0), parsedLine.get(1));
+            break;
+        default:
+            throw new InvalidCaseException();
         }
 
         taskList.add(task);
         this.displayMessage("\t" + "Got it. I've added this task:" + "\n\t\t" + task + "\n"
-                          + "\t" + "Now you have " + taskList.size() + " tasks in the list." + "\n");
+                + "\t" + "Now you have " + taskList.size() + " tasks in the list." + "\n");
     }
 
     private void handleDeleteTask(ArrayList<String> parsedLine) throws InvalidInputException {
@@ -65,8 +65,8 @@ public class ChatBot {
         if (taskList.isInRange(entry)) {
             Task removed = taskList.remove(entry);
             this.displayMessage("\t" + "Noted. I've removed this task:" + "\n\t\t"
-                              + "\t" + removed + "\n"
-                              + "\t" + "Now you have " + taskList.size() + " tasks left in the list." + "\n");
+                    + "\t" + removed + "\n"
+                    + "\t" + "Now you have " + taskList.size() + " tasks left in the list." + "\n");
         } else {
             throw new InvalidInputException();
         }
@@ -107,32 +107,34 @@ public class ChatBot {
 
         Scanner input = new Scanner(System.in);
 
-        while(true) {
+        while (true) {
             try {
                 Pair<Case, ArrayList<String>> parsed = LineParser.parse(input.nextLine());
                 Case cs = parsed.getLeft();
                 ArrayList<String> parsedLine = parsed.getRight();
 
                 switch (cs) {
-                    case BYE:
-                        this.handleBye();
-                        input.close();
-                        return;
-                    case LIST:
-                        this.handleList();
-                        break;
-                    case MARK:
-                        this.handleMark(parsedLine);
-                        break;
-                    case UNMARK:
-                        this.handleUnmark(parsedLine);
-                        break;
-                    case DELETE:
-                        this.handleDeleteTask(parsedLine);
-                        break;
-                    case TODO: case DEADLINE: case EVENT:
-                        this.handleAddTask(cs, parsedLine);
-                        break;
+                case BYE:
+                    this.handleBye();
+                    input.close();
+                    return;
+                case LIST:
+                    this.handleList();
+                    break;
+                case MARK:
+                    this.handleMark(parsedLine);
+                    break;
+                case UNMARK:
+                    this.handleUnmark(parsedLine);
+                    break;
+                case DELETE:
+                    this.handleDeleteTask(parsedLine);
+                    break;
+                case TODO:
+                case DEADLINE:
+                case EVENT:
+                    this.handleAddTask(cs, parsedLine);
+                    break;
                 }
             } catch (InvalidInputException e) {
                 this.handleUnexpected();
