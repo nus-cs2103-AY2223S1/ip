@@ -62,57 +62,67 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 return;
             } else if ("list".equals(command)) {
-                System.out.println("Here are the tasks in your list:");
-                System.out.print(inputListToString());
+                printTaskList();
             } else if ("mark".equals(command)) {
-                int index = Integer.parseInt(body) - 1;
-                Task taskToMark = taskList.get(index);
-                taskToMark.mark();
-                String response = String.format(
-                        "Nice! I've marked this task as done:\n  %s",
-                        taskToMark);
-                System.out.println(response);
+                markTask(body);
             } else if ("unmark".equals(command)) {
-                int index = Integer.parseInt(body) - 1;
-                Task taskToUnmark = taskList.get(index);
-                taskToUnmark.unmark();
-                String response = String.format(
-                        "OK, I've marked this task as not done yet:\n  %s",
-                        taskToUnmark
-                );
-                System.out.println(response);
+                unmarkTask(body);
             } else if ("delete".equals(command)) {
-                int index = Integer.parseInt(body) - 1;
-                Task deletedTask = taskList.remove(index);
-                String response = String.format(
-                        "Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list",
-                        deletedTask, taskList.size()
-                );
-                System.out.println(response);
+                deleteTask(body);
             } else if (isTaskType(command)) {
-                try {
-                    TaskTypes type = getTaskType(command);
-                    Task newTask = addNewTask(body, type);
-                    String response = String.format(
-                            "Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.",
-                            newTask, taskList.size());
-                    System.out.println(response);
-                } catch (NoSuchTaskException | EmptyTaskDescException | EmptyTaskTimeException e) {
-                    System.out.println("☹ " + e.getMessage());
-                }
+                addTask(command, body);
             } else {
-                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
 
-    private boolean isTaskType(String s) {
-        return "todo".equals(s) ||
-                "event".equals(s) ||
-                "deadline".equals(s);
+    private void markTask(String body) {
+        int index = Integer.parseInt(body) - 1;
+        Task taskToMark = taskList.get(index);
+        taskToMark.mark();
+        String response = String.format(
+                "Nice! I've marked this task as done:\n  %s",
+                taskToMark);
+        System.out.println(response);
     }
 
-    private String inputListToString() {
+    private void unmarkTask(String body) {
+        int index = Integer.parseInt(body) - 1;
+        Task taskToUnmark = taskList.get(index);
+        taskToUnmark.unmark();
+        String response = String.format(
+                "OK, I've marked this task as not done yet:\n  %s",
+                taskToUnmark
+        );
+        System.out.println(response);
+    }
+
+    private void deleteTask(String body) {
+        int index = Integer.parseInt(body) - 1;
+        Task deletedTask = taskList.remove(index);
+        String response = String.format(
+                "Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list",
+                deletedTask, taskList.size()
+        );
+        System.out.println(response);
+    }
+
+    private void addTask(String command, String body) {
+        try {
+            TaskTypes type = getTaskType(command);
+            Task newTask = createNewTask(body, type);
+            String response = String.format(
+                    "Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.",
+                    newTask, taskList.size());
+            System.out.println(response);
+        } catch (NoSuchTaskException | EmptyTaskDescException | EmptyTaskTimeException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    private void printTaskList() {
+        System.out.println("Here are the tasks in your list:");
         StringBuilder sb = new StringBuilder();
         int i = 1;
         for (Task t : taskList) {
@@ -122,10 +132,16 @@ public class Duke {
             sb.append("\n");
             ++i;
         }
-        return sb.toString();
+        System.out.print(sb);
     }
 
-    private Task addNewTask(String taskString, TaskTypes type)
+    private boolean isTaskType(String s) {
+        return "todo".equals(s) ||
+                "event".equals(s) ||
+                "deadline".equals(s);
+    }
+
+    private Task createNewTask(String taskString, TaskTypes type)
             throws EmptyTaskDescException, EmptyTaskTimeException {
         if ("".equals(taskString)) {
             throw new EmptyTaskDescException();
