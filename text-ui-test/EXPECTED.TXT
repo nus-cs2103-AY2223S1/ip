@@ -5,24 +5,24 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Hello! I'm duke.Duke
+Hello! I'm Duke
 What can I do for you? ^_^
 	Got it! I have added this task:
 		[D][ ] submit report (by: 10 Dec 2022)
 	Now you have 1 task in the list!
 	Got it! I have added this task:
 		[T][ ] read book
-	Now you have 2 duke.ui.tasks in the list!
+	Now you have 2 tasks in the list!
 	Got it! I have added this task:
 		[D][ ] submit project (by: 18 Aug 2022)
-	Now you have 3 duke.ui.tasks in the list!
+	Now you have 3 tasks in the list!
 	Got it! I have added this task:
 		[E][ ] project meeting (at: 20 Sep 2022)
-	Now you have 4 duke.ui.tasks in the list!
+	Now you have 4 tasks in the list!
 	Got it! I have added this task:
 		[T][ ] sweep the floor
-	Now you have 5 duke.ui.tasks in the list!
-	Here are the duke.ui.tasks in your list :D
+	Now you have 5 tasks in the list!
+	Here are the tasks in your list :D
 	1. [D][ ] submit report (by: 10 Dec 2022)
 	2. [T][ ] read book
 	3. [D][ ] submit project (by: 18 Aug 2022)
@@ -32,7 +32,7 @@ What can I do for you? ^_^
 		[D][X] submit project (by: 18 Aug 2022)
 	Nice! I have marked this task as done:
 		[D][X] submit report (by: 10 Dec 2022)
-	Here are the duke.ui.tasks in your list :D
+	Here are the tasks in your list :D
 	1. [D][X] submit report (by: 10 Dec 2022)
 	2. [T][ ] read book
 	3. [D][X] submit project (by: 18 Aug 2022)
@@ -51,7 +51,7 @@ What can I do for you? ^_^
 	Oops! No such task exist!
 	Noted, I have removed this task:
 		[D][ ] submit report (by: 10 Dec 2022)
-	Here are the duke.ui.tasks in your list :D
+	Here are the tasks in your list :D
 	1. [T][ ] read book
 	2. [D][X] submit project (by: 18 Aug 2022)
 	3. [E][ ] project meeting (at: 20 Sep 2022)
