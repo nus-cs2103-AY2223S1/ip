@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * A task that starts at a specific time and ends at a specific time.
  *

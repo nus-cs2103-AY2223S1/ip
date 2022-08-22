@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Describes a task which can either be done or not done.
  *

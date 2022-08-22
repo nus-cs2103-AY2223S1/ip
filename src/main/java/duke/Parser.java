@@ -1,7 +1,20 @@
+package duke;
+
 import java.util.Objects;
 
 public class Parser {
 
+    /**
+     * Parses user command into a String array. First element of the array
+     * is the type of command; i.e. "T" for todo, "D" for deadline, "E" for
+     * event, "d" for delete, "M" for mark, "L" for list, "B" for bye and "U"
+     * for unknown input. Second element of the array is either: the description
+     * of a todo/deadline/event task or the number of task to be marked/deleted.
+     * The third element of the array is the time for deadline/event tasks.
+     *
+     * @param command User input
+     * @return a String array
+     */
     public String[] parseCommand(String command) {
 
         String[] arr = this.isUnknown(); // to be returned
@@ -56,7 +69,7 @@ public class Parser {
         return arr; // reaches here if input is unknown
     }
 
-    public String[] isTodo(String input) throws DukeException {
+    private String[] isTodo(String input) throws DukeException {
         if (input.replace(" ", "").length() == 4) {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
@@ -64,7 +77,7 @@ public class Parser {
         return new String[]{"T", description};
     }
 
-    public String[] isDeadline(String input) throws DukeException {
+    private String[] isDeadline(String input) throws DukeException {
         if (input.replace(" ", "").length() == 8) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
@@ -73,7 +86,7 @@ public class Parser {
         return new String[]{"D", description, by};
     }
 
-    public String[] isEvent(String input) throws DukeException {
+    private String[] isEvent(String input) throws DukeException {
         if (input.replace(" ", "").length() == 5) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
         }
@@ -82,27 +95,27 @@ public class Parser {
         return new String[]{"E", description, at};
     }
 
-    public String[] isDelete(String input) {
+    private String[] isDelete(String input) {
         String numString = input.replace("delete", "")
                 .replace(" ", "");
         return new String[]{"d", numString};
     }
 
-    public String[] isMark(String input) {
+    private String[] isMark(String input) {
         String numString = input.replace("mark", "")
                 .replace(" ", "");
         return new String[]{"M", numString};
     }
 
-    public String[] isList() {
+    private String[] isList() {
         return new String[]{"L"};
     }
 
-    public String[] isBye() {
+    private String[] isBye() {
         return new String[]{"B"};
     }
 
-    public String[] isUnknown() {
+    private String[] isUnknown() {
         return new String[]{"U"};
     }
 }
