@@ -2,6 +2,7 @@ package duke.helper;
 
 import duke.task.*;
 import duke.exception.*;
+
 public class Parser {
 
     public static void parse(String in, TaskList list) {

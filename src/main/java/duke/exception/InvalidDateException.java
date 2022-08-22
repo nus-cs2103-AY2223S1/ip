@@ -1,4 +1,5 @@
 package duke.exception;
+
 public class InvalidDateException extends Exception {
     /**
      * Exception for input with invalid date/time

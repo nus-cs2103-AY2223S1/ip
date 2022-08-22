@@ -2,7 +2,8 @@ package duke.helper;
 
 import java.io.IOException;
 import java.io.FileWriter;
-import duke.task.*;
+import duke.task.TaskList;
+
 public class FileWriting {
     /**
      * Class to update .txt file
@@ -19,7 +20,7 @@ public class FileWriting {
         }
     }
 
-    public static void clear(String filePath) {
+    public void clear(String filePath) {
         update(filePath, new TaskList());
     }
 }

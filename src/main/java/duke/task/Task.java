@@ -1,4 +1,5 @@
 package duke.task;
+
 public class Task {
     /**
      * Parent class to manage all the Task
