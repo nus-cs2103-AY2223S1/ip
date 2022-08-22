@@ -1,10 +1,12 @@
 import utils.IOUtils;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 public class ConversationHandler {
 
     private Scanner in;
     private boolean active = true;
+    private ArrayList<String> list = new ArrayList<>();
 
     public ConversationHandler() {
         IOUtils.printContentWithHR("Hello! I'm " + Main.name + "\n" + "What can I do for you?");
@@ -18,15 +20,32 @@ public class ConversationHandler {
         }
     }
 
-    public String commandHandler(String command) {
-        switch (command) {
+    public String commandHandler(String input) {
+        switch (input) {
             case "Bye":
             case "bye":
                 this.close();
                 return "Bye. Hope to see you again!";
-        }
 
-        return command;
+            case "list":
+            case "List":
+                return this.enumerateList();
+
+            default:
+                this.list.add(input);
+                return "added: " + input;
+        }
+    }
+
+    private String enumerateList() {
+        String returnMsg = "";
+        int index = 1;
+
+        for (String str: list) {
+            returnMsg += index + ". " + str + "\n";
+            index ++;
+        }
+        return returnMsg;
     }
 
     private void close() {
