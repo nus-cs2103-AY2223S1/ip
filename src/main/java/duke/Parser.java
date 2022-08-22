@@ -1,19 +1,8 @@
 package duke;
 
 import java.time.LocalDate;
-
-/**
- * Parser scans through user input and converts it into Commands that Duke can understand.
- */
 public class Parser {
 
-    /**
-     * Converts user input into Command.
-     *
-     * @param CommandString user input that has been entered.
-     * @return Command based on user input.
-     * @throws DukeException the exception encountered while parsing through user input.
-     */
     public Command parseCommand(String CommandString) throws DukeException {
         String[] splitInput = CommandString.split(" ", 2);
         switch(splitInput[0]) {
@@ -61,12 +50,6 @@ public class Parser {
 
     }
 
-    /**
-     * Checks user input for missing arguments.
-     *
-     * @param input user input that has been split.
-     * @throws DukeException if user input is missing some arguments.
-     */
     public void checkForMissingArgs(String[] input) throws DukeException {
         if (input.length == 1) {
             throw new DukeException("Sorry nya! You are missing some details in your command");

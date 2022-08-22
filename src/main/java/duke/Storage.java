@@ -11,28 +11,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * This class is responsible for the IO operations of the save file for Duke.
- */
 public class Storage {
-
     String filePath;
     File saveFile;
-
-    /**
-     * Constructor for Storage.
-     * @param filePath filepath of the save file.
-     */
     public Storage(String filePath) {
+
         this.filePath = filePath;
         this.saveFile = new File(filePath);
     }
 
-    /**
-     * Saves current task list to the file in specified filepath.
-     *
-     * @param taskList the tasklist to be saved in the save file.
-     */
     public void save(TaskList taskList) {
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -45,12 +32,6 @@ public class Storage {
         }
     }
 
-    /**
-     * Reads the save file from specified file path to update TaskList of Duke.
-     *
-     * @return List of tasks saved in save file
-     * @throws DukeException if save file can't be found.
-     */
     public List<Task> load() throws DukeException {
         List<Task> taskList = new ArrayList<>();
         try {
