@@ -1,3 +1,11 @@
+package jduke;
+
+import jduke.data.TaskList;
+import jduke.data.exception.JdukeException;
+import jduke.parser.Parser;
+import jduke.storage.Storage;
+import jduke.ui.Ui;
+
 public class Jduke {
     public enum Command {
         LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE

@@ -1,3 +1,8 @@
+package jduke.parser;
+
+import jduke.Jduke;
+import jduke.data.exception.JdukeException;
+
 public class Parser {
     public static Jduke.Command parseMainCommand(String input) throws JdukeException {
         Jduke.Command mainCmd;

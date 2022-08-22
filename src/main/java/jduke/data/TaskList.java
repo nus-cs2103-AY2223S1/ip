@@ -1,3 +1,12 @@
+package jduke.data;
+
+import jduke.Jduke;
+import jduke.data.exception.JdukeException;
+import jduke.task.Deadline;
+import jduke.task.Event;
+import jduke.task.Task;
+import jduke.task.ToDo;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;

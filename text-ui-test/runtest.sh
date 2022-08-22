@@ -12,8 +12,13 @@ then
     rm ACTUAL.TXT
 fi
 
+if [ -e "./ACTUAL_DATA.TXT" ]
+then
+    rm ACTUAL_DATA.TXT
+fi
+
 # compile the code into the bin folder, terminates if error occurred
-if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/*.java
+if ! javac -cp ../src/main/java -Xlint:none -d ../bin ../src/main/java/**/*.java
 then
     echo "********** BUILD FAILURE **********"
     exit 1
@@ -24,7 +29,7 @@ mkdir data
 cp data.txt data/tasks.txt
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin Jduke < input.txt > ACTUAL.TXT
+java -classpath ../bin jduke.Jduke < input.txt > ACTUAL.TXT
 
 # copies the final saved data
 cp data/tasks.txt ACTUAL_DATA.txt

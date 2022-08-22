@@ -1,12 +1,12 @@
+package jduke.task;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-
-public class Deadline extends Task {
+public class Event extends Task {
     private LocalDate date;
     private LocalTime time;
-
-    public Deadline(String description, String timing) {
+    public Event(String description, String timing) {
         super(description);
         String[] timingParams = timing.split(" ");
         if (timingParams.length == 2) {
@@ -16,12 +16,11 @@ public class Deadline extends Task {
     }
     @Override
     public String getType() {
-        return "D";
+        return "E";
     }
-
     @Override
     public String getDescription() {
-        return String.format("%s (by: %s%s)",
+        return String.format("%s (at: %s%s)",
                 super.getDescription(),
                 this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")),
                 (this.time != null ? this.time.format(DateTimeFormatter.ofPattern(" hh:mm a")) : "")
@@ -36,7 +35,7 @@ public class Deadline extends Task {
     @Override
     public String toStorageFormat() {
         return String.format(
-                "D | %s | %s | %s%s",
+                "E | %s | %s | %s%s",
                 (super.isCompleted() ? "1" : "0"),
                 super.getDescription(),
                 this.date.format(DateTimeFormatter.ofPattern("d/M/yyyy")),

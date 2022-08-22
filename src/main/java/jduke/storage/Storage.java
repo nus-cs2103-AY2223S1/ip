@@ -1,3 +1,7 @@
+package jduke.storage;
+
+import jduke.data.exception.JdukeException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
