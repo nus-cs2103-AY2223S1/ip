@@ -43,6 +43,9 @@ public class CmdHandler {
         }
     }
 
+    /**
+     * @param i 0 based index of task in ArrayList tasks
+     */
     private void handleMark(int i) {
         tasks.get(i).mark();
         System.out.println("marked as done: " + tasks.get(i));
@@ -120,11 +123,9 @@ public class CmdHandler {
                 }
                 System.out.println();
                 saveTasks();
-
             } catch (DukeException de) {
                 System.out.println(de.getMessage());
             }
         }
     }
-
 }
