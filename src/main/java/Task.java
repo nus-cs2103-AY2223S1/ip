@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 /**
  * This class encapsulates a task created in the Chatbot.
  */
@@ -49,5 +50,15 @@ public class Task {
      */
     private String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
+    }
+
+    /**
+     * Gets the deadline of the Task, if any.
+     *
+     * @return A LocalDate representing the Task's deadline if it exists
+     *         null if no such deadline exists
+     */
+    public LocalDate getDeadline() {
+        return null;
     }
 }
