@@ -3,7 +3,9 @@ import java.util.Scanner;
 
 public class Dave2 {
 
-    private static final TaskList tasks = new TaskList();
+    private static TaskList tasks = new TaskList();
+
+    private static final SaveHandler saveState = new SaveHandler();
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -64,15 +66,26 @@ public class Dave2 {
     }
 
     public static void main(String[] args) {
-        String logo = " ____                     _____\n"
-                + "|  _ \\ _____ _   _ __    /___  \\\n"
-                + "| | | |  _  | |/ / _ \\      /  /\n"
-                + "| |_| | |_| |   <  __/     /  /_\n"
-                + "|____/ \\__,_|__/ \\___|    /_____|\n";
-        System.out.println(line + "Hello, I'm\n" + logo + "\nHow can I help ùwú?\n" + line);
 
-        while (running) {
-            inputHandling(scanner.nextLine());
+        try {
+            saveState.init();
+            tasks = saveState.load();
+
+            String logo = " ____                     _____\n"
+                    + "|  _ \\ _____ _   _ __    /___  \\\n"
+                    + "| | | |  _  | |/ / _ \\      /  /\n"
+                    + "| |_| | |_| |   <  __/     /  /_\n"
+                    + "|____/ \\__,_|__/ \\___|    /_____|\n";
+            System.out.println(line + "Hello, I'm\n" + logo + "\nHow can I help ùwú?\n" + line);
+
+            while (running) {
+                inputHandling(scanner.nextLine());
+            }
+
+            saveState.save(tasks);
+
+        } catch (DaveException e) {
+            print(e);
         }
     }
 }
