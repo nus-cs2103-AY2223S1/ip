@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -106,14 +107,14 @@ public class Storage {
                 return todo;
             case DEADLINE:
                 String[] deadlineInfo = taskInfo[2].split("/by ", 2);
-                Deadline deadline = new Deadline(deadlineInfo[0].strip(), deadlineInfo[1]);
+                Deadline deadline = new Deadline(deadlineInfo[0].strip(), LocalDateTime.parse(deadlineInfo[1]));
                 if ("Y".equals(taskInfo[1])) {
                     deadline.markAsDone();
                 }
                 return deadline;
             case EVENT:
                 String[] eventInfo = taskInfo[2].split("/at ", 2);
-                Event event = new Event(eventInfo[0].strip(), eventInfo[1]);
+                Event event = new Event(eventInfo[0].strip(), LocalDateTime.parse(eventInfo[1]));
                 if ("Y".equals(taskInfo[1])) {
                     event.markAsDone();
                 }
