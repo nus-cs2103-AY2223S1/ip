@@ -1,8 +1,8 @@
 public class Todo extends Task {
     private static final String type = "[T]";
 
-    public Todo(String name, int count) throws MissingDescriptionException {
-        super(name, count);
+    public Todo(String name) throws MissingDescriptionException {
+        super(name);
     }
 
     @Override
@@ -10,14 +10,13 @@ public class Todo extends Task {
         String comp = this.completed
                 ? "[X]"
                 : "[ ]";
-        return String.format("%d." + type + comp + name, count);
+        return type + comp + name;
     }
 
     @Override
-    public String toStr() {
-        String comp = this.completed
-                ? "[X]"
-                : "[ ]";
-        return type + comp + name;
+    public String toData() {
+        String type = "T";
+        String completed = this.completed ? "1" : "0";
+        return type + "//" + completed +"//" + name;
     }
 }

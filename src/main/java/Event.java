@@ -1,12 +1,11 @@
 import java.time.LocalDateTime;
-import java.time.Month;
 
 public class Event extends Task {
     private static final String type = "[E]";
     private LocalDateTime time;
 
-    public Event(String name, int count, LocalDateTime time) throws MissingDescriptionException {
-        super(name, count);
+    public Event(String name,LocalDateTime time) throws MissingDescriptionException {
+        super(name);
         this.time = time;
     }
 
@@ -21,20 +20,18 @@ public class Event extends Task {
         int hour = time.getHour();
         int minute = time.getMinute();
         String dateString = date + " " + month + " " + year + " " + hour + ":" + minute;
-        return String.format("%d." + type + comp + name + dateString, count);
+        return type + comp + name + dateString;
     }
 
     @Override
-    public String toStr() {
-        String comp = this.completed
-                ? "[X]"
-                : "[ ]";
+    public String toData() {
+        String type = "E";
+        String completed = this.completed ? "1" : "0";
         int year = time.getYear();
-        String month = time.getMonth().toString();
+        int month = time.getMonthValue();
         int date = time.getDayOfMonth();
         int hour = time.getHour();
         int minute = time.getMinute();
-        String dateString = date + " " + month + " " + year + " " + hour + ":" + minute;
-        return type + comp + name + dateString;
+        return type + "//" + completed +"//" + name + "//" + year + "-" + month + "-" + date + "//" + hour + ":" + minute;
     }
 }

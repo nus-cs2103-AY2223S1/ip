@@ -1,14 +1,12 @@
 public class Task {
     protected boolean completed;
     protected String name;
-    protected int count;
 
-    public Task(String name, int count) throws MissingDescriptionException {
+    public Task(String name) throws MissingDescriptionException {
         if (name.equals("") || name.equals(" ")) {
             throw new MissingDescriptionException();
         } else {
             this.name = name;
-            this.count = count;
             this.completed = false;
         }
 
@@ -27,17 +25,10 @@ public class Task {
         String comp = this.completed
                 ? "[X]"
                 : "[ ]";
-        return String.format("%d." + comp + name, count);
-    }
-
-    public String toStr() {
-        String comp = this.completed
-                ? "[X]"
-                : "[ ]";
         return comp + name;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public String toData() {
+        return this.toString();
     }
 }

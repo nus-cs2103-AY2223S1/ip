@@ -4,8 +4,8 @@ public class Deadline extends Task {
     private static final String type = "[D]";
     private LocalDate date;
 
-    public Deadline(String name, int count, LocalDate date) throws MissingDescriptionException {
-        super(name, count);
+    public Deadline(String name, LocalDate date) throws MissingDescriptionException {
+        super(name);
         this.date = date;
     }
 
@@ -15,15 +15,15 @@ public class Deadline extends Task {
                 ? "[X]"
                 : "[ ]";
         String dateString = date.getDayOfMonth() + " " + date.getMonth().toString() + " " + date.getYear();
-        return String.format("%d." + type + comp + name + dateString, count);
+        return type + comp + name + dateString;
     }
 
     @Override
-    public String toStr() {
-        String comp = this.completed
-                ? "[X]"
-                : "[ ]";
-        String dateString = date.getDayOfMonth() + " " + date.getMonth().toString() + " " + date.getYear();
-        return type + comp + name + dateString;
+    public String toData() {
+        String type = "D";
+        String completed = this.completed ? "1" : "0";
+        String dt = date.toString();
+        return type + "//" + completed +"//" + name + "//" + dt;
     }
+
 }
