@@ -108,6 +108,10 @@ public class DukeTaskManager {
             return String.format("Now you have %d tasks in the list\n", size);
         }
     }
+
+    /**
+     * Shows the list of tasks stored
+     */
     public void dukeShowAllTasks(){
         String description = "List of tasks to be done:\n";
         dukeShowList(description, dukeTasks);
@@ -116,8 +120,8 @@ public class DukeTaskManager {
     private void dukeShowList(String description, List<Task> tasks) {
         int size = tasks.size();
         int margin = String.valueOf(size).length();
-        for (int i = 0; i < dukeTasks.size(); i++) {
-            description += String.format("%" + margin + "d. %s\n", i + 1, dukeTasks.get(i));
+        for (int i = 0; i < tasks.size(); i++) {
+            description += String.format("%" + margin + "d. %s\n", i + 1, tasks.get(i));
         }
         DukeUi.dukePrint(description);
     }
@@ -152,12 +156,22 @@ public class DukeTaskManager {
         }
     }
 
+
+    /**
+     * Shows the list of tasks containing the query
+     */
     public void dukeFindTasksContaining(String query) {
         String description = "Here are the matching tasks in your list:\n";
         dukeShowList(description,
                 dukeTasks.stream().filter(task -> task.toString().contains(query)).collect(Collectors.toList()));
     }
 
+    /**
+     * Updates the status of the task to be completed,incomplete or the remove the task
+     *
+     * @param type The new status of the task
+     * @param str String representation of the index of the tasks
+     * */
     public void dukeUpdateTaskStatus(DukeCommandType type, String str) {
         try {
             int index = Integer.parseInt(str.split(" ")[0]) - 1;

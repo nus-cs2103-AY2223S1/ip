@@ -49,8 +49,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns string representation of the deadline consisting of the string representation of Deadline, [D], the completion
-     * status of the deadline and the deadline description
+     * Returns string representation of the deadline consisting of the string representation of Deadline, [D],
+     * the completion status of the deadline and the deadline description
      * */
     @Override
     public String toString() {
