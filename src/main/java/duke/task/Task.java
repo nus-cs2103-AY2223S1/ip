@@ -4,31 +4,68 @@ import java.time.LocalDate;
 
 import duke.DukeException;
 
+/**
+ * Task encapsulates a task to be tracked in the TaskList.
+ *
+ * @author Samsation
+ * @version CS2103T AY 22/23 Sem 1
+ *
+ */
+
 public class Task {
     private String description;
     private boolean isDone;
 
+    /**
+     * A constructor for Task.
+     *
+     * @param description The description of the Task.
+     * @param isDone Has the Task been completed.
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
     }
 
+    /**
+     * A method that generates the status icon of the Task depending on whether it is done or not.
+     *
+     * @return The status icon.
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * A method that converts boolean to int.
+     *
+     * @return The int representation of whether the Task is done.
+     */
     public int isDoneToInt() {
         return isDone ? 1 : 0;
     }
 
+    /**
+     * A method that sets the Task to be done.
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * A method that sets the Task to be undone.
+     */
     public void markAsUndone() {
         this.isDone = false;
     }
 
+    /**
+     * A method that creates a specific Task type given the input details.
+     *
+     * @param data The String formatted data of the Task retrieved from the Storage.
+     * @return A specific type of Task created from the data.
+     * @throws DukeException If Task type from the data is unrecognised.
+     */
     public static Task loadToTaskList(String data) throws DukeException {
         String[] dataSplit = data.split(" \\| ", 4);
         char typeOfTask = dataSplit[0].trim().charAt(0);
@@ -46,10 +83,20 @@ public class Task {
         }
     }
 
+    /**
+     * A method that converts the Task into the String format required to be saved in the Storage.
+     *
+     * @return String formatted data of the Task.
+     */
     public String saveStringFormat() {
         return String.format("%d | %s", isDoneToInt(), description);
     }
 
+    /**
+     * A method that converts the Task into its String representation.
+     *
+     * @return String representation of the Task.
+     */
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), description);
