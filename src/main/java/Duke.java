@@ -1,8 +1,12 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.io.FileNotFoundException;
+
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -11,13 +15,13 @@ public class Duke {
     private static boolean hasFinishedLoading = false;
     private static ArrayList<Task> tasks = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
-    
+
     private String logo = " ____            _\n"
             + "|  _ \\ _   _  __| | ___\n"
             + "| | | | | | |/ _  |/ _ \\\n"
             + "| |_| | |_| | |_| |  __/\n"
             + "|____/ \\__,_|\\__,_|\\___|\n";
-    
+
     private String bye = "bye";
     private String list = "list";
     private String mark = "mark";
@@ -121,10 +125,18 @@ public class Duke {
                 System.out.println("The deadline is empty, do you mean it has no deadline?");
                 System.out.println("If it is, please add it as a todo instead.");
             } else {
-                Deadline t = new Deadline(task, deadline);
-                tasks.add(t);
-                System.out.println("Successfully added: " + t);
-                System.out.println("You have " + tasks.size() + " tasks in the list now");
+                try {
+                    LocalDate d = LocalDate.parse(deadline);
+                    Deadline t = new Deadline(task, d);
+                    tasks.add(t);
+                    System.out.println("Successfully added: " + t);
+                    System.out.println("You have " + tasks.size() + " tasks in the list now");
+                } catch (DateTimeParseException e) {
+                    Deadline t = new Deadline(task, deadline);
+                    tasks.add(t);
+                    System.out.println("Successfully added: " + t);
+                    System.out.println("You have " + tasks.size() + " tasks in the list now");
+                }
                 try {
                     writeToFile(filePath, this.deadline + space + s + "\n");
                 } catch (IOException e) {
@@ -150,10 +162,18 @@ public class Duke {
             } else if (time.isBlank()) {
                 System.out.println("The time is empty, do you mean it never starts?");
             } else {
-                Event e = new Event(event, time);
-                tasks.add(e);
-                System.out.println("Successfully added: " + e);
-                System.out.println("You have " + tasks.size() + " tasks in the list now");
+                try {
+                    LocalDate t = LocalDate.parse(time);
+                    Event ev = new Event(event, t);
+                    tasks.add(ev);
+                    System.out.println("Successfully added: " + ev);
+                    System.out.println("You have " + tasks.size() + " tasks in the list now");
+                } catch (DateTimeParseException e) {
+                    Event ev = new Event(event, time);
+                    tasks.add(ev);
+                    System.out.println("Successfully added: " + ev);
+                    System.out.println("You have " + tasks.size() + " tasks in the list now");
+                }
                 try {
                     writeToFile(filePath, this.event + space + s + "\n");
                 } catch (IOException exception) {
@@ -228,7 +248,7 @@ public class Duke {
             System.out.println("I cannot delete a task that does not exist!");
         }
     }
-    
+
     //@@author chengda300
     //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
     // with minor modifications
@@ -263,15 +283,23 @@ public class Duke {
 
     public class Deadline extends Task {
         private String by;
+        private LocalDate date;
 
         public Deadline(String description, String by) {
             super(description);
             this.by = by;
         }
 
+        public Deadline(String description, LocalDate by) {
+            super(description);
+            this.date = by;
+        }
+
         @Override
         public String toString() {
-            return "[D]" + super.toString() + " (by: " + this.by + ")";
+            String deadline = this.by == null
+                    ? this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : this.by;
+            return "[D]" + super.toString() + " (by: " + deadline + ")";
         }
     }
 
@@ -288,15 +316,23 @@ public class Duke {
 
     public class Event extends Task {
         private String at;
+        private LocalDate date;
 
         public Event(String description, String at) {
             super(description);
             this.at = at;
         }
 
+        public Event(String description, LocalDate at) {
+            super(description);
+            this.date = at;
+        }
+
         @Override
         public String toString() {
-            return "[E]" + super.toString() + " (at: " + this.at + ")";
+            String eventDate = this.at == null
+                    ? this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : this.at;
+            return "[E]" + super.toString() + " (at: " + eventDate + ")";
         }
     }
     //@@author
