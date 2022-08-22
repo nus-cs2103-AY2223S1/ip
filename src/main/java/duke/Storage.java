@@ -25,32 +25,32 @@ public class Storage {
                     String data = myReader.nextLine();
                     char taskType = data.charAt(0);
                     switch (taskType) {
-                        case 'T':
-                            String[] todoSplit = data.split(" // ", 3);
-                            Task todo = new Todo(todoSplit[2]);
-                            if (todoSplit[1].equals("X")) {
-                                todo.markAsDone();
-                            }
-                            tasks.add(todo);
-                            break;
-                        case 'D':
-                            String[] deadlineSplit = data.split(" // ", 4);
-                            Task deadline = new Deadline(deadlineSplit[2], LocalDateTime.parse(deadlineSplit[3]));
-                            if (deadlineSplit[1].equals("X")) {
-                                deadline.markAsDone();
-                            }
-                            tasks.add(deadline);
-                            break;
-                        case 'E':
-                            String[] eventSplit = data.split(" // ", 4);
-                            Task event = new Event(eventSplit[2], LocalDateTime.parse(eventSplit[3]));
-                            if (eventSplit[1].equals("X")) {
-                                event.markAsDone();
-                            }
-                            tasks.add(event);
-                            break;
-                        default:
-                            throw new DukeException("Something is wrong with the text file.");
+                    case 'T':
+                        String[] todoSplit = data.split(" // ", 3);
+                        Task todo = new Todo(todoSplit[2]);
+                        if (todoSplit[1].equals("X")) {
+                            todo.markAsDone();
+                        }
+                        tasks.add(todo);
+                        break;
+                    case 'D':
+                        String[] deadlineSplit = data.split(" // ", 4);
+                        Task deadline = new Deadline(deadlineSplit[2], LocalDateTime.parse(deadlineSplit[3]));
+                        if (deadlineSplit[1].equals("X")) {
+                            deadline.markAsDone();
+                        }
+                        tasks.add(deadline);
+                        break;
+                    case 'E':
+                        String[] eventSplit = data.split(" // ", 4);
+                        Task event = new Event(eventSplit[2], LocalDateTime.parse(eventSplit[3]));
+                        if (eventSplit[1].equals("X")) {
+                            event.markAsDone();
+                        }
+                        tasks.add(event);
+                        break;
+                    default:
+                        throw new DukeException("Something is wrong with the text file.");
                     }
                 }
                 myReader.close();
