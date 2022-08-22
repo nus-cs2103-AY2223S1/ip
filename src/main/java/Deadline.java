@@ -1,10 +1,12 @@
+import java.time.LocalDate;
+
 public class Deadline extends Task {
     private static final String type = "[D]";
-    private String date;
+    private LocalDate date;
 
-    public Deadline(String name, int count, String date) throws MissingDescriptionException {
+    public Deadline(String name, int count, LocalDate date) throws MissingDescriptionException {
         super(name, count);
-        this.date = "(by: " + date + ")";
+        this.date = date;
     }
 
     @Override
@@ -12,7 +14,8 @@ public class Deadline extends Task {
         String comp = this.completed
                 ? "[X]"
                 : "[ ]";
-        return String.format("%d." + type + comp + name + date, count);
+        String dateString = date.getDayOfMonth() + " " + date.getMonth().toString() + " " + date.getYear();
+        return String.format("%d." + type + comp + name + dateString, count);
     }
 
     @Override
@@ -20,6 +23,7 @@ public class Deadline extends Task {
         String comp = this.completed
                 ? "[X]"
                 : "[ ]";
-        return type + comp + name + date;
+        String dateString = date.getDayOfMonth() + " " + date.getMonth().toString() + " " + date.getYear();
+        return type + comp + name + dateString;
     }
 }

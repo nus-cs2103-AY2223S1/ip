@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -46,7 +50,8 @@ public class Duke {
                 try{
                     String[] input = item.split("/by ");
                     String name = input[0].replace("deadline", "");
-                    arr.add(new Deadline(name, count + 1, input[1]));
+                    LocalDate date = LocalDate.parse(input[1]);
+                    arr.add(new Deadline(name, count + 1, date));
                     count++;
                     System.out.println(String.format("Got it. I've added this task:\n" +
                                     "%s\n" +
@@ -57,12 +62,20 @@ public class Duke {
                     System.out.println("OOPS!!! The description of a deadline cannot be empty.");
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("OOPS!!! The end date of a deadline cannot be empty.");
+                } catch (DateTimeParseException e) {
+                    System.out.println("input date in YYYY-MM-DD format!");
                 }
             } else if (item.startsWith("event")) {
                 try{
                     String[] input = item.split("/at ");
                     String name = input[0].replace("event", "");
-                    arr.add(new Event(name, count + 1, input[1]));
+                    String[] end = input[1].split(" ");
+                    String date = end[0];
+                    LocalDate d = LocalDate.parse(date);
+                    String time = end[1];
+                    LocalTime t = LocalTime.parse(time);
+                    LocalDateTime dt = LocalDateTime.of(d, t);
+                    arr.add(new Event(name, count + 1, dt));
                     count++;
                     System.out.println(String.format("Got it. I've added this task:\n" +
                                     "%s\n" +
@@ -73,6 +86,8 @@ public class Duke {
                     System.out.println("OOPS!!! The description of an event cannot be empty.");
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("OOPS!!! The time of an event cannot be empty.");
+                } catch (DateTimeParseException e) {
+                    System.out.println("Input date in YYYY-MM-DD and time in HH:MM format");
                 }
             } else if (item.startsWith("delete")) {
                 try {
