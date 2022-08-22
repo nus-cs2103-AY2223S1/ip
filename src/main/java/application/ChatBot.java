@@ -1,5 +1,6 @@
 package application;
 
+import taskfilemanager.TaskFileManager;
 import datastructure.Pair;
 
 import exception.InvalidCaseException;
@@ -15,7 +16,8 @@ import task.ToDo;
 import task.Event;
 
 public class ChatBot {
-    private final TaskList taskList = new TaskList();
+    private final TaskFileManager fileManager = TaskFileManager.of("duke.txt");
+    private final TaskList taskList = fileManager.getTaskList();
 
     private void displayMessage(String message) {
         System.out.println("\t____________________________________________________________");
@@ -24,17 +26,13 @@ public class ChatBot {
     }
 
     private void handleGreet() {
-        String logo = "\t" + " ,-----.,--.               ,--.    ,--.                  " + "\n"
-                + "\t" + "'  .--./|  ,---.  ,--,--.,-'  '-.,-'  '-.,--.,--. ,---.  " + "\n"
-                + "\t" + "|  |    |  .-.  |' ,-.  |'-.  .-''-.  .-'|  ||  |(  .-'  " + "\n"
-                + "\t" + "'  '--'\\|  | |  |\\ '-'  |  |  |    |  |  '  ''  '.-'  `) " + "\n"
-                + "\t" + " `-----'`--' `--' `--`--'  `--'    `--'   `----' `----'  " + "\n";
-        String message = "\n\t" + "Hello! My name is Chattus" + "."
-                + "\n\t" + "What can I do for you? :)" + "\n";
+        String logo = "\t" + " ,-----.,--.               ,--.    ,--.                  " + "\n" + "\t" + "'  .--./|  ,---.  ,--,--.,-'  '-.,-'  '-.,--.,--. ,---.  " + "\n" + "\t" + "|  |    |  .-.  |' ,-.  |'-.  .-''-.  .-'|  ||  |(  .-'  " + "\n" + "\t" + "'  '--'\\|  | |  |\\ '-'  |  |  |    |  |  '  ''  '.-'  `) " + "\n" + "\t" + " `-----'`--' `--' `--`--'  `--'    `--'   `----' `----'  " + "\n";
+        String message = "\n\t" + "Hello! My name is Chattus" + "." + "\n\t" + "What can I do for you? :)" + "\n";
         this.displayMessage(logo + message);
     }
 
     private void handleBye() {
+        this.handleSave();
         this.displayMessage("\t" + "Bye! Till we next meet!" + "\n");
     }
 
@@ -56,17 +54,14 @@ public class ChatBot {
         }
 
         taskList.add(task);
-        this.displayMessage("\t" + "Got it. I've added this task:" + "\n\t\t" + task + "\n"
-                + "\t" + "Now you have " + taskList.size() + " tasks in the list." + "\n");
+        this.displayMessage("\t" + "Got it. I've added this task:" + "\n\t\t" + task + "\n" + "\t" + "Now you have " + taskList.size() + " tasks in the list." + "\n");
     }
 
     private void handleDeleteTask(ArrayList<String> parsedLine) throws InvalidInputException {
         int entry = Integer.parseInt(parsedLine.get(0));
         if (taskList.isInRange(entry)) {
             Task removed = taskList.remove(entry);
-            this.displayMessage("\t" + "Noted. I've removed this task:" + "\n\t\t"
-                    + "\t" + removed + "\n"
-                    + "\t" + "Now you have " + taskList.size() + " tasks left in the list." + "\n");
+            this.displayMessage("\t" + "Noted. I've removed this task:" + "\n\t\t" + "\t" + removed + "\n" + "\t" + "Now you have " + taskList.size() + " tasks left in the list." + "\n");
         } else {
             throw new InvalidInputException();
         }
@@ -102,6 +97,10 @@ public class ChatBot {
         this.displayMessage("\t" + "Seems like you've entered something incorrectly, try again!" + "\n");
     }
 
+    private void handleSave() {
+        fileManager.save(taskList);
+    }
+
     public void start() {
         this.handleGreet();
 
@@ -109,7 +108,7 @@ public class ChatBot {
 
         while (true) {
             try {
-                Pair<Case, ArrayList<String>> parsed = LineParser.parse(input.nextLine());
+                Pair<Case, ArrayList<String>> parsed = CommandParser.parse(input.nextLine());
                 Case cs = parsed.getLeft();
                 ArrayList<String> parsedLine = parsed.getRight();
 
@@ -130,9 +129,7 @@ public class ChatBot {
                 case DELETE:
                     this.handleDeleteTask(parsedLine);
                     break;
-                case TODO:
-                case DEADLINE:
-                case EVENT:
+                case TODO: case DEADLINE: case EVENT:
                     this.handleAddTask(cs, parsedLine);
                     break;
                 }
