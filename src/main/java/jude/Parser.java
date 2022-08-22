@@ -18,8 +18,8 @@ import java.util.Locale;
  */
 public class Parser {
 
-    private TaskList tasks;
-    private Storage storage;
+    private final TaskList tasks;
+    private final Storage storage;
 
     /**
      * Creates a new Parser which will parse user commands in the chatbot and execute them.
@@ -46,6 +46,7 @@ public class Parser {
         if (date == null) {
             throw new IllegalCommandException("Date cannot be empty.");
         }
+
         LocalDateTime dateObject = null;
         try {
             dateObject = LocalDateTime.parse(date);
@@ -82,7 +83,8 @@ public class Parser {
                     }
                     valid = true;
                     break;
-                } catch (DateTimeParseException ex2) {
+                } catch (DateTimeParseException ignored) {
+                    // invalid date, try another format
                 }
             }
             if (!valid) {
@@ -172,15 +174,19 @@ public class Parser {
             } else if (tokens[0].equals("unmark")) {
                 int index = Integer.parseInt(tokens[1]);
                 Task task = tasks.get(index);
+
                 task.markAsUndone();
                 storage.save(tasks);
+
                 System.out.println("The following task has been marked as undone");
                 System.out.println(task);
             } else if (tokens[0].equals("delete")) {
                 int index = Integer.parseInt(tokens[1]);
                 Task task = tasks.get(index);
+
                 tasks.delete(index);
                 storage.save(tasks);
+
                 System.out.println("The following task has been removed:");
                 System.out.println(task);
                 System.out.printf("The task list now contains %d task(s).\n", tasks.size());

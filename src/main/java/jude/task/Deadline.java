@@ -27,7 +27,7 @@ public class Deadline extends Task {
      * @return the deadline of the task the {@code Deadline} object is associated with
      */
     public String getDeadline() {
-        return this.deadline;
+        return deadline;
     }
 
     /**
@@ -48,7 +48,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(), this.deadline);
+        return String.format("%s (by: %s)", super.toString(), deadline);
     }
 
     /**
