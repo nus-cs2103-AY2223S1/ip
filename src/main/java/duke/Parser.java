@@ -83,7 +83,7 @@ public class Parser {
             String date = argument.substring(index + 4);
             return new String[]{description, date};
         } catch (StringIndexOutOfBoundsException e) {
-            throw new DukeException("The description and date cannot be empty");
+            throw new DukeException("The description and date cannot be empty.");
         }
     }
 }

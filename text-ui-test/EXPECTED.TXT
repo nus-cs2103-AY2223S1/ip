@@ -51,7 +51,7 @@
 	Oops! The list doesn't have a task with that number.
 ------------------------------------------------------------
 ------------------------------------------------------------
-	Oops! The description and date cannot be empty
+	Oops! The description and date cannot be empty.
 ------------------------------------------------------------
 ------------------------------------------------------------
 	Here are the tasks in your list:
