@@ -36,8 +36,20 @@ public class Storage {
         try {
             FileWriter data = new FileWriter(filePath.toString());
             for (int i = 0; i < storedTasks.size(); i++) {
-                data.write(taskToString(storedTasks.get(i)));
+                data.write(taskToStorageString(storedTasks.get(i)));
             }
+            data.close();
+        } catch (IOException e) {
+            throw new DukeException("Exception: Cannot open file");
+        }
+    }
+
+    public static void appendToFile(Task task) throws DukeException {
+        checkDirectory();
+        checkFile();
+        try {
+            FileWriter data = new FileWriter(filePath.toString(), true);
+            data.write(taskToStorageString(task));
             data.close();
         } catch (IOException e) {
             throw new DukeException("Exception: Cannot open file");
@@ -64,7 +76,7 @@ public class Storage {
         }
     }
 
-    private static String taskToString(Task task) throws DukeException {
+    private static String taskToStorageString(Task task) throws DukeException {
         switch (task.getType()) {
         case TODO:
             return "T " + (task.isDone() ? "Y " : "N ") + task.getDescription() + System.lineSeparator();

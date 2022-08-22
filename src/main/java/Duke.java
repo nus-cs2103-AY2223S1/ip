@@ -28,9 +28,6 @@ public class Duke {
                 Command command = Command.strToEnum(inputLine[0]);
                 switch (command) {
                 case BYE:
-                    System.out.println("Saving list...");
-                    Storage.writeToFile(storedTasks);
-                    System.out.println("Done!");
                     System.out.println("Bye! Hope to see you again soon");
                     sc.close();
                     isRunning = false;
@@ -46,6 +43,7 @@ public class Duke {
                         int index = parseTaskIndex(inputLine[1]);
                         Task task = storedTasks.get(index);
                         task.markAsDone();
+                        Storage.writeToFile(storedTasks);
                         System.out.println("Marked task " + (index + 1) + " as done!");
                         System.out.printf("%d. %s\n", index + 1, task);
                     } catch (NumberFormatException e) {
@@ -59,6 +57,7 @@ public class Duke {
                         int index = parseTaskIndex(inputLine[1]);
                         Task task = storedTasks.get(index);
                         task.markAsNotDone();
+                        Storage.writeToFile(storedTasks);
                         System.out.println("Marked task " + (index + 1) + " as not done!");
                         System.out.printf("%d. %s\n", index + 1, task);
                     } catch (NumberFormatException e) {
@@ -71,9 +70,10 @@ public class Duke {
                     try {
                         int index = parseTaskIndex(inputLine[1]);
                         Task task = storedTasks.get(index);
+                        storedTasks.remove(index);
+                        Storage.writeToFile(storedTasks);
                         System.out.println("The following task is deleted:");
                         System.out.printf("%d. %s\n", index + 1, task);
-                        storedTasks.remove(index);
                     } catch (NumberFormatException e) {
                         throw new DukeException("Exception: Invalid command syntax.");
                     } catch (IndexOutOfBoundsException e) {
@@ -88,6 +88,7 @@ public class Duke {
                         }
                         Task task = new Todo(taskDescription.strip());
                         storedTasks.add(task);
+                        Storage.appendToFile(task);
                         System.out.printf("Got it! I stored this task:\n" + task +
                                 "\nNow you have %d tasks in the list.\n", storedTasks.size());
                     } catch (IndexOutOfBoundsException e) {
@@ -106,6 +107,7 @@ public class Duke {
                         }
                         Task task = new Deadline(descAndDateTime[0].strip(), descAndDateTime[1]);
                         storedTasks.add(task);
+                        Storage.appendToFile(task);
                         System.out.printf("Got it! I stored this task:\n" + task +
                                 "\nNow you have %d tasks in the list.\n", storedTasks.size());
                     } catch (IndexOutOfBoundsException e) {
@@ -124,6 +126,7 @@ public class Duke {
                         }
                         Task task = new Event(descAndDateTime[0].strip(), descAndDateTime[1]);
                         storedTasks.add(task);
+                        Storage.appendToFile(task);
                         System.out.printf("Got it! I stored this task:\n" + task +
                                 "\nNow you have %d tasks in the list.\n", storedTasks.size());
                     } catch (IndexOutOfBoundsException e) {
