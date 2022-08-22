@@ -1,9 +1,11 @@
-public class Event extends Task {
-    private String date;
+import java.time.LocalDate;
 
-    public Event(String description, String date) {
+public class Event extends Task {
+    private final LocalDate date;
+
+    public Event(String description, String dateStr) {
         super(description);
-        this.date = date;
+        this.date = LocalDate.parse(dateStr);
     }
 
     @Override
@@ -13,6 +15,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E][%s]%s(at:%s)", this.isDone ? "X" : " ", this.description, this.date);
+        return String.format("[E][%s] %s (at: %s)", this.isDone ? "X" : " ", this.description, this.date);
     }
 }

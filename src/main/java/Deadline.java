@@ -1,9 +1,11 @@
-public class Deadline extends Task {
-    private String dueDate;
+import java.time.LocalDate;
 
-    public Deadline(String description, String dueDate) {
+public class Deadline extends Task {
+    private final LocalDate date;
+
+    public Deadline(String description, String dateStr) {
         super(description);
-        this.dueDate = dueDate;
+        this.date = LocalDate.parse(dateStr);
     }
 
     @Override
@@ -13,6 +15,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("[D][%s]%s(by:%s)", this.isDone ? "X" : " ", this.description, this.dueDate);
+        return String.format("[D][%s] %s (by: %s)", this.isDone ? "X" : " ", this.description, this.date);
     }
 }
