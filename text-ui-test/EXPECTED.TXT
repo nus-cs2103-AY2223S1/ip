@@ -22,12 +22,16 @@ Now you have 3 tasks in the list.
 _________________________________
 
 _________________________________
+☹ OOPS!!! Please use one of these keywords: {deadline, event, todo} followed by \"by\" and \"at\" for deadline and event tasks respectively.
+_________________________________
+
+_________________________________
 Nice! I've marked this task as done:
 [T][X] Eat dinner
 _________________________________
 
 _________________________________
-Task does not exist. Try another number between 1 and 3 or initialise a task first.
+☹ OOPS!!! Task does not exist. Try another number between 1 and 3
 _________________________________
 
 _________________________________
@@ -35,6 +39,10 @@ Here are the tasks in your list:
 1. [E][ ] Tuition (at: Mon 2-3pm )
 2. [T][X] Eat dinner
 3. [D][ ] Math assignment submission (by: Friday)
+_________________________________
+
+_________________________________
+☹ OOPS!!! Please use proper deadline formatting: deadline {task} /by {time}
 _________________________________
 
 _________________________________
