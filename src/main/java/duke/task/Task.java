@@ -69,4 +69,14 @@ public abstract class Task {
     public String toFileFormat() {
         return this.isDone + "|" + this.description;
     }
+
+    /**
+     * Returns whether <Code>Task</Code>'s description contains given word.
+     * @param word Word to search description for.
+     * @return     <Code>Boolean</Code> value of whether <Code>Task</Code>'s
+     *             description contains given word.
+     */
+    public Boolean hasWord(String word) {
+        return this.description.contains(word);
+    }
 }

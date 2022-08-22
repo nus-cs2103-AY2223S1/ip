@@ -27,7 +27,7 @@ public class Parser {
     /**
      * Constructor for <Code>Parser</Code> object.
      * @param taskList <Code>TaskList</Code> object belonging to
-     *                 <code>Duke</Code>.
+     *                 <Code>Duke</Code>.
      */
     public Parser(TaskList taskList) {
         this.TASKLIST = taskList;
@@ -133,6 +133,25 @@ public class Parser {
     };
 
     /**
+     * <Code>BiFunction</Code> to find word among tasks in the task list.
+     * <p>
+     *  Accepts:
+     *  <ol>
+     *     <li<Code>TaskList</Code> object of the running <Code>Duke</Code>
+     *     program.</li>
+     *     <li>Full <Code>String</Code> input from user.</li>
+     *  </ol>
+     *  Returns:
+     *  <ol>
+     *     <li><Code>String</Code> output to be displayed to user.</li>
+     *  </ol>
+     * </p>     */
+    private static final BiFunction<TaskList, String, String> find =
+            (taskList, input) -> {
+                return taskList.findWord(input.split(" ")[1]);
+            };
+
+    /**
      * <Code>BiFunction</Code> to exit program.
      * <p>
      *  Accepts:
@@ -167,6 +186,7 @@ public class Parser {
         commands.put("mark", mark);
         commands.put("unmark", unmark);
         commands.put("list", list);
+        commands.put("find", find);
         commands.put("bye", quit);
 
     }
@@ -298,6 +318,14 @@ public class Parser {
                 }
                 break;
             }
+
+        case "find": {
+            if ((args.length != 2)) {
+                throw new DukeException("Wrong format! To find a word, type:\n"
+                        + "   find [WORD TO FIND]\n");
+            }
+            break;
+        }
 
             case "bye": {
                 if (!userInput.equals("bye")) {

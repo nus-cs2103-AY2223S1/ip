@@ -187,4 +187,21 @@ public class TaskList {
         }
         taskList.add(newTask);
     }
+
+    /**
+     * Finds given word among the <Code>Task</Code>s in <Code>TaskList</Code>.
+     * @param keyword Word to search for.
+     * @return        <Code>String</Code> with information of <Code>Task</Code>s
+     *                containing word.
+     */
+    public String findWord(String keyword) {
+        StringBuilder output = new StringBuilder();
+        output.append("Here are the matching tasks in your list:\n");
+        for (Task task : taskList) {
+            if (task.hasWord(keyword)) {
+                output.append(task.toString() + "\n");
+            }
+        }
+        return output.toString();
+    }
 }

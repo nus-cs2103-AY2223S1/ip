@@ -46,4 +46,16 @@ public class Event extends Task {
     public String toFileFormat() {
         return "event" + "|" + super.toFileFormat() + "|" + this.at;
     }
+
+    /**
+     * Returns whether <Code>Event</Code>'s description or venue contains
+     * given word.
+     * @param word Word to search for.
+     * @return     <Code>Boolean</Code> value of whether <Code>Event</Code>'s
+     *             description or venue contains given word.
+     */
+    @Override
+    public Boolean hasWord(String word) {
+        return super.hasWord(word) || this.at.contains(word);
+    }
 }
