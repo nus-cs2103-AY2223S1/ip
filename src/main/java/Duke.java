@@ -1,6 +1,8 @@
 import java.util.Scanner;
 
 public class Duke {
+    private static FileContainer fileContainer;
+    private static TaskList taskList;
     public static void main(String[] args) {
     //    String logo = " ____        _        \n"
 //                + "|  _ \\ _   _| | _____ \n"
@@ -8,9 +10,18 @@ public class Duke {
 //                + "| |_| | |_| |   <  __/\n"
 //                + "|____/ \\__,_|_|\\_\\___|\n";
 //        System.out.println("Hello from\n" + logo);
+
+        // the first time use should create a new file in the default location
+        if ( Duke.fileContainer == null){
+            Duke.fileContainer=new FileContainer();
+            fileContainer.createAFile();
+        }
+
         System.out.println("Hello! I'm Duke\n"+"What can I do for you?");
+
         Scanner scanner=new Scanner(System.in);
-        TaskList taskList=new TaskList();
+
+        taskList = fileContainer.loadTasks();
 
         while(scanner.hasNextLine()){
             String ans=scanner.nextLine();
@@ -21,17 +32,17 @@ public class Duke {
                 } else if (ans.equals("list")) {
                     System.out.println(taskList.listAllTask());
                 } else if (ans.split(" ")[0].equals("unmark")) {
-                    taskList.markUndone(Integer.valueOf(ans.split(" ")[1]) - 1);
+                    taskList.markUndone(Integer.valueOf(ans.split(" ")[1]) - 1, fileContainer);
                 } else if (ans.split(" ")[0].equals("mark")) {
-                    taskList.markAsDone(Integer.valueOf(ans.split(" ")[1]) - 1);
-                } else if (ans.split(" ")[0].equals("todo")) {
-                    taskList.addTask(new ToDo(ans));
-                } else if (ans.split(" ")[0].equals("deadline")) {
-                    taskList.addTask(new DeadLine(ans));
-                } else if (ans.split(" ")[0].equals("event")) {
-                    taskList.addTask(new Event(ans));
-                } else if(ans.split(" ")[0].equals("delete")){
-                    taskList.delete(Integer.valueOf(ans.split(" ")[1]));
+                    taskList.markAsDone(Integer.valueOf(ans.split(" ")[1]) - 1, fileContainer);
+                } else if (ans.split(" ")[0].equals("delete")){
+                    taskList.delete(Integer.valueOf(ans.split(" ")[1])
+                            , fileContainer);
+                } else if (ans.split(" ")[0].equals("todo")
+                        || ans.split(" ")[0].equals("deadline")
+                        || ans.split(" ")[0].equals("event")){
+                    taskList.addTask(Task.createATask(ans));
+                    fileContainer.updateFile(taskList.getTaskList());
                 }else{
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }

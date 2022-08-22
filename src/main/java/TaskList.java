@@ -13,17 +13,17 @@ public class TaskList {
         return res;
     }
     //delete the task and print out reply
-    public void delete(int i){
+    public void delete(int i, FileContainer fileContainer){
         int index=i-1;
         Task deletedTask=this.taskList.remove(i-1);
         System.out.println(" Noted. I've removed this task:\n"+deletedTask.printTask()+
                 "\n"+"Now you have "+this.countTask()+" tasks in the list.");
+        fileContainer.updateFile(this.taskList);
     }
     public void addTask(Task task){
         this.taskList.add(task);
         System.out.println("Got it. I've added this task:\n"+task.printTask()+
                 "\nNow you have "+this.countTask()+" task in the list.");
-
     }
     //the method that return all the tasks in a formatted string
     public String listAllTask(){
@@ -36,13 +36,21 @@ public class TaskList {
         return  "Here are the tasks in your list:\n"+res;
     }
     //mark a certain task as done and print reply
-    public void markAsDone(int i){
+    public void markAsDone(int i, FileContainer fileContainer){
         this.taskList.get(i).taskDone();
-        System.out.println("Nice! I've marked this task as done:\n"+this.taskList.get(i).printTask());
+        System.out.println("Nice! I've marked this task as done:\n"
+                +this.taskList.get(i).printTask());
+        fileContainer.updateFile(this.taskList);
     }
     //mark a certain task as not done and print reply
-    public void markUndone(int i){
+    public void markUndone(int i, FileContainer fileContainer){
         this.taskList.get(i).taskUndone();
-        System.out.println("OK, I've marked this task as not done yet:\n"+this.taskList.get(i).printTask());
+        System.out.println("OK, I've marked this task as not done yet:\n"
+                +this.taskList.get(i).printTask());
+        fileContainer.updateFile(this.taskList);
+    }
+
+    public List<Task> getTaskList(){
+        return this.taskList;
     }
 }
