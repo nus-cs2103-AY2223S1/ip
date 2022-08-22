@@ -14,4 +14,6 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 3. Configure the project to use **JDK 11** (not other versions) as explained in [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk).<br>
    In the same dialog, set the **Project language level** field to the `SDK default` option.
 4. After that, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()` (if the code editor is showing compile errors, try restarting the IDE).
+   1. Important: In Duke.java, configure isTest to false.
 5. To run the IO tests, navigate to the text-ui-test directory and run `./runtest.sh`.
+   1. Important: In Duke.java, configure isTest to true.

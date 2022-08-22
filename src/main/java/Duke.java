@@ -18,7 +18,10 @@ public class Duke {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
 
-    private static final String FILE_PATH = "src/main/java/data/tasks.txt";
+    // IMPORTANT: Configure isTest to true if you are running ./runtest.sh
+    private static final Boolean isTest = false;
+    private static final String FILE_PATH = isTest
+            ? "../src/main/java/data/tasks.txt" : "src/main/java/data/tasks.txt";
 
     private static List<Task> tasks = new ArrayList<>();
 
