@@ -14,7 +14,7 @@ public class Duke {
      * Prints out the greeting message.
      */
     private static void greetUser() {
-        System.out.println("Hello! I'm Jukebox :)\n" + "What can I do for you today?");
+        System.out.println("Hello! I'm Jukebox :)\n" + "What can I do for you today?\n");
     }
 
     /**
@@ -70,11 +70,17 @@ public class Duke {
                     addNewTask(command, inputWordsSplit[1]);
                     continue;
                 } catch (IndexOutOfBoundsException e) {
-                    System.out.println("Hmm... looks like you don't have a description for this task :( Please try again!");
+                    System.out.println("Hmm... looks like you don't have a description for this task :( Please try again!\n");
                 }
+            }
+
+            // Deletes a task from the task list
+            if (command == CommandWord.DELETE) {
+                deleteTask(inputWordsSplit);
             }
         }
     }
+
 
         /**
          * Prints out the task list iteratively.
@@ -92,8 +98,9 @@ public class Duke {
                         break;
                     }
                 }
+                System.out.println(" ");
             } else {
-                System.out.println("No tasks have been added yet!");
+                System.out.println("No tasks have been added yet!\n");
             }
         }
 
@@ -110,15 +117,19 @@ public class Duke {
          * @param command Input command word
          * @param inputWordsSplit String array of the command word with the task number
          */
-        private static void markUnmarkTask (CommandWord command, String[]inputWordsSplit){
-            int taskNumber = Integer.parseInt(inputWordsSplit[1]);
-            Task task = taskList.get(taskNumber - 1);
-            if (command == CommandWord.MARK) {
-                task.mark();
-                System.out.println(String.format("Goodjob! This task is now completed :)\n" + "%s", task.toString()));
-            } else {
-                task.unmark();
-                System.out.println(String.format("Oh... OK, I'll mark this task as uncompleted!\n" + "%s", task.toString()));
+        private static void markUnmarkTask (CommandWord command, String[] inputWordsSplit){
+            try {
+                int taskNumber = Integer.parseInt(inputWordsSplit[1]);
+                Task task = taskList.get(taskNumber - 1);
+                if (command == CommandWord.MARK) {
+                    task.mark();
+                    System.out.println(String.format("Goodjob! This task is now completed :)\n" + "%s", task.toString() + "\n"));
+                } else {
+                    task.unmark();
+                    System.out.println(String.format("Oh... OK, I'll mark this task as uncompleted!\n" + "%s", task.toString() + "\n"));
+                }
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Please indicate a valid task number! :)\n");
             }
         }
 
@@ -127,7 +138,7 @@ public class Duke {
          * @param command Input command word
          * @param contents Input task name
          */
-        private static void addNewTask (CommandWord command, String contents){
+        private static void addNewTask(CommandWord command, String contents){
             Task newTask;
             if (command == CommandWord.TODO) {
                 newTask = new Todo(contents);
@@ -137,7 +148,22 @@ public class Duke {
                 newTask = new Event(contents);
             }
             taskList.add(newTask);
-            System.out.println("Okay!\n" + "Added: " + newTask);
+            System.out.println("Okay!\n" + "Added: " + newTask + "\n");
+        }
+
+        /**
+        * Handles the deletion of the task from the task list.
+        * @param inputWordsSplit String array of the command word with the task number
+        */
+        private static void deleteTask(String[] inputWordsSplit) {
+            try {
+                int taskNumber = Integer.parseInt(inputWordsSplit[1]);
+                Task task = taskList.get(taskNumber - 1);
+                System.out.println("Ok! I've removed this task: \n" + task + "\n");
+                taskList.remove(taskNumber - 1);
+            } catch (IndexOutOfBoundsException e) {
+                System.out.println("Please indicate a valid task number! :)\n");
+            }
         }
 
         /**
@@ -150,6 +176,7 @@ public class Duke {
             TODO("todo"),
             DEADLINE("deadline"),
             EVENT("event"),
+            DELETE("delete"),
             BYE("bye");
 
             // String field for comparing to the input to the enum
@@ -176,7 +203,7 @@ public class Duke {
                         return temp;
                     }
                 }
-                throw new IllegalArgumentException("There is no such command called " + input + "!\n" + "Please try again :)");
+                throw new IllegalArgumentException("There is no such command called " + input + "!\n" + "Please try again :)\n");
             }
         }
     }
