@@ -1,18 +1,20 @@
-public class Deadline extends Task {
-    protected String by;
+import java.time.LocalDate;
 
-    public Deadline(String description, String by) {
+public class Deadline extends Task {
+    private LocalDate date;
+
+    public Deadline(String description, LocalDate date) {
         super(description);
-        this.by = by;
+        this.date = date;
     }
 
     @Override
     public String storedString() {
-        return "D | " + super.storedString() + " | " + by;
+        return "D | " + super.storedString() + " | " + date;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by + ")";
+        return "[D]" + super.toString() + "(by: " + DateConverter.convertToString(date) + ")";
     }
 }

@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -45,7 +46,7 @@ public class Duke {
                 } else if (splitTask[0].equals("E")) {
                     toAdd = new Event(splitTask[2], splitTask[3]);
                 } else {
-                    toAdd = new Deadline(splitTask[2], splitTask[3]);
+                    toAdd = new Deadline(splitTask[2], LocalDate.parse(splitTask[3]));
                 }
                 if (splitTask[1].equals("1")) {
                     toAdd.markDone();
@@ -136,7 +137,7 @@ public class Duke {
     }
 
     public static void deleteTask(String request) throws DukeException {
-        Integer index = Integer.parseInt(request.substring(7));
+        int index = Integer.parseInt(request.substring(7));
         if (index < 1 || index > allTasks.size()) {
             throw new InvalidIndexException();
         } else {
@@ -148,7 +149,7 @@ public class Duke {
     }
 
     public static void markTask(String request) throws DukeException {
-        Integer index = Integer.parseInt(request.substring(5));
+        int index = Integer.parseInt(request.substring(5));
         if (index < 1 || index > allTasks.size()) {
             throw new InvalidIndexException();
         } else {
@@ -159,7 +160,7 @@ public class Duke {
     }
 
     public static void unMarkTask(String request) throws DukeException {
-        Integer index = Integer.parseInt(request.substring(7));
+        int index = Integer.parseInt(request.substring(7));
         if (index < 1 || index > allTasks.size()) {
             throw new InvalidIndexException();
         } else {
@@ -181,7 +182,11 @@ public class Duke {
     public static void deadlineTask(String request) throws DukeException {
         if (request.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
             String[] deadline = request.substring(9).split("\\/(by)\\s", 2);
-            addTask(new Deadline(deadline[0], deadline[1]));
+            if (DateConverter.isValidDate(deadline[1])) {
+                addTask(new Deadline(deadline[0], DateConverter.convertToLocalDate(deadline[1])));
+            } else {
+                echo("Hmm, You need to use yyyy-mm-dd for date format.");
+            }
         } else {
             throw new InvalidDeadlineException();
         }
