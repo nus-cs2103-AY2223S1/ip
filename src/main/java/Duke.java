@@ -1,3 +1,11 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 public class Duke {
 
@@ -9,7 +17,7 @@ public class Duke {
         }
     }
 
-    public static void markDone(ArrayList<Task> lst, String message) throws DukeException{
+    public static void markDone(ArrayList<Task> lst, String message) throws DukeException, IOException {
         try {
             Scanner sc = new Scanner(message);
             int pos = sc.nextInt() - 1;
@@ -21,9 +29,10 @@ public class Duke {
         } catch (Exception e) {
             throw new DukeException("OOPS! Please enter a number that you want to mark!");
         }
+        saveList(lst);
     }
 
-    public static void markUndone(ArrayList<Task> lst, String message) throws DukeException {
+    public static void markUndone(ArrayList<Task> lst, String message) throws DukeException, IOException {
         try {
             Scanner sc = new Scanner(message);
             int pos = sc.nextInt() - 1;
@@ -35,9 +44,10 @@ public class Duke {
         } catch (Exception e) {
             throw new DukeException("OOPS! Please enter a number that you want to unmark!");
         }
+        saveList(lst);
     }
 
-    public static void toDo(ArrayList<Task> lst, String message) throws DukeException {
+    public static void toDo(ArrayList<Task> lst, String message) throws DukeException, IOException {
         Scanner sc = new Scanner(message);
         if (sc.hasNext()) {
             String description = sc.nextLine();
@@ -49,9 +59,10 @@ public class Duke {
         } else {
             throw new DukeException("OOPS! The description of the todo should not be empty!");
         }
+        saveList(lst);
     }
 
-    public static void makeDeadline(ArrayList<Task> lst, String message) throws DukeException {
+    public static void makeDeadline(ArrayList<Task> lst, String message) throws DukeException, IOException {
         Scanner sc = new Scanner(message);
         try {
             String description = "";
@@ -69,9 +80,10 @@ public class Duke {
         } catch (Exception e) {
             throw new DukeException("OOPS!! Please enter a valid message!");
         }
+        saveList(lst);
     }
 
-    public static void makeEvent(ArrayList<Task> lst, String message) throws DukeException {
+    public static void makeEvent(ArrayList<Task> lst, String message) throws DukeException, IOException {
         Scanner sc = new Scanner(message);
         try {
             String description = "";
@@ -89,9 +101,10 @@ public class Duke {
         } catch (Exception e) {
             throw new DukeException("OOPS! Please enter a valid message!");
         }
+        saveList(lst);
     }
 
-    public static void delete(ArrayList<Task> lst, String message) throws DukeException {
+    public static void delete(ArrayList<Task> lst, String message) throws DukeException, IOException {
         try {
             Scanner sc = new Scanner(message);
             int pos = sc.nextInt() - 1;
@@ -104,9 +117,10 @@ public class Duke {
         } catch (Exception e) {
             throw new DukeException("Please enter a number you want to delete!");
         }
+        saveList(lst);
     }
 
-    public static void addToList(ArrayList<Task> lst, String message, Command command) throws DukeException {
+    public static void addToList(ArrayList<Task> lst, String message, Command command) throws DukeException, IOException {
         switch (command) {
             case TODO: {
                 toDo(lst, message);
@@ -123,7 +137,24 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void saveList(ArrayList<Task> lst) throws IOException, DukeException {
+        try {
+            String path = "data/duke.txt";
+            File f = new File(path);
+            if (f.exists()) {
+                Files.delete(Paths.get(path));
+            }
+            FileWriter fw = new FileWriter(path, true);
+            for (Task t : lst) {
+                fw.write(t.toString() + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException("OOPS! Looks like the file or directory does not exist...");
+        }
+    }
+
+    public static void main(String[] args) throws DukeException, IOException {
         ArrayList<Task> lst = new ArrayList<>();
         boolean isDone = false;
         System.out.println("Hello! I'm Justin, your personal assistant");
