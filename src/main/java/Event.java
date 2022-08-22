@@ -1,10 +1,13 @@
+import java.time.LocalDateTime;
+import java.time.Month;
+
 public class Event extends Task {
     private static final String type = "[E]";
-    private String time;
+    private LocalDateTime time;
 
-    public Event(String name, int count, String time) throws MissingDescriptionException {
+    public Event(String name, int count, LocalDateTime time) throws MissingDescriptionException {
         super(name, count);
-        this.time = "(at: " + time + ")";
+        this.time = time;
     }
 
     @Override
@@ -12,7 +15,13 @@ public class Event extends Task {
         String comp = this.completed
                 ? "[X]"
                 : "[ ]";
-        return String.format("%d." + type + comp + name + time, count);
+        int year = time.getYear();
+        String month = time.getMonth().toString();
+        int date = time.getDayOfMonth();
+        int hour = time.getHour();
+        int minute = time.getMinute();
+        String dateString = date + " " + month + " " + year + " " + hour + ":" + minute;
+        return String.format("%d." + type + comp + name + dateString, count);
     }
 
     @Override
@@ -20,6 +29,12 @@ public class Event extends Task {
         String comp = this.completed
                 ? "[X]"
                 : "[ ]";
-        return type + comp + name + time;
+        int year = time.getYear();
+        String month = time.getMonth().toString();
+        int date = time.getDayOfMonth();
+        int hour = time.getHour();
+        int minute = time.getMinute();
+        String dateString = date + " " + month + " " + year + " " + hour + ":" + minute;
+        return type + comp + name + dateString;
     }
 }
