@@ -20,6 +20,14 @@ public class Event extends Task {
     }
 
     /**
+     * Getter for the date of event.
+     * @return Returns the date of the event.
+     */
+    public String getAt() {
+        return this.at;
+    }
+
+    /**
      * String representation of Event task object.
      * @return Returns the String representation of the current object.
      */
