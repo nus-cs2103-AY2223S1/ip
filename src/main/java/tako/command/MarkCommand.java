@@ -1,17 +1,27 @@
+package tako.command;
+
+import tako.Storage;
+import tako.TakoException;
+import tako.TaskList;
+import tako.Ui;
+
+import tako.task.Task;
+
 import java.io.IOException;
 
-public class DeleteCommand extends Command{
+public class MarkCommand extends Command{
     private int taskNumber;
 
-    public DeleteCommand(int taskNumber) {
+    public MarkCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException, TakoException {
-        Task task = tasks.remove(taskNumber);
+        tasks.mark(taskNumber);
+        Task task = tasks.get(taskNumber);
         storage.saveToFile(tasks);
-        ui.showDelete(task, tasks.getSize());
+        ui.showMark(task);
     }
 
     @Override

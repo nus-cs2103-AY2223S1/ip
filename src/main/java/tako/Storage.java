@@ -1,10 +1,21 @@
-import java.io.*;
+package tako;
+
+import tako.task.Deadline;
+import tako.task.Event;
+import tako.task.Task;
+import tako.task.Todo;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +26,7 @@ public class Storage {
         this.tasksPath = Paths.get(filePath);
     }
 
-    private String taskToFileFormat(Task task) {
+    private String convertToFileFormat(Task task) {
         String s = task.toString();
         char taskType = s.charAt(1);
         int isDone = s.charAt(4) == ' ' ? 0 : 1;
@@ -32,7 +43,7 @@ public class Storage {
     public void saveToFile(Task task) throws IOException {
         FileWriter fw = new FileWriter(tasksPath.toString(), true);
         BufferedWriter bw = new BufferedWriter(fw);
-        bw.write(taskToFileFormat(task));
+        bw.write(convertToFileFormat(task));
         bw.newLine();
         bw.close();
     }
@@ -41,13 +52,13 @@ public class Storage {
         BufferedWriter bw = Files.newBufferedWriter(tasksPath);
         for (int i = 0; i < tasks.getSize(); i++) {
             Task task = tasks.get(i);
-            bw.write(taskToFileFormat(task));
+            bw.write(convertToFileFormat(task));
             bw.newLine();
         }
         bw.close();
     }
 
-    private Task fileFormatToTask(String line) {
+    private Task convertToTask(String line) {
         String[] splitLine = line.split(" \\| ");
         String taskType = splitLine[0];
         Task task = null;
@@ -89,7 +100,7 @@ public class Storage {
         BufferedReader br = Files.newBufferedReader(tasksPath);
         String line = br.readLine();
         while (line != null) {
-            tasks.add(fileFormatToTask(line));
+            tasks.add(convertToTask(line));
             line = br.readLine();
         }
         br.close();

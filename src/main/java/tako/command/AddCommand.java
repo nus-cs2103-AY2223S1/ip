@@ -1,3 +1,11 @@
+package tako.command;
+
+import tako.Storage;
+import tako.TaskList;
+import tako.Ui;
+
+import tako.task.Task;
+
 import java.io.IOException;
 
 public class AddCommand extends Command{

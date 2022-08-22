@@ -1,3 +1,7 @@
+package tako;
+
+import tako.command.Command;
+
 import java.io.IOException;
 
 /**

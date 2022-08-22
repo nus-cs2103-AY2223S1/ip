@@ -1,3 +1,7 @@
+package tako;
+
+import tako.task.Task;
+
 import java.util.Scanner;
 
 public class Ui {
