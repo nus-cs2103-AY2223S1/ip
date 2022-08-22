@@ -37,27 +37,27 @@ public class Gibson {
                 System.out.println(line);
             // MARK
             } else if (Pattern.matches("mark [0-9]+", input)) {
-                int number = getTrailingInt(input) - 1;
+                int number = RegexUtility.getTrailingInt(input);
                 int index = number - 1;
                 try {
-                taskList.get(index).mark();
-                System.out.println(line);
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(taskList.get(index).toString());
-                System.out.println(line);
+                    Task t = taskList.mark(index);
+                    System.out.println(line);
+                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println(t.toString());
+                    System.out.println(line);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("There is not task numbered as " + number + ".");
                 }
             }
             // UNMARK
             else if (Pattern.matches("unmark [0-9]+", input)) {
-                int number = getTrailingInt(input);
+                int number = RegexUtility.getTrailingInt(input);
                 int index = number - 1;
                 try {
-                    taskList.get(index).unmark();
+                    Task t = taskList.unmark(index);
                     System.out.println(line);
                     System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(taskList.get(index).toString());
+                    System.out.println(t.toString());
                     System.out.println(line);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println(line);
@@ -66,7 +66,7 @@ public class Gibson {
                 }
             // TODOS
             } else if (Pattern.matches("(todo .+)|(todo( )?)", input)) {
-                String taskString = substringAfterToken(input, "todo");
+                String taskString = RegexUtility.substringAfterToken(input, "todo");
                 try {
                     Task task = new Task(taskString);
                     addTask(task);
@@ -77,8 +77,8 @@ public class Gibson {
                 }
             // DEADLINES
             } else if (Pattern.matches("(deadline .+ /by .+)|(deadline .+ /by( )?)", input)) {
-                String taskString = substringAfterToken(input, "deadline");
-                String[] stringArray = substringBeforeAfterToken(taskString, "/by");
+                String taskString = RegexUtility.substringAfterToken(input, "deadline");
+                String[] stringArray = RegexUtility.substringBeforeAfterToken(taskString, "/by");
                 try {
                     Deadline deadline = new Deadline(stringArray[0], stringArray[1]);
                     addTask(deadline);
@@ -89,8 +89,8 @@ public class Gibson {
                 }
             // EVENTS
             } else if (Pattern.matches("(event .+ /at .+)|(event .+ /at( )?)", input)) {
-                String taskString = substringAfterToken(input, "event");
-                String[] stringArray = substringBeforeAfterToken(taskString, "/at");
+                String taskString = RegexUtility.substringAfterToken(input, "event");
+                String[] stringArray = RegexUtility.substringBeforeAfterToken(taskString, "/at");
                 try {
                     Event event = new Event(stringArray[0], stringArray[1]);
                     addTask(event);
@@ -99,19 +99,21 @@ public class Gibson {
                     System.out.println(e.getMessage());
                     System.out.println(line);
                 }
+            // REMOVE
             } else if (Pattern.matches("delete [0-9]+", input)) {
-                int number = getTrailingInt(input);
+                int number = RegexUtility.getTrailingInt(input);
                 int index = number - 1;
                 try {
-                    Task t = taskList.get(index);
-                    taskList.remove(index);
+                    Task t = taskList.remove(index);
                     System.out.println(line);
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(t.toString());
                     System.out.println("Now you have " + taskList.size() + " task(s) in the list.");
                     System.out.println(line);
                 } catch (IndexOutOfBoundsException e) {
+                    System.out.println(line);
                     System.out.println("There is not task numbered as " + number + ".");
+                    System.out.println(line);
                 }
 
             // NOT RECOGNIZED
@@ -132,55 +134,4 @@ public class Gibson {
         System.out.println(line);
     }
 
-    // Returns trailing integers from a String
-    // Throws error if no trailing integers
-    private static int getTrailingInt(String string) {
-        Pattern pattern = Pattern.compile("[^0-9]+([0-9]+)$");
-        Matcher matcher = pattern.matcher(string);
-        if (matcher.find()) {
-            return Integer.parseInt(matcher.group(1));
-        } else {
-            throw new IllegalArgumentException("String is invalid");
-        }
-    }
-
-    // Returns substring after first instance of token string
-    // Throws error if token is not found in String
-    private static String substringAfterToken(String string, String token) {
-        Pattern pattern = Pattern.compile(token);
-        Matcher matcher = pattern.matcher(string);
-        if (matcher.find()) {
-            try {
-                return string.substring(matcher.end() + 1);
-            } catch (StringIndexOutOfBoundsException e) {
-                return "";
-            }
-        } else {
-            throw new IllegalArgumentException("Unable to find token in string");
-        }
-    }
-
-    // Returns substring before and after first instance of token string
-    // Before stored in [0]. After stored in [1].
-    // Throws error if token is not found in String
-    private static String[] substringBeforeAfterToken(String string, String token) {
-        String[] stringArray = new String[2];
-        Pattern pattern = Pattern.compile(token);
-        Matcher matcher = pattern.matcher(string);
-        if (matcher.find()) {
-            try {
-                stringArray[0] = string.substring(0, matcher.start() - 1);
-            } catch (StringIndexOutOfBoundsException e) {
-                stringArray[0] = "";
-            }
-            try {
-                stringArray[1] = string.substring(matcher.end() + 1);
-            } catch (StringIndexOutOfBoundsException e) {
-                stringArray[1] = "";
-            }
-            return stringArray;
-        } else {
-            throw new IllegalArgumentException("Unable to find token in string");
-        }
-    }
 }
