@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -100,9 +102,13 @@ public class Duke {
                     String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b).trim();
 
                     String[] deadlineArray = Arrays.asList(inputStringArray).subList(splitter + 1,inputStringArray.length).toArray(new String[0]);
-                    String deadlineName = Arrays.stream(deadlineArray).reduce("", (a,b) -> a + " "+ b).trim();
+                    //Deadline Array in the form of {yyyy-mm-dd, xxxx}
 
-                    Deadlines newTask = new Deadlines(taskName, deadlineName);
+                    String deadlineName = deadlineArray[0] + " " + deadlineArray[1];
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+                    LocalDateTime date = LocalDateTime.parse(deadlineName, formatter);
+
+                    Deadlines newTask = new Deadlines(taskName, date);
                     storage.add(newTask);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(newTask);
@@ -157,7 +163,9 @@ public class Duke {
         if (taskType.equals("T")) {
             newTask = new Todo(name);
         } else if (taskType.equals("D")) {
-            newTask = new Deadlines(name, entryArray[3]);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+            LocalDateTime date = LocalDateTime.parse(entryArray[3], formatter);
+            newTask = new Deadlines(name, date);
         } else {
             newTask = new Event(name, entryArray[3]);
         }

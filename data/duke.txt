@@ -1,3 +1,2 @@
-T, ,borrow book
-D, ,ip,thur
+D, ,code,2000-12-28 1800
 E,X,drink,rc4

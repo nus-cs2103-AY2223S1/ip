@@ -1,22 +1,29 @@
-public class Deadlines extends Task {
-    private String deadline;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Deadlines(String name, String deadline) {
+public class Deadlines extends Task {
+    private LocalDateTime deadline;
+
+    public Deadlines(String name, LocalDateTime deadline) {
         super(name);
         this.deadline = deadline;
     }
 
-    public String getDeadline() {
+
+
+    public LocalDateTime getDeadline() {
         return this.deadline;
     }
 
     @Override
     public String toString() {
-        return "[" + TaskType.D +"]" + "[" + this.getStatusIcon() + "] " + this.getName() +  " (by:" + this.getDeadline() + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        return "[" + TaskType.D +"]" + "[" + this.getStatusIcon() + "] " + this.getName() +  " (by: " + this.getDeadline().format(formatter) + ")";
     }
 
     @Override
     public String toCSV() {
-        return TaskType.D + "," + this.getStatusIcon()  + "," + this.getName() + "," + this.getDeadline();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        return TaskType.D + "," + this.getStatusIcon()  + "," + this.getName() + "," + this.getDeadline().format(formatter);
     }
 }
