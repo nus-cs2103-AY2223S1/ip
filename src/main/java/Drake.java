@@ -86,6 +86,19 @@ public class Drake {
                 list.add(new Event(commands[0], commands[1]));
                 System.out.println(list.get(list.size() - 1));
                 System.out.println("You now have " + list.size() + " tasks in the list");
+            } else if (command.startsWith("delete")) {
+                String[] commands = command.split(" ");
+                try {
+                    int taskNo = Integer.parseInt(commands[1]);
+                    if (taskNo <= list.size()) {
+                        System.out.println("I've removed this task: ");
+                        System.out.println(list.remove(taskNo - 1));
+                    } else {
+                        throw new IncompatibleCommandException("That task number doesn't exist!");
+                    }
+                } catch (NumberFormatException e) {
+                    throw new IncompatibleCommandException("Where's the number?");
+                }
             } else {
                 throw new UnknownCommandException();
             }
