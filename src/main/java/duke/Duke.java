@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.function.BiFunction;
 
+/**
+ * Defines Duke class.
+ * Main class for the Duke application.
+ */
 public class Duke {
     /** Directory path on disk to find/save task list. */
     private static final String OUTPUT_DIRECTORY = "data";
