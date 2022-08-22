@@ -4,13 +4,13 @@ import java.io.Serializable;
 
 public abstract class Task implements Serializable {
     private String name;
-    private boolean completed;
+    private boolean isComplete;
     private char type;
 
-    public Task(String name, char type, boolean completed) {
+    public Task(String name, char type, boolean isComplete) {
         this.name = name;
         this.type = type;
-        this.completed = completed;
+        this.isComplete = isComplete;
     }
 
     public Task(String name, char type) {
@@ -18,15 +18,15 @@ public abstract class Task implements Serializable {
     }
 
     public void markComplete() {
-        this.completed = true;
+        this.isComplete = true;
     }
 
     public void markIncomplete() {
-        this.completed = false;
+        this.isComplete= false;
     }
 
     @Override
     public String toString() {
-        return String.format("[%c][%s] %s", type, completed ? "X" : " ", name);
+        return String.format("[%c][%s] %s", type, isComplete ? "X" : " ", name);
     }
 }
