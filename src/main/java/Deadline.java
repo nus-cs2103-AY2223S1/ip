@@ -1,13 +1,23 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 public class Deadline extends Task {
     protected String by;
+    protected LocalDate date;
 
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
+        try {
+            this.date = LocalDate.parse(by);
+            this.by = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        } catch (DateTimeParseException e) {
+            System.out.println("Invalid Date format! Use a YYYY-MM-DD format!");
+        }
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by:" + by + ")";
+        return "[D]" + super.toString() + " (by: " + by + ")";
     }
 }

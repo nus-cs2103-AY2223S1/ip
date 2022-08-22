@@ -57,7 +57,7 @@ public class Duke {
                 }
                 // deadline keyword: create new deadline item
                 else if (words[0].equals("deadline")) {
-                    String[] dl = input.split("/by");
+                    String[] dl = input.split(" /by ");
                     String desc = dl[0].split("deadline")[1];
                     db.add(new Deadline(desc, dl[1]));
                     System.out.println("Got it. I've added this task:");
@@ -66,7 +66,7 @@ public class Duke {
                 }
                 // event keyword: create new event item
                 else if (words[0].equals("event")) {
-                    String[] ev = input.split("/at");
+                    String[] ev = input.split(" /at ");
                     String desc = ev[0].split("event")[1];
                     db.add(new Event(desc, ev[1]));
                     System.out.println("Got it. I've added this task:");
