@@ -5,14 +5,14 @@ import datastructure.Pair;
 import exception.InvalidCaseException;
 import exception.InvalidInputException;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import task.Deadline;
 import task.Task;
 import task.TaskList;
 import task.ToDo;
 import task.Event;
-
-import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ChatBot {
     private final TaskList taskList = new TaskList();
