@@ -10,14 +10,14 @@ import java.util.Scanner;
  * @author Andrew Lo Zhi Sheng
  * @version CS2103T AY22/23 Semester 1
  */
-public class FileHandler {
+public class Storage {
     private final String FILEPATH;
     private File dataFile;
 
     /**
      * Constructor for an instance of FileHandler.
      */
-    public FileHandler() {
+    public Storage() {
         // Initialise file path
         this.FILEPATH  = "./data/duke.txt";
 

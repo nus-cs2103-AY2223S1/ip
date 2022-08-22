@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Duke {
     private static ArrayList<Task> inputs = new ArrayList<>();
-    private static FileHandler fileHandler = new FileHandler();
+    private static Storage storage = new Storage();
 
     /**
      * The main program loop.
@@ -22,7 +22,7 @@ public class Duke {
                            + "\nWhat can I do for you?");
 
         Scanner sc = new Scanner(System.in);
-        Duke.inputs = Duke.fileHandler.getTasks();
+        Duke.inputs = Duke.storage.getTasks();
 
         boolean flag = true; // flag indicating if the loop should continue
         while (flag && sc.hasNextLine()) {
@@ -135,7 +135,7 @@ public class Duke {
         printAddedTask(newDeadline);
 
         // Update data file
-        Duke.fileHandler.saveTasks(Duke.inputs);
+        Duke.storage.saveTasks(Duke.inputs);
     }
 
     /**
@@ -161,7 +161,7 @@ public class Duke {
         printAddedTask(newDeadline);
 
         // Update data file
-        Duke.fileHandler.saveTasks(Duke.inputs);
+        Duke.storage.saveTasks(Duke.inputs);
     }
 
     /**
@@ -197,7 +197,7 @@ public class Duke {
         printAddedTask(newDeadline);
 
         // Update data file
-        Duke.fileHandler.saveTasks(Duke.inputs);
+        Duke.storage.saveTasks(Duke.inputs);
     }
 
     /**
@@ -250,7 +250,7 @@ public class Duke {
                            selectedTask);
 
         // Update data file
-        Duke.fileHandler.saveTasks(Duke.inputs);
+        Duke.storage.saveTasks(Duke.inputs);
     }
 
     /**
@@ -277,7 +277,7 @@ public class Duke {
                            selectedTask);
 
         // Update data file
-        Duke.fileHandler.saveTasks(Duke.inputs);
+        Duke.storage.saveTasks(Duke.inputs);
     }
 
 
@@ -297,7 +297,7 @@ public class Duke {
                                          inputs.size()));
 
         // Update data file
-        Duke.fileHandler.saveTasks(Duke.inputs);
+        Duke.storage.saveTasks(Duke.inputs);
     }
 
     public static void printAllOnDate(String input) {
