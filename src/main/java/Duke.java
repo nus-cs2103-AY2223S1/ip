@@ -2,15 +2,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    protected static ArrayList<Task> tasks = new ArrayList<>();
+    protected static Storage storage = new Storage("data/tasks.txt");
+    protected static ArrayList<Task> tasks = storage.load();
 
     public static void processTask(String input, String type) {
         String[] arr = input.split(" ", 2);
         String desc = "";
         try {
             desc = arr[1];
-        }
-        catch(ArrayIndexOutOfBoundsException e) {
+        } catch(ArrayIndexOutOfBoundsException e) {
             printOut("Please enter a description for your task!");
             return;
         }
@@ -36,14 +36,14 @@ public class Duke {
                 String[] details = desc.split(" /at ");
                 temp = new Event(details[0], details[1]);
                 tasks.add(temp);
-            }
-            catch(ArrayIndexOutOfBoundsException e) {
+            } catch(ArrayIndexOutOfBoundsException e) {
                 printOut("Oops! Your event should have a date after /at.");
                 return;
             }
         }
         printOut("Okay, I've added this task:\n" + temp.toString() +
                 "\nYou now have " + tasks.size() + " tasks.");
+        storage.update(tasks);
     }
 
     public static void printOut(String str) {
@@ -61,55 +61,55 @@ public class Duke {
         while (!next.equals("bye")) {
             String[] nextWords = next.split(" ");
             switch(nextWords[0]) {
-                case "mark":
-                    try {
-                        int index = Integer.parseInt(nextWords[1]) - 1;
-                        tasks.get(index).markAsDone();
-                        printOut("I've marked this as done:\n" + tasks.get(index).toString());
-                        break;
-                    }
-                    catch(IndexOutOfBoundsException e) {
-                        printOut("This task number is invalid!");
-                        break;
-                    }
-                case "unmark":
-                    try {
-                        int index = Integer.parseInt(nextWords[1]) - 1;
-                        tasks.get(index).markAsUndone();
-                        printOut("I've marked this as undone:\n" + tasks.get(index).toString());
-                        break;
-                    }
-                    catch(IndexOutOfBoundsException e) {
-                        printOut("This task number is invalid!");
-                        break;
-                    }
-                case "delete":
-                    try {
-                        int index = Integer.parseInt(nextWords[1]) - 1;
-                        printOut("I'll remove this task:\n" + tasks.get(index).toString() +
-                                "\nYou now have " + (tasks.size() - 1) + " tasks.");
-                        tasks.remove(index);
-                        break;
-                    }
-                    catch(IndexOutOfBoundsException e) {
-                        printOut("This task number is invalid!");
-                        break;
-                    }
-                case "list":
-                    System.out.println("____________________________________________________________\n" +
-                            "Here are your tasks:");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        System.out.println((i + 1) + ". " + tasks.get(i).toString());
-                    }
-                    System.out.println("____________________________________________________________\n");
+            case "mark":
+                try {
+                    int index = Integer.parseInt(nextWords[1]) - 1;
+                    tasks.get(index).markAsDone();
+                    storage.update(tasks);
+                    printOut("I've marked this as done:\n" + tasks.get(index).toString());
                     break;
-                case "todo":
-                case "deadline":
-                case "event":
-                    processTask(next, nextWords[0]);
+                } catch(IndexOutOfBoundsException e) {
+                    printOut("This task number is invalid!");
                     break;
-                default:
-                    printOut("I don't know this command. Try another one!");
+                }
+            case "unmark":
+                try {
+                    int index = Integer.parseInt(nextWords[1]) - 1;
+                    tasks.get(index).markAsUndone();
+                    storage.update(tasks);
+                    printOut("I've marked this as undone:\n" + tasks.get(index).toString());
+                    break;
+                } catch(IndexOutOfBoundsException e) {
+                    printOut("This task number is invalid!");
+                    break;
+                }
+            case "delete":
+                try {
+                    int index = Integer.parseInt(nextWords[1]) - 1;
+                    printOut("I'll remove this task:\n" + tasks.get(index).toString() +
+                            "\nYou now have " + (tasks.size() - 1) + " tasks.");
+                    tasks.remove(index);
+                    storage.update(tasks);
+                    break;
+                } catch(IndexOutOfBoundsException e) {
+                    printOut("This task number is invalid!");
+                    break;
+                }
+            case "list":
+                System.out.println("____________________________________________________________\n" +
+                        "Here are your tasks:");
+                for (int i = 0; i < tasks.size(); i++) {
+                    System.out.println((i + 1) + ". " + tasks.get(i).toString());
+                }
+                System.out.println("____________________________________________________________\n");
+                break;
+            case "todo":
+            case "deadline":
+            case "event":
+                processTask(next, nextWords[0]);
+                break;
+            default:
+                printOut("I don't know this command. Try another one!");
             }
 
             next = input.nextLine();
