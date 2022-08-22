@@ -62,7 +62,7 @@ public class Event extends Task {
 
     @Override
     public String toStorageString() {
-        return String.format("%s / E / %s", super.toStorageString(), this.timeRange);
+        return String.format("%s / E / %s %s", super.toStorageString(), this.startTime, this.endTime);
     }
 
 }
