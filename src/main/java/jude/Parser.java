@@ -179,11 +179,13 @@ public class Parser {
                 System.out.println("The following task has been removed:");
                 System.out.println(task);
                 System.out.printf("The task list now contains %d task(s).\n", tasks.size());
-            } else if (command.equals("list")) {
-                for (int i = 1; i <= tasks.size(); i++) {
-                    Task task = tasks.get(i);
-                    System.out.printf("%d.%s\n", i, task);
+            } else if (tokens[0].equals("find")) {
+                if (tokens.length == 1) {
+                    throw new IllegalCommandException("Please enter a keyword to search.");
                 }
+                find(tokens[1].trim());
+            } else if (command.equals("list")) {
+                list(tasks);
             } else if (command.equals("bye")) {
                 System.out.println("Goodbye! Have a nice day!");
                 return false;
@@ -194,5 +196,47 @@ public class Parser {
             System.out.println(ex.getMessage());
         }
         return true;
+    }
+
+    /**
+     * List the tasks in a user-friendly format.
+     *
+     * @param tasks The tasks to display.
+     */
+    private void list(TaskList tasks) {
+        for (int i = 1; i <= tasks.size(); i++) {
+            Task task = tasks.get(i);
+            System.out.printf("%d.%s\n", i, task);
+        }
+    }
+
+    /**
+     * Finds tasks which has a description which has a case-insensitive substring match to the
+     * provided string, and prints the result, via {@code list} method.
+     *
+     * @param str The string to search for.
+     */
+    private void find(String str) {
+        TaskList results = new TaskList();
+        for (int i = 1; i <= tasks.size(); i++) {
+            Task task = tasks.get(i);
+            boolean isSubstring = false;
+            String description = task.getDescription();
+
+            // substring check
+            for (int j = 0; j <= description.length() - str.length(); j++) {
+                if (description.substring(j, j + str.length()).equalsIgnoreCase(str)) {
+                    isSubstring = true;
+                    break;
+                }
+            }
+
+            if (isSubstring) {
+                results.add(task);
+            }
+        }
+        System.out.printf("Here are the matching results in your task list (%d in total):\n",
+                results.size());
+        list(results);
     }
 }

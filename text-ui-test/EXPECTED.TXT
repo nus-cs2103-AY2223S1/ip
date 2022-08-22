@@ -198,6 +198,14 @@ The task list now contains 6 task(s).
 5.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
 6.[E][ ] Task 7 (at: Tuesday 1am-2am)
 
+> Here are the matching results in your task list (1 in total):
+1.[E][ ] Task 7 (at: Tuesday 1am-2am)
+
+> Here are the matching results in your task list (1 in total):
+1.[D][ ] Task 6 (by: 23 Aug 2022 00:00)
+
+> Here are the matching results in your task list (0 in total):
+
 > The following task has been marked as done
 [T][X] task1
 
@@ -206,6 +214,24 @@ The task list now contains 6 task(s).
 
 > The following task has been marked as done
 [D][X] Task 6 (by: 23 Aug 2022 00:00)
+
+> Here are the matching results in your task list (6 in total):
+1.[T][X] task1
+2.[T][ ] task3
+3.[D][X] task4 (by: 22 Aug 2022 00:00)
+4.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[D][X] Task 6 (by: 23 Aug 2022 00:00)
+6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+
+> Here are the matching results in your task list (6 in total):
+1.[T][X] task1
+2.[T][ ] task3
+3.[D][X] task4 (by: 22 Aug 2022 00:00)
+4.[E][ ] task5 (at: Monday 4pm-5pm)
+5.[D][X] Task 6 (by: 23 Aug 2022 00:00)
+6.[E][ ] Task 7 (at: Tuesday 1am-2am)
+
+> Please enter a keyword to search.
 
 > 1.[T][X] task1
 2.[T][ ] task3
