@@ -38,7 +38,7 @@ public class Ui {
     }
 
     public void showList(TaskList tasks) {
-        System.out.println(tasks.toString());
+        System.out.printf("%s%n%s%n", "\tHere are the task(s) in your list: ", tasks.toString());
     }
 
     public void showMark(Task task) {
@@ -69,7 +69,7 @@ public class Ui {
                 lst += String.format("\t%d.%s\n", i + 1, foundTasks.get(i));
             }
         }
-        System.out.println(lst);
+        System.out.printf("%s%n%s%n", "\tHere are the matching task(s) in your list: ", lst);
     }
 
     public void showLoadingError() {
