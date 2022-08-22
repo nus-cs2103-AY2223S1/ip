@@ -18,4 +18,4 @@ text-ui-test/EXPECTED-UNIX.TXT
 /text-ui-test/ACTUAL_DATA.TXT
 text-ui-test/EXPECTED_DATA-UNIX.TXT
 
-data/
+/data
