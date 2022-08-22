@@ -6,8 +6,8 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
-    public static final DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    public static final DateTimeFormatter outputFormat = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    public static final DateTimeFormatter inputDateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter outputDateFormat = DateTimeFormatter.ofPattern("MMM dd yyyy");
 
     public Task(String description) {
         this.description = description;

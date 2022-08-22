@@ -3,20 +3,20 @@ package duke.task;
 import java.time.LocalDate;
 
 public class Event extends Task {
-    protected LocalDate at;
+    private final LocalDate at;
 
-    public Event(String description, String at) {
+    public Event(String description, LocalDate at) {
         super(description);
-        this.at = LocalDate.parse(at, Task.inputFormat);
+        this.at = at;
     }
 
     @Override
     public String toStorage() {
-        return "E | " + super.toStorage() + " | " + this.at.format(Task.inputFormat);
+        return "E | " + super.toStorage() + " | " + this.at.format(Event.inputDateFormat);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at.format(Task.outputFormat) + ")";
+        return "[E]" + super.toString() + " (at: " + this.at.format(Event.outputDateFormat) + ")";
     }
 }

@@ -5,13 +5,13 @@ Got it. I've added this task:
   [T][ ] read book
 Now you have 1 tasks in the list.
 
-The description of a todo cannot be empty.
+Error: The description of a todo cannot be empty
 
 Got it. I've added this task:
   [D][ ] return book (by: Jun 06 2022)
 Now you have 2 tasks in the list.
 
-Unknown command
+Error: Unknown command
 
 Got it. I've added this task:
   [E][ ] project meeting (at: Aug 06 2022)
@@ -24,12 +24,12 @@ Now you have 4 tasks in the list.
 Nice! I've marked this task as done:
   [T][X] read book
 
-foo is not a valid task index
+Error: foo is not a valid task index
 
 Nice! I've marked this task as done:
   [T][X] join sport club
 
-23 is not a valid task index
+Error: Task index 23 out of bounds
 
 Got it. I've added this task:
   [T][ ] borrow book
@@ -58,3 +58,4 @@ Got it. I've added this task:
 Now you have 6 tasks in the list.
 
 Bye. Hope to see you again soon!
+

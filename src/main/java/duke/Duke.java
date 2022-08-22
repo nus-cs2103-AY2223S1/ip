@@ -1,89 +1,48 @@
 package duke;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Scanner;
 
-import duke.exception.InvalidTaskIndexException;
+import duke.commands.Command;
+import duke.exception.DukeException;
+import duke.exception.TaskIndexOutOfBoundsException;
 import duke.task.TaskList;
 
 public class Duke {
-    private static final TaskList taskList = new TaskList(Paths.get(System.getProperty("user.dir"), "data", "duke.txt"));
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-    private static void run(Scanner sc) {
-        String command = sc.nextLine();
-        while (!command.equals("bye")) {
-            String[] commandSplit = command.split(" ", 2);
-            switch (commandSplit[0]) {
-            case "list":
-                Duke.taskList.listTasks();
-                break;
-            case "mark":
-                try {
-                    int taskIndex = Integer.parseInt(commandSplit[1]);
-                    Duke.taskList.markTaskAsDone(taskIndex);
-                } catch (NumberFormatException e) {
-                    System.out.println(commandSplit[1] + " is not a valid task index");
-                } catch (InvalidTaskIndexException e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case "unmark":
-                try {
-                    int taskIndex = Integer.parseInt(commandSplit[1]);
-                    Duke.taskList.markTaskAsNotDone(taskIndex);
-                } catch (NumberFormatException e) {
-                    System.out.println(commandSplit[1] + " is not a valid task index");
-                } catch (InvalidTaskIndexException e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case "delete":
-                try {
-                    int taskIndex = Integer.parseInt(commandSplit[1]);
-                    Duke.taskList.deleteTask(taskIndex);
-                } catch (NumberFormatException e) {
-                    System.out.println(commandSplit[1] + " is not a valid task index");
-                } catch (InvalidTaskIndexException e) {
-                    System.out.println(e.getMessage());
-                }
-                break;
-            case "todo":
-                if (commandSplit.length > 1) {
-                    Duke.taskList.addTask(TaskList.TaskType.TODO, commandSplit[1]);
-                } else {
-                    System.out.println("The description of a todo cannot be empty.");
-                }
-                break;
-            case "deadline":
-                if (commandSplit.length > 1) {
-                    Duke.taskList.addTask(TaskList.TaskType.DEADLINE, commandSplit[1]);
-                } else {
-                    System.out.println("The description of a deadline cannot be empty.");
-                }
-                break;
-            case "event":
-                if (commandSplit.length > 1) {
-                    Duke.taskList.addTask(TaskList.TaskType.EVENT, commandSplit[1]);
-                } else {
-                    System.out.println("The description of a deadline cannot be empty.");
-                }
-                break;
-            default:
-                System.out.println("Unknown command");
-                break;
+    public Duke(Path filePath) {
+        this.ui = new Ui();
+        this.storage = new Storage(filePath);
+        try {
+            this.tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            this.ui.showLoadingError();
+            this.tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+        this.ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = this.ui.readCommand();
+                Command c = Parser.parseCommand(fullCommand);
+                c.execute(this.tasks, this.ui, this.storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.emptyLine();
             }
-            System.out.println();
-            command = sc.nextLine();
         }
     }
 
     public static void main(String[] args) {
-        System.out.println("Hello! I'm Duke.");
-        System.out.println("What can I do for you?\n");
-
-        Scanner myScanner = new Scanner(System.in);
-        Duke.run(myScanner);
-
-        System.out.println("Bye. Hope to see you again soon!");
+        Path storagePath = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");
+        new Duke(storagePath).run();
     }
 }
