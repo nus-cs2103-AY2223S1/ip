@@ -1,7 +1,7 @@
 public class Task {
     private TaskType type;
     private String name;
-    private boolean marked = false;
+    private boolean marked;
 
     public Task(TaskType type, String name, boolean marked) {
         this.type = type;
