@@ -25,27 +25,32 @@ public class Duke {
                     break;
                 case "mark":
                     myTasks.markTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                    myTasks.saveTasks();
                     break;
                 case "unmark":
                     myTasks.unmarkTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                    myTasks.saveTasks();
                     break;
                 case "todo":
                     myTasks.addTask(new Todo(userInput.substring(5)));
+                    myTasks.saveTasks();
                     break;
                 case "deadline":
                     myTasks.addTask(new Deadline(
                         userInput.substring(9).split("/by")[0],
                         userInput.split("/by")[1]));
+                    myTasks.saveTasks();
                     break;
                 case "event":
                     myTasks.addTask(new Event(
                         userInput.substring(6).split("/at")[0], 
                         userInput.split("/at")[1]));
+                    myTasks.saveTasks();
                     break;
                 case "delete":
                     myTasks.removeTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                    myTasks.saveTasks();
                     break;
-                    
                 default:
                     System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
