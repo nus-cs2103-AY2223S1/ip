@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+
 public class MarkCommand extends Command {
     private TaskList taskList;
     private String[] inputArr;
@@ -8,7 +14,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String action() throws DukeException{
+    public String action() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("Missing task number.");
         }

@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.task.Event;
+import duke.task.TaskList;
+
 public class EventCommand extends Command {
     private TaskList taskList;
     private String[] inputArr;
@@ -8,7 +14,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public String action() throws DukeException{
+    public String action() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("The description of an event cannot be empty.");
         }

@@ -1,3 +1,5 @@
+package duke.command;
+
 public class InvalidCommand extends Command {
     private static final String INVALID = "☹ OOPS!!! ";
     private String message;

@@ -1,3 +1,10 @@
+package duke;
+
+import duke.command.*;
+import duke.exception.DukeException;
+import duke.task.TaskList;
+
+
 public class Parser {
 
     public Command parseCommand(String userInput, TaskList taskList) {

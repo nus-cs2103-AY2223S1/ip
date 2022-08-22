@@ -1,3 +1,9 @@
+package duke;
+
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.exception.DukeException;
+import duke.task.TaskList;
 import java.util.Scanner;
 
 public class Duke {

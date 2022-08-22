@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 public class UnmarkCommand extends Command {
     private TaskList taskList;
@@ -9,7 +14,7 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public String action() throws DukeException{
+    public String action() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("Missing task number.");
         }
@@ -20,8 +25,6 @@ public class UnmarkCommand extends Command {
                     + task + "\n");
         } catch (NumberFormatException exception) {
             throw new DukeException("Invalid task number.");
-        } catch (DukeException exception) {
-            throw exception;
         }
     }
 }

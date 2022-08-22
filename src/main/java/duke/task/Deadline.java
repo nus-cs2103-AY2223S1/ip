@@ -1,11 +1,15 @@
+package duke.task;
+
+import duke.exception.DukeException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task {
+public class Deadline extends Task{
     protected LocalDate date;
 
-    public Event(String description, String date) throws DukeException{
+    public Deadline(String description, String date) throws DukeException {
         super(description);
         try {
             this.date = LocalDate.parse(date);
@@ -16,14 +20,14 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return ("[E]" + super.toString() + " (at: "
+        return ("[D]" + super.toString() + " (by: "
                 + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")");
     }
 
     @Override
     public String toStorageString() {
         String doneDescriptionString = super.toStorageString();
-        return "E" + Task.STORAGE_DELIMITER
+        return "D" + Task.STORAGE_DELIMITER
                 + doneDescriptionString + Task.STORAGE_DELIMITER
                 + this.date;
     }

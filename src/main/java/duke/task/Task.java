@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.exception.DukeException;
+
 public class Task {
     private static final String DONE_STATUS = "X";
     private static final String NOT_DONE_STATUS = " ";

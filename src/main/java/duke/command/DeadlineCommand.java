@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.TaskList;
+
 public class DeadlineCommand extends Command {
     private TaskList taskList;
     private String[] inputArr;
@@ -8,7 +14,7 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public String action() throws DukeException{
+    public String action() throws DukeException {
         if (this.inputArr.length < 2) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
