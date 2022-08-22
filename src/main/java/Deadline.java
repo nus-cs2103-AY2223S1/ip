@@ -24,4 +24,9 @@ public class Deadline extends Task {
         return String.format("[D]%s (by: %s)", super.toString(), this.endTime);
     }
 
+    @Override
+    public String toStorageString() {
+        return String.format("%s / D / %s", super.toStorageString(), this.endTime);
+    }
+
 }

@@ -8,8 +8,7 @@ public class Duke {
     private static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ";
     private static final String UNKNOWN_COMMAND_MESSAGE = "Sorry, I don't know what that means.\n"
             + "Did you make a mistake? Please note that commands are case-sensitive.";
-
-    private static final TaskList taskList = new TaskList();
+    private static final String STORAGE_LOADING_MESSAGE = "Loading save file.....";
 
     /* Parses a command into an n x 2 array, where n is the number of
        parameters passed by the user. Parameters are seperated by a "/".
@@ -29,7 +28,21 @@ public class Duke {
     public static void main(String[] args) {
 
         Scanner sysIn = new Scanner(System.in);
+        Storage storage = new Storage("data/save.txt");
+        TaskList taskList;
         boolean exitCalled = false;
+
+
+
+        System.out.println(STORAGE_LOADING_MESSAGE);
+        try {
+            taskList = storage.load();
+            System.out.printf("Save file loaded. You currently have %d tasks.\n", taskList.getLength());
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+            taskList = new TaskList();
+        }
+        System.out.println();
 
         System.out.println(GREETING_MESSAGE);
 
@@ -158,14 +171,11 @@ public class Duke {
                         throw new DukeException(UNKNOWN_COMMAND_MESSAGE);
                     }
                 }
+
+                // Not the most efficient solution, but reduces code duplication. TODO: Revisit this when making commands into objects.
+                storage.save(taskList);
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
-            } catch (Exception e) {
-                System.out.println("Undocumented exception: " + e);
-                System.out.println("Please create an issue on our Github repository, along with the steps to recreate this exception.");
-                // Called just in case the exception seriously affects the app.
-                System.out.println("Terminating TedBot.....");
-                exitCalled = true;
             }
         }
     }

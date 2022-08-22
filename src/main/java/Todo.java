@@ -13,4 +13,9 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
+    @Override
+    public String toStorageString() {
+        return String.format("%s / T", super.toStorageString());
+    }
+
 }
