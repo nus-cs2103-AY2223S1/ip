@@ -1,279 +1,50 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
+
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.Scanner;
-import java.util.ArrayList;
+
 import java.time.DateTimeException;
 
 public class Blink {
 
-    private static final String SPACING = "--------------------------------------";
-    private ArrayList<Task> store;
-    private boolean endSession = false;
-    private final String path;
+    private TaskList tasks;
+    private Storage storage;
+    private Ui ui;
 
     public Blink(String path)  {
-        this.path = path;
-        this.store = new ArrayList<>();
+        ui = new Ui();
+        storage = new Storage(path);
         try {
-            readSaveFile();
-        } catch (FileNotFoundException e) {
-            System.out.println("No save file detected");
+            tasks = new TaskList(storage.load());
         } catch (BlinkException e) {
-            System.out.println(e.getMessage());
+            tasks = new TaskList();
         }
     }
 
-    enum Command {
-        BYE, DEADLINE, DELETE, EVENT, LIST, MARK, RETRIEVE, TODO, UNMARK
-    }
-
-    private void readSaveFile() throws FileNotFoundException, BlinkException {
-        File file = new File(path);
-        Scanner sc = new Scanner(file);
-        while (sc.hasNext()) {
-            String line = sc.nextLine();
-            if (line.isBlank()) {
-                continue;
-            }
-            String[] info = line.split("\\|", 3);
-            switch(info[0].strip()) {
-                case "T":
-                    if (info[1].strip().equals("0")) {
-                        this.store.add(new ToDos(info[2].strip()));
-                    } else {
-                        ToDos temp = new ToDos(info[2].strip());
-                        temp.mark();
-                        this.store.add(temp);
-                    }
-                    break;
-                case "D":
-                    if (info[1].strip().equals("0")) {
-                        String[] temp = info[2].split("\\|");
-                        this.store.add(new Deadlines(temp[0].strip(), temp[1].strip()));
-                    } else {
-                        String[] temp = info[2].split("\\|");
-                        Deadlines anoDeadline = new Deadlines(temp[0].strip(), temp[1].strip());
-                        anoDeadline.mark();
-                        this.store.add(anoDeadline);
-                    }
-                    break;
-                case "E":
-                    if (info[1].strip().equals("0")) {
-                        String[] temp = info[2].split("\\|");
-                        this.store.add(new Events(temp[0].strip(), temp[1].strip()));
-                    } else {
-                        String[] temp = info[2].split("\\|");
-                        Events anoDeadline = new Events(temp[0].strip(), temp[1].strip());
-                        anoDeadline.mark();
-                        this.store.add(anoDeadline);
-                    }
-                    break;
-            }
-        }
-        sc.close();
-    }
-
-    private void writeSaveFile() {
-        try {
-            new File(this.path).getParentFile().mkdirs();
-            FileWriter fw = new FileWriter(this.path);
-            for (int x = 0; x < this.store.size(); x++) {
-                Task temp = this.store.get(x);
-                fw.write(temp.saveString());
-            }
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Saving error: " + e.getMessage());
-        }
-    }
-
-    private void welcome() {
-        System.out.println(Blink.SPACING + "\n" +
-                "Hello! Blink here\n" +
-                "What can I do for you today?\n" +
-                Blink.SPACING);
-    }
-
-    private void goodbye() {
-        System.out.println("Bye bye~ Glad to be of service :D");
-    }
-
-    private void listTask() {
-        System.out.println("Here are the tasks in your list:");
-        for(int x = 0; x < this.store.size(); x++) {
-            System.out.println(x+1 + ". " + this.store.get(x));
-        }
-    }
-
-    private void unMarkTask(String[] input) throws BlinkException {
-        if (input.length == 2) {
-            int pos = Integer.parseInt(input[1]);
-            if (pos < 1 || pos > this.store.size()) {
-                throw new BlinkException("Number input does not exist");
-            }
-            System.out.println(this.store.get(pos - 1).unMark());
-        } else {
-            throw new BlinkException("There is an error in command inputted");
-        }
-        writeSaveFile();
-    }
-
-    private void markTask(String[] input) throws BlinkException {
-        if (input.length == 2) {
-            int pos = Integer.parseInt(input[1]);
-            if (pos < 1 || pos > this.store.size()) {
-                throw new BlinkException("Number input does not exist");
-            }
-            System.out.println(this.store.get(pos - 1).mark());
-        } else {
-            throw new BlinkException("There is an error in command inputted");
-        }
-        writeSaveFile();
-    }
-
-    private void deleteTask(String[] input) throws BlinkException {
-        if (input.length == 2) {
-            int pos = Integer.parseInt(input[1]);
-            if (pos < 1 || pos > this.store.size()) {
-                throw new BlinkException("Number input does not exist");
-            }
-            Task temp = this.store.get(pos - 1);
-            this.store.remove(pos - 1);
-            System.out.println("Task have been removed successfully\n" +
-                    temp + "\nNow you have " + this.store.size() + " task remaining");
-        } else {
-            throw new BlinkException("There is an error in command inputted");
-        }
-        writeSaveFile();
-    }
-
-    private void addToDos(String[] input) throws BlinkException {
-        if (input.length != 2) {
-            throw new BlinkException("☹ OOPS!!! Missing description of todo.");
-        }
-        ToDos temp = new ToDos(input[1].strip());
-        this.store.add(temp);
-        System.out.println("Alright, this task has been successfully added!\n" +
-                temp +
-                "\nTotal of " + this.store.size() + " tasks now");
-        writeSaveFile();
-    }
-
-    private void addDeadlines(String[] input) throws BlinkException {
-        if (input.length != 2) {
-            throw new BlinkException("☹ OOPS!!! Missing description of deadline.");
-        }
-        String[] sep = input[1].split("/by");
-        if (sep.length != 2) {
-            throw new BlinkException("Error in command for deadline");
-        }
-        Deadlines temp = new Deadlines(sep[0].strip(), sep[1].strip());
-        this.store.add(temp);
-        System.out.println("Alright, this task has been successfully added!\n" +
-                temp +
-                "\nTotal of " + this.store.size() + " tasks now");
-        writeSaveFile();
-    }
-
-    private void addEvents(String[] input) throws BlinkException {
-        if (input.length != 2) {
-            throw new BlinkException("☹ OOPS!!! Missing description of event.");
-        }
-        String[] sep = input[1].split("/at");
-        if (sep.length != 2) {
-            throw new BlinkException("Error in command for event");
-        }
-        Events temp = new Events(sep[0].strip(), sep[1].strip());
-        this.store.add(temp);
-        System.out.println("Alright, this task has been successfully added!\n" +
-                temp +
-                "\nTotal of " + this.store.size() + " tasks now");
-        writeSaveFile();
-    }
-
-    private void retrieve(String input) {
-        LocalDate date = LocalDate.parse(input);
-        ArrayList<Task> sameDate = new ArrayList<>();
-        for (int x = 0; x < this.store.size(); x++) {
-            Task temp = this.store.get(x);
-            if (temp.checkDate(date)) {
-                sameDate.add(temp);
-            }
-        }
-        if (sameDate.size() == 0) {
-            System.out.println("No task found on " + date.toString());
-        } else {
-            System.out.println(sameDate.size() + ((sameDate.size() == 1)? " task": " tasks") +
-                    " found");
-            for (int y = 0; y < sameDate.size(); y++) {
-                System.out.println(sameDate.get(y));
-            }
-        }
-    }
-
-    private void start(Scanner sc) {
-        this.welcome();
-
-        while(sc.hasNext()) {
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                String[] input = sc.nextLine().strip().split(" ", 2);
-                if (input[0].isEmpty()) {
-                    continue;
-                }
-                Command command = Command.valueOf(input[0].strip().toUpperCase());
-                switch(command) {
-                    case BYE:
-                        this.goodbye();
-                        this.endSession = true;
-                        break;
-                    case LIST:
-                        this.listTask();
-                        break;
-                    case UNMARK:
-                        this.unMarkTask(input);
-                        break;
-                    case MARK:
-                        this.markTask(input);
-                        break;
-                    case EVENT:
-                        this.addEvents(input);
-                        break;
-                    case DEADLINE:
-                        this.addDeadlines(input);
-                        break;
-                    case TODO:
-                        this.addToDos(input);
-                        break;
-                    case DELETE:
-                        this.deleteTask(input);
-                        break;
-                    case RETRIEVE:
-                        this.retrieve(input[1]);
-                        break;
-                }
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
             } catch (BlinkException e) {
-                System.out.println(e.getMessage());
+                ui.showError(e.getMessage());
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Number is expected");
-            } catch (IllegalArgumentException e) {
-                System.out.println("Unknown command input");
-            } catch (DateTimeException e) {
-                System.out.println("Incorrect date format input");
-            }
-            System.out.println(Blink.SPACING);
-            if (this.endSession) {
-                break;
+                ui.showError("Number input expected");
+            } catch(DateTimeException e) {
+                ui.showError("Invalid date input");
+            } finally {
+                ui.showLine();
             }
         }
     }
+
     public static void main(String[] args) {
         String path = System.getProperty("user.home") + "/Blink/blink.txt";
-        Scanner scanner = new Scanner(System.in);
         Blink blink = new Blink(path);
-        blink.start(scanner);
+        blink.run();
     }
 }
 

@@ -9,6 +9,34 @@ abstract public class Task {
         this.isDone = false;
     }
 
+    public static Task of(String input) throws BlinkException{
+        String[] info = input.split("\\|", 3);
+        switch(info[0].strip()) {
+            case "T":
+                ToDos todo = new ToDos(info[2].strip());
+                if (info[1].strip().equals("1")) {
+                    todo.isDone = true;
+                }
+                return todo;
+            case "D":
+                String[] desc = info[2].split("\\|");
+                Deadlines deadline = new Deadlines(desc[0].strip(), desc[1].strip());
+                if (info[1].strip().equals("1")) {
+                    deadline.isDone = true;
+                }
+                return deadline;
+            case "E":
+                String[] temp = info[2].split("\\|");
+                Events event = new Events(temp[0].strip(), temp[1].strip());
+                if (info[1].strip().equals("1")) {
+                    event.isDone = true;
+                }
+                return event;
+            default:
+                throw new BlinkException("wtf happened");
+        }
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }

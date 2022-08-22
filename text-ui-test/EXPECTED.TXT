@@ -1,3 +1,4 @@
+No save file detected
 --------------------------------------
 Hello! Blink here
 What can I do for you today?

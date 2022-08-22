@@ -1,4 +1,4 @@
-public class BlinkException extends Exception {
+public class BlinkException extends RuntimeException {
     public BlinkException(String message) {
         super(message);
     }
