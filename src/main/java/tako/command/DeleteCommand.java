@@ -1,5 +1,7 @@
 package tako.command;
 
+import java.io.IOException;
+
 import tako.Storage;
 import tako.TakoException;
 import tako.TaskList;
@@ -7,9 +9,7 @@ import tako.Ui;
 
 import tako.task.Task;
 
-import java.io.IOException;
-
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
     private int taskNumber;
 
     public DeleteCommand(int taskNumber) {

@@ -1,14 +1,14 @@
 package tako.command;
 
+import java.io.IOException;
+
 import tako.Storage;
 import tako.TaskList;
 import tako.Ui;
 
 import tako.task.Task;
 
-import java.io.IOException;
-
-public class AddCommand extends Command{
+public class AddCommand extends Command {
     private Task task;
 
     public AddCommand(Task task) {

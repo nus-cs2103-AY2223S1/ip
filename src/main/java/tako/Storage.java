@@ -1,10 +1,5 @@
 package tako;
 
-import tako.task.Deadline;
-import tako.task.Event;
-import tako.task.Task;
-import tako.task.Todo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -15,14 +10,18 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import java.time.LocalDateTime;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Storage {
-    public Path tasksPath;
+import tako.task.Deadline;
+import tako.task.Event;
+import tako.task.Task;
+import tako.task.Todo;
 
-    public Storage (String filePath) {
+public class Storage {
+    private Path tasksPath;
+
+    public Storage(String filePath) {
         this.tasksPath = Paths.get(filePath);
     }
 

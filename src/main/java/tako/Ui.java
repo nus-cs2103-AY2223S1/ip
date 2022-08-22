@@ -1,8 +1,8 @@
 package tako;
 
-import tako.task.Task;
-
 import java.util.Scanner;
+
+import tako.task.Task;
 
 public class Ui {
     private Scanner sc;

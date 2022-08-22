@@ -1,8 +1,8 @@
 package tako;
 
-import tako.command.Command;
-
 import java.io.IOException;
+
+import tako.command.Command;
 
 /**
  * A chatbot named Tako that

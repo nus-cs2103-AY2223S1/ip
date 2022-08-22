@@ -1,9 +1,9 @@
 package tako;
 
-import tako.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import tako.task.Task;
 
 public class TaskList {
     private List<Task> tasks;
@@ -28,7 +28,7 @@ public class TaskList {
         task.markAsDone();
     }
 
-    public Task remove(int taskNumber) throws TakoException{
+    public Task remove(int taskNumber) throws TakoException {
         if (taskNumber < 0 || taskNumber > tasks.size() - 1) {
             throw new TakoException("The task number to delete does not exist.");
         }

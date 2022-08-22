@@ -1,7 +1,10 @@
 package tako;
 
-import tako.command.Command;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import tako.command.AddCommand;
+import tako.command.Command;
 import tako.command.DeleteCommand;
 import tako.command.ExitCommand;
 import tako.command.ListCommand;
@@ -10,9 +13,6 @@ import tako.command.MarkCommand;
 import tako.task.Deadline;
 import tako.task.Event;
 import tako.task.Todo;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 public class Parser {
     private enum Keyword {
