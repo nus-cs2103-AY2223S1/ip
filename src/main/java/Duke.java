@@ -1,3 +1,5 @@
+import exception.EmptyTaskDescException;
+import exception.EmptyTaskTimeException;
 import exception.NoSuchTaskException;
 import tasks.Deadline;
 import tasks.Event;
@@ -7,7 +9,6 @@ import tasks.Todo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Duke {
 
@@ -47,39 +48,59 @@ public class Duke {
     public void loop(Scanner sc) {
         while (sc.hasNext()) {
             String input = sc.nextLine().trim();
+            int spaceIndex = input.indexOf(' ');
+            String command, body;
+            if (spaceIndex == -1) {
+                command = input;
+                body = "";
+            } else {
+                command = input.substring(0, spaceIndex);
+                body = input.substring(spaceIndex + 1);
+            }
 
-            if ("bye".equals(input)) {
+            if ("bye".equals(command)) {
                 System.out.println("Bye. Hope to see you again soon!");
                 return;
-            } else if ("list".equals(input)) {
+            } else if ("list".equals(command)) {
                 System.out.println("Here are the tasks in your list:");
                 System.out.print(inputListToString());
-            } else if (Pattern.matches("mark \\d+", input)) {
-                int index = Integer.parseInt(input.split("\\s+")[1]) - 1;
+            } else if ("mark".equals(command)) {
+                int index = Integer.parseInt(body) - 1;
                 Task taskToMark = taskList.get(index);
                 taskToMark.mark();
-                System.out.println("Nice! I've marked this task as done:");
-                System.out.println(taskToMark);
-            } else if (Pattern.matches("unmark \\d+", input)) {
-                int index = Integer.parseInt(input.split("\\s+")[1]) - 1;
+                String response = String.format(
+                        "Nice! I've marked this task as done:\n  %s",
+                        taskToMark);
+                System.out.println(response);
+            } else if ("unmark".equals(command)) {
+                int index = Integer.parseInt(body) - 1;
                 Task taskToUnmark = taskList.get(index);
                 taskToUnmark.unmark();
-                System.out.println("OK, I've marked this task as not done yet:");
-                System.out.println(taskToUnmark);
-            } else {
+                String response = String.format(
+                        "OK, I've marked this task as not done yet:\n %s",
+                        taskToUnmark
+                );
+                System.out.println(response);
+            } else if (isTaskType(command)) {
                 try {
-                    TaskTypes type = getTaskType(input);
-                    int i = input.indexOf(' ');
-                    String taskString = input.substring(i + 1);
-                    Task newTask = addNewTask(taskString, type);
+                    TaskTypes type = getTaskType(command);
+                    Task newTask = addNewTask(body, type);
                     String response = String.format("Got it. I've added this task:\n  " +
                             "%s\nNow you have %d tasks in the list.", newTask, taskList.size());
                     System.out.println(response);
-                } catch (NoSuchTaskException e) {
-                    System.out.println("Error: " + e);
+                } catch (NoSuchTaskException | EmptyTaskDescException | EmptyTaskTimeException e) {
+                    System.out.println("☹ " + e.getMessage());
                 }
+            } else {
+                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
+    }
+
+    private boolean isTaskType(String s) {
+        return "todo".equals(s) ||
+                "event".equals(s) ||
+                "deadline".equals(s);
     }
 
     private String inputListToString() {
@@ -95,7 +116,12 @@ public class Duke {
         return sb.toString();
     }
 
-    private Task addNewTask(String taskString, TaskTypes type) {
+    private Task addNewTask(String taskString, TaskTypes type)
+            throws EmptyTaskDescException, EmptyTaskTimeException {
+        if ("".equals(taskString)) {
+            throw new EmptyTaskDescException();
+        }
+
         String[] taskInfo;
         Task newTask;
 
@@ -105,10 +131,16 @@ public class Duke {
                 break;
             case EVENT:
                 taskInfo = taskString.split("/at");
+                if (taskInfo.length < 2) {
+                    throw new EmptyTaskTimeException();
+                }
                 newTask = new Event(taskInfo[0].trim(), taskInfo[1].trim());
                 break;
             case DEADLINE:
                 taskInfo = taskString.split("/by");
+                if (taskInfo.length < 2) {
+                    throw new EmptyTaskTimeException();
+                }
                 newTask = new Deadline(taskInfo[0].trim(), taskInfo[1].trim());
                 break;
             default:
@@ -119,10 +151,7 @@ public class Duke {
         return newTask;
     }
 
-    private TaskTypes getTaskType(String input) throws NoSuchTaskException {
-        int i = input.indexOf(' ');
-        String type = input.substring(0, i);
-
+    private TaskTypes getTaskType(String type) throws NoSuchTaskException {
         switch(type) {
             case "todo":
                 return TaskTypes.TODO;
