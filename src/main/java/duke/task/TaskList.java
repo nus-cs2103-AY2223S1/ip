@@ -7,6 +7,10 @@ import java.util.stream.Collectors;
 import duke.exception.TaskIndexOutOfBoundsException;
 import duke.parser.Parser;
 
+/**
+ * Represents a list of tasks.
+ * @author neosunhan
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
 
@@ -14,6 +18,11 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Constructs a list of tasks from a list of strings
+     * stored in the hard disk.
+     * @param taskStrings List of strings, each representing a task
+     */
     public TaskList(List<String> taskStrings) {
         this();
         for (String taskStr : taskStrings) {
@@ -29,6 +38,11 @@ public class TaskList {
         this.tasks.add(t);
     }
 
+    /**
+     * Deletes a task from the list of tasks.
+     * @param taskIndex index of the task to be deleted
+     * @return the deleted task
+     */
     public Task deleteTask(int taskIndex) {
         if (taskIndex < 1 || taskIndex > this.tasks.size()) {
             throw new TaskIndexOutOfBoundsException(taskIndex);

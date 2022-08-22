@@ -10,11 +10,19 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * App to store and keep track of tasks.
+ * @author neosunhan
+ */
 public class Duke {
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructor for Duke.
+     * @param filePath Path to storage file
+     */
     public Duke(Path filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -26,6 +34,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Function to start the app.
+     */
     public void run() {
         this.ui.showWelcome();
         boolean isExit = false;
@@ -43,6 +54,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Entry point for the Duke class.
+     * @param args unused
+     */
     public static void main(String[] args) {
         Path storagePath = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");
         new Duke(storagePath).run();

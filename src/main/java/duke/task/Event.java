@@ -2,9 +2,18 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents an event occurring on a specific date.
+ * @author neosunhan
+ */
 public class Event extends Task {
     private final LocalDate at;
 
+    /**
+     * Constructor for an Event.
+     * @param description description for the event
+     * @param at date of the event
+     */
     public Event(String description, LocalDate at) {
         super(description);
         this.at = at;

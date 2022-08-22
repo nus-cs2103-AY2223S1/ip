@@ -8,12 +8,21 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Command to add an Event to the list of tasks
+ * @author neosunhan
+ */
 public class AddEventCommand extends Command {
     public static final String COMMAND_WORD = "event";
 
     private final String desc;
     private final LocalDate at;
 
+    /**
+     * Constructor for an AddEventCommand.
+     * @param desc description of the event
+     * @param at date of the event
+     */
     public AddEventCommand(String desc, LocalDate at) {
         this.desc = desc;
         this.at = at;

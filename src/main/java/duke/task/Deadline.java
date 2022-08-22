@@ -2,9 +2,18 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Represents a task with a deadline.
+ * @author neosunhan
+ */
 public class Deadline extends Task {
     private final LocalDate by;
 
+    /**
+     * Constructor for a Deadline.
+     * @param description description of the task
+     * @param by deadline of the task
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;

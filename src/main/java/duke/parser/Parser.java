@@ -20,12 +20,22 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Parser for the Duke program.
+ * @author neosunhan
+ */
 public class Parser {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     public static final Pattern DEADLINE_ARGS_FORMAT = Pattern.compile("(?<desc>.+)/by(?<date>.+)");
     public static final Pattern EVENT_ARGS_FORMAT = Pattern.compile("(?<desc>.+)/at(?<date>.+)");
     public static final Pattern STORAGE_FORMAT = Pattern.compile(
             "(?<taskType>[TDE])\\|(?<done>[01])\\|(?<desc>[^|]+)\\|?(?<date>.+)?");
+
+    /**
+     * Parses a command entered by the user.
+     * @param commandString command entered by user
+     * @return a Command object that can be executed
+     */
     public static Command parseCommand(String commandString) {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandString.trim());
         if (!matcher.matches()) {
@@ -56,6 +66,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a string representing a task stored in the hard disk.
+     * @param taskString string representation of the task
+     * @return a Task object
+     */
     public static Task fromStorage(String taskString) {
         Matcher matcher = STORAGE_FORMAT.matcher(taskString);
         if (!matcher.matches()) {

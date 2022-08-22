@@ -2,6 +2,10 @@ package duke.task;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Abstract representation of a task.
+ * @author neosunhan
+ */
 public abstract class Task {
     public static final DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     public static final DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
@@ -9,6 +13,10 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructor for a task.
+     * @param description description of the task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

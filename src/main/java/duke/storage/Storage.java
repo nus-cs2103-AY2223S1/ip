@@ -8,9 +8,17 @@ import java.util.List;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Hard disk storage for the Duke program.
+ * @author neosunhan
+ */
 public class Storage {
     private final Path filePath;
 
+    /**
+     * Constructor for the Storage class.
+     * @param filePath Path to the file in the hard disk
+     */
     public Storage(Path filePath) {
         try {
             Files.createDirectories(filePath.getParent());
@@ -24,6 +32,10 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Load tasks from storage.
+     * @return a List of Strings, each representing a task
+     */
     public List<String> load() {
         List<String> lines;
         try {
@@ -34,6 +46,10 @@ public class Storage {
         return lines;
     }
 
+    /**
+     * Write the list of tasks to the hard disk.
+     * @param tasks tasks to write
+     */
     public void write(TaskList tasks) {
         try {
             Files.write(this.filePath, tasks.toStorage());

@@ -5,6 +5,10 @@ import java.util.Scanner;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * User interface of the Duke program.
+ * @author neosunhan
+ */
 public class Ui {
     private final Scanner sc;
 
@@ -16,6 +20,9 @@ public class Ui {
         return this.sc.nextLine();
     }
 
+    /**
+     * Prints a welcome message.
+     */
     public void showWelcome() {
         System.out.println("Hello! I'm Duke.");
         System.out.println("What can I do for you?\n");
@@ -29,12 +36,21 @@ public class Ui {
         System.out.println("Error loading tasks from storage: " + message + "\n");
     }
 
+    /**
+     * Displays a task that has been added.
+     * @param newTask task that has just been added
+     * @param tasks list of tasks that was added to
+     */
     public void showAddTask(Task newTask, TaskList tasks) {
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newTask);
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 
+    /**
+     * Displays the tasks currently in the list of tasks.
+     * @param tasks list of tasks
+     */
     public void showTasks(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
         for (int i = 1; i <= tasks.size(); i++) {
@@ -42,11 +58,19 @@ public class Ui {
         }
     }
 
+    /**
+     * Displays a task that has been marked as done.
+     * @param t task that has been marked as done
+     */
     public void showMarkTask(Task t) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println("  " + t);
     }
 
+    /**
+     * Displays a task that has been marked as not done.
+     * @param t task that has been marked as not done
+     */
     public void showUnmarkTask(Task t) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("  " + t);
@@ -56,6 +80,11 @@ public class Ui {
         System.out.println("Error: " + message);
     }
 
+    /**
+     * Displays a task that has been deleted.
+     * @param deletedTask task that has been deleted from the list of tasks
+     * @param tasks list of tasks
+     */
     public void showDeleteTask(Task deletedTask, TaskList tasks) {
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + deletedTask);
