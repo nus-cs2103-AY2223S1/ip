@@ -8,6 +8,7 @@ import duke.ui.Ui;
 import java.io.IOException;
 
 public class DeleteCommand extends Command {
+
     private final int num;
 
     public DeleteCommand(int num) {

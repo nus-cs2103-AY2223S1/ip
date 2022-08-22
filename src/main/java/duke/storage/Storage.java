@@ -15,6 +15,7 @@ import duke.task.TaskList;
 import duke.ui.DukeException;
 
 public class Storage {
+
     private final File file;
 
     public Storage() throws IOException {
@@ -36,8 +37,8 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         while (sc.hasNext()) {
-            String curr = sc.nextLine();
-            String[] info = curr.split("\\|");
+            String current = sc.nextLine();
+            String[] info = current.split("\\|");
             switch (info[0]) {
             case "T":
                 Task addTodo = new Todo(info[2], (info[1].equals("1")));
@@ -53,6 +54,7 @@ public class Storage {
                 break;
             default:
                 throw new IOException("Error in reading file");
+                // Fallthrough
             }
         }
 

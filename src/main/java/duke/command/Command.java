@@ -7,6 +7,7 @@ import duke.ui.Ui;
 import java.io.IOException;
 
 public abstract class Command {
+
     private boolean isEnd = false;
 
     public abstract void run(TaskList tasks, Ui ui, Storage storage) throws IOException;

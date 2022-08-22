@@ -6,11 +6,13 @@ import duke.task.TaskList;
 import java.util.Scanner;
 
 public class Ui {
+
     private final Scanner sc;
 
     public Ui() {
         this.sc = new Scanner(System.in);
     }
+
     public void printLine() {
         System.out.println("\t____________________________________________________________");
     }
