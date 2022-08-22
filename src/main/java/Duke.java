@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Duke {
     public static final String OUTPUT_FILE_FOLDER = "data";
     public static final String OUTPUT_FILE_NAME = "duke.txt";
-    public static final String OUTPUT_FILE_PATH = OUTPUT_FILE_FOLDER + "/" + OUTPUT_FILE_NAME;
+    public static final String OUTPUT_FILE_PATH = OUTPUT_FILE_FOLDER + File.separator + OUTPUT_FILE_NAME;
 
     public static void main(String[] args) {
         System.out.println("------------------------------");
