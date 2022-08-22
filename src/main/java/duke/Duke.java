@@ -2,33 +2,34 @@ package duke;
 
 import duke.command.Command;
 import duke.task.TaskList;
+import duke.util.Parser;
+import duke.util.Storage;
 import duke.util.UI;
 
 import java.nio.file.Paths;
-import java.util.Scanner;
 
 public class Duke {
 
+    private final Storage storage;
     private final TaskList tasks;
-    private final Scanner scanner;
+    private final UI ui;
 
     public Duke() {
-        tasks = new TaskList(Paths.get(System.getProperty("user.dir"), "data", "data.txt"));
-        scanner = new Scanner(System.in);
+        storage = new Storage(Paths.get(System.getProperty("user.dir"), "data", "data.txt"));
+        tasks = new TaskList(storage.load());
+        ui = new UI(System.in, System.out);
     }
 
     public void run() {
-        UI.greet();
-        while (true) {
+        ui.greet();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                Command command = Command.of(UI.read(scanner));
-                command.execute(tasks);
-
-                if (command.isExit()) {
-                    break;
-                }
+                Command command = Parser.parseCommand(ui.read());
+                command.execute(storage, ui, tasks);
+                isExit = command.isExit();
             } catch (DukeException e) {
-                UI.print(e.getMessage());
+                ui.print(e.getMessage());
             }
         }
     }

@@ -2,14 +2,13 @@ package duke.command;
 
 public enum CommandType {
     LIST(0),
-    UPDATE_STATUS(1),
+    CHECK(1),
+    UNCHECK(1),
     TODO(1),
     DEADLINE(2),
     EVENT(2),
     DELETE(1),
-    BYE(0),
-    EMPTY(0),
-    BAD(0);
+    EXIT(0);
 
     private final int argsCount;
 

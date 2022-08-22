@@ -3,33 +3,24 @@ package duke.command;
 import duke.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
 import duke.util.UI;
 
 public class UpdateStatusCommand extends Command {
-    private final String WRONG_ARGUMENT = "This command expects a number argument!";
-    private final String INDEX_OUT_OF_BOUND = "This command expects an index between 1 and number of tasks.";
 
+    private final int index;
     private final boolean isDone;
 
-    public UpdateStatusCommand(String[] args, boolean isDone) {
-        super(CommandType.UPDATE_STATUS, args);
+    public UpdateStatusCommand(int index, boolean isDone) {
+        this.index = index;
         this.isDone = isDone;
     }
 
     @Override
-    public void execute(TaskList tasks) throws DukeException {
-        int index;
-        try {
-            index = Integer.parseInt(args[0]) - 1;
-        } catch (NumberFormatException e) {
-            throw new DukeException(WRONG_ARGUMENT);
-        }
-        if (index < 0 || index >= tasks.size()) {
-            throw new DukeException(INDEX_OUT_OF_BOUND);
-        }
+    public void execute(Storage storage, UI ui, TaskList tasks) throws DukeException {
         Task task = tasks.get(index);
         task.setDone(isDone);
-        tasks.save();
-        UI.print(String.format("I've %s this task\n\t", this.isDone ? "checked" : "unchecked") + task);
+        storage.save(tasks);
+        ui.print("I've updated the status of this task\n\t" + task);
     }
 }

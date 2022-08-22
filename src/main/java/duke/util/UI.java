@@ -1,5 +1,7 @@
 package duke.util;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class UI {
@@ -8,19 +10,30 @@ public class UI {
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    private static final String GREET_MESSAGE = "Hello! I am Duke. How can I help you?";
 
-    public static void greet() {
-        System.out.println(LOGO);
-        print(GREET_MESSAGE);
+    private final Scanner inputStreamScanner;
+    private final PrintStream printStream;
+
+    public UI(InputStream inputStream, PrintStream printStream) {
+        this.inputStreamScanner = new Scanner(inputStream);
+        this.printStream = printStream;
     }
 
-    public static void print(String message) {
-        System.out.println(">> " + message);
+    public void greet() {
+        printStream.println(LOGO);
+        print("Hi! I am Duke");
     }
 
-    public static String read(Scanner scanner) {
-        System.out.print("<< ");
-        return scanner.nextLine();
+    public void print(String message) {
+        printStream.println(">> " + message);
+    }
+
+    public String read() {
+        printStream.print("<< ");
+        return inputStreamScanner.nextLine();
+    }
+
+    public void exit() {
+        printStream.println("Bye! Hope to see you soon!");
     }
 }

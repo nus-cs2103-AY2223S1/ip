@@ -1,32 +1,22 @@
 package duke.command;
 
 import duke.DukeException;
-import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
 import duke.util.UI;
 
 public class DeleteTaskCommand extends Command {
-    private final String WRONG_ARGUMENT = "This command expects a number argument!";
-    private final String INDEX_OUT_OF_BOUND = "This command expects an index between 1 and number of tasks.";
 
-    public DeleteTaskCommand(String[] args) {
-        super(CommandType.DELETE, args);
+    private final int index;
+
+    public DeleteTaskCommand(int index) {
+        this.index = index;
     }
 
     @Override
-    public void execute(TaskList tasks) throws DukeException {
-        int index;
-        try {
-            index = Integer.parseInt(args[0]) - 1;
-        } catch (NumberFormatException e) {
-            throw new DukeException(WRONG_ARGUMENT);
-        }
-        if (index < 0 || index >= tasks.size()) {
-            throw new DukeException(INDEX_OUT_OF_BOUND);
-        }
-        Task task = tasks.get(index);
+    public void execute(Storage storage, UI ui, TaskList tasks) throws DukeException {
+        ui.print("I am removing the following task:\n\t" + tasks.get(index));
         tasks.remove(index);
-        tasks.save();
-        UI.print("I've removed this task\n\t" + task);
+        storage.save(tasks);
     }
 }

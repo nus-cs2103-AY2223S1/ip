@@ -2,18 +2,21 @@ package duke.command;
 
 import duke.task.Task;
 import duke.task.TaskList;
+import duke.util.Storage;
 import duke.util.UI;
 
 public class AddTaskCommand extends Command {
-    public AddTaskCommand(CommandType command, String[] args) {
-        super(command, args);
+
+    private final Task task;
+
+    public AddTaskCommand(Task task) {
+        this.task = task;
     }
 
     @Override
-    public void execute(TaskList tasks) {
-        Task task = Task.of(this.command, this.args);
+    public void execute(Storage storage, UI ui, TaskList tasks) {
         tasks.add(task);
-        tasks.save();
-        UI.print("I've added the following task:\n\t" + task);
+        storage.save(tasks);
+        ui.print("I've added the following task:\n\t" + task);
     }
 }

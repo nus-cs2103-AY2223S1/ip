@@ -1,15 +1,14 @@
 package duke.command;
 
 import duke.task.TaskList;
+import duke.util.Storage;
+import duke.util.UI;
 
 public class ListCommand extends Command {
-    public ListCommand(String[] args) {
-        super(CommandType.LIST, args);
-    }
 
     @Override
-    public void execute(TaskList tasks) {
-        tasks.print();
+    public void execute(Storage storage, UI ui, TaskList tasks) {
+        ui.print(tasks.toString());
     }
 }
 

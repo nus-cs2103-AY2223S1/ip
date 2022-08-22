@@ -1,13 +1,11 @@
 package duke.task;
 
-import duke.command.CommandType;
-
 public abstract class Task {
-    private final String description;
     private final char symbol;
+    private final String description;
     private boolean isDone;
 
-    protected Task(String description, char symbol) {
+    protected Task(char symbol, String description) {
         this.description = description;
         this.symbol = symbol;
         this.isDone = false;
@@ -24,18 +22,5 @@ public abstract class Task {
 
     public void setDone(boolean isDone) {
         this.isDone = isDone;
-    }
-
-    public static Task of(CommandType command, String[] args) {
-        switch (command) {
-        case TODO:
-            return new TodoTask(args);
-        case DEADLINE:
-            return new DeadlineTask(args);
-        case EVENT:
-            return new EventTask(args);
-        default:
-            return null;
-        }
     }
 }
