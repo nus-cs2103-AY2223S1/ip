@@ -55,8 +55,14 @@ delete 7
 delete 0
 delete -1
 list
+find 7
+find Task 6
+find Task 5
 mark 1
 mark 3
 mark 5
+find A
+find   tAsK
+find
 list
 bye

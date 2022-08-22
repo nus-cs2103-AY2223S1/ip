@@ -25,6 +25,8 @@ import java.io.IOException;
  *   e.g. mark 2 marks second task as done
  * unmark - mark the task with a specified index (from list command) as undone,
  *   e.g. unmark 2 marks second task as undone
+ * find (keyword) - searches for tasks whose description matches the provided keyword (can be
+ *   multiple words, case-insensitive match)
  * delete - delete the task corresponding to a specified index (from list command)
  *   e.g. delete 2 deletes second task
  * bye - exits the program
@@ -33,20 +35,18 @@ import java.io.IOException;
  * not understand.
  */
 public class Jude {
-    // Overall project structure code for main class adapted from
-    // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
-    private TaskList tasks = new TaskList();
-    private Storage storage;
-    private Ui ui = new Ui();
-    private Parser parser;
+    private final Storage storage;
+    private final Ui ui = new Ui();
 
     public Jude(String filePath) throws IOException {
         storage = new Storage(filePath);
     }
 
     public void run() throws IOException {
-        tasks = storage.load();
-        parser = new Parser(tasks, storage);
+        // Overall project structure code for main class adapted from
+        // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+        TaskList tasks = storage.load();
+        Parser parser = new Parser(tasks, storage);
         ui.showWelcome();
 
         while (true) {
