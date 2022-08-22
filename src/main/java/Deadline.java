@@ -1,7 +1,9 @@
-public class Deadline extends Task {
-    private String time;
+import java.time.LocalDate;
 
-    public Deadline(String description, String time) {
+public class Deadline extends Task {
+    private LocalDate time;
+
+    public Deadline(String description, LocalDate time) {
         super(description);
         this.time = time;
     }
