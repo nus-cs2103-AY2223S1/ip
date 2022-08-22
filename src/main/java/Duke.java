@@ -48,7 +48,7 @@ public class Duke {
         map.put(Action.ECHO, command -> echo(command.getParameters().get(0)));
         map.put(Action.EXIT, command -> exit());
 //        Level_2
-        map.put(Action.ADD, command -> add(command.getParameters().get(0)));
+//        map.put(Action.ADD, command -> add(command.getParameters().get(0)));
         map.put(Action.LIST, command -> list());
 //        Level_3
         map.put(Action.MARK, command -> mark(Integer.parseInt(command.getParameters().get(0))));
@@ -81,12 +81,12 @@ public class Duke {
     public void echo(String msg) {
         mp.printMessage(msg);
     }
-
-    public void add(String msg) {
-        Task task = new Task(msg);
-        tasks.add(task);
-        mp.printMessage("added: " + task.getName());
-    }
+//      Removed Functionality since introduction of Event, ToDo, Deadline
+//    public void add(String msg) {
+//        Task task = new Task(msg);
+//        tasks.add(task);
+//        mp.printMessage("added: " + task.getName());
+//    }
 
     public void list() {
         String message = "Here are the tasks in your list:\n";
@@ -107,7 +107,7 @@ public class Duke {
         }
         String successMsg = "Nice! I've marked this task as done:";
         Task task = this.tasks.get(idTask - 1);
-        task.setIsDone(true);
+        task.markAsDone();
         mp.printMessage(successMsg + "\n" + task);
     }
 
@@ -117,7 +117,7 @@ public class Duke {
         }
         String successMsg = "OK, I've marked this task as not done yet:";
         Task task = this.tasks.get(idTask - 1);
-        task.setIsDone(false);
+        task.markAsNotDone();
         mp.printMessage(successMsg + "\n" + task);
     }
 
@@ -172,4 +172,6 @@ public class Duke {
                 "Now you have " + tasks.size() + " tasks in the list.";
         mp.printMessage(successMsg );
     }
+
+
 }

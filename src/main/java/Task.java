@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private String name;
     private boolean isDone;
 
@@ -11,7 +11,7 @@ public class Task {
         this.name = name;
     }
 
-    public void setIsDone(boolean isDone) {
+    private void setIsDone(boolean isDone) {
         this.isDone = isDone;
     }
 
@@ -88,6 +88,14 @@ public class Task {
 
     public static Deadline deadline(String msg, String time) {
         return new Deadline(msg, time);
+    }
+
+    public void markAsDone() {
+        this.isDone = true;
+    }
+
+    public void markAsNotDone() {
+        this.isDone = false;
     }
 
     @Override
