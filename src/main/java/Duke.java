@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Duke {
     public static void main(String[] args) {
         startChat();
@@ -92,7 +95,17 @@ public class Duke {
                     String desc = echoText.substring(firstSpaceIndex + 1, byIndex);
                     //4 because 3 of "/by" and 1 for the additional space
                     String by = echoText.substring(byIndex + 4);
-                    Deadline d = new Deadline(desc, by);
+                    String[] byArr = by.split(" ");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate byDate = LocalDate.parse(byArr[0], formatter);
+                    String byTime;
+                    //time was not inputted
+                    if (byArr.length == 1) {
+                        byTime = "0000";
+                    } else {
+                        byTime = byArr[1];
+                    }
+                    Deadline d = new Deadline(desc, byDate, byTime);
                     list.add(d);
                     String str = "Fine, I'll add this task:\n\t" + d + "\nNow you have " + list.size() + " tasks in the list...";
                     formatPrint(str);
@@ -108,7 +121,16 @@ public class Duke {
                     }
                     String desc = echoText.substring(firstSpaceIndex + 1, atIndex);
                     String at = echoText.substring(atIndex + 4);
-                    Event e = new Event(desc, at);
+                    String[] atArr = at.split(" ");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate atDate = LocalDate.parse(atArr[0], formatter);
+                    String atTime;
+                    if (atArr.length == 1) {
+                        atTime = "0000";
+                    } else {
+                        atTime = atArr[1];
+                    }
+                    Event e = new Event(desc, atDate, atTime);
                     list.add(e);
                     String str = "Fine, I'll add this task:\n\t" + e + "\nNow you have " + list.size() + " tasks in the list...";
                     formatPrint(str);
@@ -122,8 +144,6 @@ public class Duke {
                     list.remove(delValue - 1);
                     String str = "Ughh I'll remove this task:\n\t" + item.toString() + "\nNow you have " + list.size() + " tasks in the list...";
                     formatPrint(str);
-//                    System.out.println(horizontalLine + "Ughh I'll remove this task:\n\t" + item.toString());
-//                    System.out.println("Now you have " + list.size() + " tasks in the list...\n" + horizontalLine );
                 } else {
                     formatPrint("What are you saying??? Try again");
                 }
