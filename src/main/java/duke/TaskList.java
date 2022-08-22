@@ -76,8 +76,8 @@ public class TaskList {
 
         taskList.add(newTask);
         int size = this.getSize();
-        return String.format("Got it. I've added this task:%n   %s%n" +
-                "Now you have %d task%s in the list.%n",
+        return String.format("Got it. I've added this task:%n   %s%n"
+                + "Now you have %d task%s in the list.%n",
                 newTask, size, size == 1 ? "" : "s");
     }
 
@@ -92,8 +92,8 @@ public class TaskList {
         String taskToDelete = taskList.get(index).toString();
         taskList.remove(index);
         int size = this.getSize();
-        return String.format("Got it. I've removed this task:%n   %s%n" +
-                "Now you have %d task%s in the list.%n",
+        return String.format("Got it. I've removed this task:%n   %s%n"
+                + "Now you have %d task%s in the list.%n",
                 taskToDelete, size, size == 1 ? "" : "s");
     }
 

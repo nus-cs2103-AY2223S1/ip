@@ -44,8 +44,6 @@ public class Event extends Task {
      * @return "event|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK VENUE]"
      */
     public String toFileFormat() {
-        return "event" + "|"
-                    + super.toFileFormat() + "|"
-                    + this.at;
+        return "event" + "|" + super.toFileFormat() + "|" + this.at;
     }
 }

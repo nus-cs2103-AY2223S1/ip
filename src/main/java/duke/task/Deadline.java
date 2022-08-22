@@ -50,8 +50,6 @@ public class Deadline extends Task {
      * @return "deadline|[COMPLETION STATUS]|[TASK DESCRIPTION]|[TASK DEADLINE]
      */
     public String toFileFormat() {
-        return "deadline" + "|"
-                + super.toFileFormat() + "|"
-                + this.by;
+        return "deadline" + "|" + super.toFileFormat() + "|" + this.by;
     }
 }

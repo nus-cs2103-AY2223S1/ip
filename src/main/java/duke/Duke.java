@@ -14,27 +14,27 @@ public class Duke {
     /**
      * 'List' attribute to store inputs.
      */
-    private final TaskList taskList = new TaskList();
+    private final TaskList TASKLIST = new TaskList();
 
     /**
      * `Ui` object to handle user-interface.
      */
-    private final Ui ui;
+    private final Ui UI;
 
     /**
      * `Storage` object to handle reading and writing task list to disk.
      */
-    private final Storage storage;
+    private final Storage STORAGE;
 
     /**
      * `Parser` object to parse and handle user inputs.
      */
-    private final Parser parser;
+    private final Parser PARSER;
 
     private Duke(String directory, String filename) {
-        ui = new Ui();
-        storage = new Storage(directory, filename, taskList);
-        parser = new Parser(taskList);
+        UI = new Ui();
+        STORAGE = new Storage(directory, filename, TASKLIST);
+        PARSER = new Parser(TASKLIST);
     }
 
     private void run() {
@@ -52,23 +52,23 @@ public class Duke {
                 // Parse input to get command to call. Checks to user input
                 // are also made here.
                 BiFunction<TaskList, String, String> command =
-                        parser.handleUserInputs(userInput);
+                        PARSER.handleUserInputs(userInput);
                 // Apply command on input.
-                String output = command.apply(taskList, userInput);
+                String output = command.apply(TASKLIST, userInput);
                 // Print any output.
                 if (output.equals("exit sequence initiated")) {
                     runDuke = false;
-                    ui.showUser("Bye. Hope to see you again soon!");
+                    UI.showUser("Bye. Hope to see you again soon!");
                     break;
                 } else {
                     System.out.println(output);
                 }
                 // Write to disk.
-                storage.writeToFile(taskList);
+                STORAGE.writeToFile(TASKLIST);
             } catch (DukeException e) {
-                ui.showUser(e.getMessage());
+                UI.showUser(e.getMessage());
             } catch (IOException e) {
-                ui.showUser("Error writing to file: " + e.getMessage());
+                UI.showUser("Error writing to file: " + e.getMessage());
             }
         }
         sc.close();
