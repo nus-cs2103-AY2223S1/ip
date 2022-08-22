@@ -10,20 +10,21 @@ public class Ui {
 
     private static String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
+            + "| | | | | | | |/ / _  \n"
+            + "| |_| | |_| |   <  __/ \n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-   public static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
+
+    public static final String ENDING_MESSAGE = "That's all? Hope to see you again soon :)";
 
     public static String welcomeMessage() {
         String message = "";
         message += "Hello from\n" + logo;
         System.out.println("Hello from\n" + logo);
-        message += "Hello! I'm Duke \n"
-                + "What can I do for you?";
+        message += "Hello! I'm the new and improved Duke \n"
+                + "How may I be of assistance today?";
         System.out.println("Hello! I'm Duke \n"
-                + "What can I do for you?");
+                + "How may I be of assistance today?");
         return message;
     }
 
