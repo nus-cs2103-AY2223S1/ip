@@ -25,11 +25,18 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the program until termination.
+     */
     public void run() {
         this.ui.showWelcomeMessage();
         this.runCommandLoopUntilExit();
     }
 
+    /**
+     * Reads user command and executes it, until user enters
+     * the "bye" command.
+     */
     public void runCommandLoopUntilExit() {
         String command; // User input
         String[] arr;
@@ -89,34 +96,34 @@ public class Duke {
         }
     }
 
-    public Task executeTodo(String description) {
+    private Task executeTodo(String description) {
         Task t = new Todo(description);
         this.tasks.add(t);
         this.storage.save(this.tasks);
         return t;
     }
 
-    public Task executeDeadline(String description, String by) {
+    private Task executeDeadline(String description, String by) {
         Task t = new Deadline(description, by);
         this.tasks.add(t);
         this.storage.save(this.tasks);
         return t;
     }
 
-    public Task executeEvent(String description, String at) {
+    private Task executeEvent(String description, String at) {
         Task t = new Event(description, at);
         this.tasks.add(t);
         this.storage.save(this.tasks);
         return t;
     }
 
-    public void executeDelete(String taskNum) {
+    private void executeDelete(String taskNum) {
         int num = Integer.parseInt(taskNum);
         this.tasks.delete(num);
         this.storage.save(this.tasks);
     }
 
-    public Task executeMark(String input) {
+    private Task executeMark(String input) {
         Task t = this.tasks.getTask(Integer.parseInt(input));
         this.tasks.getTask(Integer.parseInt(input)).markAsDone();
         this.storage.save(this.tasks);
