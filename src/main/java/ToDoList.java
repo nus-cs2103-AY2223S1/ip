@@ -104,7 +104,7 @@ public class ToDoList {
         System.out.println(
                  "   --------------------------------------------------------------------------------\n" +
                          "     Got it. I've removed this task: \n" +
-                         "       " + this.list.get(index).toString() + "\n" +
+                         "       " + this.list.get(index - 1).toString() + "\n" +
                          "     You now have " + (list.size() - 1) + " tasks in the list.\n" +
                          "   --------------------------------------------------------------------------------"
         );
@@ -114,24 +114,24 @@ public class ToDoList {
 
     /* Method to mark a certain item in the list as done */
     public void markItemDone(int index) {
-        this.list.get(index).markDone();
+        this.list.get(index - 1).markDone();
 
         System.out.println(
                 "   --------------------------------------------------------------------------------\n" +
                         "     GOOD JOB! I'm making this task as done: \n" +
-                        "       " + this.list.get(index).toString() + "\n" +
+                        "       " + this.list.get(index - 1).toString() + "\n" +
                         "   --------------------------------------------------------------------------------"
         );
     }
 
     /* Method to mark a certain item in the list as undone */
     public void markItemUndone(int index) {
-        this.list.get(index).markUndone();
+        this.list.get(index - 1).markUndone();
 
         System.out.println(
                 "   --------------------------------------------------------------------------------\n" +
                         "     GOOD JOB! But it would be even better if you got this done: \n" +
-                        "       " + this.list.get(index).toString() + "\n" +
+                        "       " + this.list.get(index - 1).toString() + "\n" +
                         "   --------------------------------------------------------------------------------"
         );
     }

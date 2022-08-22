@@ -26,8 +26,6 @@ public class BobTheBot {
                     list.markItemUndone(index);
                 } catch (NumberFormatException e) {
                     list.addTask(command);
-                } finally {
-                    continue;
                 }
             } else if (command.startsWith("delete")) {
                 try {
@@ -41,8 +39,6 @@ public class BobTheBot {
                                     "     Eg. delete 2 (where 2 is the index of the item you would like to delete)\n" +
                                     "   --------------------------------------------------------------------------------"
                     );
-                } finally {
-                    continue;
                 }
             } else {
                 list.addTask(command);
