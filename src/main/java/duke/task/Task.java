@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
+
+import duke.DukeException;
 
 public class Task {
     private String description;

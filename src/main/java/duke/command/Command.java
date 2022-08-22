@@ -11,7 +11,7 @@ public abstract class Command {
     public Command(boolean isExit) {
         this.isExit = isExit;
     }
-    public boolean isExit()  {
+    public boolean isExit() {
         return this.isExit;
     }
 

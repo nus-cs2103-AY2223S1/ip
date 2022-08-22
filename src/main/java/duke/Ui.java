@@ -1,8 +1,8 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.Scanner;
+
+import duke.task.Task;
 
 public class Ui {
 
@@ -11,7 +11,7 @@ public class Ui {
             + "\t| | | | | | | |/ / _ \\\n"
             + "\t| |_| | |_| |   <  __/\n"
             + "\t|____/ \\__,_|_|\\_\\___|\n";
-    protected static final String LINE = "\t____________________________________________________________";
+    private static final String LINE = "\t____________________________________________________________";
 
     private Scanner sc;
 
@@ -28,7 +28,7 @@ public class Ui {
     }
 
     public void showWelcome() {
-        System.out.printf("%s%n%s%s%s%s%n", LINE, LOGO, LINE,"\n\tHello! I'm Duke\n\tWhat can I do for you?\n", LINE);
+        System.out.printf("%s%n%s%s%s%s%n", LINE, LOGO, LINE, "\n\tHello! I'm Duke\n\tWhat can I do for you?\n", LINE);
     }
 
     public void showBye() {
