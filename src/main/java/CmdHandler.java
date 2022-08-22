@@ -1,8 +1,5 @@
-import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class CmdHandler {
     ArrayList<Task> tasks = new ArrayList<>();
@@ -25,18 +22,18 @@ public class CmdHandler {
 
     private void addTask(String desc) throws DukeException {
         if (desc.startsWith("deadline")) {
-            String[] parsed = desc.substring(9).split("/by ");
+            String[] parsed = desc.substring(8).split("/by");
             tasks.add(new Deadline(parsed[0], parsed[1]));
             System.out.println("task added" + tasks.get(tasks.size() - 1));
         } else if (desc.startsWith("event")) {
-            String[] parsed = desc.substring(6).split("/at ");
+            String[] parsed = desc.substring(5).split("/at");
             tasks.add(new Event(parsed[0], parsed[1]));
             System.out.println("task added" + tasks.get(tasks.size() - 1));
         } else if (desc.startsWith("todo")) {
-            if (desc.substring(5).length() == 0) {
+            if (desc.substring(4).length() == 0) {
                 throw new DukeException("The description of a todo cannot be empty.");
             }
-            tasks.add(new Todo(desc.substring(5)));
+            tasks.add(new Todo(desc.substring(4)));
             System.out.println("task added" + tasks.get(tasks.size() - 1));
         } else {
             throw new DukeException("No such command");
@@ -53,54 +50,8 @@ public class CmdHandler {
         System.out.println("marked as undone: " + tasks.get(i));
     }
 
-    private void handleDelete(int i) {
-        System.out.println("task deleted: " + tasks.remove(i));
-    }
-
-    private void loadTasks() {
-        try {
-            tasks = new ArrayList<>();
-            Scanner in = new Scanner(new FileReader("data//tasks_data.txt"));
-            while (in.hasNextLine()) {
-                String line = in.nextLine();
-                String[] data = line.split(" \\| ");
-                Task task;
-                switch (data[0]) {
-                case "T":
-                    task = new Todo(data[2]);
-                    break;
-                case "D":
-                    task = new Deadline(data[2], data[3]);
-                    break;
-                case "E":
-                    task = new Event(data[2], data[3]);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + data[0]);
-                }
-                tasks.add(task);
-            }
-        } catch (FileNotFoundException e) {
-        }
-    }
-
-    private void saveTasks(){
-        try {
-            File file = new File("data//tasks_data.txt");
-
-            PrintWriter writer = new PrintWriter(file);
-            String toAdd = tasks.stream().map(Task::toFileString)
-                    .collect(Collectors.joining("\n"));
-            writer.write(toAdd);
-            writer.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     void handle() {
         Scanner sc = new Scanner(System.in);
-        loadTasks();
         while (!done) {
             try {
                 String inputStr = sc.nextLine();
@@ -119,7 +70,6 @@ public class CmdHandler {
                     addTask(inputStr);
                 }
                 System.out.println();
-                saveTasks();
 
             } catch (DukeException de) {
                 System.out.println(de.getMessage());
@@ -127,4 +77,7 @@ public class CmdHandler {
         }
     }
 
+    private void handleDelete(int i) {
+        System.out.println("task deleted: " + tasks.remove(i));
+    }
 }
