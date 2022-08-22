@@ -3,8 +3,8 @@
  * Encapsulates a Task. Task supports marking as done, unmarking,
  * and a string representation.
  */
-public class Task {
-    private String name;
+public abstract class Task {
+    protected String name;
     private boolean isDone = false;
 
     public Task(String name) {

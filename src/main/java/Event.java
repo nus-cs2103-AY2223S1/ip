@@ -4,7 +4,6 @@ import java.time.LocalDate;
 public class Event extends Task {
     private LocalDate date;
 
-
     public Event(String name, LocalDate date) {
         /**
          * Constructor for Event class. Sets the event name and time period.
@@ -20,6 +19,7 @@ public class Event extends Task {
         return this.date.equals(date);
     }
 
+    @Override
     public String toString() {
         /**
          * String representation of an event. Also indicates if the event is done.

@@ -18,6 +18,7 @@ public class Deadline extends Task {
         return this.date.equals(date);
     }
 
+    @Override
     public String toString() {
         /**
          * String representation of a deadline. Also indicates if the deadline is done.
