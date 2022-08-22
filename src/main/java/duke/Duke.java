@@ -30,11 +30,19 @@ public class Duke {
         this.tasks = new TaskList(storage.load());
     }
 
+    /**
+     * Terminates Duke application.
+     *
+     */
     public void terminate() {
         this.isTerminated = true;
         Ui.showTermination();
     }
 
+    /**
+     * Runs Duke application.
+     *
+     */
     public void run() {
         Ui.showGreeting();
         Scanner scanner = new Scanner(System.in);
