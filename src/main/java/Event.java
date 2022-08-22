@@ -6,11 +6,11 @@ public class Event extends Task {
 
     public Event(String description, String at) {
         super(description);
-        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy HHmm]" + "[MMM dd yyyy hh:mm a]"));
     }
 
     public String getAt() {
-        return this.at;
+        return this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
     }
 
     @Override

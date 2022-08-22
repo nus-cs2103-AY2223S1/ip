@@ -6,7 +6,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public String execute(List<Task> tasks) throws JarvisException {
+    public String execute(TaskList tasks, Storage storage) throws JarvisException {
         int taskIndex = super.getTaskIndex();
 
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
@@ -15,9 +15,11 @@ public class MarkCommand extends Command {
 
         if (getKeyCommand().equals("mark")) {
             tasks.get(taskIndex).setIsDone(true);
+            storage.saveTasks(tasks);
             return "Nice! I've marked this task as done:\n\t" + tasks.get(taskIndex);
         } else {
             tasks.get(taskIndex).setIsDone(false);
+            storage.saveTasks(tasks);
             return "Okay, I've marked this task as not done yet:\n\t" + tasks.get(taskIndex);
         }
     }

@@ -52,13 +52,13 @@ public class Storage {
         return tasks;
     }
 
-    public void saveTasks(List<Task> tasks) {
+    public void saveTasks(TaskList tasks) {
         File file = new File(this.filePath);
         file.getParentFile().mkdirs();
 
         try {
             FileWriter fileWriter = new FileWriter(file);
-            for (Task task: tasks) {
+            for (Task task: tasks.getTasks()) {
                 StringBuilder taskString = new StringBuilder();
                 if (task instanceof ToDo) {
                     taskString.append("T|");

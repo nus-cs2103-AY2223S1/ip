@@ -48,5 +48,5 @@ public abstract class Command {
         }
     }
 
-    public abstract String execute(List<Task> tasks) throws JarvisException;
+    public abstract String execute(TaskList tasks, Storage storage) throws JarvisException;
 }
