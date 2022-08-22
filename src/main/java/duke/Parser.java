@@ -30,6 +30,9 @@ public class Parser {
             case "delete":
                 tasks.deleteTask(splitStr);
                 break;
+            case "find":
+                tasks.findTasks(splitStr);
+                break;
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means!");
         }

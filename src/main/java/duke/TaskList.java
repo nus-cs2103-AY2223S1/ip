@@ -119,11 +119,36 @@ public class TaskList {
         ui.printMessage("Nice! I've marked this task as not done yet:\n       " + tasks.get(unmarkNo - 1));
     }
 
+    public void findTasks(String[] splitStr) throws DukeException {
+        int i = 1;
+        String line = "    ____________________________________________________________";
+        if (splitStr.length < 2) {
+            throw new DukeException("Please specify keyword to search.");
+        }
+        String keyword = splitStr[1].trim();
+        System.out.println(line);
+        System.out.println("     Here are the matching tasks in your list:");
+        for (Task t : tasks) {
+            String[] words = t.splitDescriptionToWords();
+            for (String word : words) {
+                if (keyword.equals(word)) {
+                    System.out.println("     " + i + "." + t);
+                    i++;
+                    break;
+                }
+            }
+        }
+        if (i == 1) {
+            System.out.println("     No results found!");
+        }
+        System.out.println(line);
+    }
+
     public void printTaskList() {
         int i = 1;
         String line = "    ____________________________________________________________";
         System.out.println(line);
-        System.out.println("     Here are the tasks in your list");
+        System.out.println("     Here are the tasks in your list:");
         for (Task t : tasks) {
             System.out.println("     " + i + "." + t);
             i++;

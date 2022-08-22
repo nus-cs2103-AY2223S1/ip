@@ -23,6 +23,10 @@ abstract public class Task {
         this.isDone = false;
     }
 
+    public String[] splitDescriptionToWords() {
+        return description.split(" ");
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
