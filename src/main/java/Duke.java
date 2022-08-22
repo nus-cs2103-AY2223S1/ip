@@ -77,16 +77,25 @@ public class Duke {
                 Task taskToUnmark = taskList.get(index);
                 taskToUnmark.unmark();
                 String response = String.format(
-                        "OK, I've marked this task as not done yet:\n %s",
+                        "OK, I've marked this task as not done yet:\n  %s",
                         taskToUnmark
+                );
+                System.out.println(response);
+            } else if ("delete".equals(command)) {
+                int index = Integer.parseInt(body) - 1;
+                Task deletedTask = taskList.remove(index);
+                String response = String.format(
+                        "Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list",
+                        deletedTask, taskList.size()
                 );
                 System.out.println(response);
             } else if (isTaskType(command)) {
                 try {
                     TaskTypes type = getTaskType(command);
                     Task newTask = addNewTask(body, type);
-                    String response = String.format("Got it. I've added this task:\n  " +
-                            "%s\nNow you have %d tasks in the list.", newTask, taskList.size());
+                    String response = String.format(
+                            "Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.",
+                            newTask, taskList.size());
                     System.out.println(response);
                 } catch (NoSuchTaskException | EmptyTaskDescException | EmptyTaskTimeException e) {
                     System.out.println("☹ " + e.getMessage());
