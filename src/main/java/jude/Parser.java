@@ -13,6 +13,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+/**
+ * The {@code Parser} class parses user commands in the task tracker chatbot and executes them.
+ */
 public class Parser {
 
     private TaskList tasks;
@@ -29,12 +32,14 @@ public class Parser {
         this.storage = storage;
     }
 
-    // Parses date in ISO 8601 format or DD MMM YYYY format (e.g. 21 Aug 2022) or MMM DD YYYY
-    // format (e.g. Aug 21 2022) and returns a string in DD MMM YYYY format. If date parse fails,
-    // throws IllegalCommandException.
-    // Time, if provided, should be given in 12 or 24-hour format, and provided after the date
-    // string, which is not in ISO format.
-    // This parser is not case-sensitive.
+    /**
+     * Parses date in ISO 8601 format or DD MMM YYYY format (e.g. 21 Aug 2022) or MMM DD YYYY
+     * format (e.g. Aug 21 2022) and returns a string in DD MMM YYYY format. If date parse fails,
+     * throws IllegalCommandException.
+     * Time, if provided, should be given in 12 or 24-hour format, and provided after the date
+     * string, which is not in ISO format.
+     * This parser is not case-sensitive.
+     */
     String convertToDate(String date) {
         // Solution adapted from
         // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
@@ -93,7 +98,7 @@ public class Parser {
      *
      * @param command The command which will be provided to the parser.
      * @return true if the command terminates the program, i.e. bye command, false otherwise.
-     * @throws IOException
+     * @throws IOException When system I/O fails.
      */
     public boolean parse(String command) throws IOException {
         String[] tokens = command.split(" ", 2);
