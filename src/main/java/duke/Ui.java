@@ -23,6 +23,7 @@ public class Ui {
                     "   mark     [TASK NUMBER]\n" +
                     "   unmark   [TASK NUMBER]\n" +
                     "   list\n" +
+                    "   find\n" +
                     "   bye\n";
 
     /**
