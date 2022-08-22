@@ -39,6 +39,15 @@ public class Calendar {
         return this.getEntry(index).markAsIncomplete();
     }
 
+    public int clearAllEntries(){
+        this.cache.clear();
+        return 200;
+    }
+
+    public int size(){
+        return this.cache.size();
+    }
+
     @Override
     public String toString(){
         String ans="";
