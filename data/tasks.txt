@@ -1,0 +1,3 @@
+D | false | deadline  | 2022-12-20 1800
+E | false | event  | 2022-12-20 1200
+T | true | todo
