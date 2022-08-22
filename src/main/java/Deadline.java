@@ -33,4 +33,13 @@ public class Deadline extends Task {
         return this.date.equals(date);
     }
 
+    @Override
+    public String toStorageFormat() {
+        return String.format(
+                "D | %s | %s | %s%s",
+                (super.isCompleted() ? "1" : "0"),
+                super.getDescription(),
+                this.date.format(DateTimeFormatter.ofPattern("d/M/yyyy")),
+                (this.time == null ? "" : this.time.format(DateTimeFormatter.ofPattern(" HHmm"))));
+    }
 }

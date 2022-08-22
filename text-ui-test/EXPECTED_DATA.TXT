@@ -6,3 +6,4 @@ T | 0 | sleep
 T | 0 | cry
 D | 0 | CS2103T Week 2 | 18/8/2022
 T | 0 | cry harder
+E | 0 | end of sem | 10/12/2022

@@ -29,4 +29,14 @@ public class Event extends Task {
     public boolean isEqualDate(LocalDate date) {
         return this.date.equals(date);
     }
+
+    @Override
+    public String toStorageFormat() {
+        return String.format(
+                "E | %s | %s | %s%s",
+                (super.isCompleted() ? "1" : "0"),
+                super.getDescription(),
+                this.date.format(DateTimeFormatter.ofPattern("d/M/yyyy")),
+                (this.time == null ? "" : this.time.format(DateTimeFormatter.ofPattern(" HHmm"))));
+    }
 }

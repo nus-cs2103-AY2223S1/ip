@@ -17,8 +17,8 @@ public abstract class Task {
         this.isCompleted = false;
     }
 
-    public String getStatus() {
-        return isCompleted ? "X" : " ";
+    public boolean isCompleted() {
+        return isCompleted;
     }
 
     public String getDescription() {
@@ -29,8 +29,10 @@ public abstract class Task {
 
     public abstract boolean isEqualDate(LocalDate date);
 
+    public abstract String toStorageFormat();
+
     @Override
     public String toString() {
-        return String.format("[%s][%s] %s", this.getType(), this.getStatus(), this.getDescription());
+        return String.format("[%s][%s] %s", this.getType(), (this.isCompleted() ? "X" : " "), this.getDescription());
     }
 }

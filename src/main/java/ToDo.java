@@ -13,4 +13,9 @@ public class ToDo extends Task {
     public boolean isEqualDate(LocalDate date) {
         return false;
     }
+
+    @Override
+    public String toStorageFormat() {
+        return String.format("T | %s | %s", super.isCompleted() ? "1" : "0", super.getDescription());
+    }
 }

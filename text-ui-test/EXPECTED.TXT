@@ -79,6 +79,10 @@ jduke> |  Error:
 |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
+jduke> |  added task:
+|    [E][ ] end of sem (at: Dec 10 2022)
+|  10 tasks in list
+
 jduke> 1 ==> [T][X] read book
 2 ==> [D][ ] return book (by: Jun 06 2000)
 3 ==> [E][ ] project meeting (at: Aug 06 2022 06:00 PM)
@@ -88,6 +92,7 @@ jduke> 1 ==> [T][X] read book
 7 ==> [T][ ] cry
 8 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 9 ==> [T][ ] cry harder
+10 ==> [E][ ] end of sem (at: Dec 10 2022)
 
 jduke> |  Error:
 |  invalid MARK format
@@ -98,11 +103,11 @@ jduke> |  marked task:
 
 jduke> |  deleted task:
 |    [D][X] return book (by: Jun 06 2000)
-|  8 tasks in list
+|  9 tasks in list
 
 jduke> |  Error:
 |  invalid task number
-|    max index is 8
+|    max index is 9
 
 jduke> |  Error:
 |  invalid MARK format
@@ -116,6 +121,7 @@ jduke> 1 ==> [T][X] read book
 6 ==> [T][ ] cry
 7 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 8 ==> [T][ ] cry harder
+9 ==> [E][ ] end of sem (at: Dec 10 2022)
 
 jduke> |  marked task:
 |    [T][X] read book
@@ -131,5 +137,6 @@ jduke> 1 ==> [T][X] read book
 6 ==> [T][ ] cry
 7 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 8 ==> [T][ ] cry harder
+9 ==> [E][ ] end of sem (at: Dec 10 2022)
 
 jduke> |  Goodbye

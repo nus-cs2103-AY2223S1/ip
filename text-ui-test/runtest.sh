@@ -21,13 +21,13 @@ fi
 
 # Creates a data directory and loads data.txt
 mkdir data
-cp data.txt data/jduke.txt
+cp data.txt data/tasks.txt
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
 java -classpath ../bin Jduke < input.txt > ACTUAL.TXT
 
 # copies the final saved data
-cp data/jduke.txt ACTUAL_DATA.TXT
+cp data/tasks.txt ACTUAL_DATA.txt
 cp EXPECTED_DATA.TXT EXPECTED_DATA-UNIX.TXT
 
 # convert to UNIX format

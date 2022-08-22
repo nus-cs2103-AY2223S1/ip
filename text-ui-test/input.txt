@@ -18,6 +18,7 @@ event this /at
 deadline /by 5
 todo cry harder
 event end of sem /at NEVER
+event end of sem /at 10/12/2022
 list
 mark 1 2
 mark 2
