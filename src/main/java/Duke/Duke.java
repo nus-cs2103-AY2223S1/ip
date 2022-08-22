@@ -1,10 +1,11 @@
-package src.main.java;
+package Duke;
 
 import java.io.FileWriter;
 import java.sql.SQLSyntaxErrorException;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.ListIterator;
 
@@ -380,7 +381,8 @@ public class Duke {
         }
 
         public String parseDateToString(LocalDate date) {
-            return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            return date.format(DateTimeFormatter.ofPattern("MMM d yyyy", Locale.ENGLISH));
+
         }
 
     }
@@ -571,7 +573,7 @@ public class Duke {
         }
     }
 
-    private class Deadline extends Task {
+    public class Deadline extends Task {
         protected LocalDate by;
 
         public Deadline(String description, LocalDate by) {
@@ -585,7 +587,7 @@ public class Duke {
         }
     }
 
-    private class Todo extends Task {
+    public class Todo extends Task {
         public Todo(String description) {
             super(description);
         }
@@ -596,7 +598,7 @@ public class Duke {
         }
     }
 
-    private class Event extends Task {
+    public class Event extends Task {
         private LocalDate at;
 
         public Event(String description, LocalDate at) {
