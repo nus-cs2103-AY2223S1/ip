@@ -1,6 +1,7 @@
 import exceptions.EmptyNameException;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -59,7 +60,6 @@ public class Storage {
                     combiStr = new String[]{type, "0", name, info};
                 } else {
                     combiStr = new String[]{type, "0", name, info};
-
                 }
             }
             StringBuilder ret = new StringBuilder();
@@ -72,13 +72,75 @@ public class Storage {
             }
             writeToFile(this.path, ret.toString());
 
-        } catch (EmptyNameException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
+        } catch (EmptyNameException | IOException e) {
             System.out.println(e.getMessage());
         }
 
     }
+
+
+    public void toggleDone(int index, boolean toDone) {
+        File file = new File(this.path);
+        try{
+            Scanner scanner = new Scanner(file);
+            StringBuilder builder = new StringBuilder();
+            int currentIndex = 0;
+            while(scanner.hasNextLine()){
+                if(currentIndex == index){
+                    String oldString = scanner.nextLine();
+
+                    String newString = toDone
+                            ? oldString.replaceFirst("0", "1")
+                            : oldString.replaceFirst("1", "0") ;
+                    builder.append(newString).append(System.lineSeparator());
+                } else {
+                    builder.append(scanner.nextLine()).append(System.lineSeparator());
+                }
+                currentIndex++;
+            }
+            String content = builder.toString();
+
+            FileWriter writer = new FileWriter(this.path);
+            writer.append(content);
+            writer.flush();
+
+
+        }catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deleteLine(int index){
+        File file = new File(this.path);
+        try{
+            Scanner scanner = new Scanner(file);
+            StringBuilder builder = new StringBuilder();
+            int currentIndex = 0;
+            while(scanner.hasNextLine()){
+                if(currentIndex != index){
+                    builder.append(scanner.nextLine()).append(System.lineSeparator());
+                } else {
+                    scanner.nextLine();
+                }
+                currentIndex++;
+            }
+            String content = builder.toString();
+
+            FileWriter writer = new FileWriter(this.path);
+            writer.append(content);
+            writer.flush();
+
+
+        }catch(FileNotFoundException e){
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 

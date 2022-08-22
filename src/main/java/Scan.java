@@ -46,11 +46,13 @@ public class Scan {
             if(nextCommand.equals(CommandsEnum.list.toString())){
                 taskList.displayAllTask();
             } else if(nextCommand.startsWith(CommandsEnum.mark.toString())){
-                char index = nextCommand.charAt(nextCommand.length() - 1);
-                taskList.setTaskAsDone(Character.getNumericValue(index));
+                int index = convertToInt(nextCommand);
+                storage.toggleDone(index, true);
+                taskList.setTaskAsDone(index);
             } else if(nextCommand.startsWith(CommandsEnum.unmark.toString())){
-                char index = nextCommand.charAt(nextCommand.length() - 1);
-                taskList.setTaskAsUndone(Character.getNumericValue(index));
+                int index = convertToInt(nextCommand);
+                storage.toggleDone(index, false);
+                taskList.setTaskAsUndone(index);
             }
             else if(nextCommand.contains(CommandsEnum.todo.toString()) ||
                     nextCommand.contains(CommandsEnum.deadline.toString()) ||
@@ -59,14 +61,19 @@ public class Scan {
                 storage.addLineToFile(nextCommand);
 
             } else if(nextCommand.startsWith(CommandsEnum.delete.toString())){
-                char index = nextCommand.charAt(nextCommand.length() - 1);
-                taskList.deleteTask(Character.getNumericValue(index));
+                int index = convertToInt(nextCommand);
+                storage.deleteLine(index);
+                taskList.deleteTask(index);
             }
             else {
                 throw new UnknownCommandException();
             }
 
 
+    }
+
+    private int convertToInt(String str){
+        return Character.getNumericValue((str.charAt(str.length() - 1)));
     }
 
     public static void dukePrintLn(String str){
