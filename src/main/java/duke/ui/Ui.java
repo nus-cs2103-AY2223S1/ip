@@ -1,3 +1,8 @@
+package duke.ui;
+
+import duke.task.Task;
+import duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -22,7 +27,7 @@ public class Ui {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         printLine();
-        print("Hello! I'm Duke");
+        print("Hello! I'm duke.Duke");
         print("What can I do for you?");
         printLine();
     }
@@ -39,23 +44,23 @@ public class Ui {
     }
 
     public void printAddTasks(Task task, TaskList tasks) {
-        print("Got it. I've added this task:");
+        print("Got it. I've added this duke.task:");
         print("  " + task.toString());
         print("Now you have " + tasks.getSize() + " tasks in the list.");
     }
 
     public void printMark(Task task) {
-        print("Nice! I've marked this task as done:");
+        print("Nice! I've marked this duke.task as done:");
         print("  " + task.toString());
     }
 
     public void printUnMark(Task task) {
-        print("OK, I've marked this task as not done yet:");
+        print("OK, I've marked this duke.task as not done yet:");
         print("  " + task.toString());
     }
 
     public void printDeleteTask(Task task, TaskList tasks) {
-        print("Got it. I've added this task:");
+        print("Got it. I've added this duke.task:");
         print("  " + task.toString());
         print("Now you have " + tasks.getSize() + " tasks in the list.");
     }

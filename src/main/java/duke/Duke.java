@@ -1,3 +1,12 @@
+package duke;
+
+import duke.command.Command;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.DukeException;
+import duke.ui.Parser;
+import duke.ui.Ui;
+
 import java.io.IOException;
 
 import java.time.format.DateTimeParseException;
@@ -6,7 +15,7 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
     private Storage storage;
-    private boolean end;
+    private boolean isEnd;
 
     public Duke() {
         this.ui = new Ui();
@@ -23,13 +32,13 @@ public class Duke {
 
     private void run() {
         this.ui.printIntro();
-        while (!this.end) {
+        while (!this.isEnd) {
             try {
                 String line = this.ui.nextLine();
                 Command command = Parser.parse(line);
                 this.ui.printLine();
                 command.run(this.tasks, this.ui, this.storage);
-                this.end = command.isEnd();
+                this.isEnd = command.getIsEnd();
             } catch (DukeException | IOException | DateTimeParseException e) {
                 this.ui.printException(e);
             } finally {

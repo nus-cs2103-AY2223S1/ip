@@ -1,9 +1,18 @@
+package duke.storage;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.Deadline;
+import duke.task.TaskList;
+import duke.ui.DukeException;
 
 public class Storage {
     private final File file;
@@ -57,27 +66,27 @@ public class Storage {
             if (t instanceof Todo) {
                 sb.append("T")
                         .append("|")
-                        .append(t.isDone ? "1" : "0")
+                        .append(t.getIsDone() ? "1" : "0")
                         .append("|")
-                        .append(t.description)
+                        .append(t.getDescription())
                         .append(System.lineSeparator());
             } else if (t instanceof Deadline) {
                 sb.append("D")
                         .append("|")
-                        .append(t.isDone ? "1" : "0")
+                        .append(t.getIsDone() ? "1" : "0")
                         .append("|")
-                        .append(t.description)
+                        .append(t.getDescription())
                         .append("|")
-                        .append(((Deadline) t).by)
+                        .append(((Deadline) t).getBy())
                         .append(System.lineSeparator());
             } else {
                 sb.append("E")
                         .append("|")
-                        .append(t.isDone ? "1" : "0")
+                        .append(t.getIsDone() ? "1" : "0")
                         .append("|")
-                        .append(t.description)
+                        .append(t.getDescription())
                         .append("|")
-                        .append(((Event) t).at)
+                        .append(((Event) t).getAt())
                         .append(System.lineSeparator());
             }
         }

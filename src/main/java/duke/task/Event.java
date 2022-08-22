@@ -1,9 +1,11 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
-    protected LocalDate at;
+    private LocalDate at;
 
     public Event(String description, LocalDate at) {
         super(description);
@@ -13,6 +15,10 @@ public class Event extends Task {
     public Event(String description, LocalDate at, boolean isDone) {
         super(description, isDone);
         this.at = at;
+    }
+
+    public LocalDate getAt() {
+        return this.at;
     }
 
     @Override
