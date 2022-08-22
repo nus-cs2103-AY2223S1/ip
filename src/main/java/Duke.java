@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,22 +15,30 @@ public class Duke {
     /**
      * Method list
      *
-     * @throws DukeException
-     *
-     * Description: Asks for user input using the scanner utility,
-     *              Adds input to memory if input is todo <description>, deadline <description> /by <time> or event <description> /at <time>,
-     *              if input is bye exit message is displayed and program exits,
-     *              if input is list program lists out the stored inputs,
-     *              if input is mark <number> program marks the task as complete and displays it,
-     *              if input is unmark <number> program marks the task as incomplete and displays it.
-     *              if input is delete <number> program deletes the task from the list.
-     *
+     * @throws DukeException Description: Asks for user input using the scanner utility,
+     *                       Adds input to memory if input is todo <description>, deadline <description> /by <time> or event <description> /at <time>,
+     *                       if input is bye exit message is displayed and program exits,
+     *                       if input is list program lists out the stored inputs,
+     *                       if input is mark <number> program marks the task as complete and displays it,
+     *                       if input is unmark <number> program marks the task as incomplete and displays it.
+     *                       if input is delete <number> program deletes the task from the list.
      */
-    public static void list() throws DukeException {
+    public static void list() throws DukeException, IOException {
 
         Scanner input = new Scanner(System.in);
+        try {
+            File myObj = new File("duke.txt");
+            if (myObj.createNewFile()) {
+            } else {
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
         while (input.hasNext()) {
+            PrintStream fileOut = new PrintStream("duke.txt");
+            PrintStream console = System.out;
             String text = input.nextLine();
 
             if (text.equalsIgnoreCase("list")) {
@@ -50,7 +59,13 @@ public class Duke {
                 System.out.println(divider);
                 System.out.println("Bye. Hope to see you again soon!");
                 System.out.println(divider);
-                break;
+                FileWriter dukeWriter = new FileWriter("duke.txt");
+                for (int i = 0; i < storage.size(); i++) {
+                    dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
+
+                }
+                dukeWriter.close();
+                System.exit(0);
 
             } else if (text.startsWith("delete")) {
                 try {
@@ -68,21 +83,30 @@ public class Duke {
                                     deleted.toString() +
                                     "\nNow you have " + storage.size() + " tasks in the list");
                             System.out.println(divider);
+                            FileWriter dukeWriter = new FileWriter("duke.txt");
+                            for (int i = 0; i < storage.size(); i++) {
+                                dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
+
+                            }
+                            dukeWriter.close();
                         } else {
                             System.out.println(divider);
                             System.out.println("The task you want to delete does not exist.");
                             System.out.println(divider);
                         }
+
                     }
                 } catch (NumberFormatException error) {
                     System.out.println(divider);
                     System.out.println("Invalid command please add a space between delete and the list item you would like to interact with. \n" +
                             "Additionally ensure you have entered a number after delete.");
                     System.out.println(divider);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
 
             } else if (text.startsWith("todo")) {
-                if (text.equalsIgnoreCase("todo") || text.equalsIgnoreCase("todo ") || text.replace("todo ", "").trim().length()<1) {
+                if (text.equalsIgnoreCase("todo") || text.equalsIgnoreCase("todo ") || text.replace("todo ", "").trim().length() < 1) {
                     try {
                         throw new DukeException.DukeToDoException("Please provide a description for your todo task.");
                     } catch (DukeException.DukeToDoException error) {
@@ -97,6 +121,12 @@ public class Duke {
                     System.out.println(divider);
                     System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
                     System.out.println(divider);
+                    FileWriter dukeWriter = new FileWriter("duke.txt");
+                    for (int i = 0; i < storage.size(); i++) {
+                        dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
+
+                    }
+                    dukeWriter.close();
                 }
 
             } else if (text.startsWith("deadline")) {
@@ -107,6 +137,12 @@ public class Duke {
                     System.out.println(divider);
                     System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
                     System.out.println(divider);
+                    FileWriter dukeWriter = new FileWriter("duke.txt");
+                    for (int i = 0; i < storage.size(); i++) {
+                        dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
+
+                    }
+                    dukeWriter.close();
                 } catch (ArrayIndexOutOfBoundsException error) {
                     System.out.println(divider);
                     System.out.println("Please provide a deadline and a by time e.g. deadline <description of the deadline> /by <time of the deadline>");
@@ -121,6 +157,12 @@ public class Duke {
                     System.out.println(divider);
                     System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
                     System.out.println(divider);
+                    FileWriter dukeWriter = new FileWriter("duke.txt");
+                    for (int i = 0; i < storage.size(); i++) {
+                        dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
+
+                    }
+                    dukeWriter.close();
                 } catch (ArrayIndexOutOfBoundsException error) {
                     System.out.println(divider);
                     System.out.println("Please provide a event and an at time e.g. event <description of the event> /at <time of the event>");
@@ -142,6 +184,12 @@ public class Duke {
                                         storage.get(Integer.parseInt(text.replace("mark ", "")) - 1).toString() +
                                         "\nNow you have " + storage.size() + " tasks in the list");
                                 System.out.println(divider);
+                                FileWriter dukeWriter = new FileWriter("duke.txt");
+                                for (int i = 0; i < storage.size(); i++) {
+                                    dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
+
+                                }
+                                dukeWriter.close();
                             } else {
                                 System.out.println(divider);
                                 System.out.println("This task is already marked done");
@@ -175,6 +223,12 @@ public class Duke {
                                         storage.get(Integer.parseInt(text.replace("unmark ", "")) - 1).toString() +
                                         "\nNow you have " + storage.size() + " tasks in the list");
                                 System.out.println(divider);
+                                FileWriter dukeWriter = new FileWriter("duke.txt");
+                                for (int i = 0; i < storage.size(); i++) {
+                                    dukeWriter.write((i + 1) + ". " + storage.get(i).toString()+ "\n");
+
+                                }
+                                dukeWriter.close();
                             } else {
                                 System.out.println(divider);
                                 System.out.println("This task has already been marked not done");
@@ -239,7 +293,7 @@ public class Duke {
      * @param args
      * @throws DukeException
      */
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, IOException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
