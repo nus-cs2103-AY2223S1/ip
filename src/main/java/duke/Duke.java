@@ -1,10 +1,20 @@
 package duke;
+
+/**
+ * Main program for running Duke, a bot that keeps track of tasks.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+
+    /**
+     * Constructor for Duke bot
+     *
+     * @param filePath filepath of save file for Duke
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -16,6 +26,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs Duke bot.
+     */
     public void run() {
         ui.showWelcomeMessage();
         boolean isExit = false;
