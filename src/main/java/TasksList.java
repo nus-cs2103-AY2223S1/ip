@@ -1,3 +1,4 @@
+import java.time.DateTimeException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -72,15 +73,20 @@ public class TasksList {
             throw new DukeException("Duke: Please specify the date/time of this deadline:\n" +
                     "deadline <task> /by <date/time>");
         }
-        System.out.println("Duke: Got it! Duke has added this task:");
-        Task newTask = new Deadline(deadline[0], deadline[1]);
-        System.out.println(newTask);
-        this.tasksList.add(newTask);
-        int len = this.tasksList.size();
-        String line = String.format("Duke: Now you have %d task%s in the list.",
-                len, len != 1 ? "s" : "");
-        System.out.println(line);
-        storage.addTaskToSave(newTask);
+        try {
+            Task newTask = new Deadline(deadline[0], deadline[1]);
+            System.out.println("Duke: Got it! Duke has added this task:");
+            System.out.println(newTask);
+            this.tasksList.add(newTask);
+            int len = this.tasksList.size();
+            String line = String.format("Duke: Now you have %d task%s in the list.",
+                    len, len != 1 ? "s" : "");
+            System.out.println(line);
+            storage.addTaskToSave(newTask);
+        } catch (DateTimeException e) {
+            throw new DukeException("Duke: Uh oh! Please enter your date/time in this format:\n" +
+                    "dd mm yyyy hh:mm(optional)");
+        }
     }
 
     /**
@@ -99,15 +105,20 @@ public class TasksList {
             throw new DukeException("Duke: Please specify the date/time of this event:\n" +
                     "event <task> /at <date/time>");
         }
-        System.out.println("Duke: Got it! Duke has added this task:");
-        Task newTask = new Event(event[0], event[1]);
-        System.out.println(newTask);
-        this.tasksList.add(newTask);
-        int len = this.tasksList.size();
-        String line = String.format("Duke: Now you have %d task%s in the list.",
-                len, len != 1 ? "s" : "");
-        System.out.println(line);
-        storage.addTaskToSave(newTask);
+        try {
+            Task newTask = new Event(event[0], event[1]);
+            System.out.println("Duke: Got it! Duke has added this task:");
+            System.out.println(newTask);
+            this.tasksList.add(newTask);
+            int len = this.tasksList.size();
+            String line = String.format("Duke: Now you have %d task%s in the list.",
+                    len, len != 1 ? "s" : "");
+            System.out.println(line);
+            storage.addTaskToSave(newTask);
+        } catch (DateTimeException e) {
+            throw new DukeException("Duke: Uh oh! Please enter your date/time in this format:\n" +
+                    "dd mm yyyy hh:mm(optional)");
+        }
     }
 
     /**
