@@ -1,3 +1,4 @@
+package DukeBot;
 public class Event extends Task {
 
     private String timing;

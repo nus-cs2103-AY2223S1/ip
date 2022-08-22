@@ -1,3 +1,4 @@
+package DukeBot;
 public class MarkToggleException extends Exception{
     @Override
     public String toString() {

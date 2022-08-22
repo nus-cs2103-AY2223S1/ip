@@ -1,9 +1,19 @@
+package DukeBot;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
     private static ArrayList<Task> tasks = new ArrayList<>();
+
+
+    // public static void loadFile(File file) {
+    //     try {
+    //         Scanner sc = new Scanner(file);
+    //     } catch (FileNotFoundException e) {
+    //         Path path = Paths.get("../Duke.txt");
+    //     }
+    // }
 
     public static void list() {
         System.out.println("    Here are the tasks in your list:");
@@ -33,6 +43,8 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
         System.out.println("-----------------------------------------------");
         System.out.println("| Hi this is Thesh. What can I do for you? |");
         System.out.println("-----------------------------------------------");
