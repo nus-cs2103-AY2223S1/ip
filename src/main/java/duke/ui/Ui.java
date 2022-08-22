@@ -1,4 +1,4 @@
-package duke;
+package duke.ui;
 
 import duke.task.Task;
 import duke.task.TaskList;
@@ -25,8 +25,8 @@ public class Ui {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public void showLoadingError() {
-        System.out.println("Error loading tasks from storage");
+    public void showLoadingError(String message) {
+        System.out.println("Error loading tasks from storage: " + message + "\n");
     }
 
     public void showAddTask(Task newTask, TaskList tasks) {

@@ -1,17 +1,19 @@
 package duke;
 
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import duke.commands.Command;
-import duke.exception.DukeException;
-import duke.exception.TaskIndexOutOfBoundsException;
-import duke.task.TaskList;
-
 public class Duke {
-    private Storage storage;
+    private final Storage storage;
     private TaskList tasks;
-    private Ui ui;
+    private final Ui ui;
 
     public Duke(Path filePath) {
         this.ui = new Ui();
@@ -19,7 +21,7 @@ public class Duke {
         try {
             this.tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            this.ui.showLoadingError();
+            this.ui.showLoadingError(e.getMessage());
             this.tasks = new TaskList();
         }
     }

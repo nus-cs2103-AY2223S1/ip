@@ -7,7 +7,7 @@ public class Todo extends Task {
 
     @Override
     public String toStorage() {
-        return "T | " + super.toStorage();
+        return "T|" + super.toStorage();
     }
 
     @Override

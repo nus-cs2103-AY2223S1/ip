@@ -1,13 +1,24 @@
-package duke;
+package duke.parser;
 
-import duke.commands.*;
+import duke.command.AddDeadlineCommand;
+import duke.command.AddEventCommand;
+import duke.command.AddTodoCommand;
+import duke.command.Command;
+import duke.command.DeleteTaskCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkTaskCommand;
+import duke.command.UnmarkTaskCommand;
+
 import duke.exception.DukeException;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -16,7 +27,7 @@ public class Parser {
     public static final Pattern DEADLINE_ARGS_FORMAT = Pattern.compile("(?<desc>.+)/by(?<date>.+)");
     public static final Pattern EVENT_ARGS_FORMAT = Pattern.compile("(?<desc>.+)/at(?<date>.+)");
     public static final Pattern STORAGE_FORMAT = Pattern.compile(
-            "(?<taskType>T|D|E)\\|(?<done>0|1)\\|(?<desc>[^\\|]+)\\|?(?<date>.+)?");
+            "(?<taskType>[TDE])\\|(?<done>[01])\\|(?<desc>[^|]+)\\|?(?<date>.+)?");
     public static Command parseCommand(String commandString) {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(commandString.trim());
         if (!matcher.matches()) {
@@ -48,7 +59,7 @@ public class Parser {
     }
 
     public static Task fromStorage(String taskString) {
-        Matcher matcher = EVENT_ARGS_FORMAT.matcher(taskString);
+        Matcher matcher = STORAGE_FORMAT.matcher(taskString);
         if (!matcher.matches()) {
             throw new DukeException("Invalid task format in storage: " + taskString);
         }
@@ -87,7 +98,12 @@ public class Parser {
         if (desc.length() == 0) {
             throw new DukeException("The description of an event cannot be empty");
         }
-        LocalDate at = LocalDate.parse(dateString, Event.inputDateFormat);
+        LocalDate at;
+        try {
+            at = LocalDate.parse(dateString, Event.inputDateFormat);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date format");
+        }
         return new AddEventCommand(desc, at);
     }
 
@@ -101,7 +117,12 @@ public class Parser {
         if (desc.length() == 0) {
             throw new DukeException("The description of a deadline cannot be empty");
         }
-        LocalDate by = LocalDate.parse(dateString, Deadline.inputDateFormat);
+        LocalDate by;
+        try {
+            by = LocalDate.parse(dateString, Deadline.inputDateFormat);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date format");
+        }
         return new AddDeadlineCommand(desc, by);
     }
 
@@ -109,7 +130,6 @@ public class Parser {
         if (taskIndexString == null) {
             throw new DukeException("Task index not specified");
         }
-
         taskIndexString = taskIndexString.trim();
         int taskIndex;
         try {

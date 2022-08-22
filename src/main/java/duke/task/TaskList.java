@@ -1,19 +1,14 @@
 package duke.task;
 
+import duke.exception.TaskIndexOutOfBoundsException;
+import duke.parser.Parser;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import duke.Parser;
-import duke.exception.DukeException;
-import duke.exception.TaskIndexOutOfBoundsException;
-
 public class TaskList {
     private final ArrayList<Task> tasks;
-
-    public enum TaskType {
-        DEADLINE, EVENT, TODO
-    }
 
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -39,13 +34,6 @@ public class TaskList {
             throw new TaskIndexOutOfBoundsException(taskIndex);
         }
         return this.tasks.remove(taskIndex - 1);
-    }
-
-    public void listTasks() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.println(i + 1 + "." + this.tasks.get(i));
-        }
     }
 
     public void markTaskAsDone(int taskIndex) {

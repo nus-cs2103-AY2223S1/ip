@@ -27,7 +27,7 @@ public abstract class Task {
     }
 
     public String toStorage() {
-        return (isDone ? "1" : "0") + " | " + this.description;
+        return (isDone ? "1" : "0") + "|" + this.description;
     }
 
     @Override
