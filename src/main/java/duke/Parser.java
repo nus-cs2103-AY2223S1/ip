@@ -47,6 +47,13 @@ public class Parser {
                     throw new DukeMissingInputException(args[0]);
                 }
                 break;
+            case "find":
+                try {
+                    tasks.find(args[1]);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeMissingInputException(args[0]);
+                }
+                break;
             case "bye":
                 end = true;
                 ui.exit();

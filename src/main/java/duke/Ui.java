@@ -62,4 +62,29 @@ public class Ui {
     public static void printException(DukeException e) {
         System.out.println(DIVIDER + e.getMessage() + DIVIDER);
     }
+
+    /**
+     * Prints out tasks matching regex in pretty UI
+     * @param input ArrayList<Task>
+     * @param regex
+     */
+    public static void find(ArrayList<Task> input, String regex) {
+        if (input.isEmpty()) {
+            System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
+        } else {
+            boolean hasValues = false;
+            System.out.print(DIVIDER);
+            for (int i = 0; i < input.size(); i++) {
+                String currLine = input.get(i).toString();
+                if (currLine.contains(regex)) {
+                    hasValues = true;
+                    System.out.println((i + 1) + ". " + currLine);
+                }
+            }
+            if (!hasValues) {
+                System.out.println("List has no elements containing " + regex);
+            }
+            System.out.println(DIVIDER);
+        }
+    }
 }
