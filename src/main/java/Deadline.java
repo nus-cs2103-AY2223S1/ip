@@ -11,9 +11,22 @@ public class Deadline extends Task{
         this.byTime = byTime;
     }
 
+    public String getDescription() {
+        return super.description;
+    }
+
+    public String getDeadlineBy() {
+        return this.by;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + "(by: " + this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ", " + this.byTime + ")";
+    }
+
+    @Override
+    public String getTaskType() {
+        return "D";
     }
 }

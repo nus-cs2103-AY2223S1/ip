@@ -1,3 +1,6 @@
+import java.io.File;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,7 +12,7 @@ public class Duke {
         startChat();
     }
 
-    /*
+    /**
     * Print to system out string encapsulated within horizontal lines.
     *
     * @param str String to be printed
@@ -20,12 +23,13 @@ public class Duke {
     }
 
     public static void startChat() {
+        Storage storage = new Storage("src/data/tasks.txt");
+        ArrayList<Task> list = storage.loadData();
+
         String horizontalLine = "______________________________________\n";
 
         String firstText = "hi... I'm Karen\nWhat do you want this time?";
         formatPrint(firstText);
-
-        ArrayList<Task> list = new ArrayList<>();
 
         Scanner sc = new Scanner(System.in);
 
@@ -35,19 +39,20 @@ public class Duke {
                 //terminate chat
                 if (echoText.equals("bye")) {
                     formatPrint("K finally, good riddance!");
+                    storage.saveData(list);
                     break;
                     //view list of items
                 } else if (echoText.equals("list")) {
                     if (list.size() == 0) {
                         formatPrint("pff there is nothing in your list");
                     } else {
-                        System.out.println(horizontalLine + "\nHere are your dumb tasks in your list:");
+                        System.out.println(horizontalLine + "Here are your dumb tasks in your list:");
                         for (int i = 1; i < list.size() + 1; i++) {
                             Task item = list.get(i - 1);
                             System.out.println(i + ". " + item.toString());
                         }
+                        System.out.println(horizontalLine);
                     }
-                    System.out.println(horizontalLine);
                     //mark an item as done
                 } else if (echoText.split(" ")[0].equals("mark")) {
                     int markValue = Integer.parseInt(echoText.split(" ")[1]);
@@ -55,7 +60,7 @@ public class Duke {
                         throw new DukeException("The mark value does not exist dummy!");
                     }
                     Task item = list.get(markValue - 1);
-                    item.markAs(true);
+                    item.setAsDone();
                     String str = "Took you long enough to complete this task:\n" + item.toString();
                     formatPrint(str);
                     //mark an item as not done
@@ -65,7 +70,7 @@ public class Duke {
                         throw new DukeException("The unmark value does not exist dummy!");
                     }
                     Task item = list.get(markValue - 1);
-                    item.markAs(false);
+                    item.setAsUndone();
                     String str = "Another task marked as not done?? Slow indeed\n" + item.toString();
                     formatPrint(str);
                     //add a to-do item
