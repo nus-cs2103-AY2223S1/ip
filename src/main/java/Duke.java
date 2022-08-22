@@ -2,7 +2,10 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        Bot bot = new Bot();
+        DukeFile dukeFile = new DukeFile("./data/", "duke.txt");
+        TaskList taskList = dukeFile.readFile();
+
+        Bot bot = new Bot(taskList);
         Scanner sc = new Scanner(System.in);
 
         System.out.println(bot.introduce());
@@ -13,6 +16,7 @@ public class Duke {
                 break;
             }
         }
+        dukeFile.writeFile(taskList);
     }
 }
 

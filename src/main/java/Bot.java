@@ -4,9 +4,9 @@ public class Bot {
     protected final TaskList taskList;
     protected static final String BORDER = "____________________________________________________________";
 
-    public Bot() {
+    public Bot(TaskList taskList) {
         this.name = "Bocil";
-        this.taskList = new TaskList();
+        this.taskList = taskList;
     }
 
     public String introduce() {
