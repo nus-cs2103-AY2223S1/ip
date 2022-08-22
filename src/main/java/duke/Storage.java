@@ -19,6 +19,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Returns a Task object from an individual line in the save file.
+     *
+     * @param line Individual line in the save file.
+     * @return Task from the line if it is able to be parsed, else null.
+     */
     private static Task parseTaskLine(String line) {
         String[] tokens = line.split("\\|");
         Task t;
@@ -39,6 +45,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns an ArrayList containing all the parsed tasks.
+     *
+     * @return ArrayList containing all the parsed tasks.
+     */
     public ArrayList<Task> load() {
         File f = new File(this.filePath);
         ArrayList<Task> res = new ArrayList<>();
@@ -64,6 +75,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves all the tasks in the TaskList to a save file.
+     *
+     * @param taskList TaskList object containing all the tasks to be saved
+     */
     public void save(TaskList taskList) {
         String res = "";
         for (int i = 0; i < taskList.getSize(); i++) {

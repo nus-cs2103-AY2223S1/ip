@@ -9,14 +9,25 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Sets the isDone property to true.
+     */
     public void mark() {
         this.isDone = true;
     }
 
+    /**
+     * Sets the isDone property to false.
+     */
     public void unmark() {
         this.isDone = false;
     }
 
+    /**
+     * Returns a string that is safe to use with the save file.
+     *
+     * @return String that is of the save file format.
+     */
     public String saveText() {
         return String.format("Task|%d|%s", this.isDone ? 1 : 0, this.description);
     }
