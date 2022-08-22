@@ -1,32 +1,30 @@
 package duke;
 
 import java.io.Serializable;
-
 public abstract class Task implements Serializable {
 
     private String item;
-    private boolean completed;
+    private boolean isCompleted;
 
     public Task(String item) {
         this.item = item;
-        this.completed = false;
+        this.isCompleted = false;
     }
 
     // this is implemented as a toggle; could be problematic in future
     public void completeToggle() {
-        this.completed = !this.completed;
+        this.isCompleted = !this.isCompleted;
     }
 
     public boolean isCompleted() {
-        return this.completed;
+        return this.isCompleted;
     }
 
     @Override
     public String toString() {
-        if (completed) {
+        if (isCompleted) {
             return "[X] " + item;
         }
-
         return "[ ] " + item;
     }
 

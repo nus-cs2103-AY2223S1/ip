@@ -6,54 +6,56 @@ import duke.exceptions.DukeUnknownInputException;
 
 public class Parser {
     private Ui ui;
-    private Storage sto;
+    private Storage storage;
     private TaskList tasks;
 
-    public Parser(Ui ui, Storage sto, TaskList tl) {
+    public Parser(Ui ui, Storage sto, TaskList taskList) {
         this.ui = ui;
-        this.sto = sto;
-        this.tasks = tl;
+        this.storage = sto;
+        this.tasks = taskList;
     }
 
     public boolean handler(String input) throws DukeException {
         String[] args = input.split(" ", 2);
-        boolean end = false;
+        boolean isEnded = false;
 
         switch (args[0]) {
-            case "list":
-                tasks.list();
-                break;
-            case "todo":
-            case "deadline":
-            case "event":
-                try {
-                    tasks.listAdd(args[0], args[1]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(args[0]);
-                }
-                break;
-            case "delete":
-                try {
-                    tasks.listDelete(args[1]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(args[0]);
-                }
-                break;
+        case "list":
+            tasks.list();
+            break;
+        case "todo":
+            // Fallthrough
+        case "deadline":
+            // Fallthrough
+        case "event":
+            try {
+                tasks.listAdd(args[0], args[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(args[0]);
+            }
+            break;
+        case "delete":
+            try {
+                tasks.listDelete(args[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(args[0]);
+            }
+            break;
+        case "mark":
             // mark is implemented as a toggle. note this.
-            case "mark":
-                try {
-                    tasks.listToggle(args[1]);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(args[0]);
-                }
-                break;
-            case "bye":
-                end = true;
-                ui.exit();
-                break;
-            default:
-                throw new DukeUnknownInputException(args[0]);
+            try {
+                tasks.listToggle(args[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(args[0]);
+            }
+            break;
+        case "bye":
+            isEnded = true;
+            ui.exit();
+            break;
+        default:
+            throw new DukeUnknownInputException(args[0]);
         }
-        return end;
+        return isEnded;
     }
 }

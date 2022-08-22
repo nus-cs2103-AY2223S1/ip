@@ -16,48 +16,46 @@ public class TaskList {
         Ui.listPrint(tasks);
     }
 
-    // atodo, deadline and event breaks if no input is entered after each command (1 for atodo, 2 for others)
-    // atodo creates an empty task if no input after command (unresolved)
     public void listAdd(String type, String item) throws DukeException {
+        // atodo creates an empty task if space input after command (unresolved)
         Task currTask;
         String[] args;
-        switch(type) {
-            case "todo":
-                currTask = new Todo(item);
+        switch (type) {
+        case "todo":
+            currTask = new Todo(item);
+            tasks.add(currTask);
+            Ui.addTask("todo", currTask, tasks.size());
+            Storage.save(tasks);
+            break;
+        case "deadline":
+            args = item.split("/by ");
+            try{
+                currTask = new Deadline(args[0], args[1]);
                 tasks.add(currTask);
-                Ui.addTask("todo", currTask, tasks.size());
+                Ui.addTask("deadline", currTask, tasks.size());
                 Storage.save(tasks);
-                break;
-            case "deadline":
-                args = item.split("/by ");
-                try{
-                    currTask = new Deadline(args[0], args[1]);
-                    tasks.add(currTask);
-                    Ui.addTask("deadline", currTask, tasks.size());
-                    Storage.save(tasks);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(type);
-                } catch (DateTimeParseException e) {
-                    throw new DukeUnknownDateException(type);
-                }
-                break;
-            case "event":
-                args = item.split("/at ");
-                try{
-                    currTask = new Event(args[0], args[1]);
-                    tasks.add(currTask);
-                    Ui.addTask("event", currTask, tasks.size());
-                    Storage.save(tasks);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeMissingInputException(type);
-                } catch (DateTimeParseException e) {
-                    throw new DukeUnknownDateException(type);
-                }
-                break;
-        }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(type);
+            } catch (DateTimeParseException e) {
+                throw new DukeUnknownDateException(type);
+            }
+            break;
+        case "event":
+            args = item.split("/at ");
+            try{
+                currTask = new Event(args[0], args[1]);
+                tasks.add(currTask);
+                Ui.addTask("event", currTask, tasks.size());
+                Storage.save(tasks);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeMissingInputException(type);
+            } catch (DateTimeParseException e) {
+                throw new DukeUnknownDateException(type);
+            }
+            break;
+         }
     }
 
-    // breaks if no input is entered after mark, or input isn't int, or index out of range
     public void listDelete(String indexString) throws DukeException {
         int index = 0;
         try {
@@ -73,7 +71,6 @@ public class TaskList {
         Storage.save(tasks);
     }
 
-    // breaks if no input is entered after mark, or input isn't int, or index out of range
     public void listToggle(String indexString) throws DukeException{
         int index = 0;
         try {

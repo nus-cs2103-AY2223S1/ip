@@ -1,7 +1,6 @@
 package duke;
 
 import duke.exceptions.DukeException;
-
 import java.util.ArrayList;
 
 public class Ui {
@@ -31,7 +30,7 @@ public class Ui {
         } else {
             System.out.print(DIVIDER);
             for (int i = 0; i < input.size(); i++) {
-                System.out.println((i+1) + ". " + input.get(i));
+                System.out.println((i + 1) + ". " + input.get(i));
             }
             System.out.println(DIVIDER);
         }
@@ -39,13 +38,13 @@ public class Ui {
 
     public static void addTask(String type, Task currTask, int size) {
         System.out.printf(DIVIDER + "OK, I've added this %s:\n %s\n"
-                +"Number of tasks in list: %d\n" + DIVIDER + "\n",
+                + "Number of tasks in list: %d\n" + DIVIDER + "\n",
                 type, currTask, size);
     }
 
     public static void deleteTask(Task currTask, int size) {
         System.out.printf(DIVIDER + "OK, I've removed this task:\n"
-                +"  %s \nNumber of tasks in list: %d\n" + DIVIDER + "\n",
+                + "  %s \nNumber of tasks in list: %d\n" + DIVIDER + "\n",
                 currTask, size);
     }
 
