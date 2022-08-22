@@ -6,19 +6,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Defines <Code>Storage</Code> class.
+ * <p>In charge of reading and writing files from disk.</p>
+ */
 public class Storage {
-
     /**
-     * Keep track of the last-saved version of `TaskList` in its String form.
+     * Keep track of the last-saved version of <Code>TaskList</Code> in its
+     * <Code>String</Code> form.
      */
     private String previousSave;
 
-    /**
-     * Path of the file.
-     */
+    /** <Code>File</Code> object to save <Code>TaskList</Code>. */
     private final File file;
 
 
+    /**
+     * Constructor for <Code>Storage</Code> object.
+     * @param directory Directory to save task list.
+     * @param filename  Name of output file.
+     * @param taskList  <Code>TaskList</Code> object to save to file.
+     */
     public Storage(String directory, String filename, TaskList taskList) {
         int lineNumberInFile = 1;
         file = new File(directory + "/" + filename);
@@ -48,8 +56,12 @@ public class Storage {
 
 
     /**
-     * Method to write `taskList` to disk.
-     * @param taskList     `TaskList` object to write to disk.
+     * Writes given <Code>TaskList</Code> to disk.
+     * <p>
+     * Compares if there were changes since the last save before writing
+     * the file.
+     * </p>
+     * @param taskList     <Code>TaskList</Code> object to write to disk.
      * @throws IOException Thrown if error occurs while writing file.
      */
     public void writeToFile(TaskList taskList) throws IOException {
@@ -63,10 +75,11 @@ public class Storage {
     }
 
     /**
-     * Method to add tasks from lines in file.
+     * Adds tasks from lines in file into <Code>Duke</Code>'s
+     * <Code>TaskList</Code>.
      * @param data             Single line of data in file.
      * @param lineNumberInFile Line number of current line.
-     * @param taskList         `TaskList` object to add tasks to.
+     * @param taskList         <Code>TaskList</Code> object to add tasks to.
      */
     private static void addLineFromFile(String data, int lineNumberInFile,
                                         TaskList taskList) {
