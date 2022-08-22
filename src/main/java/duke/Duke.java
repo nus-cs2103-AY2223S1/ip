@@ -23,7 +23,7 @@ public class Duke {
     private Storage storage;
 
     public Duke() {
-        this.storage = new Storage("./../../../data/tasks.txt");
+        this.storage = new Storage("data/tasks.txt");
         try {
             this.taskList = new TaskList(storage.load());
         } catch (DukeException e) {
