@@ -82,6 +82,9 @@ public class Duke {
                     throw new DukeException( "☹ OOPS!!! The description of a deadline cannot be empty.");
                 }
                 String[] splitStringDL = s.split("/by");
+                if (splitStringDL.length <= 2) {
+                    throw new DukeException("Deadline requires a BY time typed correctly.");
+                }
                 String taskStringDL = splitStringDL[0];
                 String by = splitStringDL[1];
                 t = new Deadline(taskStringDL,by);
@@ -99,6 +102,9 @@ public class Duke {
                     throw new DukeException( "☹ OOPS!!! The description of an event cannot be empty.");
                 }
                 String[] splitStringTD = s.split("/at");
+                if (splitStringTD.length <= 2) {
+                    throw new DukeException("Event requires an AT time typed correctly.");
+                }
                 String taskStringTD = splitStringTD[0];
                 String at = splitStringTD[1];
                 t = new Event(taskStringTD, at);

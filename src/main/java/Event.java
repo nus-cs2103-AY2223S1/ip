@@ -10,7 +10,7 @@ public class Event extends Task {
 
     @Override
     public String toStringFileFormat() {
-        return "E | " + super.toStringFileFormat() + "|" + this.at;
+        return "E | " + super.toStringFileFormat() + " | " + this.at;
     }
 
     @Override
