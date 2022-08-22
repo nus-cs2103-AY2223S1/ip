@@ -1,5 +1,8 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     private ArrayList<Task> tasks;
@@ -27,6 +30,8 @@ public class Duke {
                 duke.execute(input);
             } catch (DukeException d) {
                 System.out.println(d.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Do format your time in yyyy-MM-dd HH:mm\n");
             }
         }
 
@@ -111,7 +116,9 @@ public class Duke {
                 } else {
                     String deadlineAction = splitDetailDeadline[0].trim();
                     String deadlineTime = splitDetailDeadline[1].trim();
-                    Deadline deadline = new Deadline(deadlineAction, deadlineTime);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime deadlineDateTime = LocalDateTime.parse(deadlineTime, formatter);
+                    Deadline deadline = new Deadline(deadlineAction, deadlineDateTime);
                     this.tasks.add(deadline);
                     String deadlineMessage = "added: " + deadline.toString() + "\n";
                     deadlineMessage += String.format("Now, you have %d task(s) in the list.", this.tasks.size());
@@ -125,7 +132,9 @@ public class Duke {
                 } else {
                     String eventAction = splitDetailEvent[0].trim();
                     String eventTime = splitDetailEvent[1].trim();
-                    Event event = new Event(eventAction, eventTime);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime eventDateTime = LocalDateTime.parse(eventTime, format);
+                    Event event = new Event(eventAction, eventDateTime);
                     this.tasks.add(event);
                     String eventMessage = "added: " + event.toString() + "\n";
                     eventMessage += String.format("Now, you have %d task(s) in the list.", this.tasks.size());

@@ -1,7 +1,10 @@
-public class Event extends Task{
-    protected String time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, String time) {
+public class Event extends Task{
+    protected LocalDateTime time;
+
+    public Event(String description, LocalDateTime time) {
         super(description);
         this.time = time;
     }
@@ -16,6 +19,7 @@ public class Event extends Task{
     }
     @Override
     public String toString() {
-        return this.getStatus() + " " + this.description + " (at: " + this.time + ")";
+        return this.getStatus() + " " + this.description + " (at: " +
+                this.time.format(DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy")) + ")";
     }
 }

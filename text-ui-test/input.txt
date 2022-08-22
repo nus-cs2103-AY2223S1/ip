@@ -1,7 +1,7 @@
 todo todo 1
-deadline deadline 1 /by Mon
+deadline deadline 1 /by 23:59 2022-08-08
 list
-event event 1 /at Tues
+event event 1 /at 2022-09-09 08:00
 todo todo 2
 list
 mark 5
@@ -16,7 +16,7 @@ list
 mar 3
 deadline
 event event 2
-event event 2 /at 20/09
+event event 2 /at 2022-08-23 16:00
 list
 mark 6
 delete 4
