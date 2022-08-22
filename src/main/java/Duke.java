@@ -121,20 +121,18 @@ public class Duke {
         boolean terminate = false;
         Scanner input = new Scanner(System.in);
         while (!terminate && input.hasNextLine()) {
-            String query = input.nextLine();
-            List<String> tokens = Arrays.asList(query.split(" "));
-
-            String commandToken = tokens.get(0);
+            String commandStr = input.nextLine();
             try {
-                Command command = commandFactory.parseCommand(commandToken);
+                Command command = commandFactory.parseCommand(commandStr);
                 if (command == Command.BYE) {
                     terminate = true;
                     respond("Bye. Hope to see you again soon!");
                     continue;
                 }
 
-                CommandHandler commandHandler = commandFactory.getCommandHandler(command, taskList);
-                CommandResponse commandResponse = commandHandler.run(tokens);
+                CommandHandler commandHandler = commandFactory.getCommandHandler(command,
+                    commandStr);
+                CommandResponse commandResponse = commandHandler.run(taskList);
                 respond(commandResponse.responseList);
 
                 if (commandResponse.triggerSave && !save()) {

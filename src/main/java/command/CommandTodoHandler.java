@@ -2,29 +2,29 @@ package command;
 
 import data.TaskList;
 import data.tasks.TaskTodo;
-import java.util.List;
+
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 import util.CommandUtils;
 
 public class CommandTodoHandler extends CommandHandler {
 
-    CommandTodoHandler(TaskList taskList) {
-        super(taskList);
-    }
+    private static final Pattern commandRegexPattern = Pattern.compile("^todo (.+)");
 
-    @Override
-    public boolean validateCommand(List<String> commandTokens) {
-        // Ensure there is a description after `todo` command
-        return commandTokens.size() > 1;
-    }
-
-    @Override
-    public CommandResponse run(List<String> commandTokens) throws CommandException {
-        if (!validateCommand(commandTokens)) {
-            throw new CommandException("The `todo` command expects a description!");
+    CommandTodoHandler(String commandStr) throws CommandException {
+        super(commandStr, commandRegexPattern);
+        if (!isCommandValid()) {
+            throw new CommandException(
+                "`todo` command expects a description (`todo todo-task-title`)");
         }
+    }
 
-        TaskTodo todoTask = new TaskTodo(
-            gatherCommandTokens(commandTokens, 1, commandTokens.size(), " "));
+    @Override
+    public CommandResponse run(TaskList taskList) {
+        MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
+
+        TaskTodo todoTask = new TaskTodo(regexMatchResult.group(1));
         taskList.addTask(todoTask);
 
         return CommandUtils.generateAddTaskResponse(todoTask, taskList.size());

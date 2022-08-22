@@ -1,27 +1,24 @@
 package command;
 
 import data.TaskList;
+
 import java.util.List;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class CommandListHandler extends CommandHandler {
 
-    public CommandListHandler(TaskList taskList) {
-        super(taskList);
-    }
+    private static final Pattern commandRegexPattern = Pattern.compile("^list$");
 
-    @Override
-    public boolean validateCommand(List<String> commandTokens) {
-        // There should only be a `list` command
-        return commandTokens.size() == 1;
-    }
-
-    @Override
-    public CommandResponse run(List<String> commandTokens) throws CommandException{
-        if (!validateCommand(commandTokens)) {
-            throw new CommandException("The `list` command expects no parameters!");
+    public CommandListHandler(String commandStr) throws CommandException {
+        super(commandStr, commandRegexPattern);
+        if (!isCommandValid()) {
+            throw new CommandException("`list` command expects no arguments!");
         }
+    }
 
+    @Override
+    public CommandResponse run(TaskList taskList) {
         List<String> responseList = new ArrayList<>();
 
         if (taskList.isEmpty()) {

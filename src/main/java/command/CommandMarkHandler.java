@@ -4,39 +4,35 @@ import data.TaskList;
 import data.tasks.Task;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
 
 public class CommandMarkHandler extends CommandHandler {
 
-    CommandMarkHandler(TaskList taskList) {
-        super(taskList);
-    }
+    private static final Pattern commandRegexPattern = Pattern.compile("^(u?n?mark) (\\d+)");
 
-    private boolean toMark(List<String> commandTokens) {
-        return commandTokens.get(0).toUpperCase().equals(Command.MARK.toString());
-    }
-
-    @Override
-    public boolean validateCommand(List<String> commandTokens) {
-        // There must be a task index followed by the `mark`/`unmark` command
-        return commandTokens.size() == 2;
-    }
-
-    @Override
-    public CommandResponse run(List<String> commandTokens) throws CommandException{
-        if (!validateCommand(commandTokens)) {
-            throw new CommandException("The `mark` command only expects 1 parameter!");
+    CommandMarkHandler(String commandStr) throws CommandException {
+        super(commandStr, commandRegexPattern);
+        if (!isCommandValid()) {
+            throw new CommandException(
+                "`mark`/`unmark` command expects a single number argument (e.g. `mark 1`, `unmark 2`)");
         }
+    }
 
+    @Override
+    public CommandResponse run(TaskList taskList) throws CommandException {
         List<String> responseList = new ArrayList<>();
+        MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
-        String taskIdxStr = commandTokens.get(1);
+        boolean toMark = regexMatchResult.group(1).equals("mark");
+        String taskIdxStr = regexMatchResult.group(2);
         try {
             int taskIdx = Integer.parseInt(taskIdxStr);
             if (taskIdx <= 0 || taskIdx > taskList.size()) {
                 throw new CommandException("Invalid task selected!");
             } else {
                 Task task = taskList.getTask(taskIdx - 1);
-                if (toMark(commandTokens)) {
+                if (toMark) {
                     task.mark();
                     responseList.add("Nice! I've mark this task as done:");
                 } else {
@@ -46,7 +42,8 @@ public class CommandMarkHandler extends CommandHandler {
                 responseList.add(String.format("\t%s", task));
             }
         } catch (NumberFormatException error) {
-            throw new CommandException("Invalid task selected!");
+            throw new CommandException(
+                String.format("`mark`/`unmark` expects a number argument. Got: %s", taskIdxStr));
         }
 
         return new CommandResponse(responseList, true);
