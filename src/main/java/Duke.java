@@ -3,20 +3,10 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-
-        boolean acceptingInput = true;
-        System.out.println("Hello from Duke");
-        System.out.println("What can I do for you?");
-        ArrayList<Task> storage = new ArrayList<>();
-
-        while (acceptingInput) {
-            Scanner inputScanner = new Scanner(System.in);
+    private boolean acceptingInput;
+    private ArrayList<Task> storage;
+    private Scanner inputScanner;
+    public void runDuke() throws DukeException {
             String totalString  = inputScanner.nextLine();
             String[] inputStringArray = totalString.split(" ");
 
@@ -29,20 +19,56 @@ public class Duke {
                     System.out.println(index + ". " + storage.get(i));
                 }
             } else if (inputStringArray[0].equals("mark")) {
-                    int index = Integer.parseInt(inputStringArray[1]) - 1;
-                    storage.get(index).markAsDone();
-                    System.out.println("Nice! I've marked this task as done");
-                    System.out.println(storage.get(index));
+                if (inputStringArray.length == 1) {
+                    throw new DukeException("Please enter an argument (number) after mark!");
+                }
 
+                int index = Integer.parseInt(inputStringArray[1]) - 1;
+                if (index < 0 || index >= storage.size()) {
+                    throw new DukeException("Please enter between 1 to the last element of the list");
+                } else if (!storage.get(index).isMarked()) {
+                    throw new DukeException("That task is already marked!");
+                }
+
+                storage.get(index).markAsDone();
+                System.out.println("Nice! I've marked this task as done");
+                System.out.println(storage.get(index));
             } else if (inputStringArray[0].equals("unmark")){
-                    int index = Integer.parseInt(inputStringArray[1]) - 1;
-                    storage.get(index).unmark();
-                    System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(storage.get(index));
+                if (inputStringArray.length == 1) {
+                    throw new DukeException("Please enter an argument (number) after mark!");
+                }
+
+                int index = Integer.parseInt(inputStringArray[1]) - 1;
+
+                if (index < 0 || index >= storage.size()) {
+                    throw new DukeException("Please enter between 1 to the last element of the list");
+                } else if (!storage.get(index).isMarked()) {
+                    throw new DukeException("That task is already unmarked!");
+                }
+
+                storage.get(index).unmark();
+                System.out.println("OK, I've marked this task as not done yet:");
+                System.out.println(storage.get(index));
+            } else if (inputStringArray[0].equals("delete")){
+                if (inputStringArray.length == 1) {
+                    throw new DukeException("Please enter an argument (number) after delete!");
+                }
+                int index = Integer.parseInt(inputStringArray[1]) - 1;
+
+                if (index < 0 || index >= storage.size()) {
+                    throw new DukeException("Please enter between 1 to the last element of the list");
+                }
+
+                System.out.println("Noted. I've removed this task:");
+                System.out.println(storage.get(index));
+                storage.remove(index);
+                System.out.println("Now you have " + storage.size() + " tasks in the list");
             } else {
-
-
                 if (inputStringArray[0].equals("todo")) {
+                    if (inputStringArray.length == 1) {
+                        throw new DukeException("Please enter an argument after todo!");
+                    }
+
                     String[] nameArray = Arrays.asList(inputStringArray).subList(1,inputStringArray.length).toArray(new String[0]);
                     String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
                     Todo newTask = new Todo(taskName);
@@ -51,8 +77,11 @@ public class Duke {
                     System.out.println(newTask);
                     System.out.println("Now you have " + storage.size() + " tasks in the list");
                 } else if (inputStringArray[0].equals("deadline")){
-                    int splitter = Arrays.asList(inputStringArray).indexOf("/by");
+                    if (inputStringArray.length == 1) {
+                        throw new DukeException("Please enter an argument after deadline!");
+                    }
 
+                    int splitter = Arrays.asList(inputStringArray).indexOf("/by");
                     String[] nameArray = Arrays.asList(inputStringArray).subList(1,splitter).toArray(new String[0]);
                     String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
 
@@ -66,8 +95,11 @@ public class Duke {
                     System.out.println("Now you have " + storage.size() + " tasks in the list");
 
                 } else if (inputStringArray[0].equals("event")){
-                    int splitter = Arrays.asList(inputStringArray).indexOf("/at");
+                    if (inputStringArray.length == 1) {
+                        throw new DukeException("Please enter an argument after event!");
+                    }
 
+                    int splitter = Arrays.asList(inputStringArray).indexOf("/at");
                     String[] nameArray = Arrays.asList(inputStringArray).subList(1,splitter).toArray(new String[0]);
                     String taskName = Arrays.stream(nameArray).reduce("", (a,b) -> a + " "+ b);
 
@@ -81,11 +113,31 @@ public class Duke {
                     System.out.println("Now you have " + storage.size() + " tasks in the list");
 
                 } else {
-                    System.out.println("No suitable name for that task");
+                    throw new DukeException("No suitable name for that task");
                 }
             }
+    }
+    public static void main(String[] args) {
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        Duke currentSession = new Duke();
+        currentSession.acceptingInput = true;
+        currentSession.storage = new ArrayList<>();
+        currentSession.inputScanner = new Scanner(System.in);
+        System.out.println("Hello from Duke");
+        System.out.println("What can I do for you?");
+        while (currentSession.acceptingInput) {
+            try {
+                currentSession.runDuke();
+            } catch (DukeException e) {
+                System.out.println(e);
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid number after mark/unmark!");
+            }
         }
-
     }
 
     public static boolean isNumeric(String string) {
