@@ -179,8 +179,16 @@ public class Duke {
     }
 
     private abstract class Command {
+        /**
+         * Execute the command based on its type.
+         */
         public abstract void execute();
 
+        /**
+         * Returns whether it is an exit command.
+         *
+         * @return a boolean of whether it is an exit command.
+         */
         public abstract boolean isExit();
     }
 
