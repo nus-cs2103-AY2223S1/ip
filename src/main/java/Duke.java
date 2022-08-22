@@ -1,5 +1,4 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -71,7 +70,6 @@ public class Duke {
                     description = description + temp +" ";
                 }
                 time = scanner.nextLine();
-//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDate d1 = LocalDate.parse(time.substring(1));
                 Task task = new Event(description, d1);
                 lst.add(task);
