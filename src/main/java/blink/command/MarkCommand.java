@@ -1,3 +1,9 @@
+package blink.command;
+
+import blink.Storage;
+import blink.TaskList;
+import blink.Ui;
+
 public class MarkCommand extends Command{
     private int num;
 

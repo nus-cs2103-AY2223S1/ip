@@ -1,3 +1,8 @@
+package blink.command;
+
+import blink.*;
+import blink.task.Events;
+
 public class EventCommand extends Command {
     private String desc;
     private String date;
