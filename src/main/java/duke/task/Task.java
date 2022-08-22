@@ -281,5 +281,5 @@ public abstract class Task {
      *
      * @return String message
      */
-    abstract String textFileMessage();
+    public abstract String textFileMessage();
 }

@@ -1,4 +1,0 @@
-T | 0 | borrow book
-E | 0 | project meeting | 2021-04-02
-T | 1 | cs2103t assignment
-D | 0 | cs2109s ps0 | 2022-01-12
