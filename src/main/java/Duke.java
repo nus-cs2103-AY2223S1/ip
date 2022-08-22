@@ -1,4 +1,10 @@
+import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -29,10 +35,94 @@ public class Duke {
         printSpacer();
     }
 
-    private static void greeting() {
+    private static void greet() {
         printSpacer();
         System.out.println(":D Hello! This is Duke! What can I do for you today?");
         printSpacer();
+    }
+
+    private static void initializeDir() {
+        try {
+            Path dirPath = Paths.get("data", "tasks.txt");
+            Files.createDirectory(dirPath);
+        } catch (FileAlreadyExistsException e) {
+            // no need to do anything if dir exists
+        } catch (IOException e) {
+            System.out.println(":( An error occurred while creating a directory to save your tasks!");
+            printSpacer();
+        }
+    }
+
+    private static void initializeFile() {
+        try {
+            Path filePath = Paths.get("data", "tasks.txt");
+            Files.createFile(filePath);
+            System.out.println("An empty task list has been created for you!");
+            printSpacer();
+        } catch (FileAlreadyExistsException e) {
+            System.out.println("A previous save file was found. Loading your saved tasks...");
+            printSpacer();
+        } catch (IOException e) {
+            System.out.println(":( An error occurred while creating a file to save your tasks!");
+            printSpacer();
+        }
+    }
+
+    private static void addTaskFromFileToWorkingList(String t) {
+        String[] entries = t.split(" ");
+        switch (entries[0]) {
+        case "T":
+            if (entries[1].equals("1")) {
+                tasks.add(new Todo(entries[2], true));
+            } else {
+                tasks.add(new Todo(entries[2], false));
+            }
+            tasksLength++;
+            break;
+
+        case "D":
+            if (entries[1].equals("1")) {
+                tasks.add(new Deadline(entries[2], entries[3],true));
+            } else {
+                tasks.add(new Deadline(entries[2], entries[3],false));
+            }
+            tasksLength++;
+            break;
+
+        case "E":
+            if (entries[1].equals("1")) {
+                tasks.add(new Event(entries[2], entries[3],true));
+            } else {
+                tasks.add(new Event(entries[2], entries[3],false));
+            }
+            tasksLength++;
+            break;
+        }
+    }
+
+    private static void readFile() {
+        try {
+            Path filePath = Paths.get("data", "tasks.txt");
+            List<String> previousTasks = Files.readAllLines(filePath);
+            previousTasks.forEach(t -> addTaskFromFileToWorkingList(t));
+            System.out.println("Your previously saved tasks have been loaded successfully!");
+            printSpacer();
+        } catch (IOException | IndexOutOfBoundsException e) {
+            System.out.println(":( An error occurred while reading your previously saved tasks!");
+            printSpacer();
+        }
+    }
+
+    private static void updateFile() {
+        try {
+            Path filePath = Paths.get("data", "tasks.txt");
+            ArrayList<String> taskDescriptions = new ArrayList<>();
+            tasks.forEach(t -> taskDescriptions.add(t.toSaveData()));
+            Files.write(filePath, taskDescriptions);
+        } catch (IOException e) {
+            System.out.println(":( An error occurred while saving your tasks!");
+            printSpacer();
+        }
     }
 
     private static void goodbye() {
@@ -119,6 +209,24 @@ public class Duke {
         }
     }
 
+    private static void deleteTask(String s) throws TaskNumberException {
+        try {
+            int n = Integer.parseInt(s.substring(7));
+            if (n > tasksLength) {
+                throw new TaskNumberException();
+            } else {
+                Task t = tasks.remove(n - 1);
+                tasksLength--;
+                System.out.println("Okie, I've deleted this task:");
+                System.out.println(t.toString());
+                System.out.println("Now you have " + tasksLength + " tasks in your list.");
+                printSpacer();
+            }
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
+            throw new TaskNumberException();
+        }
+    }
+
     private static void parseCommand(String s) throws InvalidCommandException {
 
         if (s.equals("list")) {
@@ -174,14 +282,29 @@ public class Duke {
                 printSpacer();
             }
 
+        } else if (startsWith(s, "delete")) {
+
+            try {
+                deleteTask(s);
+            } catch (TaskNumberException e) {
+                System.out.println(":( Oops! Please enter a valid task number!");
+                System.out.println("You currently have " + tasksLength + " tasks.");
+                printSpacer();
+            }
+
         } else {
             throw new InvalidCommandException(s);
         }
+
+        updateFile();
     }
 
     public static void main(String[] args) {
 
-        greeting();
+        greet();
+        initializeDir();
+        initializeFile();
+        readFile();
         Scanner sc = new Scanner(System.in);
 
         while (cont) {
