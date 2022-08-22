@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -124,12 +127,17 @@ public class Duke {
                     } else if (deadlineTime.isEmpty()) {
                         toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a time for the deadline.\n");
                     } else {
-                        tasks.add(new Deadline(deadlineIsDone, deadlineText, deadlineTime, isPrinting));
+                        try {
+                            tasks.add(new Deadline(deadlineIsDone, deadlineText, LocalDateTime.parse(deadlineTime, DateTimeFormatter.ofPattern("dd/MM/yy HHmm")), isPrinting));
+                        } catch (DateTimeParseException e) {
+                            System.out.println("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the deadline.");
+                            break;
+                        }
                         commands.add(command);
                         toBePrinted = toBePrinted.concat(
-                            String.format(
-                                "Now you have %d tasks in the list.\n", tasks.size()
-                            )
+                                String.format(
+                                        "Now you have %d tasks in the list.\n", tasks.size()
+                                )
                         );
                     }
                     break;
@@ -146,7 +154,12 @@ public class Duke {
                     } else if (eventTime.isEmpty()) {
                         toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a time for the event.\n");
                     } else {
-                        tasks.add(new Event(eventIsDone, eventText, eventTime, isPrinting));
+                        try {
+                            tasks.add(new Event(eventIsDone, eventText, LocalDateTime.parse(eventTime, DateTimeFormatter.ofPattern("dd/MM/yy HHmm")), isPrinting));
+                        } catch (DateTimeParseException e) {
+                            System.out.println("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the event.");
+                            break;
+                        }
                         commands.add(command);
                         toBePrinted = toBePrinted.concat(
                                 String.format(

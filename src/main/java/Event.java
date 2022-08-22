@@ -1,7 +1,10 @@
-public class Event extends Task {
-    private String time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(boolean isDone, String text, String time, boolean isPrinting) {
+public class Event extends Task {
+    private LocalDateTime time;
+
+    public Event(boolean isDone, String text, LocalDateTime time, boolean isPrinting) {
         super(isDone, text, isPrinting);
         this.time = time;
         if (isPrinting) {
@@ -11,6 +14,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E] %s (at: %s)", super.toString(), this.time);
+        return String.format("[E] %s (at: %s)", super.toString(), this.time.format(DateTimeFormatter.ofPattern("dd MMM yyyy, HHmm")));
     }
 }
