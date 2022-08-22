@@ -9,6 +9,7 @@ public class Duke {
         Greet();
         Scanner userInput = new Scanner(System.in);
         String userReply = userInput.nextLine().strip();
+
         while(!userReply.toLowerCase().equals("bye")) {
             if (userReply.equals("")) {
                 System.out.println("##############################################");
@@ -133,7 +134,7 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    public static void List() {
+    private static void List() {
         System.out.println("##############################################");
         if (botArray.size() == 0) {
             System.out.println("\t\t\t" + "No items are in the list");
@@ -146,7 +147,7 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    public static void Mark(int num) {
+    private static void Mark(int num) {
         System.out.println("##############################################");
         System.out.println("Congratulations! This task has been marked as done!");
         Task currentTask = botArray.get(num - 1);
@@ -155,7 +156,7 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    public static void UnMark(int num) {
+    private static void UnMark(int num) {
         System.out.println("##############################################");
         System.out.println("Congratulations! This task has been marked as done!");
         Task currentTask = botArray.get(num - 1);
@@ -164,7 +165,7 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    public static void ToDo(String task) {
+    private static void ToDo(String task) {
         System.out.println("##############################################");
         System.out.println("Nice! This task has been successfully added!");
         ToDo toDo = new ToDo(task);
@@ -175,7 +176,7 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    public static void Deadline(String task, String by) {
+    private static void Deadline(String task, String by) {
         System.out.println("##############################################");
         System.out.println("Nice! This task has been successfully added!");
         Deadline deadline = new Deadline(task, by);
@@ -186,7 +187,7 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    public static void Event(String task, String at) {
+    private static void Event(String task, String at) {
         System.out.println("##############################################");
         System.out.println("Nice! This task has been successfully added!");
         Event event = new Event(task, at);
