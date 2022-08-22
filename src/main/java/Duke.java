@@ -3,7 +3,6 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -94,7 +93,8 @@ public class Duke {
                     description = description + temp +" ";
                 }
                 time = scanner.nextLine();
-                Task task = new Event(description, time);
+                LocalDate d1 = LocalDate.parse(time.substring(1));
+                Task task = new Event(description, d1);
                 lst.add(task);
                 count++;
                 System.out.println(task.toString());
