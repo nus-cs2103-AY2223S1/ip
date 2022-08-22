@@ -1,4 +1,5 @@
 import utils.IOUtils;
+import utils.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,7 +7,7 @@ public class ConversationHandler {
 
     private Scanner in;
     private boolean active = true;
-    private ArrayList<String> list = new ArrayList<>();
+    private ArrayList<Task> list = new ArrayList<>();
 
     public ConversationHandler() {
         IOUtils.printContentWithHR("Hello! I'm " + Main.name + "\n" + "What can I do for you?");
@@ -32,7 +33,7 @@ public class ConversationHandler {
                 return this.enumerateList();
 
             default:
-                this.list.add(input);
+                this.list.add(new Task(input));
                 return "added: " + input;
         }
     }
@@ -41,8 +42,8 @@ public class ConversationHandler {
         String returnMsg = "";
         int index = 1;
 
-        for (String str: list) {
-            returnMsg += index + ". " + str + "\n";
+        for (Task t: list) {
+            returnMsg += index + ". " + t + "\n";
             index ++;
         }
         return returnMsg;
