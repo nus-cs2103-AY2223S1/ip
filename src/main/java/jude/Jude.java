@@ -40,10 +40,21 @@ public class Jude {
     private Ui ui = new Ui();
     private Parser parser;
 
+    /**
+     * Creates an instance of Jude chatbot.
+     *
+     * @param filePath The file path in which the list of tasks is stored.
+     * @throws IOException When system I/O fails.
+     */
     public Jude(String filePath) throws IOException {
         storage = new Storage(filePath);
     }
 
+    /**
+     * Runs the chatbot.
+     *
+     * @throws IOException When system I/O fails.
+     */
     public void run() throws IOException {
         tasks = storage.load();
         parser = new Parser(tasks, storage);
@@ -60,9 +71,9 @@ public class Jude {
     }
 
     /**
-     * Runs the task tracker.
+     * Runs the task tracker chatbot.
      *
-     * @param args not used for now
+     * @param args Not used for now.
      */
     public static void main(String[] args) throws IOException {
         new Jude("data/tasks.txt").run();
