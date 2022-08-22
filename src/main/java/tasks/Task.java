@@ -1,6 +1,8 @@
+package tasks;
+
 public class Task {
 
-    private String name;
+    private final String name;
     private boolean marked;
 
     public Task(String name) {
@@ -17,7 +19,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "[" + (marked ? "X" : "") + "] " + name;
+        return "[" + (marked ? "X" : " ") + "] " + name;
     }
 
 }
