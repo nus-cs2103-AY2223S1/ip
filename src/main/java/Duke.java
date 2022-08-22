@@ -1,6 +1,6 @@
-import DukeException.DukeException;
-import DukeException.InvalidInput;
-import DukeException.UnknownCommand;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidInput;
+import duke.exceptions.UnknownCommand;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;

@@ -1,5 +1,5 @@
-import DukeException.DukeException;
-import DukeException.InvalidInput;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidInput;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
