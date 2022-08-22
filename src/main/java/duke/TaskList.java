@@ -1,11 +1,11 @@
+package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TaskList {
-    private List<Task> taskList = new ArrayList<>();
+    private List<Task> taskList;
     private Ui ui;
 
     public TaskList(List<Task> taskList, Ui ui) {

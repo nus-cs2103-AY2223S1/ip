@@ -1,36 +1,37 @@
+package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task{
+public class Deadline extends Task{
     private LocalDate date;
 
-    public Event(String description, LocalDate date) {
+    public Deadline(String description, LocalDate date) {
         super(description);
         this.date = date;
     }
 
-    public Event(String description, String date) throws DukeException {
+    public Deadline(String description, String date) throws DukeException {
         super(description);
         this.date = getDate(date);
     }
 
-    public boolean onThisDate(LocalDate date){
-        return this.date.equals(date);
+    public boolean byThisDate(LocalDate date){
+        return this.date.isBefore(date);
     }
 
     public String toStringDate() {
-        return super.toString();
+        return super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override
     public String parseTask() {
-        return "E" + super.parseTask() + "/" + this.date;
+        return "D" + super.parseTask() + "/" + this.date;
     }
 
     @Override
     public String toString(){
-        return "[E]" + super.toString() + " (at: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     private static LocalDate getDate(String date) throws DukeException {
