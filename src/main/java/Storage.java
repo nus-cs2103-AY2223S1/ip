@@ -4,7 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
-// Fix import order
 
 public class Storage {
     File dirFile;
@@ -15,7 +14,7 @@ public class Storage {
         this.dataFile = new File(dirPath + dataName);
     }
 
-    public void saveFile(List<Task> t) {
+    public void saveFile(TaskList t) {
         try {
             if (!dirFile.exists()) {
                 dirFile.mkdir();
@@ -23,7 +22,7 @@ public class Storage {
 
             FileWriter fw = new FileWriter(dataFile);
 
-            for (Task task : t) {
+            for (Task task : t.getTasks()) {
                 fw.write(task.toSaveData() + "\n");
             }
             fw.close();
@@ -34,7 +33,7 @@ public class Storage {
         }
     }
 
-    public void loadFile(List<Task> t) {
+    public void loadFile(TaskList t) {
         try {
             if (dataFile.exists()) {
                 Scanner s = new Scanner(dataFile);
@@ -48,7 +47,7 @@ public class Storage {
 
     }
 
-    public void loadFileHelper(List<Task> t, String info) {
+    public void loadFileHelper(TaskList t, String info) {
         String[] parts = info.split(" \\| ");
         if (parts[0].equals("T")) {
             Task todo = new Todo(parts[2]);
@@ -56,7 +55,7 @@ public class Storage {
             if (a == 1) {
                 todo.markDone();
             }
-            t.add(todo);
+            t.addTask(todo);
 
         } else if (parts[0].equals("D")) {
             Task deadline = new Deadline(parts[2], parts[3]);
@@ -64,14 +63,14 @@ public class Storage {
             if (b == 1) {
                 deadline.markDone();
             }
-            t.add(deadline);
+            t.addTask(deadline);
         } else if (parts[0].equals("E")) {
             Task event = new Event(parts[2], parts[3]);
             int c = Integer.parseInt(parts[1]);
             if (c == 1) {
                 event.markDone();
             }
-            t.add(event);
+            t.addTask(event);
 
         }
 

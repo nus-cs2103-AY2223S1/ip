@@ -13,6 +13,9 @@ public class Deadline extends Task {
         super(description);
         this.by = by;
         String[] split = by.split(" ");
+        if (split.length == 1) {
+            throw new DateTimeException("Missing time/date");
+        }
         String date_s = split[0];
         String time_s = split[1];
         this.date = LocalDate.parse(date_s);
