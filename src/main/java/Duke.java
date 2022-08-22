@@ -1,7 +1,13 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
 public class Duke {
+    private static final String saveFilePath = "..\\duke.txt";
     private static final String greetMessage = "Hello! I'm Duke \nWhat can I do for you?";
     private static final String byeMessage = "Bye. Hope to see you again soon!";
     private static final String listMessage = "Here are the tasks in your list: \n";
@@ -31,9 +37,6 @@ public class Duke {
         content += "\nNow you have " + userTasks.size() + " tasks in the list.";
         wrapText(content);
     }
-//    private static void appendArray(String inputString) {
-//        userTasks.add(new Task(inputString));
-//    }
 
     private static void appendToDo(String inputString) {
         userTasks.add(new ToDo(inputString));
@@ -83,7 +86,55 @@ public class Duke {
         unmarkInText += currentTask.returnDescription();
         return unmarkInText;
     }
+
+    private static String generateTextToSave() {
+        String textToSave = "";
+        for (Task task: userTasks) {
+            textToSave += task.toWriteFile() + System.lineSeparator();
+        }
+        return textToSave;
+    }
+    private static void writeToFile(String textToSave) throws IOException {
+        FileWriter fw = new FileWriter(saveFilePath);
+        fw.write(textToSave);
+        fw.close();
+    }
+
+    private static void checkExistsOrCreateNewFile() throws IOException, FileNotFoundException {
+        File f = new File(saveFilePath);
+        if (f.exists()) {
+            readFile(f);
+        } else {
+            f.createNewFile();
+        }
+    }
+
+    private static void readFile(File f) throws FileNotFoundException {
+        Scanner s = new Scanner(f);
+        String tempLine = "";
+        while (s.hasNext()) {
+            tempLine = s.nextLine();
+            String[] tempWords = tempLine.split(" , ");
+            boolean isCompleted = tempWords[1].contains("true");
+            System.out.println(Arrays.toString(tempWords));
+            System.out.println(tempLine);
+            if (tempWords[0].equals("T")) {
+                userTasks.add(new ToDo(tempWords[2], isCompleted));
+            } else if (tempWords[0].equals("E")) {
+                userTasks.add(new Event(tempWords[2], tempWords[3], isCompleted));
+            } else if (tempWords[0].equals("D")) {
+                userTasks.add(new Deadline(tempWords[2], tempWords[3], isCompleted));
+            }
+        }
+    }
+
     private static void handleUserInputs(Scanner scanner) {
+        try {
+            checkExistsOrCreateNewFile();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
         while(scanner.hasNext()) {
             String inputString = scanner.nextLine();
             String[] inputs = inputString.split(" ");
@@ -97,14 +148,17 @@ public class Duke {
                     wrapText(generateList());
                 } else if (input.equals("mark")) {
                     wrapText(generateMark(inputs[1]));
+                    writeToFile(generateTextToSave());
                 } else if (input.equals("unmark")) {
                     wrapText(generateUnmark(inputs[1]));
+                    writeToFile(generateTextToSave());
                 } else if (input.equals("todo")) {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     }
                     appendToDo(inputString);
                     taskWrapper();
+                    writeToFile(generateTextToSave());
                 } else if (input.equals("deadline")) {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -112,6 +166,7 @@ public class Duke {
                     String[] deadlineDescription = inputString.split("/");
                     appendDeadline(deadlineDescription[0], deadlineDescription[1]);
                     taskWrapper();
+                    writeToFile(generateTextToSave());
                 } else if (input.equals("event")) {
                     if (inputs.length <= 1) {
                         throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
@@ -119,15 +174,17 @@ public class Duke {
                     String[] eventDescription = inputString.split("/");
                     appendEvent(eventDescription[0], eventDescription[1]);
                     taskWrapper();
+                    writeToFile(generateTextToSave());
                 } else if (input.equals("delete")) {
                     String taskMessage = removeTask(inputs[1]);
                     wrapDelete(taskMessage);
+                    writeToFile(generateTextToSave());
                 } else {
-//                    appendArray(inputString);
-//                    wrapText("added: " + inputString);
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
+                wrapText(e.getMessage());
+            } catch (IOException e) {
                 wrapText(e.getMessage());
             }
         }
