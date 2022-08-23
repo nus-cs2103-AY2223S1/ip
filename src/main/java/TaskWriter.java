@@ -77,12 +77,9 @@ class TaskWriter {
                 line.add(Boolean.toString(task.isDone));
                 line.add(task.description);
 
-                if (task instanceof Deadline) {
-                    line.add(((Deadline) task).by);
-                } else if (task instanceof Event) {
-                    line.add(((Event) task).at);
+                if (task instanceof TaskWithDate) {
+                    line.add(((TaskWithDate) task).getDateTime());
                 }
-
                 writer.write(String.join(",", line) + "\n");
             }
         } catch (IOException e) {
