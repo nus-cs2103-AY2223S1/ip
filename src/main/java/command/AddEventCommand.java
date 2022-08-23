@@ -18,6 +18,7 @@ public class AddEventCommand extends Command {
         String storableLine = StorageParser.storableDescription(eventToAdd);
         storage.appendLine(storableLine);
         taskList.addEvent(eventToAdd);
+        ui.showMessage("added event");
     }
 
     public boolean isExit() {

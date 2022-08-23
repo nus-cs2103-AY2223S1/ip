@@ -11,6 +11,7 @@ import task.Task;
 import exceptions.DukeException;
 import task.Deadline;
 import task.Event;
+import utility.StorageParser;
 
 /**
  * Encapsulates all read operations on disk file storage.
@@ -21,63 +22,6 @@ public class StorageReader {
         this.path = path;
     }
 
-    /**
-     * Converts line in disk file to corresponding Task.
-     * @param line String stored in file.
-     * @return Task object.
-     */
-    public static Task fileLineToTask(String line) throws DukeException{
-        String taskType, description;
-        boolean marked;
-        taskType = line.substring(1,2);
-        marked =  line.charAt(4) == ' ';
-        switch(taskType) {
-        case "T":
-            description = line.substring(6);
-            Task t = new Task(description);
-            if (marked) {
-                t.markAsDone();
-            }
-            return t;
-        case "D":
-            description = line.substring(6, line.indexOf("("));
-            Deadline d = new Deadline(description, getDateFromStorage(line, "by: "));
-            if (marked) {
-                d.markAsDone();
-            }
-            return d;
-        case "E":
-            description = line.substring(6, line.indexOf("("));
-            Event e = new Event(description, getDateFromStorage(line, "at: "));
-            if (marked) {
-                e.markAsDone();
-            }
-            return e;
-        }
-        throw new DukeException("file corrupted");
-    }
-
-    /**
-     * Return LocalDate object stored from the format its stored
-     * in file.
-     * @param line line retrieved from file.
-     * @param compareString command to watch for in line.
-     * @return LocalDate object
-     * @throws DukeException exception.
-     * @throws DateTimeParseException when date stored was invalid.
-     */
-    public static LocalDate getDateFromStorage(String line, String compareString) throws DukeException, DateTimeParseException {
-        try {
-            String date;
-            int NUM_CHARACTERS_TO_CHECK = compareString.length();
-            int DATE_LENGTH = 10;
-            int startOfDateIndex = line.indexOf(compareString) + NUM_CHARACTERS_TO_CHECK;
-            date = line.substring(startOfDateIndex, startOfDateIndex + DATE_LENGTH).trim();
-            return LocalDate.parse(date);
-        } catch (DateTimeParseException dtpe) {
-            throw new DukeException("Date in storage is invalid\n>>");
-        }
-    }
 
     /**
      * Return contents of file history.
@@ -105,7 +49,7 @@ public class StorageReader {
         Task currTask;
         int n = linesInFile.size(), i = 0;
         for (; i < n; i ++) {
-            currTask = StorageReader.fileLineToTask(linesInFile.get(i));
+            currTask = StorageParser.fileLineToTask(linesInFile.get(i));
             userInputHistory.add(currTask);
             System.out.println(currTask);
         }

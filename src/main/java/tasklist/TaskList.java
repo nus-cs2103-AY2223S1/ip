@@ -33,5 +33,9 @@ public class TaskList {
     public void deleteTask(int n) {
         userInputHistory.remove(n - 1);
     }
+    public boolean checkIsToday(int n) {return userInputHistory.get(n - 1).isToday();}
+    public int getSize() {
+        return userInputHistory.size();
+    }
 
 }

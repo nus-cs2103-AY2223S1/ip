@@ -18,6 +18,7 @@ public class AddTaskCommand extends Command{
         String storableLine = StorageParser.storableDescription(taskToAdd);
         storage.appendLine(storableLine);
         taskList.addTask(taskToAdd);
+        ui.showMessage("Added task");
     }
 
     @Override

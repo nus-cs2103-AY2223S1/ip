@@ -40,25 +40,19 @@ public class Parser {
         throw new DukeException("Command invalid. /help for more information.");
     }
 
-    public static Task stringToTask(String userInput) {
-        userInput = userInput.trim();
-        int firstWhiteSpaceIndex = userInput.indexOf(" ");
-        String description = userInput.substring(firstWhiteSpaceIndex);
+    public static Task stringToTask(String userInput) throws DukeException{
+        String description = getDescription("todo", userInput);
         return new Task(description);
     }
 
     public static Event stringToEvent(String userInput) throws DukeException {
-        userInput = userInput.trim();
-        int firstWhiteSpaceIndex = userInput.indexOf(" ");
-        String description = userInput.substring(firstWhiteSpaceIndex);
+        String description = getDescription("event", userInput);
         LocalDate date = getDate(userInput);
         return new Event(description, date);
     }
 
     public static Deadline stringToDeadline(String userInput) throws DukeException {
-        userInput = userInput.trim();
-        int firstWhiteSpaceIndex = userInput.indexOf(" ");
-        String description = userInput.substring(firstWhiteSpaceIndex);
+        String description = getDescription("deadline", userInput);
         LocalDate date = getDate(userInput);
         return new Deadline(description, date);
     }
@@ -103,4 +97,24 @@ public class Parser {
             throw new DukeException("Date is not valid\n>>");
         }
     }
+
+    /**
+     * Extract task number from string input.
+     * @param s extracts task number from user input <command> <number>.
+     * @return index of the task in the list plus one.
+     */
+    public static int getTaskNumber(String s, int listSize) throws DukeException {
+        // credit: https://stackoverflow.com/questions/14974033/extract-digits-from-string-stringutils-java
+        String numberOnly= s.replaceAll("[^0-9]", "");
+        int n;
+        if (numberOnly.length() <= 0) {
+            throw new DukeException("no number given\n>>");
+        } else {
+            n = Integer.parseInt(numberOnly);
+            if (n > listSize) {
+                throw new DukeException("task does not exist in list\n>>");
+            } else {
+                return n;
+            }
+        }
 }

@@ -15,7 +15,7 @@ public class Storage {
     private final StorageWriter storageWriter;
 
     public Storage(String filePath) {
-        createFileIfDoesntExist();
+        createFileIfDoesntExist(filePath);
         this.storageWriter = new StorageWriter(path);
         this.storageReader = new StorageReader(path);
     }
@@ -23,11 +23,10 @@ public class Storage {
      * Gets location of disk storage file.
      * @throws DukeException when Duke program run outside of Duke folder.
      */
-    private void getPath() throws DukeException {
-        String pathString = System.getProperty("user.dir");
+    private void getPath(String pathString) throws DukeException {
         if (pathString.contains("ip")) {
             pathString = pathString.substring(0, pathString.indexOf("ip") + 2);
-            this.path = Paths.get(pathString, "src", "main", "java", "data/userinputhistory.txt");
+            this.path = Paths.get(pathString, "src", "main", "java", pathString);
         } else {
             throw new DukeException("Cannot run from outside of ip folder of Duke");
         }
@@ -36,9 +35,9 @@ public class Storage {
     /**
      * Creates file at path for disk storage.
      */
-    public void createFileIfDoesntExist() {
+    public void createFileIfDoesntExist(String location) {
         try {
-            getPath();
+            getPath(location);
             if (!Files.exists(path)) {
                 Files.createFile(path);
             }

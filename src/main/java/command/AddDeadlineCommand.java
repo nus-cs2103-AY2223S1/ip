@@ -18,6 +18,7 @@ public class AddDeadlineCommand extends Command {
         String storableLine = StorageParser.storableDescription(deadlineToAdd);
         storage.appendLine(storableLine);
         taskList.addDeadline(deadlineToAdd);
+        ui.showMessage("added deadline");
     }
 
     public boolean isExit() {
