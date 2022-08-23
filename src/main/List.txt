@@ -1,3 +1,1 @@
-T|0|a
-D|1|b|tonight
-E|1|c|tomorrow
+D|0|a|Dec 1 2019
