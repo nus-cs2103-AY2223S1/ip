@@ -1,9 +1,13 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task {
-    private String item;
-    private boolean done;
+public abstract class Task {
+    protected String item;
+    protected boolean done;
     public static List<Task> taskList = new ArrayList<>();
 
     public Task(String item) {
@@ -25,11 +29,13 @@ public class Task {
         }
     }
 
-    private void setDone() {
+    public abstract String toLine();
+
+    public void setDone() {
         this.done = true;
     }
 
-    private void setUnDone() {
+    public void setUnDone() {
         this.done = false;
     }
 
@@ -97,6 +103,44 @@ public class Task {
                 + removed.toString() + "\n"
                 + "Now you have " + taskList.size() + " tasks in the list :)");
         System.out.println("____________________________________________________________");
+    }
+
+    public static void textToTaskList(File file) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file.getPath()));
+            for (String line; (line = reader.readLine()) != null; ) {
+                String[] taskInfo= line.split("[*]", 4);
+
+                if (taskInfo[0].equals("T")) {
+                    Task toDo = new ToDo(taskInfo[2]);
+                    if (taskInfo[1].equals("1")) toDo.setDone();
+                    taskList.add(toDo);
+                } else if (taskInfo[0].equals("D")) {
+                    Task deadline = new Deadline(taskInfo[2], taskInfo[3]);
+                    if (taskInfo[1].equals("1")) deadline.setDone();
+                    taskList.add(deadline);
+                } else if (taskInfo[0].equals("E")) {
+                    Task event = new Event(taskInfo[2], taskInfo[3]);
+                    if (taskInfo[1].equals("1")) event.setDone();
+                    taskList.add(event);
+                } else {
+                    System.out.println("Error in file" + file.getAbsolutePath());
+                    break;
+                }
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String taskListToText() {
+        String lines = "";
+        for (Task task : taskList) {
+            lines += task.toLine() + "\n";
+        }
+
+        return lines;
     }
 }
 

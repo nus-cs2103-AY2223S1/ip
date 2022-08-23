@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Jamie {
@@ -7,8 +10,20 @@ public class Jamie {
         System.out.println("_____________   _       _______________\n|___   __||  | | |     | |__  __| ____|" +
                 "\n    | |  | __ ||  \\   /  |  | | | |___\n _  | | | |__| |   \\_/   |  | | |  ___|" +
                 "\n| |_| | |  __  | |\\   /| |__| |_| |___\n|_____| |_|  |_|_| \\_/ |_|______|_____|" );
-        System.out.println("Hi, I'm Jamie.\nWhat do you want?");
+        System.out.println("Hi, I'm Jamie.\nWhat do you want to do?\n" +
+                "For dates and time, please enter in the format:\n" +
+                "dd/MM/yyyy HHmm eg. 29/10/2022 0000");
 
+            File folder = new File("Data");
+            folder.mkdirs();
+            File file = new File("Data/Jamie.txt");
+        try {
+            if (!file.createNewFile()) {
+                Task.textToTaskList(file);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         for (String input = sc.nextLine(); !input.equals("bye"); input = sc.nextLine()) {
             if (input.equals("list")) {
@@ -71,7 +86,13 @@ public class Jamie {
             }
 
         }
-
+        try {
+            FileWriter writer = new FileWriter("Data/Jamie.txt", false);
+            writer.write(Task.taskListToText());
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println("bye :(");
 
     }
