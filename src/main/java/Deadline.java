@@ -1,12 +1,15 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Deadline extends Task {
     private static final String TASK_TYPE = "D";
 
-    Deadline(String taskName) {
-        super(taskName);
+    Deadline(String taskName, LocalDate date, LocalTime time) {
+        super(taskName, date, time);
     }
 
-    Deadline(String taskName, boolean markDone) {
-        super(taskName, markDone);
+    Deadline(String taskName, boolean markDone, LocalDate date, LocalTime time) {
+        super(taskName, markDone, date, time);
     }
 
     public String getTaskType() {
@@ -14,11 +17,11 @@ public class Deadline extends Task {
     }
 
     public Deadline mark() {
-        return new Deadline(super.getTaskName(), true);
+        return new Deadline(super.getTaskName(), true, super.getDate(), super.getTime());
     }
 
     public Deadline unmark() {
-        return new Deadline(super.getTaskName(), false);
+        return new Deadline(super.getTaskName(), false, super.getDate(), super.getTime());
     }
 
     @Override
