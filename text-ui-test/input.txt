@@ -20,6 +20,9 @@ todo cry harder
 event end of sem /at NEVER
 event end of sem /at 10/12/2022
 deadline homework /by 18/12/2000 1200
+find
+find homework
+find e
 list
 mark 1 2
 mark 2

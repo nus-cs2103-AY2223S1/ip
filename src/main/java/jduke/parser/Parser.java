@@ -1,15 +1,6 @@
 package jduke.parser;
 
-import jduke.commands.ByeCommand;
-import jduke.commands.DeadlineCommand;
-import jduke.commands.Command;
-import jduke.commands.DeleteCommand;
-import jduke.commands.EventCommand;
-import jduke.commands.IncorrectCommand;
-import jduke.commands.ListCommand;
-import jduke.commands.MarkCommand;
-import jduke.commands.TodoCommand;
-import jduke.commands.UnmarkCommand;
+import jduke.commands.*;
 
 public class Parser {
     public Command parseCommand(String input) {
@@ -31,6 +22,8 @@ public class Parser {
             return prepareUnmark(params);
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(params);
+        case FindCommand.COMMAND_WORD:
+            return prepareFind(params);
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
         default:
@@ -96,5 +89,12 @@ public class Parser {
             return new IncorrectCommand(String.format("|  invalid DELETE format%n|    %s%n", DeleteCommand.FORMAT));
         }
         return new DeleteCommand(params);
+    }
+
+    private Command prepareFind(String params) {
+        if (!params.matches("[^ ](.*)")) {
+            return new IncorrectCommand(String.format("|  invalid FIND format%n|    %s%n", FindCommand.FORMAT));
+        }
+        return new FindCommand(params);
     }
 }

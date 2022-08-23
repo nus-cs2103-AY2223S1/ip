@@ -2,7 +2,6 @@ package commands;
 
 import jduke.commands.ListCommand;
 import jduke.data.TaskList;
-import jduke.task.Event;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

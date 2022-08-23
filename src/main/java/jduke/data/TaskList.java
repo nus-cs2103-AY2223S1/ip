@@ -62,6 +62,24 @@ public class TaskList {
         return sb.toString();
     }
 
+    public String findTasks(String params) {
+        if (tasks.size() == 0) {
+            return "|  no tasks found\n";
+        }
+        boolean hasTask = false;
+        StringBuilder sb = new StringBuilder();
+        for (int pos = 0; pos < tasks.size(); pos++) {
+            if (tasks.get(pos).isMatchingKeyword(params)) {
+                hasTask = true;
+                sb.append(String.format("%d ==> %s%n", pos + 1, tasks.get(pos)));
+            }
+        }
+        if (!hasTask) {
+            return "|  no tasks found\n";
+        }
+        return sb.toString();
+    }
+
     public String addTodo(String description) {
         Todo todo = new Todo(description);
         tasks.add(todo);

@@ -49,4 +49,11 @@ public class EventTest {
         assertTrue(Event.isEqualDate(LocalDate.parse("2012-10-20")));
         assertFalse(Event.isEqualDate(LocalDate.parse("2012-10-21")));
     }
+
+    @Test
+    public void isMatchingKeywordsEventTest() {
+        Event event = new Event("Matching Keywords Event", "20/10/2012 1159");
+        assertTrue(event.isMatchingKeyword("Even"));
+        assertFalse(event.isMatchingKeyword("Odd"));
+    }
 }

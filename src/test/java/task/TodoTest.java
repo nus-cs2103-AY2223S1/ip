@@ -6,8 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TodoTest {
     @Test
@@ -37,5 +36,12 @@ public class TodoTest {
     public void equalDateTodoTest() {
         Todo todo = new Todo("Equal Date");
         assertFalse(todo.isEqualDate(LocalDate.parse("2022-12-30")));
+    }
+
+    @Test
+    public void isMatchingKeywordsDeadlineTest() {
+        Todo todo = new Todo("Matching Todo Keywords");
+        assertTrue(todo.isMatchingKeyword("do"));
+        assertFalse(todo.isMatchingKeyword("dont"));
     }
 }
