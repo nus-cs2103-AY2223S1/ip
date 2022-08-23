@@ -6,7 +6,7 @@ public class Duke {
         String bye = "Goodbye";
         System.out.println(greeting);
 
-        String[] list = new String[100];
+        Task[] list = new Task[100];
         int items = 0;
 
         String input;
@@ -14,17 +14,33 @@ public class Duke {
         input = sc.nextLine();
         while (!input.equals("bye")) {
             if (input.equals("list")) {
+                System.out.println("List of tasks:");
                 for (int i = 1; i < items + 1; i++) {
                     System.out.println(i + ". " + list[i - 1]);
                 }
+            } else if (input.startsWith("mark")) {
+                int i = Integer.parseInt(input.substring(5)) - 1;
+                if (i > items - 1) {
+                    System.out.println("No task found");
+                } else {
+                    list[i].markDone();
+                    System.out.println("Task done: " + list[i]);
+                }
+            } else if (input.startsWith("unmark")) {
+                int i = Integer.parseInt(input.substring(7)) - 1;
+                if (i > items - 1) {
+                    System.out.println("No task found");
+                } else {
+                    list[i].markNotDone();
+                    System.out.println("Task not done: " + list[i]);
+                }
             } else {
-                list[items] = input;
+                list[items] = new Task(input);
                 items++;
                 System.out.println("added: " + input);
             }
             input = sc.nextLine();
         }
         System.out.println(bye);
-        return;
     }
 }
