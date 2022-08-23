@@ -1,3 +1,5 @@
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -6,11 +8,12 @@ import java.io.IOException;  // Import the IOException class to handle errors
 
 import tasks.*;
 import exceptions.*;
-
+import utils.DeadlineParser;
 
 public class Duke {
 
     private static final TaskList TASK_LIST = new TaskList();
+    private static final Pattern COMMAND_PATTERN = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
 
     public static void saveFile() {
         try {
@@ -29,13 +32,14 @@ public class Duke {
         String time;
 
         try {
-            Pattern pattern = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: ([^/]*))?$");
-            Matcher matcher = pattern.matcher(command);
-            matcher.find();
-            action = matcher.group(1);
-            desc = matcher.group(2);
-            time = matcher.group(4);
-
+            Matcher matcher = COMMAND_PATTERN.matcher(command);
+            if (matcher.find()) {
+                action = matcher.group(1);
+                desc = matcher.group(2);
+                time = matcher.group(4);
+            } else {
+                throw new InvalidCommandException();
+            }
             switch (action) {
                 case "list":
                     TASK_LIST.printList();
@@ -55,11 +59,16 @@ public class Duke {
                 case "done":
                     TASK_LIST.markDone(desc);
                     break;
+                case "before":
+                    TASK_LIST.printDeadline(time);
+                    break;
                 default:
                     throw new InvalidCommandException();
             }
         } catch (DukeException e) {
             System.out.println(e);
+        } catch (DateTimeParseException e) {
+            System.out.println("Please enter the correct due date format d/mm/yyyy [HHmm]");
         }
     }
 
