@@ -24,7 +24,7 @@ public class Storage {
         this("data", "tasks.csv");
     }
 
-    public void saveList(List<Task> todos) throws MessagefulException {
+    public void saveList(TaskList todos) throws MessagefulException {
         try {
             File fileDir = new File(this.fileDir);
             if (!fileDir.isDirectory() && !fileDir.mkdirs()) {

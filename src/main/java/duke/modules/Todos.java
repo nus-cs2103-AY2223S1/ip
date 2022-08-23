@@ -4,20 +4,20 @@ import duke.FallibleFunction;
 import duke.MessagefulException;
 import duke.modules.todos.Storage;
 import duke.modules.todos.Task;
+import duke.modules.todos.TaskList;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static duke.Ui.say;
-import static duke.Ui.sayError;
 import static java.lang.String.format;
 
 /**
  * Module handling tracking tasks, optionally with dates or timeranges.
  */
 public class Todos {
-    private final ArrayList<Task> todos;
+    private final TaskList todos;
 
     private final Storage storage = new Storage();
 
@@ -25,14 +25,7 @@ public class Todos {
      * constructor
      */
     public Todos() {
-        ArrayList<Task> todos;
-        try {
-            todos = storage.loadList();
-        } catch (MessagefulException e) {
-            sayError(e);
-            todos = new ArrayList<>();
-        }
-        this.todos = todos;
+        this.todos = new TaskList(storage);
     }
 
     private String taskCountMessage() {
