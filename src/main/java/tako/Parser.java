@@ -54,10 +54,10 @@ public class Parser {
         case MARK:
             try {
                 if (splitInput.length == 1) {
-                    throw new TakoException("The description of this mark cannot be empty.");
+                    throw new TakoException("The task number to mark cannot be empty.");
                 } else if (splitInput.length == 2) {
                     int taskNumber = Integer.parseInt(splitInput[1]) - 1;
-                    return new MarkCommand(taskNumber);
+                    return new MarkCommand(taskNumber - 1);
                 }
             } catch (NumberFormatException e) {
                 throw new TakoException("The task number to mark is invalid.");
@@ -115,7 +115,7 @@ public class Parser {
                     throw new TakoException("The task number to delete cannot be empty.");
                 } else if (splitInput.length == 2) {
                     int taskNumber = Integer.parseInt(splitInput[1]) - 1;
-                    return new DeleteCommand(taskNumber);
+                    return new DeleteCommand(taskNumber - 1);
                 }
             } catch (NumberFormatException e) {
                 throw new TakoException("The task number to delete is invalid.");
