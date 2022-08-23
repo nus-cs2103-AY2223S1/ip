@@ -118,10 +118,10 @@ public class TaskList {
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a deadline cannot be empty.");
-        } else if (taskType[1].split("/by ", 2).length == 1) {
+        } else if (taskType[1].split(" /by ", 2).length == 1) {
             throw new DukeException("The /by field cannot be empty.");
         } else {
-            String[] taskBy = taskType[1].split("/by ", 2);
+            String[] taskBy = taskType[1].split(" /by ", 2);
             Deadline deadline = new Deadline(taskBy[0], taskBy[1]);
             taskAdd(deadline);
         }
@@ -137,10 +137,10 @@ public class TaskList {
         String[] taskType = input.split(" ", 2);
         if (taskType.length == 1) {
             throw new DukeException("The description of a event cannot be empty.");
-        } else if (taskType[1].split("/at ", 2).length == 1) {
+        } else if (taskType[1].split(" /at ", 2).length == 1) {
             throw new DukeException("The /at field cannot be empty.");
         } else {
-            String[] taskBy = taskType[1].split("/at ", 2);
+            String[] taskBy = taskType[1].split(" /at ", 2);
             Event event = new Event(taskBy[0], taskBy[1]);
             taskAdd(event);
         }

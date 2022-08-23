@@ -27,10 +27,9 @@ public class Storage {
      * @param input String of the task.
      * @return duke.Todo object.
      */
-    public Todo loadTodo(String input) {
+    private Todo loadTodo(String input) {
         String[] taskType = input.split(" ", 2);
         Todo todo = new Todo(taskType[1]);
-//        todo.loadDone();
         return todo;
     }
 
@@ -42,7 +41,7 @@ public class Storage {
      * @param input String of the task.
      * @return duke.Deadline object.
      */
-    public Deadline loadDeadline(String input) {
+    private Deadline loadDeadline(String input) {
         String[] taskType = input.split(" ", 2);
         String[] taskBy = taskType[1].split("/by ", 2);
         try {
@@ -60,7 +59,7 @@ public class Storage {
      * @param input String of the task.
      * @return duke.Event object.
      */
-    public Event loadEvent(String input) {
+    private Event loadEvent(String input) {
         String[] taskType = input.split(" ", 2);
         String[] taskBy = taskType[1].split("/at ", 2);
         Event event = new Event(taskBy[0], taskBy[1]);
