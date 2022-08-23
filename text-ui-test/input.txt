@@ -1,6 +1,7 @@
 todo task
-deadline task /by date
-event task /at date
+deadline task /by 2002-02-02
+event task /at 2002-02-02
 list
 delete 1
+mark 2
 bye

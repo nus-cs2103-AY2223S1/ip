@@ -1,3 +1,5 @@
+package Tasks;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -10,8 +12,11 @@ public class Event extends Task {
     public Event(String description, String at) {
         super(description);
         this.at = LocalDate.parse(at, accept);
-        print(this);
-        updateTasks();
+    }
+
+    public Event(String description, LocalDate at) {
+        super(description);
+        this.at = at;
     }
 
     @Override

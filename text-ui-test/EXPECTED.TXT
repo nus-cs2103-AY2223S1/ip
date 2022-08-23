@@ -9,7 +9,17 @@ Hello. ⛅️
    | |__ | |_| | |  | |    | |
    |____| \__,_|_|  |_|\__/|_|
 
-   How may I assist you today?
+  Luna commands
+    🌸 list                             | View all tasks on your agenda
+    🌷 todo "task"                      | Add a task to your agenda
+    🌺 deadline "task" /by "yyyy-mm-dd" | Add a task to complete by the specified deadline
+    🌹 event "event" /at "yyyy-mm-dd"    | Add an event on the specified date
+    🪷 mark "num"                       | Mark the (num)th item in your list as completed
+    🌻 unmark "num"                     | Mark the (num)th item in your list as uncompleted
+    🥀 bye                              | Quit Luna
+
+  You do not have anything to do yet!
+  Tell Luna your tasks for the day ☀️
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
@@ -18,7 +28,7 @@ Hello. ⛅️
 
 Luna has added:
 [T][ ] task
-There is currently 1 task in your list 🌻
+1 task(s) left in your list 🌻
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
@@ -26,8 +36,8 @@ There is currently 1 task in your list 🌻
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
 Luna has added:
-[D][ ] deadline task (by: date)
-There are currently 2 tasks in your list 🌻
+[D][ ] task (by: 02 Feb 2002)
+2 task(s) left in your list 🌻
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
@@ -35,21 +45,20 @@ There are currently 2 tasks in your list 🌻
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
 Luna has added:
-[E][ ] event task (at: date)
-There are currently 3 tasks in your list 🌻
+[E][ ] task (at: 02 Feb 2002)
+3 task(s) left in your list 🌻
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
 
 ☀️ Stuff you have to do! ☀️
 
 1. [T][ ] task
-
-2. [D][ ] deadline task (by: date)
-
-3. [E][ ] event task (at: date)
+2. [D][ ] task (by: 02 Feb 2002)
+3. [E][ ] task (at: 02 Feb 2002)
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
@@ -58,7 +67,15 @@ There are currently 3 tasks in your list 🌻
 
 Luna has removed:
 [T][ ] task
-There are currently ️2 tasks in your list 🌻
+2 task(s) left in your list 🌻
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+Marked as completed 🌈️
+[E][✧] task (at: 02 Feb 2002)
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
