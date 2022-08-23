@@ -1,7 +1,12 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.task.Task;
+
 public class UnmarkCommand extends Command {
     private int taskIndex;
 
-    UnmarkCommand(int taskIndex) {
+    public UnmarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 

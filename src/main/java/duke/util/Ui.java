@@ -1,3 +1,8 @@
+package duke.util;
+
+import duke.task.TaskList;
+import duke.task.Task;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -10,7 +15,7 @@ public class Ui {
     private static final String INDENTATION = "     ";
     public static Scanner in;
 
-    Ui() {
+    public Ui() {
         this.in = new Scanner(System.in);
     }
 

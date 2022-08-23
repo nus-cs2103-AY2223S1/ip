@@ -1,3 +1,9 @@
+package duke.util;
+
+import duke.DukeException;
+import duke.task.TaskList;
+import duke.task.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,7 +15,7 @@ public class Storage {
     public final String dataPath;
     public final String storageName;
 
-    Storage(String dataPath, String storageName) {
+    public Storage(String dataPath, String storageName) {
         this.dataPath = dataPath;
         this.storageName = storageName;
     }
@@ -38,7 +44,7 @@ public class Storage {
             List<Task> tasks = new ArrayList<>();
             File file = new File(dataPath + "/" + storageName);
             if (!file.exists()) {
-                throw new DukeException("Storage file does not exist yet");
+                throw new DukeException("duke.util.Storage file does not exist yet");
             }
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {

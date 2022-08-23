@@ -1,3 +1,11 @@
+package duke.util;
+
+import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 public class StorageParser {
     public static Task parseTaskString(String taskString) throws DukeException {
         Character taskType = taskString.charAt(0);

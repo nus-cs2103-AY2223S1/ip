@@ -1,10 +1,12 @@
+package duke.command;
+
 import java.util.ArrayList;
 
-public class UnknownCommand extends Command {
+public class EmptyCommand extends Command {
     @Override
     public void execute() {
         ArrayList<String> toPrint = new ArrayList<>();
-        toPrint.add("Unknown command provided!");
+        toPrint.add("No command entered!");
         String[] helpGuide = HelpCommand.getHelpGuide();
         for (String line: helpGuide) {
             toPrint.add(line);

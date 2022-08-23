@@ -1,3 +1,11 @@
+package duke;
+
+import duke.command.Command;
+import duke.task.TaskList;
+import duke.util.Parser;
+import duke.util.Storage;
+import duke.util.Ui;
+
 public class Duke {
     public static final String PATH_TO_DATA_DIRECTORY = "./data/";
     public static final String TASK_LIST_STORAGE_NAME = "duke.txt";

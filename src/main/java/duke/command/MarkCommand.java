@@ -1,7 +1,12 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.task.Task;
+
 public class MarkCommand extends Command {
     private int taskIndex;
 
-    MarkCommand(int taskIndex) {
+    public MarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 

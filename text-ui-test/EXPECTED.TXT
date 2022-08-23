@@ -4,7 +4,7 @@
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Hello! I'm Duke, What can I do for you?
+Hello! I'm duke.Duke, What can I do for you?
     ____________________________________________________________
      1.[T][X] read book
      2.[D][ ] return book (by: 25 Dec 2022)
@@ -87,10 +87,10 @@ Hello! I'm Duke, What can I do for you?
      Now you have 4 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
-     Task index out of range. Please choose from index 1 to 4
+     duke.task.Task index out of range. Please choose from index 1 to 4
     ____________________________________________________________
     ____________________________________________________________
-     Task index out of range. Please choose from index 1 to 4
+     duke.task.Task index out of range. Please choose from index 1 to 4
     ____________________________________________________________
     ____________________________________________________________
      Unknown command provided!
