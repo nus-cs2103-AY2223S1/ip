@@ -1,6 +1,6 @@
 package roger.exceptions;
 
-public class RogerInvalidInputException extends Exception{
+public class RogerInvalidInputException extends Exception {
     /**
      * Raised when Roger receives an invalid input.
      */
