@@ -6,6 +6,7 @@ import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.UI;
 
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class Duke {
@@ -14,8 +15,8 @@ public class Duke {
     private final TaskList tasks;
     private final UI ui;
 
-    public Duke() {
-        storage = new Storage(Paths.get(System.getProperty("user.dir"), "data", "data.txt"));
+    public Duke(Path path) {
+        storage = new Storage(path);
         tasks = new TaskList(storage.load());
         ui = new UI(System.in, System.out);
     }
@@ -32,5 +33,9 @@ public class Duke {
                 ui.print(e.getMessage());
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Duke(Paths.get(System.getProperty("user.dir"), "data", "data.txt")).run();
     }
 }
