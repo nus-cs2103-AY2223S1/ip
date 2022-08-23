@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 public class Gibson {
     private static TaskList taskList = new TaskList();
@@ -37,7 +36,7 @@ public class Gibson {
                 System.out.println(line);
             // MARK
             } else if (Pattern.matches("mark [0-9]+", input)) {
-                int number = RegexUtility.getTrailingInt(input);
+                int number = Parser.getTrailingInt(input);
                 int index = number - 1;
                 try {
                     Task t = taskList.mark(index);
@@ -51,7 +50,7 @@ public class Gibson {
             }
             // UNMARK
             else if (Pattern.matches("unmark [0-9]+", input)) {
-                int number = RegexUtility.getTrailingInt(input);
+                int number = Parser.getTrailingInt(input);
                 int index = number - 1;
                 try {
                     Task t = taskList.unmark(index);
@@ -66,7 +65,7 @@ public class Gibson {
                 }
             // TODOS
             } else if (Pattern.matches("(todo .+)|(todo( )?)", input)) {
-                String taskString = RegexUtility.substringAfterToken(input, "todo");
+                String taskString = Parser.substringAfterToken(input, "todo");
                 try {
                     Task task = new Task(taskString);
                     addTask(task);
@@ -77,8 +76,8 @@ public class Gibson {
                 }
             // DEADLINES
             } else if (Pattern.matches("(deadline .+ /by .+)|(deadline .+ /by( )?)", input)) {
-                String taskString = RegexUtility.substringAfterToken(input, "deadline");
-                String[] stringArray = RegexUtility.substringBeforeAfterToken(taskString, "/by");
+                String taskString = Parser.substringAfterToken(input, "deadline");
+                String[] stringArray = Parser.substringBeforeAfterToken(taskString, "/by");
                 try {
                     Deadline deadline = new Deadline(stringArray[0], stringArray[1]);
                     addTask(deadline);
@@ -89,8 +88,8 @@ public class Gibson {
                 }
             // EVENTS
             } else if (Pattern.matches("(event .+ /at .+)|(event .+ /at( )?)", input)) {
-                String taskString = RegexUtility.substringAfterToken(input, "event");
-                String[] stringArray = RegexUtility.substringBeforeAfterToken(taskString, "/at");
+                String taskString = Parser.substringAfterToken(input, "event");
+                String[] stringArray = Parser.substringBeforeAfterToken(taskString, "/at");
                 try {
                     Event event = new Event(stringArray[0], stringArray[1]);
                     addTask(event);
@@ -101,7 +100,7 @@ public class Gibson {
                 }
             // REMOVE
             } else if (Pattern.matches("delete [0-9]+", input)) {
-                int number = RegexUtility.getTrailingInt(input);
+                int number = Parser.getTrailingInt(input);
                 int index = number - 1;
                 try {
                     Task t = taskList.remove(index);

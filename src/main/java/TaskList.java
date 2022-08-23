@@ -1,9 +1,5 @@
 import java.util.ArrayList;
 import java.util.List;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.Path;
-import java.io.IOException;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -61,10 +57,10 @@ public class TaskList {
             if (type == 'T') {
                 t = new Task(body);
             } else if (type == 'E') {
-                String[] stringArray = RegexUtility.substringBeforeAfterToken(body, "\\(at:");
+                String[] stringArray = Parser.substringBeforeAfterToken(body, "\\(at:");
                 t = new Event(stringArray[0], stringArray[1].substring(0, stringArray[1].length() - 1));
             } else {
-                String[] stringArray = RegexUtility.substringBeforeAfterToken(body, "\\(by:");
+                String[] stringArray = Parser.substringBeforeAfterToken(body, "\\(by:");
                 t = new Deadline(stringArray[0], stringArray[1].substring(0, stringArray[1].length() - 1));
             }
             if (marker == 'X') {

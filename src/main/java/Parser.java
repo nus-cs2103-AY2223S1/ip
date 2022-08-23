@@ -1,8 +1,8 @@
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public final class RegexUtility {
-    private RegexUtility() {}
+public final class Parser {
+    private Parser() {}
 
     // Returns trailing integers from a String
     // Throws error if no trailing integers
