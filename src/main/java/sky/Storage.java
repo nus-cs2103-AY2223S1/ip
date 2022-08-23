@@ -24,6 +24,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Returns a list of tasks stored in the task file in user's hard disk.
+     *
+     * @return A list of tasks.
+     * @throws TextNoMeaningException If unable to read from file.
+     */
     public List<Task> load() throws TextNoMeaningException {
         File file = new File(this.filePath);
         if (!file.exists()) {
@@ -77,6 +83,11 @@ public class Storage {
         throw new TextNoMeaningException("  Unable to load storage.");
     }
 
+    /**
+     * Adds the provided text into the task file in user's hard disk.
+     *
+     * @param textToAdd Text to be added.
+     */
     public void append(String textToAdd) {
         File file = new File(this.filePath);
         this.createFileIfNecessary(file);
@@ -120,7 +131,11 @@ public class Storage {
         }
     }
 
-    // Re-write the entire data file
+    /**
+     * Re-writes the task file in user's hard disk with specified tasks.
+     *
+     * @param taskList A list of tasks that will replace the tasks in user's hard disk.
+     */
     public void reWriteDataFile(TaskList taskList) {
         for (int i = 0; i < taskList.size(); i++) {
             if (i == 0) {

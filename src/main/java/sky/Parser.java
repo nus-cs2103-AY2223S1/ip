@@ -6,6 +6,12 @@ import sky.command.*;
  * The Parser class deals with making sense of the user command.
  */
 public class Parser {
+    /**
+     * Returns a Command based on the input.
+     *
+     * @param fullCommand The full user input.
+     * @return A command.
+     */
     public static Command parse(String fullCommand) {
         if (fullCommand.startsWith("bye")) {
             return new ExitCommand();

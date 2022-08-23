@@ -1,5 +1,8 @@
 package sky.task;
 
+/**
+ * The Deadline class encapsulates a Deadline.
+ */
 public class Deadline extends Task {
     protected String by;
 

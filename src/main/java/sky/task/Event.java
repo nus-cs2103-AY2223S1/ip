@@ -1,5 +1,8 @@
 package sky.task;
 
+/**
+ * The Event class encapsulates an Event.
+ */
 public class Event extends Task {
     protected String duration;
 
