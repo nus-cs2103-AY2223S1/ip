@@ -1,3 +1,4 @@
-D|0|sleep|tonight
-E|1|school|tomorrow
+D|1|sleep|tonight
+E|0|school|tomorrow
 T|1|attend lecture
+T|0|sleep

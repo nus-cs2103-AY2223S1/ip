@@ -13,14 +13,11 @@ public class Task {
 
     public void complete() {
         this.isDone = true;
-
     }
 
     public void undo() {
         this.isDone = false;
     }
-
-
 
 
     public String tofileString() {

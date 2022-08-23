@@ -21,16 +21,19 @@ public class Duke {
     }
 
     public void run() {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
+        ui.showWelcome();
+        Parser parser = new Parser();
 
-        while (!input.equals("bye")) {
-            if (input.equals("list")) {
+
+        boolean isExit = false;
+        while (!isExit) {
+            String fullInput = ui.readCommand();
+            if (fullInput.equals("list")) {
                 tasks.printList();
             } else {
-                String[] command = input.split(" ");
+
                 try {
-                    if (command.length >= 1) {
+ /*                   if (command.length >= 1) {
                         switch (command[0]) {
                             case "mark":
                                 ui.mark(command[1],this.tasks);
@@ -53,15 +56,17 @@ public class Duke {
                             default:
                                 throw new UnknownCommand();
                         }
-                    }
+                    }*/
+                Command command = parser.parse(fullInput);
+                command.execute(tasks, ui, storage);
+                isExit = command.isExit();
                 } catch (DukeException e) {
                     System.out.println(e);
                 }
             }
-            input = sc.nextLine();
+
         }
         storage.writeToTaskList(filePath, tasks);
         System.out.println("Bye. Hope to see you again soon!");
-        sc.close();
     }
 }
