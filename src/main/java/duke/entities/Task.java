@@ -1,4 +1,7 @@
-package entities;
+package duke.entities;
+
+import duke.enums.Messages;
+import duke.exceptions.DukeException;
 
 public class Task {
     private Boolean isComplete = false;
@@ -9,7 +12,10 @@ public class Task {
      * 
      * @param desc Description of the task
      */
-    public Task(String desc) {
+    public Task(String desc) throws DukeException {
+        if (desc == null) {
+            throw new DukeException(Messages.ERROR_MISSING_PARAMETERS.toString());
+        }
         this.description = desc;
     }
 

@@ -1,7 +1,7 @@
-package commands;
+package duke.commands;
 
-import enums.*;
-import exceptions.DukeException;
+import duke.enums.*;
+import duke.exceptions.DukeException;
 
 /**
  * This is the base command class that does not need to validate anything and

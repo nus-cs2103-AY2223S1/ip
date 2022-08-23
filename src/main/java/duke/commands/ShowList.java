@@ -1,7 +1,7 @@
-package commands;
+package duke.commands;
 
-import exceptions.DukeException;
-import lists.TaskList;
+import duke.exceptions.DukeException;
+import duke.lists.TaskList;
 
 public class ShowList extends Display {
     protected TaskList tasks;

@@ -1,4 +1,4 @@
-package enums;
+package duke.enums;
 
 public enum Messages {
     LOGO("____        _        \n|  _ \\ _   _| | _____ \n| | | | | | | |/ / _ \\\n| |_| | |_| |   <  __/\n|____/ \\__,_|_|\\_\\___|\n"),
@@ -15,7 +15,8 @@ public enum Messages {
     ERROR_INVALID_COMMAND("Beep-Boop, I don't understand you :<"),
     ERROR_TODO(">:| OOPS!!! The description of a todo cannot be empty."),
     ERROR_INVALID_INDEX(">:| OOPS!!! There is no task with this index."),
-    ERROR_MISSING_PARAMETERS(">:| OOPS!!! There are missing parameters.");
+    ERROR_MISSING_PARAMETERS(">:| OOPS!!! There are missing parameters."),
+    ERROR_INVALID_DATETIME(">:| OOPS!!!! The time format should be yyyy-MM-dd HH:mm");
 
     private String message;
 

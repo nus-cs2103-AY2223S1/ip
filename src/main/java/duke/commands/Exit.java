@@ -1,6 +1,6 @@
-package commands;
+package duke.commands;
 
-import enums.*;
+import duke.enums.*;
 
 public class Exit extends Display {
     public Exit() {

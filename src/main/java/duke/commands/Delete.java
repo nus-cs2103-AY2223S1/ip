@@ -1,12 +1,11 @@
-package commands;
-
-import enums.*;
-import lists.*;
+package duke.commands;
 
 import javax.xml.catalog.Catalog;
 
-import entities.*;
-import exceptions.*;
+import duke.entities.*;
+import duke.enums.*;
+import duke.exceptions.*;
+import duke.lists.*;
 
 public class Delete extends Mark {
     public Delete(TaskList tasks, String indx) throws DukeException {

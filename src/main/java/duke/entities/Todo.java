@@ -1,8 +1,10 @@
-package entities;
+package duke.entities;
+
+import duke.exceptions.DukeException;
 
 public class Todo extends Task {
 
-    public Todo(String desc) {
+    public Todo(String desc) throws DukeException {
         super(desc);
     }
 
