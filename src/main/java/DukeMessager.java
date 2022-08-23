@@ -7,13 +7,18 @@ public class DukeMessager extends Messager{
         super();
     }
 
+    public String getMessage() {
+        String text = super.getText();
+        return text.strip();
+    }
+
     public void introduction() {
-        ioHelper.print(DUKE_INTRODUCTION);
-        ioHelper.print(DUKE_HELP);
+        message(DUKE_INTRODUCTION);
+        message(DUKE_HELP);
     }
 
     public void bye() {
-        ioHelper.print(DUKE_END);
+        message(DUKE_END);
         closeScanner();
     }
 

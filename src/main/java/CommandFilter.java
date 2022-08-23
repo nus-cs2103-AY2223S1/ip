@@ -1,33 +1,39 @@
 public class CommandFilter {
-    private String command;
-    private String remainderCommand;
-    private String[] commands = {"list", "bye", "mark", "unmark"};
+    private String firstWord;
+    private String remainderWords;
+    private String[] commands = {"list", "bye", "mark", "unmark", "todo", "deadline", "event"};
 
     public void filterCommand(String command) {
-        this.command = null;
-        this.remainderCommand = null;
-        String[] commands = command.split(" ");
-        if (isCommand(commands[0])) {
-            this.command = commands[0];
-            if (commands.length > 1) {
-                this.remainderCommand = commands[1];
+        firstWord = null;
+        remainderWords = null;
+        int firstWhiteSpaceIndex = command.indexOf(' ');
+        if (firstWhiteSpaceIndex == -1) { //no whitespace found
+            firstWord = command;
+        } else {
+            firstWord = command.substring(0,firstWhiteSpaceIndex);
+
+        }
+        firstWord = firstWord.toLowerCase();
+        if (isCommand(firstWord)) {
+            if (!firstWord.equals(command)) {
+                remainderWords = command.substring(firstWhiteSpaceIndex+1);
             }
         } else {
-            this.command = "No Command";
-            this.remainderCommand = command;
+            firstWord = "No Command";
+            remainderWords = command;
         }
     }
 
     public String getCommand() {
-        return command;
+        return firstWord;
     }
 
     public String getRemainderCommand() {
-        return remainderCommand;
+        return remainderWords;
     }
 
     public Integer getRemainderCommandAsInt() {
-        return Integer.parseInt(remainderCommand);
+        return Integer.parseInt(remainderWords);
     }
 
     private boolean isCommand(String command) {

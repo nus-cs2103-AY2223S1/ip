@@ -1,11 +1,13 @@
 todo read book
-todo play game
-deadline homework1 /by tomorrow
-event project meetup /at Utown Sunday 10am
-mark 3
+deadline return book /by June 6th
+event project meeting /at Aug 6th 2-4pm
+todo join sports club
+mark 1
+mark 4
 list
-deadline homework2 /by next week
-mark 2
-unmark 2
+todo borrow book
+list
+deadline return book /by Sunday
+event project meeting /at Mon 2-4pm
 list
 bye

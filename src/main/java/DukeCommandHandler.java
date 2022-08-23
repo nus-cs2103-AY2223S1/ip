@@ -10,8 +10,9 @@ public class DukeCommandHandler {
         commandFilter = new CommandFilter();
     }
 
-    private void addCommand(String command) {
-        taskList.addTask(command);
+    private void addCommand() {
+        Task task = new Task(commandFilter.getRemainderCommand());
+        taskList.addTask(task);
     }
 
     private void listCommand() {
@@ -31,6 +32,23 @@ public class DukeCommandHandler {
         taskList.unmarkTask(commandFilter.getRemainderCommandAsInt() - 1);
     }
 
+    private void todoCommand() {
+        Todo todo = new Todo(commandFilter.getRemainderCommand());
+        taskList.addTask(todo);
+    }
+
+    private void deadlineCommand() {
+        String[] descriptions = commandFilter.getRemainderCommand().split(" /by ");
+        Deadline deadline = new Deadline(descriptions[0], descriptions[1]);
+        taskList.addTask(deadline);
+    }
+
+    private void eventCommand() {
+        String[] descriptions = commandFilter.getRemainderCommand().split(" /at ");
+        Event event = new Event(descriptions[0], descriptions[1]);
+        taskList.addTask(event);
+    }
+
     private void executeCommand(String command) {
         commandFilter.filterCommand(command);
         switch (commandFilter.getCommand()){
@@ -46,8 +64,17 @@ public class DukeCommandHandler {
         case "unmark":
             unmarkCommand();
             break;
+        case "todo":
+            todoCommand();
+            break;
+        case "deadline":
+            deadlineCommand();
+            break;
+        case "event":
+            eventCommand();
+            break;
         default:
-            addCommand(commandFilter.getRemainderCommand());
+            addCommand();
         }
     }
 

@@ -9,10 +9,9 @@ public class TaskList {
         taskMessager = new TaskMessager();
     }
 
-    public void addTask(String strTask) {
-        Task task = new Task(strTask);
+    public void addTask(Task task) {
         tasks.add(task);
-        taskMessager.addMessage(strTask);
+        taskMessager.addMessage(task, tasks.size());
     }
 
     public void listTask() {
