@@ -13,7 +13,7 @@ public class Duke {
         storage = new Storage("data", "duke.txt");
         ui = new Ui();
         try {
-          tasks = new TaskList(storage.retrieveFile());
+            tasks = new TaskList(storage.retrieveFile());
         } catch (DukeException e) {
             tasks = new TaskList();
             Ui.prettyPrint(e.getMessage());
@@ -28,7 +28,7 @@ public class Duke {
                 String userInput = ui.readUserInput();
                 Command cmd = Parser.parse(userInput);
                 cmd.execute(tasks, storage);
-                isRunning = cmd.stillRunning;
+                isRunning = cmd.isStillRunning();
             } catch (DukeException e) {
                 Ui.prettyPrint(e.getMessage());
             }

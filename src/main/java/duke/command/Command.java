@@ -8,6 +8,10 @@ import duke.task.TaskList;
  * Represents an executable duke command.
  */
 public abstract class Command {
-    public boolean stillRunning = true;
+    protected boolean stillRunning = true;
     public abstract void execute(TaskList tasks, Storage storage) throws DukeException;
+
+    public boolean isStillRunning() {
+        return this.isStillRunning();
+    }
 }

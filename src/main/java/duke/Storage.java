@@ -11,8 +11,8 @@ import duke.exception.DukeException;
  * Deals with loading and saving data to the hard disk
  */
 public class Storage {
-    private File DIRECTORY;
-    private String FILEPATH;
+    private File directory;
+    private String filepath;
 
     /**
      * Constructs a storage to be managed at the specified file location.
@@ -21,8 +21,8 @@ public class Storage {
      * @param filename The filename of the file to save the data to
      */
     public Storage(String directoryPath, String filename) {
-        this.DIRECTORY = new File(directoryPath);
-        this.FILEPATH = directoryPath + "/" + filename;
+        this.directory = new File(directoryPath);
+        this.filepath = directoryPath + "/" + filename;
     }
 
     /**
@@ -31,7 +31,7 @@ public class Storage {
      * @return The file that the storage saves the data to
      */
     public File retrieveFile() {
-        return new File(this.FILEPATH);
+        return new File(this.filepath);
     }
 
     /**
@@ -41,12 +41,12 @@ public class Storage {
      * @throws DukeException If the file could not be saved
      */
     public void writeToFile(String fileData) throws DukeException {
-        if (!this.DIRECTORY.exists()) {
-            this.DIRECTORY.mkdir();
+        if (!this.directory.exists()) {
+            this.directory.mkdir();
         }
 
         try {
-            FileWriter fw = new FileWriter(this.FILEPATH);
+            FileWriter fw = new FileWriter(this.filepath);
             fw.write(fileData);
             fw.close();
         } catch (FileNotFoundException e) {

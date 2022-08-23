@@ -102,8 +102,8 @@ public class TaskList {
      */
     public String addTask(Task task) {
         tasks.add(task);
-        return (String.format("Got it. I've added this task:\n" +
-                "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
+        return (String.format("Got it. I've added this task:\n"
+                + "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
     }
 
     /**
@@ -117,8 +117,8 @@ public class TaskList {
     public String deleteTask(int i) throws DukeException {
         isValidTask(i);
         Task task = tasks.remove(i - 1);
-        return (String.format("Noted. I've removed this task:\n" +
-                "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
+        return (String.format("Noted. I've removed this task:\n"
+                + "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
     }
 
     /**
