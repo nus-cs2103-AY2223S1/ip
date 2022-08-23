@@ -7,11 +7,12 @@ public class ToDo extends Task {
 
     @Override
     public String writeString() {
-        return String.format("T | %d | %s", super.isDone ? 1 : 0, super.description);
+        return String.format("T | %d | %s", 
+                super.isDone ? 1 : 0, super.description);
     }
     
     @Override
     public String toString() {
-        return "[T]"+super.toString();
+        return "[T]" + super.toString();
     }
 }

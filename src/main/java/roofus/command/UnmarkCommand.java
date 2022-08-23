@@ -13,15 +13,14 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList,
-                        Storage storage, Ui ui) {
+    public void execute(
+            TaskList taskList, Storage storage, Ui ui) {
         try {
             if (index > taskList.length() || index < 1) {
-                //handles index out of bounds exception
                 throw new RoofusException("Hey! It's not even in this list!");
             }
         } catch (RoofusException err){
-            ui.errMessage(err.getMessage());
+            ui.printErrMessage(err.getMessage());
         }
         taskList.unMark(index);
         ui.unmark(taskList.getTask(index - 1));

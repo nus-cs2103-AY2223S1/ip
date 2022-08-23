@@ -3,7 +3,7 @@ package roofus.task;
 import java.time.LocalDate;
 
 public class Deadline extends Task {
-    LocalDate date;
+    private LocalDate date;
     
     public Deadline(String description, String date) {
         super(description);
@@ -12,11 +12,13 @@ public class Deadline extends Task {
     
     @Override
     public String writeString() {
-        return String.format("D | %d | %s | %s", super.isDone ? 1 : 0, super.description, date);
+        return String.format("D | %d | %s | %s", 
+                super.isDone ? 1 : 0, super.description, date);
     }
     
     @Override
     public String toString() {
-        return String.format("[D]%s by: %s", super.toString(), this.date.toString());
+        return String.format("[D]%s by: %s", 
+                super.toString(), this.date.toString());
     }
 }

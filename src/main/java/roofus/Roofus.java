@@ -15,7 +15,7 @@ public class Roofus {
         try {
             this.taskList = new TaskList(this.storage.load());
         } catch (FileNotFoundException err) {
-            ui.errMessage("Required file not found\nRoofus did not load storage data");
+            ui.printErrMessage("Required file not found\nRoofus did not load storage data");
         }
     }
 
@@ -29,7 +29,7 @@ public class Roofus {
                 c.execute(taskList, storage, ui);
                 isRunning = c.isRunning();
             } catch (RoofusException err) {
-                ui.errMessage(err.getMessage());
+                ui.printErrMessage(err.getMessage());
             }
             if (!isRunning) {
                 break;
@@ -38,7 +38,7 @@ public class Roofus {
     }
     
     public static void main(String[] args) {
-        new Roofus( System.getProperty("user.home") +
-                "/data/roofus.txt").run();
+        new Roofus( System.getProperty("user.home") 
+                + "/data/roofus.txt").run();
     }
 }
