@@ -230,18 +230,24 @@ public class Duke {
             String type = lineComponents[0];
             boolean doneStatus = lineComponents[1].equals("X");
 
-            if (type.equals("T")) {
+            switch (type) {
+            case "T":
                 Todo t = new Todo(lineComponents[2]);
                 t.setDoneStatus(doneStatus);
                 tasks.add(t);
-            } else if (type.equals("D")) {
+                break;
+            case "D":
                 Deadline d = new Deadline(lineComponents[2], lineComponents[3]);
                 d.setDoneStatus(doneStatus);
                 tasks.add(d);
-            } else if (type.equals("E")) {
+                break;
+            case "E":
                 Event e = new Event(lineComponents[2], lineComponents[3]);
                 e.setDoneStatus(doneStatus);
                 tasks.add(e);
+                break;
+            default:
+                throw new DukeException("No tasks to read from storage!");
             }
         }
 
