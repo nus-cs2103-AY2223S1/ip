@@ -1,3 +1,5 @@
+package doke;
+
 public class Miscellaneous {
 
     public static boolean isInt(String str) {

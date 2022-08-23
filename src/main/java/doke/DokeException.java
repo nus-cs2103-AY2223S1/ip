@@ -1,3 +1,5 @@
+package doke;
+
 public class DokeException extends RuntimeException{
     String text = null;
 

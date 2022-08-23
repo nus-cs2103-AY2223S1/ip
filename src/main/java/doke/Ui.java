@@ -1,3 +1,5 @@
+package doke;
+
 public class Ui {
 
     private static String MESSAGE_HELLO = "_________________________ \n" + "    Hi, my name is Doke" +
