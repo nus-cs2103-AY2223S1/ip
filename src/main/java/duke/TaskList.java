@@ -5,28 +5,51 @@ import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * to contain list of tasks in Duke
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
     private int count;
 
+    /**
+     * constructor for new tasklist instance
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
         this.count = 0;
     }
 
+    /**
+     * constructor for new tasklist instance from arraylist of tasks
+     * @param tasks ArrayList of tasks to copy over
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
         this.count = tasks.size();
     }
 
+    /**
+     * mark task in arraylist to done
+     * @param index index of task to mark, in 1 indexing
+     */
     public void mark(int index) {
         tasks.get(index - 1).mark();
     }
 
+    /**
+     * unmark task in arraylist to not done
+     * @param index index of task to unmark, in 1 indexing
+     */
     public void unmark(int index) {
         tasks.get(index - 1).unmark();
     }
 
+    /**
+     * adds new task into arraylist
+     * @param str command input by user with information
+     * @param type enum of task type
+     */
     public void add(String str, Duke.Type type) {
         if (type.equals(Duke.Type.TODO)) {
             try {
@@ -86,6 +109,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * deletes tasks from arraylist
+     * @param command command input by user, with index to delete
+     */
     public void delete(String command) {
         try {
             int index = Integer.valueOf(command.split(" ")[1]);
@@ -102,10 +129,19 @@ public class TaskList {
         }
     }
 
+    /**
+     * return string representation of specific task in arraylist
+     * @param index index of task to get the string representation of, in 1 indexing
+     * @return
+     */
     public String getString(int index) {
         return tasks.get(index - 1).toString();
     }
 
+    /**
+     * return string representation of tasks to be written into text file
+     * @return string representation of tasks to be written into text file
+     */
     public String toData() {
         String data = "";
         for (Task task : tasks) {
@@ -115,6 +151,10 @@ public class TaskList {
         return data;
     }
 
+    /**
+     * returns string representation of all tasks with indexing
+     * @return string representation of all tasks
+     */
     @Override
     public String toString() {
         String text = "";

@@ -1,6 +1,9 @@
 package duke;
 import java.util.Scanner;
 
+/**
+ * Duke is a program that helps uses keep track of their tasks
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -12,6 +15,10 @@ public class Duke {
         EVENT
     }
 
+    /**
+     * constructor for Duke
+     * @param filePath string for path for file to read and write task list from
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -23,6 +30,9 @@ public class Duke {
         }
     }
 
+    /**
+     * method to start program
+     */
     public void run() {
         ui.greet();
         Scanner sc = new Scanner(System.in);

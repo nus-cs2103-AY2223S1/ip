@@ -1,6 +1,17 @@
 package duke;
+
+/**
+ * deals with making sense of user commands in Duke
+ */
 public class Parser {
     private static Ui ui = new Ui();
+
+    /**
+     * Interprets the user command and executes followup actions
+     * @param command input passed by user
+     * @param tasks the TaskList for current Duke instance to be modified
+     * @throws DukeException wrong input
+     */
     public static void parse(String command, TaskList tasks) throws DukeException {
         if (command.equals("list")) {
             ui.printMessage(tasks.toString());

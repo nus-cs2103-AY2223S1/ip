@@ -1,15 +1,28 @@
 package duke;
 import java.time.LocalDateTime;
 
+/**
+ * task with a date and time at
+ */
 public class Event extends Task {
     private static final String type = "[E]";
     private LocalDateTime time;
 
+    /**
+     * constructor for new event instance
+     * @param name name of task
+     * @param time date and time in localdatetime type
+     * @throws MissingDescriptionException for missing name
+     */
     public Event(String name,LocalDateTime time) throws MissingDescriptionException {
         super(name);
         this.time = time;
     }
 
+    /**
+     * returns string representation of task.
+     * @return string with type, completed or not, name, and date time(if applicable)
+     */
     @Override
     public String toString() {
         String comp = this.completed
@@ -24,6 +37,10 @@ public class Event extends Task {
         return type + comp + name + dateString;
     }
 
+    /**
+     * return string representation of task to be written in text file
+     * @return string representation to be written in text file
+     */
     @Override
     public String toData() {
         String type = "E";
