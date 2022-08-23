@@ -1,6 +1,6 @@
-package task;
+package duke.chatbot.data.task;
 
-import exception.InvalidInputException;
+import duke.chatbot.data.exception.InvalidInputException;
 
 public class Event extends TimedTask {
     public Event(String description, String dateTime) throws InvalidInputException {

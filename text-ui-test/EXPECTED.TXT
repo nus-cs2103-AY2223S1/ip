@@ -9,30 +9,30 @@
 	What can I do for you? :)
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this duke.chatbot.data.task:
 		[T][ ] eat burritos
 	Now you have 1 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this duke.chatbot.data.task:
 		[D][ ] finish duke (by: 18 Aug)
 	Now you have 2 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this duke.chatbot.data.task:
 		[E][ ] CS2103T lecture (at: 19 Aug)
 	Now you have 3 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Great! I've marked this task.
+	Great! I've marked this duke.chatbot.data.task.
 		[T][X] eat burritos
 	____________________________________________________________
 	____________________________________________________________
-	Great! I've marked this task.
+	Great! I've marked this duke.chatbot.data.task.
 		[D][X] finish duke (by: 18 Aug)
 	____________________________________________________________
 	____________________________________________________________
-	Ok, I've unmarked this task.
+	Ok, I've unmarked this duke.chatbot.data.task.
 		[D][ ] finish duke (by: 18 Aug)
 	____________________________________________________________
 	____________________________________________________________
@@ -54,12 +54,12 @@
 	3.[E][ ] CS2103T lecture (at: 19 Aug)
 	____________________________________________________________
 	____________________________________________________________
-	Noted. I've removed this task:
+	Noted. I've removed this duke.chatbot.data.task:
 			[T][X] eat burritos
 	Now you have 2 tasks left in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Noted. I've removed this task:
+	Noted. I've removed this duke.chatbot.data.task:
 			[E][ ] CS2103T lecture (at: 19 Aug)
 	Now you have 1 tasks left in the list.
 	____________________________________________________________
@@ -71,7 +71,7 @@
 	1.[D][ ] finish duke (by: 18 Aug)
 	____________________________________________________________
 	____________________________________________________________
-	Noted. I've removed this task:
+	Noted. I've removed this duke.chatbot.data.task:
 			[D][ ] finish duke (by: 18 Aug)
 	Now you have 0 tasks left in the list.
 	____________________________________________________________

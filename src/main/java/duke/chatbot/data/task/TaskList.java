@@ -1,6 +1,4 @@
-package task;
-
-import exception.InvalidInputException;
+package duke.chatbot.data.task;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package task;
+package duke.chatbot.data.task;
 
 public abstract class Task {
     private String description;
@@ -13,11 +13,11 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
-    protected void mark() {
+    public void mark() {
         isDone = true;
     }
 
-    protected void unmark() {
+    public void unmark() {
         isDone = false;
     }
 

@@ -1,7 +1,6 @@
-package taskfilemanager;
+package duke.chatbot.storage;
 
-import task.Task;
-import task.TaskList;
+import duke.chatbot.data.task.TaskList;
 
 import java.io.File;
 

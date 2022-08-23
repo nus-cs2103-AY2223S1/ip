@@ -1,12 +1,12 @@
-package taskfilemanager;
+package duke.chatbot.storage;
 
-import exception.InvalidInputException;
-import exception.InvalidTaskFileException;
+import duke.chatbot.data.exception.InvalidInputException;
+import duke.chatbot.data.exception.InvalidTaskFileException;
 
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.ToDo;
+import duke.chatbot.data.task.Deadline;
+import duke.chatbot.data.task.Event;
+import duke.chatbot.data.task.Task;
+import duke.chatbot.data.task.ToDo;
 
 import java.util.Scanner;
 
