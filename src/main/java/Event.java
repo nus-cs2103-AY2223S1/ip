@@ -10,4 +10,9 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.time + ")";
     }
+
+    @Override
+    public String toFileString() {
+        return "E" + "|" + (this.getTaskStatus() ? "1" : "0") + "|" + this.getTaskName() + "|" + this.time;
+    }
 }

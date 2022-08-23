@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private String taskName;
     private boolean isDone;
 
@@ -23,4 +23,6 @@ public class Task {
     public String toString() {
         return (this.getTaskStatus() ? "[X]" : "[ ]") + " " + this.getTaskName();
     }
+
+    public abstract String toFileString();
 }

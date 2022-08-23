@@ -1,14 +1,19 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.FileWriter;
+
 public class Duke {
     public static final String line = "____________________________________________________________";
 
-    private static void printTaskList(ArrayList<Task> list) {
+    private static void printTaskList(ArrayList<Task> taskList) {
         System.out.println(Duke.line);
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < list.size(); i ++) {
-            Task task = list.get(i);
+        for (int i = 0; i < taskList.size(); i ++) {
+            Task task = taskList.get(i);
             System.out.println((i+ 1) + "." + task.toString());
         }
         System.out.println(Duke.line);
@@ -20,10 +25,10 @@ public class Duke {
         System.out.println(Duke.line);
     }
 
-    private static void updateAndPrintTaskStatus(ArrayList<Task> list, int index, boolean isMark) {
+    private static void updateAndPrintTaskStatus(ArrayList<Task> taskList, int index, boolean isMark) {
         System.out.println(Duke.line);
         index = index - 1;
-        Task task = list.get(index);
+        Task task = taskList.get(index);
         if (isMark) {
             System.out.println("Nice! I've marked this task as done:");
             task.setTaskStatus(true);
@@ -31,7 +36,7 @@ public class Duke {
             System.out.println("OK, I've marked this task as not done yet:");
             task.setTaskStatus(false);
         }
-        list.set(index, task);
+        taskList.set(index, task);
         System.out.println(task.toString());
         System.out.println(Duke.line);
     }
@@ -45,13 +50,13 @@ public class Duke {
         System.out.println(Duke.line);
     }
 
-    private static void deleteAndPrintTask(ArrayList<Task> list, int index) {
+    private static void deleteAndPrintTask(ArrayList<Task> taskList, int index) {
         index = index - 1;
-        Task task = list.remove(index);
+        Task task = taskList.remove(index);
         System.out.println(Duke.line);
         System.out.println("Noted. I've removed this task:");
         System.out.println("\t" + task.toString());
-        System.out.println("Now you have " + list.size() + " tasks in the list.");
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
         System.out.println(Duke.line);
     }
 
@@ -130,6 +135,96 @@ public class Duke {
         return false;
     }
 
+    public static ArrayList<Task> readTaskListFromStorage(ArrayList<Task> taskList, String filePath) {
+        File file;
+        try {
+            file = new File(filePath);
+            if (file.isDirectory()) {
+                throw new DukeException("☹ OOPS!!! Invalid file path, path given is a directory");
+            }
+            if (file.exists()) {
+                try {
+                    Scanner scanner = new Scanner(file);
+                    while (scanner.hasNextLine()) {
+                        String nextLine = scanner.nextLine();
+                        String[] splitString = nextLine.split("\\|");
+
+                        Task task;
+                        switch (splitString[0]) {
+                            case "T":
+                                task = new Todo(splitString[2]);
+                                break;
+                            case "D": {
+                                task = new Deadline(splitString[2], splitString[3]);
+                                break;
+                            }
+                            case "E": {
+                                task = new Event(splitString[2], splitString[3]);
+                                break;
+                            }
+                            default:
+                                throw new DukeException("☹ OOPS!!! Invalid task type found in file!");
+                        }
+
+                        if ((splitString[1] == "1")) {
+                            task.setTaskStatus(true);
+                        } else {
+                            task.setTaskStatus(false);
+                        }
+
+                        taskList.add(task);
+                    }
+                } catch (FileNotFoundException fileNotFoundException) {
+                    throw new DukeException("☹ OOPS!!! File could not be found");
+                }
+            }
+        } catch (DukeException exception) {
+            printResponse(exception.toString());
+        } finally {
+            return taskList;
+        }
+    }
+
+    public static void writeTaskListToStorage(ArrayList<Task> taskList, String filePath) {
+        File file;
+        try {
+            file = new File(filePath);
+            if (file.isDirectory()) {
+                throw new DukeException("☹ OOPS!!! Invalid file path, path given is a directory");
+            }
+
+            if (!file.exists()) {
+                try {
+                    if (!file.getParentFile().mkdirs()) {
+                        throw new DukeException("☹ OOPS!!! Directory could not be created");
+                    }
+
+                    if (!file.createNewFile()) {
+                        throw new DukeException("☹ OOPS!!! File could not be created");
+                    }
+                } catch (IOException exception) {
+                    throw new DukeException("☹ OOPS!!! Something went wrong when trying to create file. Error message: "
+                            + exception.getMessage());
+                }
+            }
+
+            try {
+                FileWriter fileWriter = new FileWriter(file);
+                for (Task task : taskList) {
+                    //lineSeparator used to support multiple systems
+                    fileWriter.write(task.toFileString() + System.lineSeparator());
+                }
+                fileWriter.close();
+            } catch (IOException exception) {
+                throw new DukeException("☹ OOPS!!! Could not be written to file. Error message: "
+                        + exception.getMessage());
+            }
+
+        } catch (DukeException exception) {
+            printResponse(exception.toString());
+        }
+    }
+
     public static void main(String[] args) {
         Scanner scanner  = new Scanner(System.in);
 
@@ -137,7 +232,9 @@ public class Duke {
 
         String userInput;
 
-        ArrayList<Task> taskList = new ArrayList<Task>();
+        ArrayList<Task> taskList = new ArrayList<>();
+
+        taskList = readTaskListFromStorage(taskList, "data/duke.txt");
 
         printResponse(greetingMessage);
 
@@ -146,6 +243,7 @@ public class Duke {
             try {
                 Boolean exitCommand = processUserInput(userInput, taskList);
                 if (exitCommand) {
+                    writeTaskListToStorage(taskList, "data/duke.txt");
                     break;
                 }
             } catch (DukeException exception) {
