@@ -1,8 +1,10 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Ui {
   public void greet(){
-    System.out.print("Hello I'm Duke\nWhat can I do for you?\n");
+    System.out.print("Hello I'm duke.Duke\nWhat can I do for you?\n");
   }
   public void quit(){
     System.out.println("Bye. Hope to see you again soon!");
