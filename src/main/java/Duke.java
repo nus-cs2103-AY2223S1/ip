@@ -34,10 +34,27 @@ public class Duke {
                     list[i].markNotDone();
                     System.out.println("Task not done: " + list[i]);
                 }
-            } else {
-                list[items] = new Task(input);
+            } else if (input.startsWith("todo")) {
+                Task t = new Todo(input.substring(5));
+                list[items] = t;
                 items++;
-                System.out.println("added: " + input);
+                System.out.println("Added ToDo: " + t);
+            } else if (input.startsWith("deadline")) {
+                String[] str = input.split("/", 2);
+                String s1 = str[0].substring(9, str[0].length() - 1);
+                String s2 = str[1].substring(3);
+                Task t = new Deadline(s1, s2);
+                list[items] = t;
+                items++;
+                System.out.println("Added Deadline: " + t);
+            } else if (input.startsWith("event")) {
+                String[] str = input.split("/", 2);
+                String s1 = str[0].substring(6, str[0].length() - 1);
+                String s2 = str[1].substring(3);
+                Task t = new Event(s1, s2);
+                list[items] = t;
+                items++;
+                System.out.println("Added Event: " + t);
             }
             input = sc.nextLine();
         }
