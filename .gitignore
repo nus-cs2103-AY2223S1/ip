@@ -44,3 +44,8 @@ out/
 # Test suite temporary files
 text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+text-ui-test/data
+data
+
+# Kate
+.*.kate-swp
