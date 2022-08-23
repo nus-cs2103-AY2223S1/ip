@@ -83,6 +83,12 @@ public class TaskList {
         return filtered;
     }
 
+    public List<Task> search(String query) {
+        return this.tasks.stream()
+                .filter(task -> task.getName().contains(query))
+                .collect(Collectors.toList());
+    }
+
     public int getTaskNum(Task task) {
         int taskIndex = this.tasks.indexOf(task);
         return taskIndex == -1 ? -1 : taskIndex + 1;
