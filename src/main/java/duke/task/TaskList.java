@@ -1,5 +1,7 @@
 package duke.task;
+
 import java.util.ArrayList;
+
 import duke.helper.Ui;
 
 public class TaskList {
@@ -16,15 +18,21 @@ public class TaskList {
         this.taskList = new ArrayList<>();
     }
 
-    public void add(Task task) { taskList.add(task); }
+    public void add(Task task) {
+        taskList.add(task);
+    }
 
     public void delete(int index) {
         taskList.remove(index);
     }
 
-    public Task getTask(int index) { return taskList.get(index); }
+    public Task getTask(int index) {
+        return taskList.get(index);
+    }
 
-    public int getSize() { return taskList.size(); }
+    public int getSize() {
+        return taskList.size();
+    }
 
     public void clear() {
         taskList.clear();

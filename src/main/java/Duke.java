@@ -1,6 +1,8 @@
 import java.util.Scanner;
-import duke.task.*;
-import duke.helper.*;
+import duke.task.TaskList;
+import duke.helper.Storage;
+import duke.helper.Ui;
+import duke.helper.Parser;
 
 public class Duke {
     /**

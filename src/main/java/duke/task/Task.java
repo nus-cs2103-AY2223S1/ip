@@ -30,14 +30,19 @@ public class Task {
         return this.description;
     }
 
-    public String getSymbol() { return this.symbol; }
+    public String getSymbol() {
+        return this.symbol;
+    }
 
     public String getInfo() {
-        return (getSymbol() + "--" + getStatusIcon() + "--" + getDescription());
+        return (getSymbol() + "--"
+                + getStatusIcon() + "--"
+                        + getDescription());
     }
 
     @Override
     public String toString() {
-        return getStatusIcon() + " " + getDescription();
+        return getStatusIcon() + " "
+                + getDescription();
     }
 }

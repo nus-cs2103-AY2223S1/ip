@@ -11,16 +11,20 @@ public class Event extends Task {
         this.dateTime = dateTime;
     }
 
-    public String getDate() { return this.dateTime; }
+    public String getDate() {
+        return this.dateTime;
+    }
 
     @Override
     public String getInfo() {
-        return (super.getInfo() + "--" + getDate());
+        return (super.getInfo() + "--"
+                + getDate());
     }
 
     @Override
     public String toString() {
-        return SYMBOL + super.toString() + " (at: " + dateTime + ")";
+        return SYMBOL + super.toString()
+                + " (at: " + dateTime + ")";
     }
 }
 

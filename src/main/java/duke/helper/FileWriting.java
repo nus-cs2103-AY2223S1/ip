@@ -2,6 +2,7 @@ package duke.helper;
 
 import java.io.IOException;
 import java.io.FileWriter;
+
 import duke.task.TaskList;
 
 public class FileWriting {
@@ -13,9 +14,7 @@ public class FileWriting {
             FileWriter fw = new FileWriter(filePath);
             fw.write(list.getTasks());
             fw.close();
-        }
-
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

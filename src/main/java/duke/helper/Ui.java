@@ -1,5 +1,7 @@
 package duke.helper;
-import duke.task.*;
+
+import duke.task.Task;
+import duke.task.TaskList;
 
 public class Ui {
     /**
@@ -17,7 +19,8 @@ public class Ui {
     }
 
     public static void add(Task task) {
-        System.out.println("added: " + task.toString());
+        System.out.println("added: "
+                + task.toString());
     }
 
     public static void mark() {
@@ -34,7 +37,8 @@ public class Ui {
     }
 
     public static void countTasks(TaskList list) {
-        System.out.println("We now have " + list.getSize() + " tasks left.");
+        System.out.println("We now have "
+                + list.getSize() + " tasks left.");
     }
 
     public static void clear() {
