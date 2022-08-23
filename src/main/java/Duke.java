@@ -78,7 +78,7 @@ public class Duke {
                             + " index.");
         }
         this.taskList.markTask(index);
-        String msgBegin = "Nice! I've marked this task as done: \n ";
+        String msgBegin = "Nice! I've marked this task as done:\n ";
         String msg = msgBegin + this.taskList.getTaskToString(index).toString();
         prettyPrint(msg);
     }
@@ -96,7 +96,7 @@ public class Duke {
                             + "index.");
         }
         this.taskList.unmarkTask(index);
-        String msgBegin = "OK, I've marked this task as not done yet: \n ";
+        String msgBegin = "OK, I've marked this task as not done yet:\n ";
         String msg = msgBegin + this.taskList.getTaskToString(index).toString();
         prettyPrint(msg);
     }
