@@ -30,7 +30,7 @@ public class Storage {
     this.file = tasks;
   }
 
-  private Task decodeStringToTask(String string) {
+  private Task decodeStringToTask(String string) throws EkudException {
     String[] parts = string.split("\\|");
     Task task = null;
     switch (parts[0]) {
@@ -45,7 +45,6 @@ public class Storage {
         break;
     }
     if (parts[1].equals("1")) {
-      System.out.println("DONE");
       task.markAsDone();
     }
     return task;
@@ -74,6 +73,8 @@ public class Storage {
       reader.close();
     } catch (IOException exception) {
       System.out.printf("Error occured when writing to file: %s\n", exception.toString());
+    } catch (EkudException exception) {
+      System.out.println("There was an error in the date format on the file - Please don't edit the file yourself.");
     }
     return tasks;
   }

@@ -3,12 +3,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
-  private final String dueDateString;
   private final LocalDate dueDate;
 
   public Deadline(String description, String dueDateString) throws EkudException {
     super(description);
-    this.dueDateString = dueDateString;
     this.dueDate = this.getDateFromString(dueDateString);
   }
 
@@ -28,7 +26,7 @@ public class Deadline extends Task {
   @Override
   public String toFileFormat() {
     int isDone = this.getStatusIcon() == "X" ? 1 : 0;
-    return String.format("D|%d|%s|%s", isDone, this.getDescription(), this.dueDate);
+    return String.format("D|%d|%s|%s", isDone, this.getDescription(), this.dueDate.toString());
   }
   
   /**
