@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.ArrayList;
+
 /**
  * Parses given string to operate on.
  *
@@ -40,6 +42,9 @@ public class Parser {
             break;
         case "delete":
             deleteTask(s);
+            break;
+        case "find":
+            find(s);
             break;
         default:
             System.out.println("sorry, I don't understand you");
@@ -183,6 +188,32 @@ public class Parser {
             System.out.println("format: mark <number>");
         } catch (IndexOutOfBoundsException e) {
             System.out.println("enter a valid index");
+        }
+    }
+
+    protected void find(String s) {
+        try {
+            String toFind = s.substring(5);
+            ArrayList<Task> matchingTasks = new ArrayList<>();
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.get(i);
+                if (task.description.contains(toFind)) {
+                    matchingTasks.add(task);
+                }
+            }
+
+            if (matchingTasks.isEmpty()) {
+                System.out.println("\tyou have no matching tasks!");
+            } else {
+                int count = 1;
+                System.out.println("\there are your matching tasks:");
+                for (Task task : matchingTasks) {
+                    System.out.format("\t%d. %s\n", count, task);
+                    count++;
+                }
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("invalid format! try find item");
         }
     }
 }
