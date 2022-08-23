@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -55,26 +58,36 @@ public class Duke {
                         throw new EmptyTaskException();
                     }
                     String taskName = "";
-                    boolean hasBracket = false;
+                    String dateString = "";
+                    String timeString = "";
                     for (int i = 1; i < parts.length; i++) {
                         if (parts[i].charAt(0) != '/') {
                             taskName += " " + parts[i];
                         } else {
                             taskName += " (" + parts[i].substring(1) + ":";
-                            hasBracket = true;
+                            dateString = parts[i + 1];
+                            timeString = parts[i + 2];
+                            break;
                         }
                     }
-                    if (hasBracket) {
-                        taskName += ")";
+
+                    LocalDate date = null;
+                    if (!dateString.equals("")) {
+                        date = validateDateString(dateString);
                     }
 
-                    Task task = new Task("DummyTask");
+                    LocalTime time = null;
+                    if (!timeString.equals("")) {
+                        time = validateTimeString(timeString);
+                    }
+
+                    Task task = new Task("DummyTask", date, time);
                     if (command.equals("todo")) {
-                        task = new ToDo(taskName);
+                            task = new ToDo(taskName, date, time);
                     } else if (command.equals("deadline")) {
-                        task = new Deadline(taskName);
+                            task = new Deadline(taskName, date, time);
                     } else if (command.equals("event")) {
-                        task = new Event(taskName);
+                            task = new Event(taskName, date, time);
                     }
                     taskList.add(task);
                     System.out.println("Got it. I've added this task:\n" + task + "Now you have " + taskList.size() + " tasks in the list.\n");
@@ -82,6 +95,10 @@ public class Duke {
                 }
                 catch (EmptyTaskException ex){
                     System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
+                }
+                catch (DateTimeParseException ex) {
+                    System.out.println("Invalid date & time format. Please follow the format of date as \"YYYY-MM-DD\" and time as \"HHMM\".");
+
                 }
             }
 
@@ -125,13 +142,26 @@ public class Duke {
         System.out.println(GOODBYE_MESSAGE);
     }
 
+
     public static String getList() {
         String listOutput = "Here are the tasks in your list:\n";
         int index = 1;
         for (Task t : taskList) {
-            listOutput += index + "."+ t;
+            listOutput += index + "." + t;
             index++;
         }
         return listOutput;
+    }
+
+    public static LocalTime validateTimeString(String timeString) {
+        //desired date format "1800"
+        String validatedTimeString = timeString.substring(0,2) + ":" + timeString.substring(2,4) + ":" + "00";
+        LocalTime time = LocalTime.parse(validatedTimeString);
+        return time;
+    }
+
+    public static LocalDate validateDateString(String dateString) {
+        LocalDate date = LocalDate.parse(dateString);
+        return date;
     }
 }
