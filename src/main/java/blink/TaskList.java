@@ -187,4 +187,21 @@ public class TaskList {
         this.tasks.add(temp);
         return temp;
     }
+
+    /**
+     * Searches for all Tasks inside TaskList that contains the keyword specified.
+     *
+     * @param keyword Keyword to seach for in all Tasks in TaskList
+     * @return ArrayList of Tasks that contain the keyword
+     */
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> temp = new ArrayList<>();
+        for (int x = 0; x < this.length(); x++) {
+            Task task = this.get(x);
+            if (task.hasKeyword(keyword)) {
+                temp.add(task);
+            }
+        }
+        return temp;
+    }
 }

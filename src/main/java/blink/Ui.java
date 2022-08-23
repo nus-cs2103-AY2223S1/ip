@@ -132,4 +132,22 @@ public class Ui {
         System.out.println("Alright, this task has been successfully added!\n"
                 + task + "\nTotal of " + tasks.length() + " tasks now");
     }
+
+    /**
+     * Displays all the Tasks with the keyword specified in TaskList.
+     *
+     * @param tasks ArrayList containing all the tasks with specified keyword
+     * @param keyword Keyword to filter all the Tasks by
+     */
+    public void showFind(ArrayList<Task> tasks, String keyword) {
+        if (tasks.size() == 0) {
+            System.out.println("No tasks found with keyword: " + keyword);
+        } else {
+            System.out.println(tasks.size() + ((tasks.size() == 1)? " task": " tasks")
+                    + " found");
+            for (int x = 0; x < tasks.size(); x++) {
+                System.out.println(tasks.get(x));
+            }
+        }
+    }
 }

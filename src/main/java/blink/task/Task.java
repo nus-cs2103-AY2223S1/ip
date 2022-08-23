@@ -125,4 +125,22 @@ abstract public class Task {
      * @return True if dates are equal and false if not
      */
     public abstract boolean checkDate(LocalDate anoDate);
+
+    /**
+     * Finds Tasks with specified keyword in description or date if necessary.
+     *
+     * @param keyword Keyword to find Tasks
+     * @return True if keyword inside Tasks and false if not
+     */
+    public boolean hasKeyword(String keyword){
+        String[] allWords = this.toString().split(" ");
+        boolean isFound = false;
+        for (int x = 0; x < allWords.length; x++) {
+            if (allWords[x].toLowerCase().equals(keyword)) {
+                isFound = true;
+                break;
+            }
+        }
+        return isFound;
+    }
 }
