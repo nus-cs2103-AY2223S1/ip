@@ -51,11 +51,11 @@ public class Duke {
                 Boolean addTask = true;
                 Task newTask = null;
                 if (input.contains("deadline")) {
-                    String[] splitStr = input.trim().split("/");
+                    String[] splitStr = input.trim().split("/by");
                     String date = splitStr[1].replace("by", "").trim();
                     newTask = new Deadline(splitStr[0].replace("deadline", "").trim(), date);
                 } else if (input.contains("event")) {
-                    String[] splitStr = input.trim().split("/");
+                    String[] splitStr = input.trim().split("/at");
                     String date = splitStr[1].replace("at", "").trim();
                     newTask = new Event(splitStr[0].replace("event", "").trim(), date);
                 } else if (input.contains("todo")) {
