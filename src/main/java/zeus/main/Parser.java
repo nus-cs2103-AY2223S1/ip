@@ -2,15 +2,7 @@ package zeus.main;
 
 import java.time.LocalDate;
 
-import zeus.command.AddDeadlineCommand;
-import zeus.command.AddEventCommand;
-import zeus.command.AddTodoCommand;
-import zeus.command.Command;
-import zeus.command.DeleteCommand;
-import zeus.command.ExitCommand;
-import zeus.command.ListCommand;
-import zeus.command.TaskDoneCommand;
-import zeus.command.TaskNotDoneCommand;
+import zeus.command.*;
 import zeus.exception.ZeusException;
 
 
@@ -34,20 +26,20 @@ public class Parser {
         } else if (fullCommand.equals("list")) {
             return new ListCommand();
         } else if (fullCommand.startsWith("mark")) {
-            int taskNum = Integer.parseInt(fullCommand.replace("mark", "").trim());
+            int taskNum = Integer.parseInt(fullCommand.replaceFirst("mark", "").trim());
             return new TaskDoneCommand(taskNum - 1);
         } else if (fullCommand.startsWith("unmark")) {
-            int taskNum = Integer.parseInt(fullCommand.replace("unmark", "").trim());
+            int taskNum = Integer.parseInt(fullCommand.replaceFirst("unmark", "").trim());
             return new TaskNotDoneCommand(taskNum - 1);
         } else if (fullCommand.startsWith("todo")) {
-            String t = fullCommand.replace("todo", "").trim();
+            String t = fullCommand.replaceFirst("todo", "").trim();
             if (t.isEmpty()) {
                 throw new ZeusException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
             return new AddTodoCommand(t);
         } else if (fullCommand.startsWith("deadline")) {
             // sample input: deadline return book /by 2/12/2019 1800
-            String[] deadlineInfo = fullCommand.replace("deadline ", "").split(" /by ");
+            String[] deadlineInfo = fullCommand.replaceFirst("deadline ", "").split(" /by ");
             String dateAndTime = deadlineInfo[1];
             if (isSpecificDateFormat(dateAndTime)) {
                 LocalDate localDate = convertFormattedStringToDate(dateAndTime);
@@ -56,7 +48,7 @@ public class Parser {
                 return new AddDeadlineCommand(deadlineInfo[0], dateAndTime);
             }
         } else if (fullCommand.startsWith("event")) {
-            String[] eventInfo = fullCommand.replace("event ", "").split(" /at ");
+            String[] eventInfo = fullCommand.replaceFirst("event ", "").split(" /at ");
             String dateAndTime = eventInfo[1];
             if (isSpecificDateFormat(dateAndTime)) {
                 LocalDate ld = convertFormattedStringToDate(dateAndTime);
@@ -65,8 +57,11 @@ public class Parser {
                 return new AddEventCommand(eventInfo[0], eventInfo[1]);
             }
         } else if (fullCommand.startsWith("delete")) {
-            int deleteIdx = Integer.parseInt(fullCommand.replace("delete", "").trim());
+            int deleteIdx = Integer.parseInt(fullCommand.replaceFirst("delete", "").trim());
             return new DeleteCommand(deleteIdx - 1);
+        } else if (fullCommand.startsWith("find")) {
+            String s = fullCommand.replaceFirst("find", "").trim();
+            return new FindCommand(s);
         } else {
             throw new ZeusException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

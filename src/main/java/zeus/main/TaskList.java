@@ -84,4 +84,20 @@ public class TaskList {
     public void setTaskNotDone(int idx) {
         this.taskList.get(idx).markAsNotDone();
     }
+
+    /**
+     * Returns list of Tasks that match user's search input
+     *
+     * @param s User search input
+     * @return ArrayList of matching tasks
+     */
+    public ArrayList<Task> find(String s) {
+        ArrayList<Task> matching = new ArrayList<>();
+        for (Task t : this.taskList) {
+            if (t.getDescription().contains(s)) {
+                matching.add(t);
+            }
+        }
+        return matching;
+    }
 }
