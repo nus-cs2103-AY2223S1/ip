@@ -1,7 +1,9 @@
 package duke;
 
 import java.io.IOException;
+
 import java.time.format.DateTimeParseException;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -30,6 +32,4 @@ public class Ui {
 			}
 		}
 	}
-
-
 }

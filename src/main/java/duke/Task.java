@@ -37,5 +37,4 @@ package duke;
                 + this.getDescription();
     }
 
-    //...
 }

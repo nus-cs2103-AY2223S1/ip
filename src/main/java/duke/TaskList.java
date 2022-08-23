@@ -8,6 +8,10 @@ public class TaskList {
 	private static Pattern checkString = Pattern.compile("-?\\d+");
 	private static ArrayList<Task> list = new ArrayList<Task>();
 
+	public TaskList() {
+		this.list = new ArrayList<>();
+	}
+
 	private static boolean isInteger(String strNum) {
 		if (strNum == null) {
 			return false;
@@ -15,11 +19,7 @@ public class TaskList {
 		return checkString.matcher(strNum).matches();
 	}
 
-	public TaskList() {
-		this.list = new ArrayList<>();
-	}
-
-	public void addStorageToList (Task task) {
+	public void addStorageToList(Task task) {
 		this.list.add(task);
 	}
 
@@ -73,7 +73,7 @@ public class TaskList {
 			if (isInteger(part2)) {
 				int number = Integer.parseInt(part2);
 				/** To check if the integer is valid */
-				if(this.list.size() < number || number <= 0) {
+				if (this.list.size() < number || number <= 0) {
 					throw new DukeException("There's no such task to mark!");
 				} else {
 					markString(this.list.get(number - 1));
@@ -84,14 +84,14 @@ public class TaskList {
 			break;
 		case UNMARK:
 			/** when there is no number declared */
-			if(parts.length <= 1) {
+			if (parts.length <= 1) {
 				throw new DukeException("Please tell me what to unmark!");
 			}
 			part2 = parts[1];
 			if (isInteger(part2)) {
 				int number = Integer.parseInt(part2);
 				/** To check if the integer is valid */
-				if(this.list.size() < number || number <= 0) {
+				if (this.list.size() < number || number <= 0) {
 					throw new DukeException("There's no such task to unmark!");
 				} else {
 					unMarkString(this.list.get(number - 1));

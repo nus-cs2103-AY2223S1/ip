@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.Scanner;
 
 public class Storage {
@@ -29,7 +30,7 @@ public class Storage {
 	}
 
 	public String fileFormatString(Task task) {
-		boolean temp = task.getStatusIcon().equals("X") ? true : false;
+		boolean temp = task.getStatusIcon().equals("X");
 		if (task instanceof DeadlineTask) {
 			DeadlineTask deadlineTask = (DeadlineTask) task;
 			return "D | " + temp + " | "
@@ -56,7 +57,7 @@ public class Storage {
 					throw new DukeException("Incorrect information for deadline from input or file");
 				}
 				DeadlineTask deadlineTask = new DeadlineTask(keywords[2], keywords[3]);
-				if(keywords[1].equals("X")) {
+				if (keywords[1].equals("X")) {
 					deadlineTask.mark();
 				} else {
 					deadlineTask.unMark();
@@ -68,7 +69,7 @@ public class Storage {
 					throw new DukeException("Incorrect information for event from input or file");
 				}
 				EventTask eventTask = new EventTask(keywords[2], keywords[3]);
-				if(Boolean.parseBoolean(keywords[1])) {
+				if (keywords[1].equals("X")) {
 					eventTask.mark();
 				} else {
 					eventTask.unMark();
@@ -80,7 +81,7 @@ public class Storage {
 					throw new DukeException("Incorrect information for todo class from. input or file");
 				}
 				TodoTask todoTask = new TodoTask(keywords[2]);
-				if(Boolean.parseBoolean(keywords[1])) {
+				if (keywords[1].equals("X")) {
 					todoTask.mark();
 				} else {
 					todoTask.unMark();
