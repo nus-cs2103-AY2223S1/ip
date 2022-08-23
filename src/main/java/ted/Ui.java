@@ -45,7 +45,7 @@ public class Ui {
     }
 
     public void showTaskLoadSuccess(int tasksCount) {
-        outputLine(String.format("Loaded %d tasks from saved file.\n", tasksCount));
+        outputLine(String.format("Loaded %d tasks from saved file.", tasksCount));
     }
 
     public void showTaskLoadError() {
