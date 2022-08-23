@@ -9,12 +9,7 @@ public class Duke {
      * Prints a welcome message upon starting the bot.
      */
     public void greet() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        System.out.println("Hello from Duke!\n");
     }
 
     /**
@@ -102,7 +97,7 @@ public class Duke {
         Todo task = new Todo(s);
         db.add(task);
 
-        System.out.println("Got it. I added this task: ");
+        System.out.println("Got it. I added this task:");
         System.out.println("\t" + task);
         System.out.printf("Now you have %d tasks in the list.%n", db.size());
         return 1;
@@ -118,7 +113,7 @@ public class Duke {
         Event task = new Event(tmp[0].strip(), tmp[1].strip());
         db.add(task);
 
-        System.out.println("Got it. I added this event: ");
+        System.out.println("Got it. I added this event:");
         System.out.println("\t" + task);
         System.out.printf("Now you have %d tasks in the list.%n", db.size());
         return 1;
@@ -134,7 +129,7 @@ public class Duke {
         Deadline task = new Deadline(tmp[0].strip(), tmp[1].strip());
         db.add(task);
 
-        System.out.println("Got it. I added this deadline: ");
+        System.out.println("Got it. I added this deadline:");
         System.out.println("\t" + task);
         System.out.printf("Now you have %d tasks in the list.%n", db.size());
         return 1;
