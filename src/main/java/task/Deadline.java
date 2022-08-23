@@ -1,7 +1,16 @@
 package task;
 
+/**
+ * Class representing a Deadline task
+ */
 public class Deadline extends Task {
-    String by;
+    private String by;
+
+    /**
+     * Creates new Deadline task
+     * @param description Description for the deadline
+     * @param by When to finish the task by
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;

@@ -1,20 +1,23 @@
 package task;
 
-import exceptions.DukeException;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import exceptions.DukeException;
+
+
 
 /**
  * Manages state for Tasks and exposes methods for CRUD. Injected into Commands that require usage.
  */
 public class TaskModel {
-    List<Task> tasks;
+    private List<Task> tasks;
     public TaskModel() {
         this.tasks = new ArrayList<>();
     }
 
-    /** Creates and adds a new Task, then returns the newly added Task.
+    /**
+     * Creates and adds a new Task, then returns the newly added Task.
      * @param description
      * @return The task created
      */
@@ -24,12 +27,24 @@ public class TaskModel {
         return new TaskResponse(newTask, tasks.size());
     }
 
+    /**
+     * Adds a new Deadline task
+     * @param description Description for deadline
+     * @param by When to finish deadline by
+     * @return TaskResponse object with newly added deadline task
+     */
     public TaskResponse addDeadline(String description, String by) {
         Task deadline = new Deadline(description, by);
         tasks.add(deadline);
         return new TaskResponse(deadline, tasks.size());
     }
 
+    /**
+     * Adds a new Event task
+     * @param description Description for event
+     * @param at When the event is at
+     * @return TaskResponse with newly added event task
+     */
     public TaskResponse addEvent(String description, String at) {
         Task event = new Event(description, at);
         tasks.add(event);
@@ -45,6 +60,12 @@ public class TaskModel {
         }
     }
 
+    /**
+     * Mark the specified task and return the marked task, or throw error
+     * @param taskId Task id representing number in task list
+     * @return The task that was marked
+     * @throws DukeException - if taskId was invalid
+     */
     // taskId from 1-length
     public Task markTask(Integer taskId) throws DukeException {
         Task task = getTask(taskId);
@@ -52,12 +73,23 @@ public class TaskModel {
         return task;
     }
 
+    /**
+     * Unmark the specified task and return the unmarked task, or throw error
+     * @param taskId Task id representing number in task list
+     * @return The task that was unmarked
+     * @throws DukeException - if taskId was invalid
+     */
     public Task unmarkTask(Integer taskId) throws DukeException {
         Task task = getTask(taskId);
         task.unmark();
         return task;
     }
 
+    /**
+     * @param taskId Task id representing number in task list
+     * @return TaskResponse with Task that was deleted
+     * @throws DukeException - if taskId was invalid
+     */
     public TaskResponse deleteTask(Integer taskId) throws DukeException {
         Task task = getTask(taskId);
         tasks.remove(taskId - 1);

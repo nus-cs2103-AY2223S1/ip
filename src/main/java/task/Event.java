@@ -1,8 +1,15 @@
 package task;
 
+/**
+ * Class for an Event task
+ */
 public class Event extends Task {
-    String at;
+    private String at;
 
+    /**
+     * @param description - Description of the task
+     * @param at - When the event is at
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;
