@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private String name;
     private boolean done;
 
@@ -13,6 +13,14 @@ public class Task {
 
     public boolean isDone() {
         return this.done;
+    }
+
+    public String stringify() {
+        if (this.done) {
+            return "Y##" + this.name;
+        } else {
+            return "N##" + this.name;
+        }
     }
 
     @Override
