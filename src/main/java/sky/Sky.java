@@ -5,6 +5,9 @@ import sky.exception.TextNoMeaningException;
 
 import java.util.Scanner;
 
+/**
+ * The Sky class is the entry point for the Sky chatbot and deals with the main logic behind its operations.
+ */
 public class Sky {
     private TaskList taskList;
     private Ui ui;
@@ -20,6 +23,9 @@ public class Sky {
         }
     }
 
+    /**
+     * Runs the program and awaits user input.
+     */
     public void run() {
         this.ui.greetUser();
         boolean isExit = false;
@@ -40,6 +46,7 @@ public class Sky {
         }
 
     }
+
     public static void main(String[] args) {
         new Sky("data/sky.txt").run();
     }
