@@ -3,6 +3,9 @@ package duke.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The Event class encapsulates an event.
+ */
 public class Event extends Task{
     private LocalDateTime time;
 
@@ -11,6 +14,10 @@ public class Event extends Task{
         this.time = time;
     }
 
+    /**
+     * Returns string representation of the type and isDone attributes of an Event object.
+     * @return String representation of the status of an Event object.
+     */
     @Override
     public String getStatus() {
         if(this.isDone) {
@@ -19,6 +26,11 @@ public class Event extends Task{
             return "[E][ ]";
         }
     }
+
+    /**
+     * Returns string representation of an Event object.
+     * @return String representation of an Event object.
+     */
     @Override
     public String toString() {
         return this.getStatus() + " " + this.description + " (at: " +

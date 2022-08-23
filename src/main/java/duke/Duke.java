@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import duke.commands.*;
 
+/**
+ * The Duke class encapsulates a chatbot that helps users to keep track of their tasks.
+ */
 public class Duke {
     private static final String pathName = "text/tasks.txt";
     private Storage storage;

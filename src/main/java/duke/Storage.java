@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.Scanner;
 import duke.tasks.*;
 
+/**
+ * The Storage class encapsulates the loading of tasks from a hard disk and saving to of tasks to a hard disk.
+ */
 public class Storage {
     private String filePath;
 
@@ -14,6 +17,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Retrieves tasks from the hard disk and stores them in a list.
+     * @param taskList List where tasks are to be loaded to.
+     * @throws FileNotFoundException
+     */
     public void loadTasks(TaskList taskList) throws FileNotFoundException {
         File f = new File(this.filePath);
         Scanner sc = new Scanner(f);
@@ -23,6 +31,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves tasks to the hard disk.
+     * @param taskList List from which tasks are to be saved to the hard disk.
+     * @throws IOException
+     */
     public void saveTasks(TaskList taskList) throws IOException {
         int length = taskList.length();
         FileWriter fw = new FileWriter(this.filePath);

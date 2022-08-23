@@ -5,11 +5,21 @@ import duke.TaskList;
 import duke.DukeException;
 import duke.Ui;
 import duke.Storage;
-import duke.tasks.*;
 
+/**
+ * The ListCommand class encapsulates the execution of a list command.
+ */
 public class ListCommand extends Command{
     public ListCommand() {}
 
+    /**
+     * Executes the list command.
+     * @param taskList List from which all the tasks in it are to be listed.
+     * @param ui Ui which sends a message to the user after a successful execution or when an error is thrown.
+     * @param storage Storage
+     * @throws DukeException
+     * @throws IOException
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         String message = "";
