@@ -19,9 +19,19 @@ public class Event extends Task{
         );
     }
 
+
     public Event(String name, String dateAndTime, boolean isDone) {
         super(name, isDone);
-        this.dateAndTime = dateAndTime;
+        String[] dateAndTimeSplit = dateAndTime.split(" ");
+        String[] dateSplit = dateAndTimeSplit[0].split("[,./-]");
+
+        this.dateAndTime = LocalDateTime.of(
+                Integer.parseInt(dateSplit[0]),
+                Integer.parseInt(dateSplit[1]),
+                Integer.parseInt(dateSplit[2]),
+                Integer.parseInt(dateAndTimeSplit[1]) / 100,
+                Integer.parseInt(dateAndTimeSplit[1]) % 100
+        );
     }
 
     public String tag() {
@@ -39,6 +49,6 @@ public class Event extends Task{
 
     @Override
     public String savedString() {
-        return String.format("%s,%s,%s", tag(), super.savedString(), this.dateAndTime);
+        return String.format("%s,%s,%s", tag(), super.savedString(), this.getDateString());
     }
 }
