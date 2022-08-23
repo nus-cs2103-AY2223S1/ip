@@ -5,6 +5,8 @@ import duke.exception.IncompleteInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
 
+import java.time.LocalDate;
+
 public class RequestHandler {
     private enum CommandType {
         LIST, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, BYE
@@ -52,18 +54,22 @@ public class RequestHandler {
                 }
                 case TODO:
                     return new TodoCommand(furtherSplit);
-                case DEADLINE:
+                case DEADLINE: {
                     String[] deadlineInput = furtherSplit.split("/by", 2);
                     if (deadlineInput.length <= 1) {
                         throw new IncompleteInputException("Please key in deadline description (/by) time ");
                     }
-                    return new DeadlineCommand(deadlineInput[0], deadlineInput[1]);
-                case EVENT:
+                    String dateToParse = deadlineInput[1].trim();
+                    return new DeadlineCommand(deadlineInput[0], LocalDate.parse(dateToParse));
+                }
+                case EVENT: {
                     String[] eventInput = furtherSplit.split("/at", 2);
                     if (eventInput.length <= 1) {
                         throw new IncompleteInputException("Please key in event description (/at) time ");
                     }
-                    return new EventCommand(eventInput[0], eventInput[1]);
+                    String dateToParse = eventInput[1].trim();
+                    return new EventCommand(eventInput[0], LocalDate.parse(dateToParse));
+                }
                 case DELETE: {
                     int itemNumber = Integer.parseInt(furtherSplit);
                     return new DeleteCommand(itemNumber);

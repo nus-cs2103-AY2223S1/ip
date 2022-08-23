@@ -5,6 +5,8 @@ import duke.exception.IncompleteInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidInputException;
 import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
+
 public class Duke {
     private final Storage storage;
     private TaskList tasks;
@@ -37,7 +39,10 @@ public class Duke {
                 ui.printAnyOtherMessage(e.getMessage());
             } catch (InvalidCommandException e) {
                 ui.printAnyOtherMessage(e.getMessage());
-            } finally {
+            } catch (DateTimeParseException e) {
+                ui.printAnyOtherMessage("Please key in a valid date (yyyy-mm-dd)");
+            }
+            finally {
                 ui.printHorizontalLine();
             }
         }
