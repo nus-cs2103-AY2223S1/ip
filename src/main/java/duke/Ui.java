@@ -5,7 +5,14 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Ui {
-    private static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
+    public static final String GREETING = "Hello! I'm Duke\nWhat can I do for you?";
+    public static final String INSTRUCTIONS = "To see all tasks type list\nTo add a todo, type todo <taskname>\n"
+            + "To add a deadline, type deadline <description> /by <datetime string>"
+            + "\nTo add an event, type event <description> /at <datetime string>"
+            + "\nTo mark a task as done, type mark <task number>"
+            + "\nTo mark a task as undone, type unmark <task number>"
+            + "\nTo delete a task, type delete <task number>"
+            + "\nTo search for task descriptions, type search <query>";
     private final Scanner scanner;
     private final PrintStream out;
 
