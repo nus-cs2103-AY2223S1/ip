@@ -19,7 +19,7 @@ public class Task {
     /**
      * Constructor for Task.
      *
-     * @param description Description of the task.
+     * @param description Description of the Task.
      * @param type Type of the Task.
      */
     public Task(String description, String type) {
@@ -68,7 +68,7 @@ public class Task {
     /**
      * Gets type of the Task.
      *
-     * @return Type of Task (Deadline, Event, Todo)
+     * @return Type of Task (Deadline, Event, Todo).
      */
     public String getType() {
         return this.type;
@@ -77,7 +77,7 @@ public class Task {
     /**
      * Gets date of Task.
      *
-     * @return Date of task.
+     * @return Date of Task.
      */
     public String getDate() {
         return "Not Applicable";
@@ -107,7 +107,7 @@ public class Task {
     }
 
     /**
-     * Returns the string representation of a task.
+     * Returns the string representation of a Task.
      *
      * @return String representation of a Task.
      */

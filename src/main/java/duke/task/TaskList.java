@@ -4,6 +4,7 @@ import java.util.List;
 
 import duke.Ui;
 import duke.exception.DukeOutOfBoundException;
+
 /**
  * A TaskList class that stores the list of Tasks.
  *
@@ -31,7 +32,7 @@ public class TaskList {
     /**
      * Adds task into TaskList.
      *
-     * @param task task to be added.
+     * @param task Task to be added.
      */
     public void add(Task task) {
         taskList.add(task);
@@ -56,7 +57,7 @@ public class TaskList {
     /**
      * Marks Task as complete.
      *
-     * @param index Index of task to be marked as complete
+     * @param index Index of task to be marked as complete.
      * @throws DukeOutOfBoundException Exception thrown when index is out of size of TaskList.
      */
     public void mark(int index) throws DukeOutOfBoundException {
@@ -84,7 +85,7 @@ public class TaskList {
     }
 
     /**
-     * Getter for TaskList.
+     * Gets TaskList.
      *
      * @return The TaskList.
      */

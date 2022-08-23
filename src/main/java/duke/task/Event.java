@@ -14,7 +14,7 @@ import duke.exception.DukeInvalidTimeException;
  * @author Tan Jia Rong
  */
 public class Event extends Task {
-    /** Stores the timing of the event */
+    /** Stores the timing of the Event */
     protected String at;
     protected String dateTime;
 
@@ -44,10 +44,10 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the Date and Time of Duke.Task.Task
+     * Returns the Date and Time of Event.
      *
-     * @return Date and Time of Duke.Task.Task
-     * @throws DukeInvalidTimeException Exception when input time is not of valid Format
+     * @return Date and Time of Event.
+     * @throws DukeInvalidTimeException Exception when input time is not of valid Format.
      */
     public String getDateTime() throws DukeInvalidTimeException {
         String dateStr;
