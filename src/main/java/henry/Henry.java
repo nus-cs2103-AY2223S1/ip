@@ -48,7 +48,6 @@ public class Henry {
             command.setData(taskList);
             CommandResult result = command.execute();
             if (result.getTaskList().isPresent()) {
-                System.out.println("this happened");
                 storage.appendToFile(result.getTaskList().get().toSimpleString());
             }
             return result;

@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -68,7 +67,6 @@ public class Storage {
                 break;
             default:
                 type = Commands.EVENT;
-                System.out.println(Arrays.toString(tokens));
                 isComplete = tokens[1].trim().equals("1");
                 description = tokens[2].trim();
                 cleaned = tokens[3].replace("(at:", "").replace(")", "").trim();
