@@ -1,3 +1,7 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.Temporal;
 import java.util.Scanner;
 
 public class Duke {
@@ -25,7 +29,7 @@ public class Duke {
 
     /**
      * Adds a new task to the task list and prints a confirmation message.
-     * 
+     *
      * @param task Task to be added.
      */
     public void addTask(Task task) {
@@ -41,7 +45,7 @@ public class Duke {
 
     /**
      * Delete a task and prints a confirmation message.
-     * 
+     *
      * @param index Index of the task as printed by viewAllTask.
      */
     public void deleteTask(int index) throws DukeException {
@@ -64,7 +68,7 @@ public class Duke {
     /**
      * Mark the task with the input index as done and prints a confirmation
      * message.
-     * 
+     *
      * @param index Index of the task as printed by viewAllTask.
      */
     public void markTask(int index) throws DukeException {
@@ -82,7 +86,7 @@ public class Duke {
     /**
      * Mark the task with the input index as not done and prints a confirmation
      * message.
-     * 
+     *
      * @param index Index of the task as printed by viewAllTask.
      */
     public void unmarkTask(int index) throws DukeException {
@@ -115,7 +119,7 @@ public class Duke {
     /**
      * Prints the given message with appropriate indentations and horizontal
      * lines.
-     * 
+     *
      * @param msg Message to be printed.
      */
     private static void prettyPrint(String msg) {
@@ -134,9 +138,58 @@ public class Duke {
     }
 
     /**
+     * Creates and returns LocalDate objects by parsing user's input for date.
+     * User input date should follow the format (yyyy-mm-dd HH:MM), in 24 hour time format.
+     * The date can have a delimiter of a character from "-/|" (characters within the double quotes).
+     * The time can have a delimiter of a character from ":.-|" (characters within the double quotes).
+     * The date and time must be separated by a single whitespace.
+     *
+     * @param dateText User's input of date and time following the format specified.
+     * @return LocalDateTime
+     */
+    public static LocalDateTime parseDateTime(String dateText) throws DukeException {
+        DukeException WRONG_FORMAT = new DukeException("Date and time is in the wrong format! "
+                + "Correct format: yyyy-mm-dd HH:MM");
+        DukeException CANNOT_PARSE = new DukeException("Date and time may have invalid values!");
+        String[] dateTextTokens = dateText.split(" ");
+        if (dateTextTokens.length != 2) {
+            throw WRONG_FORMAT;
+        }
+
+        String unparsedDate = dateTextTokens[0];
+        String[] dateTokens = unparsedDate.split("[-/|]");
+        if (dateTokens.length != 3) {
+            throw WRONG_FORMAT;
+        }
+        if (dateTokens[0].length() != 4 || dateTokens[1].length() != 2 || dateTokens[2].length() != 2) {
+            throw WRONG_FORMAT;
+        }
+        String parsedDate = String.join("-", dateTokens);
+
+        String unparsedTime = dateTextTokens[1];
+        String[] timeTokens = unparsedTime.split("[-:.|]");
+
+        if (timeTokens.length != 2) {
+            throw WRONG_FORMAT;
+        }
+        if (timeTokens[0].length() != 2 || timeTokens[1].length() != 2) {
+            throw WRONG_FORMAT;
+        }
+        String parsedTime = String.join(":", timeTokens);
+
+
+        String parsedDateTime = parsedDate + "T" + parsedTime;
+        try {
+            return LocalDateTime.parse(parsedDateTime);
+        } catch (DateTimeParseException e) {
+            throw CANNOT_PARSE;
+        }
+    }
+
+    /**
      * Runs the given command. Arguments of the command are given by
      * inputTokens, where the first argument is always the command as a string.
-     * 
+     *
      * @param cmd       User command, based on the first argument.
      * @param argTokens Arguments from the command line.
      * @throws DukeException If the provided arguments are invalid for the
@@ -214,7 +267,7 @@ public class Duke {
                                 + "<date>'!");
             }
             String deadlineTitle = deadlineTokens[0].trim();
-            String by = deadlineTokens[1].trim();
+            LocalDateTime by = parseDateTime(deadlineTokens[1].trim());
             Deadline newDeadline = new Deadline(deadlineTitle, false, by);
             this.addTask(newDeadline);
             break;
@@ -231,7 +284,7 @@ public class Duke {
                                 + " <date>'!");
             }
             String eventTitle = eventTokens[0].trim();
-            String at = eventTokens[1].trim();
+            LocalDateTime at = parseDateTime(eventTokens[1].trim());
             Event newEvent = new Event(eventTitle, false, at);
             this.addTask(newEvent);
             break;
