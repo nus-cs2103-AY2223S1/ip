@@ -26,6 +26,8 @@ public class Parser {
         } else if (userInput.matches("delete \\d+")) {
             int taskNumber = Integer.parseInt(userInput.substring(7));
             return new DeleteTaskCommand(taskNumber);
+        } else if (userInput.matches("find .+")) {
+            return new FindTaskCommand(userInput.substring(5));
         } else if (userInput.matches("((?i)^(todo)(.*))|((?i)^(deadline)(.*))|((?i)^(event)(.*))")) {
             return new AddTaskCommand(userInput);
         } else if (userInput.equals("bye")) {
