@@ -11,6 +11,7 @@ import duke.command.AddTodoCommand;
 import duke.command.Command;
 import duke.command.DeleteTaskCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkTaskCommand;
 import duke.command.UnmarkTaskCommand;
@@ -49,6 +50,8 @@ public class Parser {
             return Parser.prepareEvent(arguments);
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommand(Parser.parseTaskIndex(arguments));
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:

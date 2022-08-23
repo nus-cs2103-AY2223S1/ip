@@ -44,6 +44,16 @@ public class TaskList {
         this.getTask(taskIndex).markAsNotDone();
     }
 
+    public List<Integer> search(String keyword) {
+        ArrayList<Integer> matches = new ArrayList<>();
+        for (int i = 1; i <= this.size(); i++) {
+            if (this.getTask(i).toString().contains(keyword)) {
+                matches.add(i);
+            }
+        }
+        return matches;
+    }
+
     public Task getTask(int i) {
         Task t;
         try {
