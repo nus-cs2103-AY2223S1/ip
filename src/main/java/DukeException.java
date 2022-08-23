@@ -15,10 +15,6 @@ public class DukeException extends Exception{
         return new DukeException(EMPTY_INPUT);
     }
 
-    public static DukeException DukeEmptyNameException() {
-        return new DukeException(EMPTY_NAME);
-    }
-
     public static DukeException DukeUnknownCommandException() {
         return new DukeException(UNKNOWN_COMMAND);
     }

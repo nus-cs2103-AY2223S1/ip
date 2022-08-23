@@ -1,20 +1,22 @@
-todo make omelette
-todo     make     dough
+todo push rank
+todo     shower     dog
 todo
-deadline make salad /by 3pm
-deadline     make     butter /by 3pm
-deadline make toast     /by    8pm
+deadline do ip /by 2020-01-01 06:00
+deadline     do     tp /by 5 Jan 2032 15:00
+deadline submit quiz     /by    4 July 2005 00:00
 deadline
 deadline commit crime
 deadline shoplift /by
-deadline rob houses /at now
-event make hash brown /at 3pm
-event     make     fries /at 1pm
-event make nuggets     /at    10am
+deadline shoplift /by now
+deadline rob houses /at this noon
+event make hash brown /at 1-5-2001 00:05
+event     make     fries /at 4 Aug 2069 24:00
+event make nuggets     /at    2005 Sep 02 22:22
 event
 event play Valorant
 event play Mobile Legends /at
-event push rank /by idk
+event play Bakso Simulator /at 13:05
+event play COC /by 2004 Feb 02 00:05
 list
 list me pls
 mark 1
@@ -36,8 +38,6 @@ delete 3 friends
 delete 69
 list
 
+        
 bye bye
 bye
-
-
-

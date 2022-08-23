@@ -26,6 +26,7 @@ public class Event extends Task {
     public String getTime() {
         return this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
+
     public String getType() {
         return "E";
     }

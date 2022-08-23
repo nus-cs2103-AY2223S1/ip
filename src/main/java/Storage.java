@@ -2,29 +2,27 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+
 import java.util.Scanner;
 
-public class DukeFile {
+public class Storage {
 
     protected final String filePath;
     protected final Parser parser;
-    protected static final String BORDER = "____________________________________________________________";
 
-    DukeFile(String fileDirectoryString, String fileName) {
+    Storage(String fileDirectoryString, String fileName) {
         this.parser = new Parser();
         File fileDirectory = new File(fileDirectoryString);
         if (!fileDirectory.exists()) {
             fileDirectory.mkdir();
         }
-
         this.filePath = fileDirectoryString + fileName;
         File file = new File(this.filePath);
-
         if (!file.exists()) {
             try {
                 file.createNewFile();
             } catch (IOException e) {
-                System.out.println(e);
+                System.out.println(e.getMessage());
             }
         }
     }
@@ -58,9 +56,8 @@ public class DukeFile {
                 taskList.addTask(createTask(line));
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
-
         return taskList;
     }
 
@@ -71,14 +68,12 @@ public class DukeFile {
             String line = task.toFileString();
             text = String.format("%s%s\n", text, line);
         }
-
         try {
             FileWriter fw = new FileWriter(this.filePath);
             fw.write(text);
             fw.close();
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.getMessage());
         }
-
     }
 }
