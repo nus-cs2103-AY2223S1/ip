@@ -1,6 +1,18 @@
 package duke;
 
+/**
+ * A class that parse the user input into the respective commands.
+ */
 public class Parser {
+
+    /**
+     * Returns the type of command that is given by the user.
+     * <p>
+     * The function reads the first word of the input and will return the respective command types.
+     *
+     * @param userText the text inputted by the user
+     * @return the type of command given by the user
+     */
     public static CommandType parse(String userText) {
         String commandWord = userText.split(" ", 2)[0];
 
