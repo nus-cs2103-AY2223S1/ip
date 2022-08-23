@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
 public class Events extends Task {
     private final LocalDateTime timing;
 
-    public Events (String task, String timing, boolean done) throws DukeException {
-        super(task, done);
+    public Events (String task, String timing, boolean isDone) throws DukeException {
+        super(task, isDone);
         this.timing = ConvertDateTime(timing);
     }
 

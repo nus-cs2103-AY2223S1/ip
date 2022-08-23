@@ -8,8 +8,8 @@ import java.time.format.DateTimeFormatter;
 public class Deadlines extends Task {
     private final LocalDateTime deadline;
 
-    public Deadlines(String task, String deadline, boolean done) throws DukeException {
-        super(task, done);
+    public Deadlines(String task, String deadline, boolean isDone) throws DukeException {
+        super(task, isDone);
         this.deadline = ConvertDateTime(deadline);
     }
 
