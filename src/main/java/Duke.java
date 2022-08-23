@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Duke {
@@ -69,162 +70,145 @@ public class Duke {
                 toBePrinted = toBePrinted.concat("🙁 OOPS!!! I'm sorry, but I don't know what that means :-(\n");
             }
 
-            switch(commandWord) {
-            case mark:
-                int markI;
-                try {
-                    markI = Integer.parseInt(commandArr[1]);
-                } catch (NumberFormatException e) {     // if second word not integer
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a number to mark a task.\n");
-                    break;
-                }
-                if (markI >= 1 && markI <= tasks.size()) {   // ensure i given is within range
-                    tasks.get(markI - 1).mark();
-                    commands.set(markI - 1, commands.get(markI - 1).strip().concat(" /done"));
-                } else {
-                    toBePrinted = toBePrinted.concat(
-                        String.format(
-                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to mark a task.\n", tasks.size()
-                        )
-                    );
-                }
-                break;
-            case unmark:
-                int unmarkI;
-                try {
-                    unmarkI = Integer.parseInt(commandArr[1]);
-                } catch (NumberFormatException e) {     // if second word not integer
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a number to unmark a task.\n");
-                    break;
-                }
-                if (unmarkI >= 1 && unmarkI <= tasks.size()) {   // ensure i given is within range
-                    tasks.get(unmarkI - 1).unmark();
-                    commands.set(unmarkI - 1, commands.get(unmarkI - 1).replace("/done", "").strip());
-                } else {
-                    toBePrinted = toBePrinted.concat(
-                        String.format(
-                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to unmark a task.\n", tasks.size()
-                        )
-                    );
-                }
-                break;
-            case todo:
-                boolean todoIsDone = command.contains("/done");
-                if (todoIsDone) {
-                    command = command.replace("/done", "");
-                }
-                String todoText = command.replaceFirst("todo", "").strip();
-                if (todoText.isEmpty()) {
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! The description of a todo cannot be empty.\n");
-                } else {
-                    tasks.add(new Todo(todoIsDone, todoText, isPrinting));
-                    commands.add(command);
-                    toBePrinted = toBePrinted.concat(
-                        String.format(
-                            "Now you have %d tasks in the list.\n", tasks.size()
-                        )
-                    );
-                }
-                break;
-            case deadline:
-                boolean deadlineIsDone = command.contains("/done");
-                if (deadlineIsDone) {
-                    command = command.replace("/done", "");
-                }
-                String[] c1 = command.split("/by");
-                String deadlineText = c1[0].replaceFirst("deadline", "").strip();
-                String deadlineTime = c1.length > 1 ? c1[1].strip() : "";
-                if (deadlineText.isEmpty()) {
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! The description of a deadline cannot be empty.\n");
-                } else if (deadlineTime.isEmpty()) {
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a time for the deadline.\n");
-                } else {
-                    try {
-                        tasks.add(new Deadline(deadlineIsDone, deadlineText, LocalDateTime.parse(deadlineTime, DateTimeFormatter.ofPattern("dd/MM/yy HHmm")), isPrinting));
-                    } catch (DateTimeParseException e) {
-                        System.out.println("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the deadline.");
+            if (!Objects.isNull(commandWord)) {
+                switch(commandWord) {
+                    case mark:
+                        int markI;
+                        try {
+                            markI = Integer.parseInt(commandArr[1]);
+                        } catch (NumberFormatException e) {     // if second word not integer
+                            toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a number to mark a task.\n");
+                            break;
+                        }
+                        if (markI >= 1 && markI <= tasks.size()) {   // ensure i given is within range
+                            tasks.get(markI - 1).mark();
+                            commands.set(markI - 1, commands.get(markI - 1).strip().concat(" /done"));
+                        } else {
+                            toBePrinted = toBePrinted.concat(
+                                    String.format(
+                                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to mark a task.\n", tasks.size()
+                                    )
+                            );
+                        }
                         break;
-                    }
-                    commands.add(command);
-                    toBePrinted = toBePrinted.concat(
-                            String.format(
-                                    "Now you have %d tasks in the list.\n", tasks.size()
-                            )
-                    );
-                }
-                break;
-            case event:
-                boolean eventIsDone = command.contains("/done");
-                if (eventIsDone) {
-                    command = command.replace("/done", "");
-                }
-                String[] c2 = command.split("/at");
-                String eventText = c2[0].replaceFirst("event", "").strip();
-                String eventTime = c2.length > 1 ? c2[1].strip() : "";
-                if (eventText.isEmpty()) {
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! The description of an event cannot be empty.\n");
-                } else if (eventTime.isEmpty()) {
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a time for the event.\n");
-                } else {
-                    try {
-                        tasks.add(new Event(eventIsDone, eventText, LocalDateTime.parse(eventTime, DateTimeFormatter.ofPattern("dd/MM/yy HHmm")), isPrinting));
-                    } catch (DateTimeParseException e) {
-                        System.out.println("🙁 OOPS!!! Provide a valid time (dd/MM/yy HHmm) for the event.");
+                    case unmark:
+                        int unmarkI;
+                        try {
+                            unmarkI = Integer.parseInt(commandArr[1]);
+                        } catch (NumberFormatException e) {     // if second word not integer
+                            toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a number to unmark a task.\n");
+                            break;
+                        }
+                        if (unmarkI >= 1 && unmarkI <= tasks.size()) {   // ensure i given is within range
+                            tasks.get(unmarkI - 1).unmark();
+                            commands.set(unmarkI - 1, commands.get(unmarkI - 1).replace("/done", "").strip());
+                        } else {
+                            toBePrinted = toBePrinted.concat(
+                                    String.format(
+                                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to unmark a task.\n", tasks.size()
+                                    )
+                            );
+                        }
                         break;
-                    }
-                    commands.add(command);
-                    toBePrinted = toBePrinted.concat(
-                            String.format(
-                                    "Now you have %d tasks in the list.\n", tasks.size()
-                            )
-                    );
+                    case todo:
+                        Todo todo = null;
+                        try {
+                            todo = Todo.of(command, isPrinting);
+                        } catch (IllegalArgumentException e) {
+                            toBePrinted = toBePrinted.concat(e.getMessage());
+                        }
+                        if (!Objects.isNull(todo)) {
+                            tasks.add(todo);
+                            commands.add(command);
+                            toBePrinted = toBePrinted.concat(
+                                    String.format(
+                                            "Now you have %d tasks in the list.\n", tasks.size()
+                                    )
+                            );
+                        }
+                        break;
+                    case deadline:
+                        Deadline deadline = null;
+                        try {
+                            deadline = Deadline.of(command, isPrinting);
+                        } catch (IllegalArgumentException e) {
+                            toBePrinted = toBePrinted.concat(e.getMessage());
+                        }
+
+                        if (!Objects.isNull(deadline)) {
+                            tasks.add(deadline);
+                            commands.add(command);
+                            toBePrinted = toBePrinted.concat(
+                                    String.format(
+                                            "Now you have %d tasks in the list.\n", tasks.size()
+                                    )
+                            );
+                        }
+                        break;
+                    case event:
+                        Event event = null;
+                        try {
+                            event = Event.of(command, isPrinting);
+                        } catch (IllegalArgumentException e) {
+                            toBePrinted = toBePrinted.concat(e.getMessage());
+                        }
+
+                        if (!Objects.isNull(event)) {
+                            tasks.add(event);
+                            commands.add(command);
+                            toBePrinted = toBePrinted.concat(
+                                    String.format(
+                                            "Now you have %d tasks in the list.\n", tasks.size()
+                                    )
+                            );
+                        }
+
+                        break;
+                    case delete:
+                        int deleteI;
+                        try {
+                            deleteI = Integer.parseInt(commandArr[1]);
+                        } catch (NumberFormatException e) {     // if second word not integer
+                            toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a number to delete a task.\n");
+                            break;
+                        }
+                        if (deleteI >= 1 && deleteI <= tasks.size()) {   // ensure i given is within range
+                            String taskToString = tasks.get(deleteI - 1).toString();
+                            tasks.remove(deleteI - 1);
+                            commands.remove(deleteI - 1);
+                            toBePrinted = toBePrinted.concat(
+                                    String.format(
+                                            "Noted. I've removed this task:\n  %s\n", taskToString
+                                    )
+                            );
+                        } else {
+                            toBePrinted = toBePrinted.concat(
+                                    String.format(
+                                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", tasks.size()
+                                    )
+                            );
+                        }
+                        break;
+                    case bye:
+                        toBePrinted = toBePrinted.concat("Bye. Hope to see you again soon!\n");
+                        break;
+                    case list:
+                        if (tasks.isEmpty()) {
+                            toBePrinted = toBePrinted.concat("🙁 OOPS!!! There are no tasks in your list yet.\n");
+                        } else {
+                            toBePrinted = toBePrinted.concat("Here are the tasks in your list:\n");
+                            for (int i = 0; i < tasks.size(); i++) {
+                                toBePrinted = toBePrinted.concat(
+                                        String.format(
+                                                "%d. %s\n", i + 1, tasks.get(i).toString()
+                                        )
+                                );
+                            }
+                        }
+                        break;
                 }
-                break;
-            case delete:
-                int deleteI;
-                try {
-                    deleteI = Integer.parseInt(commandArr[1]);
-                } catch (NumberFormatException e) {     // if second word not integer
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! Provide a number to delete a task.\n");
-                    break;
-                }
-                if (deleteI >= 1 && deleteI <= tasks.size()) {   // ensure i given is within range
-                    String taskToString = tasks.get(deleteI - 1).toString();
-                    tasks.remove(deleteI - 1);
-                    commands.remove(deleteI - 1);
-                    toBePrinted = toBePrinted.concat(
-                            String.format(
-                                "Noted. I've removed this task:\n  %s\n", taskToString
-                            )
-                    );
-                } else {
-                    toBePrinted = toBePrinted.concat(
-                        String.format(
-                            "🙁 OOPS!!! Provide a valid number (from 1 to %d) to delete a task.\n", tasks.size()
-                        )
-                    );
-                }
-                break;
-            case bye:
-                toBePrinted = toBePrinted.concat("Bye. Hope to see you again soon!\n");
-                break;
-            case list:
-                if (tasks.isEmpty()) {
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! There are no tasks in your list yet.\n");
-                } else {
-                    toBePrinted = toBePrinted.concat("Here are the tasks in your list:\n");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        toBePrinted = toBePrinted.concat(
-                                String.format(
-                                        "%d. %s\n", i + 1, tasks.get(i).toString()
-                                )
-                        );
-                    }
-                }
-                break;
-            default:
-                break;
             }
+
             toBePrinted = toBePrinted.concat("------------------------------\n");
             if (isPrinting) {
                 System.out.print(toBePrinted);
