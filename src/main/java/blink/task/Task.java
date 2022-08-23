@@ -136,7 +136,11 @@ abstract public class Task {
         String[] allWords = this.toString().split(" ");
         boolean isFound = false;
         for (int x = 0; x < allWords.length; x++) {
-            if (allWords[x].toLowerCase().equals(keyword)) {
+            String word = allWords[x].toLowerCase();
+            if (x != 0) {
+                word = word.replaceAll("[-+.<>?/:;',()]","");
+            }
+            if (word.equals(keyword)) {
                 isFound = true;
                 break;
             }
