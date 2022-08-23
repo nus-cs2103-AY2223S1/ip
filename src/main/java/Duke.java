@@ -1,22 +1,28 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Duke {
 
-    public static void level5() throws DukeException {
+    public static void level7() throws DukeException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t-----------------------------------------------");
         System.out.println("\tHello! I'm Duke Dukem\n\tWhat can I do for you?");
         System.out.println("\t-----------------------------------------------");
 
-        ArrayList<Task> lst = new ArrayList<>();
+        ArrayList<Task> lst = readFileIfExists();
 
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
 
             if (line.equals("bye")) {
                 scanner.close();
+                save(lst);
                 System.out.println("\t-----------------------------------------------");
                 System.out.println("\tBye. Hope to see you again soon!");
                 System.out.println("\t-----------------------------------------------");
@@ -48,8 +54,7 @@ public class Duke {
                 System.out.println("\tNice! I've marked this task as not done yet:");
                 System.out.println("\t" + lst.get(index - 1));
             }
-            else if (line.startsWith("mark"))
-            {
+            else if (line.startsWith("mark")) {
                 if (lst.isEmpty()) {
                     throw new DukeException("OOPS!!! Cannot mark when list is empty");
                 }
@@ -120,11 +125,86 @@ public class Duke {
                 System.out.println("\tNow you have " + lst.size() + " tasks in the list.");
                 System.out.println("\t-----------------------------------------------");
             }
+            else if (line.startsWith("save")) {
+                System.out.println("Saving progress...");
+                save(lst);
+                System.out.println("Successfully saved!");
+            }
             else {
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know that that means :(");
             }
         }
     }
+
+    private static ArrayList<Task> readFileIfExists() {
+        File folder = new File("./data");
+        File saveFile = new File("./data/saveFile.txt");
+        ArrayList<Task> arrayList = new ArrayList<>();
+        if (!folder.exists()) { // folder does not exist, hence save also does not exist
+            System.out.println("No data folder detected. Making data directory and save file...");
+            try {
+                folder.mkdirs();
+                saveFile.createNewFile();
+                System.out.println("Success!");
+                return arrayList;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else { // folder exists, check if save exists
+            if (saveFile.exists()) {
+                System.out.println("Retrieving save file...");
+                System.out.println("Success!");
+                return convertSaveToArr(saveFile);
+
+            } else {
+                try {
+                    System.out.println("No save file detected, creating save file...");
+                    saveFile.createNewFile();
+                    System.out.println("Success!");
+                    return arrayList;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return arrayList;
+    }
+
+    private static ArrayList<Task> convertSaveToArr(File file) {
+        ArrayList<Task> result = new ArrayList<>();
+        try {
+            Scanner s = new Scanner(file);
+            while (s.hasNext()) {
+                String line = s.nextLine();
+                if (line.startsWith("[T]")) { // TodoClass
+                    result.add(Todo.stringToTodo(line));
+                } else if (line.startsWith("[D]")) { // Deadline Class
+                    result.add(Deadline.stringToDeadline(line));
+                } else if (line.startsWith("[E]")) { // Evemt Class
+                    result.add(Event.stringToEvent(line));
+                } else { // unknown text
+                    result.add(new Task(line));
+                }
+            }
+        } catch (FileNotFoundException | DukeException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    // at this point readFileIfExists() should have ran hence the folder and saveFile should exist.
+    private static void save(ArrayList<Task> lst) {
+        try {
+            FileWriter fw = new FileWriter("./data/saveFile.txt");
+            for (Task task: lst) {
+                fw.write(task.toString() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
 //        String logo = " ____        _\n"
 //            + "|  _ \\ _   _| | _____\n"
@@ -133,7 +213,7 @@ public class Duke {
 //            + "|____/ \\__,_|_|\\_\\___|\n";
 //        System.out.println("Hello from\n" + logo);
         try {
-            level5();
+            level7();
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         }
