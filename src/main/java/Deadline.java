@@ -1,5 +1,8 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    private String datetime;
+    private LocalDateTime datetime;
 
     /**
      * Constructor for Deadline instance
@@ -8,7 +11,7 @@ public class Deadline extends Task {
      */
     public Deadline(String name, String datetime) {
         super(name);
-        this.datetime = datetime;
+        this.datetime = LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     public Deadline(String[] data) {
@@ -21,7 +24,7 @@ public class Deadline extends Task {
      * @return Task deadline
      */
     public String getDatetime() {
-        return datetime;
+        return datetime.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
     }
 
     /**
@@ -29,12 +32,12 @@ public class Deadline extends Task {
      * @param datetime New deadline
      */
     public void setDatetime(String datetime) {
-        this.datetime = datetime;
+        this.datetime = LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.datetime + ")";
+        return "[D]" + super.toString() + " (by: " + this.getDatetime() + "H)";
     }
 
     @Override

@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -133,12 +134,17 @@ public class Duke {
         if (tmp.length < 2) {
             throw new DukeException("Event description is missing the /at tag.");
         }
-        Event task = new Event(tmp[0].strip(), tmp[1].strip());
-        db.add(task);
 
-        System.out.println("Got it. I added this event:");
-        System.out.println("\t" + task);
-        System.out.printf("Now you have %d tasks in the list.%n", db.size());
+        try {
+            Event task = new Event(tmp[0].strip(), tmp[1].strip());
+            db.add(task);
+
+            System.out.println("Got it. I added this event:");
+            System.out.println("\t" + task);
+            System.out.printf("Now you have %d tasks in the list.%n", db.size());
+        } catch (DateTimeParseException err) {
+            throw new DukeException("Invalid datetime argument passed to event.\nPlease enter in YYYY-MM-DD HHMM format.");
+        }
     }
 
     /**
@@ -154,12 +160,17 @@ public class Duke {
         if (tmp.length < 2) {
             throw new DukeException("Deadline description is missing the /by tag.");
         }
-        Deadline task = new Deadline(tmp[0].strip(), tmp[1].strip());
-        db.add(task);
 
-        System.out.println("Got it. I added this deadline:");
-        System.out.println("\t" + task);
-        System.out.printf("Now you have %d tasks in the list.%n", db.size());
+        try {
+            Deadline task = new Deadline(tmp[0].strip(), tmp[1].strip());
+            db.add(task);
+
+            System.out.println("Got it. I added this deadline:");
+            System.out.println("\t" + task);
+            System.out.printf("Now you have %d tasks in the list.%n", db.size());
+        } catch (DateTimeParseException err) {
+            throw new DukeException("Invalid datetime argument passed to deadline.\nPlease enter in YYYY-MM-DD HHMM format.");
+        }
     }
 
     private void delete(String[] userInput) {
