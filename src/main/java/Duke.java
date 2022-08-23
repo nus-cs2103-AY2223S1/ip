@@ -1,5 +1,8 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Duke {
 
@@ -15,10 +18,17 @@ public class Duke {
 
     private static ArrayList<Task> storage = new ArrayList<>();
 
-    public static void main(String[] args) {
+    private static Storage hardDiskStorage = new Storage("data/duke.txt");
+
+    public static void main(String[] args) throws FileNotFoundException {
         generateMessage(greeting);
         Scanner scanner = new Scanner(System.in);
         boolean active = true;
+        try {
+            hardDiskStorage.loadFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while (active) {
             try {
                 String input = scanner.nextLine();
@@ -28,41 +38,43 @@ public class Duke {
                 if (inputArray.length == 2) {
                     argument = inputArray[1];
                 }
-
                 switch(command) {
-                    case "bye":
-                        generateMessage(farewell);
-                        active = false;
-                        break;
-                    case "list":
-                        displayTasks();
-                        break;
-                    case "mark":
-                        markTask(argument);
-                        break;
-                    case "unmark":
-                        unmarkTask(argument);
-                        break;
-                    case "todo":
-                        ToDo todo = handleToDo(argument);
-                        addTask(todo);
-                        break;
-                    case "deadline":
-                        Deadline deadline = handleDeadline(argument);
-                        addTask(deadline);
-                        break;
-                    case "event":
-                        Event event = handleEvent(argument);
-                        addTask(event);
-                        break;
-                    case "delete":
-                        deleteTask(argument);
-                        break;
-                    default:
-                        throw new InvalidCommandException(command);
+                case "bye":
+                    generateMessage(farewell);
+                    active = false;
+                    break;
+                case "list":
+                    displayTasks();
+                    break;
+                case "mark":
+                    markTask(argument);
+                    break;
+                case "unmark":
+                    unmarkTask(argument);
+                    break;
+                case "todo":
+                    ToDo todo = handleToDo(argument);
+                    addTask(todo);
+                    break;
+                case "deadline":
+                    Deadline deadline = handleDeadline(argument);
+                    addTask(deadline);
+                    break;
+                case "event":
+                    Event event = handleEvent(argument);
+                    addTask(event);
+                    break;
+                case "delete":
+                    deleteTask(argument);
+                    break;
+                default:
+                    throw new InvalidCommandException(command);
                 }
+                hardDiskStorage.saveFile(storage);
             } catch (DukeException e) {
                 generateMessage(e.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -71,7 +83,11 @@ public class Duke {
         return "\nNow you have " + storage.size() + " tasks in the list.";
     }
 
-    public static void addTask(Task task) {
+    public static void loadTask(Task task) {
+        storage.add(task);
+    }
+
+    public static void addTask(Task task) throws IOException {
         storage.add(task);
         String message = "Got it. I've added this task:\n"
                 + "\t" + task
