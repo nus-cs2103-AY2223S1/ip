@@ -31,4 +31,15 @@ public class Event extends Task {
     public String toStorageRepresentation() {
         return "E|" + super.toStorageRepresentation() + "|" + this.timeString;
     }
+
+    /**
+     * Returns true if the Event takes place on the given date.
+     *
+     * @param selectedDate the date object.
+     * @return true if the Event happens on the selected date, false otherwise.
+     */
+    @Override
+    public boolean isOnGivenDate(LocalDate selectedDate) {
+        return this.time.equals(selectedDate);
+    }
 }

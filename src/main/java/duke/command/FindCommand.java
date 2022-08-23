@@ -21,7 +21,8 @@ public class FindCommand implements Command {
      */
     public FindCommand(String keyWord) throws DukeException {
         if (keyWord == null || keyWord == "") {
-            throw new DukeException("The keyword after find command must be a non-empty string!");
+            throw new DukeException("The keyword after find command "
+                    + "must be a non-empty string!");
         }
 
         this.keyWord = keyWord;

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import duke.command.AtCommand;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -49,6 +50,8 @@ public class Parser {
             return new EventCommand(description);
         } else if (mainCommand.equals("find")) {
             return new FindCommand(description);
+        } else if (mainCommand.equals("at")) {
+            return new AtCommand(description);
         } else if (mainCommand.isEmpty()) {
             throw new EmptyCommandException();
         } else {

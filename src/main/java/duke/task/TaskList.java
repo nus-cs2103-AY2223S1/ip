@@ -1,5 +1,6 @@
 package duke.task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,6 +60,18 @@ public class TaskList {
     public TaskList filterByKeyWord(String keyWord) {
         return new TaskList(this.tasks.stream()
                 .filter(task -> task.isContainKeyWord(keyWord))
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * Filters current TaskList to get all Tasks that happens on the selected date.
+     *
+     * @param selectedDate the selected date to be used.
+     * @return the TaskList which contains all the matched Tasks.
+     */
+    public TaskList findByDate(LocalDate selectedDate) {
+        return new TaskList(this.tasks.stream()
+                .filter(task -> task.isOnGivenDate(selectedDate))
                 .collect(Collectors.toList()));
     }
 

@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 public abstract class Task {
     private final String description;
     private boolean isFinished;
@@ -39,5 +41,13 @@ public abstract class Task {
     public boolean isContainKeyWord(String keyWord) {
         return this.description.contains(keyWord);
     }
+
+    /**
+     * Returns true if the task happens on the given date.
+     *
+     * @param selectedDate the date object.
+     * @return true if the task happens on the selected date, false otherwise.
+     */
+    public abstract boolean isOnGivenDate(LocalDate selectedDate);
 
 }

@@ -31,4 +31,15 @@ public class Deadline extends Task {
     public String toStorageRepresentation() {
         return "D|" + super.toStorageRepresentation() + "|" + this.deadlineString;
     }
+
+    /**
+     * Returns true if the Deadline is on the given date.
+     *
+     * @param selectedDate the date object.
+     * @return true if the Deadline is on the selected date, false otherwise.
+     */
+    @Override
+    public boolean isOnGivenDate(LocalDate selectedDate) {
+        return this.deadline.equals(selectedDate);
+    }
 }
