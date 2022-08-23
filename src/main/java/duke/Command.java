@@ -15,7 +15,8 @@ public enum Command {
     DEADLINE("deadline"),
     EVENT("event"),
     TODO("todo"),
-    LISTALLONDATE("listallondate");
+    LISTALLONDATE("listallondate"),
+    FIND("find");
 
     private String name;
 

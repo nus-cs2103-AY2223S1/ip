@@ -254,4 +254,19 @@ public class TaskList {
         // Update data file
         this.storage.saveTasks(this.list);
     }
+
+    /**
+     * Prints all tasks with description containing key.
+     *
+     * @param key a String that is contained within the desired tasks
+     */
+    public void find(String key) {
+        System.out.println("Here are the matching tasks in your list:");
+
+        for (Task task : this.list) {
+            if (task.toString().contains(key)) {
+                System.out.println(task);
+            }
+        }
+    }
 }
