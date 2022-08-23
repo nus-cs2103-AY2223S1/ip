@@ -27,6 +27,9 @@ test {
         showStandardStreams = false
     }
 }
+checkstyle {
+    toolVersion = '10.2'
+}
 
 application {
     mainClassName = "duke.Duke"
