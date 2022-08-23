@@ -3,7 +3,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-
 public class Deku {
     private final BotList botList;
     private final Storage storage;
