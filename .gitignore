@@ -2,9 +2,7 @@
 /.idea/
 /out/
 /*.iml
-
-# Gradle build files
-/.gradle/
+# Gradle build files /.gradle/
 /build/
 src/main/resources/docs/
 
@@ -13,7 +11,8 @@ src/main/resources/docs/
 *.iml
 bin/
 
-/text-ui-test/ACTUAL.TXT
+text-ui-test/EXPECTED-UNIX.TXT
+text-ui-test/ACTUAL.TXT
 
 # Others
 # Ignore data files
