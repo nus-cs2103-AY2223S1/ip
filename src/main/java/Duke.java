@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -13,7 +12,7 @@ public class Duke {
         System.out.println("How can I help you?");
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>();
+        TaskList taskList = new TaskList();
 
         while (true) {
             String input = sc.nextLine();
@@ -35,11 +34,13 @@ public class Duke {
             }
             switch (command) {
                 case LIST: {
-                    if (tasks.size() == 0) {
+                    if (taskList.isEmpty()) {
                         System.out.println("You have no tasks at the moment!");
                     } else {
-                        for (int i = 0; i < tasks.size(); i++) {
-                            System.out.printf("%d. %s%n", i + 1, tasks.get(i));
+                        int i = 1;
+                        for (Task task : taskList) {
+                            System.out.printf("%d. %s%n", i, task);
+                            i++;
                         }
                     }
                     break;
@@ -47,7 +48,7 @@ public class Duke {
                 case MARK: {
                     if (hasArgument) {
                         int taskNum = Integer.parseInt(argument);
-                        Task task = tasks.get(taskNum - 1);
+                        Task task = taskList.getTask(taskNum - 1);
                         task.markAsDone();
                         System.out.printf("Well done! I've marked task %d as done:%n", taskNum);
                         System.out.println(task);
@@ -59,7 +60,7 @@ public class Duke {
                 case UNMARK: {
                     if (hasArgument) {
                         int taskNum = Integer.parseInt(argument);
-                        Task task = tasks.get(taskNum - 1);
+                        Task task = taskList.getTask(taskNum - 1);
                         task.markAsUndone();
                         System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
                         System.out.println(task);
@@ -71,7 +72,7 @@ public class Duke {
                 case TODO: {
                     if (hasArgument) {
                         Todo todo = new Todo(argument);
-                        tasks.add(todo);
+                        taskList.addTask(todo);
                         System.out.println("Got it, I've added this to-do:");
                         System.out.println(todo);
                     } else {
@@ -83,7 +84,7 @@ public class Duke {
                     if (hasArgument) {
                         try {
                             Deadline deadline = new Deadline(argument);
-                            tasks.add(deadline);
+                            taskList.addTask(deadline);
                             System.out.println("Got it, I've added this deadline:");
                             System.out.println(deadline);
                         } catch (InvalidTaskFormatException e) {
@@ -99,7 +100,7 @@ public class Duke {
                     if (hasArgument) {
                         try {
                             Event event = new Event(argument);
-                            tasks.add(event);
+                            taskList.addTask(event);
                             System.out.println("Got it, I've added this event:");
                             System.out.println(event);
                         } catch (InvalidTaskFormatException e) {
@@ -114,14 +115,14 @@ public class Duke {
                 case DELETE: {
                     if (hasArgument) {
                         int taskId = Integer.parseInt(argument) - 1;
-                        Task task = tasks.get(taskId);
+                        Task task = taskList.getTask(taskId);
                         System.out.println("Ok, I've deleted this task:");
                         System.out.println(task);
-                        tasks.remove(taskId);
-                        if (tasks.size() > 0) {
-                            System.out.printf("You have %d task(s) left in your list.%n", tasks.size());
-                        } else {
+                        taskList.deleteTask(taskId);
+                        if (taskList.isEmpty()) {
                             System.out.println("You have no more tasks left in your list!");
+                        } else {
+                            System.out.printf("You have %d task(s) left in your list.%n", taskList.size());
                         }
                     } else {
                         System.out.println("Sorry, you need to tell me which task to delete.");
