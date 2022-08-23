@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Todo extends Task {
     Todo(String description) {
         super(description);
@@ -15,6 +17,9 @@ public class Todo extends Task {
             todo.markDone();
         }
         return todo;
+    }
+    public boolean isHappeningOnDate(LocalDate localDate) {
+        return false;
     }
 
     @Override

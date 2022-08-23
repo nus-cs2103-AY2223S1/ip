@@ -1,8 +1,12 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Duke {
     public static ArrayList<Task> list;
@@ -179,7 +183,8 @@ public class Duke {
         String when = modifiedInput[1];
         String[] secondModifiedInput = when.split(" ", 2);
         String dateBy = secondModifiedInput[1];
-        return new Deadline(description, dateBy);
+        LocalDate localDateBy = LocalDate.parse(dateBy);
+        return new Deadline(description, localDateBy);
     }
 
     public static Event handleEvent(String input) throws DukeException {
@@ -194,7 +199,8 @@ public class Duke {
         String when = modifiedInput[1];
         String[] secondModifiedInput = when.split(" ", 2);
         String dateAt = secondModifiedInput[1];
-        return new Event(description, dateAt);
+        LocalDate localDateAt = LocalDate.parse(dateAt);
+        return new Event(description, localDateAt);
     }
 
     public static void addTask(String input, Commands type) throws DukeException {
@@ -252,6 +258,20 @@ public class Duke {
         }
         int index = Integer.parseInt(input);
         deleteTask(index);
+    }
+
+    public static void printTaskOnDate(LocalDate localDate) {
+        List<Task> filteredList = list.stream().filter(task -> task.isHappeningOnDate(localDate))
+                .collect(Collectors.toList());
+        int i = 0;
+        line();
+        System.out.println("Hey, these are what you need to do on this date: "
+                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy")));
+        for (Task t : filteredList) {
+            System.out.println(i + 1 + "." + t);
+            i++;
+        }
+        line();
     }
 
     public static void exit() {
@@ -317,6 +337,10 @@ public class Duke {
                 }
                 case ("delete"): {
                     handleDelete(second);
+                    break;
+                }
+                case ("on"): {
+                    printTaskOnDate(LocalDate.parse(second));
                     break;
                 }
                 default: {
