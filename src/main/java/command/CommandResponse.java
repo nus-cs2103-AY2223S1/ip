@@ -1,14 +1,12 @@
 package command;
 
-import java.util.List;
-
 public class CommandResponse {
 
-    public List<String> responseList;
+    public String responseStr;
     public boolean triggerSave;
 
-    public CommandResponse(List<String> responseList, boolean triggerSave) {
-        this.responseList = responseList;
+    public CommandResponse(String responseStr, boolean triggerSave) {
+        this.responseStr = responseStr;
         this.triggerSave = triggerSave;
     }
 }

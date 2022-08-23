@@ -15,8 +15,12 @@ public class CommandTodoHandler extends CommandHandler {
     CommandTodoHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
-            throw new CommandException(
-                "`todo` command expects a description (`todo todo-task-title`)");
+            throw new CommandException(String.join("\n",
+                "Invalid `todo` command format!",
+                "Expected format: todo <task-title>",
+                "Examples:",
+                "\t- todo task-1"
+            ));
         }
     }
 
@@ -27,6 +31,7 @@ public class CommandTodoHandler extends CommandHandler {
         TaskTodo todoTask = new TaskTodo(regexMatchResult.group(1));
         taskList.addTask(todoTask);
 
-        return CommandUtils.generateAddTaskResponse(todoTask, taskList.size());
+        return new CommandResponse(CommandUtils.generateAddTaskResponse(todoTask, taskList.size()),
+            true);
     }
 }

@@ -3,8 +3,8 @@ package command;
 import data.TaskList;
 import data.tasks.Task;
 
-import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
+import java.util.regex.MatchResult;
 
 import util.CommandUtils;
 
@@ -15,8 +15,12 @@ public class CommandDeleteHandler extends CommandHandler {
     CommandDeleteHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
-            throw new CommandException(
-                "`delete` command expects a single number argument (e.g. `delete 1`)");
+            throw new CommandException(String.join("\n",
+                "Invalid `delete` command format!",
+                "Expected format: delete <task-number>",
+                "Examples:",
+                "\t- delete 1"
+            ));
         }
     }
 
@@ -30,11 +34,14 @@ public class CommandDeleteHandler extends CommandHandler {
                 throw new CommandException("Invalid task selected!");
             } else {
                 Task deletedTask = taskList.deleteTask(taskIdx - 1);
-                return CommandUtils.generateDeleteTaskResponse(deletedTask, taskList.size());
+                return new CommandResponse(
+                    CommandUtils.generateDeleteTaskResponse(deletedTask, taskList.size()), true);
             }
         } catch (NumberFormatException error) {
-            throw new CommandException(
-                String.format("`delete` expects a number argument. Got: %s", taskIdxStr));
+            throw new CommandException(String.join("\n",
+                "Task number should be a number!",
+                "Got: %s", taskIdxStr
+            ));
         }
     }
 }

@@ -1,18 +1,25 @@
 package data.tasks;
 
+import java.time.LocalDateTime;
+import java.time.format.FormatStyle;
+import java.time.format.DateTimeFormatter;
+
 public class TaskEvent extends Task {
     private static final long serialVersionUID = 23L;
 
-    public static final String timingMarker = "/at";
-    private final String timing;
+    private final LocalDateTime timing;
 
-    public TaskEvent(String title, String timing) {
+    public TaskEvent(String title, LocalDateTime timing) {
         super(title);
         this.timing = timing;
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.timing);
+        return String.format("[E]%s (at: %s)", super.toString(),
+            timing.equals(timing.toLocalDate().atStartOfDay())
+                ? timing.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT))
+                : timing.format(
+                    DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)));
     }
 }
