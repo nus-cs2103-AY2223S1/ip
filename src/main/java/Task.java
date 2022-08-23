@@ -67,4 +67,13 @@ public class Task {
             return "[ ] " + this.getName();
         }
     }
+
+    /**
+     * Returns the string representation of the task for saving to a file.
+     * @return String representation of task to save to file
+     */
+    public String toStringWritable() {
+        int done = this.isDone() ? 1 : 0;
+        return String.format(" %d | %s ", done, this.getName());
+    }
 }

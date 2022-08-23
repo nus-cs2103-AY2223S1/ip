@@ -31,4 +31,9 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.datetime + ")";
     }
+
+    @Override
+    public String toStringWritable() {
+        return " E |" + super.toStringWritable() + String.format("| %s ", this.getDatetime());
+    }
 }

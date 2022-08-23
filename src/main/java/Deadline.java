@@ -31,4 +31,9 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.datetime + ")";
     }
+
+    @Override
+    public String toStringWritable() {
+        return " D |" + super.toStringWritable() + String.format("| %s ", this.getDatetime());
+    }
 }
