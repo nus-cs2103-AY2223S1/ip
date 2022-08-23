@@ -3,7 +3,6 @@ package henry;
 import command.Command;
 import command.CommandResult;
 
-import java.io.IOException;
 import java.nio.file.Path;
 
 public class Henry {
@@ -28,7 +27,7 @@ public class Henry {
         return isActivated;
     }
 
-    public void runProgram() throws IOException {
+    public void runProgram() {
         Command command;
         String input;
         do {
@@ -48,7 +47,10 @@ public class Henry {
         try {
             command.setData(taskList);
             CommandResult result = command.execute();
-            storage.appendToFile(taskList.toSimpleString());
+            if (result.getTaskList().isPresent()) {
+                System.out.println("this happened");
+                storage.appendToFile(result.getTaskList().get().toSimpleString());
+            }
             return result;
         } catch (Exception e) {
             ui.output(e.getMessage());

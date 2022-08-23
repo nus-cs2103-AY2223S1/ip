@@ -16,6 +16,6 @@ public class EventCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(String.format(MESSAGE_SUCCESS, taskList.addTask(task)));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskList.addTask(task)), taskList);
     }
 }

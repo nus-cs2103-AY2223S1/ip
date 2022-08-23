@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public class DeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "deadline";
-    public static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t: %1$s.";
+    public static final String MESSAGE_SUCCESS = "OK. I ADDED THIS TASK TO MY LIST:\n\t\t\t %1$s.";
     private final Task task;
 
     public DeadlineCommand(String description, LocalDateTime dateTime) {
@@ -16,6 +16,6 @@ public class DeadlineCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        return new CommandResult(String.format(MESSAGE_SUCCESS, task));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, taskList.addTask(task)), taskList);
     }
 }

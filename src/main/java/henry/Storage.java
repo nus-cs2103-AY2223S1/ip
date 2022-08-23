@@ -68,9 +68,10 @@ public class Storage {
                 break;
             default:
                 type = Commands.EVENT;
+                System.out.println(Arrays.toString(tokens));
                 isComplete = tokens[1].trim().equals("1");
                 description = tokens[2].trim();
-                cleaned = tokens[3].replace("(by:", "").replace(")", "").trim();
+                cleaned = tokens[3].replace("(at:", "").replace(")", "").trim();
                 date = parseDateTime(cleaned.split(" ")[0], cleaned.split(" ")[1]);
                 break;
             }
