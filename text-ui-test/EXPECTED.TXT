@@ -1,4 +1,4 @@
-Hello! I'm Duke, what's up today?
+Hello! I'm duke, what's up today?
 Gotcha, I've added this task:
 [T][ ] wake up
 Now you have 1 task in the list.

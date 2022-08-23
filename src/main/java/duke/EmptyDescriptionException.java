@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class EmptyDescriptionException extends DukeException{
     public EmptyDescriptionException() {
