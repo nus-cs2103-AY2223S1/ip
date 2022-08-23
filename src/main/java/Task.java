@@ -10,6 +10,11 @@ public class Task {
         this.done = false;
     }
 
+    Task(String task_description, boolean done) {
+        this.task_description = task_description;
+        this.done = done;
+    }
+
     public void doing() {
         if (!this.done) {
             System.out.println(done_msg);
@@ -32,6 +37,9 @@ public class Task {
 
     public String description() {
         return this.task_description;
+    }
+    public boolean status() {
+        return this.done;
     }
 
     @Override
