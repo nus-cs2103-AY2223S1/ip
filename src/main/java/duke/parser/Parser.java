@@ -1,3 +1,14 @@
+package duke.parser;
+
+import duke.dukeexception.DukeException;
+
+import duke.command.OtherCommand;
+import duke.command.MarkingCommand;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.command.DeleteCommand;
+
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException{
         if (fullCommand.equals("bye")){

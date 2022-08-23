@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.tasklist.TaskList;
+import duke.storage.Storage;
 public class OtherCommand extends Command{
     String fullCommand;
     public OtherCommand(String fullCommand){

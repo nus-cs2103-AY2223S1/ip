@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.tasklist.TaskList;
+import duke.dukeexception.DukeException;
+import duke.storage.Storage;
 abstract public class Command {
     private boolean isExit = false;
     private String fullCommand;

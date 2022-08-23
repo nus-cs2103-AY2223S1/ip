@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.tasklist.TaskList;
+import duke.dukeexception.DukeException;
+import duke.storage.Storage;
 public class MarkingCommand extends Command{
     String fullCommand;
     public MarkingCommand(String fullCommand){
