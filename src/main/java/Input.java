@@ -14,11 +14,11 @@ public class Input {
         }
     }
 
-    String getCmd() {
+    public String getCmd() {
         return this.cmd;
     }
 
-    int getTaskNumber() throws DukeException {
+    public int getTaskNumber() throws DukeException {
         if (task.isEmpty()) {
             throw new DukeException("Error! No task found.");
         } else {
@@ -26,7 +26,7 @@ public class Input {
         }
     }
 
-    String getEventTask() throws DukeException {
+    public String getEventTask() throws DukeException {
         if (task.isEmpty()) {
             throw new DukeException("Description of an event not found. Please provide one.");
         } else {
@@ -34,7 +34,7 @@ public class Input {
         }
     }
 
-    String getDeadlineTask() throws DukeException {
+    public String getDeadlineTask() throws DukeException {
         if (task.isEmpty()) {
             throw new DukeException("Description of a deadline not found. Please provide one.");
         } else {
@@ -42,7 +42,7 @@ public class Input {
         }
     }
 
-    String getToDoTask() throws DukeException {
+    public String getToDoTask() throws DukeException {
         if (task.isEmpty()) {
             throw new DukeException("Description of ToDo not found. Please provide one.");
         } else {
@@ -50,7 +50,7 @@ public class Input {
         }
     }
 
-    String getEventTime() throws DukeException {
+    public String getEventTime() throws DukeException {
         if (task.isEmpty()) {
             throw new DukeException("Description of an event not found. Please provide one.");
         } else {
@@ -63,7 +63,7 @@ public class Input {
         }
     }
 
-    String getDeadlineTime() throws DukeException {
+    public String getDeadlineTime() throws DukeException {
         if (task.isEmpty()) {
             throw new DukeException("Description of deadline not found. Please provide one.");
         } else {
@@ -76,4 +76,25 @@ public class Input {
         }
     }
 
+    public Command getCommand() throws DukeException {
+        if (cmd.equals("mark")) {
+            return new MarkCommand(getTaskNumber());
+        } else if (cmd.equals("unmark")) {
+            return new UnmarkCommand(getTaskNumber());
+        } else if (cmd.equals("bye")) {
+            return new ByeCommand();
+        } else if (cmd.equals("list")) {
+            return new ListCommand();
+        } else if (cmd.equals("todo")) {
+            return new ToDoCommand(getToDoTask());
+        } else if (cmd.equals("event")) {
+            return new EventCommand(getEventTask(), getEventTime());
+        } else if (cmd.equals("deadline")) {
+            return new DeadlineCommand(getDeadlineTask(), getDeadlineTime());
+        } else if (cmd.equals("delete")) {
+            return new DeleteCommand(getTaskNumber());
+        } else {
+            throw new DukeException("Unknown command. Please enter a valid command");
+        }
+    }
 }
