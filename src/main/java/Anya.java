@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Anya {
     static final String breakLine = "\n---------------------------------------------------------------------";
 
@@ -10,7 +14,9 @@ public class Anya {
         String userInput;
         String command;
         ArrayList<Task> tasks = new ArrayList<>();
+        String fileName = "data/Anya.txt";
 
+        loadFile(tasks, fileName);
         // Greet
         System.out.println("Hello! Anya is happy to meet you.\nHow can Anya help?" + breakLine);
 
@@ -69,6 +75,7 @@ public class Anya {
         }
 
         // Exit
+        saveFile(tasks, fileName);
         System.out.println("Anya is sad to see you leave. Please be back soon." + breakLine);
     }
 
@@ -104,5 +111,64 @@ public class Anya {
         Task removedTask = tasks.get(index);
         tasks.remove(index);
         System.out.println("Anya has removed this task : \n" + removedTask.toString() + breakLine);
+    }
+
+    public static void saveFile(ArrayList<Task> tasks, String fileName) {
+        System.out.println("Anya is saving your data...");
+        try {
+            FileWriter saveTask = new FileWriter(fileName);
+            for (Task task : tasks) {
+                saveTask.write(task.toSave() + "\n");
+            }
+            saveTask.close();
+            System.out.println("Anya has successfully saved your data!" + breakLine);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void loadFile(ArrayList<Task> tasks, String fileName) {
+        System.out.println("Anya is loading your saved file...");
+        File dir = new File("data/");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        try {
+            File savedTask = new File(fileName);
+            if (!savedTask.exists()) {
+                System.out.println("Anya cannot find your saved file... Let Anya create one now!");
+                savedTask.createNewFile();
+            }
+            Scanner sc = new Scanner(savedTask);
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                readEntry(tasks, line);
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage() + breakLine);
+        }
+        System.out.println("Anya has finished loading your saved file!" + breakLine);
+    }
+
+    public static void readEntry(ArrayList<Task> tasks, String line) {
+        String[] arrStr = line.split(" \\| ", 3);
+        System.out.println(arrStr[0] + " " + arrStr[1] + " " + arrStr[2]);
+        String taskType = arrStr[0];
+        boolean isTaskDone = arrStr[1].equals("1");
+        if (taskType.equals("T")) {
+            String taskName = arrStr[2];
+            addTask(tasks, new Todo(taskName));
+        } else if (taskType.equals("D")) {
+            String taskName = arrStr[2].split(" \\| ")[0];
+            String deadline = arrStr[2].split(" \\| ")[1];
+            addTask(tasks, new Deadline(taskName, deadline));
+        } else {
+            String taskName = arrStr[2].split(" \\| ")[0];
+            String time = arrStr[2].split(" \\| ")[1];
+            addTask(tasks, new Event(taskName, time));
+        }
+        if (isTaskDone) {
+            mark(tasks, tasks.size() - 1);
+        }
     }
 }

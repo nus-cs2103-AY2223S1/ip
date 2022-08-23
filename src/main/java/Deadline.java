@@ -10,4 +10,10 @@ public class Deadline extends Task{
     public String toString() {
         return "[D]" + super.toString() + " (by: " + completeBy + ")";
     }
+
+    @Override
+    public String toSave() {
+        String doneVar = super.isDone ? "1" : "0";
+        return "D | " + doneVar + " | " + super.name + " | " + this.completeBy;
+    }
 }

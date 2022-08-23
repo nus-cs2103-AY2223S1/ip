@@ -1,6 +1,6 @@
-public class Task {
-    private String name;
-    private boolean isDone;
+public abstract class Task {
+    protected String name;
+    protected boolean isDone;
 
     public Task(String name) {
         this.name = name;
@@ -24,4 +24,6 @@ public class Task {
         String res = "[" + this.getStatusIcon() + "] " + this.name;
         return res;
     }
+
+    public abstract String toSave();
 }

@@ -10,4 +10,10 @@ public class Event extends Task{
     public String toString() {
         return "[E]" + super.toString() + " (at: " + eventAt + ")";
     }
+
+    @Override
+    public String toSave() {
+        String doneVar = super.isDone ? "1" : "0";
+        return "E | " + doneVar + " | " + super.name + " | " + this.eventAt;
+    }
 }
