@@ -10,6 +10,7 @@ import duke.command.CommandType;
 import duke.command.DeleteTaskCommand;
 import duke.command.EmptyCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.UpdateStatusCommand;
 import duke.task.DeadlineTask;
