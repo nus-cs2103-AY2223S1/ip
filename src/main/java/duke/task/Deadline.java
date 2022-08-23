@@ -1,6 +1,6 @@
 package duke.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import duke.exceptions.DukeException;
@@ -12,10 +12,10 @@ import duke.exceptions.DukeException;
 public class Deadline extends Task {
     /** Exception due to wrong deadline format. */
     public static final DukeException WRONG_FORMAT =
-        new DukeException("Wrong format for Deadline!\nShould be 'deadline <description> /by YYYY-MM-DD'.");
+        new DukeException("Wrong format for Deadline!\nShould be 'deadline <description> /by YYYY-MM-DD HHmm'.");
 
     /** Deadline of the deadline. */
-    private final LocalDate deadline;
+    private final LocalDateTime deadline;
 
     /**
      * Constructor for a deadline that takes in description and deadline.
@@ -24,7 +24,7 @@ public class Deadline extends Task {
      * @param description Description of a deadline.
      * @param deadline    Deadline of a deadline.
      */
-    public Deadline(String description, LocalDate deadline) {
+    public Deadline(String description, LocalDateTime deadline) {
         super(description);
         this.deadline = deadline;
     }
@@ -38,7 +38,7 @@ public class Deadline extends Task {
      * @return Deadline object with the given parameters.
      */
     public static Deadline create(String done, String description, String date) {
-        Deadline deadline = new Deadline(description, LocalDate.parse(date));
+        Deadline deadline = new Deadline(description, LocalDateTime.parse(date));
         if (done.equals("1")) {
             deadline.markAsDone();
         }
@@ -61,7 +61,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yy HH:mm");
         String deadline = this.deadline.format(formatter);
         return String.format("[D]%s (by: %s)", super.toString(), deadline);
     }

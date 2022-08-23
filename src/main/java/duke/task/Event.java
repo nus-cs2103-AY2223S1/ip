@@ -1,6 +1,6 @@
 package duke.task;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import duke.exceptions.DukeException;
@@ -12,10 +12,10 @@ import duke.exceptions.DukeException;
 public class Event extends Task {
     /** Exception due to wrong event format. */
     public static final DukeException WRONG_FORMAT =
-            new DukeException("Wrong format for Event!\nShould be 'event <description> /at YYYY-MM-DD'.");
+            new DukeException("Wrong format for Event!\nShould be 'event <description> /at YYYY-MM-DD HHmm'.");
 
     /** Date of the event. */
-    private final LocalDate date;
+    private final LocalDateTime date;
 
     /**
      * Constructor for an event that takes in description and date.
@@ -24,7 +24,7 @@ public class Event extends Task {
      * @param description Description of an event.
      * @param date        Date of an event.
      */
-    public Event(String description, LocalDate date) {
+    public Event(String description, LocalDateTime date) {
         super(description);
         this.date = date;
     }
@@ -38,7 +38,7 @@ public class Event extends Task {
      * @return Event object with the given parameters.
      */
     public static Event create(String done, String description, String date) {
-        Event event = new Event(description, LocalDate.parse(date));
+        Event event = new Event(description, LocalDateTime.parse(date));
         if (done.equals("1")) {
             event.markAsDone();
         }
@@ -61,7 +61,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yy HH:mm");
         String date = this.date.format(formatter);
         return String.format("[E]%s (at: %s)", super.toString(), date);
     }

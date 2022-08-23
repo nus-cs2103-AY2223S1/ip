@@ -1,6 +1,7 @@
 package duke.commands;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,7 +16,7 @@ public class EventCommand extends Command {
     /** Command word of the event command. */
     public static final String COMMAND_WORD = "event";
     private static final Pattern ARGUMENTS_FORMAT =
-        Pattern.compile("(?<description>.+)\\s+/at\\s+(?<date>\\d{4}-\\d{2}-\\d{2})");
+        Pattern.compile("(?<description>.+)\\s+/at\\s+(?<date>\\d{4}-\\d{2}-\\d{2}\\s+\\d{4})");
     private static final String USER_MESSAGE_FORMAT = "Added this event!\n  %s\nNow you have %d tasks.";
     private final Event event;
 
@@ -36,14 +37,15 @@ public class EventCommand extends Command {
             throw Event.WRONG_FORMAT;
         }
 
-        LocalDate localDate;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        LocalDateTime localDateTime;
         try {
-            localDate = LocalDate.parse(date);
+            localDateTime = LocalDateTime.parse(date, formatter);
         } catch (DateTimeParseException e) {
             throw DukeException.INVALID_DATE;
         }
 
-        this.event = new Event(description, localDate);
+        this.event = new Event(description, localDateTime);
     }
 
     /**

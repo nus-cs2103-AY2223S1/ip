@@ -51,7 +51,7 @@ public class ParserTest {
 
     @Test
     public void parseCommand_deadlineCommand_parsedCorrectly() {
-        parseCommandAndAssert("deadline abc /by 2100-01-01", DeadlineCommand.class);
+        parseCommandAndAssert("deadline abc /by 2100-01-01 0000", DeadlineCommand.class);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ParserTest {
 
     @Test
     public void parseCommand_eventCommand_parsedCorrectly() {
-        parseCommandAndAssert("event abc /at 2100-01-01", EventCommand.class);
+        parseCommandAndAssert("event abc /at 2100-01-01 2359", EventCommand.class);
     }
 
     @Test
