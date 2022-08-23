@@ -1,9 +1,16 @@
 package handlers;
 
 import entities.Deadline;
+import entities.Event;
 import entities.Task;
 import exceptions.DukeException;
+<<<<<<< HEAD
 import service.Service;
+=======
+
+import java.time.format.DateTimeParseException;
+import java.util.List;
+>>>>>>> branch-Level-8
 
 import static utils.Utils.addToList;
 
@@ -30,7 +37,11 @@ public class DeadlineHandler implements IHandler{
         if (this.flagOption == null) {
             throw new DukeException("Please enter a deadline!");
         }
-        Task deadline = new Deadline(this.deadlineName, this.flagOption);
-        s.list.add(deadline);
+        try {
+            Task deadline = new Deadline(this.deadlineName, this.flagOption);
+            s.list.add(deadline);
+        } catch (DateTimeParseException ex) {
+            throw new DukeException("Invalid Date/Time!\nUsage: `deadline return book /at 2/12/2019 1800`");
+        }
     }
 }

@@ -1,13 +1,18 @@
 package entities;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task{
-    private final String time;
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/[uuuu][uu] HHmm");
+    private static final DateTimeFormatter printFormatter = DateTimeFormatter.ofPattern(("d/M/yyyy HHmm"));
+    private final LocalDateTime time;
     public Event(String name, String time) {
         super(name);
-        this.time = time;
+        this.time = LocalDateTime.parse(time, formatter);
     }
 
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.time + ")";
+        return "[E]" + super.toString() + " (at: " + this.time.format(printFormatter) + ")";
     }
 }

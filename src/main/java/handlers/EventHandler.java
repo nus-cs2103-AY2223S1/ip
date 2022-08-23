@@ -3,7 +3,13 @@ package handlers;
 import entities.Event;
 import entities.Task;
 import exceptions.DukeException;
+<<<<<<< HEAD
 import service.Service;
+=======
+
+import java.time.format.DateTimeParseException;
+import java.util.List;
+>>>>>>> branch-Level-8
 
 import static utils.Utils.addToList;
 
@@ -25,12 +31,16 @@ public class EventHandler implements IHandler{
         }
         // TODO refactor to enum
         if (!flag.equals("at")) {
-            throw new DukeException("Incorrect option flag!\nUsage:`event project meeting /at Mon 2pm`");
+            throw new DukeException("Incorrect option flag!\nUsage: `event project meeting /at 2/12/2019 1800`");
         }
         if (this.flagOption == null) {
             throw new DukeException("Please enter a time!");
         }
-        Task event = new Event(this.eventName, this.flagOption);
-        s.list.add(event);
+        try {
+            Task event = new Event(this.eventName, this.flagOption);
+            s.list.add(event);
+        } catch (DateTimeParseException ex) {
+            throw new DukeException("Invalid Date/Time!\nUsage: `event project meeting /at 2/12/2019 1800`");
+        }
     }
 }

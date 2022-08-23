@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 import static utils.Utils.customPrint;
 
 public class Duke {
-    private static final Pattern COMMAND_REGEX = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: ([^/]*))?$");
+    private static final Pattern COMMAND_REGEX = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
     private static final String LOGO = " ____        _        \n" +
             "|  _ \\ _   _| | _____ \n" +
             "| | | | | | | |/ / _ \\\n" +
