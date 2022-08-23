@@ -4,12 +4,14 @@ import java.util.Scanner;
 public class Duke {
 
     private TaskList list;
-    private final Save save;
+    private Storage storage;
+    private Ui ui;
 
     public Duke(String filePath) {
-        this.save = new Save(filePath);
+        this.ui = new Ui();
+        this.storage = new Storage(filePath);
         try {
-            this.list = new TaskList(save.load());
+            this.list = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
             this.list = new TaskList();
@@ -17,21 +19,22 @@ public class Duke {
     }
 
     private void run() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello! I am a ToDos, Events, Deadlines and Talk Bot, otherwise known as TEDTalk\n" +
-                "What can I do for you today?");
-
+        ui.showWelcome();
+        ui.showLine();
         boolean terminated = false;
 
         while (!terminated) {
             try {
-                String next = sc.nextLine();
-                Input input = new Input(next);
+                String next = ui.readCommand();
+                ui.showLine();
+                Parser input = new Parser(next);
                 Command cmd = input.getCommand();
-                cmd.execCommand(this.list, this.save);
+                cmd.execCommand(this.list, this.ui, this.storage);
                 terminated = cmd.isTerminated();
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
             }
         }
     }

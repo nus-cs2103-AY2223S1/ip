@@ -7,9 +7,9 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list, Save save) {
+    public void execCommand(TaskList list, Ui ui, Storage storage) {
         list.getTask(this.num).markAsDone();
-        System.out.println("Task successfully completed!\n" + list.getTask(this.num));
-        save.saveList(list.save());
+        ui.showMark(list.getTask(this.num));
+        storage.saveList(list.save());
     }
 }

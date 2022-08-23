@@ -12,20 +12,13 @@ public class DateCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list, Save save) {
+    public void execCommand(TaskList list, Ui ui, Storage storage) {
         for (int i = 0; i < list.getSize(); i++) {
             Task task = list.getTask(i);
             if (task.getTime().equals(date)) {
                 matchingTasks.add(task);
             }
         }
-        if (matchingTasks.size() != 0) {
-            System.out.println("Here are the tasks on that date:");
-            for (int i = 0; i < matchingTasks.size(); i++) {
-                System.out.println(i + 1 + ". " + matchingTasks.get(i));
-            }
-        } else {
-            System.out.println("You have no tasks on that date.");
-        }
+        ui.showDate(matchingTasks);
     }
 }

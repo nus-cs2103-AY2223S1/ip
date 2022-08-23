@@ -9,10 +9,9 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list, Save save) {
+    public void execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.event);
-        System.out.println("Successfully added new task:\n" + this.event +
-                "\nYou have " + list.getSize() + " task(s) in the list.");
-        save.saveList(list.save());
+        ui.showAdd(this.event, list.getSize());
+        storage.saveList(list.save());
     }
 }

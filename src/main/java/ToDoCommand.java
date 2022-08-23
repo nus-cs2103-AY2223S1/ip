@@ -7,10 +7,9 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list, Save save) {
+    public void execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.todo);
-        System.out.println("Successfully added new task:\n" + this.todo +
-                "\nYou have " + list.getSize() + " task(s) in the list.");
-        save.saveList(list.save());
+        ui.showAdd(this.todo, list.getSize());
+        storage.saveList(list.save());
     }
 }

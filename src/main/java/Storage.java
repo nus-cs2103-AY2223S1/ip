@@ -5,10 +5,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Save {
+public class Storage {
     private final String filePath;
 
-    public Save(String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
@@ -42,3 +42,4 @@ public class Save {
         return taskList;
     }
 }
+

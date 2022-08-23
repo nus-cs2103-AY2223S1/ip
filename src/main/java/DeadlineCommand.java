@@ -9,10 +9,9 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list, Save save) {
+    public void execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.deadline);
-        System.out.println("Successfully added new task:\n" + this.deadline +
-                "\nYou have " + list.getSize() + " task(s) in the list.");
-        save.saveList(list.save());
+        ui.showAdd(this.deadline, list.getSize());
+        storage.saveList(list.save());
     }
 }

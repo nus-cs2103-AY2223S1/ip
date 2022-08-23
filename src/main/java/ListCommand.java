@@ -5,11 +5,7 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list, Save save) {
-        System.out.println("Here are your tasks:");
-        for (int i = 0; i < list.getSize(); i++) {
-            System.out.println(i + 1 + ". " + list.getTask(i));
-        }
-        save.saveList(list.save());
+    public void execCommand(TaskList list, Ui ui, Storage storage) {
+        ui.showList(list);
     }
 }

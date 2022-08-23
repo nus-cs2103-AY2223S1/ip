@@ -2,11 +2,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
-public class Input {
+public class Parser {
     private String cmd;
     private Optional<String> task;
 
-    public Input(String str) {
+    public Parser(String str) {
         String[] split = str.split(" ", 2);
         this.cmd = split[0];
         if (split.length > 1 && !split[1].equals("")) {

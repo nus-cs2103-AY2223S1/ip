@@ -7,9 +7,9 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list, Save save) {
+    public void execCommand(TaskList list, Ui ui, Storage storage) {
         list.getTask(this.num).markAsUndone();
-        System.out.println("Task incomplete.\n" + list.getTask(this.num));
-        save.saveList(list.save());
+        ui.showUnmark(list.getTask(this.num));
+        storage.saveList(list.save());
     }
 }
