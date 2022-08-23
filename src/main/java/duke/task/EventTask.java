@@ -25,7 +25,9 @@ public class EventTask extends Task {
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) return false;
+        if (!super.equals(o)) {
+            return false;
+        }
         EventTask that = (EventTask) o;
         return time.equals(that.time);
     }

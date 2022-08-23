@@ -4,7 +4,7 @@ import duke.DukeException;
 
 public class DataFileCorruptedException extends DukeException {
 
-        public DataFileCorruptedException() {
-            super("Data file is corrupted!");
-        }
+    public DataFileCorruptedException() {
+        super("Data file is corrupted!");
+    }
 }
