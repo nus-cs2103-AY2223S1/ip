@@ -60,9 +60,9 @@ public class Storage {
     } catch (IOException exception) {
       System.out.printf("Error occured when writing to file: %s\n", exception.toString());
     }
-  }   
+  }
 
-  public List<Task> getTasksFromFile() {
+  public List<Task> getTasksFromFile() throws EkudException {
     List<Task> tasks = new ArrayList<Task>();
     try {
       Scanner reader = new Scanner(this.file);
@@ -72,9 +72,10 @@ public class Storage {
       }
       reader.close();
     } catch (IOException exception) {
-      System.out.printf("Error occured when writing to file: %s\n", exception.toString());
+      throw new EkudException(String.format("Error occured when writing to file: %s\n", exception.toString()));
     } catch (EkudException exception) {
-      System.out.println("There was an error in the date format on the file - Please don't edit the file yourself.");
+      throw new EkudException(
+          "There was an error in the date format on the file - Please don't edit the file yourself.");
     }
     return tasks;
   }
