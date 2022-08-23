@@ -7,8 +7,11 @@ import java.util.Scanner;
 
 public class Storage {
 
-    private static String directoryPath = "./data";
-    private static String fileName = "ted.txt";
+    private String filePath;
+
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
 
     /**
      * Load tasks from storage, return empty array if file not found
@@ -16,8 +19,8 @@ public class Storage {
      *
      * @return ArrayList<Task>
      */
-    public static ArrayList<Task> loadTasks() throws InvalidEncodingException {
-        File file = new File(directoryPath + "/" + fileName);
+    public ArrayList<Task> loadTasks() throws InvalidEncodingException {
+        File file = new File(filePath);
         if (!file.exists()) {
             return new ArrayList<>();
         }
@@ -36,7 +39,7 @@ public class Storage {
         }
     }
 
-    private static String encodeTasks(ArrayList<Task> tasks) {
+    private String encodeTasks(ArrayList<Task> tasks) {
         String result = "";
         for (Task task : tasks) {
             result += task.encode() + "\n";
@@ -51,19 +54,18 @@ public class Storage {
      * @throws IOException
      * @throws SecurityException
      */
-    public static void saveTasks(ArrayList<Task> tasks) throws IOException, SecurityException {
-        File directory = new File(directoryPath);
+    public void saveTasks(ArrayList<Task> tasks) throws IOException, SecurityException {
+        File file = new File(filePath);
+        File directory = new File(file.getParent());
 
         if (!directory.exists()) {
             directory.mkdir();
         }
-
-        File file = new File(directoryPath + "/" + fileName);
         if (!file.exists()) {
             file.createNewFile();
         }
 
-        FileWriter fw = new FileWriter(directoryPath + "/" + fileName);
+        FileWriter fw = new FileWriter(filePath);
         fw.write(encodeTasks(tasks));
         fw.close();
     }

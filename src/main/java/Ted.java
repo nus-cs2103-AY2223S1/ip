@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -18,6 +15,8 @@ public class Ted {
     private static final String INPUT_PREFIX = "> ";
 
     ArrayList<Task> tasks = new ArrayList<Task>();
+
+    private Storage storage = new Storage("./data/tasks.txt");
 
     /**
      * Helper to add task to tasks
@@ -181,7 +180,7 @@ public class Ted {
 
     private void startup() {
         try {
-            this.tasks = Storage.loadTasks();
+            this.tasks = storage.loadTasks();
             System.out.printf("Loaded %d tasks from saved file.\n", this.tasks.size());
         } catch (InvalidEncodingException e) {
             System.out.println("Error while loading tasks: saved file's encoding incorrect.");
@@ -220,7 +219,7 @@ public class Ted {
                 }
 
                 try {
-                    Storage.saveTasks(this.tasks);
+                    storage.saveTasks(this.tasks);
                 } catch (IOException e) {
                     System.out.println("Error while saving tasks: " + e.getMessage());
                 } catch (SecurityException e) {
