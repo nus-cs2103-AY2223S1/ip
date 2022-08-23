@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class Decoder {
 
     private static Task makeTask(String word, String date, char tag) {
@@ -11,7 +14,24 @@ public class Decoder {
         }
         return newTask;
     }
-    public static Task handleTasks(String word) throws DukeException{
+
+    private static Task makeTask(String word, String date, char tag, boolean isFinished) {
+        Task newTask;
+        if (tag == 'D') {
+            newTask = new Deadline(word, date);
+        } else if (tag == 'E') {
+            newTask = new Event(word, date);
+        } else {
+            newTask = new Todo(word);
+        }
+
+        if (isFinished) {
+            newTask.markAsDone();
+        }
+        return newTask;
+    }
+
+    public static Task handleTasks(String word) throws DukeException {
         String[] splitted = word.split(" ", 2);
         if (splitted.length < 2) {
             throw new EmptyDescException(splitted[0]);
@@ -30,6 +50,9 @@ public class Decoder {
             if (stringAndDate.length < 2) {
                 throw new BadFormatException("incorrect format", splitted[0]);
             }
+
+            parseLD(stringAndDate[1]);
+
             if (splitted[0].equals("deadline")) {
                 return makeTask(stringAndDate[0], stringAndDate[1], 'D');
             } else {
@@ -37,7 +60,24 @@ public class Decoder {
             }
         }
     }
-    public static void handleDelete(String word, TasksManager tasksManager) throws DukeException {
+
+    public static Task parseFromFile(String word) {
+        String[] splitted = word.split(" ");
+
+        System.out.println(" ");
+        if (splitted[0].equals("T")) {
+            return makeTask(splitted[2], null, 'T', Boolean.parseBoolean(splitted[1]));
+        }
+        if (splitted[0].equals("D")) {
+            return makeTask(splitted[2], splitted[splitted.length - 1], 'D', Boolean.parseBoolean(splitted[1]));
+        }
+        if (splitted[0].equals("E")) {
+            return makeTask(splitted[2], splitted[splitted.length - 1], 'E', Boolean.parseBoolean(splitted[1]));
+        }
+        return null;
+    }
+
+    public static int handleDelete(String word) throws DukeException {
         String[] deleteTasks = word.split(" ");
 
         if (deleteTasks.length != 2) {
@@ -47,10 +87,10 @@ public class Decoder {
             throw new DukeException("invalid task");
         }
         int taskNo = Integer.parseInt(deleteTasks[1]);
-        tasksManager.deleteTask(taskNo);
+        return taskNo;
     }
 
-    public static void handleDone(String word, TasksManager tasksManager) throws DukeException {
+    public static int handleDone(String word) throws DukeException {
         String[] doneTasks = word.split(" ");
         if (doneTasks.length != 2) {
             throw new BadFormatException("done", "done");
@@ -59,7 +99,16 @@ public class Decoder {
             throw new DukeException("invalid task");
         }
         int taskNo = Integer.parseInt(doneTasks[1]);
-        tasksManager.markTaskAsDone(taskNo);
+        return taskNo;
+    }
+
+    public static LocalDate parseLD(String str) throws BadFormatException{
+        try {
+            String[] splitted = str.split(" ");
+            return LocalDate.parse(splitted[splitted.length - 1].stripLeading());
+        } catch (DateTimeParseException e) {
+            throw new BadFormatException("date time error", "Date", "Date: <YYYY-MM-DD>");
+        }
     }
 
     public static boolean isValidNum(String num) {

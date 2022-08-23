@@ -3,42 +3,26 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class TasksManager {
     private String line = "_______________________________________";
 
-    private File directory;
-    private File tasklist;
-    private FileWriter fileWriter;
-    private PrintWriter printWriter;
+    private Storage storage;
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     public TasksManager() {
-        try {
-            directory = new File("data");
-            if (!directory.exists()) {
-                directory.mkdir();
-            }
-
-            tasklist = new File("data/tasklist.txt");
-            if (!tasklist.exists()) {
-                tasklist.createNewFile();
-            }
-            fileWriter = new FileWriter(this.tasklist, true);
-            printWriter = new PrintWriter(fileWriter);
-            readfile();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+        this.storage = new Storage();
+        this.storage.readfile(this);
     }
 
     public boolean addTask(Task task) {
         //add to the tasks
         tasks.add(task);
         //write to file
-        printWriter.println(task.fileForm());
+        System.out.println(task.fileForm());
         //print to console
         System.out.println(line);
         System.out.println("Got it. I've added this task:");
@@ -47,6 +31,10 @@ public class TasksManager {
         System.out.println(line);
 
         return true;
+    }
+
+    public void addTaskNoPrint(Task task) {
+        tasks.add(task);
     }
 
     public void showList() {
@@ -67,7 +55,7 @@ public class TasksManager {
         doneTask.markAsDone();
 
         // rewrite file entirely
-        rewriteFile();
+        storage.rewriteFile(this.tasks);
         //print to the console
         System.out.println(line);
         System.out.println("Nice! I've marked this task as done:");
@@ -81,7 +69,7 @@ public class TasksManager {
         }
         Task deleted = this.tasks.remove(n - 1);
         //rewrite file entirely
-        rewriteFile();
+        storage.rewriteFile(this.tasks);
         //print to console
         System.out.println(line);
         System.out.println("The following task has been deleted:");
@@ -89,82 +77,23 @@ public class TasksManager {
         System.out.println(line);
     }
 
-    public boolean readfile() {
-        try {
-            Scanner sc = new Scanner(this.tasklist);
-            while (sc.hasNextLine()) {
-                String data = sc.nextLine();
-                System.out.println(data);
-                String[] splitted = data.split(" ");
-                boolean isAdded = addFromFile(splitted);
-            }
-            sc.close();
-            return true;
-        } catch (FileNotFoundException e) {
-            System.out.println("error reading file");
-            return false;
-        }
-    }
-
-    private boolean rewriteFile() {
-        //delete all file contents
-        printWriter.flush();
-        try {
-            printWriter = new PrintWriter(new FileWriter(this.tasklist, false));
-            printWriter.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
-        printWriter = new PrintWriter(fileWriter);
-        for (int i = 0; i < this.tasks.size(); i++) {
-            Task task = this.tasks.get(i);
-            printWriter.println(task.fileForm());
-        }
-        return true;
-    }
-
-    private boolean addFromFile(String[] strArray) {
-        if (strArray.length < 3) {
-            return false;
-        }
-
-        if (strArray[0].equals("T")) {
-            Task newTask = new Todo(strArray[2]);
-            if (strArray[1].equals("true")) {
-                newTask.markAsDone();
-            }
-            this.tasks.add(newTask);
-            return true;
-        }
-
-        if (strArray[0].equals("D") && strArray.length > 3) {
-            Task newTask = new Deadline(strArray[2], strArray[3]);
-            if (strArray[1].equals("true")) {
-                newTask.markAsDone();
-            }
-            this.tasks.add(newTask);
-            return true;
-        }
-
-        if (strArray[0].equals("E") && strArray.length > 3) {
-            Task newTask = new Event(strArray[2], strArray[3]);
-            if (strArray[1].equals("true")) {
-                newTask.markAsDone();
-            }
-            this.tasks.add(newTask);
-            return true;
-        }
-
-        return false;
-    }
-
     public int numTasks() {
         return tasks.size();
     }
 
     public void closePW() {
-        printWriter.close();
+        storage.end();
+    }
+
+    public void showDate(LocalDate localDate) {
+        System.out.println(line);
+        System.out.println("These tasks are due on " + localDate);
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).compareDate(localDate)) {
+                System.out.println(tasks.get(i));
+            }
+        }
+        System.out.println(line);
     }
 }
 

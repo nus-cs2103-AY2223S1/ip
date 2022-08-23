@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,13 +20,15 @@ public class Interact {
         if (word.startsWith("bye") || word.startsWith("Bye")) {
             bye();
         } else if (word.startsWith("list") || word.startsWith("List")) {
-            showList();
+            tasksManager.showList();
         } else if (word.startsWith("done") || word.startsWith("Done")) {
-            Decoder.handleDone(word, tasksManager);
+            tasksManager.markTaskAsDone(Decoder.handleDone(word));
         } else if (word.startsWith("delete") || word.startsWith("Delete")) {
-            Decoder.handleDelete(word, this.tasksManager);
+            tasksManager.deleteTask(Decoder.handleDelete(word));
         } else if (word.startsWith("todo") || word.startsWith("deadline") || word.startsWith("event")) {
             tasksManager.addTask(Decoder.handleTasks(word));
+        } else if (word.startsWith("date") || word.startsWith("Date")) {
+            tasksManager.showDate(Decoder.parseLD(word));
         } else {
             throw new DukeException("bad input");
         }
@@ -44,20 +47,6 @@ public class Interact {
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(line);
         System.exit(0);
-    }
-
-    public void showList() {
-        tasksManager.showList();
-    }
-
-    public boolean isValidNum(String num) {
-        char[] charas = num.toCharArray();
-        for (int i = 0; i < num.length(); i++) {
-            if (!Character.isDigit(charas[i])) {
-                return false;
-            }
-        }
-        return true;
     }
 
     public static void main(String[] args) {

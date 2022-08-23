@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Task {
     private String name;
     private boolean finished = false;
@@ -21,5 +23,9 @@ public class Task {
 
     public String fileForm() {
         return this.finished + " " + this.name;
+    }
+
+    public boolean compareDate(LocalDate localDate) {
+        return false;
     }
 }
