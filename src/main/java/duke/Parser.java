@@ -1,8 +1,15 @@
+package duke;
+
+import duke.command.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Parser {
-    private  Command command;
+    private Command command;
     public static Command parse(String command) throws DukeException {
         String[] strArr = command.split(" ");
         String firstWord = strArr[0];

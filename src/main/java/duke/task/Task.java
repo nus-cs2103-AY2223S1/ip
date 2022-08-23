@@ -1,4 +1,6 @@
- abstract class Task {
+package duke.task;
+
+public abstract class Task {
     private boolean completed = false;
     private String name;
 
@@ -26,5 +28,5 @@
         }
     }
 
-    abstract String parse();
+    public abstract String parse();
 }
