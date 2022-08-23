@@ -1,3 +1,15 @@
+package duke.main;
+
+import duke.task.Task;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
+import duke.exception.DukeException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -76,7 +88,7 @@ public class Duke {
                     Event e = new Event(desc, atDate);
                     tasks.addTask(e);
                     ui.printAddTaskMessage(e, tasks.getSize());
-                    //delete a task from the list
+                    //delete a duke.task from the list
                 } else if (firstWord.equals("delete")) {
                     int delValue = parser.getTaskNumber();
                     if (delValue > tasks.getSize() || delValue <= 0) {

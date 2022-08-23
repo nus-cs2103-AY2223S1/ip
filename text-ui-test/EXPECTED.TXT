@@ -4,7 +4,7 @@ What do you want this time?
 ______________________________________
 
 ______________________________________
-Fine, I'll add this task:
+Fine, I'll add this duke.task:
 	[D][ ] return book (by: Sunday)
 Now you have 1 tasks in the list...
 ______________________________________

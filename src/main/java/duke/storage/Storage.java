@@ -1,3 +1,12 @@
+package duke.storage;
+
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
+import duke.tasklist.TaskList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,11 +49,11 @@ public class Storage {
                 if (dataArr[0].equals("T")) {
                     task = new Todo(dataArr[2]);
                 } else if (dataArr[0].equals("D")) {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate date = LocalDate.parse(dataArr[3], formatter);
                     task = new Deadline(dataArr[2], date);
                 } else {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     LocalDate date = LocalDate.parse(dataArr[3], formatter);
                     task = new Event(dataArr[2], date);
                 }
@@ -62,7 +71,7 @@ public class Storage {
     /**
      * Save data from the to-do list into the file specified by filepath
      *
-     * @param list ArrayList of Task to be saved
+     * @param list ArrayList of Task.Task to be saved
      */
     public void saveData(TaskList list) {
         try {

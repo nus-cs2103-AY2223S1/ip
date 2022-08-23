@@ -1,3 +1,8 @@
+package duke.ui;
+
+import duke.task.Task;
+import duke.tasklist.TaskList;
+
 public class Ui {
 
     final String HORIZONTAL_LINE = "______________________________________\n";
@@ -34,23 +39,23 @@ public class Ui {
     }
 
     public void printMarkMessage(Task task) {
-        String str = "Took you long enough to complete this task:\n" + task.toString();
+        String str = "Took you long enough to complete this duke.task:\n" + task.toString();
         formatPrint(str);
     }
 
     public void printUnmarkMessage(Task task) {
-        String str = "Another task marked as not done?? Slow indeed\n" + task.toString();
+        String str = "Another duke.task marked as not done?? Slow indeed\n" + task.toString();
         formatPrint(str);
     }
 
     public void printAddTaskMessage(Task task, int size) {
-        String str = "Fine, I'll add this task:\n\t" + task.toString() + "\nNow you have "
+        String str = "Fine, I'll add this duke.task:\n\t" + task.toString() + "\nNow you have "
                 + size + " tasks in the list...";
         formatPrint(str);
     }
 
     public void printDeleteMessage(Task task, int size) {
-        String str = "Ughh I'll remove this task:\n\t" + task.toString() + "\nNow you have "
+        String str = "Ughh I'll remove this duke.task:\n\t" + task.toString() + "\nNow you have "
                 + size + " tasks in the list...";
         formatPrint(str);
     }
