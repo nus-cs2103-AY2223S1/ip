@@ -15,8 +15,22 @@ public class TaskList {
     }
   }
 
-  public List<Task> getTaskList() {
+  public int getSize() {
+    return taskList.size();
+  }
+  public void addTask(Task task) {
+    taskList.add(task);
+  }
+
+  public void deleteTask (Task task) {
+    taskList.remove(task);
+  }
+
+  public List<Task> getList() {
     return this.taskList;
+  }
+  public Task getTask(int i) {
+    return this.taskList.get(i);
   }
 
 
