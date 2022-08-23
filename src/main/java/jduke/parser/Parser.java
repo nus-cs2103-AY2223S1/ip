@@ -1,11 +1,32 @@
 package jduke.parser;
 
-import jduke.commands.*;
+import jduke.commands.ByeCommand;
+import jduke.commands.DeadlineCommand;
+import jduke.commands.Command;
+import jduke.commands.DeleteCommand;
+import jduke.commands.EventCommand;
+import jduke.commands.FindCommand;
+import jduke.commands.IncorrectCommand;
+import jduke.commands.ListCommand;
+import jduke.commands.MarkCommand;
+import jduke.commands.TodoCommand;
+import jduke.commands.UnmarkCommand;
+
+import java.util.regex.Pattern;
 
 /**
  * Represents a parser to parse user input.
  */
 public class Parser {
+    private static final String REGEX_DEADLINE =
+            "[^ ](.*) /by ([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4}" +
+                    "(( ([01][0-9]|2[0-3])([0-5][0-9]))|)";
+    private static final String REGEX_EVENT =
+            "[^ ](.*) /at ([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4}" +
+                    "(( ([01][0-9]|2[0-3])([0-5][0-9]))|)";
+    private static final String REGEX_LIST =
+            "(([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4}|)";
+
     /**
      * Parses the user input, and returns the corresponding command.
      * @param input The user input.
@@ -46,16 +67,14 @@ public class Parser {
     }
 
     private Command prepareTodo(String params) {
-        if (!params.toLowerCase().matches("[^ ](.*)")) {
+        if (!params.matches("[^ ](.*)")) {
             return new IncorrectCommand(String.format("|  invalid TODO format%n|    %s%n", TodoCommand.FORMAT));
         }
         return new TodoCommand(params);
     }
 
     private Command prepareDeadline(String params) {
-        if (!(params.toLowerCase().matches(
-                "[^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
-                || params.toLowerCase().matches("[^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
+        if (!Pattern.matches(REGEX_DEADLINE, params.toLowerCase())) {
             return new IncorrectCommand(
                     String.format("|  invalid DEADLINE format%n|    %s%n", DeadlineCommand.FORMAT));
         }
@@ -63,16 +82,14 @@ public class Parser {
     }
 
     private Command prepareEvent(String params) {
-        if (!(params.toLowerCase().matches(
-                "[^ ](.*) /at [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
-                || params.toLowerCase().matches("[^ ](.*) /at [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
+        if (!Pattern.matches(REGEX_EVENT, params.toLowerCase())) {
             return new IncorrectCommand(String.format("|  invalid EVENT format%n|    %s%n", EventCommand.FORMAT));
         }
         return new EventCommand(params);
     }
 
     private Command prepareList(String params) {
-        if (!(params.matches("[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}") || params.matches(""))) {
+        if (!Pattern.matches(REGEX_LIST, params.toLowerCase())) {
             return new IncorrectCommand(String.format("|  invalid LIST format%n|    %s%n", ListCommand.FORMAT));
         }
         return new ListCommand(params);
