@@ -1,6 +1,11 @@
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.io.FileWriter;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>(100);
@@ -33,9 +38,23 @@ public class TaskList {
         if (info[0].equals("T")) {
             t = new ToDo(info[2]);
         } else if (info[0].equals("D")) {
-            t = new Deadline(info[2], info[3]);
+            if (info.length == 4) {
+                t = new Deadline(info[2], LocalDate.parse(info[3]));
+            } else {
+                t = new Deadline(
+                        info[2], LocalDate.parse(info[3]),
+                        LocalTime.parse(info[4]));
+            }
         } else {
-            t = new Event(info[2], info[3], info[4]);
+            try {
+                t = new Event(
+                        info[2], info[3], LocalDateTime.parse(info[4]),
+                        LocalDateTime.parse(info[5]));
+            } catch (DateTimeParseException e) {
+                t = new Event(
+                        info[2], info[3], LocalDateTime.parse(info[4]),
+                        LocalTime.parse(info[5]));
+            }
         }
         add(t);
         if (info[1].equals("1")) {
@@ -63,6 +82,25 @@ public class TaskList {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(Duke.sadFace + "please enter an integer from 1 - " + tasks.size());
             }
+        }
+    }
+
+    public void search(LocalDate date) {
+        String list = "";
+        int x = 1;
+        for (Task task : tasks) {
+            if (task.happensOn(date)) {
+                list = list + "\n  " + x + ". " + task;
+                x++;
+            }
+        }
+        if (x == 1) {
+            System.out.println(
+                    Duke.start + "There are no tasks occurring on " + date + ".");
+        } else {
+            System.out.println(
+                    Duke.start + "These are the tasks occurring on " + date + ":" + list
+            );
         }
     }
 

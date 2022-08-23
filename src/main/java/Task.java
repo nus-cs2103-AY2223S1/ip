@@ -1,4 +1,12 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Task {
+    protected DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, dd LLL yyyy");
+    protected DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("hh:mma");
+    protected DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(
+            "EEE, dd LLL yyyy, hh:mma"
+    );
     private String description;
     private boolean isDone;
 
@@ -21,6 +29,10 @@ public class Task {
         } else {
             return "0 | " + this.description;
         }
+    }
+
+    public boolean happensOn(LocalDate searchDate) {
+        return false;
     }
 
     @Override
