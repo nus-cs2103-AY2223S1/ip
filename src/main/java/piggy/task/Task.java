@@ -1,6 +1,8 @@
+package piggy.task;
+
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    String description;
+    boolean isDone;
 
     public Task(String description) {
         this.description = description;
@@ -17,6 +19,18 @@ public class Task {
 
     public void markNotDone() {
         isDone = false;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
 
     @Override

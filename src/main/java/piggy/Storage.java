@@ -1,3 +1,5 @@
+package piggy;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -6,6 +8,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import piggy.task.Deadline;
+import piggy.task.Event;
+import piggy.task.Task;
+import piggy.task.TaskWithDate;
+import piggy.task.Todo;
 
 class Storage {
     File file;
@@ -77,11 +84,11 @@ class Storage {
                     continue;
                 }
 
-                line.add(Boolean.toString(task.isDone));
-                line.add(task.description);
+                line.add(Boolean.toString(task.isDone()));
+                line.add(task.getDescription());
 
                 if (task instanceof TaskWithDate) {
-                    line.add(((TaskWithDate) task).datetime.toString());
+                    line.add(((TaskWithDate) task).getLocalDateTime().toString());
                 }
                 writer.write(String.join(",", line) + "\n");
             }

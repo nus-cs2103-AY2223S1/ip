@@ -1,3 +1,5 @@
+package piggy.task;
+
 public class Deadline extends TaskWithDate {
 
     public Deadline(String description, String by) {

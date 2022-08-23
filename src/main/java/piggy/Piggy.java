@@ -1,3 +1,5 @@
+package piggy;
+
 public class Piggy {
     private Storage storage;
     private TaskList taskList;
@@ -19,7 +21,7 @@ public class Piggy {
         }
         ui.showBye();
     }
-    
+
     public static void main(String[] args) {
         new Piggy("./tasks.txt").run();
     }

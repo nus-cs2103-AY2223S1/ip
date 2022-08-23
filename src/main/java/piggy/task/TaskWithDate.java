@@ -1,12 +1,14 @@
+package piggy.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class TaskWithDate extends Task {
 
     protected LocalDateTime datetime;
-    protected static final DateTimeFormatter inDateTimeFormatter =
+    public static final DateTimeFormatter inDateTimeFormatter =
             DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    protected static final DateTimeFormatter outDateTimeFormatter =
+    public static final DateTimeFormatter outDateTimeFormatter =
             DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     public TaskWithDate(String description, String datetime) {
@@ -16,6 +18,10 @@ public class TaskWithDate extends Task {
 
     String getDateTime() {
         return datetime.format(outDateTimeFormatter);
+    }
+
+    public LocalDateTime getLocalDateTime() {
+        return datetime;
     }
 }
 

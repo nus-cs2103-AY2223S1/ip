@@ -1,3 +1,9 @@
+package piggy;
+
+import piggy.task.Deadline;
+import piggy.task.Event;
+import piggy.task.Task;
+import piggy.task.Todo;
 
 class Parser {
     static boolean parse(String command, Ui ui, TaskList taskList) {

@@ -1,6 +1,9 @@
+package piggy;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import piggy.task.Task;
 
 class TaskList implements Iterable<Task> {
     private List<Task> tasks;

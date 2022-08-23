@@ -1,3 +1,5 @@
+package piggy.task;
+
 public class Event extends TaskWithDate {
 
     public Event(String description, String at) {
