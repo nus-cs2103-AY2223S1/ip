@@ -1,3 +1,5 @@
+package duke;
+
 import duke.Parser;
 import duke.modules.Todos;
 
