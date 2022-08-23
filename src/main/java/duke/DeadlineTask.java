@@ -1,4 +1,5 @@
 package duke;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -8,10 +9,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class DeadlineTask extends Task {
 
-    protected static final String COLON = ":";
+    private static final String COLON = ":";
 
-    protected LocalDate date;
-    protected LocalTime time;
+    private LocalDate date;
+    private LocalTime time;
 
     /**
      * Constructor for a DeadlineTask object.

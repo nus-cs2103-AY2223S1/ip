@@ -52,5 +52,4 @@ package duke;
                 + this.getDescription();
     }
 
-    //...
 }

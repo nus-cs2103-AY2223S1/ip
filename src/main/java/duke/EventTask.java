@@ -1,18 +1,18 @@
 package duke;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * The EventTask is a Task that has at event time.
  */
 public class EventTask extends Task {
 
-    protected static final String COLON = ":";
+    private static final String COLON = ":";
 
-    protected LocalDate date;
-    protected LocalTime time;
+    private LocalDate date;
+    private LocalTime time;
 
     /**
      * Constructor of a EventTask object
@@ -45,6 +45,7 @@ public class EventTask extends Task {
     public String dateTimeString() {
         return this.date.toString() + " " + this.time.toString().replace(":", "");
     }
+
     @Override
     public String toString() {
         DateTimeFormatter formatterDate = DateTimeFormatter.ofPattern("MMM dd yyyy");

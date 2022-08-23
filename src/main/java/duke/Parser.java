@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.IOException;
+
 import java.util.regex.Pattern;
 
 /**
@@ -128,7 +129,7 @@ public class Parser {
 			part2 = parts[1];
 			if (isInteger(part2)) {
 				int number = Integer.parseInt(part2);
-				if(this.tasks.size() < number || number <= 0) {
+				if (this.tasks.size() < number || number <= 0) {
 					throw new DukeException("There's no such task to delete!");
 				} else {
 					this.tasks.deleteTask(number);

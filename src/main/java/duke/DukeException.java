@@ -1,4 +1,5 @@
 package duke;
+
 /**
  * DukeException is an exception class when using Duke.
  */

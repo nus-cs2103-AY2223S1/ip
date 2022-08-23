@@ -1,4 +1,5 @@
 package duke;
+
 /**
  * The  TodoTask is a task that only takes in a description.
  */
