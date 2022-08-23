@@ -1,7 +1,9 @@
-import java.rmi.activation.UnknownObjectException;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
 
 public class Duke {
 
@@ -17,7 +19,7 @@ public class Duke {
         }
     }
 
-    public static class Task {
+    public static abstract class Task {
         protected boolean isDone;
         protected String description;
 
@@ -38,22 +40,41 @@ public class Duke {
             return (isDone ? "X" : " ");
         }
 
+        public String getDescription() {
+            return this.description;
+        }
+
+        public abstract String getLetterTag();
+
+        public abstract String getAdditionalInfo();
+
     }
 
-    public static class Todo extends Task{
+    public static class Todo extends Task {
 
         public Todo(String description) {
             super(description);
         }
 
         @Override
+        public String getLetterTag() {
+            return "T";
+        }
+
+        @Override
+        public String getAdditionalInfo() {
+            return "";
+        }
+
+
+        @Override
         public String toString() {
-            return "[T][" + this.getStatusIcon() + "] " + this.description;
+            return "[" + this.getLetterTag() + "][" + this.getStatusIcon() + "] " + this.description;
         }
 
     }
 
-    public static class Deadline extends Task{
+    public static class Deadline extends Task {
 
         protected String deadline;
 
@@ -62,15 +83,25 @@ public class Duke {
             this.deadline = deadline;
         }
 
+        @Override
+        public String getLetterTag() {
+            return "D";
+        }
+
+        @Override
+        public String getAdditionalInfo() {
+            return this.deadline;
+        }
 
         @Override
         public String toString() {
-            return "[D][" + this.getStatusIcon() + "] " + this.description + " (by: " + this.deadline + ")";
+            return "[" + this.getLetterTag() + "][" + this.getStatusIcon() + "] "
+                    + this.description + " (by: " + this.deadline + ")";
         }
 
     }
 
-    public static class Event extends Task{
+    public static class Event extends Task {
 
         protected String time;
 
@@ -80,14 +111,47 @@ public class Duke {
         }
 
         @Override
+        public String getLetterTag() {
+            return "E";
+        }
+
+        @Override
+        public String getAdditionalInfo() {
+            return this.time;
+        }
+
+        @Override
         public String toString() {
-            return "[E][" + this.getStatusIcon() + "] " + this.description + " (at: " + this.time + ")";
+            return "[" + this.getLetterTag() + "][" + this.getStatusIcon() + "] "
+                    + this.description + " (at: " + this.time + ")";
         }
 
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
+        File file = new File("tasks.txt");
+        file.createNewFile();
+        Scanner fileScanner = new Scanner(file);
+        while (fileScanner.hasNext()) {
+            String tempTask = fileScanner.nextLine();
+            String[] loadedTask = tempTask.split("~~");
+            switch (loadedTask[0]) {
+                case "T":
+                    tasks.add(new Todo(loadedTask[2]));
+                    break;
+                case "D":
+                    tasks.add(new Deadline(loadedTask[2], loadedTask[3]));
+                    break;
+                case "E":
+                    tasks.add(new Event(loadedTask[2], loadedTask[3]));
+                    break;
+            }
+            if (loadedTask[1].equals("X")) {
+                tasks.get(tasks.size() - 1).mark();
+            }
+        }
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -191,6 +255,14 @@ public class Duke {
                 System.out.println(e.getMessage());
             }
             System.out.println("____________________________________________________________");
+
+            new FileWriter("tasks.txt").close();
+            FileWriter fileWriter = new FileWriter("tasks.txt");
+            for (Task task : tasks) {
+                fileWriter.write(task.getLetterTag() + "~~" + task.getStatusIcon() + "~~" +
+                        task.getDescription() + "~~" + task.getAdditionalInfo() + System.lineSeparator());
+            }
+            fileWriter.close();
         }
     }
 }
