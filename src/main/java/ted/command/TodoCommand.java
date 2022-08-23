@@ -7,8 +7,16 @@ import ted.task.ToDo;
 
 public class TodoCommand extends Command {
 
+    /**
+     * Description of todo
+     */
     private String description;
 
+    /**
+     * Construct a todo command
+     * @param args
+     * @throws TedException
+     */
     public TodoCommand(String args) throws TedException {
         super(args);
         if (args.isEmpty()) {
@@ -18,6 +26,13 @@ public class TodoCommand extends Command {
         this.description = args;
     }
 
+    /**
+     * Add the todo into tasks and save the current tasks list
+     * to storage.
+     * @param tasks
+     * @param ui
+     * @param storage
+     */
     @Override
     public void run(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(new ToDo(description));

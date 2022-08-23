@@ -11,6 +11,13 @@ public class ByeCommand extends Command {
         super(args);
     }
 
+    /**
+     * This will exit the program and do clean up.
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @throws TedException
+     */
     @Override
     public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
         ui.exit();

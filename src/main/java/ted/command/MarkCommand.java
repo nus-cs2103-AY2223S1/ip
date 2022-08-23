@@ -7,8 +7,16 @@ import ted.Ui;
 
 public class MarkCommand extends Command {
 
+    /**
+     * The index of task to be marked
+     */
     private int index;
 
+    /**
+     * Construct a mark command
+     * @param args
+     * @throws TedException
+     */
     public MarkCommand(String args) throws TedException {
         super(args);
         try {
@@ -18,6 +26,13 @@ public class MarkCommand extends Command {
         }
     }
 
+    /**
+     * Mark the task that specified by user.
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @throws TedException
+     */
     @Override
     public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
         try {

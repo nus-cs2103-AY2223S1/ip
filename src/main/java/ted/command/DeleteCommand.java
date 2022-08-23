@@ -7,8 +7,16 @@ import ted.task.TaskList;
 
 public class DeleteCommand extends Command {
 
+    /**
+     * Index of task to be deleted
+     */
     private int index;
 
+    /**
+     * Construct a delete command
+     * @param args
+     * @throws TedException
+     */
     public DeleteCommand(String args) throws TedException {
         super(args);
         try {
@@ -18,6 +26,14 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Delete task from task list and save the current
+     * task list to storage.
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @throws TedException
+     */
     @Override
     public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
         if (tasks.size() == 0) {

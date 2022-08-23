@@ -7,17 +7,7 @@ import ted.task.TaskList;
 
 public class Ted {
 
-    private static final String GREETING =
-            "##################################################\n" +
-            "||                                              ||\n" +
-            "||                Hello! I'm Ted                ||\n" +
-            "||            What can I do for you?            ||\n" +
-            "||                                              ||\n" +
-            "##################################################";
-
-    private static final String INPUT_PREFIX = "> ";
-
-    TaskList tasks;
+    private TaskList tasks;
 
     private Storage storage;
 

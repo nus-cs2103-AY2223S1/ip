@@ -12,26 +12,53 @@ import java.util.Arrays;
  * Type | isDone | Message | ...other arguments
  */
 public class Task {
+    /**
+     * Description of task
+     */
     private String description;
+
+    /**
+     * To indicate whether the task is done
+     */
     private Boolean isDone;
 
+    /**
+     * Construct a Task isntance
+     * @param description
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Mark task that has been done
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Unmark task
+     */
     public void unmark() {
         this.isDone = false;
     }
 
+    /**
+     * Encode to a string that can be stored in file
+     * @return string that is store-able
+     */
     public String encode() {
         return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
     }
 
+    /**
+     * Decode encoded string of a task to a task instance
+     * @param encoded
+     * @return a task instance
+     * @throws InvalidEncodingException
+     */
     public static Task decode(String encoded) throws InvalidEncodingException {
         String[] line = encoded.split(" \\| ");
         if (line.length <= 2) {

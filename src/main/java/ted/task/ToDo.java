@@ -8,6 +8,10 @@ public class ToDo extends Task {
         super(description);
     }
 
+    /**
+     * Encode to a string that can be stored in file
+     * @return string that is store-able
+     */
     @Override
     public String encode() {
         return String.format("T | %s", super.encode());

@@ -4,6 +4,10 @@ import ted.command.*;
 import ted.exception.TedException;
 
 public class Parser {
+    /**
+     * CommandEnum to indicate the set of command that can be
+     * used by users
+     */
     enum CommandEnum {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE;
 
@@ -18,6 +22,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parse the command and construct the command
+     * @param input
+     * @return command that can be executed and parsed from user's input
+     * @throws TedException
+     */
     public static Command parse(String input) throws TedException {
         String[] inputArr = input.split(" ");
         if (inputArr.length <= 0) {

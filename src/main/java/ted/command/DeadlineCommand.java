@@ -7,9 +7,21 @@ import ted.task.TaskList;
 
 public class DeadlineCommand extends Command {
 
+    /**
+     * Deadline of the task
+     */
     private String by;
+
+    /**
+     * Description of the task
+     */
     private String description;
 
+    /**
+     * Construct a deadline command.
+     * @param args
+     * @throws TedException
+     */
     public DeadlineCommand(String args) throws TedException {
         super(args);
         if (args.isEmpty()) {
@@ -27,6 +39,14 @@ public class DeadlineCommand extends Command {
         this.by = inputs[1];
     }
 
+    /**
+     * Add a deadline task into task list and save task list
+     * to storage.
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @throws TedException
+     */
     @Override
     public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
         tasks.add(new Deadline(description, by));

@@ -7,8 +7,16 @@ import ted.Ui;
 
 public class UnmarkCommand extends Command {
 
+    /**
+     * Index of task to be unmarked
+     */
     private int index;
 
+    /**
+     * Construct a unmark command
+     * @param args
+     * @throws TedException
+     */
     public UnmarkCommand(String args) throws TedException {
         super(args);
         try {
@@ -18,6 +26,14 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    /**
+     * Unmark the task in tasks and save the whole tasks list to
+     * storage.
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @throws TedException
+     */
     @Override
     public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
         try {

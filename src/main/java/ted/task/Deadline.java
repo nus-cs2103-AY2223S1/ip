@@ -11,10 +11,22 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline extends Task {
 
+    /**
+     * Deadline of task in raw string
+     */
     private String by;
 
+    /**
+     * Deadline of task in LocalData instance
+     */
     private LocalDate deadline;
 
+    /**
+     * Construct a deadline object
+     * @param description
+     * @param by
+     * @throws TedException
+     */
     public Deadline(String description, String by) throws TedException {
         super(description);
         this.by = by;
@@ -32,6 +44,10 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Encode to a string that can be stored in file
+     * @return string that is store-able
+     */
     @Override
     public String encode() {
         return String.format("D | %s | %s", super.encode(), this.by);

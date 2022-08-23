@@ -7,9 +7,21 @@ import ted.task.TaskList;
 
 public class EventCommand extends Command {
 
+    /**
+     * Event's datetime
+     */
     private String at;
+
+    /**
+     * Event's description
+     */
     private String description;
 
+    /**
+     * Construct an event command
+     * @param args
+     * @throws TedException
+     */
     public EventCommand(String args) throws TedException {
         super(args);
         if (args.isEmpty()) {
@@ -27,6 +39,14 @@ public class EventCommand extends Command {
         this.at = inputs[1];
     }
 
+    /**
+     * Add an event task into task list and save the current
+     * task list to storage
+     * @param tasks
+     * @param ui
+     * @param storage
+     * @throws TedException
+     */
     @Override
     public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
         tasks.add(new Event(description, at));
