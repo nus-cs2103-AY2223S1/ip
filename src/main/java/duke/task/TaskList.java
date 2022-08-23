@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.function.Function;
 
 /**
  * A task list is used to store tasks.
@@ -109,6 +110,23 @@ public class TaskList {
                 "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
     }
 
+    /**
+     * Filters the task list and returns a new task list containing only elements
+     * that fulfil the specified condition.
+     *
+     * @param pred Condition to test the task elements against
+     * @return A new task list containing only elements that fulfil the specified condition
+     */
+    public TaskList filter(Function<Task, Boolean> pred) {
+        TaskList filtered = new TaskList();
+        for (Task task : tasks) {
+            if (pred.apply(task)) {
+                filtered.addTask(task);
+            }
+        }
+        return filtered;
+    }
+
     public String toSaveFormat() {
         String formatted = "";
         for (Task task : tasks) {
@@ -118,18 +136,27 @@ public class TaskList {
     }
 
     /**
-     * Lists all the tasks entered thus far by the user.
-     * Will print 'No tasks' if no tasks are found.
+     * Stringifies the task list without printing any information.
+     *
+     * @return The string representation of the task list
      */
-    @Override
-    public String toString() {
+    public String stringify() {
         String taskList = "";
         int count = 0;
         for (Task task : tasks) {
             count++;
             taskList += String.format("\n%d. %s", count, task);
         }
-        return (count != 0 ? "Here are the tasks in your list:\n"
-                + taskList.substring(1) : "No tasks");
+        return taskList.substring(1);
+    }
+
+    /**
+     * Lists all the tasks entered thus far by the user.
+     * Will print 'No tasks' if no tasks are found.
+     */
+    @Override
+    public String toString() {
+        String taskList = stringify();
+        return (taskList.equals("") ? "No tasks" : "Here are the tasks in your list:\n" + taskList);
     }
 }
