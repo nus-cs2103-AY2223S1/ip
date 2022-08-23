@@ -1,12 +1,16 @@
 package tasks;
 
 import exceptions.*;
+import utils.DeadlineParser;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class TaskList {
 
     private final ArrayList<Task> tasks;
+    private static final DeadlineParser DEADLINE_PARSER = new DeadlineParser();
 
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -17,17 +21,31 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             int j = i + 1;
             Task item = tasks.get(i);
-            System.out.println(j + "." + item.toString());
+            System.out.println(j + "." + item);
+        }
+    }
+
+    public void printDeadline(String deadline) throws NoBeforeException {
+        if (deadline == null || deadline.isBlank()) {
+            throw new NoBeforeException();
+        }
+        int i = 1;
+        System.out.println("Here are the tasks before the deadline " + DEADLINE_PARSER.formatDeadline(deadline));
+        for (Task t : tasks) {
+            if (t.isBefore(deadline)) {
+                System.out.println(i + "." + t);
+                i++;
+            }
         }
     }
 
     private void printTask(int index) {
-        System.out.println(tasks.get(index).toString());
+        System.out.println(tasks.get(index));
     }
 
     private void printAddedTask(Task task) {
         System.out.println("Got it. I've added this task:");
-        System.out.println(task.toString());
+        System.out.println(task);
         System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
 

@@ -1,9 +1,10 @@
 package tasks;
 
+import java.time.format.DateTimeParseException;
+
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected int index;
 
     public Task(String description) {
         this.description = description;
@@ -17,6 +18,8 @@ public class Task {
     public void markAsDone() {
         this.isDone = true;
     }
+
+    public boolean isBefore(String deadline) throws DateTimeParseException { return false; }
 
     @Override
     public String toString() {
