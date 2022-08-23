@@ -1,7 +1,7 @@
 package duke.ui;
 
 public class Ui {
-    private static String WELCOME_MESSAGE = "Hello! I'm duke.Duke\n" + "What can I do for you?";
+    private static String WELCOME_MESSAGE = "Hello! I'm Duke\n" + "What can I do for you?";
     private static String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
 
     public void showWelcomeMessage() {

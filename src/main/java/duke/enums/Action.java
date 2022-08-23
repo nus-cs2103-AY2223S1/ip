@@ -7,7 +7,8 @@ public enum Action {
     Event("event"),
     Mark("mark"),
     Unmark("unmark"),
-    Delete("delete");
+    Delete("delete"),
+    Find("find");
 
     public final String label;
     private Action(String label) {
