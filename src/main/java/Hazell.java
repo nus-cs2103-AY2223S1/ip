@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Hazell {
+    private Storage storage;
     private TaskList taskList;
     private Ui ui;
     private static final String logo = "  _    _               _ _ \n"
@@ -14,16 +15,18 @@ public class Hazell {
             + " | |  | | (_| |/ /  __/ | |\n"
             + " |_|  |_|\\__,_/___\\___|_|_|\n";
 
-    public Hazell() {
+    public Hazell(String filePath) {
         ui = new Ui();
         System.out.println(logo);
         try {
-            taskList = TaskList.createFromFile();
+            storage = new Storage(filePath);
+            taskList = new TaskList(storage.load());
         } catch (IOException e) {
             taskList = new TaskList();
             ui.reply("Looks like this is the first time you started me up. "
                     + "I'll be saving your tasks to data/hazell.txt!");
         }
+        taskList.setStorage(storage);
     }
 
     public void run() {
@@ -72,6 +75,6 @@ public class Hazell {
     }
 
     public static void main(String[] args) {
-        new Hazell().run();
+        new Hazell("data/hazell.txt").run();
     }
 }

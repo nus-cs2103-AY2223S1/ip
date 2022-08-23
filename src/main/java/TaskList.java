@@ -14,15 +14,19 @@ import java.util.Scanner;
  */
 public class TaskList {
     private final List<Task> store;
-    private final FileWriter writer;
+    private Storage storage;
 
     public TaskList() {
         this.store = new ArrayList<>();
-        try {
-            this.writer = new FileWriter(getAndInitialiseFilePath().toFile(), true);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    }
+
+    // Quick workaround method
+    public void setStorage(Storage storage) {
+        this.storage = storage;
+    }
+
+    public TaskList(List<Task> tasks) {
+        this.store = tasks;
     }
 
     /**
@@ -114,22 +118,7 @@ public class TaskList {
     }
 
     public void saveToFile() throws IOException {
-        FileWriter writer = new FileWriter(getAndInitialiseFilePath().toFile(), false);
-        for (Task task : this.store) {
-            writer.write(task.serialise());
-            writer.write("\n");
-        }
-        writer.close();
-    }
-
-    public static TaskList createFromFile() throws IOException {
-        Scanner sc = new Scanner(getAndInitialiseFilePath().toFile());
-        TaskList store = new TaskList();
-        while (sc.hasNextLine()) {
-            Task task = Task.unserialise(sc.nextLine().strip());
-            store.store.add(task);
-        }
-        return store;
+        this.storage.store(this.store);
     }
 
     /**
