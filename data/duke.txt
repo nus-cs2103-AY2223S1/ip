@@ -1,0 +1,6 @@
+T >> 0 >> item 1
+D >> 0 >> item 2 >> 3pm
+E >> 0 >> item 3 >> 4pm
+T >> 1 >> item 4
+D >> 0 >> item 5 >> 5pm
+E >> 0 >> item 6 >> 6pm

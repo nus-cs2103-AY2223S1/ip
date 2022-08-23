@@ -3,7 +3,7 @@
  *
  * @author Kartikeya
  */
-public class DukeTask {
+public abstract class DukeTask {
   // Description of task
   private final String description;
 
@@ -45,6 +45,12 @@ public class DukeTask {
     return "Whoops! This task is now yet to be completed:\n  "
         + this;
   }
+
+  public boolean isDone() {
+    return this.isDone;
+  }
+
+  abstract String getStorageString();
 
   @Override
   public String toString() {

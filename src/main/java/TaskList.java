@@ -5,12 +5,12 @@ import java.util.ArrayList;
  *
  * @author Kartikeya
  */
-public class DukeList {
+public class TaskList {
   // Stores the items given to Apollo
   private final ArrayList<DukeTask> items;
 
-  public DukeList() {
-    items = new ArrayList<>();
+  public TaskList(ArrayList<DukeTask> items) {
+    this.items = items;
   }
 
   /**
@@ -124,6 +124,10 @@ public class DukeList {
   public String listCount() {
     return "\nNow you have " + items.size() + " task" +
         (items.size() == 1 ? "" : "s") +" in the list.";
+  }
+
+  public void save(Storage s) {
+    s.save(items);
   }
 
   /**

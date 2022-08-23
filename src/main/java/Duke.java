@@ -7,16 +7,22 @@ import java.util.Scanner;
  * @author Kartikeya
  */
 public class Duke {
-    private final Scanner s;
+    private Scanner s;
     private final String divider =
         "\n-----------------------------------------------";
 
     // Stores all the items given to the chatbot
-    private final DukeList itemList;
+    private Storage storage;
+    private TaskList itemList;
 
     public Duke() {
-        s = new Scanner(System.in);
-        itemList = new DukeList();
+        try {
+            s = new Scanner(System.in);
+            storage = new Storage();
+            itemList = new TaskList(storage.load());
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -54,6 +60,7 @@ public class Duke {
         try {
             switch (input[0]) {
                 case "bye": {
+                    itemList.save(storage);
                     System.out.println("Goodbye, see you soon!" + divider);
                     return;
                 }
