@@ -1,11 +1,8 @@
-import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.io.File;
-import java.io.FileWriter;
 
 public class Duke {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -14,22 +11,11 @@ public class Duke {
         System.out.println(logo + "Hello! I'm Yale\nWhat can I do for you?");
         Scanner in = new Scanner(System.in);
 
-        //String currDir = System.getProperty("user.dir");
-        File tasksFile = new File("duke.txt");
-        if (!tasksFile.isFile()) {
-            //task file doesn't exist
-            tasksFile.createNewFile();
-        } else {
-            //read from task file and load into array
-            //todo
-        }
-        FileWriter writer = new FileWriter(tasksFile, true);
         ArrayList<Task> toDoList = new ArrayList<Task>();
 
         while (true) {
             String input = in.nextLine();
             if (input.equals("bye")) {
-                writer.close();
                 System.out.println("Bye. Hope to see you again soon!\n");
                 break;
             } else if (input.equals("list")) {
@@ -41,19 +27,19 @@ public class Duke {
                     i++;
                 }
 
-            } else if (input.startsWith("unmark")) {
+            } else if (input.contains("unmark")) {
                 String[] splitStr = input.trim().split("\\s+");
                 int unMarkItem = Integer.parseInt(splitStr[splitStr.length - 1]) - 1;
                 toDoList.get(unMarkItem).unmark();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(toDoList.get(unMarkItem));
-            } else if (input.startsWith("mark")) {
+            } else if (input.contains("mark")) {
                 String[] splitStr = input.trim().split("\\s+");
                 int markItem = Integer.parseInt(splitStr[splitStr.length - 1]) - 1;
                 toDoList.get(markItem).markAsDone();
                 System.out.println("Nice! I've marked this task as done:");
                 System.out.println(toDoList.get(markItem));
-            } else if (input.startsWith("delete")) {
+            } else if (input.contains("delete")) {
                 String[] splitStr = input.trim().split("\\s+");
                 int deleteItem = Integer.parseInt(splitStr[splitStr.length - 1]) - 1;
                 Task deletedTask = toDoList.remove(deleteItem);
@@ -64,34 +50,32 @@ public class Duke {
             } else {
                 Boolean addTask = true;
                 Task newTask = null;
-                if (input.startsWith("deadline")) {
-                    String[] splitStr = input.trim().split("/");
+                if (input.contains("deadline")) {
+                    String[] splitStr = input.trim().split("/by");
                     String date = splitStr[1].replace("by", "").trim();
                     newTask = new Deadline(splitStr[0].replace("deadline", "").trim(), date);
-                } else if (input.startsWith("event")) {
-                    String[] splitStr = input.trim().split("/");
+                } else if (input.contains("event")) {
+                    String[] splitStr = input.trim().split("/at");
                     String date = splitStr[1].replace("at", "").trim();
                     newTask = new Event(splitStr[0].replace("event", "").trim(), date);
-                } else if (input.startsWith("todo")) {
+                } else if (input.contains("todo")) {
                     try {
                         newTask = new Todo(input.replace("todo", "").trim());
                     } catch (DukeException e) {
                         addTask = false;
-                        e.printStackTrace();
+                        System.out.println(e);
                     }
                 } else {
                     addTask = false;
                     try {
                         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                     } catch (DukeException e) {
-                        e.printStackTrace();
+                        System.out.println(e);
                     }
                 }
 
                 if (addTask) {
                     toDoList.add(newTask);
-                    String taskToBeWritten = String.format("%s\n", newTask);
-                    writer.write(taskToBeWritten);
                     String message = "\t" + "_".repeat(20) + "\n"
                             + String.format("\tGot it. I've added this task:\n\t  %s\n", newTask)
                             + String.format("\tNow you have %s tasks in the list\n", toDoList.size())
