@@ -1,44 +1,46 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
-import java.io.File;
-import java.io.IOException;
-public class Tracker {
-    public static List<Task> list = new ArrayList<>();
-    public static String filePath = "data/list.txt";
 
-    public void printList(String filePath) {
-        Scanner fileScanner;
-        try {
-            fileScanner = new Scanner(new File(filePath));
-            int i  = 1;
-            while(fileScanner.hasNext()) {
-                System.out.println(i++ + ". " + fileScanner.nextLine());
-            }
-        } catch (IOException e) {
-            System.out.println("Oops file not found/ not created yet");
-        }
+public class TaskList {
+    public ArrayList<Task> list;
 
+    public TaskList() {
+        list = new ArrayList<>();
     }
 
+    public void printList() {
+        int i = 0;
+        while (i < list.size()) {
+            System.out.println(i+1 + ". " +list.get(i));
+            i++;
+        }
+    }
 
-    public void markDone(String num) throws DukeException{
+    public void add(Task task) {
+        this.list.add(task);
+        System.out.println("Got it. I've added this task:");
+        System.out.println(task);
+        System.out.println("Now you have " + this.list.size() + " tasks in the list");
+    }
+
+    public Task markDone(String num) throws DukeException{
         int index = Integer.parseInt(num);
         if (index < 0 || index > list.size()) {
             throw new InvalidInputException(num, "mark");
         }
         Task task = list.get(index-1);
         task.complete();
+        return task;
     }
 
-    public void markUndone(String num) throws DukeException{
+    public Task markUndone(String num) throws DukeException{
         int index = Integer.parseInt(num);
         if (index < 0 || index > list.size()) {
             throw new InvalidInputException("unmark", num);
         }
         Task task = list.get(index-1);
         task.undo();
+        return task;
     }
 
     public void addDeadline(String[] arr) throws DukeException {
@@ -55,10 +57,10 @@ public class Tracker {
         String dueDate = String.join(" ", Arrays.copyOfRange(arr, i + 1, arr.length));
         String[] command = {description, dueDate};
         Deadline deadline = new Deadline(command);
-        deadline.add();
+        this.add(deadline);
     }
 
-    public void remove(String[] command) throws DukeException {
+    public void removeTask(String[] command) throws DukeException {
         if (command.length > 2) {
             throw new InvalidInputException(
                     String.join(" " , Arrays.copyOfRange(command, 1 , command.length)), command[0]);
@@ -84,7 +86,7 @@ public class Tracker {
             throw new MissingInputException("description", arr[0]);
         }
         Todo todo = new Todo(String.join(" ", Arrays.copyOfRange(arr, 1, arr.length)));
-        todo.add();
+        this.add(todo);
     }
 
     public void addEvent(String[] arr) throws DukeException {
@@ -101,55 +103,8 @@ public class Tracker {
         String dueDate = String.join(" ", Arrays.copyOfRange(arr, i + 1, arr.length));
         String[] command = {description, dueDate};
         Event event = new Event(command);
-        event.add();
+        this.add(event);
     }
 
-    public Tracker() {
-    }
-
-    public void simulate() {
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-
-        while (!input.equals("bye")) {
-            if (input.equals("list")) {
-                printList(filePath);
-            } else {
-                String[] command = input.split(" ");
-                try {
-                    if (command.length >= 1) {
-                        switch (command[0]) {
-                            case "mark":
-                                markDone(command[1]);
-                                break;
-                            case "unmark":
-                                markUndone(command[1]);
-                                break;
-                            case "deadline":
-                                addDeadline(command);
-                                break;
-                            case "todo":
-                                addTodo(command);
-                                break;
-                            case "event":
-                                addEvent(command);
-                                break;
-                            case "delete":
-                                remove(command);
-                                break;
-                            default:
-                                throw new UnknownCommand();
-                        }
-                    }
-                } catch (DukeException e) {
-                    System.out.println(e);
-                }
-            }
-            input = sc.nextLine();
-        }
-        System.out.println("Bye. Hope to see you again soon!");
-        sc.close();
-
-    }
 
 }

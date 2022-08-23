@@ -6,6 +6,11 @@ public class Event extends Task{
     }
 
     @Override
+    public String tofileString() {
+        return "E|" + super.tofileString() + "|" + this.date;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " at: " + date;
     }
