@@ -8,6 +8,7 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
@@ -109,6 +110,11 @@ public class Parser {
                         : command.equals("unmark")
                         ? new UnmarkCommand(taskIndex)
                         : new DeleteCommand(taskIndex);
+            } else if (command.equals("find")) {
+                if (commandArgument.length() == 0) {
+                    throw new InvalidCommandFormatException(FindCommand.getFormat());
+                }
+                return new FindCommand(commandArgument);
             } else if (command.equals("bye")) {
                 return new ByeCommand();
             } else if (command.equals("list")) {

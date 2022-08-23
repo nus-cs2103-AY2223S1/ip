@@ -97,6 +97,24 @@ public class TaskList {
     }
 
     /**
+     * Filters the list of <code>Task</code> objects in the <code>TaskList</code>, keep <code>Task</code> objects with
+     * descriptions matching the search term. Returns the list of found <code>Task</code> objects as a new 
+     * <code>TaskList</code>.
+     * 
+     * @param searchTerm Search term used to find the list of matching <code>Tasks</code>.
+     * @return <code>TaskList</code> containing the list of found <code>Task</code> objects.
+     */
+    public TaskList find(String searchTerm) {
+        List<Task> foundTasksList = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.getDescription().contains(searchTerm)) {
+                foundTasksList.add(task);
+            }
+        }
+        return new TaskList(foundTasksList);
+    }
+    
+    /**
      * Returns the <code>List</code> of tasks.
      * @return <code>List</code> of tasks.
      */
