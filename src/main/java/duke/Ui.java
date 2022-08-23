@@ -1,5 +1,8 @@
 package duke;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class Ui {
 
     public void line() {
@@ -13,55 +16,71 @@ public class Ui {
     }
 
     public void printException(Exception e) {
-        System.out.println("----------------------");
+        line();
         System.out.println(e.toString());
-        System.out.println("----------------------");
+        line();
     }
 
     public void printErrorMessage(String s) {
-        System.out.println("----------------------");
+        line();
         System.out.println(s);
-        System.out.println("----------------------");
+        line();
 
     }
 
     public void printTaskAdded(Task a, TaskList tList) {
-        System.out.println("----------------------");
+        line();
         System.out.println("added: " + a.toString());
         System.out.println(String.format("Now you have %d tasks in the list", tList.getCount()));
-        System.out.println("----------------------");
+        line();
 
     }
 
     public void printList(TaskList tList) {
-        System.out.println("----------------------");
+        line();
         for (int i = 0; i < tList.getCount(); i++) {
             String display = String.format("%d.%s", i + 1, tList.getTask(i).toString());
             System.out.println(display);
         }
-        System.out.println("----------------------");
+        line();
+    }
+
+    public void printFind(ArrayList<Task> t) {
+        if (t.size() == 0) {
+            line();
+            System.out.println("Opps! No matching tasks");
+            line();
+        } else {
+            line();
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < t.size(); i++) {
+                String display = String.format("%d.%s", i + 1, t.get(i).toString());
+                System.out.println(display);
+            }
+            line();
+        }
     }
 
     public void printMarkTestUndone(Task a) {
-        System.out.println("----------------------");
+        line();
         System.out.println("Ok! I've marked this task as undone");
         System.out.println(a.toString());
-        System.out.println("----------------------");
+        line();
     }
 
     public void printDelete(Task a, TaskList tList) {
-        System.out.println("----------------------");
+        line();
         System.out.println("Noted! I've removed this task");
         System.out.println(a.toString());
         System.out.println("Now you have " + tList.getCount() + " tasks!");
-        System.out.println("----------------------");
+        line();
     }
 
     public void printMarkTaskDone(Task a) {
-        System.out.println("----------------------");
+        line();
         System.out.println("Ok! I've marked this task as done");
         System.out.println(a.toString());
-        System.out.println("----------------------");
+        line();
     }
 
     public void printGreetings() {
