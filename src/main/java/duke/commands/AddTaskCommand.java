@@ -27,10 +27,11 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
 
     /**
      * Constructor for an AddTaskCommand.
-     * @param invoker The string used to invoke the execution of this command.
-     * @param taskList The TaskList that this command adds a task to.
+     *
+     * @param invoker           The string used to invoke the execution of this command.
+     * @param taskList          The TaskList that this command adds a task to.
      * @param argumentDelimiter The string that delimits the arguments of this command.
-     * @param taskFactory The supplier that suppleis new tasks whenever this command is executed.
+     * @param taskFactory       The supplier that suppleis new tasks whenever this command is executed.
      */
     public AddTaskCommand(String invoker, TaskList taskList, String argumentDelimiter, Supplier<? extends T> taskFactory) {
         super(invoker, taskList);
@@ -40,6 +41,7 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
 
     /**
      * Adds a task to the given TaskList using the given producer.
+     *
      * @param parameters Arguments for the command, used to determine the text and details of the task.
      * @return String output of the task addition.
      * @throws DukeException
@@ -82,6 +84,7 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
 
     /**
      * Generates the output of the command.
+     *
      * @param t Task whose string representation is to be displayed in the output.
      * @return String output.
      */

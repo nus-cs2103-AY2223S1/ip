@@ -16,7 +16,8 @@ public abstract class TaskListCommand extends Command {
 
     /**
      * Constructor for a TaskListCommand.
-     * @param invoker The string used to invoke the execution of this command.
+     *
+     * @param invoker  The string used to invoke the execution of this command.
      * @param taskList The TaskList that this command adds a task to.
      */
     public TaskListCommand(String invoker, TaskList taskList) {
@@ -26,6 +27,7 @@ public abstract class TaskListCommand extends Command {
 
     /**
      * Provides a formatted version of the TaskList length for display.
+     *
      * @return Formatted text showing the number of tasks in the list.
      */
     protected String taskCountText() {

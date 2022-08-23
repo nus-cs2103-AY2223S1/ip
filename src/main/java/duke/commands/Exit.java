@@ -19,7 +19,8 @@ public class Exit extends Command {
 
     /**
      * Constructor for an exit command.
-     * @param invoker The string used to invoke the execution of this command.
+     *
+     * @param invoker  The string used to invoke the execution of this command.
      * @param uiToExit The UI that will be exited when this command is executed.
      */
     public Exit(String invoker, Ui uiToExit) {
@@ -29,6 +30,7 @@ public class Exit extends Command {
 
     /**
      * Exits the given UI.
+     *
      * @param parameters Command arugments, unused.
      * @return The exit message.ß
      */

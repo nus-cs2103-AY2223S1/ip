@@ -20,6 +20,7 @@ public class DeleteTaskCommand extends TaskListIndexCommand {
 
     /**
      * Deletes a task from the TaskList.
+     *
      * @param t Task to perform an action on.
      * @return String output for the deletion message.
      * @throws DukeException

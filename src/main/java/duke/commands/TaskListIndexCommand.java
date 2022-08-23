@@ -15,6 +15,7 @@ public abstract class TaskListIndexCommand extends TaskListCommand {
 
     /**
      * Identifies the task to execute the command on, and invokes TaskListIndexCommand::execute.
+     *
      * @param parameters Command arguments, used to determine the index of the task to execute on.
      * @return String output of the execution.
      */
@@ -46,6 +47,7 @@ public abstract class TaskListIndexCommand extends TaskListCommand {
     /**
      * Execution of the action of a command on a particular task.
      * Called by the main execute method after determining the task at the given index.
+     *
      * @param t Task to perform an action on.
      * @return String output of the execution.
      */

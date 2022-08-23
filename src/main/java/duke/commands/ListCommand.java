@@ -22,6 +22,7 @@ public class ListCommand extends TaskListCommand {
 
     /**
      * Lists the contents of the items in the associated TaskList.
+     *
      * @param parameters Command arguments, unused.
      * @return The enumerated contents of the list delimited by a newline character.
      */

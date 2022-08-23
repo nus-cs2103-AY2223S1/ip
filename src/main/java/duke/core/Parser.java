@@ -15,6 +15,7 @@ public class Parser {
 
     /**
      * Constructor for a parser.
+     *
      * @param commands The commands that this parser will attempt to execute.
      */
     public Parser(ArrayList<Command> commands) {
@@ -24,6 +25,7 @@ public class Parser {
     /**
      * Parses a command input and executes the correct command if it exists using the
      * appropriate parameters.
+     *
      * @param input String input from the user.
      * @return Command output.
      * @throws DukeException If command is invalid or if any execution is erroneous.

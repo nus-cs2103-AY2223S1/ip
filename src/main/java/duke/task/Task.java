@@ -104,7 +104,7 @@ public abstract class Task {
                     && this.complete == other.complete
                     && this.text.equals(other.text)
                     && ((this.details == null && other.details == null)
-                            || this.details.equals(other.details));
+                    || this.details.equals(other.details));
         } else {
             return false;
         }

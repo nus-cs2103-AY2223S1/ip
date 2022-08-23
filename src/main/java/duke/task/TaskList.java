@@ -17,6 +17,7 @@ public class TaskList {
 
     /**
      * Returns the number of tasks in the list.
+     *
      * @return Number of tasks in the list.
      */
     public int taskCount() {
@@ -25,6 +26,7 @@ public class TaskList {
 
     /**
      * Adds a task to the list.
+     *
      * @param task Task to add.
      */
     public void addTask(Task task) {
@@ -33,6 +35,7 @@ public class TaskList {
 
     /**
      * Removes a task from the list.
+     *
      * @param t Task to remove.
      */
     public void removeTask(Task t) {
@@ -41,6 +44,7 @@ public class TaskList {
 
     /**
      * Gets the task at a given index.
+     *
      * @param index Index to find task at (begins at 0).
      * @return Task at the index.
      * @throws IndexOutOfBoundsException if the given index is not in range.
@@ -52,6 +56,7 @@ public class TaskList {
     /**
      * Gives the string representation of this task list by
      * listing all the tasks.
+     *
      * @return String with all the tasks separated by newlines.
      */
     public String listTasks() {
@@ -67,6 +72,7 @@ public class TaskList {
     /**
      * The serialized form of this taskList.
      * Each line represents a task that can be deserialized by Task.
+     *
      * @return
      */
     public String serialize() {
@@ -80,6 +86,7 @@ public class TaskList {
 
     /**
      * Finds the tasks whose text contains a given string.
+     *
      * @param search The string to search for.
      * @return A list of tasks whose text contains the given string.
      */

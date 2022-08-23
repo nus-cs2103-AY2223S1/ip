@@ -33,6 +33,7 @@ public class Ui {
 
     /**
      * Reads the command from the user.
+     *
      * @return The command given by the user.
      */
     public String readCommand() {
@@ -57,6 +58,7 @@ public class Ui {
 
     /**
      * Shows an error message.
+     *
      * @param e DukeException that contains the error message.
      */
     public void showError(DukeException e) {
@@ -66,6 +68,7 @@ public class Ui {
     /**
      * Shows an arbirary message. Separates the message by newlines
      * and formats them accordingly.
+     *
      * @param message Message to display.
      */
     public void showMessage(String message) {

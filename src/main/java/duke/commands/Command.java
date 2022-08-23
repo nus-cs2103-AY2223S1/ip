@@ -14,6 +14,7 @@ public abstract class Command {
 
     /**
      * Constructor for a command.
+     *
      * @param invoker The string used to invoke the execution of this command.
      */
     public Command(String invoker) {
@@ -26,6 +27,7 @@ public abstract class Command {
 
     /**
      * Performs the action of this command and returns an output.
+     *
      * @param parameters
      * @return String result of the command.
      * @throws DukeException

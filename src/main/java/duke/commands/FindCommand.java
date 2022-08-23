@@ -1,12 +1,6 @@
 package duke.commands;
 
-import duke.core.DukeException;
-import duke.task.Task;
 import duke.task.TaskList;
-
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
 
 /**
  * A command for finding tasks that match certain strings.
@@ -18,6 +12,7 @@ public class FindCommand extends TaskListCommand {
 
     /**
      * Constructor for a TaskListCommand.
+     *
      * @param invoker  The string used to invoke the execution of this command.
      * @param taskList The TaskList that this command adds a task to.
      */
@@ -27,6 +22,7 @@ public class FindCommand extends TaskListCommand {
 
     /**
      * Finds and outputs the list of tasks satisfying the string query.
+     *
      * @param parameters Command arguments, used as a search key.
      * @return List output of all tasks that match the query.
      */

@@ -24,8 +24,9 @@ public class MarkCommand extends TaskListIndexCommand {
 
     /**
      * Constructor for a MarkCommand.
-     * @param invoker The string used to invoke the execution of this command.
-     * @param taskList The TaskList that this command adds a task to.
+     *
+     * @param invoker      The string used to invoke the execution of this command.
+     * @param taskList     The TaskList that this command adds a task to.
      * @param statusToMark The completion status that this command will mark a task as.
      */
     public MarkCommand(String invoker, TaskList taskList, boolean statusToMark) {
@@ -41,6 +42,7 @@ public class MarkCommand extends TaskListIndexCommand {
 
     /**
      * Sets the completion status of a task.
+     *
      * @param t Task to set completion status of.
      * @return String output of the marking status.
      */
