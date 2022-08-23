@@ -1,5 +1,10 @@
 package duke.task;
 
+import jdk.jshell.execution.LoaderDelegate;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -26,7 +31,8 @@ public abstract class Task {
         char type = splitTaskString[0].charAt(0);
         boolean isDone = splitTaskString[1].equals("1");
         String description = splitTaskString[2];
-        String dateTime = splitTaskString.length == 4 ? splitTaskString[3] : "";
+        LocalDate dateTime = splitTaskString.length == 4 ? LocalDate.parse(splitTaskString[3],
+                DateTimeFormatter.ofPattern("MMM d yyyy")) : null;
 
         switch (type) {
         case 'D':
