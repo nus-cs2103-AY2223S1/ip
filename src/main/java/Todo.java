@@ -20,4 +20,13 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    @Override
+    public String saveString() {
+        if (this.isDone) {
+            return "T" + "X " + this.description + "\n";
+        } else {
+            return "T  " + this.description + "\n";
+        }
+    }
 }

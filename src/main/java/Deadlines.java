@@ -25,4 +25,12 @@ public class Deadlines extends Task {
         by = date;
     }
 
+    @Override
+    public String saveString() {
+        if (this.isDone) {
+            return "D" + "X " + this.description + "/by" + this.by + "\n";
+        } else {
+            return "D  " + this.description + "/by" + this.by + "\n";
+        }
+    }
 }
