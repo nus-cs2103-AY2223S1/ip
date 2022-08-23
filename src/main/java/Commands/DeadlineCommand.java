@@ -1,4 +1,58 @@
 package Commands;
 
+import TaskList.TaskList;
+import Tasks.Deadline;
+import common.Parser;
+import common.Ui;
+import dukeExceptions.DukeException;
+import dukeExceptions.MissingDescriptionException;
+import dukeExceptions.WrongDatetimeFormatException;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+
 public class DeadlineCommand extends Command {
+    private String[] args;
+    static final String DEADLINE_DATETIME_FORMAT = "d/MM/uuuu HHmm";
+    static final String DEADLINE_STORAGE_FORMAT = "MMM dd uuuu, HHmm";
+
+    public DeadlineCommand(String[] args) {
+        this.args = args;
+    }
+
+    public static void validateArguments(String[] args) throws DukeException {
+        String description = Parser.splitArrayIntoSubstrings(args, "/by").get(0);
+        // ERROR HANDLING: Check for empty Tasks.Deadline description
+        if (description.equalsIgnoreCase("")) {
+            throw new MissingDescriptionException("deadline");
+        }
+
+        // ERROR HANDLING: Check for missing "by" deadline
+        String unparsedDatetime = Parser.splitArrayIntoSubstrings(args, "/by").get(1);
+
+        if (!Parser.isValidDatetime(unparsedDatetime, DEADLINE_DATETIME_FORMAT)) {
+            throw new WrongDatetimeFormatException(DEADLINE_DATETIME_FORMAT);
+        }
+    }
+
+    public static LocalDateTime parseDeadlineDatetime(String s) {
+       return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DEADLINE_DATETIME_FORMAT).withResolverStyle(ResolverStyle.STRICT));
+    }
+
+    public static LocalDateTime parseDeadlineDatetimeFromStorage(String s) {
+        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DEADLINE_STORAGE_FORMAT).withResolverStyle(ResolverStyle.STRICT));
+    }
+
+    @Override
+    public void execute(TaskList taskList) {
+        String description = Parser.splitArrayIntoSubstrings(this.args, "/by").get(0);
+
+        String unparsedDatetime = Parser.splitArrayIntoSubstrings(this.args, "/by").get(1);
+        LocalDateTime taskDeadline = parseDeadlineDatetime(unparsedDatetime);
+        Deadline newDeadline = new Deadline(description, taskDeadline);
+        taskList.addTask(newDeadline);
+        Ui.printAddTask(newDeadline, taskList);
+    }
+
 }
