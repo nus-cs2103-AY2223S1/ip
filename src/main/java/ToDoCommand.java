@@ -1,5 +1,5 @@
 public class ToDoCommand extends Command {
-    private ToDo todo;
+    private final ToDo todo;
 
     public ToDoCommand(String description) {
         super();

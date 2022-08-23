@@ -1,7 +1,9 @@
-public class EventCommand extends Command {
-    private Event event;
+import java.time.LocalDate;
 
-    public EventCommand(String description, String time) {
+public class EventCommand extends Command {
+    private final Event event;
+
+    public EventCommand(String description, LocalDate time) {
         super();
         this.event = new Event(description, time);
     }

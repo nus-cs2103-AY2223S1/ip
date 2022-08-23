@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public abstract class Task {
 
     protected String description;
@@ -20,10 +22,6 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    public String getTask() {
-        return this.description;
-    }
-
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
     }
@@ -37,7 +35,7 @@ public abstract class Task {
         String taskType = split[0];
         boolean isDone = split[1].equals("1");
         String description = split[2];
-        String time = split.length == 4 ? split[3] : null;
+        LocalDate time = split.length == 4 ? LocalDate.parse(split[3]) : null;
 
         if (taskType.equals("T")) {
             return new ToDo(description, isDone);
@@ -47,4 +45,6 @@ public abstract class Task {
             return new Deadline(description, time, isDone);
         }
     }
+
+    public abstract LocalDate getTime();
 }
