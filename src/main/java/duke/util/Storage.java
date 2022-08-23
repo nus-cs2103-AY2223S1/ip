@@ -62,8 +62,8 @@ public class Storage {
         ensureDataFile();
         try {
             FileWriter fw = new FileWriter(dataFile);
-            for (int i = 0; i < tasks.size(); ++i) {
-                fw.write(tasks.get(i).toSaveString() + System.lineSeparator());
+            for (Task task : tasks) {
+                fw.write(task.toSaveString() + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {
