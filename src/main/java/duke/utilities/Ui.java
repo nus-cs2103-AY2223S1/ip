@@ -58,6 +58,7 @@ public class Ui {
         ArrayList<Task> tasks = taskList.getTasks();
         System.out.println(line);
         System.out.println("Here are the tasks in your list:");
+
         for (int i = 0; i < tasks.size(); i++) {
             Task current = tasks.get(i);
             System.out.println((i + 1) + "." + current.toString());

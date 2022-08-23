@@ -45,10 +45,4 @@ public class TaskList {
         task.setDoneStatus(isDone);
         return task;
     }
-
-    public void stringRepresentation() {
-        for (Task task : tasks) {
-            System.out.println(task.toString());
-        }
-    }
 }
