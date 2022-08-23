@@ -45,11 +45,11 @@ public class Parser {
                     }
                 }
             } else if (caseString.equals("todo") && sc.hasNext()) {
-                arguments.add(sc.nextLine());
+                arguments.add(sc.nextLine().substring(1));
                 return new AddToDoCommand(arguments);
             } else if (caseString.equals("deadline") && sc.hasNext()) {
                 sc.useDelimiter(" /by ");
-                arguments.add(sc.next());
+                arguments.add(sc.next().substring(1));
                 if (sc.hasNext()) {
                     arguments.add(sc.next());
                     if (!sc.hasNext()) {
@@ -58,7 +58,7 @@ public class Parser {
                 }
             } else if (caseString.equals("event") && sc.hasNext()) {
                 sc.useDelimiter(" /at ");
-                arguments.add(sc.next());
+                arguments.add(sc.next().substring(1));
                 if (sc.hasNext()) {
                     arguments.add(sc.next());
                     if (!sc.hasNext()) {

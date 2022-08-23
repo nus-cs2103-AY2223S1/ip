@@ -31,7 +31,7 @@ public abstract class TimedTask extends Task {
     }
 
     protected String getTimeString() {
-        return dateTime.format(DateTimeFormatter.ofPattern("HHmm"));
+        return dateTime.format(DateTimeFormatter.ofPattern("HHmm")) + "hrs";
     }
 
     @Override
