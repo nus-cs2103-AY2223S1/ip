@@ -2,8 +2,8 @@ public class Event extends Task {
 
     private String time;
 
-    public Event(String description, String time) {
-        super(description, "E");
+    public Event(String description, String time, boolean isDone) {
+        super(description, "E", isDone);
         this.time = time;
     }
 
@@ -12,4 +12,8 @@ public class Event extends Task {
         return String.format("%s (at: %s)", super.toString(), this.time);
     }
 
+    @Override
+    public String getCsvString() {
+        return String.format("event %s /at %s", super.getCsvString(), time);
+    }
 }
