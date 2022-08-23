@@ -1,3 +1,11 @@
+package zeus.command;
+
+import zeus.exception.ZeusException;
+import zeus.main.Storage;
+import zeus.main.TaskList;
+import zeus.main.Ui;
+import zeus.task.Task;
+
 /**
  * Command that handles deleting a Task.
  */
@@ -10,6 +18,7 @@ public class DeleteCommand extends Command {
      *
      * @param idx Index of Task to be deleted in task list
      */
+
     public DeleteCommand(int idx) {
         this.idx = idx;
     }

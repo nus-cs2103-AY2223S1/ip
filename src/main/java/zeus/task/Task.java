@@ -1,3 +1,5 @@
+package zeus.task;
+
 /**
  * Class that represents a Task.
  */

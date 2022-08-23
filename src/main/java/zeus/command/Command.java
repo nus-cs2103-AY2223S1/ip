@@ -1,3 +1,10 @@
+package zeus.command;
+
+import zeus.exception.ZeusException;
+import zeus.main.Storage;
+import zeus.main.TaskList;
+import zeus.main.Ui;
+
 /**
  * Class that represents a command to be executed.
  */

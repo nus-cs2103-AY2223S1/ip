@@ -1,7 +1,9 @@
+package zeus.exception;
+
 /**
  * Class that inherits from Exception to represent exceptions specific to Duke.
  */
-class ZeusException extends Exception {
+public class ZeusException extends Exception {
     /**
      * Constructor for ZeusException class.
      *

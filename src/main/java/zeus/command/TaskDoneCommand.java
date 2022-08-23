@@ -1,6 +1,14 @@
+package zeus.command;
+
+import zeus.exception.ZeusException;
+import zeus.main.Storage;
+import zeus.main.TaskList;
+import zeus.main.Ui;
+
 /**
  * Class that handles the case of marking a Task as done.
  */
+
 public class TaskDoneCommand extends Command {
 
     private int idx;

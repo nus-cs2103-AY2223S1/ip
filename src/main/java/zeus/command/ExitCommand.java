@@ -1,3 +1,9 @@
+package zeus.command;
+
+import zeus.main.Storage;
+import zeus.main.TaskList;
+import zeus.main.Ui;
+
 /**
  * Class that represents a Command to exit the chat.
  */
