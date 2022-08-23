@@ -6,7 +6,7 @@ public class Duke {
     private final Scanner sc = new Scanner(System.in);
 
     /**
-     * Prints a welcome message upon starting the bot.
+     * Prints welcome message upon starting the bot.
      */
     public void greet() {
         System.out.println("Hello from Duke!\n");
@@ -25,114 +25,127 @@ public class Duke {
     /**
      * Checks the user input and performs the necessary instruction.
      * @param s User input
-     * @return 0 if "bye" is input, 1 for successfully running any other instruction
+     * @return false if "bye" is input, true for any other instruction
      */
-    public int processInput(String s) {
+    public boolean processInput(String s) {
         String[] userInput = s.split(" ", 2);
+        boolean goodbye = false;
 
-        if (s.equals("bye")) {
-            System.out.println("Bye. Hope to see you again!");
-            return 0;
-        } else if (s.equals("list")) {
-            return this.list();
-        } else if (userInput[0].equals("todo")) {
-            return this.addTodo(userInput[1]);
-        } else if (userInput[0].equals("deadline")) {
-            return this.addDeadline(userInput[1]);
-        } else if (userInput[0].equals("event")) {
-            return this.addEvent(userInput[1]);
-        } else if (userInput[0].equals("mark")) {
-            return this.mark(userInput);
-        } else if (userInput[0].equals("unmark")) {
-            return this.unmark(userInput);
-        } else {
-            return 1;
+        try {
+            if (s.equals("bye")) {
+                System.out.println("Bye. Hope to see you again!");
+                goodbye = true;
+            } else if (s.equals("list")) {
+                this.list();
+            } else if (userInput[0].equals("todo")) {
+                this.addTodo(userInput);
+            } else if (userInput[0].equals("deadline")) {
+                this.addDeadline(userInput);
+            } else if (userInput[0].equals("event")) {
+                this.addEvent(userInput);
+            } else if (userInput[0].equals("mark")) {
+                this.mark(userInput);
+            } else if (userInput[0].equals("unmark")) {
+                this.unmark(userInput);
+            } else {
+                throw new DukeException("Unrecognized command.");
+            }
+        } catch (DukeException err) {
+            System.out.println(err);
+        } finally {
+            return goodbye;
         }
     }
 
     /**
      * Lists out all Tasks stored in Duke.
-     * @return 1 for successful execution
      */
-    private int list() {
+    private void list() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < db.size(); i++) {
             System.out.println(i + 1 + ". " + db.get(i).toString());
         }
-        return 1;
     }
 
     /**
      * Marks the input task as completed.
-     * @param userInput User input task number
-     * @return 1 on successfully execution
+     * @param userInput Input task number
      */
-    private int mark(String[] userInput) {
+    private void mark(String[] userInput) {
         Task tmp = db.get(Integer.parseInt(userInput[1]) - 1);
         tmp.setDone();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(tmp);
-        return 1;
     }
 
     /**
      * Marks the input task as incomplete.
-     * @param userInput User input task number
-     * @return 1 on successfully execution
+     * @param userInput Input task number
      */
-    private int unmark(String[] userInput) {
+    private void unmark(String[] userInput) {
         Task tmp = db.get(Integer.parseInt(userInput[1]) - 1);
         tmp.setUndone();
         System.out.println("OK, I've marked this task as undone:");
         System.out.println(tmp);
-        return 1;
     }
 
     /**
      * Adds a new To-Do task.
-     * @param s Input task description
-     * @return 1 on successful execution
+     * @param s Input task with description
      */
-    private int addTodo(String s) {
-        Todo task = new Todo(s);
+    private void addTodo(String[] s) throws DukeException {
+        if (s.length < 2 || s[1].strip().equals("")) {
+            throw new DukeException("Todo description is empty.");
+        }
+
+        Todo task = new Todo(s[1]);
         db.add(task);
 
         System.out.println("Got it. I added this task:");
         System.out.println("\t" + task);
         System.out.printf("Now you have %d tasks in the list.%n", db.size());
-        return 1;
     }
 
     /**
      * Adds a new Event task.
-     * @param s Input task description
-     * @return 1 on successful execution
+     * @param s Input task with description
      */
-    private int addEvent(String s) {
-        String[] tmp = s.split("/at");
+    private void addEvent(String[] s) throws DukeException {
+        if (s.length < 2 || s[1].strip().equals("")) {
+            throw new DukeException("Event description is empty.");
+        }
+
+        String[] tmp = s[1].split("/at");
+        if (tmp.length < 2) {
+            throw new DukeException("Event description is missing the /at tag.");
+        }
         Event task = new Event(tmp[0].strip(), tmp[1].strip());
         db.add(task);
 
         System.out.println("Got it. I added this event:");
         System.out.println("\t" + task);
         System.out.printf("Now you have %d tasks in the list.%n", db.size());
-        return 1;
     }
 
     /**
      * Adds a new Deadline task.
-     * @param s Input task description
-     * @return 1 on successful execution
+     * @param s Input task with description
      */
-    private int addDeadline(String s) {
-        String[] tmp = s.split("/by");
+    private void addDeadline(String[] s) throws DukeException {
+        if (s.length < 2 || s[1].strip().equals("")) {
+            throw new DukeException("Deadline description is empty.");
+        }
+
+        String[] tmp = s[1].split("/by");
+        if (tmp.length < 2) {
+            throw new DukeException("Deadline description is missing the /by tag.");
+        }
         Deadline task = new Deadline(tmp[0].strip(), tmp[1].strip());
         db.add(task);
 
         System.out.println("Got it. I added this deadline:");
         System.out.println("\t" + task);
         System.out.printf("Now you have %d tasks in the list.%n", db.size());
-        return 1;
     }
 
     // Initializes and starts a Duke instance.
@@ -142,10 +155,12 @@ public class Duke {
         duke.greet();
         while (true) {
             String input = duke.getInput(duke.sc);
-            if (duke.processInput(input) == 0) {
+            if (duke.processInput(input)) {
                 break;
             }
             System.out.println();
         }
+
+        duke.sc.close();
     }
 }
