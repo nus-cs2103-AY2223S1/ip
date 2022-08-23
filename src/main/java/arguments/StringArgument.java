@@ -7,9 +7,16 @@ import input.Input;
  * Argument for a string that should be non-empty - enables re-use for any such argument
  */
 public class StringArgument extends Argument<String> {
-    String emptyMessage;
-    String missingMessage;
+    private String emptyMessage;
+    private String missingMessage;
 
+    /**
+     * Creates new StringArgument with necessary parameters
+     * @param input Input object
+     * @param argumentName Name for argument
+     * @param emptyMessage Message to show if argument is empty
+     * @param missingMessage Message to show if argument is missing
+     */
     public StringArgument(Input input, String argumentName, String emptyMessage, String missingMessage) {
         super(input, argumentName);
         this.emptyMessage = emptyMessage;
@@ -18,7 +25,9 @@ public class StringArgument extends Argument<String> {
 
     @Override
     public void validate() throws DukeException {
-        if (super.value != null) return;
+        if (super.value != null) {
+            return;
+        }
 
         try {
             String text = input.getParameter(super.argumentName);

@@ -3,6 +3,9 @@ package arguments;
 import exceptions.DukeException;
 import input.Input;
 
+/**
+ * Argument for id of a task in the list (integer)
+ */
 public class TaskIdArgument extends Argument<Integer> {
     public TaskIdArgument(Input input) {
         super(input, "id");
@@ -12,18 +15,16 @@ public class TaskIdArgument extends Argument<Integer> {
     @Override
     public void validate() throws DukeException {
         // validate was already called
-        if (super.value != null) return;
+        if (super.value != null) {
+            return;
+        }
 
         try {
             String idParam = input.getParameter(super.argumentName);
             super.value = Integer.parseInt(idParam);
-        }
-
-        catch (NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             throw new DukeException("Task number should be an integer e.g 1 :)");
-        }
-
-        catch (DukeException ex) {
+        } catch (DukeException ex) {
             throw new DukeException("This command needs a task number e.g 1");
         }
     }

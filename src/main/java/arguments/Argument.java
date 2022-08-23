@@ -1,12 +1,15 @@
 package arguments;
 
-import exceptions.DukeException;
-import input.Input;
-
 import java.util.ArrayList;
 import java.util.List;
 
-/** Represents a CLI argument with type T. Implementors provide own implementation of validation
+import exceptions.DukeException;
+import input.Input;
+
+
+
+/**
+ * Represents a CLI argument with type T. Implementors provide own implementation of validation
  * @param <T> Type of the argument expected from CLI
  */
 public abstract class Argument<T> {
@@ -14,12 +17,13 @@ public abstract class Argument<T> {
     protected Input input;
     protected String argumentName;
 
-    public Argument(Input input, String argumentName) {
+    protected Argument(Input input, String argumentName) {
         this.input = input;
         this.argumentName = argumentName;
     }
 
-    /** This method should process the input and set value for this argument, or throw exception if input is invalid
+    /**
+     * This method should process the input and set value for this argument, or throw exception if input is invalid
      * @throws exceptions.DukeException - if input does not contain what this argument needs
      */
     public abstract void validate() throws DukeException;
@@ -31,7 +35,8 @@ public abstract class Argument<T> {
         return value;
     }
 
-    /** Validate a variable number of Argument objects, collecting any error messages into a List to return
+    /**
+     * Validate a variable number of Argument objects, collecting any error messages into a List to return
      * @param args
      * @return
      */
