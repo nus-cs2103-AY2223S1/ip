@@ -1,3 +1,5 @@
+package duke.tasks;
+
 public class Todo extends Task {
     private static final String TASK_SYMBOL = "T";
 

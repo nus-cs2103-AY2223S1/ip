@@ -1,3 +1,9 @@
+package duke.data;
+
+import duke.data.exception.DukeException;
+import duke.common.Message;
+import duke.tasks.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
