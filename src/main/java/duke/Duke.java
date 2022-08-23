@@ -1,6 +1,5 @@
 package duke;
 
-import duke.Parser;
 import duke.modules.Todos;
 
 import static duke.Ui.readLine;
