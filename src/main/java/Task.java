@@ -17,6 +17,10 @@ public abstract class Task {
         return "[" + (isDone ? "X" : " ") + "]";
     }
 
+    public String toFile() {
+        return (isDone ? "1" : "0") + "|" + taskDescription;
+    }
+
     @Override
     public String toString() {
         return getTypeIcon() + getStatusIcon() + " " + taskDescription;
