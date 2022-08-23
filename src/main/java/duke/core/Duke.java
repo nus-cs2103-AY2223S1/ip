@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * A task manager bot that supports saving and loading.
+ */
 public class Duke {
 
     private final Ui ui = new Ui();
