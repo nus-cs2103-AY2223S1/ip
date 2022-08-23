@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Task {
     private boolean isDone;
     private String name;
@@ -5,6 +9,11 @@ public class Task {
     Task(String name) {
         this.name = name;
         this.isDone = false;
+    }
+
+    public String getDescription() {
+        int status = isDone ? 1 : 0;
+        return status + " | " + this.name;
     }
 
     public String getStatusIcon() {
@@ -18,6 +27,11 @@ public class Task {
 
     void unmark() {
         this.isDone = false;
+    }
+
+    String writeToFile() {
+        int status = isDone ? 1 : 0;
+        return status + "|" + this.name;
     }
 
     @Override
