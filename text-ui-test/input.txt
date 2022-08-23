@@ -4,8 +4,9 @@ list
 todo
 todo borrow book
 deadline return book
-deadline return book /by Sunday
-deadline do homework /by no idea :-p
+deadline return book /by 2022-08-30T12:34:56
+deadline The significance of this date is left as an exercise for the reader /by 2006-01-02T15:04:05
+deadline This deadline has an invalid date /by nussu
 event project meeting
 event project meeting /at Mon 2-4pm
 list
