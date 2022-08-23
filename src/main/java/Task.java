@@ -1,4 +1,6 @@
-public class Task {
+import java.time.LocalDateTime;
+
+abstract public class Task {
     private String name;
     private boolean done;
 
@@ -6,7 +8,6 @@ public class Task {
         this.name = name;
         this.done = false;
     }
-
 
     void Done() {
         this.done = true;
@@ -23,6 +24,9 @@ public class Task {
     String getName() {
         return this.name;
     }
+
+    abstract LocalDateTime getDateTime();
+    abstract boolean isToDo();
 
     @Override
     public String toString() {

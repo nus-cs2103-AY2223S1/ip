@@ -51,7 +51,6 @@ public class Duke {
                     System.out.println("Bye. Hope to see you again soon!");
                     break;
                 } else if (input.equals("list")) {
-                    System.out.println("Here are the tasks in your list:");
                     taskPrinter(list);
                 } else if (input.startsWith("mark")) {
                     String in = input.replaceAll("mark", "").trim();
@@ -68,7 +67,7 @@ public class Duke {
                             String oldDescription = list.get(index).toString();
                             list.get(index).Done();
                             Task newTask = list.get(index);
-                            fileUpdater(oldDescription, newTask, false);
+                            fileUpdater(oldDescription, newTask, false, index);
                             System.out.println("Nice! I've marked this task as done:");
                             System.out.println(list.get(index).toString());
                         }
@@ -88,7 +87,7 @@ public class Duke {
                             String oldDescription = list.get(index).toString();
                             list.get(index).unDone();
                             Task newTask = list.get(index);
-                            fileUpdater(oldDescription, newTask, false);
+                            fileUpdater(oldDescription, newTask, false, index);
                             System.out.println("Ok, I've marked this task as not done yet:");
                             System.out.println(list.get(index).toString());
                         }
@@ -104,7 +103,7 @@ public class Duke {
                         } else {
                             String oldDescription = list.get(index).toString();
                             Task removed = list.remove(index);
-                            fileUpdater(oldDescription, removed, true);
+                            fileUpdater(oldDescription, removed, true, index);
                             System.out.println("Noted. I've removed this task:");
                             System.out.println(removed.toString());
                             System.out.println("Now you have " + list.size() + " task(s) in the list");
@@ -133,8 +132,8 @@ public class Duke {
                             } else if (!date.startsWith("at")) {
                                 throw new IllegalArgumentException("Event time must be specified with at");
                                 } else {
-                                task = new Event(arr[0].replaceAll("event", "").trim(), arr[1].replaceAll("at", "")
-                                        .trim());
+                                task = new Event(arr[0].replaceAll("event", "").trim(),
+                                        arr[1].replaceAll("at", "").trim() );
                             }
                         }
                     } else if (input.startsWith("deadline")) {
@@ -151,19 +150,24 @@ public class Duke {
                             } else if (!date.startsWith("by")) {
                                 throw new IllegalArgumentException("Deadline time must be specified with by");
                             } else {
-                                task = new Deadline(arr[0].replaceAll("deadline", "").trim(), arr[1].replaceAll("by", "")
-                                        .trim());
+                                    task = new Deadline(arr[0].replaceAll("deadline", "").trim(), arr[1].replaceAll("by", "")
+                                            .trim());
                             }
                         }
                     }
                     else {
                         throw new IllegalArgumentException("Please provide a proper format");
                     }
-                    list.add(task);
-                    writeToFile(task);
-                    System.out.println("Got it. I've added this task: ");
-                    System.out.println("  " + task.toString());
-                    System.out.println("Now you have " + list.size() + " task(s) in the list.");
+
+                    if (!task.isToDo() && task.getDateTime() == null) { // to deal with incorrect date format (to-do no date)
+                        throw new DukeException("Input date-time in the format yyyy-MM-dd HHmm");
+                    } else {
+                        list.add(task);
+                        writeToFile(task);
+                        System.out.println("Got it. I've added this task: ");
+                        System.out.println("  " + task.toString());
+                        System.out.println("Now you have " + list.size() + " task(s) in the list.");
+                    }
                 }
             } catch (DukeException e) {
                 System.out.println(e.toString());
@@ -178,6 +182,11 @@ public class Duke {
      * @param list list of tasks
      */
     static void taskPrinter(List<Task> list) {
+        if (list.isEmpty()) {
+            System.out.println("No tasks in the task list at the moment.");
+            return;
+        }
+        System.out.println("Here are the tasks in your list:");
         String out = "";
         int num = 1;
         for (Task x : list) {
@@ -201,11 +210,35 @@ public class Duke {
         }
     }
 
+    // TESTER
+    static void fileUpdater(String oldDescription, Task newTask, boolean delete, int index) {
+        try {
+            List<String> list = Files.readAllLines(Path.of("./tasks.txt"));
+            if (delete) {
+                list.remove(index);
+            } else {
+                list.set(index, newTask.toString());
+            }
+
+            // after task list is updated, rewrite to the file
+            FileWriter writer = new FileWriter("./tasks.txt", false);
+            for (String x: list) {
+                writer.write(x + "\n");
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Error occured while updating the file");
+
+        }
+    }
+
+
     /**
      * Helper function to update file
      * @param oldDescription old task description to be updated
      * @param newTask new task description
-     */
+
     static void fileUpdater(String oldDescription, Task newTask, boolean delete) {
         try {
             List<String> list = Files.readAllLines(Path.of("./tasks.txt"));
@@ -232,6 +265,7 @@ public class Duke {
 
         }
     }
+    */
 
     static void listInit(List<Task> list) {
         try {
@@ -246,9 +280,11 @@ public class Duke {
                 if (taskType.equals("T")) {
                     toAdd = new ToDo(taskName);
                 } else if (taskType.equals("D")) {
-                    toAdd = new Deadline(taskName, arr[1].replace(")", "").trim());
+                    toAdd = new Deadline(taskName, arr[1].replace(")", "").
+                            replace("by","").trim(), true);
                 } else {
-                    toAdd = new Event(taskName, arr[1].replace(")","").trim());
+                    toAdd = new Event(taskName, arr[1].replace(")","").
+                            replace("at","").trim(), true);
                 }
 
                 if (toAdd == null) {
