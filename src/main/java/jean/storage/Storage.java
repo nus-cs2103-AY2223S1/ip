@@ -1,8 +1,5 @@
 package jean.storage;
 
-import jean.exception.JeanException;
-import jean.task.*;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,14 +8,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import jean.exception.JeanException;
+import jean.task.Deadline;
+import jean.task.Event;
+import jean.task.Task;
+import jean.task.TaskList;
+import jean.task.Todo;
+
 public class Storage {
     private String filepath;
 
-    public Storage (String filepath) {
+    public Storage(String filepath) {
         this.filepath = filepath;
     }
 
-    public ArrayList<Task> load() throws JeanException, IOException{
+    public ArrayList<Task> load() throws JeanException, IOException {
         File f = new File(this.filepath);
         ArrayList<Task> taskList = new ArrayList<>();
 
@@ -40,9 +44,7 @@ public class Storage {
                 case "E":
                     temp = new Event(info[2], info[3]);
                     break;
-                }
-
-                if (temp == null) {
+                default:
                     throw new JeanException("File is corrupted!"
                             + "\nLe fichier est corrompu!");
                 }

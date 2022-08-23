@@ -13,11 +13,13 @@ public class Deadline extends Task {
     }
 
     public String getSaveData() {
-        return "D|" + (super.isDone ? 1 : 0) + "|" + super.description + "|" + this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return "D|" + (super.isDone ? 1 : 0) + "|" + super.description + "|"
+                + this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     @Override
     public String toString() {
-        return ("[D]" + super.toString() + "(by: " + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm")) + ")");
+        return ("[D]" + super.toString() + "(by: "
+                + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm")) + ")");
     }
 }

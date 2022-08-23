@@ -6,7 +6,7 @@ import jean.task.TaskList;
 import jean.ui.Ui;
 
 public class UnmarkCommand extends Command {
-    int taskIndex;
+    private int taskIndex;
     public UnmarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }

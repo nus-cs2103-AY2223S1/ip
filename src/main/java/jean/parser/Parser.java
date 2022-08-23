@@ -1,11 +1,22 @@
 package jean.parser;
 
-import jean.command.*;
-import jean.exception.JeanException;
-import jean.task.*;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import jean.command.AddCommand;
+import jean.command.Command;
+import jean.command.DeleteCommand;
+import jean.command.ExitCommand;
+import jean.command.ListCommand;
+import jean.command.MarkCommand;
+import jean.command.UnmarkCommand;
+import jean.exception.JeanException;
+import jean.task.Deadline;
+import jean.task.Event;
+import jean.task.TaskList;
+import jean.task.Todo;
+
+
 
 public class Parser {
 
@@ -13,10 +24,12 @@ public class Parser {
         if (fullCommand.length() == 4) {
             throw new JeanException("You must name a valid task to mark!"
                                      + "\nNom d'un valable tâche à marqué comme fait!");
-        } else if (Integer.parseInt(fullCommand.substring(5)) > taskList.getNumberOfTasks() || Integer.parseInt(fullCommand.substring(5)) < 1) {
+        } else if (Integer.parseInt(fullCommand.substring(5)) > taskList.getNumberOfTasks()
+                || Integer.parseInt(fullCommand.substring(5)) < 1) {
             throw new JeanException("There are only " + taskList.getNumberOfTasks() + " task(s)!"
                                     + "\nIl y a seulement " + taskList.getNumberOfTasks() + " tâche(s)!");
-        } else if (taskList.getTaskList().get(Integer.parseInt(fullCommand.substring(5)) - 1).getIsDone()){
+        } else if (taskList.getTaskList().get(Integer.parseInt(fullCommand.substring(5)) - 1)
+                .getIsDone()) {
             throw new JeanException("It is already marked!"
                                     + "\nC'est déjaà fini!");
         } else {
@@ -25,18 +38,20 @@ public class Parser {
     }
 
     private static UnmarkCommand checkUnmark(String fullCommand, TaskList taskList) throws JeanException {
-            if (fullCommand.length() == 6) {
-                throw new JeanException("You must name a valid task to unmark!"
-                                        + "\nNom d'une valable tâche à marqué comme défait!");
-            } else if (Integer.parseInt(fullCommand.substring(7)) > taskList.getNumberOfTasks() || Integer.parseInt(fullCommand.substring(7)) < 1) {
-                throw new JeanException("There are only " + taskList.getNumberOfTasks() + " task(s)!"
-                                        + "\nIl y a seulement " + taskList.getNumberOfTasks() + " tâche(s)!");
-            } else if (!taskList.getTaskList().get(Integer.parseInt(fullCommand.substring(7)) - 1).getIsDone()){
-                throw new JeanException("It is not marked!"
-                                        + "\nCe n'est pas encore fini!");
-            } else {
-                return new UnmarkCommand(Integer.parseInt(fullCommand.substring(7)) - 1);
-            }
+        if (fullCommand.length() == 6) {
+            throw new JeanException("You must name a valid task to unmark!"
+                                    + "\nNom d'une valable tâche à marqué comme défait!");
+        } else if (Integer.parseInt(fullCommand.substring(7)) > taskList.getNumberOfTasks()
+                || Integer.parseInt(fullCommand.substring(7)) < 1) {
+            throw new JeanException("There are only " + taskList.getNumberOfTasks() + " task(s)!"
+                                    + "\nIl y a seulement " + taskList.getNumberOfTasks() + " tâche(s)!");
+        } else if (!taskList.getTaskList().get(Integer.parseInt(fullCommand.substring(7)) - 1)
+                .getIsDone()) {
+            throw new JeanException("It is not marked!"
+                                    + "\nCe n'est pas encore fini!");
+        } else {
+            return new UnmarkCommand(Integer.parseInt(fullCommand.substring(7)) - 1);
+        }
     }
 
     private static AddCommand checkTodo(String fullCommand) throws JeanException {
@@ -82,7 +97,8 @@ public class Parser {
         if (fullCommand.length() == 6) {
             throw new JeanException("You must name a task to delete!"
                                     + "\nNom d'une tâche à supprimer!");
-        } else if (Integer.parseInt(fullCommand.substring(7)) < 1 || Integer.parseInt(fullCommand.substring(7)) > taskList.getNumberOfTasks()) {
+        } else if (Integer.parseInt(fullCommand.substring(7)) < 1
+                || Integer.parseInt(fullCommand.substring(7)) > taskList.getNumberOfTasks()) {
             throw new JeanException("It is not possible!"
                                     + "\nC'est impossible!");
         } else {

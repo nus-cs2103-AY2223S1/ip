@@ -1,9 +1,9 @@
 package jean.task;
 
 public abstract class Task {
+    protected static int numberOfTasks = 0;
     protected String description;
     protected boolean isDone;
-    protected static int numberOfTasks = 0;
 
     public Task(String description) {
         this.description = description;
