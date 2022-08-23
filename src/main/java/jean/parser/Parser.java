@@ -92,6 +92,15 @@ public class Parser {
         }
     }
 
+    private static FindCommand checkFind(String fullCommand) throws JeanException {
+        if (fullCommand.length() == 4) {
+            throw new JeanException("You must give a word to search!"
+                    + "\nVous devez donner un mot à chercher!");
+        } else {
+            return new FindCommand(fullCommand.substring(5));
+        }
+    }
+
     /**
      * Reads user command and calls its corresponding command if the input is valid.
      *
@@ -117,6 +126,8 @@ public class Parser {
             return checkEvent(fullCommand);
         } else if (fullCommand.startsWith("delete")) {
             return checkDelete(fullCommand, taskList);
+        } else if (fullCommand.startsWith("find")) {
+            return checkFind(fullCommand);
         } else {
             throw new JeanException("No such command!");
         }

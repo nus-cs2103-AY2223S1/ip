@@ -48,10 +48,11 @@ public class TaskList {
     public void addTask(Task task, Ui ui) {
         this.taskList.add(task);
         ui.printMessage("\tadded / ajouté:"
-                + "\n\t\t" + task.toString());
+                        + "\n\t\t" + task.toString());
         ui.printMessage("\tYou now have " + this.taskList.size() + " task(s)!"
-                + "\n\tVous avez " + this.taskList.size() + " tâche(s)!");
+                        + "\n\tVous avez " + this.taskList.size() + " tâche(s)!");
     }
+
 
     /**
      * Removes a task from the task list.
@@ -108,5 +109,26 @@ public class TaskList {
         ui.printMessage("\tI have marked it as undone:"
                         + "\n\tJe l'ai marqué comme défait:"
                         + "\n\t" + curr.toString());
+    }
+
+    public void findTask(String keyword, Ui ui) {
+        ArrayList<Task> matches = new ArrayList<Task>();
+        for (Task x : this.taskList) {
+            if (x.toString().contains(keyword)) {
+                matches.add(x);
+            }
+        }
+        if (matches.isEmpty()) {
+            ui.printMessage("There are no matches!"
+                            + "\nIl n'y a aucune correspondance !");
+        } else {
+            ui.printMessage("There are " + matches.size() + " matches!"
+                            + "\nIl y a " + matches.size() + " correspondances!");
+        }
+
+        int i = 0;
+        for (Task x : matches) {
+            ui.printMessage("\t" + (++i) + ".\t " + x.toString());
+        }
     }
 }

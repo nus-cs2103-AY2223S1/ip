@@ -19,8 +19,8 @@ public class ExitCommand extends Command {
      * @param storage The storage object that saves to or extracts from data.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException{
-            storage.saveFile(taskList);
-            ui.end();
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
+        storage.saveFile(taskList);
+        ui.end();
     }
 }
