@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * The ToDo class represents a task
  * the user specified that needs to be done.
@@ -9,6 +11,11 @@ public class ToDo extends Task {
      */
     public ToDo(String description) {
         super(description);
+    }
+
+    @Override
+    public boolean compareDate(LocalDate date) {
+        return false;
     }
 
     /**

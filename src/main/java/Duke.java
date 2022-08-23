@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 /**
@@ -8,7 +10,7 @@ public class Duke {
      * Enum Command that represents all of Duke's commands.
      */
     private enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE;
+        BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE, DATE;
     }
 
     private static boolean terminate = false;
@@ -88,6 +90,14 @@ public class Duke {
                 } catch (IndexOutOfBoundsException e) {
                     displayError("Sorry. Task does not exist.");
                 }
+            case DATE:
+                try {
+                    getTasksOnDate(userInput);
+                } catch (StringIndexOutOfBoundsException e) {
+                    displayError("Please enter a date to search.");
+                } catch (DateTimeParseException | DukeException e2) {
+                    displayError("Please enter date in yyyy-M-d format.");
+                }
         }
     }
 
@@ -133,7 +143,7 @@ public class Duke {
      */
     private static void event(String userInput) throws DukeException {
         userInput = userInput.substring(6);
-        String[] Strings = userInput.split("/at");
+        String[] Strings = userInput.split(" /at ");
         if (Strings.length > 2) {
             throw new DukeException();
         }
@@ -147,11 +157,20 @@ public class Duke {
      */
     private static void deadline(String userInput) throws DukeException {
         userInput = userInput.substring(9);
-        String[] Strings = userInput.split("/by");
+        String[] Strings = userInput.split(" /by ");
         if (Strings.length > 2) {
             throw new DukeException();
         }
         myStorage.addTask(new Deadline(Strings[0], Strings[1]));
+    }
+
+    private static void getTasksOnDate(String userInput) throws DukeException {
+        String[] strings = userInput.split(" ");
+        if (strings.length > 2) {
+            throw new DukeException();
+        }
+        LocalDate targetDate = LocalDate.parse(strings[1]);
+        myStorage.getTasksOnDate(targetDate);
     }
 
     /**

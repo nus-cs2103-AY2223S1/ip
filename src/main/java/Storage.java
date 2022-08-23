@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -66,6 +67,23 @@ public class Storage {
             System.out.println("Now you have 1 task in the list.");
         } else {
             System.out.println("Now you have " + storage.size() + " tasks in the list.");
+        }
+    }
+
+    public void getTasksOnDate(LocalDate date) {
+        int i = 0;
+        for (Task t : storage) {
+            if (t.compareDate(date)) {
+                System.out.println(t);
+                i++;
+            }
+        }
+        if (i == 0) {
+            System.out.println("YAY! You have no deadlines/events on this day.");
+        } else if (i == 1) {
+            System.out.println("Shag man. You have " + i + " deadline/event on this day.");
+        } else {
+            System.out.println("Shag man. You have " + i + " deadlines/events on this day.");
         }
     }
 }
