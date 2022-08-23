@@ -13,15 +13,36 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Handles storing and loading tasks from the hard disk between sessions.
+ */
 public class Storage {
+    /**
+     * The path at which the target file can be found / should be created.
+     */
     private String filePath;
+
+    /**
+     * The path at which the target directory can be found / should be created.
+     */
     private String directoryPath;
 
+    /**
+     * Constructor for a Storage instance.
+     * @param filePath The path at which the target file can be found / should be created.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.directoryPath = filePath.substring(0, filePath.lastIndexOf("/"));
     }
 
+    /**
+     * Saves the current tasks into the specified text file.
+     * Overwrites the entire text file with a modified string representing
+     * all the current tasks.
+     *
+     * @param taskList The TaskList which contains all the tasks entered by the user.
+     */
     public void save(TaskList taskList) {
         // Create directory if it doesn't exist
         File dir = new File(this.directoryPath);
@@ -48,6 +69,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns a TaskList which contains the tasks entered by the user
+     * based on the previous session.
+     *
+     * @return A TaskList which contains the cached tasks entered by the user
+     *         during the previous session.
+     */
     public List<Task> load() {
         List<Task> taskList = new ArrayList<>();
 

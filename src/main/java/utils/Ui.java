@@ -4,8 +4,14 @@ import entities.Task;
 
 import java.util.List;
 
+/**
+ * Handles printing messages and errors to the user.
+ */
 public class Ui {
 
+    /**
+     * Prints a welcome message to the user.
+     */
     public static void welcomeUser() {
         String s = "Hello! I'm Duke\n"
                 + "\tWhat can I do for you?\n"
@@ -14,10 +20,17 @@ public class Ui {
         sendMessage(s);
     }
 
+    /**
+     * Prints a goodbye message to the user.
+     */
     public static void sayGoodbye() {
         sendMessage("Bye. Hope to see you again soon!");
     }
 
+    /**
+     * Prints the error message within the exception thrown.
+     * @param e The exception thrown from the method.
+     */
     public static void displayErrorMessage(Exception e) {
         sendMessage(e.getMessage());
     }

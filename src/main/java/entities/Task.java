@@ -54,10 +54,18 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the description of the current Task.
+     * @return The same String entered by the user for the task description.
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Returns the status of the current Task.
+     * @return True if the task is completed, and false otherwise.
+     */
     public boolean getStatus() {
         return this.isDone;
     }

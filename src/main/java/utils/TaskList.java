@@ -10,13 +10,28 @@ import duke.Duke;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stores and manages the tasks entered by the user.
+ */
 public class TaskList {
+    /**
+     * The list of tasks entered by the user.
+     */
     private List<Task> tasks;
 
+    /**
+     * Constructor for a TaskList instance.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Constructor for a TaskList instance.
+     *
+     * @param taskList The List of tasks loaded from cache.
+     * @throws DukeException If no cached tasks are available.
+     */
     public TaskList(List<Task> taskList) throws DukeException {
         if (taskList.isEmpty()) {
             throw new DukeException("No cached tasks.");
@@ -26,14 +41,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Getter for length of task List.
+     * @return
+     */
     public int getSize() {
         return this.tasks.size();
-    }
-
-    public void printTaskList() {
-        for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.println(this.tasks.get(i).toString() + " at index " + i);
-        }
     }
 
     /**
@@ -81,23 +94,42 @@ public class TaskList {
         Ui.sendMessage(s);
     }
 
+    /**
+     * Prints all tasks in the list.
+     */
     public void listTasks() {
         Ui.printTasks(this.tasks);
     }
 
+    /**
+     * Marks a particular task as completed.
+     * @param index The position of the task in the List.
+     */
     public void markTaskAsDone(int index) {
         this.tasks.get(index).markAsDone();
     }
 
+    /**
+     * Marks a particular task as not completed.
+     * @param index The position of the task in the List.
+     */
     public void markTaskAsUndone(int index) {
         this.tasks.get(index).markAsUndone();
     }
 
+    /**
+     * Returns the String representation of a particular task.
+     * @param index The position of the task in the LIst.
+     * @return A String representing the task.
+     */
     public String getTaskAsString(int index) {
         return this.tasks.get(index).toString();
     }
 
-
+    /**
+     * Returns a modified String of all the tasks in the current TaskList.
+     * @return A String representing all the tasks to be written to the hard disk.
+     */
     public String formatAllTasksForFileStorage() {
         String r = "";
         for (Task t : this.tasks) {
@@ -120,9 +152,5 @@ public class TaskList {
             r = r + s + "\n";
         }
         return r;
-    }
-
-    public Task getTask() {
-        return this.tasks.get(0);
     }
 }
