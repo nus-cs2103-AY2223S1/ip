@@ -3,6 +3,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
+
+    private static final String[] formats = new String[] {
+            "y-M-d H:m", "d MMM yyyy H:m"
+    };
     private LocalDateTime date;
 
     public Deadline(String taskString, String date) {
@@ -10,10 +14,14 @@ public class Deadline extends Task {
         if (date.isBlank()) {
             throw new IllegalArgumentException("Time of deadline cannot be empty.");
         } else {
-            try {
-                this.date = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("y-M-d H:m"));
-            } catch (DateTimeParseException e) {
-                throw new IllegalArgumentException("Date format is invalid. Try it in y-M-d H:m. For example, 2020-1-12 23:59.");
+            for (int i = 0; i < formats.length; i++) {
+                try {
+                    this.date = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(formats[i]));
+                } catch (DateTimeParseException e) {
+                    if (i == formats.length - 1) {
+                        throw new IllegalArgumentException("Date format is invalid. Try it in y-M-d H:m. For example, 2020-1-12 23:59.");
+                    }
+                }
             }
         }
     }
