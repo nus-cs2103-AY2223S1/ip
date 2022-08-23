@@ -9,7 +9,7 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String horizontalLine = "-------------------------";
-        System.out.println(logo + "\n" + horizontalLine);
+        //System.out.println(logo + "\n" + horizontalLine);
         System.out.println("To all Subjects of Ymir. My name is Eren Yeager.\n" + "How can I help you?" + "\n" + horizontalLine);
 
         ArrayList<Task> taskList = new ArrayList<>();
@@ -34,7 +34,9 @@ public class Duke {
                     int index = sc.nextInt() - 1;
                     Task completedTask = taskList.get(index);
                     completedTask.markAsDone();
+                    System.out.println(horizontalLine);
                     System.out.println("Nice! I've marked this task as done:" + "\n" + completedTask);
+                    System.out.println(horizontalLine);
                     break;
                 }
 
@@ -42,7 +44,9 @@ public class Duke {
                     int index = sc.nextInt() - 1;
                     Task unfinishedTask = taskList.get(index);
                     unfinishedTask.markAsNotDone();
+                    System.out.println(horizontalLine);
                     System.out.println("OK, I've marked this task as not done yet:" + "\n" + unfinishedTask);
+                    System.out.println(horizontalLine);
                     break;
                 }
 
