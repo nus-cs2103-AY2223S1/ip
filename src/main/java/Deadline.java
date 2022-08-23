@@ -1,12 +1,21 @@
-public class Deadline extends Task {
-    private String dateTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Deadline(String taskString, String dateTime) {
+public class Deadline extends Task {
+    private LocalDateTime date;
+
+    public Deadline(String taskString, String date) {
         super(taskString);
-        if (dateTime.isBlank()) {
+        if (date.isBlank()) {
             throw new IllegalArgumentException("Time of deadline cannot be empty.");
+        } else {
+            try {
+                this.date = LocalDateTime.parse(date, DateTimeFormatter.ofPattern("y-M-d H:m"));
+            } catch (DateTimeParseException e) {
+                throw new IllegalArgumentException("Date format is invalid. Try it in y-M-d H:m. For example, 2020-1-12 23:59.");
+            }
         }
-        this.dateTime = dateTime;
     }
 
     @Override
@@ -16,6 +25,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (by: " + this.dateTime + ")";
+        return super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("d MMM yyyy H:m")) + ")";
     }
 }
