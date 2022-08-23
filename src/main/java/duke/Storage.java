@@ -67,7 +67,7 @@ public class Storage {
                         t = new Event(taskDesription, eventTimeInDate);
                         break;
                     default:
-                        throw new DukeException("File error");
+                        throw new DukeException("File error.");
                     }
 
 
@@ -79,7 +79,7 @@ public class Storage {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("no file");
+            System.out.println("No file found, add tasks to create new file.");
         } catch (DateTimeParseException e) {
             System.out.println("Check date format.");
         }
