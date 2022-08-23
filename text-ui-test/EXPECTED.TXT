@@ -66,13 +66,13 @@ Command: unmark (index of task)
 Delete: Delete selected task
 Command: delete (index of task)
 
-duke.task.ToDo: adds a Todo duke.task.Task
+duke.task.ToDo: adds a Todo duke.task.task
 Command: Todo (description)
 
-duke.task.Deadline: adds a duke.task.Deadline duke.task.Task
+duke.task.Deadline: adds a duke.task.Deadline duke.task.task
 Command: duke.task.Deadline (description) /by (YYYY-MM-DD 24hr)
 
-duke.task.Deadline: adds a duke.task.Event duke.task.Task
+duke.task.Deadline: adds a duke.task.Event duke.task.task
 Command: duke.task.Event (description) /at (YYYY-MM-DD 24hr)
 
 -----------------------------------------

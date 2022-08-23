@@ -2,6 +2,7 @@ package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 import duke.exception.DukeInvalidTimeException;
 
@@ -54,9 +55,12 @@ public class Event extends Task {
         String[] input = this.at.split(" ");
 
         // get Date
-        LocalDate date = LocalDate.parse(input[0]);
-        dateStr = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-
+        try {
+            LocalDate date = LocalDate.parse(input[0]);
+            dateStr = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new DukeInvalidTimeException();
+        }
         // get Time
         if (input[1].length() != 4) {
             throw new DukeInvalidTimeException();

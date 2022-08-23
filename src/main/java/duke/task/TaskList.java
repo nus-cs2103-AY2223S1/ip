@@ -45,7 +45,7 @@ public class TaskList {
      * @throws DukeOutOfBoundException Exception thrown when index is out of size of TaskList.
      */
     public void delete(int index) throws DukeOutOfBoundException {
-        if (index >= taskList.size()) {
+        if (index >= taskList.size() || index < 0) {
             throw new DukeOutOfBoundException();
         }
         Task task = taskList.get(index);
@@ -60,7 +60,7 @@ public class TaskList {
      * @throws DukeOutOfBoundException Exception thrown when index is out of size of TaskList.
      */
     public void mark(int index) throws DukeOutOfBoundException {
-        if (index >= taskList.size()) {
+        if (index >= taskList.size() || index < 0) {
             throw new DukeOutOfBoundException();
         }
         Task task = taskList.get(index);
@@ -75,7 +75,7 @@ public class TaskList {
      * @throws DukeOutOfBoundException Exception thrown when index is out of size of TaskList.
      */
     public void unmark(int index) throws DukeOutOfBoundException {
-        if (index >= taskList.size()) {
+        if (index >= taskList.size() || index < 0) {
             throw new DukeOutOfBoundException();
         }
         Task task = taskList.get(index);

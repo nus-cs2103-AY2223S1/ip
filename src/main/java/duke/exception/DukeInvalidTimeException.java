@@ -14,6 +14,7 @@ public class DukeInvalidTimeException extends DukeException {
      */
     public DukeInvalidTimeException() {
         super("OOPS!!! I cant parse the time provided by you!\n"
-                + "Please input the time in 24hr format! (i.e. 1230)");
+                + "Please input date in YYYY-MM-DD format! (i.e. 2000-09-12) \n"
+                + "and time in 24hr format! (i.e. 1230)");
     }
 }
