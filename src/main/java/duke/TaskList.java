@@ -160,8 +160,9 @@ public class TaskList {
     public void printAllOnDate(String input) {
         LocalDate date = LocalDate.parse(input);
 
-        System.out.println("Here are the tasks on "+
-                           date.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        System.out.println("Here are the tasks on "
+                           + date.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+
         for (Task task : this.list) {
             // Check that task is not a To-do which has no deadline
             if (task instanceof Todo) {
@@ -195,8 +196,8 @@ public class TaskList {
         selectedTask.mark();
 
         // Print message
-        System.out.println("Nice! I've marked this task as done:\n"+
-                selectedTask);
+        System.out.println("Nice! I've marked this task as done:\n"
+                           + selectedTask);
 
         // Update data file
         this.storage.saveTasks(this.list);
@@ -222,8 +223,8 @@ public class TaskList {
         selectedTask.unmark();
 
         // Print message
-        System.out.println("OK, I've marked this task as not done yet:\n"+
-                selectedTask);
+        System.out.println("OK, I've marked this task as not done yet:\n"
+                           + selectedTask);
 
         // Update data file
         this.storage.saveTasks(this.list);
