@@ -9,14 +9,26 @@ public class CheckList {
         tasks = new ArrayList<>();
     }
 
-    // Methods
+    /**
+     * Adds a task to the list.
+     * @param task the task to add
+     */
     public void addTask(Task task) {
         tasks.add(task);
     }
 
+    /**
+     * Deletes a task from the list.
+     * @param taskNum the index of task to be deleted
+     */
     public void deleteTask(int taskNum) {
         tasks.remove(taskNum - 1);
     }
+
+    /**
+     * Prints list of tasks in the Checklist.
+     * @return the list of tasks in the Checklist in String format
+     */
     public String printList() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < tasks.size(); ++i) {
@@ -30,6 +42,11 @@ public class CheckList {
         return output.toString();
     }
 
+    /**
+     * Prints the entire string of a task in the Checklist. (eg. [T][] read book)
+     * @param idx index of the task in the Checklist
+     * @return the status string of the task in the Checklist in String format
+     */
     public String printTaskStatus(int idx) {
         Task curr = tasks.get(idx);
         return curr.toString();

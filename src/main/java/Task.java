@@ -9,14 +9,24 @@ public class Task {
         this.isDone = false;
     }
 
-    // Methods
+    /**
+     * Marks the task as done.
+     */
     public void markDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the task as undone.
+     */
     public void markUndone() {
         this.isDone = false;
     }
+
+    /**
+     * Returns a string of tick or empty string depending on whether the task is done or not.
+     * @return String representation of a tick or empty string
+     */
     public String getStatusIcon() {
         return this.isDone ? "✔" : " ";
     }

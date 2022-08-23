@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Duke {
     // Class Fields
-    private static final String logo = " ___  ___  __ __ \n"
+    private static final String LOGO = " ___  ___  __ __ \n"
                                      + "| . \\| __>|  \\  \\\n"
                                      + "|   /| _> |     |\n"
                                      + "|_\\_\\|___>|_|_|_|\n";
@@ -19,7 +19,10 @@ public class Duke {
         checklist = new CheckList();
     }
 
-    // Class Methods
+    /**
+     * Main run method for the program.
+     * @throws DukeException custom exception for Duke
+     */
     private void run() throws DukeException {
         String input;
         Scanner sc = new Scanner(System.in);
@@ -160,6 +163,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Initialises the program.
+     * @param args the command line arguments
+     */
     private void start() throws DukeException {
         try {
             run();
@@ -183,7 +190,7 @@ public class Duke {
     // Main Method
     public static void main(String[] args) {
         Duke dk = new Duke();
-        System.out.println(logo + "\n" + WELCOME + SPACER);
+        System.out.println(LOGO + "\n" + WELCOME + SPACER);
         try {
             dk.start();
         } catch (DukeException e) {
