@@ -77,7 +77,12 @@ public class Ui {
         }
         System.out.println(LINE_SEP);
     }
-    
+
+    /**
+     * Formats and prints all tasks that contains key in TaskList.
+     *
+     * @param taskList A Tasklist that contains all tasks.
+     */
     public void filterList(TaskList taskList, String key) {
         System.out.println(LINE_SEP);
         System.out.println("Here are the matching tasks in your list:");
