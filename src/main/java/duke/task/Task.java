@@ -2,15 +2,16 @@ package duke.task;
 
 import duke.core.DukeException;
 
-import javax.swing.plaf.synth.SynthToggleButtonUI;
-import java.util.Arrays;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 /**
  * A class that represents a task in the task list.
  */
 public abstract class Task {
     protected String text = "";
-    protected String details = "";
+    protected LocalDate details;
     protected boolean complete = false;
 
     private static final String serializerSeparator = "---";
@@ -21,7 +22,7 @@ public abstract class Task {
         this.text = text;
     }
 
-    public void setDetails(String details) {
+    public void setDetails(LocalDate details) {
         this.details = details;
     }
 
@@ -74,7 +75,7 @@ public abstract class Task {
             task.complete = Boolean.parseBoolean(args[1]);
             task.text = args[2];
             if (args.length >= 4) {
-                task.details = args[3];
+                task.details = LocalDate.parse(args[3]);
             }
         }
 
@@ -86,5 +87,9 @@ public abstract class Task {
     @Override
     public String toString() {
         return "[" + (complete ? "X" : " ") + "] " + text;
+    }
+
+    protected String getFormattedDetails() {
+        return details.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
     }
 }
