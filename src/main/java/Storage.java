@@ -8,8 +8,17 @@ import java.util.List;
 
 import java.util.Scanner;
 
-public class FileContainer {
+public class Storage {
     File file;
+    public Storage(String filepath) throws IOException{
+        String s = "./" + filepath.split("duke")[0];
+        File f = new File(s);
+        this.file = new File(s + "duke.txt");
+        if (!this.file.exists()) {
+            f.mkdir();
+            this.file.createNewFile();
+        }
+    }
 
     public boolean isFileExist(){
         if (file == null){
@@ -18,23 +27,9 @@ public class FileContainer {
             return true;
         }
     }
-    //create a duke.txt file in [project root]/data;
-    public void createAFile(){
-        try {
-            File f = new File("./data/");
-            this.file = new File("./data/duke.txt");
-            if (!this.file.exists()) {
-                f.mkdir();
-                this.file.createNewFile();
-            }
-        }catch(IOException e){
-            System.out.println("Sorry, something went wrong when creating the file."
-                    +e.getMessage());
-        }
-    }
 
     //Save a change to the file
-    public void updateFile(List<Task> t) {
+    public void updateFile(List<Task> t) throws DukeException{
         try {
             FileWriter fw = new FileWriter(this.file);
             for (int i = 0; i < t.size(); i++) {
@@ -49,8 +44,7 @@ public class FileContainer {
             }
             fw.close();
         }catch (IOException e){
-            System.out.println("Sorry, something went wrong when updating the file."
-                    +e.getMessage());
+            throw new DukeException("Sorry, something went wrong when updating the file.");
         }
     }
     //Load tasks from file and return a TaskList
