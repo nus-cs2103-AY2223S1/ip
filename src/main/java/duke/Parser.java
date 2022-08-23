@@ -1,9 +1,19 @@
 package duke;
 
-import duke.exception.DukeException;
 import duke.command.*;
+import duke.exception.DukeException;
 
+/**
+ * Parsers user inputs of the duke program.
+ */
 public class Parser {
+    /**
+     * Parses user input, identifying the command to run and returns that command.
+     *
+     * @param userInput The command string the user has submitted
+     * @return A command based on the user's input
+     * @throws DukeException If the user input is invalid and a command can't be instantiated
+     */
     public static Command parse(String userInput) throws DukeException {
         if (userInput.equals("list")) {
             return new ListTasksCommand();

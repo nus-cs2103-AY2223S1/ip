@@ -14,6 +14,11 @@ public class ToDo extends Task {
     }
     public ToDo(String description, boolean completion) { super(description, completion); }
 
+    /**
+     * Parses the to-do into a savable string format, ready to be written to the hard disk.
+     *
+     * @return Savable string representation of the To-Do Task
+     */
     @Override
     public String toSaveFormat() {
         return String.format("T | %s | %s", this.isDone ? "Y" : "N",
@@ -21,9 +26,8 @@ public class ToDo extends Task {
     }
 
     /**
-     * Returns a string representation for the to-do task,
-     * prefixed with a [T], followed by the task status, and
-     * the task description.
+     * Returns a string representation for the to-do task, prefixed with a [T],
+     * followed by the task status, and the task description.
      *
      * @return The string representation of the to-do task
      */
