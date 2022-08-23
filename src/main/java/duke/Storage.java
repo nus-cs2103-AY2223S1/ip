@@ -16,10 +16,11 @@ public class Storage {
 
     Storage(String filepath) {
         this.filepath = filepath;
-        parseFileToTasks(filepath);
     }
 
     public List<Task> load() {
+
+        parseFileToTasks(filepath);
         return tasks;
     }
 

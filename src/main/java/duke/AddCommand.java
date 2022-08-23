@@ -39,4 +39,9 @@ public class AddCommand extends Command {
     boolean isExit() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof AddCommand;
+    }
 }

@@ -11,7 +11,11 @@ public class TaskList {
     }
 
     TaskList(List<Task> tasks) throws DukeException {
+
         this.tasks = tasks;
+        if (tasks == null) {
+            throw new DukeException("task passed to tasklist is null");
+        }
     }
 
     void add(Task task) {
@@ -30,11 +34,6 @@ public class TaskList {
         this.tasks.get(i).unMark();
     }
 
-    public void print() {
-        for (Task t : tasks) {
-            System.out.println(t);
-        }
-    }
 
     public String toString() {
         String out = "";
