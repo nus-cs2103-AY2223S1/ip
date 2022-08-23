@@ -1,0 +1,5 @@
+T | 0 | read book
+D | 1 | return book | June 6th
+T | 0 | join sports club
+E | 1 | dune | 4pm
+D | 0 | sleep | june 7th
