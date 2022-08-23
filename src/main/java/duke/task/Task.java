@@ -73,4 +73,14 @@ public abstract class Task {
         System.out.println("Duke: OK, I've marked this task as not done yet:");
         System.out.println(this);
     }
+
+    /**
+     * Checks if the Task's description contains the given keyword.
+     *
+     * @param keyword The keyword to search for in the task.
+     * @return true if the keyword is in the task's description, false otherwise.
+     */
+    public boolean hasKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
 }

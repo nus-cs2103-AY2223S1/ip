@@ -7,6 +7,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
@@ -41,6 +42,8 @@ public class Parser {
             return new AddCommand(tasksList, storage, words);
         } else if (DeleteCommand.isCommand(words[0])) {
             return new DeleteCommand(tasksList, storage, words);
+        } else if (FindCommand.isCommand(words[0])) {
+            return new FindCommand(tasksList, words);
         } else {
             return new InvalidCommand();
         }
