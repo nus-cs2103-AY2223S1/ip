@@ -11,6 +11,11 @@ public class Deadline extends Task {
         this.datetime = datetime;
     }
 
+    public Deadline(String[] data) {
+        super(data[2], (data[1].equals("1")));
+        this.datetime = data[3];
+    }
+
     /**
      * Returns the deadline of the task.
      * @return Task deadline

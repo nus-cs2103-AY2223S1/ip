@@ -9,6 +9,10 @@ public class Todo extends Task {
         super(name);
     }
 
+    Todo(String[] data) {
+        super(data[2], (data[1].equals("1")));
+    }
+
     @Override
     public String toString() {
         return "[T]" + super.toString();

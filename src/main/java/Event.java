@@ -11,6 +11,11 @@ public class Event extends Task {
         this.datetime = datetime;
     }
 
+    public Event(String[] data) {
+        super(data[2], (data[1].equals("1")));
+        this.datetime = data[3];
+    }
+
     /**
      * Returns the date/time of the event.
      * @return Date/time of the event

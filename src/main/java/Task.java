@@ -18,6 +18,16 @@ public class Task {
     }
 
     /**
+     * Constructor for a Task item.
+     * @param name Description of task
+     * @param done Whether task is done or not
+     */
+    Task (String name, boolean done) {
+        this.name = name;
+        this.done = done;
+    }
+
+    /**
      * Retrieves the description of the Task.
      * @return Task description
      */
