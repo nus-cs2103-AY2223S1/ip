@@ -36,12 +36,14 @@
     The description of a [deadline] is incorrect.
     Keyword: [ /by  ] or [Time] is not found.
     The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
     The description of a [deadline] is incorrect.
     Keyword: [ /by  ] or [Time] is not found.
     The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
@@ -52,24 +54,28 @@
     The description of a [deadline] is incorrect.
     Keyword: [ /by  ] or [Time] is not found.
     The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
     The description of a [deadline] is incorrect.
     Keyword: [ /by  ] or [Time] is not found.
     The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
     The description of a [deadline] is incorrect.
     Deadline [Name] is not found.
     The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
     The description of a [deadline] is incorrect.
     Deadline [Name] is not found.
     The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     Here are the tasks in your list:
@@ -81,24 +87,28 @@
     The description of a [mark] is incorrect.
     The argument should be an integer.
     The format of [mark] should be 'mark [ID of task]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
     The description of a [mark] is incorrect.
     The argument should be an integer.
     The format of [mark] should be 'mark [ID of task]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
     The description of a [mark] is incorrect.
     The argument should be an integer.
     The format of [mark] should be 'mark [ID of task]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
     The description of a [mark] is incorrect.
     The argument should be an integer.
     The format of [mark] should be 'mark [ID of task]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     Nice! I've marked this task as done:
@@ -118,6 +128,7 @@
     The description of a [event] is incorrect.
     Keyword: [ /at  ] or [Time] is not found.
     The format of [event] should be 'event [Event Name] /at [Event Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     Got it. I've added this task:
@@ -373,12 +384,14 @@
     The description of a [deadline] is incorrect.
     Keyword: [ /by  ] or [Time] is not found.
     The format of [deadline] should be 'deadline [Deadline Name] /by [Deadline Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     ☹ OOPS!!!  I'm sorry that your entry does not compile, please check with following information:
     The description of a [event] is incorrect.
     Keyword: [ /at  ] or [Time] is not found.
     The format of [event] should be 'event [Event Name] /at [Event Time]'
+    Attribute Separator: '}', is not allowed.
    ----------------------------------------------------------------------------------------------------
    ----------------------------------------------------------------------------------------------------
     Hello from

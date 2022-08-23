@@ -1,22 +1,19 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.Scanner;
 import java.util.function.Consumer;
-import java.util.stream.Stream;
 
 public class Duke {
-    private boolean isTerminated;
-    private MessagePrinter mp;
-    private TaskList tasks;
-
-    private final String logo = " ____        _        \n"
+    private final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-
+    private final String STORAGE_PATH = "./data/duke.txt";
     private final HashMap<Action, Consumer<Command>> actionConsumerMap = new HashMap<>();
+    private boolean isTerminated;
+    private MessagePrinter mp;
+    private TaskList tasks;
 
     public Duke() {
         initialize();
@@ -30,7 +27,7 @@ public class Duke {
             try {
                 if (scanner.hasNext()) {
                     String entry = scanner.nextLine();
-                    Command command = Compiler.parseCommand(entry);
+                    Command command = Parser.parseCommand(entry);
                     duke.execute(command);
                 }
             } catch (DukeException dukeException) {
@@ -61,6 +58,9 @@ public class Duke {
 //        No Actions is added.
 //        Level_6
         map.put(Action.DELETE, command -> delete(Integer.parseInt(command.getParameters().get(0))));
+//        Level_7
+        map.put(Action.SAVE, command -> save());
+        map.put(Action.READ, command -> read());
     }
 
     private void initialize() {
@@ -75,7 +75,7 @@ public class Duke {
 
     public void greet() {
         String HELLO_MESSAGE = "Hello! I'm Duke \n" + "What can I do for you?";
-        mp.printMessage("Hello from\n" + this.logo + "\n" + HELLO_MESSAGE);
+        mp.printMessage("Hello from\n" + this.LOGO + "\n" + HELLO_MESSAGE);
     }
 
     //      Removed Functionality
@@ -100,14 +100,14 @@ public class Duke {
         mp.printMessage(message);
     }
 
-    public void mark(int idTask) throws DukeException.TaskNotFoundException {
+    public void mark(int idTask) {
         String successMsg = "Nice! I've marked this task as done:";
         Task task = this.tasks.get(idTask - 1);
         task.markAsDone();
         mp.printMessage(successMsg + "\n" + task);
     }
 
-    public void unmark(int idTask) throws DukeException.TaskNotFoundException {
+    public void unmark(int idTask) {
         String successMsg = "OK, I've marked this task as not done yet:";
         Task task = this.tasks.get(idTask - 1);
         task.markAsNotDone();
@@ -118,8 +118,8 @@ public class Duke {
         String successMsg = "Got it. I've added this task:";
         Task todo = Task.todo(msg);
         tasks.add(todo);
-        successMsg = successMsg + "\n" + todo + "\n" +
-                "Now you have " + tasks.size() + " tasks in the list.";
+        successMsg = successMsg + "\n" + todo + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
         mp.printMessage(successMsg);
     }
 
@@ -127,8 +127,8 @@ public class Duke {
         String successMsg = "Got it. I've added this task:";
         Task event = Task.event(msg, time);
         tasks.add(event);
-        successMsg = successMsg + "\n" + event + "\n" +
-                "Now you have " + tasks.size() + " tasks in the list.";
+        successMsg = successMsg + "\n" + event + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
         mp.printMessage(successMsg);
     }
 
@@ -136,8 +136,8 @@ public class Duke {
         String successMsg = "Got it. I've added this task:";
         Task deadline = Task.deadline(msg, time);
         tasks.add(deadline);
-        successMsg = successMsg + "\n" + deadline + "\n" +
-                "Now you have " + tasks.size() + " tasks in the list.";
+        successMsg = successMsg + "\n" + deadline + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
         mp.printMessage(successMsg);
     }
 
@@ -158,9 +158,24 @@ public class Duke {
     public void delete(int idTask) {
         String successMsg = "Noted. I've removed this task:";
         Task task = this.tasks.remove(idTask - 1);
-        successMsg = successMsg + "\n" + task + "\n" +
-                "Now you have " + tasks.size() + " tasks in the list.";
-        mp.printMessage(successMsg );
+        successMsg = successMsg + "\n" + task + "\n"
+                + "Now you have " + tasks.size() + " tasks in the list.";
+        mp.printMessage(successMsg);
+    }
+
+    public void save() {
+        this.tasks.save();
+        int size = tasks.size();
+        String temp = size == 1 ? "task has" : "tasks have";
+        mp.printMessage("Your " + size + " " + temp + " been saved successfully");
+    }
+
+    public void read() {
+        this.tasks = this.tasks.parse(this.tasks.read());
+        int size = tasks.size();
+        String temp = size == 1 ? "task has" : "tasks have";
+        mp.printMessage("Your " + size + " " + temp + " been loaded successfully\n"
+                + "Type [list] to view your tasks");
     }
 
 

@@ -1,7 +1,11 @@
-import java.io.File;
-
 public interface Savable<T> {
     String toFormattedString();
 
-    T read(String formattedString) throws DukeException.ReadAttributeException;
+    String read();
+
+    T parse(String formattedString) throws DukeException.ReadAttributeException;
+
+    void save();
+
+    String getStoragePath();
 }

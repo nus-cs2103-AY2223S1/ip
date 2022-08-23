@@ -15,7 +15,9 @@ public enum Action {
 //    Level_5
 //    No new actions is added
 //    Level_6
-    DELETE;
+    DELETE,
+//    Level_7
+    SAVE, READ;
 
     private static HashMap<Action, String> actionFormatMap = new HashMap<>();
     static {
@@ -39,6 +41,8 @@ public enum Action {
 //        No Action is added.
 //        Level_6
         map.put(Action.DELETE, "delete [ID of Task]");
+        map.put(Action.SAVE, "save");
+        map.put(Action.READ, "Read");
     }
 
     private static HashMap<String, Action> stringActionMap = new HashMap<>();
@@ -63,6 +67,9 @@ public enum Action {
 //        No Action is added.
 //        Level_6
         map.put("delete", Action.DELETE);
+//        Level_7
+        map.put("save", Action.SAVE);
+        map.put("read", Action.READ);
     }
 
     public static String getString(Action action) {

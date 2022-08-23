@@ -1,0 +1,10 @@
+T | 1 | finish homework this night
+E | 0 | CS2109S Lecture | I3-AUD
+E | 0 | CS2109S Lecture | I3-AUD
+E | 0 | CS2109S Lecture | I3-AUD
+E | 0 | CS2109S Lecture | I3-AUD
+E | 0 | CS2109S Lecture | I3-AUD
+E | 0 | CS2109S Lecture | I3-AUD
+E | 0 | CS2109S Lecture | I3-AUD
+E | 0 | CS2109S Lecture | I3-AUD
+E | 0 | CS2109S Lecture | I3-AUD
