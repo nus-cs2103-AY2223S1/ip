@@ -1,9 +1,15 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    public static ArrayList<Task> list;
+    String filePath = "data/duke.txt";
     private static class DukeException extends Exception {
         String message;
+
         DukeException(String message) {
             this.message = message;
         }
@@ -13,10 +19,73 @@ public class Duke {
             return this.message;
         }
     }
-    public static ArrayList<Task> list;
+    public static void saveData() throws DukeException {
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        String filePath = "data/duke.text";
+        File data = new File(filePath);
+        // Write to data
+        try {
+            FileWriter fileWriter = new FileWriter(filePath);
+            for (Task t : list) {
+                fileWriter.write(t.toFileDescription() + "\n");
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+        throw new DukeException("Hey! Are you in the wrong directory? You are currently at" +
+                e.getMessage());
+        }
+    }
+    public static void loadData() throws DukeException {
+        list = new ArrayList<>();
+        File directory = new File("data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        String filePath = "data/duke.text";
+        File data = new File(filePath);
+        // Load the file data into corresponding ArrayList
+        try {
+            if (data.exists()) {
+                Scanner scanner = new Scanner(data);
+                while (scanner.hasNext()) {
+                    String currentlyAt = scanner.nextLine();
+                    char first = currentlyAt.charAt(0);
+                    Task task;
+                    switch(first) {
+                    case('T'): {
+                        task = Todo.fromFileDescription(currentlyAt);
+                        break;
+                    }
+                    case('D'): {
+                        task = Deadline.fromFileDescription(currentlyAt);
+                        break;
+                    }
+                    case('E'): {
+                        task = Event.fromFileDescription(currentlyAt);
+                        break;
+                    }
+                    default: {
+                        throw new DukeException("What!? How did this happen... I'm pretty sure you" +
+                                "have an itchy hand and modified the duke.txt file!!!");
+                    }
+                    }
+                    list.add(task);
+                }
+            } else {
+                data.createNewFile();
+            }
+        } catch (IOException e) {
+            throw new DukeException("Are you a hacker? How on earth did you get to this stage!?");
+        }
+    }
+
     public static void line() {
         System.out.println("________________________________________");
     }
+
     public static void greet() {
         line();
         System.out.println("Hello! I'm Duke");
@@ -42,7 +111,7 @@ public class Duke {
         int numOfTasks = list.size();
         if (numOfTasks == 0) {
             throw new DukeException("Unfortunately, you do not have any tasks at hand." +
-            " Try creating some first.");
+                    " Try creating some first.");
         }
         line();
         System.out.println("Here are the tasks in your list:");
@@ -130,22 +199,22 @@ public class Duke {
 
     public static void addTask(String input, Commands type) throws DukeException {
         Task t;
-        switch(type) {
-            case TODO: {
-                t = handleTodo(input);
-                break;
-            }
-            case DEADLINE: {
-                t = handleDeadline(input);
-                break;
-            }
-            case EVENT: {
-                t = handleEvent(input);
-                break;
-            }
-            default:
-                throw new IllegalArgumentException("Invalid task type entered");
-                // this should only be seen by developer
+        switch (type) {
+        case TODO: {
+            t = handleTodo(input);
+            break;
+        }
+        case DEADLINE: {
+            t = handleDeadline(input);
+            break;
+        }
+        case EVENT: {
+            t = handleEvent(input);
+            break;
+        }
+        default:
+            throw new IllegalArgumentException("Invalid task type entered");
+            // this should only be seen by developer
         }
         list.add(t);
         line();
@@ -190,10 +259,9 @@ public class Duke {
         System.out.println("Bye. Hope to see you again soon!");
         line();
     }
+
     public static void main(String[] args) {
-        Duke duke = new Duke();
         boolean isDone = false;
-        list = new ArrayList<>();
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -201,6 +269,11 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         greet();
+        try {
+            loadData();
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
         Scanner scanner = new Scanner(System.in); // creating scanner for user input
         while (!isDone) {
             try {
@@ -212,42 +285,43 @@ public class Duke {
                     second = strArray[1];
                 }
                 switch (first) {
-                    case ("bye"): {
-                        exit();
-                        isDone = true;
-                        break;
-                    }
-                    case ("list"): {
-                        enumerateArrayList();
-                        break;
-                    }
-                    case ("mark"): {
-                        markDone(Integer.parseInt(second));
-                        break;
-                    }
-                    case ("unmark"): {
-                        markUndone(Integer.parseInt(second));
-                        break;
-                    }
-                    case ("todo"): {
-                        addTask(second, Commands.TODO);
-                        break;
-                    }
-                    case ("deadline"): {
-                        addTask(second, Commands.DEADLINE);
-                        break;
-                    }
-                    case ("event"): {
-                        addTask(second, Commands.EVENT);
-                        break;
-                    }
-                    case ("delete"): {
-                        handleDelete(second);
-                        break;
-                    }
-                    default: {
-                        throw new DukeException("Invalid command entered. I don't recognize it. Sorry!");
-                    }
+                case ("bye"): {
+                    exit();
+                    isDone = true;
+                    saveData();
+                    break;
+                }
+                case ("list"): {
+                    enumerateArrayList();
+                    break;
+                }
+                case ("mark"): {
+                    markDone(Integer.parseInt(second));
+                    break;
+                }
+                case ("unmark"): {
+                    markUndone(Integer.parseInt(second));
+                    break;
+                }
+                case ("todo"): {
+                    addTask(second, Commands.TODO);
+                    break;
+                }
+                case ("deadline"): {
+                    addTask(second, Commands.DEADLINE);
+                    break;
+                }
+                case ("event"): {
+                    addTask(second, Commands.EVENT);
+                    break;
+                }
+                case ("delete"): {
+                    handleDelete(second);
+                    break;
+                }
+                default: {
+                    throw new DukeException("Invalid command entered. I don't recognize it. Sorry!");
+                }
                 }
             } catch (DukeException e) {
                 line();
