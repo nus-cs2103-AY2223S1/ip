@@ -1,6 +1,7 @@
 /**
  * Project done by Hong Jin.
  */
+package duke;
 
 import java.util.*;
 import java.time.LocalDate;
@@ -27,10 +28,8 @@ public class Task {
         this.done = "[ ]";
     }
 
-    public String getMark() {return this.done;}
-
     @Override
     public String toString() {
-        return String.format("%s %s", getMark(), this.task);
+        return String.format("%s %s", this.done, this.task);
     }
 }

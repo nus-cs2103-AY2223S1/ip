@@ -4,18 +4,17 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-public class MarkCommand extends Command{
+public class UnmarkCommand extends Command{
     private int index;
 
-    public MarkCommand(int index) {
+    public UnmarkCommand(int index) {
         super();
         this.index = index;
     }
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.printMark(tasks.get(index));
+        ui.printUnmark(tasks.get(index));
         storage.savetoFile(tasks.saveList());
     }
 }
-

@@ -1,6 +1,7 @@
 /**
  * Project done by Hong Jin.
  */
+package duke;
 
 /**
  * DukeException class to handle exceptions thrown.
