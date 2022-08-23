@@ -1,4 +1,4 @@
-package pnkp.duke.modules.todos;
+package duke.modules.todos;
 
 import static java.lang.String.format;
 

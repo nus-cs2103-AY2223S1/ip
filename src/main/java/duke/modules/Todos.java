@@ -1,15 +1,15 @@
-package pnkp.duke.modules;
+package duke.modules;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.String.format;
-import static pnkp.duke.IOFormat.say;
+import static duke.IOFormat.say;
 
-import pnkp.duke.FallibleFunction;
-import pnkp.duke.MessagefulException;
-import pnkp.duke.modules.todos.Task;
+import duke.FallibleFunction;
+import duke.MessagefulException;
+import duke.modules.todos.Task;
 
 /**
  * Module handling tracking tasks, optionally with dates or timeranges.

@@ -1,12 +1,12 @@
-import pnkp.duke.MessagefulException;
-import pnkp.duke.modules.Todos;
-import pnkp.duke.modules.todos.Deadline;
-import pnkp.duke.modules.todos.Event;
-import pnkp.duke.modules.todos.Todo;
+import duke.MessagefulException;
+import duke.modules.Todos;
+import duke.modules.todos.Deadline;
+import duke.modules.todos.Event;
+import duke.modules.todos.Todo;
 
 import java.util.Scanner;
 
-import static pnkp.duke.IOFormat.say;
+import static duke.IOFormat.say;
 
 /**
  * Entrypoint for the Duke chatbot.

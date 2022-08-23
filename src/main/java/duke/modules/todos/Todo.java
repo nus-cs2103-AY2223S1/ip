@@ -1,6 +1,6 @@
-package pnkp.duke.modules.todos;
+package duke.modules.todos;
 
-import pnkp.duke.MessagefulException;
+import duke.MessagefulException;
 
 import java.util.Scanner;
 

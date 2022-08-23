@@ -1,4 +1,4 @@
-package pnkp.duke;
+package duke;
 
 /**
  * An exception with both developer-facing and user-facing messages.

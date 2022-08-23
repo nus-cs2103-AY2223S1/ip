@@ -1,4 +1,4 @@
-package pnkp.duke;
+package duke;
 
 /**
  * Represents a function that can either complete and return a value or throw a MessagefulException for the

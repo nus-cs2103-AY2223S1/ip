@@ -1,4 +1,4 @@
-package pnkp.duke;
+package duke;
 
 import java.util.List;
 
