@@ -1,10 +1,25 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+
 
 public class Duke {
     public static void main(String[] args) throws DukeException {
+
+        String home = System.getProperty("user.home");
+        java.nio.file.Path path = java.nio.file.Paths.get(home, "OneDrive - National University of Singapore", "2022_fall_sem_NUS", "CS2103T Software Engineering", "Code_Independent Project", "data", "Duke.txt");
+        boolean directotyExists = java.nio.file.Files.exists(path);
+        System.out.println("path: " + path);
+        System.out.println("path exists: " + directotyExists);
+
+
+
         System.out.println("Hello! I'm Duke\n" +  "What can I do for you?");
 
         Scanner sc = new Scanner(System.in);
@@ -16,8 +31,25 @@ public class Duke {
         String order;
         String content;
 
-        while(!input.equals("bye")){
+        boolean needUpdate = false;
 
+
+        // read data
+        try {
+            File myfile = new File(String.valueOf(path));
+            Scanner myReader = new Scanner(myfile);
+            String line = myReader.nextLine();
+            /*
+            * Make the function!!!!
+            * */
+
+        } catch (FileNotFoundException e)
+        {
+            System.out.println("Invalid Path!");
+        }
+
+        // Handle incoming data
+        while(!input.equals("bye")){
             if(input.equals("list")){
                 System.out.println("Here are the tasks in your list:");
                 for(int i = 0; i < taskList.size(); i++) {
@@ -25,7 +57,9 @@ public class Duke {
                     System.out.println(taskList.get(i));
                     }
 
-            } else {
+            }
+            else {
+                if(!needUpdate) {needUpdate = true;}
                 str = input.split(" ", 2);
                 order = str[0];
                 Task task;
@@ -38,7 +72,8 @@ public class Duke {
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println("  " + task);
 
-                }else if(order.equals("unmark")) {
+                }
+                else if(order.equals("unmark")) {
                     content = str[1];
                     int index = Integer.parseInt(content) - 1;
                     task = taskList.get(index);
@@ -46,7 +81,8 @@ public class Duke {
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println("  " + task);
 
-                } else if(order.equals("delete")){
+                }
+                else if(order.equals("delete")){
                     content = str[1];
                     int index = Integer.parseInt(content) - 1;
                     task = taskList.get(index);
@@ -59,7 +95,8 @@ public class Duke {
 
 
 
-                } else if (order.equals("todo")) {
+                }
+                else if (order.equals("todo")) {
                     try {
                         content = str[1];
 
@@ -69,11 +106,13 @@ public class Duke {
                         System.out.println("Got it. I've added this task:");
                         System.out.println("  " + todo);
                         System.out.println("Now you have " + num + " tasks in the list.");
-                    } catch (IndexOutOfBoundsException e){
+                    } catch (IndexOutOfBoundsException e)
+                    {
                         System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
                     }
 
-                } else if (order.equals("deadline")) {
+                }
+                else if (order.equals("deadline")) {
 
                     content = str[1];
                     String[] contents = content.split(" /by ");
@@ -85,7 +124,8 @@ public class Duke {
                     System.out.println("  " + deadline);
                     System.out.println("Now you have " + num + " tasks in the list.");
 
-                } else if (order.equals("event")) {
+                }
+                else if (order.equals("event")) {
                     content = str[1];
                     String[] contents = content.split(" /at ");
 
@@ -96,14 +136,29 @@ public class Duke {
                     System.out.println("  " + event);
                     System.out.println("Now you have " + num + " tasks in the list.");
 
-                } else {
+                }
+                else {
+                    needUpdate = false;
                     System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
-
-
             }
-
             input = sc.nextLine();
+        }
+
+        // Update the data
+        if(needUpdate == true){
+            String contents = "";
+            for(int i = 0; i < taskList.size(); i++){
+                Task cur_task = taskList.get(i);
+                contents = contents + cur_task.toString() + "\n";
+            }
+            try {
+                Files.writeString(path, contents, StandardCharsets.UTF_8);
+                System.out.println("the list is updated already!");
+            } catch (IOException ex)
+            {
+                System.out.println("Invalid Path!");
+            }
 
         }
 
