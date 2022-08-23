@@ -1,8 +1,11 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * An event is a task that starts at a specific time and ends at a specific time.
  */
 public class Event extends Task {
-    protected String eventDatetime;
+    protected LocalDateTime eventDatetime;
 
     /**
      * Constructor for an event task.
@@ -10,7 +13,7 @@ public class Event extends Task {
      * @param description Description of the event task
      * @param datetime The start/ end datetime of the event
      */
-    public Event(String description, String datetime) {
+    public Event(String description, LocalDateTime datetime) {
         super(description);
         this.eventDatetime = datetime;
     }
@@ -24,6 +27,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.eventDatetime);
+        return String.format("[E]%s (at: %s)", super.toString(),
+                this.eventDatetime.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm")));
     }
 }
