@@ -7,6 +7,12 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
+
     public void setDone() {
         if (this.isDone) {
             System.out.println("Task is already done");
@@ -31,6 +37,14 @@ public class Task {
             return "[X] " + description;
         } else {
             return "[ ] " + description;
+        }
+    }
+
+    public String toStorageFormat() {
+        if (this.isDone) {
+            return "1 | " + description;
+        } else {
+            return "0 | " + description;
         }
     }
 }
