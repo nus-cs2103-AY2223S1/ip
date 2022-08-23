@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.Deadline;
+import duke.task.Deadline;
 
 public class DeadlineCommand extends Command{
     private String event;

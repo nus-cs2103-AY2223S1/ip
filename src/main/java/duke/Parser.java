@@ -1,9 +1,11 @@
 package duke;
 
+import duke.command.*;
+import duke.task.*;
+
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
-import duke.command.*;
 
 public class Parser {
     private enum CommandCases {

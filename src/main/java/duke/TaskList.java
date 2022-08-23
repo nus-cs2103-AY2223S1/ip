@@ -3,6 +3,8 @@
  */
 package duke;
 
+import duke.task.*;
+
 import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +23,6 @@ public class TaskList {
     public TaskList(ArrayList<Task> memo) {
         this.memo = memo;
     }
-
     public String addTask(Task t) {
         memo.add(t);
         String note = "Now you have " + memo.size() + " tasks in the list.";

@@ -1,7 +1,7 @@
 /**
  * Project done by Hong Jin.
  */
-package duke;
+package duke.task;
 
 import java.util.*;
 import java.time.LocalDate;
@@ -11,9 +11,9 @@ import java.time.temporal.ChronoUnit;
 /**
  * Class Task to store Task.
  */
-public class Task {
-    private String task;
-    private String done;
+public abstract class Task {
+    protected String task;
+    protected String done;
 
     public Task(String task) {
         this.task = task;

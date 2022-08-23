@@ -6,6 +6,7 @@ package duke;
 import duke.command.*;
 import duke.DukeException;
 import duke.*;
+import duke.task.*;
 
 /**
  * Main class that runs chat bot Duke.
