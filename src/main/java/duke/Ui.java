@@ -52,7 +52,7 @@ public class Ui {
      * @return true if the program needs to exit
      *         false otherwise
      *
-     * @throws DukeException
+     * @throws DukeException if the input is invalid
      */
     public boolean handleInput() throws DukeException {
         String input = this.scanner.nextLine();

@@ -9,6 +9,11 @@ package duke;
 public class Parser {
     private TaskList taskList;
 
+    /**
+     * Constructor for an instance of Parser.
+     *
+     * @param taskList The list of Tasks to be updated with the user inputs.
+     */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }

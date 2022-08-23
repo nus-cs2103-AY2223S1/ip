@@ -22,7 +22,7 @@ public class DukeException extends Exception {
     /**
      * Get string representation of the exception.
      *
-     * @return String rep of exception
+     * @return String representation of exception
      */
     @Override
     public String toString() {
