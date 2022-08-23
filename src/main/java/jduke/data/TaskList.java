@@ -9,13 +9,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Represents the entire list of tasks.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
+    /**
+     * Constructor for an empty task list.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
     }
 
+    /**
+     * Constructor for a task list initialised with tasks from storage.
+     * @param storedTasks
+     */
     public TaskList(ArrayList<String> storedTasks) {
         this.tasks = new ArrayList<>();
         for (String task : storedTasks) {
@@ -37,6 +47,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns a string representation of the tasks with a specific date
+     * if params are specified, else return a string representation of all the tasks.
+     * @param params The date of the tasks to list.
+     * @return A string representation of the tasks in the task list.
+     */
     public String listTasks(String params) {
         StringBuilder sb = new StringBuilder();
         if (tasks.size() == 0) {
@@ -62,24 +78,46 @@ public class TaskList {
         return sb.toString();
     }
 
+    /**
+     * Adds a to do task to the task list.
+     * @param description The description of the to do task.
+     * @return A string representation of the task added.
+     */
     public String addTodo(String description) {
         Todo todo = new Todo(description);
         tasks.add(todo);
         return String.format("|  added task:%n|    %s%n", todo);
     }
 
+    /**
+     * Adds a deadline task to the task list.
+     * @param description The description of the deadline task.
+     * @param timing The timing the task is due by.
+     * @return A string representation of the deadline added.
+     */
     public String addDeadline(String description, String timing) {
         Deadline deadline = new Deadline(description, timing);
         tasks.add(deadline);
         return String.format("|  added task:%n|    %s%n", deadline);
     }
 
+    /**
+     * Adds a event task to the task list.
+     * @param description The description of the event task.
+     * @param timing The timing the task is due by.
+     * @return A string representation of the event added.
+     */
     public String addEvent(String description, String timing) {
         Event event = new Event(description, timing);
         tasks.add(event);
         return String.format("|  added task:%n|    %s%n", event);
     }
 
+    /**
+     * Marks the specified task as complete.
+     * @param params The position of the task to mark.
+     * @return A string representation of the task being marked as complete.
+     */
     public String markTask(String params) {
         int pos = Integer.parseInt(params) - 1;
         if (pos < 0 || tasks.size() <= pos) {
@@ -89,6 +127,11 @@ public class TaskList {
         return String.format("|  marked task:%n|    %s%n", tasks.get(pos));
     }
 
+    /**
+     * Marks the specified task as incomplete.
+     * @param params The position of the task to unmark.
+     * @return A string representation of the task being marked as incomplete.
+     */
     public String unmarkTask(String params) {
         int pos = Integer.parseInt(params) - 1;
         if (pos < 0 || tasks.size() <= pos) {
@@ -98,6 +141,11 @@ public class TaskList {
         return String.format("|  unmarked task:%n|    %s%n", tasks.get(pos));
     }
 
+    /**
+     * Deletes the specified task.
+     * @param params The position of the task to deleted.
+     * @return A string representation of the task being deleted.
+     */
     public String deleteTask(String params) {
         int pos = Integer.parseInt(params) - 1;
         if (pos < 0 || tasks.size() <= pos) {
@@ -108,6 +156,10 @@ public class TaskList {
         return String.format("|  deleted task:%n|    %s%n", removedTask);
     }
 
+    /**
+     * Returns an ArrayList containing the tasks for storage.
+     * @return ArrayList of tasks in the storage form.
+     */
     public ArrayList<String> getTasksToStore() {
         ArrayList<String> storage = new ArrayList<>();
         for (Task task : this.tasks) {
