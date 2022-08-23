@@ -5,5 +5,9 @@ event someone bd /at 2020-10-10
 list
 delete 1
 list
+mark 2
+list
+unmark 2
+list
 bye
 bye

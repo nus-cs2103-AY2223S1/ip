@@ -62,7 +62,11 @@ public class Storage {
                 this.tasks.add(task);
             }
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            try {
+                (new File("data//tasks.txt")).createNewFile();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         } catch (DukeException e) {
             try {
                 (new File("data//tasks.txt")).createNewFile();

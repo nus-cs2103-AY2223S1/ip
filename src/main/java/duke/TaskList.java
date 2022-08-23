@@ -22,6 +22,13 @@ public class TaskList {
         return this.tasks.remove(i);
     }
 
+    void mark(int i) {
+        this.tasks.get(i).mark();
+    }
+
+    void unmark(int i) {
+        this.tasks.get(i).unMark();
+    }
 
     public void print() {
         for (Task t : tasks) {
