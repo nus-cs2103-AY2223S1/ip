@@ -27,6 +27,9 @@ public class Doke {
             } else if (temp[0].equals("D")) {
                 addTask = new Deadline(temp[2], temp[3]);
             } else {
+                if (!temp[0].equals("E")) {
+                    continue;
+                }
                 addTask = new Events(temp[2], temp[3]);
             }
             arrayList.add(addTask);
