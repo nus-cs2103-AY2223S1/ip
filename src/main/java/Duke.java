@@ -1,5 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
@@ -82,13 +84,15 @@ public class Duke {
                     String description = temp.split(" \\(by: ")[0];
                     String temp2 = temp.split(" \\(by: ")[1];
                     String by = temp2.substring(0, temp2.length() - 1);
-                    taskList.add(new Deadline(description, by));
+                    LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                    taskList.add(new Deadline(description, date.toString()));
                 } else {
                     String temp = data.substring(7);
                     String description = temp.split(" \\(at: ")[0];
                     String temp2 = temp.split(" \\(at: ")[1];
                     String at = temp2.substring(0, temp2.length() - 1);
-                    taskList.add(new Event(description, at));
+                    LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                    taskList.add(new Event(description, date.toString()));
                 }
             }
         } catch (FileNotFoundException e) {
