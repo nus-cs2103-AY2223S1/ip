@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,7 +23,7 @@ public class Storage {
      *
      * @return ArrayList containing the tasks from the file
      */
-    public ArrayList<Task> loadData() {
+    public ArrayList<Task> loadData() throws DukeException {
         ArrayList<Task> list = new ArrayList<>();
 
         File f = new File(this.filePath);
@@ -53,7 +54,7 @@ public class Storage {
                 list.add(task);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
         return list;
     }
@@ -63,10 +64,11 @@ public class Storage {
      *
      * @param list ArrayList of Task to be saved
      */
-    public void saveData(ArrayList<Task> list) {
+    public void saveData(TaskList list) {
         try {
             FileWriter fw = new FileWriter(this.filePath);
-            for (Task t : list) {
+            for (int i = 0; i < list.getSize(); i++) {
+                Task t = list.getTask(i);
                 StringBuilder taskString = new StringBuilder();
                 taskString.append(t.getTaskType() + " | ");
                 if (t.getStatus()) {

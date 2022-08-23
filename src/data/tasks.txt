@@ -1,5 +1,4 @@
 T | 1 | read book
-D | 0 | return book | 15/09/2022
-E | 0 | project meeting | 17/12/2022
+D | 0 | return book | 2022-09-15
+E | 0 | project meeting | 2022-12-17
 T | 1 | join sports club
-T | 1 | testing123
