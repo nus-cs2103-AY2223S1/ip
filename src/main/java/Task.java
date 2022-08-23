@@ -27,6 +27,10 @@ abstract public class Task {
         return true;
     }
 
+    public String toSaveFormat() {
+        return String.format("%s;;%s;;", isCompleted ? 1 : 0, title);
+    }
+
     @Override
     public String toString() {
         return String.format("%s %s", isCompleted ? "☑" : "☐", title);
