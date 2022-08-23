@@ -79,7 +79,7 @@ public class Ui {
     }
     
     public void filterList(TaskList taskList, String key) {
-        System.out.println(LINESEP);
+        System.out.println(LINE_SEP);
         System.out.println("Here are the matching tasks in your list:");
         int count = 1;
         for (int i = 0; i < taskList.length(); i++) {
@@ -89,7 +89,7 @@ public class Ui {
                 count++;
             }
         }
-        System.out.println(LINESEP);
+        System.out.println(LINE_SEP);
     }
     
 

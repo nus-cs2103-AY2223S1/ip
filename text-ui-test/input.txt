@@ -13,4 +13,6 @@ unmark 1
 mark 7
 mark 4
 list
+find book
+find sport
 bye

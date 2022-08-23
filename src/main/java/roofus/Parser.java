@@ -10,6 +10,7 @@ import roofus.command.ListCommand;
 import roofus.command.MarkCommand;
 import roofus.command.ToDoCommand;
 import roofus.command.UnmarkCommand;
+import roofus.command.FindCommand;
 
 import roofus.task.Deadline;
 import roofus.task.Event;
