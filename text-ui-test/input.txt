@@ -1,6 +1,6 @@
-todo Read book
-deadline Read Chapter 1 /by 2021-08-18 00:00
-event CS2103T Lecture /at 2021-08-18 16:00
+add todo Read book
+add deadline Read Chapter 1 /by 2021-08-18 00:00
+add event CS2103T Lecture /at 2021-08-18 16:00
 list
 mark 1
 mark 3

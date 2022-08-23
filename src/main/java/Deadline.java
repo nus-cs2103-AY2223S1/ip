@@ -3,6 +3,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 public class Deadline extends Task {
+    public static final String TASK_WORD = "deadline";
     private final LocalDateTime by;
 
     public Deadline(String description, boolean done, LocalDateTime by) {

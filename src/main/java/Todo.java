@@ -2,6 +2,8 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public class Todo extends Task {
+    public final static String TASK_WORD = "todo";
+
     public Todo(String description, boolean done) {
         super(description, done);
     }
