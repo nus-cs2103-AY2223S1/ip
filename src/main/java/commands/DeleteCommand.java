@@ -12,12 +12,12 @@ public class DeleteCommand extends Command {
   @Override
   public boolean performAction() {
     Integer index = Integer.parseInt(this.commandArgs[1]) - 1;
-    Task taskToRemove = this.tasks.get(index);
-    this.tasks.remove(index);
+    Task taskToRemove = tasks.get(index);
+    tasks.remove(index.intValue());
     System.out.println(
         "I've successfully removed this task:\n" +
         taskToRemove +
-        "\n" + 
+        "\n\n" +
         "Do your own chores next time hunbun!\n"
         );
     return true;
