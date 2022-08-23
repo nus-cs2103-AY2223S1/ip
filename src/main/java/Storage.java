@@ -39,7 +39,7 @@ public class Storage {
         String line = sc.nextLine();
         String[] splitStr = line.split("\\|");
         String taskType = splitStr[0];
-        boolean isDone = splitStr[1] == "1" ? true : false;
+        boolean isDone = splitStr[1].equals("1") ? true : false;
         String description = splitStr[2];
         String date = "";
         if (splitStr.length > 3) {
@@ -66,23 +66,23 @@ public class Storage {
       return taskList;
   }
 
-  public void save(List<Task> taskList) throws IOException {
-    FileWriter fw = new FileWriter(filePath);
+  public void save(List<Task> taskList) {
     try {
+      FileWriter fw = new FileWriter(filePath);
       for (int i = 0; i < taskList.size(); i++) {
         Task task = taskList.get(i);
         String isDone = task.isDone? "1" : "0";
-        String str = "";
         if (task instanceof ToDo) {
-          fw.write("T|" + isDone + "|" + task.description);
+          fw.write("T|" + isDone + "|" + task.description + "\n");
         } else if (task instanceof Deadline) {
-          fw.write("D|" + isDone + "|" + task.description + "|" + ((Deadline) task).by);
+          fw.write("D|" + isDone + "|" + task.description + "|" + ((Deadline) task).by + "\n");
         } else if (task instanceof Event) {
-          fw.write("E|" + isDone + "|" + task.description + "|" + ((Event) task).at);
+          fw.write("E|" + isDone + "|" + task.description + "|" + ((Event) task).at + "\n");
         }
       }
+      fw.close();
     } catch (IOException e) {
-      System.out.println("Unable to save: " + e.getMessage());
+      System.out.println("Unable to save: " + e.getMessage() + e.getStackTrace());
     }
   }
 }

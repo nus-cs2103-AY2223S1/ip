@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,13 +11,13 @@ public class Duke {
       storage = new Storage(filePath);
       tasks = new TaskList(storage.load());
     }
-    public static void main(String[] args) {
-      Duke duke = new Duke("tasks.txt");
-      duke.tasks.printList();
+
+    public void run() {
+      this.tasks.printList();
 
       Scanner sc = new Scanner(System.in);
 
-      List<Task> list = new ArrayList<>();
+      List<Task> list = tasks.getTaskList();
 
 
       System.out.print("Hello I'm Duke\nWhat can I do for you?\n");
@@ -53,19 +50,23 @@ public class Duke {
             } else if (taskToAdd != null) {
               list.add(taskToAdd);
               System.out.println("Got it. I've added this task:\n  " + taskToAdd + "\nNow you have "
-                                  + list.size() + " tasks in the list.");
+                      + list.size() + " tasks in the list.");
             } else if (taskToDelete != null) {
               list.remove(taskToDelete);
               System.out.println("Noted. I've removed this task:\n  " + taskToDelete + "\nNow you have "
-                                  + list.size() + " tasks in the list");
+                      + list.size() + " tasks in the list");
             } else {
               throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
             }
-        }
+          }
         } catch (DukeException de) {
           System.out.println(de);
         }
+        this.storage.save(list);
       }
+    }
+    public static void main(String[] args) {
+      new Duke("tasks.txt").run();
     }
 
   private static Task getTaskToDelete(String[] splitStr, List<Task> list) throws DukeException {
@@ -115,13 +116,15 @@ public class Duke {
           if (str.indexOf("/by") - 1 < 0) throw new DukeException("☹ OOPS!!! Please set date of deadline with /by.\n");
           String description = str.substring(type.length() + 1,str.indexOf("/by") - 1);
           String date = str.substring(str.indexOf("/by") + 4);
-          return new Deadline(description,date);
+          String formattedDate = Parser.parseDate(date);
+          return new Deadline(description,formattedDate);
         } else if (type.equals("event")) {
           if (splitStr.length < 2)throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.\n");
           if (str.indexOf("/at") - 1 < 0) throw new DukeException("☹ OOPS!!! Please set date of event with /at.\n");
           String description = str.substring(type.length() + 1,str.indexOf("/at") - 1);
           String date = str.substring(str.indexOf("/at") + 4);
-          return new Event(description,date);
+          String formattedDate = Parser.parseDate(date);
+          return new Event(description,formattedDate);
         } else {
           return null;
         }
