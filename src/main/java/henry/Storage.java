@@ -31,6 +31,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns the loaded list of tasks. Storage first parses
+     * tasks from a given file, which is then stored.
+     * @return a TaskList containing tasks loaded from a file
+     */
     public List<Task> load() {
         return tasks;
     }

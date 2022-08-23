@@ -4,37 +4,38 @@ import java.util.List;
 
 public class TaskList {
 
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Deletes the task in the task list at the given index.
+     *
+     * @param index the index of the task to be deleted
+     * @return the deleted task as a String
+     */
     public String deleteTask(int index) throws IndexOutOfBoundsException {
         return tasks.remove(index).toString();
     }
 
-    public String markTask(String command) throws IndexOutOfBoundsException, NumberFormatException {
-        int index = Integer.parseInt(command.split(" ")[1]);
-        tasks.get(index).setComplete(true);
-        return tasks.get(index).toString();
-    }
-
-    public String unmarkTask(String command) throws IndexOutOfBoundsException, NumberFormatException {
-        int index = Integer.parseInt(command.split(" ")[1]);
-        tasks.get(index).setComplete(false);
-        return tasks.get(index).toString();
-    }
-
+    /**
+     * Gets the task in the task list at the given index.
+     *
+     * @param task the index of the task to be retrieved
+     * @return the task at the given index
+     */
     public String addTask(Task task) {
         tasks.add(task);
         return task.toString();
     }
 
-    public int size() {
-        return tasks.size();
-    }
-
+    /**
+     * Gets the entire task list as a List<Task> object
+     *
+     * @return the task list
+     */
     public List<Task> getTasks() {
         return tasks;
     }
@@ -49,6 +50,14 @@ public class TaskList {
         return sb.toString();
     }
 
+    /**
+     * Returns a String representing the entire task list,
+     * in simplified form that is used in file writing and
+     * reading
+     *
+     * @return a String representing the entire task list that would be
+     * stored in the file
+     */
     public String toSimpleString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= tasks.size(); i++) {
