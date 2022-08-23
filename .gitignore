@@ -20,3 +20,5 @@ src/main/java/Duke.class
 src/main/java/Event.class
 src/main/java/Task.class
 src/main/java/Todo.class
+
+data/list.txt
