@@ -1,9 +1,14 @@
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     // List to store text entered by the user and display them back to the user when requested
-    private static final ArrayList<Task> wordList = new ArrayList<>();
+    private static final ArrayList<Task> workList = Duke.loadDataFromList();
 
     /**
      * Start the program
@@ -26,8 +31,8 @@ public class Duke {
      */
     private static void add(Task task) {
         System.out.println(Constants.ARROW + "Added task: " + task.toString());
-        Duke.wordList.add(task);
-        System.out.println("Now you have " + wordList.size() + " task(s) on your list.");
+        Duke.workList.add(task);
+        System.out.println("Now you have " + workList.size() + " task(s) on your list.");
     }
 
     /**
@@ -36,8 +41,8 @@ public class Duke {
      */
     private static void delete(Task task) {
         System.out.println(Constants.ARROW + "Deleted task: " + task.toString());
-        Duke.wordList.remove(task);
-        System.out.println("Now you have " + wordList.size() + " task(s) on your list.");
+        Duke.workList.remove(task);
+        System.out.println("Now you have " + workList.size() + " task(s) on your list.");
     }
 
     /**
@@ -45,15 +50,54 @@ public class Duke {
      */
     private static void listItems() {
         System.out.println(Constants.LISTING_MESSAGE);
-        for (int i = 0; i < wordList.size(); i++) {
-            System.out.println((i+1) + ") " + wordList.get(i).toString());
+        for (int i = 0; i < workList.size(); i++) {
+            System.out.println((i+1) + ") " + workList.get(i).toString());
         }
     }
 
-    public static void main(String[] args){
-        // Greeting
-        Duke.greet();
+    private static void rewriteList() {
+        try {
+            Path file = Paths.get("src/main/List.txt");
+            ArrayList<String> stringArrayList = new ArrayList<>();
+            for (int i = 0; i < workList.size(); i++) {
+                stringArrayList.add(workList.get(i).storedData());
+            }
+            Files.write(file, stringArrayList, StandardCharsets.UTF_8);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        } catch (IOException e) {
+            System.out.println("Cannot save the list!");
+        }
+    }
 
+    private static ArrayList<Task> loadDataFromList() {
+        ArrayList<Task> workList = new ArrayList<>();
+        try {
+            Scanner s = new Scanner(new File("src/main/List.txt"));
+            while (s.hasNextLine()){
+                String[] task = s.nextLine().split("\\|");
+                String typeOfTask = task[0];
+                switch (typeOfTask) {
+                    case "T":
+                        workList.add(new ToDo(task[2], task[1].equals("1")));
+                        break;
+                    case "D":
+                        workList.add(new Deadline(task[2], task[1].equals("1"), task[3]));
+                        break;
+                    case "E":
+                        workList.add(new Event(task[2], task[1].equals("1"), task[3]));
+                        break;
+                }
+            }
+            s.close();
+            return workList;
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        }
+        return new ArrayList<Task>();
+    }
+
+    private static void process() {
         // User Input
         Scanner scanner = new Scanner(System.in);
         String userInput = scanner.nextLine();
@@ -70,7 +114,7 @@ public class Duke {
                     try {
                         userInput.substring(8);
                         index = Integer.parseInt(userInput.split(" ")[1]);
-                        wordList.get(index - 1).unmark();
+                        workList.get(index - 1).unmark();
                     } catch (StringIndexOutOfBoundsException e) {
                         new DukeException.EmptyMarkingException();
                         break;
@@ -86,7 +130,7 @@ public class Duke {
                     try {
                         userInput.substring(6);
                         index = Integer.parseInt(userInput.split(" ")[1]);
-                        wordList.get(index - 1).markAsDone();
+                        workList.get(index - 1).markAsDone();
                     } catch (StringIndexOutOfBoundsException e) {
                         new DukeException.EmptyMarkingException();
                         break;
@@ -141,7 +185,7 @@ public class Duke {
                     try {
                         userInput.substring(8);
                         index =  Integer.parseInt(userInput.split(" ")[1]);
-                        Duke.delete(Duke.wordList.get(index-1));
+                        Duke.delete(Duke.workList.get(index-1));
                     } catch (StringIndexOutOfBoundsException e) {
                         new DukeException.EmptyDeleteException();
                         break;
@@ -157,8 +201,22 @@ public class Duke {
                     new DukeException.InvalidInputException();
                     break;
             }
+            // Update data
+            rewriteList();
+
+            // Next input
             userInput = scanner.nextLine();
         }
+
+        // Update data
+        rewriteList();
+    }
+    public static void main(String[] args){
+        // Greeting
+        Duke.greet();
+
+        // Process
+        Duke.process();
 
         // Bye
         Duke.exit();
