@@ -19,7 +19,7 @@ public class Duke {
 
         for (int i = 0; i < vocabList.size(); i++) {
             Task nextTask = vocabList.get(i);
-            System.out.println(String.format("     %d. %s", i+1, nextTask.toString()));
+            System.out.println(String.format("        %d. %s", i+1, nextTask.toString()));
         }
         System.out.println(lineBlock);
     }
