@@ -1,9 +1,12 @@
-import javax.swing.plaf.SeparatorUI;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BobTheBot {
-    public static void main(String[] args) throws BobException {
-        ToDoList list = new ToDoList();
+    public static void main(String[] args) throws BobException, IOException {
+        Storage storage = new Storage("./../../data/data.txt");
+        storage.load();
+        ToDoList list = new ToDoList(storage.load(), storage);
         System.out.println("Hello! I am Bob the Bot, your friendly task manager! \n" +
                            "What can I help you with?");
 
@@ -45,6 +48,7 @@ public class BobTheBot {
             }
             command = scanner.nextLine();
         }
+
 
         System.out.println(
                 "   --------------------------------------------------------------------------------\n" +

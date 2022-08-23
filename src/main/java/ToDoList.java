@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 
 public class ToDoList {
-    private ArrayList<Task> list = new ArrayList<>(100);
+    private ArrayList<Task> list;
+    private Storage storage;
 
     /* Define constructor for to do list*/
-    public ToDoList() {}
+    public ToDoList(ArrayList<Task> list, Storage storage) {
+        this.list = list;
+        this.storage = storage;
+    }
 
     /* Method for adding items to the list */
     public void addTask(String command) throws BobException {
@@ -20,6 +24,7 @@ public class ToDoList {
             } else {
                 Task todo = new Todo(command);
                 list.add(todo);
+                storage.store(list);
 
                 System.out.println(
                         "   --------------------------------------------------------------------------------\n" +
@@ -42,6 +47,7 @@ public class ToDoList {
                     String[] deadline = command.split(" /by ");
                     Task task = new Deadline(deadline[0], deadline[1]);
                     list.add(task);
+                    storage.store(list);
 
                     System.out.println(
                             "   --------------------------------------------------------------------------------\n" +
@@ -73,6 +79,7 @@ public class ToDoList {
                     String[] event = command.split(" /at ");
                     Task task = new Event(event[0], event[1]);
                     list.add(task);
+                    storage.store(list);
 
                     System.out.println(
                             "   --------------------------------------------------------------------------------\n" +
@@ -90,10 +97,19 @@ public class ToDoList {
                 );
             }
         } else {
-            throw new BobException(
-                    "\n   --------------------------------------------------------------------------------\n" +
+            System.err.println(
+                "\n   --------------------------------------------------------------------------------\n" +
                             "     Deepest apologies, I am a mere automated bot.\n" +
-                            "     Please stick to input that starts with 'todo', 'deadline' or 'event'! \n" +
+                            "     Please stick to input that start with \n" + 
+                            "     1. todo - for items that you have to do\n" + 
+                            "     2. deadline - for items which have an upcoming deadline\n" + 
+                            "     3. event - for events with a date and time\n" +
+                            "     \n" +
+                            "     4. mark - to mark an event as done\n" + 
+                            "     5. unmark - to mark an event as undone\n" + 
+                            "     6. delete - to delete an event\n" + 
+                            "     7. list - to view all the events on your todo list\n" +
+                            "     8. bye - to wish me a (temporary) farewell\n" +
                             "   --------------------------------------------------------------------------------"
             );
         }
@@ -109,7 +125,7 @@ public class ToDoList {
                          "   --------------------------------------------------------------------------------"
         );
         this.list.remove(index - 1);
-
+        storage.store(list);
     }
 
     /* Method to mark a certain item in the list as done */
@@ -118,10 +134,11 @@ public class ToDoList {
 
         System.out.println(
                 "   --------------------------------------------------------------------------------\n" +
-                        "     GOOD JOB! I'm making this task as done: \n" +
+                        "     GOOD JOB! I'm marking this task as done: \n" +
                         "       " + this.list.get(index - 1).toString() + "\n" +
                         "   --------------------------------------------------------------------------------"
         );
+        storage.store(list);
     }
 
     /* Method to mark a certain item in the list as undone */
@@ -134,6 +151,7 @@ public class ToDoList {
                         "       " + this.list.get(index - 1).toString() + "\n" +
                         "   --------------------------------------------------------------------------------"
         );
+        storage.store(list);
     }
 
     /* Method for printing items in the list */

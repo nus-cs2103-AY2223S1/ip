@@ -1,6 +1,6 @@
 public class Task {
-    private boolean isDone;
-    private String taskName;
+    public boolean isDone;
+    public String taskName;
 
     public Task(String name) {
         this.isDone = false;
@@ -20,6 +20,13 @@ public class Task {
     // method to get the status icon
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
+    }
+
+    // method to put the task in a format for storage
+    public String toStorageFormat() {
+        int done = this.isDone ? 1 : 0;
+        String res = String.format("error | %d | %s", done, taskName);
+        return res;
     }
 
     // method to return a string representation of a task
