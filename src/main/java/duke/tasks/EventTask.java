@@ -11,10 +11,10 @@ public class EventTask extends Task {
   private LocalDate at;
 
   /**
-   * Constructor for EventTask with description and isDone initialised to false
+   * Constructor for EventTask
    * 
    * @param description Description of task details
-   * @param by          When user requires the task to be done by
+   * @param at When the event task is at
    */
   public EventTask(String description, LocalDate at) {
     super(description);
@@ -22,11 +22,11 @@ public class EventTask extends Task {
   }
 
   /**
-   * Constructor for EventTask and isDone initialised
+   * Constructor for EventTask and isDone initialised to false
    * 
    * @param description Description of task details
-   * @param by          When user requires the task to be done by
-   * @param isDone      Whether task has been done
+   * @param at  When the event task is at
+   * @param isDone Whether task has been done
    */
   public EventTask(String description, LocalDate at, boolean isDone) {
     super(description, isDone);
@@ -45,11 +45,11 @@ public class EventTask extends Task {
    */
   @Override
   public String toString() {
-    return "[E]" + super.toString() + "(at: " + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+    return "[E]" + super.toString() + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
   }
 
   @Override
   public String toSaveString() {
-    return "E " + super.toSaveString() + "|" + this.at;
+    return "E " + super.toSaveString() + "| " + this.at;
   }
 }

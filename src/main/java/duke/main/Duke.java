@@ -3,7 +3,6 @@ package main;
 import commands.Command;
 import exception.DukeException;
 
-import java.io.IOException;
 import tasks.*;
 
 /**
@@ -29,9 +28,6 @@ public class Duke {
     }
   }
 
-  /**
-   * Greets user upon opening Duke and does commands until Duke is closed
-   */
   void run() {
     ui.showWelcome();
     boolean isExit = false;
@@ -54,11 +50,10 @@ public class Duke {
 
   /**
    * Creates new Duke and run it
-   * 
-   * @param args
-   * @throws IOException
+   *
+   * @param args NA
    */
-  public static void main(String[] args) throws IOException {
+  public static void main(String[] args) {
 
     Duke duke = new Duke("data/tasks.txt");
     duke.run();

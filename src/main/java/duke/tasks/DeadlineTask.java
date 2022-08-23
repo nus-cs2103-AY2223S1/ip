@@ -11,7 +11,7 @@ public class DeadlineTask extends Task {
   private LocalDate by;
 
   /**
-   * Constructor for deadline task
+   * Constructor for DeadlineTask
    * 
    * @param description Description of task details
    * @param by          When user requires the task to be done by
@@ -40,6 +40,11 @@ public class DeadlineTask extends Task {
    */
   @Override
   public String toString() {
-    return "[D]" + super.toString() + "(by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+    return "[D]" + super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+  }
+
+  @Override
+  public String toSaveString() {
+    return "D " + super.toSaveString() + "| " + this.by;
   }
 }

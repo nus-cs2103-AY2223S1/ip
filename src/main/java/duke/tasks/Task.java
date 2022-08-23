@@ -20,8 +20,8 @@ public abstract class Task {
   /**
    * Overloaded constructor that intialiases isDone state of task
    * 
-   * @param txt
-   * @param isDone
+   * @param txt task description
+   * @param isDone whether task has been completed
    */
   public Task(String txt, boolean isDone) {
     this.isDone = isDone;
@@ -52,7 +52,7 @@ public abstract class Task {
   }
 
   /**
-   * String representaion of task
+   * String representation of task
    *
    * @return String representation of task
    */
@@ -61,6 +61,10 @@ public abstract class Task {
     return this.getStatusIcon() + " " + this.description;
   }
 
+  /**
+   * String representation of task in storage
+   * @return String representation of task in storage
+   */
   public String toSaveString() {
     String mark = isDone ? "1" : "0";
     return "| " + mark + " | " + this.description;

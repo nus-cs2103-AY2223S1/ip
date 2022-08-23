@@ -15,8 +15,9 @@ public class ToDoTaskCommand extends TaskCommand {
    * Constructor for TodoCommand
    * 
    * @param description Description of TodoTask to be created
+   * @throws DukeException in case of missing task description
    */
-  public ToDoTaskCommand(String description) throws DukeException {
+  public ToDoTaskCommand (String description) throws DukeException {
     super(description);
   }
 

@@ -16,14 +16,10 @@ public class EventTaskCommand extends TaskCommand {
   protected LocalDate at;
 
   /**
-   * <<<<<<< HEAD
-   * Constructor for EventTaskCommand with at field
-   * =======
    * Constructor for EventCommand with at field
-   * >>>>>>> branch-Level-8
    * 
    * @param description Description of event
-   * @param at          When the event is at
+   * @throws DukeException either due to missing at field or poor date formatting
    */
   public EventTaskCommand(String description) throws DukeException {
     super(description);

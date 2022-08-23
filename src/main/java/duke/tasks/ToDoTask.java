@@ -17,8 +17,8 @@ public class ToDoTask extends Task {
   /**
    * Constructor for TodoTask with both description and isDone initialised
    * 
-   * @param description
-   * @param isDone
+   * @param description Task description
+   * @param isDone Whether task has been completed
    */
   public ToDoTask(String description, boolean isDone) {
     super(description, isDone);

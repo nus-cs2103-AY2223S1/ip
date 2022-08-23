@@ -20,7 +20,7 @@ public class DeadlineTaskCommand extends TaskCommand {
    * the task needed to be completed by
    * 
    * @param description Description of task
-   * @param by          When the task is required by
+   * @throws DukeException either due to missing by field or poor date formatting
    */
   public DeadlineTaskCommand(String description) throws DukeException {
     super(description);
