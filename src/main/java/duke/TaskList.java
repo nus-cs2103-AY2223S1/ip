@@ -35,8 +35,7 @@ public class TaskList {
         }
     }
 
-
-    public Task deleteTaskAtIndex(int index) throws NoSuchTaskException {
+    public Task delete(int index) throws NoSuchTaskException {
         Task task = this.get(index);
         this.tasks.remove(index);
         return task;

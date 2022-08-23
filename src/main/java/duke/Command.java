@@ -36,7 +36,7 @@ class DeleteTaskCommand extends Command {
     }
     @Override
     void execute(TaskList taskList, Ui ui, Storage storage) throws NoSuchTaskException {
-        Task task = taskList.deleteTaskAtIndex(index);
+        Task task = taskList.delete(index);
         ui.showMessage(
                 String.format("Noted. I've removed this task:\n\t%s\n",
                         task));
