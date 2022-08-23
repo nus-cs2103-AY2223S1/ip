@@ -7,6 +7,10 @@ public class CommandResponse {
     protected String message;
     protected boolean isExit;
 
+    /**
+     * @param message Message to display as response
+     * @param isExit true if this command should cause the conversation to terminate, else false
+     */
     public CommandResponse(String message, boolean isExit) {
         this.message = message;
         this.isExit = isExit;

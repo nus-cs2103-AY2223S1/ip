@@ -1,15 +1,18 @@
 package commands;
 
+import java.util.List;
+
 import arguments.Argument;
 import arguments.ByArgument;
 import arguments.DescriptionArgument;
 import exceptions.DukeException;
 import input.Input;
+import output.OutputLogger;
 import task.TaskModel;
 import task.TaskResponse;
-import output.OutputLogger;
 
-import java.util.List;
+
+
 
 /**
  * Command to add a Deadline task
@@ -20,6 +23,10 @@ public class DeadlineCommand extends Command {
     protected DescriptionArgument description;
     protected ByArgument by;
 
+    /**
+     * Creates new Deadline command
+     * @param taskModel TaskModel to use
+     */
     public DeadlineCommand(TaskModel taskModel) {
         super("deadline");
         this.taskModel = taskModel;

@@ -1,13 +1,19 @@
 package commands;
 
-import task.TaskResponse;
 import output.OutputLogger;
+import task.TaskResponse;
+
 
 /**
  * Helper methods for formatting TaskResponse based on use case (create, delete)
  * Commands decide how to format data received from Model, hence this is in commands package
  */
 public class TaskResponseFormatter {
+    /**
+     * Formats a TaskResponse for added task to an appropriate String message
+     * @param res TaskResponse from TaskModel for an added task
+     * @return String representing response for an added task
+     */
     public static String addedTask(TaskResponse res) {
         StringBuilder sb = new StringBuilder();
         sb.append("Sure! I've added this task:\n");
@@ -17,6 +23,11 @@ public class TaskResponseFormatter {
         return sb.toString();
     }
 
+    /**
+     * Formats a TaskResponse for deleted task to an appropriate String message
+     * @param res TaskResponse from TaskModel for a deleted task
+     * @return String representing response for a deleted task
+     */
     public static String deletedTask(TaskResponse res) {
         StringBuilder sb = new StringBuilder();
         sb.append("Noted, I've removed this task:\n");

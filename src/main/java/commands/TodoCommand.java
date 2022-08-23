@@ -1,14 +1,16 @@
 package commands;
 
+import java.util.List;
+
 import arguments.Argument;
 import arguments.DescriptionArgument;
 import exceptions.DukeException;
 import input.Input;
+import output.OutputLogger;
 import task.TaskModel;
 import task.TaskResponse;
-import output.OutputLogger;
 
-import java.util.List;
+
 
 /**
  * Command for adding a Todo task
@@ -19,6 +21,10 @@ public class TodoCommand extends Command {
     protected DescriptionArgument description;
 
 
+    /**
+     * Creates new Todo command
+     * @param taskModel TaskModel ot use
+     */
     public TodoCommand(TaskModel taskModel) {
         super("todo");
         this.taskModel = taskModel;

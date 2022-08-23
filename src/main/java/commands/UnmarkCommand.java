@@ -1,14 +1,17 @@
 package commands;
 
+import java.util.List;
+
 import arguments.Argument;
 import arguments.TaskIdArgument;
 import exceptions.DukeException;
 import input.Input;
+import output.OutputLogger;
 import task.Task;
 import task.TaskModel;
-import output.OutputLogger;
 
-import java.util.List;
+
+
 
 /**
  * Command for unmarking a task
@@ -18,12 +21,17 @@ public class UnmarkCommand extends Command {
     protected TaskModel taskModel;
     protected TaskIdArgument taskId;
 
+    /**
+     * Creates new Unmark command
+     * @param taskModel TaskModel to use
+     */
     public UnmarkCommand(TaskModel taskModel) {
         super("unmark");
         this.taskModel = taskModel;
     }
 
-    // Template: initialise arguments, validate, return errorOutput if errs. then get parameters, call relevant model method
+    // Template: initialise arguments, validate, return errorOutput if errs. then get parameters,
+    // call relevant model method
     // return commandresponse for success and exception cases
     @Override
     public CommandResponse run(Input input) {
@@ -37,7 +45,8 @@ public class UnmarkCommand extends Command {
         try {
             Integer id = taskId.getParameter();
             Task markedTask = taskModel.unmarkTask(id);
-            return new CommandResponse(String.format("Alright, I've marked this task as not done yet:%n%s", markedTask.toString()));
+            return new CommandResponse(String.format("Alright, I've marked this task as not done yet:%n%s",
+                    markedTask.toString()));
         } catch (IllegalArgumentException | DukeException ex) {
             return new CommandResponse(ex.getMessage());
         }

@@ -1,14 +1,17 @@
 package commands;
 
+import java.util.List;
+
 import arguments.Argument;
 import arguments.TaskIdArgument;
 import exceptions.DukeException;
 import input.Input;
+import output.OutputLogger;
 import task.Task;
 import task.TaskModel;
-import output.OutputLogger;
 
-import java.util.List;
+
+
 
 /**
  * Command to mark a task as done
@@ -16,9 +19,13 @@ import java.util.List;
  * Task number according to number from list
  */
 public class MarkCommand extends Command {
-    TaskModel taskModel;
-    TaskIdArgument taskId;
+    private TaskModel taskModel;
+    private TaskIdArgument taskId;
 
+    /**
+     * Creates new Mark command
+     * @param taskModel TaskModel to use
+     */
     public MarkCommand(TaskModel taskModel) {
         super("mark");
         this.taskModel = taskModel;
@@ -36,7 +43,8 @@ public class MarkCommand extends Command {
         try {
             Integer id = taskId.getParameter();
             Task markedTask = taskModel.markTask(id);
-            return new CommandResponse(String.format("Nice! I've marked this task as done:%n%s", markedTask.toString()));
+            return new CommandResponse(String.format("Nice! I've marked this task as done:%n%s",
+                    markedTask.toString()));
         } catch (IllegalArgumentException ex) {
             return new CommandResponse(ex.getMessage());
         }

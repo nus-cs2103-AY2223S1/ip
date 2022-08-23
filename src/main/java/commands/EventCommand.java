@@ -1,15 +1,18 @@
 package commands;
 
+import java.util.List;
+
 import arguments.Argument;
 import arguments.AtArgument;
 import arguments.DescriptionArgument;
 import exceptions.DukeException;
 import input.Input;
+import output.OutputLogger;
 import task.TaskModel;
 import task.TaskResponse;
-import output.OutputLogger;
 
-import java.util.List;
+
+
 
 /**
  * Command to add an Event task
@@ -20,6 +23,10 @@ public class EventCommand extends Command {
     protected DescriptionArgument description;
     protected AtArgument at;
 
+    /**
+     * Creates new Event command
+     * @param model TaskModel to use
+     */
     public EventCommand(TaskModel model) {
         super("event");
         this.taskModel = model;

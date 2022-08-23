@@ -4,7 +4,8 @@ import exceptions.DukeException;
 import input.Input;
 
 /**
- * Represents a Command that the user can input. Acts as a controller to interface with state and return a response to the user.
+ * Represents a Command that the user can input. Acts as a controller to interface with state and return a response to
+ * the user.
  */
 public abstract class Command {
     protected String commandName;

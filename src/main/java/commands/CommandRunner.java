@@ -1,11 +1,12 @@
 package commands;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import exceptions.DukeException;
 import input.Input;
 import task.TaskModel;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Class to setup commands with their dependencies and expose method for interaction
@@ -14,8 +15,11 @@ public class CommandRunner {
     /**
      * Stores mapping from command name (String) to corresponding Command object
      */
-    private Map<String,Command> commandMap;
+    private Map<String, Command> commandMap;
 
+    /**
+     * Creates new CommandRunner
+     */
     public CommandRunner() {
         TaskModel taskModel = new TaskModel();
 
@@ -38,6 +42,12 @@ public class CommandRunner {
         }
     }
 
+    /**
+     * Finds appropriate command to run for the input and returns response, or throws error if command not valid
+     * @param input Input object
+     * @return CommandResponse object representing response from this Command
+     * @throws DukeException - if command name is unrecognised
+     */
     public CommandResponse run(Input input) throws DukeException {
         String cmdInput = input.getCommandName();
         if (!commandMap.containsKey(cmdInput)) {
