@@ -4,12 +4,12 @@ import command.Command;
 import command.DeadlineCommand;
 import command.DeleteCommand;
 import command.EchoCommand;
-import command.ErrorCommand;
 import command.EventCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.TodoCommand;
 import command.UnmarkCommand;
+import exceptions.HenryException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -32,26 +32,26 @@ public class Parser {
     public Command parseCommand(String text) {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(text.trim());
         if (!matcher.matches()) {
-            return new ErrorCommand("UNKNOWN COMMAND!");
+            throw new HenryException("UNKNOWN COMMAND!");
         }
-        String command = matcher.group("command");
-        String args = matcher.group("args");
+        String command = matcher.group("command").trim();
+        String args = matcher.group("args").trim();
         switch (command) {
         case EchoCommand.COMMAND_WORD:
             return new EchoCommand(args);
         case MarkCommand.COMMAND_WORD:
-            if (checkArgsFormat(args)) {
-                return new ErrorCommand("ARGUMENT IS NOT A NUMBER!");
+            if (isArgsFormattedCorrectly(args)) {
+                throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
-            return new MarkCommand(Integer.parseInt(args.trim()));
+            return new MarkCommand(Integer.parseInt(args));
         case UnmarkCommand.COMMAND_WORD:
-            if (checkArgsFormat(args)) {
-                return new ErrorCommand("ARGUMENT IS NOT A NUMBER!");
+            if (isArgsFormattedCorrectly(args)) {
+                throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new UnmarkCommand(Integer.parseInt(args.trim()));
         case DeleteCommand.COMMAND_WORD:
-            if (checkArgsFormat(args)) {
-                return new ErrorCommand("ARGUMENT IS NOT A NUMBER!");
+            if (isArgsFormattedCorrectly(args)) {
+                throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new DeleteCommand(Integer.parseInt(args.trim()));
         case ListCommand.COMMAND_WORD:
@@ -63,39 +63,39 @@ public class Parser {
         case EventCommand.COMMAND_WORD:
             return parseEventArgs(args);
         default:
-            return new ErrorCommand("UNKNOWN COMMAND!");
+            throw new HenryException("UNKNOWN COMMAND!");
         }
     }
 
     private Command parseDeadlineArgs(String args) {
         Matcher matcher = DEADLINE_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new ErrorCommand("ARGUMENT HAS THE WRONG FORMAT!");
+            throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");
         }
         String description = matcher.group("desc");
         String dateTime = matcher.group("dateTime");
         try {
             return new DeadlineCommand(description, LocalDateTime.parse(dateTime, formatter));
         } catch (NumberFormatException e) {
-            return new ErrorCommand("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
+            throw new HenryException("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
         }
     }
 
     private Command parseEventArgs(String args) {
         Matcher matcher = EVENT_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
-            return new ErrorCommand("ARGUMENT HAS THE WRONG FORMAT!");
+            throw new HenryException("ARGUMENT HAS THE WRONG FORMAT!");
         }
         String description = matcher.group("desc");
         String dateTime = matcher.group("dateTime");
         try {
             return new EventCommand(description, LocalDateTime.parse(dateTime, formatter));
         } catch (NumberFormatException e) {
-            return new ErrorCommand("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
+            throw new HenryException("DATE AND TIME NUMBERS ARE OUT OF RANGE!");
         }
     }
 
-    private boolean checkArgsFormat(String args) {
+    private boolean isArgsFormattedCorrectly(String args) {
         return !args.matches("\\d+");
     }
 }
