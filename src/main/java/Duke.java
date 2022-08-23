@@ -1,9 +1,17 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     static List<Task> todoList = new ArrayList<>();
+    private static String keySeparator = "//";
+    private static String fileName = "data/tasks.txt";
 
     /**
      * class for each task
@@ -33,6 +41,9 @@ public class Duke {
             this.isDone = false;
         }
 
+        public String formatToSave() {
+            return "";
+        }
         /**
          * Returns a String representation of the task
          * @return string
@@ -44,25 +55,31 @@ public class Duke {
     }
     public static class Deadline extends Task {
 
-        protected String by;
+        protected LocalDate date;
 
         /**
          * Takes in a description and deadline for the task
          * @param description task description
-         * @param by deadline of task
+         * @param date deadline of task
          */
-        public Deadline(String description, String by) {
+        public Deadline(String description, LocalDate date) {
             super(description);
-            this.by = by;
+            this.date = date;
         }
 
+        @Override
+        public String formatToSave() {
+            return isDone
+                    ? "D" + keySeparator + 1 + keySeparator + description + keySeparator + date
+                    : "D" + keySeparator + 0 + keySeparator + description + keySeparator + date;
+        }
         /**
          * Returns a String representation of the task
          * @return string
          */
         @Override
         public String toString() {
-            return "[D]" + super.toString() + " (by: " + by + ")";
+            return "[D]" + super.toString() + " (by: " + date + ")";
         }
     }
     public static class Todo extends Task {
@@ -75,6 +92,12 @@ public class Duke {
             super(description);
         }
 
+        @Override
+        public String formatToSave() {
+            return isDone
+                    ? "T" + keySeparator + 1 + keySeparator + description
+                    : "T" + keySeparator + 0 + keySeparator + description;
+        }
         /**
          * Returns a String representation of the task
          * @return string
@@ -98,6 +121,12 @@ public class Duke {
             this.at = at;
         }
 
+        @Override
+        public String formatToSave() {
+            return isDone
+                    ? "E" + keySeparator + 1 + keySeparator + description + keySeparator + at
+                    : "E" + keySeparator + 0 + keySeparator + description + keySeparator + at;
+        }
         /**
          * Returns a String representation of the task
          * @return string
@@ -112,6 +141,12 @@ public class Duke {
         String reply = "";
         String exit = "bye"; // the keyword to exit
 
+        try {
+            loadTasks();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+            return;
+        }
         System.out.println("hi im chompers what do u need!!!\n");
 
         while(true) {
@@ -144,6 +179,7 @@ public class Duke {
                             temp = todoList.get(index);
                             temp.markAsDone();
                             System.out.println("oke this is done now:\n" + temp);
+                            saveTasks();
                         } catch (NumberFormatException e) {
                             System.out.println("Invalid input"); // if index given cannot be converted or was the wrong format
                         }
@@ -162,6 +198,7 @@ public class Duke {
                             temp = todoList.get(index);
                             temp.markAsUndone();
                             System.out.println("oke this is undone now:\n" + temp);
+                            saveTasks();
                         } catch (NumberFormatException e) {
                             System.out.println("Invalid input");
                         }
@@ -180,6 +217,7 @@ public class Duke {
                             }
                             temp = todoList.get(index);
                             todoList.remove(temp);
+                            saveTasks();
                             System.out.println("oke this is deleted now:\n" + temp);
                             System.out.println("now u have " + todoList.size() + " task(s)!");
                         } catch (NumberFormatException e) {
@@ -204,9 +242,18 @@ public class Duke {
                             System.out.println("The deadline cannot be empty");
                             break;
                         }
-                        temp = new Deadline(dlDesc[0], dlDesc[1]);
-                        addTask(temp);
-                        break;
+                        try {
+                            LocalDate date = LocalDate.parse(dlDesc[1]);
+                            temp = new Deadline(dlDesc[0], date);
+                            addTask(temp);
+                            break;
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Please re-enter the task with the following deadline format: ");
+                            System.out.println("yyyy-mm-dd");
+                            break;
+                        }
+
+
                     case "event":
                         if(substr.length == 1) {
                             System.out.println("The description cannot be empty!");
@@ -217,6 +264,7 @@ public class Duke {
                             System.out.println("The date cannot be empty");
                             break;
                         }
+
                         temp = new Event(eventDesc[0], eventDesc[1]);
                         addTask(temp);
                         break;
@@ -238,8 +286,51 @@ public class Duke {
         todoList.add(task);
         System.out.println("oke i added:\n" + task.toString());
         System.out.println("now u have " + todoList.size() + " task(s)!");
+        saveTasks();
     }
 
+    public static void loadTasks () throws FileNotFoundException {
+        File file = new File(fileName);
+        Scanner scanner = new Scanner(file);
+        while(scanner.hasNext()) {
+            String dataStr = scanner.nextLine();
+            String[] taskStr = dataStr.split(keySeparator);
+            Task task;
+
+            switch (taskStr[0]) {
+                case "T": task = new Todo(taskStr[2]);
+                    break;
+                case "D": task = new Deadline(taskStr[2], LocalDate.parse(taskStr[3]));
+                    break;
+                case "E": task = new Event(taskStr[2], taskStr[3]);
+                    break;
+                default: task = new Task(taskStr[2]);
+                    break;
+            }
+            if(Integer.parseInt(taskStr[1]) == 1) {
+                task.markAsDone();
+            } else {
+                task.markAsUndone();
+            }
+            todoList.add(task);
+        }
+        scanner.close();
+    }
+
+    public static void saveTasks() {
+        try {
+            FileWriter fw = new FileWriter(fileName, false);
+            for(int i = 0; i < todoList.size(); i++) {
+                fw.write(todoList.get(i).formatToSave() + "\n");
+            }
+
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("file not found");
+            return;
+        }
+
+    }
     /**
      * Prints out the current list
      */
