@@ -17,6 +17,12 @@ public class Task {
         }
     }
 
+    public void savedTaskMarkAsDone() {
+        if (!this.isDone) {
+            this.isDone = true;
+        }
+    }
+
     public void markAsNotDone() {
         if (!this.isDone) {
             System.out.println("Task already marked as not done\n" + this);
@@ -30,8 +36,12 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
+    public String savedFileFormat() {
+        return (this.isDone ? 1 : 0) + "|" + this.description;
+    }
+
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return "[" + getStatusIcon() + "] " + this.description;
     }
 }
