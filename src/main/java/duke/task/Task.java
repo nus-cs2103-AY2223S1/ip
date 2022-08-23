@@ -29,6 +29,10 @@ public abstract class Task {
         return done;
     }
 
+    public boolean contains(String keyword) {
+        return task.contains(keyword);
+    }
+
     @Override
     public String toString() {
         if (done) {
