@@ -1,6 +1,5 @@
 package duke.util;
 
-import duke.DukeException;
 import duke.command.*;
 import duke.task.*;
 
@@ -13,7 +12,7 @@ public class Parser {
     public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("d-M-yy HHmm");
     public static final DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
 
-    public static int parseInt(String num) throws DukeException {
+    public static int parseInt(String num) {
         try {
             return Integer.parseInt(num);
         } catch (NumberFormatException e) {
@@ -21,7 +20,7 @@ public class Parser {
         }
     }
 
-    public static LocalDateTime parseDateTime(String dateTime) throws DukeException {
+    public static LocalDateTime parseDateTime(String dateTime) {
         try {
             return LocalDateTime.parse(dateTime, DATE_TIME_INPUT_FORMAT);
         } catch (DateTimeParseException e) {
@@ -29,12 +28,13 @@ public class Parser {
         }
     }
 
-    public static Command parseCommand(String input) throws DukeException {
+    public static Command parseCommand(String input) {
+        input = input.strip();
         if (input.length() == 0) {
             return new EmptyCommand();
         }
 
-        String[] parts = input.strip().split("\\s+", 2);
+        String[] parts = input.split("\\s+", 2);
         String command = parts[0].toUpperCase();
         String[] args = parts.length > 1 ? parts[1].split("\\s+/\\s+") : new String[0];
         for (int i = 0; i < args.length; ++i) {
@@ -45,10 +45,10 @@ public class Parser {
         try {
             type = CommandType.valueOf(command);
         } catch (IllegalArgumentException e) {
-            throw new DukeException("Unknown command: " + command.toLowerCase());
+            throw new ParseException(input, "unknown command");
         }
         if (!type.isCompatible(args)) {
-            throw new DukeException("Wrong number of arguments provided!");
+            throw new ParseException(input, "wrong number of arguments provided");
         }
 
         switch (type) {
@@ -56,7 +56,7 @@ public class Parser {
             return new ListCommand();
         case CHECK: // fall through
         case UNCHECK:
-            return new UpdateStatusCommand(parseInt(args[0]) - 1, type == CommandType.CHECK);
+            return new UpdateStatusCommand(parseInt(args[0]), type == CommandType.CHECK);
         case TODO:
             return new AddTaskCommand(new TodoTask(args[0]));
         case DEADLINE:
@@ -64,15 +64,15 @@ public class Parser {
         case EVENT:
             return new AddTaskCommand(new EventTask(args[0], parseDateTime(args[1])));
         case DELETE:
-            return new DeleteTaskCommand(parseInt(args[0]) - 1);
+            return new DeleteTaskCommand(parseInt(args[0]));
         case EXIT:
             return new ExitCommand();
         default:
-            throw new DukeException("Unknown command: " + command.toLowerCase());
+            throw new ParseException(input, "unknown command");
         }
     }
 
-    public static Task parseTask(String input) throws DukeException {
+    public static Task parseTask(String input) {
         String[] splits = input.split(" \\| ", -1);
         Task task;
         try {

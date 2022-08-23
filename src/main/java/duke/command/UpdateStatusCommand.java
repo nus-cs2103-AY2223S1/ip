@@ -18,9 +18,18 @@ public class UpdateStatusCommand extends Command {
 
     @Override
     public void execute(Storage storage, UI ui, TaskList tasks) throws DukeException {
-        Task task = tasks.get(index);
+        Task task = tasks.get(index - 1);
         task.setDone(isDone);
         storage.save(tasks);
         ui.print("I've updated the status of this task\n\t" + task);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof UpdateStatusCommand) {
+            UpdateStatusCommand other = (UpdateStatusCommand) o;
+            return this.index == other.index && this.isDone == other.isDone;
+        }
+        return false;
     }
 }

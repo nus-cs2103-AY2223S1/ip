@@ -19,4 +19,13 @@ public class AddTaskCommand extends Command {
         storage.save(tasks);
         ui.print("I've added the following task:\n\t" + task);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof AddTaskCommand) {
+            AddTaskCommand other = (AddTaskCommand) o;
+            return this.task.equals(other.task);
+        }
+        return false;
+    }
 }

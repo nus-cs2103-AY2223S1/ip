@@ -26,11 +26,12 @@ public abstract class Task {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Task task = (Task) o;
-        return isDone == task.isDone &&
-                symbol == task.symbol &&
-                description.equals(task.description);
+        if (o instanceof  Task) {
+            Task other = (Task) o;
+            return this.symbol.equals(other.symbol) &&
+                    this.description.equals(other.description) &&
+                    this.isDone == other.isDone;
+        }
+        return false;
     }
 }

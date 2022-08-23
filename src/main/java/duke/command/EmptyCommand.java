@@ -10,4 +10,9 @@ public class EmptyCommand extends Command {
     public void execute(Storage storage, UI ui, TaskList tasks) {
         // does nothing
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof EmptyCommand;
+    }
 }

@@ -15,4 +15,9 @@ public class ExitCommand extends Command {
     public void execute(Storage storage, UI ui, TaskList tasks) {
         ui.exit();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return o instanceof ExitCommand;
+    }
 }
