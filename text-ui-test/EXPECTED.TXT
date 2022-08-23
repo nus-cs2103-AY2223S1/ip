@@ -33,7 +33,7 @@
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
-		[D][ ] dl task-1 (by: 18-Aug, Thursday)
+		[D][ ] dl task-1 (by: 23/8/22)
 	Now you have 2 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
@@ -43,15 +43,44 @@
 	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
 	--------------------------------------------------
 	--------------------------------------------------
+	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
+	--------------------------------------------------
+	--------------------------------------------------
+	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
+	--------------------------------------------------
+	--------------------------------------------------
 	Got it. I've added this task:
-		[E][ ] event task-1 (at: Mon, 7pm-8pm)
+		[D][ ] dl task-2 (by: 24/8/22)
 	Now you have 3 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
+	Got it. I've added this task:
+		[E][ ] event task-1 (at: 23/8/22, 7:00 PM)
+	Now you have 4 tasks in the list
+	--------------------------------------------------
+	--------------------------------------------------
 	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
 	--------------------------------------------------
 	--------------------------------------------------
 	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
+	--------------------------------------------------
+	--------------------------------------------------
+	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
+	--------------------------------------------------
+	--------------------------------------------------
+	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
+	--------------------------------------------------
+	--------------------------------------------------
+	Got it. I've added this task:
+		[E][ ] event task-2 (at: 24/8/22)
+	Now you have 5 tasks in the list
+	--------------------------------------------------
+	--------------------------------------------------
+	1. [T][ ] todo task-1
+	2. [D][ ] dl task-1 (by: 23/8/22)
+	3. [D][ ] dl task-2 (by: 24/8/22)
+	4. [E][ ] event task-1 (at: 23/8/22, 7:00 PM)
+	5. [E][ ] event task-2 (at: 24/8/22)
 	--------------------------------------------------
 	--------------------------------------------------
 	OOPS!!! Invalid task selected!
@@ -62,22 +91,30 @@
 	--------------------------------------------------
 	--------------------------------------------------
 	Nice! I've mark this task as done:
-		[D][X] dl task-1 (by: 18-Aug, Thursday)
+		[D][X] dl task-1 (by: 23/8/22)
 	--------------------------------------------------
 	--------------------------------------------------
 	Nice! I've mark this task as done:
-		[E][X] event task-1 (at: Mon, 7pm-8pm)
+		[D][X] dl task-2 (by: 24/8/22)
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	1. [T][X] todo task-1
+	2. [D][X] dl task-1 (by: 23/8/22)
+	3. [D][X] dl task-2 (by: 24/8/22)
+	4. [E][ ] event task-1 (at: 23/8/22, 7:00 PM)
+	5. [E][ ] event task-2 (at: 24/8/22)
 	--------------------------------------------------
 	--------------------------------------------------
 	OK, I've marked this task as not done yet:
-		[E][ ] event task-1 (at: Mon, 7pm-8pm)
+		[E][ ] event task-1 (at: 23/8/22, 7:00 PM)
 	--------------------------------------------------
 	--------------------------------------------------
 	OK, I've marked this task as not done yet:
-		[D][ ] dl task-1 (by: 18-Aug, Thursday)
+		[D][ ] dl task-2 (by: 24/8/22)
+	--------------------------------------------------
+	--------------------------------------------------
+	OK, I've marked this task as not done yet:
+		[D][ ] dl task-1 (by: 23/8/22)
 	--------------------------------------------------
 	--------------------------------------------------
 	OK, I've marked this task as not done yet:
@@ -85,22 +122,34 @@
 	--------------------------------------------------
 	--------------------------------------------------
 	1. [T][ ] todo task-1
-	2. [D][ ] dl task-1 (by: 18-Aug, Thursday)
-	3. [E][ ] event task-1 (at: Mon, 7pm-8pm)
+	2. [D][ ] dl task-1 (by: 23/8/22)
+	3. [D][ ] dl task-2 (by: 24/8/22)
+	4. [E][ ] event task-1 (at: 23/8/22, 7:00 PM)
+	5. [E][ ] event task-2 (at: 24/8/22)
 	--------------------------------------------------
 	--------------------------------------------------
 	Noted. I've removed this task:
 		[T][ ] todo task-1
+	Now you have 4 tasks in the list
+	--------------------------------------------------
+	--------------------------------------------------
+	Noted. I've removed this task:
+		[D][ ] dl task-2 (by: 24/8/22)
+	Now you have 3 tasks in the list
+	--------------------------------------------------
+	--------------------------------------------------
+	Noted. I've removed this task:
+		[E][ ] event task-2 (at: 24/8/22)
 	Now you have 2 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
 	Noted. I've removed this task:
-		[D][ ] dl task-1 (by: 18-Aug, Thursday)
+		[E][ ] event task-1 (at: 23/8/22, 7:00 PM)
 	Now you have 1 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
 	Noted. I've removed this task:
-		[E][ ] event task-1 (at: Mon, 7pm-8pm)
+		[D][ ] dl task-1 (by: 23/8/22)
 	Now you have 0 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
@@ -116,18 +165,18 @@
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
-		[D][ ] dl task-2 (by: 19-Aug, Friday)
+		[D][ ] dl task-3 (by: 23/8/22, 8:00 PM)
 	Now you have 2 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
-		[E][ ] event task-2 (at: Tue, 7pm-8pm)
+		[E][ ] event task-3 (at: 23/8/22)
 	Now you have 3 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
 	1. [T][ ] todo task-2
-	2. [D][ ] dl task-2 (by: 19-Aug, Friday)
-	3. [E][ ] event task-2 (at: Tue, 7pm-8pm)
+	2. [D][ ] dl task-3 (by: 23/8/22, 8:00 PM)
+	3. [E][ ] event task-3 (at: 23/8/22)
 	--------------------------------------------------
 	--------------------------------------------------
 	Bye. Hope to see you again soon!
