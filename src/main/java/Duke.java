@@ -1,10 +1,10 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
     private String greeting = "Hello";
     private String bye = "Goodbye";
-    private Task[] list = new Task[100];
-    private int items = 0;
+    private ArrayList<Task> list = new ArrayList<>();
 
     public Duke() {
     }
@@ -23,20 +23,20 @@ public class Duke {
 
     public void showList() {
         System.out.println("List of tasks:");
-        for (int i = 1; i < this.items + 1; i++) {
-            System.out.println(i + ". " + this.list[i - 1]);
+        for (int i = 1; i < this.list.size() + 1; i++) {
+            System.out.println(i + ". " + this.list.get(i - 1));
         }
     }
 
     public void markTask(int ind, boolean done) throws DukeException {
-        if (ind > this.items - 1) {
+        if (ind > this.list.size() - 1) {
             throw new DukeException("Oops, no such task found.");
         } else if (done) {
-            this.list[ind].markDone();
-            System.out.println("Task done: " + this.list[ind]);
+            this.list.get(ind).markDone();
+            System.out.println("Task done: " + this.list.get(ind));
         } else {
-            this.list[ind].markNotDone();
-            System.out.println("Task not done: " + this.list[ind]);
+            this.list.get(ind).markNotDone();
+            System.out.println("Task not done: " + this.list.get(ind));
         }
     }
 
@@ -44,8 +44,7 @@ public class Duke {
         Task t;
         if (type.equals("todo")) {
             t = new Todo(desc);
-            this.list[this.items] = t;
-            this.items++;
+            this.list.add(this.list.size(), t);
             System.out.println("Added ToDo: " + t);
         }
     }
@@ -54,14 +53,22 @@ public class Duke {
         Task t;
         if (type.equals("deadline")) {
             t = new Deadline(desc, date);
-            this.list[this.items] = t;
-            this.items++;
+            this.list.add(this.list.size(), t);
             System.out.println("Added Deadline: " + t);
         } else if (type.equals("event")) {
             t = new Event(desc, date);
-            this.list[this.items] = t;
-            this.items++;
+            this.list.add(this.list.size(), t);
             System.out.println("Added Event: " + t);
+        }
+    }
+
+    public void deleteTask(int ind) throws DukeException {
+        if (ind > this.list.size() - 1) {
+            throw new DukeException("Oops, no such task to delete.");
+        } else {
+            System.out.println("Task removed: " + this.list.get(ind));
+            this.list.remove(ind);
+            System.out.println(this.list.size() + " tasks remaining.");
         }
     }
 
@@ -104,6 +111,12 @@ public class Duke {
             String[] str = input.split(" /at ", 2);
             String s1 = str[0].substring(6, str[0].length());
             this.addTask("event", s1, str[1]);
+        } else if (input.startsWith("delete")) {
+            if (input.length() < 8) {
+                throw new DukeException("Oops, no task given to delete.");
+            }
+            int i = Integer.parseInt(input.substring(7)) - 1;
+            this.deleteTask(i);
         } else {
             throw new DukeException("Oops, I don't know what that means");
         }
