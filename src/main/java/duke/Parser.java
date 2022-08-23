@@ -1,36 +1,20 @@
 package duke;
 
-import duke.command.Command;
+import duke.command.*;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Parser {
-    private enum Commands {
-        TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK, DELETE, SAVE
-    }
-    private static final HashMap<String, Commands> commandMap = new HashMap<>(Map.of(
-            "todo", Commands.TODO,
-            "deadline", Commands.DEADLINE,
-            "event", Commands.EVENT,
-            "list", Commands.LIST,
-            "bye", Commands.BYE,
-            "mark", Commands.MARK,
-            "unmark", Commands.UNMARK,
-            "delete", Commands.DELETE,
-            "save", Commands.SAVE
-    ));
 
-    public static Command parse(String input) {
+    public static ICommand parse(String input) {
         try {
             Scanner sc = new Scanner(input);
             String command = sc.next();
-            if (!commandMap.containsKey(command)) {
+            if (!CommandType.commandMap.containsKey(command)) {
                 sc.nextLine(); // Move scanner to next line
                 throw new DukeException("I'm sorry, but I don't understand that.");
             }
-            Commands type = commandMap.get(command);
+            CommandType type = CommandType.commandMap.get(command);
             switch (type) {
                 case TODO:
                 case DEADLINE:
@@ -58,7 +42,7 @@ public class Parser {
             }
         } catch (DukeException e) {
             Ui.showError(e.getMessage());
-            return EmptyCommand;
+            return new EmptyCommand();
         }
     }
 }

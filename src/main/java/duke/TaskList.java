@@ -30,7 +30,7 @@ public class TaskList {
             }
         }
         sc.close();
-        Ui.showMsg("Successfully loaded saved contents.\n" + toString());
+        Ui.showMsg(new StringBuilder("Successfully loaded saved contents.\n" + this));
     }
 
     public String add(Task task) {

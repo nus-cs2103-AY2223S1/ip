@@ -20,20 +20,23 @@ public class Ui {
         return sc.nextLine();
     }
 
-    public static void showLine() {
+
+    public static void showMsg(StringBuilder stringBuilder) {
+        System.out.println(HORIZONTAL_LINE);
+        System.out.println(stringBuilder);
         System.out.println(HORIZONTAL_LINE);
     }
 
-    public static void showMsg(StringBuilder stringBuilder) {
-        System.out.println(stringBuilder);
-    }
-
     public static void showError(String error) {
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(error);
+        System.out.println(HORIZONTAL_LINE);
     }
 
     public static void showWelcomeMsg() {
+        System.out.println(HORIZONTAL_LINE);
         System.out.println(LOGO);
         System.out.println("How may I help you?");
+        System.out.println(HORIZONTAL_LINE);
     }
 }

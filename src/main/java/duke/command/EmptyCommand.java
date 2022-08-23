@@ -1,4 +1,13 @@
 package duke.command;
 
-public class EmptyCommand extends Command {
+public class EmptyCommand implements ICommand {
+    @Override
+    public void execute() {
+        return;
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }
