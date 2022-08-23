@@ -1,13 +1,17 @@
-public class Deadline extends Task{
-    String completeBy;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String name, String completeBy) {
+public class Deadline extends Task{
+    private LocalDateTime completeBy;
+
+    public Deadline(String name, LocalDateTime completeBy) {
         super(name);
         this.completeBy = completeBy;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + completeBy + ")";
+        String dateTime = completeBy.format(DateTimeFormatter.ofPattern("MMM dd yyyy',' hh'.'mma"));
+        return "[D]" + super.toString() + " (by: " + dateTime + ")";
     }
 }

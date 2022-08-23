@@ -1,6 +1,10 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Anya {
     static final String breakLine = "\n---------------------------------------------------------------------";
 
@@ -43,10 +47,16 @@ public class Anya {
                     try {
                         String inputTask = userInput.split(" ", 2)[1];
                         String[] details = inputTask.split(" /by ");
-                        Task task = new Deadline(details[0], details[1]);
+                        String dateTimeStr = details[1];
+                        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr,
+                                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+                        Task task = new Deadline(details[0], dateTime);
                         addTask(tasks, task);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new AnyaException("The description/cut-off time of a deadline cannot be empty.");
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Wrong format. Format: <name> /by <dd/MM/yyyy> <HHmm>. " +
+                                "Example: return book /by 01/01/2022 2030");
                     }
                 } else if (command.equals("event")) {
                     try {
