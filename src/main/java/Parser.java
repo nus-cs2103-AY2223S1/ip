@@ -52,9 +52,9 @@ public class Parser {
         Action action = Action.getAction(words[0]);
         switch (action) {
         case GREET:
-            return new Command(Action.GREET);
+            return Command.greet();
         case EXIT:
-            return new Command(Action.EXIT);
+            return Command.exit();
         case MARK:
             arg1 = s.substring(Action.getString(Action.MARK).length()).trim();
             if (arg1.equals("")) {
@@ -62,7 +62,7 @@ public class Parser {
             } else if (!isInt(arg1)) {
                 throw new DukeException.InvalidArgumentException(Action.MARK, "The argument should be an integer.");
             }
-            return new Command(Action.MARK, arg1);
+            return Command.mark(Integer.parseInt(arg1));
         case UNMARK:
             arg1 = s.substring(Action.getString(Action.UNMARK).length()).trim();
             if (arg1.equals("")) {
@@ -70,15 +70,9 @@ public class Parser {
             } else if (!isInt(arg1)) {
                 throw new DukeException.InvalidArgumentException(Action.UNMARK, "The argument should be an integer.");
             }
-            return new Command(Action.UNMARK, arg1);
+            return Command.unmark(Integer.parseInt(arg1));
         case LIST:
-            return new Command(Action.LIST);
-        case ADD:
-            arg1 = s.substring(Action.getString(Action.ADD).length()).trim();
-            if (arg1.equals("")) {
-                throw new DukeException.NoArgumentException(Action.ADD);
-            }
-            return new Command(Action.ADD, arg1);
+            return Command.list();
         case TODO:
             arg1 = s.substring(Action.getString(Action.TODO).length()).trim();
             if (arg1.equals("")) {
@@ -87,7 +81,7 @@ public class Parser {
                 throw new DukeException.InvalidArgumentException(Action.EVENT,
                         "Todo details should not contain '}'.");
             }
-            return new Command(Action.TODO, arg1);
+            return Command.todo(arg1);
         case EVENT:
             String START_OF_EVENT_TIME_SYMBOL = " /at ";
             if (!s.contains(START_OF_EVENT_TIME_SYMBOL)) {
@@ -108,7 +102,7 @@ public class Parser {
                         "Event [Time] is not found.");
             }
 
-            return new Command(Action.EVENT, arg1, arg2);
+            return Command.event(arg1, parseStringToDateTime(arg2));
         case DEADLINE:
             String START_OF_DEADLINE_TIME_SYMBOL = " /by ";
 
@@ -132,7 +126,7 @@ public class Parser {
                         "Deadline [Time] is not found.");
             }
 
-            return new Command(Action.DEADLINE, arg1, arg2);
+            return Command.deadline(arg1, parseStringToDateTime(arg2));
         case DELETE:
             arg1 = s.substring(Action.getString(Action.DELETE).length()).trim();
             if (arg1.equals("")) {
@@ -140,15 +134,13 @@ public class Parser {
             } else if (!isInt(arg1)) {
                 throw new DukeException.InvalidArgumentException(Action.DELETE, "The argument should be an integer.");
             }
-            return new Command(Action.DELETE, arg1);
+            return Command.delete(Integer.parseInt(arg1));
         case SAVE:
-            return new Command(Action.SAVE);
+            return Command.save();
         case READ:
-            return new Command(Action.READ);
-        case DONOTHING:
-            return new Command(Action.DONOTHING);
+            return Command.read();
         default:
-            return null;
+            return Command.doNothing();
         }
     }
 

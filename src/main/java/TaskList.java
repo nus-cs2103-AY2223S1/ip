@@ -4,8 +4,6 @@ import java.util.stream.Stream;
 
 public class TaskList implements Savable<TaskList> {
     private ArrayList<Task> tasks = new ArrayList<>();
-    private String STORAGE_PATH_WIN = "data\\duke.txt";
-    private String STORAGE_PATH_ELSE = "data/duke.txt";
 
     public boolean add(Task task) {
         return tasks.add(task);
@@ -35,10 +33,7 @@ public class TaskList implements Savable<TaskList> {
         }
     }
 
-    @Override
-    public String getStoragePath() {
-        return System.getProperty("os.name").startsWith("Windows") ? STORAGE_PATH_WIN : STORAGE_PATH_ELSE;
-    }
+
 
     @Override
     public String toString() {
@@ -60,23 +55,13 @@ public class TaskList implements Savable<TaskList> {
     }
 
     @Override
-    public String read() {
-        return new Storage(getStoragePath()).read();
-    }
-
-    @Override
     public TaskList parse(String formattedString) {
-        TaskList result = new TaskList();
+        this.tasks = new ArrayList<>();
         Arrays.stream(formattedString.split(System.lineSeparator()))
                 .filter(s -> !s.trim().equals(""))
                 .map(s -> s.trim())
                 .map(s -> Task.parseTask(s))
-                .forEach(task -> result.add(task));
-        return result;
-    }
-
-    @Override
-    public void save() {
-        new Storage(getStoragePath()).write(this.toFormattedString());
+                .forEach(task -> this.tasks.add(task));
+        return this;
     }
 }

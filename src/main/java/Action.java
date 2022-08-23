@@ -35,17 +35,17 @@ public enum Action {
         map.put(Action.UNMARK, "unmark [ID of task]");
 //        Level_4
         map.put(Action.TODO, "todo [Name]");
-        map.put(Action.EVENT, "event [Event Name] /at [Event Time(yyyy-MM-dd HH:mm)] ");
-        map.put(Action.DEADLINE, "deadline [Deadline Name] /by [Deadline Time(yyyy-MM-dd HH:mm)]");
+        map.put(Action.EVENT, "event [Event Name] /at [Event Time]");
+        map.put(Action.DEADLINE, "deadline [Deadline Name] /by [Deadline Time]");
 //        Level_5
 //        No Action is added.
 //        Level_6
         map.put(Action.DELETE, "delete [ID of Task]");
 //        Level_7
         map.put(Action.SAVE, "save");
-        map.put(Action.READ, "Read");
+        map.put(Action.READ, "read");
 //        Level_8
-//        No Action is added.
+//        No action added.
     }
 
     private static HashMap<String, Action> stringActionMap = new HashMap<>();
@@ -74,6 +74,8 @@ public enum Action {
         map.put("save", Action.SAVE);
         map.put("read", Action.READ);
     }
+
+
 
     public static String getString(Action action) {
         for (Map.Entry<String, Action> m : stringActionMap.entrySet()) {
