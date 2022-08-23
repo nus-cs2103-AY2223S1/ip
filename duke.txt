@@ -1,0 +1,4 @@
+[T][ ] hihi
+[T][X] bobo
+[E][ ] project meeting (at: Mon 2-4pm)
+[D][ ] project meeting (by: Mon 2-4pm)

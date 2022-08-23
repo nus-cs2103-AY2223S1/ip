@@ -1,5 +1,8 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.nio.file.Paths;
+import java.nio.file.Files;
 
 public class Duke {
     public static void main(String[] args) throws EmptyDescriptionException, OutOfRangeException, UnknownCommandException {
@@ -13,10 +16,35 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String input = "";
 
+        String s = reader();
+        int counter_mark = 1;
+        boolean checker = false;
 
+
+        //process string
+        s = s.replace("[T]", "todo");
+        s = s.replace("[D]", "deadline");
+        s = s.replace("[E]", "event");
+        s = s.replace("[ ]", "");
+        s = s.replace("[X]", "");
+        if (s.contains(":")) {
+            s = s.replace("[ ]", "");
+            s = s.replace("(", "/");
+            s = s.replace(":", "");
+            s = s.replace(")", "");
+        }
+
+        //code mechanics
         while (true) {
 
-            input = sc.nextLine();
+            if (s.equals("")) {
+                checker = true;
+                input = sc.nextLine();
+            } else {
+                int temp = s.indexOf("%");
+                input = s.substring(0, temp);
+                s = s.replaceAll(input + "%", ""); //remove old string
+            }
 
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
@@ -42,8 +70,11 @@ public class Duke {
                         arr.get(index).setDone();
                     }
 
-                    System.out.println("Nice! I've marked this task as done:\n" +
-                                                            arr.get(index).toString());
+                    if (checker) {
+                        System.out.println("Nice! I've marked this task as done:\n" +
+                                arr.get(index).toString());
+                    }
+
                 } catch (EmptyDescriptionException | OutOfRangeException e) {
                     System.out.println(e.getMessage());
                 }
@@ -56,9 +87,12 @@ public class Duke {
                     arr.add(new Todo(input));
 
                     //output
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(arr.get(count).toString());
-                    System.out.printf( "Now you have %d tasks in the list.", count + 1);
+                    if (checker) {
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println(arr.get(count).toString());
+                        System.out.printf( "Now you have %d tasks in the list.", count + 1);
+                    }
+
                     
                     count++;
                 } catch (EmptyDescriptionException e) {
@@ -74,9 +108,11 @@ public class Duke {
                 arr.add(new Deadline(s_arr[0], s_arr[1]));
 
                 //output
-                System.out.println("Got it. I've added this task:");
-                System.out.println(arr.get(count).toString());
-                System.out.printf( "Now you have %d tasks in the list.", count + 1);
+                if (checker) {
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(arr.get(count).toString());
+                    System.out.printf("Now you have %d tasks in the list.", count + 1);
+                }
 
                 count++;
 
@@ -90,10 +126,11 @@ public class Duke {
                 arr.add(new Event(s_arr[0], s_arr[1]));
 
                 //output
-                System.out.println("\nGot it. I've added this task:");
-                System.out.println(arr.get(count).toString());
-                System.out.printf( "Now you have %d tasks in the list.", count + 1);
-
+                if (checker) {
+                    System.out.println("\nGot it. I've added this task:");
+                    System.out.println(arr.get(count).toString());
+                    System.out.printf("Now you have %d tasks in the list.", count + 1);
+                }
                 count++;
             } else if (input.contains("delete")) {
                 int index = -1;
@@ -117,9 +154,55 @@ public class Duke {
                     System.out.println(e.getMessage());
                 }
             }
+
         }
+
         sc.close();
 
+        // write to file once scanner closes
+        writer(arr);
 
     }
+
+    //file writer function
+    public static void writer(ArrayList<Task> arr) {
+        String temp = "";
+
+        for (Task item: arr) {
+            temp += (item.toString() + "\n");
+        }
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("duke.txt"));
+            writer.write(temp);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    //file reader function
+    public static String reader() {
+        String s = "";
+        int counter_mark = 1;
+        StringBuilder builder = new StringBuilder();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("duke.txt"));
+            while ((s = reader.readLine()) != null) {
+                    builder.append(s).append("%");
+                    if (s.contains("X")) {
+                        builder.append("mark ").append(counter_mark).append("%");
+                    }
+                    counter_mark++;
+            }
+                reader.close();
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return builder.toString();
+    }
+
 }
+
