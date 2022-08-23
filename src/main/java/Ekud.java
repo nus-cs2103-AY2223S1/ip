@@ -52,6 +52,7 @@ public class Ekud {
                 } else {
                     throw new EkudException("Invalid command.");
                 }
+                this.storage.writeTasksToFile(taskList);
             } catch (EkudException exception) {
                 this.sendMessage(exception.getMessage());
             }
