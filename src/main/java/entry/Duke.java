@@ -1,13 +1,22 @@
 package entry;
 
-import commands.*;
+import java.util.Scanner;
+
+import commands.CommandResponse;
+import commands.CommandRunner;
 import exceptions.DukeException;
 import input.Input;
 import output.OutputLogger;
 
-import java.util.Scanner;
 
+/**
+ * Entry point for the chatbot
+ */
 public class Duke {
+    /**
+     * Entry point for Duke
+     * @param args CLI args
+     */
     public static void main(String[] args) {
         OutputLogger.printIntroduction();
         Scanner sc = new Scanner(System.in);
@@ -23,11 +32,9 @@ public class Duke {
 
                 CommandResponse res = cmdRunner.run(ir);
                 OutputLogger.output(res.getMessage());
-                
                 if (res.isExit()) {
                     break;
                 }
-
             } catch (DukeException err) {
                 OutputLogger.output(err.getMessage());
             } catch (Exception err) {
