@@ -24,19 +24,38 @@ public class Duke {
      *                       if input is delete <number> program deletes the task from the list.
      */
     public static void list() throws DukeException, IOException {
-
-        Scanner input = new Scanner(System.in);
         try {
             File myObj = new File("duke.txt");
             if (myObj.createNewFile()) {
             } else {
+                FileInputStream saved = new FileInputStream("duke.txt");
+                Scanner scan = new Scanner(saved);
+                while (scan.hasNextLine()) {
+                    String next = scan.nextLine();
+                    if (next.startsWith("ToDo")) {
+                        String[] temp = next.split(" / ");
+                        ToDo item = new ToDo(temp[2]);
+                        item.setIsDone(temp[1].equalsIgnoreCase("true"));
+                        storage.add(item);
+                    } else if (next.startsWith("Deadline")) {
+                        String[] temp = next.split(" / ");
+                        Deadline item = new Deadline(temp[2], temp[3]);
+                        item.setIsDone(temp[1].equalsIgnoreCase("true"));
+                        storage.add(item);
+                    } else if (next.startsWith("Event")) {
+                        String[] temp = next.split(" / ");
+                        Event item = new Event(temp[2], temp[3]);
+                        item.setIsDone(temp[1].equalsIgnoreCase("true"));
+                        storage.add(item);
+                    }
+                }
+                scan.close();
             }
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-
-
+        Scanner input = new Scanner(System.in);
         while (input.hasNext()) {
             PrintStream fileOut = new PrintStream("duke.txt");
             PrintStream console = System.out;
