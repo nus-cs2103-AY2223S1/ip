@@ -1,3 +1,5 @@
+package DataStruct;
+
 public class Pair<T, S> {
 
     private final T head;

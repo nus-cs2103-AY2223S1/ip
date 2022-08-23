@@ -1,3 +1,5 @@
+package DaveExceptions;
+
 public class DaveNoTasksException extends DaveException {
 
     public DaveNoTasksException() {

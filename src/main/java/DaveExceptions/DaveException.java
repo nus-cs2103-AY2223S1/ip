@@ -1,3 +1,5 @@
+package DaveExceptions;
+
 public class DaveException extends Exception {
 
     private final String error;

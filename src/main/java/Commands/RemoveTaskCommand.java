@@ -1,3 +1,8 @@
+package Commands;
+import DataStruct.TaskList;
+import DaveExceptions.DaveException;
+import DaveExceptions.DaveNoTasksException;
+
 public class RemoveTaskCommand implements Command {
 
     private TaskList tasks;
@@ -16,7 +21,11 @@ public class RemoveTaskCommand implements Command {
             this.index = Integer.parseInt(input);
             this.tasks = tasks;
         } catch (NumberFormatException e) {
-            throw new DaveException(String.format("( ; ω ; ) Oh nyo!!! Please give me a valid task to remove between 1 and %d!", tasks.size()));
+            throw new DaveException(
+                    String.format(
+                            "( ; ω ; ) Oh nyo!!! Please give me a valid task to remove between 1 and %d!", tasks.size()
+                    )
+            );
         }
     }
 
@@ -25,7 +34,11 @@ public class RemoveTaskCommand implements Command {
         try{
             return this.tasks.remove(this.index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DaveException(String.format("( ; ω ; ) Oh nyo!!! Please give me a valid task to remove between 1 and %d!", tasks.size()));
+            throw new DaveException(
+                    String.format(
+                            "( ; ω ; ) Oh nyo!!! Please give me a valid task to remove between 1 and %d!", tasks.size()
+                    )
+            );
         } catch (DaveNoTasksException de) {
             throw de;
         }

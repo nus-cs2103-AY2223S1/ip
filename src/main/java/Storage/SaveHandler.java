@@ -1,9 +1,14 @@
+package Storage;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.io.IOException;
+import DataStruct.TaskList;
+import DaveExceptions.DaveException;
+import DaveExceptions.DaveInitFileException;
 
 public class SaveHandler {
 
@@ -30,8 +35,7 @@ public class SaveHandler {
             oos.writeObject(tasks);
             file_output.close();
         } catch (IOException e) {
-//            throw new DaveException("Oh no! An error has been encountered while saving!");
-            throw new DaveException("save" + e.toString());
+            throw new DaveExceptions.DaveException("Oh no! An error has been encountered while saving!");
         }
     }
 
@@ -44,9 +48,9 @@ public class SaveHandler {
                 TaskList tasks = (TaskList) ois.readObject();
                 fin.close();
                 return tasks;
-            } catch (IOException | ClassNotFoundException e) {
-//            throw new DaveException("Oh no! An error has been encountered while loading!");
-                throw new DaveException("load" + e.toString());
+            } catch (IOException |ClassNotFoundException e) {
+//            throw new DaveExceptions.DaveException("Oh no! An error has been encountered while loading!");
+                throw new DaveException(e.toString());
             }
         } else {
             return new TaskList();

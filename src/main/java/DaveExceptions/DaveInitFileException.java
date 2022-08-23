@@ -1,3 +1,5 @@
+package DaveExceptions;
+
 public class DaveInitFileException extends DaveException {
 
     public DaveInitFileException() {

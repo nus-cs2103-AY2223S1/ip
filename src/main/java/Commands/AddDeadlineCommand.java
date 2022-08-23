@@ -1,4 +1,10 @@
+package Commands;
 import java.time.LocalDateTime;
+import DataStruct.TaskList;
+import DataStruct.Pair;
+import Task.Deadlines;
+import DaveExceptions.DaveException;
+import Parser.Parser;
 
 public class AddDeadlineCommand implements Command {
 
