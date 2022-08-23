@@ -1,6 +1,9 @@
 package duke.command;
 
 import duke.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
 
 public class AddCommand implements ICommand {
     private final CommandType type;
