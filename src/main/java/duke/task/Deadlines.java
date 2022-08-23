@@ -16,14 +16,14 @@ public class Deadlines extends Task {
      *
      * @param task task in String.
      * @param deadline deadline task is due by in String.
-     * @param done whether task is done.
+     * @param isDone whether task is done.
      *             true if marked.
      *             false if unmarked.
      *
      * @throws DukeException if deadline is not in the format dd/MM/yyyy HHmm.
      */
-    public Deadlines(String task, String deadline, boolean done) throws DukeException {
-        super(task, done);
+    public Deadlines(String task, String deadline, boolean isDone) throws DukeException {
+        super(task, isDone);
         this.deadline = ConvertDateTime(deadline);
     }
 

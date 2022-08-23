@@ -9,12 +9,12 @@ public class ToDos extends Task {
      * Constructor for ToDos class.
      *
      * @param task task in String.
-     * @param done whether task is done.
+     * @param isDone whether task is done.
      *             true if marked.
      *             false if unmarked.
      */
-    public ToDos(String task, boolean done) {
-        super(task, done);
+    public ToDos(String task, boolean isDone) {
+        super(task, isDone);
     }
 
     /**

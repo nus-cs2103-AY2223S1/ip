@@ -16,14 +16,14 @@ public class Events extends Task {
      *
      * @param task task in String.
      * @param timing timing event occurs in String.
-     * @param done whether task is done.
+     * @param isDone whether task is done.
      *             true if marked.
      *             false if unmarked.
      *
      * @throws DukeException if timing is not in the format dd/MM/yyyy HHmm.
      */
-    public Events (String task, String timing, boolean done) throws DukeException {
-        super(task, done);
+    public Events (String task, String timing, boolean isDone) throws DukeException {
+        super(task, isDone);
         this.timing = ConvertDateTime(timing);
     }
 
