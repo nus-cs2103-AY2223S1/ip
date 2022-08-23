@@ -17,12 +17,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Parse and interpret user input, and returns a parsed Command.
+ */
 public class Parser {
 
-
-    /**
-     * Extract command from user input
-     */
     public static String getNumberRegex(String name) {
         return "(?<" + name + ">\\d+)";
     }
@@ -40,6 +39,12 @@ public class Parser {
 
     public static final Pattern TASK_FORMAT = Pattern.compile(getNumberRegex("taskNumber"));
 
+    /**
+     * Convert user input string to known Command.
+     * @param inputString user input.
+     * @return Command to be handled by Duke.
+     * @throws DukeException if command is invalid and cannot be interpreted.
+     */
     public static Command parse(String inputString) throws DukeException {
         final Matcher matcher = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)").matcher(inputString.trim());
         try {

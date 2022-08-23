@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * Deadline with a description and ending date time.
+ */
 public class Deadline extends Task {
     protected LocalDateTime by;
     public static String EVENT_DATETIME_FORMAT = "dd/MM/yyyy HH:mm";

@@ -2,6 +2,9 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Handle all user interaction .
+ */
 public class Ui {
     public static final String LINE = "_____________________";
     public static final String ANSI_RESET = "\u001B[0m";
@@ -34,6 +37,9 @@ public class Ui {
         displayText(String.format(format, args));
     }
 
+    /**
+     * Display the welcome message.
+     */
     public void showWelcome() {
         showLine();
         String name = "Duke";

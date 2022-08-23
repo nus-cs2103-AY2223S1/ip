@@ -3,10 +3,17 @@ package duke;
 import duke.commands.Command;
 import duke.task.TaskList;
 
+/**
+ * The Duke chatbot
+ */
 public class Duke {
     private final TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Create a duke chatbot which persists tasks to the file named fileName.
+     * @param fileName Name of the file to store tasks in.
+     */
     public Duke(String fileName) {
         this.ui = new Ui();
 
@@ -24,6 +31,9 @@ public class Duke {
         new Duke("tasks.txt").run();
     }
 
+    /**
+     * execute the duke task chat bot.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

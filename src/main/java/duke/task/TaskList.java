@@ -6,9 +6,16 @@ import duke.Storage;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Represents a list of tasks.
+ */
 public class TaskList extends ArrayList<Task> {
     private final Storage storage;
 
+    /**
+     * Create a tasklist which will save tasks to a given storage automatically.
+     * @param storage storage object to save and load tasks.
+     */
     public TaskList(Storage storage) {
         super(100);
         if (storage != null) {
@@ -22,6 +29,12 @@ public class TaskList extends ArrayList<Task> {
     }
 
 
+    /**
+     * Add task to list.
+     * @param task Task to be added
+     * @return Whether the task was added successfully.
+     * @throws DukeException any exception when trying to add new task to the list.
+     */
     public boolean addTask(Task task) throws DukeException {
 
         if (super.add(task)) {
@@ -33,6 +46,12 @@ public class TaskList extends ArrayList<Task> {
         return false;
     }
 
+    /**
+     * Remove the specified task from the list.
+     * @param index Index of the task to be removed.
+     * @return Task that was removed
+     * @throws DukeException any error when removing the task from the list.
+     */
     public Task removeTask(int index) throws DukeException {
         if (0 <= index && index <= this.size()) {
             Task task = super.remove(index);

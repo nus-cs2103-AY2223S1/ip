@@ -17,10 +17,18 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+/**
+ * Handles saving and loading of tasks from file.
+ */
 public class Storage {
     private final String directoryPath;
     private String fileName;
 
+    /**
+     * Creates the storage object
+     * @param fileName name of file to store tasks in.
+     * @throws DukeException Issues with creating or accessing file.
+     */
     public Storage(String fileName) throws DukeException {
         String _directoryPath = null;
         try {
@@ -51,6 +59,12 @@ public class Storage {
         return loadTasks(this.fileName);
     }
 
+    /**
+     * Loads the list of task from a previously save text file
+     * @param fileName name of the file.
+     * @return The list of tasks
+     * @throws DukeException if the file couldn't be read properly or contains invalid input.
+     */
     public ArrayList<Task> loadTasks(String fileName) throws DukeException {
         this.fileName = fileName;
         ArrayList<Task> tasks = new ArrayList<>();
@@ -104,6 +118,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves a list of tasks to the current file.
+     * @param tasks list of tasks to be saved
+     * @throws DukeException any error when saving the task list.
+     */
     public void saveTasks(ArrayList<Task> tasks) throws DukeException {
         StringBuilder sb = new StringBuilder();
         for (Task task : tasks) {

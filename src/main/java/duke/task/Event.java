@@ -2,6 +2,9 @@ package duke.task;
 
 import java.util.Objects;
 
+/**
+ * Event task containing a description and when the event is happening.
+ */
 public class Event extends Task {
     protected String eventTime;
 
@@ -49,6 +52,7 @@ public class Event extends Task {
         if (this == o) return true;
         if (!(o instanceof Event)) return false;
         Event event = (Event) o;
+
         return eventTime.compareTo(event.eventTime) == 0 && super.equals(o);
     }
 
