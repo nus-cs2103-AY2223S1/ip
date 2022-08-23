@@ -127,6 +127,20 @@ public class TaskList {
     }
 
     /**
+     * Search for a matching task descriptions based on a given keyword/phrase/
+     * @param s A keyword or phrase to search for in the task list.
+     */
+    public void findAndPrintAllOccurrencesOf(String s) {
+        String result = "Here are the matching tasks in your list:\n";
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).toString().toLowerCase().contains(s)) {
+                result = result + "\n\t" + this.tasks.get(i);
+            }
+        }
+        Ui.sendMessage(result);
+    }
+
+    /**
      * Returns a modified String of all the tasks in the current TaskList.
      * @return A String representing all the tasks to be written to the hard disk.
      */
