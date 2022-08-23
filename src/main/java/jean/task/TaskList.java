@@ -1,8 +1,8 @@
 package jean.task;
 
-import jean.ui.Ui;
-
 import java.util.ArrayList;
+
+import jean.ui.Ui;
 
 /**
  * Represents a list of tasks.
@@ -111,6 +111,12 @@ public class TaskList {
                         + "\n\t" + curr.toString());
     }
 
+    /**
+     * Finds tasks with the corresponding keyword.
+     *
+     * @param keyword The keyword to match.
+     * @param ui The ui object that prints feedback to the user interface.
+     */
     public void findTask(String keyword, Ui ui) {
         ArrayList<Task> matches = new ArrayList<Task>();
         for (Task x : this.taskList) {

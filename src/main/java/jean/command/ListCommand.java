@@ -1,7 +1,6 @@
 package jean.command;
 
 import jean.storage.Storage;
-import jean.task.Task;
 import jean.task.TaskList;
 import jean.ui.Ui;
 

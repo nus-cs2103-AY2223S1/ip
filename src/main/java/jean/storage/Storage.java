@@ -26,7 +26,7 @@ public class Storage {
      *
      * @param filepath Filepath of the data.
      */
-    public Storage (String filepath) {
+    public Storage(String filepath) {
         this.filepath = filepath;
     }
 
@@ -37,7 +37,7 @@ public class Storage {
      * @throws JeanException When the file is corrupted.
      * @throws IOException When the designated filepath cannot be found.
      */
-    public ArrayList<Task> load() throws JeanException, IOException{
+    public ArrayList<Task> load() throws JeanException, IOException {
         File f = new File(this.filepath);
         ArrayList<Task> taskList = new ArrayList<>();
 

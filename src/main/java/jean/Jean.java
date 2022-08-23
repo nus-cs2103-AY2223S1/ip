@@ -57,6 +57,11 @@ public class Jean {
         }
     }
 
+    /**
+     * Launches Jean.
+     *
+     * @param args Command-line arguments.
+     */
     public static void main(String[] args) {
         Ui ui = new Ui();
         Storage storage = new Storage("data/list.txt");

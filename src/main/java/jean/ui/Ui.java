@@ -52,6 +52,9 @@ public class Ui {
                            + "\nQuelque chose a mal tourné: " + errorMessage);
     }
 
+    /**
+     * Greets the user by printing default greeting text.
+     */
     public void greet() {
         System.out.println("Hello! I'm jean.Jean"
                            + "\nHow can I help you?"
@@ -59,6 +62,9 @@ public class Ui {
                            + "\nVous désirez?");
     }
 
+    /**
+     * Bids goodbye to user by printing default ending text.
+     */
     public void end() {
         System.out.println("\tGoodbye! See you soon!"
                            + "\n\tAu revoir! À tout à l'heure!");
