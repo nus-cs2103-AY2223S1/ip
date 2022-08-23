@@ -29,5 +29,8 @@ public class TaskList {
 
 
 
-
+    @Override
+    public String toString() {
+        return this.taskList.toString();
+    }
 }

@@ -8,6 +8,7 @@ import UI.Ui;
 
 import Storage.Storage;
 
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -25,13 +26,9 @@ public class Duke {
         java.nio.file.Path path = java.nio.file.Paths.get(home, "OneDrive - National University of Singapore", "2022_fall_sem_NUS", "CS2103T Software Engineering", "Code_Independent Project", "src", "data","Duke.txt");
 
         ui = new Ui();
-        storage = new Storage(String.valueOf(path));
+        storage = new Storage("Duke");
 
-        try {
-            System.out.println("d");
-            tasks = storage.obtain();
-            System.out.println("d");
-        } catch (DukeException e)
+        try { tasks = storage.obtain(); } catch (DukeException e)
         {
             ui.showLoadingError();
             tasks = new TaskList();
@@ -40,42 +37,30 @@ public class Duke {
     }
 
     public void run() {
-        System.out.println("PPP");
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            /*
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+
+
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
+*/
+        }
 
 
     }
-    public static void main(String[] args) throws DukeException {
+   public static void main(String[] args) throws DukeException {
+        new Duke().run();
 
 
-        String home = System.getProperty("user.home");
-        java.nio.file.Path path = java.nio.file.Paths.get(home, "OneDrive - National University of Singapore", "2022_fall_sem_NUS", "CS2103T Software Engineering", "Code_Independent Project", "src", "data","Duke.txt");
-        boolean directotyExists = java.nio.file.Files.exists(path);
-        System.out.println("path: " + path);
-        System.out.println("path exists: " + directotyExists);
-
-
-        String homee = System.getProperty("user.home");
-        System.out.println(homee);
-        String he = System.getProperty("user.dir");
-        System.out.println(he);
-
-        java.nio.file.Path pathh = java.nio.file.Paths.get(he, "src", "data","Duke.txt");
-
-        try {
-            int i = 0;
-            Scanner fileReader = new Scanner(pathh);
-            TaskList tasks = new TaskList();
-            while (fileReader.hasNext()) {
-                fileReader.nextLine();
-                i ++;
-            }
-            System.out.println(i);
-            fileReader.close();
-
-
-        } catch (IOException e) {
-            System.out.println("SSSS");
-        }
 
 
 
