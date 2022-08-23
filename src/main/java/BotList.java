@@ -29,6 +29,17 @@ public class BotList {
     }
 
     /**
+     * Adds an element to the array stored without writing to file
+     *
+     * @param task a Task to be added to the array
+     * @return String of either the element is added successfully or not
+     */
+    String addWithoutSave(Task task) {
+        StringBuilder output = new StringBuilder("I've added this task:\n").append(task);
+        this.internalArray.add(task);
+        return output.append("\n").append(this.getNoTasks()).toString();
+    }
+    /**
     * Marks the task in the user's list as done
     *
     * @param taskIndex task number within the list, starting from 1

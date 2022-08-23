@@ -1,7 +1,12 @@
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Deku {
     private BotList botList;
@@ -24,7 +29,7 @@ public class Deku {
     /**
     * Method to start the chat-bot
     */
-    public void start() throws IOException {
+    private void start() {
         Scanner scanner = new Scanner(System.in);
         this.introduction();
         boolean active = true;
@@ -36,6 +41,58 @@ public class Deku {
             System.out.println(
                     this.parseReply(userInput)
             );
+        }
+    }
+
+    /**
+     * Method to load data from stored file to the chat-bot
+     */
+    public void load() {
+        Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
+        Path filePath = directoryPath.resolve("save.txt");
+        Task newTask;
+        try {
+            File file = new File(filePath.toUri());
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String data = scanner.nextLine();
+                List<String> stored = new ArrayList<>(List.of(data.split("\\|")));
+                System.out.println(stored);
+                stored = stored
+                        .stream()
+                        .filter(e -> !e.equals("") && !e.equals("null"))
+                        .collect(Collectors.toList());
+                String taskType = stored.remove(0);
+                Boolean isCompleted = stored.remove(0).equals("1");
+                try {
+                    switch (taskType) {
+                    case ("T"):
+                        newTask = new ToDo(stored);
+                        break;
+                    case ("E"):
+                        newTask = new Event(stored);
+                        break;
+                    case ("D"):
+                        newTask = new Deadline(stored);
+                        break;
+                    default:
+                        throw new DekuExceptions("");
+                    }
+                    newTask.setCompletionStatus(isCompleted);
+                    this.botList.addWithoutSave(newTask);
+                } catch (DekuExceptions e) {
+                    System.out.println("Error reading data file! Sorry... :(");
+                    start();
+                }
+            }
+            scanner.close();
+            if (file.length() != 0) {
+                System.out.println(SEPARATOR + "\n" + "Successfully Loaded Saved Tasks! :)" + "\n" + SEPARATOR);
+            }
+            start();
+        } catch (FileNotFoundException e) {
+            start();
         }
     }
 
@@ -86,6 +143,6 @@ public class Deku {
     */
     public static void main(String[] args) throws IOException {
         Deku dekuBot = new Deku();
-        dekuBot.start();
+        dekuBot.load();
     }
 }

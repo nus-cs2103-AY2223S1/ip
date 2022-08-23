@@ -39,7 +39,7 @@ public class Task {
     }
 
 
-    private String parseTask(List<String> task) throws DekuExceptions {
+    private String parseTask(List<String> task) {
         String date = "";
         String misc = "";
         String time = "";
@@ -87,22 +87,6 @@ public class Task {
         return output.substring(0, output.length() - 1);
     }
 
-    private String getTime() {
-        String output = "";
-        boolean time = false;
-        for (int i = 0; i < taskArray.size(); i++) {
-            String current = taskArray.get(i);
-            if (current.charAt(0) == '/') {
-                time = true;
-                continue;
-            }
-            if (time) {
-                output += current + " ";
-            }
-        }
-        return (output.equals("")) ? output : output.substring(0, output.length()-1);
-    }
-
     private String getTask() {
         String output = "";
         for (int i = 0; i < taskArray.size(); i++) {
@@ -114,7 +98,20 @@ public class Task {
         }
         return (output.equals("")) ? output : output.substring(0, output.length()-1);
     }
-    private void parseDate(String dateString) throws DekuExceptions {
+
+    private String getSpecial() {
+        String output = "";
+        for (int i = 0; i < taskArray.size(); i++) {
+            String current = taskArray.get(i);
+            if (current.charAt(0) == '/') {
+                output = current;
+                break;
+            }
+        }
+        return output;
+    }
+
+    private void parseDate(String dateString) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy][dd-MM-yyyy][yyyy-MM-dd]");
             this.date = LocalDate.parse(dateString, formatter);
@@ -126,7 +123,7 @@ public class Task {
         }
     }
 
-    private void parseTime(String timeString) throws DekuExceptions {
+    private void parseTime(String timeString) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[HH:mm][HHmm]");
             this.time = LocalTime.parse(timeString, formatter);
@@ -151,7 +148,7 @@ public class Task {
 
     public String parseSaveFormat() {
         String completionParse = (completionIcon.equals("[X]")) ? "1" : "0";
-        return ICON + "|" + completionParse + "|" + getTask() + "|" + getTime();
+        return ICON + "|" + completionParse + "|" + getTask() + "|" + getSpecial() + "|" + date + "|" + time;
     }
 
     @Override
