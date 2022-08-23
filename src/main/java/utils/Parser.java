@@ -82,8 +82,8 @@ public class Parser {
             case "deadline":
                 String[] deadlineBy = s.substring(8).trim().split("/by");
                 if (deadlineBy.length <= 1) {
-                    throw new DukeException("Error. The description and due date of a deadline\n\tshould be " +
-                            "separated" + " by a \"/by\".");
+                    throw new DukeException("Error. The description and due date of a deadline\n\tshould be "
+                            + "separated" + " by a \"/by\".");
                 }
                 String deadline = deadlineBy[0].trim();
                 String by = deadlineBy[1].trim();
@@ -99,8 +99,8 @@ public class Parser {
             case "event":
                 String[] eventAt = s.substring(5).trim().split("/at");
                 if (eventAt.length <= 1) {
-                    throw new DukeException("Error. The description and time of an event\n\tshould be separated" +
-                            " by a \"/at\".");
+                    throw new DukeException("Error. The description and time of an event\n\tshould be separated"
+                            + " by a \"/at\".");
                 }
                 String event = eventAt[0].trim();
                 String at = eventAt[1].trim();
