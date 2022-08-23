@@ -1,11 +1,17 @@
 package duke.entities;
 
-public class Event extends Todo {
-    private String deadline;
+import java.time.LocalDateTime;
+import java.time.format.TextStyle;
+import java.util.Locale;
 
-    public Event(String desc, String deadline) {
+import duke.exceptions.DukeException;
+
+public class Event extends Todo {
+    private LocalDateTime deadline;
+
+    public Event(String desc, LocalDateTime deadline) throws DukeException {
         super(desc);
-        this.deadline = String.format(" (by: %s)", deadline);
+        this.deadline = deadline;
     }
 
     /**
@@ -14,7 +20,12 @@ public class Event extends Todo {
      * @return Deadline of Event
      */
     public String getDeadline() {
-        return deadline;
+        Integer hour = deadline.getHour();
+        Integer minutes = deadline.getMinute();
+        String day_of_week = deadline.getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        Integer day_of_month = deadline.getDayOfMonth();
+        String month = deadline.getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        return String.format(" < %s:%s %s, %s %s > ", hour, minutes, day_of_week, day_of_month, month);
     }
 
     @Override

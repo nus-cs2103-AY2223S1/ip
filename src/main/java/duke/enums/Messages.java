@@ -15,7 +15,8 @@ public enum Messages {
     ERROR_INVALID_COMMAND("Beep-Boop, I don't understand you :<"),
     ERROR_TODO(">:| OOPS!!! The description of a todo cannot be empty."),
     ERROR_INVALID_INDEX(">:| OOPS!!! There is no task with this index."),
-    ERROR_MISSING_PARAMETERS(">:| OOPS!!! There are missing parameters.");
+    ERROR_MISSING_PARAMETERS(">:| OOPS!!! There are missing parameters."),
+    ERROR_INVALID_DATETIME(">:| OOPS!!!! The time format should be yyyy-MM-dd HH:mm");
 
     private String message;
 

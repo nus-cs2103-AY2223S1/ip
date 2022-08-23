@@ -1,5 +1,9 @@
 package duke.commands;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import duke.entities.*;
 import duke.enums.*;
 import duke.exceptions.*;
@@ -7,6 +11,7 @@ import duke.lists.*;
 
 public class AddDeadline extends AddTodo {
     protected String deadline;
+    protected DateTimeFormatter datetime_format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     public AddDeadline(TaskList task, String desc, String deadline) throws DukeException {
         super(task, desc);
@@ -23,8 +28,13 @@ public class AddDeadline extends AddTodo {
      */
     @Override
     public void execute() throws DukeException {
-        Deadline current_event = new Deadline(descrition, deadline);
-        tasks.addTask(current_event);
-        wrapWithLines(Messages.ADD_EVENT.toString(), current_event.toString());
+        try {
+            LocalDateTime deadline = LocalDateTime.parse(this.deadline, datetime_format);
+            Event current_event = new Event(descrition, deadline);
+            tasks.addTask(current_event);
+            wrapWithLines(Messages.ADD_EVENT.toString(), current_event.toString());
+        } catch (DateTimeParseException e) {
+            throw new DukeException(Messages.ERROR_INVALID_DATETIME.toString());
+        }
     }
 }
