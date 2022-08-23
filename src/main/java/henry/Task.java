@@ -1,20 +1,37 @@
 package henry;
 
-import command.Commands;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import command.Commands;
+
+/**
+ * The base for tasks that can be added to the
+ * task list. All task types (Todo, Deadline, Event)
+ * are just instances of Task with different types passed
+ * into the constructor.
+ */
 public class Task {
-    private final Commands type;
-    private final LocalDateTime date;
+
     protected String description;
     protected boolean isDone;
+    private final Commands type;
+    private final LocalDateTime date;
 
     public Task(Commands type, String description, LocalDateTime date) {
         this(type, description, date, false);
     }
 
+    /**
+     * Constructor for a task. The task will have the specified
+     * type, description, date, and status (if used).
+     *
+     * @param type        the type of task. Can be Todo, Deadline, or Event.
+     * @param description the description of the task.
+     * @param date        the date that the task must be completed by/is due.
+     *                    Only used for Deadline and Event tasks.
+     * @param isDone      whether or not the task is completed.
+     */
     public Task(Commands type, String description, LocalDateTime date, boolean isDone) {
         this.type = type;
         this.description = description;
@@ -28,6 +45,7 @@ public class Task {
 
     /**
      * Sets the status of this task as the input boolean.
+     *
      * @param status the desired status of the task
      */
     public void setComplete(boolean status) {
@@ -52,6 +70,7 @@ public class Task {
     /**
      * Returns the file-formatted version of the task. This is different from
      * the toString() method, in that it is simpler and thus easier to parse.
+     *
      * @return a string representing the task as it would be written to the file
      */
     public String toSimpleString() {

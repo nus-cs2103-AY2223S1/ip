@@ -2,10 +2,21 @@ package command;
 
 import henry.TaskList;
 
+/**
+ * The command class is the base for all commands.
+ * It only has one method, execute, which returns a CommandResult.
+ * This method is to be implemented by all subclasses of Command.
+ */
 public class Command {
 
     protected TaskList taskList;
 
+    /**
+     * Returns a CommandResult object based on the type of Command
+     * executed.
+     *
+     * @return
+     */
     public CommandResult execute() {
         throw new UnsupportedOperationException("Cannot execute abstract command!");
     }

@@ -1,7 +1,10 @@
 package command;
 
+/**
+ * An enum for task-creation commands.
+ */
 public enum Commands {
 
-    ECHO, LIST, BYE, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, HELP;
+    TODO, DEADLINE, EVENT;
 
 }

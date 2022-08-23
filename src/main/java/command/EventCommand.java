@@ -1,9 +1,13 @@
 package command;
 
-import henry.Task;
-
 import java.time.LocalDateTime;
 
+import henry.Task;
+
+/**
+ * Responsible for adding Event tasks to the task list.
+ * Event tasks are tasks with a date and time.
+ */
 public class EventCommand extends Command {
 
     public static final String COMMAND_WORD = "event";

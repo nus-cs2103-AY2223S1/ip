@@ -2,6 +2,10 @@ package command;
 
 import henry.Task;
 
+/**
+ * Responsible for setting the state of a task
+ * to "complete".
+ */
 public class MarkCommand extends Command {
 
     public static final String COMMAND_WORD = "mark";
