@@ -1,3 +1,6 @@
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -47,6 +50,8 @@ public class Duke {
                 this.mark(userInput);
             } else if (userInput[0].equals("unmark")) {
                 this.unmark(userInput);
+            } else if (userInput[0].equals("delete")) {
+                this.delete(userInput);
             } else {
                 throw new DukeException("Unrecognized command.");
             }
@@ -148,8 +153,27 @@ public class Duke {
         System.out.printf("Now you have %d tasks in the list.%n", db.size());
     }
 
+    private void delete(String[] userInput) {
+        Task tmp = db.remove(Integer.parseInt(userInput[1]) - 1);
+        System.out.println("OK, I've removed this task:");
+        System.out.println("\t" + tmp);
+        System.out.printf("Now you have %d tasks in the list.", db.size());
+    }
+
     // Initializes and starts a Duke instance.
     public static void main(String[] args) {
+        try {
+            if (!Files.isDirectory(Paths.get("data/"))) {
+                Files.createDirectories(Paths.get("data/"));
+            }
+
+            if (!Files.exists(Paths.get("data/duke.txt"))) {
+                Files.createFile(Paths.get("data/duke.txt"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         Duke duke = new Duke();
 
         duke.greet();
