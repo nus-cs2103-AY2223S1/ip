@@ -4,7 +4,7 @@ import zeus.exception.ZeusException;
 import zeus.main.Storage;
 import zeus.main.TaskList;
 import zeus.main.Ui;
-import zeus.task.Deadline;
+import zeus.task.Event;
 
 import java.time.LocalDate;
 
