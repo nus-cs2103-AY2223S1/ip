@@ -23,4 +23,14 @@ public abstract class Task {
     public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return isDone == task.isDone &&
+                symbol == task.symbol &&
+                description.equals(task.description);
+    }
 }

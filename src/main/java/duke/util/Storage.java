@@ -48,10 +48,13 @@ public class Storage {
         }
 
         ArrayList<Task> tasks = new ArrayList<>();
-        while (scanner.hasNextLine()) {
-            tasks.add(Parser.parseTask(scanner.nextLine()));
+        try {
+            while (scanner.hasNextLine()) {
+                tasks.add(Parser.parseTask(scanner.nextLine()));
+            }
+        } catch (ParseException e) {
+            throw new DataFileCorruptedException();
         }
-        scanner.close();
         return tasks;
     }
 

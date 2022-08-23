@@ -17,7 +17,7 @@ public class Parser {
         try {
             return Integer.parseInt(num);
         } catch (NumberFormatException e) {
-            throw new DukeException("Invalid argument: " + num);
+            throw new ParseException(num);
         }
     }
 
@@ -25,7 +25,7 @@ public class Parser {
         try {
             return LocalDateTime.parse(dateTime, DATE_TIME_INPUT_FORMAT);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid argument: " + dateTime);
+            throw new ParseException(dateTime);
         }
     }
 
@@ -87,12 +87,11 @@ public class Parser {
                 task = new EventTask(splits[2], parseDateTime(splits[3]));
                 break;
             default:
-                throw new DataFileCorruptedException();
+                throw new ParseException(input);
             }
             task.setDone(Integer.parseInt(splits[1]) == 1);
         } catch (Exception e) {
-            // any type of exception means the datafile is corrupted
-            throw new DataFileCorruptedException();
+            throw new ParseException(input);
         }
         return task;
     }

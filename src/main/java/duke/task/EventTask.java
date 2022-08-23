@@ -22,4 +22,11 @@ public class EventTask extends Task {
     public String toSaveString() {
         return super.toSaveString() + " | " + this.time.format(DATE_TIME_INPUT_FORMAT);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        EventTask that = (EventTask) o;
+        return time.equals(that.time);
+    }
 }

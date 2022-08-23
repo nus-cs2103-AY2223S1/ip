@@ -22,4 +22,11 @@ public class DeadlineTask extends Task {
     public String toSaveString() {
         return super.toSaveString() + " | " + this.deadline.format(DATE_TIME_INPUT_FORMAT);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!super.equals(o)) return false;
+        DeadlineTask that = (DeadlineTask) o;
+        return deadline.equals(that.deadline);
+    }
 }
