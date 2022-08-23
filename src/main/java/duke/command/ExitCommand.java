@@ -4,7 +4,14 @@ import duke.Storage;
 import duke.TaskList;
 import duke.UI;
 
-public class ExitCommand extends Command{
+/**
+ * Representation for exit command.
+ */
+public class ExitCommand extends Command {
+    /**
+     * Checks if this is an exit command.
+     * @return true.
+     */
     @Override
     public boolean isExit() {
         return true;

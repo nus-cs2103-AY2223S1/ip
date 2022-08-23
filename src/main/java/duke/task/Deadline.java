@@ -3,9 +3,17 @@ package duke.task;
 import duke.DateConverter;
 import java.time.LocalDate;
 
+/**
+ * Deadline, a type of Task.
+ */
 public class Deadline extends Task {
     private final LocalDate date;
 
+    /**
+     * Constructor for Deadline object.
+     * @param description Description of deadline.
+     * @param by String represents date of deadline.
+     */
     public Deadline(String description, String by) {
         super(description);
         this.date = LocalDate.parse(by);

@@ -5,10 +5,17 @@ import duke.TaskList;
 import duke.UI;
 import duke.task.Task;
 
-public class DeleteCommand extends Command{
+/**
+ * Representation of the DeleteCommand.
+ */
+public class DeleteCommand extends Command {
     private final int index;
 
-    public DeleteCommand(int index){
+    /**
+     * Constructor of DeleteCommand.
+     * @param index index of deleted task.
+     */
+    public DeleteCommand(int index) {
         this.index = index;
     }
     @Override
@@ -16,6 +23,13 @@ public class DeleteCommand extends Command{
         return false;
     }
 
+    /**
+     * Executes the DeleteCommand.
+     * @param taskList TaskList to delete Tasks at given index.
+     * @param ui UI to print to users.
+     * @param storage Storage to save and load TaskList.
+     */
+    @Override
     public void execute(TaskList taskList, UI ui, Storage storage) {
         Task toRemove = taskList.remove(this.index);
         String message = "Noted. I've removed this task:\n\t\t" + toRemove + "\n\tNow you have "
