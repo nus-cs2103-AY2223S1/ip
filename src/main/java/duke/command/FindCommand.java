@@ -21,15 +21,15 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         TaskList matchingTaskList = taskList.findMatchingTasks(this.query);
         if (matchingTaskList.getTaskList().isEmpty()) {
-            System.out.println("No matching tasks found in list.");
+            return "No matching tasks found in list.";
         } else {
             String output = String.format(
                     "Found %d matches in your todo list !", matchingTaskList.getTaskList().size());
-            System.out.println(output);
-            matchingTaskList.listTasks();
+            String result = matchingTaskList.listTasks();
+            return String.format("%s\n%s", output, result);
         }
     }
 }

@@ -19,8 +19,9 @@ public class Command {
      * @see Ui
      * @see Storage
      */
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException, DukeException {
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException, DukeException {
         System.out.println("Parent class Command executed");
+        return "";
     }
 
     /**

@@ -22,8 +22,9 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
-        taskList.markTaskAsDone(this.targetIndex);
+    public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
+        String result = taskList.markTaskAsDone(this.targetIndex);
         storage.writeDataToFile(taskList);
+        return result;
     }
 }

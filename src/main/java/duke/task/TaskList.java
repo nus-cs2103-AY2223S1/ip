@@ -58,7 +58,7 @@ public class TaskList {
      * Removes a task from list via id and outputs the status.
      * @param id refers to the task number on the list.
      */
-    public void removeTaskFromList(int id) {
+    public String removeTaskFromList(int id) {
         try {
             if (id <= 0 || id > taskList.size()) {
                 throw new DukeException(NO_SUCH_INDEX);
@@ -66,11 +66,11 @@ public class TaskList {
 
             Task taskToRemove = this.taskList.get(id - 1);
             this.taskList.remove(id - 1);
-            String taskRemovedOutput = String.format("Noted. I've removed this task:\n %s\n%s\n",
+            String taskRemovedOutput = String.format("Noted. I've removed this task:\n%s\n%s",
                     taskToRemove.toString(), getItemsLeft());
-            System.out.println(taskRemovedOutput);
+            return taskRemovedOutput;
         } catch (Exception e) {
-            System.out.println(e);
+            return e.getMessage();
         }
     }
 
@@ -79,24 +79,25 @@ public class TaskList {
      * @param task task to be added to list
      * @see Task
      */
-    public void addTaskToList(Task task) {
+    public String addTaskToList(Task task) {
         try {
             this.taskList.add(task);
-            String taskAddedOutput = String.format("Got it. I've added this task:\n  %s\n%s\n",
+            String taskAddedOutput = String.format("Got it. I've added this task:\n%s\n%s",
                     task.toString(), getItemsLeft());
-            System.out.println(taskAddedOutput);
+            return taskAddedOutput;
         } catch (Exception e) {
             System.out.println(e);
+            return e.getMessage();
         }
     }
 
     /**
      * Lists all tasks as numbered list.
      */
-    public void listTasks() {
+    public String listTasks() {
         if (taskList.isEmpty()) {
             System.out.println(NO_TASKS_LEFT);
-            return;
+            return "";
         }
         String toPrint = "";
 
@@ -106,7 +107,7 @@ public class TaskList {
             toPrint = String.format("%s\n%s", toPrint, toConcat);
         }
 
-        System.out.println(toPrint.substring(1) + "\n");
+        return toPrint.substring(1);
     }
 
     /**
@@ -114,15 +115,15 @@ public class TaskList {
      * @param id refers to the task number on the list.
      * @see Task
      */
-    public void markTaskAsDone(int id) {
+    public String markTaskAsDone(int id) {
         try {
             if (id <= 0 || id > taskList.size()) {
                 throw new DukeException(NO_SUCH_INDEX);
             }
             Task targetTask = taskList.get(id - 1);
-            targetTask.markAsDone(false);
+            return targetTask.markAsDone(false);
         } catch (Exception e) {
-            System.out.println(e);
+            return e.getMessage();
         }
     }
 
@@ -131,15 +132,15 @@ public class TaskList {
      * @param id refers to the task number on the list.
      * @see Task
      */
-    public void markTaskAsUnDone(int id) {
+    public String markTaskAsUnDone(int id) {
         try {
             if (id <= 0 || id > taskList.size()) {
                 throw new DukeException(NO_SUCH_INDEX);
             }
             Task targetTask = taskList.get(id - 1);
-            targetTask.markAsUnDone();
+            return targetTask.markAsUnDone();
         } catch (Exception e) {
-            System.out.println(e);
+            return e.getMessage();
         }
     }
 

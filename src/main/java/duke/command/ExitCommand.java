@@ -9,7 +9,7 @@ public class ExitCommand extends Command {
     private static final String EXIT_MSG = "Bye. Hope to see you again soon!";
 
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        System.out.println(EXIT_MSG);
+    public String execute(TaskList taskList, Ui ui, Storage storage) {
+        return EXIT_MSG;
     }
 }

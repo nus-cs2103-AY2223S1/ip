@@ -43,19 +43,21 @@ public class Task {
      * Mark a task as done, outputs status of action if needed.
      * @param slient option to slience task output in console.
      */
-    public void markAsDone(boolean slient) {
+    public String markAsDone(boolean slient) {
         this.isDone = true;
         if (!slient) {
-            System.out.println(determineTextOutput() + "\n" + this + "\n");
+            return determineTextOutput() + "\n" + this;
         }
+        return "";
     }
 
     /**
      * Mark a task as undone, outputs status of action.
+     * @return
      */
-    public void markAsUnDone() {
+    public String markAsUnDone() {
         this.isDone = false;
-        System.out.println(determineTextOutput() + "\n" + this + "\n");
+        return determineTextOutput() + "\n" + this;
     }
 
     public String getDescription() {
