@@ -1,6 +1,7 @@
 package duke;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.ImproperFormatException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,7 +25,7 @@ public class Storage {
             System.out.println("COULD NOT CREATE NEW FILE\nPLEASE RESTART DUKE");
         }
     }
-    public void load(TaskList taskList) throws FileNotFoundException {
+    public void load(TaskList taskList) throws FileNotFoundException, ImproperFormatException {
         Scanner reader = new Scanner(this.storageFile);
         while (reader.hasNext()) {
             String curr = reader.nextLine();

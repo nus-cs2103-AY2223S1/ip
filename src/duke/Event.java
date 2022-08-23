@@ -12,8 +12,11 @@ public class Event extends Task {
     private LocalDate date;
     private LocalTime time;
 
+    private String at;
+
     public Event(String description, String at) throws ImproperFormatException {
         super(description);
+        this.at = at;
         try {
             String[] arr = at.split(" ");
             this.date = LocalDate.parse(arr[1]);
@@ -39,9 +42,17 @@ public class Event extends Task {
     @Override
     public String toSaveVersion() {
         if (this.isDone()) {
-            return "E|1|" + super.description + "|" + this.at + "\n";
+            return "E|1|"
+                    + super.description
+                    + "|"
+                    + this.at
+                    + "\n";
         } else {
-            return "E|0|" + super.description + "|" + this.at + "\n";
+            return "E|0|"
+                    + super.description
+                    + "|"
+                    + this.at
+                    + "\n";
         }
     }
 }

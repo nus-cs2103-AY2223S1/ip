@@ -1,6 +1,7 @@
 package duke;
 
 import duke.exceptions.DukeException;
+import duke.exceptions.ImproperFormatException;
 
 import java.io.FileNotFoundException;
 
@@ -41,6 +42,8 @@ public class Duke {
             duke.storage.load(duke.taskList);
         } catch (FileNotFoundException e) {
             System.out.println("PLEASE RESTART DUKE");
+        } catch (ImproperFormatException e) {
+            System.out.println("CORRUPTED DATA");
         }
         duke.run();
         duke.storage.save(duke.taskList);

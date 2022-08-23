@@ -11,8 +11,11 @@ public class Deadline extends Task {
 
     private LocalTime time;
     private LocalDate date;
+
+    private String by;
     public Deadline(String description, String by) throws ImproperFormatException {
         super(description);
+        this.by = by;
         try {
             String[] arr = by.split(" ");
             this.date = LocalDate.parse(arr[1]);
@@ -39,9 +42,17 @@ public class Deadline extends Task {
     @Override
     public String toSaveVersion() {
         if (this.isDone()) {
-            return "D|1|" + super.description + "|" + this.by + "\n";
+            return "D|1|"
+                    + super.description
+                    + "|"
+                    + this.by
+                    + "\n";
         } else {
-            return "D|0|" + super.description + "|" + this.by + "\n";
+            return "D|0|"
+                    + super.description
+                    + "|"
+                    + this.by
+                    + "\n";
         }
     }
 }
