@@ -1,4 +1,5 @@
 public class ToDo extends Task{
+    private String description;
     public ToDo(String description) throws DukeException{
         super("tempTask");
         try {
@@ -11,10 +12,15 @@ public class ToDo extends Task{
         }catch (IndexOutOfBoundsException ie){
             throw (new DukeException("OOPS!!! The description of a todo is still not complete."));
         }
+        this.description=description;
     }
     @Override
     //return the task in a printable format
     public String printTask(){
         return "[T]"+super.printTask();
+    }
+    @Override
+    public String getDescription(){
+        return this.description;
     }
 }

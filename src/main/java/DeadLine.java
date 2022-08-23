@@ -1,5 +1,6 @@
 public class DeadLine extends Task{
     private String by;
+    private String description;
     public DeadLine(String description) throws DukeException{
         super("tempTask");
         try {
@@ -12,9 +13,14 @@ public class DeadLine extends Task{
         }catch (IndexOutOfBoundsException ie){
             throw(new DukeException("OOPS!!! The description of a deadline is still not complete."));
         }
+        this.description=description;
     }
     @Override
     public String printTask(){
         return "[D]"+super.printTask()+" (by:"+this.by+")";
+    }
+    @Override
+    public String getDescription(){
+        return this.description;
     }
 }
