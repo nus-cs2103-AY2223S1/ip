@@ -63,6 +63,17 @@ public class Deadline extends Task{
         }
     }
 
+    @Override
+    public String toString() {
+        if (!this.getStatus()) {
+            return this.getIndex() + ".[D][ ] " + this.getDescription() + " | by:" +
+                    date;
+        } else {
+            return this.getIndex() + ".[D][X] " + this.getDescription() + " | by:" +
+                    date;
+        }
+    }
+
     /**
      * Outputs the full details of the deadline being deleted in the console.
      */

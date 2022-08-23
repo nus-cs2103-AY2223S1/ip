@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,6 +14,26 @@ public class Duke {
         event
     }
 
+    private static void printFileContents(String filePath) throws FileNotFoundException {
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            System.out.println(s.nextLine());
+        }
+    }
+
+    private static void writeToFile(String filePath, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
+    static void appendToFile(String filePath, String textToAppend) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(textToAppend);
+        fw.close();
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -23,8 +44,15 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> listOfThings = new ArrayList<>(100);
 
+        try {
+            printFileContents("./src/main/java/KiwiList.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("File has yet to be created, creating for you now!");
+        }
 
-        System.out.println("Hello from\n" + logo);
+
+
+        System.out.println("\nHello from\n" + logo);
 
         System.out.println("Hello! I'm KiwiQE :) \nWhat can I do for you? \n");
 
@@ -207,6 +235,24 @@ public class Duke {
             System.out.println(straightLine + "\n  What do you mean by Justin Bieber plays~\n" + straightLine + "\n");
 
             input = sc.nextLine();
+        }
+
+        for (Task task: listOfThings) {
+            File f = new File("./src/main/java/KiwiList.txt");
+            if (!f.exists()) {
+                try {
+                    f.createNewFile();
+                    writeToFile("./src/main/java/KiwiList.txt", task.toString() + System.lineSeparator());
+                } catch (IOException e) {
+                    System.out.println("You can't create a file!");
+                }
+            } else {
+                try {
+                    appendToFile("./src/main/java/KiwiList.txt", task.toString() + System.lineSeparator());
+                } catch (IOException e) {
+                    System.out.println("You can't append!");
+                }
+            }
         }
 
         System.out.println(straightLine + "\n  さよなら, goodbye\n" + straightLine);

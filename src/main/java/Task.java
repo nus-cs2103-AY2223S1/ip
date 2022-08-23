@@ -99,6 +99,14 @@ public class Task {
 
     }
 
+    public String toString() {
+        if (!isDone) {
+            return "  " + index + ".[ ] " + taskDescription;
+        } else {
+            return "  " + index + ".[X] " + taskDescription;
+        }
+    }
+
     /**
      * A method to output in the console the task deleted from the list of tasks.
      */
