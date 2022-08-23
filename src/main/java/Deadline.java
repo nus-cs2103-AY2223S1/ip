@@ -17,6 +17,7 @@ public class Deadline extends Task {
             for (int i = 0; i < formats.length; i++) {
                 try {
                     this.date = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(formats[i]));
+                    break;
                 } catch (DateTimeParseException e) {
                     if (i == formats.length - 1) {
                         throw new IllegalArgumentException("Date format is invalid. Try it in y-M-d H:m. For example, 2020-1-12 23:59.");
