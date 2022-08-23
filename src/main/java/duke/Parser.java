@@ -138,6 +138,26 @@ public class Parser {
 				throw new DukeException("I don't know which to delete!");
 			}
 			break;
+		case "find":
+			if (parts.length <= 1) {
+				throw new DukeException("Please tell me what to find!");
+			}
+			int count = 1;
+			part2 = parts[1];
+			Pattern findExpression = Pattern.compile(".*\\b" + part2 + "\\b.*");
+			System.out.println("-----------------------------------------------");
+			System.out.println("Here are the matching tasks in your list:");
+			for (int i = 0; i < tasks.size(); i++) {
+				if (tasks.getTask(i).getDescription().matches(String.valueOf(findExpression))) {
+					System.out.println((count) + "." + this.tasks.getTask(i).toString());
+					count++;
+				}
+			}
+			if (count == 1) {
+				System.out.println("Nothing can be found!");
+			}
+			System.out.println("-----------------------------------------------");
+			break;
 		default:
 			throw new DukeException("I'm sorry, but I don't know what that means.");
 		}
