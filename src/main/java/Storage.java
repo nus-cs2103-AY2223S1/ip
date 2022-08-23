@@ -61,7 +61,7 @@ class Storage {
         return tasks;
     }
 
-    void writeTasks(List<Task> tasks) {
+    void writeTasks(TaskList tasks) {
         FileWriter writer = null;
         try {
             writer = new FileWriter(file);

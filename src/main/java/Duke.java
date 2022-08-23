@@ -1,27 +1,25 @@
-import java.util.List;
-
 public class Duke {
     public static void main(String[] args) {
         Storage storage = new Storage("./tasks.txt");
-        List<Task> tasks = storage.readTasks();
+        TaskList taskList = new TaskList(storage.readTasks());
         Ui ui = new Ui();
 
         ui.showWelcome();
         while (true) {
             String command = ui.readCommand();
             if (command.equals("list")) {
-                ui.showTaskList(tasks);
+                ui.showTaskList(taskList);
             } else if (command.matches("^mark \\d+$")) {
-                Task task = tasks.get(Integer.parseInt(command.substring(5)) - 1);
+                Task task = taskList.get(Integer.parseInt(command.substring(5)) - 1);
                 task.markDone();
                 ui.showMarkAsDone(task);
             } else if (command.matches("^unmark \\d+$")) {
-                Task task = tasks.get(Integer.parseInt(command.substring(7)) - 1);
+                Task task = taskList.get(Integer.parseInt(command.substring(7)) - 1);
                 task.markNotDone();
                 ui.showMarkAsNotDone(task);
             } else if (command.matches("^delete \\d+$")) {
-                Task task = tasks.remove(Integer.parseInt(command.substring(7)) - 1);
-                ui.showTaskRemoved(task, tasks);
+                Task task = taskList.remove(Integer.parseInt(command.substring(7)) - 1);
+                ui.showTaskRemoved(task, taskList.size());
             } else if (command.equals("bye")) {
                 break;
             } else {
@@ -52,13 +50,13 @@ public class Duke {
                     } else {
                         throw new DukeException("I'm sorry, but I don't know what that means :-(");
                     }
-                    tasks.add(task);
-                    ui.showTaskAdded(task, tasks);
+                    taskList.add(task);
+                    ui.showTaskAdded(task, taskList.size());
                 } catch (DukeException err) {
                     ui.showDukeException(err);
                 }
             }
-            storage.writeTasks(tasks);
+            storage.writeTasks(taskList);
         }
 
         ui.showBye();
