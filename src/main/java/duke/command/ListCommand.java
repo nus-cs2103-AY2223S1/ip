@@ -8,7 +8,7 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(Storage storage, UI ui, TaskList tasks) {
-        ui.print("List of tasks:\n" + tasks.toString());
+        ui.print("List of tasks:\n" + tasks);
     }
 
     @Override

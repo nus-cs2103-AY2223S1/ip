@@ -22,6 +22,15 @@ public class FindCommand extends Command {
                 foundTasks.add(task);
             }
         }
-        ui.print("Tasks containing \"" + keyword + "\":\n" + foundTasks.toString());
+        ui.print("Tasks containing \"" + keyword + "\":\n" + foundTasks);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof FindCommand) {
+            FindCommand other = (FindCommand) o;
+            return this.keyword.equals(other.keyword);
+        }
+        return false;
     }
 }
