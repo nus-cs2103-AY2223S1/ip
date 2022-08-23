@@ -1,10 +1,13 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
+import java.util.Scanner;
 
 /**
  * A task list is used to store tasks.
  */
 public class TaskList {
-    private LinkedList<Task> tasks = new LinkedList<>();
+    private LinkedList<Task> tasks;
 
     /**
      * Constructor for a task list.
@@ -13,8 +16,28 @@ public class TaskList {
         this.tasks = new LinkedList<>();
     }
 
-    public int numberOfTasks() {
-        return this.tasks.size();
+    public TaskList(File savedTasks) throws DukeException {
+        this.tasks = new LinkedList<>();
+        try {
+            Scanner sc = new Scanner(savedTasks);
+            while (sc.hasNextLine()) {
+                String ln = sc.nextLine();
+                TaskType savedTask = Task.readSavedTaskType(ln.charAt(0));
+                this.tasks.add(savedTask.parseSavedFormat(ln));
+            }
+        } catch (FileNotFoundException e) {
+            throw new DukeException(String.format("You have no saved tasks."));
+        }
+    }
+
+    public String numberOfTasks() {
+        int numTasks = this.tasks.size();
+        if (numTasks == 0) {
+            return "Your task list looks empty, add some tasks to get started!";
+        } else {
+            // TODO pluralise properly
+            return String.format("You currently have %d tasks in your list.", numTasks);
+        }
     }
 
     /**

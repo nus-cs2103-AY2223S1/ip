@@ -14,8 +14,8 @@ public class Deadline extends Task {
      * @param dueDate The due date of the deadlined task
      */
     public Deadline(String description, LocalDateTime dueDate) {
-            super(description);
-            this.dueDate = dueDate;
+        super(description);
+        this.dueDate = dueDate;
     }
 
     public Deadline(String description, LocalDateTime dueDate, boolean completion) {
