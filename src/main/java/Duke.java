@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -67,6 +68,34 @@ public class Duke {
         }
     }
 
+    private static void readFile(File file) {
+        try {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine()) {
+                String data = sc.nextLine();
+                char type = data.charAt(1);
+                if (type == 'T') {
+                    String description = data.substring(7);
+                    taskList.add(new Todo(description));
+                } else if (type == 'D') {
+                    String temp = data.substring(7);
+                    String description = temp.split(" \\(by: ")[0];
+                    String temp2 = temp.split(" \\(by: ")[1];
+                    String by = temp2.substring(0, temp2.length() - 1);
+                    taskList.add(new Deadline(description, by));
+                } else {
+                    String temp = data.substring(7);
+                    String description = temp.split(" \\(at: ")[0];
+                    String temp2 = temp.split(" \\(at: ")[1];
+                    String at = temp2.substring(0, temp2.length() - 1);
+                    taskList.add(new Event(description, at));
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static void createFile() {
 
         File directory = new File(PATH);
@@ -76,6 +105,7 @@ public class Duke {
         File file = new File(FILENAME);
         try {
             file.createNewFile();
+            readFile(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
