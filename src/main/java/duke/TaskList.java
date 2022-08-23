@@ -171,6 +171,23 @@ public class TaskList {
     }
 
     /**
+     * searches and prints out matching tasks
+     * @param keyword word to search in tasks
+     */
+    public void find(String keyword) {
+        ArrayList<Task> matches = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            Task task = tasks.get(i);
+            if (task.toString().contains(keyword)) {
+                matches.add(task);
+            }
+        }
+        TaskList match = new TaskList(matches);
+        String print = String.format("Here are the matching tasks in your list:\n%s", match.toString());
+        System.out.println(print);
+    }
+
+    /**
      * returns string representation of all tasks with indexing
      * @return string representation of all tasks
      */

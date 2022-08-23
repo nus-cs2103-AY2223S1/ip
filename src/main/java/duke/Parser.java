@@ -48,6 +48,11 @@ public class Parser {
         } else if (command.startsWith("delete")) {
             tasks.delete(command);
 
+        // user wants to find tasks with a keyword
+        } else if (command.startsWith("find")) {
+            String keyword = command.replace("find ", "");
+            tasks.find(keyword);
+
         // unknown command
         } else {
             throw new UnknownInputException();
