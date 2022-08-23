@@ -1,9 +1,9 @@
 package duke.task;
 
-import java.time.LocalDateTime;
-
 import static duke.util.Parser.DATE_TIME_INPUT_FORMAT;
 import static duke.util.Parser.DATE_TIME_OUTPUT_FORMAT;
+
+import java.time.LocalDateTime;
 
 /**
  * Encapsulates a task with a deadline.
@@ -39,7 +39,9 @@ public class DeadlineTask extends Task {
 
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) return false;
+        if (!super.equals(o)) {
+            return false;
+        }
         DeadlineTask that = (DeadlineTask) o;
         return deadline.equals(that.deadline);
     }

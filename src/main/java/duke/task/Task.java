@@ -57,11 +57,11 @@ public abstract class Task {
      */
     @Override
     public boolean equals(Object o) {
-        if (o instanceof  Task) {
+        if (o instanceof Task) {
             Task other = (Task) o;
-            return this.symbol.equals(other.symbol) &&
-                    this.description.equals(other.description) &&
-                    this.isDone == other.isDone;
+            return this.symbol.equals(other.symbol)
+                    && this.description.equals(other.description)
+                    && this.isDone == other.isDone;
         }
         return false;
     }

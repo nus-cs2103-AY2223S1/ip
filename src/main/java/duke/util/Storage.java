@@ -1,9 +1,5 @@
 package duke.util;
 
-import duke.DukeException;
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +7,10 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Storage class for storing and retrieving data from a file.

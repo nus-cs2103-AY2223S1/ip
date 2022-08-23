@@ -1,9 +1,9 @@
 package duke.task;
 
-import java.time.LocalDateTime;
-
 import static duke.util.Parser.DATE_TIME_INPUT_FORMAT;
 import static duke.util.Parser.DATE_TIME_OUTPUT_FORMAT;
+
+import java.time.LocalDateTime;
 
 /**
  * Encapsulates an event.
@@ -50,7 +50,9 @@ public class EventTask extends Task {
      */
     @Override
     public boolean equals(Object o) {
-        if (!super.equals(o)) return false;
+        if (!super.equals(o)) {
+            return false;
+        }
         EventTask that = (EventTask) o;
         return time.equals(that.time);
     }

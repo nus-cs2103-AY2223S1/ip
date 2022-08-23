@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import duke.DukeException;
 
 /**
  * Encapsulates a list of tasks.
@@ -81,7 +81,7 @@ public class TaskList implements Iterable<Task> {
      *
      * @param index The index of the task to remove. Assumed 0-indexed.
      */
-    public void remove(int index) throws DukeException {
+    public void remove(int index) {
         if (index < 0 || index >= tasks.size()) {
             throw new DukeException("Index out of bound");
         }
