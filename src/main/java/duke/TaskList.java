@@ -57,7 +57,7 @@ public class TaskList {
         ArrayList<Task> result = new ArrayList<>();
 
         for (Task t : tasks) {
-            if (t.description.contains(keyword)) {
+            if (t.getDescription().contains(keyword)) {
                 result.add(t);
             }
         }
