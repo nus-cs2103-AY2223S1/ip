@@ -1,3 +1,6 @@
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 public class BotList {
     private final ArrayList<Task> internalArray;
@@ -47,19 +50,43 @@ public class BotList {
     String delete(int taskIndex) {
         Task task = this.internalArray.remove(taskIndex - 1);
         return "Noted.\n" + task.toString() + "\nhas been deleted.\n" + getNoTasks();
+    }
 
+    String find(String date) throws DekuExceptions {
+        ArrayList<Task> newArray = new ArrayList<>();
+        for (Task task: this.internalArray) {
+            if (task.getDate().equals(parseDate(date))) {
+                newArray.add(task);
+            }
+        }
+        return this.outputList("Here are the tasks with the same date: ",newArray);
+    }
+
+    private LocalDate parseDate(String dateString) throws DekuExceptions {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[dd/MM/yyyy][dd-MM-yyyy][yyyy-MM-dd]");
+            return LocalDate.parse(dateString, formatter);
+        } catch (DateTimeException e) {
+            throw new DekuExceptions("Please input a valid date format!\n" +
+                    "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd \n" +
+                    "Example: 23/08/2022");
+        }
+    }
+
+    private String outputList(String message, ArrayList<Task> array) {
+        String niceMessage = message;
+        StringBuilder output = new StringBuilder(niceMessage);
+        for (int i = 1; i < array.size() + 1; i++) {
+            if (output.length() != 0) {
+                output.append("\n");
+            }
+            output.append(i).append(") ").append(array.get(i-1));
+        }
+        return output.toString();
     }
 
     @Override
     public String toString() {
-        String niceMessage = "Here are your tasks:\n";
-        StringBuilder output = new StringBuilder(niceMessage);
-        for (int i = 1; i < this.internalArray.size() + 1; i++) {
-            if (output.length() != 0) {
-                output.append("\n");
-            }
-            output.append(i).append(") ").append(this.internalArray.get(i-1));
-        }
-        return output.toString();
+        return this.outputList("Here are your tasks:\n", this.internalArray);
     }
 }

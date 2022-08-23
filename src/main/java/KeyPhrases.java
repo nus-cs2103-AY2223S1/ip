@@ -9,6 +9,7 @@ public enum KeyPhrases {
     DEADLINE("deadline"),
     EVENT("event"),
     TODO("todo"),
+    FIND_DATE("find_date"),
     OTHERS("");
 
     private String commandPhrase;
