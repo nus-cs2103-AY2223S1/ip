@@ -38,8 +38,8 @@ public class BotUI {
     }
 
     String informMarkStatus(Task task) {
-       return (task.isDone()) ? "Nice! this task is marked as done. Good Job!\n" + task.toString() :
-               "This task is marked as not done. Keep it up!\n" + task.toString();
+       return (task.isDone()) ? "Nice! this task is marked as done. Good Job!\n" + task :
+               "This task is marked as not done. Keep it up!\n" + task;
     }
 
     String addStatus(TaskRecords taskList, Task task) {
@@ -65,10 +65,10 @@ public class BotUI {
     }
 
     String invalidFormat() {
-        return "Base on my understanding, your instruction didn't follow the format\n" +
+        return "Based on my understanding, your instruction didn't follow the format\n" +
                 "todo : todo [task description]\n" +
-                "deadline: deadline [task description] /by [your date/time]\n" +
-                "event: event [task description] /at [your date/time]";
+                "deadline: deadline [task description] /by [YYYY-MM-DD HHmm]\n" +
+                "event: event [task description] /at [YYYY-MM-DD HHmm]";
     }
 
     String taskNotExist(TaskRecords taskList) {
@@ -77,8 +77,11 @@ public class BotUI {
     }
 
     String invalidCheckFormat() {
-        return "Sorry, last character after mark/unmark command should be integer!";
+        return "Sorry, last character after mark/unmark/delete command should be integer!";
     }
 
-
+    String invalidDateFormat() {
+        return "Date and time format should be [YYYY-MM-DD HHmm]!\n"
+                + "(eg. 2022-08-21 1300)";
+    }
 }

@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 abstract class Task {
     private final String detail;
     private final boolean isDone;
@@ -17,7 +19,7 @@ abstract class Task {
 
     abstract String getId();
 
-    abstract String getTime();
+    abstract LocalDateTime getTime();
 
     String getDetail() {
         return this.detail;

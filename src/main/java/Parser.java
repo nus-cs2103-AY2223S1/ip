@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Parser {
@@ -31,6 +32,11 @@ public class Parser {
         } else {
             return splitInput(rawInput, " ")[1];
         }
+    }
+
+    static LocalDateTime convertTime(String timeString) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return LocalDateTime.parse(timeString, formatter);
     }
 
 }

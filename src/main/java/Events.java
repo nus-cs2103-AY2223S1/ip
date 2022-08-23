@@ -12,9 +12,13 @@ public class Events extends Task {
         this.time = time;
     }
 
-    Events(String command) {
+    Events(String command) throws DukeException {
         super(Parser.extractDetail(command, timeId));
-        this.time = Parser.extractDateTime(command, timeId);
+        try {
+            this.time = Parser.extractDateTime(command, timeId);
+        } catch (IndexOutOfBoundsException ex) {
+            throw new DukeException(new BotUI().invalidDateFormat());
+        }
     }
 
     @Override
@@ -23,7 +27,7 @@ public class Events extends Task {
     }
 
     @Override
-    String getTime() {
+    LocalDateTime getTime() {
         return this.time;
     }
 

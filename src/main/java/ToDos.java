@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class ToDos extends Task {
 
     private static final String ID = "[T]";
@@ -10,8 +12,8 @@ public class ToDos extends Task {
     }
 
     @Override
-    String getTime() {
-        return "toDo have no time!";
+    LocalDateTime getTime() {
+        return LocalDateTime.now();
     }
     @Override
     String getId() {

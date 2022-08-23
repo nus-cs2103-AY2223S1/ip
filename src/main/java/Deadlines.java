@@ -11,9 +11,13 @@ public class Deadlines extends Task {
         this.time = time;
     }
 
-    Deadlines(String command) {
+    Deadlines(String command) throws DukeException {
         super(Parser.extractDetail(command, timeId));
-        this.time = Parser.extractDateTime(command, timeId);
+        try {
+            this.time = Parser.extractDateTime(command, timeId);
+        } catch (IndexOutOfBoundsException ex) {
+            throw new DukeException(new BotUI().invalidDateFormat());
+        }
     }
 
     @Override
@@ -32,7 +36,7 @@ public class Deadlines extends Task {
     }
 
     @Override
-    String getTime() {
+    LocalDateTime getTime() {
         return this.time;
     }
 

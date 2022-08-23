@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class FileManager {
@@ -24,9 +25,11 @@ public class FileManager {
             if (info[0].equals("[T]")) {
                 savedList.addProcess(new ToDos(info[2], Boolean.parseBoolean(info[1])));
             } else if (info[0].equals("[E]")) {
-                savedList.addProcess(new Events(info[2], Boolean.parseBoolean(info[1]), info[3]));
+                savedList.addProcess(new Events(info[2], Boolean.parseBoolean(info[1]),
+                        Parser.convertTime(info[3])));
             } else {
-                savedList.addProcess(new Deadlines(info[2], Boolean.parseBoolean(info[1]), info[3]));
+                savedList.addProcess(new Deadlines(info[2], Boolean.parseBoolean(info[1]),
+                        Parser.convertTime(info[3])));
             }
         }
         return savedList;
@@ -39,7 +42,8 @@ public class FileManager {
                     .append(t.isDone()).append(SECTION_DIVIDER)
                     .append(t.getDetail()).append(SECTION_DIVIDER);
             if(!t.getId().equals("[T]")) {
-                content.append(t.getTime()).append(SECTION_DIVIDER);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+                content.append(t.getTime().format(formatter)).append(SECTION_DIVIDER);
             }
             content.append("\n");
         }
