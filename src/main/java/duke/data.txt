@@ -1,3 +1,3 @@
-DEADLINE,,true,,this is a test deadline,,Monday 4pm
-TODO,,false,,new todo task,,null
-EVENT,,false,,hug bb,,Tonight when she's back
+TODO,,false,,a new todo task,,null
+DEADLINE,,false,,a new deadline,,01-09-2000 00:00
+EVENT,,false,,a new event,,06-10-1999 00:00
