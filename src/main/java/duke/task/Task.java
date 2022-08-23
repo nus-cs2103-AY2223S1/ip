@@ -77,7 +77,7 @@ public abstract class Task {
             task.text = args[2];
             if (args.length >= 4) {
                 try {
-                    task.details = LocalDate.parse(args[3]d);
+                    task.details = LocalDate.parse(args[3]);
                 } catch (DateTimeParseException e) {
                     return null;
                 }
