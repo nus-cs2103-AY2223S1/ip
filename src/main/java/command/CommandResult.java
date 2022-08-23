@@ -22,4 +22,9 @@ public class CommandResult {
     public Optional<TaskList> getTaskList() {
         return Optional.ofNullable(list);
     }
+
+    @Override
+    public String toString() {
+        return feedback;
+    }
 }
