@@ -5,6 +5,8 @@ import tasks.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -74,12 +76,21 @@ public class Storage {
                             if (line.length < 4) {
                                 throw new DukeException(EVIL_FILE);
                             }
-                            String by = line[3];
-                            tasks.add(new DeadlineTask(description, by, isDone));
+                            try {
+                                LocalDate by = LocalDate.parse(line[3]);
+
+                                tasks.add(new DeadlineTask(description, by, isDone));
+                            } catch (DateTimeParseException e) {
+                                throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
+                            }
                             break;
                         case "E":
-                            String at = line[3];
-                            tasks.add(new EventTask(description, at, isDone));
+                            try {
+                                LocalDate at = LocalDate.parse(line[3]);
+                                tasks.add(new EventTask(description, at, isDone));
+                            } catch (DateTimeParseException e) {
+                                throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
+                            }
                             break;
                         default:
                             throw new DukeException(EVIL_FILE);
