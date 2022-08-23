@@ -25,7 +25,7 @@ public class Event extends Task {
 
     public static Event unserialise(String[] words) {
         return new Event(
-                words[1] == "1",
+                words[1].equals("1"),
                 words[2],
                 words[3]);
     }

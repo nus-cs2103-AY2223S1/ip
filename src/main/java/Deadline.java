@@ -29,7 +29,7 @@ public class Deadline extends Task {
 
     public static Deadline unserialise(String[] words) {
         return new Deadline(
-                words[1] == "1",
+                words[1].equals("1"),
                 words[2],
                 words[3]);
     }

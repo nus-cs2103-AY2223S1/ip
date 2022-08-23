@@ -5,6 +5,13 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Hazell {
+    private static final String logo = "  _    _               _ _ \n"
+            + " | |  | |             | | |\n"
+            + " | |__| | __ _ _______| | |\n"
+            + " |  __  |/ _` |_  / _ \\ | |\n"
+            + " | |  | | (_| |/ /  __/ | |\n"
+            + " |_|  |_|\\__,_/___\\___|_|_|\n";
+
     public static void reply(String msg) {
         String DIVIDER = "\t____________________________________________________________";
         System.out.println(DIVIDER);
@@ -15,12 +22,6 @@ public class Hazell {
     }
 
     public static void main(String[] args) {
-        String logo = "  _    _               _ _ \n"
-                + " | |  | |             | | |\n"
-                + " | |__| | __ _ _______| | |\n"
-                + " |  __  |/ _` |_  / _ \\ | |\n"
-                + " | |  | | (_| |/ /  __/ | |\n"
-                + " |_|  |_|\\__,_/___\\___|_|_|\n";
         System.out.println(logo);
 
         TaskStore taskStore;
@@ -28,7 +29,7 @@ public class Hazell {
             taskStore = TaskStore.createFromFile();
         } catch (IOException e) {
             taskStore = new TaskStore();
-            reply("Looks like this is the first time you started me up."
+            reply("Looks like this is the first time you started me up. "
                     + "I'll be saving your tasks to data/hazell.txt!");
         }
 
@@ -42,7 +43,7 @@ public class Hazell {
                     reply("Bye. Hope to see you again soon!");
                     System.exit(0);
                 } else if (command.startsWith("list")) {
-                    reply(String.format("Here are the tasks in your list:\n%s", taskStore.toString()));
+                    reply(String.format("Here are the tasks in your list:\n%s", taskStore));
                 } else if (command.startsWith("mark")) {
                     int index = Integer.parseInt(command.getTrailingArgs().get(0)) - 1;
                     String response = taskStore.markTaskAsDone(index);

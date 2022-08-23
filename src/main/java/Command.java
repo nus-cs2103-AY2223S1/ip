@@ -15,8 +15,8 @@ public class Command {
      * - Doesn't allow for multiple repeated options
      */
 
-    private List<String> args = new ArrayList<>();
-    private Map<String, String> kwargs = new HashMap<>();
+    private List<String> args;
+    private Map<String, String> kwargs;
 
     private Command(List<String> args, Map<String, String> kwargs) {
         this.args = args;
