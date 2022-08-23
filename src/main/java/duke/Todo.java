@@ -1,3 +1,4 @@
+package duke;
 public class Todo extends Task {
     private static final String type = "[T]";
 

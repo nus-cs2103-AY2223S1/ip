@@ -1,3 +1,4 @@
+package duke;
 public class Ui {
     public void greet() {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
