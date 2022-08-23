@@ -16,4 +16,9 @@ public class UnmarkResponse extends DukeResponse {
         int index = Integer.parseInt(data.trim());
         super.message(list.undone(index));
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

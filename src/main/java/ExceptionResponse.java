@@ -10,4 +10,9 @@ public class ExceptionResponse extends DukeResponse {
         String OOPS = "☹ OOPS!!! ";
         super.message(OOPS + exception.getMessage());
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

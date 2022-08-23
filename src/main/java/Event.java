@@ -16,7 +16,7 @@ public class Event extends Task {
 
     @Override
     public String getOtherData() {
-        return this.at;
+        return this.at.toString();
     }
 
     @Override

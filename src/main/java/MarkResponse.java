@@ -16,4 +16,9 @@ public class MarkResponse extends DukeResponse {
         int index = Integer.parseInt(data.trim());
         super.message(list.done(index));
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

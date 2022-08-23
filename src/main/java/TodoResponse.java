@@ -16,4 +16,9 @@ public class TodoResponse extends DukeResponse {
         Todo t = new Todo(data);
         super.message(list.add(t));
     }
+
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

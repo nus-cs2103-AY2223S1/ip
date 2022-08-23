@@ -28,7 +28,12 @@ public class DeadlineResponse extends DukeResponse {
             throw new DukeException("Please enter deadline of task.");
         }
 
-        Deadline d = new Deadline(description, super.parseStrToDate(dateTimeStr));
+        Deadline d = new Deadline(description, Parser.strToDate(dateTimeStr));
         super.message(list.add(d));
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }

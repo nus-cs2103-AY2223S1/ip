@@ -1,89 +1,52 @@
-import java.util.Scanner;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Duke {
-    public static void main(String[] args) {
-        DukeResponse.intro();
+    private final Storage storage;
+    private DukeList list;
+    private final DukeUi ui;
 
-        run();
+    public Duke(Path dataPath) {
+        this.storage = new Storage(dataPath);
+        this.ui = new DukeUi();
+        try {
+            new ReadFileResponse().run();
+            this.list = new DukeList(this.storage.read());
+        } catch (DukeException e) {
+            new ExceptionResponse(e).run();
+            this.list = new DukeList();
+        }
+        DukeResponse.intro();
+    }
+
+    public static void main(String[] args) {
+        Path dataPath = Paths.get("data", "duke.txt");
+
+        new Duke(dataPath).run();
 
         DukeResponse.outro();
     }
 
-    private static void run() {
+    private void run() {
         boolean isRunning = true;
-        Scanner scanner = new Scanner(System.in);
-        DukeList list = new DukeList();
-
-        try {
-            new ReadFileResponse(list).run();
-        } catch (DukeException e){
-            new ExceptionResponse(e).run();
-        }
 
         while (isRunning) {
-            String input = scanner.nextLine();
-
+            DukeResponse response = this.ui.readInput(this.list);
             try {
-                DukeCommand command = getCommand(input);
-                String data = getData(input);
-
-                switch (command) {
-                case EXIT:
-                    // Exit Duke
-                    scanner.close();
+                if (response.isExit()) {
                     isRunning = false;
-                    break;
-                case LIST:
-                    // Print list
-                    new ListResponse(list).run();
-                    break;
-                case MARK:
-                    // Mark task as done
-                    new MarkResponse(list, data).run();
-                    break;
-                case UNMARK:
-                    // Mark task as undone
-                    new UnmarkResponse(list, data).run();
-                    break;
-                case DELETE:
-                    new DeleteResponse(list, data).run();
-                    break;
-                case TODO:
-                    // Add task as to do
-                    new TodoResponse(list, data).run();
-                    break;
-                case DEADLINE:
-                    // Add task as deadline
-                    new DeadlineResponse(list, data).run();
-                    break;
-                case EVENT:
-                    // Add task as event
-                    new EventResponse(list, data).run();
-                    break;
-                default:
-                    // Unknown command
-                    throw new DukeException("I'm sorry, but I don't know what that means :(");
+                    this.ui.closeScanner();
                 }
+                response.run();
             } catch (DukeException e) {
-                new ExceptionResponse(e).run();
+                this.ui.showError(e);
             }
         }
 
         try {
-            new WriteFileResponse(list).run();
+            new WriteFileResponse(this.list, this.storage).run();
         } catch (DukeException e) {
             new ExceptionResponse(e).run();
         }
-    }
-
-    private static DukeCommand getCommand(String input) {
-        return DukeCommand.read(input.split(" ", 2)[0]);
-    }
-
-    private static String getData(String input) {
-        if (input.contains(" ")) {
-            return input.split(" ", 2)[1].trim();
-        }
-        return "";
     }
 }

@@ -17,4 +17,8 @@ public class DeleteResponse extends DukeResponse {
         super.message(list.delete(index));
     }
 
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

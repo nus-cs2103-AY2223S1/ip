@@ -1,11 +1,12 @@
-public class ReadFileResponse extends DukeResponse {
+public class ExitResponse extends DukeResponse {
+
     @Override
     public void run() throws DukeException {
-        super.message("Loading...");
+
     }
 
     @Override
     public boolean isExit() {
-        return false;
+        return true;
     }
 }

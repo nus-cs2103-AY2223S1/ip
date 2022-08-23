@@ -28,7 +28,12 @@ public class EventResponse extends DukeResponse {
             throw new DukeException("Please enter event time.");
         }
 
-        Event e = new Event(description, super.parseStrToDate(dateTimeStr));
+        Event e = new Event(description, Parser.strToDate(dateTimeStr));
         super.message(list.add(e));
+    }
+
+    @Override
+    public boolean isExit() {
+        return false;
     }
 }
