@@ -30,12 +30,6 @@ public class TaskList {
         return this.tasks.size();
     }
 
-    public void printTaskList() {
-        for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.println(this.tasks.get(i).toString() + " at index " + i);
-        }
-    }
-
     /**
      * Utility function with logic for adding tasks to the user's task list.
      * @param description The description of the task to be added.
@@ -97,6 +91,15 @@ public class TaskList {
         return this.tasks.get(index).toString();
     }
 
+    public void findAndPrintAllOccurrencesOf(String s) {
+        String result = "Here are the matching tasks in your list:\n";
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).toString().toLowerCase().contains(s)) {
+                result = result + "\n\t" + this.tasks.get(i);
+            }
+        }
+        Ui.sendMessage(result);
+    }
 
     public String formatAllTasksForFileStorage() {
         String r = "";
@@ -120,9 +123,5 @@ public class TaskList {
             r = r + s + "\n";
         }
         return r;
-    }
-
-    public Task getTask() {
-        return this.tasks.get(0);
     }
 }

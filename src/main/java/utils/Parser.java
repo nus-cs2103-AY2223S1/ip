@@ -17,6 +17,13 @@ public class Parser {
         } else {
             int i;
             switch (arr[0]) {
+                case "find":
+                    if (arr.length <= 1) {
+                        throw new DukeException("Error. Please enter a suitable description for your search.");
+                    }
+                    String desc = s.substring(4).trim().toLowerCase();
+                    taskList.findAndPrintAllOccurrencesOf(desc);
+                    break;
                 case "mark":
                     if (arr.length <= 1) {
                         throw new DukeException("Error. Please enter an argument after \"mark\".");
