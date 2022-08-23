@@ -1,11 +1,20 @@
 public class Todo extends Task {
-    public Todo(String desc)
-    {
-        super(desc);
+    public Todo(String desc, boolean done) {
+        super(desc, done);
     }
+
     @Override
-    public String toString()
+    public String toString() { return "[T]" + super.toString(); }
+
+    @Override
+    public char getType()
     {
-        return "[T]" + super.toString();
+        return 'T';
+    }
+
+    @Override
+    public String getDetail()
+    {
+        return null;
     }
 }
