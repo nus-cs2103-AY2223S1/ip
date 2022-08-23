@@ -1,8 +1,8 @@
 public class Event extends Task {
     private final String timeRange;
 
-    public Event(String name, String timeRange) {
-        super(name);
+    public Event(String name, boolean initialComplete, String timeRange) {
+        super(name, initialComplete);
         this.timeRange = timeRange;
     }
 

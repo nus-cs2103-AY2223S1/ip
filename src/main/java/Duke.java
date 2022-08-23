@@ -1,8 +1,51 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Duke {
+
+    private static void loadTasksFromDisk(List<Task> tasks) {
+        try {
+            // Create the tasks directory if it does not already exist.
+            File tasksDirectory = new File("data/");
+            if (!tasksDirectory.exists()) {
+                tasksDirectory.mkdir();
+            }
+            File file = new File("data/duke.txt");
+            if (!file.createNewFile()) { // Create the duke.txt file if it does not already exist.
+                // Parse the file.
+                try {
+                    Scanner scanner = new Scanner(file);
+                    while (scanner.hasNextLine()) {
+                        String line = scanner.nextLine();
+                        String[] components = line.split("\\|");
+                        boolean isTaskInitiallyComplete = (components[1] == "1");
+                        switch (components[0]) {
+                        case "T":
+                            tasks.add(new ToDo(components[2], isTaskInitiallyComplete));
+                            break;
+                        case "D":
+                            tasks.add(new Deadline(components[2], isTaskInitiallyComplete, components[3]));
+                            break;
+                        case "E":
+                            tasks.add(new Event(components[2], isTaskInitiallyComplete, components[3]));
+                            break;
+                        }
+                    }
+                } catch (FileNotFoundException e) {
+                    // This really should not happen.
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
 
@@ -11,6 +54,8 @@ public class Duke {
 
         // Create a list to store tasks.
         List<Task> tasks = new ArrayList<>();
+
+        loadTasksFromDisk(tasks);
 
         // Greet the user.
         System.out.println("Duke: Hello! I am Duke.");
@@ -80,7 +125,7 @@ public class Duke {
 
             else if (userInput.startsWith("todo ")) {
                 String toDoName = userInput.substring(5).strip();
-                tasks.add(new ToDo(toDoName));
+                tasks.add(new ToDo(toDoName, false));
                 System.out.printf("Duke: I have added the to-do %s.\n", toDoName);
             }
 
@@ -89,7 +134,7 @@ public class Duke {
                 // TODO: Ensure that the string contains a "@" and a time range is specified.
                 String eventName = userInput.substring(6).split("@ ")[0].strip();
                 String eventTimeRange = userInput.split("@ ")[1].strip();
-                tasks.add(new Event(eventName, eventTimeRange));
+                tasks.add(new Event(eventName, false, eventTimeRange));
                 System.out.printf("Duke: I have added the event %s.\n", eventName);
             }
 
@@ -97,7 +142,7 @@ public class Duke {
                 // TODO: Ensure that the string contains a "@" and a due date is specified.
                 String deadlineName = userInput.substring(9).split("@ ")[0].strip();
                 String deadlineDueDate = userInput.split("@ ")[1].strip();
-                tasks.add(new Deadline(deadlineName, deadlineDueDate));
+                tasks.add(new Deadline(deadlineName, false, deadlineDueDate));
 
                 System.out.printf("Duke: I have added the deadline %s.\n", deadlineName);
             }

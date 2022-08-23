@@ -1,6 +1,6 @@
-public class ToDo extends Task{
-    public ToDo(String name) {
-        super(name);
+public class ToDo extends Task {
+    public ToDo(String name, boolean initialComplete) {
+        super(name, initialComplete);
     }
 
     @Override

@@ -2,9 +2,9 @@ public abstract class Task {
     private final String name;
     private boolean isComplete;
 
-    public Task(String name) {
+    public Task(String name, boolean initialComplete) {
         this.name = name;
-        this.isComplete = false;
+        this.isComplete = initialComplete;
     }
 
     public String getName() {
