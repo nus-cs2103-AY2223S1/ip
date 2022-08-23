@@ -5,8 +5,6 @@ import zeus.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
-
 /**
  * Class that deals with interactions with the user
  */
@@ -19,7 +17,6 @@ public class Ui {
      */
     public Ui() {
         this.scanner = new Scanner(System.in);
-        showWelcome();
     }
 
     /**
@@ -29,11 +26,9 @@ public class Ui {
      * @param size Size of list after task is added
      */
     public void printAddTask(Task task, int size) {
-        generateLine();
         printFormatted("Got it. I've added this task:");
         printFormatted("  " + task);
         printFormatted("Now you have " + size + " tasks in the list.");
-        generateLine();
     }
 
     /**
@@ -43,11 +38,9 @@ public class Ui {
      * @param size Size of list after task is deleted
      */
     public void printDeleteTask(Task task, int size) {
-        generateLine();
         printFormatted("Noted. I've removed this task:");
         printFormatted("  " + task);
         printFormatted("Now you have " + size + " tasks in the list.");
-        generateLine();
     }
 
     /**
@@ -56,15 +49,28 @@ public class Ui {
      * @param taskList ArrayList containing tasks.
      */
     public void printList(ArrayList<Task> taskList) {
-        generateLine();
         printFormatted("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             Task t = taskList.get(i);
             String currLine = "\t " + (i + 1) + "." + t;
             System.out.println(currLine);
         }
-        generateLine();
     }
+
+    /**
+     * Print tasks when user uses find command.
+     *
+     * @param taskList ArrayList of tasks matching user search
+     */
+    public void printMatchingTasks(ArrayList<Task> taskList) {
+        printFormatted("Here are the matching tasks in your list:");
+        for (int i = 0; i < taskList.size(); i++) {
+            Task t = taskList.get(i);
+            String currLine = "\t " + (i + 1) + "." + t;
+            System.out.println(currLine);
+        }
+    }
+
 
     /**
      * Prints text to welcome user.
@@ -80,9 +86,7 @@ public class Ui {
      * Prints exit message for user.
      */
     public void exitMessage() {
-        generateLine();
         printFormatted("Bye. Hope to see you again soon!");
-        generateLine();
     }
 
     /**
@@ -116,18 +120,14 @@ public class Ui {
      * @param message Error message to be printed
      */
     public void showError(String message) {
-        generateLine();
         printFormatted(message);
-        generateLine();
     }
 
     /**
      * Print error message for file loading errors.
      */
     public void showLoadingError() {
-        generateLine();
         System.out.println("Error loading file.");
-        generateLine();
     }
 
 }

@@ -1,5 +1,6 @@
 package zeus.command;
 
+import zeus.exception.ZeusException;
 import zeus.main.Storage;
 import zeus.main.TaskList;
 import zeus.main.Ui;
@@ -18,7 +19,7 @@ public class ExitCommand extends Command {
      * @throws ZeusException If user input is invalid
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws ZeusException {
         ui.exitMessage();
     }
 
