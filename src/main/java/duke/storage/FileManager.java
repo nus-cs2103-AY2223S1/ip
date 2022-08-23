@@ -17,8 +17,7 @@ public class FileManager {
 
     private static String home = System.getProperty("user.home");
     private static java.nio.file.Path path = java.nio.file.Paths.get(home
-            , "OneDrive - National University of Singapore", "AY2223S1", "CS2103", "ip"
-            , "data", "duke.txt");
+            , "CS2103", "ip", "src", "main", "java", "data", "duke.txt");
     private static final String SECTION_DIVIDER = " __ ";
 
     public static TaskRecords read() throws FileNotFoundException {
@@ -59,4 +58,5 @@ public class FileManager {
         writer.write(content.toString());
         writer.close();
     }
+
 }

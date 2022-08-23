@@ -9,7 +9,6 @@ import static duke.common.Messages.MESSAGE_MARK_SUCCESS;
 import static duke.common.Messages.MESSAGE_UNMARK_SUCCESS;
 import static duke.common.Messages.MESSAGE_ADD_SUCCESS;
 import static duke.common.Messages.MESSAGE_DELETE_SUCCESS;
-import static duke.common.Messages.MESSAGE_INVALID_INPUT;
 import static duke.common.Messages.MESSAGE_SHOW_FORMAT;
 import static duke.common.Messages.MESSAGE_TASK_NOT_EXIST;
 import static duke.common.Messages.MESSAGE_REQUIRE_INTEGER;
@@ -74,10 +73,6 @@ public class BotUI {
     public String successRemoved(TaskRecords taskList, Task task) {
         ArrayList<Task> lst = taskList.getList();
         return botSpeak(String.format(MESSAGE_DELETE_SUCCESS, task, lst.size()));
-    }
-
-    public String invalidCommand() {
-        return botSpeak(MESSAGE_INVALID_INPUT);
     }
 
     public String invalidFormat() {

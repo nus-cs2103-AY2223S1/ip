@@ -14,11 +14,6 @@ public class Messages {
             + "Now you have %d tasks on your list.";
     public static final String MESSAGE_DELETE_SUCCESS = "Ching Ching Poof~~ This task is removed:\n %s\n"
             + "Now you have %d tasks on your list.";
-    public static final String MESSAGE_INVALID_INPUT = "Huh? I don't understand your instructions XD\n"
-            + "------Available command------\n"
-            + "modify list command: | todo | deadline | event | delete |\n"
-            + "modify task command: | mark [number] | unmark [number]|\n"
-            + "other: | bye | list |";
     public static final String MESSAGE_SHOW_FORMAT = "Based on my understanding, your instruction didn't follow the format\n"
             + "todo : todo [task description]\n"
             + "deadline: deadline [task description] /by [YYYY-MM-DD HHmm]\n"
