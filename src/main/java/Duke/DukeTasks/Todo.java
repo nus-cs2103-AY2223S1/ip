@@ -12,6 +12,6 @@ public class Todo extends Task {
 
     @Override
     public String fileForm() {
-        return "T" + " " + super.fileForm();
+        return "T" + "," + super.fileForm();
     }
 }

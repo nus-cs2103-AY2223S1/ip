@@ -47,6 +47,10 @@ public class Storage {
         }
     }
 
+    public void addTask(Task task) {
+        printWriter.println(task.fileForm());
+    }
+
     public boolean rewriteFile(ArrayList<Task> tasks) {
         //delete all file contents
         printWriter.flush();

@@ -21,7 +21,7 @@ public class TasksManager {
         //add to the tasks
         tasks.add(task);
         //write to file
-        System.out.println(task.fileForm());
+        storage.addTask(task);
         //print to console
         System.out.println(line);
         System.out.println("Got it. I've added this task:");
@@ -46,10 +46,7 @@ public class TasksManager {
         System.out.println(line);
     }
 
-    public void markTaskAsDone(int n) throws BadTaskOperationException {
-        if (n > tasks.size() || n < 1) {
-            throw new BadTaskOperationException("Bad input", "Done");
-        }
+    public void markTaskAsDone(int n) {
         Task doneTask = this.tasks.get(n - 1);
         doneTask.markAsDone();
 
@@ -62,10 +59,7 @@ public class TasksManager {
         System.out.println(line);
     }
 
-    public void deleteTask(int n) throws BadTaskOperationException {
-        if (n > tasks.size() || n < 1) {
-            throw new BadTaskOperationException("Bad input", "Done");
-        }
+    public void deleteTask(int n) {
         Task deleted = this.tasks.remove(n - 1);
         //rewrite file entirely
         storage.rewriteFile(this.tasks);

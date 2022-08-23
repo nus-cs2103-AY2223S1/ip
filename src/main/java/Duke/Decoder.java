@@ -1,6 +1,7 @@
 package Duke;
 
 import Duke.DukeExceptions.BadFormatException;
+import Duke.DukeExceptions.BadTaskOperationException;
 import Duke.DukeExceptions.DukeException;
 import Duke.DukeExceptions.EmptyDescException;
 import Duke.DukeTasks.Deadline;
@@ -61,9 +62,8 @@ public class Decoder {
                 throw new BadFormatException("incorrect format", splitted[0]);
             }
 
-            parseLD(stringAndDate[1]);
-
             if (splitted[0].equals("deadline")) {
+                parseLD(stringAndDate[1]);
                 return makeTask(stringAndDate[0], stringAndDate[1], 'D');
             } else {
                 return makeTask(stringAndDate[0], stringAndDate[1], 'E');
@@ -72,7 +72,7 @@ public class Decoder {
     }
 
     public static Task parseFromFile(String word) {
-        String[] splitted = word.split(" ");
+        String[] splitted = word.split(",");
 
         System.out.println(" ");
         if (splitted[0].equals("T")) {
@@ -87,28 +87,34 @@ public class Decoder {
         return null;
     }
 
-    public static int handleDelete(String word) throws DukeException {
+    public static int handleDelete(String word, int len) throws DukeException {
         String[] deleteTasks = word.split(" ");
 
         if (deleteTasks.length != 2) {
-            throw new BadFormatException("failed delete", "delete");
+            throw new BadTaskOperationException("delete", "delete");
         }
         if (!isValidNum(deleteTasks[1])) {
-            throw new DukeException("invalid task");
+            throw new BadFormatException("delete", "delete");
         }
         int taskNo = Integer.parseInt(deleteTasks[1]);
+        if (taskNo > len) {
+            throw new BadTaskOperationException("delete", "delete");
+        }
         return taskNo;
     }
 
-    public static int handleDone(String word) throws DukeException {
+    public static int handleDone(String word, int len) throws DukeException {
         String[] doneTasks = word.split(" ");
         if (doneTasks.length != 2) {
-            throw new BadFormatException("done", "done");
+            throw new BadTaskOperationException("done", "done");
         }
         if (!isValidNum(doneTasks[1])) {
-            throw new DukeException("invalid task");
+            throw new BadFormatException("done", "done");
         }
         int taskNo = Integer.parseInt(doneTasks[1]);
+        if (taskNo > len) {
+            throw new BadTaskOperationException("done", "done");
+        }
         return taskNo;
     }
 

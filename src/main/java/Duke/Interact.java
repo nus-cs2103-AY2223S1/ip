@@ -24,9 +24,9 @@ public class Interact {
         } else if (word.startsWith("list") || word.startsWith("List")) {
             tasksManager.showList();
         } else if (word.startsWith("done") || word.startsWith("Done")) {
-            tasksManager.markTaskAsDone(Decoder.handleDone(word));
+            tasksManager.markTaskAsDone(Decoder.handleDone(word, tasksManager.numTasks()));
         } else if (word.startsWith("delete") || word.startsWith("Delete")) {
-            tasksManager.deleteTask(Decoder.handleDelete(word));
+            tasksManager.deleteTask(Decoder.handleDelete(word, tasksManager.numTasks()));
         } else if (word.startsWith("todo") || word.startsWith("deadline") || word.startsWith("event")) {
             tasksManager.addTask(Decoder.handleTasks(word));
         } else if (word.startsWith("date") || word.startsWith("Date")) {

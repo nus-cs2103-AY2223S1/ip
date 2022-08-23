@@ -21,7 +21,7 @@ public class Deadline extends Task {
 
     @Override
     public String fileForm() {
-        return "D" + " " + super.fileForm() + " " + this.by;
+        return "D" + "," + super.fileForm() + "," + this.by;
     }
 
     @Override

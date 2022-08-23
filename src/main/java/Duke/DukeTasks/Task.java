@@ -24,7 +24,7 @@ public class Task {
     }
 
     public String fileForm() {
-        return this.finished + " " + this.name;
+        return this.finished + "," + this.name;
     }
 
     public boolean compareDate(LocalDate localDate) {
