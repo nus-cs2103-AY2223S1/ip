@@ -1,7 +1,6 @@
 package jean.command;
 
 import jean.storage.Storage;
-import jean.task.Task;
 import jean.task.TaskList;
 import jean.ui.Ui;
 
@@ -9,7 +8,7 @@ import jean.ui.Ui;
  * Represents a Command which instructs Jean to unmark a task from a list of tasks.
  */
 public class UnmarkCommand extends Command {
-    int taskIndex;
+    private int taskIndex;
 
     /**
      * Creates a UnmarkCommand object with the task to be unmarked.

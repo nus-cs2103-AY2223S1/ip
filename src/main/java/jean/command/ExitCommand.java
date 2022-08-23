@@ -1,10 +1,10 @@
 package jean.command;
 
+import java.io.IOException;
+
 import jean.storage.Storage;
 import jean.task.TaskList;
 import jean.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a Command which instructs Jean to terminate.

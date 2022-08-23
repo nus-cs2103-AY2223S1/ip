@@ -3,7 +3,7 @@ package jean.exception;
 /**
  * Represents a generic error specific to Jean.
  */
-public class JeanException extends Exception{
+public class JeanException extends Exception {
 
     /**
      * Creates a JeanException.

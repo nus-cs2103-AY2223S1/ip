@@ -1,8 +1,5 @@
 package jean.storage;
 
-import jean.exception.JeanException;
-import jean.task.*;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,6 +7,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import jean.exception.JeanException;
+import jean.task.Deadline;
+import jean.task.Event;
+import jean.task.Task;
+import jean.task.TaskList;
+import jean.task.Todo;
 
 /**
  * A class which handles the saving and loading of data from data files.
@@ -55,9 +59,7 @@ public class Storage {
                 case "E":
                     temp = new Event(info[2], info[3]);
                     break;
-                }
-
-                if (temp == null) {
+                default:
                     throw new JeanException("File is corrupted!"
                             + "\nLe fichier est corrompu!");
                 }

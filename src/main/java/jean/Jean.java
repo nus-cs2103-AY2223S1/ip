@@ -1,15 +1,15 @@
 package jean;
 
-import jean.exception.JeanException;
-import jean.command.Command;
-import jean.task.TaskList;
-import jean.parser.Parser;
-import jean.storage.Storage;
-import jean.ui.Ui;
-
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+
+import jean.command.Command;
+import jean.exception.JeanException;
+import jean.parser.Parser;
+import jean.storage.Storage;
+import jean.task.TaskList;
+import jean.ui.Ui;
 
 /**
  * Main class to execute the program.
@@ -63,7 +63,9 @@ public class Jean {
         TaskList tasks = null;
         try {
             File dir = new File("data");
-            if (!dir.exists()) dir.mkdirs();
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
             tasks = new TaskList(storage.load());
         } catch (JeanException e) {
             ui.showJeanError(e.getMessage());

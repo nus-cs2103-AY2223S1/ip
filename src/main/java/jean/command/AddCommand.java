@@ -9,7 +9,7 @@ import jean.ui.Ui;
  * Represents a Command which instructs Jean to add a task into the list of tasks.
  */
 public class AddCommand extends Command {
-    Task task;
+    private Task task;
 
     /**
      * Creates a AddCommand object with the task to be added.

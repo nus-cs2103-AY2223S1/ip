@@ -9,7 +9,7 @@ import jean.ui.Ui;
  * Represents a Command which instructs Jean to mark a task as done from a list of tasks.
  */
 public class MarkCommand extends Command {
-    int taskIndex;
+    private int taskIndex;
 
     /**
      * Creates a MarkCommand object with the task to be marked.

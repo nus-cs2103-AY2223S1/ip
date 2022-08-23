@@ -1,17 +1,16 @@
 package jean.command;
 
+import java.io.IOException;
+
 import jean.storage.Storage;
-import jean.task.Task;
 import jean.task.TaskList;
 import jean.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Represents a Command which instructs Jean to delete a task from the list of tasks.
  */
 public class DeleteCommand extends Command {
-    int taskIndex;
+    private int taskIndex;
 
     /**
      * Creates a DeleteCommand object with the task to be added.

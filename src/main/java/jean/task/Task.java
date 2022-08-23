@@ -4,9 +4,9 @@ package jean.task;
  * An abstract class which encapsulates a task object.
  */
 public abstract class Task {
+    protected static int numberOfTasks = 0;
     protected String description;
     protected boolean isDone;
-    protected static int numberOfTasks = 0;
 
     /**
      * Constructs a task.
