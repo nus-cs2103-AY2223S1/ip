@@ -150,4 +150,48 @@ public class TaskList {
         }
     }
 
+    /**
+     * Outputs a list of all tasks that contains the keyword provided by the user.
+     *
+     * @param parts sliced String input.
+     * @throws DukeException thrown if no keyword is given.
+     */
+    public void findTasks(String[] parts) throws DukeException {
+        if (parts.length == 1) {
+            throw new DukeException("Please enter a keyword (i.e. find book).");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            ArrayList<Task> match = new ArrayList<Task>();
+            inputList.forEach(task -> {
+                if (task.getDescription().contains(parts[1])) {
+                    match.add(task);
+                }
+            });
+
+            if (match.size() != 0) {
+                for (int i = 0; i < match.size(); i++) {
+                    String s = String.format("%s. %s", i + 1, match.get(i).toString());
+                    System.out.println(s);
+                }
+            } else {
+                System.out.println("You do not have any tasks matching that keyword.");
+            }
+        }
+    }
+
+    /**
+     * Outputs all String representation of tasks in the list.
+     */
+    public void showTasks() {
+        System.out.println("Here are the tasks in your list:");
+        if (inputList.size() != 0) {
+            for (int i = 0; i < inputList.size(); i++) {
+                String s = String.format ("%s. %s", i + 1, inputList.get(i).toString());
+                System.out.println(s);
+            }
+        } else {
+            System.out.println("You have no tasks.");
+        }
+    }
+
 }

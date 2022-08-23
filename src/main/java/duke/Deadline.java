@@ -24,6 +24,7 @@ public class Deadline extends Task {
 
             LocalDateTime deadline = LocalDateTime.of(Integer.parseInt(dates[0]), Integer.parseInt(dates[1]),
                     Integer.parseInt(dates[2]), Integer.parseInt(time[0]), Integer.parseInt(time[1]));
+
             this.by = deadline;
         } else {
             throw new DukeException("Invalid Date Format (YYYY-MM-DD HH:MM required).");
