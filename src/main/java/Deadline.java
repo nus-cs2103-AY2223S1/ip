@@ -15,6 +15,18 @@ public class Deadline extends Task {
         this.dueDate = dueDate;
     }
 
+    public Deadline(String description, String dueDate, boolean completion) {
+        super(description, completion);
+        this.dueDate = dueDate;
+    }
+
+    @Override
+    public String toSaveFormat() {
+        return String.format("D | %s | %s | %s", this.isDone ? "Y" : "N",
+                this.description.replace("|", "\\|"),
+                this.dueDate.replace("|", "\\|"));
+    }
+
     /**
      * Returns a string representation for the deadline task,
      * prefixed with a [D], followed by the deadline status, and

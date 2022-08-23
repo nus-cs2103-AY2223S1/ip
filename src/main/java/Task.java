@@ -16,6 +16,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public Task(String description, boolean completed) {
+        this.description = description;
+        this.isDone = completed;
+    }
+
     /**
      * Returns the status icon of the task, completed tasks
      * are represented with an 'X'.
@@ -39,6 +44,21 @@ public abstract class Task {
     public void markTaskAsUndone() {
         this.isDone = false;
     }
+
+    public static TaskType readSavedTaskType(char data) throws DukeException {
+        switch (data) {
+            case 'T':
+                return TaskType.TODO;
+            case 'D':
+                return TaskType.DEADLINE;
+            case 'E':
+                return TaskType.EVENT;
+            default:
+                throw new DukeException("Duke found an unknown data type: " + data);
+        }
+    }
+
+    public abstract String toSaveFormat();
 
     /**
      * Returns a string representation for the task, indicating
