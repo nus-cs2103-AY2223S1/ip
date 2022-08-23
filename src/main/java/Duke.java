@@ -2,6 +2,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -75,46 +80,65 @@ public class Duke {
 
     public static void addTaskToArray(String s, Task.TYPE type) {
         Task t;
-
-        switch (type) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        try {
+            switch (type) {
             case DEADLINE:
                 if (s.length() < 1) {
-                    throw new DukeException( "☹ OOPS!!! The description of a deadline cannot be empty.");
+                    throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
                 }
-                String[] splitStringDL = s.split("/by");
-                if (splitStringDL.length <= 2) {
-                    throw new DukeException("Deadline requires a BY time typed correctly.");
+                String[] splitStringDL = s.split(" /by ");
+                if (splitStringDL.length < 2) {
+                    throw new DukeException("☹ Deadline requires a BY time typed correctly.");
                 }
                 String taskStringDL = splitStringDL[0];
                 String by = splitStringDL[1];
-                t = new Deadline(taskStringDL,by);
-                break;
+                //for date only
+                String[] dateDeadlineOnly = by.split(" ");
+                if (dateDeadlineOnly.length == 1) {
+                    throw new DukeException("Time required!");
+                } else {
+                    LocalDateTime dateBy = LocalDateTime.parse(by, formatter);
+                    t = new Deadline(taskStringDL, dateBy);
+                    break;
+                }
 
             case TODO:
                 if (s.length() < 1) {
-                    throw new DukeException( "☹ OOPS!!! The description of a todo cannot be empty.");
+                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                 }
                 t = new Todo(s);
                 break;
 
             case EVENT:
                 if (s.length() < 1) {
-                    throw new DukeException( "☹ OOPS!!! The description of an event cannot be empty.");
+                    throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
                 }
-                String[] splitStringTD = s.split("/at");
-                if (splitStringTD.length <= 2) {
-                    throw new DukeException("Event requires an AT time typed correctly.");
+                String[] splitStringTD = s.split(" /at ");
+
+                if (splitStringTD.length < 2) {
+                    System.out.println(splitStringTD.length);
+                    throw new DukeException("☹ Event requires an AT time typed correctly.");
                 }
                 String taskStringTD = splitStringTD[0];
                 String at = splitStringTD[1];
-                t = new Event(taskStringTD, at);
-                break;
+                String[] dateEventOnly = at.split(" ");
+                if (dateEventOnly.length == 1) {
+                    throw new DukeException("Time required!");
+                } else {
+                    LocalDateTime dateAt = LocalDateTime.parse(at, formatter);
+                    t = new Event(taskStringTD, dateAt);
+                    break;
+                }
 
             default:
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            }
+            taskList.add(t);
+            printAddition(t);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Date/Time not in correct format!");
         }
-        taskList.add(t);
-        printAddition(t);
     }
 
     public static void deleteTaskfromArray(ArrayList<Task> taskArrayList, String taskNumber) {
@@ -158,18 +182,20 @@ public class Duke {
 
                         case "D":
                             if (taskStringInArray.length < 3) {
-                                throw new DukeException("Deadline required");
+                                throw new DukeException("Deadline required.");
                             }
                             String deadline = taskStringInArray[3];
-                            t = new Deadline(taskDesription, deadline);
+                            LocalDateTime deadlineDate = LocalDateTime.parse(deadline);
+                            t = new Deadline(taskDesription, deadlineDate);
                             break;
 
                         case "E":
                             if (taskStringInArray.length < 3) {
-                                throw new DukeException("Event time required");
+                                throw new DukeException("Event time required.");
                             }
                             String eventTime = taskStringInArray[3];
-                            t = new Event(taskDesription, eventTime);
+                            LocalDateTime eventTimeInDate = LocalDateTime.parse(eventTime);
+                            t = new Event(taskDesription, eventTimeInDate);
                             break;
                         default:
                             throw new DukeException("File error");
@@ -186,6 +212,8 @@ public class Duke {
             }
         } catch (FileNotFoundException e) {
             System.out.println("no file");
+        } catch (DateTimeParseException e) {
+            System.out.println("Check date format.");
         }
         return taskList;
     }
@@ -205,7 +233,7 @@ public class Duke {
             }
             myWriter.close();
         } catch (IOException e) {
-            throw new DukeException("Save issue");
+            throw new DukeException("Save issue.");
         }
     }
 
