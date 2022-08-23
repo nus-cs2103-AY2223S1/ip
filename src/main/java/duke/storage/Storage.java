@@ -97,7 +97,8 @@ public class Storage {
 
     /**
      * Saves taskList to file on drive.
-     * @param taskList
+     * @param taskList List to fetch save data from
+     * @throws DukeException if saving data fails
      */
     public void save(TaskList taskList) throws DukeException {
         try {

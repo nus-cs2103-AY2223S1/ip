@@ -27,7 +27,7 @@ public class Duke {
 
         // Init variables to use
         Scanner sc = new Scanner(System.in);
-        Storage st = new Storage("src/main/java/duke/data.txt");
+        Storage st = new Storage("src/main/java/duke/data2.txt");
         try {
             taskList = st.load();
         } catch (Exception e) {

@@ -15,7 +15,6 @@ public class TaskList {
 
     /**
      * Constructor for the TaskList class.
-     * @return TaskList instance
      */
     public TaskList() {
         this.taskList = new ArrayList<>();
