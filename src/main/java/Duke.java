@@ -1,3 +1,4 @@
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,10 +51,11 @@ public class Duke {
         }
         if (taskDetails.length == 4) {
             String time = taskDetails[3];
+            LocalDate date = LocalDate.parse(time, DateTimeFormatter.ofPattern("MMM dd yyyy"));
             if (taskDetails[0].equals("D")) {
-                return new Deadline(taskDescription, completed, time);
+                return new Deadline(taskDescription, completed, date);
             } else {
-                return new Event(taskDescription, completed, time);
+                return new Event(taskDescription, completed, date);
             }
         }
         return new Todo(taskDescription, completed);

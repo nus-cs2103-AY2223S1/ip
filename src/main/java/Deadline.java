@@ -8,7 +8,7 @@ public class Deadline extends Task {
         this.date = date;
     }
 
-    Deadline(String task_description, boolean done, String date) {
+    Deadline(String task_description, boolean done, LocalDate date) {
         super(task_description, done);
         this.date = date;
     }
