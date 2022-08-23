@@ -37,6 +37,11 @@ Nice! I've marked this task as done:
   [E][X] project meeting (at: Mon 2-4pm)
 _____________________
 _____________________
+Here are the matching tasks in your list:
+	1. [E][X] project meeting (at: Mon 2-4pm)
+
+_____________________
+_____________________
 Ok, I've marked this task as not done yet:
   [T][ ] borrow book
 _____________________
@@ -58,7 +63,7 @@ _____________________
 _____________________
 _____________________
 Here are the tasks in your list:
-1. [T][ ] borrow book
+	1. [T][ ] borrow book
 
 _____________________
 _____________________

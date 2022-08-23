@@ -4,6 +4,7 @@ import duke.commands.Command;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.ToDoCommand;
@@ -49,6 +50,8 @@ public class Parser {
                         return new ExitCommand();
                     case LIST:
                         return new ListCommand();
+                    case FIND:
+                        return processFind(matcher.group("arguments").strip());
                     case TODO:
                         return processToDo(matcher.group("arguments").strip());
                     case EVENT:
@@ -67,6 +70,10 @@ public class Parser {
             return new InvalidCommand("Command not found.");
         }
         return new InvalidCommand("Command not found.");
+    }
+
+    private static Command processFind(String inputString) {
+        return new FindCommand(preprocessString(inputString));
     }
 
     private static Command processToDo(String inputString) {
@@ -146,7 +153,8 @@ public class Parser {
         UNMARK(UnmarkCommand.COMMAND_WORD),
         DELETE(DeleteCommand.COMMAND_WORD),
         LIST(ListCommand.COMMAND_WORD),
-        BYE(ExitCommand.COMMAND_WORD);
+        BYE(ExitCommand.COMMAND_WORD),
+        FIND(FindCommand.COMMAND_WORD);
         public final String commandWord;
 
         Commands(String commandWord) {

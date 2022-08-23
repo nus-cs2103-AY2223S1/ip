@@ -6,6 +6,7 @@ deadline  do homework /by  no idea :-p
 mark 1
 mark  2
 mark 3
+find project
 unmark  1
 delete 5
 delete 3

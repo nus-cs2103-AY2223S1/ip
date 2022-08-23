@@ -66,6 +66,10 @@ public abstract class Task {
         return String.format("[%s][%s] %s", getType(), getStatusIcon(), getDisplayText());
     }
 
+    public boolean matches(String keyword) {
+        return this.description.toLowerCase().contains(keyword.toLowerCase());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

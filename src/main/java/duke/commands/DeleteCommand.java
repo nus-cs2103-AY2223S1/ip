@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import java.util.Objects;
 
 /**
- * Create new ToDo.
+ * Deletes a task from the task list.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
