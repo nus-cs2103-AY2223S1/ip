@@ -10,6 +10,7 @@ import java.util.Scanner;
  * Ui that control logic of what is displayed on screen.
  */
 public class Ui {
+
     private static final String SPACING = "--------------------------------------";
     private Scanner sc;
 
@@ -24,10 +25,10 @@ public class Ui {
      * Displays welcome message to user when Blink program starts.
      */
     public void showWelcome() {
-        System.out.println(Ui.SPACING + "\n" +
-                "Hello! Blink.Blink here\n" +
-                "What can I do for you today?\n" +
-                Ui.SPACING);
+        System.out.println(Ui.SPACING + "\n"
+                + "Hello! Blink.Blink here\n"
+                + "What can I do for you today?\n"
+                + Ui.SPACING);
     }
 
     /**
@@ -100,8 +101,8 @@ public class Ui {
      * @param task Task that is deleted
      */
     public void deleteTask(TaskList tasks, Task task) {
-        System.out.println("Blink.Task has been deleted successfully.\n" + task +
-               "\n" + tasks.deleted());
+        System.out.println("Blink.Task has been deleted successfully.\n" + task
+               + "\n" + tasks.deleted());
     }
 
     /**
@@ -114,10 +115,10 @@ public class Ui {
         if (tasks.size() == 0) {
             System.out.println("No task found on " + date.toString());
         } else {
-            System.out.println(tasks.size() + ((tasks.size() == 1)? " task": " tasks") +
-                    " found");
-            for (int y = 0; y < tasks.size(); y++) {
-                System.out.println(tasks.get(y));
+            System.out.println(tasks.size() + ((tasks.size() == 1)? " task": " tasks")
+                    + " found");
+            for (int x = 0; x < tasks.size(); x++) {
+                System.out.println(tasks.get(x));
             }
         }
     }
@@ -128,8 +129,7 @@ public class Ui {
      * @param task Task which has just been added
      */
     public void addTask(TaskList tasks, Task task) {
-        System.out.println("Alright, this task has been successfully added!\n" +
-                task + "\nTotal of " + tasks.length() + " tasks now");
+        System.out.println("Alright, this task has been successfully added!\n"
+                + task + "\nTotal of " + tasks.length() + " tasks now");
     }
-
 }

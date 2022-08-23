@@ -8,6 +8,7 @@ import blink.Ui;
  * Mark command that will indicate a task as marked
  */
 public class MarkCommand extends Command{
+
     private int num;
 
     /**

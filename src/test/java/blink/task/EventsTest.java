@@ -1,12 +1,13 @@
 package blink.task;
 
-import org.junit.jupiter.api.Test;
-
 import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EventsTest {
+
     @Test
     public void addEvent() {
         Task event = new Events("Study", "2022-08-23");

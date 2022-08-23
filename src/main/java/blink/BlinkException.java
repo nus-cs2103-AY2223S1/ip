@@ -5,6 +5,7 @@ package blink;
  * is passed by users.
  */
 public class BlinkException extends RuntimeException {
+
     /**
      * Constructor for BlinkException.
      *

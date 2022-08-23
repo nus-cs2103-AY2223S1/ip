@@ -1,14 +1,15 @@
 package blink.command;
 
 import blink.Storage;
-import blink.task.Task;
 import blink.TaskList;
 import blink.Ui;
+import blink.task.Task;
 
 /**
  * Delete command that will delete a task from the TaskList
  */
 public class DeleteCommand extends Command {
+
     private int num;
 
     /**

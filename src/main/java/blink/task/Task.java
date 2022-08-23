@@ -5,9 +5,11 @@ import blink.BlinkException;
 import java.time.LocalDate;
 
 /**
- *
+ * Task object that contains description, boolean to mark if it is
+ * done and date for some Task
  */
 abstract public class Task {
+
     protected String description;
     protected boolean isDone;
 

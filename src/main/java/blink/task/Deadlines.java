@@ -53,8 +53,8 @@ public class Deadlines extends Task {
      */
     @Override
     public String saveString() {
-        return "D " + "|" + (this.isDone? 1 : 0 ) +
-                "| " + this.description + " | " + this.date + "\n";
+        return "D " + "|" + (this.isDone? 1 : 0 )
+                + "| " + this.description + " | " + this.date + "\n";
     }
 
     private String dateString() {

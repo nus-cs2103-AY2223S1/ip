@@ -14,6 +14,7 @@ import java.util.Scanner;
  * file at certain commands.
  */
 public class Storage {
+
     private final String filePath;
 
     /**

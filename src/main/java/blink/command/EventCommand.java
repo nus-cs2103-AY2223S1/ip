@@ -10,6 +10,7 @@ import blink.task.Events;
  * Event command to create a new event task.
  */
 public class EventCommand extends Command {
+
     private String desc;
     private String date;
 

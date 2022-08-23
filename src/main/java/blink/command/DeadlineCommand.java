@@ -10,6 +10,7 @@ import blink.task.Deadlines;
  * Deadline command to create a new deadline task.
  */
 public class DeadlineCommand extends Command{
+
     private String desc;
     private String date;
 

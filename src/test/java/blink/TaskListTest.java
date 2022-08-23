@@ -4,10 +4,11 @@ import blink.task.Deadlines;
 import blink.task.Events;
 import blink.task.Task;
 import blink.task.ToDos;
-import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -24,10 +25,10 @@ public class TaskListTest {
     @Test
     public void listTaskList() {
         TaskList taskList = new TaskList(TaskListTest.tempList());
-        String expected = "There is a total of 3 tasks currently:\n" +
-                "1: [D][ ] Study 1 (by: AUGUST 23 2022 TUESDAY)\n" +
-                "2: [E][ ] Study 2 (at: AUGUST 23 2022 TUESDAY)\n" +
-                "3: [T][ ] Study 3";
+        String expected = "There is a total of 3 tasks currently:\n"
+                + "1: [D][ ] Study 1 (by: AUGUST 23 2022 TUESDAY)\n"
+                + "2: [E][ ] Study 2 (at: AUGUST 23 2022 TUESDAY)\n"
+                + "3: [T][ ] Study 3";
         assertEquals(expected, taskList.listTask());
     }
 
@@ -48,10 +49,10 @@ public class TaskListTest {
     public void markTaskList() {
         TaskList tasklist = new TaskList(TaskListTest.tempList());
         tasklist.mark(3);
-        String expected = "There is a total of 3 tasks currently:\n" +
-                "1: [D][ ] Study 1 (by: AUGUST 23 2022 TUESDAY)\n" +
-                "2: [E][ ] Study 2 (at: AUGUST 23 2022 TUESDAY)\n" +
-                "3: [T][X] Study 3";
+        String expected = "There is a total of 3 tasks currently:\n"
+                + "1: [D][ ] Study 1 (by: AUGUST 23 2022 TUESDAY)\n"
+                + "2: [E][ ] Study 2 (at: AUGUST 23 2022 TUESDAY)\n"
+                + "3: [T][X] Study 3";
         assertEquals(expected, tasklist.listTask());
     }
 
@@ -62,19 +63,19 @@ public class TaskListTest {
         tasklist.mark(2);
         tasklist.mark(3);
         tasklist.unMark(3);
-        String expected = "There is a total of 3 tasks currently:\n" +
-                "1: [D][X] Study 1 (by: AUGUST 23 2022 TUESDAY)\n" +
-                "2: [E][X] Study 2 (at: AUGUST 23 2022 TUESDAY)\n" +
-                "3: [T][ ] Study 3";
+        String expected = "There is a total of 3 tasks currently:\n"
+                + "1: [D][X] Study 1 (by: AUGUST 23 2022 TUESDAY)\n"
+                + "2: [E][X] Study 2 (at: AUGUST 23 2022 TUESDAY)\n"
+                + "3: [T][ ] Study 3";
         assertEquals(expected, tasklist.listTask());
     }
 
     @Test
     public void filterTaskList() {
         TaskList tasklist = new TaskList(TaskListTest.tempList());
-        String expected = "There is a total of 2 tasks currently:\n" +
-                "1: [D][ ] Study 1 (by: AUGUST 23 2022 TUESDAY)\n" +
-                "2: [E][ ] Study 2 (at: AUGUST 23 2022 TUESDAY)";
+        String expected = "There is a total of 2 tasks currently:\n"
+                + "1: [D][ ] Study 1 (by: AUGUST 23 2022 TUESDAY)\n"
+                + "2: [E][ ] Study 2 (at: AUGUST 23 2022 TUESDAY)";
         LocalDate date = LocalDate.parse("2022-08-23");
         assertEquals(expected, new TaskList(tasklist.filter(date)).listTask());
     }

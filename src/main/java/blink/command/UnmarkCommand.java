@@ -8,6 +8,7 @@ import blink.Ui;
  * Unmark command that will indicate a task as marked
  */
 public class UnmarkCommand extends Command {
+
     private int num;
 
     /**
