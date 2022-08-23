@@ -5,13 +5,14 @@ delete 1
 list
 todo Drink tea
 deadline Eat chocolate
-deadline Eat chocolate /by 2pm
+deadline Eat chocolate /by 2060-06-012
+deadline Eat chocolate /by 2060-06-02
 mark 1
 unmark 1
 unmark -1
 unmark asdf
 event Dinner with myself
-event Dinner with myself /at 6pm
+event Dinner with myself /at 2022-12-01
 mark 2
 list
 todo

@@ -31,8 +31,11 @@
     No deadline given!
     ____________________________________________________________
     ____________________________________________________________
+    Invalid date!
+    ____________________________________________________________
+    ____________________________________________________________
     Got it. I've added this task:
-      [D][ ] Eat chocolate (by: 2pm)
+      [D][ ] Eat chocolate (by: Wednesday, 2 June 2060)
     Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
@@ -54,18 +57,18 @@
     ____________________________________________________________
     ____________________________________________________________
     Got it. I've added this task:
-      [E][ ] Dinner with myself (at: 6pm)
+      [E][ ] Dinner with myself (at: Thursday, 1 December 2022)
     Now you have 3 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
     Nice! I've marked this task as done:
-      [D][X] Eat chocolate (by: 2pm)
+      [D][X] Eat chocolate (by: Wednesday, 2 June 2060)
     ____________________________________________________________
     ____________________________________________________________
     Here are the tasks in your list:
       1. [T][ ] Drink tea
-      2. [D][X] Eat chocolate (by: 2pm)
-      3. [E][ ] Dinner with myself (at: 6pm)
+      2. [D][X] Eat chocolate (by: Wednesday, 2 June 2060)
+      3. [E][ ] Dinner with myself (at: Thursday, 1 December 2022)
     ____________________________________________________________
     ____________________________________________________________
     No arguments given!
@@ -78,13 +81,13 @@
     ____________________________________________________________
     ____________________________________________________________
     Noted. I've removed this task:
-      [E][ ] Dinner with myself (at: 6pm)
+      [E][ ] Dinner with myself (at: Thursday, 1 December 2022)
     Now you have 2 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________
     Here are the tasks in your list:
       1. [T][ ] Drink tea
-      2. [D][X] Eat chocolate (by: 2pm)
+      2. [D][X] Eat chocolate (by: Wednesday, 2 June 2060)
     ____________________________________________________________
     ____________________________________________________________
     Task index out of bounds!
@@ -92,7 +95,7 @@
     ____________________________________________________________
     Here are the tasks in your list:
       1. [T][ ] Drink tea
-      2. [D][X] Eat chocolate (by: 2pm)
+      2. [D][X] Eat chocolate (by: Wednesday, 2 June 2060)
     ____________________________________________________________
     ____________________________________________________________
     Task index out of bounds!
@@ -100,11 +103,11 @@
     ____________________________________________________________
     Here are the tasks in your list:
       1. [T][ ] Drink tea
-      2. [D][X] Eat chocolate (by: 2pm)
+      2. [D][X] Eat chocolate (by: Wednesday, 2 June 2060)
     ____________________________________________________________
     ____________________________________________________________
     Noted. I've removed this task:
-      [D][X] Eat chocolate (by: 2pm)
+      [D][X] Eat chocolate (by: Wednesday, 2 June 2060)
     Now you have 1 tasks in the list.
     ____________________________________________________________
     ____________________________________________________________

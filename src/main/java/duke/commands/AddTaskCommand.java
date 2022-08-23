@@ -3,6 +3,8 @@ package duke.commands;
 import duke.core.DukeException;
 import duke.task.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.function.Supplier;
 
 public class AddTaskCommand<T extends Task> extends TaskListCommand {
@@ -32,8 +34,18 @@ public class AddTaskCommand<T extends Task> extends TaskListCommand {
             if (splitParameters.length > 1) {
                 newTask = taskFactory.get();
                 newTask.setText(splitParameters[0]);
-                newTask.setDetails(splitParameters[1]);
+
+                LocalDate localDate;
+
+                try {
+                    localDate = LocalDate.parse(splitParameters[1]);
+                } catch (DateTimeParseException e) {
+                    throw new DukeException("Invalid date!");
+                }
+
+                newTask.setDetails(localDate);
                 taskList.addTask(newTask);
+
             } else {
                 throw taskFactory.get().invalidParameterError();
             }
