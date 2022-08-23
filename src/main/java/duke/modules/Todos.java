@@ -1,5 +1,8 @@
 package duke.modules;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,6 +29,27 @@ public class Todos {
 
     private String taskCountMessage() {
         return format("Now you have %d %s in the list.", todos.size(), todos.size() == 1 ? "task" : "tasks");
+    }
+
+    private static final String FILE_DIR = "data";
+    private static final String FILE_PATH = FILE_DIR + "/tasks.csv";
+    private void saveList() throws MessagefulException {
+        try {
+            File filedir = new File(FILE_DIR);
+            if (!filedir.isDirectory() && !filedir.mkdirs()) {
+                throw new MessagefulException("cannot create task save dir", "Uh oh! I cannot save the task list.");
+            }
+
+            FileWriter fw = new FileWriter(FILE_PATH);
+            for (Task task : todos) {
+                fw.write(String.join(",", task.flatpack()) + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e){
+            throw new MessagefulException(
+                    "file writing error",
+                    "Uh oh! I cannot save the task list. This might help: " + e);
+        }
     }
 
     private int readTodoID(Scanner rest, String missingNumberPrompt) throws MessagefulException {
@@ -58,6 +82,7 @@ public class Todos {
                 task.toString(),
                 taskCountMessage()
         ));
+        saveList();
     }
 
     /**

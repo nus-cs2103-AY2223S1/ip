@@ -1,5 +1,7 @@
 package duke.modules.todos;
 
+import java.util.List;
+
 import static java.lang.String.format;
 
 /**
@@ -33,6 +35,38 @@ public abstract class Task {
      */
     public void setDone(boolean done) {
         this.done = done;
+    }
+
+
+    /**
+     * Packs the task's data into a List.
+     *
+     * @return The packed data.
+     */
+    public List<String> flatpack() {
+        return List.of("B", this.done ? "X" : "-", this.name);
+    }
+
+    /**
+     * Unpacks the task's data from a List.
+     *
+     * @param l The packed data.
+     */
+    public Task(List<? extends String> l) {
+        if (l.get(0) != "B") {
+            throw new IllegalArgumentException("Trying to hydrate non-task as task: " + l);
+        }
+
+        this.name = l.get(2);
+
+        final String doneStr = l.get(1);
+        if ("X".equals(doneStr)) {
+            this.done = true;
+        } else if ("-".equals(doneStr)) {
+            this.done = false;
+        } else {
+            throw new IllegalArgumentException("Invalid done value found while hydrating task: " + doneStr);
+        }
     }
 
     @Override
