@@ -2,6 +2,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+<<<<<<< HEAD
+=======
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+>>>>>>> branch-Level-8
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -53,23 +58,28 @@ public class Duke {
     }
     public static class Deadline extends Task {
 
-        protected String by;
+        protected LocalDate date;
 
         /**
          * Takes in a description and deadline for the task
          * @param description task description
-         * @param by deadline of task
+         * @param date deadline of task
          */
-        public Deadline(String description, String by) {
+        public Deadline(String description, LocalDate date) {
             super(description);
-            this.by = by;
+            this.date = date;
         }
 
         @Override
         public String formatToSave() {
             return isDone
+<<<<<<< HEAD
                     ? "D" + keySeparator + 1 + keySeparator + description + keySeparator + by
                     : "D" + keySeparator + 0 + keySeparator + description + keySeparator + by;
+=======
+                    ? "D" + keySeparator + 1 + keySeparator + description + keySeparator + date
+                    : "D" + keySeparator + 0 + keySeparator + description + keySeparator + date;
+>>>>>>> branch-Level-8
         }
         /**
          * Returns a String representation of the task
@@ -77,7 +87,7 @@ public class Duke {
          */
         @Override
         public String toString() {
-            return "[D]" + super.toString() + " (by: " + by + ")";
+            return "[D]" + super.toString() + " (by: " + date + ")";
         }
     }
     public static class Todo extends Task {
@@ -240,9 +250,18 @@ public class Duke {
                             System.out.println("The deadline cannot be empty");
                             break;
                         }
-                        temp = new Deadline(dlDesc[0], dlDesc[1]);
-                        addTask(temp);
-                        break;
+                        try {
+                            LocalDate date = LocalDate.parse(dlDesc[1]);
+                            temp = new Deadline(dlDesc[0], date);
+                            addTask(temp);
+                            break;
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Please re-enter the task with the following deadline format: ");
+                            System.out.println("yyyy-mm-dd");
+                            break;
+                        }
+
+
                     case "event":
                         if(substr.length == 1) {
                             System.out.println("The description cannot be empty!");
@@ -253,6 +272,7 @@ public class Duke {
                             System.out.println("The date cannot be empty");
                             break;
                         }
+
                         temp = new Event(eventDesc[0], eventDesc[1]);
                         addTask(temp);
                         break;
@@ -288,7 +308,11 @@ public class Duke {
             switch (taskStr[0]) {
                 case "T": task = new Todo(taskStr[2]);
                     break;
+<<<<<<< HEAD
                 case "D": task = new Deadline(taskStr[2], taskStr[3]);
+=======
+                case "D": task = new Deadline(taskStr[2], LocalDate.parse(taskStr[3]));
+>>>>>>> branch-Level-8
                     break;
                 case "E": task = new Event(taskStr[2], taskStr[3]);
                     break;
