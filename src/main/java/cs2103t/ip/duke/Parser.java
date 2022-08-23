@@ -1,3 +1,5 @@
+package cs2103t.ip.duke;
+
 public class Parser {
 
     public boolean isTodo(String input) {

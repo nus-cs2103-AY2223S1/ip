@@ -1,3 +1,5 @@
+package cs2103t.ip.duke;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

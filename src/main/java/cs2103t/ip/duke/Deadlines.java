@@ -1,13 +1,15 @@
+package cs2103t.ip.duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task {
+public class Deadlines extends Task {
 
-    protected LocalDate at;
+    protected LocalDate by;
 
-    public Event(String description, LocalDate at) {
+    public Deadlines(String description, LocalDate by) {
         super(description);
-        this.at = at;
+        this.by = by;
     }
 
     @Override
@@ -21,15 +23,16 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
+
 
     @Override
     public String saveString() {
         if (this.isDone) {
-            return "E" + "X " + this.description + "/at" + this.at + "\n";
+            return "D" + "X " + this.description + "/by" + this.by + "\n";
         } else {
-            return "E  " + this.description + "/at" + this.at + "\n";
+            return "D  " + this.description + "/by" + this.by + "\n";
         }
     }
 }

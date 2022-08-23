@@ -1,3 +1,5 @@
+package cs2103t.ip.duke;
+
 public class Ui {
 
     private String line = "_______________________________\n";
