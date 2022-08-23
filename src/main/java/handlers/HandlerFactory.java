@@ -2,8 +2,7 @@ package handlers;
 
 import enums.Command;
 import exceptions.DukeException;
-
-import java.util.List;
+import service.Service;
 
 
 public class HandlerFactory {
@@ -14,7 +13,7 @@ public class HandlerFactory {
 
     private static class UnknownHandler implements IHandler {
         @Override
-        public void handle(List list) throws DukeException {
+        public void handle(Service s) throws DukeException {
             throw new DukeException("Unknown command! Please try again.");
         }
     }
@@ -39,24 +38,29 @@ public class HandlerFactory {
     }
 
     public IHandler build() {
-        Command commandEnum = Command.valueOf(this.command.toUpperCase());
-        switch (commandEnum) {
-            case TODO:
-                return new TodoHandler(this);
-            case EVENT:
-                return new EventHandler(this);
-            case DEADLINE:
-                return new DeadlineHandler(this);
-            case LIST:
-                return new ListHandler();
-            case MARK:
-                return new MarkHandler(this);
-            case UNMARK:
-                return new UnmarkHandler(this);
-            case DELETE:
-                return new DeleteHandler(this);
-            default:
-                return new UnknownHandler();
+        try {
+            Command commandEnum = Command.valueOf(this.command.toUpperCase());
+            switch (commandEnum) {
+                case TODO:
+                    return new TodoHandler(this);
+                case EVENT:
+                    return new EventHandler(this);
+                case DEADLINE:
+                    return new DeadlineHandler(this);
+                case LIST:
+                    return new ListHandler();
+                case MARK:
+                    return new MarkHandler(this);
+                case UNMARK:
+                    return new UnmarkHandler(this);
+                case DELETE:
+                    return new DeleteHandler(this);
+                default:
+                    return new UnknownHandler();
+            }
+        } catch (IllegalArgumentException ex) {
+            return new UnknownHandler();
         }
+
     }
 }

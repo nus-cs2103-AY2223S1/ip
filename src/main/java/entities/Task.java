@@ -9,6 +9,11 @@ public abstract class Task {
         this.name = name;
     }
 
+    public Task(String name, boolean done) {
+        this.name = name;
+        this.done = done;
+    }
+
     public void setDone(boolean done) {
         this.done = done;
     }

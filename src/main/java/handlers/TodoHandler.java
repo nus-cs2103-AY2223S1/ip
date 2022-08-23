@@ -3,8 +3,7 @@ package handlers;
 import entities.Task;
 import entities.Todo;
 import exceptions.DukeException;
-
-import java.util.List;
+import service.Service;
 
 import static utils.Utils.addToList;
 
@@ -16,11 +15,11 @@ public class TodoHandler implements IHandler{
     }
 
     @Override
-    public void handle(List<Task> list) throws DukeException {
+    public void handle(Service s) throws DukeException {
         if (this.todoName == null) {
             throw new DukeException("Please enter a task name!");
         }
         Task todo = new Todo(this.todoName);
-        addToList(list, todo);
+        s.list.add(todo);
     }
 }

@@ -3,8 +3,7 @@ package handlers;
 import entities.Deadline;
 import entities.Task;
 import exceptions.DukeException;
-
-import java.util.List;
+import service.Service;
 
 import static utils.Utils.addToList;
 
@@ -20,7 +19,7 @@ public class DeadlineHandler implements IHandler{
     }
 
     @Override
-    public void handle(List<Task> list) throws DukeException {
+    public void handle(Service s) throws DukeException {
         if (this.deadlineName == null) {
             throw new DukeException("Please enter a task name!");
         }
@@ -32,6 +31,6 @@ public class DeadlineHandler implements IHandler{
             throw new DukeException("Please enter a deadline!");
         }
         Task deadline = new Deadline(this.deadlineName, this.flagOption);
-        addToList(list, deadline);
+        s.list.add(deadline);
     }
 }

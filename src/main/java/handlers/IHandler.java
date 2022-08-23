@@ -1,10 +1,8 @@
 package handlers;
 
-import entities.Task;
 import exceptions.DukeException;
-
-import java.util.List;
+import service.Service;
 
 public interface IHandler {
-    void handle(List<Task> list) throws DukeException;
+    void handle(Service list) throws DukeException;
 }

@@ -2,8 +2,7 @@ package handlers;
 
 import entities.Task;
 import exceptions.DukeException;
-
-import java.util.List;
+import service.Service;
 
 import static utils.Utils.customPrint;
 
@@ -15,13 +14,16 @@ public class MarkHandler implements IHandler{
     }
 
     @Override
-    public void handle(List<Task> list) throws DukeException {
+    public void handle(Service s) throws DukeException {
         if (this.taskIndex == null) {
             throw new DukeException("Invalid list index!\nUsage: `mark 2`");
         }
         try{
             int number = Integer.parseInt(this.taskIndex);
-            Task item = list.get(number - 1);
+            if (number > s.list.size()) {
+                throw new DukeException("Task not found! Please try again.");
+            }
+            Task item = s.list.get(number - 1);
             item.setDone(true);
             customPrint("Nice! I've marked this task as done:\n  " + item);
         }

@@ -1,10 +1,8 @@
 package handlers;
 
-import entities.Task;
 import exceptions.DukeException;
+import service.Service;
 import utils.Utils;
-
-import java.util.List;
 
 
 public class ListHandler implements IHandler{
@@ -12,12 +10,12 @@ public class ListHandler implements IHandler{
     }
 
     @Override
-    public void handle(List<Task> list) throws DukeException {
+    public void handle(Service s) throws DukeException {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("Here are the tasks in your list:\n");
-        int n = list.size();
+        int n = s.list.size();
         for (int i = 0; i < n; i++) {
-            stringBuilder.append(String.format("%d. %s", i + 1, list.get(i)));
+            stringBuilder.append(String.format("%d. %s", i + 1, s.list.get(i)));
             if (i != n - 1) {
                 stringBuilder.append("\n");
             }

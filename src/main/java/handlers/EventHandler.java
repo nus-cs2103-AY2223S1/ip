@@ -3,8 +3,7 @@ package handlers;
 import entities.Event;
 import entities.Task;
 import exceptions.DukeException;
-
-import java.util.List;
+import service.Service;
 
 import static utils.Utils.addToList;
 
@@ -20,7 +19,7 @@ public class EventHandler implements IHandler{
     }
 
     @Override
-    public void handle(List<Task> list) throws DukeException {
+    public void handle(Service s) throws DukeException {
         if (this.eventName == null) {
             throw new DukeException("Please enter a task name!");
         }
@@ -32,6 +31,6 @@ public class EventHandler implements IHandler{
             throw new DukeException("Please enter a time!");
         }
         Task event = new Event(this.eventName, this.flagOption);
-        addToList(list, event);
+        s.list.add(event);
     }
 }

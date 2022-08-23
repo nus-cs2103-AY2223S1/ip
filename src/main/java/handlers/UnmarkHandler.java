@@ -2,8 +2,7 @@ package handlers;
 
 import entities.Task;
 import exceptions.DukeException;
-
-import java.util.List;
+import service.Service;
 
 import static utils.Utils.customPrint;
 
@@ -15,13 +14,13 @@ public class UnmarkHandler implements IHandler{
     }
 
     @Override
-    public void handle(List<Task> list) throws DukeException {
+    public void handle(Service s) throws DukeException {
         if (this.taskIndex == null) {
             throw new DukeException("Invalid list index!\nUsage: `unmark 2`");
         }
         try{
             int number = Integer.parseInt(this.taskIndex);
-            Task item = list.get(number - 1);
+            Task item = s.list.get(number - 1);
             item.setDone(false);
             customPrint("OK, I've marked this task as not done yet:\n  " + item);
         }
