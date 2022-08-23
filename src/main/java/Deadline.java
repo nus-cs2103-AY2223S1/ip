@@ -1,8 +1,11 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * A deadline is a task that needs to be done before a specific date/time.
  */
 public class Deadline extends Task {
-    protected String dueDate;
+    protected java.time.LocalDateTime dueDate;
 
     /**
      * Constructor for a deadline task.
@@ -10,9 +13,9 @@ public class Deadline extends Task {
      * @param description Description of the deadline task
      * @param dueDate The due date of the deadlined task
      */
-    public Deadline(String description, String dueDate) {
-        super(description);
-        this.dueDate = dueDate;
+    public Deadline(String description, LocalDateTime dueDate) {
+            super(description);
+            this.dueDate = dueDate;
     }
 
     public Deadline(String description, String dueDate, boolean completion) {
@@ -36,6 +39,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.dueDate);
+        return String.format("[D]%s (by: %s)", super.toString(),
+                this.dueDate.format(DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy HH:mm")));
     }
 }

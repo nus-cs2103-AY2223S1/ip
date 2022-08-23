@@ -1,3 +1,8 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * Enums for the possible tasks Duke can handle.
  */
@@ -33,7 +38,18 @@ public enum TaskType {
         public Event validateCommand(String cmd) throws DukeException {
             if (cmd.matches("(?i)^event\\s.+\\s\\/(at)\\s.+")) {
                 String[] sp = cmd.substring(6).split("\\/(at)\\s", 2);
-                return new Event(sp[0], sp[1]);
+                LocalDateTime datetime;
+                try {
+                    datetime = LocalDate.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();
+                } catch (DateTimeParseException e) {
+                    try {
+                        datetime = LocalDateTime.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+                    } catch (DateTimeParseException err) {
+                        throw new DukeException(String.format("Unknown date format %s!", sp[1]));
+                    }
+                }
+                return new Event(sp[0], datetime);
+
             } else {
                 throw new DukeException("Hm... Duke's confused. Are you trying to create an event?" +
                         "\nMake sure you follow the format: event [description] /at [event datetime]");
@@ -57,7 +73,17 @@ public enum TaskType {
         public Deadline validateCommand(String cmd) throws DukeException {
             if (cmd.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
                 String[] sp = cmd.substring(9).split("\\/(by)\\s", 2);
-                return new Deadline(sp[0], sp[1]);
+                LocalDateTime datetime;
+                try {
+                    datetime = LocalDate.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy")).atStartOfDay();
+                } catch (DateTimeParseException e) {
+                    try {
+                        datetime = LocalDateTime.parse(sp[1], DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+                    } catch (DateTimeParseException err) {
+                        throw new DukeException("Unknown date format!");
+                    }
+                }
+                return new Deadline(sp[0], datetime);
             } else {
                 throw new DukeException("Hm... Duke's confused. Are you trying to create a deadline?" +
                         "\nMake sure you follow the format: deadline [description] /by [deadline]");
