@@ -21,16 +21,20 @@ public class Duke {
 
     public Duke(String fileName) {
         this.parser = new Parser(new ArrayList<>(Arrays.asList(
-            new Exit("bye", this.ui),
-            new AddTaskCommand<>("todo", taskList, null, ToDo::new),
-            new AddTaskCommand<>("deadline", taskList, " /by ", Deadline::new),
-            new AddTaskCommand<>("event", taskList, " /at ", Event::new),
-            new ListCommand("list", taskList),
-            new MarkCommand("mark", taskList, true),
-            new MarkCommand("unmark", taskList, false),
-            new DeleteTaskCommand("delete", taskList)
+                new Exit("bye", this.ui),
+                new AddTaskCommand<>("todo", taskList, null, ToDo::new),
+                new AddTaskCommand<>("deadline", taskList, " /by ", Deadline::new),
+                new AddTaskCommand<>("event", taskList, " /at ", Event::new),
+                new ListCommand("list", taskList),
+                new MarkCommand("mark", taskList, true),
+                new MarkCommand("unmark", taskList, false),
+                new DeleteTaskCommand("delete", taskList)
         )));
         this.fileName = fileName;
+    }
+
+    public static void main(String[] args) {
+        new Duke("duke.txt").run();
     }
 
     public void run() {
@@ -59,7 +63,7 @@ public class Duke {
             }
         }
 
-            ui.showWelcome();
+        ui.showWelcome();
         boolean isExit = false;
 
         while (!isExit) {
@@ -83,9 +87,5 @@ public class Duke {
                 ui.showMessage("Unable to write to file.");
             }
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("duke.txt").run();
     }
 }

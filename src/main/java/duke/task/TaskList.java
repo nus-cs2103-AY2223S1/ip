@@ -9,6 +9,7 @@ public class TaskList {
     public int taskCount() {
         return tasks.size();
     }
+
     public void addTask(Task task) {
         this.tasks.add(task);
     }

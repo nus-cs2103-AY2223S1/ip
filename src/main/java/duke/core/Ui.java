@@ -19,15 +19,13 @@ public class Ui {
         return userInput.nextLine();
     }
 
-    public void showWelcome()
-    {
+    public void showWelcome() {
         showLine();
         showMessage(welcomeMessage);
         showLine();
     }
 
-    public void showLine()
-    {
+    public void showLine() {
         showMessage(line);
     }
 

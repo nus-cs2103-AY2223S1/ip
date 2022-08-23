@@ -11,13 +11,55 @@ import java.time.format.FormatStyle;
  * A class that represents a task in the task list.
  */
 public abstract class Task {
+    private static final String serializerSeparator = "---";
     protected String text = "";
     protected LocalDate details;
     protected boolean complete = false;
 
-    private static final String serializerSeparator = "---";
+    public static Task deserialize(String serializedTask) {
 
-    public enum TaskType { ToDo, Deadline, Event }
+        Task task = null;
+        String[] args = serializedTask.split(serializerSeparator);
+
+        TaskType type;
+
+        try {
+            type = TaskType.valueOf(args[0]);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+
+        switch (type) {
+        case ToDo:
+            task = new ToDo();
+            break;
+        case Deadline:
+            task = new Deadline();
+            break;
+        case Event:
+            task = new Event();
+            break;
+        default:
+            break;
+        }
+
+        if (task != null) {
+            task.complete = Boolean.parseBoolean(args[1]);
+            task.text = args[2];
+            if (args.length >= 4) {
+                try {
+                    task.details = LocalDate.parse(args[3]);
+                } catch (DateTimeParseException e) {
+                    if (task.getTaskType() == TaskType.ToDo) {
+                        return task;
+                    }
+                    return null;
+                }
+            }
+        }
+
+        return task;
+    }
 
     public void setText(String text) {
         this.text = text;
@@ -45,48 +87,6 @@ public abstract class Task {
                 details;
     }
 
-    public static Task deserialize(String serializedTask) {
-
-        Task task = null;
-        String[] args = serializedTask.split(serializerSeparator);
-
-        TaskType type;
-
-        try {
-            type = TaskType.valueOf(args[0]);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
-
-        switch (type) {
-            case ToDo:
-                task = new ToDo();
-                break;
-            case Deadline:
-                task = new Deadline();
-                break;
-            case Event:
-                task = new Event();
-                break;
-            default:
-                break;
-        }
-
-        if (task != null) {
-            task.complete = Boolean.parseBoolean(args[1]);
-            task.text = args[2];
-            if (args.length >= 4) {
-                try {
-                    task.details = LocalDate.parse(args[3]);
-                } catch (DateTimeParseException e) {
-                    return null;
-                }
-            }
-        }
-
-        return task;
-    }
-
     public abstract TaskType getTaskType();
 
     @Override
@@ -94,7 +94,25 @@ public abstract class Task {
         return "[" + (complete ? "X" : " ") + "] " + text;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) {
+            return false;
+        } else if (o instanceof Task) {
+            Task other = (Task) o;
+            return this.getTaskType() == other.getTaskType()
+                    && this.complete == other.complete
+                    && this.text.equals(other.text)
+                    && ((this.details == null && other.details == null)
+                            || this.details.equals(other.details));
+        } else {
+            return false;
+        }
+    }
+
     protected String getFormattedDetails() {
         return details.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL));
     }
+
+    public enum TaskType {ToDo, Deadline, Event}
 }

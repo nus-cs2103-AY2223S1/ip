@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.core.*;
+import duke.core.Ui;
 
 public class Exit extends Command {
 
@@ -10,6 +10,7 @@ public class Exit extends Command {
     private static final String exitMessage = "Bye. Hope to see you again soon!";
 
     protected Ui uiToExit;
+
     public Exit(String invoker, Ui uiToExit) {
         super(invoker);
         this.uiToExit = uiToExit;

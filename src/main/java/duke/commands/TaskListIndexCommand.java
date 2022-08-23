@@ -33,5 +33,6 @@ public abstract class TaskListIndexCommand extends TaskListCommand {
             return execute(t);
         }
     }
+
     protected abstract String execute(Task t);
 }
