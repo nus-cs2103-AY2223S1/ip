@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static duke.IOFormat.say;
+import static duke.Ui.say;
+import static duke.Ui.sayError;
 import static java.lang.String.format;
 
 /**
@@ -28,7 +29,7 @@ public class Todos {
         try {
             todos = storage.loadList();
         } catch (MessagefulException e) {
-            say(e.message());
+            sayError(e);
             todos = new ArrayList<>();
         }
         this.todos = todos;

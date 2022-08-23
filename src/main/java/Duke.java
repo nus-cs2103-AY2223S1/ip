@@ -6,7 +6,10 @@ import duke.modules.todos.Todo;
 
 import java.util.Scanner;
 
-import static duke.IOFormat.say;
+import static duke.Ui.readLine;
+import static duke.Ui.sayAsError;
+import static duke.Ui.sayError;
+import static duke.Ui.say;
 
 /**
  * Entrypoint for the Duke chatbot.
@@ -17,8 +20,6 @@ public class Duke {
      * @param args Command-line arguments.
      */
     public static void main(String[] args) {
-        Scanner stdin = new Scanner(System.in);
-
         // intro string
         say("Hello, Duke here! What can I do for you?");
 
@@ -27,14 +28,14 @@ public class Duke {
 
         boolean fExit = false;
         while (!fExit) {
-            String line = stdin.nextLine();
+            String line = readLine();
             Scanner scanner = new Scanner(line);
             String command = scanner.hasNext() ? scanner.next() : "";
 
             try {
                 switch (command) {
                 case "":
-                    say("Sorry, I didn't catch that?");
+                    sayAsError("Sorry, I didn't catch that?");
                     break;
                 case "bye":
                     say("OK. See you next time! *boings away*");
@@ -62,11 +63,11 @@ public class Duke {
                     todos.cmdDelete(scanner);
                     break;
                 default:
-                    say("Sorry, I didn't understand what you said :(");
+                    sayAsError("Sorry, I didn't understand what you said :(");
                     break;
                 }
             } catch (MessagefulException e){
-                say(e.message());
+                sayError(e);
             }
         }
     }

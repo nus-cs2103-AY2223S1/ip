@@ -1,11 +1,12 @@
 package duke;
 
 import java.util.List;
+import java.util.Scanner;
 
 /**
- * IO helper functions, enforcing a consistent format.
+ * Functions for interacting with the user.
  */
-public class IOFormat {
+public class Ui {
     /**
      * Output a line of text according to the format for bot messages.
      * Do not use \n for multiline text - use the list version.
@@ -25,5 +26,26 @@ public class IOFormat {
             else      System.out.println("   " + lines.get(i));
         }
         System.out.println("─────");
+    }
+
+    private static final boolean DEV_MODE = false;
+
+    public static void sayError(MessagefulException e) {
+        if (DEV_MODE) {
+            sayAsError(e.toString());
+        } else {
+            sayAsError(e.message());
+        }
+    }
+
+    public static void sayAsError(String message) {
+        System.out.println("\uD83D\uDFE1 " + message);
+        System.out.println("─────");
+    }
+
+    private static final Scanner stdin = new Scanner(System.in);
+
+    public static String readLine() {
+        return stdin.nextLine();
     }
 }
