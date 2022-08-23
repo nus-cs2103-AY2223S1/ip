@@ -14,6 +14,8 @@ import static duke.IOFormat.say;
 
 import duke.FallibleFunction;
 import duke.MessagefulException;
+import duke.modules.todos.Deadline;
+import duke.modules.todos.Event;
 import duke.modules.todos.Task;
 import duke.modules.todos.Todo;
 
@@ -51,7 +53,7 @@ public class Todos {
 
             FileWriter fw = new FileWriter(FILE_PATH);
             for (Task task : todos) {
-                fw.write(String.join(",", task.flatpack()) + System.lineSeparator());
+                fw.write(String.join(",", task.flatPack()) + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e){
@@ -68,8 +70,15 @@ public class Todos {
                 List<String> line = Arrays.asList(file.nextLine().split(",", -1));
                 final Task newTask;
                 switch (line.get(0)) {
+                case Task.typeCode:
                 case Todo.typeCode:
                     newTask = new Todo(line);
+                    break;
+                case Deadline.typeCode:
+                    newTask = new Deadline(line);
+                    break;
+                case Event.typeCode:
+                    newTask = new Event(line);
                     break;
                 default:
                     throw new MessagefulException(
@@ -81,7 +90,7 @@ public class Todos {
         } catch (FileNotFoundException e) {
             throw new MessagefulException(
                     "tasks file missing",
-                    "I have gotton you started with an empty task list. Welcome!");
+                    "I have gotten you started with an empty task list. Welcome!");
         }
     }
 
@@ -140,6 +149,7 @@ public class Todos {
         todos.get(taskID).setDone(true);
         say(List.of("Nice! I've marked this task as done:",
                     todos.get(taskID).toString()));
+        saveList();
     }
 
     /**
@@ -152,6 +162,7 @@ public class Todos {
         todos.get(taskID).setDone(false);
         say(List.of("Alright, I've marked this task as not done yet:",
                 todos.get(taskID).toString()));
+        saveList();
     }
 
     /**
@@ -167,5 +178,6 @@ public class Todos {
                 "OK, I've deleted this task:",
                 taskToDelete.toString(),
                 taskCountMessage()));
+        saveList();
     }
 }

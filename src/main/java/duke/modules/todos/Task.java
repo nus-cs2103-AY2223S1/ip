@@ -46,7 +46,7 @@ public abstract class Task {
      *
      * @return The packed data.
      */
-    public List<String> flatpack() {
+    public List<String> flatPack() {
         return List.of(typeCode, this.done ? doneSer : undoneSer, this.name);
     }
 

@@ -2,6 +2,8 @@ package duke.modules.todos;
 
 import duke.MessagefulException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,6 +56,25 @@ import static java.lang.String.format;
                     "Deadlines are added like this: deadline return book /by Sunday"
             );
         }
+    }
+
+    public static final String typeCode = "D";
+
+    @Override
+    public List<String> flatPack() {
+        List<String> result = new ArrayList<>(super.flatPack());
+        result.set(0, typeCode);
+        result.add(deadline);
+
+        return result;
+    }
+
+    public Deadline(List<? extends String> l) {
+        super(l);
+        if (!l.get(0).equals(typeCode)) {
+            throw new IllegalArgumentException("Trying to hydrate non-deadline as deadline: " + l);
+        }
+        this.deadline = l.get(3);
     }
 
     @Override

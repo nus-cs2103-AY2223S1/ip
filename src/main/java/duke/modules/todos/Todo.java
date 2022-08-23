@@ -2,6 +2,7 @@ package duke.modules.todos;
 
 import duke.MessagefulException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -43,6 +44,14 @@ public class Todo extends Task {
     }
 
     public static final String typeCode = "T";
+
+    @Override
+    public List<String> flatPack() {
+        List<String> result = new ArrayList<>(super.flatPack());
+        result.set(0, typeCode);
+
+        return result;
+    }
 
     public Todo(List<? extends String> l) {
         super(l);

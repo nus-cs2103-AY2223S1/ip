@@ -19,10 +19,11 @@ public class Duke {
     public static void main(String[] args) {
         Scanner stdin = new Scanner(System.in);
 
-        Todos todos = new Todos();
-
         // intro string
         say("Hello, Duke here! What can I do for you?");
+
+        // initialize plugins
+        Todos todos = new Todos();
 
         boolean fExit = false;
         while (!fExit) {
