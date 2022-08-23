@@ -9,6 +9,9 @@ list
 mark 2
 todo
 deadline return book /by Sunday
+deadline return book /by Tomorrow
+delete 2
+deadline return book /by today
 mark 2
 list
 unmark 2
