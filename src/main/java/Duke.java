@@ -6,7 +6,7 @@ public class Duke {
     private final Scanner sc = new Scanner(System.in);
 
     /**
-     * Welcome message that is printed upon starting the bot.
+     * Prints a welcome message upon starting the bot.
      */
     public void greet() {
         String logo = " ____        _        \n"
@@ -40,12 +40,18 @@ public class Duke {
             return 0;
         } else if (s.equals("list")) {
             return this.list();
+        } else if (userInput[0].equals("todo")) {
+            return this.addTodo(userInput[1]);
+        } else if (userInput[0].equals("deadline")) {
+            return this.addDeadline(userInput[1]);
+        } else if (userInput[0].equals("event")) {
+            return this.addEvent(userInput[1]);
         } else if (userInput[0].equals("mark")) {
             return this.mark(userInput);
         } else if (userInput[0].equals("unmark")) {
             return this.unmark(userInput);
         } else {
-            return this.add(s);
+            return 1;
         }
     }
 
@@ -54,6 +60,7 @@ public class Duke {
      * @return 1 for successful execution
      */
     private int list() {
+        System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < db.size(); i++) {
             System.out.println(i + 1 + ". " + db.get(i).toString());
         }
@@ -87,32 +94,48 @@ public class Duke {
     }
 
     /**
-     * Classify the input task into To-do, Deadline or Event,
-     * then adds the task to Duke's database.
-     * @param s Input string by user
+     * Adds a new To-Do task.
+     * @param s Input task description
      * @return 1 on successful execution
      */
-    private int add(String s) {
-        Task task;
-
-        // Event
-        if (s.contains("/at")) {
-            String[] tmp = s.split("/at");
-            task = new Event(tmp[0].strip(), tmp[1].strip());
-            db.add(task);
-        // Deadline
-        } else if (s.contains("/by")) {
-            String[] tmp = s.split("/by");
-            task = new Deadline(tmp[0].strip(), tmp[1].strip());
-            db.add(task);
-        // Normal To-Do
-        } else {
-            task = new Todo(s);
-            db.add(task);
-        }
+    private int addTodo(String s) {
+        Todo task = new Todo(s);
+        db.add(task);
 
         System.out.println("Got it. I added this task: ");
-        System.out.println(task);
+        System.out.println("\t" + task);
+        System.out.printf("Now you have %d tasks in the list.%n", db.size());
+        return 1;
+    }
+
+    /**
+     * Adds a new Event task.
+     * @param s Input task description
+     * @return 1 on successful execution
+     */
+    private int addEvent(String s) {
+        String[] tmp = s.split("/at");
+        Event task = new Event(tmp[0].strip(), tmp[1].strip());
+        db.add(task);
+
+        System.out.println("Got it. I added this event: ");
+        System.out.println("\t" + task);
+        System.out.printf("Now you have %d tasks in the list.%n", db.size());
+        return 1;
+    }
+
+    /**
+     * Adds a new Deadline task.
+     * @param s Input task description
+     * @return 1 on successful execution
+     */
+    private int addDeadline(String s) {
+        String[] tmp = s.split("/by");
+        Deadline task = new Deadline(tmp[0].strip(), tmp[1].strip());
+        db.add(task);
+
+        System.out.println("Got it. I added this deadline: ");
+        System.out.println("\t" + task);
         System.out.printf("Now you have %d tasks in the list.%n", db.size());
         return 1;
     }
