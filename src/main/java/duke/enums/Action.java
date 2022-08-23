@@ -1,5 +1,5 @@
-package duke.Enums;
-import duke.Exceptions.*;
+package duke.enums;
+import duke.exceptions.*;
 
 public enum Action {
     Todo("todo"),

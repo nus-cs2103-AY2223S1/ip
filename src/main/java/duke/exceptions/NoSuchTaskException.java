@@ -1,4 +1,4 @@
-package duke.Exceptions;
+package duke.exceptions;
 
 public class NoSuchTaskException extends InvalidCommandException {
     public NoSuchTaskException(int numTasks, int index) {

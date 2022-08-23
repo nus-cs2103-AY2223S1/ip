@@ -1,10 +1,7 @@
-package duke;
+package duke.storage;
 
-import duke.Exceptions.ParsingTaskException;
-import duke.Task.Deadline;
-import duke.Task.Event;
-import duke.Task.Task;
-import duke.Task.Todo;
+import duke.exceptions.ParsingTaskException;
+import duke.task.*;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,12 +16,14 @@ public class Storage {
     public Storage(String dataPath) {
         this.dataPath = dataPath;
     }
+
     private static Task parse(String data) throws ParsingTaskException {
         String[] components = data.split(",");
 
         if (components.length == 0) {
             throw new ParsingTaskException("Data was empty or not formatted properly.");
         }
+
         String type = components[0];
 
         if (type.equals("T")) {
@@ -40,8 +39,8 @@ public class Storage {
 
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();
-        try {
 
+        try {
             File file = new File(this.dataPath);
 
             file.getParentFile().mkdirs();
@@ -62,7 +61,6 @@ public class Storage {
             scanner.close();
 
             return tasks;
-
         } catch (Exception e) {
             System.out.println("An error occurred.\n" + e);
         } finally {
@@ -74,6 +72,7 @@ public class Storage {
         try {
             // Create new file
             String content = "";
+
             for (Task t : tasks.getAll()) {
                 content += t.toSaveString() + "\n";
             }
@@ -95,8 +94,7 @@ public class Storage {
             bw.close();
 
             System.out.println("Saved tasks list successfully!");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e + this.dataPath);
         }
     }

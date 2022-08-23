@@ -1,4 +1,4 @@
-package duke.Exceptions;
+package duke.exceptions;
 
 public class InvalidEventException extends InvalidCommandException {
     public InvalidEventException() {

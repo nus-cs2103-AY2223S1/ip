@@ -1,10 +1,16 @@
 package duke;
 
-import duke.Exceptions.*;
+import duke.commands.Command;
+import duke.exceptions.*;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 import java.io.File;
 import java.util.Scanner;
-public class Duke {
+
+class Duke {
     private static final String DATA_PATH = new File("").getAbsolutePath() + "/data/duke.txt";
     private TaskList taskList;
     private Storage storage;
@@ -33,7 +39,6 @@ public class Duke {
                 c.execute(this.taskList, this.ui, this.storage);
 
                 isExit = c.isExit();
-
             } catch (InvalidCommandException e) {
                 ui.showMessage(e.getMessage());
             }
@@ -41,11 +46,12 @@ public class Duke {
 
         scanner.close();
     }
+
     /**
-    * Note: You are strongly encouraged to customize the chatbot name,
-    * command/display formats, and even the personality of the chatbot
-    * to make your chatbot unique.
-    */
+     * Note: You are strongly encouraged to customize the chatbot name,
+     * command/display formats, and even the personality of the chatbot
+     * to make your chatbot unique.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

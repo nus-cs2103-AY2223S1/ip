@@ -1,4 +1,4 @@
-package duke.Exceptions;
+package duke.exceptions;
 
 public class InvalidTaskIndexException extends InvalidCommandException {
     public InvalidTaskIndexException() {

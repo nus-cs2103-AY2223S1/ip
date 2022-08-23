@@ -1,14 +1,14 @@
-package duke;
+package duke.task;
 
-import duke.Exceptions.NoSuchTaskException;
-import duke.Task.Task;
+import duke.exceptions.NoSuchTaskException;
+import duke.task.Task;
 
 import java.util.List;
 
 public class TaskList {
     private List<Task> tasks;
 
-    TaskList(List<Task> tasks) {
+    public TaskList(List<Task> tasks) {
         this.tasks = tasks;
     }
 
@@ -23,6 +23,7 @@ public class TaskList {
     private String getNumTasksAsString() {
         return String.format("Now you have %d tasks in the list.", this.getNumTasks());
     }
+
     public void store(Task task) {
         this.tasks.add(task);
     }
@@ -31,7 +32,7 @@ public class TaskList {
         try {
             return this.tasks.get(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new NoSuchTaskException(this.getNumTasks(), index+1);
+            throw new NoSuchTaskException(this.getNumTasks(), index + 1);
         }
     }
 

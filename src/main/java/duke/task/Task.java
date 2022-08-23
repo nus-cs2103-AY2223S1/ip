@@ -1,12 +1,6 @@
-package duke.Task;
-import duke.Exceptions.*;
+package duke.task;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
-import java.util.Scanner;
 
 import java.time.format.FormatStyle;
 

@@ -1,4 +1,4 @@
-package duke.Exceptions;
+package duke.exceptions;
 
 public class ParsingTaskException extends Exception {
     public ParsingTaskException(String addtionalMessage) {
