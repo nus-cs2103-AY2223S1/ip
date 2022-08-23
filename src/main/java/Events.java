@@ -28,6 +28,11 @@ public class Events extends Task {
     }
 
     @Override
+    String getTime() {
+        return this.time;
+    }
+
+    @Override
     Task markDone() {
         return new Events(super.getDetail(), true, this.time);
     }

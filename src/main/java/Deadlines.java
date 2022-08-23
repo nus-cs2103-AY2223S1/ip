@@ -36,6 +36,11 @@ public class Deadlines extends Task {
     }
 
     @Override
+    String getTime() {
+        return this.time;
+    }
+
+    @Override
     public String toString() {
         return ID + super.toString()
                 + String.format("(by: %s)", this.time);

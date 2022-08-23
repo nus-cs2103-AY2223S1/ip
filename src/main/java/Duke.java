@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -7,14 +10,19 @@ public class Duke {
 
     Duke() {
         this.ui = new BotUI();
-        this.taskList = new TaskRecords();
+        TaskRecords temp;
+        try {
+            temp = FileManager.read();
+        } catch (FileNotFoundException ex) {
+            temp = new TaskRecords();
+        }
+        this.taskList = temp;
     }
 
     void runBot() {
         System.out.print(ui.botSpeak(ui.sayHello()));
         Scanner scn = new Scanner(System.in);
         String input = scn.nextLine();
-
         while (!input.equals("bye")) {
             try {
                 InputChecker.checkInput(input);
@@ -59,6 +67,12 @@ public class Duke {
                 System.out.print(ui.botSpeak(de.getMessage()));
             }
             input = scn.nextLine();
+        }
+
+        try {
+            FileManager.write(this.taskList);
+        } catch (IOException ex) {
+            System.out.println("Error while Saving File!");
         }
         System.out.print(ui.botDivider());
         System.out.println(ui.sayBye());

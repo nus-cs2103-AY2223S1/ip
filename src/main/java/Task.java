@@ -17,6 +17,8 @@ abstract class Task {
 
     abstract String getId();
 
+    abstract String getTime();
+
     String getDetail() {
         return this.detail;
     }

@@ -10,6 +10,10 @@ public class ToDos extends Task {
     }
 
     @Override
+    String getTime() {
+        return "toDo have no time!";
+    }
+    @Override
     String getId() {
         return ID;
     }
