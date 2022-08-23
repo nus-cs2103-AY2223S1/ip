@@ -1,7 +1,10 @@
-import duke.*;
 import duke.command.Action;
 import duke.command.Command;
+import duke.Parser;
 import duke.exception.DukeException;
+import duke.TaskList;
+import duke.MessagePrinter;
+import duke.Storage;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -10,7 +13,7 @@ import java.util.function.Consumer;
 public class Duke {
     private final HashMap<Action, Consumer<Command>> actionConsumerMap = new HashMap<>();
     private boolean isTerminated;
-    private MessagePrinter messagePrinter;
+    private duke.MessagePrinter messagePrinter;
     private TaskList tasks;
     private Storage storage;
 
@@ -25,19 +28,21 @@ public class Duke {
         String storagePathWin = "data\\duke.txt";
         String storagePathElse = "data/duke.txt";
         String storagePath = System.getProperty("os.name").startsWith("Windows") ? storagePathWin : storagePathElse;
+        new Duke(storagePath).run();
+    }
 
-        Duke duke = new Duke(storagePath);
+    public void run() {
         Scanner scanner = new Scanner(System.in);
-        while (!duke.getIsTerminated()) {
+        while (!this.isTerminated) {
             try {
                 if (scanner.hasNext()) {
                     String entry = scanner.nextLine();
                     Command command = Parser.parseCommand(entry);
-                    duke.execute(command);
-                    duke.isTerminated = command.isTerminated();
+                    this.execute(command);
+                    this.isTerminated = command.isTerminated();
                 }
             } catch (DukeException dukeException) {
-                duke.handle(dukeException);
+                this.handle(dukeException);
             }
         }
     }

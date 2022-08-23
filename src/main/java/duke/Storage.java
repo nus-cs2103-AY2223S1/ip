@@ -43,7 +43,7 @@ public class Storage {
                 result = result + scanner.nextLine() + System.lineSeparator();
             }
         } catch (IOException ioException) {
-            throw new ReadFileException(this.path, "Unable to write the file.");
+            throw new ReadFileException(this.path, "Unable to read the file.");
         }
         return result;
     }
