@@ -1,32 +1,37 @@
 package input;
 
-import exceptions.DukeException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Input is an intermediate representation of input given by the user through the CLI according to certain rules.
- * Provides information about command name, argument name and parameters (if any), and the original input string.
- *  */
+import exceptions.DukeException;
+
+
+
+
 
 /*
 * Rules:
 * Delimiter is " "
 * Command name is the first token in the string
-* All arguments start with / e.g /name. and are space separated. Parameters should not contain /, it will be treated as arg.
+* All arguments start with / e.g /name. and are space separated. Parameters should not contain /, it will be treated
+*  as arg.
 * Argument parameters come after an argument and end before the next argument or till the end of the string.
 *
 * */
+
+/**
+ * Input is an intermediate representation of input given by the user through the CLI according to certain rules.
+ * Provides information about command name, argument name and parameters (if any), and the original input string.
+ * */
 public class Input {
     private static final String DELIMITER = " ";
     private static final String ARG_START = "/";
 
     protected String commandName;
     protected String inputString;
-    protected Map<String,String> parameters; // store arguments without arg_start
+    protected Map<String, String> parameters; // store arguments without arg_start
     protected String[] tokens;
 
     private Input(String input) throws DukeException {
@@ -59,7 +64,10 @@ public class Input {
             // not a valid arg and no current arg: move to next token
             // else: add token to buffer for curr arg
             if (token.equals(ARG_START) || !token.startsWith(ARG_START)) {
-                if (currentArg == null) continue;
+                if (currentArg == null) {
+                    continue;
+                }
+
                 currentBuffer.add(token);
             } else {
                 // Add previous arg with value, reset buffer
@@ -116,7 +124,8 @@ public class Input {
         return inputString;
     }
 
-    /** Returns true if input contains the specified argument
+    /**
+     * Returns true if input contains the specified argument
      * @param argument Argument name to check existence of
      * @return true if argument is present in input, else false
      */
@@ -124,7 +133,8 @@ public class Input {
         return parameters.containsKey(argument);
     }
 
-    /** Returns parameter corresponding to an argument name if it exists
+    /**
+     * Returns parameter corresponding to an argument name if it exists
      * @param argument Argument to get parameter of
      * @return Parameter corresponding to the argument
      * @throws DukeException - if the specified argument was not provided
@@ -137,7 +147,8 @@ public class Input {
         return parameters.get(argument);
     }
 
-    /** Factory method to return new instance of Input
+    /**
+     * Factory method to return new instance of Input
      * @param input String input to process
      * @return Input instance representing intermediate representation of the input string
      * @throws DukeException
