@@ -1,7 +1,12 @@
 package duke.util;
 
 import duke.DukeException;
-import duke.command.*;
+import duke.command.AddTaskCommand;
+import duke.command.DeleteTaskCommand;
+import duke.command.EmptyCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.UpdateStatusCommand;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
 import duke.task.TodoTask;
@@ -90,7 +95,7 @@ public class ParserTest {
         try {
             Parser.parseDateTime("01-01-2022 0100");
             fail();
-        } catch (ParseException e){
+        } catch (ParseException e) {
             assertEquals("Parsing error: 01-01-2022 0100", e.getMessage());
         }
     }
