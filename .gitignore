@@ -18,4 +18,4 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 
 # Dev files
-messages.txt
+/messages.txt

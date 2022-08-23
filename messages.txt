@@ -16,3 +16,15 @@ String intro = Hello! I'm dukebot
                     What can I do for you?
 
 String bye = Bye. Hope to see you again soon!
+
+
+/*
+        On startup, initaite instance of the bot
+        then call the its startup function
+            load from file, if file does not exist create new file
+        driver only detects new inputs, when new input is done, call handleInput function
+
+        handleInput parses input and splits into cases to handle
+        (create new functions for handling each of the actions)
+
+         */
