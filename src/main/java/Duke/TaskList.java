@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -24,7 +26,9 @@ public class TaskList {
         return this.listOfTasks.size();
     }
 
-    public Task getTask(int index) { return this.listOfTasks.get(index); }
+    public Task getTask(int index) {
+        return this.listOfTasks.get(index);
+    }
 
     public void markAsDone(int index) {
         this.listOfTasks.get(index).markAsDone();

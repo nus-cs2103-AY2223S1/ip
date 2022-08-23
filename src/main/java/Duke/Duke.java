@@ -1,6 +1,7 @@
+package duke;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 
 public class Duke {
 
@@ -14,7 +15,7 @@ public class Duke {
         tasks = new TaskList(storage.load());
         try {
             tasks = new TaskList(storage.load());
-        } catch(DukeException e) {
+        } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
         }
@@ -35,6 +36,7 @@ public class Duke {
             }
         }
     }
+
     public static void main(String[] args) throws IOException, DukeException {
         Duke duke = new Duke("src/main/data/Duke.txt");
         duke.run();
