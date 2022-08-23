@@ -19,6 +19,12 @@ public class Deadline extends Task {
     this.dueDate = this.getDateFromString(dueDateString);
   }
 
+  /**
+   * Parses string into LocalDate object.
+   * @param dateString String in YYYY-MM-DD format.
+   * @return LocalDate object representing date.
+   * @throws EkudException Error that occurred, due to invalid string format.
+   */
   private LocalDate getDateFromString (String dateString) throws EkudException {
     try {
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
