@@ -10,48 +10,84 @@ public class DukeCommandHandler {
         commandFilter = new CommandFilter();
     }
 
-    private void addCommand() {
-        Task task = new Task(commandFilter.getRemainderCommand());
-        taskList.addTask(task);
-    }
-
-    private void listCommand() {
+    private void listCommand() throws ExcessDukeCommandException, EmptyListException {
+        if (commandFilter.getRemainderCommand() != null) {
+            throw new ExcessDukeCommandException();
+        }
+        if (taskList.isEmpty()) {
+            throw new EmptyListException();
+        }
         taskList.listTask();
     }
 
-    private void byeCommand() {
+    private void byeCommand() throws ExcessDukeCommandException {
+        if (commandFilter.getRemainderCommand() != null) {
+            throw new ExcessDukeCommandException();
+        }
         dukeMessager.bye();
         isRunning = false;
     }
 
-    private void markCommand() {
-        taskList.markTask(commandFilter.getRemainderCommandAsInt() - 1);
+    private int parseInt(String number) throws IntegerExpectedException {
+        try {
+            int index = Integer.parseInt(number) - 1;
+            return index;
+        } catch (NumberFormatException e) {
+            throw new IntegerExpectedException();
+        }
     }
 
-    private void unmarkCommand() {
-        taskList.unmarkTask(commandFilter.getRemainderCommandAsInt() - 1);
+    private void markCommand() throws EmptyException {
+        if (commandFilter.getRemainderCommand() == null) {
+            throw new EmptyMarkException();
+        }
+        taskList.markTask(parseInt(commandFilter.getRemainderCommand()));
     }
 
-    private void todoCommand() {
+    private void unmarkCommand() throws EmptyException {
+        if (commandFilter.getRemainderCommand() == null) {
+            throw new EmptyUnmarkException();
+        }
+        taskList.unmarkTask(parseInt(commandFilter.getRemainderCommand()));
+    }
+
+    private void todoCommand() throws EmptyException {
+        if (commandFilter.getRemainderCommand() == null) {
+            throw new EmptyTodoException();
+        }
         Todo todo = new Todo(commandFilter.getRemainderCommand());
         taskList.addTask(todo);
     }
 
-    private void deadlineCommand() {
-        String[] descriptions = commandFilter.getRemainderCommand().split(" /by ");
+    private void deadlineCommand() throws EmptyException {
+        if (commandFilter.getRemainderCommand() == null) {
+            throw new EmptyDeadlineException();
+        }
+        String description = commandFilter.getRemainderCommand();
+        if (!description.contains(" /by ")) {
+            throw new EmptyDateTimeException();
+        }
+        String[] descriptions = description.split(" /by ");
         Deadline deadline = new Deadline(descriptions[0], descriptions[1]);
         taskList.addTask(deadline);
     }
 
-    private void eventCommand() {
-        String[] descriptions = commandFilter.getRemainderCommand().split(" /at ");
+    private void eventCommand() throws EmptyException {
+        if (commandFilter.getRemainderCommand() == null) {
+            throw new EmptyEventException();
+        }
+        String description = commandFilter.getRemainderCommand();
+        if (!description.contains(" /at ")) {
+            throw new EmptyDateTimeException();
+        }
+        String[] descriptions = description.split(" /at ");
         Event event = new Event(descriptions[0], descriptions[1]);
         taskList.addTask(event);
     }
 
-    private void executeCommand(String command) {
+    private void executeCommand(String command) throws DukeException, NumberFormatException {
         commandFilter.filterCommand(command);
-        switch (commandFilter.getCommand()){
+        switch (commandFilter.getCommand()) {
         case "list":
             listCommand();
             break;
@@ -74,7 +110,7 @@ public class DukeCommandHandler {
             eventCommand();
             break;
         default:
-            addCommand();
+            throw new DukeCommandNotFoundException();
         }
     }
 
@@ -83,7 +119,11 @@ public class DukeCommandHandler {
         dukeMessager.introduction();
         while (isRunning) {
             String command = dukeMessager.getMessage();
-            executeCommand(command);
+            try {
+                executeCommand(command);
+            } catch (Exception e) {
+                dukeMessager.message(e);
+            }
         }
     }
 }

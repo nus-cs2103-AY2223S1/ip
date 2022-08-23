@@ -30,6 +30,10 @@ public class TaskList {
         taskMessager.unmarkMessage(task);
     }
 
+    public boolean isEmpty() {
+        return tasks.size() == 0;
+    }
+
     @Override
     public String toString() {
         int size = tasks.size();

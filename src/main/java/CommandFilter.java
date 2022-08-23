@@ -32,10 +32,6 @@ public class CommandFilter {
         return remainderWords;
     }
 
-    public Integer getRemainderCommandAsInt() {
-        return Integer.parseInt(remainderWords);
-    }
-
     private boolean isCommand(String command) {
         for (int i = 0; i < commands.length; i++) {
             if (command.equals(commands[i])) {
