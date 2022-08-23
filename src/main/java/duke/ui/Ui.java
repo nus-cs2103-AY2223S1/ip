@@ -96,6 +96,11 @@ public class Ui {
         System.out.println();
     }
 
+    /**
+     * Displays the matching tasks in the lists that were found.
+     * @param tasks List of tasks.
+     * @param matches List of task indices that are matches.
+     */
     public void showFindTasks(TaskList tasks, List<Integer> matches) {
         System.out.println("Here are the matching tasks in your list:");
         for (int i : matches) {

@@ -57,6 +57,11 @@ public class TaskList {
         this.getTask(taskIndex).markAsNotDone();
     }
 
+    /**
+     * Searches the list of tasks for a specified keyword.
+     * @param keyword Keyword to search for.
+     * @return A list of task indices representing the matches.
+     */
     public List<Integer> search(String keyword) {
         ArrayList<Integer> matches = new ArrayList<>();
         for (int i = 1; i <= this.size(); i++) {

@@ -6,6 +6,10 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Command to search the list of tasks for a specified keyword.
+ * @author neosunhan
+ */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
