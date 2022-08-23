@@ -15,6 +15,11 @@ public class Tako {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Tako with the file path to save data at.
+     *
+     * @param filePath File path to save data at.
+     */
     public Tako(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -26,6 +31,9 @@ public class Tako {
         }
     }
 
+    /**
+     * Starts chatting with the user.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -44,6 +52,11 @@ public class Tako {
         }
     }
 
+    /**
+     * Runs the Tako chatbot.
+     *
+     * @param args Command line arguments.
+     */
     public static void main(String[] args) {
         new Tako("data/tasks.txt").run();
     }
