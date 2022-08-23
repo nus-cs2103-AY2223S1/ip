@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 
-public class Task {
+abstract class Task {
     protected String description;
     protected boolean isDone;
     protected int day, month, year, hours, minutes;
@@ -14,6 +14,8 @@ public class Task {
         this.description = description;
         this.isDone = false;
     }
+
+    abstract String getDate();
 
     /**
      * Returns [X] if task is done. Else, [ ].
@@ -45,11 +47,13 @@ public class Task {
      * @return LocalDateTime object.
      * @throws DukeException
      */
-    public LocalDateTime getDate(String date) throws DukeException {
+    public LocalDateTime getLocalDateTime(String date, String taskType, String filler) throws DukeException {
         if (checkValidDate(date)) {
             return LocalDateTime.of(year, month, day, hours, minutes);
         } else {
-            throw new DukeException("OOPS! Format must be <dd/mm/yyyy> <time> with time being 24hours.");
+
+            throw new DukeException("OOPS! Format must be: " + taskType
+                    + " <description> " + filler + " <dd/mm/yyyy> <time> with time being 24hours.");
         }
     }
 

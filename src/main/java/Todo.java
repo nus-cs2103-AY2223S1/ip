@@ -4,6 +4,11 @@ public class Todo extends Task{
         super(description);
     }
 
+    @Override
+    public String getDate() {
+        return "";
+    }
+
     /**
      * Returns String representation of the to-do task.
      *

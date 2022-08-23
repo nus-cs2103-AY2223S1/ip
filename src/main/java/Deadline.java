@@ -2,12 +2,20 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
-    /** Deadline date of the task */
     private String date;
 
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, String by, boolean dateIsFormatted) throws DukeException {
         super(description);
-        this.date = getDate(by).format(DateTimeFormatter.ofPattern("dd MM yyyy HH:mm a"));
+        if (dateIsFormatted == true) {
+            this.date = by;
+        } else {
+            this.date = getLocalDateTime(by, "deadline", "/by").format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm a"));
+        }
+    }
+
+    @Override
+    public String getDate() {
+        return this.date;
     }
 
     /**
