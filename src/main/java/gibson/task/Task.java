@@ -1,3 +1,5 @@
+package gibson.task;
+
 public class Task {
     private String taskString;
     private boolean done;

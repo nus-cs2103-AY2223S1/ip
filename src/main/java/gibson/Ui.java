@@ -1,3 +1,5 @@
+package gibson;
+
 public class Ui {
     private static final String LINE = "____________________________________________________________";
     private static final String ERROR_LINE = "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";

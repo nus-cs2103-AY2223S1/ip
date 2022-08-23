@@ -1,3 +1,5 @@
+package gibson.task;
+
 public class Event extends Task {
     private String startEnd;
 
