@@ -1,23 +1,19 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadlines extends Task {
-    private static final int SKIP_DEADLINE_COMMAND = 9;
-    private static final int SKIP_BY_COMMAND = 4;
+    private static final String timeId = "/by ";
     private static final String ID = "[D]";
-    private final String time;
+    private final LocalDateTime time;
 
-    private static String process(String command, boolean getDetail) {
-        String detail = command.substring(SKIP_DEADLINE_COMMAND, command.indexOf("/by"));
-        String time = command.substring(command.lastIndexOf("/by ") + SKIP_BY_COMMAND);
-        return (getDetail) ? detail : time;
-    }
-
-    Deadlines(String detail, boolean isDone, String time) {
+    Deadlines(String detail, boolean isDone, LocalDateTime time) {
         super(detail, isDone);
         this.time = time;
     }
 
     Deadlines(String command) {
-        super(process(command, true));
-        this.time = process(command, false);
+        super(Parser.extractDetail(command, timeId));
+        this.time = Parser.extractDateTime(command, timeId);
     }
 
     @Override
@@ -42,7 +38,8 @@ public class Deadlines extends Task {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return ID + super.toString()
-                + String.format("(by: %s)", this.time);
+                + String.format("(at: %s)", this.time.format(formatter));
     }
 }

@@ -1,25 +1,20 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Events extends Task {
 
-    private static final int SKIP_EVENT_COMMAND = 6;
-    private static final int SKIP_AT_COMMAND = 4;
+    private static final String timeId = "/at ";
     private static final String ID = "[E]";
-    private final String time;
+    private final LocalDateTime time;
 
-    private static String process(String command, boolean getDetail) {
-        String detail = command.substring(SKIP_EVENT_COMMAND,
-                command.indexOf("/at"));
-        String time = command.substring(command.lastIndexOf("/at ") + SKIP_AT_COMMAND);
-        return (getDetail) ? detail : time;
-    }
-
-    Events(String detail, boolean isDone, String time) {
+    Events(String detail, boolean isDone, LocalDateTime time) {
         super(detail, isDone);
         this.time = time;
     }
 
     Events(String command) {
-        super(process(command, true));
-        this.time = process(command, false);
+        super(Parser.extractDetail(command, timeId));
+        this.time = Parser.extractDateTime(command, timeId);
     }
 
     @Override
@@ -44,7 +39,8 @@ public class Events extends Task {
 
     @Override
     public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return ID + super.toString()
-                + String.format("(at: %s)", this.time);
+                + String.format("(at: %s)", this.time.format(formatter));
     }
 }
