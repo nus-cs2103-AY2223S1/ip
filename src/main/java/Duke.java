@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Duke {
@@ -77,7 +79,7 @@ public class Duke {
                             + " index.");
         }
         this.taskList.markTask(index);
-        String msgBegin = "Nice! I've marked this task as done: \n ";
+        String msgBegin = "Nice! I've marked this task as done:\n ";
         String msg = msgBegin + this.taskList.getTask(index).toString();
         Storage.writeAllToStorage(this.taskList);
         prettyPrint(msg);
@@ -96,7 +98,7 @@ public class Duke {
                             + "index.");
         }
         this.taskList.unmarkTask(index);
-        String msgBegin = "OK, I've marked this task as not done yet: \n ";
+        String msgBegin = "OK, I've marked this task as not done yet:\n ";
         String msg = msgBegin + this.taskList.getTask(index).toString();
         Storage.writeAllToStorage(this.taskList);
         prettyPrint(msg);
@@ -136,6 +138,55 @@ public class Duke {
         System.out.println(
                 "    _____________________________________________________"
                         + "_______\n");
+    }
+
+    /**
+     * Creates and returns LocalDate objects by parsing user's input for date.
+     * User input date should follow the format (yyyy-mm-dd HH:MM), in 24-hour time format.
+     * The date can have a delimiter of a character from "-/|" (characters within the double quotes).
+     * The time can have a delimiter of a character from ":.-|" (characters within the double quotes).
+     * The date and time must be separated by a single whitespace.
+     *
+     * @param dateText User's input of date and time following the format specified.
+     * @return LocalDateTime
+     */
+    public static LocalDateTime parseDateTime(String dateText) throws DukeException {
+        DukeException WRONG_FORMAT = new DukeException("Date and time is in the wrong format! "
+                + "Correct format: yyyy-mm-dd HH:MM");
+        DukeException CANNOT_PARSE = new DukeException("Date and time may have invalid values!");
+        String[] dateTextTokens = dateText.split(" ");
+        if (dateTextTokens.length != 2) {
+            throw WRONG_FORMAT;
+        }
+
+        String unparsedDate = dateTextTokens[0];
+        String[] dateTokens = unparsedDate.split("[-/|]");
+        if (dateTokens.length != 3) {
+            throw WRONG_FORMAT;
+        }
+        if (dateTokens[0].length() != 4 || dateTokens[1].length() != 2 || dateTokens[2].length() != 2) {
+            throw WRONG_FORMAT;
+        }
+        String parsedDate = String.join("-", dateTokens);
+
+        String unparsedTime = dateTextTokens[1];
+        String[] timeTokens = unparsedTime.split("[-:.|]");
+
+        if (timeTokens.length != 2) {
+            throw WRONG_FORMAT;
+        }
+        if (timeTokens[0].length() != 2 || timeTokens[1].length() != 2) {
+            throw WRONG_FORMAT;
+        }
+        String parsedTime = String.join(":", timeTokens);
+
+
+        String parsedDateTime = parsedDate + "T" + parsedTime;
+        try {
+            return LocalDateTime.parse(parsedDateTime);
+        } catch (DateTimeParseException e) {
+            throw CANNOT_PARSE;
+        }
     }
 
     /**
@@ -219,7 +270,7 @@ public class Duke {
                                 + "<date>'!");
             }
             String deadlineTitle = deadlineTokens[0].trim();
-            String by = deadlineTokens[1].trim();
+            LocalDateTime by = parseDateTime(deadlineTokens[1].trim());
             Deadline newDeadline = new Deadline(deadlineTitle, false, by);
             this.addTask(newDeadline);
             break;
@@ -236,7 +287,7 @@ public class Duke {
                                 + " <date>'!");
             }
             String eventTitle = eventTokens[0].trim();
-            String at = eventTokens[1].trim();
+            LocalDateTime at = parseDateTime(eventTokens[1].trim());
             Event newEvent = new Event(eventTitle, false, at);
             this.addTask(newEvent);
             break;

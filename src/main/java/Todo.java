@@ -1,12 +1,14 @@
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 public class Todo extends Task {
     public Todo(String description, boolean done) {
         super(description, done);
     }
 
-
     @Override
-    public String getTime() {
-        return "";
+    public Optional<LocalDateTime> getTime() {
+        return Optional.empty();
     }
 
     @Override

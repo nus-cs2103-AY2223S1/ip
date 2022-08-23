@@ -1,14 +1,18 @@
-public class Deadline extends Task {
-    private String by;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
-    public Deadline(String description, boolean done, String by) {
+public class Deadline extends Task {
+    private final LocalDateTime by;
+
+    public Deadline(String description, boolean done, LocalDateTime by) {
         super(description, done);
         this.by = by;
     }
 
     @Override
-    public String getTime() {
-        return this.by;
+    public Optional<LocalDateTime> getTime() {
+        return Optional.of(this.by);
     }
 
     @Override
@@ -19,7 +23,8 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         String checkbox = this.getDone() ? "[D][X]" : "[D][ ]";
-        String dateFormatted = "(by: " + by + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
+        String dateFormatted = "(by: " + this.by.format(formatter) + ")";
         return checkbox + " " + super.getDescription() + " " + dateFormatted;
     }
 }

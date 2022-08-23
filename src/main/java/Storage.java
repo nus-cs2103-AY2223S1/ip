@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Storage {
@@ -28,12 +29,12 @@ public class Storage {
                 taskList.addTask(currTodo);
                 break;
             case "Deadline":
-                String by = taskStrTokens[3];
+                LocalDateTime by = LocalDateTime.parse(taskStrTokens[3]);
                 Deadline currDeadline = new Deadline(taskDescription, isTaskDone, by);
                 taskList.addTask(currDeadline);
                 break;
             case "Event":
-                String at = taskStrTokens[3];
+                LocalDateTime at = LocalDateTime.parse(taskStrTokens[3]);
                 Event currEvent = new Event(taskDescription, isTaskDone, at);
                 taskList.addTask(currEvent);
                 break;
@@ -49,7 +50,7 @@ public class Storage {
         String taskType = task.getTaskType();
         String taskDescription = task.getDescription();
         String taskDone = task.getDone() ? "1" : "0";
-        String taskTime = task.getTime();
+        String taskTime = task.getTime().map(LocalDateTime::toString).orElse(" ");
 
         String strRepresentation = taskType + "|" + taskDescription + "|" + taskDone + "|" + taskTime + "\n";
         return strRepresentation;
