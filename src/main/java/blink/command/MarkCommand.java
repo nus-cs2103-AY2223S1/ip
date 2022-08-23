@@ -5,6 +5,7 @@ import blink.TaskList;
 import blink.Ui;
 
 public class MarkCommand extends Command{
+
     private int num;
 
     public MarkCommand(int num) {

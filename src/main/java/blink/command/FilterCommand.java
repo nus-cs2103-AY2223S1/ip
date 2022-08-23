@@ -1,9 +1,9 @@
 package blink.command;
 
 import blink.Storage;
-import blink.task.Task;
 import blink.TaskList;
 import blink.Ui;
+import blink.task.Task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

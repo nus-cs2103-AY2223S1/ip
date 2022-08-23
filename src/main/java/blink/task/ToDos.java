@@ -3,6 +3,7 @@ package blink.task;
 import java.time.LocalDate;
 
 public class ToDos extends Task{
+
     public ToDos(String description) {
         super (description);
     }

@@ -21,7 +21,7 @@ public class Events extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: "+ this.dateString() + ")";
+        return "[E]" + super.toString() + " (at: " + this.dateString() + ")";
     }
 
     @Override
@@ -31,7 +31,7 @@ public class Events extends Task{
 
     @Override
     public String saveString() {
-        return "E " + "|" + (this.isDone? 1 : 0 ) +
-                "| " + this.description + " | " + this.date + "\n";
+        return "E " + "|" + (this.isDone? 1 : 0 ) + "| "
+                + this.description + " | " + this.date + "\n";
     }
 }

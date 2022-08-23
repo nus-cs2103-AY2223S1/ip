@@ -1,9 +1,13 @@
 package blink.command;
 
-import blink.*;
+import blink.BlinkException;
+import blink.Storage;
+import blink.TaskList;
+import blink.Ui;
 import blink.task.ToDos;
 
 public class TodoCommand extends Command {
+
     private String desc;
 
     public TodoCommand(String input) {

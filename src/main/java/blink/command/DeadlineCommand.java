@@ -1,9 +1,13 @@
 package blink.command;
 
-import blink.*;
+import blink.BlinkException;
+import blink.Storage;
+import blink.TaskList;
+import blink.Ui;
 import blink.task.Deadlines;
 
 public class DeadlineCommand extends Command{
+
     private String desc;
     private String date;
 

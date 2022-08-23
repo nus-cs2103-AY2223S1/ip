@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
+
     private ArrayList<Task> tasks;
 
     public TaskList() {
@@ -17,10 +18,6 @@ public class TaskList {
 
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
-    }
-
-    public void addTask(Task task) {
-        this.tasks.add(task);
     }
 
     public Task deleteTask(int pos) {
@@ -47,7 +44,7 @@ public class TaskList {
         } else if (this.length() == 1) {
             display = display + "There is only 1 task currently:\n";
         } else {
-            display = display = "There is a total of " + this.length() + " tasks currently:";
+            display = "There is a total of " + this.length() + " tasks currently:";
         }
         for (int x = 0; x < this.length(); x++) {
             display = display + "\n" + (x + 1) + ": " + this.get(x);
@@ -107,5 +104,4 @@ public class TaskList {
         this.tasks.add(temp);
         return temp;
     }
-
 }

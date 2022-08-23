@@ -5,6 +5,7 @@ import blink.BlinkException;
 import java.time.LocalDate;
 
 abstract public class Task {
+
     protected String description;
     protected boolean isDone;
 
@@ -42,7 +43,7 @@ abstract public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     public String mark() throws BlinkException{
