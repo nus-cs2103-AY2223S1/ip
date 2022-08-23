@@ -1,4 +1,9 @@
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -49,7 +54,7 @@ public class Storage {
                 if (task == null) {
                     throw new DukeException("task is null");
                 }
-                if (data[1].equals("X")){
+                if (data[1].equals("X")) {
                     task.mark();
                 }
                 this.tasks.add(task);
@@ -68,7 +73,7 @@ public class Storage {
     @Override
     public String toString() {
         String out = "";
-        for (Task t: tasks) {
+        for (Task t : tasks) {
             out += t.toFileString() + "\n";
         }
         return out;
