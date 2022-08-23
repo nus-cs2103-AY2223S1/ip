@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 /**
  * Task for Duke application.
  *
@@ -55,4 +57,23 @@ public abstract class Task {
     public String toStorageRepresentation() {
         return this.getStatusIcon() + "|" + this.description;
     }
+
+    /**
+     * Returns true if the description of current Task matches with the keyword.
+     *
+     * @param keyWord the keyword string.
+     * @return true if Task matches the keyword, false otherwise.
+     */
+    public boolean isContainKeyWord(String keyWord) {
+        return this.description.contains(keyWord);
+    }
+
+    /**
+     * Returns true if the task happens on the given date.
+     *
+     * @param selectedDate the date object.
+     * @return true if the task happens on the selected date, false otherwise.
+     */
+    public abstract boolean isOnGivenDate(LocalDate selectedDate);
+
 }

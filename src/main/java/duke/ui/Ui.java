@@ -98,6 +98,24 @@ public class Ui {
      * @param taskList the TaskList to be shown.
      */
     public void printTaskList(TaskList taskList) {
-        printTemplate(taskList.toString());
+        if (taskList.isEmpty()) {
+            printTemplate("You have no tasks at the moment.");
+        } else {
+            printTemplate("Here are the tasks in your list\n" + taskList);
+        }
+    }
+
+    /**
+     * Prints the matched TaskList.
+     *
+     * @param matchedTaskList the Task List to be printed.
+     */
+    public void printMatchedTaskList(TaskList matchedTaskList) {
+        if (matchedTaskList.isEmpty()) {
+            printTemplate("There are no task that match the keyword");
+        } else {
+            printTemplate("Here are the tasks in your list that match the keyword\n"
+                    + matchedTaskList);
+        }
     }
 }
