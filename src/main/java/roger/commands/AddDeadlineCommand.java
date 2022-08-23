@@ -1,11 +1,12 @@
 package roger.commands;
 
+import java.time.LocalDate;
+
 import roger.Storage;
 import roger.TaskList;
 import roger.Ui;
 import roger.tasks.Deadline;
 
-import java.time.LocalDate;
 
 public class AddDeadlineCommand extends Command {
     protected LocalDate date;

@@ -1,11 +1,11 @@
 package roger;
 
-import java.util.List;
 import java.io.File;
-import java.io.IOException;
 import java.io.FileWriter;
-import java.nio.file.Path;
+import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 
 
 /**
@@ -35,7 +35,7 @@ public class Storage {
         file.createNewFile();
         FileWriter fw = new FileWriter(file);
         for (String line: lines) {
-            fw.append(line+ '\n');
+            fw.append(line + '\n');
         }
 
         fw.close();

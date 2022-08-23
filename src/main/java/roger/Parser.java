@@ -2,18 +2,29 @@ package roger;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import roger.commands.*;
+
+import roger.commands.AddDeadlineCommand;
+import roger.commands.AddEventCommand;
+import roger.commands.AddToDoCommand;
+import roger.commands.Command;
+import roger.commands.DeleteTaskCommand;
+import roger.commands.ExitCommand;
+import roger.commands.ListCommand;
+import roger.commands.ListOnDateCommand;
+import roger.commands.MarkCommand;
+import roger.commands.UnknownCommand;
+import roger.commands.UnmarkCommand;
 import roger.exceptions.RogerInvalidInputException;
 
 public class Parser {
-    private final String LIST_COMMAND = "list";
-    private final String MARK_COMMAND = "mark";
-    private final String UNMARK_COMMAND = "unmark";
-    private final String ADD_TODO_COMMAND = "todo";
-    private final String ADD_DEADLINE_COMMAND = "deadline";
-    private final String ADD_EVENT_COMMAND = "event";
-    private final String DELETE_COMMAND = "delete";
-    private final String EXIT_COMMAND = "bye";
+    private final String COMMAND_LIST = "list";
+    private final String COMMAND_MARK = "mark";
+    private final String COMMAND_UNMARK = "unmark";
+    private final String COMMAND_ADD_TODO = "todo";
+    private final String COMMAND_ADD_DEADLINE = "deadline";
+    private final String COMMAND_ADD_EVENT = "event";
+    private final String COMMAND_DELETE = "delete";
+    private final String COMMAND_EXIT = "bye";
 
     public Command parse(String input) throws RogerInvalidInputException {
         int cmdArgSeparator = input.indexOf(" ");
@@ -21,24 +32,24 @@ public class Parser {
         String arguments = cmdArgSeparator < 0 ? "" : input.substring(cmdArgSeparator + 1);
 
         switch (command) {
-            case LIST_COMMAND:
-                return parseListArguments(arguments);
-            case MARK_COMMAND:
-                return parseMarkArguments(arguments);
-            case UNMARK_COMMAND:
-                return parseUnmarkArguments(arguments);
-            case ADD_TODO_COMMAND:
-                return parseToDoArguments(arguments);
-            case ADD_DEADLINE_COMMAND:
-                return parseDeadlineArguments(arguments);
-            case ADD_EVENT_COMMAND:
-                return parseEventArguments(arguments);
-            case DELETE_COMMAND:
-                return parseDeleteArguments(arguments);
-            case EXIT_COMMAND:
-                return parseExitArguments(arguments);
-            default:
-                return parseUnknownCommandArguments(arguments);
+        case COMMAND_LIST:
+            return parseListArguments(arguments);
+        case COMMAND_MARK:
+            return parseMarkArguments(arguments);
+        case COMMAND_UNMARK:
+            return parseUnmarkArguments(arguments);
+        case COMMAND_ADD_TODO:
+            return parseToDoArguments(arguments);
+        case COMMAND_ADD_DEADLINE:
+            return parseDeadlineArguments(arguments);
+        case COMMAND_ADD_EVENT:
+            return parseEventArguments(arguments);
+        case COMMAND_DELETE:
+            return parseDeleteArguments(arguments);
+        case COMMAND_EXIT:
+            return parseExitArguments(arguments);
+        default:
+            return parseUnknownCommandArguments(arguments);
         }
     }
 

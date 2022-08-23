@@ -5,12 +5,12 @@ import java.util.Scanner;
 public class Ui {
 
     public void showWelcome() {
-        String logo = "  ____                                \n" +
-                      " |  _ \\    ___     __ _    ___   _ __ \n" +
-                      " | |_) |  / _ \\   / _` |  / _ \\ | '__|\n" +
-                      " |  _ <  | (_) | | (_| | |  __/ | |   \n" +
-                      " |_| \\_\\  \\___/   \\__, |  \\___| |_|   \n" +
-                      "                  |___/               ";
+        String logo = "  ____                                \n"
+                    + " |  _ \\    ___     __ _    ___   _ __ \n"
+                    + " | |_) |  / _ \\   / _` |  / _ \\ | '__|\n"
+                    + " |  _ <  | (_) | | (_| | |  __/ | |   \n"
+                    + " |_| \\_\\  \\___/   \\__, |  \\___| |_|   \n"
+                    + "                  |___/               ";
         System.out.println("Hello its \n" + logo);
         System.out.println("What you wan? What you wan?");
     }
