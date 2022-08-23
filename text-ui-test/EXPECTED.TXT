@@ -14,6 +14,12 @@ ___________________________
 Here are the tasks in your list
 
 1: [T] [ ] borrow book
+2: [D] [ ] return book (by: 02-12-2019 18:00)
+3: [E] [ ] project meeting (at: 05-12-2019 12:00)
+4: [D] [ ] do homework (by: 05-02-2020 12:00)
+5: [T] [ ] read book
+6: [D] [ ] return book (by: 06-06-2019 00:00)
+7: [T] [ ] join sports club
 
 ___________________________ 
 
@@ -22,7 +28,7 @@ Enter Command:
 ___________________________ 
 
 Your wish is my command. I've added this task:
-[D] [ ] return book (by: Sunday)
+[D] [ ] return book (by: 02-12-2019 18:00)
 ___________________________ 
 
 Enter Command: 
@@ -30,7 +36,7 @@ Enter Command:
 ___________________________ 
 
 Your wish is my command. I've added this task:
-[E] [ ] project meeting (at: Mon 2-4pm)
+[E] [ ] project meeting (at: 05-12-2019 12:00)
 ___________________________ 
 
 Enter Command: 
@@ -38,7 +44,7 @@ Enter Command:
 ___________________________ 
 
 Your wish is my command. I've added this task:
-[D] [ ] do homework (by: no idea :-p)
+[D] [ ] do homework (by: 05-02-2020 12:00)
 ___________________________ 
 
 Enter Command: 
@@ -58,7 +64,7 @@ Enter Command:
 ___________________________ 
 
 Your wish is my command. I've added this task:
-[D] [ ] return book (by: June 6th)
+[D] [ ] return book (by: 06-06-2019 00:00)
 ___________________________ 
 
 Enter Command: 
@@ -79,11 +85,11 @@ ___________________________
 Here are the tasks in your list
 
 1: [T] [ ] borrow book
-2: [D] [ ] return book (by: Sunday)
-3: [E] [ ] project meeting (at: Mon 2-4pm)
-4: [D] [ ] do homework (by: no idea :-p)
+2: [D] [ ] return book (by: 02-12-2019 18:00)
+3: [E] [ ] project meeting (at: 05-12-2019 12:00)
+4: [D] [ ] do homework (by: 05-02-2020 12:00)
 5: [T] [X] read book
-6: [D] [ ] return book (by: June 6th)
+6: [D] [ ] return book (by: 06-06-2019 00:00)
 7: [T] [ ] join sports club
 
 ___________________________ 
@@ -93,7 +99,7 @@ Enter Command:
 ___________________________ 
 
 Your wish is my command. I've deleted this task:
-[E] [ ] project meeting (at: Mon 2-4pm)
+[E] [ ] project meeting (at: 05-12-2019 12:00)
 ___________________________ 
 
 Enter Command: 
@@ -103,11 +109,36 @@ ___________________________
 Here are the tasks in your list
 
 1: [T] [ ] borrow book
-2: [D] [ ] return book (by: Sunday)
-3: [D] [ ] do homework (by: no idea :-p)
+2: [D] [ ] return book (by: 02-12-2019 18:00)
+3: [D] [ ] do homework (by: 05-02-2020 12:00)
 4: [T] [X] read book
-5: [D] [ ] return book (by: June 6th)
+5: [D] [ ] return book (by: 06-06-2019 00:00)
 6: [T] [ ] join sports club
+
+___________________________ 
+
+Enter Command: 
+
+___________________________ 
+
+Here are the tasks in your list
+
+1: [T] [ ] borrow book
+2: [T] [X] read book
+3: [T] [ ] join sports club
+
+___________________________ 
+
+Enter Command: 
+
+___________________________ 
+
+Here are the tasks in your list
+
+1: [T] [ ] borrow book
+2: [D] [ ] do homework (by: 05-02-2020 12:00)
+3: [T] [X] read book
+4: [T] [ ] join sports club
 
 ___________________________ 
 

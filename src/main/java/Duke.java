@@ -6,14 +6,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
-import events.Deadline;
-import events.Event;
-import events.Task;
-import events.Todo;
+import domain.Task;
+import domain.Todo;
 import exceptions.IncorrectArgumentException;
+import exceptions.InvalidDateTimeException;
+import exceptions.InvalidTaskSpecificationException;
 import exceptions.MissingArgumentException;
 import exceptions.TaskNotFoundException;
 import exceptions.UnknownCommandException;
@@ -27,6 +29,8 @@ public class Duke {
     static private final String deadlineSubCommand = " /by ";
     static private final String eventCommand = "event";
     static private final String eventSubCommand = " /at ";
+    static private final String advancedListSubCommand1 = "/before ";
+    static private final String advancedListSubCommand2 = "/after ";
     static private final String unmarkCommand = "unmark";
     static private final String deleteCommand = "delete";
     static private final String exitMessage = "Goodbye and have a nice day!";
@@ -62,7 +66,7 @@ public class Duke {
                 System.out.println(sc.nextLine());
             }
             sc.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException ignored) {
         }
 
         System.out.println("Welcome to Aladdin Services");
@@ -97,7 +101,7 @@ public class Duke {
                 Scanner sc = new Scanner(dataFile);
                 while (sc.hasNextLine()) {
                     String taskString = sc.nextLine();
-                    if (taskString != "") {
+                    if (!Objects.equals(taskString, "")) {
                         String[] taskArgs = taskString.split(delimiter);
                         initTask.add(Task.of(taskArgs[0], taskArgs[1], taskArgs[2], taskArgs[3]));
                     }
@@ -105,11 +109,13 @@ public class Duke {
                 sc.close();
                 taskController.loadTasks(initTask);
                 return taskController;
-            } catch (Exception e) {
+            } catch (FileNotFoundException e) {
                 throw new RuntimeException(
                         "This cannot happen has the data file is ensured to be there");
             }
         } catch (Exception e) {
+            System.out.println("UH OH");
+            System.out.println(e.getMessage());
             return new TaskController();
         }
     }
@@ -120,10 +126,10 @@ public class Duke {
     private static void writeDataToFile(List<String> tasks) {
         FileWriter writer;
         try {
-            writer = new FileWriter("src/main/java/data/data.txt");
-            for (int i = 0; i < tasks.size(); i++) {
+            writer = new FileWriter("src/main/java/data/data.txt", false);
+            for (String task : tasks) {
                 try {
-                    writer.write(tasks.get(i) + "\n" + "");
+                    writer.write(task + "\n" + "");
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
@@ -141,7 +147,7 @@ public class Duke {
         }
     }
 
-    private static File ensureDataFileExist() throws IOException, SecurityException {
+    private static void ensureDataFileExist() throws IOException, SecurityException {
         String dataDirPathString = "src/main/java/data/";
         Path dataDirPath = Paths.get(dataDirPathString);
         boolean dataDirExists = Files.isDirectory(dataDirPath);
@@ -150,16 +156,17 @@ public class Duke {
         Path dataFilePath = Paths.get(dataFilePathString);
         boolean dataFileExists = Files.exists(dataFilePath);
         if (!(dataDirExists && dataFileExists)) {
-            return createDataFile();
+            createDataFile();
+            return;
         }
-        return new File(dataFilePathString);
+        new File(dataFilePathString);
     }
 
-    private static File createDataFile() throws IOException, SecurityException {
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    private static void createDataFile() throws IOException, SecurityException {
         File dataFile = new File("src/main/java/data/data.txt");
         dataFile.getParentFile().mkdirs();
         dataFile.createNewFile();
-        return dataFile;
     }
 
     public static void main(String[] args) {
@@ -191,7 +198,7 @@ public class Duke {
                         String todoText = String.join(" ", commandArgsCopy);
 
                         if (commandArgsCopy.length > 0) {
-                            Task newTodo = new Todo(todoText);
+                            Task newTodo = Todo.of(todoText);
                             taskController.addTask(newTodo);
                             Duke.writeDataToFile(taskController.exportTaskList());
                         } else {
@@ -207,7 +214,7 @@ public class Duke {
                             String deadlineTitle = deadlineArgs[0];
                             String deadline = deadlineArgs[1];
 
-                            Task newDeadline = new Deadline(deadlineTitle, deadline);
+                            Task newDeadline = Task.of("D", "0", deadlineTitle, deadline);
                             taskController.addTask(newDeadline);
                             Duke.writeDataToFile(taskController.exportTaskList());
                         } else {
@@ -223,7 +230,7 @@ public class Duke {
                             String eventTitle = eventArgs[0];
                             String eventDateTime = eventArgs[1];
 
-                            Task newEvent = new Event(eventTitle, eventDateTime);
+                            Task newEvent = Task.of("E", "0", eventTitle, eventDateTime);
                             taskController.addTask(newEvent);
                             Duke.writeDataToFile(taskController.exportTaskList());
                         } else {
@@ -263,7 +270,18 @@ public class Duke {
                         break;
 
                     case listCommand:
-                        taskController.listTasks();
+                        String advancedListText = String.join(" ", commandArgsCopy);
+                        if (advancedListText.contains(advancedListSubCommand1)) {
+                            String[] advancedListArgs = advancedListText.split(advancedListSubCommand1);
+                            String advancedListDateTime = advancedListArgs[1];
+                            taskController.listTasks(advancedListDateTime, true);
+                        } else if (advancedListText.contains(advancedListSubCommand2)) {
+                            String[] advancedListArgs = advancedListText.split(advancedListSubCommand2);
+                            String advancedListDateTime = advancedListArgs[1];
+                            taskController.listTasks(advancedListDateTime, false);
+                        } else {
+                            taskController.listTasks();
+                        }
                         break;
 
                     default:
@@ -271,7 +289,7 @@ public class Duke {
                                 "Sorry I don't understand that command");
                 }
             } catch (UnknownCommandException | MissingArgumentException | TaskNotFoundException
-                    | IncorrectArgumentException e) {
+                    | IncorrectArgumentException | InvalidDateTimeException | InvalidTaskSpecificationException e) {
                 System.out.println(e.getMessage());
             }
         }

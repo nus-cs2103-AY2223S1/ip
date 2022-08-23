@@ -1,25 +1,33 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
-import events.Task;
+import domain.Task;
 import exceptions.TaskNotFoundException;
 
 public class TaskController {
-    private final List<Task> tasks;
+    private final Set<Task> taskSet;
+    private final List<Task> taskList;
 
     public TaskController() {
-        this.tasks = new ArrayList<>();
+        this.taskSet = new HashSet<>();
+        this.taskList = new ArrayList<>();
     }
 
     /**
-     * Marks a task from the list of tasks given it's index.
+     * Marks a task from the list of tasks given its index.
      * 
      * @param idx Index of Task in List
      * @throws TaskNotFoundException Thrown if task is not found
      */
     public void markTask(int idx) throws TaskNotFoundException {
         try {
-            Task curr = tasks.get(idx);
+            Task curr = taskList.get(idx);
             curr.setComplete();
 
             System.out.println("I've marked this task as done:");
@@ -30,14 +38,14 @@ public class TaskController {
     }
 
     /**
-     * Unmarks a task from the list of tasks given it's index.
+     * Unmarks a task from the list of tasks given its index.
      * 
      * @param idx Index of Task in List
      * @throws TaskNotFoundException Thrown if task is not found
      */
     public void unmarkTask(int idx) throws TaskNotFoundException {
         try {
-            Task curr = tasks.get(idx);
+            Task curr = taskList.get(idx);
             curr.setIncomplete();
 
             System.out.println("I've  unmarked this task as done:");
@@ -53,7 +61,10 @@ public class TaskController {
      * @param newTask Task to be added
      */
     public void addTask(Task newTask) {
-        tasks.add(newTask);
+        boolean addFlag = taskSet.add(newTask);
+        if (addFlag) {
+            taskList.add(newTask);
+        }
 
         System.out.println("\n___________________________ \n");
         System.out.println("Your wish is my command. I've added this task:");
@@ -62,15 +73,16 @@ public class TaskController {
     }
 
     /**
-     * Deletes a task from the list of tasks given it's index.
+     * Deletes a task from the list of tasks given its index.
      * 
      * @param idx Index of Task in List
      * @throws TaskNotFoundException Thrown if task is not found
      */
     public void deleteTask(int idx) throws TaskNotFoundException {
         try {
-            Task curr = tasks.get(idx);
-            tasks.remove(curr);
+            Task curr = taskList.get(idx);
+            taskList.remove(curr);
+            taskSet.remove(curr);
 
             System.out.println("\n___________________________ \n");
             System.out.println("Your wish is my command. I've deleted this task:");
@@ -87,21 +99,58 @@ public class TaskController {
     public void listTasks() {
         System.out.println("\n___________________________ \n");
         System.out.println("Here are the tasks in your list\n");
-        for (int idx = 0; idx < tasks.size(); idx++) {
-            System.out.println(idx + 1 + ": " + tasks.get(idx));
+        for (int idx = 0; idx < taskList.size(); idx++) {
+            System.out.println(idx + 1 + ": " + taskList.get(idx));
         }
         System.out.println("\n___________________________ \n");
     }
 
     public void loadTasks(List<Task> initTask) {
-        initTask.forEach(task -> this.tasks.add(task));
+        this.taskList.addAll(initTask);
+        this.taskSet.addAll(initTask);
     }
 
     public List<String> exportTaskList() {
         List<String> result = new ArrayList<>();
-        for (int i = 0; i < this.tasks.size(); i++) {
-            result.add(this.tasks.get(i).exportString());
+        for (Task task : this.taskList) {
+            if (task != null) {
+                result.add(task.exportString());
+            }
         }
         return result;
+    }
+
+    public void listTasks(String inputDateTime, boolean isBefore) {
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+                    "dd-MM-yyyy HH:mm");
+            LocalDateTime dateTime = LocalDateTime.parse(
+                    inputDateTime, formatter);
+            System.out.println("\n___________________________ \n");
+            System.out.println("Here are the tasks in your list\n");
+            int counter = 1;
+            for (Task task : taskList) {
+                if (isBefore && task.isBefore(dateTime)) {
+                    System.out.println(String.format("%d: %s", counter, task));
+                    counter++;
+                }
+                if (!isBefore && task.isAfter(dateTime)) {
+                    System.out.println(String.format("%d: %s", counter, task));
+                    counter++;
+                }
+            }
+            System.out.println("\n___________________________ \n");
+            // Stream<Task> taskStream;
+            // if (isBefore) {
+            // taskStream = this.taskList.stream().filter(x -> x.isBefore(dateTime));
+            // } else {
+            // taskStream = this.taskList.stream().filter(x -> x.isAfter(dateTime));
+            // }
+
+            // IntStream.iterate(1, x -> x + 1).map(x -> )
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
     }
 }
