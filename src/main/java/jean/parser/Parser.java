@@ -7,6 +7,9 @@ import jean.task.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A class which serves to decipher user input.
+ */
 public class Parser {
 
     private static MarkCommand checkMark(String fullCommand, TaskList taskList) throws JeanException {
@@ -77,7 +80,6 @@ public class Parser {
         }
     }
 
-
     private static DeleteCommand checkDelete(String fullCommand, TaskList taskList) throws JeanException {
         if (fullCommand.length() == 6) {
             throw new JeanException("You must name a task to delete!"
@@ -90,6 +92,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Reads user command and calls its corresponding command if the input is valid.
+     *
+     * @param fullCommand The user input.
+     * @param taskList The list of task to verify validity of input.
+     * @return Returns a command corresponding to the user input.
+     * @throws JeanException When user's input is invalid.
+     */
     public static Command parse(String fullCommand, TaskList taskList) throws JeanException {
         if (fullCommand.equals("bye")) {
             return new ExitCommand();

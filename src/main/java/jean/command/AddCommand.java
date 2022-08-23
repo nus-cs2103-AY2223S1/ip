@@ -5,19 +5,30 @@ import jean.task.Task;
 import jean.task.TaskList;
 import jean.ui.Ui;
 
+/**
+ * Represents a Command which instructs Jean to add a task into the list of tasks.
+ */
 public class AddCommand extends Command {
     Task task;
 
+    /**
+     * Creates a AddCommand object with the task to be added.
+     *
+     * @param task The task to be added.
+     */
     public AddCommand(Task task) {
         this.task = task;
     }
 
+    /**
+     * Adds the task of the command to the list of tasks.
+     *
+     * @param taskList List of tasks to be added to.
+     * @param ui The ui object that prints feedback to the user interface.
+     * @param storage The storage object that saves to or extracts from data.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.addTask(this.task);
-        ui.printMessage("\tadded / ajouté:"
-                        + "\n\t\t" + this.task.toString());
-        ui.printMessage("\tYou now have " + taskList.getNumberOfTasks() + " task(s)!"
-                        + "\n\tVous avez " + taskList.getNumberOfTasks() + " tâche(s)!");
+        taskList.addTask(this.task, ui);
     }
 }
