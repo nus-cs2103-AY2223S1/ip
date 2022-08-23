@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+package duke;
 
 public class Ui {
     public static void printWelcomeMessage() {
