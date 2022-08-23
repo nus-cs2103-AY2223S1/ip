@@ -22,6 +22,7 @@ public class Duke {
         System.out.println(greet + "\n" + logo);
         String str = sc.nextLine();
 
+        // to do the string catch
         while (true) {
             if (str.startsWith("todo")) {
                 try {
