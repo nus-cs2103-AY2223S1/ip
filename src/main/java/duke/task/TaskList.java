@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.util.ArrayList;
 import java.util.Iterator;
+
+import duke.DukeException;
 
 public class TaskList implements Iterable<Task> {
     private final ArrayList<Task> tasks;

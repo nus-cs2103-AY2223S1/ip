@@ -1,14 +1,14 @@
 package duke;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import duke.command.Command;
-import duke.util.DataFileCorruptedException;
 import duke.task.TaskList;
+import duke.util.DataFileCorruptedException;
 import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.UI;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class Duke {
 

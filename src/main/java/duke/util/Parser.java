@@ -1,5 +1,9 @@
 package duke.util;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 import duke.command.AddTaskCommand;
 import duke.command.Command;
 import duke.command.CommandType;
@@ -13,10 +17,6 @@ import duke.task.EventTask;
 import duke.task.Task;
 import duke.task.TaskSymbolType;
 import duke.task.TodoTask;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Parser {
 
