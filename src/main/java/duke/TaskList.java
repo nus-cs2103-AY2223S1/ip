@@ -68,4 +68,13 @@ public class TaskList {
         + myList.get(itemNumber).getStatusIcon() + "] "
         + myList.get(itemNumber).getDescription());
     }
+
+    // for test purposes
+    String testListTasks () {
+        StringBuilder sb = new StringBuilder();
+        for (Task myTask: myList) {
+            sb.append(myTask.toString());
+        }
+        return sb.toString();
+    }
 }
