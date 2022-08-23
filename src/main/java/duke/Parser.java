@@ -8,9 +8,9 @@ public class Parser {
             try {
                 switch (Instructions.valueOf(input)) {
                 case bye:
-                    return new ExitCommand();
+                    return ExitCommand.of();
                 case list:
-                    return new ListCommand();
+                    return ListCommand.of();
                 case mark:
                 case unmark:
                     throw new DukeException(String.format("Choose which index to %s.", input));

@@ -42,7 +42,7 @@ public abstract class Task {
         return String.format("%d %s", d, task);
     }
 
-    public LocalDateTime ConvertDateTime(String dateTime) throws DukeException {
+    public static LocalDateTime getLocalDateTime(String dateTime) throws DukeException {
         try {
             String[] split = dateTime.split(" ", 2);
             DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");

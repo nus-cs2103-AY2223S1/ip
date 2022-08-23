@@ -24,4 +24,8 @@ public class Events extends Task {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         return "event " + super.toSaveString() + " " + timing.format(format);
     }
+
+    public LocalDateTime ConvertDateTime(String dateTime) throws DukeException {
+        return Task.getLocalDateTime(dateTime);
+    }
 }

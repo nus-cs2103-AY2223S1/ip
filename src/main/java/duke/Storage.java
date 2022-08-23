@@ -32,11 +32,12 @@ public class Storage {
         createFile();
         pullSavedTaskList(ui, taskList);
     }
-    public void createFolder() {
+
+    private void createFolder() {
         new File(folderPath).mkdir();
     }
 
-    public void createFile() {
+    private void createFile() {
         try {
             new File(filePath).createNewFile();
         } catch (IOException e) {
@@ -44,7 +45,7 @@ public class Storage {
         }
     }
 
-    public void pullSavedTaskList(UI ui, TaskList taskList) {
+    private void pullSavedTaskList(UI ui, TaskList taskList) {
         File save = new File(filePath);
         try {
             Scanner s = new Scanner(save);
