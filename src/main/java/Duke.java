@@ -3,8 +3,10 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -33,7 +35,7 @@ public class Duke {
         System.out.println("You have " + db.size() + " tasks in the list.");
     }
 
-    public static void markTask(String str) throws DukeException, IOException {
+    public static void markTask(String str) throws DukeException {
         int index = Integer.parseInt(str.substring(5));
         if (index <= db.size() && index > 0) {
             Task task = db.get(index - 1);
@@ -51,7 +53,7 @@ public class Duke {
         }
     }
 
-    public static void unmarkTask(String str) throws DukeException, IOException {
+    public static void unmarkTask(String str) throws DukeException {
         int index = Integer.parseInt(str.substring(7));
         if (index <= db.size() && index > 0) {
             Task task = db.get(index - 1);
@@ -69,7 +71,7 @@ public class Duke {
         }
     }
 
-    public static void addTodo(String str) throws DukeException, IOException {
+    public static void addTodo(String str) throws DukeException {
         String sub = str.substring(5).trim();
         if (!sub.isEmpty()) {
             db.add(new Todo(str.substring(5)));
@@ -82,39 +84,53 @@ public class Duke {
         }
     }
 
-    public static void addDeadline(String str) throws DukeException, IOException {
+    public static void addDeadline(String str) throws DukeException {
         String sub = str.substring(9).trim();
-        if (str.contains("/by")) {
-            String[] split = sub.split("/by");
-            if (split.length < 2) {
-                throw new DukeException("Please specify the deadline.");
+        try {
+            if (str.contains("/by ")) {
+                String[] split = sub.split("/by ");
+                if (split.length < 2) {
+                    throw new DukeException("Please specify the deadline in yyyy-mm-dd format.");
+                } else {
+                    LocalDate ld = LocalDate.parse(split[1]);
+                    db.add(new Deadline(split[0], ld));
+                    Duke.saveLocalData();
+                    System.out.println("Got it, I've added this task:");
+                    System.out.println(db.get(db.size() - 1));
+                    System.out.println("Now you have " + db.size() + " tasks in the list.");
+                }
             } else {
-                db.add(new Deadline(split[0], split[1]));
-                Duke.saveLocalData();
-                System.out.println("Got it, I've added this task:");
-                System.out.println(db.get(db.size() - 1));
-                System.out.println("Now you have " + db.size() + " tasks in the list.");
+                throw new DukeException("Please specify the deadline by using \"/by \".");
             }
-        } else {
-            throw new DukeException("Please specify the deadline by using \"/by\".");
-        }
+        } catch (DateTimeParseException e) {
+        throw new DukeException("Please enter the deadline in yyyy-mm-dd format.");
+    }
     }
 
-    public static void addEvent(String str) throws DukeException, IOException {
+    public static void addEvent(String str) throws DukeException {
         String sub = str.substring(6).trim();
-        if (str.contains("/at")) {
-            String[] split = sub.split("/at");
-            db.add(new Event(split[0], split[1]));
-            Duke.saveLocalData();
-            System.out.println("Got it, I've added this task:");
-            System.out.println(db.get(db.size() - 1));
-            System.out.println("Now you have " + db.size() + " tasks in the list.");
-        } else {
-            throw new DukeException("Please specify the event date by using \"/at\"");
+        try {
+            if (str.contains("/at ")) {
+                String[] split = sub.split("/at ");
+                if (split.length < 2) {
+                    throw new DukeException("Please specify the event date in yyyy-mm-dd format.");
+                } else {
+                    LocalDate ld = LocalDate.parse(split[1]);
+                    db.add(new Event(split[0], ld));
+                    Duke.saveLocalData();
+                    System.out.println("Got it, I've added this task:");
+                    System.out.println(db.get(db.size() - 1));
+                    System.out.println("Now you have " + db.size() + " tasks in the list.");
+                }
+            } else {
+                throw new DukeException("Please specify the event date by using \"/at \"");
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please enter the event date in yyyy-mm-dd format.");
         }
     }
 
-    public static void deleteTask(String str) throws DukeException, IOException {
+    public static void deleteTask(String str) throws DukeException {
         int index = Integer.parseInt(str.substring(7));
         if (index <= db.size() && index > 0) {
             System.out.println("Noted. I've removed this task:");
@@ -126,18 +142,20 @@ public class Duke {
         }
     }
 
-    private static void loadLocalData() throws DukeException, IOException {
+    private static void loadLocalData() throws DukeException {
         try {
             File file = new File("data/duke.txt");
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
                 String[] split = sc.nextLine().split("##");
                 Task task;
-                if (split[0].equals("D")) {
-                    task = new Deadline(split[2], split[3]);
-                } else if (split[0].equals("E")) {
-                    task = new Event(split[2], split[3]);
-                } else if (split[0].equals("T")) {
+                if ("D".equals(split[0])) {
+                    LocalDate ld = LocalDate.parse(split[3]);
+                    task = new Deadline(split[2], ld);
+                } else if ("E".equals(split[0])) {
+                    LocalDate ld = LocalDate.parse(split[3]);
+                    task = new Event(split[2], ld);
+                } else if ("T".equals(split[0])) {
                     task = new Todo(split[2]);
                 } else {
                     throw new DukeException("Unable to read file.");
@@ -148,20 +166,30 @@ public class Duke {
                 db.add(task);
             }
         } catch (FileNotFoundException e) {
-            Files.createDirectories(Paths.get("data/"));
-            File file = new File("data/duke.txt");
-            file.createNewFile();
-            System.out.print("New file created to store tasks.");
+            try {
+                Files.createDirectories(Paths.get("data/"));
+                File file = new File("data/duke.txt");
+                file.createNewFile();
+                System.out.print("New file created to store tasks.");
+            } catch (IOException ex) {
+                throw new DukeException(ex.getMessage());
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Unable to read file.");
         }
     }
 
-    private static void saveLocalData() throws IOException {
-        FileWriter fw = new FileWriter("data/duke.txt");
-        for (Task task: db) {
-            String str = task.stringify();
-            fw.write(str + "\n");
+    private static void saveLocalData() throws DukeException {
+        try {
+            FileWriter fw = new FileWriter("data/duke.txt");
+            for (Task task : db) {
+                String str = task.stringify();
+                fw.write(str + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
         }
-        fw.close();
     }
 
     public static void main(String[] args) {
@@ -169,9 +197,7 @@ public class Duke {
         try {
             loadLocalData();
         } catch (DukeException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         while (true) {
             try {
@@ -201,11 +227,8 @@ public class Duke {
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
-
             } catch (NumberFormatException e) {
                 System.out.println("Invalid index input, please try again.");
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
         sc.close();
