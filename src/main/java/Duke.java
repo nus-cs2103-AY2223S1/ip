@@ -60,10 +60,10 @@ public class Duke {
                         throw new DukeException("☹ OOPS!!! " +
                                 "The description of a deadline cannot be empty.\n");
                     } else {
-                        int integer = deadlineTask.indexOf("/by");
-                        String description = deadlineTask.substring(0, integer - 1);
-                        String by = deadlineTask.substring(integer + 4);
-                        taskArray.add(index, new Deadline(description, by));
+                        int by = deadlineTask.indexOf("/by");
+                        String description = deadlineTask.substring(0, by - 1);
+                        String dateAndTime = deadlineTask.substring(by + 4);
+                        taskArray.add(index, new Deadline(description, dateAndTime));
                         System.out.println("Got it. I've added this task:\n " + taskArray.get(index).toString() +
                                 "\nNow you have " + (index + 1) + " tasks in the list.\n");
                         index += 1;
