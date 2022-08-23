@@ -4,6 +4,10 @@ import duke.MessagefulException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.FormatStyle;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,13 +18,13 @@ import static java.lang.String.format;
  * Deadlines - tasks with a due date.
  */
  public class Deadline extends Task{
-    private String deadline;
+    private LocalDateTime deadline;
 
     /**
      * Constructor
      * @param name The name of the task.
      */
-    public Deadline(String name, String deadline) {
+    public Deadline(String name, LocalDateTime deadline) {
         this(name, false, deadline);
     }
 
@@ -30,7 +34,7 @@ import static java.lang.String.format;
      * @param done Whether the task is done.
      * @param deadline The deadline of the task.
      */
-    public Deadline(String name, boolean done, String deadline) {
+    public Deadline(String name, boolean done, LocalDateTime deadline) {
         super(name, done);
         this.deadline = deadline;
     }
@@ -49,7 +53,15 @@ import static java.lang.String.format;
         String rest = sc.hasNextLine() ? sc.nextLine() : "";
         Matcher match = chatPattern.matcher(rest);
         if (match.matches()) {
-            return new Deadline(match.group("name"), match.group("time"));
+            try {
+                return new Deadline(
+                        match.group("name"),
+                        LocalDateTime.parse(match.group("time")));
+            } catch (DateTimeParseException e) {
+                throw new MessagefulException(
+                        "datetime parse failure" + e,
+                        e.getParsedString() + " doesn't look like a date and time to me...");
+            }
         } else {
             throw new MessagefulException(
                     "Deadline syntax no match",
@@ -64,7 +76,7 @@ import static java.lang.String.format;
     public List<String> flatPack() {
         List<String> result = new ArrayList<>(super.flatPack());
         result.set(0, typeCode);
-        result.add(deadline);
+        result.add(deadline.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
 
         return result;
     }
@@ -74,11 +86,14 @@ import static java.lang.String.format;
         if (!l.get(0).equals(typeCode)) {
             throw new IllegalArgumentException("Trying to hydrate non-deadline as deadline: " + l);
         }
-        this.deadline = l.get(3);
+        this.deadline = LocalDateTime.parse(l.get(3), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
     }
 
     @Override
     public String toString() {
-        return format("[D]%s (by: %s)", super.toString(), this.deadline);
+        return format(
+                "[D]%s (by: %s)",
+                super.toString(),
+                this.deadline.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)));
     }
 }
