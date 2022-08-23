@@ -13,19 +13,8 @@ public class TaskList {
         this.tasks = new LinkedList<>();
     }
 
-    /**
-     * Lists all the tasks entered thus far by the user.
-     * Will print 'No tasks' if no tasks are found.
-     */
-    public String listTasks() {
-        String taskList = "";
-        int count = 0;
-        for (Task task : tasks) {
-            count++;
-            taskList += String.format("\n%d. %s", count, task);
-        }
-        return (count != 0 ? "Here are the tasks in your list:\n"
-                + taskList.substring(1) : "No tasks");
+    public int numberOfTasks() {
+        return this.tasks.size();
     }
 
     /**
@@ -35,7 +24,7 @@ public class TaskList {
      * @return True if the task exists, false otherwise
      */
     public boolean isValidTask(int i) throws DukeException {
-        boolean isValid = i <= tasks.size();
+        boolean isValid = i > 0 && i <= tasks.size();
         if (!isValid) throw new DukeException("Hm... Duke can't find this task.");
         return true;
     }
@@ -91,5 +80,29 @@ public class TaskList {
         Task task = tasks.remove(i - 1);
         return (String.format("Noted. I've removed this task:\n" +
                 "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
+    }
+
+    public String toSaveFormat() {
+        String formatted = "";
+        for (Task task : tasks) {
+            formatted += task.toSaveFormat() + "\n";
+        }
+        return formatted;
+    }
+
+    /**
+     * Lists all the tasks entered thus far by the user.
+     * Will print 'No tasks' if no tasks are found.
+     */
+    @Override
+    public String toString() {
+        String taskList = "";
+        int count = 0;
+        for (Task task : tasks) {
+            count++;
+            taskList += String.format("\n%d. %s", count, task);
+        }
+        return (count != 0 ? "Here are the tasks in your list:\n"
+                + taskList.substring(1) : "No tasks");
     }
 }

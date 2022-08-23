@@ -16,6 +16,14 @@ public enum TaskType {
                         "The description of a todo cannot be empty!");
             }
         }
+
+        @Override
+        public ToDo parseSavedFormat(String savedFormat) {
+            String[] savedData = TaskType.parseFormatArray(savedFormat);;
+            boolean status = savedData[0].equals("Y");
+            String description = savedData[1];
+            return new ToDo(description, status);
+        }
     },
     /**
      * An event task, which has a description and start/end datetime.
@@ -30,6 +38,15 @@ public enum TaskType {
                 throw new DukeException("Hm... Duke's confused. Are you trying to create an event?" +
                         "\nMake sure you follow the format: event [description] /at [event datetime]");
             }
+        }
+
+        @Override
+        public Event parseSavedFormat(String savedFormat) {
+            String[] savedData = TaskType.parseFormatArray(savedFormat);
+            boolean status = savedData[0].equals("Y");
+            String description = savedData[1];
+            String datetime = savedData[2];
+            return new Event(description, datetime, status);
         }
     },
     /**
@@ -46,6 +63,15 @@ public enum TaskType {
                         "\nMake sure you follow the format: deadline [description] /by [deadline]");
             }
         }
+
+        @Override
+        public Deadline parseSavedFormat(String savedFormat) {
+            String[] savedData = TaskType.parseFormatArray(savedFormat);
+            boolean status = savedData[0].equals("Y");
+            String description = savedData[1];
+            String datetime = savedData[2];
+            return new Deadline(description, datetime, status);
+        }
     };
 
     /**
@@ -57,4 +83,15 @@ public enum TaskType {
      * @throws DukeException Exception thrown when the provided command is invalid.
      */
     public abstract Task validateCommand(String cmd) throws DukeException;
+
+    public abstract Task parseSavedFormat(String savedFormat);
+
+    private static String[] parseFormatArray(String savedFormat) {
+        String[] result = savedFormat.substring(4).split("\\ \\|\\ ");
+        int len = result.length;
+        for (int i = 0; i < len; i++) {
+            result[i] = result[i].replace("\\\\|", "|");
+        }
+        return result;
+    }
 }

@@ -10,6 +10,13 @@ public class ToDo extends Task {
     public ToDo(String description) {
         super(description);
     }
+    public ToDo(String description, boolean completion) { super(description, completion); }
+
+    @Override
+    public String toSaveFormat() {
+        return String.format("T | %s | %s", this.isDone ? "Y" : "N",
+                this.description.replace("|", "\\|"));
+    }
 
     /**
      * Returns a string representation for the to-do task,

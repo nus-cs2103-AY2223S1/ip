@@ -15,6 +15,18 @@ public class Event extends Task {
         this.eventDatetime = datetime;
     }
 
+    public Event(String description, String datetime, boolean completion) {
+        super(description, completion);
+        this.eventDatetime = datetime;
+    }
+
+    @Override
+    public String toSaveFormat() {
+        return String.format("E | %s | %s | %s", this.isDone ? "Y" : "N",
+                this.description.replace("|", "\\|"),
+                this.eventDatetime.replace("|", "\\|"));
+    }
+
     /**
      * Returns a string representation for the event task,
      * prefixed with a [E], followed by the event status, and
