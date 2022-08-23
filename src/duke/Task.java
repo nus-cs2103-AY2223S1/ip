@@ -21,7 +21,6 @@ public abstract class Task {
         return this.isDone;
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Task) {
@@ -34,4 +33,6 @@ public abstract class Task {
 
         return false;
     }
+
+    public abstract String toSaveVersion();
 }

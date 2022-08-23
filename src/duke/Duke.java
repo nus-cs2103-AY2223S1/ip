@@ -2,14 +2,18 @@ package duke;
 
 import duke.exceptions.DukeException;
 
+import java.io.FileNotFoundException;
+
 public class Duke {
 
     private Ui ui;
     private TaskList taskList;
+    private Storage storage;
     public Duke() {
 
         this.ui = new Ui();
         this.taskList = new TaskList();
+        this.storage = new Storage();
     }
 
     public void run() {
@@ -31,6 +35,14 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+        Duke duke = new Duke();
+        duke.storage.isCreated();
+        try {
+            duke.storage.load(duke.taskList);
+        } catch (FileNotFoundException e) {
+            System.out.println("PLEASE RESTART DUKE");
+        }
+        duke.run();
+        duke.storage.save(duke.taskList);
     }
 }

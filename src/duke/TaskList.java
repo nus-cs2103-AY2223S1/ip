@@ -84,4 +84,13 @@ public class TaskList {
             return "YOU HAVE " + taskList.size() + " TASK!";
         }
     }
+
+    public String generateSave() {
+        String result = "";
+        for (int i = 0; i < taskList.size(); i++) {
+            result += this.taskList.get(i).toSaveVersion();
+        }
+        return result;
+    }
+
 }
