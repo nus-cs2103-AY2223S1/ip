@@ -9,6 +9,9 @@ import duke.Ui;
 import duke.Storage;
 import duke.tasks.*;
 
+/**
+ * The EventCommand class encapsulates the execution of an event command.
+ */
 public class EventCommand extends Command{
     private String input;
 
@@ -16,6 +19,14 @@ public class EventCommand extends Command{
         this.input = input;
     }
 
+    /**
+     * Executes the event command.
+     * @param taskList List where an event is to be added to it.
+     * @param ui Ui which sends a message to the user after a successful execution or when an error is thrown.
+     * @param storage Storage which saves the modified tasklist to the hard disk after successful execution of command.
+     * @throws DukeException
+     * @throws IOException
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         String[] splitDetailEvent = this.input.split("/at", 2);
@@ -29,8 +40,7 @@ public class EventCommand extends Command{
             Event event = new Event(eventAction, eventDateTime);
             taskList.append(event);
             String eventMessage = "added: " + event.toString() + "\n";
-            eventMessage += String.format("Now, you have %d task(s) in the list.", taskList.length());
-            ui.print(eventMessage);
+            ui.print(eventMessage, taskList);
         }
         storage.saveTasks(taskList);
     }

@@ -7,6 +7,9 @@ import duke.Ui;
 import duke.Storage;
 import duke.tasks.*;
 
+/**
+ * The UnmarkCommand class encapsulates the execution of an unmark command.
+ */
 public class UnmarkCommand extends Command{
     private String input;
 
@@ -14,6 +17,14 @@ public class UnmarkCommand extends Command{
         this.input = input;
     }
 
+    /**
+     * Executes the unmark command.
+     * @param taskList List where a specified task is to be marked as undone.
+     * @param ui Ui which sends a message to the user after a successful execution or when an error is thrown.
+     * @param storage Storage which saves the modified tasklist to the hard disk after successful execution of command.
+     * @throws DukeException
+     * @throws IOException
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.input.matches("\\d+")) {

@@ -7,6 +7,9 @@ import duke.Ui;
 import duke.Storage;
 import duke.tasks.*;
 
+/**
+ * The TodoCommand class encapsulates the execution of a todo command.
+ */
 public class TodoCommand extends Command{
     private String input;
 
@@ -14,13 +17,20 @@ public class TodoCommand extends Command{
         this.input = input;
     }
 
+    /**
+     * Executes the todo command.
+     * @param taskList List where a specified todo is to be added to it.
+     * @param ui Ui which sends a message to the user after a successful execution or when an error is thrown.
+     * @param storage Storage which saves the modified tasklist to the hard disk after successful execution of command.
+     * @throws DukeException
+     * @throws IOException
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         Todo todo = new Todo(this.input);
         taskList.append(todo);
         String todoMessage = "added: " + todo.toString() + "\n";
-        todoMessage += String.format("Now, you have %d task(s) in the list.", taskList.length());
-        ui.print(todoMessage);
+        ui.print(todoMessage, taskList);
         storage.saveTasks(taskList);
     }
 }

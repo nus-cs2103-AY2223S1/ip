@@ -9,6 +9,9 @@ import duke.Ui;
 import duke.Storage;
 import duke.tasks.*;
 
+/**
+ * The DeadlineCommand class encapsulates the execution of a deadline command.
+ */
 public class DeadlineCommand extends Command{
     private String input;
 
@@ -16,6 +19,14 @@ public class DeadlineCommand extends Command{
         this.input = input;
     }
 
+    /**
+     * Executes the deadline command.
+     * @param taskList List where a deadline is to be added to it.
+     * @param ui Ui which sends a message to the user after a successful execution or when an error is thrown.
+     * @param storage Storage which saves the modified tasklist to the hard disk after successful execution of command.
+     * @throws DukeException
+     * @throws IOException
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, IOException {
         String[] splitDetailDeadline = this.input.split("/by", 2);
@@ -29,8 +40,7 @@ public class DeadlineCommand extends Command{
             Deadline deadline = new Deadline(deadlineAction, deadlineDateTime);
             taskList.append(deadline);
             String deadlineMessage = "added: " + deadline.toString() + "\n";
-            deadlineMessage += String.format("Now, you have %d task(s) in the list.", taskList.length());
-            ui.print(deadlineMessage);
+            ui.print(deadlineMessage, taskList);
         }
         storage.saveTasks(taskList);
     }

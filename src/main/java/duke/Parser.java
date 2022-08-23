@@ -6,7 +6,17 @@ import java.time.format.DateTimeFormatter;
 import duke.commands.*;
 import duke.tasks.*;
 
+/**
+ * The Parser class encapsulates the parsing of user input and file text when loading from the hard disk.
+ */
 public class Parser {
+    /**
+     * Parses the given input to determine the type of command the input contains.
+     * @param input Input to be parsed.
+     * @return Command object
+     * @throws DukeException
+     * @throws IOException
+     */
     public static Command parseInput(String input) throws DukeException, IOException {
         String[] splitInput = input.split(" ", 2);
         String command = splitInput[0].trim();
@@ -39,6 +49,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses text from file when tasks are loaded from the hard disk.
+     * @param line String to be parsed.
+     * @return Task parsed from input string.
+     */
     public static Task parseFromFile(String line) {
         String[] line_split = line.split("]", 3);
         String type = line_split[0];
@@ -50,28 +65,29 @@ public class Parser {
                 todo.markDone();
             }
             return todo;
-        } else if (type.equals("[D")) {
-            String[] rest_split = rest.split("by:", 2);
-            String description = rest_split[0].replaceAll(".$", "").trim();
-            String time = rest_split[1].replaceAll(".$", "").trim();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy");
-            LocalDateTime deadlineDateTime = LocalDateTime.parse(time, formatter);
-            Deadline deadline = new Deadline(description, deadlineDateTime);
-            if (status.equals("[X")) {
-                deadline.markDone();
-            }
-            return deadline;
         } else {
-            String[] rest_split = rest.split("at:", 2);
-            String description = rest_split[0].replaceAll(".$", "").trim();
-            String time = rest_split[1].replaceAll(".$", "").trim();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a 'on' dd/MM/yyyy");
-            LocalDateTime eventDateTime = LocalDateTime.parse(time, formatter);
-            Event event = new Event(description, eventDateTime);
-            if (status.equals("[X")) {
-                event.markDone();
+            if (type.equals("[D")) {
+                String[] rest_split = rest.split("by", 2);
+                String description = rest_split[0].replaceAll(".$", "").trim();
+                String time = rest_split[1].replaceAll(".$", "").trim();
+                LocalDateTime deadlineDateTime = LocalDateTime.parse(time, formatter);
+                Deadline deadline = new Deadline(description, deadlineDateTime);
+                if (status.equals("[X")) {
+                    deadline.markDone();
+                }
+                return deadline;
+            } else {
+                String[] rest_split = rest.split("at:", 2);
+                String description = rest_split[0].replaceAll(".$", "").trim();
+                String time = rest_split[1].replaceAll(".$", "").trim();
+                LocalDateTime eventDateTime = LocalDateTime.parse(time, formatter);
+                Event event = new Event(description, eventDateTime);
+                if (status.equals("[X")) {
+                    event.markDone();
+                }
+                return event;
             }
-            return event;
         }
     }
 }

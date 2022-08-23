@@ -3,6 +3,9 @@ package duke.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * The deadline class encapsulates a deadline.
+ */
 public class Deadline extends Task{
     private LocalDateTime time;
 
@@ -11,6 +14,10 @@ public class Deadline extends Task{
         this.time = time;
     }
 
+    /**
+     * Returns string representation of the type and isDone attributes of a Deadline object.
+     * @return String representation of the status of a Deadline object.
+     */
     @Override
     public String getStatus() {
         if(this.isDone) {
@@ -19,6 +26,11 @@ public class Deadline extends Task{
             return "[D][ ]";
         }
     }
+
+    /**
+     * Returns string representation of a Deadline object.
+     * @return String representation of a Deadline object.
+     */
     @Override
     public String toString() {
         return this.getStatus() + " " + this.description + " (by: " +
