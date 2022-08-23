@@ -1,32 +1,30 @@
 public class Task {
     private String task;
     private boolean done;
-    Task(String task)
-    {
+
+    Task(String task) {
         this.task = task;
         this.done = false;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return getStatusIcon() + " " + task;
     }
 
-    public String getTask()
-    {
+    public String getTask() {
         return this.task;
     }
-    public String getStatusIcon()
-    {
+
+    public String getStatusIcon() {
         return this.done ? "[X]" : "[]";
     }
-    public void markTaskAsDone()
-    {
+
+    public void markTaskAsDone() {
         done = true;
     }
-    public void unMarkTaskAsDone()
-    {
+
+    public void unMarkTaskAsDone() {
         done = false;
     }
 }
