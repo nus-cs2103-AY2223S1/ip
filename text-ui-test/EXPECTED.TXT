@@ -8,6 +8,7 @@ Hello, I'm Duke!
 |____/ \__,_|_|\_\___|
 
 Duke: What can I do for you?
+
 Duke: Here are the tasks in your list:
 *No tasks! ^_^*
 
@@ -103,6 +104,16 @@ Duke: Here are the tasks in your list:
 1. [T][X] uninstall League of Legends
 2. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
 3. [E][ ] birthday (at: Aug 08 2023 00:00)
+
+☹ OOPS!!! Duke got an error!
+Duke: Please provide a keyword to search for the task:
+find <keyword>
+
+Duke: Hm...Duke found no matching task in your list.
+
+Duke: Here are the matching tasks in your list:
+1. [D][ ] MA1521 HW 1 (by: Apr 30 2022 12:00)
+
 
 ☹ OOPS!!! Duke got an error!
 Duke: Please specify what task you wish to do:

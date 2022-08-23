@@ -23,6 +23,9 @@ list
 unmark 3
 unmark 2
 list
+find
+find ma1521
+find MA1521
 todo
 deadline
 deadline CS1101S Assignment

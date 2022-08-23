@@ -11,6 +11,9 @@ public class Ui {
     private final Scanner sc;
     private boolean isActive;
 
+    /**
+     * Creates Ui that handles the interactions with the user.
+     */
     public Ui() {
         this.sc = new Scanner(System.in);
         this.isActive = true;
@@ -53,7 +56,7 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello, I'm Duke!\n" + logo);
-        System.out.println("Duke: What can I do for you?");
+        System.out.println("Duke: What can I do for you?\n");
     }
 
     /**

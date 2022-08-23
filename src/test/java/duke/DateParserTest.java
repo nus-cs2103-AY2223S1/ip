@@ -1,7 +1,5 @@
 package duke;
 
-import duke.parser.DateParser;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -9,6 +7,8 @@ import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
+
+import duke.parser.DateParser;
 
 public class DateParserTest {
     @Test
