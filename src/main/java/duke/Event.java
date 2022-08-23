@@ -8,13 +8,13 @@ public class Event extends Task {
     private LocalDateTime dateTime;
     private DateTimeFormatter formatter;
 
-    Event(String description, boolean isDone, String dateTimeString) {
+    Event(String description, boolean isDone, String dateTimeString) throws DukeException {
         super(description, isDone);
         try {
             formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
             dateTime = LocalDateTime.parse(dateTimeString, formatter);
         } catch (DateTimeParseException e) {
-            throw e;
+            throw new DukeException("wrong format!");
         }
     }
 

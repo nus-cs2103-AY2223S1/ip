@@ -32,7 +32,7 @@ public class Storage {
                     task = new Event(description, isDone, info[3]);
                     break;
                 default:
-                    throw new DukeException();
+                    throw new DukeException("invalid task type, try T, D, E");
                 }
                 tasks.add(task);
             }

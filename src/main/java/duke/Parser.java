@@ -63,7 +63,7 @@ public class Parser {
             InsertTask(new Deadline(items[0], false, items[1]));
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
             System.out.println("description cannot be empty");
-        } catch (DateTimeParseException e) {
+        } catch (DukeException e) {
             System.out.println("please enter a valid date format.");
             System.out.println("date: dd/mm/YYYY");
         }
@@ -75,7 +75,7 @@ public class Parser {
             InsertTask(new Event(items[0], false, items[1]));
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
             System.out.println("description cannot be empty");
-        } catch (DateTimeParseException e) {
+        } catch (DukeException e) {
             System.out.println("please enter a valid date format.");
             System.out.println("date and time: dd/mm/YYYY hh:mm");
         }
@@ -92,7 +92,7 @@ public class Parser {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {
-                throw new DukeException();
+                throw new DukeException("too many parameters!");
             }
             int index = Integer.parseInt(words[1]);
             tasks.get(index - 1).markDone();
@@ -109,7 +109,7 @@ public class Parser {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {
-                throw new DukeException();
+                throw new DukeException("too many parameters!");
             }
             int index = Integer.parseInt(words[1]);
             tasks.get(index - 1).markUndone();
@@ -126,7 +126,7 @@ public class Parser {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {
-                throw new DukeException();
+                throw new DukeException("too many parameters!");
             }
             int index = Integer.parseInt(words[1]);
             tasks.remove(index - 1);
