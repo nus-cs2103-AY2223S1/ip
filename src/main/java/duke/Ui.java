@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -27,25 +29,25 @@ public class Ui {
     }
 
     public void printMark(String task) {
-        System.out.println("Nice! I have marked this task as done:");
+        System.out.println("Nice! I have marked this bob task as done:");
         System.out.println(task);
     }
 
     public void printUnmark(String task) {
-        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println("OK, I've marked this bob task as not done yet:");
         System.out.println(task);
     }
 
     public void printAdd(String add, int size) {
-        System.out.println("Got it. I've added this task:");
+        System.out.println("Got it. I've added this bob task:");
         System.out.println(add);
-        System.out.println(String.format("Now you have %d task%s in the list.",size, size != 1 ? "s" : ""));
+        System.out.println(String.format("Now you have %d bob task%s in the list.",size, size != 1 ? "s" : ""));
     }
 
     public void printDelete(String delete, int size) {
-        System.out.println("Noted. I've removed this task:");
+        System.out.println("Noted. I've removed this bob task:");
         System.out.println(delete);
-        System.out.println(String.format("Now you have %d task%s in the list.",size, size != 1 ? "s" : ""));
+        System.out.println(String.format("Now you have %d bob task%s in the list.",size, size != 1 ? "s" : ""));
     }
 
     public void printLoadingError() {
