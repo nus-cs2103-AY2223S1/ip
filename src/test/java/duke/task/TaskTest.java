@@ -66,6 +66,4 @@ public class TaskTest {
         Task task = new Task("Test 12321", "1", "T");
         assertEquals("X", task.getStatusIcon());
     }
-
-
 }
