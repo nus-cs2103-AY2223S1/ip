@@ -1,40 +1,38 @@
 list
 todo
-todo
+todo 
 todo read a book
 event
-event
-event /on Sunday 2-4pm
-event / on Sunday 2-4pm
-event  /on Sunday 2-4pm
-event /on Sunday 2-4pm /3-5pm
+event 
+event /at Sunday 2-4pm
+event / at Sunday 2-4pm
+event  /at Sunday 2-4pm
+event /at Sunday 2-4pm /at
 event project meeting
-event project meeting
-event project meeting /
-event project meeting/
-event project meeting/tea /
-event project meeting/tea /on Sunday 2-4pm
-event project meeting /on Sunday 2-4pm
-event project meeting /on Sunday 2-4pm /3-5pm
+event project meeting 
+event project meeting /at
+event project meeting /at 
+event project meeting/at
+event project meeting /at Sunday 2-4pm
+event project meeting /at Sunday 2-4pm /at
 deadline
-deadline
+deadline 
 deadline /by Wednesday 6pm
 deadline / by Wednesday 6pm
 deadline  /by Wednesday 6pm
-deadline /by Wednesday 6pm /5pm
+deadline /by Wednesday 6pm /by
 deadline spanish homework
-deadline spanish homework
-deadline spanish homework /
-deadline spanish homework/
-deadline spanish homework/extra /
-deadline spanish homework/extra /by Wednesday 6pm
+deadline spanish homework 
+deadline spanish homework /by
+deadline spanish homework /by 
+deadline spanish homework/by
 deadline spanish homework /by Wednesday 6pm
-deadline spanish homework /by Wednesday 6pm /5pm
+deadline spanish homework /by Wednesday 6pm /by
 list
 mark
-mark
+mark 
 unmark
-unmark
+unmark 
 mark -1
 unmark -1
 mark 8
@@ -46,10 +44,10 @@ unmark 2
 list
 unmark 2
 delete
-delete
+delete 
 delete -1
 delete 8
-delete 7
+delete 3
 list
 delete asdf
 mark asdwa
