@@ -1,51 +1,32 @@
-import java.time.LocalDate;
-
 public class Task {
-    protected String description;
-    protected boolean isDone;
-    protected String type;
+    private boolean isDone = false;
+    private String taskName;
 
-    public Task(String description, String type) {
-        this.description = description;
-        this.isDone = false;
-        this.type = type;
+    public Task(String taskName) {
+        this.taskName = taskName;
     }
 
-    public Task(String description, String done, String type) {
-        this.description = description;
-        this.type = type;
-
-        if (done.equals("1")) {
-            this.isDone = true;
-        }
-    }
-
-    public String getStatusIcon() {
-        return (isDone ? "[X]" : "[ ]"); // mark done task with X
-    }
-
-    public void markAsDone() {
+    public void setMarked() {
         this.isDone = true;
     }
 
-    public void markAsNotDone() {
+    public void setUnmarked() {
         this.isDone = false;
     }
 
-    public String getTaskType() {
-        return type;
+    public String getStatusIcon() {
+        return this.isDone ? "[X]" : "[ ]";
     }
 
-    public String getDescription() {
-        return description;
+    public String getTaskName() {
+        return this.taskName;
     }
 
-    public LocalDate getDateline() {
-        return null;
+    public String getDateline() {
+        return "";
     }
 
-    @Override
     public String toString() {
-        return this.getStatusIcon() + " " + this.description;
+        return  String.format("%s %s", getStatusIcon(), this.taskName);
     }
 }

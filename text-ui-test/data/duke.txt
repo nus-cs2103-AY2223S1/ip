@@ -1,4 +1,0 @@
-T > 1 > todo borrow book
-T > 0 > todo borrow book
-D > 0 > deadline return book > 2019-12-01
-E > 0 > event project meeting > 2019-12-03
