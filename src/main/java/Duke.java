@@ -32,7 +32,7 @@ public class Duke {
                     taskDescription = userInput.substring(indexOfFirstSpace + 1);
 
                     // retrieve int for numbered operations
-                    userInput.charAt(userInput.length() - 1);
+                    charOfInt = userInput.charAt(userInput.length() - 1);
                 }
 
                 // retrieve task details
