@@ -6,8 +6,8 @@ public class TaskList {
      */
     private ArrayList<Task> arrayList;
 
-    public TaskList() {
-        this.arrayList = new ArrayList<>();
+    public TaskList(ArrayList<Task> arrayList) {
+        this.arrayList = arrayList;
     }
 
     public int numTasks() {

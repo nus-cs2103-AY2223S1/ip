@@ -12,10 +12,11 @@ public abstract class Task {
     /**
      * Constructor for Task
      * @param title The title of the Task
+     * @param isDone The isDone status of the Task
      */
-    public Task(String title) {
+    public Task(String title, boolean isDone) {
         this.title = title;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     /**

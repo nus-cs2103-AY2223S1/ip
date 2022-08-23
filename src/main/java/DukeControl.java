@@ -9,10 +9,8 @@ public class DukeControl {
      * Initializes arrayList
      */
     public DukeControl(String filePath) {
-        // Todo
-        // this.storage.load(this.taskList)
         this.storage = new Storage(filePath);
-        this.tasklist = new TaskList();
+        this.tasklist = new TaskList(this.storage.load());
     }
 
     /**
@@ -77,6 +75,7 @@ public class DukeControl {
             throw new InvalidArgumentException();
         } else {
             this.tasklist.getTask(Integer.parseInt(commandArgs[0]) - 1).mark();
+            this.storage.markTask(Integer.parseInt(commandArgs[0]) - 1);
         }
     }
 
@@ -92,6 +91,7 @@ public class DukeControl {
             throw new InvalidArgumentException();
         } else {
             this.tasklist.getTask(Integer.parseInt(commandArgs[0]) - 1).unmark();
+            this.storage.unmarkTask(Integer.parseInt(commandArgs[0]) - 1);
         }
     }
 
@@ -106,7 +106,8 @@ public class DukeControl {
         if (title == "") {
             throw new EmptyTitleException();
         } else {
-            this.tasklist.addTask(new Todo(title));
+            this.tasklist.addTask(new Todo(title, false));
+            this.storage.writeTask(new String[]{"T", "0", title});
         }
     }
 
@@ -128,7 +129,8 @@ public class DukeControl {
             } else if (deadline == "") {
                 throw new InvalidArgumentException();
             } else {
-                this.tasklist.addTask(new Deadline(title, deadline));
+                this.tasklist.addTask(new Deadline(title, false, deadline));
+                this.storage.writeTask(new String[]{"D", "0", title, deadline});
             }
         }
     }
@@ -151,7 +153,8 @@ public class DukeControl {
             } else if (time == "") {
                 throw new InvalidArgumentException();
             } else {
-                this.tasklist.addTask(new Event(title, time));
+                this.tasklist.addTask(new Event(title, false, time));
+                this.storage.writeTask(new String[]{"E", "0", title, time});
             }
         }
     }
@@ -168,6 +171,7 @@ public class DukeControl {
             throw new InvalidArgumentException();
         } else {
             this.tasklist.deleteTask(Integer.parseInt(commandArgs[0]) - 1);
+            this.storage.removeTask(Integer.parseInt(commandArgs[0]) - 1);
         }
     }
 }

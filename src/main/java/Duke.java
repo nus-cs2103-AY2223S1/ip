@@ -5,7 +5,7 @@ public class Duke {
         hello();
 
         Scanner sc = new Scanner(System.in);
-        DukeControl dc = new DukeControl("../../../data/aRC.txt");
+        DukeControl dc = new DukeControl("data/aRC.txt");
 
         System.out.print("\n");
         String input = sc.nextLine();
