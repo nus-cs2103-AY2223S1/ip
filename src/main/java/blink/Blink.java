@@ -4,12 +4,24 @@ import blink.command.Command;
 
 import java.time.DateTimeException;
 
+/**
+ * Main class where the Blink program runs, containing the TaskList,
+ * Storage and Ui.
+ *
+ * @Author maxng17
+ * @version CS2103T AY 22/23 Sem 1
+ */
 public class Blink {
 
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
 
+    /**
+     * Constructor for Blink program
+     *
+     * @param path The file path of the save file
+     */
     public Blink(String path)  {
         ui = new Ui();
         storage = new Storage(path);
@@ -20,6 +32,10 @@ public class Blink {
         }
     }
 
+    /**
+     * Runs the program by parsing user inputs to check if they
+     * are suitable commands and act upon them if they are.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

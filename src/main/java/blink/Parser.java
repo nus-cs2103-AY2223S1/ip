@@ -2,8 +2,20 @@ package blink;
 
 import blink.command.*;
 
+/**
+ * Reads the user input to figure out the command written.
+ */
 public class Parser {
 
+    /**
+     * Parses the input to check if it is a valid command.
+     *
+     * @param input User input which contains the command
+     * and its other parameters
+     * @return Command that user is trying to call
+     * @throws BlinkException Thrown when there is error with
+     * command input
+     */
     public static Command parse(String input)  {
         String[] info = input.split(" ", 2);
         String command = info[0].strip().toUpperCase();
