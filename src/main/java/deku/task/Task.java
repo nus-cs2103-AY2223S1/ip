@@ -7,22 +7,25 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+/**
+ * Main parent Task class
+ */
 public class Task {
     private final List<String> taskArray;
-    private final String TASK;
-    private final String ICON;
+    private final String task;
+    private final String icon;
     private Boolean completionStatus;
     private String completionIcon;
-    private final InputParser PARSER = new InputParser();
+    private final InputParser parser = new InputParser();
 
     Task(List<String> task, String taskName, String icon) throws DekuExceptions {
         if (task.size() == 0) {
             throw new DekuExceptions("The description of a " + taskName + " cannot be empty.");
         }
 
-        this.TASK = PARSER.parseTask(task);
+        this.task = parser.parseTask(task);
         this.taskArray = task;
-        this.ICON = icon;
+        this.icon = icon;
         this.completionStatus = false;
         this.completionIcon = "[ ]";
     }
@@ -36,15 +39,15 @@ public class Task {
             }
             output += current + " ";
         }
-        return (output.equals("")) ? output : output.substring(0, output.length()-1);
+        return (output.equals("")) ? output : output.substring(0, output.length() - 1);
     }
 
     public LocalDate getDate() {
-        return PARSER.getDate();
+        return parser.getDate();
     }
 
     public LocalTime getTime() {
-        return PARSER.getTime();
+        return parser.getTime();
     }
 
     private String getSpecial() {
@@ -59,6 +62,11 @@ public class Task {
         return output;
     }
 
+    /**
+     * Alternates Task's status of whether it is completed
+     *
+     * @param set 1 = Task completed, 0 = Task incomplete
+     */
     public void setCompletionStatus(boolean set) {
         completionStatus = set;
         if (completionStatus) {
@@ -68,13 +76,18 @@ public class Task {
         }
     }
 
+    /**
+     * Parse the current task to custom data structure to write to file for storage
+     *
+     * @return custom data structure for file
+     */
     public String saveFormat() {
         String completionParse = (completionIcon.equals("[X]")) ? "1" : "0";
-        return ICON + "|" + completionParse + "|" + getTask() + "|" + getSpecial() + "|" + getDate() + "|" + getTime();
+        return icon + "|" + completionParse + "|" + getTask() + "|" + getSpecial() + "|" + getDate() + "|" + getTime();
     }
 
     @Override
     public String toString() {
-        return "[" + ICON + "]" + completionIcon + " - " + TASK;
+        return "[" + icon + "]" + completionIcon + " - " + task;
     }
 }

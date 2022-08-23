@@ -1,5 +1,8 @@
 package deku;
 
+/**
+ * enum phrases of user commands
+ */
 public enum KeyPhrases {
     BYE("bye"),
     LIST("list"),

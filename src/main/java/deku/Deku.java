@@ -6,7 +6,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 
-public class Deku {
+class Deku {
     private final BotList botList;
     private final Storage storage;
     private final Ui ui;
@@ -35,7 +35,7 @@ public class Deku {
         }
     }
 
-    /*
+    /**
     * Default main method
     */
     public static void main(String[] args) throws IOException {

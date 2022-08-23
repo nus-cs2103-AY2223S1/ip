@@ -12,7 +12,8 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Storage {
+
+class Storage {
     private static Path filePath;
     private static Path directoryPath;
 

@@ -4,7 +4,8 @@ import deku.task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
-public class BotList {
+
+class BotList {
     private final List<Task> internalArray;
     private final Storage storage;
 
@@ -75,7 +76,7 @@ public class BotList {
                 newArray.add(task);
             }
         }
-        return this.outputList("Here are the tasks with the same date: ",newArray);
+        return this.outputList("Here are the tasks with the same date: ", newArray);
     }
 
     private String outputList(String message, List<Task> array) {
@@ -84,7 +85,7 @@ public class BotList {
             if (output.length() != 0) {
                 output.append("\n");
             }
-            output.append(i).append(") ").append(array.get(i-1));
+            output.append(i).append(") ").append(array.get(i - 1));
         }
         return output.toString();
     }

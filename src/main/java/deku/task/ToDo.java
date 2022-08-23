@@ -4,8 +4,11 @@ import deku.DekuExceptions;
 
 import java.util.List;
 
-public class ToDo extends Task{
+/**
+ * Task type, no date/time information
+ */
+public class ToDo extends Task {
     public ToDo(List<String> task) throws DekuExceptions {
-        super(task, "todo","T");
+        super(task, "todo", "T");
     }
 }

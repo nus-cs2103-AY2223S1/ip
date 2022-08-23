@@ -8,14 +8,22 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parses input from user to bot understandable structure
+ */
 public class InputParser {
     private LocalDate date;
     private LocalTime time;
 
+    /**
+     * Parses input from user to bot understandable structure
+     *
+     * @param task Space separated List of instruction after the user command
+     * @return String of friendly and readable output
+     */
     public String parseTask(List<String> task) {
         String date = "";
         String misc = "";
@@ -78,13 +86,13 @@ public class InputParser {
             this.date = LocalDate.parse(dateString, formatter);
         } catch (DateTimeException e) {
             this.date = null;
-            System.out.println("Invalid date format! I will add this task, some functionalities might not work!\n" +
-                    "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n" +
-                    "Example: 23/08/2022");
+            System.out.println("Invalid date format! I will add this task, some functionalities might not work!\n"
+                    + "Currently supports: dd/MM/yyyy | dd-MM-yyyy | yyyy-MM-dd |\n"
+                    + "Example: 23/08/2022");
         }
     }
 
-   void parseTime(String timeString) {
+    void parseTime(String timeString) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("[HH:mm][HHmm]");
             this.time = LocalTime.parse(timeString, formatter);
@@ -93,15 +101,16 @@ public class InputParser {
                 return;
             }
             this.time = null;
-            System.out.println("Please input a valid time format! I will add this task, some functionalities might not work!\n" +
-                    "Currently supports 24 hour format: HH:mm | HHmm |\n" +
-                    "Example: 1800");
+            System.out.println("Please input a valid time format! I will add this task, "
+                    + "some functionalities might not work!\n"
+                    + "Currently supports 24 hour format: HH:mm | HHmm |\n"
+                    + "Example: 1800");
         }
     }
 
     String parseReply(String input, Ui ui, BotList botList) {
         String reply;
-        List<String> separate = new LinkedList<>(Arrays.asList(input.split("\\s+")));
+        List<String> separate = new ArrayList<>(List.of(input.split("\\s+")));
         KeyPhrases keyPhrase = KeyPhrases.get(separate.remove(0));
         try {
             switch (keyPhrase) {
