@@ -34,14 +34,14 @@ public class TaskList {
 
     public Task get(int index) throws DukeException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("Index out of bounds");
+            throw new DukeException("Index out of bound");
         }
         return tasks.get(index);
     }
 
     public void remove(int index) throws DukeException {
         if (index < 0 || index >= tasks.size()) {
-            throw new DukeException("Index out of bounds");
+            throw new DukeException("Index out of bound");
         }
         tasks.remove(index);
     }
