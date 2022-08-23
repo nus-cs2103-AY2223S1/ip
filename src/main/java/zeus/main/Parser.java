@@ -76,6 +76,12 @@ public class Parser {
         return LocalDate.parse(date);
     }
 
+    /**
+     * Check if input is in the required format to be converted to a Date.
+     *
+     * @param dateInfo String representing date
+     * @return boolean representing whether input string is in a specific format
+     */
     private static boolean isSpecificDateFormat(String dateInfo) {
         String[] dateAndTime = dateInfo.split(" ");
         String time = dateAndTime[1];
