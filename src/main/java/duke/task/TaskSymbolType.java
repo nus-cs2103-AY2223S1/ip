@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Supported task symbols in display and save formats.
+ */
 public enum TaskSymbolType {
     T("\uD83D\uDCDD"),
     D("⏰"),
@@ -11,6 +14,11 @@ public enum TaskSymbolType {
         this.symbol = symbol;
     }
 
+    /**
+     * Returns the display symbol for this task symbol type.
+     *
+     * @return The display symbol for this task symbol type.
+     */
     public String getSymbol() {
         return this.symbol;
     }

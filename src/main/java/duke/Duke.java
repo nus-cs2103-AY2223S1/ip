@@ -10,12 +10,20 @@ import duke.util.UI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * The main class of the Duke chat-bot.
+ */
 public class Duke {
 
     private final Storage storage;
     private final UI ui;
     private TaskList tasks;
 
+    /**
+     * Constructs a new {@code Duke} with a datafile path.
+     *
+     * @param path The path to the datafile.
+     */
     public Duke(Path path) {
         storage = new Storage(path);
         ui = new UI(System.in, System.out);
@@ -33,6 +41,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke chat-bot.
+     */
     public void run() {
         ui.greet();
         boolean isExit = false;

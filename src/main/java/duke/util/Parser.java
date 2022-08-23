@@ -7,11 +7,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parser to make sense of user input.
+ */
 public class Parser {
 
     public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("d-M-yy HHmm");
     public static final DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
 
+    /**
+     * Parses an integer from a string.
+     *
+     * @param num The string to parse.
+     * @return The parsed integer.
+     */
     public static int parseInt(String num) {
         try {
             return Integer.parseInt(num);
@@ -20,6 +29,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a {@code LocalDateTime} from a string.
+     * The string must be in the format {@code d-M-yy HHmm}.
+     *
+     * @param dateTime The string to parse.
+     * @return The parsed {@code LocalDateTime}.
+     */
     public static LocalDateTime parseDateTime(String dateTime) {
         try {
             return LocalDateTime.parse(dateTime, DATE_TIME_INPUT_FORMAT);
@@ -28,6 +44,19 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a {@code Command} from a string.
+     * <p>
+     * The format of the {@code Command} is {@code <command> <arg1> / <arg2> / ...}.
+     * The {@code <command>} must be one of the {@code CommandType}s.
+     * The case of the {@code <command>} does not matter.
+     * <p>
+     * The arguments are seperated by {@code " / "}.
+     * There must be at least one space before and after the {@code /}.
+     *
+     * @param input The string to parse.
+     * @return The parsed {@code Command}.
+     */
     public static Command parseCommand(String input) {
         input = input.strip();
         if (input.length() == 0) {
@@ -72,6 +101,19 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a {@code Task} from a string.
+     * <p>
+     * The format of the {@code Task} is {@code <task symbol> | <isDone> | <description> | <args> ...}.
+     * The {@code <task symbol>} must be one of the {@code TaskType}s.
+     * <p>
+     * The {@code <isDone>} must be either {@code 0} or {@code 1}.
+     * <p>
+     * There should be exactly one space before and after the {@code |}.
+     *
+     * @param input The string to parse.
+     * @return The parsed {@code Task}.
+     */
     public static Task parseTask(String input) {
         String[] splits = input.split(" \\| ", -1);
         Task task;
