@@ -1,23 +1,35 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+
 public class Event extends Task {
-    private static final String TIME_SEPARATOR = " /at ";
+    private static final String DATE_TIME_SEPARATOR = " /at ";
+    private static final DateTimeFormatter INPUT_DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("d/M/yy[ HHmm]");
+    private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("MMM d yyyy[ h:mma]");
 
-    private final String time;
+    private final TemporalAccessor dateTime;
 
-    private Event(String description, String time) {
+    private Event(String description, TemporalAccessor dateTime) {
         super(description);
-        this.time = time;
+        this.dateTime = dateTime;
     }
 
     public static Event fromUserInput(String userInput) throws InvalidTaskFormatException {
-        String[] splitUserInput = userInput.split(TIME_SEPARATOR, 2);
+        String[] splitUserInput = userInput.split(DATE_TIME_SEPARATOR, 2);
         if (splitUserInput.length < 2) {
             throw new InvalidTaskFormatException("No time was provided for this event.");
         }
-        return new Event(splitUserInput[0], splitUserInput[1]);
+        TemporalAccessor dateTime = INPUT_DATE_TIME_FORMATTER.parseBest(splitUserInput[1],
+                LocalDateTime::from, LocalDate::from);
+        return new Event(splitUserInput[0], dateTime);
     }
 
     @Override
     public String toString() {
-        return String.format("(E) %s (at: %s)", super.toString(), this.time);
+        return String.format("(E) %s (at: %s)", super.toString(),
+                OUTPUT_DATE_TIME_FORMATTER.format(this.dateTime));
     }
 }

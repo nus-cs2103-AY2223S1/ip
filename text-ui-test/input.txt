@@ -1,7 +1,7 @@
 list
 todo Test todo
-deadline Test deadline /by Thu, Aug 18th 2359
-event Test event /at Fri, Aug 19th 4pm
+deadline Test deadline /by 1/2/34
+event Test event /at 30/12/21 0000
 list
 mark 2
 mark 3
