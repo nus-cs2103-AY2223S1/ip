@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.task.TasksList;
-import duke.Storage;
 import duke.DukeException;
+import duke.Storage;
 import duke.Ui;
+import duke.task.TasksList;
 
 /**
  * Represents the command to exit and close Duke.
