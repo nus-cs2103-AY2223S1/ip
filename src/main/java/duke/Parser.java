@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
     public static CommandType parse(String userText) {
         String commandWord = userText.split(" ", 2)[0];
