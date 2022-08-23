@@ -115,7 +115,7 @@ public class Ted {
 
         if (inputs.length <= 1) {
             throw new InvalidInputException(
-                    "The deadline (use /by) of task must be set. " +
+                    "The deadline (use /by yyyy-mm-dd) of task must be set. " +
                             "If you wish to create a task without deadline, try using todo command.");
         }
 
