@@ -41,15 +41,21 @@ public class Duke {
                 int status = Integer.valueOf(parts[1]);
                 String task = parts[2];
                 if (taskType.equals("D") | taskType.equals("E")) {
-                    String time = parts[3];
+                    String dateTime = parts[3];
                     if (taskType.equals("D")) {
-                        Deadline newDeadline = new Deadline(task, time);
+                        String[] splitTime = dateTime.split("\\s+");
+                        LocalDate date = LocalDate.parse(splitTime[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        LocalTime time = LocalTime.parse(splitTime[2], DateTimeFormatter.ofPattern("HHmdem"));
+                        Deadline newDeadline = new Deadline(task, LocalDateTime.of(date, time));
                         tasks.add(newDeadline);
                         if (status == 1) {
                             newDeadline.mark();
                         }
                     } else {
-                        Event newEvent = new Event(task,time);
+                        String[] splitTime = dateTime.split("\\s+");
+                        LocalDate date = LocalDate.parse(splitTime[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                        LocalTime time = LocalTime.parse(splitTime[2], DateTimeFormatter.ofPattern("HHmdem"));
+                        Event newEvent = new Event(task, LocalDateTime.of(date, time));
                         tasks.add(newEvent);
                         if (status == 1) {
                             newEvent.mark();
