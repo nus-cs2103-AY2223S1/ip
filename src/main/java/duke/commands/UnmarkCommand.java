@@ -1,11 +1,11 @@
 package duke.commands;
 
+import java.util.Objects;
+
 import duke.DukeException;
 import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
-
-import java.util.Objects;
 
 /**
  * Mark task as uncompleted.
@@ -28,8 +28,12 @@ public class UnmarkCommand extends Command {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UnmarkCommand)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof UnmarkCommand)) {
+            return false;
+        }
         UnmarkCommand that = (UnmarkCommand) o;
         return indexToMark == that.indexToMark;
     }

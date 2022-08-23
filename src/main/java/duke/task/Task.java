@@ -2,10 +2,18 @@ package duke.task;
 
 import java.util.Objects;
 
+/**
+ * A generic Task object with a description and completion status.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructs a new Task object.
+     *
+     * @param description description of task
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -68,8 +76,12 @@ public abstract class Task {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Task)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Task)) {
+            return false;
+        }
         Task task = (Task) o;
         return isDone == task.isDone && Objects.equals(description, task.description);
     }

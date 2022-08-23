@@ -1,15 +1,18 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import duke.DukeException;
+
+/**
+ * Create new Deadline with end datetime.
+ */
 public class Deadline extends Task {
+    public static final String EVENT_DATETIME_FORMAT = "dd/MM/yyyy HH:mm";
+    public static final String DISPLAY_DATETIME_FORMAT = "MMM dd yyyy";
     protected LocalDateTime by;
-    public static String EVENT_DATETIME_FORMAT = "dd/MM/yyyy HH:mm";
-    public static String DISPLAY_DATETIME_FORMAT = "MMM dd yyyy";
 
     /**
      * Constructs a new Deadline task.
@@ -49,13 +52,19 @@ public class Deadline extends Task {
 
     @Override
     public String getDisplayText() {
-        return String.format("%s (by: %s)", description, by.format(DateTimeFormatter.ofPattern(DISPLAY_DATETIME_FORMAT)));
+        return String.format("%s (by: %s)",
+                description,
+                by.format(DateTimeFormatter.ofPattern(DISPLAY_DATETIME_FORMAT)));
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Deadline)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Deadline)) {
+            return false;
+        }
         Deadline deadline = (Deadline) o;
         return by.equals(deadline.by) && super.equals(o);
     }

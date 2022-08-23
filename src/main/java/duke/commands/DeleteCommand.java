@@ -1,18 +1,20 @@
 package duke.commands;
 
+import java.util.Objects;
+
 import duke.DukeException;
 import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.util.Objects;
 
 /**
  * Create new ToDo.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_DELETE_SUCCESS = "Noted. I've removed this task:\n  %s\nNow you have %d tasks in your list";
+    public static final String MESSAGE_DELETE_SUCCESS = "Noted. I've removed this task:\n"
+        + "\t%s\nNow you have %d tasks in your list";
 
     private final int indexToDelete;
 
@@ -28,8 +30,12 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DeleteCommand)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DeleteCommand)) {
+            return false;
+        }
         DeleteCommand that = (DeleteCommand) o;
         return indexToDelete == that.indexToDelete;
     }

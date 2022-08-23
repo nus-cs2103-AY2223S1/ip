@@ -1,12 +1,13 @@
 package duke.commands;
 
+import java.time.LocalDateTime;
+import java.util.Objects;
+
 import duke.DukeException;
 import duke.Ui;
 import duke.task.Deadline;
 import duke.task.TaskList;
 
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  * Create new Deadline task.
@@ -14,7 +15,8 @@ import java.util.Objects;
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
 
-    public static final String MESSAGE_SUCCESS = "Got it. I've added this deadline:\n  %s\nNow you have %d tasks in your list";
+    public static final String MESSAGE_SUCCESS = "Got it. I've added this deadline:\n"
+            + "\t%s\nNow you have %d tasks in your list";
     public static final String MESSAGE_FAILURE = "Unable to add deadline.";
 
     private final Deadline toAdd;
@@ -34,8 +36,12 @@ public class DeadlineCommand extends Command {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DeadlineCommand)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof DeadlineCommand)) {
+            return false;
+        }
         DeadlineCommand that = (DeadlineCommand) o;
         return toAdd.equals(that.toAdd);
     }

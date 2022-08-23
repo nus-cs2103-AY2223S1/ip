@@ -2,6 +2,9 @@ package duke.task;
 
 import java.util.Objects;
 
+/**
+ * A task representing an event, with a time.
+ */
 public class Event extends Task {
     protected String eventTime;
 
@@ -46,8 +49,12 @@ public class Event extends Task {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Event)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Event)) {
+            return false;
+        }
         Event event = (Event) o;
         return eventTime.compareTo(event.eventTime) == 0 && super.equals(o);
     }

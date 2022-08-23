@@ -2,14 +2,17 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Handles all user input and output.
+ */
 public class Ui {
     public static final String LINE = "_____________________";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
+    private final Scanner sc = new Scanner(System.in);
     public void showLoadingError() {
         System.out.println("Failed to load tasks from storage.");
     }
-    private final Scanner sc = new Scanner(System.in);
 
     /**
      * Display the given text.
@@ -19,11 +22,6 @@ public class Ui {
     public void displayText(String text) {
         System.out.println(text);
     }
-
-    public void showLine() {
-        System.out.println(LINE);
-    }
-
     /**
      * Displays the specified text defined by its format and arguments.
      *
@@ -34,6 +32,14 @@ public class Ui {
         displayText(String.format(format, args));
     }
 
+    public void showLine() {
+        System.out.println(LINE);
+    }
+
+
+    /**
+     * Displays the welcome message.
+     */
     public void showWelcome() {
         showLine();
         String name = "Duke";

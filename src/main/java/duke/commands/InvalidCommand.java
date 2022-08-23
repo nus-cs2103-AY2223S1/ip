@@ -1,10 +1,11 @@
 package duke.commands;
 
+import java.util.Objects;
+
 import duke.DukeException;
 import duke.Ui;
 import duke.task.TaskList;
 
-import java.util.Objects;
 
 /**
  * Representation of all invalid commands
@@ -27,8 +28,12 @@ public class InvalidCommand extends Command {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof InvalidCommand)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof InvalidCommand)) {
+            return false;
+        }
         InvalidCommand that = (InvalidCommand) o;
         return Objects.equals(errorMessage, that.errorMessage);
     }

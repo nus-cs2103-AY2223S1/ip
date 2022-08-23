@@ -1,23 +1,29 @@
 package duke;
 
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.EventCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
-import duke.commands.ToDoCommand;
-import duke.commands.UnmarkCommand;
-import duke.commands.ExitCommand;
-import duke.commands.InvalidCommand;
-import duke.task.Deadline;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.ExitCommand;
+import duke.commands.InvalidCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.ToDoCommand;
+import duke.commands.UnmarkCommand;
+import duke.task.Deadline;
+
+
+/**
+ * Parser for all user inputs.
+ */
 public class Parser {
+    public static final Pattern TASK_FORMAT = Pattern.compile(getNumberRegex("taskNumber"));
+    public static final String COMMAND_NOT_FOUND_MESSAGE = "Invalid command.";
 
 
     /**
@@ -38,35 +44,44 @@ public class Parser {
         return String.join("\\s+", regexes);
     }
 
-    public static final Pattern TASK_FORMAT = Pattern.compile(getNumberRegex("taskNumber"));
 
+    /**
+     * Main method to parse the user input and return the corresponding command.
+     *
+     * @param inputString input from user
+     * @return command object
+     *
+     * @throws DukeException if the input is invalid
+     */
     public static Command parse(String inputString) throws DukeException {
         final Matcher matcher = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)").matcher(inputString.trim());
         try {
             if (matcher.matches()) {
                 switch (Commands.getCommand(matcher.group("commandWord"))) {
-                    case BYE:
-                        return new ExitCommand();
-                    case LIST:
-                        return new ListCommand();
-                    case TODO:
-                        return processToDo(matcher.group("arguments").strip());
-                    case EVENT:
-                        return processEvent(matcher.group("arguments").strip());
-                    case DEADLINE:
-                        return processDeadline(matcher.group("arguments").strip());
-                    case MARK:
-                        return processMark(matcher.group("arguments").strip(), true);
-                    case UNMARK:
-                        return processMark(matcher.group("arguments").strip(), false);
-                    case DELETE:
-                        return processDelete(matcher.group("arguments").strip());
+                case BYE:
+                    return new ExitCommand();
+                case LIST:
+                    return new ListCommand();
+                case TODO:
+                    return processToDo(matcher.group("arguments").strip());
+                case EVENT:
+                    return processEvent(matcher.group("arguments").strip());
+                case DEADLINE:
+                    return processDeadline(matcher.group("arguments").strip());
+                case MARK:
+                    return processMark(matcher.group("arguments").strip(), true);
+                case UNMARK:
+                    return processMark(matcher.group("arguments").strip(), false);
+                case DELETE:
+                    return processDelete(matcher.group("arguments").strip());
+                default:
+                    return new InvalidCommand(COMMAND_NOT_FOUND_MESSAGE);
                 }
             }
         } catch (IllegalArgumentException e) {
-            return new InvalidCommand("Command not found.");
+            return new InvalidCommand(COMMAND_NOT_FOUND_MESSAGE);
         }
-        return new InvalidCommand("Command not found.");
+        return new InvalidCommand(COMMAND_NOT_FOUND_MESSAGE);
     }
 
     private static Command processToDo(String inputString) {

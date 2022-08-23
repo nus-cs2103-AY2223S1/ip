@@ -1,9 +1,9 @@
 package duke.commands;
 
+import java.util.stream.IntStream;
+
 import duke.Ui;
 import duke.task.TaskList;
-
-import java.util.stream.IntStream;
 
 /**
  * Lists all existing tasks.

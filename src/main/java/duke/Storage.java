@@ -1,10 +1,5 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -17,33 +12,47 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
+
+/**
+ * Handles the storage and retrieval of tasks.
+ */
 public class Storage {
     private final String directoryPath;
     private String fileName;
 
+    /**
+     * Constructs a new Storage in the application folder given a filename.
+     * @param fileName the name of the file to store tasks in.
+     * @throws DukeException if the file cannot be found.
+     */
     public Storage(String fileName) throws DukeException {
-        String _directoryPath = null;
+        String directoryPath = null;
         try {
-            _directoryPath = Path.of(this.getClass()
+            directoryPath = Path.of(this.getClass()
                     .getProtectionDomain()
                     .getCodeSource()
                     .getLocation().toURI()).toString();
-            _directoryPath = _directoryPath.substring(0, _directoryPath.lastIndexOf(File.separator));
-            _directoryPath = URLDecoder.decode(_directoryPath, StandardCharsets.UTF_8)
+            directoryPath = directoryPath.substring(0, directoryPath.lastIndexOf(File.separator));
+            directoryPath = URLDecoder.decode(directoryPath, StandardCharsets.UTF_8)
                     .concat(File.separator + "data");
-            File directory = new File(_directoryPath);
+            File directory = new File(directoryPath);
             if (!directory.exists()) {
                 if (!directory.mkdir()) {
-                    _directoryPath = null;
+                    directoryPath = null;
                 }
             }
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-        if (_directoryPath == null) {
+        if (directoryPath == null) {
             throw new DukeException("Unable to save tasks to disk.");
         }
-        this.directoryPath = _directoryPath;
+        this.directoryPath = directoryPath;
         this.fileName = fileName;
     }
 
@@ -51,6 +60,12 @@ public class Storage {
         return loadTasks(this.fileName);
     }
 
+    /**
+     * Loads tasks from the file.
+     * @param fileName the name of the file to load tasks from.
+     * @return array list of tasks
+     * @throws DukeException if the file cannot be found or opened or parsed.
+     */
     public ArrayList<Task> loadTasks(String fileName) throws DukeException {
         this.fileName = fileName;
         ArrayList<Task> tasks = new ArrayList<>();
@@ -67,19 +82,21 @@ public class Storage {
                 Task.Type type = Task.Type.decode(entries[0]);
                 boolean completed = entries[1].equals("1");
                 switch (type) {
-                    case DEADLINE:
-                        try {
-                            tasks.add(Deadline.decode(entries[2], completed));
-                        } catch (DukeException e) {
-                            break;
-                        }
+                case DEADLINE:
+                    try {
+                        tasks.add(Deadline.decode(entries[2], completed));
+                    } catch (DukeException e) {
                         break;
-                    case EVENT:
-                        tasks.add(Event.decode(entries[2], completed));
-                        break;
-                    case TODO:
-                        tasks.add(ToDo.decode(entries[2], completed));
-                        break;
+                    }
+                    break;
+                case EVENT:
+                    tasks.add(Event.decode(entries[2], completed));
+                    break;
+                case TODO:
+                    tasks.add(ToDo.decode(entries[2], completed));
+                    break;
+                default:
+                    break;
                 }
             });
             br.close();
@@ -104,6 +121,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Encodes and saves the given list of tasks to a file
+     * @param tasks the list of tasks to save
+     * @throws DukeException if the file cannot be found or modified.
+     */
     public void saveTasks(ArrayList<Task> tasks) throws DukeException {
         StringBuilder sb = new StringBuilder();
         for (Task task : tasks) {
