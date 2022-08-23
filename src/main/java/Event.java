@@ -7,8 +7,18 @@ public class Event extends Task{
         this.at = at;
     }
 
+    public Event(String detail, boolean isDone, String at) {
+        super(detail, isDone);
+        this.at = at;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
+    }
+
+    @Override
+    public String storedData() {
+        return "E" + "|" + super.storedData() + "|" + at;
     }
 }

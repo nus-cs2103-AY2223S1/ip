@@ -11,6 +11,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task(String detail, boolean isDone) {
+        this.detail = detail;
+        this.isDone = isDone;
+    }
     /**
      * Get icon for status done or not
      * @return String
@@ -48,5 +52,13 @@ public class Task {
     @Override
     public String toString() {
         return this.getStatusIcon() + " " + this.detail;
+    }
+
+    protected String statusIcon() {
+        return (this.isDone ? "1" : "0");
+    }
+
+    protected String storedData() {
+        return statusIcon() + "|" + detail;
     }
 }
