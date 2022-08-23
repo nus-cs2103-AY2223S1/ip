@@ -127,8 +127,8 @@ public class Storage {
             if (!dir.exists()) dir.mkdirs();
             File textFile = new File(filePath + "/tasks.txt");
             textFile.createNewFile();
-
             FileWriter fw = new FileWriter(textFile);
+
             Task[] taskArray = inputList.taskListToArray();
             for (int i = 0; i < taskArray.length; i++) {
                 String fileTextInput = taskArray[i].formatFileText();

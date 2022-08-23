@@ -36,6 +36,8 @@ public class Parser {
             tasks.createEvent(input);
         } else if (parts[0].equals("delete")) {
             tasks.deleteTask(parts);
+        } else if (parts[0].equals("find")) {
+            tasks.findTasks(parts);
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :(");
         }

@@ -50,6 +50,7 @@ public class Duke {
             }
             input = myObj.nextLine();
         }
+
         this.ui.close();
         myObj.close();
     }

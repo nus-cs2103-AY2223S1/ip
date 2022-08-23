@@ -40,11 +40,6 @@ public class Ui {
      * @param tasks in the TaskList.
      */
     public void printList(TaskList tasks) {
-        Task[] inputArray = tasks.taskListToArray();
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i <= inputArray.length; i++) {
-            String item = String.format("%s. %s", i, inputArray[i-1].toString());
-            System.out.println(item);
-        }
+        tasks.showTasks();
     }
 }
