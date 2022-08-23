@@ -12,9 +12,19 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Storage class, handles loading and saving tasks to hard disk.
+ */
 public class Storage {
+    /** A File object to represent the File we read from and write to. */
     private final File file;
 
+    /**
+     * Constructor for Storage object.
+     *
+     * @param filePath The location on disk to store the tasks.
+     * @throws IOException Handles case of File not being found or location not existing.
+     */
     public Storage(String filePath) throws IOException {
         String[] parts = filePath.split("/");
         File folder = new File(parts[0]);
@@ -30,6 +40,12 @@ public class Storage {
         this.file = file;
     }
 
+    /**
+     * Writes the tasks in the task list to hard disk, a .txt file.
+     *
+     * @param taskList The task list object, whose tasks we want to store on disk.
+     * @throws IOException Handles File not being found when writing to hard disk.
+     */
     public void writeTasksToStorage(TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getTasks();
         FileWriter fileWriter = new FileWriter(this.file);
@@ -54,6 +70,13 @@ public class Storage {
         fileWriter.close();
     }
 
+    /**
+     * Reads the saved tasks in from hard disk.
+     *
+     * @return Returns an ArrayList of Task objects for use in TaskList.
+     * @throws FileNotFoundException Handles cases where File is not found.
+     * @throws DukeException Handles case of there not being tasks in storage.
+     */
     public ArrayList<Task> readTasksFromStorage() throws FileNotFoundException, DukeException {
         Scanner sc = new Scanner(file);
         ArrayList<Task> tasks = new ArrayList<>();

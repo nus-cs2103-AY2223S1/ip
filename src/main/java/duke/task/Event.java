@@ -17,6 +17,7 @@ public class Event extends Task {
 
     /**
      * Constructor for Event objects.
+     *
      * @param description The description of the event task.
      * @param start Start time of event.
      * @param end End time of event.
@@ -32,19 +33,26 @@ public class Event extends Task {
     }
 
     /**
-     * Getter for the date of event.
-     * @return Returns the date of the event.
+     * Getter for the start time of event.
+     *
+     * @return Returns the date of the event in String format.
      */
     public String getStart() {
         return this.start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
+    /**
+     * Getter for the end time of event.
+     *
+     * @return Returns the date of the event in String format.
+     */
     public String getEnd() {
         return this.end.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /**
      * String representation of Event task object.
+     *
      * @return Returns the String representation of the current object.
      */
     @Override
