@@ -4,16 +4,15 @@ import duke.commands.Command;
 import duke.task.TaskList;
 
 /**
- * The task Chat bot.
+ * The Duke chatbot
  */
 public class Duke {
     private final TaskList tasks;
     private final Ui ui;
 
     /**
-     * Constructs a new Duke.
-     *
-     * @param fileName the name of the file for saved tasks to be stored in.
+     * Create a duke chatbot which persists tasks to the file named fileName.
+     * @param fileName Name of the file to store tasks in.
      */
     public Duke(String fileName) {
         this.ui = new Ui();
@@ -33,7 +32,7 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke chat bot.
+     * execute the duke task chat bot.
      */
     public void run() {
         ui.showWelcome();

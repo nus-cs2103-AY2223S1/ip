@@ -10,7 +10,7 @@ import duke.task.TaskList;
 
 
 /**
- * Create new Deadline task.
+ * Command for creating a Deadline task.
  */
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";
@@ -21,6 +21,11 @@ public class DeadlineCommand extends Command {
 
     private final Deadline toAdd;
 
+    /**
+     * Create a Deadline Command with description and an event time.
+     * @param description description of deadline
+     * @param eventTime date time of deadline
+     */
     public DeadlineCommand(String description, LocalDateTime eventTime) {
         this.toAdd = new Deadline(description, eventTime);
     }

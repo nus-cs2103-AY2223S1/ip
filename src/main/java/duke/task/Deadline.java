@@ -1,13 +1,13 @@
 package duke.task;
 
+import duke.DukeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-import duke.DukeException;
-
 /**
- * Create new Deadline with end datetime.
+ * Deadline with a description and ending date time.
  */
 public class Deadline extends Task {
     public static final String EVENT_DATETIME_FORMAT = "dd/MM/yyyy HH:mm";

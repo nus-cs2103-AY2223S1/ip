@@ -17,7 +17,6 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-
 /**
  * Handles the storage and retrieval of tasks.
  */
@@ -27,8 +26,8 @@ public class Storage {
 
     /**
      * Constructs a new Storage in the application folder given a filename.
-     * @param fileName the name of the file to store tasks in.
-     * @throws DukeException if the file cannot be found.
+     * @param fileName The name of the file to store tasks in.
+     * @throws DukeException Exception thrown if the file cannot be found.
      */
     public Storage(String fileName) throws DukeException {
         String directoryPath = null;
@@ -61,10 +60,10 @@ public class Storage {
     }
 
     /**
-     * Loads tasks from the file.
-     * @param fileName the name of the file to load tasks from.
-     * @return array list of tasks
-     * @throws DukeException if the file cannot be found or opened or parsed.
+     * Loads the list of task from a previously save text file
+     * @param fileName Name of the file.
+     * @return The list of tasks
+     * @throws DukeException Exception thrown if the file couldn't be read properly or contains invalid input.
      */
     public ArrayList<Task> loadTasks(String fileName) throws DukeException {
         this.fileName = fileName;
@@ -124,7 +123,7 @@ public class Storage {
     /**
      * Encodes and saves the given list of tasks to a file
      * @param tasks the list of tasks to save
-     * @throws DukeException if the file cannot be found or modified.
+     * @throws DukeException Exception thrown if the file cannot be found or modified.
      */
     public void saveTasks(ArrayList<Task> tasks) throws DukeException {
         StringBuilder sb = new StringBuilder();

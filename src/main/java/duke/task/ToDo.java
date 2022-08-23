@@ -1,18 +1,22 @@
 package duke.task;
 
 /**
- * A Task with a description and completion status.
+ * ToDo task with description.
  */
 public class ToDo extends Task {
+    /**
+     * Create the ToDo task
+     * @param description description of the task.
+     */
     public ToDo(String description) {
         super(description);
     }
 
     /**
-     * Creates a ToDo from its storage string representation/
-     * @param encoded the storage string representation of the ToDo
-     * @param completed the completion status of the todo.
-     * @return the created ToDo.
+     * Creates a ToDo from its encoded form in the saved file
+     * @param encoded encoded string from the file
+     * @param completed Whether the task has been completed.
+     * @return The created ToDo.
      */
     public static ToDo decode(String encoded, boolean completed) {
         ToDo todo = new ToDo(encoded);

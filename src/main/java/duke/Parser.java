@@ -25,10 +25,6 @@ public class Parser {
     public static final Pattern TASK_FORMAT = Pattern.compile(getNumberRegex("taskNumber"));
     public static final String COMMAND_NOT_FOUND_MESSAGE = "Invalid command.";
 
-
-    /**
-     * Extract command from user input
-     */
     public static String getNumberRegex(String name) {
         return "(?<" + name + ">\\d+)";
     }
@@ -51,7 +47,7 @@ public class Parser {
      * @param inputString input from user
      * @return command object
      *
-     * @throws DukeException if the input is invalid
+     * @throws DukeException exception thrown if the input is invalid
      */
     public static Command parse(String inputString) throws DukeException {
         final Matcher matcher = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)").matcher(inputString.trim());

@@ -7,14 +7,14 @@ import duke.DukeException;
 import duke.Storage;
 
 /**
- * Representation of a list of tasks.
+ * List of tasks.
  */
 public class TaskList extends ArrayList<Task> {
     private final Storage storage;
 
     /**
-     * Constructs a new task list with storage object to save updates to file.
-     * @param storage storage object representing a text file to save tasks to.
+     * Create a tasklist which will save tasks to a given storage automatically.
+     * @param storage storage object to save and load tasks.
      */
     public TaskList(Storage storage) {
         super(100);
@@ -30,11 +30,10 @@ public class TaskList extends ArrayList<Task> {
 
 
     /**
-     * Add new task to list
-     * @param task new task
-     * @return true if task was added, false otherwise
-     *
-     * @throws DukeException if task could not be saved.
+     * Add task to list.
+     * @param task Task to be added
+     * @return Whether the task was added successfully.
+     * @throws DukeException any exception when trying to add new task to the list.
      */
     public boolean addTask(Task task) throws DukeException {
 
@@ -48,10 +47,10 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Remove task from list.
-     * @param index index of task to remove
+     * Remove the specified task from the list.
+     * @param index Index of the task to be removed.
      * @return Task that was removed
-     * @throws DukeException if task could not be found and removed.
+     * @throws DukeException any error when removing the task from the list.
      */
     public Task removeTask(int index) throws DukeException {
         if (0 <= index && index <= this.size()) {

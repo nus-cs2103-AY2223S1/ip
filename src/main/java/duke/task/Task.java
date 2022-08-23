@@ -3,16 +3,15 @@ package duke.task;
 import java.util.Objects;
 
 /**
- * A generic Task object with a description and completion status.
+ * Generic Task with a description and a completion status.
  */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
 
     /**
-     * Constructs a new Task object.
-     *
-     * @param description description of task
+     * Create task with a given description
+     * @param description description of the task.
      */
     public Task(String description) {
         this.description = description;

@@ -3,7 +3,7 @@ package duke.task;
 import java.util.Objects;
 
 /**
- * A task representing an event, with a time.
+ * Event task containing a description and when the event is happening.
  */
 public class Event extends Task {
     protected String eventTime;

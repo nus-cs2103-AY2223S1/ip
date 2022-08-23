@@ -3,7 +3,7 @@ package duke;
 import java.util.Scanner;
 
 /**
- * Handles all user input and output.
+ * Handle all user interaction.
  */
 public class Ui {
     public static final String LINE = "_____________________";

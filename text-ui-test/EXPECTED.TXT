@@ -8,17 +8,17 @@ Here are the tasks in your list:
 _____________________
 _____________________
 Got it. I've added this todo:
-  [T][ ] borrow book
+	[T][ ] borrow book
 Now you have 1 tasks in your list.
 _____________________
 _____________________
 Got it. I've added this deadline:
-  [D][ ] return book (by: Jan 15 2020)
+	[D][ ] return book (by: Jan 15 2020)
 Now you have 2 tasks in your list
 _____________________
 _____________________
 Got it. I've added this event:
-  [E][ ] project meeting (at: Mon 2-4pm)
+	[E][ ] project meeting (at: Mon 2-4pm)
 Now you have 3 tasks in your list
 _____________________
 _____________________
@@ -45,12 +45,12 @@ _____________________
 _____________________
 _____________________
 Noted. I've removed this task:
-  [E][X] project meeting (at: Mon 2-4pm)
+	[E][X] project meeting (at: Mon 2-4pm)
 Now you have 2 tasks in your list
 _____________________
 _____________________
 Noted. I've removed this task:
-  [D][X] return book (by: Jan 15 2020)
+	[D][X] return book (by: Jan 15 2020)
 Now you have 1 tasks in your list
 _____________________
 _____________________
