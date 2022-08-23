@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Stores the different types of command words.
+ */
 public enum CommandType {
     TODO,
     EVENT,

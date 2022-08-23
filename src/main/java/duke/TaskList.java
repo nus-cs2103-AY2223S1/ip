@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Contains the list of tasks for Duke.
+ */
 public class TaskList {
     private static List<Task> savedTasks;
 
@@ -41,12 +44,25 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a new task into the existing list of tasks.
+     *
+     * @param task the task which will be added
+     */
     public void add(Task task) {
         TaskList.savedTasks.add(task);
         System.out.println("Got it. I've added this task:\n" + task.getStatus() +
                 String.format("\nNow you have %d tasks in the list.", TaskList.savedTasks.size()));
     }
 
+    /**
+     * Deletes a task from the existing list of tasks.
+     * <p>
+     * The index provided has to be within the length of the current list.
+     *
+     * @param index the index of the task which the user wishes to delete
+     * @throws DukeException
+     */
     public void delete(int index) throws DukeException {
         int size = TaskList.savedTasks.size();
         if (index <= 0 || index > size) {
@@ -58,6 +74,14 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks a task from the existing list of tasks.
+     * <p>
+     * The index provided has to be within the length of the current list.
+     *
+     * @param index the index of the task to be marked as done
+     * @throws DukeException
+     */
     public void mark(int index) throws DukeException {
         int size = TaskList.savedTasks.size();
         if (index <= 0 || index > size) {
@@ -69,6 +93,14 @@ public class TaskList {
         }
     }
 
+    /**
+     * Unmarks a task from the existing list of tasks.
+     * <p>
+     * The index provided has to be within the length of the current list.
+     *
+     * @param index the index of the task to be unmarked as done
+     * @throws DukeException
+     */
     public void unmark(int index) throws DukeException {
         int size = TaskList.savedTasks.size();
         if (index <= 0 || index > size) {
@@ -80,6 +112,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns a string that is formatted to display the index of a task, the type of task, the
+     * description of the task and the date of the task.
+     *
+     * @return a String which shows the current list of tasks
+     */
     public String getList() {
         String listString = "";
         for (int i = 0; i < savedTasks.size(); i++) {
@@ -91,6 +129,12 @@ public class TaskList {
         return listString;
     }
 
+    /**
+     * Returns a string that is formatted to store the index of a task, the type of task, the
+     * description of the task and the date of the task for future use.
+     *
+     * @return a String for storage purpose
+     */
     public String writeTasks() {
         String dataWritten = "";
 
