@@ -31,7 +31,8 @@ public class Duke {
                 new ListCommand("list", taskList),
                 new MarkCommand("mark", taskList, true),
                 new MarkCommand("unmark", taskList, false),
-                new DeleteTaskCommand("delete", taskList)
+                new DeleteTaskCommand("delete", taskList),
+                new FindCommand("find", taskList)
         )));
         this.fileName = fileName;
     }
