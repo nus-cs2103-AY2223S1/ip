@@ -2,8 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Storage {
 
@@ -29,14 +31,18 @@ public class Storage {
                 listOfTasks.add(td);
             }
             if (currLineArr[0].equals("D")) {
-                Deadline d = new Deadline(currLineArr[2], currLineArr[3]);
+                LocalDate date = LocalDate.parse(currLineArr[3], DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String formattedDate = date.toString();
+                Deadline d = new Deadline(currLineArr[2], formattedDate);
                 if (currLineArr[1].equals("1")) {
                     d.markAsDone();
                 }
                 listOfTasks.add(d);
             }
             if (currLineArr[0].equals("E")) {
-                Event e = new Event(currLineArr[2], currLineArr[3]);
+                LocalDate date = LocalDate.parse(currLineArr[3], DateTimeFormatter.ofPattern("MMM d yyyy"));
+                String formattedDate = date.toString();
+                Event e = new Event(currLineArr[2], formattedDate);
                 if (currLineArr[1].equals("1")) {
                     e.markAsDone();
                 }
@@ -73,7 +79,7 @@ public class Storage {
                     taskToString += "0 |";
                 }
                 String[] subTaskArr = taskArr[2].split("\\(by:");
-                taskToString += subTaskArr[0] + "|" + subTaskArr[1].substring(0, subTaskArr[1].length()-1);
+                taskToString += subTaskArr[0] + "|" + subTaskArr[1].substring(0, subTaskArr[1].length() - 1);
             }
 
             if (taskArr[0].equals("[E")) {
@@ -84,7 +90,7 @@ public class Storage {
                     taskToString += "0 |";
                 }
                 String[] subTaskArr = taskArr[2].split("\\(at:");
-                taskToString += subTaskArr[0] + "|" + subTaskArr[1].substring(0, subTaskArr[1].length()-1);
+                taskToString += subTaskArr[0] + "|" + subTaskArr[1].substring(0, subTaskArr[1].length() - 1);
             }
 
             taskToString = taskToString + "\n";
