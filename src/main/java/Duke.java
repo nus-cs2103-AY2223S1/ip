@@ -12,6 +12,7 @@ public class Duke {
         System.out.println("Hello from Duke");
         System.out.println("What can I do for you?");
         printLine();
+//        getInput(scan);
         try {
             getInput(scan);
         } catch (DukeException de) {
@@ -76,6 +77,7 @@ public class Duke {
                     printLine();
                     getInput(scan);
                     break;
+
             case("deadline"):
                 printLine();
                 String[] deadlineString = input[1].split("/by", 2);
