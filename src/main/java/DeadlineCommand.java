@@ -1,7 +1,9 @@
-public class DeadlineCommand extends Command {
-    private Deadline deadline;
+import java.time.LocalDate;
 
-    public DeadlineCommand(String description, String time) {
+public class DeadlineCommand extends Command {
+    private final Deadline deadline;
+
+    public DeadlineCommand(String description, LocalDate time) {
         super();
         this.deadline = new Deadline(description, time);
     }

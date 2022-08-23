@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class ToDo extends Task {
 
     public ToDo(String description) {
@@ -17,5 +19,10 @@ public class ToDo extends Task {
     @Override
     public String save() {
         return "T | " + (isDone ? "1" : "0") + " | " + this.description;
+    }
+
+    @Override
+    public LocalDate getTime() {
+        return LocalDate.MIN;
     }
 }

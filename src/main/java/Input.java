@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
 public class Input {
@@ -30,7 +32,7 @@ public class Input {
         if (task.isEmpty()) {
             throw new DukeException("Description of an event not found. Please provide one.");
         } else {
-            return task.get().split("/at", 2)[0];
+            return task.get().split(" /at ", 2)[0];
         }
     }
 
@@ -38,7 +40,7 @@ public class Input {
         if (task.isEmpty()) {
             throw new DukeException("Description of a deadline not found. Please provide one.");
         } else {
-            return task.get().split("/by", 2)[0];
+            return task.get().split(" /by ", 2)[0];
         }
     }
 
@@ -50,29 +52,50 @@ public class Input {
         }
     }
 
-    public String getEventTime() throws DukeException {
-        if (task.isEmpty()) {
-            throw new DukeException("Description of an event not found. Please provide one.");
-        } else {
-            String[] splitEvent = task.get().split("/at", 2);
-            if (splitEvent.length == 1) {
-                throw new DukeException("Time of event not found. Please provide a time.");
+    public LocalDate getEventTime() throws DukeException {
+        try {
+            if (task.isEmpty()) {
+                throw new DukeException("Description of an event not found. Please provide one.");
             } else {
-                return splitEvent[1];
+                String[] splitEvent = task.get().split(" /at ", 2);
+                if (splitEvent.length == 1) {
+                    throw new DukeException("Time of event not found. Please provide a time.");
+                } else {
+                    return LocalDate.parse(splitEvent[1]);
+                }
             }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please enter time in YYYY-MM-DD format.");
+        }
+
+    }
+
+    public LocalDate getDeadlineTime() throws DukeException {
+        try {
+            if (task.isEmpty()) {
+                throw new DukeException("Description of deadline not found. Please provide one.");
+            } else {
+                String[] splitEvent = task.get().split(" /by ", 2);
+                if (splitEvent.length == 1) {
+                    throw new DukeException("Time of deadline not found. Please provide a time.");
+                } else {
+                    return LocalDate.parse(splitEvent[1]);
+                }
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please enter time in YYYY-MM-DD format.");
         }
     }
 
-    public String getDeadlineTime() throws DukeException {
-        if (task.isEmpty()) {
-            throw new DukeException("Description of deadline not found. Please provide one.");
-        } else {
-            String[] splitEvent = task.get().split("/by", 2);
-            if (splitEvent.length == 1) {
-                throw new DukeException("Time of deadline not found. Please provide a time.");
+    public LocalDate getDate() throws DukeException {
+        try {
+            if (task.isEmpty()) {
+                throw new DukeException("Date to be found is empty. Please provide a valid date.");
             } else {
-                return splitEvent[1];
+                return LocalDate.parse(task.get());
             }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please enter date in YYYY-MM-DD format");
         }
     }
 
@@ -93,6 +116,8 @@ public class Input {
             return new DeadlineCommand(getDeadlineTask(), getDeadlineTime());
         } else if (cmd.equals("delete")) {
             return new DeleteCommand(getTaskNumber());
+        } else if (cmd.equals("date")) {
+            return new DateCommand(getDate());
         } else {
             throw new DukeException("Unknown command. Please enter a valid command");
         }
