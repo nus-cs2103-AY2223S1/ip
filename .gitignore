@@ -13,6 +13,7 @@ src/main/resources/docs/
 *.iml
 bin/
 
+/META-INF
 /data
 /text-ui-test/data
 /text-ui-test/ACTUAL.TXT
