@@ -44,9 +44,8 @@ public class Sky {
                 this.ui.showLine(); // show the divider line ("_______")
             }
         }
-
     }
-
+    
     public static void main(String[] args) {
         new Sky("data/sky.txt").run();
     }
