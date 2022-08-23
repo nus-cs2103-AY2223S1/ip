@@ -21,7 +21,7 @@ public class Event extends Task {
 
     @Override
     public String getTaskType() {
-        return "duke.tasks.Event";
+        return "Event";
     }
 
     @Override

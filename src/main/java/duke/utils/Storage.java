@@ -31,16 +31,16 @@ public class Storage {
             boolean isTaskDone = taskStrTokens[2].equals("0") ? false : true;
 
             switch (taskType) {
-            case "duke.tasks.Todo":
+            case "Todo":
                 Todo currTodo = new Todo(taskDescription, isTaskDone);
                 taskList.addTask(currTodo);
                 break;
-            case "duke.tasks.Deadline":
+            case "Deadline":
                 LocalDateTime by = LocalDateTime.parse(taskStrTokens[3]);
                 Deadline currDeadline = new Deadline(taskDescription, isTaskDone, by);
                 taskList.addTask(currDeadline);
                 break;
-            case "duke.tasks.Event":
+            case "Event":
                 LocalDateTime at = LocalDateTime.parse(taskStrTokens[3]);
                 Event currEvent = new Event(taskDescription, isTaskDone, at);
                 taskList.addTask(currEvent);

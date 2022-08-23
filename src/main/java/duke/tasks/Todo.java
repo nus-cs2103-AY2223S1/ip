@@ -17,7 +17,7 @@ public class Todo extends Task {
 
     @Override
     public String getTaskType() {
-        return "duke.tasks.Todo";
+        return "Todo";
     }
 
     @Override

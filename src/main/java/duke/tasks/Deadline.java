@@ -20,7 +20,7 @@ public class Deadline extends Task {
 
     @Override
     public String getTaskType() {
-        return "duke.tasks.Deadline";
+        return "Deadline";
     }
 
     @Override
