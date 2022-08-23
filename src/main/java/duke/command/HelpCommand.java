@@ -1,8 +1,9 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.DukeException;
 
-import java.util.ArrayList;
 
 public class HelpCommand extends Command {
     public static String[] getHelpGuide() {
