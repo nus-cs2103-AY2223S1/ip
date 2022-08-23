@@ -131,4 +131,12 @@ public class Ui {
     public static void printSaving() {
         System.out.print("Saving...\n");
     }
+
+    /**
+     * Prints the task list where tasks matches a given target.
+     */
+    public static void printFindResults(TaskList taskList) {
+        System.out.printf("Here are the matching tasks in your list: \n");
+        printTaskList(taskList);
+    }
 }
