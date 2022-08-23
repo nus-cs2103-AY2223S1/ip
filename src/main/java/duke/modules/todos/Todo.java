@@ -2,6 +2,8 @@ package duke.modules.todos;
 
 import duke.MessagefulException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static java.lang.String.format;
@@ -39,6 +41,23 @@ public class Todo extends Task {
         }
 
         return new Todo(sc.nextLine());
+    }
+
+    public static final String typeCode = "T";
+
+    @Override
+    public List<String> flatPack() {
+        List<String> result = new ArrayList<>(super.flatPack());
+        result.set(0, typeCode);
+
+        return result;
+    }
+
+    public Todo(List<? extends String> l) {
+        super(l);
+        if (!l.get(0).equals(typeCode)) {
+            throw new IllegalArgumentException("Trying to hydrate non-todo as todo: " + l);
+        }
     }
     @Override
     public String toString() {

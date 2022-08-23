@@ -2,6 +2,8 @@ package duke.modules.todos;
 
 import duke.MessagefulException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -54,6 +56,25 @@ public class Event extends Task{
                     "Events are added like this: event project meeting /at Mon 2-4pm"
             );
         }
+    }
+
+    public static final String typeCode = "E";
+
+    @Override
+    public List<String> flatPack() {
+        List<String> result = new ArrayList<>(super.flatPack());
+        result.set(0, typeCode);
+        result.add(timeRange);
+
+        return result;
+    }
+
+    public Event(List<? extends String> l) {
+        super(l);
+        if (!l.get(0).equals(typeCode)) {
+            throw new IllegalArgumentException("Trying to hydrate non-event as event: " + l);
+        }
+        this.timeRange = l.get(3);
     }
 
     @Override
