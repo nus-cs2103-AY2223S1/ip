@@ -1,5 +1,8 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    private String datetime;
+    private LocalDateTime datetime;
 
     /**
      * Constructor for Event instance
@@ -8,7 +11,7 @@ public class Event extends Task {
      */
     public Event(String name, String datetime) {
         super(name);
-        this.datetime = datetime;
+        this.datetime = LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     /**
@@ -16,7 +19,7 @@ public class Event extends Task {
      * @return Date/time of the event
      */
     public String getDatetime() {
-        return datetime;
+        return datetime.format(DateTimeFormatter.ofPattern("MMM d yyyy HHmm"));
     }
 
     /**
@@ -24,11 +27,11 @@ public class Event extends Task {
      * @param datetime New date/time of the event
      */
     public void setDatetime(String datetime) {
-        this.datetime = datetime;
+        this.datetime = LocalDateTime.parse(datetime, DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.datetime + ")";
+        return "[E]" + super.toString() + " (at: " + this.getDatetime() + "H)";
     }
 }
