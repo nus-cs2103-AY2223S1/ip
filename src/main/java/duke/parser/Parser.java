@@ -36,6 +36,8 @@ public class Parser {
                     return new UnmarkCommand(Integer.parseInt(contents) - 1);
                 case Delete:
                     return new DeleteTaskCommand(Integer.parseInt(contents) - 1);
+                case Find:
+                    return new FindCommand(contents);
                 case Todo:
                     if (contents.isBlank())
                         throw new EmptyTitleException();
