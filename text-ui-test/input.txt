@@ -5,9 +5,10 @@ todo read a book
 event
 event 
 event /at Sunday 2-4pm
-event / at Sunday 2-4pm
-event  /at Sunday 2-4pm
-event /at Sunday 2-4pm /at
+event /at 1/1/2022 1630
+event / at 1/1/2022 1630
+event  /at 1/1/2022 1630
+event /at 1/1/2022 1630 /at
 event project meeting
 event project meeting 
 event project meeting /at
@@ -15,12 +16,24 @@ event project meeting /at
 event project meeting/at
 event project meeting /at Sunday 2-4pm
 event project meeting /at Sunday 2-4pm /at
+event project meeting /at 1/1/2022
+event project meeting /at 1/1/2022 
+event project meeting /at 1/1/2022 4.30pm
+event project meeting /at 1/1/2022 1630
+event project meeting /at 1/1/2022 1630 
+event project meeting /at 32/1/2022 1630
+event project meeting /at 1/13/2022 1630
+event project meeting /at 1/1/2022 1665
+event project meeting /at 01/01/2022 1630
+event project meeting /at 1/01/2022 1630
+event project meeting /at 01/1/2022 1630
 deadline
 deadline 
 deadline /by Wednesday 6pm
-deadline / by Wednesday 6pm
-deadline  /by Wednesday 6pm
-deadline /by Wednesday 6pm /by
+deadline /by 1/4/2022 0815
+deadline / by 1/4/2022 0815
+deadline  /by 1/4/2022 0815
+deadline /by 1/4/2022 0815 /by
 deadline spanish homework
 deadline spanish homework 
 deadline spanish homework /by
@@ -28,6 +41,17 @@ deadline spanish homework /by
 deadline spanish homework/by
 deadline spanish homework /by Wednesday 6pm
 deadline spanish homework /by Wednesday 6pm /by
+deadline spanish homework /by 1/4/2022
+deadline spanish homework /by 1/4/2022 
+deadline spanish homework /by 1/4/2022 8.30am
+deadline spanish homework /by 1/4/2022 0815
+deadline spanish homework /by 1/4/2022 0815 
+deadline spanish homework /by 32/4/2022 0815
+deadline spanish homework /by 1/13/2022 0815
+deadline spanish homework /by 1/4/2022 2815
+deadline spanish homework /by 01/04/2022 0815
+deadline spanish homework /by 1/04/2022 0815
+deadline spanish homework /by 01/4/2022 0815
 list
 mark
 mark 
@@ -35,8 +59,8 @@ unmark
 unmark 
 mark -1
 unmark -1
-mark 8
-unmark 8
+mark 60
+unmark 60
 mark 2
 mark 2
 list
@@ -46,7 +70,7 @@ unmark 2
 delete
 delete 
 delete -1
-delete 8
+delete 60
 delete 3
 list
 delete asdf

@@ -1,12 +1,14 @@
 import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static final String BORDER = ">>========================="
-            + "===========[**]============"
-            + "========================<<";
+    public static final String BORDER = ">>=========================="
+            + "============[**]============="
+            + "=========================<<";
     private static ArrayList<Task> taskList = new ArrayList<>();
     private static boolean isRunning = true;
 
@@ -28,10 +30,10 @@ public class Duke {
                 msg = "  Type \"" + keyword + " <description>\" to add a new todo.";
                 break;
             case DEADLINE:
-                msg = "  Type \"" + keyword + " <description> /by <time>\" to add a new deadline.";
+                msg = "  Type \"" + keyword + " <description> /by <date> <time>[optional]\" to add a new deadline.";
                 break;
             case EVENT:
-                msg = "  Type \"" + keyword + " <description> /at <time>\" to add a new event.";
+                msg = "  Type \"" + keyword + " <description> /at <date> <time>[optional]\" to add a new event.";
                 break;
             case MARK:
                 msg = "  Type \"" + keyword + " <task number>\" to mark a task as complete.";
@@ -55,13 +57,26 @@ public class Duke {
                 + (taskList.size() > 1 ? "s" : "") + ". Bummer.");
     }
 
-    public static void addTask(String taskType, String description, String time) throws MissingDescriptionException, MissingTimeException {
+    public static void addTask(String taskType, String description, String dateTimeStr) throws MissingDescriptionException {
         Task task = null;
-        if (taskType.compareTo("deadline") == 0) {
-            task = new Deadline(description, time);
+        String[] parsedDateTime = dateTimeStr.split(" ", 2);
+        
+        if (parsedDateTime.length < 2) {
+            LocalDate date = convertStringToDate(dateTimeStr);
+            if (taskType.compareTo("deadline") == 0) {
+                task = new Deadline(description, date);
+            } else {
+                task = new Event(description, date);
+            }
         } else {
-            task = new Event(description, time);
+            LocalDateTime dateTime = convertStringToDateTime(dateTimeStr);
+            if (taskType.compareTo("deadline") == 0) {
+                task = new Deadline(description, dateTime);
+            } else {
+                task = new Event(description, dateTime);
+            }
         }
+        
         taskList.add(task);
         System.out.println("  Seriously? Another one?\n" + "  Give me strength...\n"
                 + "    " + task + "\n" + "  You have " + taskList.size() + " task"
@@ -105,7 +120,7 @@ public class Duke {
 
     // refactor parsing of event and deadline commands
     public static void parseCommand(String input, Scanner sc) throws UnknownCommandException,
-            MissingTaskNumberException, MissingDescriptionException, MissingTimeException {
+            MissingTaskNumberException, MissingDescriptionException, MissingDateException {
         String[] parsed = input.split(" ", 2); // splits string at the first whitespace encountered
         String keyword = parsed[0];
         try {
@@ -148,7 +163,7 @@ public class Duke {
                     if (parsedTask[0].startsWith("/by")) {
                         throw new MissingDescriptionException(commandGuide(keyword, Command.DEADLINE));
                     } else if (parsedTask.length < 2) {
-                        throw new MissingTimeException(commandGuide(keyword, Command.DEADLINE));
+                        throw new MissingDateException(commandGuide(keyword, Command.DEADLINE));
                     } else {
                         addTask(keyword, parsedTask[0], parsedTask[1]);
                     }
@@ -161,7 +176,7 @@ public class Duke {
                     if (parsedTask[0].startsWith("/at")) {
                         throw new MissingDescriptionException(commandGuide(keyword, Command.EVENT));
                     } else if (parsedTask.length < 2) {
-                        throw new MissingTimeException(commandGuide(keyword, Command.EVENT));
+                        throw new MissingDateException(commandGuide(keyword, Command.EVENT));
                     } else {
                         addTask(keyword, parsedTask[0], parsedTask[1]);
                     }
@@ -171,15 +186,18 @@ public class Duke {
             }
         } catch (NumberFormatException e) {
             System.out.println("  Do you need me to teach you what a number is?\n"
-                    + "  " + parsed[1] + " is not a number.");
+                    + "  '" + parsed[1] + "' is not a number.");
         }
     }
     
-    // accept in formats: dd/mm/yyyy tttt, am pm, yyy-mm-dd, single digit months and days, MMM dd yyy (Oct 15 2019)
-    // accept without time
-    public static LocalDateTime parseDateTime(String dateTime) {
-        LocalDateTime dt1 = LocalDateTime.parse(dateTime, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-        return dt1;
+    public static LocalDateTime convertStringToDateTime(String dateTime) {
+        LocalDateTime dt = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+        return dt;
+    }
+
+    public static LocalDate convertStringToDate(String date) {
+        LocalDate d = LocalDate.parse(date, DateTimeFormatter.ofPattern("d/M/yyyy"));
+        return d;
     }
 
     public static void printResponse(String input, Scanner sc) {
@@ -191,34 +209,35 @@ public class Duke {
         } catch (MissingDescriptionException e) {
             System.out.println("  It seems you've invented a way to do nothing. Typical...\n"
                     + e.getMessage());
-        } catch (MissingTimeException e) {
+        } catch (MissingDateException e) {
             System.out.println("  You do realise deadlines and events usually have a time or date, right?\n"
                     + e.getMessage());
         } catch (UnknownCommandException e) {
             System.out.println("  If you want my help, the least you could do is say something I understand.");
+        } catch (DateTimeParseException e) {
+            System.out.println("  Invalid date or time.\n  Please enter a date and time with either of the following "
+                    + "formats:\n  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.");
         }
         System.out.println(BORDER);
     }
 
     public static void main(String[] args) {
 
-        String mort = "                               .---.        .-----------\n"
-                + "                              /     \\  __  /    ------\n"
-                + "                             / /     \\(  )/    -----\n"
-                + "                            //////   ' \\/ `   ---\n"
-                + "                           //// / // :    : ---\n"
-                + "                          // /   /  /`    '--\n"
-                + "                         //          //..\\\\\n"
-                + ">>==================================UU[**]UU==================================<<\n"
-                + "                                    '//||\\\\`\n"
-                + "                                      ''``";
+        String mort = "                                 .---.        .-----------\n"
+                + "                                /     \\  __  /    ------\n"
+                + "                               / /     \\(  )/    -----\n"
+                + "                              //////   ' \\/ `   ---\n"
+                + "                             //// / // :    : ---\n"
+                + "                            // /   /  /`    '--\n"
+                + "                           //          //..\\\\\n"
+                + ">>====================================UU[**]UU====================================<<\n"
+                + "                                      '//||\\\\`\n"
+                + "                                        ''``";
 
         System.out.println(mort);
         System.out.println("  Oh, it's you again...\n  Mort, begrudgingly at your service.");
         Scanner sc = new Scanner(System.in);
         System.out.println("  Hmph, what do you want now?\n" + BORDER);
-        String date = "2019-02-02";
-        System.out.println(parseDateTime(date));
 
         while (isRunning) {
             System.out.println();
