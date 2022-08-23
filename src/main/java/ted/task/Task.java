@@ -4,6 +4,7 @@ import ted.exception.InvalidEncodingException;
 import ted.exception.TedException;
 
 import java.util.Arrays;
+import java.util.Locale;
 
 /**
  * A class that encapsulate a task
@@ -91,6 +92,10 @@ public class Task {
         }
 
         return task;
+    }
+
+    public boolean contains(String search) {
+        return this.description.toLowerCase().contains(search.toLowerCase());
     }
 
     @Override

@@ -9,7 +9,7 @@ public class Parser {
      * used by users
      */
     enum CommandEnum {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE;
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND;
 
         public static CommandEnum fromString(String command) {
             for (CommandEnum value : CommandEnum.values()) {
@@ -67,6 +67,9 @@ public class Parser {
                 break;
             case DELETE:
                 command = new DeleteCommand(args);
+                break;
+            case FIND:
+                command = new FindCommand(args);
                 break;
             }
         }
