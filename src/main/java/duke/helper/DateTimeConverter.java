@@ -17,6 +17,13 @@ public class DateTimeConverter {
         this.dateFormatter = dateFormatter;
     }
 
+    /**
+     * Method to convert dateTime from "yyyy-mm-dd"
+     * eg. (2022-2-2 1800 -> Feb 2 2022 6:00 PM)
+     *
+     * @param dateTime the date and time to be converted
+     * @return the converted date and time format
+     */
     public String convert(String[] dateTime) {
         String dateIn = dateTime[0];
         LocalDate dateOut = LocalDate.parse(dateIn, dateFormatter);
@@ -38,6 +45,12 @@ public class DateTimeConverter {
         return date;
     }
 
+    /**
+     * Method to check if the date given is valid
+     *
+     * @param date the date to be converted
+     * @return boolean stating whether the date is valid
+     */
     public boolean isValidDate(String date) {
         try {
             this.dateFormatter.parse(date);
