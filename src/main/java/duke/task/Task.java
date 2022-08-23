@@ -4,6 +4,7 @@ import duke.core.DukeException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.FormatStyle;
 
 /**
@@ -75,7 +76,11 @@ public abstract class Task {
             task.complete = Boolean.parseBoolean(args[1]);
             task.text = args[2];
             if (args.length >= 4) {
-                task.details = LocalDate.parse(args[3]);
+                try {
+                    task.details = LocalDate.parse(args[3]d);
+                } catch (DateTimeParseException e) {
+                    return null;
+                }
             }
         }
 
