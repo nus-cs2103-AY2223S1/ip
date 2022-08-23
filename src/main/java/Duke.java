@@ -24,16 +24,23 @@ public class Duke {
                 String firstWord = userInput;
                 String taskDescription = "";
                 String time = "";
+
+                // int for numbered operations
+                char charOfInt = '\0';
                 if (indexOfFirstSpace != - 1) {
                     firstWord = userInput.substring(0, indexOfFirstSpace);
                     taskDescription = userInput.substring(indexOfFirstSpace + 1);
+
+                    // retrieve int for numbered operations
+                    userInput.charAt(userInput.length() - 1);
                 }
+
+                // retrieve task details
                 if (indexOfFirstSlash != -1) {
                     taskDescription = userInput.substring(indexOfFirstSpace + 1, indexOfFirstSlash - 1);
                     time = userInput.substring(indexOfFirstSlash + 1);
                 }
-                // retrieve int for numbered operations
-                char charOfInt = userInput.charAt(userInput.length() - 1);
+
                 // convert ASCII character of integer to int
                 int taskNumber =  charOfInt - '0';
                 switch (firstWord) {
@@ -61,6 +68,8 @@ public class Duke {
                 case "delete":
                     Duke.removeTask(taskNumber, taskDescription);
                     break;
+                case "":
+                    throw new DukeException("OOPS!!! Please enter an instruction");
                 default:
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
@@ -133,7 +142,7 @@ public class Duke {
         if (by.equals("")) {
             throw new DukeException("OOPS!!! The time of a deadline cannot be empty.");
         }
-        Task task = new Event(description, by);
+        Task task = new Deadline(description, by);
         Duke.addTask(task);
     }
 
