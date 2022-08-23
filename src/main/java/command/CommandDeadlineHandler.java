@@ -3,9 +3,8 @@ package command;
 import data.TaskList;
 import data.tasks.TaskDeadline;
 
-import java.util.List;
-import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
+import java.util.regex.MatchResult;
 
 import util.CommandUtils;
 
@@ -17,13 +16,18 @@ public class CommandDeadlineHandler extends CommandHandler {
     CommandDeadlineHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
-            throw new CommandException(
-                "Invalid `deadline` command format (expected: deadline deadline-title /by datetime)");
+            throw new CommandException(String.join("\n",
+                "Invalid `deadline` command format!",
+                "Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>",
+                "Examples:",
+                "\t- deadline d1 /at 2022-01-01",
+                "\t- deadline d1 /at 2022-01-01 18:00")
+            );
         }
     }
 
     @Override
-    public List<String> run(TaskList taskList) throws CommandException {
+    public String run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         String deadlineTaskTitle = regexMatchResult.group(1);

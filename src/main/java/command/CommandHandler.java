@@ -8,7 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -45,5 +44,5 @@ public abstract class CommandHandler {
         return commandRegexMatcher.find();
     }
 
-    abstract public List<String> run(TaskList taskList) throws CommandException;
+    abstract public String run(TaskList taskList) throws CommandException;
 }

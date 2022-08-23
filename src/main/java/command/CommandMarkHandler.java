@@ -2,8 +2,6 @@ package command;
 
 import data.TaskList;
 import data.tasks.Task;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
@@ -14,14 +12,18 @@ public class CommandMarkHandler extends CommandHandler {
     CommandMarkHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
-            throw new CommandException(
-                "`mark`/`unmark` command expects a single number argument (e.g. `mark 1`, `unmark 2`)");
+            throw new CommandException(String.join("\n",
+                "Invalid `mark`/`unmark` command format!",
+                "Expected format: mark <task-number> / unmark <task-number>",
+                "Examples:",
+                "\t- mark 1",
+                "\t- unmark 1"
+            ));
         }
     }
 
     @Override
-    public List<String> run(TaskList taskList) throws CommandException {
-        List<String> responseList = new ArrayList<>();
+    public String run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         boolean toMark = regexMatchResult.group(1).equals("mark");
@@ -34,18 +36,16 @@ public class CommandMarkHandler extends CommandHandler {
                 Task task = taskList.getTask(taskIdx - 1);
                 if (toMark) {
                     task.mark();
-                    responseList.add("Nice! I've mark this task as done:");
+                    return String.format("Nice! I've mark this task as done:\n\t%s", task);
                 } else {
                     task.unmark();
-                    responseList.add("OK, I've marked this task as not done yet:");
+                    return String.format("OK, I've marked this task as not done yet:\n\t%s", task);
                 }
-                responseList.add(String.format("\t%s", task));
             }
         } catch (NumberFormatException error) {
-            throw new CommandException(
-                String.format("`mark`/`unmark` expects a number argument. Got: %s", taskIdxStr));
+            throw new CommandException(String.join("\n",
+                "Task number should be a number!",
+                "Got: %s", taskIdxStr));
         }
-
-        return responseList;
     }
 }

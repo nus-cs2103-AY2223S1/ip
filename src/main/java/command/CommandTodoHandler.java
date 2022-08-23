@@ -3,9 +3,7 @@ package command;
 import data.TaskList;
 import data.tasks.TaskTodo;
 
-import java.util.List;
 import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import util.CommandUtils;
@@ -17,13 +15,17 @@ public class CommandTodoHandler extends CommandHandler {
     CommandTodoHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
-            throw new CommandException(
-                "`todo` command expects a description (`todo todo-task-title`)");
+            throw new CommandException(String.join("\n",
+                "Invalid `todo` command format!",
+                "Expected format: todo <task-title>",
+                "Examples:",
+                "\t- todo task-1"
+            ));
         }
     }
 
     @Override
-    public List<String> run(TaskList taskList) {
+    public String run(TaskList taskList) {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         TaskTodo todoTask = new TaskTodo(regexMatchResult.group(1));
