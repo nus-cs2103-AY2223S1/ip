@@ -86,7 +86,6 @@ public class TaskList {
     }
 
     /**
-     * Gets TaskList.
      * List tasks with matching description.
      *
      * @param description Description to be matched.
@@ -104,7 +103,7 @@ public class TaskList {
     }
 
     /**
-     * Gets for TaskList.
+     * Gets TaskList.
      *
      * @return The TaskList.
      */
