@@ -4,8 +4,7 @@ package duke;
 public class Duke {
 
     public void run() {
-        UI.getGREETING();
-        UI.getLINE();
+        UI.start();
         Parser.parseInput();
     }
 

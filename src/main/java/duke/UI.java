@@ -30,6 +30,11 @@ public class UI {
         System.out.println(GREETING);
     }
 
+    public static void start() {
+        System.out.println(GREETING);
+        System.out.println(LINE);
+    }
+
     public static void end() {
         System.out.println(LINE);
         System.out.println(GOODBYE_MESSAGE);
