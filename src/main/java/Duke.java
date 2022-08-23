@@ -1,3 +1,5 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Duke {
@@ -61,6 +63,30 @@ public class Duke {
         TaskSaver.saveToDirectory(Duke.addedTask);
     }
 
+    private static LocalDateTime parseDateTime(String dateTime) throws IllegalDateTimeException {
+        // abide by format dd-MM-yyyy-HH-mm (e.g. 23-04-2000-23-04)
+        String[] dateTimeData = dateTime.split("-");
+        if (dateTimeData.length != 5) {
+            throw new IllegalDateTimeException(dateTime);
+        } else {
+            try {
+                int[] dateTimeDataInt = new int[5];
+                for (int i = 0; i < dateTimeData.length; ++i) {
+                    dateTimeDataInt[i] = Integer.parseInt(dateTimeData[i]);
+                }
+                LocalDateTime localDateTime = LocalDateTime.of(
+                        dateTimeDataInt[2], dateTimeDataInt[1],
+                        dateTimeDataInt[0], dateTimeDataInt[3],
+                        dateTimeDataInt[4]);
+                return localDateTime;
+            } catch (NumberFormatException e) {
+                throw new IllegalDateTimeException(dateTime);
+            } catch (DateTimeException e) {
+                throw new IllegalDateTimeException(dateTime);
+            }
+        }
+    }
+
     private static Command parseCommand(String command) 
             throws CommandNotFoundException {
         try {
@@ -115,7 +141,7 @@ public class Duke {
                     throw new IllegalCommandException(commandArgs[0]);
                 }
                 Duke.addTask(new Deadline(deadlineDetails[0],
-                        deadlineDetails[1]));
+                        parseDateTime(deadlineDetails[1])));
                 break;
             case EVENT:
                 if (commandArgs.length == 1) {
@@ -126,16 +152,22 @@ public class Duke {
                     throw new IllegalCommandException(commandArgs[0]);
                 }
                 Duke.addTask(new Event(eventDetails[0],
-                        eventDetails[1]));
+                        parseDateTime(eventDetails[1])));
                 break;
             default:
                 throw new CommandNotFoundException(command);
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hi, my name is Duke\nand it's power hour!");
+    public static void greet() {
+        System.out.println("Hi, my name is Duke and it's power hour!");
+        System.out.println("Please input all dates and times in the following format:");
+        System.out.println("dd-MM-yyyy-HH-mm (e.g. 23-04-2000-23-04)");
         System.out.println("***********************");
+    }
+
+    public static void main(String[] args) {
+        Duke.greet();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
