@@ -1,3 +1,8 @@
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -28,6 +33,7 @@ public class Duke {
         System.out.println(Constants.ARROW + "Added task: " + task.toString());
         Duke.wordList.add(task);
         System.out.println("Now you have " + wordList.size() + " task(s) on your list.");
+        Duke.rewriteList();
     }
 
     /**
@@ -38,6 +44,7 @@ public class Duke {
         System.out.println(Constants.ARROW + "Deleted task: " + task.toString());
         Duke.wordList.remove(task);
         System.out.println("Now you have " + wordList.size() + " task(s) on your list.");
+        Duke.rewriteList();
     }
 
     /**
@@ -47,6 +54,33 @@ public class Duke {
         System.out.println(Constants.LISTING_MESSAGE);
         for (int i = 0; i < wordList.size(); i++) {
             System.out.println((i+1) + ") " + wordList.get(i).toString());
+        }
+    }
+
+    private static void rewriteList() {
+        try {
+            Path file = Paths.get("src/main/List.txt");
+            ArrayList<String> stringArrayList = new ArrayList<>();
+            for (int i = 0; i < wordList.size(); i++) {
+                stringArrayList.add(wordList.get(i).toString());
+            }
+            Files.write(file, stringArrayList, StandardCharsets.UTF_8);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        } catch (IOException e) {
+            System.out.println("Cannot save the list!");
+        }
+    }
+
+    private static void loadDataFromList() {
+        try {
+            Scanner s = new Scanner(new File("src/main/List.txt"));
+            while (s.hasNextLine()){
+                wordList.add(s.nextLine());
+            }
+            s.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
         }
     }
 
