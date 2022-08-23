@@ -2,11 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-<<<<<<< HEAD
-=======
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
->>>>>>> branch-Level-8
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -73,13 +70,8 @@ public class Duke {
         @Override
         public String formatToSave() {
             return isDone
-<<<<<<< HEAD
-                    ? "D" + keySeparator + 1 + keySeparator + description + keySeparator + by
-                    : "D" + keySeparator + 0 + keySeparator + description + keySeparator + by;
-=======
                     ? "D" + keySeparator + 1 + keySeparator + description + keySeparator + date
                     : "D" + keySeparator + 0 + keySeparator + description + keySeparator + date;
->>>>>>> branch-Level-8
         }
         /**
          * Returns a String representation of the task
@@ -308,11 +300,7 @@ public class Duke {
             switch (taskStr[0]) {
                 case "T": task = new Todo(taskStr[2]);
                     break;
-<<<<<<< HEAD
-                case "D": task = new Deadline(taskStr[2], taskStr[3]);
-=======
                 case "D": task = new Deadline(taskStr[2], LocalDate.parse(taskStr[3]));
->>>>>>> branch-Level-8
                     break;
                 case "E": task = new Event(taskStr[2], taskStr[3]);
                     break;
