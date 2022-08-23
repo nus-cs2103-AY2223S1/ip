@@ -17,13 +17,13 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList t, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         if (idx < 0 || idx > t.getSize()) {
             throw new DukeException(Constants.invalidIndex);
         }
         Task deleted = t.deleteTask(idx);
         storage.save(t.stringfy());
-        ui.printDeleteTask(deleted, t.getSize());
+        return ui.printDeleteTask(deleted, t.getSize());
     }
 
 }

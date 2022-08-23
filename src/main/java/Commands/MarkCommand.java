@@ -17,13 +17,13 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList t, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         if (idx <= 0 || idx > t.getSize()) {
             throw new DukeException(Constants.invalidIndex);
         }
         Task tsk = t.markTask(idx);
         storage.save(t.stringfy());
-        ui.printMark(tsk);
+        return ui.printMark(tsk);
     }
 
 }

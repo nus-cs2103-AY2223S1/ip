@@ -18,11 +18,11 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList t, Ui ui, Storage storage) {
+    public String execute(TaskList t, Ui ui, Storage storage) {
         Event e = new Event(this.desc, this.date);
         t.addTask(e);
         storage.save(t.stringfy());
-        ui.printAddTask(e, t.getSize());
+        return ui.printAddTask(e, t.getSize());
     }
 
 }

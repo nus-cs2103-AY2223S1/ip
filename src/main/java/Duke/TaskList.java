@@ -86,11 +86,13 @@ public class TaskList {
     /**
      * Print the tasks in the taskList
      */
-    public void printList() {
-        System.out.println(Constants.list);
+    public String printList() {
+        String s = Constants.list;
         for (int i = 0; i < lst.size(); i++) {
-            System.out.println(String.format("%d.%s", i + 1, lst.get(i).toString()));
+            s += String.format("\n%d.%s", i + 1, lst.get(i).toString());
         }
+        System.out.println(s);
+        return s;
     }
 
     /**
@@ -98,11 +100,13 @@ public class TaskList {
      *
      * @param list
      */
-    public void printList(List<Task> list) {
-        System.out.println(Constants.find);
+    public String printList(List<Task> list) {
+        String s = Constants.find;
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(String.format("%d.%s", i + 1, list.get(i).toString()));
+            s += String.format("\n%d.%s", i + 1, list.get(i).toString());
         }
+        System.out.println(s);
+        return s;
     }
 
     /**

@@ -4,15 +4,32 @@ import Commands.Command;
 
 import java.time.format.DateTimeParseException;
 
+
 public class Duke {
     private Storage storage;
     private TaskList lst;
     private Ui ui;
+    public static final String filepath = "list.txt";
 
-    public Duke(String filepath) {
+    public Duke() {
         ui = new Ui();
         storage = new Storage(filepath);
         lst = new TaskList(storage.load());
+    }
+
+    public String getResponse(String command) {
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                Command c = Parser.parse(command);
+                String output = c.execute(lst, ui, storage);
+                isExit = c.isExit();
+                return output;
+            } catch (Exception e) {
+                return ui.printMsg(e.getMessage());
+            }
+        }
+        return "";
     }
 
     public void run() {
@@ -33,7 +50,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("list.txt").run();
+        new Duke().run();
     }
 
 }
