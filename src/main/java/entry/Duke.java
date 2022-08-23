@@ -1,3 +1,5 @@
+package entry;
+
 import commands.*;
 import exceptions.DukeException;
 import input.Input;
