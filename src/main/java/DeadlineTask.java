@@ -1,14 +1,12 @@
 import java.util.Objects;
 
 public class DeadlineTask extends Task {
-    protected String by;
 
     DeadlineTask(String action, boolean isDone, String by) throws DukeException {
-        super(action, isDone);
+        super(action, isDone, by);
         if (Objects.equals(by, "")) {
             throw new DukeException();
         }
-        this.by = by;
     }
 
     DeadlineTask(String action, String by) throws DukeException {
@@ -17,6 +15,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + date + ")";
     }
 }

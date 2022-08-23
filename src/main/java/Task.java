@@ -3,17 +3,15 @@ import java.util.Objects;
 public class Task {
     protected String action;
     protected boolean isDone;
+    protected String date;
 
-    Task(String action, boolean isDone) throws DukeException {
+    Task(String action, boolean isDone, String date) throws DukeException {
         if (Objects.equals(action, "")) {
             throw new DukeException();
         }
         this.action = action;
         this.isDone = isDone;
-    }
-
-    Task(String action) throws DukeException {
-        this(action, false);
+        this.date = date;
     }
 
     String getAction() {

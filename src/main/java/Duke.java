@@ -1,9 +1,15 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Duke {
     static ArrayList<Task> list = new ArrayList<>();
+    static File data;
+
     public static void main(String[] args) {
         welcome();
     }
@@ -14,11 +20,13 @@ public class Duke {
      **/
     public static void welcome() {
         list = new ArrayList<>();
+        initialiseFile();
         System.out.println("Hello! I'm Botson");
         Scanner input = new Scanner(System.in);
         System.out.println("What can I help you with? :-)");
         System.out.println("--------------------------");
         while (input.hasNext()) {
+            saveData();
             String action = input.nextLine();  // Read user input
             if (Objects.equals(action.strip(), "bye")) {
                 System.out.println("Goodbye! Hope to see you again soon!");
@@ -34,6 +42,77 @@ public class Duke {
                 deleteTask(action);
             } else {
                 addToList(action);
+            }
+        }
+    }
+
+    /**
+     * Updates the data from the array list to the file
+     */
+    private static void saveData() {
+        try {
+            FileWriter writer = new FileWriter(data, false);
+
+            for (Task task : list) {
+                String toAdd = "";
+                String line = task.toString();
+                char type = line.charAt(1);
+                String isDone = task.isDone ? "1" : "0";
+                String action = task.action;
+                String date = task.date;
+                toAdd += type + " | " + isDone + " | " + action;
+                if (type != 'T') {
+                    toAdd += " | " + date;
+                }
+                writer.write(toAdd + "\n");
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
+    }
+
+    /**
+     * create a data file if it does not exist
+     */
+    private static void initialiseFile() {
+        try {
+            data = new File("src/main/java/data.txt");
+            data.createNewFile();
+            convertFileToArray();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+        } catch (DukeException e) {
+            System.out.println("OOPS!!! Error: No Such Task");
+        }
+    }
+
+    /**
+     * Adds the data from file to current array
+     * @throws FileNotFoundException
+     * @throws DukeException
+     */
+    private static void convertFileToArray() throws FileNotFoundException, DukeException {
+        Scanner sc = new Scanner(data);
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            String type = line.substring(0, 1);
+            boolean isDone = Integer.parseInt(line.substring(4, 5)) != 0;
+            String action = line.substring(8);
+            switch (type) {
+                case "T":
+                    list.add(new TodoTask(action, isDone));
+                    break;
+                case "D":
+                    int i = action.indexOf('|');
+                    String date = action.substring(i + 1).strip();
+                    list.add(new DeadlineTask(action.substring(0, i).strip(), isDone, date));
+                    break;
+                case "E":
+                    i = action.indexOf('|');
+                    date = action.substring(i + 1).strip();
+                    list.add(new EventTask(action.substring(0, i).strip(), isDone, date));
+                    break;
             }
         }
     }
