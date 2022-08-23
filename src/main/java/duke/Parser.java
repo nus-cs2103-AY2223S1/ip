@@ -100,27 +100,27 @@ public class Parser {
         }
     }
 
-    public static Command parse(String userInput, TaskList taskList) throws DukeException{
+    public static Command parse(String userInput, TaskList taskList) throws DukeException {
         RequestType rqType = checkRequest(userInput);
         switch (rqType) {
-            case LIST:
-                return new ListCommand();
-            case DONE:
-                return new DoneCommand(getMarkIndex(userInput, taskList));
-            case ONGOING:
-                return new OnGoingCommand(getUnMarkIndex(userInput, taskList));
-            case DELETE:
-                return new DeleteCommand(getDeleteIndex(userInput, taskList));
-            case TODO:
-                return new AddCommand(new ToDo(todoTask(userInput)));
-            case DEADLINE:
-                String[] deadline = deadlineTask(userInput);
-                return new AddCommand(new Deadline(deadline[0], deadline[1]));
-            case EVENT:
-                String[] event = eventTask(userInput);
-                return new AddCommand(new Event(event[0], event[1]));
-            default:
-                return new ExitCommand();
+        case LIST:
+            return new ListCommand();
+        case DONE:
+            return new DoneCommand(getMarkIndex(userInput, taskList));
+        case ONGOING:
+            return new OnGoingCommand(getUnMarkIndex(userInput, taskList));
+        case DELETE:
+            return new DeleteCommand(getDeleteIndex(userInput, taskList));
+        case TODO:
+            return new AddCommand(new ToDo(todoTask(userInput)));
+        case DEADLINE:
+            String[] deadline = deadlineTask(userInput);
+            return new AddCommand(new Deadline(deadline[0], deadline[1]));
+        case EVENT:
+            String[] event = eventTask(userInput);
+            return new AddCommand(new Event(event[0], event[1]));
+        default:
+            return new ExitCommand();
         }
     }
 }

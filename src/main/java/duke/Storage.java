@@ -12,16 +12,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-    private final String FILEPATH;
-    private final String DIRPATH;
+    private final String filePath;
+    private final String dirPath;
 
     public Storage() {
-        this.FILEPATH = "data" + File.separator + "lilychat.txt";
-        this.DIRPATH = "data";
+        this.filePath = "data" + File.separator + "lilychat.txt";
+        this.dirPath = "data";
     }
 
     public ArrayList<Task> initialise() {
-        File file = new File(FILEPATH);
+        File file = new File(filePath);
         try {
             Scanner s = new Scanner(file);
             ArrayList<Task> output = new ArrayList<>();
@@ -49,7 +49,7 @@ public class Storage {
 
     public void writeFile(TaskList list) {
         try {
-            FileWriter fw = new FileWriter(FILEPATH);
+            FileWriter fw = new FileWriter(filePath);
             String textToAdd = "";
             for (int i = 0; i < list.getSize(); i++) {
                 if (i == 0) {
@@ -61,7 +61,7 @@ public class Storage {
             fw.write(textToAdd);
             fw.close();
         } catch (IOException e) {
-            File file = new File(DIRPATH);
+            File file = new File(dirPath);
             if (file.mkdir()) {
                 writeFile(list);
             } else {

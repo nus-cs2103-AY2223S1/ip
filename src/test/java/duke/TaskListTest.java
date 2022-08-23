@@ -11,9 +11,9 @@ public class TaskListTest {
 
     @Test
     public void testGetSize() {
-        ArrayList<Task> arr = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         assertEquals(0, new TaskList().getSize());
-        arr.add(new Task("taskTest"));
-        assertEquals(1, new TaskList(arr).getSize());
+        tasks.add(new Task("taskTest"));
+        assertEquals(1, new TaskList(tasks).getSize());
     }
 }
