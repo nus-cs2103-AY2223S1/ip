@@ -4,6 +4,8 @@ import ekud.exception.EkudException;
 import ekud.task.TaskList;
 import ekud.task.TaskType;
 
+import java.util.Arrays;
+
 public class Parser {
   /**
    * Constructor that instantiates an instance of Parser.
@@ -21,7 +23,8 @@ public class Parser {
    * @throws EkudException Error that occured.
    */
   public ParseResult parseCommand(String command, TaskList taskList) throws EkudException {
-    String firstWord = command.split(" ")[0];
+    String[] splitCommand = command.split(" ");
+    String firstWord = splitCommand[0];
     if (command.equals("bye")) {
         return new ParseResult(true, "Bye. Hope to see you again soon!", false);
     } else if (command.equals("list")) {
@@ -38,6 +41,9 @@ public class Parser {
       return new ParseResult(false, taskList.addTask(command, TaskType.EVENT), true);
     } else if (firstWord.equals("delete")) {
       return new ParseResult(false, taskList.deleteTask(command), true);
+    } else if (firstWord.equals("find")) {
+      return new ParseResult(false, taskList.searchTasks(
+              String.join(" ", Arrays.copyOfRange(splitCommand, 1, splitCommand.length))), false);
     } else {
         throw new EkudException("Invalid command.");
     }

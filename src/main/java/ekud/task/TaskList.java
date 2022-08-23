@@ -105,9 +105,18 @@ public class TaskList {
    * @return String representation of all tasks.
    */
   public String printTasks() {
+    return this.printTasks(this.taskList);
+  }
+
+  /**
+   * Gets string representation of all tasks of a specified task list.
+   * @param taskList Task list to get string representation of.
+   * @return String representation.
+   */
+  private String printTasks(List<Task> taskList) {
     StringBuilder builder = new StringBuilder("Here are the tasks in your list:\n");
-    for (int i = 0; i < this.taskList.size(); i++) {
-      builder.append(String.format("%d.%s\n", i + 1, this.taskList.get(i).toString()));
+    for (int i = 0; i < taskList.size(); i++) {
+      builder.append(String.format("%d.%s\n", i + 1, taskList.get(i).toString()));
     }
     return (builder.toString());
   }
@@ -172,6 +181,16 @@ public class TaskList {
     } else {
       return task.get();
     }
+  }
+
+  public String searchTasks(String searchPhrase) {
+    List<Task> matchingTasks = new ArrayList<Task>();
+    for (int i = 0; i < this.taskList.size(); i++) {
+      if (this.taskList.get(i).getDescription().contains(searchPhrase)) {
+        matchingTasks.add(this.taskList.get(i));
+      }
+    }
+    return this.printTasks(matchingTasks);
   }
 
 }
