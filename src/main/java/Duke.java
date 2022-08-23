@@ -101,10 +101,6 @@ public class Duke {
                 Duke.lineFormat();
                 System.out.println("     " + e.getMessage());
                 Duke.lineFormat();
-            } catch (IndexOutOfBoundsException e) {
-                Duke.lineFormat();
-                System.out.println("     OOPS!!! Please enter a valid task number");
-                Duke.lineFormat();
             }
         }
         in.close();;
@@ -122,7 +118,7 @@ public class Duke {
                 // Retrieve task status
                 int indexOfFirstBreak = memo.indexOf("|");
                 String status = memo.substring(indexOfFirstBreak + 2, indexOfFirstBreak + 3);
-                boolean statusIsDone = status == "1";
+                boolean statusIsDone = status.equals("1");
 
                 // skip "| x | " to get task description
                 String descriptionAndTime = memo.substring(indexOfFirstBreak + 6);
@@ -278,6 +274,7 @@ public class Duke {
         }
         Task currentTask = taskList.get(taskNumber - 1);
         currentTask.setTaskStatus(true);
+        Duke.setTaskStatusOnDisk(taskNumber, true);
         String taskDescription = currentTask.toString();
         Duke.lineFormat();
         System.out.println("     Nice! I've marked this task as done:\n" +
@@ -294,11 +291,39 @@ public class Duke {
         }
         Task currentTask = taskList.get(taskNumber - 1);
         currentTask.setTaskStatus(false);
+        Duke.setTaskStatusOnDisk(taskNumber, false);
         String taskDescription = currentTask.toString();
         Duke.lineFormat();
         System.out.println("     OK, I've marked this task as not done yet:\n" +
                 "       " + taskDescription);
         Duke.lineFormat();
+    }
+
+    public static void setTaskStatusOnDisk (int taskNumber, boolean isDone) {
+        File inputFile = new File("data/duke.txt");
+        File tempFile = new File("data/temp.txt");
+        try {
+            Scanner s = new Scanner(inputFile);
+            while (s.hasNext()) {
+                String currentLine = s.nextLine();
+                if (taskNumber == 1) {
+                    // before status "x | description"
+                    int indexOfFirstBreak = currentLine.indexOf("|");
+                    String beforeStatus = currentLine.substring(0, indexOfFirstBreak + 2);
+
+                    // after " X | x"
+                    String afterStatus = currentLine.substring(indexOfFirstBreak + 3);
+                    String status = isDone ? "1" : "0";
+                    currentLine = beforeStatus + status + afterStatus;
+                }
+                appendToFile("data/temp.txt", currentLine + System.lineSeparator());
+                taskNumber -= 1;
+            }
+            s.close();
+            boolean successful = tempFile.renameTo(inputFile);
+        } catch (FileNotFoundException e) {
+            System.out.println("     " + e.getMessage());
+        }
     }
 
     public static void exit() {
