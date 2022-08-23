@@ -2,9 +2,7 @@ package DukeProgram;
 
 import Utilities.StringUtilities;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -23,7 +21,7 @@ public class Checklist {
         while (!input[0].toLowerCase(Locale.ROOT).equals("bye")) {
             switch (input[0]) {
                 case "list":
-                    listChecklist();
+                    listChecklist(input);
                     break;
 
                 case "mark": case "unmark":
@@ -45,11 +43,40 @@ public class Checklist {
         }
     }
 
-    private static void listChecklist() {
-        printInStyle(IntStream
-                .range(0, checklist.size())
-                .mapToObj(i -> String.format("%d: %s", i + 1, checklist.get(i).toString()))
-        );
+    private static void listChecklist(String[] input) {
+        if (input.length == 1) {
+            printInStyle(IntStream
+                    .range(0, checklist.size())
+                    .mapToObj(i -> String.format("%d: %s", i + 1, checklist.get(i).toString()))
+            );
+            return;
+        }
+
+        switch (input[1]) {
+        case "-date":
+            printInStyle(checklist
+                    .stream()
+                    .filter(e -> e instanceof DatedJob)
+                    .sorted(Comparator.comparing(e -> ((DatedJob)e).getDate()))
+            );
+            break;
+
+            /**
+        case "-on":
+            printInStyle(checklist
+                    .stream()
+                    .filter(e -> e instanceof DatedJob && ((DatedJob) e).getDate().equals(DateTimeParser.parse())
+            );
+            break;
+             **/
+
+        case "-alphabet":
+            printInStyle(checklist
+                    .stream()
+                    .sorted(Comparator.comparing(Job::getName))
+            );
+            break;
+        }
     }
 
     /***

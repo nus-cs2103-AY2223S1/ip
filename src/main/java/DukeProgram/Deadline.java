@@ -1,6 +1,6 @@
 package DukeProgram;
 
-public class Deadline extends TimedJobs {
+public class Deadline extends DatedJob {
 
     public Deadline(String name, String dueString) {
         super(name, dueString, "by");
