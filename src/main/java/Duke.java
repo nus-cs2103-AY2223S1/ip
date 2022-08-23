@@ -1,99 +1,16 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Duke {
-    private static final String SAVE_FILE_PATH = "./data/duke.txt";
-
-    private static void printTaskList(ArrayList<Task> taskList) {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < taskList.size(); ++i) {
-            Task task = taskList.get(i);
-            System.out.println((i + 1) + ". " + task.toString());
-        }
-    }
-
-    private static void printTaskAdded(Task task, int taskNumber) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task.toString());
-        System.out.println("Now you have " + taskNumber + " tasks in the list.");
-    }
-
-    private static void saveTasks(ArrayList<Task> taskList) throws DukeException {
-        try {
-            FileWriter writer = new FileWriter(SAVE_FILE_PATH);
-            String tasks = "";
-
-            for (int i = 0; i < taskList.size(); ++i) {
-                tasks += taskList.get(i).toSaveFileString() + "\n";
-            }
-
-            writer.write(tasks);
-            writer.close();
-        } catch (IOException e) {
-            throw new DukeException("There is a problem with saving the tasks");
-        }
-    }
-
-    private static ArrayList<Task> getSavedTasks() throws DukeException {
-        try {
-            File saveFile = new File(SAVE_FILE_PATH);
-            //Create file if it does not exist
-            saveFile.createNewFile();
-            Scanner reader = new Scanner(saveFile);
-            ArrayList<Task> savedTasks = new ArrayList<Task>();
-
-            while (reader.hasNextLine()) {
-                String data = reader.nextLine();
-                String[] splitted = data.split("\\s@\\s");
-                String taskType = splitted[0];
-                String task, date;
-                boolean isDone;
-
-                switch (taskType) {
-                case "[T]":
-                    task = splitted[2];
-                    isDone = splitted[1].equals("[X]");
-                    savedTasks.add(new ToDo(task, isDone));
-                    break;
-
-                case "[E]":
-                    task = splitted[2];
-                    isDone = splitted[1].equals("[X]");
-                    date = splitted[3];
-                    savedTasks.add(new Event(task, date, isDone));
-                    break;
-
-                case "[D]":
-                    task = splitted[2];
-                    isDone = splitted[1].equals("[X]");
-                    date = splitted[3];
-                    savedTasks.add(new Deadline(task, date, isDone));
-                    break;
-
-                default:
-                    throw new DukeException("There is a problem loading your safe file");
-                }
-            }
-
-            return savedTasks;
-        } catch (IOException e) {
-            throw new DukeException("Failed saving data due to unknown error");
-        }
-    }
-
     public static void main(String[] args) {
-        ArrayList<Task> taskList;
+        TaskList taskList;
         try {
-            taskList = getSavedTasks();
+            taskList = Storage.getSavedTasks();
         } catch (DukeException e) {
-            taskList = new ArrayList<>();
-            System.out.println(e.getMessage());
+            taskList = new TaskList();
+            Ui.printDukeError(e);
         }
-        String logo = "Botto";
-        System.out.println("Hello from " + logo + "\nWhat can I do for you?");
+
+        Ui.printWelcomeMessage();
 
         Scanner scanner = new Scanner(System.in);
         boolean shouldContinue = true;
@@ -101,157 +18,68 @@ public class Duke {
         while (shouldContinue) {
             try {
                 String input = scanner.nextLine();
-                //split the input by whitespace
-                String[] splitted = input.split("\\s", 2);
+                String[] parsed = Parser.parseUserInput(input);
                 //command is first word of the input
-                String command = splitted[0];
+                String command = parsed[0];
                 int index;
                 Task task;
 
                 switch (command) {
                 case "todo":
-                    //No Description Given
-                    if (splitted.length < 2) {
-                        throw new DukeException("The description of a todo cannot be empty.");
-                    }
-                    String taskString = splitted[1];
+                    String taskString = parsed[1];
                     task = new ToDo(taskString);
                     taskList.add(task);
-                    saveTasks(taskList);
-                    printTaskAdded(task, taskList.size());
+                    Storage.saveTasks(taskList);
+                    Ui.printTaskAdded(task, taskList.getSize());
                     break;
 
                 case "deadline":
-                    //No Description Given
-                    if (splitted.length < 2) {
-                        throw new DukeException("The description of a deadline cannot be empty.");
-                    }
-                    //some regex to parse the strings correctly
-                    //0th index: task, 1st index: deadline
-                    String[] splittedDeadline = splitted[1].split("\\s/by\\s", 2);
-                    String deadlineTask = splittedDeadline[0];
-                    //No Description Given
-                    if (deadlineTask.equals("") || deadlineTask.startsWith("/by")) {
-                        throw new DukeException("The description of a deadline cannot be empty.");
-                    }
-
-                    //No Deadline Given
-                    if (splittedDeadline.length == 1) {
-                        throw new DukeException("please specify a deadline");
-                    }
-
-                    String deadlineDate = splittedDeadline[1];
-
+                    String deadlineTask = parsed[1];
+                    String deadlineDate = parsed[2];
                     task = new Deadline(deadlineTask, deadlineDate);
                     taskList.add(task);
-                    saveTasks(taskList);
-                    printTaskAdded(task, taskList.size());
+                    Storage.saveTasks(taskList);
+                    Ui.printTaskAdded(task, taskList.getSize());
                     break;
 
                 case "event":
-                    //No Description Given
-                    if (splitted.length < 2) {
-                        throw new DukeException("The description of an event cannot be empty.");
-                    }
-                    //some regex to parse the strings correctly
-                    //0th index: event, 1st index: date
-                    String[] splittedEvent = input.split("\\s", 2)
-                            [1].split("\\s/at\\s", 2);
-                    String eventString = splittedEvent[0];
-
-                    //No Description Given
-                    if (eventString.equals("") || eventString.startsWith("/at")) {
-                        throw new DukeException("The description of an event cannot be empty.");
-                    }
-
-                    //No Deadline Given
-                    if (splittedEvent.length == 1) {
-                        throw new DukeException("please specify a date");
-                    }
-
-                    String eventDate = splittedEvent[1];
-
+                    String eventString = parsed[1];
+                    String eventDate = parsed[2];
                     task = new Event(eventString, eventDate);
                     taskList.add(task);
-                    saveTasks(taskList);
-                    printTaskAdded(task, taskList.size());
+                    Storage.saveTasks(taskList);
+                    Ui.printTaskAdded(task, taskList.getSize());
                     break;
 
                 case "mark":
-                    // No index given
-                    if (splitted.length < 2) {
-                        throw new DukeException("No Index Given");
-                    }
-                    //the index should be the "2nd word"
-                    index = Integer.parseInt(splitted[1]);
-                    //Index out of bounds
-                    if (index > taskList.size() || index < 1) {
-                        throw new DukeException("Index Is Not Valid");
-                    }
-                    //get the selected task
-                    task = taskList.get(index - 1);
-                    task.markAsDone();
-                    saveTasks(taskList);
-                    System.out.println("Nice! I've marked this task as done:");
-                    System.out.println(task);
+                    index = Integer.parseInt(parsed[1]);
+                    taskList.mark(index);
                     break;
 
                 case "unmark":
-                    //No Index Given
-                    if (splitted.length < 2) {
-                        throw new DukeException("No Index Given");
-                    }
-                    //the index should be the "2nd word"
-                    index = Integer.parseInt(splitted[1]);
-                    //Index out of bounds
-                    if (index > taskList.size() || index < 1) {
-                        throw new DukeException("Index Is Not Valid");
-                    }
-                    //get the selected task
-                    task = taskList.get(index - 1);
-                    task.markAsUndone();
-                    saveTasks(taskList);
-                    System.out.println("OK, I've marked this task as not done yet:");
-                    System.out.println(task);
+                    index = Integer.parseInt(parsed[1]);
+                    taskList.unmark(index);
                     break;
 
                 case "delete":
-                    //No Index Given
-                    if (splitted.length < 2) {
-                        throw new DukeException("No Index Given");
-                    }
-                    //the index should be the "2nd word"
-                    index = Integer.parseInt(splitted[1]);
-                    //Index out of bounds
-                    if (index > taskList.size() || index < 1) {
-                        throw new DukeException("Index Is Not Valid");
-                    }
-                    //get the selected task
-                    task = taskList.get(index - 1);
-                    //remove the task
-                    taskList.remove(task);
-                    //print the response to the user
-                    saveTasks(taskList);
-                    System.out.println("Noted. I have removed this task:");
-                    System.out.println(task);
-                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                    index = Integer.parseInt(parsed[1]);
+                    taskList.delete(index);
                     break;
 
                 case "bye":
-                    System.out.println("Bye. Hope to see you again soon!");
+                    Ui.printGoodbyeMessage();
                     shouldContinue = false;
                     break;
 
                 case "list":
-                    printTaskList(taskList);
+                    Ui.printTaskList(taskList);
                     break;
-
 
                 default:
                     throw new DukeException("Command Not Found!");
                 }
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                Ui.printDukeError(e);
             }
         }
 
