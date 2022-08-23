@@ -1,10 +1,16 @@
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task{
 
-    protected String by;
+    private String by;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        LocalDate today = LocalDate.parse(by);
+        String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
+        this.by = formattedDate;
     }
 
     @Override
@@ -19,6 +25,8 @@ public class Deadline extends Task{
 
     @Override
     public String toString() {
+        String format = "dd-MM-yyyy";
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
 }

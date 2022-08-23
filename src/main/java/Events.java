@@ -1,10 +1,15 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Events extends Task{
 
-    protected String at;
+    private String at;
 
     public Events(String description, String at) {
         super(description);
-        this.at = at;
+        LocalDate today = LocalDate.parse(at);
+        String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
+        this.at = formattedDate;
     }
 
     @Override
