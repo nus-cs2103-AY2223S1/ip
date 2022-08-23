@@ -1,9 +1,11 @@
+import java.time.LocalDate;
+
 public class Event extends Task {
-    protected String duration;
+    protected LocalDate duration;
 
     public Event(String description, String duration) {
         super(description);
-        this.duration = duration;
+        this.duration = LocalDate.parse(duration);
     }
 
     @Override
