@@ -34,7 +34,7 @@ public class TodoTest {
     }
 
     @Test
-    public void equalDateTodoTest() {
+    public void isEqualDateTodoTest() {
         Todo todo = new Todo("Equal Date");
         assertFalse(todo.isEqualDate(LocalDate.parse("2022-12-30")));
     }

@@ -43,9 +43,8 @@ public class EventTest {
     }
 
     @Test
-    public void equalDateEventTest() {
-        Event Event = new Event("Unmark Event", "20/10/2012 1159");
-        Event.markAsUndone();
+    public void isEqualDateEventTest() {
+        Event Event = new Event("Equal Event", "20/10/2012 1159");
         assertTrue(Event.isEqualDate(LocalDate.parse("2012-10-20")));
         assertFalse(Event.isEqualDate(LocalDate.parse("2012-10-21")));
     }
