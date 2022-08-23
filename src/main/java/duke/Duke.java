@@ -5,10 +5,10 @@ import java.util.Scanner;
 
 public class Duke {
 
-    Storage storage;
-    TaskList tList;
-    Ui ui;
-    Boolean active;
+    private Storage storage;
+    private TaskList tList;
+    private Ui ui;
+    private Boolean active;
 
     public Duke(String dirPath, String dataName) {
         this.storage = new Storage("data/", "save.txt");
@@ -64,7 +64,7 @@ public class Duke {
                 tList.addTask(d);
                 ui.printTaskAdded(d, tList);
 
-            } else if (s.indexOf("event") == 0 ) {
+            } else if (s.indexOf("event") == 0) {
                 Event e = new Event(parsed[1], parsed[2]);
                 tList.addTask(e);
                 ui.printTaskAdded(e, tList);

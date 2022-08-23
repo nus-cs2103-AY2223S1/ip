@@ -7,11 +7,11 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
-    protected String at;
-    protected LocalDate start_date;
-    protected LocalDate end_date;
-    protected LocalTime start_time;
-    protected LocalTime end_time;
+    private String at;
+    private LocalDate start_date;
+    private LocalDate end_date;
+    private LocalTime start_time;
+    private LocalTime end_time;
 
 
     public Event(String description, String at) throws DateTimeException {

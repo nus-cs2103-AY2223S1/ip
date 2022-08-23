@@ -1,7 +1,7 @@
 package duke;
 
 public class Parser {
-    public static String[] parseInput(String s) throws InvalidTaskException, EmptyDescriptionException{
+    public static String[] parseInput(String s) throws InvalidTaskException, EmptyDescriptionException {
         s = s.trim();
         String[] helper = s.split(" ");
         String[] result = new String[6];
@@ -15,7 +15,7 @@ public class Parser {
                 result[0] = "list";
                 return result;
             } else if (temp.equals("mark") || temp.equals("unmark") || temp.equals("delete")
-            || temp.equals("todo") || temp.equals("deadline") || temp.equals("event")){
+                    || temp.equals("todo") || temp.equals("deadline") || temp.equals("event")){
                 throw new EmptyDescriptionException("Empty descriptor", temp);
             } else {
                 throw new InvalidTaskException("No valid task descriptor");

@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Storage {
-    File dirFile;
-    File dataFile;
+    private File dirFile;
+    private File dataFile;
 
     public Storage(String dirPath, String dataName) {
         this.dirFile = new File(dirPath);
