@@ -14,10 +14,6 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.addTask(this.task);
-        ui.printMessage("\tadded / ajouté:"
-                        + "\n\t\t" + this.task.toString());
-        ui.printMessage("\tYou now have " + taskList.getNumberOfTasks() + " task(s)!"
-                        + "\n\tVous avez " + taskList.getNumberOfTasks() + " tâche(s)!");
+        taskList.addTask(this.task, ui);
     }
 }

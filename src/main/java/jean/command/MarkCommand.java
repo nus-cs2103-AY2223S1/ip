@@ -13,11 +13,6 @@ public class MarkCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-
-        Task curr = taskList.getTaskList().get(taskIndex);
-        curr.setIsDone(true);
-        ui.printMessage("\tI have marked it as done:"
-                         + "\n\tJe l'ai marqué comme fait:"
-                         + "\n\t" + curr.toString());
+        taskList.markTask(this.taskIndex, ui);
     }
 }
