@@ -1,10 +1,11 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Duke {
     private TaskList taskList;
 
     public Duke() {
-        this.taskList = new TaskList();
+
     }
 
     /**
@@ -25,7 +26,7 @@ public class Duke {
 
     /**
      * Adds a new task to the task list and prints a confirmation message.
-     * 
+     *
      * @param task Task to be added.
      */
     public void addTask(Task task) {
@@ -36,12 +37,13 @@ public class Duke {
         String msgEnd = "\nNow you have " + size + " " + taskString
                 + " in this list.";
         String msg = msgBegin + "  " + task + msgEnd;
+        Storage.appendTaskToStorage(task);
         prettyPrint(msg);
     }
 
     /**
      * Delete a task and prints a confirmation message.
-     * 
+     *
      * @param index Index of the task as printed by viewAllTask.
      */
     public void deleteTask(int index) throws DukeException {
@@ -50,7 +52,7 @@ public class Duke {
                     "Oh no! There doesn't seem to be a task with this"
                             + " index.");
         }
-        String task = this.taskList.getTaskToString(index);
+        String task = this.taskList.getTask(index).toString();
         this.taskList.deleteTask(index);
         int size = this.taskList.size();
         String taskString = size > 1 ? "tasks" : "task";
@@ -58,13 +60,14 @@ public class Duke {
         String msgEnd = "\nNow you have " + size + " " + taskString
                 + " in this list.";
         String msg = msgBegin + " " + task + msgEnd;
+        Storage.writeAllToStorage(this.taskList);
         prettyPrint(msg);
     }
 
     /**
      * Mark the task with the input index as done and prints a confirmation
      * message.
-     * 
+     *
      * @param index Index of the task as printed by viewAllTask.
      */
     public void markTask(int index) throws DukeException {
@@ -75,14 +78,15 @@ public class Duke {
         }
         this.taskList.markTask(index);
         String msgBegin = "Nice! I've marked this task as done: \n ";
-        String msg = msgBegin + this.taskList.getTaskToString(index).toString();
+        String msg = msgBegin + this.taskList.getTask(index).toString();
+        Storage.writeAllToStorage(this.taskList);
         prettyPrint(msg);
     }
 
     /**
      * Mark the task with the input index as not done and prints a confirmation
      * message.
-     * 
+     *
      * @param index Index of the task as printed by viewAllTask.
      */
     public void unmarkTask(int index) throws DukeException {
@@ -93,7 +97,8 @@ public class Duke {
         }
         this.taskList.unmarkTask(index);
         String msgBegin = "OK, I've marked this task as not done yet: \n ";
-        String msg = msgBegin + this.taskList.getTaskToString(index).toString();
+        String msg = msgBegin + this.taskList.getTask(index).toString();
+        Storage.writeAllToStorage(this.taskList);
         prettyPrint(msg);
     }
 
@@ -115,7 +120,7 @@ public class Duke {
     /**
      * Prints the given message with appropriate indentations and horizontal
      * lines.
-     * 
+     *
      * @param msg Message to be printed.
      */
     private static void prettyPrint(String msg) {
@@ -136,7 +141,7 @@ public class Duke {
     /**
      * Runs the given command. Arguments of the command are given by
      * inputTokens, where the first argument is always the command as a string.
-     * 
+     *
      * @param cmd       User command, based on the first argument.
      * @param argTokens Arguments from the command line.
      * @throws DukeException If the provided arguments are invalid for the
@@ -235,9 +240,6 @@ public class Duke {
             Event newEvent = new Event(eventTitle, false, at);
             this.addTask(newEvent);
             break;
-        case INVALID:
-            throw new DukeException(
-                    "Sorry, I don't understand this!");
         default:
             throw new DukeException(
                     "Sorry, I don't understand this!");
@@ -248,6 +250,12 @@ public class Duke {
      * Main application loop for Duke.
      */
     public void startDuke() {
+        try {
+            this.taskList = Storage.readFromStorage();
+        } catch (FileNotFoundException e) {
+            this.taskList = new TaskList();
+        }
+
         Scanner sc = new Scanner(System.in);
 
         this.sayGreetings();
@@ -258,6 +266,7 @@ public class Duke {
             Command usrCommand = Command.getIfPresent(argTokens[0]);
 
             if (usrCommand.equals(Command.BYE)) {
+                Storage.writeAllToStorage(this.taskList);
                 break;
             }
             try {

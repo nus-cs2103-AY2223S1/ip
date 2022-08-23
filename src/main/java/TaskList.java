@@ -10,7 +10,7 @@ public class TaskList {
 
     /**
      * Add a new task.
-     * 
+     *
      * @param task Task to be added.
      */
     public void addTask(Task task) {
@@ -19,7 +19,7 @@ public class TaskList {
 
     /**
      * Delete a task.
-     * 
+     *
      * @param index Index of the task as printed by TaskList's toString.
      */
     public void deleteTask(int index) {
@@ -28,7 +28,7 @@ public class TaskList {
 
     /**
      * Return the number of tasks in the task list currently.
-     * 
+     *
      * @return Number of tasks in the task list.
      */
     public int size() {
@@ -36,18 +36,18 @@ public class TaskList {
     }
 
     /**
-     * Returns the task with the input index in its string representation.
-     * 
+     * Returns the task with the input index.
+     *
      * @param index Index of the task as printed by viewAllTask.
-     * @return String representation of the task with the input index.
+     * @return Task with the input index.
      */
-    public String getTaskToString(int index) {
-        return this.tasks.get(index).toString();
+    public Task getTask(int index) {
+        return this.tasks.get(index);
     }
 
     /**
      * Mark a task as done.
-     * 
+     *
      * @param index Position of the task as indicated by TaskList's string
      *              representation.
      */
@@ -58,7 +58,7 @@ public class TaskList {
 
     /**
      * Mark a task as not done.
-     * 
+     *
      * @param index Position of the task as indicated by TaskList's string
      *              representation.
      */
@@ -69,7 +69,7 @@ public class TaskList {
 
     /**
      * Return a string representation of all tasks.
-     * 
+     *
      * @return String representation of all tasks
      */
     public String toString() {
@@ -79,7 +79,8 @@ public class TaskList {
         for (int i = 0; i < taskListSize; i++) {
             int index = i + 1;
             Task task = this.tasks.get(i);
-            allTasks.append(index + "." + task + "\n");
+            String taskStr = index + "." + task + "\n";
+            allTasks.append(taskStr);
         }
         return allTasks.toString();
     }
