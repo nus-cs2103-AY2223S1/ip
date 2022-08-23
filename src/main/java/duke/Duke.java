@@ -18,7 +18,7 @@ public class Duke {
         parser = new Parser();
     }
 
-    private void Run() {
+    private void run() {
         ui.Introduction();
         tasks = storage.ReadData();
 
