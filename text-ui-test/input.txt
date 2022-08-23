@@ -1,19 +1,18 @@
 list
-todo borrow book
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
+todo read book
+deadline return book /by 2022-08-23 18:00
+event library event /from 2022-08-23 18:00 /to 2022-08-24 18:00
 list
+mark 1
+unmark 1
+list
+delete 1
+list
+blah
 todo
 deadline
 event
-blah
-delete
 mark
 unmark
-delete 1
-list
-mark 1
-list
-unmark 1
-list
+delete
 bye

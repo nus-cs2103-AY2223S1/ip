@@ -93,7 +93,9 @@ public class Duke {
                     String[] descEvent = Arrays.copyOfRange(splitString, 1, splitString.length);
                     current = String.join(" ", descEvent);
                     String descE = current.split("/from")[0].trim();
-                    String dates = current.split("/from")[1];
+                    String dates = current.split("/from").length == 2
+                            ? current.split("/from")[1]
+                            : "";
                     String startE = "";
                     String endE = "";
                     if (current.split("/from").length == 2) {
