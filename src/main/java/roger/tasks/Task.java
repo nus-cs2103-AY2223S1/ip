@@ -1,47 +1,58 @@
 package roger.tasks;
 
 /**
- * Encapsulates a Task. Task supports marking as done, unmarking,
- * and a string representation.
+ * Encapsulates a Task.
  */
 public abstract class Task {
     protected String name;
     private boolean isDone = false;
 
+    /**
+     * Create a Task with a name.
+     *
+     * @param name The name of the task.
+     */
     public Task(String name) {
-        /**
-         * Constructor for Task class. Sets the task name.
-         *
-         * @param name The task name.
-         */
         this.name = name;
     }
 
+    /**
+     * Mark as done.
+     */
     public void markAsDone() {
-        /**
-         * Mark this task as done.
-         */
         this.isDone = true;
     }
 
+    /**
+     * Unmark as done
+     */
     public void unmarkAsDone() {
-        /**
-         * Mark this task as not done.
-         */
         this.isDone = false;
     }
 
+    /**
+     * String representation of the task.
+     *
+     * @return The string representation of the task.
+     */
     public String toString() {
-        /**
-         * String representation of a task. Also indicates if the task is done.
-         */
         return "[" + (this.isDone ? "X" : " ") + "] " + this.name;
     }
 
+    /**
+     * Get the name of the task.
+     *
+     * @return The name of the task.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Returns true if the task is done.
+     *
+     * @return true if the task is done.
+     */
     public boolean isDone() {
         return this.isDone;
     }

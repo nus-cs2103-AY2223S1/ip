@@ -6,8 +6,18 @@ import roger.Ui;
 import roger.commands.Command;
 import roger.tasks.Task;
 
+/**
+ * Encapsulates the command to list all tasks.
+ */
 public class ListCommand extends Command {
 
+    /**
+     * List all tasks.
+     *
+     * @param tasks The TaskList of the Roger program.
+     * @param ui The Ui used.
+     * @param storage The storage to read and load to.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (tasks.isEmpty()) {
