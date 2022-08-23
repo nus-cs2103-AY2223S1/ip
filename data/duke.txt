@@ -1,7 +1,8 @@
 T|0|read book
-D|0|return book|June 6th
-E|0|project meeting|Aug 6th 2-4pm
+D|0|return book|2022-02-02T22:22
+E|0|project meeting|2022-02-02T22:22
 T|0|join sports club
-T|0|asldkajsldkj
-D|0|asldkjasldk|aslkdjalskd
-E|0|alskdjalskd|pppp
+T|0|scream into the void
+D|0|get some sleep|2022-02-02T22:22
+E|0|New Year's Countdown|2019-12-31T23:59
+E|0|Chinese New Year's Countdown|2022-02-02T23:29
