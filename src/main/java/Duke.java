@@ -1,6 +1,8 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.io.FileWriter;   // Import the FileWriter class
+import java.io.IOException;  // Import the IOException class to handle errors
 
 import tasks.*;
 import exceptions.*;
@@ -8,9 +10,20 @@ import exceptions.*;
 
 public class Duke {
 
-    private static final TaskList taskList = new TaskList();
+    private static final TaskList TASK_LIST = new TaskList();
 
-    public void handle(String command) {
+    public static void saveFile() {
+        try {
+            FileWriter myWriter = new FileWriter("tasklist.txt");
+            myWriter.write(TASK_LIST.toString());
+            myWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void handle(String command) {
         String action;
         String desc;
         String time;
@@ -25,22 +38,22 @@ public class Duke {
 
             switch (action) {
                 case "list":
-                    taskList.printList();
+                    TASK_LIST.printList();
                     break;
                 case "todo":
-                    taskList.addToDo(desc);
+                    TASK_LIST.addToDo(desc);
                     break;
                 case "event":
-                    taskList.addEvent(desc, time);
+                    TASK_LIST.addEvent(desc, time);
                     break;
                 case "deadline":
-                    taskList.addDeadline(desc, time);
+                    TASK_LIST.addDeadline(desc, time);
                     break;
                 case "delete":
-                    taskList.delete(desc);
+                    TASK_LIST.delete(desc);
                     break;
                 case "done":
-                    taskList.markDone(desc);
+                    TASK_LIST.markDone(desc);
                     break;
                 default:
                     throw new InvalidCommandException();
@@ -52,13 +65,13 @@ public class Duke {
 
     public static void main(String[] args) {
 
-        Duke duke = new Duke();
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
 
         while (!command.equalsIgnoreCase("bye")) {
-            duke.handle(command);
+            handle(command);
+            saveFile();
             command = sc.nextLine();
         }
 

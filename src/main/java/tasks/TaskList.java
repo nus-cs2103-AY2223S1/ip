@@ -12,15 +12,6 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    public void printList() {
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            int j = i + 1;
-            Task item = tasks.get(i);
-            System.out.println(j + "." + item.toString());
-        }
-    }
-
     private void printTask(int index) {
         System.out.println(tasks.get(index).toString());
     }
@@ -85,5 +76,21 @@ public class TaskList {
         Event newTask = new Event(desc, time);
         tasks.add(newTask);
         printAddedTask(newTask);
+    }
+
+    public void printList() {
+        System.out.println("Here are the tasks in your list:");
+        System.out.println(this.toString());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            int j = i + 1;
+            Task item = tasks.get(i);
+            sb.append(j + "." + item.toString() + "\n");
+        }
+        return sb.toString();
     }
 }
