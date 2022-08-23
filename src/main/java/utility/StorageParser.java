@@ -6,58 +6,59 @@ import task.Task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 /**
  * Parses all lines to be stored or retrieved from file.
  */
 public class StorageParser {
-    public static String storableTaskDescription(Task t) {
-        return t.toString() + "\n";
+    public static String storableTaskDescription(String command, int n) {
+
     }
-    public static String storableEventDescription(Event e) {
-        return e.toString() + "\n";
-    }
-    public static String storableDeadlineDescription(Deadline d) {
-        return d.toString() + "\n";
-    }
+
     /**
      * Converts line in disk file to corresponding Task.
      * @param line String stored in file.
      * @return Task object.
      */
-    public static Task fileLineToTask(String line) throws DukeException {
+    public static ArrayList<String> fileLineToTask(String line) throws DukeException {
         try {
+            ArrayList a = new ArrayList();
             String taskType, description;
+            int n = line.length();
             boolean marked;
+            if (n <= 0) {
+                return null;
+            }
             taskType = line.substring(1, 2);
             marked = line.charAt(4) == ' ';
             switch (taskType) {
             case "T":
                 description = line.substring(6);
                 Task t = new Task(description);
+                a.add(description);
                 if (marked) {
-                    t.markAsDone();
+                    a.add("done");
                 }
-                return t;
+                break;
             case "D":
                 description = line.substring(6, line.indexOf("("));
-                Deadline d = new Deadline(description, getDateFromStorage(line, "by: "));
                 if (marked) {
-                    d.markAsDone();
+                    a.add("done");
                 }
-                return d;
+                a.add(getDateFromStorage(line, " by: "));
+                //fallthrough
             case "E":
                 description = line.substring(6, line.indexOf("("));
-                Event e = new Event(description, getDateFromStorage(line, "at: "));
                 if (marked) {
-                    e.markAsDone();
+                    a.add("done");
                 }
-                return e;
+                a.add(getDateFromStorage(line, " by: "));
             }
+            return a;
         } catch (Exception e) {
-            throw new DukeException("file corrupted");
+            throw new DukeException("file corrupted1");
         }
-        throw new DukeException("file corrupted");
     }
 
 

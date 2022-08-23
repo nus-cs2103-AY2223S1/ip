@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import task.Task;
 import exceptions.DukeException;
 import utility.StorageParser;
+import task.Deadline;
+import task.Event;
 
 /**
  * Encapsulates all read operations on disk file storage.
@@ -42,12 +44,20 @@ public class StorageReader {
     public ArrayList<Task>  syncArrayList() throws DukeException {
         ArrayList<Task> userInputHistory = new ArrayList<>();
         List<String> linesInFile = getAllLines();
-        Task currTask;
+        Task currTask; Event currEvent; Deadline currDeadline;
+        ArrayList<String> a;
         int n = linesInFile.size(), i = 0;
         for (; i < n; i ++) {
-            currTask = StorageParser.fileLineToTask(linesInFile.get(i));
-            userInputHistory.add(currTask);
-            System.out.println(currTask);
+            a = StorageParser.fileLineToTask(linesInFile.get(i));
+            if (a.size() == 3) {
+                currDeadline = new Deadline(a.get(0), a.get(2));
+                if (a.get(1) == "done") {
+                    currDeadline.markAsDone();
+                }
+                userInputHistory.add(currDeadline);
+            } else {
+
+            }
         }
         return userInputHistory;
     }

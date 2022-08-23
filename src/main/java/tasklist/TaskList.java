@@ -48,12 +48,10 @@ public class TaskList<T extends Task> {
     }
     public String markTask(int n) {
         userInputHistory.get(n - 1).markAsDone();
-
-            return StorageParser.storableTaskDescription(userInputHistory.get(n-1));
-
+        return StorageParser.storableTaskDescription("mark", n);
     }
     public String unmarkTask(int n) {
         userInputHistory.get(n - 1).markAsDone();
-        return StorageParser.storableTaskDescription(userInputHistory.get(n-1));
+        return StorageParser.storableTaskDescription("unmark",n);
     }
 }

@@ -17,6 +17,7 @@ public class Duke {
             storage = new Storage(filePath);
             tasks = new TaskList(storage.syncArrayList());
         } catch (DukeException e) {
+            System.out.println(e);
             ui.showLoadingError();
         }
     }
