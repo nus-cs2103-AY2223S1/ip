@@ -16,7 +16,7 @@ public class Storage {
     private final String DIRPATH;
 
     public Storage() {
-        this.FILEPATH = "data/lilychat.txt";
+        this.FILEPATH = "data" + File.separator + "lilychat.txt";
         this.DIRPATH = "data";
     }
 
