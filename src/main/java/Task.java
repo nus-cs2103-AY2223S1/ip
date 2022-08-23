@@ -29,4 +29,6 @@ abstract public class Task {
         }
         System.out.println(acknowledgement);
     }
+
+    public abstract String toFile();
 }
