@@ -1,3 +1,4 @@
-T | 1 | sleep
-D | 0 | work | today
-E | 0 | career fair | now
+D | 0 | go home | 2022-12-12
+D | 0 | go school | 2022-12-12
+T | 0 | do homework
+E | 0 | career fair | 2022-12-23

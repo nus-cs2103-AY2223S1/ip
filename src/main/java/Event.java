@@ -8,9 +8,9 @@ public class Event extends Task {
         this.duration = LocalDate.parse(duration);
     }
 
-    public Event(String description, boolean isDone ,String duration) {
+    public Event(String description, boolean isDone , String duration) {
         super(description, isDone);
-        this.duration = duration;
+        this.duration = LocalDate.parse(duration);
     }
 
     @Override

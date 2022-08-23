@@ -97,7 +97,7 @@ public class Duke {
             String taskString = sc.nextLine();
             String[] content = taskString.split(" \\| ", 0);
             char type = content[0].charAt(0);
-            boolean isDone = content[1].charAt(0) == '0';
+            boolean isDone = content[1].charAt(0) == '1';
             String description = content[2];
             Task newTask;
             try {
@@ -152,141 +152,109 @@ public class Duke {
             try {
                 System.out.println(SEPARATOR);
                 System.out.println("What do you want me to do?");
-                String command = myScanner.next();
-                switch (command) {
-                case "list":
-                    if (!myScanner.nextLine().isBlank()) {
+                String line = myScanner.nextLine().trim();
+                if (line.equals("list")) {
+                    if (line.length() > 4) {
                         throw new DukeTooManyArgumentException();
                     }
 
                     System.out.println(SEPARATOR);
                     duke.read();
-                    break;
-                case "mark":
-                    String unParsedIndex = myScanner.nextLine();
-                    if (unParsedIndex.isBlank()) {
+                    continue;
+                } else if (line.startsWith("mark")) {
+                    if (line.length() <= 5) {
                         throw new DukeEmptyCommandException();
                     }
 
-                    String[] split = unParsedIndex.split(" ", 3);
-
-                    if (split.length != 2) {
-                        throw new DukeTooManyArgumentException();
-                    }
-
-                    int index = Integer.parseInt(split[1]);
+                    int index = Integer.parseInt(line.substring(5));
 
                     System.out.println(SEPARATOR);
 
                     if (index <= 0) {
                         throw new DukeArrayOutOfBoundException();
-                    } else {
-                        duke.mark(index - 1);
                     }
+                    duke.mark(index - 1);
 
-                    break;
-                case "unmark":
-                    String unParsedIndex1 = myScanner.nextLine();
-                    if (unParsedIndex1.isBlank()) {
+                    continue;
+                } else if (line.startsWith("unmark")) {
+                    if (line.length() <= 7) {
                         throw new DukeEmptyCommandException();
                     }
 
-                    String[] split1 = unParsedIndex1.split(" ", 3);
-
-                    if (split1.length != 2) {
-                        throw new DukeTooManyArgumentException();
-                    }
-
-                    int index1 = Integer.parseInt(split1[1]);
+                    int index = Integer.parseInt(line.substring(7));
 
                     System.out.println(SEPARATOR);
 
-                    if (index1 < 0) {
+                    if (index < 0) {
                         throw new DukeArrayOutOfBoundException();
-                    } else {
-                        duke.unMark(index1 - 1);
                     }
+                    duke.unMark(index - 1);
 
-                    break;
-                case "delete":
-                    String unParsedIndex2 = myScanner.nextLine();
-                    if (unParsedIndex2.isBlank()) {
+                    continue;
+                } else if (line.startsWith("delete")) {
+                    if (line.length() <= 7) {
                         throw new DukeEmptyCommandException();
                     }
 
-                    String[] split2 = unParsedIndex2.split(" ", 3);
-
-                    if (split2.length != 2) {
-                        throw new DukeTooManyArgumentException();
-                    }
-
-                    int index2 = Integer.parseInt(split2[1]);
+                    int index = Integer.parseInt(line.substring(7));
 
                     System.out.println(SEPARATOR);
 
-                    if (index2 < 0) {
+                    if (index < 0) {
                         throw new DukeArrayOutOfBoundException();
-                    } else {
-                        duke.delete(index2 - 1);
+                    }
+                    duke.delete(index - 1);
+
+
+                    continue;
+                } else if (line.startsWith("deadline")) {
+                    if (line.length() <= 9) {
+                        throw new DukeEmptyCommandException();
                     }
 
-                    break;
-                case "deadline":
-                    String unParsed = myScanner.nextLine().substring(1);
-                    if (unParsed.isBlank()) {
-                        throw new DukeEmptyDescriptionException();
-                    }
-                    System.out.println(unParsed);
-                    String[] descriptionAndBy =  unParsed.split(" /by ", 2);
+                    System.out.println(line.substring(9));
+                    String[] information = line.substring(9).split(" /by ", 3);
 
-                    if (descriptionAndBy.length != 2) {
+                    if (information.length != 2) {
                         throw new DukeInvalidDescriptionException();
                     }
                     System.out.println(SEPARATOR);
 
-                    Deadline newDeadLine = new Deadline(descriptionAndBy[0], descriptionAndBy[1]);
-                    duke.add(newDeadLine);
-
-                    break;
-                case "todo":
-                    String description = myScanner.nextLine().substring(1);
-
-                    if (description.isBlank()) {
-                        throw new DukeEmptyDescriptionException();
+                    Task newTask = new Deadline(information[0], information[1]);
+                    duke.add(newTask);
+                    continue;
+                } else if (line.startsWith("event")) {
+                    if (line.length() <= 6) {
+                        throw new DukeEmptyCommandException();
                     }
 
-                    System.out.println(SEPARATOR);
+                    String[] information = line.substring(9).split(" /at ", 3);
 
-                    ToDo newToDo = new ToDo(description);
-                    duke.add(newToDo);
-
-                    break;
-                case "event":
-                    String unParsed1 = myScanner.nextLine().substring(1);
-                    if (unParsed1.isBlank()) {
-                        throw new DukeEmptyDescriptionException();
-                    }
-                    String[] descriptionAndBy1 =  unParsed1.split(" /at ", 2);
-
-                    if (descriptionAndBy1.length != 2) {
+                    if (information.length != 2) {
                         throw new DukeInvalidDescriptionException();
                     }
-
                     System.out.println(SEPARATOR);
 
-                    Event newDeadLine1 = new Event(descriptionAndBy1[0], descriptionAndBy1[1]);
-                    duke.add(newDeadLine1);
+                    Task newTask = new Event(information[0], information[1]);
+                    duke.add(newTask);
+                    continue;
+                } else if (line.startsWith("todo")) {
+                    if (line.length() <= 5) {
+                        throw new DukeEmptyCommandException();
+                    }
+                    String description = line.substring(5);
 
-                    break;
-                case "bye":
+                    System.out.println(SEPARATOR);
+                    Task newTask = new ToDo(description);
+                    duke.add(newTask);
+                    continue;
+                } else if (line.equals("bye")) {
                     System.out.println(SEPARATOR);
 
                     duke.save();
                     System.out.println("See you later :)");
                     System.exit(0);
-
-                    break;
-                default:
+                } else {
                     throw new DukeUnknownCommandException();
                 }
             } catch (DukeException e) {
