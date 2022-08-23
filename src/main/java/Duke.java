@@ -20,53 +20,17 @@ public class Duke {
     }
 
     void runBot() {
-        System.out.print(ui.botSpeak(ui.sayHello()));
-        Scanner scn = new Scanner(System.in);
-        String input = scn.nextLine();
-        while (!input.equals("bye")) {
+        System.out.print(ui.sayHello());
+        boolean exitDuke = false;
+        while (!exitDuke) {
             try {
-                InputChecker.checkInput(input);
-                if (input.equals("list")) {
-                    System.out.print(ui.botSpeak(ui.showList(taskList)));
-                }
-                else if (input.startsWith("todo")) {
-                    Task task = new ToDos(input.substring(5));
-                    taskList.addProcess(task);
-                    System.out.print(ui.botSpeak(ui.addStatus(taskList, task)));
-                }
-                else if (input.startsWith("deadline")) {
-                    Task task = new Deadlines(input);
-                    taskList.addProcess(task);
-                    System.out.print(ui.botSpeak(ui.addStatus(taskList, task)));
-                }
-                else if (input.startsWith("event")) {
-                    Task task = new Events(input);
-                    taskList.addProcess(task);
-                    System.out.print(ui.botSpeak(ui.addStatus(taskList, task)));
-                }
-                else if (input.startsWith("mark") || input.startsWith("unmark") || input.startsWith("delete")) {
-                    int taskIdx = Integer.parseInt(input.substring(input.length() - 1)) - 1;
-                    if (input.startsWith("delete")) {
-                        System.out.print(ui.botSpeak(ui.successRemoved(taskList, taskList.delete(taskIdx))));
-                        input = scn.nextLine();
-                        continue;
-                    }
-                    Task currTask = taskList.get(taskIdx);
-                    currTask = (input.startsWith("mark")) ? currTask.markDone() : currTask.unmarkDone();
-                    taskList.addProcess(currTask);
-                    System.out.print(ui.botSpeak(ui.informMarkStatus(taskList.get(taskIdx))));
-                }
-                else {
-                    throw new DukeException(ui.invalidCommand());
-                }
-            } catch (IndexOutOfBoundsException ex) {
-                System.out.print(ui.botSpeak(ui.taskNotExist(taskList)));
-            } catch (NumberFormatException ex) {
-                System.out.print(ui.botSpeak(ui.invalidCheckFormat()));
+                String rawCommand = ui.readCommand();
+                Command c = Parser.parse(rawCommand);
+                c.execute(taskList, ui);
+                exitDuke = c.isExit();
             } catch (DukeException de) {
-                System.out.print(ui.botSpeak(de.getMessage()));
+                System.out.print(de.getMessage());
             }
-            input = scn.nextLine();
         }
 
         try {

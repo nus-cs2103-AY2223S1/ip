@@ -3,7 +3,7 @@ public class InputChecker {
     private static final BotUI UI = new BotUI();
     public static void checkInput(String input) throws DukeException {
         if (input.startsWith("todo")) {
-            if (input.replace("todo", "").replace(" ", "").isEmpty()) {
+            if (input.split(" ").length < 2) {
                 throw new DukeException(UI.invalidFormat());
             }
         } else if (input.startsWith("deadline")) {

@@ -2,8 +2,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Events extends Task {
-
-    private static final String timeId = "/at ";
     private static final String ID = "[E]";
     private final LocalDateTime time;
 
@@ -12,13 +10,9 @@ public class Events extends Task {
         this.time = time;
     }
 
-    Events(String command) throws DukeException {
-        super(Parser.extractDetail(command, timeId));
-        try {
-            this.time = Parser.extractDateTime(command, timeId);
-        } catch (IndexOutOfBoundsException ex) {
-            throw new DukeException(new BotUI().invalidDateFormat());
-        }
+    Events(String detail, LocalDateTime time) {
+        super(detail);
+        this.time = time;
     }
 
     @Override
