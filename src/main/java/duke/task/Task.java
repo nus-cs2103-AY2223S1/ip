@@ -1,4 +1,6 @@
-abstract class Task {
+package duke.task;
+
+public abstract class Task {
     private String taskDescription;
     private boolean isDone;
 
@@ -25,7 +27,7 @@ abstract class Task {
         return (isDone ? "X" : " ");
     }
 
-    public String toSave() {
+    public String toCsv() {
         int status = this.isDone ? 1 : 0;
         return status + "," + this.taskDescription;
     }

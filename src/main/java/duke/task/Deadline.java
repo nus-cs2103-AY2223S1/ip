@@ -1,6 +1,10 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
 
 public class Deadline extends Task {
     private LocalDate by;
@@ -16,8 +20,8 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String toSave() {
-        return "D," + super.toSave() + "," + this.by + "\n";
+    public String toCsv() {
+        return "D," + super.toCsv() + "," + this.by + "\n";
     }
 
     @Override

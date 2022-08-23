@@ -1,11 +1,13 @@
+package duke.task;
+
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
     }
 
     @Override
-    public String toSave() {
-        return "T," + super.toSave() + "\n";
+    public String toCsv() {
+        return "T," + super.toCsv() + "\n";
     }
 
     @Override

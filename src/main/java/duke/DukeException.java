@@ -1,5 +1,7 @@
+package duke;
+
 public class DukeException extends IllegalArgumentException {
-    DukeException(String message) {
+    public DukeException(String message) {
         super(message);
     }
 
