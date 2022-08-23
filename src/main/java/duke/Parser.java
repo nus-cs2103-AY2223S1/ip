@@ -1,35 +1,45 @@
 package duke;
 
-import java.time.format.DateTimeParseException;
-
+/**
+ * Parses given string to operate on.
+ *
+ * @author Aaron Tan
+ */
 public class Parser {
 
     private TaskList tasks;
-    protected void Process(String s, TaskList tasks) {
+
+    /**
+     * Processes String s to be operated on.
+     *
+     * @param s String to be processed.
+     * @param tasks Task list to be operated on.
+     */
+    protected void process(String s, TaskList tasks) {
         this.tasks = tasks;
         String[] words = s.split(" ");
         String command = words[0];
         switch (command) {
         case "list":
-            OutputList();
+            outputList();
             break;
         case "done":
-            MarkItemDone(s);
+            markItemDone(s);
             break;
         case "unmark":
-            MarkItemUndone(s);
+            markItemUndone(s);
             break;
         case "todo":
-            InsertTodo(s);
+            insertTodo(s);
             break;
         case "deadline":
-            InsertDeadline(s);
+            insertDeadline(s);
             break;
         case "event":
-            InsertEvent(s);
+            insertEvent(s);
             break;
         case "delete":
-            DeleteTask(s);
+            deleteTask(s);
             break;
         default:
             System.out.println("sorry, I don't understand you");
@@ -37,7 +47,10 @@ public class Parser {
         }
     }
 
-    protected void OutputList() {
+    /**
+     * Prints out tasks in list in format specified in each tasks' toString function.
+     */
+    protected void outputList() {
         if (tasks.size() == 0) {
             System.out.println("you got no tasks");
         } else {
@@ -48,19 +61,29 @@ public class Parser {
         }
     }
 
-    protected void InsertTodo(String input) {
+    /**
+     * Converts a string to a Todo and inserts into task list.
+     *
+     * @param input String to be converted to a Todo.
+     */
+    protected void insertTodo(String input) {
         try {
             String description = input.substring(5);
-            InsertTask(new Todo(description, false));
+            insertTask(new Todo(description, false));
         } catch (StringIndexOutOfBoundsException e) {
             System.out.println("description cannot be empty");
         }
     }
 
-    protected void InsertDeadline(String input) {
+    /**
+     * Converts a string to a Deadline and inserts into task list.
+     *
+     * @param input String to be converted to a Deadline.
+     */
+    protected void insertDeadline(String input) {
         try {
             String[] items = input.substring(9).split(" /by ");
-            InsertTask(new Deadline(items[0], false, items[1]));
+            insertTask(new Deadline(items[0], false, items[1]));
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
             System.out.println("description cannot be empty");
         } catch (DukeException e) {
@@ -69,10 +92,15 @@ public class Parser {
         }
     }
 
-    protected void InsertEvent(String input) {
+    /**
+     * Converts a string to an Event and inserts into task list.
+     *
+     * @param input String to be converted to an Event.
+     */
+    protected void insertEvent(String input) {
         try {
             String[] items = input.substring(6).split(" /at ");
-            InsertTask(new Event(items[0], false, items[1]));
+            insertTask(new Event(items[0], false, items[1]));
         } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
             System.out.println("description cannot be empty");
         } catch (DukeException e) {
@@ -81,14 +109,24 @@ public class Parser {
         }
     }
 
-    protected void InsertTask(Task task) {
+    /**
+     * Inserts task into given task list.
+     *
+     * @param task Task to be inserted into the list.
+     */
+    protected void insertTask(Task task) {
         tasks.add(task);
         System.out.println("added: ");
         System.out.println("\t" + task);
         System.out.format("you have %d task(s) in the list\n", tasks.size());
     }
 
-    protected void MarkItemDone(String input) {
+    /**
+     * Parses String in the form of mark x, marking index x in the list as done.
+     *
+     * @param input String that contains information about item to be marked done.
+     */
+    protected void markItemDone(String input) {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {
@@ -105,7 +143,12 @@ public class Parser {
         }
     }
 
-    protected void MarkItemUndone(String input) {
+    /**
+     * Parses String in the form of mark x, marking index x in the list as not done.
+     *
+     * @param input String that contains information about item to be marked not done.
+     */
+    protected void markItemUndone(String input) {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {
@@ -122,7 +165,12 @@ public class Parser {
         }
     }
 
-    protected void DeleteTask(String input) {
+    /**
+     * Parses String in the form of mark x, deleting task at index x in the list.
+     *
+     * @param input String that contains information about item to be deleted.
+     */
+    protected void deleteTask(String input) {
         try {
             String[] words = input.split(" ");
             if (words.length > 2) {

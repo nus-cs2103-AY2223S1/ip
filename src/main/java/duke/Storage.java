@@ -4,14 +4,24 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+ * Storage for the Duke chatbot, storing and restoring files into/from a save file.
+ *
+ * @author Aaron Tan
+ */
 public class Storage {
 
     private static final File FILE_PATH = new File("src/main/java/data/duke.txt");
 
-    protected static TaskList ReadData() {
+    /**
+     * Loads data from a save file.
+     *
+     * @return A TaskList with data loaded from a savefile.
+     */
+    protected static TaskList readData() {
         try {
             Scanner fileScanner = new Scanner(FILE_PATH);
             TaskList tasks = new TaskList();
@@ -46,12 +56,17 @@ public class Storage {
         return null;
     }
 
-    protected void SaveData(TaskList tasks) {
+    /**
+     * Saves data from given TaskList into save file.
+     *
+     * @param tasks TaskList to be saved.
+     */
+    protected void saveData(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(FILE_PATH);
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
-                String toSave = task.SaveString();
+                String toSave = task.saveString();
                 fw.write(toSave);
             }
             fw.close();

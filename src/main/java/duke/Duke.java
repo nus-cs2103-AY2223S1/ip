@@ -1,17 +1,23 @@
 package duke;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-
+/**
+ * Duke is a personal chatbot to keep track of things.
+ *
+ * @author Aaron Tan
+ */
 public class Duke {
 
     private TaskList tasks;
-    private final Scanner SCANNER = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
     private Ui ui;
     private Storage storage;
     private Parser parser;
 
+    /**
+     * Constructs an instance of Duke.
+     */
     Duke() {
         ui = new Ui();
         storage = new Storage();
@@ -19,18 +25,18 @@ public class Duke {
     }
 
     private void run() {
-        ui.Introduction();
-        tasks = storage.ReadData();
+        ui.introduction();
+        tasks = storage.readData();
 
         String input = SCANNER.nextLine();
         while (!input.equals("bye")) {
-            parser.Process(input, tasks);
+            parser.process(input, tasks);
             input = SCANNER.nextLine();
         }
-        storage.SaveData(tasks);
+        storage.saveData(tasks);
     }
     public static void main(String[] args) {
-        new Duke().Run();
+        new Duke().run();
     }
 
 

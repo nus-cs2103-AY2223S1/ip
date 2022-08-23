@@ -4,10 +4,23 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Represents a deadline for a task.
+ *
+ * @author Aaron Tan
+ */
 public class Deadline extends Task {
     private LocalDate date;
     private DateTimeFormatter formatter;
 
+    /**
+     * Constructor for Deadline class.
+     *
+     * @param description Description of task.
+     * @param isDone If task is done or not done.
+     * @param dateString Date represented as a string.
+     * @throws DukeException If date is given in an invalid format.
+     */
     Deadline(String description, boolean isDone, String dateString) throws DukeException {
         super(description, isDone);
         try {
@@ -18,11 +31,21 @@ public class Deadline extends Task {
         }
     }
 
-    public String SaveString() {
+    /**
+     * Generates a String to be saved.
+     *
+     * @return String in the format of D | isDone | description | date.
+     */
+    public String saveString() {
         return String.format("D | %s | %s | %s\n", super.isDone ? "1" : "0",
                 super.description, date.format(formatter));
     }
 
+    /**
+     * Generates a String for representation during list.
+     *
+     * @return String in the format of [D][isDone] description (by: date)
+     */
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)",
