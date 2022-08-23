@@ -103,6 +103,8 @@ public class Parser {
             return new AddTaskCommand(new DeadlineTask(args[0], parseDateTime(args[1])));
         case EVENT:
             return new AddTaskCommand(new EventTask(args[0], parseDateTime(args[1])));
+        case FIND:
+            return new FindCommand(args[0]);
         case DELETE:
             return new DeleteTaskCommand(parseInt(args[0]));
         case EXIT:

@@ -134,6 +134,7 @@ public class ParserTest {
         assertEquals(new UpdateStatusCommand(1, true), Parser.parseCommand("check   1"));
         assertEquals(new UpdateStatusCommand(1, false), Parser.parseCommand("uncheck   1"));
         assertEquals(new EmptyCommand(), Parser.parseCommand("                  "));
+        assertEquals(new FindCommand("Keyword"), Parser.parseCommand("find       Keyword   "));
     }
 
     @Test
@@ -176,6 +177,7 @@ public class ParserTest {
         assertEquals(new UpdateStatusCommand(1, true), Parser.parseCommand("check 1"));
         assertEquals(new UpdateStatusCommand(1, false), Parser.parseCommand("uncheck 1"));
         assertEquals(new EmptyCommand(), Parser.parseCommand(""));
+        assertEquals(new FindCommand("Keyword"), Parser.parseCommand("find Keyword"));
     }
 
     @Test
