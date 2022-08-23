@@ -20,6 +20,8 @@ public class Duke {
     private static final String noDescriptionMessage = "The description of the task cannot be empty.";
     private static final String noTimeGivenMessage  = "Please provide the relevant time for this type of task,\n"
                                                     + "by typing \"/\" followed by the time.";
+    private static final String noIndexGivenMessage = "Please provide the index of he relevant task after the\n"
+                                                    + "command.";
     private static final ArrayList<Task> tasks = new ArrayList<>();
 
     private static final Map<String, Function<String[], Task>> taskMaker = Map.of(
@@ -30,6 +32,32 @@ public class Duke {
             , "event"
             , (input) -> new EventTask(input[1], input[2])
             );
+    private static final Map<String, Function<Integer, Integer>> taskOperations = Map.of(
+            "mark"
+            , (input) -> {
+                boolean valid = tasks.get(input - 1).check();
+                System.out.println(
+                        (valid ? taskMarkedMessage : alreadyMarkedMessage)
+                                + tasks.get(input - 1).toString());
+                return 0;
+            }
+            , "unmark"
+            , (input) -> {
+                boolean valid = tasks.get(input - 1).uncheck();
+                System.out.println(
+                        (valid ? taskUnmarkedMessage : alreadyUnmarkedMessage)
+                                + tasks.get(input - 1).toString());
+                return 0;
+            }
+            , "delete"
+            , (input) -> {
+                Task removed = tasks.get(input - 1);
+                tasks.remove(input - 1);
+                System.out.println(deleteTaskMessage + removed.toString());
+                System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
+                return 0;
+            }
+    );
     public static void main(String[] args) {
         System.out.println(startUpMessage);
         Scanner sc = new Scanner(System.in);
@@ -39,48 +67,16 @@ public class Duke {
                 String[] inputSplit = inputSplit(userInput);
                 if (userInput.equals("list")) {
                     System.out.println(printTasks());
-                } else if (inputSplit[0].equals("mark")) {
+                } else if (taskOperations.containsKey(inputSplit[0])) {
                     try {
+                        if (inputSplit.length < 2) {
+                            throw new DukeException(noIndexGivenMessage);
+                        }
                         int taskNum = Integer.parseInt(inputSplit[1]);
                         if (taskNum > tasks.size() || taskNum <= 0) {
                             System.out.println(noSuchTaskMessage);
                         } else {
-                            boolean valid = tasks.get(taskNum - 1).check();
-                            System.out.println(
-                                    (valid ? taskMarkedMessage : alreadyMarkedMessage)
-                                            + tasks.get(taskNum - 1).toString());
-                        }
-                    } catch (NumberFormatException e) {
-                        System.out.println(invalidInputMessage);
-                    }
-                } else if (inputSplit[0].equals("unmark")) {
-                    try {
-                        int taskNum = Integer.parseInt(inputSplit[1]);
-                        if (inputSplit.length > 2) {
-                            System.out.println(invalidInputMessage);
-                        } else if (taskNum > tasks.size() || taskNum <= 0) {
-                            System.out.println(noSuchTaskMessage);
-                        } else {
-                            boolean valid = tasks.get(taskNum - 1).uncheck();
-                            System.out.println(
-                                    (valid ? taskUnmarkedMessage : alreadyUnmarkedMessage)
-                                            + tasks.get(taskNum - 1).toString());
-                        }
-                    } catch (NumberFormatException e) {
-                        System.out.println(invalidInputMessage);
-                    }
-                } else if (inputSplit[0].equals("delete")) {
-                    try {
-                        int taskNum = Integer.parseInt(inputSplit[1]);
-                        if (inputSplit.length > 2) {
-                            System.out.println(invalidInputMessage);
-                        } else if (taskNum > tasks.size() || taskNum <= 0) {
-                            System.out.println(noSuchTaskMessage);
-                        } else {
-                            Task removed = tasks.get(taskNum - 1);
-                            tasks.remove(taskNum - 1);
-                            System.out.println(deleteTaskMessage + removed.toString());
-                            System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
+                            taskOperations.get(inputSplit[0]).apply(taskNum);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println(invalidInputMessage);
@@ -144,7 +140,7 @@ public class Duke {
             result[0] = isDeadline ? input.substring(0,8) : input.substring(0,5);
             result[1] = input.substring(isDeadline ? 8 : 5, input.lastIndexOf('/'));
             result[2] = input.substring(input.lastIndexOf("/") + 1);
-            if (result[1].length() == 0) {
+            if (result[1].isBlank()) {
                 throw new DukeException(noDescriptionMessage);
             }
             return result;
