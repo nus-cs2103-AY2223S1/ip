@@ -3,17 +3,16 @@ import java.time.format.DateTimeFormatter;
 
 public class Events extends Task{
 
-    private String at;
+    private LocalDate at;
 
     public Events(String description, String at) {
         super(description);
-        LocalDate today = LocalDate.parse(at);
-        String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
-        this.at = formattedDate;
+        LocalDate date = LocalDate.parse(at);
+        this.at = date;
     }
 
     @Override
-    public String getTime() {
+    public LocalDate getTime() {
         return at;
     }
 
@@ -24,6 +23,6 @@ public class Events extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + ")";
     }
 }

@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public abstract class Task {
 
     private String desc;
@@ -10,10 +12,6 @@ public abstract class Task {
     }
 
     public abstract String getType();
-
-    public Task() throws DokeException {
-        throw new DokeException();
-    }
 
     //a method to get Status Icon of the task
     public String getStatusIcon() {
@@ -29,7 +27,7 @@ public abstract class Task {
         return desc;
     }
 
-    public abstract String getTime();
+    public abstract LocalDate getTime();
 
     //a method to mark a task done
     public void markDone() throws DokeException {

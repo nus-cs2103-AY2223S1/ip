@@ -4,17 +4,16 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task{
 
-    private String by;
+    private LocalDate by;
 
     public Deadline(String description, String by) {
         super(description);
-        LocalDate today = LocalDate.parse(by);
-        String formattedDate = today.format(DateTimeFormatter.ofPattern("dd-MMM-yy"));
-        this.by = formattedDate;
+        LocalDate date = LocalDate.parse(by);
+        this.by = date;
     }
 
     @Override
-    public String getTime() {
+    public LocalDate getTime() {
         return by;
     }
 
@@ -25,8 +24,6 @@ public class Deadline extends Task{
 
     @Override
     public String toString() {
-        String format = "dd-MM-yyyy";
-        SimpleDateFormat dateFormat = new SimpleDateFormat(format);
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy")) + ")";
     }
 }
