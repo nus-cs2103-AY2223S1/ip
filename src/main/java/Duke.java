@@ -118,13 +118,13 @@ public class Duke {
 
     }
 
-    public static void say(String message, boolean firstLine, boolean lastLine) {
+    public static void say(String message, boolean isFirstLine, boolean isLastLine) {
         String line = "____________________________________________________________";
-        if (firstLine) {
+        if (isFirstLine) {
             System.out.println(line);
         }
         System.out.println(" " + message);
-        if (lastLine) {
+        if (isLastLine) {
             System.out.println(line);
         }
     }
