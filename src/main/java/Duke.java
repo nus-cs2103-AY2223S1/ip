@@ -1,4 +1,3 @@
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -6,19 +5,20 @@ import java.util.Scanner;
 public class Duke {
     private static final String line = "____________________________________________________________";
     private static final String indentedLine = "     " + line;
-    private static final String initialMessage = messageWithIndentedLines("\n      Hello! I'm Duke\n      What can I do for you?\n");
-    private static final String byeMessage = messageWithIndentedLines("\n      Bye. This doesn't have to be the end!\n");
+    private static final String initialMessage = indentedMessage(
+            "\n      Hello! I'm Duke\n      What can I do for you?\n");
+    private static final String byeMessage = indentedMessage("\n      Bye. This doesn't have to be the end!\n");
     private static final ArrayList<Task> userTasks = new ArrayList<>();
 
-    private static String messageWithIndentedLines(String message) {
+    private static String indentedMessage(String message) {
         return indentedLine + message + indentedLine;
     }
 
-    private static String generateEmptyDescriptionExceptionMessage(String taskType) {
+    private static String generateEmptyDescMessage(String taskType) {
         return "\n      ☹ OOPS!!! The description of a " + taskType + " cannot be empty.\n";
     }
 
-    private static String generateEmptyActionExceptionMessage(String action) {
+    private static String generateEmptyActionMessage(String action) {
         return "\n      ☹ OOPS!!! The action to " + action + " must have the index as an argument.\n";
     }
 
@@ -39,7 +39,8 @@ public class Duke {
                 try {
                     taskType = Command.valueOf(commands[0].toUpperCase());
                 } catch (IllegalArgumentException e) {
-                    throw new CustomMessageException(messageWithIndentedLines("\n      ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
+                    throw new CustomMessageException(indentedMessage("\n      ☹ OOPS!!! I'm sorry, but I " +
+                            "don't know what that means :-(\n"));
                 }
                 commands[0] = "";
                 int index;
@@ -49,65 +50,65 @@ public class Duke {
                         System.out.println(byeMessage);
                         break whileLoop;
                     case LIST:
-                        // Idea below of iterating with indices in streams adapted from https://stackoverflow.com/a/42616742
+                        // Idea below of iterating with indices in streams adapted from
+                        // https://stackoverflow.com/a/42616742
                         HashMap<Integer, Task> mappedIndexToUserText = userTasks.stream()
-                                .collect(HashMap::new, (hashMap, streamElement) -> hashMap.put(hashMap.size() + 1, streamElement), HashMap::putAll);
-                        StringBuilder listOfUserText = mappedIndexToUserText.entrySet().stream()
-                                .reduce(new StringBuilder(), (stringToBuild, currentEntry) -> stringToBuild.append("\n      ").append(currentEntry.getKey()).append(".").append(currentEntry.getValue().toString()), StringBuilder::append);
-                        System.out.println(messageWithIndentedLines("\n     Here are the tasks in your list:" + listOfUserText.toString() + "\n"));
+                                .collect(HashMap::new,
+                                        (hashMap, streamElement) -> hashMap.put(hashMap.size() + 1, streamElement),
+                                        HashMap::putAll);
+                        StringBuilder listOfUserText = mappedIndexToUserText.entrySet().stream().reduce(
+                                new StringBuilder(), (stringToBuild, currentEntry) -> stringToBuild.append("\n      ")
+                                        .append(currentEntry.getKey()).append(".")
+                                        .append(currentEntry.getValue().toString()), StringBuilder::append);
+                        System.out.println(indentedMessage("\n     Here are the tasks in your list:"
+                                + listOfUserText.toString() + "\n"));
                         break;
                     case MARK:
                         if (commands.length == 1) {
-                            throw new CustomMessageException(messageWithIndentedLines(generateEmptyActionExceptionMessage("mark")));
+                            throw new CustomMessageException(indentedMessage(generateEmptyActionMessage("mark")));
                         }
                         index = Integer.parseInt(commands[1]) - 1;
                         Task taskToMarkDone = userTasks.get(index);
                         taskToMarkDone.setTaskAsDone();
                         toPrint = "\n     Nice! I've marked this task as done:\n       " + taskToMarkDone + "\n";
-                        System.out.println(messageWithIndentedLines(toPrint));
+                        System.out.println(indentedMessage(toPrint));
                         break;
                     case UNMARK:
                         if (commands.length == 1) {
-                            throw new CustomMessageException(messageWithIndentedLines(generateEmptyActionExceptionMessage("unmark")));
+                            throw new CustomMessageException(
+                                    indentedMessage(generateEmptyActionMessage("unmark")));
                         }
                         index = Integer.parseInt(commands[1]) - 1;
                         Task taskToMarkUnDone = userTasks.get(index);
                         taskToMarkUnDone.setTaskAsNotDone();
-                        toPrint = "\n     OK, I've marked this task as not done yet:\n       " + taskToMarkUnDone + "\n";
-                        System.out.println(messageWithIndentedLines(toPrint));
+                        toPrint = "\n     OK, I've marked this task as not done yet:\n       "
+                                + taskToMarkUnDone + "\n";
+                        System.out.println(indentedMessage(toPrint));
                         break;
                     case DELETE:
                         if (commands.length == 1) {
-                            throw new CustomMessageException(messageWithIndentedLines(generateEmptyActionExceptionMessage("delete")));
+                            throw new CustomMessageException(
+                                    indentedMessage(generateEmptyActionMessage("delete")));
                         }
                         index = Integer.parseInt(commands[1]) - 1;
                         String deletedTaskDescription = userTasks.get(index).toString();
                         userTasks.remove(index);
-                        toPrint = "\n     Noted. I've removed this task:\n       " + deletedTaskDescription + "\n     " + generateTasksNumberMessage();
-                        System.out.println(messageWithIndentedLines(toPrint));
+                        toPrint = "\n     Noted. I've removed this task:\n       "
+                                + deletedTaskDescription + "\n     " + generateTasksNumberMessage();
+                        System.out.println(indentedMessage(toPrint));
                         break;
                     case TODO:
-                        if (commands.length == 1) {
-                            throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage("todo")));
-                        }
-                        userTasks.add(new ToDo(String.join(" ", commands).strip()));
-                        System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     " + generateTasksNumberMessage()));
+                        parseNewTaskCommand(userInput, commands.length, Command.TODO, "");
                         break;
                     case DEADLINE:
-                        if (commands.length == 1) {
-                            throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage("deadline")));
-                        }
-                        // can refactor this for deadline and event
-                        parseTaskCommand(userInput, " /by ", Command.DEADLINE);
+                        parseNewTaskCommand(userInput, commands.length, Command.DEADLINE, " /by ");
                         break;
                     case EVENT:
-                        if (commands.length == 1) {
-                            throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage("event")));
-                        }
-                        parseTaskCommand(userInput, " /at ", Command.EVENT);
+                        parseNewTaskCommand(userInput, commands.length, Command.EVENT, " /at ");
                         break;
                     default:
-                        throw new CustomMessageException(messageWithIndentedLines("\n      ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
+                        throw new CustomMessageException(indentedMessage(
+                                "\n      ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
                 }
             } catch (CustomMessageException e) {
                 System.out.println(e.getMessage());
@@ -115,64 +116,57 @@ public class Duke {
         }
     }
 
-    private static void parseTaskCommand(String userInput, String toSplitBy, Command taskCommand) throws CustomMessageException {
-        String[] splitByBy = userInput.split(toSplitBy);
-        String deadlineDescription = splitByBy[0].substring(taskCommand.getString().length() + 1).strip();
-        if (deadlineDescription.isEmpty() || deadlineDescription.isBlank()) {
-            throw new CustomMessageException(messageWithIndentedLines(generateEmptyDescriptionExceptionMessage(taskCommand.getString())));
+    private static void parseNewTaskCommand(String userInput, int commandsLen, Command taskCommand, String toSplitBy)
+            throws CustomMessageException {
+        if (commandsLen == 1) {
+            throw new CustomMessageException(indentedMessage(generateEmptyDescMessage(taskCommand.commandString)));
         }
-        String deadlineBy = splitByBy[1];
-        Task newTask = null;
-        if (taskCommand == Command.EVENT) {
-            newTask = new Event(deadlineDescription, deadlineBy.strip());
+        if (taskCommand == Command.TODO) {
+            userTasks.add(new ToDo(userInput.substring(5).strip()));
+        } else if (taskCommand == Command.EVENT || taskCommand == Command.DEADLINE) {
+            String[] splitString = userInput.split(toSplitBy);
+            String taskDescription = splitString[0].substring(taskCommand.getString().length() + 1).strip();
+            if (taskDescription.isEmpty() || taskDescription.isBlank()) {
+                throw new CustomMessageException(indentedMessage(generateEmptyDescMessage(taskCommand.getString())));
+            }
+            String userRequirement = splitString[1].strip();
+            Task newTask;
+            if (taskCommand == Command.EVENT) {
+                newTask = new Event(taskDescription, userRequirement);
+            } else {
+                newTask = new Deadline(taskDescription, userRequirement);
+            }
+            userTasks.add(newTask);
         }
-        else if (taskCommand == Command.DEADLINE) {
-            newTask = new Deadline(deadlineDescription, deadlineBy.strip());
-        }
-//            Constructor<?> xxx = actionCommand.getClassAssociatedToEnum();
-//            Object t = (xxx.newInstance(deadlineDescription, deadlineBy.strip()));
-        userTasks.add(newTask);
-        //                userTasks.add(new actionCommand.getClassAssociatedToEnum(deadlineDescription, deadlineBy.strip()));
-
-//        userTasks.add(new actionCommand.getClassAssociatedToEnum(deadlineDescription, deadlineBy.strip()));
-        System.out.println(messageWithIndentedLines("\n     Got it. I've added this task:\n       " + userTasks.get(userTasks.size() - 1) + "\n     " + generateTasksNumberMessage()));
+        System.out.println(indentedMessage("\n     Got it. I've added this task:\n       "
+                + userTasks.get(userTasks.size() - 1) + "\n     " + generateTasksNumberMessage()));
     }
 
+    /**
+     * An enum class that contains all the valid user commands.
+     */
     public enum Command {
-        BYE ("bye"),
-        LIST ("list"),
-        MARK ("mark"),
-        UNMARK ("unmark"),
-        DELETE ("delete"),
-        TODO ("todo", ToDo.class),
-        DEADLINE ("deadline", Deadline.class),
-        EVENT ("event", Event.class);
+        BYE("bye"),
+        LIST("list"),
+        MARK("mark"),
+        UNMARK("unmark"),
+        DELETE("delete"),
+        TODO("todo"),
+        DEADLINE("deadline"),
+        EVENT("event");
 
         private final String commandString;
-        private Class<?> x;
 
         Command(String commandString) {
             this.commandString = commandString;
         }
 
-        Command(String commandString, Class<?> x) {
-            this.commandString = commandString;
-            this.x = x;
-        }
-
+        /**
+         * Method to get the String representation of the enum
+         * @return Returns the String representation of the enum
+         */
         public String getString() {
             return this.commandString;
-        }
-
-        public Constructor<?> getClassAssociatedToEnum() throws NoSuchMethodException {
-            if (this.x != null) {
-                try {
-                    return this.x.getConstructor();
-                } catch (NoSuchMethodException e) {
-                    e.printStackTrace();
-                }
-            }
-            return Object.class.getConstructor();
         }
     }
 }
