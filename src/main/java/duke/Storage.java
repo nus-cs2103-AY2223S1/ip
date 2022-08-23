@@ -7,14 +7,15 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * This class handles loading tasks from the file and saving tasks in the file
+ * This class handles loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
     /** The file where tasks are loaded from and saved to. */
     protected File file;
 
     /**
-     * The class constructor for duke.Storage.
+     * The class constructor for Storage.
+     *
      * @param filePath where tasks are saved to and loaded from.
      */
     public Storage(String filePath) {
@@ -22,10 +23,11 @@ public class Storage {
     }
 
     /**
-     * Re-initializes a duke.Todo object from its string representation
+     * Re-initializes a todo object from its string representation
      * in the saved file.
-     * @param input String of the task.
-     * @return duke.Todo object.
+     *
+     * @param input String of the task that was parsed.
+     * @return Todo object.
      */
     private Todo loadTodo(String input) {
         String[] taskType = input.split(" ", 2);
@@ -34,12 +36,12 @@ public class Storage {
     }
 
     /**
-     * Re-initializes a duke.Deadline object from its string representation
-     * in the saved file. An exception would never occur as the deadline
-     * string representation in the saved file has already been properly
-     * formatted.
-     * @param input String of the task.
-     * @return duke.Deadline object.
+     * Re-initializes a deadline object from its string representation
+     * in the saved file. Exception is never thrown as all deadline tasks that
+     * is read from the file has been properly formatted.
+     *
+     * @param input String of the task that was parsed.
+     * @return Deadline object.
      */
     private Deadline loadDeadline(String input) {
         String[] taskType = input.split(" ", 2);
@@ -54,10 +56,11 @@ public class Storage {
     }
 
     /**
-     * Re-initializes a duke.Event object from its string representation
+     * Re-initializes an Event object from its string representation
      * in the saved file.
-     * @param input String of the task.
-     * @return duke.Event object.
+     *
+     * @param input String of the task that was parsed.
+     * @return Event object.
      */
     private Event loadEvent(String input) {
         String[] taskType = input.split(" ", 2);
@@ -67,10 +70,11 @@ public class Storage {
     }
 
     /**
-     * Reads all tasks in file and adds them to the duke.TaskList. If no previous
-     * file has been found, it returns an empty duke.TaskList.
-     * @param list the duke.TaskList containing the tasks.
-     * @return duke.TaskList with all saved tasks added
+     * Reads all tasks in file and adds them to the TaskList. If no previous
+     * file has been found, it returns the tasklist provided in param.
+     *
+     * @param list an empty tasklist for saved tasks to be re-written to.
+     * @return TaskList with all saved tasks added to.
      */
     public TaskList loadFile(TaskList list) {
         try {
@@ -111,10 +115,11 @@ public class Storage {
     }
 
     /**
-     * Writes all events on the duke.TaskList to a txt File. The directory and file
-     * is created if it does not exist.
+     * Writes all events on the TaskList to a text file. The directory and file
+     * is created if it does not yet exist.
+     *
      * @param filePath where tasks are saved to and loaded from.
-     * @param inputList the duke.TaskList where all tasks are to be saved.
+     * @param inputList the TaskList where all tasks are to be saved.
      */
     public static void writeToFile(String filePath, TaskList inputList)  {
         try {

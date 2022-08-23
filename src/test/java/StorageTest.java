@@ -40,6 +40,5 @@ public class StorageTest {
         TaskList task = storage.loadFile(new TaskList());
         String deadline = "[D][X] test (by: DECEMBER 12 2022 10:55)";
         assertEquals(deadline, task.taskListToArray()[1].toString());
-
     }
 }

@@ -5,11 +5,12 @@ package duke;
  * This is the other half of the decision making tree.
  */
 public class Parser {
-    /** The duke.TaskList where new tasks are added to. */
+    /** The TaskList where new tasks are added to. */
     private TaskList tasks;
 
     /**
-     * The class constructor for duke.Parser.
+     * The class constructor for Parser.
+     *
      * @param tasks where tasks are to be added.
      */
     public Parser(TaskList tasks) {
@@ -17,8 +18,9 @@ public class Parser {
     }
 
     /**
-     * Handles all input and diverts it to the necessary methods for
-     * functionality.
+     * Handles all input and diverts it to the necessary methods for its
+     * core functionality.
+     *
      * @param input String from the user.
      * @throws DukeException when the input is not known.
      */

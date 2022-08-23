@@ -1,21 +1,23 @@
 package duke;
 
 public class Todo extends Task {
+
     /**
      * The class constructor, which utilizes the superclass
      * constructor.
-     * @param description the description of the task
+     *
+     * @param description the description of the task.
      */
     public Todo(String description) {
         super(description);
     }
 
     /**
-     * Overrides the toString method of the superclass to add
-     * the additional [T] tag.
-     * @return String representation of this task.
+     * Returns a string representation of an Todo object formatted
+     * for writing into text file.
+     *
+     * @return String of the Todo formatted to saved.
      */
-
     @Override
     public String formatFileText() {
         String s = String.format("T | %s | %s\n", super.getStatusIcon(), this.description);
@@ -23,9 +25,10 @@ public class Todo extends Task {
     }
 
     /**
-     * Formats and outputs the string representation of duke.Todo duke.Task viable for writing
-     * into text file.
-     * @return formatted txt file string representation of a duke.Todo.
+     * Overrides the toString method of the superclass to add
+     * the additional [T] tag.
+     *
+     * @return String representation of this task.
      */
     @Override
     public String toString() {

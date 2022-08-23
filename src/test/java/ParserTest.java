@@ -10,6 +10,7 @@ public class ParserTest {
 
     /**
      * Tests the conditional logic when encountering a todo input.
+     *
      * @throws DukeException not thrown.
      */
     @Test
@@ -23,6 +24,7 @@ public class ParserTest {
 
     /**
      * Tests the conditional logic when encountering a mark input.
+     *
      * @throws DukeException not thrown.
      */
     @Test

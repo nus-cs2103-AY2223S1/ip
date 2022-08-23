@@ -1,14 +1,15 @@
 package duke;
 
 public class Task {
-    /** The title or description of a task. **/
+    /** The title or description of a task. */
     protected String description;
-    /** Indicates if a task is completed or not. **/
+
+    /** Indicates if a task is completed or not. */
     protected boolean isDone;
 
     /**
-     * The class constructor for a duke.Task.
-     * @param description the description of the task
+     * The class constructor for a Task.
+     * @param description of the task
      */
     public Task(String description) {
         this.description = description;
@@ -16,18 +17,20 @@ public class Task {
     }
 
     /**
-     * Retrieves the isDone field of a duke.Task and outputs the
-     * corresponding status icon via a ternary operator.
-     * @return a "X" or " " if task is completed or not respectively.
+     * Outputs the corresponding status icon via a ternary
+     * operator, according to the isDone field.
+     *
+     * @return String "X" if completed, "O" if otherwise.
      */
     public String getStatusIcon() {
         return (isDone ? "X" : "O"); // mark done task with X
     }
 
     /**
-     * Sets the isDone field of a duke.Task to true and outputs the
+     * Sets the isDone field of a Task to true and outputs the
      * corresponding formatted text with the task description.
-     * @return a String to indicate the task has been marked done.
+     *
+     * @return String to indicate the task has been marked done.
      */
     public String markAsDone() {
         this.isDone = true; // mark task as true
@@ -36,7 +39,7 @@ public class Task {
     }
 
     /**
-     * Sets the isDone field of a loaded duke.Task to be true. Mainly used for loading
+     * Sets the isDone field of a loaded Task to be true. Only used for loading
      * tasks from a file. No output to prevent spamming the console.
      */
     public void loadDone() {
@@ -44,7 +47,8 @@ public class Task {
     }
 
     /**
-     * Retrieves the description of a task.
+     * Returns the description of a task.
+     *
      * @return description of task.
      */
     public String getDescription() {
@@ -52,9 +56,10 @@ public class Task {
     }
 
     /**
-     * Formats and outputs the string representation of a duke.Task via
+     * Returns the formatted string representation of a Task via
      * getStatusIcon() and getDescription().
-     * @return formatted string representation of a duke.Task.
+     *
+     * @return formatted string representation of a Task.
      */
     public String toString() {
         String outputString = String.format("[%s] %s", getStatusIcon(), getDescription());
@@ -62,9 +67,10 @@ public class Task {
     }
 
     /**
-     * Formats and outputs the string representation of a duke.Task viable for writing
-     * into text file.
-     * @return formatted txt file string representation of a duke.Task.
+     * Returns a string representation of an Task object formatted
+     * for writing into text file.
+     *
+     * @return String of the Event formatted to saved.
      */
     public String formatFileText() {
         String s = String.format("duke.Task | %s | %s", this.getStatusIcon(), this.getDescription());

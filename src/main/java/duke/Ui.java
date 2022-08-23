@@ -4,39 +4,40 @@ package duke;
  * This class handles all main interactions with the user, including
  * outputting any error messages if any.
  */
-
 public class Ui {
 
     public Ui() {
     }
 
     /**
-     * Outputs a salutation, indicating the programme has started running.
+     * Prints a salutation, indicating the programme has started running.
      */
     public void start() {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
     }
 
     /**
-     * Outputs a sign-off, indicating the programme has ended.
+     * Prints a sign-off, indicating the programme has ended.
      */
     public void close() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
     /**
-     * Outputs any error message, which briefly describes its origin, and ways
+     * Prints any error message, which briefly describes its origin, and ways
      * to fix it.
-     * @param e duke.DukeException
+     *
+     * @param e DukeException that was thrown.
      */
     public void showError(DukeException e) {
         System.out.println(e.getMessage());
     }
 
     /**
-     * Outputs the string representation of all tasks that has been
-     * added to the arraylist via the duke.Task toString method.
-     * @param tasks in the TaskList
+     * Prints the string representation of all tasks that has been
+     * added to the arraylist via the toString method.
+     *
+     * @param tasks in the TaskList.
      */
     public void printList(TaskList tasks) {
         Task[] inputArray = tasks.taskListToArray();

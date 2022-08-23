@@ -9,6 +9,7 @@ public class TaskListTest {
 
     /**
      * Tests the creation of a todo object.
+     *
      * @throws DukeException not thrown.
      */
     @Test
@@ -21,6 +22,7 @@ public class TaskListTest {
 
     /**
      * Tests the creation of a deadline object.
+     *
      * @throws DukeException not thrown.
      */
     @Test
@@ -33,6 +35,7 @@ public class TaskListTest {
 
     /**
      * Tests the creation of a event object.
+     *
      * @throws DukeException not thrown.
      */
     @Test

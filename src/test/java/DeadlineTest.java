@@ -10,6 +10,7 @@ public class DeadlineTest {
 
     /**
      * Tests the creation of a Deadline object.
+     *
      * @throws DukeException not thrown.
      */
     @Test
@@ -21,6 +22,7 @@ public class DeadlineTest {
 
     /**
      * Tests the save format of an Deadline object.
+     *
      * @throws DukeException not thrown.
      */
     @Test

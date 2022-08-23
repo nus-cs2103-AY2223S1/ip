@@ -3,18 +3,22 @@ package duke;
 import java.util.Scanner;
 
 public class Duke {
-    /** The storage component of duke.Duke. */
+    /** The storage component. */
     private Storage storage;
-    /** The tasks component of duke.Duke. */
+
+    /** The tasks component. */
     private TaskList tasks;
-    /** The parse component of duke.Duke. */
+
+    /** The parse component. */
     private Parser parser;
-    /** The ui component of duke.Duke. */
+
+    /** The ui component. */
     private Ui ui;
 
     /**
-     * The class constructor for duke.Duke. Initializes all necessary
-     * objects for usage. Reads and loads previous tasks if available.
+     * The class constructor for Duke. Initializes all necessary
+     * objects for usage. Reads and loads saved tasks if available.
+     *
      * @param filePath of the file.
      */
     public Duke(String filePath) {
@@ -25,9 +29,8 @@ public class Duke {
     }
 
     /**
-     * The core functionality of duke.Duke is started using this command. One-half
-     * of the decision making tree of duke.Duke. Ends the process when encounters
-     * "bye", and handles all exceptions.
+     * Initializes the core functionality of Duke. One-half of the decision making
+     * tree of Duke. Application terminates when it encounters "bye".
      */
     public void run() {
         this.ui.start();
@@ -52,7 +55,8 @@ public class Duke {
     }
 
     /**
-     * Kick starts all interactions with the user.
+     * Starts the Duke application.
+     *
      * @param args of user input.
      */
     public static void main(String[] args) {

@@ -4,14 +4,15 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    /** The deadline of the task. **/
+    /** The deadline of the task. */
     protected LocalDateTime by;
 
     /**
      * The class constructor, which utilizes the superclass
      * constructor.
-     * @param description the description of the task
-     * @param by the deadline of the task
+     *
+     * @param description The description of the task.
+     * @param by The deadline of the task.
      */
     public Deadline(String description, String by) throws DukeException {
         super(description);
@@ -30,7 +31,9 @@ public class Deadline extends Task {
     }
 
     /**
-     * Formats the deadline to be displayed as MONTH DATE YEAR i.e. MARCH 19 2022.
+     * Returns a string of  deadline to be displayed, formatted
+     * as MONTH DATE YEAR i.e. MARCH 19 2022.
+     *
      * @return String of the deadline to be displayed.
      */
     public String formatTime() {
@@ -46,9 +49,10 @@ public class Deadline extends Task {
     }
 
     /**
-     * Formats and outputs the string representation of a duke.Deadline viable for writing
-     * into text file.
-     * @return formatted txt file string representation of a duke.Deadline.
+     * Returns a string representation of a Deadline object formatted
+     * for writing into text file.
+     *
+     * @return String of the deadline formatted to saved.
      */
     @Override
     public String formatFileText() {
@@ -60,6 +64,7 @@ public class Deadline extends Task {
     /**
      * Overrides the toString method of the superclass to add
      * the additional [D] tag.
+     *
      * @return String representation of this task.
      */
     @Override

@@ -11,17 +11,18 @@ public class TaskList {
     protected ArrayList<Task> inputList;
 
     /**
-     * The class constructor for a duke.TaskList. It is initialized
+     * The class constructor for a TaskList. It is initialized
      * with an empty ArrayList, but it is filled progressively, or
-     * loaded from a previous session.
+     * loaded from a previous save.
      */
     public TaskList() {
         this.inputList = new ArrayList<Task>();
     }
 
     /**
-     * Adds a task to the ArrayList. This is only used for when loading
+     * Adds a task to the ArrayList. Only used for when loading
      * from a previously saved list.
+     *
      * @param task to be added.
      */
     public void add(Task task) {
@@ -29,9 +30,10 @@ public class TaskList {
     }
 
     /**
-     * Converts the ArrayList to a duke.Task array for easier manipulation, such as
-     * outputting its string representation, or writing to the file.
-     * @return duke.Task[]
+     * Converts the ArrayList to a Task array for easier manipulation, such as
+     * outputting its string representation.
+     *
+     * @return Task[] an array containing Deadlines, Events and Todos.
      */
     public Task[] taskListToArray() {
         Task[] inputArray = inputList.toArray(new Task[inputList.size()]);
@@ -39,9 +41,9 @@ public class TaskList {
     }
 
     /**
-     * Marks the task as completed via the index of the task on the
-     * arraylist. The method throws a duke.DukeException if the
-     * task is found to be non-existent.
+     * Marks the task as completed via its index. DukeException is thrown
+     * if the task is found to be non-existent.
+     *
      * @param parts sliced String input.
      * @throws DukeException thrown if there is no such task.
      */
@@ -58,8 +60,9 @@ public class TaskList {
     }
 
     /**
-     * Removes the task from the arraylist. The method throws a duke.DukeException if the
-     * task is found to be non-existent.
+     * Removes the task from the arraylist. DukeException is thrown
+     * if the task is found to be non-existent.
+     *
      * @param parts sliced String input.
      * @throws DukeException thrown if there is no such task.
      */
@@ -80,8 +83,9 @@ public class TaskList {
     }
 
     /**
-     * Adds the task to arraylist, and formats a String representation
+     * Adds task to arraylist, and formats a String representation
      * that is to be printed along with the task representation and size of list.
+     *
      * @param task from the TaskList.
      */
     public void taskAdd(Task task) {
@@ -94,7 +98,8 @@ public class TaskList {
 
     /**
      * Abstracts the creation of a todo object, with exception handling.
-     * @param input from the User.
+     *
+     * @param input from the Parser.
      * @throws DukeException thrown if there is no description.
      */
     public void createTodo(String input) throws DukeException {
@@ -108,8 +113,9 @@ public class TaskList {
     }
 
     /**
-     * Abstracts the creation of a duke.Deadline object, with exception handling.
-     * @param input from the User.
+     * Abstracts the creation of a Deadline object, with exception handling.
+     *
+     * @param input from the Parser.
      * @throws DukeException thrown if there is no description or /by field.
      */
     public void createDeadline(String input) throws DukeException{
@@ -126,8 +132,9 @@ public class TaskList {
     }
 
     /**
-     * Abstracts the creation of a duke.Event object, with exception handling.
-     * @param input from the User.
+     * Abstracts the creation of a Event object, with exception handling.
+     * @param input from the Parser.
+     *
      * @throws DukeException thrown if there is no description or /at field
      */
     public void createEvent(String input) throws DukeException {

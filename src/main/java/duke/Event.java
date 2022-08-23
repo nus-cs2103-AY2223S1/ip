@@ -1,14 +1,15 @@
 package duke;
 
 public class Event extends Task {
-    /** The time of the event. **/
+    /** The time of the event. */
     protected String at;
 
     /**
      * The class constructor, which utilizes the superclass
      * constructor.
-     * @param description the description of the task
-     * @param at the time of the event
+     *
+     * @param description the description of the task.
+     * @param at the time of the event.
      */
     public Event(String description, String at) {
         super(description);
@@ -16,9 +17,10 @@ public class Event extends Task {
     }
 
     /**
-     * Formats and outputs the string representation of an duke.Event viable for writing
-     * into text file.
-     * @return formatted txt file string representation of an duke.Event.
+     * Returns a string representation of an Event object formatted
+     * for writing into text file.
+     *
+     * @return String of the Event formatted to saved.
      */
     @Override
     public String formatFileText() {
@@ -29,6 +31,7 @@ public class Event extends Task {
     /**
      * Overrides the toString method of the superclass to add
      * the additional [E] tag.
+     *
      * @return String representation of this task.
      */
     @Override
