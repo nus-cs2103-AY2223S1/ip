@@ -106,6 +106,7 @@ public class Parser {
         currentTasks.add(deadlineTask);
         System.out.printf("\t %s\n", deadlineTask);
         System.out.printf("Now you have %d tasks in the list.\n", this.currentTasks.size());
+
     }
 
     private void event(String input) {
