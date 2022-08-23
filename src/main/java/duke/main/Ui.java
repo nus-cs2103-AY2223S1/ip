@@ -22,6 +22,7 @@ public class Ui {
     private static final String[] MISSING_TIME = {"I think you need a time for this."};
     private static final String[] MISSING_INDEX = {"Please provide an index in the command."};
     private static final String[] MISSING_DESCRIPTION = {"I need a description for the task..."};
+    private static final String[] MISSING_ARGUMENT = {"I need an argument for this command..."};
     private static final String[] NOT_A_NUMBER = {"I don't think that's a number..."};
     private static final String[] CANNOT_SAVE = {"I can't seem to save the task list..."};
 
@@ -115,6 +116,13 @@ public class Ui {
 
     public void showMissingTime() {
         this.outputMessage(MISSING_TIME[this.messageStatus]);
+    }
+
+    /**
+     * Shows the message for missing arguments.
+     */
+    public void showMissingArgument() {
+        this.outputMessage(MISSING_ARGUMENT[this.messageStatus]);
     }
 
     public void showList(ArrayList<Task> taskList) {
