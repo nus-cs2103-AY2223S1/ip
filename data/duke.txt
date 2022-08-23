@@ -1,0 +1,5 @@
+[T][ ] read book
+[T][ ] return book
+[T][ ] go library
+[D][ ] go sch (by: by sunday)
+[E][ ] project meeting  (at: Mon 2-4pm)
