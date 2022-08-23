@@ -40,7 +40,11 @@ public class Task {
         if (type.equals("T") && args.length == 1) {
             task = (new ToDo(args[0]));
         } else if (type.equals("D") && args.length == 2) {
-            task = (new Deadline(args[0], args[1]));
+            try {
+                task = (new Deadline(args[0], args[1]));
+            } catch (InvalidInputException e) {
+                throw new InvalidEncodingException();
+            }
         } else if (type.equals("E") && args.length == 2) {
             task = (new Event(args[0], args[1]));
         } else {
