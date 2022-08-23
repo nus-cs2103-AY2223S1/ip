@@ -110,4 +110,12 @@ public class TaskList {
         System.out.println("I have marked this task as not done:");
         System.out.println(list.get(index));
     }
+
+    public void find(String s) {
+        for (Task task : list) {
+            if (task.contains(s)) {
+                System.out.println(task);
+            }
+        }
+    }
 }

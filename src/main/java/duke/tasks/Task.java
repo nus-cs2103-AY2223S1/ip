@@ -37,4 +37,8 @@ public abstract class Task {
         String s = "%s,%s";
         return String.format(s, getStatusIcon(), description);
     }
+
+    public boolean contains(String s) {
+        return description.contains(s);
+    }
 }
