@@ -23,7 +23,7 @@ public class StorageParser {
     private static final String TASK_NOT_DONE_INDICATOR = "0";
 
     public static Task toTask(String taskString) {
-        String[] args = taskString.split(" | ");
+        String[] args =  taskString.split(" \\| ");
         String taskType = args[0];
 
         try {
