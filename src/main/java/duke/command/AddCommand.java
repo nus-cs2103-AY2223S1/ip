@@ -1,11 +1,20 @@
+package duke.command;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
+import duke.DukeException;
+import duke.task.ToDos;
+import duke.task.Deadlines;
+import duke.task.Events;
+import duke.task.Task;
+import duke.storage.TaskRecords;
+import duke.ui.BotUI;
+import duke.inputparser.Parser;
 
 public class AddCommand extends Command {
 
     private final String details;
 
-    AddCommand(String command, String details) {
+    public AddCommand(String command, String details) {
         super(command);
         this.details = details;
     }

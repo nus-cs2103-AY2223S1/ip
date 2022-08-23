@@ -1,13 +1,15 @@
+package duke.storage;
 import java.util.ArrayList;
 
+import duke.task.Task;
 public class TaskRecords {
     private ArrayList<Task> lst;
 
-    TaskRecords() {
+    public TaskRecords() {
         this.lst = new ArrayList<Task>();
     }
 
-    void addProcess(Task task) {
+    public void addProcess(Task task) {
         if (!this.lst.contains(task)) {
             this.lst.add(task);
         } else {
@@ -15,17 +17,17 @@ public class TaskRecords {
         }
     }
 
-    Task delete(int idx) {
+    public Task delete(int idx) {
         Task currTask =  this.lst.get(idx);
         this.lst.remove(idx);
         return currTask;
     }
 
-    Task get(int idx) {
+    public Task get(int idx) {
         return this.lst.get(idx);
     }
 
-    ArrayList<Task> getList() {
+    public ArrayList<Task> getList() {
         return this.lst;
     }
 }

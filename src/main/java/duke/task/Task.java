@@ -1,6 +1,8 @@
+package duke.task;
+
 import java.time.LocalDateTime;
 
-abstract class Task {
+public abstract class Task {
     private final String detail;
     private final boolean isDone;
 
@@ -13,19 +15,19 @@ abstract class Task {
         this.detail = detail;
         this.isDone = isDone;
     }
-    abstract Task markDone();
+    public abstract Task markDone();
 
-    abstract Task unmarkDone();
+    public abstract Task unmarkDone();
 
-    abstract String getId();
+    public abstract String getId();
 
-    abstract LocalDateTime getTime();
+    public abstract LocalDateTime getTime();
 
-    String getDetail() {
+    public String getDetail() {
         return this.detail;
     }
 
-    boolean isDone() {
+    public boolean isDone() {
         return this.isDone;
     }
 

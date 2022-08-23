@@ -1,6 +1,19 @@
+package duke.inputparser;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import duke.DukeException;
+import duke.ui.BotUI;
+import duke.command.AddCommand;
+import duke.command.ListCommand;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.Command;
+import duke.command.MarkCommand;
+import duke.common.InputChecker;
+
 
 public class Parser {
 
@@ -10,7 +23,7 @@ public class Parser {
         return input.split(regex, 2);
     }
 
-    static Command parse(String rawInput) throws DukeException {
+    public static Command parse(String rawInput) throws DukeException {
         String[] commandAndDetail = rawInput.split(" ", 2);
         String command = commandAndDetail[0];
         if (commandAndDetail.length < 2) {
@@ -29,12 +42,12 @@ public class Parser {
         } else if (command.equals("delete")) {
             return new DeleteCommand(command, detail);
         } else {
-            throw new DukeException(UI.invalidFormat());
+            throw new DukeException(UI.invalidCommand());
         }
 
     }
 
-    static LocalDateTime extractDateTime(String rawInput, String timeIdentifier) {
+    public static LocalDateTime extractDateTime(String rawInput, String timeIdentifier) {
         String filterDate = splitInput(rawInput, timeIdentifier)[1];
         String[] dateAndTime = filterDate.split(" ");
         int time = Integer.parseInt(dateAndTime[1]);
@@ -49,11 +62,11 @@ public class Parser {
                 hours, minutes);
     }
 
-    static String extractDetail(String rawInput, String timeIdentifier) {
+    public static String extractDetail(String rawInput, String timeIdentifier) {
         return splitInput(splitInput(rawInput, " ")[1], timeIdentifier)[0];
     }
 
-    static LocalDateTime convertTime(String timeString) {
+    public static LocalDateTime convertTime(String timeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return LocalDateTime.parse(timeString, formatter);
     }

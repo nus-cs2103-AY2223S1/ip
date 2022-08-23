@@ -1,3 +1,8 @@
+package duke.common;
+
+import duke.ui.BotUI;
+import duke.DukeException;
+
 public class InputChecker {
 
     private static final BotUI UI = new BotUI();

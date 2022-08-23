@@ -1,6 +1,10 @@
+package duke.command;
+
+import duke.storage.TaskRecords;
+import duke.ui.BotUI;
 public class ExitCommand extends Command {
 
-    ExitCommand(String command) {
+    public ExitCommand(String command) {
         super(command);
     }
 
