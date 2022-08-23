@@ -1,11 +1,9 @@
 package zeus.main;
 
-import zeus.task.Task;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+import zeus.task.Task;
 
 /**
  * Class that deals with interactions with the user

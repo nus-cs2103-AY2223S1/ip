@@ -1,17 +1,18 @@
 package zeus.main;
 
-import zeus.exception.ZeusException;
-import zeus.task.Deadline;
-import zeus.task.Event;
-import zeus.task.Task;
-import zeus.task.Todo;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import zeus.exception.ZeusException;
+import zeus.task.Deadline;
+import zeus.task.Event;
+import zeus.task.Task;
+import zeus.task.Todo;
+
 
 /**
  * Class that deals with loading tasks from the file and saving tasks in the file.
