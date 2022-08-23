@@ -27,17 +27,18 @@ public class Rabbit {
 
     private static String bye = "Thanks a lot. I'm gonna have some carrot tea later. See you...";
     // initialise the list that stores tasks.
+    /** a list that keeps all the tasks */
     private static ArrayList<Task> list = new ArrayList<>();
     private enum TaskType {
         TODO, DEADLINE, EVENT;
     }
 
     /**
-     *  Rabbit adds the input lines the user types into
+     *  Adds the input lines the user types into
      *  a list with a size no more than 100.
      *
-     * @param task the type of the task that is to be added
-     * @param input the content (and the time) of the task the user inputs
+     * @param task the type of the task that is to be added.
+     * @param input the content (and the time) of the task the user inputs.
      */
     private static void addToList(TaskType task, String input) throws AddToListException {
         if (list.size() == 100) {
@@ -50,27 +51,26 @@ public class Rabbit {
             // initialise the task to be added
             Task added = new Todo("");
             switch (task) {
-
-                case TODO:
-                    added = new Todo(input.substring(5, input.length()));
-                    list.add(added);
-                    break;
-                case DEADLINE:
-                    // the content and time of the task
-                    String deadline = input.substring(9, input.length());
-                    // the index of the character in the string before which is the content
-                    int i = scanContent(deadline);
-                    added = new Deadline(deadline.substring(0, i - 1), deadline.substring(i + 1, deadline.length()));
-                    list.add(added);
-                    break;
-                case EVENT:
-                    // the content and time of the task
-                    String event = input.substring(6, input.length());
-                    // the index of the character in the string before which is the content
-                    int j = scanContent(event);
-                    added = new Event(event.substring(0, j - 1), event.substring(j + 1, event.length()));
-                    list.add(added);
-                    break;
+            case TODO:
+                added = new Todo(input.substring(5, input.length()));
+                list.add(added);
+                break;
+            case DEADLINE:
+                // the content and time of the task
+                String deadline = input.substring(9, input.length());
+                // the index of the character in the string before which is the content
+                int i = scanContent(deadline);
+                added = new Deadline(deadline.substring(0, i - 1), deadline.substring(i + 1, deadline.length()));
+                list.add(added);
+                break;
+            case EVENT:
+                // the content and time of the task
+                String event = input.substring(6, input.length());
+                // the index of the character in the string before which is the content
+                int j = scanContent(event);
+                added = new Event(event.substring(0, j - 1), event.substring(j + 1, event.length()));
+                list.add(added);
+                break;
             }
             System.out.println("Okay...noted.\n" + added.getContent() + "...Huh? Hope you can remember it.");
         } catch (StringIndexOutOfBoundsException e) {
@@ -82,7 +82,7 @@ public class Rabbit {
     }
 
     /**
-     * Rabbit prints the list of current tasks
+     * Prints the list of current tasks
      * when the user inputs "list".
      */
     private static void list() {
@@ -96,7 +96,7 @@ public class Rabbit {
     }
 
     /**
-     * marks the task at index i as done
+     * Marks the task at index i as done
      *
      * @param input the user's input.
      */
@@ -124,7 +124,7 @@ public class Rabbit {
     }
 
     /**
-     * unmarks the task at index i as not done
+     * Unmarks the task at index i as not done
      *
      * @param input the user's input.
      */
@@ -151,10 +151,7 @@ public class Rabbit {
     }
 
     /**
-     * scans which function of Rabbit is called by
-     * returning the first word of the string.
-     * Functions include "mark, unmark, list, todo,
-     * deadline, event and bye.
+     * Returning the first word of the string.
      *
      * @param input the user's input
      * @return the index of the character in the string
@@ -170,11 +167,11 @@ public class Rabbit {
     }
 
     /**
-     * scans the content of the task when the user
-     * is trying to create a task
+     * Returns the index that separates the content
+     * from the time of the task when the user creates a task.
      *
-     * @param input the string after the task type in the input
-     * @return the index of the character in the string before which
+     * @param input the string after the task type in the input.
+     * @return the index of the character in the string before which.
      * is the content, after which is the time, -1 if the format is wrong.
      */
     private static int scanContent(String input) {
@@ -186,6 +183,12 @@ public class Rabbit {
         return -1;
     }
 
+    /**
+     * Deletes a specified task from the list.
+     *
+     * @param input The input from the user intended to delete a task.
+     * @throws DeleteException The task to be deleted is not in the list.
+     */
     private static void delete(String input) throws DeleteException{
         try {
             Integer.parseInt(input.substring(7));
@@ -205,6 +208,11 @@ public class Rabbit {
         list.remove(i - 1);
     }
 
+    /**
+     * Main method of Rabbit.
+     *
+     * @param args The commandline arguments.
+     */
     public static void main(String[] args) {
         System.out.println(greet);
         Scanner sc = new Scanner(System.in);
@@ -220,30 +228,30 @@ public class Rabbit {
             String function = input.substring(0, scanFunction(input));
             try {
                 switch (function) {
-                    case "list":
-                        list();
-                        continue;
-                    case "mark ":
-                        mark(input);
-                        continue;
-                    case "unmark ":
-                        unmark(input);
-                        continue;
-                    case "todo ":
-                        addToList(TaskType.TODO, input);
-                        continue;
-                    case "deadline ":
-                        addToList(TaskType.DEADLINE, input);
-                        continue;
-                    case "event ":
-                        addToList(TaskType.EVENT, input);
-                        continue;
-                    case "delete ":
-                        delete(input);
-                        continue;
-                    default:
-                        // the user keyed in an invalid input
-                        System.out.println("Ummm...what is that? I don't get it.");
+                case "list":
+                    list();
+                    break;
+                case "mark ":
+                    mark(input);
+                    break;
+                case "unmark ":
+                    unmark(input);
+                    break;
+                case "todo ":
+                    addToList(TaskType.TODO, input);
+                    break;
+                case "deadline ":
+                    addToList(TaskType.DEADLINE, input);
+                    break;
+                case "event ":
+                    addToList(TaskType.EVENT, input);
+                    break;
+                case "delete ":
+                    delete(input);
+                    break;
+                default:
+                    // the user keyed in an invalid input
+                    System.out.println("Ummm...what is that? I don't get it.");
                 }
             } catch (MarkUnmarkException e) {
                 System.out.println(e.toString());
