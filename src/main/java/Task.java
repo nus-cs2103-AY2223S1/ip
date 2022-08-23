@@ -2,10 +2,9 @@ import java.util.Arrays;
 
 /**
  * A class that encapsulate a task
- *
+ * <p>
  * Task's encoding format
  * Type | isDone | Message | ...other arguments
- *
  */
 public class Task {
     private String description;
@@ -24,7 +23,9 @@ public class Task {
         this.isDone = false;
     }
 
-    public String encode() { return String.format("%d | %s", this.isDone ? 1 : 0, this.description); }
+    public String encode() {
+        return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
+    }
 
     public static Task decode(String encoded) throws InvalidEncodingException {
         String[] line = encoded.split(" \\| ");
@@ -42,7 +43,7 @@ public class Task {
         } else if (type.equals("D") && args.length == 2) {
             try {
                 task = (new Deadline(args[0], args[1]));
-            } catch (InvalidInputException e) {
+            } catch (TedException e) {
                 throw new InvalidEncodingException();
             }
         } else if (type.equals("E") && args.length == 2) {

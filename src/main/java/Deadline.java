@@ -1,8 +1,6 @@
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Locale;
 
 /**
  * A class that encapsulate a deadline task
@@ -13,7 +11,7 @@ public class Deadline extends Task {
 
     private LocalDate deadline;
 
-    public Deadline(String description, String by) throws InvalidInputException {
+    public Deadline(String description, String by) throws TedException {
         super(description);
         this.by = by;
 
@@ -26,7 +24,7 @@ public class Deadline extends Task {
                 this.deadline = LocalDate.parse(this.by);
             }
         } catch (DateTimeParseException e) {
-            throw new InvalidInputException("Date is not in yyyy-mm-dd format");
+            throw new TedException("Date is not in yyyy-mm-dd format");
         }
     }
 

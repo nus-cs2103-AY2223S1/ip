@@ -19,10 +19,10 @@ public class Storage {
      *
      * @return ArrayList<Task>
      */
-    public ArrayList<Task> loadTasks() throws InvalidEncodingException {
+    public TaskList loadTasks() throws InvalidEncodingException {
         File file = new File(filePath);
         if (!file.exists()) {
-            return new ArrayList<>();
+            return TaskList.empty();
         }
 
         try {
@@ -33,16 +33,16 @@ public class Storage {
                 tasks.add(Task.decode(encoded));
             }
 
-            return tasks;
+            return TaskList.empty();
         } catch (FileNotFoundException e) {
-            return new ArrayList<>();
+            return TaskList.empty();
         }
     }
 
-    private String encodeTasks(ArrayList<Task> tasks) {
+    private String encodeTasks(TaskList tasks) {
         String result = "";
-        for (Task task : tasks) {
-            result += task.encode() + "\n";
+        for (int i = 0; i < tasks.size(); i++) {
+            result += tasks.get(i).encode() + "\n";
         }
         return result;
     }
@@ -54,7 +54,7 @@ public class Storage {
      * @throws IOException
      * @throws SecurityException
      */
-    public void saveTasks(ArrayList<Task> tasks) throws IOException, SecurityException {
+    public void saveTasks(TaskList tasks) throws IOException, SecurityException {
         File file = new File(filePath);
         File directory = new File(file.getParent());
 

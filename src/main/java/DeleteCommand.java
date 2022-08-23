@@ -1,0 +1,41 @@
+public class DeleteCommand extends Command {
+
+    private int index;
+
+    public DeleteCommand(String args) throws TedException {
+        super(args);
+        try {
+            this.index = Integer.parseInt(args);
+        } catch (NumberFormatException e) {
+            throw new TedException("The number of task to be deleted passed must be a number.");
+        }
+    }
+
+    @Override
+    public void run(TaskList tasks, Ui ui, Storage storage) throws TedException {
+        if (tasks.size() == 0) {
+            throw new TedException("There is no tasks here. Feel free to add a task.");
+        }
+
+        if (index <= 0) {
+            throw new TedException("The number of task to be deleted must be greater than 0.");
+        }
+
+        if (index > tasks.size()) {
+            throw new TedException(String.format(
+                    "The number of task to be deleted must be less than or equal to %d.",
+                    tasks.size()
+            ));
+        }
+
+        Task deletedTask = tasks.get(index - 1);
+        tasks.delete(index - 1);
+        ui.showDeletedTaskSuccess(tasks, deletedTask);
+
+        try {
+            storage.saveTasks(tasks);
+        } catch (Exception e) {
+            ui.showTaskSavingError(e);
+        }
+    }
+}
