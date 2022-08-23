@@ -1,6 +1,7 @@
 package duke.main;
 
 import duke.command.*;
+import duke.exception.MissingArgumentException;
 import duke.exception.MissingDescriptionException;
 import duke.exception.MissingIndexException;
 import duke.exception.MissingTimeException;
@@ -20,7 +21,7 @@ public class Parser {
      * @throws MissingTimeException If the time is needed but missing.
      */
     public static Command parse(String fullCommand)
-            throws MissingIndexException, MissingDescriptionException, MissingTimeException {
+            throws MissingIndexException, MissingDescriptionException, MissingTimeException, MissingArgumentException {
         String[] splitCommand = fullCommand.split(" ", 2);
         switch (splitCommand[0]) {
         case "bye":
@@ -39,6 +40,8 @@ public class Parser {
             return makeMakeEventCommand(splitCommand);
         case "delete":
             return makeDeleteTaskCommand(splitCommand);
+        case "find":
+            return makeFindCommand(splitCommand);
         default:
             return new InvalidCommand();
         }
@@ -84,6 +87,19 @@ public class Parser {
             throw new MissingDescriptionException("Missing description");
         }
         return new MakeToDoCommand(command[1]);
+    }
+
+    /**
+     * Helper function for making a FindCommand object.
+     * @param command Split command.
+     * @return FindCommand object which shows Task objects matching a string when executed.
+     * @throws MissingArgumentException If the argument is missing.
+     */
+    private static FindCommand makeFindCommand(String[] command) throws MissingArgumentException {
+        if (command.length < 2) {
+            throw new MissingArgumentException("Missing argument");
+        }
+        return new FindCommand(command[1]);
     }
 
     /**

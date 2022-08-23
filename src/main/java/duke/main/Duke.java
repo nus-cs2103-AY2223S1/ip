@@ -1,10 +1,7 @@
 package duke.main;
 
 import duke.command.Command;
-import duke.exception.DukeException;
-import duke.exception.MissingDescriptionException;
-import duke.exception.MissingIndexException;
-import duke.exception.MissingTimeException;
+import duke.exception.*;
 
 import java.time.format.DateTimeParseException;
 
@@ -60,6 +57,8 @@ public class Duke {
                 this.ui.showMissingTime();
             } catch (DateTimeParseException e) {
                 this.ui.showInvalidTime();
+            } catch (MissingArgumentException e) {
+                this.ui.showMissingArgument();
             }
 
             try {
