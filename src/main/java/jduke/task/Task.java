@@ -1,12 +1,18 @@
 package jduke.task;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
-    private final String description;
-    private boolean isCompleted;
+    protected final String description;
+    protected boolean isCompleted;
 
-    public Task(String description) {
+    protected static DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+    protected static DateTimeFormatter inputTimeFormatter = DateTimeFormatter.ofPattern("HHmm");
+    protected static DateTimeFormatter outputDateFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    protected static DateTimeFormatter outputTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+
+    protected Task(String description) {
         this.description = description;
         this.isCompleted = false;
     }
@@ -19,22 +25,9 @@ public abstract class Task {
         this.isCompleted = false;
     }
 
-    public boolean isCompleted() {
-        return isCompleted;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public abstract String getType();
+    protected abstract String getType();
 
     public abstract boolean isEqualDate(LocalDate date);
 
     public abstract String toStorageFormat();
-
-    @Override
-    public String toString() {
-        return String.format("[%s][%s] %s", this.getType(), (this.isCompleted() ? "X" : " "), this.getDescription());
-    }
 }

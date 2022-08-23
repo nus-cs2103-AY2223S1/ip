@@ -34,7 +34,7 @@ public class Parser {
         case ByeCommand.COMMAND_WORD:
             return new ByeCommand();
         default:
-            return new IncorrectCommand("");
+            return new IncorrectCommand();
         }
     }
     private String parseParams(String input) {
@@ -55,7 +55,8 @@ public class Parser {
         if (!(params.toLowerCase().matches(
                 "[^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4} [0-9]{4}")
                 || params.toLowerCase().matches("[^ ](.*) /by [0-9]{1,2}/[0-9]{1,2}/[0-9]{4}"))) {
-            return new IncorrectCommand(String.format("|  invalid DEADLINE format%n|    %s%n", DeadlineCommand.FORMAT));
+            return new IncorrectCommand(
+                    String.format("|  invalid DEADLINE format%n|    %s%n", DeadlineCommand.FORMAT));
         }
         return new DeadlineCommand(params);
     }

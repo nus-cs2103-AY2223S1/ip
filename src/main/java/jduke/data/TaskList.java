@@ -3,7 +3,7 @@ package jduke.data;
 import jduke.task.Deadline;
 import jduke.task.Event;
 import jduke.task.Task;
-import jduke.task.ToDo;
+import jduke.task.Todo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +22,7 @@ public class TaskList {
             String[] taskParams = task.split(" \\| ");
             switch (taskParams[0]) {
             case "T":
-                tasks.add(new ToDo(taskParams[2]));
+                tasks.add(new Todo(taskParams[2]));
                 break;
             case "D":
                 tasks.add(new Deadline(taskParams[2], taskParams[3]));
@@ -40,7 +40,7 @@ public class TaskList {
     public String listTasks(String params) {
         StringBuilder sb = new StringBuilder();
         if (tasks.size() == 0) {
-            return "|  no tasks found";
+            return "|  no tasks found\n";
         } else if (params.equals("")) {
             for (int pos = 0; pos < tasks.size(); pos++) {
                 sb.append(String.format("%d ==> %s%n", pos + 1, tasks.get(pos)));
@@ -56,22 +56,28 @@ public class TaskList {
                 }
             }
             if (!hasTask) {
-                return "|  no tasks found";
+                return "|  no tasks found\n";
             }
         }
         return sb.toString();
     }
 
-    public void addTodo(ToDo todo) {
+    public String addTodo(String description) {
+        Todo todo = new Todo(description);
         tasks.add(todo);
+        return String.format("|  added task:%n|    %s%n", todo);
     }
 
-    public void addDeadline(Deadline deadline) {
+    public String addDeadline(String description, String timing) {
+        Deadline deadline = new Deadline(description, timing);
         tasks.add(deadline);
+        return String.format("|  added task:%n|    %s%n", deadline);
     }
 
-    public void addEvent(Event event) {
+    public String addEvent(String description, String timing) {
+        Event event = new Event(description, timing);
         tasks.add(event);
+        return String.format("|  added task:%n|    %s%n", event);
     }
 
     public String markTask(String params) {

@@ -3,8 +3,7 @@
 
 jduke> |  cannot understand command
 
-jduke> |  cannot understand command
-|  invalid TODO format
+jduke> |  invalid TODO format
 |    todo <description>
 
 jduke> |  added task:
@@ -21,60 +20,54 @@ jduke> 1 ==> [T][X] read book
 jduke> |  marked task:
 |    [T][X] read book
 
-jduke> |  cannot understand command
-|  invalid MARK format
+jduke> |  invalid MARK format
 |    mark <integer>
 
 jduke> |  invalid task number
 |  max id is 7
 
-jduke> |  cannot understand command
-|  invalid DEADLINE format
+jduke> |  invalid DEADLINE format
 |    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
 
-jduke> |  cannot understand command
-|  invalid UNMARK format
+jduke> |  invalid UNMARK format
 |    unmark <integer>
 
 jduke> |  added task:
 |    [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 
-jduke> |  cannot understand command
-|  invalid DEADLINE format
+jduke> |  invalid DEADLINE format
 |    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
 
 jduke> 8 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 
 jduke> |  no tasks found
-jduke> |  cannot understand command
-|  invalid LIST format
+
+jduke> |  invalid LIST format
 |    list <dd/mm/yyyy | optional>
 
-jduke> |  cannot understand command
-|  invalid EVENT format
+jduke> |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
-jduke> |  cannot understand command
-|  invalid EVENT format
+jduke> |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
-jduke> |  cannot understand command
-|  invalid EVENT format
+jduke> |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
-jduke> |  cannot understand command
-|  invalid DEADLINE format
+jduke> |  invalid DEADLINE format
 |    deadline <description> /by <dd/mm/yyyy> <hhmm | optional>
 
 jduke> |  added task:
 |    [T][ ] cry harder
 
-jduke> |  cannot understand command
-|  invalid EVENT format
+jduke> |  invalid EVENT format
 |    event <description> /at <dd/mm/yyyy> <hhmm | optional>
 
 jduke> |  added task:
 |    [E][ ] end of sem (at: Dec 10 2022)
+
+jduke> |  added task:
+|    [D][ ] homework (by: Dec 18 2000 12:00 PM)
 
 jduke> 1 ==> [T][X] read book
 2 ==> [D][ ] return book (by: Jun 06 2000)
@@ -86,9 +79,9 @@ jduke> 1 ==> [T][X] read book
 8 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 9 ==> [T][ ] cry harder
 10 ==> [E][ ] end of sem (at: Dec 10 2022)
+11 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
 
-jduke> |  cannot understand command
-|  invalid MARK format
+jduke> |  invalid MARK format
 |    mark <integer>
 
 jduke> |  marked task:
@@ -98,10 +91,9 @@ jduke> |  deleted task:
 |    [D][X] return book (by: Jun 06 2000)
 
 jduke> |  invalid task number
-|  max id is 9
+|  max id is 10
 
-jduke> |  cannot understand command
-|  invalid MARK format
+jduke> |  invalid MARK format
 |    mark <integer>
 
 jduke> 1 ==> [T][X] read book
@@ -113,6 +105,7 @@ jduke> 1 ==> [T][X] read book
 7 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 8 ==> [T][ ] cry harder
 9 ==> [E][ ] end of sem (at: Dec 10 2022)
+10 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
 
 jduke> |  marked task:
 |    [T][X] read book
@@ -129,5 +122,6 @@ jduke> 1 ==> [T][X] read book
 7 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
 8 ==> [T][ ] cry harder
 9 ==> [E][ ] end of sem (at: Dec 10 2022)
+10 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
 
 jduke> |  Goodbye

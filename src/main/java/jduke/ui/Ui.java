@@ -11,27 +11,27 @@ public class Ui {
     public Ui() {
         this(System.in, System.out);
     }
-    public Ui(InputStream in, PrintStream out) {
+
+    private Ui(InputStream in, PrintStream out) {
         this.in = new Scanner(in);
         this.out = out;
     }
 
     public void showToUser(String... message) {
         for (String msg : message) {
-            System.out.print(msg);
+            out.print(msg);
         }
     }
 
     public void showToUserWithIndent(String... message) {
         for (String msg : message) {
-            System.out.printf("|  %s%n", msg);
+            out.printf("|  %s%n", msg);
         }
     }
 
     public String getUserCommand() {
         showToUser("\njduke> ");
-        String input = in.nextLine().trim();
-        return input;
+        return in.nextLine().trim();
     }
 
     public void showGreeting() {

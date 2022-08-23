@@ -2,7 +2,6 @@ package jduke.task;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     private LocalDate date;
@@ -12,22 +11,13 @@ public class Deadline extends Task {
         super(description);
         String[] timingParams = timing.split(" ");
         if (timingParams.length == 2) {
-            this.time = LocalTime.parse(timingParams[1], DateTimeFormatter.ofPattern("HHmm"));
+            this.time = LocalTime.parse(timingParams[1], Task.inputTimeFormatter);
         }
-        this.date = LocalDate.parse(timingParams[0], DateTimeFormatter.ofPattern("d/M/yyyy"));
+        this.date = LocalDate.parse(timingParams[0], Task.inputDateFormatter);
     }
     @Override
-    public String getType() {
+    protected String getType() {
         return "D";
-    }
-
-    @Override
-    public String getDescription() {
-        return String.format("%s (by: %s%s)",
-                super.getDescription(),
-                this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")),
-                (this.time != null ? this.time.format(DateTimeFormatter.ofPattern(" hh:mm a")) : "")
-        );
     }
 
     @Override
@@ -38,10 +28,18 @@ public class Deadline extends Task {
     @Override
     public String toStorageFormat() {
         return String.format(
-                "D | %s | %s | %s%s",
-                (super.isCompleted() ? "1" : "0"),
-                super.getDescription(),
-                this.date.format(DateTimeFormatter.ofPattern("d/M/yyyy")),
-                (this.time == null ? "" : this.time.format(DateTimeFormatter.ofPattern(" HHmm"))));
+                "D | %d | %s | %s%s",
+                (this.isCompleted ? 1 : 0),
+                this.description,
+                this.date.format(Deadline.inputDateFormatter),
+                (this.time == null ? "" : " " + this.time.format(Task.inputTimeFormatter)));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("[%s][%s] %s (by: %s%s)",
+                this.getType(), (this.isCompleted ? "X" : " "), this.description,
+                this.date.format(Task.outputDateFormatter),
+                (this.time == null ? "" : " " + this.time.format(Task.outputTimeFormatter)));
     }
 }

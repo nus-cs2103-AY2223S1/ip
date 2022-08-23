@@ -41,6 +41,7 @@ public class Jduke {
             this.ui.showToUser(result);
         } while (!ByeCommand.isBye(command));
     }
+
     private String executeCommand(Command command) {
         try {
             command.setData(tasklist);

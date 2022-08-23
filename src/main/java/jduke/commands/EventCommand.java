@@ -6,15 +6,16 @@ public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     public static final String FORMAT = "event <description> /at <dd/mm/yyyy> <hhmm | optional>";
 
-    private final Event event;
+    private final String description;
+    private final String timing;
     public EventCommand(String params) {
         String[] eventParams = params.split(" /at ", 2);
-        this.event = new Event(eventParams[0], eventParams[1]);
+        this.description = eventParams[0];
+        this.timing = eventParams[1];
     }
 
     @Override
     public String execute() {
-        this.tasklist.addEvent(event);
-        return String.format("|  added task:%n|    %s%n", this.event);
+        return this.tasklist.addEvent(this.description, this.timing);
     }
 }

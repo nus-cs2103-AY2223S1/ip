@@ -15,25 +15,21 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
     }
-    public File loadFile() throws JdukeException {
+    private File loadFile() throws IOException {
         String directoryPath = this.filePath.substring(0, this.filePath.lastIndexOf("/"));
         File storageFile;
         File directory = new File(directoryPath);
         if (!directory.exists()) {
             boolean wasDirectoryCreated = directory.mkdirs();
             if (!wasDirectoryCreated) {
-                throw new JdukeException("cannot create storage directory");
+                throw new IOException("cannot create storage directory");
             }
         }
         storageFile = new File(this.filePath);
         if (!storageFile.exists()) {
-            try {
-                boolean isFileCreated = storageFile.createNewFile();
-                if (!isFileCreated) {
-                    throw new JdukeException("cannot create storage file");
-                }
-            } catch (IOException e) {
-                throw new JdukeException("cannot create storage file");
+            boolean isFileCreated = storageFile.createNewFile();
+            if (!isFileCreated) {
+                throw new IOException("cannot create storage file");
             }
         }
         return storageFile;
@@ -49,7 +45,7 @@ public class Storage {
                 storedTasks.add(task);
             }
             sc.close();
-        } catch (JdukeException | FileNotFoundException e) {
+        } catch (IOException e) {
             throw new JdukeException("cannot load storage file");
         }
         return storedTasks;
