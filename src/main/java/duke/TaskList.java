@@ -1,10 +1,13 @@
 package duke;
 
 import duke.task.Task;
-
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks in the application.
+ */
 public class TaskList {
+
     private final ArrayList<Task> tasks;
 
     public TaskList() {

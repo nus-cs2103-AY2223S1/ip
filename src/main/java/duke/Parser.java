@@ -2,7 +2,18 @@ package duke;
 
 import duke.command.*;
 
+/**
+ * Represents the parser that processes user input from UI.
+ */
 public class Parser {
+
+    /**
+     * Returns specific command to execute from processing user input.
+     *
+     * @param input user input from UI.
+     * @return specific command to execute.
+     * @throws DukeException if user input is of wrong format or unknown instruction
+     */
     public static Command parseInput(String input) throws DukeException {
         if (!input.contains(" ")) {
             try {
