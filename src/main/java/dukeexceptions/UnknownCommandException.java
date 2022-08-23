@@ -5,6 +5,9 @@ package dukeexceptions;
  * defined in the COMMANDS enum.
  */
 public class UnknownCommandException extends DukeException {
+    /**
+     * Constructor for UnknownCommandException.
+     */
     public UnknownCommandException() {
         super("OOPS!!! Sorry, I do not know what that means!");
     }

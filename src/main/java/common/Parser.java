@@ -21,10 +21,19 @@ enum COMMANDS {
     DELETE
 }
 
+/**
+ * Parser class parses user input and provides static utility functions to parse miscellaneous strings.
+ */
 public class Parser {
-    public Parser() {
-    }
 
+    /**
+     * Parses user input obtained from Scanner, and returns a Command that depends on the user input.
+     * Certain commands will trigger validation to ensure that the command arguments are valid.
+     *
+     * @param fullCommand Unparsed user input obtained from scanner.
+     * @return Command object to be executed later.
+     * @throws DukeException Occurs when an error occurs during parsing, such as invalid arguments.
+     */
     public static Command parseInput(String fullCommand) throws DukeException {
         String[] userInputs = fullCommand.split(" ");
         String unparsedCommand = userInputs[0];
@@ -75,8 +84,8 @@ public class Parser {
     /**
      * Given a string, return true if it is a valid common.COMMANDS enum.
      *
-     * @param str
-     * @return
+     * @param str String to check if the enum exists.
+     * @return True if the provided string is a valid common.COMMANDS enum.
      */
     public static boolean validCommandEnum(String str) {
         for (COMMANDS cmd : COMMANDS.values()) {
@@ -107,7 +116,6 @@ public class Parser {
 
     /**
      * Splits an array into subarrays at a given delimiter, and concatenates the substrings.
-     * <p>
      * For example, given ['a', 'b', '\n', 'c', 'd'], with the delimiter specified to be '\n',
      * the function splits the array at '\n' and concatenates the split subarrays to return
      * ['ab', 'cd']

@@ -5,15 +5,14 @@ import tasks.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility class that handles CRUD operations regarding the task list in memory.
+ */
 public class TaskList {
-    private List<Task> taskList;
+    private final List<Task> taskList;
 
     public TaskList() {
         this.taskList = new ArrayList<>();
-    }
-
-    public TaskList(String[] data) {
-        // TODO: Create this together with readFromStorage
     }
 
     public Task get(int i) {
@@ -21,7 +20,7 @@ public class TaskList {
     }
 
     public int size() {
-       return this.taskList.size();
+        return this.taskList.size();
     }
 
     public void addTask(Task task) {
@@ -39,7 +38,6 @@ public class TaskList {
     /**
      * Deletes a task at a specified (zero-indexed) index in the task
      * list, and returns the deleted task.
-     *
      * Case where list is empty should be guarded against.
      *
      * @param index Index of task to be deleted, zero-indexed
@@ -51,6 +49,11 @@ public class TaskList {
         return deletedTask;
     }
 
+    /**
+     * Returns true if the task list is empty.
+     *
+     * @return Boolean value representing if the task list is empty.
+     */
     public boolean isEmpty() {
         return this.taskList.size() > 0;
     }

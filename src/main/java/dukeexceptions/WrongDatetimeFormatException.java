@@ -6,6 +6,11 @@ package dukeexceptions;
  */
 public class WrongDatetimeFormatException extends DukeException {
 
+    /**
+     * Constructor for WrongDatetimeFormatException.
+     *
+     * @param format The format for the string to follow.
+     */
     public WrongDatetimeFormatException(String format) {
         super(String.format("Wrong date and time format provided! Please enter it in this format: %s", format));
     }
