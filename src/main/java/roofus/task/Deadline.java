@@ -8,7 +8,7 @@ import java.time.LocalDate;
  * a LocalDate attribute that represents the deadline of the task.
  */
 public class Deadline extends Task {
-    LocalDate date;
+    private LocalDate date;
 
     /**
      * Constructs an instance of Deadline.
@@ -26,7 +26,8 @@ public class Deadline extends Task {
      */
     @Override
     public String writeString() {
-        return String.format("D | %d | %s | %s", super.isDone ? 1 : 0, super.description, date);
+        return String.format("D | %d | %s | %s", 
+                super.isDone ? 1 : 0, super.description, date);
     }
 
     /**
@@ -34,6 +35,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s by: %s", super.toString(), this.date.toString());
+        return String.format("[D]%s by: %s", 
+                super.toString(), this.date.toString());
     }
 }

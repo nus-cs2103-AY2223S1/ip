@@ -26,17 +26,17 @@ public class TaskList {
             String[] components = i.split(" \\| ");
             Task thisTask = new Task("task not saved");
             switch (taskType) {
-                case 'T':
-                    thisTask = new ToDo(components[2]);
-                    break;
-                case 'D':
-                    thisTask = new Deadline(components[2],
-                            components[3]);
-                    break;
-                case 'E':
-                    thisTask = new Event(components[2],
-                            components[3]);
-                    break;
+            case 'T':
+                thisTask = new ToDo(components[2]);
+                break;
+            case 'D':
+                thisTask = new Deadline(components[2],
+                        components[3]);
+                break;
+            case 'E':
+                thisTask = new Event(components[2],
+                        components[3]);
+                break;
             }
             if (components[1].equals("1")) {
                 thisTask.mark();
@@ -78,7 +78,6 @@ public class TaskList {
      * @param index Task number to be deleted.
      */
     public void delete(int index) {
-        Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
     }
 

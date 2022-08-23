@@ -16,8 +16,8 @@ public abstract class Command {
      * @param storage Storage associated with current instance of Roofus.
      * @param ui Ui associated with current instance of Roofus
      */
-    public abstract void execute(TaskList taskList,
-                                 Storage storage, Ui ui);
+    public abstract void execute(
+            TaskList taskList, Storage storage, Ui ui);
 
     /**
      * Checks if Roofus should still be running after command is executed

@@ -14,8 +14,8 @@ public class ClearCommand extends Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(TaskList taskList,
-                        Storage storage, Ui ui) {
+    public void execute(
+            TaskList taskList, Storage storage, Ui ui) {
         taskList.clearStorage();
         ui.clearStorage();
     }
