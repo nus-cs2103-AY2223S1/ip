@@ -28,6 +28,7 @@ public class TaskList {
     }
 
     public void add(String str, Duke.Type type) {
+        // add new todo task
         if (type.equals(Duke.Type.TODO)) {
             try {
                 tasks.add(new Todo(str));
@@ -37,9 +38,13 @@ public class TaskList {
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
+
+            // missing name
             } catch (MissingDescriptionException err) {
                 System.out.println(err.toString());
             }
+
+        // add new deadline task
         } else if (type.equals(Duke.Type.DEADLINE)) {
             try {
                 String[] input = str.split("/by ");
@@ -52,13 +57,20 @@ public class TaskList {
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
+            // missing name
             } catch (MissingDescriptionException err) {
                 System.out.println("OOPS!!! The description of a deadline cannot be empty.");
+
+            // missing end date
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("OOPS!!! The end date of a deadline cannot be empty.");
+
+            // date in wrong format
             } catch (DateTimeParseException e) {
                 System.out.println("input date in YYYY-MM-DD format!");
             }
+
+        // add new event task
         } else if (type.equals(Duke.Type.EVENT)) {
             try{
                 String[] input = str.split("/at ");
@@ -76,10 +88,16 @@ public class TaskList {
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
+
+            // missing name
             } catch (MissingDescriptionException err) {
                 System.out.println("OOPS!!! The description of an event cannot be empty.");
+
+            // missing date or time
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("OOPS!!! The time of an event cannot be empty.");
+
+            // date or time in wrong format
             } catch (DateTimeParseException e) {
                 System.out.println("Input date in YYYY-MM-DD and time in HH:MM format");
             }
@@ -97,6 +115,7 @@ public class TaskList {
                     t.toString(),
                     count);
             System.out.println(str);
+        // no task found
         } catch (IndexOutOfBoundsException e) {
             System.out.println("OOPS!!! No such task exists.");
         }
