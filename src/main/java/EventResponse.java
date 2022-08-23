@@ -23,12 +23,12 @@ public class EventResponse extends DukeResponse {
             throw new DukeException("The description of an event cannot be empty.");
         }
 
-        String dateTime = data.substring(splitIndex + 3).trim();
-        if (dateTime.isEmpty()) {
+        String dateTimeStr = data.substring(splitIndex + 3).trim();
+        if (dateTimeStr.isEmpty()) {
             throw new DukeException("Please enter event time.");
         }
 
-        Event e = new Event(description, dateTime);
+        Event e = new Event(description, super.parseStrToDate(dateTimeStr));
         super.message(list.add(e));
     }
 }

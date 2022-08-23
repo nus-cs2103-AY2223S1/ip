@@ -1,3 +1,6 @@
+todo borrow book
+deadline return book /by 24 Aug 6pm
+event project meeting /at 27 Aug 3:30pm
 list
 mark 2
 list
@@ -5,6 +8,6 @@ unmark 2
 list
 delete 3
 list
-event project meeting /at Mon 2-4pm
+event project meeting /at 27 Aug 3:30pm
 list
 bye
