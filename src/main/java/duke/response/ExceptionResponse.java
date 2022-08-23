@@ -1,3 +1,7 @@
+package duke.response;
+
+import duke.DukeException;
+
 public class ExceptionResponse extends DukeResponse {
     protected DukeException exception;
 

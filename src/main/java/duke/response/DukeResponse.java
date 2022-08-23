@@ -1,9 +1,12 @@
+package duke.response;
+
+import duke.DukeException;
 
 public abstract class DukeResponse {
     private static final String DIVIDER = "____________________________________________________________";
 
     public static void intro() {
-        String text = "Hello! I'm Duke!\n" + "What can I do for you?";
+        String text = "Hello! I'm duke.Duke!\n" + "What can I do for you?";
         System.out.println(DIVIDER + "\n" + text + "\n" + DIVIDER);
     }
 

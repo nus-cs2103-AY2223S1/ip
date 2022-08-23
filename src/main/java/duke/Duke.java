@@ -1,3 +1,10 @@
+package duke;
+
+import duke.response.DukeResponse;
+import duke.response.ExceptionResponse;
+import duke.response.ReadFileResponse;
+import duke.response.WriteFileResponse;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 

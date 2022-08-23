@@ -1,3 +1,9 @@
+package duke.response;
+
+import duke.DukeException;
+import duke.DukeList;
+import duke.Storage;
+
 public class WriteFileResponse extends DukeResponse {
     protected DukeList list;
     protected Storage storage;

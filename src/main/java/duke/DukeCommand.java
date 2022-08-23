@@ -1,3 +1,5 @@
+package duke;
+
 public enum DukeCommand {
     EXIT("bye"),
     LIST("list"),

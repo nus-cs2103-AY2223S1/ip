@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.DukeCommand;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -7,12 +11,20 @@ public class Task {
         this.isDone = false;
     }
 
+    public boolean getStatus() {
+        return this.isDone;
+    }
+
     public String getStatusIcon() {
         return isDone ? "X" : " ";
     }
 
     public DukeCommand getTaskType() {
         return DukeCommand.UNKNOWN;
+    }
+
+    public String getDesc() {
+        return this.description;
     }
 
     public String getOtherData() {

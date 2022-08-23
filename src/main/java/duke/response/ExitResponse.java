@@ -1,3 +1,7 @@
+package duke.response;
+
+import duke.DukeException;
+
 public class ExitResponse extends DukeResponse {
 
     @Override

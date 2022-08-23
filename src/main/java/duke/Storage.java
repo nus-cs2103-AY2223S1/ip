@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -63,21 +70,21 @@ public class Storage {
 
         switch (command) {
         case TODO:
-            // Add task as to do
+            // Add duke.task as to do
             Todo t = new Todo(desc);
             if (status == 1) {
                 t.markAsDone();
             }
             return t;
         case DEADLINE:
-            // Add task as deadline
+            // Add duke.task as deadline
             Deadline d = new Deadline(desc, Parser.strToDateFromStorage(time));
             if (status == 1) {
                 d.markAsDone();
             }
             return d;
         case EVENT:
-            // Add task as event
+            // Add duke.task as event
             Event e = new Event(desc, Parser.strToDateFromStorage(time));
             if (status == 1) {
                 e.markAsDone();

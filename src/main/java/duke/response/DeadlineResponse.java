@@ -1,3 +1,11 @@
+package duke.response;
+
+import duke.DukeException;
+import duke.DukeList;
+import duke.Parser;
+
+import duke.task.Deadline;
+
 public class DeadlineResponse extends DukeResponse {
     protected DukeList list;
     protected String data;
@@ -14,7 +22,7 @@ public class DeadlineResponse extends DukeResponse {
         }
 
         if (!data.contains("/by ")) {
-            throw new DukeException("Please enter deadline of task.");
+            throw new DukeException("Please enter deadline of duke.task.");
         }
 
         int splitIndex = data.indexOf("/by ");
@@ -25,7 +33,7 @@ public class DeadlineResponse extends DukeResponse {
 
         String dateTimeStr = data.substring(splitIndex + 3).trim();
         if (dateTimeStr.isEmpty()) {
-            throw new DukeException("Please enter deadline of task.");
+            throw new DukeException("Please enter deadline of duke.task.");
         }
 
         Deadline d = new Deadline(description, Parser.strToDate(dateTimeStr));

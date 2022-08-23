@@ -1,3 +1,15 @@
+package duke;
+
+import duke.response.DeadlineResponse;
+import duke.response.DeleteResponse;
+import duke.response.DukeResponse;
+import duke.response.ExitResponse;
+import duke.response.EventResponse;
+import duke.response.ListResponse;
+import duke.response.MarkResponse;
+import duke.response.TodoResponse;
+import duke.response.UnmarkResponse;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
@@ -10,27 +22,27 @@ public class Parser {
 
         switch (command) {
         case EXIT:
-            // Exit Duke
+            // Exit duke.Duke
             return new ExitResponse();
         case LIST:
             // Print list
             return new ListResponse(list);
         case MARK:
-            // Mark task as done
+            // Mark duke.task as done
             return new MarkResponse(list, data);
         case UNMARK:
-            // Mark task as undone
+            // Mark duke.task as undone
             return new UnmarkResponse(list, data);
         case DELETE:
             return new DeleteResponse(list, data);
         case TODO:
-            // Add task as to do
+            // Add duke.task as to do
             return new TodoResponse(list, data);
         case DEADLINE:
-            // Add task as deadline
+            // Add duke.task as deadline
             return new DeadlineResponse(list, data);
         case EVENT:
-            // Add task as event
+            // Add duke.task as event
             return new EventResponse(list, data);
         default:
             // Unknown command

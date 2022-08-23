@@ -1,3 +1,8 @@
+package duke;
+
+import duke.response.DukeResponse;
+import duke.response.ExceptionResponse;
+
 import java.util.Scanner;
 
 public class DukeUi {

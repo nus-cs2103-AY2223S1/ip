@@ -1,3 +1,7 @@
+package duke.response;
+
+import duke.DukeList;
+
 public class ListResponse extends DukeResponse {
     protected DukeList list;
 
