@@ -69,6 +69,21 @@ jduke> |  added task:
 jduke> |  added task:
 |    [D][ ] homework (by: Dec 18 2000 12:00 PM)
 
+jduke> |  invalid FIND format
+|    find <keyword>
+
+jduke> 11 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
+
+jduke> 1 ==> [T][X] read book
+2 ==> [D][ ] return book (by: Jun 06 2000)
+3 ==> [E][ ] project meeting (at: Aug 06 2022 06:00 PM)
+4 ==> [E][ ] meeting (at: Aug 12 2022 12:00 PM)
+6 ==> [T][ ] sleep
+8 ==> [D][ ] CS2103T Week 2 (by: Aug 18 2022)
+9 ==> [T][ ] cry harder
+10 ==> [E][ ] end of sem (at: Dec 10 2022)
+11 ==> [D][ ] homework (by: Dec 18 2000 12:00 PM)
+
 jduke> 1 ==> [T][X] read book
 2 ==> [D][ ] return book (by: Jun 06 2000)
 3 ==> [E][ ] project meeting (at: Aug 06 2022 06:00 PM)

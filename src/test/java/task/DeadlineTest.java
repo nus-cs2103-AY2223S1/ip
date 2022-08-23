@@ -48,4 +48,11 @@ public class DeadlineTest {
         assertTrue(deadline.isEqualDate(LocalDate.parse("2012-10-20")));
         assertFalse(deadline.isEqualDate(LocalDate.parse("2012-10-21")));
     }
+
+    @Test
+    public void isMatchingKeywordsDeadlineTest() {
+        Deadline deadline = new Deadline("Matching Keywords Deadline", "20/10/2012 1159");
+        assertTrue(deadline.isMatchingKeyword("Dead"));
+        assertFalse(deadline.isMatchingKeyword("Alive"));
+    }
 }

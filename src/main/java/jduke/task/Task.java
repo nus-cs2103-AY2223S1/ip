@@ -44,6 +44,15 @@ public abstract class Task {
     public abstract boolean isEqualDate(LocalDate date);
 
     /**
+     * Returns true if the task description contains the keyword.
+     * @param keyword The keyword to check against.
+     * @return True if the task description contains the keyword, false otherwise.
+     */
+    public boolean isMatchingKeyword(String keyword) {
+        return this.description.contains(keyword);
+    };
+
+    /**
      * Returns a string representing the storage format of the task.
      * @return A string representing the storage format of the task.
      */
