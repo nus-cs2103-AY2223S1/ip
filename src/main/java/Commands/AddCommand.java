@@ -1,8 +1,8 @@
-package Commands;
+package commands;
 
-import Tasks.*;
-import Main.Ui;
-import Main.Storage;
+import tasks.*;
+import ui.Ui;
+import storage.Storage;
 
 public class AddCommand extends Command {
     private Task task;

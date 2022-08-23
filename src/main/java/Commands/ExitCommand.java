@@ -1,8 +1,8 @@
-package Commands;
+package commands;
 
-import Tasks.TaskList;
-import Main.Ui;
-import Main.Storage;
+import tasks.TaskList;
+import ui.Ui;
+import storage.Storage;
 
 public class ExitCommand extends Command {
     @Override

@@ -1,7 +1,8 @@
-package Main;
+package parser;
 
-import Commands.*;
-import Tasks.*;
+import commands.*;
+import exception.LunaException;
+import tasks.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -18,14 +19,14 @@ public class Parser {
             break;
         case "deadline":
             if (cmd.length() <= 9) {
-                throw new Main.LunaException("Please enter a task and deadline 🌷");
+                throw new exception.LunaException("Please enter a task and deadline 🌷");
             }
             String[] desSplit = cmdSplit[1].split(" /by ");
             c = new AddCommand("deadline", desSplit[0], desSplit[1], false);
             break;
         case "event":
             if (cmd.length() <= 6) {
-                throw new Main.LunaException("Please enter an event and date 🌷");
+                throw new exception.LunaException("Please enter an event and date 🌷");
             }
             String[] split = cmdSplit[1].split(" /at ");
             c = new AddCommand("event", split[0], split[1], false);
@@ -54,7 +55,7 @@ public class Parser {
     public static Task parseSaved(String tasks) {
         String txt = tasks.substring(7);
         if (txt.startsWith("[T]")) {
-            String[] split = txt.split("] ", 2);
+            String[] split = txt.split("] ");
             Task tsk = new Todo(split[1]);
 
             if (split[0].substring(3).equals("[✧")) {
@@ -64,9 +65,10 @@ public class Parser {
 
 
         } else if (txt.startsWith("[D]")) {
-            String[] split = txt.split("] ", 3);
-            String des = split[1];
-            String by = split[2].substring(5, 15);
+            String[] split = txt.split("] ");
+            String [] desSplit = split[1].split(" BY ");
+            String des = desSplit[0];
+            String by = desSplit[1].substring(0, 11);
             LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd MMM yyyy"));
 
             Task tsk = new Deadline(des, date);
@@ -78,9 +80,10 @@ public class Parser {
 
 
         } else if (txt.startsWith("[E]")) {
-            String[] split = txt.split("] ", 3);
-            String des = split[1];
-            String at = split[2].substring(5, 15);
+            String[] split = txt.split("] ");
+            String [] desSplit = split[1].split(" AT ");
+            String des = desSplit[0];
+            String at = desSplit[1].substring(0, 11);
             LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd MMM yyyy"));
 
             Task tsk = new Event(des, date);

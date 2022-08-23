@@ -1,10 +1,13 @@
-package Main;
+package storage;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.stream.Stream;
-import Tasks.Task;
-import Tasks.TaskList;
+
+import ui.Ui;
+import parser.Parser;
+import tasks.Task;
+import tasks.TaskList;
 
 public class Storage {
 

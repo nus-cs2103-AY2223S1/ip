@@ -1,4 +1,4 @@
-package Main;
+package exception;
 
 public class LunaException extends Exception {
     private static String sep = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";

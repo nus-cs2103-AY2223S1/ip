@@ -1,6 +1,6 @@
-package Tasks;
+package tasks;
 
-import Main.LunaException;
+import exception.LunaException;
 import java.util.ArrayList;
 
 public class TaskList {

@@ -1,8 +1,8 @@
-package Commands;
+package commands;
 
-import Main.Storage;
-import Main.Ui;
-import Tasks.TaskList;
+import storage.Storage;
+import ui.Ui;
+import tasks.TaskList;
 
 public class UpdateCommand extends Command {
 

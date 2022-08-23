@@ -1,9 +1,9 @@
-package Commands;
+package commands;
 
-import Tasks.TaskList;
-import Tasks.Task;
-import Main.Ui;
-import Main.Storage;
+import tasks.TaskList;
+import tasks.Task;
+import ui.Ui;
+import storage.Storage;
 
 public class DeleteCommand extends Command {
 

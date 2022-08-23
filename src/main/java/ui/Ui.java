@@ -1,7 +1,7 @@
-package Main;
+package ui;
 
-import Tasks.Task;
-import Tasks.TaskList;
+import tasks.Task;
+import tasks.TaskList;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

@@ -1,7 +1,9 @@
-package Main;
-
-import Tasks.*;
-import Commands.*;
+import exception.LunaException;
+import parser.Parser;
+import storage.Storage;
+import tasks.*;
+import commands.*;
+import ui.Ui;
 
 public class Luna {
 

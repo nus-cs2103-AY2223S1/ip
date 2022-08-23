@@ -1,4 +1,4 @@
-package Tasks;
+package tasks;
 
 public class Task {
     protected String description;

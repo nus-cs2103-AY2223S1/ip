@@ -1,4 +1,4 @@
-package Tasks;
+package tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +21,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at.format(to) + ")";
+        return "[E]" + super.toString() + " AT " + this.at.format(to);
     }
 }
 
