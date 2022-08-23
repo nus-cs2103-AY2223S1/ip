@@ -87,6 +87,8 @@ public class Parser {
             String listInfo = inputText.substring(firstSpaceIdx + 1);
             this.taskList.printAllOnDate(listInfo);
             break;
+        default:
+            break;
         }
         return false;
     }
