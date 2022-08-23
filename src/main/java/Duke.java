@@ -14,6 +14,12 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         DukeList list = new DukeList();
 
+        try {
+            new ReadFileResponse(list).run();
+        } catch (DukeException e){
+            new ExceptionResponse(e).run();
+        }
+
         while (isRunning) {
             String input = scanner.nextLine();
 
@@ -61,6 +67,12 @@ public class Duke {
             } catch (DukeException e) {
                 new ExceptionResponse(e).run();
             }
+        }
+
+        try {
+            new WriteFileResponse(list).run();
+        } catch (DukeException e) {
+            new ExceptionResponse(e).run();
         }
     }
 
