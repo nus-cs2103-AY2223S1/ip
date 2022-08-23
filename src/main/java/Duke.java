@@ -1,13 +1,20 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Duke {
 
-    ArrayList<Task> tasks = new ArrayList<>(100);
+    private final String DIR = System.getProperty("user.dir");
+    private final String FILE_PATH = DIR + "/data/duke.txt";
+
+    private ArrayList<Task> tasks = new ArrayList<>(100);
     final String BORDER = "    ____________________________________________________________";
     final String INDENT = "     ";
 
-    public void run() {
+    public void run() throws IOException {
         welcome();
         command();
         bye();
@@ -20,7 +27,50 @@ public class Duke {
         System.out.println();
     }
 
-    public void welcome() {
+    public void loadTasks() throws IOException {
+        File target = new File(FILE_PATH);
+        if (target.exists()) {
+            Scanner sc = new Scanner(target);
+            while (sc.hasNext()) {
+                String line = sc.nextLine();
+                String[] components = line.split(Pattern.quote(" | "));
+                String taskType = components[0];
+                boolean isDone = components[1].equals("1");
+                String desc = components[2];
+                String cmd;
+                switch (taskType) {
+                    // TODO
+                    case "T":
+                        cmd = "todo " + desc;
+                        addTodo(cmd);
+                        break;
+
+                    // DEADLINE
+                    case "D":
+                        String deadline = components[3];
+                        cmd = "deadline " + desc + " /by " + deadline;
+                        addDeadline(cmd);
+                        break;
+
+                    // EVENT
+                    case "E":
+                        String time = components[3];
+                        cmd = "event " + desc + " /at " + time;
+                        addEvent(cmd);
+                        break;
+                }
+                if (isDone)
+                    tasks.get(tasks.size() - 1).markAsDone();
+            }
+        } else {
+            File parent = new File(DIR + "/data");
+            boolean isFolderCreated = parent.mkdir();
+            boolean isFileCreated = target.createNewFile();
+        }
+    }
+
+    public void welcome() throws IOException {
+        loadTasks();
         String content;
         String logo = "      ____        _        \n"
                 + "     |  _ \\ _   _| | _____ \n"
@@ -51,7 +101,7 @@ public class Duke {
         sc.close();
     }
 
-    public void addTask(String cmd) {
+    public void addTask(String cmd) throws DukeException {
         try {
             String type = cmd.split(" ")[0];
             boolean isAdded = false;
@@ -102,7 +152,7 @@ public class Duke {
         }
     }
 
-    public void addDeadline(String cmd) {
+    public void addDeadline(String cmd) throws DukeException {
         try {
             String[] wordArr = cmd.split(" ");
             if (wordArr.length < 2) {
@@ -121,7 +171,7 @@ public class Duke {
         }
     }
 
-    public void addEvent(String cmd) {
+    public void addEvent(String cmd) throws DukeException {
         try {
             String[] wordArr = cmd.split(" ");
             if (wordArr.length < 2) {
@@ -140,14 +190,21 @@ public class Duke {
         }
     }
 
-    public void list() {
-        String content;
-        content = INDENT + "Here are the tasks in your list:\n";
-        for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.get(i);
-            content += INDENT + (i + 1) + "." + task + "\n";
+    public void list() throws DukeException {
+        try {
+            if (tasks.size() == 0) {
+                throw new DukeException("☹ OOPS!!! You have no tasks in the list.\n");
+            }
+            String content;
+            content = INDENT + "Here are the tasks in your list:\n";
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.get(i);
+                content += INDENT + (i + 1) + "." + task + "\n";
+            }
+            msg(content);
+        } catch (DukeException e) {
+            msg(INDENT + e.getMessage());
         }
-        msg(content);
     }
 
     public void mark(String cmd) throws DukeException {
@@ -172,11 +229,11 @@ public class Duke {
         }
     }
 
-    public void unmark(String cmd) {
+    public void unmark(String cmd) throws DukeException {
         try {
             String[] wordArr = cmd.split(" ");
             if (wordArr.length < 2) {
-                throw new DukeException("☹ OOPS!!! This mark command is invalid.");
+                throw new DukeException("☹ OOPS!!! This unmark command is invalid.");
             }
             int index = Integer.parseInt(cmd.split(" ")[1]) - 1;
             if (index < 0 || index >= tasks.size()) {
@@ -195,7 +252,7 @@ public class Duke {
         }
     }
 
-    public void delete(String cmd) {
+    public void delete(String cmd) throws DukeException {
         try {
             String content;
             String[] wordArr = cmd.split(" ");
@@ -216,11 +273,29 @@ public class Duke {
         }
     }
 
-    public void bye() {
+    public void storeTasks() throws IOException {
+        FileWriter writer = new FileWriter(FILE_PATH);
+        for (Task curr : tasks) {
+            String status = curr.getStatusIcon().equals("X") ? "1" : "0";
+            if (curr instanceof Todo) {
+                writer.write("T | " + status + " | " + curr.getDescription() + "\n");
+            } else if (curr instanceof Deadline) {
+                writer.write("D | " + status + " | " + curr.getDescription() + " | " +
+                        ((Deadline) curr).getBy() + "\n");
+            } else if (curr instanceof Event) {
+                writer.write("E | " + status + " | " + curr.getDescription() + " | " +
+                        ((Event) curr).getAt() + "\n");
+            }
+        }
+        writer.close();
+    }
+
+    public void bye() throws IOException {
+        storeTasks();
         msg(INDENT + "Bye. Hope to see you again soon!\n");
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Duke program = new Duke();
         program.run();
     }
