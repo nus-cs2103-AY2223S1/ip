@@ -1,11 +1,27 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.io.FileWriter;
 public class Duke {
     protected static boolean terminate = false;
     protected static ArrayList<Task> taskList = new ArrayList<Task>();
 
     public static void main(String[] args) {
+        // Load file from hard disk
+        File hardDiskTasks = new File("data/duke.txt");
+        try {
+           hardDiskTasks.createNewFile();
+        } catch (IOException e) {
+            System.out.println("     " + e.getMessage());
+        } catch (SecurityException e) {
+            System.out.println("     " + e.getMessage());
+        }
+
+        // Add disk info to taskList
+        Duke.loadTasksFromDisk(hardDiskTasks);
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -14,6 +30,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         Duke.greet();
 
+        // Listening to inputs from user
         Scanner in = new Scanner(System.in);
         while (!terminate) {
             try {
@@ -25,14 +42,14 @@ public class Duke {
                 String taskDescription = "";
                 String time = "";
 
-                // int for numbered operations
+                // int to store info for numbered operations
                 char charOfInt = '\0';
                 if (indexOfFirstSpace != - 1) {
                     firstWord = userInput.substring(0, indexOfFirstSpace);
                     taskDescription = userInput.substring(indexOfFirstSpace + 1);
 
                     // retrieve int for numbered operations
-                    userInput.charAt(userInput.length() - 1);
+                    charOfInt = userInput.charAt(userInput.length() - 1);
                 }
 
                 // retrieve task details
@@ -43,6 +60,8 @@ public class Duke {
 
                 // convert ASCII character of integer to int
                 int taskNumber =  charOfInt - '0';
+
+                // choose instruction to execute
                 switch (firstWord) {
                 case "bye":
                     Duke.exit();
@@ -75,14 +94,60 @@ public class Duke {
                 }
             } catch (DukeException e) {
                 Duke.lineFormat();
-                System.out.println("     " + e.toString());
-                Duke.lineFormat();
-            } catch (IndexOutOfBoundsException e) {
-                Duke.lineFormat();
-                System.out.println("     OOPS!!! Please enter a valid task number.");
+                System.out.println("     " + e.getMessage());
                 Duke.lineFormat();
             }
         }
+    }
+
+    public static void loadTasksFromDisk(File file) {
+        try {
+            Scanner s = new Scanner(file);
+            while (s.hasNext()) {
+                String memo = s.nextLine();
+
+                // first letter to identify task
+                String task = memo.substring(0, 1);
+
+                // Retrieve task status
+                int indexOfFirstBreak = memo.indexOf("|");
+                String status = memo.substring(indexOfFirstBreak + 2, indexOfFirstBreak + 3);
+                boolean statusIsDone = status == "1";
+
+                // skip "| x | " to get task description
+                String descriptionAndTime = memo.substring(indexOfFirstBreak + 6);
+                int indexOfThirdBreak = descriptionAndTime.indexOf("|");
+                String description = descriptionAndTime;
+                String time = "";
+
+                // if time exists, retrieve time and update task description
+                if (indexOfThirdBreak != -1) {
+                    description = descriptionAndTime.substring(0, indexOfThirdBreak - 1);
+                    time = descriptionAndTime.substring(indexOfThirdBreak + 2);
+                }
+
+                // update list
+                Duke.addTaskFromDisk(task, description, time, statusIsDone);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("     " + e.getMessage());
+        }
+
+    }
+
+    public static void addTaskFromDisk(String task, String description, String time, boolean isDone) {
+        Task newTask = null;
+        if (task.equals("T")) {
+            newTask = new ToDo(description);
+        } else if (task.equals("D")) {
+            newTask = new Deadline(description, time);
+        } else if (task.equals("E")) {
+            newTask = new Event(description, time);
+        } else {
+            throw new DukeException("OOPS!!! The Disk memory is invalid");
+        }
+        newTask.setTaskStatus(isDone);
+        taskList.add(newTask);
     }
 
     public static void lineFormat() {
@@ -96,8 +161,19 @@ public class Duke {
         Duke.lineFormat();
     }
 
+    public static void appendToFile(String filePath, String textToAdd) {
+        try {
+            FileWriter fw = new FileWriter(filePath, true);
+            fw.write(textToAdd);
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("     " + e.getMessage());
+        }
+    }
+
     public static void addTask(Task task) {
         taskList.add(task);
+        appendToFile("data/duke.txt", task.taskMemo() + System.lineSeparator());
         Duke.lineFormat();
         System.out.println("     Got it. I've added this task:\n" +
                 "       " + task.toString() + "\n" +
@@ -163,6 +239,7 @@ public class Duke {
         if (description.equals("")) {
             throw new DukeException("OOPS!!! The task number for mark cannot be empty.");
         }
+        System.out.println(taskList.size());
         Task currentTask = taskList.get(taskNumber - 1);
         currentTask.setTaskStatus(true);
         String taskDescription = currentTask.toString();
