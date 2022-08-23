@@ -1,7 +1,7 @@
 package duke.storage;
 
-import duke.*;
-import duke.task.TaskList;
+import duke.exception.DukeException;
+import duke.task.*;
 
 import java.io.File;
 import java.io.FileWriter;

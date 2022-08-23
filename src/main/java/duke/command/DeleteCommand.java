@@ -1,9 +1,8 @@
 package duke.command;
 
-import duke.Commands;
-import duke.DukeException;
-import duke.InvalidArgumentException;
-import duke.Task;
+import duke.exception.DukeException;
+import duke.exception.InvalidArgumentException;
+import duke.task.Task;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;

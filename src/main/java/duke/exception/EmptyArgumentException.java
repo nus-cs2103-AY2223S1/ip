@@ -1,4 +1,6 @@
-package duke;
+package duke.exception;
+
+import duke.command.Commands;
 
 public class EmptyArgumentException extends DukeException {
 

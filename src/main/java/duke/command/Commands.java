@@ -1,4 +1,4 @@
-package duke;
+package duke.command;
 
 public enum Commands {
     TODO,
