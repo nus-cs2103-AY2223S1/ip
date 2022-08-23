@@ -1,13 +1,13 @@
 package duke.chatbot.data.task;
 
-import duke.chatbot.data.exception.InvalidInputException;
+import java.time.LocalDateTime;
 
 public class Deadline extends TimedTask {
-    public Deadline(String description, String dateTime) throws InvalidInputException {
+    public Deadline(String description, LocalDateTime dateTime) {
         super(description, dateTime);
     }
 
-    public Deadline(String description, String dateTime, boolean isDone) throws InvalidInputException {
+    public Deadline(String description, LocalDateTime dateTime, boolean isDone) {
         super(description, dateTime, isDone);
     }
 

@@ -4,19 +4,21 @@ import duke.chatbot.data.exception.InvalidInputException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public abstract class TimedTask extends Task {
+    public static final DateTimeFormatter DATE_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    public static final DateTimeFormatter TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("HHmm");
+
     private LocalDateTime dateTime;
 
-    public TimedTask(String description, String dateTime) throws InvalidInputException {
+    public TimedTask(String description, LocalDateTime dateTime) {
         super(description);
-        this.dateTime = parseDateTime(dateTime);
+        this.dateTime = dateTime;
     }
 
-    public TimedTask(String description, String dateTime, boolean isDone) throws InvalidInputException {
+    public TimedTask(String description, LocalDateTime dateTime, boolean isDone) {
         super(description, isDone);
-        this.dateTime = parseDateTime(dateTime);
+        this.dateTime = dateTime;
     }
 
     public boolean hasMatchingDate(String date) {
@@ -36,14 +38,5 @@ public abstract class TimedTask extends Task {
     public String encode() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
         return super.encode() + ",,," + dateTime.format(formatter);
-    }
-
-    public static LocalDateTime parseDateTime(String dateTime) throws InvalidInputException {
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-            return LocalDateTime.parse(dateTime, formatter);
-        } catch (DateTimeParseException e) {
-            throw new InvalidInputException();
-        }
     }
 }

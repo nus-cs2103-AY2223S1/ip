@@ -1,19 +1,21 @@
 package duke.chatbot.storage;
 
+import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.task.TaskList;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
-public class TaskFileManager {
+public class Storage {
     private final TaskFileLoader fileLoader;
     private final TaskFileSaver fileSaver;
 
-    private TaskFileManager(File file) {
+    private Storage(File file) {
         fileLoader = new TaskFileLoader(file);
         fileSaver = new TaskFileSaver(file);
     }
 
-    public static TaskFileManager of(String path) {
+    public static Storage of(String path) {
         try {
             File data = new File("data");
             if (!data.exists()) {
@@ -25,14 +27,14 @@ public class TaskFileManager {
                 file.createNewFile();
             }
 
-            return new TaskFileManager(file);
+            return new Storage(file);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public TaskList getTaskList() {
+    public TaskList getTaskList() throws InvalidInputException, FileNotFoundException {
         return fileLoader.getTaskList();
     }
 

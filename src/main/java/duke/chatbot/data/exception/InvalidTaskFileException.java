@@ -1,4 +1,6 @@
 package duke.chatbot.data.exception;
 
-public class InvalidTaskFileException extends InvalidInputException {
+import java.io.FileNotFoundException;
+
+public class InvalidTaskFileException extends FileNotFoundException {
 }
