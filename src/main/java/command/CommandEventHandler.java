@@ -11,7 +11,8 @@ import util.CommandUtils;
 
 public class CommandEventHandler extends CommandHandler {
 
-    private static final Pattern commandRegexPattern = Pattern.compile("^event (.+) /at (.+)");
+    private static final Pattern commandRegexPattern = Pattern.compile(
+        String.format("^event (.+) /at %s", commandDateTimeRegexStr));
 
     CommandEventHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
@@ -22,13 +23,13 @@ public class CommandEventHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(TaskList taskList) {
+    public List<String> run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         String eventTitle = regexMatchResult.group(1);
         String eventDateTimeStr = regexMatchResult.group(2);
 
-        TaskEvent eventTask = new TaskEvent(eventTitle, eventDateTimeStr);
+        TaskEvent eventTask = new TaskEvent(eventTitle, parseDateTime(eventDateTimeStr));
         taskList.addTask(eventTask);
 
         return CommandUtils.generateAddTaskResponse(eventTask, taskList.size());
