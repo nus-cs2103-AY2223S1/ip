@@ -1,7 +1,8 @@
 package duke;
 
-public class EmptyDescriptionException extends DukeException{
-    String typeOf;
+public class EmptyDescriptionException extends DukeException {
+
+    private String typeOf;
 
     /**
      * Constructor for the empty description exception.

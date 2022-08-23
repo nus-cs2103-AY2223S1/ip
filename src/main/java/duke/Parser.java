@@ -27,7 +27,7 @@ public class Parser {
                 result[0] = "list";
                 return result;
             } else if (temp.equals("mark") || temp.equals("unmark") || temp.equals("delete")
-            || temp.equals("todo") || temp.equals("deadline") || temp.equals("event")){
+                    || temp.equals("todo") || temp.equals("deadline") || temp.equals("event")){
                 throw new EmptyDescriptionException("Empty descriptor", temp);
             } else {
                 throw new InvalidTaskException("No valid task descriptor");

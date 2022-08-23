@@ -7,9 +7,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
-    protected String by;
-    protected LocalDate date;
-    protected LocalTime time;
+    private String by;
+    private LocalDate date;
+    private LocalTime time;
 
     /**
      * Constructor for a deadline task.

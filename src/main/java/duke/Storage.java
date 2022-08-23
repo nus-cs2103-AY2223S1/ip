@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Storage {
-    File dirFile;
-    File dataFile;
+    private File dirFile;
+    private File dataFile;
 
     /**
      * Constructor for a Storage object used to save files.

@@ -2,8 +2,8 @@ package duke;
 
 public class Task {
 
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
 
     /**
      * Constructor for a Task object.
