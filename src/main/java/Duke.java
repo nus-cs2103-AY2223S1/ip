@@ -1,6 +1,12 @@
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Duke {
 
@@ -31,7 +37,8 @@ public class Duke {
      * @param tasks The task-list.
      * @param numTasks The number of tasks currently.
      */
-    public static void addTask(String noType, String type, ArrayList<Task> tasks, int numTasks)
+    public static void addTask(String noType, String type, ArrayList<Task> tasks,
+                               int numTasks, boolean done, boolean load)
             throws DukeException {
         String confirmation = "Got it. I've added this task:\n  ";
         String number = "\nNow you have " + (numTasks + 1) + " tasks in the list.";
@@ -46,19 +53,25 @@ public class Duke {
                 throw new DukeException("☹ OOPS!!! A single deadline must be specified." +
                         "e.g. deadline finish work /by June 9th");
             }
-            tasks.add(numTasks, new Deadline(split[0], split[1]));
-            say(confirmation + tasks.get(numTasks) + number);
+            tasks.add(numTasks, new Deadline(split[0], split[1], done));
+            if(!load) {
+                say(confirmation + tasks.get(numTasks) + number);
+            }
         } else if(type.equals("event")){
             String[] split = noType.split(" /at ");
             if(split.length != 2){
                 throw new DukeException("☹ OOPS!!! A single timeframe must be specified." +
                         "e.g. event meeting /at Thursday 2-4pm");
             }
-            tasks.add(numTasks, new Event(split[0], split[1]));
-            say(confirmation  + tasks.get(numTasks) + number);
+            tasks.add(numTasks, new Event(split[0], split[1], done));
+            if(!load) {
+                say(confirmation + tasks.get(numTasks) + number);
+            }
         } else {
-            tasks.add(numTasks, new ToDo(noType));
-            say(confirmation + tasks.get(numTasks) + number);
+            tasks.add(numTasks, new ToDo(noType, done));
+            if(!load) {
+                say(confirmation + tasks.get(numTasks) + number);
+            }
         }
 
     }
@@ -130,11 +143,77 @@ public class Duke {
         say(list);
     }
 
+    /**
+     * Writes an array of tasks to a file
+     */
+    public static void writeToFile(ArrayList<Task> tasks, int numTasks){
+        File data = new File("data.txt");
+        try {
+            data.createNewFile();
+            FileWriter writer = new FileWriter("data.txt");
+            String s = "";
+            for(int i = 0; i < numTasks; i++) {
+                //Get task
+                Task t =  tasks.get(i);
+                //Add general details
+                s += t.getType() + " - " + t.isDone() + " - " + t.getTitle();
+                //Add additional details
+                if(t instanceof Deadline){
+                    s += " - /by " + ((Deadline) t).getTime();
+                } else if (t instanceof Event){
+                    s += " - /at " + ((Event) t).getTime();
+                }
+                //Add newline
+                    s += "\n";
+            }
+            writer.write(s);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static ArrayList<Task> readFromFile() {
+        ArrayList<Task> tasks = new ArrayList<>();
+        int numTasks = 0;
+        try{
+            File obj = new File("data.txt");
+            Scanner reader =new Scanner(obj);
+            while (reader.hasNextLine()) {
+                ArrayList<String> split = new ArrayList<String>(
+                        Arrays.asList(reader.nextLine().split(" - ")));
+                String type = split.remove(0);
+                boolean done = split.remove(0).equals("true");
+                String rest = String.join(" ", split);
+                try {
+                    switch (type) {
+                    case "D":
+                        addTask(rest, "deadline", tasks, numTasks, done, true);
+                        break;
+                    case "E" :
+                        addTask(rest, "event", tasks, numTasks, done, true);
+                        break;
+                    case "T" :
+                        addTask(rest, "todo", tasks, numTasks, done, true);
+                        break;
+                    }
+                    numTasks++;
+                } catch (DukeException e) {
+                    say(e.toString());
+                }
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            return new ArrayList<>();
+        }
+        return tasks;
+    }
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<>(100);
-        int numTasks = 0;
+
+        ArrayList<Task> tasks = readFromFile();
+        int numTasks = tasks.size();
 
         say("Hello! I'm Pawl\nWhat can I do for you?");
 
@@ -146,7 +225,6 @@ public class Duke {
             String first = split.remove(0);
             String rest = String.join(" ", split);
 
-
             if(first.equals("list")) {
                 //Handle listing of tasks
                 listTasks(tasks, numTasks);
@@ -155,6 +233,7 @@ public class Duke {
                 //Mark a task as done
                 try {
                     markTask(rest, tasks, numTasks);
+                    writeToFile(tasks,numTasks);
                 } catch (DukeException ex) {
                     say(ex.toString());
                 }
@@ -162,6 +241,7 @@ public class Duke {
                 //Mark a task as not done
                 try {
                     unmarkTask(rest, tasks, numTasks);
+                    writeToFile(tasks,numTasks);
                 } catch (DukeException ex) {
                     say(ex.toString());
                 }
@@ -170,14 +250,16 @@ public class Duke {
                 try {
                     deleteTask(rest, tasks, numTasks);
                     numTasks --;
+                    writeToFile(tasks,numTasks);
                 } catch (DukeException ex) {
                     say(ex.toString());
                 }
             } else if(first.equals("todo") || first.equals("deadline") || first.equals("event")){
                 //Else, add task to list
                 try {
-                    addTask(rest, first, tasks, numTasks);
+                    addTask(rest, first, tasks, numTasks, false, false);
                     numTasks++;
+                    writeToFile(tasks,numTasks);
                 } catch (DukeException ex) {
                     say(ex.toString());
                 }

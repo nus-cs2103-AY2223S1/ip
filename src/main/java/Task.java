@@ -4,7 +4,7 @@ public class Task {
     private types type;
     private enum types{TODO, DEADLINE, EVENT}
 
-    public Task(String title, String type) {
+    public Task(String title, String type, boolean done) {
         switch(type) {
         case "todo":
             this.type = types.TODO;
@@ -18,7 +18,7 @@ public class Task {
             this.type = types.EVENT;
             break;
         }
-        this.done = false;
+        this.done = done;
         this.title = title;
     }
 
@@ -67,6 +67,14 @@ public class Task {
                 //Should catch erroneous types
                 return "T";
         }
+    }
+
+    /**
+     * Returns the title of the task.
+     * @return The title of the task.
+     */
+    public String getTitle() {
+        return title;
     }
 
 }
