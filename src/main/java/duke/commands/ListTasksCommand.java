@@ -44,6 +44,7 @@ public class ListTasksCommand implements Command {
                         }
                 );
                 uiManager.print(TaskManager.display(filteredList));
+                return;
             }
             Matcher matchTasksBefore = ListTasksCommand.MATCH_TASKS_BEFORE.matcher(this.arguments);
             if (matchTasksBefore.matches()) {
@@ -55,6 +56,7 @@ public class ListTasksCommand implements Command {
                         }
                 );
                 uiManager.print(TaskManager.display(filteredList));
+                return;
             }
             throw new DukeException(ListTasksCommand.ERROR_UNKNOWN_OPTION);
         }
