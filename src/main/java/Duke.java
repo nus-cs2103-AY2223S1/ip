@@ -2,9 +2,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Duke {
     private Scanner sc;
@@ -174,18 +176,19 @@ public class Duke {
 
                     String[] details = parts[1].split("/by", 2);
 
-                    String description;
-                    String date;
+                    String description = details[0].trim();;
+                    LocalDate date;
 
                     try {
-                        description = details[0].trim();
-                        date = details[1].trim();
+                        String inputDate = details[1].trim();
+                        if (inputDate.equals("")) {
+                            throw new DukeException("A deadline needs a by date! e.g. deadline buy dinner /by 6pm");
+                        }
+                        date = LocalDate.parse(inputDate);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new DukeException("A deadline needs a by date! e.g. deadline buy dinner /by 6pm");
-                    }
-
-                    if (date.equals("")) {
-                        throw new DukeException("A deadline needs a by date! e.g. deadline buy dinner /by 6pm");
+                    } catch (DateTimeParseException e) {
+                        throw new DukeException("Date must be in proper format!");
                     }
 
                     Task newTask = new Deadline(description, date);
@@ -203,18 +206,19 @@ public class Duke {
 
                     String[] details = parts[1].split("/at", 2);
 
-                    String description;
-                    String date;
+                    String description = details[0].trim();;
+                    LocalDate date;
 
                     try {
-                        description = details[0].trim();
-                        date = details[1].trim();
+                        String inputDate = details[1].trim();
+                        if (inputDate.equals("")) {
+                            throw new DukeException("An event needs a date! e.g. event meeting /at 2pm-4pm");
+                        }
+                        date = LocalDate.parse(inputDate);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new DukeException("An event needs a date! e.g. event meeting /at 2pm-4pm");
-                    }
-
-                    if (date.equals("")) {
-                        throw new DukeException("An event needs a date! e.g. event meeting /at 2pm-4pm");
+                    } catch (DateTimeParseException e) {
+                        throw new DukeException("Date must be in proper format!");
                     }
 
                     Task newTask = new Event(description, date);
@@ -249,9 +253,9 @@ public class Duke {
             String taskType = taskData[0];
             boolean isTaskDone = taskData[1].equals("1");
             String taskDescription = taskData[2];
-            String taskDate = "";
+            LocalDate taskDate = null;
             if (taskType.equals("D") || taskType.equals("E")) {
-                taskDate = taskData[3];
+                taskDate = LocalDate.parse(taskData[3]);
             }
 
             //Create task and add to list
@@ -305,6 +309,4 @@ public class Duke {
         duke.start();
         sc.close();
     }
-
-
 }
