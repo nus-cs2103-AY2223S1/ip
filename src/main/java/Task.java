@@ -12,20 +12,22 @@ abstract public class Task {
         return getStatusIcon() + " " + task;
     }
 
+
     public String getStatusIcon() {
         return this.done ? "[X]" : "[ ]";
+    }
+
+    public String getTask() {
+        return this.task;
     }
 
     public void markTaskAsDone() {
         done = true;
     }
 
+
     public void unMarkTaskAsDone() {done = false; }
 
-    public String getTask()
-    {
-        return task;
-    }
 
     public int getDone() {
         return done ? 1 : 0;

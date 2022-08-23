@@ -13,8 +13,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String getDetail()
-    {
+    public String getDetail() {
         return null;
     }
 }
