@@ -6,13 +6,26 @@ import duke.tasks.Todo;
 
 import java.time.LocalDate;
 
+/**
+ * Parser class to manage user inputs
+ */
 public class Parser {
     private Storage storage;
     private TaskList tasks;
+
+    /**
+     * Constructor Method for Parser class
+     * @param s
+     * @param tasks
+     */
     public Parser(Storage s, TaskList tasks) {
         this.storage = s;
         this.tasks = tasks;
     }
+
+    /**
+     * List of commands that the user can enter
+     */
     enum Command {
         list,
         bye,
@@ -24,6 +37,12 @@ public class Parser {
         event,
         find
     }
+
+    /**
+     * Parses the command entered by the user and prints out the output required
+     * @param command
+     * @return true if the command is by, else returns false
+     */
     public boolean parse(String[] command) {
         try {
             Command cmd = Command.valueOf(command[0]);

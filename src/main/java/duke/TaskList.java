@@ -4,6 +4,7 @@ import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.Todo;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -20,9 +21,10 @@ public class TaskList {
 
     /**
      * Constructor Method for the TaskList, if a file is given to it
+     *
      * @param f Save File
      */
-    public TaskList(File f){
+    public TaskList(File f) {
         list = new ArrayList<>();
 
         if (f.exists()) {
@@ -76,6 +78,7 @@ public class TaskList {
 
     /**
      * Marks the content at index as done on the list
+     *
      * @param index
      */
     public void mark(int index) {
@@ -86,6 +89,7 @@ public class TaskList {
 
     /**
      * Adds a new Event to the list
+     *
      * @param e
      */
     public void add(Event e) {
@@ -102,6 +106,7 @@ public class TaskList {
 
     /**
      * Adds a new Todo to the list
+     *
      * @param t
      */
     public void add(Todo t) {
@@ -114,6 +119,7 @@ public class TaskList {
 
     /**
      * Adds a new Deadline to the list
+     *
      * @param d
      */
     public void add(Deadline d) {
@@ -130,6 +136,7 @@ public class TaskList {
 
     /**
      * Removes the task at index from the list
+     *
      * @param index
      */
     public void delete(int index) {
@@ -142,6 +149,7 @@ public class TaskList {
 
     /**
      * Marks the task at index as not done
+     *
      * @param index
      */
     public void unMark(int index) {
@@ -150,6 +158,11 @@ public class TaskList {
         System.out.println(list.get(index));
     }
 
+    /**
+     * Finds any task that contains the string s in its description and prints it out.
+     *
+     * @param s
+     */
     public void find(String s) {
         for (Task task : list) {
             if (task.contains(s)) {

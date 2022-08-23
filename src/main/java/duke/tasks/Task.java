@@ -21,7 +21,7 @@ public abstract class Task {
      * @param isDone
      * @param description
      */
-    public  Task(boolean isDone, String description) {
+    public Task(boolean isDone, String description) {
         this.description = description;
         this.isDone = isDone;
     }

@@ -1,6 +1,7 @@
 package duke;
 
 import duke.tasks.Task;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -13,8 +14,8 @@ import java.nio.file.StandardOpenOption;
  * <code>Path</code> and a <code>File</code>
  */
 public class Storage {
-    Path path;
-    File f;
+    private Path path;
+    private File f;
 
     /**
      * Constructor method of Storage
