@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,8 +15,6 @@ import java.util.Scanner;
 public class Storage {
 
     private final String filePath;
-    private static final String home = System.getProperty("user.home");
-    private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
     private List<Task> tasks;
 
     public Storage(String filePath) {

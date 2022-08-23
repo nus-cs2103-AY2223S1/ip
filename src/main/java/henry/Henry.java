@@ -7,12 +7,12 @@ import java.nio.file.Path;
 
 public class Henry {
 
+    private static final String home = System.getProperty("user.home");
+    private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
     private final Ui ui;
     private final Storage storage;
     private final TaskList taskList;
     private final Parser parser;
-    private static final String home = System.getProperty("user.home");
-    private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "henry.txt");
     private boolean isActivated;
 
     public Henry() {

@@ -6,10 +6,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Task {
-    protected String description;
-    protected boolean isDone;
     private final Commands type;
     private final LocalDateTime date;
+    protected String description;
+    protected boolean isDone;
 
     public Task(Commands type, String description, LocalDateTime date) {
         this(type, description, date, false);

@@ -1,6 +1,6 @@
 package command;
 
-public class ErrorCommand extends Command{
+public class ErrorCommand extends Command {
 
     public final String errorMessage;
 
