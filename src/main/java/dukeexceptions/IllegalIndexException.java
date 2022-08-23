@@ -1,4 +1,4 @@
-package dukeExceptions;
+package dukeexceptions;
 
 public class IllegalIndexException extends DukeException {
     public IllegalIndexException() {

@@ -1,8 +1,8 @@
 package common;
 
-import Commands.*;
-import dukeExceptions.DukeException;
-import dukeExceptions.UnknownCommandException;
+import commands.*;
+import dukeexceptions.DukeException;
+import dukeexceptions.UnknownCommandException;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

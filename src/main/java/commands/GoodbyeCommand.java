@@ -1,7 +1,6 @@
-package Commands;
+package commands;
 
-import TaskList.TaskList;
-import common.Ui;
+import tasklist.TaskList;
 
 public class GoodbyeCommand extends Command {
     public GoodbyeCommand() {

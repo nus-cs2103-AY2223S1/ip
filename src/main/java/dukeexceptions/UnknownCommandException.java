@@ -1,7 +1,7 @@
-package dukeExceptions;
+package dukeexceptions;
 
 /**
- * Thrown when an unknown command (e.g. "blah") is passed into Duke. Commands are
+ * Thrown when an unknown command (e.g. "blah") is passed into duke.Duke. Commands are
  * defined in the COMMANDS enum.
  */
 public class UnknownCommandException extends DukeException {

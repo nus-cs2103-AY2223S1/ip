@@ -1,6 +1,6 @@
-package Commands;
+package commands;
 
-import TaskList.TaskList;
+import tasklist.TaskList;
 
 public class InvalidCommand extends Command {
     @Override

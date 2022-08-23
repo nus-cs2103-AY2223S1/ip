@@ -1,6 +1,6 @@
-package Commands;
+package commands;
 
-import TaskList.TaskList;
+import tasklist.TaskList;
 
 abstract public class Command {
     protected boolean exit = false;

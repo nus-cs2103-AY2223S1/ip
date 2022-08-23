@@ -1,4 +1,4 @@
-package dukeExceptions;
+package dukeexceptions;
 
 public class IllegalUseException extends DukeException {
     public IllegalUseException(String s) {

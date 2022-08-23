@@ -1,11 +1,11 @@
 package common;
 
-import Commands.DeadlineCommand;
-import Commands.EventCommand;
-import TaskList.TaskList;
-import Tasks.Deadline;
-import Tasks.Event;
-import Tasks.ToDo;
+import commands.DeadlineCommand;
+import commands.EventCommand;
+import tasklist.TaskList;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.ToDo;
 
 import java.io.File;
 import java.io.FileWriter;

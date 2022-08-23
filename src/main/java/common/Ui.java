@@ -1,7 +1,7 @@
 package common;
 
-import TaskList.TaskList;
-import Tasks.Task;
+import tasklist.TaskList;
+import tasks.Task;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class Ui {
     public Ui() {}
 
     public static void showWelcome() {
-        System.out.println("Hello! I'm Duke!\nWhat can I do for you?");
+        System.out.println("Hello! I'm duke.Duke!\nWhat can I do for you?");
         printDivider();
     }
 

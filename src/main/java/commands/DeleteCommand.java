@@ -1,10 +1,10 @@
-package Commands;
+package commands;
 
-import TaskList.TaskList;
-import Tasks.Task;
+import tasklist.TaskList;
+import tasks.Task;
 import common.Ui;
-import dukeExceptions.DukeException;
-import dukeExceptions.IllegalIndexException;
+import dukeexceptions.DukeException;
+import dukeexceptions.IllegalIndexException;
 
 public class DeleteCommand extends Command {
     private String[] args;

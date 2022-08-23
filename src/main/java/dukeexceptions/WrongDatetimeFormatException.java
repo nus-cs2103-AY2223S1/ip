@@ -1,4 +1,4 @@
-package dukeExceptions;
+package dukeexceptions;
 
 /**
  * Thrown when a string does not follow a specified datetime format during validation.

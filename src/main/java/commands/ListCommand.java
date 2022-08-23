@@ -1,6 +1,6 @@
-package Commands;
+package commands;
 
-import TaskList.TaskList;
+import tasklist.TaskList;
 import common.Ui;
 
 public class ListCommand extends Command {

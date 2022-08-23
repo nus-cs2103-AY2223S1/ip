@@ -1,10 +1,10 @@
-package Commands;
+package commands;
 
-import TaskList.TaskList;
-import Tasks.ToDo;
+import tasklist.TaskList;
+import tasks.ToDo;
 import common.Ui;
-import dukeExceptions.DukeException;
-import dukeExceptions.MissingDescriptionException;
+import dukeexceptions.DukeException;
+import dukeexceptions.MissingDescriptionException;
 
 public class ToDoCommand extends Command {
     private String[] args;

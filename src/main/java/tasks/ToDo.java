@@ -1,8 +1,4 @@
-package Tasks;
-
-import Tasks.Task;
-import dukeExceptions.DukeException;
-import dukeExceptions.MissingDescriptionException;
+package tasks;
 
 /**
  * Todo represents a Tasks.Task without any datetime objects associated with it.

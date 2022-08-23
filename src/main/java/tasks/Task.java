@@ -1,6 +1,4 @@
-package Tasks;
-
-import dukeExceptions.IllegalUseException;
+package tasks;
 
 /**
  * Tasks.Task represents a generic task that subclasses can inherit from. Represents

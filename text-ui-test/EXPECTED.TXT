@@ -1,4 +1,4 @@
-Hello! I'm Duke!
+Hello! I'm duke!
 What can I do for you?
 -----------------------------------
 Got it. I've added this task:
@@ -60,8 +60,8 @@ Saving...
 -----------------------------------
 Saving...
 -----------------------------------
-dukeExceptions.UnknownCommandException: OOPS!!! Sorry, I do not know what that means!
+dukeexceptions.UnknownCommandException: OOPS!!! Sorry, I do not know what that means!
 -----------------------------------
-dukeExceptions.MissingDescriptionException: OOPS!!! The description of a todo cannot be empty.
+dukeexceptions.MissingDescriptionException: OOPS!!! The description of a todo cannot be empty.
 -----------------------------------
 Bye. Hope to see you again soon!

@@ -1,12 +1,12 @@
-package Commands;
+package commands;
 
-import TaskList.TaskList;
-import Tasks.Event;
+import tasklist.TaskList;
+import tasks.Event;
 import common.Parser;
 import common.Ui;
-import dukeExceptions.DukeException;
-import dukeExceptions.MissingDescriptionException;
-import dukeExceptions.WrongDatetimeFormatException;
+import dukeexceptions.DukeException;
+import dukeexceptions.MissingDescriptionException;
+import dukeexceptions.WrongDatetimeFormatException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

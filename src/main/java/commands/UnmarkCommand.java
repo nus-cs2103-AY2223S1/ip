@@ -1,10 +1,9 @@
-package Commands;
+package commands;
 
-import TaskList.TaskList;
+import tasklist.TaskList;
 import common.Ui;
-import dukeExceptions.DukeException;
-import dukeExceptions.IllegalIndexException;
-import dukeExceptions.MissingDescriptionException;
+import dukeexceptions.DukeException;
+import dukeexceptions.IllegalIndexException;
 
 public class UnmarkCommand extends Command {
     private String[] args;

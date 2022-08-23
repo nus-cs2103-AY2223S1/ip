@@ -1,6 +1,6 @@
-package TaskList;
+package tasklist;
 
-import Tasks.Task;
+import tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
