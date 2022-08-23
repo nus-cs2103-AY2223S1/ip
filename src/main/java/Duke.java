@@ -5,14 +5,12 @@ import exceptions.DukeException;
 import handlers.HandlerFactory;
 import handlers.IHandler;
 import service.Service;
+import service.Ui;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static utils.Utils.customPrint;
 
 public class Duke {
     private static final Pattern COMMAND_REGEX = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
@@ -25,17 +23,19 @@ public class Duke {
     private final static Tasklist list = new Tasklist();
 
     public static void main(String[] args) {
-        customPrint(LOGO + "Hello! I'm Duke\nWhat can I do for you?");
+
         Scanner sc = new Scanner(System.in);
         String userInput;
+        Ui ui = new Ui();
+        ui.customPrint(LOGO + "Hello! I'm Duke\nWhat can I do for you?");
         File storageDirectory = new File("./data");
         if (!storageDirectory.exists()) {
             if (!storageDirectory.mkdir()) {
-                customPrint(" ☹ OOPS!!! " + "Could not create /data directory");
+                ui.customPrintError("Could not create /data directory");
             }
         }
         IStorage storage = new FileStorage("./data/duke.txt");
-        Service service = new Service(storage);
+        Service service = new Service(storage, ui);
         while (sc.hasNextLine()) {
             if ((userInput = sc.nextLine()).equals("bye")) {
                 break;
@@ -43,11 +43,11 @@ public class Duke {
             try {
                 handleCommand(service, userInput);
             } catch (DukeException ex) {
-                customPrint(" ☹ OOPS!!! " + ex.getMessage());
+                ui.customPrintError(ex);
             }
 
         }
-        customPrint("Bye. Hope to see you again soon!");
+        ui.customPrint("Bye. Hope to see you again soon!");
     }
 
 

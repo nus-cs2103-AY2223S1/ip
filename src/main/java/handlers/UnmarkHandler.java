@@ -4,8 +4,6 @@ import entities.Task;
 import exceptions.DukeException;
 import service.Service;
 
-import static utils.Utils.customPrint;
-
 public class UnmarkHandler implements IHandler{
     private String taskIndex;
 
@@ -22,7 +20,7 @@ public class UnmarkHandler implements IHandler{
             int number = Integer.parseInt(this.taskIndex);
             Task item = s.list.get(number - 1);
             item.setDone(false);
-            customPrint("OK, I've marked this task as not done yet:\n  " + item);
+            s.ui.customPrint("OK, I've marked this task as not done yet:\n  " + item);
         }
         catch (NumberFormatException ex) {
             throw new DukeException("Invalid list index!\nUsage: `unmark 2`");

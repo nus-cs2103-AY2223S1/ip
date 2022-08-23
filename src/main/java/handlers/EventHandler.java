@@ -3,15 +3,8 @@ package handlers;
 import entities.Event;
 import entities.Task;
 import exceptions.DukeException;
-<<<<<<< HEAD
 import service.Service;
-=======
-
 import java.time.format.DateTimeParseException;
-import java.util.List;
->>>>>>> branch-Level-8
-
-import static utils.Utils.addToList;
 
 public class EventHandler implements IHandler{
     private String eventName;
@@ -38,7 +31,7 @@ public class EventHandler implements IHandler{
         }
         try {
             Task event = new Event(this.eventName, this.flagOption);
-            s.list.add(event);
+            s.addToList(event);
         } catch (DateTimeParseException ex) {
             throw new DukeException("Invalid Date/Time!\nUsage: `event project meeting /at 2/12/2019 1800`");
         }

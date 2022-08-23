@@ -8,8 +8,6 @@ import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static utils.Utils.customPrint;
-
 public class FileStorage implements IStorage {
     private final String filePath;
     private static final Pattern TASK_REGEX = Pattern.compile("^\\[(T|D|E)\\]\\[(x| )\\] (.*)(?: \\(.*: (.*)\\))?$");
@@ -24,7 +22,7 @@ public class FileStorage implements IStorage {
             File file = new File(this.filePath);
             file.createNewFile();
         } catch (IOException e) {
-            customPrint((String.format("Unable to create file: %s", this.filePath)));
+            System.out.println(String.format("Unable to create file: %s", this.filePath));
         }
 
         try {
@@ -34,7 +32,7 @@ public class FileStorage implements IStorage {
             }
             myWriter.close();
         } catch (IOException e) {
-            customPrint(String.format("Unable to write to file: %s", this.filePath));
+            System.out.println(String.format("Unable to write to file: %s", this.filePath));
         }
     }
     @Override
@@ -59,12 +57,12 @@ public class FileStorage implements IStorage {
                     }
                     lineNumber++;
                 } catch (IllegalStateException ex) {
-                    customPrint(String.format("Invalid line found at line %d. Ignoring line %d.", lineNumber));
+                    System.out.println(String.format("Invalid line found at line %d. Ignoring line %d.", lineNumber));
                 }
             }
             return result;
         } catch (IOException ex) {
-            customPrint(String.format("File (%s) not found! Starting from empty Tasklist.", this.filePath));
+            System.out.println(String.format("File (%s) not found! Starting from empty Tasklist.", this.filePath));
             return new Tasklist();
         }
     }

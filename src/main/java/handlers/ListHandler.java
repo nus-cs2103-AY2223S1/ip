@@ -2,8 +2,6 @@ package handlers;
 
 import exceptions.DukeException;
 import service.Service;
-import utils.Utils;
-
 
 public class ListHandler implements IHandler{
     public ListHandler() {
@@ -20,6 +18,6 @@ public class ListHandler implements IHandler{
                 stringBuilder.append("\n");
             }
         }
-        Utils.customPrint(stringBuilder.toString());
+        s.ui.customPrint(stringBuilder.toString());
     }
 }

@@ -4,8 +4,6 @@ import entities.Task;
 import exceptions.DukeException;
 import service.Service;
 
-import static utils.Utils.customPrint;
-
 public class DeleteHandler implements IHandler{
     private String taskIndex;
 
@@ -20,7 +18,10 @@ public class DeleteHandler implements IHandler{
         }
         try{
             int number = Integer.parseInt(this.taskIndex);
-            s.list.remove(number - 1);
+            Task item = s.list.remove(number - 1);
+            s.ui.customPrint("Noted. I've removed this task:\n" +
+                    item +
+                    "Now you have " + s.list.size() + " tasks in the list.");;
         }
         catch (NumberFormatException ex) {
             throw new DukeException("Invalid list index!\nUsage: `delete 2`");

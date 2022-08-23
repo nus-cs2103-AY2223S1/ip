@@ -4,8 +4,6 @@ import entities.Task;
 import exceptions.DukeException;
 import service.Service;
 
-import static utils.Utils.customPrint;
-
 public class MarkHandler implements IHandler{
     private String taskIndex;
 
@@ -25,7 +23,7 @@ public class MarkHandler implements IHandler{
             }
             Task item = s.list.get(number - 1);
             item.setDone(true);
-            customPrint("Nice! I've marked this task as done:\n  " + item);
+            s.ui.customPrint("Nice! I've marked this task as done:\n  " + item);
         }
         catch (NumberFormatException ex) {
             throw new DukeException("Invalid list index!\nUsage: `mark 2`");

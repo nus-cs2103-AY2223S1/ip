@@ -32,7 +32,7 @@ public class DeadlineHandler implements IHandler{
         }
         try {
             Task deadline = new Deadline(this.deadlineName, this.flagOption);
-            s.list.add(deadline);
+            s.addToList(deadline);
         } catch (DateTimeParseException ex) {
             throw new DukeException("Invalid Date/Time!\nUsage: `deadline return book /at 2/12/2019 1800`");
         }

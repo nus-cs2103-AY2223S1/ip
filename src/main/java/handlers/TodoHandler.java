@@ -5,8 +5,6 @@ import entities.Todo;
 import exceptions.DukeException;
 import service.Service;
 
-import static utils.Utils.addToList;
-
 public class TodoHandler implements IHandler{
     private String todoName;
 
@@ -20,6 +18,6 @@ public class TodoHandler implements IHandler{
             throw new DukeException("Please enter a task name!");
         }
         Task todo = new Todo(this.todoName);
-        s.list.add(todo);
+        s.addToList(todo);
     }
 }
