@@ -1,17 +1,33 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+
+    private Storage storage;
+    private TaskList tasks;
+
+    public Duke(String filePath){
+      storage = new Storage(filePath);
+      tasks = new TaskList(storage.load());
+    }
     public static void main(String[] args) {
+      Duke duke = new Duke("tasks.txt");
+      duke.tasks.printList();
+
       Scanner sc = new Scanner(System.in);
+
       List<Task> list = new ArrayList<>();
+
 
       System.out.print("Hello I'm Duke\nWhat can I do for you?\n");
       while (true){
         String str = sc.nextLine();
         try{
-          if(str.equals("bye")){
+          if (str.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon!");
             break;
           } else if (str.equals("list")) {
@@ -110,4 +126,17 @@ public class Duke {
           return null;
         }
     }
+
+//    private static void startUp() throws IOException {
+//      String FILEPATH = ".\\data\\duke.txt";
+//      String FOLDERPATH = ".\\data";
+//      File dukeTxt = new File(FILEPATH);
+//      File folder = new File(FOLDERPATH);
+//      if (!folder.exists()) {
+//        folder.mkdir();
+//      }
+//      if (!dukeTxt.exists()) {
+//        dukeTxt.createNewFile()
+//      }
+//    }
 }
