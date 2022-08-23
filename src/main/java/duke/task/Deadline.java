@@ -17,13 +17,13 @@ public class Deadline extends Task {
     /** Stores the due date of the Deadline. */
     protected String by;
 
-    /** Stores the due date of theDeadline in dateTime format. */
+    /** Stores the due date of the Deadline in dateTime format. */
     protected String dateTime;
 
     /**
      * Constructor for Deadline.
      *
-     * @param description Description of the Deadline task.
+     * @param description Description of the Deadline.
      * @param by The due date of the Deadline.
      */
     public Deadline(String description, String by) throws DukeInvalidTimeException {
@@ -46,10 +46,10 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the Date and Time of Task
+     * Returns the Date and Time of Deadline.
      *
-     * @return Date and Time of Task
-     * @throws DukeInvalidTimeException Exception when input time is not of valid Format
+     * @return Date and Time of Deadline.
+     * @throws DukeInvalidTimeException Exception when input time is not of valid Format.
      */
     public String getDateTime() throws DukeInvalidTimeException {
         String dateStr;

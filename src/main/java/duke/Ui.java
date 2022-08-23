@@ -13,7 +13,7 @@ import duke.task.TaskList;
  * @author Tan Jia Rong
  */
 public class Ui {
-    private static final String BOT_NAME = "duke";
+    private static final String BOT_NAME = "Duke";
 
     /**
      * Prints Greetings Message.
@@ -57,7 +57,7 @@ public class Ui {
     }
 
     /**
-     * Prints message on task completion
+     * Prints message on task completion.
      *
      * @param task Task that is completed.
      */
@@ -69,9 +69,9 @@ public class Ui {
     }
 
     /**
-     * Prints message on task completion undo-ed
+     * Prints message on task completion undo-ed.
      *
-     * @param task Completed Task that is undo-ed
+     * @param task Completed Task that is undo-ed.
      */
     public void unmarkMessage(Task task) {
         System.out.println("\n-----------------------------------------");
@@ -81,7 +81,7 @@ public class Ui {
     }
 
     /**
-     * Prints tasks in List.
+     * Prints tasks in TaskList.
      *
      * @param tasks The list of tasks.
      */
@@ -98,7 +98,7 @@ public class Ui {
     /**
      * Prints message on task addition.
      *
-     * @param size Size of task list after addition.
+     * @param size Size of TaskList after addition.
      * @param task Task added.
      */
     public void addMessage(int size, Task task) {
@@ -112,7 +112,7 @@ public class Ui {
     /**
      * Prints message on task deletion.
      *
-     * @param size Size of task list after deletion.
+     * @param size Size of TaskList after deletion.
      * @param task Task deleted.
      */
     public void deleteMessage(int size, Task task) {

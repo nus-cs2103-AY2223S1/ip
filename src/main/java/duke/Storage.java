@@ -16,14 +16,14 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDo;
 /**
- * The Storage class that stores the task in task list.
+ * The Storage class that stores the tasks in TaskList.
  *
  * CS2103T iP
  * AY22/23 Semester 1
  * @author Tan Jia Rong
  */
 public class Storage {
-    /** Save location of task list */
+    /** Save location of TaskList */
     private File file;
 
     /**
@@ -36,7 +36,7 @@ public class Storage {
     }
 
     /**
-     * Saves Tasks into save file.
+     * Saves tasks into save file.
      *
      * @param tasks The List of Task to write from.
      */
@@ -85,7 +85,7 @@ public class Storage {
     }
 
     /**
-     * Loads Tasks from save file.
+     * Loads tasks from save file.
      */
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();

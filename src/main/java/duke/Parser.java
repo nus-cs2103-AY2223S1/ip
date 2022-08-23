@@ -32,9 +32,9 @@ public class Parser {
     /**
      * Executes user inputs.
      *
-     * @param command Task/Action to be executed
+     * @param command Task/Action to be executed.
      * @param description Description of the Task/Action to be executed.
-     * @param tasks TaskList where results are stored
+     * @param tasks TaskList where results are stored.
      */
     public void execute(String command, String description, TaskList tasks) {
         try {

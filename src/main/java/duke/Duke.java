@@ -4,8 +4,6 @@ import java.util.Scanner;
 
 import duke.task.TaskList;
 
-
-
 /**
  * The Duke class that instantiates instances of duke.
  *
@@ -30,7 +28,7 @@ public class Duke {
     /**
      * Constructor for ChatBot, Duke.
      *
-     * @param filePath Location of savefile.
+     * @param filePath Location of save file.
      */
     public Duke(String filePath) {
         this.ui = new Ui();
@@ -61,7 +59,7 @@ public class Duke {
     }
 
     /**
-     * Returns the Duke.Duke ChatBot.
+     * Returns the Duke ChatBot.
      *
      * @param args arguments (if any).
      */
