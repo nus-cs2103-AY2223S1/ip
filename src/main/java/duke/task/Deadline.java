@@ -2,12 +2,13 @@ package duke.task;
 
 import duke.DukeException;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
-    protected LocalDate by;
+    protected LocalDateTime by;
+    public static String EVENT_DATETIME_FORMAT = "dd/MM/yyyy HH:mm";
+    public static String DISPLAY_DATETIME_FORMAT = "MMM dd yyyy";
 
     /**
      * Constructs a new Deadline task.
@@ -15,13 +16,9 @@ public class Deadline extends Task {
      * @param description description of the task
      * @param by          the deadline of the task.
      */
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, LocalDateTime by) {
         super(description);
-        try {
-            this.by = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-        } catch (DateTimeParseException e) {
-            throw new DukeException("%s does not match the required dd/MM/yyyy HH:mm format", by);
-        }
+        this.by = by;
     }
 
     /**
@@ -33,7 +30,8 @@ public class Deadline extends Task {
      */
     public static Deadline decode(String encodedInput, boolean completed) throws DukeException {
         String[] entries = encodedInput.split("\\|", 2);
-        Deadline deadline = new Deadline(entries[1], entries[0]);
+        LocalDateTime datetime = LocalDateTime.parse(entries[0], DateTimeFormatter.ISO_DATE_TIME);
+        Deadline deadline = new Deadline(entries[1], datetime);
         deadline.setDone(completed);
         return deadline;
     }
@@ -50,6 +48,6 @@ public class Deadline extends Task {
 
     @Override
     public String getDisplayText() {
-        return String.format("%s (by: %s)", description, by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+        return String.format("%s (by: %s)", description, by.format(DateTimeFormatter.ofPattern(DISPLAY_DATETIME_FORMAT)));
     }
 }

@@ -24,9 +24,13 @@ public class Storage {
     public Storage(String fileName) throws DukeException {
         String _directoryPath = null;
         try {
-            _directoryPath = Path.of(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).toString();
+            _directoryPath = Path.of(this.getClass()
+                    .getProtectionDomain()
+                    .getCodeSource()
+                    .getLocation().toURI()).toString();
             _directoryPath = _directoryPath.substring(0, _directoryPath.lastIndexOf(File.separator));
-            _directoryPath = URLDecoder.decode(_directoryPath, StandardCharsets.UTF_8).concat(File.separator + "data");
+            _directoryPath = URLDecoder.decode(_directoryPath, StandardCharsets.UTF_8)
+                    .concat(File.separator + "data");
             File directory = new File(_directoryPath);
             if (!directory.exists()) {
                 if (!directory.mkdir()) {

@@ -5,8 +5,6 @@ import duke.Storage;
 
 import java.util.ArrayList;
 
-import static java.lang.Integer.parseInt;
-
 public class TaskList extends ArrayList<Task> {
     private final Storage storage;
 
@@ -34,24 +32,24 @@ public class TaskList extends ArrayList<Task> {
         return false;
     }
 
-    public Task removeTask(String index) throws DukeException {
-        try {
-            Task task = super.remove(parseInt(index.strip()) - 1);
+    public Task removeTask(int index) throws DukeException {
+        if (0 <= index && index <= this.size()) {
+            Task task = super.remove(index);
             storage.saveTasks(this);
             return task;
-        } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            throw new DukeException("Failed to delete task %s", index);
+        } else {
+            throw new DukeException("Failed to delete task %d", index + 1);
         }
     }
 
-    public Task setCompletion(String index, boolean completed) throws DukeException {
+    public Task setCompletion(int index, boolean completed) throws DukeException {
         try {
-            Task task = super.get(Integer.parseInt(index.strip()) - 1);
+            Task task = super.get(index);
             task.setDone(completed);
             storage.saveTasks(this);
             return task;
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
-            throw new DukeException("Task %d not found.", index);
+            throw new DukeException("Task %d not found.", index + 1);
         }
     }
 

@@ -1,98 +1,66 @@
-____________________
-
+_____________________
 Hello! I'm Duke
 What do you need to do?
-____________________
-
-____________________
-
+_____________________
+_____________________
 Here are the tasks in your list:
 
-____________________
-
-____________________
-
+_____________________
+_____________________
 Got it. I've added this todo:
   [T][ ] borrow book
-Now you have 1 tasks in your list
-____________________
-
-____________________
-
+Now you have 1 tasks in your list.
+_____________________
+_____________________
 Got it. I've added this deadline:
   [D][ ] return book (by: Jan 15 2020)
 Now you have 2 tasks in your list
-____________________
-
-____________________
-
+_____________________
+_____________________
 Got it. I've added this event:
   [E][ ] project meeting (at: Mon 2-4pm)
 Now you have 3 tasks in your list
-____________________
-
-____________________
-
-☹ OOPS!!! no idea :-p does not match the required dd/MM/yyyy HH:mm format
-____________________
-
-____________________
-
+_____________________
+_____________________
+[31m☹ OOPS!!! Invalid deadline format[0m
+_____________________
+_____________________
 Nice! I've marked this task as done:
   [T][X] borrow book
-____________________
-
-____________________
-
+_____________________
+_____________________
 Nice! I've marked this task as done:
   [D][X] return book (by: Jan 15 2020)
-____________________
-
-____________________
-
+_____________________
+_____________________
 Nice! I've marked this task as done:
   [E][X] project meeting (at: Mon 2-4pm)
-____________________
-
-____________________
-
+_____________________
+_____________________
 Ok, I've marked this task as not done yet:
   [T][ ] borrow book
-____________________
-
-____________________
-
-☹ OOPS!!! Failed to delete task 5
-____________________
-
-____________________
-
+_____________________
+_____________________
+[31m☹ OOPS!!! Failed to delete task 5[0m
+_____________________
+_____________________
 Noted. I've removed this task:
   [E][X] project meeting (at: Mon 2-4pm)
 Now you have 2 tasks in your list
-____________________
-
-____________________
-
+_____________________
+_____________________
 Noted. I've removed this task:
   [D][X] return book (by: Jan 15 2020)
 Now you have 1 tasks in your list
-____________________
-
-____________________
-
-☹ OOPS!!! Failed to delete task x
-____________________
-
-____________________
-
+_____________________
+_____________________
+[31m☹ OOPS!!! Failed to delete task x[0m
+_____________________
+_____________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
 
-____________________
-
-____________________
-
+_____________________
+_____________________
 Bye. Hope to see you again soon!
-____________________
-
+_____________________
