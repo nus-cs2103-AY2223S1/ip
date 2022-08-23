@@ -44,9 +44,10 @@ public class MarkCommand extends Command {
      * @throws DukeException If storage object is unable to save the list of tasks after marking, 
      * or if the <code>taskIndex</code> is not within range of the size of the TaskList.
      */
+    
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task task = tasks.mark(this.taskIndex);
+        Task task = tasks.mark(taskIndex);
         ui.showMarkTask(task, tasks);
         storage.save(tasks);
     }

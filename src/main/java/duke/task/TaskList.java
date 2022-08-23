@@ -1,10 +1,9 @@
 package duke.task;
 
-import duke.exception.TaskIndexOutOfBoundsException;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.exception.TaskIndexOutOfBoundsException;
 /**
  * Represents the list of tasks added by the user.
  *
@@ -28,7 +27,7 @@ public class TaskList {
      * Creates a <code>TaskList</code> object containing an empty <code>List</code> of tasks.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -37,7 +36,7 @@ public class TaskList {
      * @param task <code>Task</code> object to be added.
      */
     public void add(Task task) {
-        this.tasks.add(task);
+        tasks.add(task);
     }
 
     /**
@@ -52,7 +51,7 @@ public class TaskList {
             throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
         }
         Task task = this.tasks.get(taskIndex - 1);
-        this.tasks.remove(taskIndex);
+        tasks.remove(taskIndex);
         return task;
     }
 
@@ -67,7 +66,7 @@ public class TaskList {
         if (!isValidIndex(taskIndex)) {
             throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
         }
-        Task task = this.tasks.get(taskIndex - 1);
+        Task task = tasks.get(taskIndex - 1);
         task.markAsDone();
         return task;
     }
@@ -84,7 +83,7 @@ public class TaskList {
         if (!isValidIndex(taskIndex)) {
             throw new TaskIndexOutOfBoundsException(taskIndex, this.size());
         }
-        Task task = this.tasks.get(taskIndex - 1);
+        Task task = tasks.get(taskIndex - 1);
         task.unmarkAsDone();
         return task;
     }
@@ -94,7 +93,7 @@ public class TaskList {
      * @return Size of the <code>List</code> of tasks.
      */
     public int size() {
-        return this.tasks.size();
+        return tasks.size();
     }
 
     /**
@@ -102,19 +101,19 @@ public class TaskList {
      * @return <code>List</code> of tasks.
      */
     public List<Task> getTasks() {
-        return this.tasks;
+        return tasks;
     }
 
     /**
      * Prints all the tasks in the <code>List</code> of tasks.
      */
     public void listTasks() {
-        int len = this.tasks.size();
+        int len = tasks.size();
         if (len == 0) {
             System.out.println("       YOU HAVE NO TASKS");
         } else {
             for (int i = 0; i < len; i++) {
-                Task task = this.tasks.get(i);
+                Task task = tasks.get(i);
                 System.out.printf("   %d.%s%n", i + 1, task);
             }
         }

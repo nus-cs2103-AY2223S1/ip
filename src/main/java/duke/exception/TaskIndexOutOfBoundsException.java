@@ -15,7 +15,8 @@ public class TaskIndexOutOfBoundsException extends DukeException {
      * @param maxIndex Maximum valid task index, which is also the size of the current <code>TaskList</code>.
      */
     public TaskIndexOutOfBoundsException(int providedIndex, int maxIndex) {
-        super(maxIndex == 0 ? "You have no tasks!" :
-                "The provided task index " + providedIndex + " is out of range! Accepted Range: [1, " + maxIndex + "]");
+        super(maxIndex == 0 ? "You have no tasks!"
+                : "The provided task index " + providedIndex
+                + " is out of range! Accepted Range: [1, " + maxIndex + "]");
     }
 }

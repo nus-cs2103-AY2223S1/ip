@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.Parser;
-
 import java.time.LocalDateTime;
+
+import duke.Parser;
 
 /**
  * Represents a task.
@@ -40,7 +40,6 @@ public class Task {
         boolean isComplete = taskSplit[1].equals("1");
         String taskDescription = taskSplit[2];
         Task task;
-        
         if (taskSymbol.equals("T")) {
             task = new Todo(taskDescription);
         } else if (taskSymbol.equals("D")) {
@@ -50,7 +49,6 @@ public class Task {
             LocalDateTime atDateTime = Parser.parseDateTime(taskSplit[3]);
             task = new Event(taskDescription, atDateTime);
         }
-        
         if (isComplete) {
             task.markAsDone();
         }
@@ -70,16 +68,16 @@ public class Task {
      * Marks the task as completed.
      */
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     /**
      * Unmarks the test as completed.
      */
     public void unmarkAsDone() {
-        this.isDone = false;
+        isDone = false;
     }
-
+    
     /**
      * Returns string representation of the task.
      * 
@@ -87,16 +85,25 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + getStatusIcon() + "] " + getDescription();
     }
 
+    /**
+     * Returns the description of the task.
+     *
+     * @return Description of the task.
+     */
+    public String getDescription() {
+        return description;
+    }
+    
     /**
      * Returns the formatted task, which is to be written into the storage file.
      *
      * @return Formatted task, which is to be written into the storage file.
      */
     public String toFileFormatString() {
-        int i = this.isDone ? 1 : 0;
+        int i = isDone ? 1 : 0;
         return "|" + i + "|";
     }
 }

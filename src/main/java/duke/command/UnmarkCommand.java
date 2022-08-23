@@ -13,10 +13,9 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class UnmarkCommand extends Command {
-
     /** The index of the task in the TaskList to be unmarked. */
     private int taskIndex;
-
+    
     /**
      * Returns the format of the <code>unmark</code> command.
      *
@@ -46,7 +45,7 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task task = tasks.unmark(this.taskIndex);
+        Task task = tasks.unmark(taskIndex);
         ui.showUnmarkTask(task, tasks);
         storage.save(tasks);
     }

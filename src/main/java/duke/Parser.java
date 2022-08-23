@@ -1,21 +1,20 @@
 package duke;
 
-import duke.command.TodoCommand;
-import duke.command.DeadlineCommand;
-import duke.command.EventCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.command.DeleteCommand;
-import duke.command.ListCommand;
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+
 import duke.command.ByeCommand;
 import duke.command.Command;
-
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.exception.InvalidCommandFormatException;
 import duke.exception.UnknownCommandException;
-
-import java.time.DateTimeException;
-import java.time.LocalDateTime;
 
 /**
  * The <code>Parser</code> parses input from the user and returns the corresponding commands to execute.
@@ -35,7 +34,7 @@ public class Parser {
         String[] dateTimeSplit = dateTimeString.split("[ T]");
         String isoDateFormat = "";
         if (dateTimeSplit.length == 1) {
-            isoDateFormat = String.format("%sT23:59",dateTimeSplit[0]);
+            isoDateFormat = String.format("%sT23:59", dateTimeSplit[0]);
         } else {
             isoDateFormat = String.format("%sT%s", dateTimeSplit[0], dateTimeSplit[1]);
         }
@@ -70,7 +69,6 @@ public class Parser {
         String[] fullCommandSplit = fullCommand.split(" ", 2);
         String command = fullCommandSplit[0].strip();
         String commandArgument = fullCommandSplit.length > 1 ? fullCommandSplit[1].strip() : "";
-        
         if (command.equals("")) {
             throw new DukeException("Command cannot be empty");
         }
@@ -105,7 +103,6 @@ public class Parser {
                 if (commandArgument.equals("") || !isDigit(commandArgument)) {
                     throw new InvalidCommandFormatException(commandFormat);
                 }
-
                 int taskIndex = Integer.parseInt(commandArgument);
                 return command.equals("mark")
                         ? new MarkCommand(taskIndex)
@@ -116,9 +113,10 @@ public class Parser {
                 return new ByeCommand();
             } else if (command.equals("list")) {
                 return new ListCommand();
-            } 
+            }
         } catch (DateTimeException dte) {
-            throw new DukeException("Datetime must be in this format: <DATE> <TIME>\n  DATE: YYYY-MM-DD\n  TIME(optional): HH:MM");
+            throw new DukeException("Datetime must be in this format: "
+                    + "<DATE> <TIME>\n  DATE: YYYY-MM-DD\n  TIME(optional): HH:MM");
         }
         throw new UnknownCommandException(command);
     }

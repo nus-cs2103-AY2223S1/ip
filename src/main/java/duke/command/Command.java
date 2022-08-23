@@ -12,7 +12,6 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public abstract class Command {
-
     /**
      * Executes the corresponding command.
      *

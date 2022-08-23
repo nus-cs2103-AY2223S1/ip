@@ -21,7 +21,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, LocalDateTime byDateTime) {
         super(description);
-       this.byDateTime = byDateTime;
+        this.byDateTime = byDateTime;
     }
 
     /**
@@ -32,7 +32,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm");
-        String formattedDateTime = this.byDateTime.format(formatter);
+        String formattedDateTime = byDateTime.format(formatter);
         return String.format("[D]%s (by: %s)", super.toString(), formattedDateTime);
     }
 
@@ -43,6 +43,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileFormatString() {
-        return "D" + super.toFileFormatString() + description + "|" + byDateTime ;
+        return "D" + super.toFileFormatString() + description + "|" + byDateTime;
     }
 }

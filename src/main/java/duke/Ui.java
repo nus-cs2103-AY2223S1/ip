@@ -10,7 +10,6 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class Ui {
-
     /**
      * Greets the user when the application is launched.
      */
@@ -70,8 +69,8 @@ public class Ui {
      */
     public void showAddTask(Task task, TaskList tasks) {
         System.out.println("Got it. I've added this task:");
-        this.showTask(task);
-        this.showNumTasks(tasks);
+        showTask(task);
+        showNumTasks(tasks);
     }
 
     /**
@@ -82,8 +81,8 @@ public class Ui {
      */
     public void showDeleteTask(Task task, TaskList tasks) {
         System.out.println("Okie, I've deleted this task: ");
-        this.showTask(task);
-        this.showNumTasks(tasks);
+        showTask(task);
+        showNumTasks(tasks);
     }
 
     /**
@@ -94,8 +93,8 @@ public class Ui {
      */
     public void showMarkTask(Task task, TaskList tasks) {
         System.out.println("Sure! I've marked this task as done: ");
-        this.showTask(task);
-        this.showNumTasks(tasks);
+        showTask(task);
+        showNumTasks(tasks);
     }
 
     /**
@@ -106,8 +105,8 @@ public class Ui {
      */
     public void showUnmarkTask(Task task, TaskList tasks) {
         System.out.println("Sure! I've unmarked this task as done: ");
-        this.showTask(task);
-        this.showNumTasks(tasks);
+        showTask(task);
+        showNumTasks(tasks);
     }
 
     /**

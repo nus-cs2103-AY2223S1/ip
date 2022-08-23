@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import duke.Storage;
 import duke.Ui;
 import duke.exception.DukeException;
-
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -17,7 +16,6 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class EventCommand extends Command {
-    
     /** Description of the event task. */
     private final String description;
 
@@ -55,7 +53,7 @@ public class EventCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task event = new Event(this.description, this.atDateTime);
+        Task event = new Event(description, atDateTime);
         tasks.add(event);
         ui.showAddTask(event, tasks);
         storage.save(tasks);
