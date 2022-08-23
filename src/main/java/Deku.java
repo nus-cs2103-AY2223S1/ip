@@ -21,7 +21,7 @@ public class Deku {
                 "\nHello I'm DEKU\nHow may I help you today?\n" +
                 SEPARATOR);
     }
-    /*
+    /**
     * Method to start the chat-bot
     */
     public void start() throws IOException {

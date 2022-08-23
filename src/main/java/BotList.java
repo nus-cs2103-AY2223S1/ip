@@ -2,7 +2,6 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -13,10 +12,10 @@ public class BotList {
         this.internalArray = new ArrayList<Task>();
     }
 
-    /*
+    /**
     * Adds an element to the array stored, which acts as a to-do list
     *
-    * @param element a String to be added to the array
+    * @param task a Task to be added to the array
     * @return String of either the element is added successfully or not
     */
     String add(Task task) {
@@ -26,7 +25,7 @@ public class BotList {
         return output.append("\n").append(this.getNoTasks()).toString();
     }
 
-    /*
+    /**
     * Marks the task in the user's list as done
     *
     * @param taskIndex task number within the list, starting from 1
@@ -38,7 +37,7 @@ public class BotList {
         return "Good Job! This task is now completed:\n" + this.internalArray.get(taskIndex - 1);
     }
 
-    /*
+    /**
      * Marks the task in the user's list as undone
      *
      * @param taskIndex task number within the list, starting from 1
@@ -74,7 +73,12 @@ public class BotList {
             System.exit(-1);
         }
     }
-
+    /**
+     * Deletes the task from the array of stored tasks.
+     *
+     * @param taskIndex task number within the list, starting from 1
+     * @return String of the task deleted
+     */
     String delete(int taskIndex) {
         Task task = this.internalArray.remove(taskIndex - 1);
         save();
