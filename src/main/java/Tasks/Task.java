@@ -1,13 +1,19 @@
+package Tasks;
+
+import dukeExceptions.IllegalUseException;
+
 /**
- * Task represents a generic task that subclasses can inherit from. Represents
+ * Tasks.Task represents a generic task that subclasses can inherit from. Represents
  * something that needs to be done.
  * <p>
  * This class should not be used on its own, but inherited by other subclasses and
  * used there.
  */
-public class Task {
+public abstract class Task {
     private final String taskDescription;
     private boolean isComplete = false; // Initialized to false by default
+
+    public abstract String getEncodedValue();
 
     public Task(String taskDescription) {
         this.taskDescription = taskDescription;
