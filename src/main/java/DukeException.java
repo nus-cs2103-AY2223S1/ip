@@ -1,8 +1,12 @@
 public class DukeException extends Exception {
-    public DukeException(String error, Throwable err) {
-        super(error, err);
+
+    private String message;
+
+    public DukeException(String message) {
+        super(message);
+        this.message = message;
     }
-    public DukeException(String error) {
-        super(error);
+    public String getMessage() {
+        return this.message;
     }
 }

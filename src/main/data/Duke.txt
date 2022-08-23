@@ -1,2 +1,0 @@
-T | 0 | borrow book
-D | 0 | return book | MARCH 21 2022
