@@ -1,13 +1,13 @@
 /**
  * Class that inherits from Exception to represent exceptions specific to Duke.
  */
-class DukeException extends Exception {
+class ZeusException extends Exception {
     /**
-     * Constructor for DukeException class.
+     * Constructor for ZeusException class.
      *
      * @param message a String that represents the exception message
      */
-    public DukeException(String message) {
+    public ZeusException(String message) {
         super(message);
     }
 }
