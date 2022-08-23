@@ -16,6 +16,7 @@ public class UnmarkCommand extends Command {
    */
   public UnmarkCommand(String description) throws DukeException {
     try {
+      description = description.split(" ")[1];
       this.index = Integer.parseInt(description);
     } catch (Exception e) {
       throw new DukeException("Invalid tasks");

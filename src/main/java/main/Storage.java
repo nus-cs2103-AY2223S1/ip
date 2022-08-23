@@ -81,15 +81,18 @@ public class Storage {
 
                                 tasks.add(new DeadlineTask(description, by, isDone));
                             } catch (DateTimeParseException e) {
-                                throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
+                                throw new DukeException(EVIL_FILE);
                             }
                             break;
                         case "E":
+                            if (line.length < 4) {
+                                throw new DukeException(EVIL_FILE);
+                            }
                             try {
                                 LocalDate at = LocalDate.parse(line[3]);
                                 tasks.add(new EventTask(description, at, isDone));
                             } catch (DateTimeParseException e) {
-                                throw new DukeException("Please fill in the date in this format yyyy-mm-dd");
+                                throw new DukeException(EVIL_FILE);
                             }
                             break;
                         default:
