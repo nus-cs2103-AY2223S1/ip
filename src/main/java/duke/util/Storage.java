@@ -51,6 +51,7 @@ public class Storage {
         while (scanner.hasNextLine()) {
             tasks.add(Parser.parseTask(scanner.nextLine()));
         }
+        scanner.close();
         return tasks;
     }
 

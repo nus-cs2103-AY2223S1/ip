@@ -1,12 +1,12 @@
 package duke.task;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import static duke.util.Parser.DATE_TIME_INPUT_FORMAT;
+import static duke.util.Parser.DATE_TIME_OUTPUT_FORMAT;
 
 public class DeadlineTask extends Task {
     private final LocalDateTime deadline;
-    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yy HHmm");
-    private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
 
     public DeadlineTask(String description, LocalDateTime deadline) {
         super(TaskSymbolType.D, description);
@@ -15,11 +15,11 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (by: " + this.deadline.format(outputFormatter) + ")";
+        return super.toString() + " (by: " + this.deadline.format(DATE_TIME_OUTPUT_FORMAT) + ")";
     }
 
     @Override
     public String toSaveString() {
-        return super.toSaveString() + " | " + this.deadline.format(inputFormatter);
+        return super.toSaveString() + " | " + this.deadline.format(DATE_TIME_INPUT_FORMAT);
     }
 }

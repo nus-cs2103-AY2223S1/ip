@@ -1,12 +1,12 @@
 package duke.task;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import static duke.util.Parser.DATE_TIME_INPUT_FORMAT;
+import static duke.util.Parser.DATE_TIME_OUTPUT_FORMAT;
 
 public class EventTask extends Task {
     private final LocalDateTime time;
-    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d-M-yy HHmm");
-    private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
 
     public EventTask(String description, LocalDateTime time) {
         super(TaskSymbolType.E, description);
@@ -15,11 +15,11 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.time.format(outputFormatter) + ")";
+        return super.toString() + " (at: " + this.time.format(DATE_TIME_OUTPUT_FORMAT) + ")";
     }
 
     @Override
     public String toSaveString() {
-        return super.toSaveString() + " | " + this.time.format(inputFormatter);
+        return super.toSaveString() + " | " + this.time.format(DATE_TIME_INPUT_FORMAT);
     }
 }

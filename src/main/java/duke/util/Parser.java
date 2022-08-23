@@ -10,6 +10,9 @@ import java.time.format.DateTimeParseException;
 
 public class Parser {
 
+    public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("d-M-yy HHmm");
+    public static final DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
+
     public static int parseInt(String num) throws DukeException {
         try {
             return Integer.parseInt(num);
@@ -20,7 +23,7 @@ public class Parser {
 
     public static LocalDateTime parseDateTime(String dateTime) throws DukeException {
         try {
-            return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d-M-yy HHmm"));
+            return LocalDateTime.parse(dateTime, DATE_TIME_INPUT_FORMAT);
         } catch (DateTimeParseException e) {
             throw new DukeException("Invalid argument: " + dateTime);
         }
@@ -84,12 +87,12 @@ public class Parser {
                 task = new EventTask(splits[2], parseDateTime(splits[3]));
                 break;
             default:
-                throw new DukeException("Datafile is corrupted");
+                throw new DataFileCorruptedException();
             }
             task.setDone(Integer.parseInt(splits[1]) == 1);
         } catch (Exception e) {
             // any type of exception means the datafile is corrupted
-            throw new DukeException("Datafile is corrupted");
+            throw new DataFileCorruptedException();
         }
         return task;
     }

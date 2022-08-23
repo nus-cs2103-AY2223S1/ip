@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import duke.util.DataFileCorruptedException;
 import duke.task.TaskList;
 import duke.util.Parser;
 import duke.util.Storage;
@@ -12,13 +13,24 @@ import java.nio.file.Paths;
 public class Duke {
 
     private final Storage storage;
-    private final TaskList tasks;
     private final UI ui;
+    private TaskList tasks;
 
     public Duke(Path path) {
         storage = new Storage(path);
-        tasks = new TaskList(storage.load());
         ui = new UI(System.in, System.out);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DataFileCorruptedException e) {
+            ui.print(e.getMessage());
+            if (ui.readYesNoResponse("Do you want to reset the data file?")) {
+                tasks = new TaskList();
+                storage.save(tasks);
+            } else {
+                ui.exit();
+                System.exit(0);
+            }
+        }
     }
 
     public void run() {

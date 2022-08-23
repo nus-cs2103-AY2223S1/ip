@@ -33,7 +33,21 @@ public class UI {
         return inputStreamScanner.nextLine();
     }
 
+    public boolean readYesNoResponse(String prompt) {
+        print(prompt + " (y/n)");
+        while (true) {
+            String response = read().strip();
+            if (response.equals("y")) {
+                return true;
+            } else if (response.equals("n")) {
+                return false;
+            } else {
+                print("Invalid input. Please enter y/n.");
+            }
+        }
+    }
+
     public void exit() {
-        printStream.println("Bye! Hope to see you soon!");
+        print("Bye! Hope to see you soon!");
     }
 }
