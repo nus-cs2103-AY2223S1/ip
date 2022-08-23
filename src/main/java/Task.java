@@ -19,6 +19,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String toStringForStorage(){
+        return this.getStatusIcon() + "|" + this.description;
+    }
+
     @Override
     public String toString(){
         return "[" + getStatusIcon() + "] " + description;
