@@ -25,7 +25,7 @@ public class CommandDeleteHandler extends CommandHandler {
     }
 
     @Override
-    public String run(TaskList taskList) throws CommandException {
+    public CommandResponse run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
         String taskIdxStr = regexMatchResult.group(1);
         try {
@@ -34,7 +34,8 @@ public class CommandDeleteHandler extends CommandHandler {
                 throw new CommandException("Invalid task selected!");
             } else {
                 Task deletedTask = taskList.deleteTask(taskIdx - 1);
-                return CommandUtils.generateDeleteTaskResponse(deletedTask, taskList.size());
+                return new CommandResponse(
+                    CommandUtils.generateDeleteTaskResponse(deletedTask, taskList.size()), true);
             }
         } catch (NumberFormatException error) {
             throw new CommandException(String.join("\n",

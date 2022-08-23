@@ -3,7 +3,6 @@ package command;
 import data.TaskList;
 import data.tasks.TaskEvent;
 
-import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
@@ -28,7 +27,7 @@ public class CommandEventHandler extends CommandHandler {
     }
 
     @Override
-    public String run(TaskList taskList) throws CommandException {
+    public CommandResponse run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         String eventTitle = regexMatchResult.group(1);
@@ -37,6 +36,7 @@ public class CommandEventHandler extends CommandHandler {
         TaskEvent eventTask = new TaskEvent(eventTitle, parseDateTime(eventDateTimeStr));
         taskList.addTask(eventTask);
 
-        return CommandUtils.generateAddTaskResponse(eventTask, taskList.size());
+        return new CommandResponse(CommandUtils.generateAddTaskResponse(eventTask, taskList.size()),
+            true);
     }
 }

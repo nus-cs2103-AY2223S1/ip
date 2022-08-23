@@ -5,6 +5,7 @@ import java.time.format.FormatStyle;
 import java.time.format.DateTimeFormatter;
 
 public class TaskDeadline extends Task {
+    private static final long serialVersionUID = 22L;
 
     private final LocalDateTime deadline;
 

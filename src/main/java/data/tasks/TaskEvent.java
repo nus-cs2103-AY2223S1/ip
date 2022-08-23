@@ -5,6 +5,7 @@ import java.time.format.FormatStyle;
 import java.time.format.DateTimeFormatter;
 
 public class TaskEvent extends Task {
+    private static final long serialVersionUID = 23L;
 
     private final LocalDateTime timing;
 

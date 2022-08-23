@@ -23,7 +23,7 @@ public class CommandMarkHandler extends CommandHandler {
     }
 
     @Override
-    public String run(TaskList taskList) throws CommandException {
+    public CommandResponse run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         boolean toMark = regexMatchResult.group(1).equals("mark");
@@ -36,10 +36,13 @@ public class CommandMarkHandler extends CommandHandler {
                 Task task = taskList.getTask(taskIdx - 1);
                 if (toMark) {
                     task.mark();
-                    return String.format("Nice! I've mark this task as done:\n\t%s", task);
+                    return new CommandResponse(
+                        String.format("Nice! I've mark this task as done:\n\t%s", task), true);
                 } else {
                     task.unmark();
-                    return String.format("OK, I've marked this task as not done yet:\n\t%s", task);
+                    return new CommandResponse(
+                        String.format("OK, I've marked this task as not done yet:\n\t%s", task),
+                        true);
                 }
             }
         } catch (NumberFormatException error) {

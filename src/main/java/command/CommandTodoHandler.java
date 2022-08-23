@@ -25,12 +25,13 @@ public class CommandTodoHandler extends CommandHandler {
     }
 
     @Override
-    public String run(TaskList taskList) {
+    public CommandResponse run(TaskList taskList) {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         TaskTodo todoTask = new TaskTodo(regexMatchResult.group(1));
         taskList.addTask(todoTask);
 
-        return CommandUtils.generateAddTaskResponse(todoTask, taskList.size());
+        return new CommandResponse(CommandUtils.generateAddTaskResponse(todoTask, taskList.size()),
+            true);
     }
 }

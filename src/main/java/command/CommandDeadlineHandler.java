@@ -27,7 +27,7 @@ public class CommandDeadlineHandler extends CommandHandler {
     }
 
     @Override
-    public String run(TaskList taskList) throws CommandException {
+    public CommandResponse run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         String deadlineTaskTitle = regexMatchResult.group(1);
@@ -37,6 +37,7 @@ public class CommandDeadlineHandler extends CommandHandler {
             parseDateTime(deadlineDateTimeStr));
         taskList.addTask(deadlineTask);
 
-        return CommandUtils.generateAddTaskResponse(deadlineTask, taskList.size());
+        return new CommandResponse(
+            CommandUtils.generateAddTaskResponse(deadlineTask, taskList.size()), true);
     }
 }

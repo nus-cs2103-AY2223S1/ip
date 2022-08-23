@@ -20,15 +20,15 @@ public class CommandListHandler extends CommandHandler {
     }
 
     @Override
-    public String run(TaskList taskList) {
+    public CommandResponse run(TaskList taskList) {
         if (taskList.isEmpty()) {
-            return "There are no items in the task list!";
+            return new CommandResponse("There are no items in the task list!", false);
         }
 
         List<String> responseList = new ArrayList<>();
         for (int taskIdx = 0; taskIdx < taskList.size(); taskIdx++) {
             responseList.add(String.format("%d. %s", taskIdx + 1, taskList.getTask(taskIdx)));
         }
-        return String.join("\n", responseList);
+        return new CommandResponse(String.join("\n", responseList), false);
     }
 }

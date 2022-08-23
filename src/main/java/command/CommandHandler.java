@@ -44,5 +44,5 @@ public abstract class CommandHandler {
         return commandRegexMatcher.find();
     }
 
-    abstract public String run(TaskList taskList) throws CommandException;
+    abstract public CommandResponse run(TaskList taskList) throws CommandException;
 }
