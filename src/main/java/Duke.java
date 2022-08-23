@@ -57,7 +57,6 @@ public class Duke {
     public static void readLine(Scanner scanner, ArrayList<Task> tasks, ArrayList<String> commands, boolean isPrinting)
             throws IOException {
         while(scanner.hasNext()) {
-            FileWriter fw = new FileWriter(OUTPUT_FILE_PATH);
             String command = scanner.nextLine();
             String[] commandArr = command.split(" ");
             COMMANDS commandWord = null;
@@ -190,7 +189,8 @@ public class Duke {
                         }
                         break;
                     case bye:
-                        toBePrinted = toBePrinted.concat("Bye. Hope to see you again soon!\n");
+                        System.out.println("Bye. Hope to see you again soon!\n");
+                        System.exit(0);
                         break;
                     case list:
                         if (tasks.isEmpty()) {
@@ -214,6 +214,7 @@ public class Duke {
                 System.out.print(toBePrinted);
             }
 
+            FileWriter fw = new FileWriter(OUTPUT_FILE_PATH);
             fw.write(commands.stream().reduce((s, prev) -> String.format("%s\n%s", s, prev)).orElse(""));
             fw.close();
         }
