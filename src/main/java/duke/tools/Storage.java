@@ -1,3 +1,12 @@
+package duke.tools;
+
+import duke.exceptions.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Task.TaskType;
+import duke.tasks.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,12 +18,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static duke.tasks.Task.TaskType.parseTaskType;
+
 public class Storage {
 
     private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
-    private static Path filePath = directoryPath.resolve("data.txt");
 
-    public static List<Task> readFromFile() throws DukeException {
+    private Path filePath;
+
+    public Storage() {
+        this.filePath = directoryPath.resolve("data.txt");
+    }
+
+    public Storage(String fileName) {
+        this.filePath = directoryPath.resolve(fileName);
+    }
+
+    public TaskList readFromFile() throws DukeException {
         List<Task> storedTasks = new ArrayList<>();
         checkDirectory();
         checkFile();
@@ -22,22 +42,23 @@ public class Storage {
             File data = new File(filePath.toString());
             Scanner sc = new Scanner(data);
             while (sc.hasNext()) {
-                storedTasks.add(readTaskString(sc.nextLine()));
+                storedTasks.add(dataStringToTask(sc.nextLine()));
             }
             sc.close();
         } catch (FileNotFoundException e) {
             throw new DukeException("Exception: Cannot open file");
         }
-        return storedTasks;
+        return new TaskList(storedTasks);
     }
 
-    public static void writeToFile(List<Task> storedTasks) throws DukeException {
+    public void writeToFile(TaskList tasks) throws DukeException {
+        List<Task> storedTasks = tasks.getStoredTasks();
         checkDirectory();
         checkFile();
         try {
             FileWriter data = new FileWriter(filePath.toString());
             for (int i = 0; i < storedTasks.size(); i++) {
-                data.write(taskToStorageString(storedTasks.get(i)));
+                data.write(taskToDataString(storedTasks.get(i)));
             }
             data.close();
         } catch (IOException e) {
@@ -45,12 +66,12 @@ public class Storage {
         }
     }
 
-    public static void appendToFile(Task task) throws DukeException {
+    public void appendToFile(Task task) throws DukeException {
         checkDirectory();
         checkFile();
         try {
             FileWriter data = new FileWriter(filePath.toString(), true);
-            data.write(taskToStorageString(task));
+            data.write(taskToDataString(task));
             data.close();
         } catch (IOException e) {
             throw new DukeException("Exception: Cannot open file");
@@ -65,7 +86,7 @@ public class Storage {
         }
     }
 
-    private static void checkFile() {
+    private void checkFile() {
         try {
             File data = new File(directoryPath.resolve("data.txt").toString());
             if (!data.exists()) {
@@ -77,7 +98,7 @@ public class Storage {
         }
     }
 
-    private static String taskToStorageString(Task task) throws DukeException {
+    private static String taskToDataString(Task task) throws DukeException {
         switch (task.getType()) {
         case TODO:
             return "T " + (task.isDone() ? "Y " : "N ") + task.getDescription() + System.lineSeparator();
@@ -94,10 +115,10 @@ public class Storage {
         }
     }
 
-    private static Task readTaskString(String str) throws DukeException {
+    private static Task dataStringToTask(String str) throws DukeException {
         String[] taskInfo = str.split(" ", 3);
         try {
-            Task.TaskType type = Task.TaskType.parseTaskType(taskInfo[0]);
+            TaskType type = parseTaskType(taskInfo[0]);
             switch (type) {
             case TODO:
                 Todo todo = new Todo(taskInfo[2]);

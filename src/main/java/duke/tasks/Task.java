@@ -1,3 +1,7 @@
+package duke.tasks;
+
+import duke.exceptions.DukeException;
+
 public abstract class Task {
     public enum TaskType {
         TODO("T"),
@@ -60,6 +64,10 @@ public abstract class Task {
 
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    public void setIsDone(boolean isDone) {
+        this.isDone = isDone;
     }
 
     @Override
