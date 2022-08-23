@@ -1,13 +1,20 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 public class Deadline extends Task  {
-    private String deadline;
+    private LocalDateTime deadline;
 
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, LocalDateTime deadline) {
         super(description);
         this.deadline = deadline;
+    }
+
+    LocalDateTime getTime() {
+        return this.deadline;
     }
 
     @Override
@@ -16,6 +23,6 @@ public class Deadline extends Task  {
     }
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (" + deadline + ")";
+        return "[D]" + super.toString() + " (" + deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + ")";
     }
 }
