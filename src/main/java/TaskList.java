@@ -13,33 +13,35 @@ public class TaskList {
         try {
 
             Task task = null;
-            String[] split = command.split(" ", 2);
-            if(split.length < 2) {
-                throw new EmptyNameException();
-            }
-            String type = split[0];
+
+            String type = Parser.getType(command);
             if(type.equals(TaskTypeEnum.todo.toString())){
-                String name = split[1];
+                if(command.trim().length() == 4) {
+                    throw new EmptyNameException();
+                }
+                String name = Parser.getTodoName(command);
                 task = new Todo(name);
 
             } else {
-                String[] split1 = split[1].split("/", 2);
-                String name = split1[0];
-                String info = split1[1];
+
                 if(type.equals(TaskTypeEnum.deadline.toString())){
-                    task = new Deadline(name, info);
+                    if(command.trim().length() == 8){
+                        throw new EmptyNameException();
+                    }
+                    task = new Deadline(Parser.getDeadlineName(command), Parser.getDeadlineDate(command));
                 } else {
-                    task = new Event(name, info);
+                    if(command.trim().length() == 5){
+                        throw new EmptyNameException();
+                    }
+                    task = new Event(Parser.getEventName(command), Parser.getEventDate(command));
                 }
             }
 
-            if(task != null){
                 taskList.add(task);
 
                 System.out.println("Got it. I've added this task:");
                 System.out.println(task);
                 displayNumberOfItemsInList();
-            }
         } catch (EmptyNameException e) {
             System.out.println(e.getMessage());
         }

@@ -1,13 +1,13 @@
 import java.io.IOException;
 
 public class Duke {
-    private final Scan scan;
+    private final Ui scan;
     private final Storage storage;
 
     public Duke() {
         TaskList taskList = new TaskList();
         this.storage = new Storage("data/duke.txt", taskList);
-        this.scan = new Scan(taskList, storage);
+        this.scan = new Ui(taskList, storage);
     }
 
     public static void main(String[] args) {

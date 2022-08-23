@@ -2,7 +2,7 @@ import exceptions.UnknownCommandException;
 
 import java.util.Scanner;
 
-public class Scan {
+public class Ui {
     private final Scanner sc;
     private final TaskList taskList;
     private final Storage storage;
@@ -12,7 +12,7 @@ public class Scan {
 
 
 
-    public Scan(TaskList taskList, Storage storage) {
+    public Ui(TaskList taskList, Storage storage) {
         this.sc = new Scanner(System.in);
         this.taskList = taskList;
         this.storage = storage;
