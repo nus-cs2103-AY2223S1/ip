@@ -1,6 +1,6 @@
 package DukeProgram;
 
-public class Event extends TimedJobs {
+public class Event extends DatedJob {
 
     public Event(String name, String dueString) {
         super(name, dueString, "at");

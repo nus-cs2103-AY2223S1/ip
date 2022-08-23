@@ -20,6 +20,10 @@ public class Job implements Serializable {
         this.jobState = JobState.Done;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void MarkJobState(boolean isComplete) {
         this.jobState = isComplete ? JobState.Done : JobState.NotDone;
     }
