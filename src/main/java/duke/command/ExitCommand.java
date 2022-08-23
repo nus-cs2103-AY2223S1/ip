@@ -12,27 +12,27 @@ import duke.ui.Ui;
  */
 public class ExitCommand extends Command {
 
-  /**
-   * Executes the ExitCommand
-   *
-   * @param taskList not being used
-   * @param ui the user interface to be used
-   * @param storage not being used
-   * @throws DukeException if an error occurs
-   */
-  @Override
-  public void execute(TaskList taskList, Ui ui, Storage storage)
-    throws DukeException {
-    ui.showOutput("Goodbye!");
-  }
+    /**
+     * Executes the ExitCommand
+     *
+     * @param taskList not being used
+     * @param ui the user interface to be used
+     * @param storage not being used
+     * @throws DukeException if an error occurs
+     */
+    @Override
+    public void execute(TaskList taskList, Ui ui, Storage storage)
+        throws DukeException {
+        ui.showOutput("Goodbye!");
+    }
 
-  /**
-   * Returns true as this is the exit command
-   *
-   * @return true
-   */
-  @Override
-  public boolean isExit() {
-    return true;
-  }
+    /**
+     * Returns true as this is the exit command
+     *
+     * @return true
+     */
+    @Override
+    public boolean isExit() {
+        return true;
+    }
 }

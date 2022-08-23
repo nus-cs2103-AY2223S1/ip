@@ -12,21 +12,21 @@ import duke.ui.Ui;
  */
 public abstract class Command {
 
-  /**
-   * Executes the Command
-   *
-   * @param taskList the task list to be mutated
-   * @param ui the user interface to be used
-   * @param storage the storage to be used
-   * @throws DukeException if an error occurs
-   */
-  public abstract void execute(TaskList taskList, Ui ui, Storage storage)
-    throws DukeException;
+    /**
+     * Executes the Command
+     *
+     * @param taskList the task list to be mutated
+     * @param ui the user interface to be used
+     * @param storage the storage to be used
+     * @throws DukeException if an error occurs
+     */
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage)
+        throws DukeException;
 
-  /**
-   * Returns false as this is not the exit command
-   *
-   * @return true if exiting the application after executing this command
-   */
-  public abstract boolean isExit();
+    /**
+     * Returns false as this is not the exit command
+     *
+     * @return true if exiting the application after executing this command
+     */
+    public abstract boolean isExit();
 }

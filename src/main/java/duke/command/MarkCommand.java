@@ -12,40 +12,40 @@ import duke.ui.Ui;
  */
 public class MarkCommand extends Command {
 
-  private int index;
+    private int index;
 
-  /**
-   * Constructs a new MarkCommand instance
-   *
-   * @param index the index of the task to be marked
-   */
-  public MarkCommand(int index) {
-    this.index = index;
-  }
+    /**
+     * Constructs a new MarkCommand instance
+     *
+     * @param index the index of the task to be marked
+     */
+    public MarkCommand(int index) {
+        this.index = index;
+    }
 
-  /**
-   * Executes the MarkCommand
-   *
-   * @param taskList the task list to be mutated
-   * @param ui the user interface to be used
-   * @param storage the storage to be used
-   * @throws DukeException if an error occurs
-   */
-  @Override
-  public void execute(TaskList taskList, Ui ui, Storage storage)
-    throws DukeException {
-    taskList.mark(index, true);
-    ui.showOutput("Task " + (index + 1) + " is marked as done!");
-    storage.save(taskList.getTaskList());
-  }
+    /**
+     * Executes the MarkCommand
+     *
+     * @param taskList the task list to be mutated
+     * @param ui the user interface to be used
+     * @param storage the storage to be used
+     * @throws DukeException if an error occurs
+     */
+    @Override
+    public void execute(TaskList taskList, Ui ui, Storage storage)
+        throws DukeException {
+        taskList.mark(index, true);
+        ui.showOutput("Task " + (index + 1) + " is marked as done!");
+        storage.save(taskList.getTaskList());
+    }
 
-  /**
-   * Returns false as this is not the exit command
-   *
-   * @return false
-   */
-  @Override
-  public boolean isExit() {
-    return false;
-  }
+    /**
+     * Returns false as this is not the exit command
+     *
+     * @return false
+     */
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

@@ -12,44 +12,44 @@ import duke.ui.Ui;
  */
 public class FindCommand extends Command {
 
-  private String keyword;
+    private String keyword;
 
-  /**
-   * Constructs a new FindCommand instance.
-   *
-   * @param keyword the keyword to search
-   */
-  public FindCommand(String keyword) {
-    this.keyword = keyword;
-  }
-
-  /**
-   * Executes the FindCommand
-   *
-   * @param taskList the task list to be searched
-   * @param ui the user interface to be used
-   * @param storage not being used
-   * @throws DukeException if an error occurs
-   */
-  @Override
-  public void execute(TaskList taskList, Ui ui, Storage storage)
-    throws DukeException {
-    TaskList filtered = taskList.filter(keyword);
-    if (filtered.getTaskList().isEmpty()) {
-      ui.showOutput("No matching task found!");
-    } else {
-      ui.showOutput("Here are the matching tasks in your list:");
-      ui.showOutput(filtered.toString());
+    /**
+     * Constructs a new FindCommand instance.
+     *
+     * @param keyword the keyword to search
+     */
+    public FindCommand(String keyword) {
+        this.keyword = keyword;
     }
-  }
 
-  /**
-   * Returns false as this is not the exit command
-   *
-   * @return false
-   */
-  @Override
-  public boolean isExit() {
-    return false;
-  }
+    /**
+     * Executes the FindCommand
+     *
+     * @param taskList the task list to be searched
+     * @param ui the user interface to be used
+     * @param storage not being used
+     * @throws DukeException if an error occurs
+     */
+    @Override
+    public void execute(TaskList taskList, Ui ui, Storage storage)
+        throws DukeException {
+        TaskList filtered = taskList.filter(keyword);
+        if (filtered.getTaskList().isEmpty()) {
+            ui.showOutput("No matching task found!");
+        } else {
+            ui.showOutput("Here are the matching tasks in your list:");
+            ui.showOutput(filtered.toString());
+        }
+    }
+
+    /**
+     * Returns false as this is not the exit command
+     *
+     * @return false
+     */
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

@@ -12,27 +12,27 @@ import duke.ui.Ui;
  */
 public class ListCommand extends Command {
 
-  /**
-   * Executes the ListCommand
-   *
-   * @param taskList the task list to be shown
-   * @param ui the user interface to be used
-   * @param storage not being used
-   * @throws DukeException if an error occurs
-   */
-  @Override
-  public void execute(TaskList taskList, Ui ui, Storage storage)
-    throws DukeException {
-    ui.showOutput(taskList.toString());
-  }
+    /**
+     * Executes the ListCommand
+     *
+     * @param taskList the task list to be shown
+     * @param ui the user interface to be used
+     * @param storage not being used
+     * @throws DukeException if an error occurs
+     */
+    @Override
+    public void execute(TaskList taskList, Ui ui, Storage storage)
+        throws DukeException {
+        ui.showOutput(taskList.toString());
+    }
 
-  /**
-   * Returns false as this is not the exit command
-   *
-   * @return false
-   */
-  @Override
-  public boolean isExit() {
-    return false;
-  }
+    /**
+     * Returns false as this is not the exit command
+     *
+     * @return false
+     */
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }

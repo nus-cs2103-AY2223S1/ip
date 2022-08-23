@@ -13,41 +13,41 @@ import duke.ui.Ui;
  */
 public class AddCommand extends Command {
 
-  private Task task;
+    private Task task;
 
-  /**
-   * Constructs a new AddCommand instance
-   *
-   * @param task the task to be added
-   */
-  public AddCommand(Task task) {
-    this.task = task;
-  }
+    /**
+     * Constructs a new AddCommand instance
+     *
+     * @param task the task to be added
+     */
+    public AddCommand(Task task) {
+        this.task = task;
+    }
 
-  /**
-   * Executes the AddCommand.
-   *
-   * @param taskList the task list to be added to
-   * @param ui the user interface to be used
-   * @param storage the storage to be used
-   * @throws DukeException if an error occurs
-   */
-  @Override
-  public void execute(TaskList taskList, Ui ui, Storage storage)
-    throws DukeException {
-    taskList.add(task);
-    ui.showOutput("Task has been added!: " + task.toString());
-    ui.showOutput("Total tasks: " + taskList.getTaskList().size());
-    storage.save(taskList.getTaskList());
-  }
+    /**
+     * Executes the AddCommand.
+     *
+     * @param taskList the task list to be added to
+     * @param ui the user interface to be used
+     * @param storage the storage to be used
+     * @throws DukeException if an error occurs
+     */
+    @Override
+    public void execute(TaskList taskList, Ui ui, Storage storage)
+        throws DukeException {
+        taskList.add(task);
+        ui.showOutput("Task has been added!: " + task.toString());
+        ui.showOutput("Total tasks: " + taskList.getTaskList().size());
+        storage.save(taskList.getTaskList());
+    }
 
-  /**
-   * Returns false as this is not the exit command
-   *
-   * @return false
-   */
-  @Override
-  public boolean isExit() {
-    return false;
-  }
+    /**
+     * Returns false as this is not the exit command
+     *
+     * @return false
+     */
+    @Override
+    public boolean isExit() {
+        return false;
+    }
 }
