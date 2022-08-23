@@ -1,12 +1,11 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        TaskWriter taskWriter = new TaskWriter("./tasks.txt");
-        List<Task> list = taskWriter.readTasks();
+        Storage storage = new Storage("./tasks.txt");
+        List<Task> list = storage.readTasks();
 
         System.out.println("Hello! I'm Piggy");
         System.out.println("What can I oink for you?");
@@ -73,7 +72,7 @@ public class Duke {
                     System.out.println(err);
                 }
             }
-            taskWriter.writeTasks(list);
+            storage.writeTasks(list);
         }
 
         System.out.println("Bye. Hope to oink you again soon!");

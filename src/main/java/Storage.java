@@ -6,10 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-class TaskWriter {
+class Storage {
     File file;
 
-    TaskWriter(String path) {
+    Storage(String path) {
         file = new File(path);
     }
 
