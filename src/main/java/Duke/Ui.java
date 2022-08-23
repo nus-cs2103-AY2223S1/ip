@@ -1,3 +1,7 @@
+package Duke;
+
+import Tasks.Task;
+
 import java.util.Scanner;
 
 /**
@@ -10,8 +14,12 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
-    public String readCommand() {
-        return scanner.nextLine();
+    public String readCommand() throws DukeException {
+        if (scanner.hasNextLine())
+            return scanner.nextLine();
+        else {
+            throw new DukeException(Constants.NO_MORE_LINES);
+        }
     }
 
     public void showWelcome() {
@@ -25,6 +33,10 @@ public class Ui {
 
     public void printBye() {
         System.out.println("Bye. Hope to see you soon again!");
+        scanner.close();
+    }
+
+    public void closeScanner() {
         scanner.close();
     }
 

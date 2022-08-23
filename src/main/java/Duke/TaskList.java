@@ -1,3 +1,7 @@
+package Duke;
+
+import Tasks.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -27,7 +31,7 @@ public class TaskList {
      * Deletes the specified tasks from the taskList
      *
      * @param i
-     * @return Deleted Task
+     * @return Deleted Tasks.Task
      */
     public Task deleteTask(int i) {
         Task removed = tasks.get(i - 1);
@@ -39,7 +43,7 @@ public class TaskList {
      * Marks the specified task
      *
      * @param i
-     * @return Marked Task
+     * @return Marked Tasks.Task
      */
     public Task markTask(int i) {
         Task t = tasks.get(i - 1);
@@ -51,7 +55,7 @@ public class TaskList {
      * Unmarks the specified task
      *
      * @param i
-     * @return Unmarked Task
+     * @return Unmarked Tasks.Task
      */
     public Task unmarkTask(int i) {
         Task t = tasks.get(i - 1);
@@ -69,7 +73,7 @@ public class TaskList {
     }
 
     /**
-     * Print the tasks in the taskList
+     * Prints the tasks in the taskList
      */
     public void printList() {
         try {
@@ -100,7 +104,7 @@ public class TaskList {
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
             String type = t.toString().substring(1,2);
-            if (type.equals("T")) {
+            if (type.equals(Constants.TODO)) {
                 content.add(String.format("%s > %s > %s\n", type, t.getStatusIcon(), t.getTaskName()));
             } else {
                 content.add(String.format("%s > %s > %s > %s\n", type, t.getStatusIcon(),

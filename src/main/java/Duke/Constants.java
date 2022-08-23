@@ -1,3 +1,5 @@
+package Duke;
+
 public class Constants {
     public static final String NAME = "Shanice:)";
 
@@ -16,4 +18,12 @@ public class Constants {
     public static final String INVALID_FILE = "Invalid string file input";
 
     public static final String EMPTY_LIST = "The list is currently empty. Please add some tasks!";
+
+    public static final String TODO = "T";
+
+    public static final String EVENT = "E";
+
+    public static final String DEADLINE = "D";
+
+    public static final String NO_MORE_LINES = "There is no more input!";
 }

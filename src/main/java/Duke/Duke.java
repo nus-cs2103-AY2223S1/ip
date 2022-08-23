@@ -1,3 +1,7 @@
+package Duke;
+
+import Command.Command;
+
 import java.time.format.DateTimeParseException;
 
 public class Duke {
@@ -23,9 +27,8 @@ public class Duke {
                 isExit = c.isExit();
             } catch (DateTimeParseException e) {
                 ui.showError(Constants.INVALID_DATE);
-            } catch (Exception e) {
-                //bot will end if there is no line left
-                isExit = true;
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
             }

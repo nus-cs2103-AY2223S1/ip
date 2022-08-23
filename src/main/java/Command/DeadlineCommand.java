@@ -1,3 +1,10 @@
+package Command;
+
+import Duke.Storage;
+import Duke.TaskList;
+import Duke.Ui;
+import Tasks.Deadline;
+
 import java.time.LocalDate;
 
 public class DeadlineCommand extends Command {

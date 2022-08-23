@@ -1,4 +1,16 @@
-import java.io.*;
+package Duke;
+
+import Tasks.Deadline;
+import Tasks.Event;
+import Tasks.Task;
+import Tasks.Todo;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -47,11 +59,11 @@ public class Storage {
             while (line != null) {
                 String[] parse = line.split(" > ");
                 Task t;
-                if (parse[0].equals("T")) {
+                if (parse[0].equals(Constants.TODO)) {
                     t = new Todo(parse[2]);
-                } else if (parse[0].equals("E")) {
+                } else if (parse[0].equals(Constants.EVENT)) {
                     t = new Event(parse[2], LocalDate.parse(parse[3], formatter));
-                } else if (parse[0].equals("D")) {
+                } else if (parse[0].equals(Constants.DEADLINE)) {
                     t = new Deadline(parse[2], LocalDate.parse(parse[3], formatter));
                 } else {
                     throw new DukeException(Constants.INVALID_FILE);

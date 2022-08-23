@@ -1,3 +1,9 @@
+package Command;
+
+import Duke.Storage;
+import Duke.TaskList;
+import Duke.Ui;
+
 public class ExitCommand extends Command {
     public ExitCommand() {
         super();

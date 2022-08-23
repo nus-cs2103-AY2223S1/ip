@@ -4,7 +4,6 @@ list
 deadline return book /by 01 Dec 2019
 event project meeting /at 04 Mar 2022
 list
-mark
 mark 1
 mark 2
 list
