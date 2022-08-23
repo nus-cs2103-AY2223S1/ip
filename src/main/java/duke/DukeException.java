@@ -1,3 +1,6 @@
+package duke;
+
+
 class DukeException extends RuntimeException{
     private final String exception;
 
