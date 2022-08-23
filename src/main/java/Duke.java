@@ -1,7 +1,7 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
@@ -11,370 +11,86 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
+    private static boolean isLoading = true;
     private static boolean isRunning = true;
-    private static boolean hasFinishedLoading = false;
-    private static ArrayList<Task> tasks = new ArrayList<>();
     private static Scanner sc = new Scanner(System.in);
-
-    private String logo = " ____            _\n"
-            + "|  _ \\ _   _  __| | ___\n"
-            + "| | | | | | |/ _  |/ _ \\\n"
-            + "| |_| | |_| | |_| |  __/\n"
-            + "|____/ \\__,_|\\__,_|\\___|\n";
-
-    private String bye = "bye";
-    private String list = "list";
-    private String mark = "mark";
-    private String unmark = "unmark";
-    private String todo = "todo";
-    private String deadline = "deadline";
-    private String deadlineBy = "/by";
-    private String event = "event";
-    private String eventAt = "/at";
-    private String delete = "delete";
-    private String space = " ";
     private String filePath = "C:/Data/Duke.txt";
 
-    //@@author chengda300
-    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/topics.html
-    // with minor modifications
-    public void loadData(String filePath) throws FileNotFoundException {
-        File f = new File(filePath);
-        Scanner s = new Scanner(f);
-        while (s.hasNext()) {
-            String input = s.nextLine();
-            if (input.startsWith(mark + space)) {
-                String parameter = input.substring((mark + space).length());
-                markTask(parameter);
-            } else if (input.startsWith(unmark + space)) {
-                String parameter = input.substring((unmark + space).length());
-                unmarkTask(parameter);
-            } else if (input.startsWith(todo + space)) {
-                String parameter = input.substring((todo + space).length());
-                addTodo(parameter);
-            } else if (input.startsWith(deadline + space)) {
-                String parameter = input.substring((deadline + space).length());
-                addDeadline(parameter);
-            } else if (input.startsWith(event + space)) {
-                String parameter = input.substring((event + space).length());
-                addEvent(parameter);
-            } else if (input.startsWith(delete + space)) {
-                String parameter = input.substring((delete + space).length());
-                deleteTask(parameter);
-            } else {
-                System.out.println("There is an error processing this command: " + input);
-            }
-            /*
-            if (fullTaskInformation.startsWith(todo)) {
-                addTodo(fullTaskInformation.substring((todo + space).length()));
-            } else if (fullTaskInformation.startsWith(deadline)) {
-                addDeadline(fullTaskInformation.substring((deadline + space).length()));
-            } else if (fullTaskInformation.startsWith(event)) {
-                addEvent(fullTaskInformation.substring((event + space).length()));
-            } else {
-                System.out.println("An error occurred while loading this task: "
-                        + fullTaskInformation);
-            }
-            */
-        }
-    }
-    //@@author
+    private Parser parser;
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-    //@@author chengda300
-    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/topics.html
-    public static void writeToFile(String filePath, String textToAdd) throws IOException {
-        if (hasFinishedLoading) {
-            FileWriter fw = new FileWriter(filePath, true);
-            fw.write(textToAdd);
-            fw.close();
-        }
-    }
-    //@@author
-
-    public void addTodo(String s) {
-        if (s.isBlank()) {
-            System.out.println("The task is empty, what do you really mean?");
-        } else {
-            Todo t = new Todo(s);
-            tasks.add(t);
-            System.out.println("Successfully added: " + t);
-            System.out.println("You have " + tasks.size() + " tasks in the list now");
-            try {
-                writeToFile(filePath, todo + space + s + "\n");
-            } catch (IOException e) {
-                System.out.println("This command could not be saved due to an unknown error.");
-            }
-        }
+    public Duke() {
+        this.ui = new Ui();
+        this.storage = new Storage(this.filePath);
+        this.tasks = new TaskList();
+        this.parser = new Parser();
     }
 
-    public void addDeadline(String s) {
-        if (!s.contains(space + deadlineBy + space)) {
-            if (s.startsWith(deadlineBy)) {
-                System.out.println("The task is empty, what do you really mean?");
-            } else {
-                System.out.println("The deadline is empty, do you mean it has no deadline?");
-                System.out.println("If it is, please add it as a todo instead.");
-            }
-        } else {
-            String task = s.substring(0, s.indexOf(deadlineBy) - space.length());
-            String deadline = s.substring(s.indexOf(deadlineBy) + deadlineBy.length()
-                    + space.length());
-            if (task.isBlank()) {
-                System.out.println("The task is empty, what do you really mean?");
-            } else if (deadline.isBlank()) {
-                System.out.println("The deadline is empty, do you mean it has no deadline?");
-                System.out.println("If it is, please add it as a todo instead.");
-            } else {
-                try {
-                    LocalDate d = LocalDate.parse(deadline);
-                    Deadline t = new Deadline(task, d);
-                    tasks.add(t);
-                    System.out.println("Successfully added: " + t);
-                    System.out.println("You have " + tasks.size() + " tasks in the list now");
-                } catch (DateTimeParseException e) {
-                    Deadline t = new Deadline(task, deadline);
-                    tasks.add(t);
-                    System.out.println("Successfully added: " + t);
-                    System.out.println("You have " + tasks.size() + " tasks in the list now");
-                }
-                try {
-                    writeToFile(filePath, this.deadline + space + s + "\n");
-                } catch (IOException e) {
-                    System.out.println("This command could not be saved due to an unknown error.");
-                }
-            }
-        }
+    public void stop() {
+        Duke.isRunning = false;
     }
 
-    public void addEvent(String s) {
-        if (!s.contains(space + eventAt + space)) {
-            if (s.startsWith(eventAt)) {
-                System.out.println("The event is empty, what do you really mean?");
-            } else {
-                System.out.println("The time is empty, do you mean it never starts?");
-            }
-        } else {
-            String event = s.substring(0, s.indexOf(eventAt) - space.length());
-            String time = s.substring(s.indexOf(eventAt) + eventAt.length()
-                    + space.length());
-            if (event.isBlank()) {
-                System.out.println("The event is empty, what do you really mean?");
-            } else if (time.isBlank()) {
-                System.out.println("The time is empty, do you mean it never starts?");
-            } else {
-                try {
-                    LocalDate t = LocalDate.parse(time);
-                    Event ev = new Event(event, t);
-                    tasks.add(ev);
-                    System.out.println("Successfully added: " + ev);
-                    System.out.println("You have " + tasks.size() + " tasks in the list now");
-                } catch (DateTimeParseException e) {
-                    Event ev = new Event(event, time);
-                    tasks.add(ev);
-                    System.out.println("Successfully added: " + ev);
-                    System.out.println("You have " + tasks.size() + " tasks in the list now");
-                }
-                try {
-                    writeToFile(filePath, this.event + space + s + "\n");
-                } catch (IOException exception) {
-                    System.out.println("This command could not be saved due to an unknown error.");
-                }
-            }
-        }
+    public Storage getStorage() {
+        return this.storage;
+    }
+
+    public boolean hasFinishedLoading() {
+        return !this.isLoading;
     }
 
     public void getList() {
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.println((i + 1) + "." + tasks.get(i));
-        }
-        System.out.println("There are " + tasks.size() + " tasks in the list.");
+        this.tasks.getList();
     }
 
-    public void markTask(String input) {
-        try {
-            int index = Integer.parseInt(input);
-            if (index >= tasks.size() || index < 0) {
-                System.out.println("I cannot mark a task that does not exist!");
-            } else {
-                Task t = tasks.get(index);
-                t.markTask();
-                try {
-                    writeToFile(filePath, mark + space + input + "\n");
-                } catch (IOException e) {
-                    System.out.println("This command could not be saved due to an unknown error.");
-                }
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("I cannot mark a task that does not exist!");
-        }
+    public void markTask(int i) {
+        this.tasks.markTask(i);
     }
 
-    public void unmarkTask(String input) {
-        try {
-            int index = Integer.parseInt(input);
-            if (index >= tasks.size() || index < 0) {
-                System.out.println("I cannot unmark a task that does not exist!");
-            } else {
-                Task t = tasks.get(index);
-                t.unmarkTask();
-                try {
-                    writeToFile(filePath, unmark + space + input + "\n");
-                } catch (IOException e) {
-                    System.out.println("This command could not be saved due to an unknown error.");
-                }
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("I cannot unmark a task that does not exist!");
-        }
+    public void unmarkTask(int i) {
+        this.tasks.unmarkTask(i);
     }
 
-    public void deleteTask(String input) {
-        try {
-            int index = Integer.parseInt(input);
-            if (index >= tasks.size() || index < 0) {
-                System.out.println("I cannot delete a task that does not exist!");
-            } else {
-                Task t = tasks.get(index);
-                tasks.remove(t);
-                System.out.println("Successfully deleted: " + t);
-                System.out.println("You have " + tasks.size() + " tasks in the list now");
-                try {
-                    writeToFile(filePath, delete + space + input + "\n");
-                } catch (IOException e) {
-                    System.out.println("This command could not be saved due to an unknown error.");
-                }
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("I cannot delete a task that does not exist!");
-        }
+    public void addTodo(String s) {
+        this.tasks.addTodo(s, this);
     }
 
-    //@@author chengda300
-    //Reused from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html
-    // with minor modifications
-    public class Task {
-        private boolean isDone;
-        private String description;
-
-        public Task(String desc) {
-            this.description = desc;
-            this.isDone = false;
-        }
-
-        public String getStatusIcon() {
-            return this.isDone ? "X" : " ";
-        }
-
-        public void markTask() {
-            this.isDone = true;
-            System.out.println("Successfully marked this task as done: " + this);
-        }
-
-        public void unmarkTask() {
-            this.isDone = false;
-            System.out.println("Successfully marked this task as not done: " + this);
-        }
-
-        @Override
-        public String toString() {
-            return "[" + this.getStatusIcon() + "] " + this.description;
-        }
+    public void addDeadline(String s, LocalDate d) {
+        this.tasks.addDeadline(s, d, this);
     }
 
-    public class Deadline extends Task {
-        private String by;
-        private LocalDate date;
-
-        public Deadline(String description, String by) {
-            super(description);
-            this.by = by;
-        }
-
-        public Deadline(String description, LocalDate by) {
-            super(description);
-            this.date = by;
-        }
-
-        @Override
-        public String toString() {
-            String deadline = this.by == null
-                    ? this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : this.by;
-            return "[D]" + super.toString() + " (by: " + deadline + ")";
-        }
+    public void addDeadline(String s, String d) {
+        this.tasks.addDeadline(s, d, this);
     }
 
-    public class Todo extends Task {
-        public Todo(String description) {
-            super(description);
-        }
-
-        @Override
-        public String toString() {
-            return "[T]" + super.toString();
-        }
+    public void addEvent(String s, LocalDate d) {
+        this.tasks.addEvent(s, d, this);
     }
 
-    public class Event extends Task {
-        private String at;
-        private LocalDate date;
-
-        public Event(String description, String at) {
-            super(description);
-            this.at = at;
-        }
-
-        public Event(String description, LocalDate at) {
-            super(description);
-            this.date = at;
-        }
-
-        @Override
-        public String toString() {
-            String eventDate = this.at == null
-                    ? this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) : this.at;
-            return "[E]" + super.toString() + " (at: " + eventDate + ")";
-        }
+    public void addEvent(String s, String d) {
+        this.tasks.addEvent(s, d, this);
     }
-    //@@author
+
+    public void deleteTask(int i) {
+        this.tasks.deleteTask(i, this);
+    }
+
+    public void parse(String s) {
+        this.parser.parse(this, s, this.hasFinishedLoading());
+    }
 
     public static void main(String[] args) {
         Duke duke = new Duke();
-        System.out.println("Hello from dude\n" + duke.logo);
+        System.out.println(duke.ui.logo());
         try {
-            duke.loadData(duke.filePath);
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found.");
+            duke.storage.loadData(duke, duke.filePath);
+        } catch (IOException e) {
+            System.err.println("File not found.");
         }
-        duke.hasFinishedLoading = true;
+        duke.isLoading = false;
         while (duke.isRunning) {
-            String input = duke.sc.nextLine();
-            if (input.equals(duke.bye)) {
-                System.out.println("Byebye! See you again soon!");
-                duke.isRunning = false;
-            } else if (input.equals(duke.list)) {
-                duke.getList();
-            } else if (input.startsWith(duke.mark + duke.space)) {
-                String parameter = input.substring((duke.mark + duke.space).length());
-                duke.markTask(parameter);
-            } else if (input.startsWith(duke.unmark + duke.space)) {
-                String parameter = input.substring((duke.unmark + duke.space).length());
-                duke.unmarkTask(parameter);
-            } else if (input.startsWith(duke.todo + duke.space)) {
-                String parameter = input.substring((duke.todo + duke.space).length());
-                duke.addTodo(parameter);
-            } else if (input.startsWith(duke.deadline + duke.space)) {
-                String parameter = input.substring((duke.deadline + duke.space).length());
-                duke.addDeadline(parameter);
-            } else if (input.startsWith(duke.event + duke.space)) {
-                String parameter = input.substring((duke.event + duke.space).length());
-                duke.addEvent(parameter);
-            } else if (input.startsWith(duke.delete + duke.space)) {
-                String parameter = input.substring((duke.delete + duke.space).length());
-                duke.deleteTask(parameter);
-            } else {
-                System.out.println("Sorry, I cannot understand what you exactly mean.");
-                System.out.println("Certain commands require input parameters.");
-            }
+            duke.parse(sc.nextLine());
         }
     }
 }
