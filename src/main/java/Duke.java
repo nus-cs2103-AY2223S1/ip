@@ -133,6 +133,7 @@ public class Duke {
             throw new DukeException("Invalid task number!");
         }
     }
+
     public static void main(String[] args) {
         ArrayList<Task> tasks = new ArrayList<Task>();
         Scanner sc = new Scanner(System.in);
