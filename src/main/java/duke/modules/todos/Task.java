@@ -8,11 +8,12 @@ import static java.lang.String.format;
  * Parent class for tasks.
  */
 public abstract class Task {
-    private String name;
+    private final String name;
     private boolean done;
 
     /**
      * Constructor
+     *
      * @param name The name of the task.
      */
     public Task(String name) {
@@ -21,6 +22,7 @@ public abstract class Task {
 
     /**
      * Constructor
+     *
      * @param name The name of the task
      * @param done Whether the task is done.
      */
@@ -31,6 +33,7 @@ public abstract class Task {
 
     /**
      * Sets whether the task is done.
+     *
      * @param done Whether the task is done.
      */
     public void setDone(boolean done) {

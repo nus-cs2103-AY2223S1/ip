@@ -11,6 +11,7 @@ import static duke.Ui.say;
 public class Duke {
     /**
      * Entrypoint.
+     *
      * @param args Command-line arguments.
      */
     public static void main(String[] args) {

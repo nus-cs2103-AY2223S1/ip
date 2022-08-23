@@ -36,7 +36,7 @@ public class Storage {
                 fw.write(String.join(",", task.flatPack()) + System.lineSeparator());
             }
             fw.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             throw new MessagefulException(
                     "file writing error",
                     "Uh oh! I cannot save the task list. This might help: " + e);

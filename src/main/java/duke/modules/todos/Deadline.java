@@ -17,11 +17,12 @@ import static java.lang.String.format;
 /**
  * Deadlines - tasks with a due date.
  */
- public class Deadline extends Task{
+public class Deadline extends Task {
     private LocalDateTime deadline;
 
     /**
      * Constructor
+     *
      * @param name The name of the task.
      */
     public Deadline(String name, LocalDateTime deadline) {
@@ -30,8 +31,9 @@ import static java.lang.String.format;
 
     /**
      * Constructor
-     * @param name The name of the task
-     * @param done Whether the task is done.
+     *
+     * @param name     The name of the task
+     * @param done     Whether the task is done.
      * @param deadline The deadline of the task.
      */
     public Deadline(String name, boolean done, LocalDateTime deadline) {
@@ -45,6 +47,7 @@ import static java.lang.String.format;
 
     /**
      * Constructs a Deadline from a Scanner with arguments.
+     *
      * @param sc The scanner with the remaining text in the message.
      * @return The constructed deadline.
      * @throws MessagefulException There is an issue with the arguments.

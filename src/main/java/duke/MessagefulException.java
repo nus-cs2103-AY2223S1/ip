@@ -4,12 +4,13 @@ package duke;
  * An exception with both developer-facing and user-facing messages.
  */
 public class MessagefulException extends Exception {
-    private String message;
+    private final String message;
 
     /**
      * Constructor
+     *
      * @param description Developer-facing message. Example: "Missing name".
-     * @param message User-facing message. Example: "Please enter a name".
+     * @param message     User-facing message. Example: "Please enter a name".
      */
     public MessagefulException(String description, String message) {
         super(description);
@@ -18,6 +19,7 @@ public class MessagefulException extends Exception {
 
     /**
      * Retrieves the user-facing message.
+     *
      * @return The user-facing message.
      */
     public String message() {

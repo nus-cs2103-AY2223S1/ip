@@ -14,6 +14,7 @@ import static java.lang.String.format;
 public class Todo extends Task {
     /**
      * Constructor
+     *
      * @param name The name of the task.
      */
     public Todo(String name) {
@@ -22,6 +23,7 @@ public class Todo extends Task {
 
     /**
      * Constructor
+     *
      * @param name The name of the task
      * @param done Whether the task is done.
      */
@@ -31,6 +33,7 @@ public class Todo extends Task {
 
     /**
      * Constructs a Todo from a Scanner with arguments.
+     *
      * @param sc The scanner with the remaining text in the message.
      * @return The constructed todo.
      * @throws MessagefulException There is an issue with the arguments.
@@ -59,6 +62,7 @@ public class Todo extends Task {
             throw new IllegalArgumentException("Trying to hydrate non-todo as todo: " + l);
         }
     }
+
     @Override
     public String toString() {
         return format("[T]%s", super.toString());

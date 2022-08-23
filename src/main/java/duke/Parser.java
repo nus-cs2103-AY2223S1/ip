@@ -49,7 +49,7 @@ public class Parser {
                 sayAsError("Sorry, I didn't understand what you said :(");
                 break;
             }
-        } catch (MessagefulException e){
+        } catch (MessagefulException e) {
             sayError(e);
         }
         return false;

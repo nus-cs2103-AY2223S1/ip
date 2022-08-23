@@ -13,11 +13,12 @@ import static java.lang.String.format;
 /**
  * Events - tasks with a time range.
  */
-public class Event extends Task{
+public class Event extends Task {
     private String timeRange;
 
     /**
      * Constructor
+     *
      * @param name The name of the task.
      */
     public Event(String name, String timeRange) {
@@ -26,8 +27,9 @@ public class Event extends Task{
 
     /**
      * Constructor
-     * @param name The name of the task
-     * @param done Whether the task is done.
+     *
+     * @param name      The name of the task
+     * @param done      Whether the task is done.
      * @param timeRange The time range of the task.
      */
     public Event(String name, boolean done, String timeRange) {
@@ -41,6 +43,7 @@ public class Event extends Task{
 
     /**
      * Constructs an Event from a Scanner with arguments.
+     *
      * @param sc The scanner with the remaining text in the message.
      * @return The constructed event.
      * @throws MessagefulException There is an issue with the arguments.
