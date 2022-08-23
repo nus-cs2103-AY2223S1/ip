@@ -7,6 +7,7 @@ import jean.parser.Parser;
 import jean.storage.Storage;
 import jean.ui.Ui;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
@@ -48,6 +49,8 @@ public class Jean {
         Storage storage = new Storage("data/list.txt");
         TaskList tasks = null;
         try {
+            File dir = new File("data");
+            if (!dir.exists()) dir.mkdirs();
             tasks = new TaskList(storage.load());
         } catch (JeanException e) {
             ui.showJeanError(e.getMessage());
