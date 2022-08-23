@@ -23,6 +23,9 @@ public class Parser {
             tasks.add(command, Duke.Type.EVENT);
         } else if (command.startsWith("delete")) {
             tasks.delete(command);
+        } else if (command.startsWith("find")) {
+            String keyword = command.replace("find ", "");
+            tasks.find(keyword);
         } else {
             throw new UnknownInputException();
         }
