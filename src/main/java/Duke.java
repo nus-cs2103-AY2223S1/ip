@@ -116,8 +116,7 @@ public class Duke {
                 input = scanner.nextLine();
             }
             System.out.println("Bye!");
-        } catch (IOException e)
-        {
+        } catch (IOException e) {
             System.out.println(e);
             System.out.println("The folder: data does not exist");
         }
@@ -125,8 +124,8 @@ public class Duke {
 
     private static boolean WriteToFile(Task task) throws IOException {
         String str = task.getType() == 'T' ?
-                     ('T' + "|" + task.getDone() + "|" + task.getTask())
-                     : (task.getType() + "|" + task.getDone() + "|" + task.getTask() + "|" + task.getDetail());
+                ('T' + "|" + task.getDone() + "|" + task.getTask())
+                : (task.getType() + "|" + task.getDone() + "|" + task.getTask() + "|" + task.getDetail());
         Files.write(Paths.get(pathName), (str + System.lineSeparator()).getBytes(), StandardOpenOption.APPEND);
         return true;
     }
@@ -135,8 +134,7 @@ public class Duke {
         try {
             BufferedWriter writer = Files.newBufferedWriter(Paths.get(pathName));
             writer.write("");
-            for (int i = 0; i < tasks.size(); i++)
-            {
+            for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
                 WriteToFile(task);
             }
