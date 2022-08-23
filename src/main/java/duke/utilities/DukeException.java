@@ -1,3 +1,5 @@
+package duke.utilities;
+
 /**
  * The DukeException class.
  */

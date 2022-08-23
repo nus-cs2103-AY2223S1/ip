@@ -58,16 +58,16 @@ Here are the tasks in your list:
 2.[E][ ] library event (at: Aug 23 2022 18:00 to Aug 24 2022 18:00)
 ----------------------------------------
 ----------------------------------------
-OOPS!!! I'm sorry, but I don't know what that means!
+OOPS!!! I'm sorry but I don't know what that means!
 ----------------------------------------
 ----------------------------------------
-OOPS!!! The description of a todo cannot be empty!
+OOPS!!! The description of a todo should not be empty!
 ----------------------------------------
 ----------------------------------------
-All dates must be in the format (yyyy-MM-dd HH:mm)!
+OOPS!!! The description/by time of a deadline should not be empty!
 ----------------------------------------
 ----------------------------------------
-All dates must be in the format (yyyy-MM-dd HH:mm)!
+OOPS!!! The description/from/end of an event should not be empty!
 ----------------------------------------
 ----------------------------------------
 OOPS!!! You must specify which task to mark or unmark!
