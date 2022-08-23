@@ -42,4 +42,25 @@ public class TaskList {
     public void removeTask(Task task) {
         this.taskList.remove(task);
     }
+
+    /**
+     * Returns the tasks that contain a specified keyword in the form of a String.
+     *
+     * @param keyword The keyword to be searched for.
+     * @return Tasks that contain a specified keyword in the form of a String
+     */
+    public String findTasksThatContains(String keyword) {
+        String s = "";
+        int numOfValidTasks = 0;
+        for (int i = 0; i < this.taskList.size(); i++) {
+            if (this.taskList.get(i).toString().contains(keyword)) {
+                if (numOfValidTasks == 0) {
+                    s += "  " + (++numOfValidTasks) + "." + this.taskList.get(i);
+                } else {
+                    s += "\n" + "  " + (++numOfValidTasks) + "." + this.taskList.get(i);
+                }
+            }
+        }
+        return s;
+    }
 }
