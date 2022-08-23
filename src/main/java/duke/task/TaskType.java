@@ -20,9 +20,9 @@ public enum TaskType {
             if (cmd.matches("(?i)^todo\\s.+")) {
                 return new ToDo(cmd.substring(5));
             } else {
-                throw new DukeException("Hm... Duke's confused. Are you trying to create a todo?" +
-                        "\nMake sure you follow the format: todo [description].\n" +
-                        "The description of a todo cannot be empty!");
+                throw new DukeException("Hm... Duke's confused. Are you trying to create a todo?"
+                        + "\nMake sure you follow the format: todo [description].\n"
+                        + "The description of a todo cannot be empty!");
             }
         }
 
@@ -55,8 +55,8 @@ public enum TaskType {
                 return new Event(sp[0], datetime);
 
             } else {
-                throw new DukeException("Hm... Duke's confused. Are you trying to create an event?" +
-                        "\nMake sure you follow the format: event [description] /at [event datetime]");
+                throw new DukeException("Hm... Duke's confused. Are you trying to create an event?"
+                        + "\nMake sure you follow the format: event [description] /at [event datetime]");
             }
         }
 
@@ -89,8 +89,8 @@ public enum TaskType {
                 }
                 return new Deadline(sp[0], datetime);
             } else {
-                throw new DukeException("Hm... Duke's confused. Are you trying to create a deadline?" +
-                        "\nMake sure you follow the format: deadline [description] /by [deadline]");
+                throw new DukeException("Hm... Duke's confused. Are you trying to create a deadline?"
+                        + "\nMake sure you follow the format: deadline [description] /by [deadline]");
             }
         }
 

@@ -1,7 +1,7 @@
 package duke;
 
-import duke.exception.DukeException;
 import duke.command.*;
+import duke.exception.DukeException;
 
 public class Parser {
     public static Command parse(String userInput) throws DukeException {

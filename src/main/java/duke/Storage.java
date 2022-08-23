@@ -8,25 +8,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Storage {
-    private File DIRECTORY;
-    private String FILEPATH;
+    private File directory;
+    private String filepath;
 
     public Storage(String directoryPath, String filename) {
-        this.DIRECTORY = new File(directoryPath);
-        this.FILEPATH = directoryPath + "/" + filename;
+        this.directory = new File(directoryPath);
+        this.filepath = directoryPath + "/" + filename;
     }
 
     public File retrieveFile() {
-        return new File(this.FILEPATH);
+        return new File(this.filepath);
     }
 
     public void writeToFile(String fileData) throws DukeException {
-        if (!this.DIRECTORY.exists()) {
-            this.DIRECTORY.mkdir();
+        if (!this.directory.exists()) {
+            this.directory.mkdir();
         }
 
         try {
-            FileWriter fw = new FileWriter(this.FILEPATH);
+            FileWriter fw = new FileWriter(this.filepath);
             fw.write(fileData);
             fw.close();
         } catch (FileNotFoundException e) {
