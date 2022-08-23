@@ -20,6 +20,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> taskArray = new ArrayList<>();
         String str = sc.nextLine();
+        int counter = 0;
         if (str.equals("bye")) {
             System.out.println("Bye. Hope to see you again soon");
         }
@@ -48,9 +49,39 @@ public class Duke {
                 str = sc.nextLine();
                 str = sc.nextLine();
             }
+            else if (str.equals("todo")) {
+                String input = sc.nextLine();
+                taskArray.add(new ToDo(input));
+                System.out.println("Got it. I've added this task:\n" + "  " +
+                        taskArray.get(counter));
+                counter++;
+                System.out.println("Now you have " + counter + " tasks in the list.");
+                str = sc.nextLine();
+            }
+            else if (str.equals("deadline")) {
+                String input = sc.nextLine();
+                String by = sc.nextLine();
+                taskArray.add(new Deadline(input, by));
+                System.out.println("Got it. I've added this task:\n" + "  " +
+                        taskArray.get(counter));
+                counter++;
+                System.out.println("Now you have " + counter + " tasks in the list.");
+                str = sc.nextLine();
+            }
+            else if (str.equals("event")) {
+                String input = sc.nextLine();
+                String period = sc.nextLine();
+                taskArray.add(new Events(input, period));
+                System.out.println("Got it. I've added this task:\n" + "  " +
+                        taskArray.get(counter));
+                counter++;
+                System.out.println("Now you have " + counter + " tasks in the list.");
+                str = sc.nextLine();
+            }
 
             else {
                 taskArray.add(new Task(str));
+                counter++;
                 System.out.println("added: " + str);
                 str = sc.nextLine();
             }
@@ -62,6 +93,7 @@ public class Duke {
             System.out.println("Bye. Hope to see you again soon");
         } else {
             taskArray.add(new Task(str));
+            counter++;
             str = sc.nextLine();
         }
 
@@ -84,4 +116,3 @@ public class Duke {
 
 
 }
-
