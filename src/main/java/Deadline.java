@@ -1,9 +1,12 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * The Deadline Class.
  */
 public class Deadline extends Task {
     /** Deadlines have a time to be completed by that is a String. */
-    protected String by;
+    protected LocalDateTime by;
 
     /**
      * Constructor for Deadline objects.
@@ -11,10 +14,10 @@ public class Deadline extends Task {
      * @param by The time by which said task must be completed.
      * @throws DukeException For Duke related exceptions.
      */
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, LocalDateTime by) throws DukeException {
         super(description);
         this.by = by;
-        if (description.isBlank() || by.isBlank()) {
+        if (description.isBlank()) {
             throw new DukeException("The description of deadline task is missing information!");
         }
     }
@@ -25,6 +28,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by + ")";
+        return "[D]" + super.toString() + " (by: " +
+                this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm")) + ")";
     }
 }

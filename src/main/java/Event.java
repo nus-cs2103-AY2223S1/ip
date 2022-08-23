@@ -1,20 +1,28 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * The Event class.
  */
 public class Event extends Task {
-    /** Events have a time that it takes place that is a String. */
-    protected String at;
+    /** Events have a starting time. */
+    protected LocalDateTime start;
+
+    /** Events have an ending time. */
+    protected LocalDateTime end;
 
     /**
      * Constructor for Event objects.
      * @param description The description of the event task.
-     * @param at The time of the event.
+     * @param start Start time of event.
+     * @param end End time of event.
      * @throws DukeException For Duke related exceptions.
      */
-    public Event(String description, String at) throws DukeException {
+    public Event(String description, LocalDateTime start, LocalDateTime end) throws DukeException {
         super(description);
-        this.at = at;
-        if (description.isBlank() || at.isBlank()) {
+        this.start = start;
+        this.end = end;
+        if (description.isBlank()) {
             throw new DukeException("The description of event task is missing information!");
         }
     }
@@ -25,6 +33,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at + ")";
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return "[E]" + super.toString() + " (at: " +
+                this.start.format(format) + " to " + this.end.format(format) + ")";
     }
 }

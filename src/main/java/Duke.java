@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
 
 /**
  * The Main driver class of the Duke Application.
@@ -68,25 +71,38 @@ public class Duke {
                     String byD = current.split("/by").length == 2
                             ? current.split("/by")[1].trim()
                             : "";
-                    Task deadlineTask = new Deadline(descD, byD);
+                    DateTimeFormatter deadlineFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime byDeadline = LocalDateTime.parse(byD, deadlineFormat);
+                    Task deadlineTask = new Deadline(descD, byDeadline);
                     addTask(deadlineTask);
                     break;
                 case "event":
                     String[] descEvent = Arrays.copyOfRange(splitString, 1, splitString.length);
                     current = String.join(" ", descEvent);
-                    String descE = current.split("/at")[0].trim();
-                    String atE = current.split("/at").length == 2
-                            ? current.split("/at")[1].trim()
-                            : "";
-                    Task eventTask = new Event(descE, atE);
+                    String descE = current.split("/from")[0].trim();
+                    String dates = current.split("/from")[1];
+                    String startE = "";
+                    String endE = "";
+                    if (current.split("/from").length == 2) {
+                        startE = dates.split("/to")[0].trim();
+                        endE = dates.split("/to")[1].trim();
+                    }
+                    DateTimeFormatter eventFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime startEvent = LocalDateTime.parse(startE, eventFormat);
+                    LocalDateTime endEvent = LocalDateTime.parse(endE, eventFormat);
+                    Task eventTask = new Event(descE, startEvent, endEvent);
                     addTask(eventTask);
                     break;
                 default:
                     throw new DukeException("I'm sorry, but I don't know what that means!");
                 }
-            } catch (Exception e) {
+            } catch (DukeException e) {
                 System.out.println(line);
                 System.out.println("OOPS!!! " + e.getMessage());
+                System.out.println(line);
+            } catch (DateTimeParseException e) {
+                System.out.println(line);
+                System.out.println("All dates must be in the format (yyyy-MM-dd HH:mm)!");
                 System.out.println(line);
             }
 
