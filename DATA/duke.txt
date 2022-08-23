@@ -1,0 +1,6 @@
+[T][] hello
+[T][] bye 
+[D][] test (by Monday)
+[D][] proj (by Wed)
+[E][] go out (by Monday)
+[T][] homework

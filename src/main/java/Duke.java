@@ -1,10 +1,15 @@
+import java.io.*;
+import java.nio.file.Paths;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class Duke {
-    static ArrayList<Task> listOfTask = new ArrayList<>();
+    private static ArrayList<Task> listOfTask = new ArrayList<>();
+    private static String DIRECTORY = "./DATA";
+    private static String FILENAME = "duke.txt";
+    private static String PATHNAME = String.valueOf(Paths.get(DIRECTORY, FILENAME));
 
      static void showList(){
         System.out.println("Here are the tasks in your list:");
@@ -14,14 +19,19 @@ public class Duke {
     }
 
     static void addList(Task task) {
-        System.out.println("Got it. I've added this task:");
-        listOfTask.add(task);
-        System.out.println(task.toString());
-        if (listOfTask.size() == 1){
-            System.out.println("Now you have 1 task in the list.");
-        } else {
-            System.out.println("Now you have " + listOfTask.size() + " tasks in the list.");
-        }
+         try {
+             writeToFile(task.getName(), task.getStatusIcon(), task.toString());
+             System.out.println("Got it. I've added this task:");
+             listOfTask.add(task);
+             System.out.println(task.toString());
+             if (listOfTask.size() == 1) {
+                 System.out.println("Now you have 1 task in the list.");
+             } else {
+                 System.out.println("Now you have " + listOfTask.size() + " tasks in the list.");
+             }
+         } catch (IOException e) {
+             System.out.println("Something went wrong: " + e.getMessage());
+         }
     }
 
     static void markHelper(String s) {
@@ -48,10 +58,49 @@ public class Duke {
         System.out.println("Now you have " + listOfTask.size() + " tasks in the list.");
     }
 
+    static void getData() {
+         try {
+             File f = new File(PATHNAME);
+             Scanner s = new Scanner(f);
+             while (s.hasNext()) {
+                  String string = s.nextLine();
+                 int index = string.indexOf("(");
+                 //listOfTask.add(new Task(string));
+                if (string.substring(1,2).equals("D")){
+                     listOfTask.add(new Deadlines(string.substring(9, index - 1), string.substring(index + 1)));
+                 } else if (string.substring(1,2).equals("E")) {
+                     listOfTask.add(new Events(string.substring(6, index - 1), string.substring(index + 1)));
+                 } else {
+                    listOfTask.add(new ToDos(string.substring(5)));
+                 }
+             }
+         } catch (FileNotFoundException e ){
+             createFile();
+         }
+    }
+
+    static void createFile() {
+        try {
+            File f = new File(PATHNAME);
+            File dir = new File(Duke.DIRECTORY);
+            dir.mkdir();
+            f.createNewFile();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+    }
+
+    private static void writeToFile(String name, String type, String status) throws IOException {
+        FileWriter fw = new FileWriter(PATHNAME, true);
+        fw.write(status + "\n");
+        fw.close();
+    }
+
 
     public static void main(String[] args) throws DukeException {
        System.out.println("Hello I'm Duke\nWhat can I do for you?");
         Scanner input = new Scanner(System.in);
+        getData();
             while (input.hasNext()) {
                 try {
                     String s = input.nextLine();

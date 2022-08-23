@@ -15,8 +15,11 @@ public class Task {
     public void unmark() {
         this.isDone = false;
     }
-   public String getStatus() {
+    public String getStatus() {
         return this.getStatusIcon() + "" + this.name;
+    }
+    public String getName() {
+        return this.name;
     }
 
     }
