@@ -114,7 +114,7 @@ public class Duke {
     public static void printInStyle(Iterable<?> itemsToPrint, String... others) {
         System.out.println(DECORATOR);
         for (Object item : itemsToPrint) {
-            System.out.println(DECORATOR);
+            System.out.println("\t\t" + item.toString());
         }
 
         for (String string : others) {

@@ -2,78 +2,81 @@ package DukeProgram;
 
 import Utilities.StringUtilities;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static DukeProgram.Duke.*;
 
-public class Checklist implements Serializable {
+public class Checklist {
     private static final int ALL = -1;
-    private static List<Job> checklist;
-    private static final String HEADER = "checklist";
+    private static final ArrayList<Job> checklist = new ArrayList<>(100);
 
     /***
      * Provides functionality to use a checklist in Duke.
      */
-    public static void use() {
-        try {
-            checklist = SaveManager.load(HEADER);
-
-            printInStyle("I've loaded your checklist!");
-
-        } catch(KeyNotFoundException e) {
-            checklist = new ArrayList<>(100);
-        }
-
-        listChecklist();
-
+    public static void Use() {
         String[] input = askForInput("").split(" ");
 
         while (!input[0].toLowerCase(Locale.ROOT).equals("bye")) {
             switch (input[0]) {
-            case "list":
-                listChecklist();
-                break;
+                case "list":
+                    listChecklist(input);
+                    break;
 
-            case "mark": case "unmark":
-                markChecklist(input);
-                break;
+                case "mark": case "unmark":
+                    markChecklist(input);
+                    break;
 
-            case "delete":
-                deleteFromChecklist(input);
-                break;
+                case "delete":
+                    deleteFromChecklist(input);
+                    break;
 
-            case "exit":
-                saveChecklist();
-                return;
-
-            default:
-                try {
-                    addToChecklist(input);
-                } catch (InvalidJobException ex) {
-                    printInStyle(ex.getMessage());
-                }
+                default:
+                    try {
+                        addToChecklist(input);
+                    } catch (InvalidJobException ex) {
+                        printInStyle(ex.getMessage());
+                    }
             }
             input = askForInput("").split(" ");
         }
     }
 
-    private static void saveChecklist() {
-        SaveManager.save(HEADER, (Serializable) checklist);
-    }
+    private static void listChecklist(String[] input) {
+        if (input.length == 1) {
+            printInStyle(IntStream
+                    .range(0, checklist.size())
+                    .mapToObj(i -> String.format("%d: %s", i + 1, checklist.get(i).toString()))
+            );
+            return;
+        }
 
-    private static void listChecklist() {
-        printInStyle(IntStream
-                .range(0, checklist.size())
-                .mapToObj(i -> String.format("%d: %s", i + 1, checklist.get(i).toString())),
-                String.format("You presently have %d tasks", checklist.size())
-        );
+        switch (input[1]) {
+        case "-date":
+            printInStyle(checklist
+                    .stream()
+                    .filter(e -> e instanceof DatedJob)
+                    .sorted(Comparator.comparing(e -> ((DatedJob)e).getDate()))
+            );
+            break;
+
+            /**
+        case "-on":
+            printInStyle(checklist
+                    .stream()
+                    .filter(e -> e instanceof DatedJob && ((DatedJob) e).getDate().equals(DateTimeParser.parse())
+            );
+            break;
+             **/
+
+        case "-alphabet":
+            printInStyle(checklist
+                    .stream()
+                    .sorted(Comparator.comparing(Job::getName))
+            );
+            break;
+        }
     }
 
     /***
@@ -236,7 +239,6 @@ public class Checklist implements Serializable {
                 job.toString(),
                 String.format("Now you have %d tasks in the list", checklist.size()));
     }
-
 
     /**
      * A helper method to concat a string array given in the format from System.in
