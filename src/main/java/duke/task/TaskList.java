@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import duke.DukeException;
+import duke.exception.DukeException;
 
 public class TaskList {
     private static final String NO_SUCH_INDEX = "No such index in the list, please try again.";

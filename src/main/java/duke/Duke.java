@@ -2,6 +2,7 @@ package duke;
 
 import duke.command.Command;
 import duke.parser.Parser;
+import duke.storage.Storage;
 
 public class Duke {
     public static final String DEFAULT_FILE_NAME = "todolist.txt";

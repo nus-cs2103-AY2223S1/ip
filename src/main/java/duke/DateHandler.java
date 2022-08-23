@@ -32,7 +32,7 @@ public class DateHandler {
      * @return a LocalDateTime object
      * @see LocalDateTime
      */
-    static LocalDateTime parseDateString(String dateString) {
+    public static LocalDateTime parseDateString(String dateString) {
         LocalDateTime dateTime = LocalDateTime.parse(dateString, getDateTimeFormatter());
         return dateTime;
     }
