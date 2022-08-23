@@ -45,6 +45,6 @@ checkstyle {
     toolVersion = '10.2'
 }
 
-//checkstyleMain {
-//    source = 'src/main/java'
-//}
+checkstyleMain {
+    source = 'src/main/java'
+}
