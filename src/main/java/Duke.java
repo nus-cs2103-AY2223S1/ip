@@ -2,7 +2,7 @@ import java.util.*;
 public class Duke {
     private Task task;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeException {
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
         Duke newDuke = new Duke();
         newDuke.chatDuke();
@@ -16,7 +16,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);*/
     }
 
-    public void chatDuke(){
+    public void chatDuke() throws DukeException {
         Scanner sc = new Scanner(System.in);
         ArrayList<Task> taskArray = new ArrayList<>();
         String str = sc.nextLine();
@@ -51,6 +51,7 @@ public class Duke {
             }
             else if (str.equals("todo")) {
                 String input = sc.nextLine();
+                checkInput(input);
                 taskArray.add(new ToDo(input));
                 System.out.println("Got it. I've added this task:\n" + "  " +
                         taskArray.get(counter));
@@ -60,7 +61,9 @@ public class Duke {
             }
             else if (str.equals("deadline")) {
                 String input = sc.nextLine();
+                checkInput(input);
                 String by = sc.nextLine();
+                checkInput(by);
                 taskArray.add(new Deadline(input, by));
                 System.out.println("Got it. I've added this task:\n" + "  " +
                         taskArray.get(counter));
@@ -70,7 +73,9 @@ public class Duke {
             }
             else if (str.equals("event")) {
                 String input = sc.nextLine();
+                checkInput(input);
                 String period = sc.nextLine();
+                checkInput(period);
                 taskArray.add(new Events(input, period));
                 System.out.println("Got it. I've added this task:\n" + "  " +
                         taskArray.get(counter));
@@ -110,6 +115,15 @@ public class Duke {
             } else {
                 return;
             }
+        }
+    }
+
+    public void checkInput(String str) throws DukeException {
+        if (str.equals("")) {
+            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+        }
+        else if (str.equals("blah")) {
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
