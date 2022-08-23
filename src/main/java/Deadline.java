@@ -1,19 +1,24 @@
-public class Deadline extends Task{
-    String completeBy;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String name, String completeBy) {
+public class Deadline extends Task{
+    private LocalDateTime completeBy;
+
+    public Deadline(String name, LocalDateTime completeBy) {
         super(name);
         this.completeBy = completeBy;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + completeBy + ")";
+        String dateTime = completeBy.format(DateTimeFormatter.ofPattern("MMM dd yyyy',' hh'.'mma"));
+        return "[D]" + super.toString() + " (by: " + dateTime + ")";
     }
 
     @Override
     public String toSave() {
         String doneVar = super.isDone ? "1" : "0";
-        return "D | " + doneVar + " | " + super.name + " | " + this.completeBy;
+        String dateTime = completeBy.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
+        return "D | " + doneVar + " | " + super.name + " | " + dateTime;
     }
 }
