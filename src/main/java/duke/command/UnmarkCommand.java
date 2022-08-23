@@ -37,7 +37,8 @@ public class UnmarkCommand implements Command {
      * @throws DukeException If Duke fails to execute the UnmarkCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, Storage storage, TaskList taskList)
+            throws DukeException {
         try {
             Task unmarkedTask = taskList.unmarkTaskWithIndex(index);
             ui.printTaskUnmarkSuccessMessage(unmarkedTask);

@@ -1,8 +1,8 @@
 package duke.task;
 
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.LocalDate;
 
 import duke.exception.DeadlineException;
 
@@ -12,8 +12,8 @@ import duke.exception.DeadlineException;
  * @author Farrel Dwireswara Salim
  */
 public class Deadline extends Task {
-    private String deadlineString;
-    private LocalDate deadline;
+    private final String deadlineString;
+    private final LocalDate deadline;
 
     /**
      * Constructs a new Deadline instance.
@@ -24,12 +24,13 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String deadlineString) throws DeadlineException {
         super(description);
+
         try {
             this.deadlineString = deadlineString;
             this.deadline = LocalDate.parse(deadlineString);
         } catch (DateTimeParseException error) {
-            throw new DeadlineException("The deadline given is not a valid date. " +
-                    "Try to represent the deadline in yyyy-mm-dd format.");
+            throw new DeadlineException("The deadline given is not a valid date. "
+                    + "Try to represent the deadline in yyyy-mm-dd format.");
         }
     }
 

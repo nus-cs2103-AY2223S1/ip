@@ -16,8 +16,8 @@ import duke.ui.Ui;
  * @author Farrel Dwireswara Salim
  */
 public class Duke {
-    private Ui ui;
-    private Parser parser;
+    private final Ui ui;
+    private final Parser parser;
     private Storage storage = null;
     private TaskList taskList = null;
 
@@ -48,7 +48,7 @@ public class Duke {
         this.ui.printWelcomeMessage();
         Scanner sc = new Scanner(System.in);
 
-        while(this.parser.getIsListening()) {
+        while (this.parser.getIsListening()) {
             try {
                 String currentText = sc.nextLine();
                 Command command = this.parser.parseText(currentText);

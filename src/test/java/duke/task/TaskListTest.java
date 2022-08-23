@@ -41,7 +41,8 @@ public class TaskListTest {
     @Test
     public void getStringRepresentation_nonEmptyTaskList_getCorrectRepresentation() {
         String taskListStringRepresentation = sampleTaskList.toString();
-        assertTrue(taskListStringRepresentation.startsWith("Here are the tasks in your list\n"));
+        assertTrue(taskListStringRepresentation.startsWith(
+                "Here are the tasks in your list\n"));
     }
 
     @Test

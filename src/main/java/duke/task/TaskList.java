@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
  * @author Farrel Dwireswara Salim
  */
 public class TaskList {
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     /**
      * Constructs a new empty TaskList instance.
@@ -93,9 +93,9 @@ public class TaskList {
             return "You have no tasks at the moment.";
         }
 
-        String tasksString = "";
+        StringBuilder tasksString = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            tasksString += String.format("%d. %s\n", i + 1, this.tasks.get(i));
+            tasksString.append(String.format("%d. %s\n", i + 1, this.tasks.get(i)));
         }
         return "Here are the tasks in your list\n" + tasksString;
     }

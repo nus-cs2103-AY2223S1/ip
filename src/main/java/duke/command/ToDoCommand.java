@@ -34,14 +34,16 @@ public class ToDoCommand implements Command {
      * @throws DukeException If Duke fails to execute the ToDoCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, Storage storage, TaskList taskList)
+            throws DukeException {
         if (this.description.isEmpty()) {
             throw new ToDoException();
         }
 
         Task newTask = new ToDo(this.description);
         taskList.addTask(newTask);
-        ui.printTaskCreationSuccessMessage(newTask, taskList.getTaskListSize());
+        ui.printTaskCreationSuccessMessage(newTask,
+                taskList.getTaskListSize());
         storage.saveTasksInStorage(taskList.toStorageRepresentation());
     }
 }

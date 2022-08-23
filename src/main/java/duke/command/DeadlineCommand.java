@@ -1,5 +1,9 @@
 package duke.command;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import duke.exception.DeadlineException;
 import duke.exception.DukeException;
 import duke.storage.Storage;
@@ -7,10 +11,6 @@ import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Deadline command for Duke application
@@ -38,8 +38,9 @@ public class DeadlineCommand implements Command {
      * @throws DukeException If Duke fails to execute the DeadlineCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
-        List<String> deadlineInfo = Arrays.stream(this.description.split("/by", 2))
+    public void execute(Ui ui, Storage storage, TaskList taskList)
+            throws DukeException {
+        List<String> deadlineInfo = Arrays.stream(description.split("/by", 2))
                 .map(String::trim)
                 .filter(info -> !info.isEmpty())
                 .collect(Collectors.toList());
@@ -50,7 +51,8 @@ public class DeadlineCommand implements Command {
 
         Task newTask = new Deadline(deadlineInfo.get(0), deadlineInfo.get(1));
         taskList.addTask(newTask);
-        ui.printTaskCreationSuccessMessage(newTask, taskList.getTaskListSize());
+        ui.printTaskCreationSuccessMessage(newTask,
+                taskList.getTaskListSize());
         storage.saveTasksInStorage(taskList.toStorageRepresentation());
     }
 }

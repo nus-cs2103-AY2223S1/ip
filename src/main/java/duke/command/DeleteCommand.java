@@ -37,10 +37,12 @@ public class DeleteCommand implements Command {
      * @throws DukeException If Duke fails to execute the DeleteCommand.
      */
     @Override
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, Storage storage, TaskList taskList)
+            throws DukeException {
         try {
             Task deletedTask = taskList.removeTaskWithIndex(this.index);
-            ui.printTaskDeletionSuccessMessage(deletedTask, taskList.getTaskListSize());
+            ui.printTaskDeletionSuccessMessage(deletedTask,
+                    taskList.getTaskListSize());
             storage.saveTasksInStorage(taskList.toStorageRepresentation());
         } catch (IndexOutOfBoundsException error) {
             throw new DukeException();

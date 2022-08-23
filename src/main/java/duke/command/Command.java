@@ -19,5 +19,5 @@ public interface Command {
      * @param taskList the task list used by the Command.
      * @throws DukeException If Duke fails to execute the command.
      */
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
+    void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
 }
