@@ -10,7 +10,7 @@ public class ExitCommand extends Command{
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String command = ui.currentInput;
         if (command.trim().equalsIgnoreCase("bye")) {
-            ui.showMessage("Thank you for using Falcon.");
+            ui.showExitMessage();
             System.exit(0);
         } else {
             ui.showError("error parsing exit command");

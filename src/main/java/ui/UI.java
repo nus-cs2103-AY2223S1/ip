@@ -34,7 +34,7 @@ public class UI {
     }
 
     public void showLine() {
-        System.out.println(">>");
+        System.out.print(">>");
     }
 
     public void showError(String errorMsg) {
@@ -47,5 +47,8 @@ public class UI {
 
     public void showMessage(String msg) {
         System.out.println(msg);
+    }
+    public void showExitMessage() {
+        System.out.print("Thank you for swinging by :)");
     }
 }

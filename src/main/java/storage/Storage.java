@@ -24,13 +24,9 @@ public class Storage {
      * @throws DukeException when Duke program run outside of Duke folder.
      */
     private void getPath(String pathString) throws DukeException {
-        System.out.println(pathString);
         String currPath = System.getProperty("user.dir");
-        System.out.println(currPath);
         if (currPath.contains("ip")) {
-            System.out.println("currPath"+currPath);
             this.path = Paths.get(currPath, "src", "main", "java", pathString);
-            System.out.println(this.path);
         } else {
             throw new DukeException("Cannot run from outside of ip folder of Duke");
         }

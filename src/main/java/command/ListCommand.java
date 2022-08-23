@@ -8,7 +8,11 @@ import ui.UI;
 public class ListCommand extends Command{
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        ui.showMessage(taskList.getContents());
+        StringBuffer contents  = new StringBuffer("Tasks in your list are:\n________\n");
+        contents.append(taskList.getContents());
+        contents.append("________\n");
+        contents.append("Total: " + taskList.getSize());
+        ui.showMessage(contents.toString());
     }
 
     @Override

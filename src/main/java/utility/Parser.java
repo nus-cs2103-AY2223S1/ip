@@ -24,7 +24,6 @@ public class Parser {
         } else {
              stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
         }
-        System.out.println(stringCommand);
         if (stringCommand.equals("todo")) {
             return new AddTaskCommand();
         } else if (stringCommand.equals("event")) {
@@ -45,6 +44,9 @@ public class Parser {
         }
         else if (stringCommand.equals("list")) {
             return new ListCommand();
+        }
+        else if (stringCommand.equals("bye")) {
+            return new ExitCommand();
         }
         throw new DukeException("Command invalid. /help for more information.");
     }
@@ -71,11 +73,11 @@ public class Parser {
         int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
         int endDescriptionIndex = input.indexOf(" /");
         if (startDescriptionIndex < 0) {
-            throw new DukeException("Command does not follow pattern <command> <description>...\n>>");
+            throw new DukeException("Command does not follow pattern <command> <description>...");
         } else {
             if (commandUsed.equals("event") || commandUsed.equals("deadline")) {
                 if (endDescriptionIndex < 0) {
-                    throw new DukeException("Command does not follow pattern  ... /<at/by> <date in DD-MM-YYYY>\n>>");
+                    throw new DukeException("Command does not follow pattern  ... /<at/by> <date in DD-MM-YYYY>");
                 } else {
                     description = input.substring(startDescriptionIndex, endDescriptionIndex).trim();
                 }
@@ -84,7 +86,7 @@ public class Parser {
             }
         }
         if (description.equals("")) {
-            throw new DukeException("Empty description field\n>>");
+            throw new DukeException("Empty description field");
         }
         return description;
     }
@@ -94,16 +96,16 @@ public class Parser {
             String date = "";
             int startDateIndex = userInput.indexOf("/") + 3;
             if (startDateIndex < 0) {
-                throw new DukeException("Command does not follow pattern ... /<at/by> <YYYY-MM-DD>\n>>");
+                throw new DukeException("Command does not follow pattern ... /<at/by> <YYYY-MM-DD>");
             } else {
                 date = userInput.substring(startDateIndex).trim();
                 if (date.equals("")) {
-                    throw new DukeException("Empty date field\n>>");
+                    throw new DukeException("Empty date field");
                 }
                 return LocalDate.parse(date);
             }
         } catch (DateTimeParseException dtpe) {
-            throw new DukeException("Date is not valid\n>>");
+            throw new DukeException("Date is not valid, require format YYYY-MM-DD");
         }
     }
 
@@ -117,11 +119,11 @@ public class Parser {
         String numberOnly= s.replaceAll("[^0-9]", "");
         int n;
         if (numberOnly.length() <= 0) {
-            throw new DukeException("no number given\n>>");
+            throw new DukeException("no number given");
         } else {
             n = Integer.parseInt(numberOnly);
             if (n > listSize) {
-                throw new DukeException("task does not exist in list\n>>");
+                throw new DukeException("task does not exist in list");
             } else {
                 return n;
             }

@@ -11,10 +11,15 @@ import java.time.format.DateTimeParseException;
  * Parses all lines to be stored or retrieved from file.
  */
 public class StorageParser {
-    public static String storableDescription(Task t) {
+    public static String storableTaskDescription(Task t) {
         return t.toString() + "\n";
     }
-
+    public static String storableEventDescription(Event e) {
+        return e.toString() + "\n";
+    }
+    public static String storableDeadlineDescription(Deadline d) {
+        return d.toString() + "\n";
+    }
     /**
      * Converts line in disk file to corresponding Task.
      * @param line String stored in file.
@@ -70,7 +75,7 @@ public class StorageParser {
             date = line.substring(startOfDateIndex, startOfDateIndex + DATE_LENGTH).trim();
             return LocalDate.parse(date);
         } catch (DateTimeParseException dtpe) {
-            throw new DukeException("Date in storage is invalid\n>>");
+            throw new DukeException("Date in storage is invalid");
         }
     }
 }

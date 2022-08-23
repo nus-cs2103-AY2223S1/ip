@@ -39,16 +39,23 @@ public class TaskList {
     public int getSize() {
         return userInputHistory.size();
     }
-    public String getContents() {
+    public StringBuffer getContents() {
         StringBuffer list = new StringBuffer();
         for (int i = 0; i < userInputHistory.size() ; i++) {
-            list.append(userInputHistory.get(i)+"\n");
+            list.append((i+1) + ". " + userInputHistory.get(i)+"\n");
         }
-        return list.toString();
+        return list;
     }
     public String markTask(int n) {
         userInputHistory.get(n - 1).markAsDone();
-        return StorageParser.storableDescription(userInputHistory.get(n-1));
+        if(userInputHistory.get(n - 1) instanceof  Task) {
+            return StorageParser.storableTaskDescription(userInputHistory.get(n-1));
+        } else if (userInputHistory.get(n - 1) instanceof  Event) {
+            return StorageParser.storableEventDescription(userInputHistory.get(n-1));
+        } else if (userInputHistory.get(n - 1) instanceof  Deadline) {
+            return StorageParser.storableDeadlineDescription(userInputHistory.get(n-1));
+        }
+
     }
     public String unmarkTask(int n) {
         userInputHistory.get(n - 1).markAsDone();
