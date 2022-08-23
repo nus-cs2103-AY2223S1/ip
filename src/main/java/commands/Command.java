@@ -1,20 +1,31 @@
 package commands;
 
 import exception.DukeException;
-import java.util.ArrayList;
+import main.Storage;
+import main.Ui;
 import tasks.*;
 
 /**
  * Parent class of all commands with single execute method
  */
 
-@FunctionalInterface
-public interface Command {
+public abstract class Command {
   /**
-   * Receives an tasklist and executes a command that may or may not modify the tasklist
+   * Receives an tasklist and executes a command that may or may not modify the
+   * tasklist
+   * 
    * @param TaskList
+   * @param storage
+   * @param ui
    * @throws DukeException
    */
 
-  void execute(ArrayList<Task> TaskList) throws DukeException;
+  boolean isExit = false;
+
+  public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+
+  public boolean isExit() {
+    return this.isExit;
+  }
+
 }

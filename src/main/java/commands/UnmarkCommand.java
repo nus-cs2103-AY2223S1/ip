@@ -1,10 +1,10 @@
 package commands;
 
 import exception.*;
-import java.util.ArrayList;
 import tasks.*;
+import main.*;
 
-public class UnmarkCommand implements Command {
+public class UnmarkCommand extends Command {
 
   private int index;
 
@@ -28,12 +28,13 @@ public class UnmarkCommand implements Command {
    * @throws DukeException if task chosen is out of bounds
    */
   @Override
-  public void execute(ArrayList<Task> tasklist) throws DukeException {
-    if (index <= 0 || index > tasklist.size()) {
+  public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    if (index <= 0 || index > tasks.size()) {
       throw new DukeException("No such tasks found");
     } else {
-      Task task = tasklist.get(index - 1);
+      Task task = tasks.get(index - 1);
       task.markUndone();
+      storage.save(tasks);
       System.out.println("Aiyah! I've marked this task as not done yet: ");
       System.out.println(task.toString());
     }

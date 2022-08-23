@@ -1,13 +1,13 @@
 package commands;
 
 import exception.*;
-import java.util.ArrayList;
+import main.*;
 import tasks.*;
 
 /**
  * DeleteCommand used to delete tasks
  */
-public class DeleteCommand implements Command {
+public class DeleteCommand extends Command {
 
   private int index;
 
@@ -26,19 +26,20 @@ public class DeleteCommand implements Command {
   }
 
   /**
-   * Marks command and prints out message to users depending on whether the command was successful
+   * Marks command and prints out message to users depending on whether the
+   * command was successful
    */
   @Override
-  public void execute(ArrayList<Task> tasklist) throws DukeException {
-    if (index <= 0 || index > tasklist.size()) {
+  public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    if (index <= 0 || index > tasks.size()) {
       throw new DukeException("No such task found");
     } else {
-      Task task = tasklist.remove(index - 1);
+      Task task = tasks.remove(index - 1);
+      storage.save(tasks);
       System.out.println("Noted. I've removed this task:");
       System.out.println(task.toString());
       System.out.println(
-        "Now you have " + tasklist.size() + " task(s) in the list"
-      );
+          "Now you have " + tasks.size() + " task(s) in the list");
     }
   }
 }

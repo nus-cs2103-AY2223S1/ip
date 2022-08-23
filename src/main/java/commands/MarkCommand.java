@@ -1,13 +1,13 @@
 package commands;
 
 import exception.*;
-import java.util.ArrayList;
 import tasks.*;
+import main.*;
 
 /**
  * MarkCommand used to mark tasks as done
  */
-public class MarkCommand implements Command {
+public class MarkCommand extends Command {
 
   private int index;
 
@@ -26,15 +26,17 @@ public class MarkCommand implements Command {
   }
 
   /**
-   * Marks command and prints out message to users depending on whether the command was successful
+   * Marks command and prints out message to users depending on whether the
+   * command was successful
    */
   @Override
-  public void execute(ArrayList<Task> tasklist) throws DukeException {
-    if (index <= 0 || index > tasklist.size()) {
+  public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    if (index <= 0 || index > tasks.size()) {
       throw new DukeException("No such tasks found");
     } else {
-      Task task = tasklist.get(index - 1);
+      Task task = tasks.get(index - 1);
       task.markAsDone();
+      storage.save(tasks);
       System.out.println("Fuyoh! I've marked this task as done:");
       System.out.println(task.toString());
     }

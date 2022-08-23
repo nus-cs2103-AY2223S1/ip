@@ -1,16 +1,22 @@
 package commands;
 
 import exception.*;
-import java.util.ArrayList;
+import main.Storage;
+import main.Ui;
 import tasks.*;
 
 /**
  * ByeCommand says bye to user
  */
-public class ByeCommand implements Command {
+public class ByeCommand extends Command {
+
+  public ByeCommand() {
+    this.isExit = true;
+  }
 
   @Override
-  public void execute(ArrayList<Task> tasklist) throws DukeException {
+  public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
     System.out.println("Bye. Hope to see you again soon!");
+
   }
 }
