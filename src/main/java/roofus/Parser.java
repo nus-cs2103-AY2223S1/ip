@@ -8,7 +8,7 @@ import roofus.task.ToDo;
 public class Parser {
     private enum CommandList {
         BYE, LIST, TODO, EVENT, DEADLINE,
-        MARK, UNMARK, DELETE, CLEAR
+        MARK, UNMARK, DELETE, CLEAR, FIND
     }
     
     public static Command parse(String fullCommand) 
@@ -65,6 +65,11 @@ public class Parser {
                     } catch (Exception err) {
                         throw new RoofusException(err.getMessage());
                     }
+            case FIND:
+                if (split.length < 2 || split[1].isEmpty()) {
+                    throw new RoofusException("Huh?! Find what?");
+                }
+                return new FindCommand(split[1]);
             }
         } catch (IllegalArgumentException err) {
             throw new RoofusException("\"" + split[0] + "\" is not a command!");

@@ -49,6 +49,20 @@ public class Ui {
         System.out.println(LINESEP);
     }
     
+    public void filterList(TaskList taskList, String key) {
+        System.out.println(LINESEP);
+        System.out.println("Here are the matching tasks in your list:");
+        int count = 1;
+        for (int i = 0; i < taskList.length(); i++) {
+            String taskString = taskList.getTask(i).toString();
+            if (taskString.contains(key)) {
+                System.out.println(count + "." + taskString);
+                count++;
+            }
+        }
+        System.out.println(LINESEP);
+    }
+    
     public void mark(Task task) {
         System.out.println(LINESEP);
         System.out.println("Nice! I've marked this task as done:\n" +
