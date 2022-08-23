@@ -8,6 +8,12 @@ import java.util.stream.Collectors;
  */
 public class OutputLogger {
     private static final String NAME = "JARVIS";
+
+    /**
+     * Indent the lines of a String
+     * @param text Text to indent
+     * @return String with lines of the text indented with one tab
+     */
     public static String indent(String text) {
         return text
             .lines()
@@ -15,12 +21,21 @@ public class OutputLogger {
             .collect(Collectors.joining("\n"));
     }
 
+    /**
+     * Output a message to the user through command line
+     * @param msg Message to output
+     */
     public static void output(String msg) {
         String line = "____________________________________________________________";
         String out = String.format("%s%n%s:\n%s%n%s%n", line, NAME, msg, line);
         System.out.println(indent(out));
     }
 
+    /**
+     * Format a list of lines with line numbers
+     * @param linesList List of String lines to output
+     * @return Message with line numbers for each line
+     */
     public static String numberedOutput(List<String> linesList) {
         StringBuilder out = new StringBuilder();
 
@@ -33,7 +48,8 @@ public class OutputLogger {
         return out.toString();
     }
 
-    /** Return an appropriate error string given a list of issues
+    /**
+     * Return an appropriate error string given a list of issues
      * @param errMsgs A list of error messages for the user of length >= 1
      * @return Appropriate error string
      */
@@ -44,11 +60,18 @@ public class OutputLogger {
         return "The following issues occurred with your command:\n" + numberedOutput(errMsgs);
     }
 
+    /**
+     * Print chatbot introduction for the user
+     */
     public static void printIntroduction() {
-        String logo = "\n" +
-                "     _   _    ___ __   __ ___  ___ \n" +
-                "  _ | | /_\\  | _ \\\\ \\ / /|_ _|/ __|\n" +
-                " | || |/ _ \\ |   / \\ V /  | | \\__ \\\n" +
+        String logo = "\n"
+                +
+                "     _   _    ___ __   __ ___  ___ \n"
+                +
+                "  _ | | /_\\  | _ \\\\ \\ / /|_ _|/ __|\n"
+                +
+                " | || |/ _ \\ |   / \\ V /  | | \\__ \\\n"
+                +
                 "  \\__//_/ \\_\\|_|_\\  \\_/  |___||___/\n";
 
         System.out.print(logo);
