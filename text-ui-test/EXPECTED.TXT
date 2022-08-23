@@ -5,7 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-? hi, i'm Duke!
+? hi, i'm duke.Duke!
   what would you like to do today?
 ? your list is empty. start adding some tasks to do now!
 ? hmm, you do not have any tasks in your list to be marked. add some now!

@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -9,6 +11,10 @@ public class Task {
     );
     private String description;
     private boolean isDone;
+
+    public enum TaskType {
+            TODO, DEADLINE, EVENT
+    }
 
     public Task (String description) {
         this.description = description;
