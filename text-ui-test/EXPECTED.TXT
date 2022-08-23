@@ -31,7 +31,10 @@ Here are the tasks in your list:
 2.[T][ ] breakfast
 ____________________________________________________________
 
-Sorry, I can't mark this as done if it does not exist :(
+____________________________________________________________
+☹ OOPS!!! Sorry, I can't mark this as done if it does not exist :(
+____________________________________________________________
+
 ____________________________________________________________
 Nice! I've marked this task as done:
 [T][X] breakfast
