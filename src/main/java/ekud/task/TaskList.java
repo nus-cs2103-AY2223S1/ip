@@ -183,4 +183,14 @@ public class TaskList {
     }
   }
 
+  public String searchTasks(String searchPhrase) {
+    List<Task> matchingTasks = new ArrayList<Task>();
+    for (int i = 0; i < this.taskList.size(); i++) {
+      if (this.taskList.get(i).getDescription().contains(searchPhrase)) {
+        matchingTasks.add(this.taskList.get(i));
+      }
+    }
+    return this.printTasks(matchingTasks);
+  }
+
 }
