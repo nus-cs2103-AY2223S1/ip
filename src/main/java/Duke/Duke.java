@@ -19,17 +19,13 @@ public class Duke {
 
     public String getResponse(String command) {
         boolean isExit = false;
-        while (!isExit) {
-            try {
-                Command c = Parser.parse(command);
-                String output = c.execute(lst, ui, storage);
-                isExit = c.isExit();
-                return output;
-            } catch (Exception e) {
-                return ui.printMsg(e.getMessage());
-            }
+        try {
+            Command c = Parser.parse(command);
+            String output = c.execute(lst, ui, storage);
+            return output;
+        } catch (Exception e) {
+            return ui.printMsg(e.getMessage());
         }
-        return "";
     }
 
     public void run() {
