@@ -5,46 +5,9 @@ import java.util.regex.Matcher;
 
 public class TaskList {
     private ArrayList<Task> taskList;
-    private static final Storage storage = new Storage("data", "gibson.txt");
 
-    public TaskList() {
+    public TaskList(List<String> list) {
         taskList = new ArrayList<Task>();
-        if (storage.hasDataToLoad()) {
-            addFromStringList(storage.load());
-        }
-    }
-
-    public void add(Task task) {
-        taskList.add(task);
-        storage.save(toString());
-    }
-
-    public Task remove(int i) {
-        Task t = taskList.get(i);
-        taskList.remove(i);
-        storage.save(toString());
-        return t;
-    }
-
-    public Task mark(int i) {
-        Task t = taskList.get(i);
-        t.mark();
-        storage.save(toString());
-        return t;
-    }
-
-    public Task unmark(int i) {
-        Task t = taskList.get(i);
-        t.unmark();
-        storage.save(toString());
-        return t;
-    }
-
-    public int size() {
-        return taskList.size();
-    }
-
-    public void addFromStringList(List<String> list) {
         for (String line : list) {
             Pattern pattern = Pattern.compile("]");
             Matcher matcher = pattern.matcher(line);
@@ -68,6 +31,32 @@ public class TaskList {
             }
             taskList.add(t);
         }
+    }
+
+    public void add(Task task) {
+        taskList.add(task);
+    }
+
+    public Task remove(int i) {
+        Task t = taskList.get(i);
+        taskList.remove(i);
+        return t;
+    }
+
+    public Task mark(int i) {
+        Task t = taskList.get(i);
+        t.mark();
+        return t;
+    }
+
+    public Task unmark(int i) {
+        Task t = taskList.get(i);
+        t.unmark();
+        return t;
+    }
+
+    public int size() {
+        return taskList.size();
     }
 
     @Override
