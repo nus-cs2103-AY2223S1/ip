@@ -1,2 +1,7 @@
-package PACKAGE_NAME;public class ListCommand {
+public class ListCommand extends Command{
+
+    @Override
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+        ui.showTasks(tasks);
+    }
 }

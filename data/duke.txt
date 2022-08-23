@@ -1,4 +1,3 @@
-T # 1 # read book
 D # 1 # return book # June 6th
-E # 0 # project meeting # Aug 6th 2-4pm
-D # 1 #  do homework  #  August 22nd
+T # 0 # gdiajopadva
+D # 0 # return book # Jul 06 2022
