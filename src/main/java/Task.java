@@ -5,17 +5,19 @@ public class Task {
     private String description;
     private boolean isDone;
 
-    public Task(String description) {
+    public Task(String description, boolean status) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = status;
     }
 
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 
+    public String getDescription() { return description; }
+
     public String toString() {
-        return this.description;
+        return description;
     }
 
     public boolean getStatus() { return this.isDone; };
