@@ -1,11 +1,9 @@
 package handlers;
 
-import models.Task;
-
-import java.util.List;
+import models.TaskList;
 
 public class MarkAsUndoneCommand implements DukeCommand {
-    public String run (List<Task> taskList, String content) {
+    public String run (TaskList taskList, String content) {
         try {
             int taskNum = Integer.parseInt(content);
             taskList.get(taskNum - 1).markAsUndone();
