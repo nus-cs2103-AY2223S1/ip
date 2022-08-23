@@ -53,7 +53,6 @@ public class Parser {
                                 new Deadline(deadlineComponents[0].trim(),
                                         deadlineComponents[1].trim())
                         );
-
                 case Event:
                     String[] eventComponents = contents.split(" /at ");
                     if (eventComponents.length != 2)

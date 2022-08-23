@@ -1,4 +1,5 @@
 package duke.enums;
+
 import duke.exceptions.*;
 
 /**
@@ -14,6 +15,7 @@ public enum Action {
     Delete("delete");
 
     public final String label;
+
     private Action(String label) {
         this.label = label;
     }
@@ -26,6 +28,6 @@ public enum Action {
         }
 
         throw new InvalidCommandException(
-               "Could not determine the command. Valid commands include: todo, deadline, event, mark, unmark, delete");
+                "Could not determine the command. Valid commands include: todo, deadline, event, mark, unmark, delete");
     }
 }
