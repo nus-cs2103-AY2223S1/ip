@@ -2,9 +2,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
+
+    public abstract String format();
 
     public Task(String description) {
         this.description = description;

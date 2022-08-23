@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -11,7 +10,7 @@ public class Duke {
     enum COMMANDS {todo, deadline, event, mark, unmark, delete, }
 
     public static void main(String[] args) {
-        getData();
+        loadFromFile();
 
         System.out.println("Hello! What are we gonna do today?");
         System.out.println("Use '/?' for help");
@@ -27,6 +26,7 @@ public class Duke {
                     System.out.println("Pls try again");
                 }
             } else if (input.equals("bye")) {
+                saveToFile();
                 System.out.println("\tBye! Hope that I was of service!");
                 break;
             } else if (input.equals("list")) {
@@ -135,20 +135,45 @@ public class Duke {
         }
     }
 
-    private static void getData() {
+    private static void loadFromFile() {
         File directory = new File("data");
         directory.mkdir();
-        try {
-            File dataFile = new File(FILE_PATH);
-            dataFile.createNewFile();
-
-            Scanner s = new Scanner(dataFile);
-            while (s.hasNext()) {
-                String item = s.nextLine();
-                parse(item, true);
+        File dataFile = new File(FILE_PATH);
+        if (dataFile.exists()) {
+            try {
+                Scanner s = new Scanner(dataFile);
+                while (s.hasNext()) {
+                    String item = s.nextLine();
+                    parse(item, true);
+                }
+            } catch (FileNotFoundException | DukeWrongArgumentException e) {
+                System.out.println("something went wrong while loading save file\n" + e);
             }
-        } catch (IOException | DukeWrongArgumentException e) {
-            System.out.println("something went wrong while loading saved info\n" + e);
+        }
+    }
+
+    private static void saveToFile() {
+        File save = new File(FILE_PATH);
+        try {
+            PrintWriter writer = new PrintWriter(save);
+            writer.print("");
+            writer.close();
+        } catch (FileNotFoundException e) {
+            try {
+                save.createNewFile();
+            } catch (IOException f) {
+                System.out.println("something went wrong while creating save file\n" + f);
+            }
+        }
+
+        try {
+            for (Task item : store) {
+                FileWriter fw = new FileWriter(FILE_PATH, true);
+                fw.write(item.format() + "\n");
+                fw.close();
+            }
+        } catch (IOException e) {
+            System.out.println("something went wrong while writing to save file\n" + e);
         }
     }
 }
