@@ -1,7 +1,7 @@
 public class CommandFilter {
     private String firstWord;
     private String remainderWords;
-    private String[] commands = {"list", "bye", "mark", "unmark", "todo", "deadline", "event"};
+    private String[] commands = {"list", "bye", "mark", "unmark", "todo", "deadline", "event", "delete"};
 
     public void filterCommand(String command) {
         firstWord = null;

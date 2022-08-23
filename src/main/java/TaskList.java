@@ -18,16 +18,30 @@ public class TaskList {
         taskMessager.listMessage(toString());
     }
 
+    private void checkIndexOutOfBound(int index) throws IndexOutOfBoundsException {
+        if (index < 0 || index > tasks.size()) {
+            throw new IndexOutOfBoundsException("☹ OOPS!!! Index is out of range!");
+        }
+    }
+
     public void markTask(int index) {
+        checkIndexOutOfBound(index);
         Task task = tasks.get(index);
         task.mark();
         taskMessager.markMessage(task);
     }
 
     public void unmarkTask(int index) {
+        checkIndexOutOfBound(index);
         Task task = tasks.get(index);
         task.unmark();
         taskMessager.unmarkMessage(task);
+    }
+
+    public void deleteTask(int index) {
+        checkIndexOutOfBound(index);
+        Task removed = tasks.remove(index);
+        taskMessager.deleteMessage(removed, tasks.size());
     }
 
     public boolean isEmpty() {

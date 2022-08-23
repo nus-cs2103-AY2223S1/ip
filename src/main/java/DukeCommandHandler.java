@@ -37,14 +37,14 @@ public class DukeCommandHandler {
         }
     }
 
-    private void markCommand() throws EmptyException {
+    private void markCommand() throws EmptyException, IndexOutOfBoundsException {
         if (commandFilter.getRemainderCommand() == null) {
             throw new EmptyMarkException();
         }
         taskList.markTask(parseInt(commandFilter.getRemainderCommand()));
     }
 
-    private void unmarkCommand() throws EmptyException {
+    private void unmarkCommand() throws EmptyException, IndexOutOfBoundsException {
         if (commandFilter.getRemainderCommand() == null) {
             throw new EmptyUnmarkException();
         }
@@ -85,6 +85,13 @@ public class DukeCommandHandler {
         taskList.addTask(event);
     }
 
+    private void deleteCommand() throws EmptyException, IndexOutOfBoundsException {
+        if (commandFilter.getRemainderCommand() == null) {
+            throw new EmptyDeleteException();
+        }
+        taskList.deleteTask(parseInt(commandFilter.getRemainderCommand()));
+    }
+
     private void executeCommand(String command) throws DukeException, NumberFormatException {
         commandFilter.filterCommand(command);
         switch (commandFilter.getCommand()) {
@@ -108,6 +115,9 @@ public class DukeCommandHandler {
             break;
         case "event":
             eventCommand();
+            break;
+        case "delete":
+            deleteCommand();
             break;
         default:
             throw new DukeCommandNotFoundException();
