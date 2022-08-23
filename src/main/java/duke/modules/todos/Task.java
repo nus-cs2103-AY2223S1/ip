@@ -37,6 +37,9 @@ public abstract class Task {
         this.done = done;
     }
 
+    private final String typeCode = "B";
+    private final String doneSer = "X";
+    private final String undoneSer = "-";
 
     /**
      * Packs the task's data into a List.
@@ -44,7 +47,7 @@ public abstract class Task {
      * @return The packed data.
      */
     public List<String> flatpack() {
-        return List.of("B", this.done ? "X" : "-", this.name);
+        return List.of(typeCode, this.done ? doneSer : undoneSer, this.name);
     }
 
     /**
@@ -53,16 +56,16 @@ public abstract class Task {
      * @param l The packed data.
      */
     public Task(List<? extends String> l) {
-        if (l.get(0) != "B") {
+        if (l.get(0) != typeCode) {
             throw new IllegalArgumentException("Trying to hydrate non-task as task: " + l);
         }
 
         this.name = l.get(2);
 
         final String doneStr = l.get(1);
-        if ("X".equals(doneStr)) {
+        if (doneSer.equals(doneStr)) {
             this.done = true;
-        } else if ("-".equals(doneStr)) {
+        } else if (undoneSer.equals(doneStr)) {
             this.done = false;
         } else {
             throw new IllegalArgumentException("Invalid done value found while hydrating task: " + doneStr);
