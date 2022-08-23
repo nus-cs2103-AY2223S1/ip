@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.Scanner;
@@ -52,8 +54,10 @@ public class Duke {
         map.put(Action.UNMARK, command -> unmark(Integer.parseInt(command.getParameters().get(0))));
         map.put(Action.TODO, command -> todo(command.getParameters().get(0)));
 //        Level_4
-        map.put(Action.EVENT, command -> event(command.getParameters().get(0), command.getParameters().get(1)));
-        map.put(Action.DEADLINE, command -> deadline(command.getParameters().get(0), command.getParameters().get(1)));
+        map.put(Action.EVENT, command -> event(command.getParameters().get(0),
+                Parser.parseStringToDateTime(command.getParameters().get(1))));
+        map.put(Action.DEADLINE, command -> deadline(command.getParameters().get(0),
+                Parser.parseStringToDateTime(command.getParameters().get(1))));
 //       Level_5
 //        No Actions is added.
 //        Level_6
@@ -123,7 +127,7 @@ public class Duke {
         mp.printMessage(successMsg);
     }
 
-    public void event(String msg, String time) {
+    public void event(String msg, LocalDateTime time) {
         String successMsg = "Got it. I've added this task:";
         Task event = Task.event(msg, time);
         tasks.add(event);
@@ -132,7 +136,7 @@ public class Duke {
         mp.printMessage(successMsg);
     }
 
-    public void deadline(String msg, String time) {
+    public void deadline(String msg, LocalDateTime time) {
         String successMsg = "Got it. I've added this task:";
         Task deadline = Task.deadline(msg, time);
         tasks.add(deadline);

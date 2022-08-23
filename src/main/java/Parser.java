@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -36,15 +39,6 @@ public class Parser {
     public static String combineAttributes(String... strings) {
         return Arrays.stream(strings)
                 .reduce("", (x, y) -> x + " " + ATTRIBUTE_SEPARATOR + " " + y).substring(ATTRIBUTE_SEPARATOR.length() + 2);
-    }
-
-    private static boolean isInt(String s) {
-        try {
-            Integer.parseInt(s);
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
     }
 
     public static Command parseCommand(String s) throws DukeException {
@@ -109,7 +103,7 @@ public class Parser {
             } else if (!isValidString(arg1)) {
                 throw new DukeException.InvalidArgumentException(Action.EVENT,
                         "Event [Name] is not found.");
-            } else if (!isValidString(arg2)) {
+            } else if (!isValidDate(arg2)) {
                 throw new DukeException.InvalidArgumentException(Action.EVENT,
                         "Event [Time] is not found.");
             }
@@ -133,7 +127,7 @@ public class Parser {
             } else if (!isValidString(arg1)) {
                 throw new DukeException.InvalidArgumentException(Action.DEADLINE,
                         "Deadline [Name] is not found.");
-            } else if (!isValidString(arg2)) {
+            } else if (!isValidDate(arg2)) {
                 throw new DukeException.InvalidArgumentException(Action.DEADLINE,
                         "Deadline [Time] is not found.");
             }
@@ -158,11 +152,37 @@ public class Parser {
         }
     }
 
+    private static boolean isInt(String s) {
+        try {
+            Integer.parseInt(s);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     private static boolean isValidString(String input) {
         return input != null && !input.equals("") && !input.contains(ATTRIBUTE_SEPARATOR);
     }
 
+    private static boolean isValidDate(String input) {
+        try {
+            LocalDate.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     public static String getAttributeSeparator() {
         return ATTRIBUTE_SEPARATOR;
+    }
+
+    public static String parseDateTimeToString(LocalDateTime localDateTime) {
+        return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    public static LocalDateTime parseStringToDateTime(String string) {
+        return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 }

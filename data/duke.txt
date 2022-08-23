@@ -1,6 +1,6 @@
 T } 1 } 须弥探险
-E } 0 } presentation } week 5
-D } 0 } week 3 cs2103t project } thursday night
-E } 1 } CS2109S Lecture } I3-AUD
-E } 0 } CS2109S Lecture } I4-AUD
-E } 0 } CS2109S Lecture } I5-AUD
+E } 0 } presentation } 2022-10-01 12:34
+D } 0 } week 3 cs2103t project } 2022-08-25 23:45
+E } 1 } CS2109S Lecture } 2022-08-26 11:22
+E } 0 } CS2109S Lecture } 2022-08-19 00:01
+E } 0 } CS2109S Lecture } 2022-08-12 02:59
