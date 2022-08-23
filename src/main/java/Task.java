@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
   private final String description;
   private boolean isDone;
 
@@ -46,6 +46,12 @@ public class Task {
   public String getStatusIcon() {
     return (this.isDone ? "X" : " ");
   }
+
+  /**
+   * Returns string representing details of Task to be stored in the txt file.
+   * @return String representing details of Task
+   */
+  public abstract String toFileFormat();
 
   /**
    * Get string representation of task.
