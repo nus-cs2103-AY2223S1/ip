@@ -2,6 +2,9 @@ public class DukeCommandHandler {
     private String command;
     private DukeMessager dukeMessager;
     private boolean isRunning = false;
+    private int size = 100;
+    private String[] list = new String[size];
+    private int index = 0;
 
     public DukeCommandHandler() {
         dukeMessager = new DukeMessager();
@@ -11,8 +14,19 @@ public class DukeCommandHandler {
         this.command = command;
     }
 
-    private void echoCommand() {
-        dukeMessager.message(command);
+    private void addToList() {
+        list[index] = command;
+        index++;
+        dukeMessager.message("Added: " + command);
+    }
+
+    private void listCommand() {
+        for (int i = 0; i < size; i++) {
+            if (list[i] == null) {
+                return;
+            }
+            dukeMessager.message(String.format("%d. %s", i+1, list[i]));
+        }
     }
 
     private void byeCommand() {
@@ -23,10 +37,14 @@ public class DukeCommandHandler {
     private void executeCommand(String command) {
         receiveCommand(command);
         switch (command){
+        case "list":
+            listCommand();
+            break;
         case "bye":
             byeCommand();
+            break;
         default:
-            echoCommand();
+            addToList();
         }
     }
 
