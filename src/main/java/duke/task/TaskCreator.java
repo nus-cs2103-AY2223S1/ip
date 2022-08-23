@@ -15,7 +15,7 @@ public class TaskCreator {
     }
     private static int SIZEOFPREPOSITION = 4;
 
-    public static Task CreateTask(String in) {
+    public static Task createTask(String in) {
         Task task = null;
         Type type;
 
@@ -109,7 +109,7 @@ public class TaskCreator {
             info += (" " + lineParts[2] + " /at " + lineParts[3]);
         }
 
-        Task task = CreateTask(info);
+        Task task = createTask(info);
 
         if (!lineParts[1].equals("[ ]")) {
             task.isDone = true;

@@ -41,7 +41,7 @@ public class Parser {
         //Create a task
         } else {
             try {
-                Task task = TaskCreator.CreateTask(in);
+                Task task = TaskCreator.createTask(in);
                 if (task == null) {
                     throw new InvalidCommandException();
                 } else if (task.getClass() == ErrorTask.class) {
