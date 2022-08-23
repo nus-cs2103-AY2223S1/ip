@@ -18,7 +18,8 @@ enum COMMANDS {
     TODO,
     DEADLINE,
     EVENT,
-    DELETE
+    DELETE,
+    FIND
 }
 
 /**
@@ -75,6 +76,10 @@ public class Parser {
             }
             case DELETE: {
                 return new DeleteCommand(args);
+            }
+            case FIND: {
+                FindCommand.validateArguments(args);
+                return new FindCommand(args);
             }
             default:
                 return new InvalidCommand();
