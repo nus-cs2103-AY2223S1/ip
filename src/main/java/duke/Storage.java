@@ -1,3 +1,8 @@
+package duke;
+
+import duke.exception.ReadFileException;
+import duke.exception.WriteFileException;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -25,7 +30,7 @@ public class Storage {
             fileWriter.write(content);
             fileWriter.close();
         } catch (IOException ioException) {
-            throw new DukeException.WriteFileException(this.path, "Unable to write the file.");
+            throw new WriteFileException(this.path, "Unable to write the file.");
         }
     }
 
@@ -38,7 +43,7 @@ public class Storage {
                 result = result + scanner.nextLine() + System.lineSeparator();
             }
         } catch (IOException ioException) {
-            throw new DukeException.ReadFileException(this.path, "Unable to write the file.");
+            throw new ReadFileException(this.path, "Unable to write the file.");
         }
         return result;
     }
@@ -57,7 +62,7 @@ public class Storage {
                 temp.createNewFile();
             }
         } catch (IOException ioException) {
-            throw new DukeException.ReadFileException(this.path, "Unable to create new files.");
+            throw new ReadFileException(this.path, "Unable to create new files.");
         }
     }
 }

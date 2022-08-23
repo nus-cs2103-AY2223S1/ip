@@ -1,22 +1,26 @@
+package duke.command;
+
+import duke.exception.InvalidActionException;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public enum Action {
     DONOTHING,
-//    Level_1
+    //    Level_1
     GREET, ECHO, EXIT,
-//    Level_2
+    //    Level_2
     ADD, LIST,
-//    Level_3
+    //    Level_3
     MARK, UNMARK,
-//    Level_4
+    //    Level_4
     TODO, EVENT, DEADLINE,
-//    Level_5
+    //    Level_5
 //    No new actions is added
 //    Level_6
     DELETE,
-//    Level_7
+    //    Level_7
     SAVE, READ;
 
     private static HashMap<Action, String> actionFormatMap = new HashMap<>();
@@ -86,10 +90,10 @@ public enum Action {
         return "";
     }
 
-    public static Action getAction(String action) throws DukeException.InvalidActionException {
+    public static Action getAction(String action) throws InvalidActionException {
         return Optional.ofNullable(action)
                 .map(x -> Action.stringActionMap.get(x.trim()))
-                .orElseThrow(() -> new DukeException.InvalidActionException(action));
+                .orElseThrow(() -> new InvalidActionException(action));
     }
 
     public static String getFormat(Action action) {

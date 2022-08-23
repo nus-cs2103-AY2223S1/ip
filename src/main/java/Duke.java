@@ -1,3 +1,8 @@
+import duke.*;
+import duke.command.Action;
+import duke.command.Command;
+import duke.exception.DukeException;
+
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Consumer;

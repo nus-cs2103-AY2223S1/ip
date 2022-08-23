@@ -1,3 +1,11 @@
+package duke;
+
+import duke.command.Action;
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.exception.InvalidArgumentException;
+import duke.exception.NoArgumentException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -58,17 +66,17 @@ public class Parser {
         case MARK:
             arg1 = s.substring(Action.getString(Action.MARK).length()).trim();
             if (arg1.equals("")) {
-                throw new DukeException.NoArgumentException(Action.MARK);
+                throw new NoArgumentException(Action.MARK);
             } else if (!isInt(arg1)) {
-                throw new DukeException.InvalidArgumentException(Action.MARK, "The argument should be an integer.");
+                throw new InvalidArgumentException(Action.MARK, "The argument should be an integer.");
             }
             return Command.mark(Integer.parseInt(arg1));
         case UNMARK:
             arg1 = s.substring(Action.getString(Action.UNMARK).length()).trim();
             if (arg1.equals("")) {
-                throw new DukeException.NoArgumentException(Action.UNMARK);
+                throw new NoArgumentException(Action.UNMARK);
             } else if (!isInt(arg1)) {
-                throw new DukeException.InvalidArgumentException(Action.UNMARK, "The argument should be an integer.");
+                throw new InvalidArgumentException(Action.UNMARK, "The argument should be an integer.");
             }
             return Command.unmark(Integer.parseInt(arg1));
         case LIST:
@@ -76,16 +84,16 @@ public class Parser {
         case TODO:
             arg1 = s.substring(Action.getString(Action.TODO).length()).trim();
             if (arg1.equals("")) {
-                throw new DukeException.NoArgumentException(Action.TODO);
+                throw new NoArgumentException(Action.TODO);
             } else if (!isValidString(arg1)) {
-                throw new DukeException.InvalidArgumentException(Action.EVENT,
+                throw new InvalidArgumentException(Action.EVENT,
                         "Todo details should not contain '}'.");
             }
             return Command.todo(arg1);
         case EVENT:
             String START_OF_EVENT_TIME_SYMBOL = " /at ";
             if (!s.contains(START_OF_EVENT_TIME_SYMBOL)) {
-                throw new DukeException.InvalidArgumentException(Action.EVENT, "Keyword: [" +
+                throw new InvalidArgumentException(Action.EVENT, "Keyword: [" +
                         START_OF_EVENT_TIME_SYMBOL + " ] or [Time] is not found.");
             }
             indexOfName = Action.getString(Action.EVENT).length();
@@ -93,12 +101,12 @@ public class Parser {
             arg1 = s.substring(indexOfName, indexOfTime).trim();
             arg2 = s.substring(indexOfTime + START_OF_EVENT_TIME_SYMBOL.length()).trim();
             if (arg1.equals("") && arg2.equals("")) {
-                throw new DukeException.NoArgumentException(Action.EVENT);
+                throw new NoArgumentException(Action.EVENT);
             } else if (!isValidString(arg1)) {
-                throw new DukeException.InvalidArgumentException(Action.EVENT,
+                throw new InvalidArgumentException(Action.EVENT,
                         "Event [Name] is not found.");
             } else if (!isValidDate(arg2)) {
-                throw new DukeException.InvalidArgumentException(Action.EVENT,
+                throw new InvalidArgumentException(Action.EVENT,
                         "Event [Time] is not found.");
             }
 
@@ -107,7 +115,7 @@ public class Parser {
             String START_OF_DEADLINE_TIME_SYMBOL = " /by ";
 
             if (!s.contains(START_OF_DEADLINE_TIME_SYMBOL)) {
-                throw new DukeException.InvalidArgumentException(Action.DEADLINE, "Keyword: [" +
+                throw new InvalidArgumentException(Action.DEADLINE, "Keyword: [" +
                         START_OF_DEADLINE_TIME_SYMBOL + " ] or [Time] is not found.");
             }
 
@@ -117,12 +125,12 @@ public class Parser {
             arg2 = s.substring(indexOfTime + START_OF_DEADLINE_TIME_SYMBOL.length()).trim();
 
             if (arg1.equals("") && arg2.equals("")) {
-                throw new DukeException.NoArgumentException(Action.DEADLINE);
+                throw new NoArgumentException(Action.DEADLINE);
             } else if (!isValidString(arg1)) {
-                throw new DukeException.InvalidArgumentException(Action.DEADLINE,
+                throw new InvalidArgumentException(Action.DEADLINE,
                         "Deadline [Name] is not found.");
             } else if (!isValidDate(arg2)) {
-                throw new DukeException.InvalidArgumentException(Action.DEADLINE,
+                throw new InvalidArgumentException(Action.DEADLINE,
                         "Deadline [Time] is not found.");
             }
 
@@ -130,9 +138,9 @@ public class Parser {
         case DELETE:
             arg1 = s.substring(Action.getString(Action.DELETE).length()).trim();
             if (arg1.equals("")) {
-                throw new DukeException.NoArgumentException(Action.DELETE);
+                throw new NoArgumentException(Action.DELETE);
             } else if (!isInt(arg1)) {
-                throw new DukeException.InvalidArgumentException(Action.DELETE, "The argument should be an integer.");
+                throw new InvalidArgumentException(Action.DELETE, "The argument should be an integer.");
             }
             return Command.delete(Integer.parseInt(arg1));
         case SAVE:

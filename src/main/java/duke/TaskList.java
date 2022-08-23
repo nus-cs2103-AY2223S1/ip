@@ -1,3 +1,8 @@
+package duke;
+
+import duke.exception.TaskNotFoundException;
+import duke.task.Task;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
@@ -9,7 +14,7 @@ public class TaskList implements Savable<TaskList> {
         return tasks.add(task);
     }
 
-    public Task get(int i) throws DukeException.TaskNotFoundException {
+    public Task get(int i) throws TaskNotFoundException {
         throwIfNotValidIndex(i);
         return this.tasks.get(i);
     }
@@ -18,7 +23,7 @@ public class TaskList implements Savable<TaskList> {
         return this.tasks.size();
     }
 
-    public Task remove(int i) throws DukeException.TaskNotFoundException {
+    public Task remove(int i) throws TaskNotFoundException {
         throwIfNotValidIndex(i);
         return this.tasks.remove(i);
     }
@@ -27,9 +32,9 @@ public class TaskList implements Savable<TaskList> {
         return i >= 0 && i < this.size();
     }
 
-    private void throwIfNotValidIndex(int i) throws DukeException.TaskNotFoundException {
+    private void throwIfNotValidIndex(int i) throws TaskNotFoundException {
         if (!isValidIndex(i)) {
-            throw new DukeException.TaskNotFoundException(i + 1);
+            throw new TaskNotFoundException(i + 1);
         }
     }
 
