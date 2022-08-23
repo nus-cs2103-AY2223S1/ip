@@ -16,7 +16,8 @@ public class EventTask extends Task {
 
     /**
      * Constructor of a EventTask object
-     * @param description      Name of the task
+     *
+     * @param description      description of the task
      * @param at               Date of the event.
      */
     public EventTask(String description, String at) throws DukeException {
@@ -36,6 +37,11 @@ public class EventTask extends Task {
         this.time = LocalTime.parse(temp);
     }
 
+    /**
+     * format date and time to a string that would be added into the text document.
+     *
+     * @return String added into the text document.
+     */
     public String dateTimeString() {
         return this.date.toString() + " " + this.time.toString().replace(":", "");
     }

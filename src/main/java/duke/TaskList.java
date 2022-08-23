@@ -3,11 +3,27 @@ package duke;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+/**
+ * The Tasklist class that stores the arraylist.
+ */
 public class TaskList {
 
 	private static Pattern checkString = Pattern.compile("-?\\d+");
 	private static ArrayList<Task> list = new ArrayList<Task>();
 
+	/**
+	 * Constructor of a tasklist
+	 */
+	public TaskList() {
+		this.list = new ArrayList<>();
+	}
+
+	/**
+	 * To check if an integer is given after user input "mark", "unmark" or "delete".
+	 *
+	 * @param strNum The String after user input "mark", "unmark" or "delete".
+	 * @return True if it is an integer, false otherwise.
+	 */
 	private static boolean isInteger(String strNum) {
 		if (strNum == null) {
 			return false;
@@ -15,22 +31,37 @@ public class TaskList {
 		return checkString.matcher(strNum).matches();
 	}
 
-	public TaskList() {
-		this.list = new ArrayList<>();
-	}
-
+	/**
+	 * Add task from the text document to the arraylist.
+	 *
+	 * @param task The task from the text document.
+	 */
 	public void addStorageToList (Task task) {
 		this.list.add(task);
 	}
 
+	/**
+	 * get index from the arraylist.
+	 *
+	 * @param number The inndex
+	 * @return The task in that index.
+	 */
 	public Task getTask(int number) {
 		return this.list.get(number);
 	}
 
+	/**
+	 * Get the length of the arraylist.
+	 *
+	 * @return The length of the arraylist
+	 */
 	public int size() {
 		return this.list.size();
 	}
 
+	/**
+	 * Clear the arraylist.
+	 */
 	public void clear() {
 		this.list.clear();
 	}
@@ -61,6 +92,13 @@ public class TaskList {
 		System.out.println("-----------------------------------------------");
 	}
 
+	/**
+	 * To mark or unmark the task.
+	 *
+	 * @param update The action to be done.
+	 * @param parts The string response broken down into its keywords.
+	 * @throws DukeException If the keywords are missing or invalid.
+	 */
 	public void updateTask(Parser.Update update, String[] parts ) throws DukeException {
 		String part2;
 		switch (update) {
@@ -103,6 +141,11 @@ public class TaskList {
 		}
 	}
 
+	/**
+	 * Add task into the arraylist.
+	 *
+	 * @param task The task added into the arraylist.
+	 */
 	public void addDetailedTask(Task task) {
 		System.out.println("-----------------------------------------------");
 		System.out.println("Got it. I've added this task:");
@@ -113,9 +156,10 @@ public class TaskList {
 
 	/**
 	 * add the right type of task to the list.
+	 *
 	 * @param type     Type of task.
-	 * @param parts    The array that contains the action and the name of the task.
-	 * @throws DukeException
+	 * @param parts    The string response broken down into its keywords.
+	 * @throws DukeException If the keywords are missing or invalid.
 	 */
 	public void addTaskType(Parser.Type type, String[] parts) throws DukeException {
 		String part2;
@@ -170,8 +214,9 @@ public class TaskList {
 	}
 
 	/**
-	 * Delete task from the list
-	 * @param number   The number in the list to be removed.
+	 * Delete task from the list.
+	 *
+	 * @param number The index to be removed.
 	 */
 	public void deleteTask(int number) {
 		Task temp = this.list.get(number - 1);
