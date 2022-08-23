@@ -21,9 +21,9 @@ public class Ui {
     }
 
 
-    public static void showMsg(StringBuilder stringBuilder) {
+    public static void showMsg(String msg) {
         System.out.println(HORIZONTAL_LINE);
-        System.out.println(stringBuilder);
+        System.out.println(msg);
         System.out.println(HORIZONTAL_LINE);
     }
 

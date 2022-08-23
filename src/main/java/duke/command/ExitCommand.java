@@ -1,11 +1,13 @@
 package duke.command;
 
+import duke.Storage;
+import duke.TaskList;
 import duke.Ui;
 
 public class ExitCommand implements ICommand {
     @Override
-    public void execute() {
-        Ui.showMsg(new StringBuilder("Thank you!"));
+    public void execute(Storage storage, TaskList taskList, Ui ui) {
+        Ui.showMsg("Thank you!");
     }
 
     @Override

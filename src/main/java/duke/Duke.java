@@ -10,16 +10,17 @@ public class Duke {
 
     public Duke(String filePath) {
         this.storage = new Storage(filePath);
-        this.taskList = new TaskList();
+        this.taskList = new TaskList(this.storage.load());
         this.ui = new Ui();
+        ui.showWelcomeMsg();
     }
 
     public void run() {
         ICommand cmd = new EmptyCommand();
-        while (cmd.isExit()) {
+        while (!cmd.isExit()) {
             String input = this.ui.readCommand();
             cmd = Parser.parse(input);
-            cmd.execute();
+            cmd.execute(storage, taskList, ui);
         }
     }
 

@@ -12,25 +12,30 @@ public class TaskList {
     }
 
     public TaskList(Scanner sc) {
-        while (sc.hasNextLine()) {
-            String line = sc.nextLine();
-            String[] inputs = line.split(",");
-            switch (inputs[0]) {
-            case "T":
-                add(new ToDo(inputs[2]));
-                break;
-            case "D":
-                add(new Deadline(inputs[2], inputs[3]));
-                break;
-            case "E":
-                add(new Event(inputs[2], inputs[3]));
-                break;
-            default:
-                throw new DukeException("Invalid input from file.");
+        this.list = new ArrayList<>();
+        try {
+            while (sc.hasNextLine()) {
+                String[] arguments = sc.nextLine().split(",");
+                switch (arguments[0]) {
+                    case "T":
+                        this.list.add(new ToDo(arguments[1], arguments[2]));
+                        break;
+                    case "D":
+                        this.list.add(new Deadline(arguments[1], arguments[2], arguments[3]));
+                        break;
+                    case "E":
+                        this.list.add(new Event(arguments[1], arguments[2], arguments[3]));
+                        break;
+                    default:
+                        throw new DukeException("Invalid input from file.");
+                }
             }
+            Ui.showMsg("Successfully loaded saved contents.\n" + this);
+        } catch (DukeException e) {
+            Ui.showMsg(e.getMessage());
+        } finally {
+            sc.close();
         }
-        sc.close();
-        Ui.showMsg(new StringBuilder("Successfully loaded saved contents.\n" + this));
     }
 
     public String add(Task task) {
@@ -41,7 +46,7 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
-    public String remove(int index) throws DukeException {
+    public String delete(int index) throws DukeException {
         if (index < 0 || index >= this.list.size()) {
             throw new DukeException("Something went wrong!\nPlease select at task to be removed within the list.");
         }

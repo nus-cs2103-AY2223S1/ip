@@ -4,10 +4,10 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-public class EmptyCommand implements ICommand {
+public class ListCommand implements ICommand {
     @Override
     public void execute(Storage storage, TaskList taskList, Ui ui) {
-        return;
+        Ui.showMsg(taskList.toString());
     }
 
     @Override
