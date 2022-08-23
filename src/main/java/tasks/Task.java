@@ -9,6 +9,7 @@ public abstract class Task {
 
   /**
    * Constructor of task, and initialise it as unmarked
+   * 
    * @param txt Description of task
    */
   public Task(String txt) {
@@ -17,7 +18,19 @@ public abstract class Task {
   }
 
   /**
+   * Overloaded constructor that intialiases isDone state of task
+   * 
+   * @param txt
+   * @param isDone
+   */
+  public Task(String txt, boolean isDone) {
+    this.isDone = isDone;
+    this.description = txt;
+  }
+
+  /**
    * Based on isDone, return the correct status Icon
+   * 
    * @return String representation of status Icon
    */
   public String getStatusIcon() {
@@ -46,5 +59,10 @@ public abstract class Task {
   @Override
   public String toString() {
     return this.getStatusIcon() + " " + this.description;
+  }
+
+  public String toSaveString() {
+    String mark = isDone ? "1" : "0";
+    return "| " + mark + " | " + this.description;
   }
 }

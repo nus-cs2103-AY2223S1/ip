@@ -10,14 +10,13 @@ public class Parser {
 
   /**
    * Returns the correct command based on user input
+   *
    * @param text The text received from user
    * @throws DukeException
    * @throws Exception
    */
   static Command parse(String text) throws DukeException {
-    String[] instructions = text.split(" ", 2);
-    String command = instructions[0];
-
+    String command = text.split(" ")[0];
     switch (CommandManager.valueOf(command)) {
       case list:
         return new ListCommand();
@@ -30,13 +29,16 @@ public class Parser {
       case event:
         return new EventTaskCommand(text);
       case mark:
-        return new MarkCommand(instructions[1]);
+        return new MarkCommand(text);
       case unmark:
-        return new UnmarkCommand(instructions[1]);
+        return new UnmarkCommand(text);
       case delete:
-        return new DeleteCommand(instructions[1]);
+        return new DeleteCommand(text);
       default:
-        throw new DukeException("Unknown command found");
+        throw new DukeException("Unknown command received.");
+
     }
+
   }
+
 }
