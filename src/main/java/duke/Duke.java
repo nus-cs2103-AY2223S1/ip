@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 /**
  * The Main driver class of the Duke Application.
@@ -57,6 +58,10 @@ public class Duke {
                 case "delete":
                     Task deleted = this.taskList.deleteTask(Integer.parseInt(infoArray[1]));
                     this.ui.printDeleteTask(deleted, this.taskList);
+                    break;
+                case "find":
+                    ArrayList<Task> targetTasks = this.taskList.findMatchingTasks(infoArray[1]);
+                    this.ui.printMatchingTasks(targetTasks);
                     break;
                 case "todo":
                     Task todo = new Todo(infoArray[1]);

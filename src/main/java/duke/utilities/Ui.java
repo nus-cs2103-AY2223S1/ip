@@ -4,6 +4,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -58,6 +59,22 @@ public class Ui {
         ArrayList<Task> tasks = taskList.getTasks();
         System.out.println(line);
         System.out.println("Here are the tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task current = tasks.get(i);
+            System.out.println((i + 1) + "." + current.toString());
+        }
+        System.out.println(line);
+    }
+
+    /**
+     * Method to print the matching tasks after filtering for tasks that contains
+     * the query term.
+     *
+     * @param taskList The input task list to print to the user.
+     */
+    public void printMatchingTasks(ArrayList<Task> tasks) {
+        System.out.println(line);
+        System.out.println("Here are the matching tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             Task current = tasks.get(i);
             System.out.println((i + 1) + "." + current.toString());

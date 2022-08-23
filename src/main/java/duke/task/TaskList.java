@@ -46,9 +46,24 @@ public class TaskList {
         return task;
     }
 
-    public void stringRepresentation() {
-        for (Task task : tasks) {
-            System.out.println(task.toString());
+    /**
+     * Finds the tasks that have descriptions that contain the target.
+     *
+     * @param target The target word that we want from the tasks.
+     * @return Returns a new ArrayList of tasks containing the matching tasks.
+     */
+    public ArrayList<Task> findMatchingTasks(String target) {
+        ArrayList<Task> filtered = new ArrayList<>();
+        if (target.equals("")) {
+            return this.tasks;
         }
+
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(target)) {
+                filtered.add(task);
+            }
+        }
+
+        return filtered;
     }
 }

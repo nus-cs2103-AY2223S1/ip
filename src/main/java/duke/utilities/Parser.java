@@ -27,6 +27,11 @@ public class Parser {
                     ? Integer.parseInt(splitString[1])
                     : -1;
             return "delete|" + taskIdToDelete;
+        case "find":
+            String target = splitString.length == 2
+                    ? splitString[1]
+                    : "";
+            return "find|" + target;
         case "todo":
             String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);
             if (descTodo.length == 0) {
