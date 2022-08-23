@@ -40,6 +40,8 @@ public class Duke {
     private static ArrayList<Task> getSavedTasks() throws DukeException {
         try {
             File saveFile = new File(SAVE_FILE_PATH);
+            //Create file if it does not exist
+            saveFile.createNewFile();
             Scanner reader = new Scanner(saveFile);
             ArrayList<Task> savedTasks = new ArrayList<Task>();
 
