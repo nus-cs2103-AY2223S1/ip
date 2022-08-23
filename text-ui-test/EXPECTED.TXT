@@ -90,6 +90,39 @@ Usage: mark <Integer>
 
 >>> The provided task index 999 is out of range! Accepted Range: [1, 5]
 
+>>> Invalid command format.
+Usage: find <String>
+
+>>> ===============================
+   1.[T][X] some todo task
+   2.[D][ ] task with deadline, using default time (by: 02 Feb 2022, 23:59)
+   3.[D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> ===============================
+   1.[D][ ] task with deadline, using default time (by: 02 Feb 2022, 23:59)
+   2.[D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> ===============================
+   1.[E][ ] some event, using default time (by: 02 Feb 2022, 23:59)
+   2.[E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> ===============================
+   1.[D][ ] task with deadline, using default time (by: 02 Feb 2022, 23:59)
+   2.[E][ ] some event, using default time (by: 02 Feb 2022, 23:59)
+===============================
+
+>>> ===============================
+   1.[D][ ] task with strict deadline (by: 02 Feb 2022, 07:17)
+   2.[E][ ] some event, using strict time (by: 02 Feb 2022, 07:17)
+===============================
+
+>>> ===============================
+       YOU HAVE NO TASKS
+===============================
+
 >>> Sure! I've unmarked this task as done: 
    [T][ ] some todo task
 You have 5 tasks in the list
@@ -158,5 +191,8 @@ You have 1 tasks in the list
 >>> bar is not a valid command!
 
 >>> Command cannot be empty
+
+>>> Invalid command format.
+Usage: find <String>
 
 >>> Goodbye! Hope to see you soon!

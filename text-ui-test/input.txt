@@ -19,6 +19,13 @@ mark
 mark 0
 mark foo
 mark 999
+find
+find task
+find deadline
+find event
+find default
+find strict
+find foobarbaz
 unmark 1
 list
 unmark
@@ -37,5 +44,6 @@ list
 delete 1
 foo
 bar
-      
+
+find
 bye
