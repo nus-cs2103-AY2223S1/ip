@@ -11,7 +11,15 @@ import jduke.commands.MarkCommand;
 import jduke.commands.TodoCommand;
 import jduke.commands.UnmarkCommand;
 
+/**
+ * Represents a parser to parse user input.
+ */
 public class Parser {
+    /**
+     * Parses the user input, and returns the corresponding command.
+     * @param input The user input.
+     * @return Command representing the user input.
+     */
     public Command parseCommand(String input) {
         String mainCommand = input.split(" ", 2)[0].toLowerCase();
         String params = parseParams(input);
