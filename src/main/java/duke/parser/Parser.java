@@ -13,7 +13,20 @@ import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
 import duke.task.TasksList;
 
+/**
+ * Represents a parser that interprets the user's command and returns the respective Command object.
+ */
 public class Parser {
+    /**
+     * Returns the respective Command for the given string of command, Storage, TasksList and Ui.
+     *
+     * @param command The command to be interpreted.
+     * @param storage The Storage associated with the command, if any.
+     * @param tasksList The TasksList associated with the command, if any.
+     * @param ui The Ui associated with the command, if any.
+     * @return The respective Command that should follow from the user's input.
+     * @throws DukeException if error occurs in the Command's execution.
+     */
     public static Command parse(String command, Storage storage, TasksList tasksList, Ui ui) throws DukeException {
         String[] words = command.split(" ", 2);
         if (ExitCommand.isCommand(command)) {

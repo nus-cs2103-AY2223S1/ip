@@ -2,6 +2,9 @@ package duke.command;
 
 import duke.DukeException;
 
+/**
+ * Represents an invalid, unrecognised command given by the user.
+ */
 public class InvalidCommand extends Command {
     @Override
     public void execute() throws DukeException {

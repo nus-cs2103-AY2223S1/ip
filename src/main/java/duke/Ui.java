@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 import duke.task.TasksList;
 
+/**
+ * Represents the Ui that deals with interactions with the user.
+ */
 public class Ui {
     private final Scanner sc;
     private boolean isActive;
