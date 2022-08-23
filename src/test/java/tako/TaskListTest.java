@@ -4,11 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
+
 import tako.task.Task;
 
 public class TaskListTest {
     @Test
-    public void mark_validTaskNumber_success() throws TakoException{
+    public void mark_validTaskNumber_success() throws TakoException {
         TaskList tasks = new TaskList();
         tasks.add(new Task("sleep"));
         tasks.mark(0);
@@ -16,7 +17,7 @@ public class TaskListTest {
     }
 
     @Test
-    public void remove_validTaskNumber_success() throws TakoException{
+    public void remove_validTaskNumber_success() throws TakoException {
         TaskList tasks = new TaskList();
         Task task = new Task("sleep");
         tasks.add(task);
