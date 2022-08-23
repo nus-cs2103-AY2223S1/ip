@@ -97,7 +97,6 @@ public class TaskList {
         return this.tasks.get(index).toString();
     }
 
-
     public String formatAllTasksForFileStorage() {
         String r = "";
         for (Task t : this.tasks) {
