@@ -3,8 +3,9 @@ package duke.task;
 import duke.DukeException;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class TaskList {
+public class TaskList implements Iterable<Task> {
     private final ArrayList<Task> tasks;
 
     public TaskList() {
@@ -16,9 +17,13 @@ public class TaskList {
     }
 
     @Override
+    public Iterator<Task> iterator() {
+        return this.tasks.iterator();
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("List of tasks:\n");
         for (int i = 0; i < tasks.size(); ++i) {
             sb.append(String.format("\t%d. %s", i + 1, tasks.get(i)));
             if (i + 1 < tasks.size()) {
