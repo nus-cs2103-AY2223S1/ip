@@ -1,32 +1,109 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
     private ArrayList<Task> taskList;
-    private Scanner scanner;
+    private File file;
+    private Scanner inputScanner;
+
+    public static final String PATH = "./data/";
 
     public Duke() {
         this.taskList = new ArrayList<>();
-        this.scanner = new Scanner(System.in);
+        this.inputScanner = new Scanner(System.in);
     }
 
     public void run() {
         System.out.println("Hello I'm Duke\n What can I do for you?");
+        setup();
 
-        while (scanner.hasNextLine()) {
+        load();
+
+        while (inputScanner.hasNextLine()) {
             System.out.println();
-            String userInput = scanner.nextLine();
+            String userInput = inputScanner.nextLine();
 
             try {
+                if (userInput.equals("bye")) return;
                 userInputHandler(userInput);
+                save();
             } catch(DukeException dukeEx) {
                 System.out.println(dukeEx.getMessage());
             }
+        }
+    }
 
+    private void setup() {
+        File directory = new File(PATH);
 
+        try {
+
+            if (!directory.exists()) {
+                directory.mkdir();
+            }
+
+            file = new File(PATH, "duke.txt");
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage() +
+                    ((directory.exists()) ? "Yes" : "NO")
+                    +
+                    ((this.file.exists()) ? "File works ? " : "FML LOL"));
         }
 
+
+    }
+
+    private void load() {
+        try {
+            Scanner fileScanner = new Scanner(this.file);
+
+            while(fileScanner.hasNext()) {
+                String[] taskString = fileScanner.nextLine().split(",");
+                String taskType = taskString[0];
+
+                switch(taskType) {
+                    case "T":
+                        Task todo = new ToDo(taskString[2], taskString[1].equals("Y"));
+                        this.taskList.add(todo);
+                        break;
+                    case "E":
+                        Task event = new Event(taskString[2], taskString[3], taskString[1].equals("Y"));
+                        this.taskList.add(event);
+                        break;
+                    case "D":
+                        Task deadline = new Deadline(taskString[2], taskString[3], taskString[1].equals("Y"));
+                        this.taskList.add(deadline);
+                        break;
+                }
+            }
+            fileScanner.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void save() {
+        try {
+            FileWriter fileWriter = new FileWriter(this.file);
+
+            for (Task task : this.taskList) {
+                fileWriter.write(task.savedString() + "\n");
+            }
+
+            fileWriter.close();
+
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 

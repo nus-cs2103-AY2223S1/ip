@@ -2,7 +2,10 @@ public class ToDo extends Task{
 
     public ToDo(String name) {
         super(name);
+    }
 
+    public ToDo(String name, boolean isDone) {
+        super(name, isDone);
     }
 
     public String tag() {
@@ -11,7 +14,12 @@ public class ToDo extends Task{
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", tag(), super.toString());
+        return String.format("[%s]%s", tag(), super.toString());
+    }
+
+    @Override
+    public String savedString() {
+        return String.format("%s,%s", tag(), super.savedString());
     }
 
 }
