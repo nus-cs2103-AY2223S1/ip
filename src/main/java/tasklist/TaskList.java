@@ -15,20 +15,20 @@ import utility.StorageParser;
 /**
  * Manage all interactions between Duke and UserInputHistory FILE storage.
  */
-public class TaskList {
-    private  ArrayList<Task> userInputHistory = new ArrayList<>();
+public class TaskList<T extends Task> {
+    private  ArrayList<T> userInputHistory = new ArrayList<>();
 
-    public TaskList(ArrayList<Task> listOfTasksInStorage) throws DukeException{
+    public TaskList(ArrayList<T> listOfTasksInStorage) throws DukeException{
         userInputHistory = listOfTasksInStorage;
     }
 
-    public void addTask(Task t) {
+    public void addTask(T t) {
         userInputHistory.add(t);
     }
-    public void addEvent(Event e) {
+    public void addEvent(T e) {
         userInputHistory.add(e);
     }
-    public void addDeadline(Deadline d) {
+    public void addDeadline(T d) {
         userInputHistory.add(d);
     }
     public void deleteTask(int n) {
@@ -48,17 +48,12 @@ public class TaskList {
     }
     public String markTask(int n) {
         userInputHistory.get(n - 1).markAsDone();
-        if(userInputHistory.get(n - 1) instanceof  Task) {
+
             return StorageParser.storableTaskDescription(userInputHistory.get(n-1));
-        } else if (userInputHistory.get(n - 1) instanceof  Event) {
-            return StorageParser.storableEventDescription(userInputHistory.get(n-1));
-        } else if (userInputHistory.get(n - 1) instanceof  Deadline) {
-            return StorageParser.storableDeadlineDescription(userInputHistory.get(n-1));
-        }
 
     }
     public String unmarkTask(int n) {
         userInputHistory.get(n - 1).markAsDone();
-        return StorageParser.storableDescription(userInputHistory.get(n-1));
+        return StorageParser.storableTaskDescription(userInputHistory.get(n-1));
     }
 }

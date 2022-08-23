@@ -26,32 +26,36 @@ public class StorageParser {
      * @return Task object.
      */
     public static Task fileLineToTask(String line) throws DukeException {
-        String taskType, description;
-        boolean marked;
-        taskType = line.substring(1,2);
-        marked =  line.charAt(4) == ' ';
-        switch(taskType) {
-        case "T":
-            description = line.substring(6);
-            Task t = new Task(description);
-            if (marked) {
-                t.markAsDone();
+        try {
+            String taskType, description;
+            boolean marked;
+            taskType = line.substring(1, 2);
+            marked = line.charAt(4) == ' ';
+            switch (taskType) {
+            case "T":
+                description = line.substring(6);
+                Task t = new Task(description);
+                if (marked) {
+                    t.markAsDone();
+                }
+                return t;
+            case "D":
+                description = line.substring(6, line.indexOf("("));
+                Deadline d = new Deadline(description, getDateFromStorage(line, "by: "));
+                if (marked) {
+                    d.markAsDone();
+                }
+                return d;
+            case "E":
+                description = line.substring(6, line.indexOf("("));
+                Event e = new Event(description, getDateFromStorage(line, "at: "));
+                if (marked) {
+                    e.markAsDone();
+                }
+                return e;
             }
-            return t;
-        case "D":
-            description = line.substring(6, line.indexOf("("));
-            Deadline d = new Deadline(description, getDateFromStorage(line, "by: "));
-            if (marked) {
-                d.markAsDone();
-            }
-            return d;
-        case "E":
-            description = line.substring(6, line.indexOf("("));
-            Event e = new Event(description, getDateFromStorage(line, "at: "));
-            if (marked) {
-                e.markAsDone();
-            }
-            return e;
+        } catch (Exception e) {
+            throw new DukeException("file corrupted");
         }
         throw new DukeException("file corrupted");
     }
