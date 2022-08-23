@@ -29,6 +29,8 @@ public class Parser {
             return new EventCommand(fullCommand);
         } else if (fullCommand.startsWith("delete")) {
             return new DeleteCommand(fullCommand);
+        } else if (fullCommand.startsWith("find")) {
+            return new FindCommand(fullCommand);
         } else {
             return new InvalidCommand();
         }
