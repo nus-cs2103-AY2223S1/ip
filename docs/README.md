@@ -2,14 +2,19 @@
 
 ## Features 
 
-### Feature 1 
-Description of feature.
+### Feature-ABC
+
+Description of the feature.
+
+### Feature-XYZ
+
+Description of the feature.
 
 ## Usage
 
 ### `Keyword` - Describe action
 
-Describe action and its outcome.
+Describe the action and its outcome.
 
 Example of usage: 
 
@@ -17,4 +22,8 @@ Example of usage:
 
 Expected outcome:
 
-`outcome`
+Description of the outcome.
+
+```
+expected output
+```
