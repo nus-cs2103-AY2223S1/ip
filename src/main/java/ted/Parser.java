@@ -35,37 +35,39 @@ public class Parser {
         }
 
         String commandStr = inputArr[0].toLowerCase();
-        String args = input.length() > commandStr.length() + 1 ? input.substring(commandStr.length() + 1) : "";
+        String args = input.length() > commandStr.length() + 1
+                ? input.substring(commandStr.length() + 1)
+                : "";
 
         CommandEnum commandEnum = CommandEnum.fromString(commandStr);
 
         Command command = new UnknownCommand(args);
         if (commandEnum != null) {
             switch (commandEnum) {
-                case BYE:
-                    command = new ByeCommand(args);
-                    break;
-                case LIST:
-                    command = new ListCommand(args);
-                    break;
-                case MARK:
-                    command = new MarkCommand(args);
-                    break;
-                case UNMARK:
-                    command = new UnmarkCommand(args);
-                    break;
-                case TODO:
-                    command = new TodoCommand(args);
-                    break;
-                case DEADLINE:
-                    command = new DeadlineCommand(args);
-                    break;
-                case EVENT:
-                    command = new EventCommand(args);
-                    break;
-                case DELETE:
-                    command = new DeleteCommand(args);
-                    break;
+            case BYE:
+                command = new ByeCommand(args);
+                break;
+            case LIST:
+                command = new ListCommand(args);
+                break;
+            case MARK:
+                command = new MarkCommand(args);
+                break;
+            case UNMARK:
+                command = new UnmarkCommand(args);
+                break;
+            case TODO:
+                command = new TodoCommand(args);
+                break;
+            case DEADLINE:
+                command = new DeadlineCommand(args);
+                break;
+            case EVENT:
+                command = new EventCommand(args);
+                break;
+            case DELETE:
+                command = new DeleteCommand(args);
+                break;
             }
         }
 
