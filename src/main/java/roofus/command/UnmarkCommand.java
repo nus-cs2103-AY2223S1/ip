@@ -5,6 +5,10 @@ import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
 
+/**
+ * Represents a command action that unmarks a task in the TaskList
+ * associated with the current instance of Roofus.
+ */
 public class UnmarkCommand extends Command {
     private int index;
 
@@ -12,6 +16,9 @@ public class UnmarkCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList,
                         Storage storage, Ui ui) {
@@ -27,6 +34,9 @@ public class UnmarkCommand extends Command {
         ui.unmark(taskList.getTask(index - 1));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isRunning() {
         return true;

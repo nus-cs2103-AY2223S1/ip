@@ -7,16 +7,30 @@ import java.util.ArrayList;
 
 import java.util.Scanner;
 
+/**
+ * Represents Roofus's memory.
+ */
 public class Storage {
     private static String storagePath;
     
     private File storage;
-    
+
+    /**
+     * Constructs an instance of Storage.
+     *
+     * @param storagePath File path to storage file.
+     */
     public Storage(String storagePath) {
         this.storagePath = storagePath;
         this.storage = new File(storagePath);
     }
-    
+
+    /**
+     * Extracts data in Roofus's memory into a list.
+     *
+     * @return List Returns lists containing saved data in Storage.
+     * @throws FileNotFoundException If storage path is invalid.
+     */
     public List<String> load() throws FileNotFoundException {
         Scanner sc = new Scanner(this.storage);
         List<String> taskString = new ArrayList<>();
@@ -25,7 +39,12 @@ public class Storage {
         }
         return taskString;
     }
-    
+
+    /**
+     * Saves a task list into Roofus's memory.
+     *
+     * @throws  IOException If storage path is invalid.
+     */
     public void save(TaskList taskList) throws IOException {
         new File(this.storagePath).getParentFile().mkdirs();
         FileWriter editor = new FileWriter(this.storagePath);

@@ -12,15 +12,6 @@ public class DeadlineTest {
     }
 
     @Test
-    public void setDoneTest() {
-        Task deadlineTask = new Deadline("Say hello", "2022-08-23");
-        deadlineTask.setDone();
-        assertEquals("[D][X] Say hello by: 2022-08-23", deadlineTask.toString());
-        deadlineTask.setDone();
-        assertEquals("[D][X] Say hello by: 2022-08-23", deadlineTask.toString());
-    }
-
-    @Test
     public void markDeadlineTest() {
         Task deadlineTask = new Deadline("Say hello", "2022-08-23");
         deadlineTask.mark();

@@ -11,15 +11,6 @@ public class ToDoTest {
         assertEquals("[T][ ] Say hello", toDoTask.toString());
     }
     
-    @Test 
-    public void setDoneTest() {
-        Task toDoTask = new ToDo("Say hello");
-        toDoTask.setDone();
-        assertEquals("[T][X] Say hello", toDoTask.toString());
-        toDoTask.setDone();
-        assertEquals("[T][X] Say hello", toDoTask.toString());
-    }
-    
     @Test
     public void markToDoTest() {
         Task toDoTask = new ToDo("Say hello");

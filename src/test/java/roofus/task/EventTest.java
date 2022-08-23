@@ -12,15 +12,6 @@ public class EventTest {
     }
 
     @Test
-    public void setDoneTest() {
-        Task eventTask = new Event("Say hello", "2022-08-23");
-        eventTask.setDone();
-        assertEquals("[E][X] Say hello at: 2022-08-23", eventTask.toString());
-        eventTask.setDone();
-        assertEquals("[E][X] Say hello at: 2022-08-23", eventTask.toString());
-    }
-
-    @Test
     public void markEventTest() {
         Task eventTask = new Event("Say hello", "2022-08-23");
         eventTask.mark();

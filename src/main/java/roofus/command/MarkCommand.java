@@ -5,6 +5,10 @@ import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
 
+/**
+ * Represents a command action that marks a task in the TaskList
+ * associated with the current instance of Roofus.
+ */
 public class MarkCommand extends Command {
     private int index;
 
@@ -12,6 +16,9 @@ public class MarkCommand extends Command {
         this.index = index;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList,
                         Storage storage, Ui ui) {
@@ -27,6 +34,9 @@ public class MarkCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isRunning() {
         return true;

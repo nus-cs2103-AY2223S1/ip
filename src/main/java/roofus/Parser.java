@@ -5,12 +5,28 @@ import roofus.task.Deadline;
 import roofus.task.Event;
 import roofus.task.ToDo;
 
+/**
+ * Represents a handler to convert user inputs
+ * into commands that Roofus understands.
+ */
 public class Parser {
+    /**
+     * Represents a list of all valid commands.
+     */
     private enum CommandList {
         BYE, LIST, TODO, EVENT, DEADLINE,
         MARK, UNMARK, DELETE, CLEAR
     }
-    
+
+    /**
+     * Reads a user input and converts it 
+     * into a command.
+     *
+     * @param fullCommand String representing a user input.
+     * @return Command
+     * @throws RoofusException If user input is invalid.
+     * @see Command
+     */
     public static Command parse(String fullCommand) 
             throws RoofusException {
         String[] split = fullCommand.split(" ", 2);

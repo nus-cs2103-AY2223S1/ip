@@ -5,13 +5,20 @@ import roofus.Storage;
 import roofus.TaskList;
 import roofus.Ui;
 
+/**
+ * Represents a command action that adds a task in the TaskList
+ * associated with the current instance of Roofus.
+ */
 public class DeleteCommand extends Command {
     private int index;
     
     public DeleteCommand(int index) {
         this.index = index;
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList,
                         Storage storage, Ui ui) {
@@ -27,7 +34,10 @@ public class DeleteCommand extends Command {
         ui.delete(taskList.getTask(index - 1).toString(), 
                 taskList.length());
     }
-    
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isRunning() {
         return true;
