@@ -28,7 +28,7 @@ public class Parser {
         return result;
     }
 
-    public static int getFirstIndexOfStr1InStr2(String str1, String str2) {
+    private static int getFirstIndexOfStr1InStr2(String str1, String str2) {
         ArrayList<Integer> indices = getIndicesOfStr1InStr2(str1, str2);
         return indices.size() == 0 ? -1 : indices.get(0);
     }
@@ -37,11 +37,6 @@ public class Parser {
         ArrayList<String> result = new ArrayList<>();
         Arrays.stream(string.split(ATTRIBUTE_SEPARATOR)).forEach(s -> result.add(s.trim()));
         return result;
-    }
-
-    public static String combineAttributes(ArrayList<String> arrayList) {
-        return arrayList.stream()
-                .reduce("", (x, y) -> x + " " + ATTRIBUTE_SEPARATOR + " " + y).substring(ATTRIBUTE_SEPARATOR.length() + 2);
     }
 
     public static String combineAttributes(String... strings) {

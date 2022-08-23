@@ -1,10 +1,11 @@
 package duke.command;
+
 import duke.MessagePrinter;
 import duke.Storage;
 import duke.TaskList;
 
 public class GreetCommand extends Command {
-    public GreetCommand() {
+    protected GreetCommand() {
         super(Action.GREET);
     }
 

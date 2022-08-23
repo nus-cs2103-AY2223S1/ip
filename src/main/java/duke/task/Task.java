@@ -11,7 +11,7 @@ public abstract class Task {
     private String name;
     private boolean isDone;
 
-    public Task(String name) {
+    protected Task(String name) {
         setName(name);
         setIsDone(false);
     }

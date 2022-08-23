@@ -8,15 +8,15 @@ public class MessagePrinter {
     private int horizontalLineLength;
     private char horizontalLineSymbol;
 
-    public void setIndentationLevel(int indentationLevel) {
+    private void setIndentationLevel(int indentationLevel) {
         this.indentationLevel = indentationLevel;
     }
 
-    public void setHorizontalLineLength(int horizontalLineLength) {
+    private void setHorizontalLineLength(int horizontalLineLength) {
         this.horizontalLineLength = horizontalLineLength;
     }
 
-    public void setHorizontalLineSymbol(char horizontalLineSymbol) {
+    private void setHorizontalLineSymbol(char horizontalLineSymbol) {
         this.horizontalLineSymbol = horizontalLineSymbol;
     }
 

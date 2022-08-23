@@ -10,7 +10,7 @@ public class Event extends Task {
     protected static final String SYMBOL = "E";
     private LocalDateTime time;
 
-    public Event(String name, LocalDateTime time) {
+    protected Event(String name, LocalDateTime time) {
         super(name);
         this.time = time;
     }

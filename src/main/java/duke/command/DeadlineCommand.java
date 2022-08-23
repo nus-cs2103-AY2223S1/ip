@@ -8,9 +8,9 @@ import duke.task.Task;
 import java.time.LocalDateTime;
 
 public class DeadlineCommand extends AddCommand {
-    LocalDateTime time;
+    private LocalDateTime time;
 
-    public DeadlineCommand(String msg, LocalDateTime time) {
+    protected DeadlineCommand(String msg, LocalDateTime time) {
         super(Action.DEADLINE, msg);
         this.time = time;
     }

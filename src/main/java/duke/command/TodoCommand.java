@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.task.Task;
 
 public class TodoCommand extends AddCommand {
-    public TodoCommand(String msg) {
+    protected TodoCommand(String msg) {
         super(Action.TODO, msg);
     }
 

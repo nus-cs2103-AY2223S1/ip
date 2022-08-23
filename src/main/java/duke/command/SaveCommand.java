@@ -1,10 +1,11 @@
 package duke.command;
+
 import duke.MessagePrinter;
 import duke.Storage;
 import duke.TaskList;
 
 public class SaveCommand extends Command {
-    public SaveCommand() {
+    protected SaveCommand() {
         super(Action.SAVE);
     }
 

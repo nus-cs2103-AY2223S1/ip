@@ -1,10 +1,11 @@
 package duke.command;
+
 import duke.MessagePrinter;
 import duke.Storage;
 import duke.TaskList;
 
 public class ListCommand extends Command {
-    public ListCommand() {
+    protected ListCommand() {
         super(Action.LIST);
     }
 

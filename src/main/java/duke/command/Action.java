@@ -24,6 +24,8 @@ public enum Action {
     SAVE, READ;
 
     private static HashMap<Action, String> actionFormatMap = new HashMap<>();
+    private static HashMap<String, Action> stringActionMap = new HashMap<>();
+
     static {
         HashMap<Action, String> map = actionFormatMap;
         map.put(Action.DONOTHING, "");
@@ -52,10 +54,9 @@ public enum Action {
 //        No action added.
     }
 
-    private static HashMap<String, Action> stringActionMap = new HashMap<>();
     static {
         HashMap<String, Action> map = stringActionMap;
-        map.put("",Action.DONOTHING);
+        map.put("", Action.DONOTHING);
 //        Level_1
         map.put("greet", Action.GREET);
         map.put("bye", Action.EXIT);
@@ -78,7 +79,6 @@ public enum Action {
         map.put("save", Action.SAVE);
         map.put("read", Action.READ);
     }
-
 
 
     public static String getString(Action action) {

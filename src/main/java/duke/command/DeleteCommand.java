@@ -1,12 +1,14 @@
 package duke.command;
+
 import duke.MessagePrinter;
 import duke.Storage;
 import duke.TaskList;
 import duke.task.Task;
 
 public class DeleteCommand extends Command {
-    int idTask;
-    public DeleteCommand(int idTask) {
+    private int idTask;
+
+    protected DeleteCommand(int idTask) {
         super(Action.DELETE);
         this.idTask = idTask;
     }

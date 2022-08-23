@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Todo extends Task {
     protected static final String SYMBOL = "T";
 
-    public Todo(String name) {
+    protected Todo(String name) {
         super(name);
     }
 

@@ -10,7 +10,7 @@ public class Deadline extends Task {
     protected static final String SYMBOL = "D";
     private LocalDateTime time;
 
-    public Deadline(String name, LocalDateTime time) {
+    protected Deadline(String name, LocalDateTime time) {
         super(name);
         this.time = time;
     }

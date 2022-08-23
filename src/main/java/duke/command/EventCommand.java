@@ -8,7 +8,7 @@ import duke.task.Task;
 import java.time.LocalDateTime;
 
 public class EventCommand extends AddCommand {
-    LocalDateTime time;
+    private LocalDateTime time;
 
     protected EventCommand(String msg, LocalDateTime time) {
         super(Action.EVENT, msg);

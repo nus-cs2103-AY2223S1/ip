@@ -1,10 +1,11 @@
 package duke.command;
+
 import duke.MessagePrinter;
 import duke.Storage;
 import duke.TaskList;
 
 public class ExitCommand extends Command {
-    public ExitCommand() {
+    protected ExitCommand() {
         super(Action.EXIT);
     }
 

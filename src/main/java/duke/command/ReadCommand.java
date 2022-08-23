@@ -1,10 +1,11 @@
 package duke.command;
+
 import duke.MessagePrinter;
 import duke.Storage;
 import duke.TaskList;
 
 public class ReadCommand extends Command {
-    public ReadCommand() {
+    protected ReadCommand() {
         super(Action.READ);
     }
 
