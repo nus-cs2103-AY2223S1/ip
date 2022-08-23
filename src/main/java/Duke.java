@@ -1,13 +1,31 @@
-import java.util.Scanner;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
 
 public class Duke {
-    static String SEPARATING_LINE = "    ____________________________________________________________";
+    static final String SEPARATING_LINE = "    ____________________________________________________________";
+    static final String logo = " ____        _        \n"
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
+    static final String OPENING = "    Hello! I'm Duke\n    What can I do for you?";
+    static final String LIST_WORD = "list";
+    static final String ERROR_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    static final String END_WORD = "bye";
+    static final String ENDING = "    Bye. Hope to see you again soon!";
 
     private static void FormatPrint(String s) {
         System.out.println(SEPARATING_LINE);
         System.out.println(s);
         System.out.println(SEPARATING_LINE);
+    }
+
+    private static void endProgram(ArrayList<Task> arrayList) {
+        Duke.FormatPrint(ENDING);
     }
 
     private static void ListPrint(ArrayList<Task> arr) {
@@ -123,18 +141,10 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+
         System.out.println("Hello from\n" + logo);
 
-        String OPENING = "    Hello! I'm Duke\n    What can I do for you?";
-        String LIST_WORD = "list";
-        String ERROR_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
-        String END_WORD = "bye";
-        String ENDING = "    Bye. Hope to see you again soon!";
+
 
         ArrayList<Task> stored_items = new ArrayList<>();
 
@@ -151,7 +161,7 @@ public class Duke {
             // System.out.print("Input String:\n" + str + "\n");
 
             if (str.equals(END_WORD)) {
-                Duke.FormatPrint(ENDING);
+                endProgram(stored_items);
                 break;
             } else {
                 if (str.equals(LIST_WORD)) {
@@ -166,26 +176,26 @@ public class Duke {
                                 break;
 
                             case "delete":
-                                Duke.handleDelete(stored_items, str);
+                                handleDelete(stored_items, str);
                                 break;
 
                             case "deadline":
-                                Duke.createEvent(stored_items, TaskEnum.Deadline, arguments[1]);
+                                createEvent(stored_items, TaskEnum.Deadline, arguments[1]);
                                 break;
 
                             case "todo":
-                                Duke.createEvent(stored_items, TaskEnum.Todo, arguments[1]);
+                                createEvent(stored_items, TaskEnum.Todo, arguments[1]);
                                 break;
 
                             case "event":
-                                Duke.createEvent(stored_items, TaskEnum.Event, arguments[1]);
+                                createEvent(stored_items, TaskEnum.Event, arguments[1]);
                                 break;
 
                             default:
-                                Duke.FormatPrint(ERROR_MESSAGE);
+                                FormatPrint(ERROR_MESSAGE);
                         }
                     } catch (DukeException e) {
-                        Duke.FormatPrint(ERROR_MESSAGE);
+                        FormatPrint(ERROR_MESSAGE);
                     }
 
                 }
