@@ -85,6 +85,15 @@ public class Duke {
             case UNABLE:
                 ui.reply("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 break;
+            case FIND:
+                ui.drawLine();
+                try {
+                    tasks.find(userText.substring(5));
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+                ui.drawLine();
+                break;
             }
 
             if (newTask != null) {

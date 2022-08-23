@@ -113,17 +113,11 @@ public class TaskList {
         }
     }
 
-    /**
-     * Returns a string that is formatted to display the index of a task, the type of task, the
-     * description of the task and the date of the task.
-     *
-     * @return a String which shows the current list of tasks
-     */
-    public String getList() {
+    private String iterateList(List<Task> tasks) {
         String listString = "";
-        for (int i = 0; i < savedTasks.size(); i++) {
-            listString += String.format("%d. %s", i + 1, savedTasks.get(i).getStatus());
-            if (i != savedTasks.size() - 1) {
+        for (int i = 0; i < tasks.size(); i++) {
+            listString += String.format("%d. %s", i + 1, tasks.get(i).getStatus());
+            if (i != tasks.size() - 1) {
                 listString += "\n";
             }
         }
@@ -148,6 +142,46 @@ public class TaskList {
         }
 
         return dataWritten;
+    }
+
+    /**
+     * Returns a string that is formatted to display the index of a task, the type of task, the
+     * description of the task from the current list of tasks.
+     *
+     * @return a String to display the current list of tasks
+     */
+    public String getList() {
+        return iterateList(TaskList.savedTasks);
+    }
+
+    /**
+     * Finds all the current tasks that contain the keyword specified by the user.
+     *
+     * @param keyWord the keyword the user would like to search in the current tasks
+     * @throws DukeException
+     */
+    public void find(String keyWord) throws DukeException {
+        List<Task> tasksFound = new ArrayList<Task>();
+
+        if (keyWord.equals("")) {
+            throw new DukeException("Please input a keyword to find the task!");
+        }
+
+        for (int i = 0; i < TaskList.savedTasks.size(); i++) {
+            Task currentTask = TaskList.savedTasks.get(i);
+
+            String task = currentTask.getStatus();
+            String[] stringArray = task.split(" ");
+
+            for (int j = 0; j < stringArray.length; j++) {
+                if (stringArray[j].equals(keyWord)) {
+                    tasksFound.add(currentTask);
+                    break;
+                }
+            }
+        }
+        System.out.println("Here are the matching tasks in your list:");
+        System.out.println(iterateList(tasksFound));
     }
 
 

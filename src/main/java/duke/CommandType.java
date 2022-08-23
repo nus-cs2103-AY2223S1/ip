@@ -12,5 +12,6 @@ public enum CommandType {
     BYE,
     MARK,
     UNMARK,
-    UNABLE
+    UNABLE,
+    FIND
 }
