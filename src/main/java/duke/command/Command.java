@@ -6,5 +6,5 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public interface Command {
-    public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
+    void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException;
 }

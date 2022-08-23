@@ -25,7 +25,9 @@ public class Parser {
 
     public Command parseText(String text) throws DukeException {
         List<String> commands = Arrays.stream(text.trim().split(" ", 2))
-                .map(String::trim).collect(Collectors.toList());
+                .map(String::trim)
+                .collect(Collectors.toList());
+
         String mainCommand = commands.get(0);
         String description = commands.size() > 1 ? commands.get(1) : "";
 

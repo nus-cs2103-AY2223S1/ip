@@ -6,10 +6,9 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 public class Ui {
-    private final String DASH = "----------------------------------------";
-
     private void printTemplate(String message) {
-        System.out.println(String.format("%s\n%s\n%s", DASH, message, DASH));
+        String dash = "----------------------------------------";
+        System.out.println(dash + "\n" + message + "\n" + dash);
     }
 
     public void printWelcomeMessage() {
@@ -31,27 +30,29 @@ public class Ui {
         printTemplate(error.getMessage());
     }
 
-    public void printTaskCreationSuccessMessage(Task newTask, int currentNumberOfTasks) {
-        String successMessage = "This task is successfully added:\n " + newTask.toString()
-                + "\n Now you have " + currentNumberOfTasks + " task(s) in the list";
+    public void printTaskCreationSuccessMessage
+            (Task newTask, int currentNumberOfTasks) {
+        String successMessage = "This task is successfully added:\n " + newTask
+                + "\nNow you have " + currentNumberOfTasks + " task(s) in the list";
         printTemplate(successMessage);
     }
 
-    public void printTaskDeletionSuccessMessage(Task deletedTask, int currentNumberOfTasks) {
-        String successMessage = "Noted. I've removed this task:\n " + deletedTask.toString()
-                + "\n Now you have " + currentNumberOfTasks + " task(s) in the list";
+    public void printTaskDeletionSuccessMessage
+            (Task deletedTask, int currentNumberOfTasks) {
+        String successMessage = "Noted. I've removed this task:\n " + deletedTask
+                + "\nNow you have " + currentNumberOfTasks + " task(s) in the list";
         printTemplate(successMessage);
     }
 
     public void printTaskMarkSuccessMessage(Task markedTask) {
-        String successMessage = String.format("This task has been marked as done:\n %s",
-                markedTask);
+        String successMessage = "This task has been marked as done:\n "
+                + markedTask;
         printTemplate(successMessage);
     }
 
     public void printTaskUnmarkSuccessMessage(Task unmarkedTask) {
-        String successMessage = String.format("This task has been marked as not done yet:\n %s",
-                unmarkedTask);
+        String successMessage = "This task has been marked as not done yet:\n "
+                + unmarkedTask;
         printTemplate(successMessage);
     }
 

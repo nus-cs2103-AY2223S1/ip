@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import duke.exception.DukeException;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -51,6 +50,7 @@ public class Storage {
 
             while(taskString != null) {
                 int dateSeparatorIndex = taskString.lastIndexOf("|");
+
                 String taskType = taskString.substring(0, 1);
                 String taskStatus = taskString.substring(2, 3);
                 String description = dateSeparatorIndex == 3

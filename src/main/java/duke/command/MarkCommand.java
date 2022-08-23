@@ -16,6 +16,7 @@ public class MarkCommand implements Command {
             throw new DukeException();
         }
     }
+
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         try {
