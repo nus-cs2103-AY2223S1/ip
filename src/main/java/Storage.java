@@ -16,44 +16,53 @@ public class Storage {
     this.filePath = filePath;
   }
 
-  public List<Task> load(){
+  public File getFile() {
     File file = new File(filePath);
-      String absPath = file.getPath();
-      if (!file.exists()) {
-        file = new File(absPath, "tasks.txt");
-      }
-    Scanner sc = null;
     try {
-      sc = new Scanner(file);
-    } catch (FileNotFoundException e) {
-      System.out.println("File not found: " + e.getMessage());
+      if (file.createNewFile()){
+        System.out.println("File is created!");
+      }else{
+        System.out.println("File already exists.");
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
-    List<Task> taskList = new ArrayList<>();
+    return file;
+  }
 
+  public List<Task> load() {
+    File file = this.getFile();
+    List<Task> taskList = new ArrayList<>();
+    try {
+      Scanner sc = new Scanner(file);
       while (sc.hasNextLine()) {
         String line = sc.nextLine();
         String[] splitStr = line.split("\\|");
         String taskType = splitStr[0];
-        boolean isDone = splitStr[1] == "1"? true : false;
+        boolean isDone = splitStr[1] == "1" ? true : false;
         String description = splitStr[2];
         String date = "";
         if (splitStr.length > 3) {
           date = splitStr[3];
         }
         switch (taskType) {
-        case "T":
-          taskList.add(new ToDo(description,isDone));
-          break;
-        case "D":
-          taskList.add(new Deadline(description,date,isDone));
-          break;
-        case "E":
-          taskList.add(new Event(description,date,isDone));
-          break;
-        default:
-          break;
+          case "T":
+            taskList.add(new ToDo(description, isDone));
+            break;
+          case "D":
+            taskList.add(new Deadline(description, date, isDone));
+            break;
+          case "E":
+            taskList.add(new Event(description, date, isDone));
+            break;
+          default:
+            break;
         }
       }
+    }
+      catch (FileNotFoundException e) {
+      System.out.println("File not found: " + e.getMessage());
+    }
       return taskList;
   }
 

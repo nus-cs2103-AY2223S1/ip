@@ -15,7 +15,7 @@ public class Duke {
       tasks = new TaskList(storage.load());
     }
     public static void main(String[] args) {
-      Duke duke = new Duke("data/tasks.txt");
+      Duke duke = new Duke("tasks.txt");
       duke.tasks.printList();
 
       Scanner sc = new Scanner(System.in);
