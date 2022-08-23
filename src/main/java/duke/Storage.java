@@ -82,30 +82,30 @@ public class Storage {
             while (s.hasNext()) {
                 String[] task = s.nextLine().split(" \\| ",-1);
                 switch (task[0]) {
-                    case "T": // create event task
-                        String taskString = String.format("todo %s", task[2]);
-                        Todo newTodo = loadTodo(taskString);
-                        if (task[1].trim().equals("X")) {
-                            newTodo.loadDone();
-                        }
-                        list.add(newTodo);
-                        break;
-                    case "D": // create deadline task
-                        String deadlineString = String.format("deadline %s/by %s", task[2], task[3]);
-                        Deadline newDeadline = loadDeadline(deadlineString);
-                        if (task[1].trim().equals("X")) {
-                            newDeadline.loadDone();
-                        }
-                        list.add(newDeadline);
-                        break;
-                    case "E": // create event task
-                        String eventString = String.format("event %s/at %s", task[2], task[3]);
-                        Event newEvent = loadEvent(eventString);
-                        if (task[1].trim().equals("X")) {
-                            newEvent.loadDone();
-                        }
-                        list.add(newEvent);
-                        break;
+                case "T": // create event task
+                    String taskString = String.format("todo %s", task[2]);
+                    Todo newTodo = loadTodo(taskString);
+                    if (task[1].trim().equals("X")) {
+                        newTodo.loadDone();
+                    }
+                    list.add(newTodo);
+                    break;
+                case "D": // create deadline task
+                    String deadlineString = String.format("deadline %s/by %s", task[2], task[3]);
+                    Deadline newDeadline = loadDeadline(deadlineString);
+                    if (task[1].trim().equals("X")) {
+                        newDeadline.loadDone();
+                    }
+                    list.add(newDeadline);
+                    break;
+                case "E": // create event task
+                    String eventString = String.format("event %s/at %s", task[2], task[3]);
+                    Event newEvent = loadEvent(eventString);
+                    if (task[1].trim().equals("X")) {
+                        newEvent.loadDone();
+                    }
+                    list.add(newEvent);
+                    break;
                 }
             }
             return list;
