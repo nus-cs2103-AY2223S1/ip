@@ -1,15 +1,18 @@
+package duke;
+
+import duke.task.Task;
+
 import java.util.Scanner;
 
 public class UI {
-
-    private Scanner sc;
+    private final Scanner sc;
 
     public UI() {
         this.sc = new Scanner(System.in);
     }
 
     public void showWelcome() {
-        System.out.println("Hello! I'm Fungusta\n" + "Peter's personal chatbot\n");
+        System.out.println("Hello! I'm Fungusta\n" + "Peter's personal chatbot");
     }
 
     public void showGoodbye() { System.out.println("Bye Bye See You Next Time!"); }

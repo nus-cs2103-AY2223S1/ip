@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.DukeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,6 +21,7 @@ public class Deadlines extends Task {
 
     @Override
     public String toSaveString() {
-        return "deadline " + super.toSaveString() + deadline;
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        return "deadline " + super.toSaveString() + " " + deadline.format(format);
     }
 }

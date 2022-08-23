@@ -1,17 +1,12 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
+package duke;
+
+import duke.command.Command;
 
 public class Duke {
-    //private static ArrayList<Task> tasks = new ArrayList<>();
-    //private static final Scanner sc = new Scanner(System.in);
 
-    private Storage storage;
-    private TaskList taskList;
-    private UI ui;
+    private final Storage storage;
+    private final TaskList taskList;
+    private final UI ui;
     private boolean byeActivated;
 
     public Duke(String folderPath, String filePath) {
@@ -21,12 +16,9 @@ public class Duke {
         this.byeActivated = false;
     }
 
-    public enum Instructions {
-        bye, deadline, delete, event, list, mark, todo, unmark
-    }
-
     public void run() {
         ui.showWelcome();
+        ui.showDividerLine();
         storage.startUpPullStorage(ui, taskList);
         while (!byeActivated && ui.hasInput()) {
             try {

@@ -1,8 +1,12 @@
+package duke;
+
+import duke.command.*;
+
 public class Parser {
     public static Command parseInput(String input) throws DukeException {
         if (!input.contains(" ")) {
             try {
-                switch (Duke.Instructions.valueOf(input)) {
+                switch (Instructions.valueOf(input)) {
                 case bye:
                     return new ExitCommand();
                 case list:
@@ -24,7 +28,7 @@ public class Parser {
         String[] split = input.split(" ", 2);
         String instruction = split[0];
         String info = split[1];
-        switch (Duke.Instructions.valueOf(instruction)) {
+        switch (Instructions.valueOf(instruction)) {
         case delete:
             try {
                 return new DeleteCommand(Integer.parseInt(info) - 1);
@@ -46,13 +50,13 @@ public class Parser {
                 throw new DukeException("Unmarking requires an integer as index");
             }
         case todo:
-            return new AddCommand(info);
+            return new AddUserCommand(info);
         case deadline:
             if (info.contains(" /by ")) {
                 String[] taskAndDeadline = info.split(" /by ", 2);
                 String task1 = taskAndDeadline[0];
                 String timing1 = taskAndDeadline[1];
-                return new AddCommand(task1, Duke.Instructions.deadline, timing1);
+                return new AddUserCommand(task1, Instructions.deadline, timing1);
             } else {
                 throw new DukeException("Deadline does not have proper format.");
             }
@@ -61,7 +65,7 @@ public class Parser {
                 String[] taskAndTiming = info.split(" /at ", 2);
                 String task2 = taskAndTiming[0];
                 String timing2 = taskAndTiming[1];
-                return new AddCommand(task2, Duke.Instructions.event, timing2);
+                return new AddUserCommand(task2, Instructions.event, timing2);
             } else {
                 throw new DukeException("Event does not have proper format.");
             }
@@ -76,19 +80,19 @@ public class Parser {
         String[] temp = information.split(" ", 2);
         boolean done = temp[0].equals("1");
         String task = temp[1];
-        switch (Duke.Instructions.valueOf(instruction)) {
+        switch (Instructions.valueOf(instruction)) {
         case todo:
             return new AddSavedInputCommand(task, done);
         case deadline:
             String[] taskAndBy = task.split(" ", 2);
             String task1 = taskAndBy[0];
             String deadline = taskAndBy[1];
-            return new AddSavedInputCommand(task1, Duke.Instructions.deadline, deadline, done);
+            return new AddSavedInputCommand(task1, Instructions.deadline, deadline, done);
         case event:
             String[] taskAndAt = temp[1].split(" ", 2);
             String task2 = taskAndAt[0];
             String timing = taskAndAt[1];
-            return new AddSavedInputCommand(task2, Duke.Instructions.event, timing, done);
+            return new AddSavedInputCommand(task2, Instructions.event, timing, done);
         }
         throw new DukeException("Saved file input format incorrect");
     }
