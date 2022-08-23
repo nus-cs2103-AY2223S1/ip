@@ -1,6 +1,10 @@
 public class Todo extends Task {
-    public Todo(String input) {
-        super(input);
+    private Todo(String description) {
+        super(description);
+    }
+
+    public static Todo fromUserInput(String userInput) {
+        return new Todo(userInput);
     }
 
     @Override

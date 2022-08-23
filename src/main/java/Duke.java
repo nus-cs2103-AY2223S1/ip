@@ -71,7 +71,7 @@ public class Duke {
                 }
                 case TODO: {
                     if (hasArgument) {
-                        Todo todo = new Todo(argument);
+                        Todo todo = Todo.fromUserInput(argument);
                         taskList.addTask(todo);
                         System.out.println("Got it, I've added this to-do:");
                         System.out.println(todo);
@@ -83,7 +83,7 @@ public class Duke {
                 case DEADLINE: {
                     if (hasArgument) {
                         try {
-                            Deadline deadline = new Deadline(argument);
+                            Deadline deadline = Deadline.fromUserInput(argument);
                             taskList.addTask(deadline);
                             System.out.println("Got it, I've added this deadline:");
                             System.out.println(deadline);
@@ -99,7 +99,7 @@ public class Duke {
                 case EVENT: {
                     if (hasArgument) {
                         try {
-                            Event event = new Event(argument);
+                            Event event = Event.fromUserInput(argument);
                             taskList.addTask(event);
                             System.out.println("Got it, I've added this event:");
                             System.out.println(event);

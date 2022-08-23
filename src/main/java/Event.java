@@ -3,21 +3,17 @@ public class Event extends Task {
 
     private final String time;
 
-    public Event(String userInput) throws InvalidTaskFormatException {
-        super(extractDescription(userInput));
-        this.time = extractTime(userInput);
+    private Event(String description, String time) {
+        super(description);
+        this.time = time;
     }
 
-    private static String extractDescription(String userInput) {
-        return userInput.split(TIME_SEPARATOR)[0];
-    }
-
-    private static String extractTime(String userInput) throws InvalidTaskFormatException {
+    public static Event fromUserInput(String userInput) throws InvalidTaskFormatException {
         String[] splitUserInput = userInput.split(TIME_SEPARATOR, 2);
         if (splitUserInput.length < 2) {
             throw new InvalidTaskFormatException("No time was provided for this event.");
         }
-        return splitUserInput[1];
+        return new Event(splitUserInput[0], splitUserInput[1]);
     }
 
     @Override
