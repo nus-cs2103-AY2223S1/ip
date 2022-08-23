@@ -11,42 +11,42 @@
 
     ____________________________________________________________
      Got it. I've added this task:
-       [D][ ] Read Chapter 1 (by: Fri 18 Aug)
+       [D][ ] Read Chapter 1 (by: 18 Aug 2021, 00:00)
      Now you have 2 tasks in this list.
     ____________________________________________________________
 
     ____________________________________________________________
      Got it. I've added this task:
-       [E][ ] CS2103T Lecture (at: Fri 18 Aug 4:00PM to 6:00PM)
+       [E][ ] CS2103T Lecture (at: 18 Aug 2021, 16:00)
      Now you have 3 tasks in this list.
     ____________________________________________________________
 
     ____________________________________________________________
      Here are the tasks in your list:
      1.[T][ ] Read book
-     2.[D][ ] Read Chapter 1 (by: Fri 18 Aug)
-     3.[E][ ] CS2103T Lecture (at: Fri 18 Aug 4:00PM to 6:00PM)
+     2.[D][ ] Read Chapter 1 (by: 18 Aug 2021, 00:00)
+     3.[E][ ] CS2103T Lecture (at: 18 Aug 2021, 16:00)
     ____________________________________________________________
 
     ____________________________________________________________
-     Nice! I've marked this task as done: 
+     Nice! I've marked this task as done:
       [T][X] Read book
     ____________________________________________________________
 
     ____________________________________________________________
-     Nice! I've marked this task as done: 
-      [E][X] CS2103T Lecture (at: Fri 18 Aug 4:00PM to 6:00PM)
+     Nice! I've marked this task as done:
+      [E][X] CS2103T Lecture (at: 18 Aug 2021, 16:00)
     ____________________________________________________________
 
     ____________________________________________________________
      Here are the tasks in your list:
      1.[T][X] Read book
-     2.[D][ ] Read Chapter 1 (by: Fri 18 Aug)
-     3.[E][X] CS2103T Lecture (at: Fri 18 Aug 4:00PM to 6:00PM)
+     2.[D][ ] Read Chapter 1 (by: 18 Aug 2021, 00:00)
+     3.[E][X] CS2103T Lecture (at: 18 Aug 2021, 16:00)
     ____________________________________________________________
 
     ____________________________________________________________
-     OK, I've marked this task as not done yet: 
+     OK, I've marked this task as not done yet:
       [T][ ] Read book
     ____________________________________________________________
 
@@ -74,8 +74,8 @@
 
     ____________________________________________________________
      Here are the tasks in your list:
-     1.[D][ ] Read Chapter 1 (by: Fri 18 Aug)
-     2.[E][X] CS2103T Lecture (at: Fri 18 Aug 4:00PM to 6:00PM)
+     1.[D][ ] Read Chapter 1 (by: 18 Aug 2021, 00:00)
+     2.[E][X] CS2103T Lecture (at: 18 Aug 2021, 16:00)
     ____________________________________________________________
 
     ____________________________________________________________
