@@ -3,12 +3,10 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
     protected LocalDate atDate;
-    protected String atTime;
 
-    public Event(String desc, LocalDate atDate, String atTime) {
+    public Event(String desc, LocalDate atDate) {
         super(desc);
         this.atDate = atDate;
-        this.atTime = atTime;
     }
 
     public String getDescription() {
@@ -16,13 +14,12 @@ public class Event extends Task {
     }
 
     public String getEventAt() {
-        return this.at;
+        return this.atDate.toString();
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(by: " + this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + ", " + this.atTime + ")";
+        return "[E]" + super.toString() + "(at: " + this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override

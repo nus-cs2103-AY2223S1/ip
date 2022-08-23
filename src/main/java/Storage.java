@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,9 +39,13 @@ public class Storage {
                 if (dataArr[0].equals("T")) {
                     task = new Todo(dataArr[2]);
                 } else if (dataArr[0].equals("D")) {
-                    task = new Deadline(dataArr[2], dataArr[3]);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate date = LocalDate.parse(dataArr[3], formatter);
+                    task = new Deadline(dataArr[2], date);
                 } else {
-                    task = new Event(dataArr[2], dataArr[3]);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate date = LocalDate.parse(dataArr[3], formatter);
+                    task = new Event(dataArr[2], date);
                 }
                 if (dataArr[1].equals("1")) {
                     task.setAsDone();

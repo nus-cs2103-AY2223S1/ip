@@ -1,11 +1,7 @@
-import java.io.File;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Duke {
     public static void main(String[] args) {
@@ -35,14 +31,16 @@ public class Duke {
 
         while (true) {
             try {
-                String echoText = sc.nextLine();
+                String inputText = sc.nextLine();
+                Parser parser = new Parser(inputText);
+                String firstWord = parser.getFirstText();
                 //terminate chat
-                if (echoText.equals("bye")) {
+                if (firstWord.equals("bye")) {
                     formatPrint("K finally, good riddance!");
                     storage.saveData(list);
                     break;
                     //view list of items
-                } else if (echoText.equals("list")) {
+                } else if (firstWord.equals("list")) {
                     if (list.size() == 0) {
                         formatPrint("pff there is nothing in your list");
                     } else {
@@ -54,8 +52,8 @@ public class Duke {
                         System.out.println(horizontalLine);
                     }
                     //mark an item as done
-                } else if (echoText.split(" ")[0].equals("mark")) {
-                    int markValue = Integer.parseInt(echoText.split(" ")[1]);
+                } else if (firstWord.equals("mark")) {
+                    int markValue = parser.getTaskNumber();
                     if (markValue > list.size() || markValue <= 0) {
                         throw new DukeException("The mark value does not exist dummy!");
                     }
@@ -64,8 +62,8 @@ public class Duke {
                     String str = "Took you long enough to complete this task:\n" + item.toString();
                     formatPrint(str);
                     //mark an item as not done
-                } else if (echoText.split(" ")[0].equals("unmark")) {
-                    int markValue = Integer.parseInt(echoText.split(" ")[1]);
+                } else if (firstWord.equals("unmark")) {
+                    int markValue = parser.getTaskNumber();
                     if (markValue > list.size() || markValue <= 0) {
                         throw new DukeException("The unmark value does not exist dummy!");
                     }
@@ -74,74 +72,31 @@ public class Duke {
                     String str = "Another task marked as not done?? Slow indeed\n" + item.toString();
                     formatPrint(str);
                     //add a to-do item
-                } else if (echoText.split(" ")[0].equals("todo")) {
-                    int firstSpaceIndex = echoText.indexOf(" ");
-                    if (firstSpaceIndex == -1) {
-                        throw new DukeException("Description of a todo cannot be empty dummy!");
-                    }
-                    String text = echoText.substring(firstSpaceIndex + 1);
-                    if (text.trim().equals("")) {
-                        throw new DukeException("Description of a todo cannot be empty dummy!");
-                    }
-                    Todo t = new Todo(text);
+                } else if (firstWord.equals("todo")) {
+                    String desc = parser.getTodoDescription();
+                    Todo t = new Todo(desc);
                     list.add(t);
                     String str = "Fine, I'll add this task:\n\t" + t + "\nNow you have " + list.size() + " tasks in the list...";
                     formatPrint(str);
                     // add a deadline item
-                } else if (echoText.split(" ")[0].equals("deadline")) {
-                    int firstSpaceIndex = echoText.indexOf(" ");
-                    if (firstSpaceIndex == -1) {
-                        throw new DukeException("Description of a deadline cannot be empty dummy!");
-                    }
-                    int byIndex = echoText.indexOf("/by");
-                    if (byIndex == -1) {
-                        throw new DukeException("A deadline must have a by clause dummy!");
-                    }
-                    String desc = echoText.substring(firstSpaceIndex + 1, byIndex);
-                    //4 because 3 of "/by" and 1 for the additional space
-                    String by = echoText.substring(byIndex + 4);
-                    String[] byArr = by.split(" ");
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    LocalDate byDate = LocalDate.parse(byArr[0], formatter);
-                    String byTime;
-                    //time was not inputted
-                    if (byArr.length == 1) {
-                        byTime = "0000";
-                    } else {
-                        byTime = byArr[1];
-                    }
-                    Deadline d = new Deadline(desc, byDate, byTime);
+                } else if (firstWord.equals("deadline")) {
+                    String desc = parser.getDeadlineDescription();
+                    LocalDate byDate = parser.getDeadlineDate();
+                    Deadline d = new Deadline(desc, byDate);
                     list.add(d);
                     String str = "Fine, I'll add this task:\n\t" + d + "\nNow you have " + list.size() + " tasks in the list...";
                     formatPrint(str);
                     //add an event item
-                } else if (echoText.split(" ")[0].equals("event")) {
-                    int firstSpaceIndex = echoText.indexOf(" ");
-                    if (firstSpaceIndex == -1) {
-                        throw new DukeException("Description of an event cannot be empty dummy!");
-                    }
-                    int atIndex = echoText.indexOf("/at");
-                    if (atIndex == -1) {
-                        throw new DukeException("An event must have a at clause dummy!");
-                    }
-                    String desc = echoText.substring(firstSpaceIndex + 1, atIndex);
-                    String at = echoText.substring(atIndex + 4);
-                    String[] atArr = at.split(" ");
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                    LocalDate atDate = LocalDate.parse(atArr[0], formatter);
-                    String atTime;
-                    if (atArr.length == 1) {
-                        atTime = "0000";
-                    } else {
-                        atTime = atArr[1];
-                    }
-                    Event e = new Event(desc, atDate, atTime);
+                } else if (firstWord.equals("event")) {
+                    String desc = parser.getEventDescription();
+                    LocalDate atDate = parser.getEventDate();
+                    Event e = new Event(desc, atDate);
                     list.add(e);
                     String str = "Fine, I'll add this task:\n\t" + e + "\nNow you have " + list.size() + " tasks in the list...";
                     formatPrint(str);
                     //delete a task from the list
-                } else if (echoText.split(" ")[0].equals("delete")) {
-                    int delValue = Integer.parseInt(echoText.split(" ")[1]);
+                } else if (firstWord.equals("delete")) {
+                    int delValue = parser.getTaskNumber();
                     if (delValue > list.size() || delValue <= 0) {
                         throw new DukeException("The delete value does not exist dummy!");
                     }
