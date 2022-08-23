@@ -13,12 +13,13 @@ public class ToDo extends Task {
         super(name);
     }
 
+    /**
+     * String representation of the todo.
+     *
+     * @return The string representation of the todo.
+     */
     @Override
     public String toString() {
-        /**
-         * String representation of a ToDo. Also indicates if the ToDo is done.
-         */
         return "[T]" + super.toString();
     }
-
 }

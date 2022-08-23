@@ -10,9 +10,11 @@ import java.time.format.DateTimeParseException;
 
 
 /**
- * Encapsulates the storage format of tasks, to decouple the format from other classes. Defines
- * 1. the *taskString* format for Events, Deadlines, and ToDos respectively;
- * 2. How conversion should be carried out between each Task subtype and their respective taskString.
+ * Encapsulates the storage format for tasks, and conversion between the
+ * `taskString` storage format and Task instances.
+ * We define two valid taskString formats:
+ * 1. "E | 1 | task name | 2022-10-02"
+ * 2. "E | 1 | task name"
  */
 public class StorageParser {
     private static final String EVENT_TASK_TYPE = "E";
@@ -22,6 +24,12 @@ public class StorageParser {
     private static final String TASK_DONE_INDICATOR = "1";
     private static final String TASK_NOT_DONE_INDICATOR = "0";
 
+    /**
+     * Parse the taskString.
+     *
+     * @param taskString String in the taskString format.
+     * @return The task corresponding to the taskString.
+     */
     public static Task toTask(String taskString) {
         String[] args =  taskString.split(" \\| ");
         String taskType = args[0];
@@ -40,7 +48,6 @@ public class StorageParser {
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Unable to parse taskString");
         }
-
     }
 
     private static Event toEvent(String[] args) {
@@ -81,6 +88,12 @@ public class StorageParser {
         return todo;
     }
 
+    /**
+     * Parse the Task.
+     *
+     * @param task The task to be parsed.
+     * @return The taskString corresponding to the Task.
+     */
     public static String toTaskString(Task task) {
         if (task instanceof Event) {
             Event event = (Event) task;

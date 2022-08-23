@@ -5,6 +5,9 @@ import java.time.format.DateTimeParseException;
 import roger.commands.*;
 import roger.exceptions.RogerInvalidInputException;
 
+/**
+ * Encapsulates logic for parsing user input.
+ */
 public class Parser {
     private final String LIST_COMMAND = "list";
     private final String MARK_COMMAND = "mark";
@@ -15,6 +18,13 @@ public class Parser {
     private final String DELETE_COMMAND = "delete";
     private final String EXIT_COMMAND = "bye";
 
+    /**
+     * Parses user input and return the corresponding command.
+     *
+     * @param input User input.
+     * @return The command corresponding to the user input.
+     * @throws RogerInvalidInputException If the command is known but the argument format is incorrect.
+     */
     public Command parse(String input) throws RogerInvalidInputException {
         int cmdArgSeparator = input.indexOf(" ");
         String command = cmdArgSeparator < 0 ? input : input.substring(0, cmdArgSeparator);

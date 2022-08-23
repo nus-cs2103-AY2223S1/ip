@@ -7,18 +7,25 @@ import java.io.IOException;
 import java.util.List;
 import java.nio.file.Paths;
 
-
+/**
+ * Main class for the Roger task-tracking CLI program.
+ */
 public class Roger {
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
     private Storage storage;
 
-    public Roger(String filepath) {
+    /**
+     * Create an instance of the Roger program.
+     *
+     * @param storageFilePath Destination where tasks will be stored as.
+     */
+    public Roger(String storageFilePath) {
         this.ui = new Ui();
         this.parser = new Parser();
         this.tasks = new TaskList();
-        this.storage = new Storage(Paths.get(filepath));
+        this.storage = new Storage(Paths.get(storageFilePath));
 
         try {
             List<String> taskStrings = this.storage.load();
@@ -43,8 +50,7 @@ public class Roger {
         }
     }
 
-
-    public void run() {
+    private void run() {
         this.sayHello();
 
         boolean isExit = false;
@@ -62,12 +68,12 @@ public class Roger {
         this.shutDown();
     }
 
+    /**
+     * Run a Roger program instance.
+     *
+     * @param args Ignored.
+     */
     public static void main(String[] args) {
-        /**
-         * Logic for Roger program. Takes user input and matches it
-         * with various commands (list, mark, unmark, todo, deadline, event, bye).
-         * 'bye' shuts Roger down.
-         */
         new Roger("data/database.txt").run();
     }
 }
