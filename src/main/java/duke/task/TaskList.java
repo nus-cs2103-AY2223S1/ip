@@ -82,10 +82,8 @@ public class TaskList {
     }
 
     public TaskList filter(String keyword) {
-        List<Task> filtered = list
-            .stream()
-            .filter(task -> task.title.contains(keyword))
-            .collect(Collectors.<Task>toList());
+        List<Task> filtered = list.stream().filter(task -> task.title.contains(keyword))
+                .collect(Collectors.<Task>toList());
         return new TaskList(filtered);
     }
 

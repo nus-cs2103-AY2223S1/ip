@@ -32,8 +32,7 @@ public class MarkCommand extends Command {
      * @throws DukeException if an error occurs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage)
-        throws DukeException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         taskList.mark(index, true);
         ui.showOutput("Task " + (index + 1) + " is marked as done!");
         storage.save(taskList.getTaskList());

@@ -32,8 +32,7 @@ public class DeleteCommand extends Command {
      * @throws DukeException if an error occurs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage)
-        throws DukeException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         taskList.delete(index);
         ui.showOutput("Task " + (index + 1) + " has been deleted!");
         storage.save(taskList.getTaskList());

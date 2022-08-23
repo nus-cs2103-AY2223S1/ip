@@ -32,8 +32,7 @@ public class FindCommand extends Command {
      * @throws DukeException if an error occurs
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage)
-        throws DukeException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         TaskList filtered = taskList.filter(keyword);
         if (filtered.getTaskList().isEmpty()) {
             ui.showOutput("No matching task found!");

@@ -21,8 +21,7 @@ public class Event extends Task {
      * @param status whether the task is completed or not
      * @param date the date where the event occurs
      */
-    public Event(String title, boolean status, String date)
-        throws DateTimeParseException {
+    public Event(String title, boolean status, String date) throws DateTimeParseException {
         super(title, status);
         this.date = LocalDate.parse(date);
     }
@@ -34,15 +33,8 @@ public class Event extends Task {
      */
     @Override
     public String encode() {
-        return (
-            SYMBOL +
-            " | " +
-            (this.status ? "1" : "0") +
-            " | " +
-            this.title +
-            " | " +
-            this.date
-        );
+        return (SYMBOL + " | " + (this.status ? "1" : "0") + " | " + this.title + " | "
+                + this.date);
     }
 
     @Override

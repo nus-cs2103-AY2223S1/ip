@@ -52,18 +52,12 @@ public class Parser {
                 return new AddCommand(new Todo(inputs[1], false));
             case "deadline":
                 String[] deadlineArgs = inputs[1].split("\\s+/by\\s+", 2);
-                return new AddCommand(
-                    new Deadline(deadlineArgs[0], false, deadlineArgs[1])
-                );
+                return new AddCommand(new Deadline(deadlineArgs[0], false, deadlineArgs[1]));
             case "event":
                 String[] eventArgs = inputs[1].split("\\s+/at\\s+", 2);
-                return new AddCommand(
-                    new Event(eventArgs[0], false, eventArgs[1])
-                );
+                return new AddCommand(new Event(eventArgs[0], false, eventArgs[1]));
             default:
-                throw new DukeException(
-                    "Sorry, I don't know what do you mean by that."
-                );
+                throw new DukeException("Sorry, I don't know what do you mean by that.");
             }
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("Invalid input format!");

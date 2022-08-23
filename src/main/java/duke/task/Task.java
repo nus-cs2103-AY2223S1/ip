@@ -38,17 +38,9 @@ public abstract class Task {
             case Todo.SYMBOL:
                 return new Todo(inputs[2], inputs[1].equals("1"));
             case Deadline.SYMBOL:
-                return new Deadline(
-                    inputs[2],
-                    inputs[1].equals("1"),
-                    inputs[3]
-                );
+                return new Deadline(inputs[2], inputs[1].equals("1"), inputs[3]);
             case Event.SYMBOL:
-                return new Event(
-                    inputs[2],
-                    inputs[1].equals("1"),
-                    inputs[3]
-                );
+                return new Event(inputs[2], inputs[1].equals("1"), inputs[3]);
             default:
                 throw new DukeException("Invalid task format!");
             }

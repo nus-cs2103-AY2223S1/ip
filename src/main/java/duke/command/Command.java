@@ -20,8 +20,7 @@ public abstract class Command {
      * @param storage the storage to be used
      * @throws DukeException if an error occurs
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage)
-        throws DukeException;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Returns false as this is not the exit command
