@@ -19,6 +19,14 @@ public class Task {
         this.isDone = false;
     }
 
+    public String toFileDescription() {
+        return (this.isDone ? "1 " : "0 ") + "| " + this.description;
+    }
+
+    public static Task fromFileDescription(String input) {
+        return null;
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
