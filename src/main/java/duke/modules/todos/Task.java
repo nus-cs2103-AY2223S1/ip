@@ -37,7 +37,7 @@ public abstract class Task {
         this.done = done;
     }
 
-    private final String typeCode = "B";
+    public static final String typeCode = "B";
     private final String doneSer = "X";
     private final String undoneSer = "-";
 
@@ -56,10 +56,6 @@ public abstract class Task {
      * @param l The packed data.
      */
     public Task(List<? extends String> l) {
-        if (l.get(0) != typeCode) {
-            throw new IllegalArgumentException("Trying to hydrate non-task as task: " + l);
-        }
-
         this.name = l.get(2);
 
         final String doneStr = l.get(1);
