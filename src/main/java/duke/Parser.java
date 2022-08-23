@@ -13,7 +13,6 @@ public class Parser {
     }
 
     public static void parseInput() {
-
         Scanner sc = new Scanner(System.in);
         boolean running = true;
 
@@ -22,7 +21,7 @@ public class Parser {
                 new TaskList(Storage.loadTask());
                 //parse
                 String str1 = sc.nextLine();
-                String[] wordArray = Parser.parseTypingInput(str1);
+                String[] wordArray = parseTypingInput(str1);
                 String str2 = "";
 
                 if (wordArray.length >= 2) {
