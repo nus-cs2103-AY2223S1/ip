@@ -1,12 +1,15 @@
 package duke.task;
 
 import java.time.DateTimeException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-import duke.Storage;
 import duke.DukeException;
+import duke.Storage;
 
+/**
+ * Represents a list of Tasks (ToDo, Deadlines, Events) given by the user.
+ */
 public class TasksList {
     private final List<Task> tasksList;
 
@@ -36,6 +39,8 @@ public class TasksList {
         case "event":
             addEvent(command, storage);
             break;
+        default:
+            break;
         }
     }
 
@@ -47,8 +52,8 @@ public class TasksList {
      */
     public void addTodo(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
-            throw new DukeException("Duke: Please specify what task you wish to do:\n" +
-                    "todo <task>");
+            throw new DukeException("Duke: Please specify what task you wish to do:\n"
+                    + "todo <task>");
         }
         String description = command[1];
         System.out.println("Duke: Got it! Duke has added this task:");
@@ -70,13 +75,13 @@ public class TasksList {
      */
     public void addDeadline(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
-            throw new DukeException("Duke: Please specify what task you wish to do:\n" +
-                    "deadline <task> /by <date/time>");
+            throw new DukeException("Duke: Please specify what task you wish to do:\n"
+                    + "deadline <task> /by <date/time>");
         }
         String[] deadline = command[1].split(" /by ", 2);
         if (deadline.length == 1) {
-            throw new DukeException("Duke: Please specify the date/time of this deadline:\n" +
-                    "deadline <task> /by <date/time>");
+            throw new DukeException("Duke: Please specify the date/time of this deadline:\n"
+                    + "deadline <task> /by <date/time>");
         }
         try {
             Task newTask = new Deadline(deadline[0], deadline[1]);
@@ -89,8 +94,8 @@ public class TasksList {
             System.out.println(line);
             storage.addTaskToSave(newTask);
         } catch (DateTimeException e) {
-            throw new DukeException("Duke: Uh oh! Please enter your date/time in this format:\n" +
-                    "dd mm yyyy hh:mm(optional)");
+            throw new DukeException("Duke: Uh oh! Please enter your date/time in this format:\n"
+                    + "dd mm yyyy hh:mm(optional)");
         }
     }
 
@@ -102,13 +107,13 @@ public class TasksList {
      */
     public void addEvent(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
-            throw new DukeException("Duke: Please specify what task you wish to do:\n" +
-                    "event <task> /at <date/time>");
+            throw new DukeException("Duke: Please specify what task you wish to do:\n"
+                    + "event <task> /at <date/time>");
         }
         String[] event = command[1].split(" /at ", 2);
         if (event.length == 1) {
-            throw new DukeException("Duke: Please specify the date/time of this event:\n" +
-                    "event <task> /at <date/time>");
+            throw new DukeException("Duke: Please specify the date/time of this event:\n"
+                    + "event <task> /at <date/time>");
         }
         try {
             Task newTask = new Event(event[0], event[1]);
@@ -121,8 +126,8 @@ public class TasksList {
             System.out.println(line);
             storage.addTaskToSave(newTask);
         } catch (DateTimeException e) {
-            throw new DukeException("Duke: Uh oh! Please enter your date/time in this format:\n" +
-                    "dd mm yyyy hh:mm(optional)");
+            throw new DukeException("Duke: Uh oh! Please enter your date/time in this format:\n"
+                    + "dd mm yyyy hh:mm(optional)");
         }
     }
 
@@ -149,8 +154,8 @@ public class TasksList {
      */
     public void markTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
-            throw new DukeException("Duke: Please specify the task to mark by its id:\n" +
-                    "mark <id>");
+            throw new DukeException("Duke: Please specify the task to mark by its id:\n"
+                    + "mark <id>");
         }
         try {
             int id = Integer.parseInt(command[1]);
@@ -161,8 +166,8 @@ public class TasksList {
             this.tasksList.get(id - 1).mark();
             storage.markTaskInSave(id - 1);
         } catch (NumberFormatException e) {
-            throw new DukeException("Duke: Please specify the task to mark by its integer id:\n" +
-                    "mark <id>");
+            throw new DukeException("Duke: Please specify the task to mark by its integer id:\n"
+                    + "mark <id>");
         } catch (DukeException e) {
             throw e;
         }
@@ -176,8 +181,8 @@ public class TasksList {
      */
     public void unmarkTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
-            throw new DukeException("Duke: Please specify the task to unmark by its id:\n" +
-                    "unmark <id>");
+            throw new DukeException("Duke: Please specify the task to unmark by its id:\n"
+                    + "unmark <id>");
         }
         try {
             int id = Integer.parseInt(command[1]);
@@ -188,8 +193,8 @@ public class TasksList {
             this.tasksList.get(id - 1).unmark();
             storage.unmarkTaskInSave(id - 1);
         } catch (NumberFormatException e) {
-            throw new DukeException("Duke: Please specify the task to unmark by its integer id:\n" +
-                    "mark <id>");
+            throw new DukeException("Duke: Please specify the task to unmark by its integer id:\n"
+                    + "mark <id>");
         }
     }
 
@@ -201,8 +206,8 @@ public class TasksList {
      */
     public void deleteTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
-            throw new DukeException("Duke: Please specify the task to be deleted by its id:\n" +
-                    "delete <id>");
+            throw new DukeException("Duke: Please specify the task to be deleted by its id:\n"
+                    + "delete <id>");
         }
         try {
             int id = Integer.parseInt(command[1]);
@@ -218,8 +223,8 @@ public class TasksList {
             System.out.println(line);
             storage.deleteTaskFromSave(id - 1);
         } catch (NumberFormatException e) {
-            throw new DukeException("Duke: Please specify the task to delete by its integer id:\n" +
-                    "mark <id>");
+            throw new DukeException("Duke: Please specify the task to delete by its integer id:\n"
+                    + "mark <id>");
         }
     }
 
@@ -269,6 +274,8 @@ public class TasksList {
             if (completionStatus.equals("1")) {
                 event.completeTask();
             }
+            break;
+        default:
             break;
         }
     }
