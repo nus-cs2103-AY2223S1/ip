@@ -19,6 +19,10 @@ public class Task {
         isCompleted = false;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatus() + "] "

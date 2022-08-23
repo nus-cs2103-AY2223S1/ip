@@ -46,4 +46,6 @@ public class TaskList {
 
     public void deleteTask(int index) { taskList.remove(index); }
 
+    public String getDescription(int index) { return taskList.get(index).getDescription(); }
+
 }

@@ -1,0 +1,4 @@
+T | 0 | read book
+T | 1 | watch lecture
+T | 1 | play genshin
+T | 0 | do quiz 1
