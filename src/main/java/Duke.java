@@ -1,20 +1,27 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+
+
 public class Duke {
     private static final ArrayList<Task> store = new ArrayList<>();
+    private static final String FILE_PATH = "data" + File.separator + "taskList.txt";
     enum COMMANDS {todo, deadline, event, mark, unmark, delete, }
 
-
     public static void main(String[] args) {
+        getData();
 
         System.out.println("Hello! What are we gonna do today?");
+        System.out.println("Use '/?' for help");
+
+        Scanner sc = new Scanner(System.in);
         while (true) {
-            Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
             if (isCommand(input.split(" ")[0])) {
                 try {
-                    parse(input);
+                    parse(input, false);
                 } catch (DukeWrongArgumentException e) {
                     System.out.println(e.getMessage());
                     System.out.println("Pls try again");
@@ -31,10 +38,18 @@ public class Duke {
                 }
                 System.out.println("\nYou currently have " + store.size() + " tasks in the list");
                 System.out.println("Pls don't procrastinate on the above tasks!");
+            } else if (input.equals("/?")) {
+                System.out.println("These are the commands available:");
+                System.out.println("\ttodo [description]");
+                System.out.println("\tdeadline [description] /by [date]");
+                System.out.println("\tevent [description] /at [date]");
+                System.out.println("\tlist\n\tbye\n");
             } else {
                 System.out.println("what's this?! REDO!!!!");
             }
+
         }
+        sc.close();
     }
 
     private static boolean isCommand(String input) {
@@ -44,9 +59,10 @@ public class Duke {
         return false;
     }
 
-    private static void parse(String input) throws DukeWrongArgumentException {
+    private static void parse(String input, boolean fromSave) throws DukeWrongArgumentException {
         String[] arr = input.split(" ", 2);
         COMMANDS command = COMMANDS.valueOf(arr[0]);
+
         try {
             switch (command) {
                 case mark: {
@@ -107,7 +123,32 @@ public class Duke {
                 break;
             }
         }
-        System.out.println("\tadded: " + store.get(store.size() - 1));
-        System.out.println("You now have " + store.size() + " tasks in the list");
+        String item = store.get(store.size() - 1).toString();
+        try {
+            if (!fromSave) {
+                Task.writeToFile(input);
+                System.out.println("\tadded: " + item);
+                System.out.println("You now have " + store.size() + " tasks in the list");
+            }
+        } catch (IOException e) {
+            System.out.println("something went wrong while saving\n" + e);
+        }
+    }
+
+    private static void getData() {
+        File directory = new File("data");
+        directory.mkdir();
+        try {
+            File dataFile = new File(FILE_PATH);
+            dataFile.createNewFile();
+
+            Scanner s = new Scanner(dataFile);
+            while (s.hasNext()) {
+                String item = s.nextLine();
+                parse(item, true);
+            }
+        } catch (IOException | DukeWrongArgumentException e) {
+            System.out.println("something went wrong while loading saved info\n" + e);
+        }
     }
 }

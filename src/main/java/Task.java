@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -17,6 +21,12 @@ public class Task {
 
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    public static void writeToFile(String item) throws IOException {
+        FileWriter fw = new FileWriter("data" + File.separator + "taskList.txt", true);
+        fw.write(item + "\n");
+        fw.close();
     }
 
     @Override
