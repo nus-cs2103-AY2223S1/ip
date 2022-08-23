@@ -43,9 +43,8 @@ public class DeadlineTest {
     }
 
     @Test
-    public void equalDateDeadlineTest() {
-        Deadline deadline = new Deadline("Unmark Deadline", "20/10/2012 1159");
-        deadline.markAsUndone();
+    public void isEqualDateDeadlineTest() {
+        Deadline deadline = new Deadline("Equal Deadline", "20/10/2012 1159");
         assertTrue(deadline.isEqualDate(LocalDate.parse("2012-10-20")));
         assertFalse(deadline.isEqualDate(LocalDate.parse("2012-10-21")));
     }
