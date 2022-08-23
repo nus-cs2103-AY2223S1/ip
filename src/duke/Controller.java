@@ -1,3 +1,12 @@
+package duke;
+
+import duke.command.dukeCommands;
+import duke.exception.EmptyDescriptionException;
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidIndexException;
+import duke.task.Model;
+import duke.task.Task;
+
 import java.util.List;
 
 public class Controller {
@@ -20,6 +29,10 @@ public class Controller {
             description = null;
         }
         return description;
+    }
+
+    public static void init() {
+
     }
 
     public static void execute(Enum commands, String description) {

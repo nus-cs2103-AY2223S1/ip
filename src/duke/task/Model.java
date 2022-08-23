@@ -1,5 +1,16 @@
+package duke.task;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.command.dukeCommands;
+import duke.exception.*;
 
 public class Model {
     private static List<Task> memo = new ArrayList<>();
@@ -34,7 +45,7 @@ public class Model {
                 command = dukeCommands.DELETE;
                 break;
             default:
-                throw new InvalidCommandException("I'm sorry, but I don't know what that means :-(");
+                throw new InvalidCommandException();
         }
         return command;
     }
@@ -43,7 +54,7 @@ public class Model {
         String[] strArr = message.trim().split(" ", 2);
         String description = null;
         if (strArr.length == 1) {
-            throw new EmptyDescriptionException("OOPS!!! The description of a command cannot be empty.");
+            throw new EmptyDescriptionException();
         } else {
             description = strArr[1];
         }
@@ -63,7 +74,7 @@ public class Model {
             index = Integer.parseInt(message);
         } else {
             //TODO To improve user experience
-            throw new InvalidIndexException("OOPS!!! The index is illegal.");
+            throw new InvalidIndexException();
         }
         return index - 1;
     }
@@ -100,7 +111,7 @@ public class Model {
 
     public static Task addTodoTask(String description) throws EmptyDescriptionException {
         if (description == null) {
-            throw new EmptyDescriptionException("OOPS!!! The description of a command cannot be empty.");
+            throw new EmptyDescriptionException();
         }
         Task todoTask = new Todo(description);
         memo.add(todoTask);
@@ -110,7 +121,7 @@ public class Model {
     //TODO improve the code
     public static Task addDeadlineTask(String description) throws EmptyDescriptionException {
         if (description == null) {
-            throw new EmptyDescriptionException("OOPS!!! The description of a command cannot be empty.");
+            throw new EmptyDescriptionException();
         }
         String[] splittedStr = description.split("/");
         Task deadlineTask = new Deadline(splittedStr[0], splittedStr[1].substring(3));
@@ -121,11 +132,26 @@ public class Model {
     //TODO improve the code
     public static Task addEventTask(String description) throws EmptyDescriptionException {
         if (description == null) {
-            throw new EmptyDescriptionException("OOPS!!! The description of a command cannot be empty.");
+            throw new EmptyDescriptionException();
         }
         String[] splittedStr = description.split("/");
         Task eventTask = new Event(splittedStr[0], splittedStr[1].substring(3));
         memo.add(eventTask);
         return eventTask;
+    }
+
+    public static void save(Task task) throws FileDoesNotExistException {
+        String currentDir = System.getProperty("user.dir");
+        Path path = java.nio.file.Paths.get(currentDir, "docs", "saved.txt");
+        try {
+            PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(path.toFile(), true)));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static void read() throws FileDoesNotExistException {
+
     }
 }

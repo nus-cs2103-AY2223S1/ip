@@ -1,3 +1,10 @@
+package duke;
+
+import duke.exception.EmptyDescriptionException;
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidIndexException;
+import duke.task.Task;
+
 import java.util.List;
 
 public class View {
