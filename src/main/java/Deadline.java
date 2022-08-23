@@ -5,6 +5,7 @@ public class Deadline extends Task {
 
     protected LocalDate date;
     protected String time;
+    protected String dateTime;
 
     public Deadline(String description, String dateTime) {
         super(description);
@@ -12,6 +13,7 @@ public class Deadline extends Task {
         DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern("d/MM/yyyy");
         this.date = LocalDate.parse(details[0], inputFormat);
         this.time = details[1];
+        this.dateTime = dateTime;
 
     }
 
@@ -30,7 +32,7 @@ public class Deadline extends Task {
         if (this.getStatusIcon().equals("X")) {
             completed = "1";
         }
-        return "D | " + completed + " | " + this.getDescription() + " | " + this.by;
+        return "D | " + completed + " | " + this.getDescription() + " | " + this.dateTime;
     }
 
 
