@@ -9,6 +9,7 @@ public class Parser {
     private final String LIST_COMMAND = "list";
     private final String MARK_COMMAND = "mark";
     private final String UNMARK_COMMAND = "unmark";
+    private final String COMMAND_FIND = "find";
     private final String ADD_TODO_COMMAND = "todo";
     private final String ADD_DEADLINE_COMMAND = "deadline";
     private final String ADD_EVENT_COMMAND = "event";
@@ -27,6 +28,8 @@ public class Parser {
                 return parseMarkArguments(arguments);
             case UNMARK_COMMAND:
                 return parseUnmarkArguments(arguments);
+            case COMMAND_FIND:
+                return parseFindArguments(arguments);
             case ADD_TODO_COMMAND:
                 return parseToDoArguments(arguments);
             case ADD_DEADLINE_COMMAND:
@@ -78,6 +81,14 @@ public class Parser {
         }
 
         return new UnmarkCommand(taskNum);
+    }
+
+    private FindCommand parseFindArguments(String arguments) throws RogerInvalidInputException {
+        String query = arguments.trim();
+        if (query.isBlank()) {
+            throw new RogerInvalidInputException("Where your search term?");
+        }
+        return new FindCommand(query);
     }
 
     private AddToDoCommand parseToDoArguments(String arguments) throws RogerInvalidInputException {
