@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * The User Interface (UI) class.
+ */
 public class Ui {
     /** Line used for formatting. */
     private static String line = "----------------------------------------";
@@ -14,10 +17,16 @@ public class Ui {
     /** Scanner object to read from the system input. */
     private Scanner sc;
 
+    /**
+     * Constructor for Ui objects.
+     */
     public Ui() {
         this.sc = new Scanner(System.in);
     }
 
+    /**
+     * Prints the Duke Opening that includes the greeting and logo.
+     */
     public void printDukeOpening() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -30,30 +39,52 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Prints the Duke Closing that includes a leaving salutation.
+     */
     public void printDukeClosing() {
         System.out.println(line);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(line);
     }
 
+    /**
+     * Prints the message from the DukeException thrown, nicely formatted.
+     *
+     * @param e The DukeException whose message we want to format and print.
+     */
     public void printDukeException(DukeException e) {
         System.out.println(line);
         System.out.println("OOPS!!! " + e.getMessage());
         System.out.println(line);
     }
 
+    /**
+     * Prints the message from the IOException thrown, nicely formatted.
+     *
+     * @param e The IOException whose message we want to format and print.
+     */
     public void printIoException(IOException e) {
         System.out.println(line);
         System.out.println("OOPS!!! " + e.getMessage());
         System.out.println(line);
     }
 
+    /**
+     * Prints the message if we ever get a DateTimeParseException, signalling
+     * to a user that they entered the date in the wrong format.
+     */
     public void printDateTimeParseException() {
         System.out.println(line);
         System.out.println("All dates must be in the format (yyyy-MM-dd HH:mm)!");
         System.out.println(line);
     }
 
+    /**
+     * Prints all the tasks in a given task List object.
+     *
+     * @param taskList The TaskList whose tasks we want to print.
+     */
     public void printTasks(TaskList taskList) {
         ArrayList<Task> tasks = taskList.getTasks();
         System.out.println(line);
@@ -65,6 +96,12 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Prints the nicely formatted message when a user adds a task.
+     *
+     * @param task The task that was just added.
+     * @param taskList The current task list after the task has been added.
+     */
     public void printAddTask(Task task, TaskList taskList) {
         System.out.println(line);
         System.out.println("Got it. I've added this task:");
@@ -73,6 +110,12 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Prints the nicely formatted message when a user deletes a task.
+     *
+     * @param task The task that was just deleted.
+     * @param taskList The current task list after the task has been deleted.
+     */
     public void printDeleteTask(Task task, TaskList taskList) {
         System.out.println(line);
         System.out.println("Noted. I've removed this task:");
@@ -81,6 +124,12 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Prints the nicely formatted message when a user marks a task as done or not.
+     *
+     * @param task The task that was just marked as done or undone.
+     * @param isDone The status indicating whether a task was marked as done or not.
+     */
     public void printChangeTaskStatus(Task task, boolean isDone) {
         System.out.println(line);
         if (isDone) {
@@ -93,10 +142,18 @@ public class Ui {
         System.out.println(line);
     }
 
+    /**
+     * Method to close the scanner object.
+     */
     public void closeScanner() {
         this.sc.close();
     }
 
+    /**
+     * Method to read the next line from the standard input.
+     *
+     * @return Returns the next line as a String.
+     */
     public String nextLine() {
         return this.sc.nextLine();
     }

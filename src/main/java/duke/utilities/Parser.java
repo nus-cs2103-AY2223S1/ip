@@ -4,7 +4,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+/**
+ * The Parse class, for parsing user commands.
+ */
 public class Parser {
+    /**
+     * Static method for parsing the user commands and returning them as a formatted
+     * String separated by the | character.
+     *
+     * @param line The line from the standard input we want to parse.
+     * @return Returns the String separated by | for easier parsing
+     *         that contains the necessary information for carrying out
+     *         further operations in an easily separable form.
+     * @throws DukeException Handles duke related exceptions.
+     */
     public static String parseCommand(String line) throws DukeException {
         String[] splitString = line.split(" ");
         String command = splitString[0];

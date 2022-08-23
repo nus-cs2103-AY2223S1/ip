@@ -12,6 +12,7 @@ public class Task {
 
     /**
      * Constructor for a Task object.
+     *
      * @param description The description of the task.
      */
     public Task(String description) {
@@ -20,8 +21,8 @@ public class Task {
     }
 
     /**
-     * Used for getting the string representation of whether a task is
-     * marked or not.
+     * Returns 'X' or " " depending on whether Task is marked done or not.
+     *
      * @return Returns X or an empty string depending on whether a Task is marked done.
      */
     public String getDoneStatus() {
@@ -30,6 +31,7 @@ public class Task {
 
     /**
      * Setter for updating the isDone variable.
+     *
      * @param isDone the new value to update isDone to.
      */
     public void setDoneStatus(boolean isDone) {
@@ -38,6 +40,7 @@ public class Task {
 
     /**
      * Getter for the description of the task.
+     *
      * @return Returns the description of the task.
      */
     public String getDescription() {
@@ -46,6 +49,7 @@ public class Task {
 
     /**
      * String representation of a Task.
+     *
      * @return Returns the string representation of a task.
      */
     @Override

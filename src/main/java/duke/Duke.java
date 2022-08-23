@@ -15,10 +15,20 @@ import java.time.format.DateTimeParseException;
  * The Main driver class of the Duke Application.
  */
 public class Duke {
+    /** The Storage object that handles loading and saving tasks. */
     private Storage storage;
+
+    /** The TaskList object that manages the tasks. */
     private TaskList taskList;
+
+    /** The UI object that handles user interface. */
     private Ui ui;
 
+    /**
+     * Constructor for Duke instance.
+     *
+     * @param filePath The location to store the saved tasks to.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         try {
@@ -33,6 +43,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Driver method for the Duke program.
+     */
     public void run() {
         this.ui.printDukeOpening();
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -105,11 +118,10 @@ public class Duke {
 
     /**
      * The main method that is the entry to the Duke Application.
+     *
      * @param args Command line arguments that we can pass to the main function.
-     * @throws IOException Throws IO exception that we must handle from creating
-     *                     the folder and storage.
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
 }
