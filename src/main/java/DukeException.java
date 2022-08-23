@@ -1,11 +1,11 @@
 public class DukeException extends Exception {
 
     DukeException(String message) {
-        super("Uh-oh ☹! " + message);
+        super(message);
     }
 
     DukeException(String message, Throwable cause) {
-        super("Uh-oh ☹! " + message, cause);
+        super(message, cause);
     }
 
 }

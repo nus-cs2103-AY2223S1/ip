@@ -3,12 +3,7 @@ import java.util.stream.Stream;
 
 public class Duke {
 
-    private static final String GREETING_MESSAGE = "Hello! I'm TedBot ヾ(≧▽≦*)o\n"
-            + "What do you want to do today?";
-    private static final String GOODBYE_MESSAGE = "Bye! Hope to see you soon ༼- つ ◕_◕ ༽つ";
-    private static final String UNKNOWN_COMMAND_MESSAGE = "Sorry, I don't know what that means.\n"
-            + "Did you make a mistake? Please note that commands are case-sensitive.";
-    private static final String STORAGE_LOADING_MESSAGE = "Loading save file.....";
+
 
     /* Parses a command into an n x 2 array, where n is the number of
        parameters passed by the user. Parameters are seperated by a "/".
@@ -27,45 +22,47 @@ public class Duke {
 
     public static void main(String[] args) {
 
-        Scanner sysIn = new Scanner(System.in);
+        Ui ui = new Ui();
         Storage storage = new Storage("data/save.txt");
         TaskList taskList;
         boolean exitCalled = false;
 
-
-
-        System.out.println(STORAGE_LOADING_MESSAGE);
         try {
+            ui.showStorageLoadingMessage();
             taskList = storage.load();
-            System.out.printf("Save file loaded. You currently have %d tasks.\n", taskList.getLength());
+            ui.showReply(String.format("Save file loaded. You currently have %d tasks.\n", taskList.getLength()));
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
+            ui.showException(e);
             taskList = new TaskList();
+        } finally {
+            ui.showSeperator();
         }
-        System.out.println();
 
-        System.out.println(GREETING_MESSAGE);
+        ui.showWelcome();
+        ui.showSeperator();
 
         while (!exitCalled) {
             try {
-                String[][] userParams = parseCommand(sysIn.nextLine());
+                String[][] userParams = parseCommand(ui.readCommand());
                 String commandName = userParams[0][0];
 
                 switch (commandName) {
                     case "list": {
+                        StringBuilder reply = new StringBuilder();
                         String[] stringifiedTaskList = taskList.toStringList();
-                        System.out.println("Here are your tasks that I have recorded:");
+                        reply.append("Here are your tasks that I have recorded:");
                         if (stringifiedTaskList.length == 0) {
-                            System.out.println("Congratulations, you don't need to do anything right now!");
+                            reply.append("\nCongratulations, you don't need to do anything right now!");
                         }
                         for (int i = 0; i < stringifiedTaskList.length; i++) {
-                            System.out.printf("%02d. %s\n", i + 1, stringifiedTaskList[i]);
+                            reply.append(String.format("\n%02d. %s", i + 1, stringifiedTaskList[i]));
                         }
+                        ui.showReply(reply.toString());
                         break;
                     }
 
                     case "bye": {
-                        System.out.println(GOODBYE_MESSAGE);
+                        ui.showGoodbye();
                         exitCalled = true;
                         break;
                     }
@@ -75,7 +72,7 @@ public class Duke {
                     case "todo": {
                         Todo newTodo = new Todo(userParams[0][1]);
                         taskList.addTask(newTodo);
-                        System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newTodo, taskList.getLength());
+                        ui.showReply(String.format("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded", newTodo, taskList.getLength()));
                         break;
                     }
 
@@ -89,7 +86,7 @@ public class Duke {
                         }
                         Deadline newDeadline = new Deadline(userParams[0][1], endTime);
                         taskList.addTask(newDeadline);
-                        System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newDeadline, taskList.getLength());
+                        ui.showReply(String.format("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newDeadline, taskList.getLength()));
                         break;
                     }
 
@@ -103,7 +100,7 @@ public class Duke {
                         }
                         Event newEvent = new Event(userParams[0][1], rangeTime);
                         taskList.addTask(newEvent);
-                        System.out.printf("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newEvent, taskList.getLength());
+                        ui.showReply(String.format("Gotcha! I added the following task to the list:\n  %s\nCurrently, I have %d tasks recorded\n", newEvent, taskList.getLength()));
                         break;
                     }
 
@@ -111,10 +108,10 @@ public class Duke {
                         try {
                             int markIndex = Integer.parseInt(userParams[0][1]) - 1;
                             if (taskList.getTask(markIndex).getIsDone()) {
-                                System.out.printf("Sorry, but it seems you have marked this task as done:\n  %s\n", taskList.getTask(markIndex));
+                                ui.showReply(String.format("Sorry, but it seems you have marked this task as done:\n  %s", taskList.getTask(markIndex)));
                             } else {
                                 taskList.getTask(markIndex).setDone(true);
-                                System.out.printf("Noice! I've marked this task as done:\n  %s\n", taskList.getTask(markIndex));
+                                ui.showReply(String.format("Noice! I've marked this task as done:\n  %s", taskList.getTask(markIndex)));
                             }
                         } catch (NumberFormatException e) {
                             if (userParams[0][1] == null) {
@@ -133,9 +130,9 @@ public class Duke {
                             int unmarkIndex = Integer.parseInt(userParams[0][1]) - 1;
                             if (taskList.getTask(unmarkIndex).getIsDone()) {
                                 taskList.getTask(unmarkIndex).setDone(false);
-                                System.out.printf("Alright, I've marked this task as not done:\n  %s\n", taskList.getTask(unmarkIndex));
+                                ui.showReply(String.format("Alright, I've marked this task as not done:\n  %s", taskList.getTask(unmarkIndex)));
                             } else {
-                                System.out.printf("Sorry, but it seems you haven't marked this task as done:\n  %s\n", taskList.getTask(unmarkIndex));
+                                ui.showReply(String.format("Sorry, but it seems you haven't marked this task as done:\n  %s", taskList.getTask(unmarkIndex)));
                             }
                         } catch (NumberFormatException e) {
                             if (userParams[0][1] == null) {
@@ -154,7 +151,7 @@ public class Duke {
                             int delIndex = Integer.parseInt(userParams[0][1]) - 1;
                             Task delTask = taskList.getTask(delIndex);
                             taskList.deleteTask(delIndex);
-                            System.out.printf("Understood, I've deleted the following task:\n  %s\nYou now have %d tasks remaining.\n", delTask, taskList.getLength());
+                            ui.showReply(String.format("Understood, I've deleted the following task:\n  %s\nYou now have %d tasks remaining.\n", delTask, taskList.getLength()));
                         } catch (NumberFormatException e) {
                             if (userParams[0][1] == null) {
                                 throw new DukeException("You must pass an index value.");
@@ -168,14 +165,17 @@ public class Duke {
                     }
 
                     default: {
-                        throw new DukeException(UNKNOWN_COMMAND_MESSAGE);
+                        throw new DukeException("Sorry, I don't know what that means.\n"
+                                + "Did you make a mistake? Please note that commands are case-sensitive.");
                     }
                 }
 
                 // Not the most efficient solution, but reduces code duplication. TODO: Revisit this when making commands into objects.
                 storage.save(taskList);
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                ui.showException(e);
+            } finally {
+                ui.showSeperator();
             }
         }
     }
