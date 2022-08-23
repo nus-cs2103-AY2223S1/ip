@@ -15,7 +15,7 @@ public class Checklist {
     /***
      * Provides functionality to use a checklist in Duke.
      */
-    public static void Use() {
+    public static void use() {
         String[] input = askForInput("").split(" ");
 
         while (!input[0].toLowerCase(Locale.ROOT).equals("bye")) {
