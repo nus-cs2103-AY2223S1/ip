@@ -1,5 +1,7 @@
+package duke;
+
+import duke.command.Command;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 
 public class Duke {
 
