@@ -45,7 +45,7 @@ public class Storage {
         Path filePath = Paths.get(this.filePath);
         File directory = new File(directoryPath.toUri());
         // Create directory if it does not exist.
-        // noinspection ResultOfMethodCallIgnored because not only making use of the side effect
+        // noinspection ResultOfMethodCallIgnored because only making use of the side effect
         directory.mkdir();
         File file = new File(filePath.toUri());
 
