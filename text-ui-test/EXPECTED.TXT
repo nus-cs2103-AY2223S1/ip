@@ -1,5 +1,5 @@
 >> Loading save file.....
-!>> Uh-oh ☹! No save file found. A new save file is generated.
+!>> Uh-oh ☹! No save file found. A new save file is generated at data\save.txt.
 
 >> Hello! I'm TedBot ヾ(≧▽≦*)o
    What do you want to do today?
@@ -88,7 +88,7 @@
 
 << !>> Uh-oh ☹! I do not have a task with that number in my list.
 
-<< !>> Uh-oh ☹! I do not have a task with that number in my list.
+<< !>> Uh-oh ☹! You must pass a positive integer value. -1 is a non-positive integer value.
 
 << >> Here are your tasks that I have recorded:
    01. [T][ ] CS2103T iP Level-4
@@ -97,7 +97,7 @@
 
 << !>> Uh-oh ☹! I do not have a task with that number in my list.
 
-<< !>> Uh-oh ☹! I do not have a task with that number in my list.
+<< !>> Uh-oh ☹! You must pass a positive integer value. -1 is a non-positive integer value.
 
 << !>> Uh-oh ☹! You must pass an integer value. ab is not an integer.
 

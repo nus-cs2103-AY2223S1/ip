@@ -43,11 +43,11 @@ public class Storage {
                 this.saveFile.getParentFile().mkdirs();
                 this.saveFile.createNewFile();
             } catch (IOException e1) {
-                throw new DukeException("Unable to create save-file.", e1);
+                throw new DukeException(String.format("Unable to create save-file at %s.", this.saveFile.getPath()), e1);
             } catch (SecurityException e2) {
-                throw new DukeException("Write access denied to save file. Please make sure TedBot has access to duke/save.txt.", e2);
+                throw new DukeException(String.format("Write access denied to save file. Please make sure TedBot has access to %s.", this.saveFile.getPath()), e2);
             }
-            throw new DukeException("No save file found. A new save file is generated.");
+            throw new DukeException(String.format("No save file found. A new save file is generated at %s.", this.saveFile.getPath()));
         }
     }
 
@@ -60,7 +60,7 @@ public class Storage {
             fw.flush();
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("Unable to write to save file. Last change is not added to save file.", e);
+            throw new DukeException(String.format("Unable to write to save file at %s. Last change was not added to savefile.", this.saveFile.getPath()), e);
         }
     }
 }
