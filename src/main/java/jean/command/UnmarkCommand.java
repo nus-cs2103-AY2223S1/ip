@@ -5,18 +5,30 @@ import jean.task.Task;
 import jean.task.TaskList;
 import jean.ui.Ui;
 
+/**
+ * Represents a Command which instructs Jean to unmark a task from a list of tasks.
+ */
 public class UnmarkCommand extends Command {
     int taskIndex;
+
+    /**
+     * Creates a UnmarkCommand object with the task to be unmarked.
+     *
+     * @param taskIndex The index of the task to be unmarked.
+     */
     public UnmarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * Unmarks the task of the command from the list of tasks.
+     *
+     * @param taskList List of tasks which includes the task to be unmarked.
+     * @param ui The ui object that prints feedback to the user interface.
+     * @param storage The storage object that saves to or extracts from data.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        Task curr = taskList.getTaskList().get(taskIndex);
-        curr.setIsDone(false);
-        ui.printMessage("\tI have marked it as undone:"
-                        + "\n\tJe l'ai marqué comme défait:"
-                        + "\n\t" + curr.toString());
+        taskList.unmarkTask(this.taskIndex, ui);
     }
 }

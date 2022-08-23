@@ -11,18 +11,31 @@ import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Main class to execute the program.
+ */
 public class Jean {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructs a new Jean object initialised with its Ui, Storage and Ui object.
+     *
+     * @param ui Ui object of the Jean object.
+     * @param storage Storage object of the Jean object.
+     * @param tasks TaskList object of the Jean object.
+     */
     public Jean(Ui ui, Storage storage, TaskList tasks) {
         this.ui = ui;
         this.storage = storage;
         this.tasks = tasks;
     }
 
+    /**
+     * Runs the Jean object.
+     */
     public void run() {
         ui.greet();
         boolean isExit = false;
