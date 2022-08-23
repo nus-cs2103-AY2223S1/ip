@@ -1,7 +1,10 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Ui {
     Scanner sc = new Scanner(System.in);
+
     public Ui() {
     }
 

@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    TaskList(List<Task> tasks) throws DukeException{
+    TaskList(List<Task> tasks) throws DukeException {
         this.tasks = tasks;
     }
 
@@ -16,20 +18,20 @@ public class TaskList {
         this.tasks.add(task);
     }
 
-    void remove(int i) {
-        this.tasks.remove(i);
+    Task remove(int i) {
+        return this.tasks.remove(i);
     }
 
 
     public void print() {
-        for (Task t: tasks) {
+        for (Task t : tasks) {
             System.out.println(t);
         }
     }
 
     public String toString() {
         String out = "";
-        for (Task t: tasks) {
+        for (Task t : tasks) {
             out += t.toFileString() + "\n";
         }
         return out;

@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
 
     static final int TLENGTH = 5;
@@ -47,9 +49,7 @@ public class Parser {
             String desc = fullCommand.substring(DLENGTH).split(" /by ")[0];
             String time = fullCommand.substring(DLENGTH).split(" /by ")[1];
             return new Deadline(desc, time);
-        }
-
-        else {
+        } else {
             System.out.println("not planned task parser");
             return null;
         }
@@ -74,9 +74,7 @@ public class Parser {
             return new ExitCommand();
         } else if (isDeleteCommand(fullCommand)) {
             return new DeleteCommand(Integer.valueOf(fullCommand.substring(DEL_LENGTH)));
-        }
-
-        else {
+        } else {
             throw new DukeException("Parsing error");
         }
     }

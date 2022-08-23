@@ -1,3 +1,5 @@
+package duke;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -23,5 +25,6 @@ public abstract class Task {
     public void unMark() {
         this.isDone = false;
     }
+
     public abstract String toFileString();
 }

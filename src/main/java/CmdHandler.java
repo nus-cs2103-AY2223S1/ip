@@ -1,3 +1,5 @@
+import duke.*;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -66,10 +68,10 @@ public class CmdHandler {
 //            while (in.hasNextLine()) {
 //                String line = in.nextLine();
 //                String[] data = line.split(" \\| ");
-//                Task task = switch (data[0]) {
-//                    case "T" -> new Todo(data[2]);
-//                    case "D" -> new Deadline(data[2], data[3]);
-//                    case "E" -> new Event(data[2], data[3]);
+//                duke.Task task = switch (data[0]) {
+//                    case "T" -> new duke.Todo(data[2]);
+//                    case "D" -> new duke.Deadline(data[2], data[3]);
+//                    case "E" -> new duke.Event(data[2], data[3]);
 //                    default -> throw new IllegalStateException("Unexpected value: " + data[0]);
 //                };
 //                tasks.add(task);
