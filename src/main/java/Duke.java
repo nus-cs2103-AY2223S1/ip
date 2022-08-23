@@ -22,6 +22,7 @@ public class Duke {
 
     private static void addTask(Task task) {
         Duke.addedTask.add(task);
+        TaskSaver.saveToDirectory(Duke.addedTask);
         System.out.println("Task added:");
         System.out.println(task);
         reportSize();
@@ -33,6 +34,7 @@ public class Duke {
         }
         System.out.println("Task successfully removed:");
         System.out.println(Duke.addedTask.remove(index - 1));
+        TaskSaver.saveToDirectory(Duke.addedTask);
         reportSize();
     }
 
@@ -48,6 +50,7 @@ public class Duke {
             throw new TaskNotFoundException(String.valueOf(index));
         }
         Duke.addedTask.get(index - 1).mark();
+        TaskSaver.saveToDirectory(Duke.addedTask);
     }
 
     private static void unmarkTask(int index) throws TaskNotFoundException {
@@ -55,6 +58,7 @@ public class Duke {
             throw new TaskNotFoundException(String.valueOf(index));
         }
         Duke.addedTask.get(index - 1).unmark();
+        TaskSaver.saveToDirectory(Duke.addedTask);
     }
 
     private static Command parseCommand(String command) 
