@@ -1,32 +1,21 @@
 public class DukeCommandHandler {
-    private String command;
     private DukeMessager dukeMessager;
+    private TaskList taskList;
+    private CommandFilter commandFilter;
     private boolean isRunning = false;
-    private int size = 100;
-    private String[] list = new String[size];
-    private int index = 0;
 
     public DukeCommandHandler() {
         dukeMessager = new DukeMessager();
+        taskList = new TaskList();
+        commandFilter = new CommandFilter();
     }
 
-    private void receiveCommand(String command) {
-        this.command = command;
-    }
-
-    private void addToList() {
-        list[index] = command;
-        index++;
-        dukeMessager.message("Added: " + command);
+    private void addCommand(String command) {
+        taskList.addTask(command);
     }
 
     private void listCommand() {
-        for (int i = 0; i < size; i++) {
-            if (list[i] == null) {
-                return;
-            }
-            dukeMessager.message(String.format("%d. %s", i+1, list[i]));
-        }
+        taskList.listTask();
     }
 
     private void byeCommand() {
@@ -34,17 +23,31 @@ public class DukeCommandHandler {
         isRunning = false;
     }
 
+    private void markCommand() {
+        taskList.markTask(commandFilter.getRemainderCommandAsInt() - 1);
+    }
+
+    private void unmarkCommand() {
+        taskList.unmarkTask(commandFilter.getRemainderCommandAsInt() - 1);
+    }
+
     private void executeCommand(String command) {
-        receiveCommand(command);
-        switch (command){
+        commandFilter.filterCommand(command);
+        switch (commandFilter.getCommand()){
         case "list":
             listCommand();
             break;
         case "bye":
             byeCommand();
             break;
+        case "mark":
+            markCommand();
+            break;
+        case "unmark":
+            unmarkCommand();
+            break;
         default:
-            addToList();
+            addCommand(commandFilter.getRemainderCommand());
         }
     }
 
