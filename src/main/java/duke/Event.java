@@ -11,10 +11,6 @@ public class Event extends Task{
         this.date = date;
     }
 
-    public Event(String description, String date) throws DukeException {
-        super(description);
-        this.date = getDate(date);
-    }
 
     public boolean onThisDate(LocalDate date){
         return this.date.equals(date);

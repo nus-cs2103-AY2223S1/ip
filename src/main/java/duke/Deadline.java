@@ -1,19 +1,14 @@
 package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+
 
 public class Deadline extends Task{
     private LocalDate date;
 
-    public Deadline(String description, LocalDate date) {
+    public Deadline(String description, LocalDate date){
         super(description);
         this.date = date;
-    }
-
-    public Deadline(String description, String date) throws DukeException {
-        super(description);
-        this.date = getDate(date);
     }
 
     public boolean byThisDate(LocalDate date){
@@ -34,11 +29,5 @@ public class Deadline extends Task{
         return "[D]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
-    private static LocalDate getDate(String date) throws DukeException {
-        try {
-            return LocalDate.parse(date);
-        } catch (DateTimeParseException e){
-            throw new DukeException("☹ OOPS!!! Please format your date as yyyy-mm-dd format (e.g., 2019-10-15)");
-        }
-    }
+
 }

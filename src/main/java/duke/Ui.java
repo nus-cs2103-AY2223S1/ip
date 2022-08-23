@@ -1,5 +1,6 @@
 package duke;
-import java.util.List;
+
+import java.util.Scanner;
 
 public class Ui {
     private static final String LOGO = " ____        _        \n"
@@ -14,48 +15,45 @@ public class Ui {
 
     }
 
-    /*
+    /**
      * Prints the startup message
      */
     public void showWelcome() {
         System.out.println(GREETING);
     }
 
-    /*
+    /**
      * Prints the ending message
      */
     public void goodbyeMessage() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public void printList(List<Task> tasks) {
-        if (tasks.isEmpty()) {
-            System.out.println( "No tasks.");
-        }
-        for(int i = 0; i<tasks.size(); i++){
-            Integer index = i+1;
-            System.out.println(index + ". " + tasks.get(i));
-        }
+    public String readCommand() {
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+        return userInput;
     }
 
-    /**
-     * A helper function that adds the task to the Task List and prints out the appropriate message.
-     * @param task The task to be added
-     */
-    public void printAddTaskMsg (Task task,int size){
+    public void showAddCommand(Task task,int size) {
         System.out.println("Got it. I've added this task:\n " + task.toString() + "\nNow you have " + size +" tasks in the list.");
     }
 
-
-    public void printDateItems(List<String> onThisDate, List<String> byThisDate){
-        System.out.println("Things on this day :" );
-        for(String s : onThisDate) {
-            System.out.println(s + "\n");
-        }
-        System.out.println("Things to do by this day :" );
-        for(String s : byThisDate) {
-            System.out.println(s + "\n");
-        }
+    public void showDelete(Task task,int size) {
+        System.out.println(" Noted. I've removed this task:");
+        System.out.println(" " + task.toString() +"\nNow you have " + size +" tasks in the list.");
     }
+
+    public void showMark(Task task) {
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(" " + task.toString());
+    }
+
+    public void showUnmark(Task task) {
+        System.out.println("OK, I've marked this task as not done yet:");
+        System.out.println(" " + task.toString());
+    }
+
+
 
 }
