@@ -1,0 +1,4 @@
+Here are the tasks in your list:
+1.[T][ ] read book
+2.[E][X] soccer match (at: Monday 3pm)
+3.[D][X] homework (by: Tuesday 5pm)
