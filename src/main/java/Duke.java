@@ -2,16 +2,18 @@ import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-
-
 public class Duke {
     private static final ArrayList<Task> store = new ArrayList<>();
     private static final String FILE_PATH = "data" + File.separator + "taskList.txt";
+    private static final String[] COMMAND_HELP = new String[] { "todo [description]",
+                                                                "deadline [description] /by [date]",
+                                                                "event [description] /at [date]",
+                                                                "list",
+                                                                "bye" };
     enum COMMANDS {todo, deadline, event, mark, unmark, delete, }
 
     public static void main(String[] args) {
         loadFromFile();
-
         System.out.println("Hello! What are we gonna do today?");
         System.out.println("Use '/?' for help");
 
@@ -37,17 +39,17 @@ public class Duke {
                     number++;
                 }
                 System.out.println("\nYou currently have " + store.size() + " tasks in the list");
-                System.out.println("Pls don't procrastinate on the above tasks!");
+                if (store.size() != 0) {
+                    System.out.println("Pls don't procrastinate on the above tasks!");
+                }
             } else if (input.equals("/?")) {
-                System.out.println("These are the commands available:");
-                System.out.println("\ttodo [description]");
-                System.out.println("\tdeadline [description] /by [date]");
-                System.out.println("\tevent [description] /at [date]");
-                System.out.println("\tlist\n\tbye\n");
+                System.out.println("These are the commands available:\n");
+                for (String desc : COMMAND_HELP) {
+                    System.out.println("\t" + desc);
+                }
             } else {
                 System.out.println("what's this?! REDO!!!!");
             }
-
         }
         sc.close();
     }
@@ -71,7 +73,6 @@ public class Duke {
         }
 
         COMMANDS command = COMMANDS.valueOf(arr[0]);
-
         try {
             switch (command) {
                 case mark: {
@@ -107,11 +108,7 @@ public class Duke {
         switch (command) {
             case todo: {
                 try {
-                    Task stuff = new ToDo((arr[1]));
-                    store.add(stuff);
-                    if (mark != null && mark.equals("X")) {
-                        stuff.markAsDone();
-                    }
+                    store.add(new ToDo(arr[1]));
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeWrongArgumentException("The proper command is: todo [description]", e);
                 }
@@ -120,11 +117,7 @@ public class Duke {
             case deadline: {
                 try {
                     String[] desc = arr[1].split(" /by ");
-                    Task stuff = new Deadline(desc[0], desc[1]);
-                    store.add(stuff);
-                    if (mark != null && mark.equals("X")) {
-                        stuff.markAsDone();
-                    }
+                    store.add(new Deadline(desc[0], desc[1]));
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeWrongArgumentException("The proper command is: deadline [description] /by [date]", e);
                 }
@@ -133,18 +126,18 @@ public class Duke {
             case event: {
                 try {
                     String[] desc = arr[1].split(" /at ");
-                    Task stuff = new Event(desc[0], desc[1]);
-                    store.add(stuff);
-                    if (mark != null && mark.equals("X")) {
-                        stuff.markAsDone();
-                    }
+                    store.add(new Event(desc[0], desc[1]));
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeWrongArgumentException("The proper command is: event [description] /at [date]", e);
                 }
                 break;
             }
         }
-        String item = store.get(store.size() - 1).toString();
+        Task latestTask = store.get(store.size() - 1);
+        if (mark != null && mark.equals("X")) {
+            latestTask.markAsDone();
+        }
+        String item = latestTask.toString();
         if (!fromSave) {
             System.out.println("\tadded: " + item);
             System.out.println("You now have " + store.size() + " tasks in the list");
@@ -175,7 +168,6 @@ public class Duke {
         } catch (IOException f) {
             System.out.println("something went wrong while creating save file\n" + f);
         }
-
         try {
             FileWriter fw = new FileWriter(FILE_PATH);
             for (Task item : store) {
