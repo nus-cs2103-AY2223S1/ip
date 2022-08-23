@@ -50,6 +50,8 @@ public class Event extends Task {
         int date = time.getDayOfMonth();
         int hour = time.getHour();
         int minute = time.getMinute();
-        return type + "//" + completed +"//" + name + "//" + year + "-" + month + "-" + date + "//" + hour + ":" + minute;
+        String result = type + "//" + completed +"//" + name + "//" +
+                year + "-" + month + "-" + date + "//" + hour + ":" + minute;
+        return result;
     }
 }
