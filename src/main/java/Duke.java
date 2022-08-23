@@ -69,9 +69,12 @@ public class Duke {
         try {
             FileWriter fw = new FileWriter(filePath);
             for (Task tsk : taskList) {
-                fw.write(tsk.toString());
+                System.out.println(tsk.toString());
+                fw.write(tsk.toStorageFormat());
                 fw.write(System.lineSeparator());
             }
+            fw.close();
+            System.out.println("Saved task into local storage");
         } catch (IOException e) {
             System.out.println("Something's wrong, I can feel it. Its: " + e.getMessage());
         }
@@ -89,7 +92,43 @@ public class Duke {
 
         Scanner sc = new Scanner(file);
 
-        while (sc.hasNext());
+        while (sc.hasNextLine()) {
+            String taskString = sc.nextLine();
+            String[] content = taskString.split(" \\| ", 0);
+            char type = content[0].charAt(0);
+            boolean isDone = content[1].charAt(0) == '0';
+            String description = content[2];
+            Task newTask;
+            try {
+                if (type == 'T') {
+                    if (isDone) {
+                        newTask = new ToDo(description, true);
+                    } else {
+                        newTask = new ToDo(description);
+                    }
+                } else if (type == 'D') {
+                    String by = content[3];
+                    if (isDone) {
+                        newTask = new Deadline(description, true, by);
+                    } else {
+                        newTask = new Deadline(description, by);
+                    }
+                } else if (type == 'E') {
+                    String at = content[3];
+                    if (isDone) {
+                        newTask = new Event(description, true, at);
+                    } else {
+                        newTask = new Event(description, at);
+                    }
+
+                } else {
+                    throw new DukeInvalidReadException();
+                }
+                this.add(newTask);
+            } catch (DukeInvalidReadException e) {
+                System.out.println(e.getMessage());
+            }
+        };
 
     }
 
@@ -100,9 +139,14 @@ public class Duke {
 
         System.out.println("Hello! i am Duke");
 
+        try {
+            duke.load();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Initiating an Empty Task List");
+       }
 
         while (true) {
-
 
             try {
                 System.out.println(SEPARATOR);
@@ -187,11 +231,12 @@ public class Duke {
 
                     break;
                 case "deadline":
-                    String unParsed = myScanner.nextLine();
+                    String unParsed = myScanner.nextLine().substring(1);
                     if (unParsed.isBlank()) {
                         throw new DukeEmptyDescriptionException();
                     }
-                    String[] descriptionAndBy =  unParsed.split("/by", 2);
+                    System.out.println(unParsed);
+                    String[] descriptionAndBy =  unParsed.split(" /by ", 2);
 
                     if (descriptionAndBy.length != 2) {
                         throw new DukeInvalidDescriptionException();
@@ -203,7 +248,7 @@ public class Duke {
 
                     break;
                 case "todo":
-                    String description = myScanner.nextLine();
+                    String description = myScanner.nextLine().substring(1);
 
                     if (description.isBlank()) {
                         throw new DukeEmptyDescriptionException();
@@ -216,11 +261,11 @@ public class Duke {
 
                     break;
                 case "event":
-                    String unParsed1 = myScanner.nextLine();
+                    String unParsed1 = myScanner.nextLine().substring(1);
                     if (unParsed1.isBlank()) {
                         throw new DukeEmptyDescriptionException();
                     }
-                    String[] descriptionAndBy1 =  unParsed1.split("/at", 2);
+                    String[] descriptionAndBy1 =  unParsed1.split(" /at ", 2);
 
                     if (descriptionAndBy1.length != 2) {
                         throw new DukeInvalidDescriptionException();
