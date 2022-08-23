@@ -13,10 +13,12 @@ public class Storage {
 
     public Storage(String filePath) {
         try {
+            int indexOfSplit = filePath.lastIndexOf("/");
+            String directory = filePath.substring(0, indexOfSplit);
             this.file = new File(filePath);
 
             if (!file.exists()) {
-                Files.createDirectories(Paths.get(filePath));
+                Files.createDirectories(Paths.get(directory));
                 boolean result = file.createNewFile();
             }
         }
