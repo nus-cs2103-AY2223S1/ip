@@ -6,9 +6,16 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Marks a task as completed.
+ */
 public class MarkCommand extends Command {
     int index;
 
+    /**
+     * Constructor for MarkCommand.
+     * @param index the index specifying the task to be deleted.
+     */
     public MarkCommand(int index) {
         this.index = index;
     }

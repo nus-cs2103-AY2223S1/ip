@@ -10,6 +10,9 @@ import duke.ui.Ui;
 import java.io.File;
 import java.util.Scanner;
 
+/**
+ * The entry point to the application.
+ */
 class Duke {
     private static final String DATA_PATH = new File("").getAbsolutePath() + "/data/duke.txt";
     private TaskList taskList;
@@ -23,6 +26,9 @@ class Duke {
         this.ui = new Ui();
     }
 
+    /**
+     * Initialises the application and begins interacting with the user.
+     */
     public void run() {
         this.ui.showWelcomeMessage();
 

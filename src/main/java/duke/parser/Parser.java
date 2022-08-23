@@ -7,7 +7,16 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
 
+/**
+ * The interface responsible for parsing user input.
+ */
 public class Parser {
+    /**
+     * Parses a raw string into a command, if possible.
+     * @param fullCommand the string to parse
+     * @return the appropriate Command corresponding to the input
+     * @throws InvalidCommandException if the input string is not a valid command.
+     */
     public static Command parse(String fullCommand) throws InvalidCommandException {
         if (fullCommand.trim().equals("bye")) {
             return new ExitCommand();

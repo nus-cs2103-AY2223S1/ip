@@ -5,6 +5,9 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Displays the user's current tasks in a numbered list format.
+ */
 public class ListTasksCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws NoSuchTaskException {

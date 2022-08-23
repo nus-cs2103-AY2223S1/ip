@@ -5,9 +5,16 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Creates and stores a task.
+ */
 class CreateTaskCommand extends Command {
     Task task;
 
+    /**
+     * Constructor for CreateTaskCommand.
+     * @param task the task to be stored
+     */
     CreateTaskCommand(Task task) {
         this.task = task;
     }

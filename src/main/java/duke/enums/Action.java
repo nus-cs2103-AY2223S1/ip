@@ -1,6 +1,10 @@
 package duke.enums;
 import duke.exceptions.*;
 
+/**
+ * A helper enumeration that specifies various keywords and their corresponding actions that are
+ * available to the user.
+ */
 public enum Action {
     Todo("todo"),
     Deadline("deadline"),

@@ -10,9 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The interface responsible for handling the storing and loading of user data from disk.
+ */
 public class Storage {
     private String dataPath;
 
+    /**
+     * Constructor for Storage.
+     * @param dataPath the file path to a .txt file to store and load data from.
+     */
     public Storage(String dataPath) {
         this.dataPath = dataPath;
     }
@@ -37,6 +44,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the user's task list from disk.
+     * @return the user's task list. If the file does not exist, an empty one is created.
+     */
     public List<Task> load() {
         List<Task> tasks = new ArrayList<>();
 
