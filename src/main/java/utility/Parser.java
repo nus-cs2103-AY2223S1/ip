@@ -18,7 +18,13 @@ public class Parser {
     public static Command parse(String userInput) throws DukeException {
         userInput = userInput.trim();
         int firstWhiteSpaceIndex = userInput.indexOf(" ");
-        String stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
+        String stringCommand = "";
+        if (firstWhiteSpaceIndex < 0) {
+             stringCommand = userInput;
+        } else {
+             stringCommand = userInput.substring(0, firstWhiteSpaceIndex);
+        }
+        System.out.println(stringCommand);
         if (stringCommand.equals("todo")) {
             return new AddTaskCommand();
         } else if (stringCommand.equals("event")) {
@@ -36,6 +42,9 @@ public class Parser {
         }
         else if (stringCommand.equals("longdesc")) {
             return new GetLongDescriptionCommand();
+        }
+        else if (stringCommand.equals("list")) {
+            return new ListCommand();
         }
         throw new DukeException("Command invalid. /help for more information.");
     }
@@ -57,7 +66,7 @@ public class Parser {
         return new Deadline(description, date);
     }
 
-    private static String getDescription(String input, String commandUsed) throws DukeException{
+    private static String getDescription(String commandUsed, String input) throws DukeException{
         String description;
         int startDescriptionIndex = input.indexOf(commandUsed) + commandUsed.length();
         int endDescriptionIndex = input.indexOf(" /");
@@ -117,4 +126,5 @@ public class Parser {
                 return n;
             }
         }
+}
 }

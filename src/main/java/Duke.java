@@ -12,9 +12,9 @@ public class Duke {
     private UI ui;
 
     public Duke(String filePath) {
-        ui = new UI();
-        storage = new Storage(filePath);
         try {
+            ui = new UI();
+            storage = new Storage(filePath);
             tasks = new TaskList(storage.syncArrayList());
         } catch (DukeException e) {
             ui.showLoadingError();
