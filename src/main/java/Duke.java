@@ -3,7 +3,18 @@ import command.CommandException;
 import command.CommandFactory;
 import command.CommandHandler;
 
+import command.CommandResponse;
 import data.TaskList;
+
+import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.util.Arrays;
 import java.util.List;
@@ -13,11 +24,12 @@ public class Duke {
 
     // ChatBot constants
     public static final String NAME = "Duke";
+    public static final Path CACHE_PATH = Paths.get(".duke.cache");
     // UI constants
     public static final String INDENT_CHAR = "\t";
     public static final String LINE_STR = "-".repeat(50);
 
-    private static final TaskList taskList = new TaskList();
+    private static TaskList taskList;
 
     /**
      * Utility function to print line to STDOUT
@@ -63,9 +75,46 @@ public class Duke {
         respond(String.format("OOPS!!! %s", errorMsg));
     }
 
+    private static boolean save() {
+        try {
+            FileOutputStream fileOutputStream = new FileOutputStream(CACHE_PATH.toString());
+            ObjectOutputStream objOutputStream = new ObjectOutputStream(fileOutputStream);
+
+            objOutputStream.writeObject(taskList);
+            objOutputStream.close();
+            fileOutputStream.close();
+        } catch (IOException saveError) {
+            return false;
+        }
+        return true;
+    }
+
+    private static boolean load() {
+        if (!Files.exists(CACHE_PATH)) {
+            taskList = new TaskList();
+            return true;
+        }
+        try {
+            FileInputStream fileInputStream = new FileInputStream(CACHE_PATH.toString());
+            ObjectInputStream objInputStream = new ObjectInputStream(fileInputStream);
+
+            taskList = (TaskList) objInputStream.readObject();
+            objInputStream.close();
+            fileInputStream.close();
+        } catch (IOException | ClassNotFoundException loadError) {
+            return false;
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         // Greetings
         respond(Arrays.asList(String.format("Hi I'm %s", NAME), "What can I do for you?"));
+
+        // Load
+        if (!load()) {
+            respondError(String.format("Failed to load from cache (%s)", CACHE_PATH));
+        }
 
         // Chat
         CommandFactory commandFactory = new CommandFactory();
@@ -80,9 +129,16 @@ public class Duke {
                     respond("Bye. Hope to see you again soon!");
                     continue;
                 }
+
                 CommandHandler commandHandler = commandFactory.getCommandHandler(command,
                     commandStr);
-                respond(commandHandler.run(taskList));
+                CommandResponse commandResponse = commandHandler.run(taskList);
+                respond(commandResponse.responseList);
+
+                if (commandResponse.triggerSave && !save()) {
+                    respondError(String.format("Failed to save to cache (%s)", CACHE_PATH));
+                    terminate = true;
+                }
             } catch (CommandException commandError) {
                 respondError(commandError.getMessage());
             }

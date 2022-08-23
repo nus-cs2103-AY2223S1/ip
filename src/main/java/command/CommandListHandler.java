@@ -18,7 +18,7 @@ public class CommandListHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(TaskList taskList) {
+    public CommandResponse run(TaskList taskList) {
         List<String> responseList = new ArrayList<>();
 
         if (taskList.isEmpty()) {
@@ -29,6 +29,6 @@ public class CommandListHandler extends CommandHandler {
             }
         }
 
-        return responseList;
+        return new CommandResponse(responseList, false);
     }
 }

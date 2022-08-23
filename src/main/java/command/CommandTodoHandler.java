@@ -3,9 +3,7 @@ package command;
 import data.TaskList;
 import data.tasks.TaskTodo;
 
-import java.util.List;
 import java.util.regex.MatchResult;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import util.CommandUtils;
@@ -23,7 +21,7 @@ public class CommandTodoHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(TaskList taskList) {
+    public CommandResponse run(TaskList taskList) {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         TaskTodo todoTask = new TaskTodo(regexMatchResult.group(1));

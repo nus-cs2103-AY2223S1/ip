@@ -3,7 +3,6 @@ package command;
 import data.TaskList;
 import data.tasks.TaskDeadline;
 
-import java.util.List;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
@@ -22,7 +21,7 @@ public class CommandDeadlineHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(TaskList taskList) {
+    public CommandResponse run(TaskList taskList) {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
         String deadlineTaskTitle = regexMatchResult.group(1);

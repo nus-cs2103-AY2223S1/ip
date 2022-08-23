@@ -21,5 +21,5 @@ public abstract class CommandHandler {
         return commandRegexMatcher.find();
     }
 
-    abstract public List<String> run(TaskList taskList) throws CommandException;
+    abstract public CommandResponse run(TaskList taskList) throws CommandException;
 }

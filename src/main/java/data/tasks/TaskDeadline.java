@@ -1,6 +1,7 @@
 package data.tasks;
 
 public class TaskDeadline extends Task {
+    private static final long serialVersionUID = 22L;
 
     public static final String deadlineMarker = "/by";
     private final String deadline;

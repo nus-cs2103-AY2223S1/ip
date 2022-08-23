@@ -20,7 +20,7 @@ public class CommandMarkHandler extends CommandHandler {
     }
 
     @Override
-    public List<String> run(TaskList taskList) throws CommandException {
+    public CommandResponse run(TaskList taskList) throws CommandException {
         List<String> responseList = new ArrayList<>();
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
 
@@ -46,6 +46,6 @@ public class CommandMarkHandler extends CommandHandler {
                 String.format("`mark`/`unmark` expects a number argument. Got: %s", taskIdxStr));
         }
 
-        return responseList;
+        return new CommandResponse(responseList, true);
     }
 }
