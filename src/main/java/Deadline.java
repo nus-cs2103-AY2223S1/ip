@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 /**
  * Child class Deadline
  *
@@ -8,15 +10,13 @@
  */
 public class Deadline extends Task {
 
-    protected String by;
+    protected LocalDateTime by;
 
     /**
      * Constructor
-     *
-     * @param description String describing the deadline task.
-     * @param by          String providing the timeframe for the deadline task.
-     */
-    public Deadline(String description, String by) {
+     *  @param description String describing the deadline task.
+     * @param by          String providing the timeframe for the deadline task.*/
+    public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
     }
