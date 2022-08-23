@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import static java.lang.Integer.valueOf;
 
@@ -151,8 +153,13 @@ public class Duke {
                     try {
                         String[] time_part = split_slash[1].split(" ");
                         String time = String.join(" ", Arrays.copyOfRange(time_part, 1, time_part.length));
-                        addToList(new Deadline(task_description, time));
-                        saveFile();
+                        try {
+                            LocalDate date = LocalDate.parse(time);
+                            addToList(new Deadline(task_description, date));
+                            saveFile();
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Deadline takes in a date in yyyy-mm-dd format after /by");
+                        }
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Deadline require a /by");
                     }
@@ -165,8 +172,13 @@ public class Duke {
                     try {
                         String[] time_part = split_slash[1].split(" ");
                         String time = String.join(" ", Arrays.copyOfRange(time_part, 1, time_part.length));
-                        addToList(new Event(task_description, time));
-                        saveFile();
+                        try {
+                            LocalDate date = LocalDate.parse(time);
+                            addToList(new Event(task_description, date));
+                            saveFile();
+                        } catch (DateTimeParseException e) {
+                            System.out.println("Event takes in a date in yyyy-mm-dd format after /at");
+                        }
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Event require a /at");
                     }
