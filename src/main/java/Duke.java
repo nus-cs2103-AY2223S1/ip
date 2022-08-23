@@ -12,7 +12,7 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private static String greeting = "Hello, I'm\n" + logo + "How can I help you today?";
+    private static String greeting = "Hello, I'm\n" + logo + "How may I help you today?";
 
     private static String farewell = "Goodbye! Hope to see you again!";
 
