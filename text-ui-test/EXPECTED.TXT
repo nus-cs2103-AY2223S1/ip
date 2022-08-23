@@ -10,31 +10,31 @@ You have no tasks at the moment!
 Got it, I've added this to-do:
 (T) [ ] Test todo
 Got it, I've added this deadline:
-(D) [ ] Test deadline (by: Thu, Aug 18th 2359)
+(D) [ ] Test deadline (by: Feb 1 2034)
 Got it, I've added this event:
-(E) [ ] Test event (at: Fri, Aug 19th 4pm)
+(E) [ ] Test event (at: Dec 30 2021 12:00AM)
 1. (T) [ ] Test todo
-2. (D) [ ] Test deadline (by: Thu, Aug 18th 2359)
-3. (E) [ ] Test event (at: Fri, Aug 19th 4pm)
+2. (D) [ ] Test deadline (by: Feb 1 2034)
+3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Well done! I've marked task 2 as done:
-(D) [✔] Test deadline (by: Thu, Aug 18th 2359)
+(D) [✔] Test deadline (by: Feb 1 2034)
 Well done! I've marked task 3 as done:
-(E) [✔] Test event (at: Fri, Aug 19th 4pm)
+(E) [✔] Test event (at: Dec 30 2021 12:00AM)
 1. (T) [ ] Test todo
-2. (D) [✔] Test deadline (by: Thu, Aug 18th 2359)
-3. (E) [✔] Test event (at: Fri, Aug 19th 4pm)
+2. (D) [✔] Test deadline (by: Feb 1 2034)
+3. (E) [✔] Test event (at: Dec 30 2021 12:00AM)
 Sure, I've marked task 3 as not done:
-(E) [ ] Test event (at: Fri, Aug 19th 4pm)
+(E) [ ] Test event (at: Dec 30 2021 12:00AM)
 1. (T) [ ] Test todo
-2. (D) [✔] Test deadline (by: Thu, Aug 18th 2359)
-3. (E) [ ] Test event (at: Fri, Aug 19th 4pm)
+2. (D) [✔] Test deadline (by: Feb 1 2034)
+3. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Ok, I've deleted this task:
-(D) [✔] Test deadline (by: Thu, Aug 18th 2359)
+(D) [✔] Test deadline (by: Feb 1 2034)
 You have 2 task(s) left in your list.
 1. (T) [ ] Test todo
-2. (E) [ ] Test event (at: Fri, Aug 19th 4pm)
+2. (E) [ ] Test event (at: Dec 30 2021 12:00AM)
 Ok, I've deleted this task:
-(E) [ ] Test event (at: Fri, Aug 19th 4pm)
+(E) [ ] Test event (at: Dec 30 2021 12:00AM)
 You have 1 task(s) left in your list.
 Ok, I've deleted this task:
 (T) [ ] Test todo
