@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -292,6 +293,8 @@ public class Duke {
                 System.out.println(e.getMessage());
             } catch (NumberFormatException e) {
                 System.out.println("Index can only be Integer");
+            } catch (DateTimeException e) {
+                System.out.println("Sorry i could not recognize the date. Pls use this format \"YYYY-MM-DD\"");
             }
 
 
