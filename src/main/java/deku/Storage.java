@@ -7,10 +7,11 @@ import deku.task.ToDo;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 
 
 class Storage {
@@ -44,7 +45,7 @@ class Storage {
     /**
      * Method to load data from stored file to the chat-bot
      */
-    public List<Task> load() {
+    List<Task> load() {
         Task newTask;
         List<Task> botList = new ArrayList<Task>();
         try {
