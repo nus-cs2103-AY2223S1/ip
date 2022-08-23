@@ -1,25 +1,31 @@
+package common;
+
+import TaskList.TaskList;
+import Tasks.Task;
+
 import java.util.Scanner;
 
 public class Ui {
     public Ui() {}
 
-    public void showWelcome() {
+    public static void showWelcome() {
         System.out.println("Hello! I'm Duke!\nWhat can I do for you?");
+        printDivider();
     }
 
-    public void printDivider() {
+    public static void printDivider() {
         System.out.println("-----------------------------------");
     }
 
-    public void printError(Exception e) {
+    public static void printError(Exception e) {
         System.out.println(e.toString());
     }
 
-    public void printGetUserCommand() {
+    public static void printGetUserCommand() {
         System.out.println("Please enter a command: ");
     }
 
-    public String readUserCommand() {
+    public static String readUserCommand() {
         Scanner sc = new Scanner(System.in);
         return sc.nextLine();
     }
@@ -28,9 +34,9 @@ public class Ui {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
-    public void printTaskList(TaskList taskList) {
-       for (int i = 1; i < taskList.size(); i++) {
-           System.out.format("%s. %s\n", i, taskList.get(i - 1));
+    public static void printTaskList(TaskList taskList) {
+       for (int i = 0; i < taskList.size(); i++) {
+           System.out.format("%s. %s\n", i+1, taskList.get(i));
        }
     }
 
