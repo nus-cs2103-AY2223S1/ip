@@ -7,6 +7,16 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getTime() {
+        return this.by;
+    }
+
+    @Override
+    public String getTaskType() {
+        return "Deadline";
+    }
+
+    @Override
     public String toString() {
         String checkbox = this.getDone() ? "[D][X]" : "[D][ ]";
         String dateFormatted = "(by: " + by + ")";
