@@ -1,5 +1,7 @@
-public abstract class Task {
-    private String title;
+import java.io.Serializable;
+
+public abstract class Task implements Serializable {
+    private final String title;
     private boolean done;
 
     public Task(String title, boolean done) {
