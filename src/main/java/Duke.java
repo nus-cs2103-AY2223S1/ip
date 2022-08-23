@@ -54,7 +54,7 @@ public class Duke {
                     taskIndex += 1;
                     System.out.println(indent + "Now you have " + taskIndex + " tasks in the list");
                 } else {
-                     throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                 }
             } else if (input.startsWith("event")) {
                 String event = input.substring(0, input.indexOf("/"));
