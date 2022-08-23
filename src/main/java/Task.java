@@ -1,25 +1,21 @@
 public class Task {
 
     private boolean isDone;
-    private String descript;
+    private String item;
     private static int count = 0;
 
     public Task(String description) {
-        this.descript = description;
+        this.item = description;
         this.isDone = false;
         count++;
     }
 
+    public static String getCount() {
+        return ("Now you have " + String.valueOf(count) + " tasks in the list.");
+    }
+
     public String getStatusIcon() {
-        return (this.isDone ? "X" : " "); // mark done task with X
-    }
-
-    public String getDate() {
-        return "";
-    }
-
-    public String getDescription() {
-        return this.descript;
+        return (isDone ? "X" : " "); // mark done task with X
     }
 
     public String markAsDone() {
@@ -34,6 +30,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return("[" + getStatusIcon() + "] " + this.descript);
+        return("[" + getStatusIcon() + "] " + this.item);
     }
 }
