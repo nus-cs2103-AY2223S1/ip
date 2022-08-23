@@ -1,5 +1,9 @@
+package duke;
+
+import duke.utils.Storage;
+import duke.utils.Ui;
+
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
@@ -11,7 +15,7 @@ public class TaskList {
 
     /**
      * Adds a task to the list
-     * @param task Task to be added into taskList
+     * @param task duke.Task to be added into taskList
      */
     public void addTask(Task task, Storage storage) throws IOException {
         taskList.add(task);
@@ -45,7 +49,7 @@ public class TaskList {
     /**
      * Provides the current task at index i
      * @param i Index of task to get
-     * @return Task at index i
+     * @return duke.Task at index i
      */
     public Task get(int i) {
         return this.taskList.get(i);

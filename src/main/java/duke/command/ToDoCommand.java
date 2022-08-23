@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.utils.Storage;
+import duke.TaskList;
+import duke.task.Todo;
+
 import java.io.IOException;
 
 public class ToDoCommand extends Command {
@@ -9,8 +16,8 @@ public class ToDoCommand extends Command {
 
     /**
      * Handles a to do task
-     * @param taskList TaskList to add to do task to
-     * @param storage Storage to save new to do task
+     * @param taskList duke.TaskList to add to do task to
+     * @param storage duke.utils.Storage to save new to do task
      * @throws DukeException Tto do task has no description
      */
     @Override

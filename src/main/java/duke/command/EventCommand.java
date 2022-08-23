@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.*;
+import duke.task.Event;
+import duke.utils.Parser;
+import duke.utils.Storage;
+
 import java.io.IOException;
 
 public class EventCommand extends Command {
@@ -9,9 +16,9 @@ public class EventCommand extends Command {
 
     /**
      * Handles an event task
-     * @param taskList TaskList to add to event to
-     * @param storage Storage to save new event task
-     * @throws DukeException Event task has no description or improper syntax
+     * @param taskList duke.TaskList to add to event to
+     * @param storage duke.utils.Storage to save new event task
+     * @throws DukeException duke.task.Event task has no description or improper syntax
      */
     @Override
     public void run(TaskList taskList, Storage storage) throws DukeException, IOException {

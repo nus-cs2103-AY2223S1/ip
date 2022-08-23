@@ -1,3 +1,12 @@
+package duke.utils;
+
+import duke.Date;
+import duke.DukeException;
+import duke.Task;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -65,14 +74,14 @@ public class Storage {
                     break;
                 case("D"):
                     if (dataDetails.length != 4) {
-                        throw new DukeException("☹ OOPS!!! A Deadline task is corrupted!");
+                        throw new DukeException("☹ OOPS!!! A duke.task.Deadline task is corrupted!");
                     }
                     Date deadlineDate = Parser.parseDateSave(dataDetails[3]);
                     task = new Deadline(description, deadlineDate);
                     break;
                 case("E"):
                     if (dataDetails.length != 4) {
-                        throw new DukeException("☹ OOPS!!! An Event task is corrupted!");
+                        throw new DukeException("☹ OOPS!!! An duke.task.Event task is corrupted!");
                     }
                     Date eventDate = Parser.parseDateSave(dataDetails[3]);
                     task = new Event(description, eventDate);

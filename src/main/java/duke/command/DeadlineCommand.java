@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.*;
+import duke.task.Deadline;
+import duke.utils.Parser;
+import duke.utils.Storage;
+
 import java.io.IOException;
 
 public class DeadlineCommand extends Command {
@@ -9,9 +16,9 @@ public class DeadlineCommand extends Command {
 
     /**
      * Handles an deadline task
-     * @param taskList TaskList to add to deadline to
-     * @param storage Storage to save new deadline task
-     * @throws DukeException Deadline task has no description or improper syntax
+     * @param taskList duke.TaskList to add to deadline to
+     * @param storage duke.utils.Storage to save new deadline task
+     * @throws DukeException duke.task.Deadline task has no description or improper syntax
      */
     @Override
     public void run(TaskList taskList, Storage storage) throws DukeException, IOException {

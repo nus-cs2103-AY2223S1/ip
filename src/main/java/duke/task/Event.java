@@ -1,3 +1,8 @@
+package duke.task;
+
+import duke.Date;
+import duke.Task;
+
 public class Event extends Task {
 
     protected Date at;

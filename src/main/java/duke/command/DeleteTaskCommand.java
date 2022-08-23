@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.*;
+import duke.utils.Storage;
+import duke.utils.Ui;
+
 import java.io.IOException;
 
 public class DeleteTaskCommand extends Command {
@@ -9,8 +15,8 @@ public class DeleteTaskCommand extends Command {
 
     /**
      * Deletes a task from the list
-     * @param taskList TaskList to delete task at index from
-     * @param storage Storage to overwrite previous save after deletion
+     * @param taskList duke.TaskList to delete task at index from
+     * @param storage duke.utils.Storage to overwrite previous save after deletion
      * @throws DukeException Index out of bounds
      */
     @Override

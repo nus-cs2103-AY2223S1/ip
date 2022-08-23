@@ -1,3 +1,9 @@
+package duke.utils;
+
+import duke.Date;
+import duke.DukeException;
+import duke.command.*;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -7,7 +13,7 @@ public class Parser {
     /**
      * Handles the parsing of dates for Deadlines/Events
      * @param input String input of date
-     * @return Date object used to construct Deadline/Event
+     * @return duke.Date object used to construct duke.task.Deadline/duke.task.Event
      * @throws DukeException Exception if date format is wrong
      */
     public static Date parseDate(String input) throws DukeException{
@@ -17,7 +23,7 @@ public class Parser {
 
             return new Date(parsed);
         } catch (DateTimeParseException e) {
-            throw new DukeException("☹ OOPS!!! Please follow the Date and Time Format: yyyy-MM-dd [2000-01-01]");
+            throw new DukeException("☹ OOPS!!! Please follow the duke.Date and Time Format: yyyy-MM-dd [2000-01-01]");
         }
 
     }
@@ -25,7 +31,7 @@ public class Parser {
     /**
      * Handles the parsing of dates for Deadlines/Events
      * @param input String input of date
-     * @return Date object used to construct Deadline/Event
+     * @return duke.Date object used to construct duke.task.Deadline/duke.task.Event
      * @throws DukeException Exception if date format is wrong
      */
     public static Date parseDateSave(String input) throws DukeException{
@@ -63,7 +69,7 @@ public class Parser {
         case ("event"):
             return new EventCommand(inputArr);
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I do not know what does " + input + " mean. :-(");
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I do not know what does \"" + input + "\" mean. :-(");
         }
     }
 }
