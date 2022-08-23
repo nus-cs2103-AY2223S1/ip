@@ -1,12 +1,12 @@
 package roger;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import roger.tasks.Deadline;
 import roger.tasks.Event;
 import roger.tasks.Task;
 import roger.tasks.ToDo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 
 /**
@@ -31,19 +31,20 @@ public class StorageParser {
      * @return The task corresponding to the taskString.
      */
     public static Task toTask(String taskString) {
-        String[] args =  taskString.split(" \\| ");
+        String[] args = taskString.split(" \\| ");
         String taskType = args[0];
 
         try {
             switch (taskType) {
-                case EVENT_TASK_TYPE:
-                    return StorageParser.toEvent(args);
-                case DEADLINE_TASK_TYPE:
-                    return StorageParser.toDeadline(args);
-                case TODO_TASK_TYPE:
-                    return StorageParser.toToDo(args);
-                default:
-                    throw new IllegalArgumentException("taskString does not have a valid task type ('E', 'D', 'T').");
+            case EVENT_TASK_TYPE:
+                return StorageParser.toEvent(args);
+            case DEADLINE_TASK_TYPE:
+                return StorageParser.toDeadline(args);
+            case TODO_TASK_TYPE:
+                return StorageParser.toToDo(args);
+            default:
+                throw new IllegalArgumentException(
+                        "taskString does not have a valid task type ('E', 'D', 'T').");
             }
         } catch (DateTimeParseException e) {
             throw new IllegalArgumentException("Unable to parse taskString");
@@ -105,7 +106,8 @@ public class StorageParser {
             ToDo todo = (ToDo) task;
             return StorageParser.toTaskString(todo);
         } else {
-            throw new IllegalArgumentException("Task does not belong to either Event, Deadline, or ToDo task.");
+            throw new IllegalArgumentException(
+                    "Task does not belong to either Event, Deadline, or ToDo task.");
         }
     }
 

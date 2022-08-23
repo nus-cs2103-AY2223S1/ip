@@ -1,14 +1,14 @@
 package roger;
 
-import roger.StorageParser;
+import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import roger.tasks.Deadline;
 import roger.tasks.Event;
 import roger.tasks.Task;
 
-import java.time.LocalDate;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 /**
  * Encapsulates the list of tasks in a Roger program.

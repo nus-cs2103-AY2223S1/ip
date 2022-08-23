@@ -1,11 +1,12 @@
 package roger.commands;
 
+import java.time.LocalDate;
+
 import roger.Storage;
 import roger.TaskList;
 import roger.Ui;
 import roger.tasks.Event;
 
-import java.time.LocalDate;
 
 /**
  * Encapsulates the command to add an event.
@@ -20,7 +21,7 @@ public class AddEventCommand extends Command {
      * @param taskName The event name.
      * @param date The event date.
      */
-    public AddEventCommand( String taskName, LocalDate date) {
+    public AddEventCommand(String taskName, LocalDate date) {
         this.taskName = taskName;
         this.date = date;
     }

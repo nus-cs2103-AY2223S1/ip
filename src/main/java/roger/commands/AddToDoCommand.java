@@ -5,7 +5,6 @@ import roger.TaskList;
 import roger.Ui;
 import roger.tasks.ToDo;
 
-import java.time.LocalDate;
 
 /**
  * Encapsulates the command to add a to-do.
@@ -30,7 +29,7 @@ public class AddToDoCommand extends Command {
      * @param storage The storage to read and load to.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)  {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         ToDo toDo = new ToDo(taskName);
         tasks.add(toDo);
         ui.showcase("Nephew got new to-do:", toDo.toString());

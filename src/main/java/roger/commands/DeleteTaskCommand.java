@@ -3,7 +3,6 @@ package roger.commands;
 import roger.Storage;
 import roger.TaskList;
 import roger.Ui;
-import roger.commands.Command;
 import roger.tasks.Task;
 
 /**
@@ -29,7 +28,7 @@ public class DeleteTaskCommand extends Command {
      * @param storage The storage to read and load to.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage)  {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.delete(taskNum);
         ui.showcase("Haiya so lazy. Deleted this task:", task.toString());
         ui.show("Nephew now have " + Integer.toString(tasks.getLength()) + " tasks in the list.");

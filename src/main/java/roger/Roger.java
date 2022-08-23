@@ -1,11 +1,11 @@
 package roger;
 
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.List;
+
 import roger.commands.Command;
 import roger.exceptions.RogerInvalidInputException;
-
-import java.io.IOException;
-import java.util.List;
-import java.nio.file.Paths;
 
 /**
  * Main class for the Roger task-tracking CLI program.
