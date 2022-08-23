@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -21,6 +24,14 @@ public class Task {
 
     public void unmarkTask() {
         this.isDone = false;
+    }
+
+    protected LocalDate processDate(String dt) {
+        try {
+            return LocalDate.parse(dt);
+        } catch (DateTimeParseException dtpe) {
+            throw new DukeException("☹ OOPS!!! This date format is invalid. (YYYY-MM-DD)");
+        }
     }
 
     @Override

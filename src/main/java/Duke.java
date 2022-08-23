@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -38,6 +40,7 @@ public class Duke {
                 boolean isDone = components[1].equals("1");
                 String desc = components[2];
                 String cmd;
+                LocalDate d;
                 switch (taskType) {
                     // TODO
                     case "T":
@@ -48,14 +51,16 @@ public class Duke {
                     // DEADLINE
                     case "D":
                         String deadline = components[3];
-                        cmd = "deadline " + desc + " /by " + deadline;
+                        d = LocalDate.parse(deadline);
+                        cmd = "deadline " + desc + " /by " + d;
                         addDeadline(cmd);
                         break;
 
                     // EVENT
                     case "E":
                         String time = components[3];
-                        cmd = "event " + desc + " /at " + time;
+                        d = LocalDate.parse(time);
+                        cmd = "event " + desc + " /at " + d;
                         addEvent(cmd);
                         break;
                 }
@@ -163,6 +168,9 @@ public class Duke {
             }
             String[] div = cmd.split("/");
             String desc = div[0].split(" ", 2)[1];
+            if (desc.equals("") || desc.equals(" ")) {
+                throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            }
             String by = div[1].split(" ", 2)[1];
             Deadline deadline = new Deadline(desc, by);
             tasks.add(tasks.size(), deadline);
@@ -180,7 +188,7 @@ public class Duke {
             if (!cmd.contains("/at")) {
                 throw new DukeException("☹ OOPS!!! Time of event required. (/at)");
             }
-            String[] div = cmd.split("/");
+            String[] div = cmd.split("/", 2);
             String desc = div[0].split(" ", 2)[1];
             String at = div[1].split(" ", 2)[1];
             Event event = new Event(desc, at);
@@ -280,11 +288,11 @@ public class Duke {
             if (curr instanceof Todo) {
                 writer.write("T | " + status + " | " + curr.getDescription() + "\n");
             } else if (curr instanceof Deadline) {
-                writer.write("D | " + status + " | " + curr.getDescription() + " | " +
-                        ((Deadline) curr).getBy() + "\n");
+                writer.write("D | " + status + " | " + curr.getDescription() + "| " +
+                        ((Deadline) curr).getBy().toString() + "\n");
             } else if (curr instanceof Event) {
-                writer.write("E | " + status + " | " + curr.getDescription() + " | " +
-                        ((Event) curr).getAt() + "\n");
+                writer.write("E | " + status + " | " + curr.getDescription() + "| " +
+                        ((Event) curr).getAt().toString() + "\n");
             }
         }
         writer.close();
