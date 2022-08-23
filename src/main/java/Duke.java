@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -16,6 +20,23 @@ public class Duke {
             toDo();
         } catch (DukeException de) {
             System.out.println(de);
+        }
+    }
+
+    private static void save(String filePath, ArrayList<Task> arr) throws DukeException {
+        try {
+            File file = new File(filePath);
+            if (!file.exists()) {
+                file.mkdir();
+            }
+
+            FileWriter fw = new FileWriter(filePath);
+            for (int i = 0; i < arr.size(); i++) {
+                fw.write(arr.get(i).toString());
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException("Unable to save file.");
         }
     }
 
@@ -111,6 +132,7 @@ public class Duke {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :(");
 
         }
+        save("ip/data/duke.txt", tasks);
         //System.out.println("Bye! See you soon!");
     }
 
