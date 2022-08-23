@@ -3,25 +3,33 @@
 	What can I do for you?
 	--------------------------------------------------
 	--------------------------------------------------
-	There are no items in the list!
+	There are no items in the task list!
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	X Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	X Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	X Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	X Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! `mark`/`unmark` command expects a single number argument (e.g. `mark 1`, `unmark 2`)
+	X Invalid `mark`/`unmark` command format!
+	Expected format: mark <task-number> / unmark <task-number>
+	Examples:
+		- mark 1
+		- unmark 1
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! `mark`/`unmark` command expects a single number argument (e.g. `mark 1`, `unmark 2`)
+	X Invalid `mark`/`unmark` command format!
+	Expected format: mark <task-number> / unmark <task-number>
+	Examples:
+		- mark 1
+		- unmark 1
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -29,7 +37,10 @@
 	Now you have 1 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! `todo` command expects a description (`todo todo-task-title`)
+	X Invalid `todo` command format!
+	Expected format: todo <task-title>
+	Examples:
+		- todo task-1
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -37,16 +48,32 @@
 	Now you have 2 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
+	X Invalid `deadline` command format!
+	Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>
+	Examples:
+		- deadline d1 /at 2022-01-01
+		- deadline d1 /at 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
+	X Invalid `deadline` command format!
+	Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>
+	Examples:
+		- deadline d1 /at 2022-01-01
+		- deadline d1 /at 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
+	X Invalid `deadline` command format!
+	Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>
+	Examples:
+		- deadline d1 /at 2022-01-01
+		- deadline d1 /at 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid `deadline` command format (expected: deadline deadline-title /by datetime)
+	X Invalid `deadline` command format!
+	Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>
+	Examples:
+		- deadline d1 /at 2022-01-01
+		- deadline d1 /at 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -59,16 +86,32 @@
 	Now you have 4 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
+	X Invalid `event` command format!
+	Expected format: event <title> /at <YYYY-mm-dd HH:mm>
+	Examples:
+		- event e1 /at 2022-01-01
+		- event e1 /at 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
+	X Invalid `event` command format!
+	Expected format: event <title> /at <YYYY-mm-dd HH:mm>
+	Examples:
+		- event e1 /at 2022-01-01
+		- event e1 /at 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
+	X Invalid `event` command format!
+	Expected format: event <title> /at <YYYY-mm-dd HH:mm>
+	Examples:
+		- event e1 /at 2022-01-01
+		- event e1 /at 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid `event` command format (expected: event event-title /at datetime)
+	X Invalid `event` command format!
+	Expected format: event <title> /at <YYYY-mm-dd HH:mm>
+	Examples:
+		- event e1 /at 2022-01-01
+		- event e1 /at 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
@@ -83,7 +126,7 @@
 	5. [E][ ] event task-2 (at: 24/8/22)
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	X Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
 	Nice! I've mark this task as done:
@@ -153,10 +196,13 @@
 	Now you have 0 tasks in the list
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! Invalid task selected!
+	X Invalid task selected!
 	--------------------------------------------------
 	--------------------------------------------------
-	OOPS!!! `delete` command expects a single number argument (e.g. `delete 1`)
+	X Invalid `delete` command format!
+	Expected format: delete <task-number>
+	Examples:
+		- delete 1
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
