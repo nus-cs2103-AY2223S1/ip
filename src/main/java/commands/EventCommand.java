@@ -1,12 +1,12 @@
 package commands;
 
-import tasklist.TaskList;
-import tasks.Event;
 import common.Parser;
 import common.Ui;
 import dukeexceptions.DukeException;
 import dukeexceptions.MissingDescriptionException;
 import dukeexceptions.WrongDatetimeFormatException;
+import tasklist.TaskList;
+import tasks.Event;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,7 +16,7 @@ public class EventCommand extends Command {
     static final String EVENT_DATETIME_START_OR_END_FORMAT = "d/MM/uuuu HHmm";
     static final String EVENT_DATETIME_START_OR_END_STORAGE_FORMAT = "MMM dd uuuu, HHmm";
     static final String EVENT_DATETIME_INPUT_FORMAT = "d/MM/uuuu HHmm - d/MM/uuuu HHmm";
-    private String[] args;
+    private final String[] args;
 
     public EventCommand(String[] args) {
         this.args = args;

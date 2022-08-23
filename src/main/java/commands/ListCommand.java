@@ -1,11 +1,9 @@
 package commands;
 
-import tasklist.TaskList;
 import common.Ui;
+import tasklist.TaskList;
 
 public class ListCommand extends Command {
-    public ListCommand() {
-    }
 
     @Override
     public void execute(TaskList taskList) {

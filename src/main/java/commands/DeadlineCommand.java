@@ -1,21 +1,21 @@
 package commands;
 
-import tasklist.TaskList;
-import tasks.Deadline;
 import common.Parser;
 import common.Ui;
 import dukeexceptions.DukeException;
 import dukeexceptions.MissingDescriptionException;
 import dukeexceptions.WrongDatetimeFormatException;
+import tasklist.TaskList;
+import tasks.Deadline;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 
 public class DeadlineCommand extends Command {
-    private String[] args;
     static final String DEADLINE_DATETIME_FORMAT = "d/MM/uuuu HHmm";
     static final String DEADLINE_STORAGE_FORMAT = "MMM dd uuuu, HHmm";
+    private final String[] args;
 
     public DeadlineCommand(String[] args) {
         this.args = args;
@@ -37,7 +37,7 @@ public class DeadlineCommand extends Command {
     }
 
     public static LocalDateTime parseDeadlineDatetime(String s) {
-       return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DEADLINE_DATETIME_FORMAT).withResolverStyle(ResolverStyle.STRICT));
+        return LocalDateTime.parse(s, DateTimeFormatter.ofPattern(DEADLINE_DATETIME_FORMAT).withResolverStyle(ResolverStyle.STRICT));
     }
 
     public static LocalDateTime parseDeadlineDatetimeFromStorage(String s) {

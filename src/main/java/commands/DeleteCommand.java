@@ -1,13 +1,13 @@
 package commands;
 
-import tasklist.TaskList;
-import tasks.Task;
 import common.Ui;
 import dukeexceptions.DukeException;
 import dukeexceptions.IllegalIndexException;
+import tasklist.TaskList;
+import tasks.Task;
 
 public class DeleteCommand extends Command {
-    private String[] args;
+    private final String[] args;
 
     public DeleteCommand(String[] args) {
         this.args = args;
@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
         if (args.length < 1) {
             throw new DukeException("Missing index!");
         }
-        int index = Integer.parseInt(args[0])-1;
+        int index = Integer.parseInt(args[0]) - 1;
         if (index < 0) {
             throw new IllegalIndexException();
         }

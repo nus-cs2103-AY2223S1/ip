@@ -1,12 +1,12 @@
 package commands;
 
-import tasklist.TaskList;
 import common.Ui;
 import dukeexceptions.DukeException;
 import dukeexceptions.IllegalIndexException;
+import tasklist.TaskList;
 
 public class UnmarkCommand extends Command {
-    private String[] args;
+    private final String[] args;
 
     public UnmarkCommand(String[] args) {
         this.args = args;
@@ -17,7 +17,7 @@ public class UnmarkCommand extends Command {
             throw new DukeException("Missing index!");
         }
         try {
-            int index = Integer.parseInt(args[0])-1;
+            int index = Integer.parseInt(args[0]) - 1;
             if (index < 0) {
                 throw new IllegalIndexException();
             }
@@ -28,7 +28,7 @@ public class UnmarkCommand extends Command {
 
     @Override
     public void execute(TaskList taskList) {
-        int index = Integer.parseInt(args[0])-1;
+        int index = Integer.parseInt(args[0]) - 1;
         taskList.unmarkTask(index);
         Ui.printUnmarkTask(taskList.get(index));
     }
