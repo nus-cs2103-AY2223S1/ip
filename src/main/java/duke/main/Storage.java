@@ -14,11 +14,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * A class which handles the saving and loading of data.
+ */
 public class Storage {
     public static String FILE_PATH = "data/duke.txt";
 
     private String path;
 
+    /**
+     * Constructs a new Storage object and creates an empty save file if one does not exist.
+     * @param path Path of the save file.
+     * @throws DukeException If the save file cannot be created.
+     */
     public Storage(String path) throws DukeException {
         this.path = path;
         File saveFile = new File(this.path);
@@ -32,6 +40,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads from the save file at path specified in the constructor.
+     * @return An ArrayList of Task objects that the save file saved.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> output = new ArrayList<>();
         Scanner sc;
@@ -61,6 +73,11 @@ public class Storage {
         return output;
     }
 
+    /**
+     * Saves a TaskList object to the save file.
+     * @param taskList The TaskList object to be saved.
+     * @throws DukeException If the save file cannot be accessed.
+     */
     public void save(TaskList taskList) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(this.path);

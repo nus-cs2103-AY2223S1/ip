@@ -8,12 +8,19 @@ import duke.exception.MissingTimeException;
 
 import java.time.format.DateTimeParseException;
 
+/**
+ * Main class for Duke. Contains objects handling storage, the task list and Ui.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructs a new Duke object which reads the save from a file at path.
+     * @param path The path to read the save from.
+     */
     public Duke(String path) {
         this.ui = new Ui();
         try {
@@ -24,6 +31,9 @@ public class Duke {
         this.taskList = new TaskList(this.storage.load());
     }
 
+    /**
+     * Starts the main logic of the Duke object.
+     */
     public void run() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
