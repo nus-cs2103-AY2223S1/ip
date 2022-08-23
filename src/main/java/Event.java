@@ -28,6 +28,18 @@ public class Event extends Task {
     }
 
     /**
+     * Getter for the date of event.
+     * @return Returns the date of the event.
+     */
+    public String getStart() {
+        return this.start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    public String getEnd() {
+        return this.end.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    /**
      * String representation of Event task object.
      * @return Returns the String representation of the current object.
      */

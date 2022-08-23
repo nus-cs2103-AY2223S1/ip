@@ -23,6 +23,14 @@ public class Deadline extends Task {
     }
 
     /**
+     * Getter for the deadline.
+     * @return Returns the deadline by which the event must be completed.
+     */
+    public String getBy() {
+        return this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
+    /**
      * String representation of a deadline task object.
      * @return Returns the String representation of the current object.
      */

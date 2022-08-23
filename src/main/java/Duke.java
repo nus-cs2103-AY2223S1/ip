@@ -1,9 +1,13 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
+import java.io.File;
+import java.io.FileWriter;
 
 /**
  * The Main driver class of the Duke Application.
@@ -17,8 +21,17 @@ public class Duke {
     /**
      * The main method that is the entry to the Duke Application.
      * @param args Command line arguments that we can pass to the main function.
+     * @throws IOException Throws IO exception that we must handle from creating
+     *                     the folder and storage.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        File storage = createFolderAndStorage();
+        try {
+            readTasksFromStorage(storage);
+        } catch (DukeException e) {
+            System.out.println("No tasks to read from tasks.txt");
+        }
+
         Scanner sc = new Scanner(System.in);
 
         String logo = " ____        _        \n"
@@ -112,6 +125,7 @@ public class Duke {
         System.out.println(line);
         System.out.println("Bye. Hope to see you again soon!");
         System.out.println(line);
+        writeTasksToStorage(storage);
         sc.close();
         System.exit(0);
     }
@@ -185,5 +199,80 @@ public class Duke {
             System.out.println("  " + task.toString());
         }
         System.out.println(line);
+    }
+
+    public static File createFolderAndStorage() throws IOException {
+        File folder = new File("./data");
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        File file = new File("./data/tasks.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+
+        return file;
+    }
+
+    public static void writeTasksToStorage(File file) throws IOException {
+        FileWriter fileWriter = new FileWriter(file);
+        for (Task task : tasks) {
+            if (task instanceof Todo) {
+                String rep = "T|" + task.getDoneStatus() + "|" + task.getDescription();
+                fileWriter.write(rep);
+            } else if (task instanceof Event) {
+                Event e = (Event) task;
+                String rep = "E|" + e.getDoneStatus() + "|" + e.getDescription() + "|" +
+                        e.getStart() + "|" + e.getEnd();
+                fileWriter.write(rep);
+            } else if (task instanceof Deadline) {
+                Deadline d = (Deadline) task;
+                String rep = "D|" + d.getDoneStatus() + "|" + d.getDescription() + "|" + d.getBy();
+                fileWriter.write(rep);
+            }
+
+            fileWriter.write(System.lineSeparator());
+        }
+
+        fileWriter.close();
+    }
+
+    public static void readTasksFromStorage(File file) throws FileNotFoundException, DukeException {
+        Scanner sc = new Scanner(file);
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            String[] lineComponents = line.split("\\|");
+
+            String type = lineComponents[0];
+            boolean doneStatus = lineComponents[1].equals("X");
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            switch (type) {
+            case "T":
+                Todo t = new Todo(lineComponents[2]);
+                t.setDoneStatus(doneStatus);
+                tasks.add(t);
+                break;
+            case "D":
+                Deadline d = new Deadline(lineComponents[2], LocalDateTime.parse(lineComponents[3], dateFormat));
+                d.setDoneStatus(doneStatus);
+                tasks.add(d);
+                break;
+            case "E":
+                Event e = new Event(
+                        lineComponents[2],
+                        LocalDateTime.parse(lineComponents[3], dateFormat),
+                        LocalDateTime.parse(lineComponents[4], dateFormat)
+                );
+                e.setDoneStatus(doneStatus);
+                tasks.add(e);
+                break;
+            default:
+                throw new DukeException("No tasks to read from storage!");
+            }
+        }
+
+        sc.close();
     }
 }
