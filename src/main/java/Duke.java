@@ -1,13 +1,12 @@
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Duke {
     protected static Storage storage = new Storage("data/tasks.txt");
-    protected static ArrayList<Task> tasks = storage.load();
+    protected static TaskList tasks = new TaskList(storage.load(), storage);
     protected static DateTimeFormatter parserFormats = new DateTimeFormatterBuilder()
             .appendOptional(DateTimeFormatter.ISO_LOCAL_DATE)
             .appendOptional(DateTimeFormatter.ofPattern("d MMM uuuu"))
@@ -19,7 +18,7 @@ public class Duke {
         String desc = "";
         try {
             desc = arr[1];
-        } catch(ArrayIndexOutOfBoundsException e) {
+        } catch (ArrayIndexOutOfBoundsException e) {
             printOut("Please enter a description for your task!");
             return;
         }
@@ -36,7 +35,7 @@ public class Duke {
                         format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 temp = new Deadline(details[0], by);
                 tasks.add(temp);
-            } catch(ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 printOut("Oops! Your deadline should have a due date after /by.");
                 return;
             } catch (DateTimeParseException e) {
@@ -51,7 +50,7 @@ public class Duke {
                         format(DateTimeFormatter.ofPattern("MMM d yyyy"));
                 temp = new Event(details[0], at);
                 tasks.add(temp);
-            } catch(ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 printOut("Oops! Your event should have a date after /at.");
                 return;
             } catch (DateTimeParseException e) {
@@ -61,7 +60,6 @@ public class Duke {
         }
         printOut("Okay, I've added this task:\n" + temp.toString() +
                 "\nYou now have " + tasks.size() + " tasks.");
-        storage.update(tasks);
     }
 
     public static void printOut(String str) {
@@ -82,9 +80,8 @@ public class Duke {
             case "mark":
                 try {
                     int index = Integer.parseInt(nextWords[1]) - 1;
-                    tasks.get(index).markAsDone();
-                    storage.update(tasks);
-                    printOut("I've marked this as done:\n" + tasks.get(index).toString());
+                    tasks.markTaskAsDone(index);
+                    printOut("I've marked this as done:\n" + tasks.taskToString(index));
                     break;
                 } catch(IndexOutOfBoundsException e) {
                     printOut("This task number is invalid!");
@@ -93,9 +90,8 @@ public class Duke {
             case "unmark":
                 try {
                     int index = Integer.parseInt(nextWords[1]) - 1;
-                    tasks.get(index).markAsUndone();
-                    storage.update(tasks);
-                    printOut("I've marked this as undone:\n" + tasks.get(index).toString());
+                    tasks.markTaskAsUndone(index);
+                    printOut("I've marked this as undone:\n" + tasks.taskToString(index));
                     break;
                 } catch(IndexOutOfBoundsException e) {
                     printOut("This task number is invalid!");
@@ -104,22 +100,16 @@ public class Duke {
             case "delete":
                 try {
                     int index = Integer.parseInt(nextWords[1]) - 1;
-                    printOut("I'll remove this task:\n" + tasks.get(index).toString() +
+                    printOut("I'll remove this task:\n" + tasks.taskToString(index) +
                             "\nYou now have " + (tasks.size() - 1) + " tasks.");
                     tasks.remove(index);
-                    storage.update(tasks);
                     break;
                 } catch(IndexOutOfBoundsException e) {
                     printOut("This task number is invalid!");
                     break;
                 }
             case "list":
-                System.out.println("____________________________________________________________\n" +
-                        "Here are your tasks:");
-                for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println((i + 1) + ". " + tasks.get(i).toString());
-                }
-                System.out.println("____________________________________________________________\n");
+                printOut("Here are your tasks:" + tasks.toString());
                 break;
             case "todo":
             case "deadline":
