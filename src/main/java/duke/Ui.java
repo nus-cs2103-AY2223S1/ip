@@ -1,3 +1,5 @@
+package duke;
+
 import exceptions.UnknownCommandException;
 
 import java.util.Scanner;

@@ -1,3 +1,5 @@
+package duke;
+
 import exceptions.EmptyNameException;
 
 import java.time.LocalDate;

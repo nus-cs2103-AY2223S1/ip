@@ -1,3 +1,5 @@
+package duke;
+
 public enum CommandsEnum {
     bye,
     list,
