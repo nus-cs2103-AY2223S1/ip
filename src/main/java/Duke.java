@@ -1,4 +1,6 @@
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -38,6 +40,7 @@ public class Duke {
             if (s.equals("bye")) {
                 System.out.println("Bye. Hope to see you again!");
                 goodbye = true;
+                return true;
             } else if (s.equals("list")) {
                 this.list();
             } else if (userInput[0].equals("todo")) {
@@ -55,7 +58,11 @@ public class Duke {
             } else {
                 throw new DukeException("Unrecognized command.");
             }
+
+            this.write();
         } catch (DukeException err) {
+            System.out.println(err);
+        } catch (IOException err) {
             System.out.println(err);
         } finally {
             return goodbye;
@@ -158,6 +165,18 @@ public class Duke {
         System.out.println("OK, I've removed this task:");
         System.out.println("\t" + tmp);
         System.out.printf("Now you have %d tasks in the list.", db.size());
+    }
+
+    /**
+     * Stores the current list of Tasks to data/duke.txt.
+     */
+    private void write() throws IOException {
+        FileWriter fw = new FileWriter("data/duke.txt");
+        for (Task t: db) {
+            fw.write(t.toStringWritable().strip());
+            fw.write("\n");
+        }
+        fw.close();
     }
 
     // Initializes and starts a Duke instance.
