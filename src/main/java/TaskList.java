@@ -30,14 +30,16 @@ public class TaskList {
      * Prints message indicating completion of the action.
      *
      * @param description String representing the description of the task.
+     * @param isCompleted Boolean representing whether the task is completed.
+     * @return String representation of addition of task and list status.
      */
-    public void addTodo(String description) {
+    public String addTodo(String description, Boolean isCompleted) {
         totalTasks++;
-        Task task = new Todo(description);
+        Task task = new Todo(description, isCompleted);
         allTaskList.add(task);
-        System.out.println("Meow! I'm a cat. I've added this task:\n"
+        return "Meow! I'm a cat. I've added this task:\n"
                             + task + "\n"
-                            + tasksLeft());
+                            + tasksLeft();
     }
 
     /**
@@ -46,14 +48,16 @@ public class TaskList {
      *
      * @param description String representing the description of the task.
      * @param date String representing the time of the event.
+     * @param isCompleted Boolean representing whether the task is completed.
+     * @return String representation of addition of task and list status.
      */
-    public void addEvent(String description, String date) {
+    public String addEvent(String description, String date, Boolean isCompleted) {
         totalTasks++;
-        Task task = new Event(description, date);
+        Task task = new Event(description, date, isCompleted);
         allTaskList.add(task);
-        System.out.println("Moo! I'm a cat. I've added this task:\n"
+        return "Moo! I'm a cat. I've added this task:\n"
                 + task + "\n"
-                + tasksLeft());
+                + tasksLeft();
     }
 
     /**
@@ -62,14 +66,16 @@ public class TaskList {
      *
      * @param description String representing the description of the task.
      * @param date String representing the deadline of the event.
+     * @param isCompleted Boolean representing whether the task is completed.
+     * @return String representation of addition of task and list status.
      */
-    public void addDeadline(String description, String date) {
+    public String addDeadline(String description, String date, Boolean isCompleted) {
         totalTasks++;
-        Task task = new Deadline(description, date);
+        Task task = new Deadline(description, date, isCompleted);
         allTaskList.add(task);
-        System.out.println("Woof! I'm a cat. I've added this task:\n"
+        return "Woof! I'm a cat. I've added this task:\n"
                 + task + "\n"
-                + tasksLeft());
+                + tasksLeft();
     }
 
     /**

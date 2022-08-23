@@ -13,9 +13,10 @@ public class Deadline extends Task {
      *
      * @param description String representing the description of the deadline.
      * @param by String representing the time of the deadline.
+     * @param isCompleted Boolean representing whether the task is completed.
      */
-    public Deadline(String description, String by) {
-        super(description);
+    public Deadline(String description, String by, Boolean isCompleted) {
+        super(description, isCompleted);
         this.by = by;
     }
 

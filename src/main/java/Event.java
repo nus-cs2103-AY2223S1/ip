@@ -13,9 +13,10 @@ public class Event extends Task {
      *
      * @param description String representing the description of the event.
      * @param at String representing the time of the event.
+     * @param isCompleted Boolean representing whether the task is completed.
      */
-    public Event(String description, String at) {
-        super(description);
+    public Event(String description, String at, Boolean isCompleted) {
+        super(description, isCompleted);
         this.at = at;
     }
 

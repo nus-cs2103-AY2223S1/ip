@@ -16,10 +16,11 @@ abstract public class Task {
      * Constructor of the Task object to be called by its subclasses.
      *
      * @param description String representing the details of the task.
+     * @param isCompleted Boolean representing whether the task is completed.
      */
-    public Task(String description) {
+    public Task(String description, Boolean isCompleted) {
         this.description = description;
-        this.isCompleted = false;
+        this.isCompleted = isCompleted;
     }
 
     /**

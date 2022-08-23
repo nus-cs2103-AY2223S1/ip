@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 import static java.lang.System.exit;
 
@@ -29,8 +30,12 @@ public class Duke {
 
         System.out.println(border + "Meow from\n" + cat + service + border);
 
-        Scanner sc= new Scanner(System.in);
         TaskList list = new TaskList();
+        ListLoader updater = new ListLoader((list));
+
+
+
+        Scanner sc= new Scanner(System.in);
 
         while (sc.hasNextLine()) {
             String input = sc.nextLine();
@@ -57,21 +62,21 @@ public class Duke {
                     if (target == null) {
                         throw new IllegalArgumentException();
                     }
-                    list.addTodo(target);
+                    System.out.println(list.addTodo(target, false));
                     break;
                 case EVENT:
                     if (target == null || target.split(" /at ").length != 2) {
                         throw new IllegalArgumentException();
                     }
                     String[] inputE = target.split(" /at ");
-                    list.addEvent(inputE[0], inputE[1]);
+                    System.out.println(list.addEvent(inputE[0], inputE[1], false));
                     break;
                 case DEADLINE:
                     if (target == null || target.split(" /by ").length != 2) {
                         throw new IllegalArgumentException();
                     }
                     String[] inputD = target.split(" /by ");
-                    list.addDeadline(inputD[0], inputD[1]);
+                    System.out.println(list.addDeadline(inputD[0], inputD[1], false));
                     break;
                 case MARK:
                     if (target == null) {
