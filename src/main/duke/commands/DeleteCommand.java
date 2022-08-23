@@ -19,6 +19,7 @@ public class DeleteCommand extends Command {
    */
   public DeleteCommand(String description) throws DukeException {
     try {
+      description = description.split(" ")[1];
       this.index = Integer.parseInt(description);
     } catch (Exception e) {
       throw new DukeException("Invalid tasks");
@@ -34,6 +35,7 @@ public class DeleteCommand extends Command {
     if (index <= 0 || index > tasks.size()) {
       throw new DukeException("No such task found");
     } else {
+
       Task task = tasks.remove(index - 1);
       storage.save(tasks);
       System.out.println("Noted. I've removed this task:");
