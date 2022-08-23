@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Duke {
@@ -31,36 +33,84 @@ public class Duke {
         while (!hasExited) {
             System.out.print(">> ");
             String input = sc.nextLine();
-            switch (input.toLowerCase()) {
+            String[] inputs = input.split(" ", 2);
+            String command = inputs[0].toLowerCase();
+
+            switch (command) {
             case "bye":
                 IOParser.printMsg("Bye. Hope to see you again soon!");
                 hasExited = true;
                 break;
             case "list":
-                IOParser.printMsg(this.taskList.toString());
+                IOParser.printMsg(String.format("Here are the tasks in your list:\n%s",
+                        this.taskList));
                 break;
-            default:
-                String[] inputs = input.split(" ", 2);
-                String command = inputs[0].toLowerCase();
-                if (command.equals("mark") && inputs.length == 2 && inputs[1].matches("\\d+")) {
+            case "":
+                break;
+            case "mark":
+                if (inputs.length == 2 && inputs[1].matches("\\d+")) {
                     int index = Integer.parseInt(inputs[1]) - 1;
                     if (index < this.taskList.size() && index >= 0) {
                         this.taskList.setDone(index, true);
                         IOParser.printMsg(String.format("Nice! I've marked this task as done:\n %s",
                                 this.taskList.get(index)));
-                        break;
                     }
-                } else if (command.equals("unmark") && inputs.length == 2 && inputs[1].matches("\\d+")) {
+                }
+                break;
+            case "unmark":
+                if (inputs.length == 2 && inputs[1].matches("\\d+")) {
                     int index = Integer.parseInt(inputs[1]) - 1;
                     if (index < this.taskList.size() && index >= 0) {
                         this.taskList.setDone(index, false);
                         IOParser.printMsg(String.format("OK, I've marked this task as not done yet:\n %s",
                                 this.taskList.get(index)));
-                        break;
                     }
                 }
-                this.taskList.addTask(input);
-                IOParser.printMsg(String.format("Added task:\n %s", this.taskList.get(this.taskList.size() - 1)));
+                break;
+            case "todo":
+                if (inputs.length == 2) {
+                    Map<String, String> map = new HashMap<>();
+                    String description = inputs[1];
+                    map.put("description", description);
+                    this.taskList.addTask(command, map);
+                    IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
+                            this.taskList.get(this.taskList.size() - 1),
+                            this.taskList.lengthString()));
+                }
+                break;
+            case "deadline":
+                if (inputs.length == 2) {
+                    Map<String, String> map = new HashMap<>();
+                    String description = inputs[1].substring(0, inputs[1].indexOf("/by "));
+                    String deadline = inputs[1].substring(inputs[1].indexOf("/by ") + 4);
+                    map.put("description", description);
+                    map.put("by", deadline);
+                    this.taskList.addTask(command, map);
+                    IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
+                            this.taskList.get(this.taskList.size() - 1),
+                            this.taskList.lengthString()));
+                }
+                break;
+            case "event":
+                if (inputs.length == 2) {
+                    Map<String, String> map = new HashMap<>();
+                    String description = inputs[1].substring(0, inputs[1].indexOf("/at "));
+                    String time = inputs[1].substring(inputs[1].indexOf("/at ") + 4);
+                    map.put("description", description);
+                    map.put("at", time);
+                    this.taskList.addTask(command, map);
+                    IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
+                            this.taskList.get(this.taskList.size() - 1),
+                            this.taskList.lengthString()));
+                }
+                break;
+            default:
+                Map<String, String> map = new HashMap<>();
+                map.put("description", input);
+                this.taskList.addTask("other", map);
+                IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
+                        this.taskList.get(this.taskList.size() - 1),
+                        this.taskList.lengthString()));
             }
         }
     }

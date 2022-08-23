@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Map;
 
 import org.apache.commons.text.WordUtils;
 
@@ -11,10 +12,11 @@ public class TaskList extends ArrayList<Task> {
 
     /**
      * Adds a new Task with a given description to the TaskList.
-     * @param description The string representing the description of the Task to be added.
+     * @param taskType The string representing the type of Task to be added.
+     * @param args The array of strings representing the arguments to be supplied to the constructor.
      */
-    public void addTask(String description) {
-        this.add(new Task(description));
+    public void addTask(String taskType, Map<String, String> args) {
+        this.add(Task.of(taskType, args));
     }
 
     /**
@@ -24,6 +26,17 @@ public class TaskList extends ArrayList<Task> {
      */
     public void setDone(int index, boolean isDone) {
         this.get(index).setDone(isDone);
+    }
+
+    /**
+     * Returns the string representation of the length of the TaskList.
+     *
+     * @return The string representing the length of the TaskList.
+     */
+    public String lengthString() {
+        return this.size() == 1
+                ? String.format("%d task", this.size())
+                : String.format("%d tasks", this.size());
     }
 
     /**
