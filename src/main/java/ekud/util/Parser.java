@@ -1,3 +1,9 @@
+package ekud.util;
+
+import ekud.exception.EkudException;
+import ekud.task.TaskList;
+import ekud.task.TaskType;
+
 public class Parser {
   public Parser() {
 

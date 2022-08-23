@@ -1,7 +1,10 @@
+package ekud.util;
+import ekud.exception.EkudException;
+
 public class Ui {
-  private final String logo = "_____________             .___\n" + "\\_   _____/  | ____ __  __| _/\n" + 
-  " |    __)_|  |/ /  |  \\/ __ |\n" + " |        \\    <|  |  / /_/ | \n" + "/_______  /__|_ \\____/\\____ | \n" + 
-  "        \\/     \\/          \\/ \n";
+  private final String logo = "_____________             .___\n" + "\\_   _____/  | ____ __  __| _/\n" +
+      " |    __)_|  |/ /  |  \\/ __ |\n" + " |        \\    <|  |  / /_/ | \n" + "/_______  /__|_ \\____/\\____ | \n" +
+      "        \\/     \\/          \\/ \n";
 
   public Ui() {
 

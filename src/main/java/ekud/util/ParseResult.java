@@ -1,3 +1,4 @@
+package ekud.util;
 public class ParseResult {
   public final boolean terminate;
   public final String message;

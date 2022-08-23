@@ -1,7 +1,10 @@
+package ekud.task;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+
+import ekud.exception.EkudException;
 
 public class TaskList {
   private final List<Task> taskList;
@@ -9,7 +12,7 @@ public class TaskList {
   public TaskList(List<Task> taskList) {
     this.taskList = taskList;
   }
-  
+
   public TaskList() {
     this.taskList = new ArrayList<Task>();
   }
@@ -71,7 +74,7 @@ public class TaskList {
   public String printTasks() {
     StringBuilder builder = new StringBuilder("Here are the tasks in your list:\n");
     for (int i = 0; i < this.taskList.size(); i++) {
-        builder.append(String.format("%d.%s\n", i + 1, this.taskList.get(i).toString()));
+      builder.append(String.format("%d.%s\n", i + 1, this.taskList.get(i).toString()));
     }
     return (builder.toString());
   }

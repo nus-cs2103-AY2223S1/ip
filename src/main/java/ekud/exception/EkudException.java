@@ -1,3 +1,4 @@
+package ekud.exception;
 public class EkudException extends Exception {
   /**
    * Constructor that instantiates a new EkudException

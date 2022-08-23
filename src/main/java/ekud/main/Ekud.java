@@ -1,4 +1,12 @@
+package ekud.main;
 import java.util.Scanner;
+
+import ekud.exception.EkudException;
+import ekud.task.TaskList;
+import ekud.util.ParseResult;
+import ekud.util.Parser;
+import ekud.util.Storage;
+import ekud.util.Ui;
 
 public class Ekud {
 
