@@ -12,11 +12,11 @@ import java.util.Scanner;
 /**
  * Class that stores Tasks.
  */
-public class TaskStore {
+public class TaskList {
     private final List<Task> store;
     private final FileWriter writer;
 
-    public TaskStore() {
+    public TaskList() {
         this.store = new ArrayList<>();
         try {
             this.writer = new FileWriter(getAndInitialiseFilePath().toFile(), true);
@@ -122,9 +122,9 @@ public class TaskStore {
         writer.close();
     }
 
-    public static TaskStore createFromFile() throws IOException {
+    public static TaskList createFromFile() throws IOException {
         Scanner sc = new Scanner(getAndInitialiseFilePath().toFile());
-        TaskStore store = new TaskStore();
+        TaskList store = new TaskList();
         while (sc.hasNextLine()) {
             Task task = Task.unserialise(sc.nextLine().strip());
             store.store.add(task);
