@@ -1,5 +1,5 @@
 public class Deadline extends Task {
-  private String by;
+  private DateTime dateTime;
 
   public Deadline(String description, Boolean isDone, String by) {
     super(description, isDone);
@@ -8,12 +8,12 @@ public class Deadline extends Task {
 
   public Deadline(String description, String by) {
     super(description);
-    this.by = by;
+    this.dateTime = new DateTime(by);
   }
 
   @Override
   public String toString() {
-    return String.format("[D]%s (by: %s)", super.toString(), this.by);
+    return String.format("[D]%s (by: %s)", super.toString(), this.dateTime.toString());
   }
 
   @Override

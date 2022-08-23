@@ -1,5 +1,5 @@
 public class Event extends Task {
-  private String by;
+  private DateTime dateTime;
 
   public Event(String description, boolean isDone, String by) {
     super(description, isDone);
@@ -8,12 +8,12 @@ public class Event extends Task {
 
   public Event(String description, String by) {
     super(description);
-    this.by = by;
+    this.dateTime = new DateTime(by);
   }
 
   @Override
   public String toString() {
-    return String.format("[E]%s (at: %s)", super.toString(), this.by);
+    return String.format("[E]%s (at: %s)", super.toString(), this.dateTime.toString());
   }
 
   @Override
