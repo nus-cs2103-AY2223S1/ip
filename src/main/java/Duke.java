@@ -3,8 +3,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Chatbot class that helps a person to keep track of various things.
@@ -30,7 +30,7 @@ public class Duke {
         }
         greetUser();
         Scanner sc = new Scanner(System.in);
-        while(!hasExited) {
+        while (!hasExited) {
             try {
                 String input = sc.nextLine().trim();
                 if (input.equals("bye")) {
@@ -157,7 +157,7 @@ public class Duke {
         return isNumeric(dayMonthYear[0]) && isNumeric(dayMonthYear[1]) && isNumeric(dayMonthYear[2]);
     }
 
-    public static boolean isNumeric(String strNum) {
+    private static boolean isNumeric(String strNum) {
         if (strNum == null || strNum.equals("")) {
             return false;
         }
@@ -241,7 +241,7 @@ public class Duke {
         generateLine();
         printFormatted("Here are the tasks in your list:");
         for (int i = 0; i < this.taskList.size(); i++) {
-            Task t =  this.taskList.get(i);
+            Task t = this.taskList.get(i);
             String currLine = "\t " + (i + 1) + "." + t;
             System.out.println(currLine);
         }
