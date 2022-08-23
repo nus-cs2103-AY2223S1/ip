@@ -279,4 +279,34 @@ public class TasksList {
             break;
         }
     }
+
+    /**
+     * Searches for and lists tasks that contain the keyword in their description.
+     *
+     * @param command The command represented by an array of Strings.
+     * @throws DukeException if the find command is invalid.
+     */
+    public void findTask(String[] command) throws DukeException {
+        if (command.length == 1) {
+            throw new DukeException("Duke: Please provide a keyword to search for the task:\n"
+                    + "find <keyword>");
+        }
+        String keyword = command[1];
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        for (int i = 0; i < this.tasksList.size(); i++) {
+            Task task = this.tasksList.get(i);
+            if (task.hasKeyword(keyword)) {
+                count++;
+                String line = String.format("%d. %s\n", count, task);
+                sb.append(line);
+            }
+        }
+        if (count > 0) {
+            System.out.println("Duke: Here are the matching tasks in your list:");
+            System.out.println(sb);
+        } else {
+            System.out.println("Duke: Hm...Duke found no matching task in your list.");
+        }
+    }
 }
