@@ -1,9 +1,12 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.FileWriter;
+
+/** TODOs
+ * update file for mark/unmark
+ * update file for delete
+ */
+
 public class Duke {
     protected static boolean terminate = false;
     protected static ArrayList<Task> taskList = new ArrayList<Task>();
@@ -11,8 +14,10 @@ public class Duke {
     public static void main(String[] args) {
         // Load file from hard disk
         File hardDiskTasks = new File("data/duke.txt");
+        File tempTasks = new File("data/temp.txt");
         try {
            hardDiskTasks.createNewFile();
+           tempTasks.createNewFile();
         } catch (IOException e) {
             System.out.println("     " + e.getMessage());
         } catch (SecurityException e) {
@@ -85,7 +90,7 @@ public class Duke {
                     Duke.addEvent(taskDescription, time);
                     break;
                 case "delete":
-                    Duke.removeTask(taskNumber, taskDescription);
+                    Duke.deleteTask(taskNumber, taskDescription);
                     break;
                 case "":
                     throw new DukeException("OOPS!!! Please enter an instruction");
@@ -96,8 +101,13 @@ public class Duke {
                 Duke.lineFormat();
                 System.out.println("     " + e.getMessage());
                 Duke.lineFormat();
+            } catch (IndexOutOfBoundsException e) {
+                Duke.lineFormat();
+                System.out.println("     OOPS!!! Please enter a valid task number");
+                Duke.lineFormat();
             }
         }
+        in.close();;
     }
 
     public static void loadTasksFromDisk(File file) {
@@ -129,6 +139,7 @@ public class Duke {
                 // update list
                 Duke.addTaskFromDisk(task, description, time, statusIsDone);
             }
+            s.close();
         } catch (FileNotFoundException e) {
             System.out.println("     " + e.getMessage());
         }
@@ -181,10 +192,33 @@ public class Duke {
         Duke.lineFormat();
     }
 
-    public static void removeTask(int taskNumber, String description) {
+    public static void deleteTaskFromDisk(int taskNumber) {
+        File inputFile = new File("data/duke.txt");
+        File tempFile = new File("data/temp.txt");
+        try {
+            Scanner s = new Scanner(inputFile);
+            while (s.hasNext()) {
+                String currentLine = s.nextLine();
+                if (taskNumber != 1) {
+                    appendToFile("data/temp.txt", currentLine + System.lineSeparator());
+                }
+                taskNumber -= 1;
+            }
+            s.close();
+            boolean successful = tempFile.renameTo(inputFile);
+        } catch (FileNotFoundException e) {
+            System.out.println("     " + e.getMessage());
+        }
+    }
+
+    public static void deleteTask(int taskNumber, String description) {
         if (description.equals("")) {
             throw new DukeException("OOPS!!! The task number for delete cannot be empty.");
         }
+        if (taskNumber > taskList.size()) {
+            throw new DukeException("OOPS!!! Please enter a valid task number");
+        }
+        deleteTaskFromDisk(taskNumber);
         Task removedTask = taskList.remove(taskNumber - 1);
         System.out.println("     Noted. I've removed this task:\n" +
                 "       " + removedTask.toString() + "\n" +
@@ -239,7 +273,9 @@ public class Duke {
         if (description.equals("")) {
             throw new DukeException("OOPS!!! The task number for mark cannot be empty.");
         }
-        System.out.println(taskList.size());
+        if (taskNumber > taskList.size()) {
+            throw new DukeException("OOPS!!! Please enter a valid task number");
+        }
         Task currentTask = taskList.get(taskNumber - 1);
         currentTask.setTaskStatus(true);
         String taskDescription = currentTask.toString();
@@ -252,6 +288,9 @@ public class Duke {
     public static void unmarkTask(int taskNumber, String description) {
         if (description.equals("")) {
             throw new DukeException("OOPS!!! The task number for unmark cannot be empty.");
+        }
+        if (taskNumber > taskList.size()) {
+            throw new DukeException("OOPS!!! Please enter a valid task number");
         }
         Task currentTask = taskList.get(taskNumber - 1);
         currentTask.setTaskStatus(false);
