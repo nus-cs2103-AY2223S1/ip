@@ -14,4 +14,9 @@ public class InvalidCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof InvalidCommand;
+    }
 }
