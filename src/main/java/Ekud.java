@@ -15,8 +15,8 @@ public class Ekud {
      * Constructor that instantiates new Ekud instance.
      */
     public Ekud() {
-        this.taskList = new ArrayList<Task>();
         this.storage = new Storage();
+        this.taskList = this.storage.getTasksFromFile();
     }
 
     /**
