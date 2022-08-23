@@ -92,6 +92,10 @@ public class Parser {
             String listInfo = inputText.substring(firstSpaceIdx + 1);
             this.taskList.printAllOnDate(listInfo);
             break;
+        case FIND:
+            String key = inputText.substring(firstSpaceIdx + 1);
+            this.taskList.find(key);
+            break;
         default:
             break;
         }
