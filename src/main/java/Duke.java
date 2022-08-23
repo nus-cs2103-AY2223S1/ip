@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 
 public class Duke {
     public static void main(String[] args) throws DukeException {
@@ -25,11 +29,11 @@ public class Duke {
                     System.out.println(taskList.get(i));
                     }
 
-            } else {
+            }
+            else {
                 str = input.split(" ", 2);
                 order = str[0];
                 Task task;
-
                 if(order.equals("mark")) {
                     content = str[1];
                     int index = Integer.parseInt(content)-1;
@@ -37,8 +41,8 @@ public class Duke {
                     task.setIsDone(true);
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println("  " + task);
-
-                }else if(order.equals("unmark")) {
+                }
+                else if(order.equals("unmark")) {
                     content = str[1];
                     int index = Integer.parseInt(content) - 1;
                     task = taskList.get(index);
@@ -46,7 +50,8 @@ public class Duke {
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println("  " + task);
 
-                } else if(order.equals("delete")){
+                }
+                else if(order.equals("delete")){
                     content = str[1];
                     int index = Integer.parseInt(content) - 1;
                     task = taskList.get(index);
@@ -59,7 +64,8 @@ public class Duke {
 
 
 
-                } else if (order.equals("todo")) {
+                }
+                else if (order.equals("todo")) {
                     try {
                         content = str[1];
 
@@ -73,12 +79,13 @@ public class Duke {
                         System.out.println(" ☹ OOPS!!! The description of a todo cannot be empty.");
                     }
 
-                } else if (order.equals("deadline")) {
+                }
+                else if (order.equals("deadline")) {
 
                     content = str[1];
                     String[] contents = content.split(" /by ");
-
-                    Deadline deadline = new Deadline(contents[0], contents[1]);
+                    LocalDate date = LocalDate.parse(contents[1]);
+                    Deadline deadline = new Deadline(contents[0], date);
                     taskList.add(deadline);
                     int num = taskList.size();
                     System.out.println("Got it. I've added this task:");
