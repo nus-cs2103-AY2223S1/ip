@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
@@ -15,19 +16,47 @@ public class Duke {
 //        start();
 //    }
 
+//    public void read() {
+//        try {
+//            BufferedReader reader = new BufferedReader(new FileReader("list.txt"));
+//            String line;
+//            while ((line = reader.readLine()) != null) {
+//
+//
+//            }
+//            reader.close();
+//        } catch (IOException e) {
+//            System.out.println("Error: " + e);
+//        }
+//    }
+//
+//    public void save(String s) {
+//        try {
+//            BufferedWriter writer = new BufferedWriter(new FileWriter("list.txt")); // putthis under start probablu
+//            // rewrite constantly
+//
+//            for(int i = 0; i < tasklist.size(); i ++) {
+//                DukeTask t = tasklist.get(i);
+//                writer.write(t.taskType + " | " + (t.isMarked ? 'X' : 'O' + " | " + t.task));
+//            }
+//
+//
+//            writer.close(); // put this under bye probably
+//
+//        } catch (IOException e) {
+//            System.out.println("Error: " + e);
+//        }
+//
+//    }
 
-
+    private static final ArrayList<DukeTask> tasklist = new ArrayList<>();
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("What are your commands sir:");
 
-        ArrayList<DukeTask> tasklist = new ArrayList<>();
 
-//        String[] arr = new String[100];
-//        char[] markArr = new char[100];
-//        char[] eventTypeArr = new char[100];
+
         boolean pred = true;
-//        int i = 0;
 
         while(pred) {
             if (input.hasNext()) {
@@ -80,16 +109,18 @@ public class Duke {
 
                 } else if (str.startsWith("deadline")) {
                     str = str.substring(9);
-                    String s = str.substring(0, str.indexOf('/')) + '(' + str.substring(str.indexOf('/') + 1) + ')';
-                    DukeTask t = new DukeTask(s, false, 'D');
+                    String s1 = str.substring(0, str.indexOf('/'));
+                    String s2 = " (" + str.substring(str.indexOf('/') + 1) + ')';
+                    DukeTask t = new DukeTask(s1, false, 'D', s2);
                     tasklist.add(t);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
 
                 } else if (str.startsWith("event")) {
                     str = str.substring(6);
-                    String s = str.substring(0, str.indexOf('/')) + '(' + str.substring(str.indexOf('/') + 1) + ')';
-                    DukeTask t = new DukeTask(s, false, 'E');
+                    String s1 = str.substring(0, str.indexOf('/'));
+                    String s2 = " (" + str.substring(str.indexOf('/') + 1) + ')';
+                    DukeTask t = new DukeTask(s1, false, 'E', s2);
                     tasklist.add(t);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
@@ -114,12 +145,5 @@ public class Duke {
             }
         }
 
-//
-//        String logo = " ____        _        \n"
-//                    + "|  _ \\ _   _| | _____ \n"
-//                    + "| | | | | | | |/ / _ \\\n"
-//                    + "| |_| | |_| |   <  __/\n"
-//                    + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Bye from\n" + logo);
     }
 }
