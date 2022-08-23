@@ -72,13 +72,18 @@ public class Storage {
             for (int i = 1 ; i <= tasks.getSize(); i++) {
                 String s = "";
                 Task task = tasks.getTask(i);
-                s += task.toString().substring(1,2);
+                String taskType = task.toString().substring(1,2);
+                s += taskType;
                 if (task.getIsDone()) {
                     s += " | 1 | ";
                 } else {
                     s += " | 0 | ";
                 }
-                s += task.getDescription() + " | " + task.getDate() + "\n";
+                if (taskType.equals("T")) {
+                    s += task.getDescription() + "\n";;
+                } else {
+                    s += task.getDescription() + " | " + task.getDate() + "\n";
+                }
                 fw.write(s);
                 fw.flush();
             }
