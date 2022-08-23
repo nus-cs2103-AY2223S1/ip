@@ -23,4 +23,6 @@ public abstract class Task {
         String checkbox = this.isComplete ? "[X]" : "[ ]";
         return checkbox + " " + this.name;
     }
+
+    public abstract String toFileRepresentation();
 }

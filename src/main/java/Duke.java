@@ -4,8 +4,27 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Duke {
+
+    private static void writeTasksToDisk(List<Task> tasks) {
+        try {
+
+            // Note: This deletes the existing contents of data/duke.txt.
+            PrintWriter printWriter = new PrintWriter("data/duke.txt");
+
+            for (Task task : tasks) {
+                printWriter.println(task.toFileRepresentation());
+            }
+
+            printWriter.close();
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred when saving the tasks.");
+            e.getStackTrace();
+        }
+    }
 
     private static void loadTasksFromDisk(List<Task> tasks) {
         try {
@@ -21,6 +40,7 @@ public class Duke {
                     Scanner scanner = new Scanner(file);
                     while (scanner.hasNextLine()) {
                         String line = scanner.nextLine();
+                        // TODO: Forbid the user from entering the | character.
                         String[] components = line.split("\\|");
                         boolean isTaskInitiallyComplete = (components[1] == "1");
                         switch (components[0]) {
@@ -64,6 +84,7 @@ public class Duke {
             String userInput = sc.next();
 
             if (userInput.equals("bye")) {
+                writeTasksToDisk(tasks);
                 System.out.println("Duke: Bye!");
                 break;
             }
