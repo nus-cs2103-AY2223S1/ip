@@ -34,8 +34,9 @@ public class Duke {
      * @throws DukeException if given index is out of bounds
      */
     public static void removeTask(int taskIndex) throws DukeException {
-        if (taskIndex < 0 || taskIndex >= tasks.size())
+        if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new DukeException("Please enter a valid task number!");
+        }
         Task task = tasks.remove(taskIndex);
         System.out.println("Noted. I've removed this task:");
         System.out.println("\t" + task);
@@ -49,20 +50,21 @@ public class Duke {
      * @throws DukeException if given index is out of bounds
      */
     public static void changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
-        if (taskIndex < 0 || taskIndex >= tasks.size())
+        if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new DukeException("Please enter a valid task number!");
-        if (isDone)
+        }
+        if (isDone) {
             tasks.get(taskIndex).markAsDone();
-        else
+        } else {
             tasks.get(taskIndex).markAsNotDone();
+        }
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean hasNextInput = true;
 
-        String logo = "_________                     ___\n"
-                + "\\    ___ \\  ___________   ____\\_ |_________  ____\n"
+        String logo = "_________                     ___\n" + "\\    ___ \\  ___________   ____\\_ |_________  ____\n"
                 + "/    \\  \\/_/ __ \\_  __ \\_/ __ \\| __ \\_  __ \\/  _ \\\n"
                 + "\\     \\___\\  ___/|  | \\/\\  ___/| \\_\\ \\  | \\(  (_) )\n"
                 + " \\________/\\_____>__|    \\_____>_____/__|   \\____/\n";
@@ -76,28 +78,28 @@ public class Duke {
 
             try {
                 switch (Command.valueOf(input.split(" ")[0])) {
-                    case bye:
-                        hasNextInput = false;
-                        scanner.close();
-                        break;
-                    case list:
-                        displayList();
-                        break;
-                    case mark:
-                        taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-                        changeTaskStatus(taskIndex, true);
-                        break;
-                    case unmark:
-                        taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-                        changeTaskStatus(taskIndex, false);
-                        break;
-                    case delete:
-                        taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
-                        removeTask(taskIndex);
-                        break;
-                    default:
-                        addTask(Task.createTask(input));
-                        break;
+                case bye:
+                    hasNextInput = false;
+                    scanner.close();
+                    break;
+                case list:
+                    displayList();
+                    break;
+                case mark:
+                    taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+                    changeTaskStatus(taskIndex, true);
+                    break;
+                case unmark:
+                    taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+                    changeTaskStatus(taskIndex, false);
+                    break;
+                case delete:
+                    taskIndex = Integer.parseInt(input.split(" ")[1]) - 1;
+                    removeTask(taskIndex);
+                    break;
+                default:
+                    addTask(Task.createTask(input));
+                    break;
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Please Enter a valid task number!");

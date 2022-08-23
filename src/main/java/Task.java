@@ -19,8 +19,9 @@ public abstract class Task {
      * @throws DukeException if no description is present
      */
     public static void checkDescription(String[] splitInput) throws DukeException {
-        if (splitInput.length == 1)
+        if (splitInput.length == 1) {
             throw new DukeException("Please enter the description when creating new task!");
+        }
     }
 
     /**
@@ -35,17 +36,17 @@ public abstract class Task {
         String[] splitInput = input.split(" ", 2);
 
         switch (Command.valueOf(splitInput[0])) {
-            case todo:
-                checkDescription(splitInput);
-                return Todo.createTodo(splitInput[1]);
-            case deadline:
-                checkDescription(splitInput);
-                return Deadline.createDeadline(splitInput[1]);
-            case event:
-                checkDescription(splitInput);
-                return Event.createEvent(splitInput[1]);
-            default:
-                throw new DukeException("I'm sorry but I don't know what that means.");
+        case todo:
+            checkDescription(splitInput);
+            return Todo.createTodo(splitInput[1]);
+        case deadline:
+            checkDescription(splitInput);
+            return Deadline.createDeadline(splitInput[1]);
+        case event:
+            checkDescription(splitInput);
+            return Event.createEvent(splitInput[1]);
+        default:
+            throw new DukeException("I'm sorry but I don't know what that means.");
         }
     }
 

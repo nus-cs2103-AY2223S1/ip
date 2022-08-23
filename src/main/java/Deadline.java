@@ -21,8 +21,9 @@ public class Deadline extends Task {
      * @throws DukeException if deadline is not specified using /by
      */
     public static Deadline createDeadline(String input) throws DukeException {
-        if (input.indexOf("/by ") == -1)
+        if (input.indexOf("/by ") == -1) {
             throw new DukeException("Please enter a valid deadline using the /by flag.");
+        }
         String deadlineDescription = input.split("/by ")[0];
         String deadline = input.split("/by ")[1];
         return new Deadline(deadlineDescription, deadline);

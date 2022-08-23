@@ -3,6 +3,9 @@
 /out/
 /*.iml
 
+# VsCode files
+/.vscode/
+
 # Gradle build files
 /.gradle/
 /build/

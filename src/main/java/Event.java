@@ -21,8 +21,9 @@ public class Event extends Task {
      * @throws DukeException if event timing is not specified using /at
      */
     public static Event createEvent(String input) throws DukeException {
-        if (input.indexOf("/at ") == -1)
+        if (input.indexOf("/at ") == -1) {
             throw new DukeException("Please enter a valid event timing using the /at flag.");
+        }
         String eventDescription = input.split("/at ")[0];
         String event = input.split("/at ")[1];
         return new Event(eventDescription, event);
