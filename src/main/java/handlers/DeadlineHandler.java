@@ -1,18 +1,11 @@
 package handlers;
 
 import entities.Deadline;
-import entities.Event;
 import entities.Task;
 import exceptions.DukeException;
-<<<<<<< HEAD
 import service.Service;
-=======
 
 import java.time.format.DateTimeParseException;
-import java.util.List;
->>>>>>> branch-Level-8
-
-import static utils.Utils.addToList;
 
 public class DeadlineHandler implements IHandler{
     private String deadlineName;
