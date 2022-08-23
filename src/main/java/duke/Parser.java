@@ -1,18 +1,17 @@
 package duke;
 
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import duke.commands.*;
 import duke.tasks.*;
 
 public class Parser {
-    public static Command parseInput(String input) throws DukeException, IOException {
+    public static Command parseInput(String input) throws DukeException{
         String[] splitInput = input.split(" ", 2);
         String command = splitInput[0].trim();
         String detail = "";
         Boolean description_needed = command.equals("todo") || command.equals("deadline") || command.equals("event") ||
-                command.equals("mark") || command.equals("unmark") || command.equals("delete");
+                command.equals("mark") || command.equals("unmark") || command.equals("delete") || command.equals("find");
         if (splitInput.length <= 1 && description_needed) {
             throw new DukeException("Description of command is required.");
         } else if (description_needed){
@@ -20,22 +19,24 @@ public class Parser {
         }
 
         switch (command) {
-            case "list":
-                return new ListCommand();
-            case "mark":
-                return new MarkCommand(detail);
-            case "unmark":
-                return new UnmarkCommand(detail);
-            case "todo":
-                return new TodoCommand(detail);
-            case "deadline":
-                return new DeadlineCommand(detail);
-            case "event":
-                return new EventCommand(detail);
-            case "delete":
-                return new DeleteCommand(detail);
-            default:
-                throw new DukeException(command + " is an invalid command.");
+        case "list":
+            return new ListCommand();
+        case "mark":
+            return new MarkCommand(detail);
+        case "unmark":
+            return new UnmarkCommand(detail);
+        case "todo":
+            return new TodoCommand(detail);
+        case "deadline":
+            return new DeadlineCommand(detail);
+        case "event":
+            return new EventCommand(detail);
+        case "delete":
+            return new DeleteCommand(detail);
+        case "find":
+            return new FindCommand(detail);
+        default:
+            throw new DukeException(command + " is an invalid command.");
         }
     }
 
