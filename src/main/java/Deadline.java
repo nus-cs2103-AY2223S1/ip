@@ -7,6 +7,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getTask() {
+        String done = this.isDone ? "1" : "0";
+        return String.format("D | %s | %s | %s", done, this.description, this.endDate);
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.endDate + ")";
     }
