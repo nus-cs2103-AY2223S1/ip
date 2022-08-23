@@ -1,20 +1,86 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
+
+import Exceptions.DukeException;
+import Tasks.Task;
+import Tasks.TaskList;
+
+import UI.Ui;
+
+import Storage.Storage;
+
+import java.io.IOException;
+import java.util.Scanner;
 
 
 public class Duke {
+    private TaskList tasks;
+    private Storage storage;
+
+
+    private Ui ui;
+
+    public Duke() {
+
+        String home = System.getProperty("user.home");
+        java.nio.file.Path path = java.nio.file.Paths.get(home, "OneDrive - National University of Singapore", "2022_fall_sem_NUS", "CS2103T Software Engineering", "Code_Independent Project", "src", "data","Duke.txt");
+
+        ui = new Ui();
+        storage = new Storage(String.valueOf(path));
+
+        try {
+            System.out.println("d");
+            tasks = storage.obtain();
+            System.out.println("d");
+        } catch (DukeException e)
+        {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+
+    }
+
+    public void run() {
+        System.out.println("PPP");
+
+
+    }
     public static void main(String[] args) throws DukeException {
 
+
+        String home = System.getProperty("user.home");
+        java.nio.file.Path path = java.nio.file.Paths.get(home, "OneDrive - National University of Singapore", "2022_fall_sem_NUS", "CS2103T Software Engineering", "Code_Independent Project", "src", "data","Duke.txt");
+        boolean directotyExists = java.nio.file.Files.exists(path);
+        System.out.println("path: " + path);
+        System.out.println("path exists: " + directotyExists);
+
+
+        String homee = System.getProperty("user.home");
+        System.out.println(homee);
+        String he = System.getProperty("user.dir");
+        System.out.println(he);
+
+        java.nio.file.Path pathh = java.nio.file.Paths.get(he, "src", "data","Duke.txt");
+
+        try {
+            int i = 0;
+            Scanner fileReader = new Scanner(pathh);
+            TaskList tasks = new TaskList();
+            while (fileReader.hasNext()) {
+                fileReader.nextLine();
+                i ++;
+            }
+            System.out.println(i);
+            fileReader.close();
+
+
+        } catch (IOException e) {
+            System.out.println("SSSS");
+        }
+
+
+
+
+/*
         String home = System.getProperty("user.home");
         java.nio.file.Path path = java.nio.file.Paths.get(home, "OneDrive - National University of Singapore", "2022_fall_sem_NUS", "CS2103T Software Engineering", "Code_Independent Project", "data", "Duke.txt");
         boolean directotyExists = java.nio.file.Files.exists(path);
@@ -42,9 +108,7 @@ public class Duke {
             File myfile = new File(String.valueOf(path));
             Scanner myReader = new Scanner(myfile);
             String line = myReader.nextLine();
-            /*
-            * Make the function!!!!
-            * */
+
 
         } catch (FileNotFoundException e)
         {
@@ -169,7 +233,13 @@ public class Duke {
         System.out.print("Bye. Hope to see you again soon!");
 
     }
-    /*
-    * Enumerations: currently not applicable ?
-    * */
+
+*/
+
+    }
+
+
+
+
 }
+

@@ -1,4 +1,6 @@
-public class InvalidCommentException extends DukeException{
+import Exceptions.DukeException;
+
+public class InvalidCommentException extends DukeException {
 
     @Override
     public String toString(){

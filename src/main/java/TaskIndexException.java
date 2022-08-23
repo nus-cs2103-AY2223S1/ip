@@ -1,4 +1,6 @@
-public class TaskIndexException extends DukeException{
+import Exceptions.DukeException;
+
+public class TaskIndexException extends DukeException {
 
     @Override
     public String toString(){
