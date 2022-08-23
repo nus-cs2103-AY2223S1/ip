@@ -1,5 +1,6 @@
 package duke.task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import duke.Ui;
@@ -81,6 +82,23 @@ public class TaskList {
         Task task = taskList.get(index);
         task.markAsUndone();
         ui.unmarkMessage(task);
+    }
+
+    /**
+     * Lists tasks with matching description.
+     *
+     * @param description Description to be matched.
+     */
+    public void findTasks(String description) {
+        List<Task> matchedTasks = new ArrayList<>();
+
+        for (Task task : taskList) {
+            if (task.toString().contains(description)) {
+                matchedTasks.add(task);
+            }
+        }
+
+        ui.listMatchedTasks(matchedTasks);
     }
 
     /**
