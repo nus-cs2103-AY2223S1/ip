@@ -2,6 +2,9 @@ package duke.util;
 
 import duke.DukeException;
 
+/**
+ * Exception thrown in case of a parse error.
+ */
 public class ParseException extends DukeException {
     public ParseException(String str) {
         super("Parsing error: " + str);

@@ -12,14 +12,25 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage class for storing and retrieving data from a file.
+ */
 public class Storage {
 
     private final File dataFile;
 
+    /**
+     * Constructs a new Storage object with a given file path.
+     *
+     * @param path The path to the file to store data in.
+     */
     public Storage(Path path) {
         this.dataFile = new File(path.toUri());
     }
 
+    /**
+     * Ensures that the {@code dataFile} is there and accessible.
+     */
     private void ensureDataFile() {
         if (dataFile.exists()) {
             return;
@@ -38,6 +49,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the {@code Task}s from the {@code dataFile}.
+     *
+     * @return The {@code Task}s loaded from the {@code dataFile} in an {@code ArrayList}.
+     */
     public ArrayList<Task> load() {
         ensureDataFile();
         Scanner scanner;
@@ -58,6 +74,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves the {@code Task}s from a {@code TaskList} to the {@code dataFile}.
+     *
+     * @param tasks The {@code TaskList} to save.
+     */
     public void save(TaskList tasks) {
         ensureDataFile();
         try {
