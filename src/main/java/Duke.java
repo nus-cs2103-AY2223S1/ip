@@ -1,3 +1,4 @@
+import pnkp.duke.MessagefulException;
 import pnkp.duke.modules.Todos;
 import pnkp.duke.modules.todos.Deadline;
 import pnkp.duke.modules.todos.Event;
@@ -29,7 +30,8 @@ public class Duke {
             Scanner scanner = new Scanner(line);
             String command = scanner.hasNext() ? scanner.next() : "";
 
-            switch (command) {
+            try {
+                switch (command) {
                 case "":
                     say("Sorry, I didn't catch that?");
                     break;
@@ -61,6 +63,9 @@ public class Duke {
                 default:
                     say("Sorry, I didn't understand what you said :(");
                     break;
+                }
+            } catch (MessagefulException e){
+                say(e.message());
             }
         }
     }

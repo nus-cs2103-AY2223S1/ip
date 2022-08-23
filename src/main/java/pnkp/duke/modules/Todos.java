@@ -49,14 +49,8 @@ public class Todos {
      * @param rest The scanner with the remaining text in the message.
      * @param constructor The fromChat factory function of the given task.
      */
-    public void cmdAdd(Scanner rest, FallibleFunction<Scanner, Task> constructor) {
-        final Task task;
-        try {
-            task = constructor.apply(rest);
-        } catch(MessagefulException e) {
-            say(e.message());
-            return;
-        }
+    public void cmdAdd(Scanner rest, FallibleFunction<Scanner, Task> constructor) throws MessagefulException {
+        final Task task = constructor.apply(rest);
 
         todos.add(task);
         say(List.of(
@@ -82,14 +76,8 @@ public class Todos {
      * Command for marking a task as done.
      * @param rest The scanner with the remaining text in the message.
      */
-    public void cmdMark(Scanner rest) {
-        final int taskID;
-        try {
-            taskID = readTodoID(rest, "Please give me a task number to mark!");
-        } catch (MessagefulException e) {
-            say(e.message());
-            return;
-        }
+    public void cmdMark(Scanner rest) throws MessagefulException {
+        final int taskID = readTodoID(rest, "Please give me a task number to mark!");
 
         todos.get(taskID).setDone(true);
         say(List.of("Nice! I've marked this task as done:",
@@ -100,14 +88,8 @@ public class Todos {
      * Command for marking a task as not done.
      * @param rest The scanner with the remaining text in the message.
      */
-    public void cmdUnmark(Scanner rest) {
-        final int taskID;
-        try {
-            taskID = readTodoID(rest, "Please give me a task number to unmark!");
-        } catch (MessagefulException e) {
-            say(e.message());
-            return;
-        }
+    public void cmdUnmark(Scanner rest) throws MessagefulException {
+        final int taskID = readTodoID(rest, "Please give me a task number to unmark!");
 
         todos.get(taskID).setDone(false);
         say(List.of("Alright, I've marked this task as not done yet:",
@@ -118,14 +100,8 @@ public class Todos {
      * Command for deleting a task.
      * @param rest The scanner with the remaining text in the message.
      */
-    public void cmdDelete(Scanner rest) {
-        final int taskID;
-        try {
-            taskID = readTodoID(rest, "Please give me a task number to delete!");
-        } catch (MessagefulException e) {
-            say(e.message());
-            return;
-        }
+    public void cmdDelete(Scanner rest) throws MessagefulException {
+        final int taskID = readTodoID(rest, "Please give me a task number to delete!");
 
         Task taskToDelete = todos.get(taskID);
         todos.remove(taskID);
