@@ -1,12 +1,11 @@
 package duke;
 
 import java.io.IOException;
+
 import java.util.Scanner;
-import java.util.List;
 
 public class Duke {
 
-    private static List<Task> list;
     private static TaskList tasks;
     private static Storage storage;
     private Ui ui;
@@ -14,6 +13,7 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+
         try {
             tasks = new TaskList(storage.load());
         } catch (IOException e) {
@@ -25,61 +25,66 @@ public class Duke {
     }
 
     public void run() {
+        boolean isTerminated = false;
+
         ui.welcomeLogo();
         ui.reply("Hello! I'm Duke. What can I do for you?");
+
         Scanner userInput = new Scanner(System.in);
-        boolean terminated = false;
-        while (!terminated) {
+
+        while (!isTerminated) {
+            Task newTask = null;
+
             String userText = userInput.nextLine();
             CommandType type = Parser.parse(userText);
-            Task newTask = null;
+
             switch (type) {
-                case BYE:
-                    ui.reply("Bye. Hope to see you again soon!");
-                    terminated = true;
-                    break;
-                case LIST:
-                    ui.reply(tasks.getList());
-                    break;
-                case MARK:
-                    ui.drawLine();
-                    try {
-                        tasks.mark(Integer.valueOf(userText.substring(5)));
-                    } catch (DukeException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    ui.drawLine();
-                    break;
-                case UNMARK:
-                    ui.drawLine();
-                    try {
-                        tasks.unmark(Integer.valueOf(userText.substring(7)));
-                    } catch (DukeException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    ui.drawLine();
-                    break;
-                case TODO:
-                    newTask = new ToDo();
-                    break;
-                case EVENT:
-                    newTask = new Event();
-                    break;
-                case DEADLINE:
-                    newTask = new DeadLine();
-                    break;
-                case DELETE:
-                    ui.drawLine();
-                    try {
-                        tasks.delete(Integer.valueOf(userText.substring(7)));
-                    } catch (DukeException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    ui.drawLine();
-                    break;
-                case UNABLE:
-                    ui.reply("OOPS!!! I'm sorry, but I don't know what that means :-(");
-                    break;
+            case BYE:
+                ui.reply("Bye. Hope to see you again soon!");
+                isTerminated = true;
+                break;
+            case LIST:
+                ui.reply(tasks.getList());
+                break;
+            case MARK:
+                ui.drawLine();
+                try {
+                    tasks.mark(Integer.valueOf(userText.substring(5)));
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+                ui.drawLine();
+                break;
+            case UNMARK:
+                ui.drawLine();
+                try {
+                    tasks.unmark(Integer.valueOf(userText.substring(7)));
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+                ui.drawLine();
+                break;
+            case TODO:
+                newTask = new ToDo();
+                break;
+            case EVENT:
+                newTask = new Event();
+                break;
+            case DEADLINE:
+                newTask = new DeadLine();
+                break;
+            case DELETE:
+                ui.drawLine();
+                try {
+                    tasks.delete(Integer.valueOf(userText.substring(7)));
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+                ui.drawLine();
+                break;
+            case UNABLE:
+                ui.reply("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                break;
             }
 
             if (newTask != null) {
@@ -99,7 +104,6 @@ public class Duke {
                 ui.reply(e.getMessage());
             }
         }
-
     }
 
     public static void main(String[] args) {

@@ -32,8 +32,6 @@ public class Event extends Task {
             throw new DukeException("OOPS!!! Please indicate when the event is happening with '/at'.");
         }
         super.addName(userInput.substring(6, index));
-
-
         this.atWhen = LocalDate.parse(userInput.substring(index + 5).replace('/', '-'));
     }
 
@@ -58,6 +56,7 @@ public class Event extends Task {
      */
     @Override
     public String getStatus() {
-        return String.format("[E]%s (at: %s)", super.getStatus(), this.atWhen.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
+        return String.format("[E]%s (at: %s)", super.getStatus(),
+                this.atWhen.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 }

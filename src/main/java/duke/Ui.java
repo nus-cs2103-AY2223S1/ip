@@ -13,7 +13,7 @@ public class Ui {
     }
 
     public void reply(String s) {
-        System.out.print(horizontalLine + s +'\n' + horizontalLine);
+        System.out.print(horizontalLine + s + '\n' + horizontalLine);
     }
 
     public void drawLine() {

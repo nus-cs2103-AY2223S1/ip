@@ -19,10 +19,10 @@ public class TaskList {
         TaskList.savedTasks = new ArrayList<Task>();
 
         while (s.hasNext()) {
-            String[] inputArr = s.nextLine().split(" \\| ");
-
-            String taskType = inputArr[0];
             Task newTask = null;
+
+            String[] inputArr = s.nextLine().split(" \\| ");
+            String taskType = inputArr[0];
 
             if (taskType.equals("T")) {
                 newTask = new ToDo();
@@ -108,7 +108,8 @@ public class TaskList {
         } else {
             Task selectedTask = TaskList.savedTasks.get(index - 1);
             selectedTask.markAsUndone();
-            System.out.println("OK, I've marked this task as not done yet:\n" + selectedTask.getStatus());
+            System.out.println("OK, I've marked this task as not done yet:\n"
+                    + selectedTask.getStatus());
         }
     }
 
@@ -142,7 +143,7 @@ public class TaskList {
             dataWritten += TaskList.savedTasks.get(i).getTask();
 
             if (i != TaskList.savedTasks.size() - 1) {
-                dataWritten+= "\n";
+                dataWritten += "\n";
             }
         }
 
