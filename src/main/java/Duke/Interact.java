@@ -1,5 +1,7 @@
-import java.time.LocalDate;
-import java.util.ArrayList;
+package Duke;
+
+import Duke.DukeExceptions.DukeException;
+
 import java.util.Scanner;
 
 public class Interact {

@@ -1,3 +1,5 @@
+package Duke.DukeExceptions;
+
 public class BadTaskOperationException extends DukeException {
     private static String line = "_______________________________________";
     private String taskType;

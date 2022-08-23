@@ -1,11 +1,10 @@
-import java.io.PrintWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+package Duke;
+
+import Duke.DukeExceptions.BadTaskOperationException;
+import Duke.DukeTasks.Task;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TasksManager {
     private String line = "_______________________________________";

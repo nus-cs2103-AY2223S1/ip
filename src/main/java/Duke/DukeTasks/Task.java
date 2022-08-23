@@ -1,3 +1,5 @@
+package Duke.DukeTasks;
+
 import java.time.LocalDate;
 
 public class Task {

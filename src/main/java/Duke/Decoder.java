@@ -1,3 +1,13 @@
+package Duke;
+
+import Duke.DukeExceptions.BadFormatException;
+import Duke.DukeExceptions.DukeException;
+import Duke.DukeExceptions.EmptyDescException;
+import Duke.DukeTasks.Deadline;
+import Duke.DukeTasks.Event;
+import Duke.DukeTasks.Task;
+import Duke.DukeTasks.Todo;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 

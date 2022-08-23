@@ -1,3 +1,5 @@
+package Duke.DukeExceptions;
+
 public class DukeException extends Exception {
     private static String line = "_______________________________________";
 

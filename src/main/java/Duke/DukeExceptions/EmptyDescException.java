@@ -1,3 +1,5 @@
+package Duke.DukeExceptions;
+
 public class EmptyDescException extends DukeException {
     private static String line = "_______________________________________";
 

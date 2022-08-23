@@ -1,3 +1,5 @@
+package Duke.DukeExceptions;
+
 public class BadFormatException extends DukeException {
     private static String line = "_______________________________________";
     private String taskType;
