@@ -61,7 +61,7 @@ public enum TaskType {
             String[] savedData = TaskType.parseFormatArray(savedFormat);
             boolean status = savedData[0].equals("Y");
             String description = savedData[1];
-            String datetime = savedData[2];
+            LocalDateTime datetime = LocalDateTime.parse(savedData[2]);
             return new Event(description, datetime, status);
         }
     },
@@ -95,7 +95,7 @@ public enum TaskType {
             String[] savedData = TaskType.parseFormatArray(savedFormat);
             boolean status = savedData[0].equals("Y");
             String description = savedData[1];
-            String datetime = savedData[2];
+            LocalDateTime datetime = LocalDateTime.parse(savedData[2]);
             return new Deadline(description, datetime, status);
         }
     };

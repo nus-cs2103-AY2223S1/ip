@@ -18,7 +18,7 @@ public class Event extends Task {
         this.eventDatetime = datetime;
     }
 
-    public Event(String description, String datetime, boolean completion) {
+    public Event(String description, LocalDateTime datetime, boolean completion) {
         super(description, completion);
         this.eventDatetime = datetime;
     }
@@ -27,7 +27,7 @@ public class Event extends Task {
     public String toSaveFormat() {
         return String.format("E | %s | %s | %s", this.isDone ? "Y" : "N",
                 this.description.replace("|", "\\|"),
-                this.eventDatetime.replace("|", "\\|"));
+                this.eventDatetime);
     }
 
     /**
