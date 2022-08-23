@@ -1,9 +1,17 @@
-
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 public class Duke {
-    public static void main(String[] args) {
+
+    public static void greet() {
         System.out.println("Greetings Human! I am BetaGo, your personal robot assistant!\nHow may I assist you today?\n");
+    }
+    public static void readCommands() {
+
         Scanner sc = new Scanner(System.in);
         String str= sc.nextLine();
         String[] inputs = str.split(" ", 2);
@@ -52,6 +60,15 @@ public class Duke {
             str = sc.nextLine();
             inputs = str.split(" ", 2);
         }
+    }
+
+    public static void goodbye() {
         System.out.println("Goodbye Human. Till next time.\n");
+    }
+
+    public static void main(String[] args) {
+        Duke.greet();
+        Duke.readCommands();
+        Duke.goodbye();
     }
 }
