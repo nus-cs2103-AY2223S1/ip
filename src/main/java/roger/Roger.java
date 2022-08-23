@@ -33,7 +33,7 @@ public class Roger {
                 this.tasks.add(StorageParser.toTask(taskString));
             }
         } catch (IOException | IllegalArgumentException e) {
-            this.ui.show("data/database.txt is corrupted. Starting over with a fresh database.");
+            this.ui.show(storageFilePath + " is corrupted. Starting over with a fresh database.");
         }
     }
 
