@@ -47,11 +47,10 @@ public class Duke {
                 }
                 case MARK: {
                     if (hasArgument) {
-                        int taskNum = Integer.parseInt(argument);
-                        Task task = taskList.getTask(taskNum - 1);
-                        task.markAsDone();
-                        System.out.printf("Well done! I've marked task %d as done:%n", taskNum);
-                        System.out.println(task);
+                        int taskId = Integer.parseInt(argument) - 1;
+                        taskList.markTask(taskId);
+                        System.out.printf("Well done! I've marked task %d as done:%n", taskId);
+                        System.out.println(taskList.getTask(taskId));
                     } else {
                         System.out.println("Sorry, you need to tell me which task to mark.");
                     }
@@ -59,11 +58,10 @@ public class Duke {
                 }
                 case UNMARK: {
                     if (hasArgument) {
-                        int taskNum = Integer.parseInt(argument);
-                        Task task = taskList.getTask(taskNum - 1);
-                        task.markAsUndone();
-                        System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
-                        System.out.println(task);
+                        int taskId = Integer.parseInt(argument) - 1;
+                        taskList.unmarkTask(taskId);
+                        System.out.printf("Sure, I've marked task %d as not done:%n", taskId);
+                        System.out.println(taskList.getTask(taskId));
                     } else {
                         System.out.println("Sorry, you need to tell me which task to unmark.");
                     }

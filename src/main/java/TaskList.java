@@ -29,6 +29,14 @@ public class TaskList implements Iterable<Task> {
         this.tasks.remove(index);
     }
 
+    public void markTask(int index) {
+        this.getTask(index).markAsDone();
+    }
+
+    public void unmarkTask(int index) {
+        this.getTask(index).markAsUndone();
+    }
+
     @Override
     public Iterator<Task> iterator() {
         return tasks.iterator();
