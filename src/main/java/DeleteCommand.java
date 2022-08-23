@@ -7,9 +7,10 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list) {
+    public void execCommand(TaskList list, Save save) {
         Task removed = list.removeTask(this.num);
         System.out.println("Understood. I have removed this task:\n" + removed +
                 "\nYou have " + list.getSize() + " task(s) in the list.");
+        save.saveList(list.save());
     }
 }

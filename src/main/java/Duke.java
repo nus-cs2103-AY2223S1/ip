@@ -1,11 +1,19 @@
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Duke {
 
     private TaskList list;
+    private final Save save;
 
-    public Duke() {
-        this.list = new TaskList();
+    public Duke(String filePath) {
+        this.save = new Save(filePath);
+        try {
+            this.list = new TaskList(save.load());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+            this.list = new TaskList();
+        }
     }
 
     private void run() {
@@ -20,7 +28,7 @@ public class Duke {
                 String next = sc.nextLine();
                 Input input = new Input(next);
                 Command cmd = input.getCommand();
-                cmd.execCommand(this.list);
+                cmd.execCommand(this.list, this.save);
                 terminated = cmd.isTerminated();
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
@@ -29,6 +37,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+        new Duke(System.getProperty("user.home") + "/data/duke.txt").run();
     }
 }

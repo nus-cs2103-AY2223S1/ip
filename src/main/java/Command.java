@@ -9,5 +9,5 @@ public abstract class Command {
         return this.terminated;
     }
 
-    public abstract void execCommand(TaskList list);
+    public abstract void execCommand(TaskList list, Save save);
 }

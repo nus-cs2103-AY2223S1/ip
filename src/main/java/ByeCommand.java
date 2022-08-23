@@ -5,7 +5,7 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execCommand(TaskList list) {
-        System.out.println("Goodbye! I hope to see you  again soon!");
+    public void execCommand(TaskList list, Save save) {
+        System.out.println("Goodbye! I hope to see you again soon!");
     }
 }
