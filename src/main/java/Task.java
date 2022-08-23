@@ -1,6 +1,6 @@
-public class Task {
-    protected String description;
-    protected boolean isDone;
+public abstract class Task {
+    private String description;
+    private boolean isDone;
 
     public Task(String description) {
         this.description = description;
@@ -8,18 +8,23 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (this.isDone ? "X" : " "); // mark done task with X
     }
 
-    public void changeStatus(boolean isTaskDone, boolean showMessage) {
-        isDone = isTaskDone;
-        if (showMessage) {
-            System.out.println("Task marked as " + (isTaskDone ? "" : "not ") + "done:\n\t" + this);
-        }
+    public void changeStatus(boolean isDone) {
+        this.isDone = isDone;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     @Override
     public String toString() {
-        return "[" + getStatusIcon() + "] " + description;
+        return String.format("[%s] %s", getStatusIcon(), this.description);
     }
+
+    public abstract String getType();
+
+    public abstract String getDate();
 }

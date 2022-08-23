@@ -1,90 +1,45 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TaskList {
-    protected ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks;
 
-    public void list() {
-        if (!tasks.isEmpty()) {
-            System.out.println("Task list:");
-            for (int i = 0; i < tasks.size(); i++) {
-                int taskNum = i + 1;
-                Task task = tasks.get(i);
-                System.out.println(taskNum + "." + task);
-            }
+    public TaskList() {
+        this.tasks = new ArrayList<Task>();
+    }
+
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public int numTasks() {
+        return this.tasks.size();
+    }
+
+    public Task getTask(int index) {
+        return this.tasks.get(index);
+    }
+
+    public Task changeTaskStatus(int index, boolean isDone) throws DukeException {
+        if (index >=0 && index < this.tasks.size()) {
+            Task task = this.tasks.get(index);
+            task.changeStatus(isDone);
+            return task;
         } else {
-            System.out.println("Your task list is empty!");
+            throw new DukeException(Message.NO_SUCH_TASK);
         }
     }
 
-    private int getTaskNumber(String[] splitInputArray) throws DukeException {
-        if (splitInputArray.length > 1) {
-            try {
-                return Integer.parseInt(splitInputArray[1]);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Please specify a task number!");
-            }
+    public void addTask(Task task) {
+        this.tasks.add(task);
+    }
+
+    public Task deleteTask(int index) throws DukeException {
+        if (index >=0 && index < this.tasks.size()) {
+            Task task = this.tasks.get(index);
+            this.tasks.remove(task);
+            return task;
         } else {
-            throw new DukeException("Please specify a task number!");
+            throw new DukeException(Message.NO_SUCH_TASK);
         }
-    }
-
-    public void changeTaskStatus(String[] splitInputArray) throws DukeException {
-        int taskNum = getTaskNumber(splitInputArray);
-        if (taskNum > 0 && taskNum <= tasks.size()) {
-            Task task = tasks.get(taskNum - 1);
-            task.changeStatus(splitInputArray[0].equals("mark"), true);
-        } else {
-            throw new DukeException("No such task!");
-        }
-    }
-
-    public void addTask(String[] splitInputArray) throws DukeException {
-        String command = splitInputArray[0];
-        boolean isToDo = command.equals("todo");
-        if (splitInputArray.length < 2) {
-            throw new DukeException("Please provide a task description" + (isToDo ? "!" : " and a date!"));
-        }
-
-        Task task;
-        String details = splitInputArray[1];
-        if (isToDo) {
-            task = new ToDo(details);
-        } else {
-            boolean isDeadline = command.equals("deadline");
-            int pos = details.indexOf(isDeadline ? " /by " : " /at ");
-            if (pos > 0 && details.length() > pos + 5) {
-                String description = details.substring(0, pos);
-                String date = details.substring(pos + 5);
-                task = isDeadline ? new Deadline(description, date) : new Event(description, date);
-            } else {
-                throw new DukeException("Please provide a task description and date!");
-            }
-        }
-        tasks.add(task);
-        System.out.println("Task added:\n\t" + task);
-    }
-
-    public void addTaskFromFile(Task task) {
-        tasks.add(task);
-    }
-
-    public void deleteTask(String[] splitInputArray) throws DukeException {
-        int taskNum = getTaskNumber(splitInputArray);
-        if (taskNum > 0 && taskNum <= tasks.size()) {
-            Task task = tasks.get(taskNum - 1);
-            tasks.remove(taskNum - 1);
-            System.out.println("Task removed:\n\t" + task);
-        } else {
-            throw new DukeException("No such task!");
-        }
-    }
-
-    public void displayNumOfTasks() {
-        System.out.println("You have " + tasks.size() + (tasks.size() == 1 ? " task" : " tasks") + " in the list.");
     }
 }

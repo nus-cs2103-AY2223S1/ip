@@ -1,77 +1,37 @@
-import java.util.Scanner;
-
 public class Duke {
-    protected TaskList tasks = new TaskList();
-    protected TaskFile taskFile = new TaskFile();
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-    public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
-    }
-
-    public Command getCommand(String str) throws DukeException {
+    public Duke() {
+        this.ui = new Ui();
+        this.storage = new Storage();
         try {
-            return Command.valueOf(str.toUpperCase());
-        } catch (IllegalArgumentException e) {
-            throw new DukeException("Sorry! I don't know what that means :(");
+            this.tasks = new TaskList(this.storage.load());
+        } catch (DukeException e) {
+            this.ui.show(e.getMessage());
+            this.tasks = new TaskList();
         }
     }
 
-    public void greet() {
-        System.out.println("Hello! I'm Pip :)\nWhat can I do for you?");
-    }
-
-    public void exit() {
-        System.out.println("Goodbye and see you again soon!");
+    public void run() {
+        this.ui.showGreeting();
+        boolean isBye = false;
+        while (!isBye) {
+            try {
+                String input = this.ui.readInput();
+                Command command = Parser.parse(input);
+                command.execute(this.tasks, this.ui, this.storage);
+                this.storage.save(this.tasks);
+                isBye = command.isBye();
+            } catch (DukeException e) {
+                this.ui.show(e.getMessage());
+            }
+        }
     }
 
     public static void main(String[] args) {
         Duke duke = new Duke();
-        duke.greet();
-
-        Scanner in = new Scanner(System.in);
-        String input;
-
-        try {
-            duke.taskFile.readFile(duke.tasks);
-            do {
-                input = in.nextLine();
-                String[] splitInputArray = input.split(" ", 2);
-                String firstWord = splitInputArray[0];
-
-                try {
-                    switch (duke.getCommand(firstWord)) {
-                        case BYE:
-                            duke.exit();
-                            break;
-                        case LIST:
-                            duke.tasks.list();
-                            break;
-                        case MARK:
-                        case UNMARK:
-                            duke.tasks.changeTaskStatus(splitInputArray);
-                            break;
-                        case TODO:
-                        case DEADLINE:
-                        case EVENT:
-                            duke.tasks.addTask(splitInputArray);
-                            duke.tasks.displayNumOfTasks();
-                            break;
-                        case DELETE:
-                            duke.tasks.deleteTask(splitInputArray);
-                            duke.tasks.displayNumOfTasks();
-                            break;
-                        default:
-                            throw new DukeException("Sorry! I don't know what that means :(");
-                    }
-                } catch (DukeException e) {
-                    System.out.println(e.getMessage());
-                }
-                duke.taskFile.saveToFile(duke.tasks);
-            } while (!input.equals("bye"));
-        } catch (DukeException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            in.close();
-        }
+        duke.run();
     }
 }

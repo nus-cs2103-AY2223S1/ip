@@ -1,23 +1,33 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
-    protected static String inputFormat = "yyyy-MM-dd";
-    protected static String outputFormat = "d MMM yyyy";
-    protected LocalDate by;
+    private static final String TASK_SYMBOL = "D";
+    private static final String OUTPUT_FORMAT = "d MMM yyyy";
+    private String by;
 
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, String by) {
         super(description);
-        try {
-            this.by = LocalDate.parse(by, DateTimeFormatter.ofPattern(inputFormat));
-        } catch (DateTimeParseException e) {
-            throw new DukeException("Please specify a date in this format: " + inputFormat + "!");
-        }
+        this.by = by;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern(outputFormat)) + ")";
+        return String.format("[%s]%s (by: %s)", Deadline.TASK_SYMBOL, super.toString(), this.getFormattedDate());
+    }
+
+    @Override
+    public String getType() {
+        return Deadline.TASK_SYMBOL;
+    }
+
+    @Override
+    public String getDate() {
+        return this.by;
+    }
+
+    private String getFormattedDate() {
+        LocalDate date = Parser.parseDate(this.by);
+        return date.format(DateTimeFormatter.ofPattern(OUTPUT_FORMAT));
     }
 }
