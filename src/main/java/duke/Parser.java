@@ -66,6 +66,8 @@ public class Parser {
                 }
                 String[] input = description.split(" /at ");
                 tasks.add(new Event(input[0], input[1]));
+            } else if (command.equalsIgnoreCase("find")) {
+                tasks.findTasks(description);
             } else if (command.equalsIgnoreCase("help")) {
                 ui.helpMessage();
             } else {

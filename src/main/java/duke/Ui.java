@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.List;
+
 import duke.task.Task;
 import duke.task.TaskList;
 
@@ -90,6 +92,26 @@ public class Ui {
         System.out.println("\n-----------------------------------------");
         System.out.println("Here are the tasks in your list");
         for (Task task : tasks.getTaskList()) {
+            System.out.println(++counter + "." + task);
+        }
+        System.out.println("-----------------------------------------\n");
+    }
+
+    /**
+     * Prints matched tasks in List.
+     *
+     * @param tasks The list of matched tasks.
+     */
+    public void listMatchedTasks(List<Task> tasks) {
+        if (tasks.isEmpty()) {
+            System.out.println("\n-----------------------------------------");
+            System.out.println("Boo... No matching tasks found!");
+            System.out.println("-----------------------------------------\n");
+        }
+        int counter = 0;
+        System.out.println("\n-----------------------------------------");
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task task : tasks) {
             System.out.println(++counter + "." + task);
         }
         System.out.println("-----------------------------------------\n");

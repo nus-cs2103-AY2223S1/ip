@@ -1,3 +1,5 @@
 E >  eat > 0 > 2020-09-12 1000
 D >  123 > 0 > 2020-09-09 1212
 T >  q123 > 0 > Not Applicable
+T >  read book > 0 > Not Applicable
+D >  return book > 0 > 2020-09-12 1000
