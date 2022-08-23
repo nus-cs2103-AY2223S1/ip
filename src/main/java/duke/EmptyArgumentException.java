@@ -1,3 +1,5 @@
+package duke;
+
 public class EmptyArgumentException extends DukeException {
 
     public EmptyArgumentException(Commands argument) {

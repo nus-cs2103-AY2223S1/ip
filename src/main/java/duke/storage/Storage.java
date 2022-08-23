@@ -1,12 +1,16 @@
+package duke.storage;
+
+import duke.*;
+import duke.task.TaskList;
+
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Represents the Storage class which stores data for Duke.
+ * Represents the duke.storage.Storage class which stores data for duke.Duke.
  *
  * @author Leong Jia Hao Daniel
  */
@@ -23,7 +27,8 @@ public class Storage {
         this.currentFile = new File(filePath);
     }
 
-    public void loadFile() throws IOException {
+    public ArrayList<Task> load() throws DukeException {
+        ArrayList<Task> temp = new ArrayList<>();
         File directory = new File("data");
         if (!directory.exists()) {
             directory.mkdir();
@@ -39,15 +44,15 @@ public class Storage {
                         switch (taskType) {
                             case 'T':
                                 ToDo todo = ToDo.parseFile(string);
-                                Duke.loadTask(todo);
+                                temp.add(todo);
                                 break;
                             case 'D':
                                 Deadline deadline = Deadline.parseFile(string);
-                                Duke.loadTask(deadline);
+                                temp.add(deadline);
                                 break;
                             case 'E':
                                 Event event = Event.parseFile(string);
-                                Duke.loadTask(event);
+                                temp.add(event);
                                 break;
                             default:
                                 throw new DukeException("Error in storage!");
@@ -62,23 +67,23 @@ public class Storage {
         } catch(IOException e){
             e.printStackTrace();
         }
+        return temp;
     }
 
-    public void saveFile(ArrayList<Task> data) throws IOException {
+    public void saveFile(TaskList data) {
         File directory = new File("data");
         if (!directory.exists()) {
             directory.mkdir();
         }
         try {
             FileWriter writer = new FileWriter("data/duke.txt", false);
-            for (Task task : data) {
+            for (Task task : data.getTaskList()) {
                 writer.write(task.toDataFormat() + "\n");
             }
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
     }
 }

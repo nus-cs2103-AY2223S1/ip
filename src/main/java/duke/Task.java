@@ -1,3 +1,5 @@
+package duke;
+
 public class Task {
 
     private String description;
@@ -25,11 +27,11 @@ public class Task {
     }
 
     public String toDataFormat() {
-        return "Task in data";
+        return "duke.Task in data";
     }
 
     /**
-     * Overrides the String implementation of Task
+     * Overrides the String implementation of duke.Task
      *
      * @return A string that shows the completion status of task
      */
