@@ -7,7 +7,7 @@ public class Event extends Task{
     }
 
     public String format() {
-        return "event " + this.description + " /at " + this.at;
+        return "event " + this.description + " /at " + this.at + "|" + this.getStatusIcon();
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Deadline extends Task{
 
     @Override
     public String format() {
-        return "deadline " + this.description + " /by " + this.by;
+        return "deadline " + this.description + " /by " + this.by + "|" + this.getStatusIcon();
     }
 
     @Override

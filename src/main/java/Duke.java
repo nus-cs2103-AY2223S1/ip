@@ -60,7 +60,16 @@ public class Duke {
     }
 
     private static void parse(String input, boolean fromSave) throws DukeWrongArgumentException {
-        String[] arr = input.split(" ", 2);
+        String mark = null;
+        String[] arr;
+        if (fromSave) {
+            String[] item = input.split("\\|");
+            mark = item[1];
+            arr = item[0].split(" ", 2);
+        } else {
+            arr = input.split(" ", 2);
+        }
+
         COMMANDS command = COMMANDS.valueOf(arr[0]);
 
         try {
@@ -98,7 +107,11 @@ public class Duke {
         switch (command) {
             case todo: {
                 try {
-                    store.add(new ToDo((arr[1])));
+                    Task stuff = new ToDo((arr[1]));
+                    store.add(stuff);
+                    if (mark != null && mark.equals("X")) {
+                        stuff.markAsDone();
+                    }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeWrongArgumentException("The proper command is: todo [description]", e);
                 }
@@ -107,7 +120,11 @@ public class Duke {
             case deadline: {
                 try {
                     String[] desc = arr[1].split(" /by ");
-                    store.add(new Deadline(desc[0], desc[1]));
+                    Task stuff = new Deadline(desc[0], desc[1]);
+                    store.add(stuff);
+                    if (mark != null && mark.equals("X")) {
+                        stuff.markAsDone();
+                    }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeWrongArgumentException("The proper command is: deadline [description] /by [date]", e);
                 }
@@ -116,7 +133,11 @@ public class Duke {
             case event: {
                 try {
                     String[] desc = arr[1].split(" /at ");
-                    store.add(new Event(desc[0], desc[1]));
+                    Task stuff = new Event(desc[0], desc[1]);
+                    store.add(stuff);
+                    if (mark != null && mark.equals("X")) {
+                        stuff.markAsDone();
+                    }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeWrongArgumentException("The proper command is: event [description] /at [date]", e);
                 }
@@ -124,20 +145,13 @@ public class Duke {
             }
         }
         String item = store.get(store.size() - 1).toString();
-        try {
-            if (!fromSave) {
-                Task.writeToFile(input);
-                System.out.println("\tadded: " + item);
-                System.out.println("You now have " + store.size() + " tasks in the list");
-            }
-        } catch (IOException e) {
-            System.out.println("something went wrong while saving\n" + e);
+        if (!fromSave) {
+            System.out.println("\tadded: " + item);
+            System.out.println("You now have " + store.size() + " tasks in the list");
         }
     }
 
     private static void loadFromFile() {
-        File directory = new File("data");
-        directory.mkdir();
         File dataFile = new File(FILE_PATH);
         if (dataFile.exists()) {
             try {
@@ -153,25 +167,21 @@ public class Duke {
     }
 
     private static void saveToFile() {
+        File directory = new File("data" + File.separator);
         File save = new File(FILE_PATH);
+        directory.mkdir();
         try {
-            PrintWriter writer = new PrintWriter(save);
-            writer.print("");
-            writer.close();
-        } catch (FileNotFoundException e) {
-            try {
-                save.createNewFile();
-            } catch (IOException f) {
-                System.out.println("something went wrong while creating save file\n" + f);
-            }
+            save.createNewFile();
+        } catch (IOException f) {
+            System.out.println("something went wrong while creating save file\n" + f);
         }
 
         try {
+            FileWriter fw = new FileWriter(FILE_PATH);
             for (Task item : store) {
-                FileWriter fw = new FileWriter(FILE_PATH, true);
                 fw.write(item.format() + "\n");
-                fw.close();
             }
+            fw.close();
         } catch (IOException e) {
             System.out.println("something went wrong while writing to save file\n" + e);
         }

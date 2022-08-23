@@ -4,7 +4,7 @@ public class ToDo extends Task {
     }
 
     public String format() {
-        return "todo " + this.description;
+        return "todo " + this.description + "|" + this.getStatusIcon();
     }
 
     @Override
