@@ -26,8 +26,12 @@ public class Parser {
             } else if (temp.equals("list")) {
                 result[0] = "list";
                 return result;
-            } else if (temp.equals("mark") || temp.equals("unmark") || temp.equals("delete")
-                    || temp.equals("todo") || temp.equals("deadline") || temp.equals("event")){
+
+            } else if (temp.equals("mark") || temp.equals("unmark")
+                    || temp.equals("delete") || temp.equals("todo")
+                    || temp.equals("deadline") || temp.equals("event")
+                    || temp.equals("find")) {
+
                 throw new EmptyDescriptionException("Empty descriptor", temp);
             } else {
                 throw new InvalidTaskException("No valid task descriptor");
@@ -58,6 +62,12 @@ public class Parser {
             } else {
                 throw new InvalidTaskException("No valid task descriptor");
             }
+        } else if (helper[0].equals("find")) {
+            result[0] = "find";
+            String[] findDescription = s.split(" ", 2);
+            result[1] = findDescription[1];
+            return result;
+
         } else if (helper[0].equals("todo")) {
             result[0] = "todo";
             String[] todoString = s.split(" ", 2);

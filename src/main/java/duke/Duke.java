@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.DateTimeException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -66,6 +67,10 @@ public class Duke {
                 tList.removeTask(a);
                 ui.printDelete(temp, tList);
 
+            } else if (parsed[0].equals("find")) {
+                ArrayList<Task> temp;
+                temp = tList.find(parsed[1]);
+                ui.printFind(temp);
 
             } else if (parsed[0].equals("todo")) {
                 Todo a = new Todo(parsed[1]);
