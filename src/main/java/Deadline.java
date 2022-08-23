@@ -1,13 +1,15 @@
-public class Deadline extends Task {
-    private final String dueDate;
+import java.time.LocalDateTime;
 
-    public Deadline(String name, String dueDate) {
+public class Deadline extends Task {
+    private final LocalDateTime dueDate;
+
+    public Deadline(String name, String dueDateAsText) {
         super(name);
-        this.dueDate = dueDate;
+        this.dueDate = LocalDateTime.parse(dueDateAsText);
     }
 
     @Override
     public String toString() {
-        return String.format("[D] %s (by %s)", super.toString(), this.dueDate);
+        return String.format("[D] %s (by %s)", super.toString(), this.dueDate.toString());
     }
 }
