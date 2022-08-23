@@ -17,12 +17,12 @@ import roger.tasks.ToDo;
  * 2. "E | 1 | task name"
  */
 public class StorageParser {
-    private static final String EVENT_TASK_TYPE = "E";
-    private static final String DEADLINE_TASK_TYPE = "D";
-    private static final String TODO_TASK_TYPE = "T";
+    private static final String TASK_TYPE_EVENT = "E";
+    private static final String TASK_TYPE_DEADLINE = "D";
+    private static final String TASK_TYPE_TODO = "T";
 
-    private static final String TASK_DONE_INDICATOR = "1";
-    private static final String TASK_NOT_DONE_INDICATOR = "0";
+    private static final String TASK_INDICATOR_DONE = "1";
+    private static final String TASK_INDICATOR_NOT_DONE = "0";
 
     /**
      * Parse the taskString.
@@ -36,11 +36,11 @@ public class StorageParser {
 
         try {
             switch (taskType) {
-            case EVENT_TASK_TYPE:
+            case TASK_TYPE_EVENT:
                 return StorageParser.toEvent(args);
-            case DEADLINE_TASK_TYPE:
+            case TASK_TYPE_DEADLINE:
                 return StorageParser.toDeadline(args);
-            case TODO_TASK_TYPE:
+            case TASK_TYPE_TODO:
                 return StorageParser.toToDo(args);
             default:
                 throw new IllegalArgumentException(
@@ -52,7 +52,7 @@ public class StorageParser {
     }
 
     private static Event toEvent(String[] args) {
-        boolean isDone = args[1].equals(TASK_DONE_INDICATOR);
+        boolean isDone = args[1].equals(TASK_INDICATOR_DONE);
         String name = args[2];
         LocalDate date = LocalDate.parse(args[3]);
 
@@ -65,7 +65,7 @@ public class StorageParser {
     }
 
     private static Deadline toDeadline(String[] args) {
-        boolean isDone = args[1].equals(TASK_DONE_INDICATOR);
+        boolean isDone = args[1].equals(TASK_INDICATOR_DONE);
         String name = args[2];
         LocalDate date = LocalDate.parse(args[3]);
 
@@ -78,7 +78,7 @@ public class StorageParser {
     }
 
     private static ToDo toToDo(String[] args) {
-        boolean isDone = args[1].equals(TASK_DONE_INDICATOR);
+        boolean isDone = args[1].equals(TASK_INDICATOR_DONE);
         String name = args[2];
 
         ToDo todo = new ToDo(name);
@@ -114,8 +114,8 @@ public class StorageParser {
     private static String toTaskString(Event event) {
         return String.format(
                 "%s | %s | %s | %s",
-                EVENT_TASK_TYPE,
-                event.isDone() ? TASK_DONE_INDICATOR : TASK_NOT_DONE_INDICATOR,
+                TASK_TYPE_EVENT,
+                event.isDone() ? TASK_INDICATOR_DONE : TASK_INDICATOR_NOT_DONE,
                 event.getName(),
                 event.getDate().toString()
         );
@@ -124,8 +124,8 @@ public class StorageParser {
     private static String toTaskString(Deadline deadline) {
         return String.format(
                 "%s | %s | %s | %s",
-                DEADLINE_TASK_TYPE,
-                deadline.isDone() ? TASK_DONE_INDICATOR : TASK_NOT_DONE_INDICATOR,
+                TASK_TYPE_DEADLINE,
+                deadline.isDone() ? TASK_INDICATOR_DONE : TASK_INDICATOR_NOT_DONE,
                 deadline.getName(),
                 deadline.getDate().toString()
         );
@@ -134,8 +134,8 @@ public class StorageParser {
     private static String toTaskString(ToDo todo) {
         return String.format(
                 "%s | %s | %s",
-                TODO_TASK_TYPE,
-                todo.isDone() ? TASK_DONE_INDICATOR : TASK_NOT_DONE_INDICATOR,
+                TASK_TYPE_TODO,
+                todo.isDone() ? TASK_INDICATOR_DONE : TASK_INDICATOR_NOT_DONE,
                 todo.getName()
         );
     }
