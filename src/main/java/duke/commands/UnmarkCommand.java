@@ -1,4 +1,11 @@
+package duke.commands;
+
 import java.io.IOException;
+import duke.TaskList;
+import duke.DukeException;
+import duke.Ui;
+import duke.Storage;
+import duke.tasks.*;
 
 public class UnmarkCommand extends Command{
     private String input;
@@ -15,7 +22,7 @@ public class UnmarkCommand extends Command{
                 throw new DukeException(String.format("There is no task with index %d", unMarkIndex + 1));
             } else {
                 Task unMarkTask = taskList.index(unMarkIndex);
-                if (!unMarkTask.isDone) {
+                if (!unMarkTask.getIsDone()) {
                     throw new DukeException("This task is already marked as undone:\n" + unMarkTask.toString());
                 } else {
                     unMarkTask.markUndone();

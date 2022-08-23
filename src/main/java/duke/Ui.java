@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
     private static final String separator = "===================================================";
     public Ui() {}

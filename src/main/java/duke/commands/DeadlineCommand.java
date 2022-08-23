@@ -1,6 +1,13 @@
+package duke.commands;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import duke.TaskList;
+import duke.DukeException;
+import duke.Ui;
+import duke.Storage;
+import duke.tasks.*;
 
 public class DeadlineCommand extends Command{
     private String input;

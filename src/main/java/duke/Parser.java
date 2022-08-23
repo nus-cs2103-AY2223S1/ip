@@ -1,6 +1,10 @@
+package duke;
+
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import duke.commands.*;
+import duke.tasks.*;
 
 public class Parser {
     public static Command parseInput(String input) throws DukeException, IOException {

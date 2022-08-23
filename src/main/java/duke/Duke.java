@@ -1,7 +1,10 @@
+package duke;
+
 import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
+import duke.commands.*;
 
 public class Duke {
     private static final String pathName = "text/tasks.txt";

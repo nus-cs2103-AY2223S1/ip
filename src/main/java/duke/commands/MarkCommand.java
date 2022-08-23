@@ -1,4 +1,11 @@
+package duke.commands;
+
 import java.io.IOException;
+import duke.TaskList;
+import duke.DukeException;
+import duke.Ui;
+import duke.Storage;
+import duke.tasks.*;
 
 public class MarkCommand extends Command{
     private String input;
@@ -15,7 +22,7 @@ public class MarkCommand extends Command{
                 throw new DukeException(String.format("There is no task with index %d", markIndex + 1));
             } else {
                 Task markTask = taskList.index(markIndex);
-                if (markTask.isDone) {
+                if (markTask.getIsDone()) {
                     throw new DukeException("This task is already marked as done:\n" + markTask.toString());
                 } else {
                     markTask.markDone();
