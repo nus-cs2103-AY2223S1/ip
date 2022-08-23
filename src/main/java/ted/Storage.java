@@ -47,8 +47,8 @@ public class Storage {
 
     private String encodeTasks(TaskList tasks) {
         String result = "";
-        for (int i = 0; i < tasks.size(); i++) {
-            result += tasks.get(i).encode() + "\n";
+        for (int index = 0; index < tasks.size(); index++) {
+            result += tasks.get(index).encode() + "\n";
         }
         return result;
     }
