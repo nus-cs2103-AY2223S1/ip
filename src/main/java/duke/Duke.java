@@ -19,9 +19,20 @@ public class Duke {
         EVENT, DEADLINE, TODO
     }
 
+    /**
+     * The TaskList instance which manages the user's tasks.
+     */
     private TaskList taskList;
+
+    /**
+     * The Storage instance which allows for the caching of
+     * a user's tasks between sessions.
+     */
     private Storage storage;
 
+    /**
+     * Constructor for a Duke instance.
+     */
     public Duke() {
         this.storage = new Storage("./../../../data/tasks.txt");
         try {
@@ -33,7 +44,7 @@ public class Duke {
     }
 
     /**
-     * Main method for starting the program.
+     * Starts the application.
      * @param args Optional command line arguments
      */
     public static void main(String[] args) {
@@ -41,6 +52,12 @@ public class Duke {
         duke.run();
     }
 
+    /**
+     * Parses the user's input and decides the appropriate method to
+     * call based on the internal decision tree implemented in Parser.
+     *
+     * Terminates if the user enters 'bye'.
+     */
     public void run() {
         Ui.welcomeUser();
         Scanner sc = new Scanner(System.in);

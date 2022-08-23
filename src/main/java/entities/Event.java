@@ -1,7 +1,5 @@
 package entities;
 
-import entities.Task;
-
 /**
  * A subclass of the task class.
  */

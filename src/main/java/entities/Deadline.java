@@ -1,15 +1,20 @@
 package entities;
 
-import entities.Task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A subclass of the task class.
+ */
 public class Deadline extends Task {
     /**
-     * The due date or time of the Deadline instance.
+     * The (String) due date or time of the Deadline instance.
      */
     protected String by;
 
+    /**
+     * The actual date and time of the Deadline instance.
+     */
     protected LocalDateTime dateTime;
 
     /**
@@ -25,6 +30,12 @@ public class Deadline extends Task {
         this.dateTime = LocalDateTime.parse(date + "T" + time.substring(0, 2) + ":" + time.substring(2));
     }
 
+    /**
+     * Returns a reader-friendly version of the date/time input
+     * by the user.
+     * @return A String representing the input date/time in
+     *         MMM d yyyy XX.xx am/pm format.
+     */
     private String getFormattedDateTime() {
         String s = "";
         s = s + this.dateTime.format(DateTimeFormatter.ofPattern("MMM d yyyy "));
@@ -46,6 +57,10 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + this.getFormattedDateTime() + ")";
     }
 
+    /**
+     * Returns the String date/time of the current Deadline instance.
+     * @return The same String entered by the user after the '/by' specifier.
+     */
     public String getRemarks() {
         return this.by;
     }
