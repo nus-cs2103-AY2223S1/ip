@@ -1,13 +1,34 @@
-public class Deadline extends Task{
-    private String by;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    public Deadline(String description, String by) {
+public class Deadline extends Task{
+    private LocalDate day;
+    private LocalTime time;
+
+    public Deadline(String description, LocalDate day) {
         super(description);
-        this.by = by;
+        this.day = day;
+    }
+
+    public Deadline(String description, LocalDate day, LocalTime time) {
+        super(description);
+        this.day = day;
+        this.time = time;
+    }
+
+    @Override
+    public boolean happensOn(LocalDate searchDate) {
+        return this.day.equals(searchDate);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        if (time == null) {
+            return "[D]" + super.toString() + " (by: " + day.format(super.dateFormatter) + ")";
+        } else {
+            return "[D]" + super.toString() + " (by: "
+                    + day.format(super.dateFormatter) + ", "
+                    + time.format(super.timeFormatter) + ")";
+        }
     }
 }

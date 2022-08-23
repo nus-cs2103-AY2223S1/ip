@@ -1,4 +1,6 @@
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class TaskList {
     private ArrayList<Task> tasks = new ArrayList<>(100);
@@ -46,6 +48,25 @@ public class TaskList {
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(Duke.sadFace + "please enter an integer from 1 - " + tasks.size());
             }
+        }
+    }
+
+    public void search(LocalDate date) {
+        String list = "";
+        int x = 1;
+        for (Task task : tasks) {
+            if (task.happensOn(date)) {
+                list = list + "\n  " + x + ". " + task;
+                x++;
+            }
+        }
+        if (x == 1) {
+            System.out.println(
+                    Duke.start + "There are no tasks occurring on " + date + ".");
+        } else {
+            System.out.println(
+                    Duke.start + "These are the tasks occurring on " + date + ":" + list
+            );
         }
     }
 
