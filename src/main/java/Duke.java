@@ -1,3 +1,4 @@
+import java.io.*;
 import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -5,7 +6,10 @@ import java.time.LocalDate;
 
 public class Duke {
 
-    public void dukeRun() throws DukeException {
+    public static final String folderPath = "./data";
+    public static final String filePath = "./data/duke.txt";
+
+    public void dukeRun() throws DukeException, IOException {
         String line = "_______________________________\n";
         System.out.println(line +
                 "Hello I'm Duke\n" +
@@ -13,17 +17,28 @@ public class Duke {
                 line
         );
         String input = "";
-        ArrayList<Task> arr = new ArrayList<Task>();
-        //Task[] arr = new Task[100];
-        int index = 0;
+        ArrayList<Task> arr = loadFileData();
+        int index = arr.size();
         while (!input.equals("bye")) {
             Scanner scan = new Scanner(System.in);
             input = scan.nextLine();
             if (input.equals("bye")) {
+                for (int i = 0; i < arr.size(); i++) {
+                    Task task = arr.get(i);
+                    String toSave = task.saveString();
+                    if (i == 0) {
+                        writeToFile(filePath, toSave);
+                    } else {
+                        appendToFile(filePath, toSave);
+                    }
+                }
                 System.out.println(line +
                         "Bye. Hope to see you again soon!\n" +
                         line);
             } else if (input.startsWith("mark")){
+                FileReader fr = new FileReader(filePath);
+                BufferedReader br = new BufferedReader(fr);
+                String text = br.readLine();
                 if (input.length() > 5) {
                     int taskNum = Integer.parseInt(input.substring(5));
                     arr.get(taskNum - 1).makeDone();
@@ -78,7 +93,7 @@ public class Duke {
                     String[] time = input.split(" /at ");
                     Event event = new Event(time[0].substring(6), LocalDate.parse(time[1]));
                     arr.add(event);
-                    index++;
+                    index ++;
                     System.out.println(event.addString(index));
                 } else {
                     throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
@@ -97,13 +112,61 @@ public class Duke {
                 }
             }
             else {
-//                Task task = new Task(input);
-//                arr[index] = task;
-//                index ++;
-//                System.out.println(line + "added: " + task.description + "\n" + line);
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
+    }
+
+    private static void writeToFile(String filePath, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
+    private static void appendToFile(String filePath, String textToAppend) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true); // create a FileWriter in append mode
+        fw.write(textToAppend);
+        fw.close();
+    }
+
+    private ArrayList<Task> loadFileData() {
+        ArrayList<Task> arr = new ArrayList<>();
+        try {
+            File folder = new File(folderPath);
+            folder.mkdir();
+            File file = new File(filePath);
+            if (!file.createNewFile()) {
+                Scanner scan = new Scanner(file);
+                String input = "";
+                while (scan.hasNext()){
+                    input = scan.nextLine();
+                    if (input.startsWith("T")) {
+                        Todo todo = new Todo(input.substring(3));
+                        if (input.substring(1).startsWith("X")) {
+                            todo.makeDone();
+                        }
+                        arr.add(todo);
+                    } else if (input.startsWith("E")) {
+                        String[] time = input.split("/at");
+                        Event event = new Event(time[0].substring(3), time[1]);
+                        if (input.substring(1).startsWith("X")) {
+                            event.makeDone();
+                        }
+                        arr.add(event);
+                    } else if (input.startsWith("D")) {
+                        String[] dead = input.split("/by");
+                        Deadlines deadlines = new Deadlines(dead[0].substring(3), dead[1]);
+                        if (input.substring(1).startsWith("X")) {
+                            deadlines.makeDone();
+                        }
+                        arr.add(deadlines);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return arr;
     }
 
     public static void main(String[] args) {

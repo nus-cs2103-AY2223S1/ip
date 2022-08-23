@@ -24,4 +24,12 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
+    @Override
+    public String saveString() {
+        if (this.isDone) {
+            return "E" + "X " + this.description + "/at" + this.at + "\n";
+        } else {
+            return "E  " + this.description + "/at" + this.at + "\n";
+        }
+    }
 }
