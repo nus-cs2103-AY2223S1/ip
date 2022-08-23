@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private String task;
     private boolean isDone;
 
@@ -12,7 +12,12 @@ public class Task {
         isDone = false;
     }
 
-    private String getStatusIcon() {
+    public Task(String task, boolean isDone) {
+        this.task = task;
+        this.isDone = isDone;
+    }
+
+    public String getStatusIcon() {
         return isDone
                 ? "[X]"
                 : "[ ]";
@@ -30,4 +35,10 @@ public class Task {
     public void markAsUndone() {
         isDone = false;
     }
+
+    public String getTask() {
+        return task;
+    }
+
+    public abstract String toSaveFileString();
 }

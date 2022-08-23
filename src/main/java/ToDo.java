@@ -5,8 +5,17 @@ public class ToDo extends Task {
         super(task);
     }
 
+    public ToDo(String task, boolean isDone) {
+        super(task, isDone);
+    }
+
     @Override
     public String toString() {
         return TYPE_SYMBOL + super.toString();
+    }
+
+    @Override
+    public String toSaveFileString() {
+        return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getTask();
     }
 }

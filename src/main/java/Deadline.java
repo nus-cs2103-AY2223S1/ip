@@ -7,8 +7,18 @@ public class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    public Deadline(String task, String deadline, boolean isDone) {
+        super(task, isDone);
+        this.deadline = deadline;
+    }
+
     @Override
     public String toString() {
         return TYPE_SYMBOL + super.toString() + " (by: " + deadline + ")";
+    }
+
+    @Override
+    public String toSaveFileString() {
+        return TYPE_SYMBOL + " @ " + getStatusIcon() + " @ " + super.getTask() + " @ " + deadline;
     }
 }
