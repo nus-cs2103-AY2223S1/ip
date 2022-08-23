@@ -9,18 +9,35 @@ import ekud.exception.EkudException;
 public class TaskList {
   private final List<Task> taskList;
 
+  /**
+   * Constructor that instantiates an instance of taskList.
+   * @param taskList List of tasks.
+   */
   public TaskList(List<Task> taskList) {
     this.taskList = taskList;
   }
 
+  /**
+   * Constructor that instantiates an instance of taskList with an empty list of tasks.
+   */
   public TaskList() {
     this.taskList = new ArrayList<Task>();
   }
 
+  /**
+   * Gets the task list.
+   * @return List of tasks.
+   */
   public List<Task> getTaskList() {
     return this.taskList;
   }
 
+  /**
+   * Deletes task based on command given.
+   * @param message Command in the form of delete [index].
+   * @return Message to be printed to the user.
+   * @throws EkudException Error message.
+   */
   public String deleteTask(String message) throws EkudException {
     if (message.matches("^delete \\d+$")) {
       int idx = Integer.parseInt(message.substring("delete ".length()));
@@ -35,6 +52,12 @@ public class TaskList {
     }
   }
 
+  /**
+   * Marks task as done based on command given.
+   * @param message Command in the form of mark [index].
+   * @return Message to be printed to the user.
+   * @throws EkudException Error message.
+   */
   public String markAsDone(String message) throws EkudException {
     if (message.matches("^mark \\d+$")) {
       int idx = Integer.parseInt(message.substring("mark ".length()));
@@ -53,6 +76,12 @@ public class TaskList {
     }
   }
 
+  /**
+   * Marks task as undone based on command given.
+   * @param message Command in the form of mark [index].
+   * @return Message to be printed to the user.
+   * @throws EkudException Error message.
+   */
   public String markAsUndone(String message) throws EkudException {
     if (message.matches("^unmark \\d+$")) {
       int idx = Integer.parseInt(message.substring("unmark ".length()));
@@ -71,6 +100,10 @@ public class TaskList {
     }
   }
 
+  /**
+   * Gets string representation of all tasks.
+   * @return String representation of all tasks.
+   */
   public String printTasks() {
     StringBuilder builder = new StringBuilder("Here are the tasks in your list:\n");
     for (int i = 0; i < this.taskList.size(); i++) {
@@ -79,6 +112,13 @@ public class TaskList {
     return (builder.toString());
   }
 
+  /**
+   * Adds task to task list.
+   * @param description Description of task.
+   * @param type Type of task.
+   * @return Message to be printed to the user.
+   * @throws EkudException Error message.
+   */
   public String addTask(String description, TaskType type) throws EkudException {
     if (this.taskList.size() == 100) {
       throw new EkudException("Sorry, you've reached the maximum limit of 100 tasks.");
@@ -88,7 +128,7 @@ public class TaskList {
     return (String.format("Got it. I've added this task: %s", task.toString()));
   }
 
-  public Task parseSpecialTask(String description, TaskType type) throws EkudException {
+  private Task parseSpecialTask(String description, TaskType type) throws EkudException {
     Optional<Task> task = Optional.empty();
     String[] parts = description.split(" ");
     switch (type) {

@@ -1,5 +1,10 @@
 package ekud.task;
+
 public class ToDo extends Task {
+  /**
+   * Constructor that instantiates an instance of ToDo.
+   * @param description Description of task.
+   */
   public ToDo(String description) {
     super(description);
   }

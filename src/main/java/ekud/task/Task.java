@@ -33,7 +33,7 @@ public abstract class Task {
   }
 
   /**
-   * Getter for description of task.
+   * Gets description of task.
    * @return description of task.
    */
   public String getDescription() {
@@ -55,7 +55,7 @@ public abstract class Task {
   public abstract String toFileFormat();
 
   /**
-   * Get string representation of task.
+   * Gets string representation of task.
    * @return String representation of task.
    */
   @Override

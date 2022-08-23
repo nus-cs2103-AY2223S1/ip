@@ -2,6 +2,11 @@ package ekud.task;
 public class Event extends Task {
   private final String at;
 
+  /**
+   * Constructor that instantiates an instance of Event.
+   * @param description Description of task.
+   * @param at Time of event.
+   */
   public Event(String description, String at) {
     super(description);
     this.at = at;

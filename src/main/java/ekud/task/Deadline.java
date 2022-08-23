@@ -8,6 +8,12 @@ import java.time.format.DateTimeParseException;
 public class Deadline extends Task {
   private final LocalDate dueDate;
 
+  /**
+   * Constructor that instantiates new instance of Deadline.
+   * @param description Description of task.
+   * @param dueDateString Due Date of task in YYYY-MM-DD format.
+   * @throws EkudException Exception in creation of deadline due to invalid due date.
+   */
   public Deadline(String description, String dueDateString) throws EkudException {
     super(description);
     this.dueDate = this.getDateFromString(dueDateString);
