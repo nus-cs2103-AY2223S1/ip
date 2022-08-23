@@ -1,10 +1,29 @@
 public class Todo extends Task {
     private Todo(String description) {
-        super(description);
+        this(description, false);
+    }
+
+    private Todo(String description, boolean isDone) {
+        super(description, isDone);
     }
 
     public static Todo fromUserInput(String userInput) {
         return new Todo(userInput);
+    }
+
+    public static Todo fromEncodedString(String encodedString) throws InvalidTaskDataException {
+        String[] splitTaskData = encodedString.split("\\|");
+        if (splitTaskData.length < 3) {
+            throw new InvalidTaskDataException("The data for this to-do is not formatted correctly.");
+        }
+        String description = splitTaskData[2];
+        boolean isDone = splitTaskData[1].equals("1");
+        return new Todo(description, isDone);
+    }
+
+    @Override
+    public String toEncodedString() {
+        return String.format("T|%s", super.toEncodedString());
     }
 
     @Override
