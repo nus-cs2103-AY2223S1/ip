@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
@@ -60,36 +59,29 @@ public class CmdHandler {
         System.out.println("task deleted: " + tasks.remove(i));
     }
 
-    private void loadTasks() {
-        try {
-            tasks = new ArrayList<>();
-            Scanner in = new Scanner(new FileReader("data//tasks_data.txt"));
-            while (in.hasNextLine()) {
-                String line = in.nextLine();
-                String[] data = line.split(" \\| ");
-                Task task;
-                switch (data[0]) {
-                case "T":
-                    task = new Todo(data[2]);
-                    break;
-                case "D":
-                    task = new Deadline(data[2], data[3]);
-                    break;
-                case "E":
-                    task = new Event(data[2], data[3]);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + data[0]);
-                }
-                tasks.add(task);
-            }
-        } catch (FileNotFoundException e) {
-        }
-    }
+//    private void loadTasks() throws IOException {
+//        try {
+//            tasks = new ArrayList<>();
+//            Scanner in = new Scanner(new FileReader("data//tasks.txt"));
+//            while (in.hasNextLine()) {
+//                String line = in.nextLine();
+//                String[] data = line.split(" \\| ");
+//                Task task = switch (data[0]) {
+//                    case "T" -> new Todo(data[2]);
+//                    case "D" -> new Deadline(data[2], data[3]);
+//                    case "E" -> new Event(data[2], data[3]);
+//                    default -> throw new IllegalStateException("Unexpected value: " + data[0]);
+//                };
+//                tasks.add(task);
+//            }
+//        } catch (FileNotFoundException e) {
+//            (new File("data//tasks.txt")).createNewFile();
+//        }
+//    }
 
     private void saveTasks(){
         try {
-            File file = new File("data//tasks_data.txt");
+            File file = new File("data//tasks.txt");
 
             PrintWriter writer = new PrintWriter(file);
             String toAdd = tasks.stream().map(Task::toFileString)
@@ -101,9 +93,9 @@ public class CmdHandler {
         }
     }
 
-    void handle() {
+    void handle() throws IOException {
         Scanner sc = new Scanner(System.in);
-        loadTasks();
+//        loadTasks();
         while (!done) {
             try {
                 String inputStr = sc.nextLine();
