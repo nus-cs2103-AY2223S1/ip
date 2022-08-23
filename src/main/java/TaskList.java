@@ -15,5 +15,9 @@ public class TaskList {
     }
   }
 
+  public List<Task> getTaskList() {
+    return this.taskList;
+  }
+
 
 }
