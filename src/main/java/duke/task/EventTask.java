@@ -5,11 +5,11 @@ import java.time.format.DateTimeFormatter;
 
 public class EventTask extends Task {
     private final LocalDateTime time;
-    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yy HHmm");
+    private static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("d-M-yy HHmm");
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a, MMM d, yyyy");
 
     public EventTask(String description, LocalDateTime time) {
-        super('E', description);
+        super(TaskSymbolType.E, description);
         this.time = time;
     }
 

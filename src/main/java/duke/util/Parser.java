@@ -2,10 +2,7 @@ package duke.util;
 
 import duke.DukeException;
 import duke.command.*;
-import duke.task.DeadlineTask;
-import duke.task.EventTask;
-import duke.task.Task;
-import duke.task.TodoTask;
+import duke.task.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -23,7 +20,7 @@ public class Parser {
 
     public static LocalDateTime parseDateTime(String dateTime) throws DukeException {
         try {
-            return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("dd-MM-yy HHmm"));
+            return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d-M-yy HHmm"));
         } catch (DateTimeParseException e) {
             throw new DukeException("Invalid argument: " + dateTime);
         }
@@ -76,14 +73,14 @@ public class Parser {
         String[] splits = input.split(" \\| ", -1);
         Task task;
         try {
-            switch (splits[0]) {
-            case "T":
+            switch (TaskSymbolType.valueOf(splits[0])) {
+            case T:
                 task = new TodoTask(splits[2]);
                 break;
-            case "D":
+            case D:
                 task = new DeadlineTask(splits[2], parseDateTime(splits[3]));
                 break;
-            case "E":
+            case E:
                 task = new EventTask(splits[2], parseDateTime(splits[3]));
                 break;
             default:

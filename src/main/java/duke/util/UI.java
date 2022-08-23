@@ -21,7 +21,7 @@ public class UI {
 
     public void greet() {
         printStream.println(LOGO);
-        print("Hi! I am Duke");
+        print("Hi! I'm Duke. What can I do for you?");
     }
 
     public void print(String message) {
