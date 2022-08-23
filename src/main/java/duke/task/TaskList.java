@@ -164,7 +164,7 @@ public class TaskList {
             count++;
             taskList += String.format("\n%d. %s", count, task);
         }
-        return taskList.substring(1);
+        return (count == 0 ? taskList : taskList.substring(1));
     }
 
     /**
