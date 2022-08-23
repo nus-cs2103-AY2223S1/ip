@@ -3,13 +3,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 public class Parser {
-    public static String parseCommand(String line) {
+    public static String parseCommand(String line) throws DukeException {
         String[] splitString = line.split(" ");
         String command = splitString[0];
 
         switch (command) {
         case "list":
-            return "list";
+            return "list|";
         case "mark":
             int taskIdToMark = splitString.length == 2
                     ? Integer.parseInt(splitString[1])
@@ -27,10 +27,16 @@ public class Parser {
             return "delete|" + taskIdToDelete;
         case "todo":
             String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);
+            if (descTodo.length == 0) {
+                throw new DukeException("The description of a todo should not be empty!");
+            }
             line = String.join(" ", descTodo);
             return "todo|" + line;
         case "deadline":
             String[] descDeadline = Arrays.copyOfRange(splitString, 1, splitString.length);
+            if (descDeadline.length == 0) {
+                throw new DukeException("The description/by time of a deadline should not be empty!");
+            }
             line = String.join(" ", descDeadline);
             String descD = line.split("/by")[0].trim();
             String byD = line.split("/by").length == 2
@@ -41,6 +47,9 @@ public class Parser {
             return "deadline|" + descD + "|" + byDeadline.format(deadlineFormat);
         case "event":
             String[] descEvent = Arrays.copyOfRange(splitString, 1, splitString.length);
+            if (descEvent.length == 0) {
+                throw new DukeException("The description/from/end of an event should not be empty!");
+            }
             line = String.join(" ", descEvent);
             String descE = line.split("/from")[0].trim();
             String dates = line.split("/from").length == 2

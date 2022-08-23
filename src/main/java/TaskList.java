@@ -24,19 +24,27 @@ public class TaskList {
         tasks.add(task);
     }
 
-    public void deleteTask(int index) throws DukeException {
+    public Task deleteTask(int index) throws DukeException {
         if (index == -1) {
             throw new DukeException("You must specify which task to delete!");
         }
         Task task = tasks.get(index - 1);
         tasks.remove(index - 1);
+        return task;
     }
 
-    public void changeTaskStatus(int taskId, boolean isDone) throws DukeException {
+    public Task changeTaskStatus(int taskId, boolean isDone) throws DukeException {
         if (taskId == -1) {
             throw new DukeException("You must specify which task to mark or unmark!");
         }
         Task task = tasks.get(taskId - 1);
         task.setDoneStatus(isDone);
+        return task;
+    }
+
+    public void stringRepresentation() {
+        for (Task task : tasks) {
+            System.out.println(task.toString());
+        }
     }
 }

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -31,6 +32,12 @@ public class Ui {
     }
 
     public void printDukeException(DukeException e) {
+        System.out.println(line);
+        System.out.println("OOPS!!! " + e.getMessage());
+        System.out.println(line);
+    }
+
+    public void printIoException(IOException e) {
         System.out.println(line);
         System.out.println("OOPS!!! " + e.getMessage());
         System.out.println(line);

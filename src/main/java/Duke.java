@@ -1,22 +1,99 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
-import java.io.File;
-import java.io.FileWriter;
+import java.time.format.DateTimeParseException;
 
 /**
  * The Main driver class of the Duke Application.
  */
 public class Duke {
-    /** Line used for formatting. */
-    public static String line = "----------------------------------------";
-    /** Use an ArrayList Collection for handling the tasks. */
-    public static ArrayList<Task> tasks = new ArrayList<>();
+    private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
+
+    public Duke(String filePath) {
+        this.ui = new Ui();
+        try {
+            this.storage = new Storage(filePath);
+            this.taskList = new TaskList(this.storage.readTasksFromStorage());
+        } catch (IOException e) {
+            ui.printIoException(e);
+            this.taskList = new TaskList();
+        } catch (DukeException e) {
+            ui.printDukeException(e);
+            this.taskList = new TaskList();
+        }
+    }
+
+    public void run() {
+        this.ui.printDukeOpening();
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String currentLine = this.ui.nextLine();
+
+        while (!currentLine.equals("bye")) {
+            try {
+                String information = Parser.parseCommand(currentLine);
+                String[] infoArray = information.split("\\|");
+                switch (infoArray[0]) {
+                case "list":
+                    this.ui.printTasks(this.taskList);
+                    break;
+                case "mark":
+                    Task marked = this.taskList.changeTaskStatus(Integer.parseInt(infoArray[1]), true);
+                    this.ui.printChangeTaskStatus(marked, true);
+                    break;
+                case "unmark":
+                    Task unmarked = this.taskList.changeTaskStatus(Integer.parseInt(infoArray[1]), false);
+                    this.ui.printChangeTaskStatus(unmarked, false);
+                    break;
+                case "delete":
+                    Task deleted = this.taskList.deleteTask(Integer.parseInt(infoArray[1]));
+                    this.ui.printDeleteTask(deleted, this.taskList);
+                    break;
+                case "todo":
+                    Task todo = new Todo(infoArray[1]);
+                    taskList.addTask(todo);
+                    this.ui.printAddTask(todo, this.taskList);
+                    break;
+                case "deadline":
+                    Task deadline = new Deadline(
+                            infoArray[1],
+                            LocalDateTime.parse(infoArray[2], dateTimeFormatter)
+                    );
+                    taskList.addTask(deadline);
+                    this.ui.printAddTask(deadline, this.taskList);
+                    break;
+                case "event":
+                    Task event = new Event(
+                            infoArray[1],
+                            LocalDateTime.parse(infoArray[2], dateTimeFormatter),
+                            LocalDateTime.parse(infoArray[3], dateTimeFormatter)
+                    );
+                    taskList.addTask(event);
+                    this.ui.printAddTask(event, this.taskList);
+                    break;
+                default:
+                    throw new DukeException("I'm sorry but I don't know what that means!");
+                }
+            } catch (DukeException e) {
+                this.ui.printDukeException(e);
+            } catch (DateTimeParseException e) {
+                this.ui.printDateTimeParseException();
+            }
+
+            currentLine = this.ui.nextLine();
+        }
+
+        try {
+            this.storage.writeTasksToStorage(this.taskList);
+        } catch (IOException e) {
+            this.ui.printIoException(e);
+        }
+
+        this.ui.printDukeClosing();
+        this.ui.closeScanner();
+        System.exit(0);
+    }
 
     /**
      * The main method that is the entry to the Duke Application.
@@ -25,256 +102,6 @@ public class Duke {
      *                     the folder and storage.
      */
     public static void main(String[] args) throws IOException {
-        File storage = createFolderAndStorage();
-        try {
-            readTasksFromStorage(storage);
-        } catch (DukeException e) {
-            System.out.println("No tasks to read from tasks.txt");
-        }
-
-        Scanner sc = new Scanner(System.in);
-
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo + "");
-        System.out.println(line);
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
-        System.out.println(line);
-
-        String current = sc.nextLine();
-        while (!current.equals("bye")) {
-            String[] splitString = current.split(" ");
-            String command = splitString[0];
-            try {
-                switch (command) {
-                case "list":
-                    printTasks();
-                    break;
-                case "mark":
-                    int taskIdToMark = splitString.length == 2
-                            ? Integer.parseInt(splitString[1])
-                            : -1;
-                    changeTaskStatus(taskIdToMark, true);
-                    break;
-                case "unmark":
-                    int taskIdToUnmark = splitString.length == 2
-                            ? Integer.parseInt(splitString[1])
-                            : -1;
-                    changeTaskStatus(taskIdToUnmark, false);
-                    break;
-                case "delete":
-                    int taskIdToDelete = splitString.length == 2
-                            ? Integer.parseInt(splitString[1])
-                            : -1;
-                    deleteTask(taskIdToDelete);
-                    break;
-                case "todo":
-                    String[] descTodo = Arrays.copyOfRange(splitString, 1, splitString.length);
-                    current = String.join(" ", descTodo);
-                    Task todoTask = new Todo(current);
-                    addTask(todoTask);
-                    break;
-                case "deadline":
-                    String[] descDeadline = Arrays.copyOfRange(splitString, 1, splitString.length);
-                    current = String.join(" ", descDeadline);
-                    String descD = current.split("/by")[0].trim();
-                    String byD = current.split("/by").length == 2
-                            ? current.split("/by")[1].trim()
-                            : "";
-                    DateTimeFormatter deadlineFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime byDeadline = LocalDateTime.parse(byD, deadlineFormat);
-                    Task deadlineTask = new Deadline(descD, byDeadline);
-                    addTask(deadlineTask);
-                    break;
-                case "event":
-                    String[] descEvent = Arrays.copyOfRange(splitString, 1, splitString.length);
-                    current = String.join(" ", descEvent);
-                    String descE = current.split("/from")[0].trim();
-                    String dates = current.split("/from").length == 2
-                            ? current.split("/from")[1]
-                            : "";
-                    String startE = "";
-                    String endE = "";
-                    if (current.split("/from").length == 2) {
-                        startE = dates.split("/to")[0].trim();
-                        endE = dates.split("/to")[1].trim();
-                    }
-                    DateTimeFormatter eventFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime startEvent = LocalDateTime.parse(startE, eventFormat);
-                    LocalDateTime endEvent = LocalDateTime.parse(endE, eventFormat);
-                    Task eventTask = new Event(descE, startEvent, endEvent);
-                    addTask(eventTask);
-                    break;
-                default:
-                    throw new DukeException("I'm sorry, but I don't know what that means!");
-                }
-            } catch (DukeException e) {
-                System.out.println(line);
-                System.out.println("OOPS!!! " + e.getMessage());
-                System.out.println(line);
-            } catch (DateTimeParseException e) {
-                System.out.println(line);
-                System.out.println("All dates must be in the format (yyyy-MM-dd HH:mm)!");
-                System.out.println(line);
-            }
-
-            current = sc.nextLine();
-        }
-
-        System.out.println(line);
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(line);
-        writeTasksToStorage(storage);
-        sc.close();
-        System.exit(0);
-    }
-
-    /**
-     * Function to add a task to our Task collection.
-     * @param task The task that we would like to add to our tasks Collection.
-     */
-    public static void addTask(Task task) {
-        System.out.println(line);
-        System.out.println("Got it. I've added this task:");
-        System.out.println("  " + task.toString());
-        tasks.add(task);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println(line);
-    }
-
-    /**
-     * Function to delete a task from our Task collection.
-     * @param index The index of the task that we would like to remove from collection.
-     * @throws DukeException For Duke project related exceptions.
-     */
-    public static void deleteTask(int index) throws DukeException {
-        if (index == -1) {
-            throw new DukeException("You must specify which task to delete!");
-        }
-
-        Task task = tasks.get(index - 1);
-        System.out.println(line);
-        System.out.println("Noted. I've removed this task:");
-        System.out.println("  " + task.toString());
-        tasks.remove(index - 1);
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println(line);
-    }
-
-    /**
-     * Function to print the tasks in our Task collection with nice formatting.
-     */
-    public static void printTasks() {
-        System.out.println(line);
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            Task current = tasks.get(i);
-            System.out.println((i + 1) + "." + current.toString());
-        }
-        System.out.println(line);
-    }
-
-    /**
-     * Function to change the status of a task and to mark it as done or not done,
-     * used for marking a task as done or not done.
-     * @param taskId The id of the task that we want to mark or unmark.
-     * @param isDone The new status of the task. We will update the task to have
-     *               its isDone field to be the value here.
-     * @throws DukeException For Duke related exceptions.
-     */
-    public static void changeTaskStatus(int taskId, boolean isDone) throws DukeException {
-        if (taskId == -1) {
-            throw new DukeException("You must specify which task to mark or unmark!");
-        }
-
-        Task task = tasks.get(taskId - 1);
-        task.setDoneStatus(isDone);
-        System.out.println(line);
-        if (isDone) {
-            System.out.println(("Nice! I've marked this task as done:"));
-            System.out.println("  " + task.toString());
-        } else {
-            System.out.println(("OK, I've marked this task as not done yet:"));
-            System.out.println("  " + task.toString());
-        }
-        System.out.println(line);
-    }
-
-    public static File createFolderAndStorage() throws IOException {
-        File folder = new File("./data");
-        if (!folder.exists()) {
-            folder.mkdir();
-        }
-
-        File file = new File("./data/tasks.txt");
-        if (!file.exists()) {
-            file.createNewFile();
-        }
-
-        return file;
-    }
-
-    public static void writeTasksToStorage(File file) throws IOException {
-        FileWriter fileWriter = new FileWriter(file);
-        for (Task task : tasks) {
-            if (task instanceof Todo) {
-                String rep = "T|" + task.getDoneStatus() + "|" + task.getDescription();
-                fileWriter.write(rep);
-            } else if (task instanceof Event) {
-                Event e = (Event) task;
-                String rep = "E|" + e.getDoneStatus() + "|" + e.getDescription() + "|" +
-                        e.getStart() + "|" + e.getEnd();
-                fileWriter.write(rep);
-            } else if (task instanceof Deadline) {
-                Deadline d = (Deadline) task;
-                String rep = "D|" + d.getDoneStatus() + "|" + d.getDescription() + "|" + d.getBy();
-                fileWriter.write(rep);
-            }
-
-            fileWriter.write(System.lineSeparator());
-        }
-
-        fileWriter.close();
-    }
-
-    public static void readTasksFromStorage(File file) throws FileNotFoundException, DukeException {
-        Scanner sc = new Scanner(file);
-        while (sc.hasNext()) {
-            String line = sc.nextLine();
-            String[] lineComponents = line.split("\\|");
-
-            String type = lineComponents[0];
-            boolean doneStatus = lineComponents[1].equals("X");
-            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-            switch (type) {
-            case "T":
-                Todo t = new Todo(lineComponents[2]);
-                t.setDoneStatus(doneStatus);
-                tasks.add(t);
-                break;
-            case "D":
-                Deadline d = new Deadline(lineComponents[2], LocalDateTime.parse(lineComponents[3], dateFormat));
-                d.setDoneStatus(doneStatus);
-                tasks.add(d);
-                break;
-            case "E":
-                Event e = new Event(
-                        lineComponents[2],
-                        LocalDateTime.parse(lineComponents[3], dateFormat),
-                        LocalDateTime.parse(lineComponents[4], dateFormat)
-                );
-                e.setDoneStatus(doneStatus);
-                tasks.add(e);
-                break;
-            default:
-                throw new DukeException("No tasks to read from storage!");
-            }
-        }
-
-        sc.close();
+        new Duke("data/tasks.txt").run();
     }
 }
