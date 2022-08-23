@@ -1,9 +1,9 @@
-public class Duke {
+public class Piggy {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
-    public Duke(String filePath) {
+    public Piggy(String filePath) {
         storage = new Storage(filePath);
         taskList = new TaskList(storage.readTasks());
         ui = new Ui();
@@ -21,6 +21,6 @@ public class Duke {
     }
     
     public static void main(String[] args) {
-        new Duke("./tasks.txt").run();
+        new Piggy("./tasks.txt").run();
     }
 }
