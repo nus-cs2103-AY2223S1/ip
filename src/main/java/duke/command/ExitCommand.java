@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.Storage;
+import duke.Ui;
+import duke.exception.DukeException;
+import duke.task.TaskList;
+
 public class ExitCommand extends Command {
     public ExitCommand() {
         this.stillRunning = false;

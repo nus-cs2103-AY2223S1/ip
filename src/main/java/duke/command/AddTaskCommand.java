@@ -1,3 +1,12 @@
+package duke.command;
+
+import duke.Storage;
+import duke.Ui;
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.TaskType;
+
 public class AddTaskCommand extends Command {
     private TaskType taskType;
     private String userInput;

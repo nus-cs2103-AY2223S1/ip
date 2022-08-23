@@ -1,3 +1,8 @@
+package duke;
+
+import duke.exception.DukeException;
+import duke.command.*;
+
 public class Parser {
     public static Command parse(String userInput) throws DukeException {
         if (userInput.equals("list")) {

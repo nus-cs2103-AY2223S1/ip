@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.exception.DukeException;
+
 /**
  * An abstract class representing a task (which has a description, and completion status).
  */

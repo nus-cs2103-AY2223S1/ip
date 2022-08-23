@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.exception.DukeException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
