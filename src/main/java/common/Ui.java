@@ -65,6 +65,6 @@ public class Ui {
     }
 
     public static void printSaving() {
-        System.out.println("Saving...");
+        System.out.print("Saving...\n");
     }
 }
