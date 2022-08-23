@@ -1,5 +1,7 @@
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.io.FileWriter;
 
 public class TaskList {
     protected ArrayList<Task> list;
@@ -31,8 +33,12 @@ public class TaskList {
                     System.out.println("Please indicate a valid task number!\n");
                 } else if (inputs[0].equalsIgnoreCase("mark")){
                     this.list.get(marker - 1).markAsDone();
+                    System.out.println("Nice! I've marked this task as done:");
+                    System.out.println(this.list.get(marker-1).toString() + "\n");
                 } else {
                     this.list.get(marker - 1).markAsNotDone();
+                    System.out.println("Nice! I've marked this task as not done yet:");
+                    System.out.println(this.list.get(marker-1).toString() + "\n");
                 }
             }
             catch (NumberFormatException ex){
@@ -105,6 +111,71 @@ public class TaskList {
             catch (NumberFormatException ex){
                 throw new InvalidCommandException("Invalid item to be marked.");
             }
+        }
+    }
+
+    public void loadTodo(String str) throws InvalidDataFileException{
+        String[] inputs = str.split(" , ", 3);
+        if (inputs.length != 3) {
+            System.out.println("Input length incorrect");
+            throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
+        } else {
+            Todo temp = new Todo(inputs[2]);
+            if (inputs[1].equalsIgnoreCase("1")) {
+                temp.markAsDone();
+            } else if (inputs[1].equalsIgnoreCase("0")) {
+                temp.markAsNotDone();
+            } else {
+                throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
+            }
+            this.list.add(temp);
+        }
+    }
+
+    public void loadDeadline(String str) throws InvalidDataFileException{
+        String[] inputs = str.split(" , ", 4);
+        if (inputs.length != 4) {
+            throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
+        } else {
+            Deadline temp = new Deadline(inputs[2], inputs[3]);
+            if (inputs[1].equalsIgnoreCase("1")) {
+                temp.markAsDone();
+            } else if (inputs[1].equalsIgnoreCase("0")) {
+                temp.markAsNotDone();
+            } else {
+                throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
+            }
+            this.list.add(temp);
+        }
+    }
+
+    public void loadEvent(String str) throws InvalidDataFileException{
+        String[] inputs = str.split(" , ", 4);
+        if (inputs.length != 4) {
+            throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
+        } else {
+            Event temp = new Event(inputs[2], inputs[3]);
+            if (inputs[1].equalsIgnoreCase("1")) {
+                temp.markAsDone();
+            } else if (inputs[1].equalsIgnoreCase("0")) {
+                temp.markAsNotDone();
+            } else {
+                throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
+            }
+            this.list.add(temp);
+        }
+    }
+
+    public void saveItems() {
+        try {
+            FileWriter fw = new FileWriter("data/duke.txt", false);
+            for(int i = 0; i < this.list.size(); i++) {
+                Task temp = this.list.get(i);
+                fw.write(temp.saveTask());
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Unable to save list to data file.");
         }
     }
 }

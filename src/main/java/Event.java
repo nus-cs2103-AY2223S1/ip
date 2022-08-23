@@ -13,4 +13,15 @@ public class Event extends Task {
     public String toString() {
         return "[E][" + this.getStatusIcon() + "] " + this.getTaskDescription() + " (at: " + at + ")";
     }
+
+    @Override
+    public String saveTask() {
+        String icon;
+        if (this.getStatusIcon() == "X") {
+            icon = "1";
+        } else {
+            icon = "0";
+        }
+        return "E , " + icon + " , " + this.description + " , " + this.at + "\n";
+    }
 }

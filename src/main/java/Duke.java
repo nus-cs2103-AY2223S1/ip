@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 
 
@@ -10,12 +9,11 @@ public class Duke {
     public static void greet() {
         System.out.println("Greetings Human! I am BetaGo, your personal robot assistant!\nHow may I assist you today?\n");
     }
-    public static void readCommands() {
+    public static void readCommands(TaskList storage) {
 
         Scanner sc = new Scanner(System.in);
         String str= sc.nextLine();
         String[] inputs = str.split(" ", 2);
-        TaskList storage = new TaskList();
 
         while (!str.equalsIgnoreCase("bye")) {
             if (str.equalsIgnoreCase("list")) {
@@ -27,30 +25,35 @@ public class Duke {
             } else if (inputs[0].equalsIgnoreCase("mark") || inputs[0].equalsIgnoreCase("unmark")) {
                 try {
                     storage.markUnmarkItems(str);
+                    storage.saveItems();
                 } catch (InvalidCommandException e) {
                     System.out.println("Please indicate a valid task number!\n");
                 }
             } else if (inputs[0].equalsIgnoreCase("todo")) {
                 try {
                     storage.addTodo(str);
+                    storage.saveItems();
                 } catch (InvalidCommandException e) {
                     System.out.println("Please indicate a valid description for your Todo task!\n");
                 }
             } else if (inputs[0].equalsIgnoreCase("deadline")) {
                 try {
                     storage.addDeadline(str);
+                    storage.saveItems();
                 } catch (InvalidCommandException e) {
                     System.out.println("Please indicate a valid description and due date for your Deadline task!\n");
                 }
             } else if (inputs[0].equalsIgnoreCase("event")) {
                 try {
                     storage.addEvent(str);
+                    storage.saveItems();
                 } catch (InvalidCommandException e) {
                     System.out.println("Please indicate a valid description and location for your Event task!\n");
                 }
             }  else if (inputs[0].equalsIgnoreCase("delete")) {
                 try {
                     storage.deleteItems(str);
+                    storage.saveItems();
                 } catch (InvalidCommandException e) {
                     System.out.println("Please indicate a valid task number!\n");
                 }
@@ -66,9 +69,47 @@ public class Duke {
         System.out.println("Goodbye Human. Till next time.\n");
     }
 
+    public static void loadFile(TaskList storage) {
+        try {
+            File dir = new File("data");
+            File f = new File("data/duke.txt");
+            if (dir.exists()) {
+                if (f.exists()) {
+                    Scanner sc1 = new Scanner(f);
+                    while (sc1.hasNextLine()) {
+                        String str = sc1.nextLine();
+                        if (str.charAt(0) == 'T') {
+                            storage.loadTodo(str);
+                        } else if (str.charAt(0) == 'D') {
+                            storage.loadDeadline(str);
+                        } else if (str.charAt(0) == 'E') {
+                            storage.loadEvent(str);
+                        } else {
+                            System.out.println("Data file consists of invalid command.");
+                        }
+                    }
+                    sc1.close();
+                } else {
+                    f.createNewFile();
+                }
+            } else {
+                dir.mkdir();
+                f.createNewFile();
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Error in loading file. No data file detected.");
+        } catch (IOException e) {
+            System.out.println("Unable to create new data file.");
+        } catch (InvalidDataFileException e) {
+            System.out.println("Data file consist of invalid input.");
+        }
+    }
+
     public static void main(String[] args) {
         Duke.greet();
-        Duke.readCommands();
+        TaskList storage = new TaskList();
+        Duke.loadFile(storage);
+        Duke.readCommands(storage);
         Duke.goodbye();
     }
 }
