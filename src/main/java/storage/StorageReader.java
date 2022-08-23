@@ -1,3 +1,5 @@
+package storage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
@@ -5,6 +7,10 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.nio.file.Path;
+import task.Task;
+import exceptions.DukeException;
+import task.Deadline;
+import task.Event;
 
 /**
  * Encapsulates all read operations on disk file storage.
@@ -14,6 +20,7 @@ public class StorageReader {
     public StorageReader(Path path) {
         this.path = path;
     }
+
     /**
      * Converts line in disk file to corresponding Task.
      * @param line String stored in file.
@@ -51,16 +58,17 @@ public class StorageReader {
     }
 
     /**
-     * Return LocalDate object stored in file.
-     * @param line
-     * @param compareString
+     * Return LocalDate object stored from the format its stored
+     * in file.
+     * @param line line retrieved from file.
+     * @param compareString command to watch for in line.
      * @return LocalDate object
-     * @throws DukeException
+     * @throws DukeException exception.
      * @throws DateTimeParseException when date stored was invalid.
      */
     public static LocalDate getDateFromStorage(String line, String compareString) throws DukeException, DateTimeParseException {
         try {
-            String date = "";
+            String date;
             int NUM_CHARACTERS_TO_CHECK = compareString.length();
             int DATE_LENGTH = 10;
             int startOfDateIndex = line.indexOf(compareString) + NUM_CHARACTERS_TO_CHECK;
@@ -75,7 +83,7 @@ public class StorageReader {
      * Return contents of file history.
      * @return arraylist containing all the lines in the file.
      */
-    public List<String> getAllLines() {
+    public List<String> getAllLines()  {
         List<String> list = new ArrayList<>();
         try {
             return Files.readAllLines(path);
@@ -83,5 +91,24 @@ public class StorageReader {
             System.out.println("IOException: " + e);
         }
         return list;
+    }
+
+    /**
+     * Syncs all changes stored in disk to arrayList maintained by program, by:
+     * 1. Emptying USERINPUTHISTORY arraylist,
+     * 2. Copying all lines on disk to USERINPUTHISTORY
+     * @throws DukeException when fileLineToTask() fails
+     */
+    public ArrayList<Task>  syncArrayList() throws DukeException {
+        ArrayList<Task> userInputHistory = new ArrayList<>();
+        List<String> linesInFile = getAllLines();
+        Task currTask;
+        int n = linesInFile.size(), i = 0;
+        for (; i < n; i ++) {
+            currTask = StorageReader.fileLineToTask(linesInFile.get(i));
+            userInputHistory.add(currTask);
+            System.out.println(currTask);
+        }
+        return userInputHistory;
     }
 }

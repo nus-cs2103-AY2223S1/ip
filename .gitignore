@@ -17,4 +17,5 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 text-ui-test/*~
 
-./src/main/java/userinputhistory.txt
+caches/
+wrapper/

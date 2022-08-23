@@ -1,23 +1,24 @@
+package task;
 import java.time.LocalDate;
 
 /**
- * Event class has a date field.
+ * Deadline class has a by field
  */
-public class Event extends Task{
+public class Deadline extends Task {
     protected LocalDate date;
 
-    public Event(String description, LocalDate date) {
+    public Deadline(String description, LocalDate by) {
         super(description);
-        this.date = date;
+        this.date = by;
     }
 
     @Override
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[E][✓] %s", this.description);
+            status = String.format("[D][✓] %s", this.description);
         } else {
-            status = String.format("[E][ ] %s (at: %s)", this.description, date);
+            status = String.format("[D][ ] %s (by: %s)", this.description, date);
         }
         return status;
     }
@@ -31,6 +32,7 @@ public class Event extends Task{
         return date.isEqual(LocalDate.now());
     }
 
+
     /**
      * Returns formatted description of the Deadline.
      * @return string representing formatted description.
@@ -39,7 +41,7 @@ public class Event extends Task{
     public String longDescription() {
         String status;
         String done = this.isDone? "was": "is";
-        status = String.format("Event %s %s at %s %d %s %d",
+        status = String.format("Deadline %s %s at %s %d %s %d",
                 this.description, done, this.date.getDayOfWeek(),
                 this.date.getDayOfMonth() , this.date.getMonth(),
                 this.date.getYear());

@@ -1,3 +1,5 @@
+package storage;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -41,7 +43,7 @@ public class StorageWriter {
             String temp = "";
             List<String> history = Files.readAllLines(path);
             Files.write(path, temp.getBytes(StandardCharsets.UTF_8));
-            int n = history.size(), i = 0;
+            int n = history.size(), i;
             for (i = 0; i < n ; i ++) {
                 if (i != index - 1) {
                     temp = history.get(i) + "\n";

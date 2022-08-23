@@ -1,3 +1,2 @@
 [T][ ] home
 [T][ ] buy milk
-[E][✓]  32 

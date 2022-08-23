@@ -1,16 +1,20 @@
+package storage;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.time.LocalDate;
 import java.util.List;
+import exceptions.DukeException;
+import task.Task;
+import java.util.ArrayList;
 
 public class Storage {
     private Path path;
-    private StorageReader storageReader;
-    private StorageWriter storageWriter;
+    private final StorageReader storageReader;
+    private final StorageWriter storageWriter;
 
-    public Storage() {
+    public Storage(String filePath) {
         createFileIfDoesntExist();
         this.storageWriter = new StorageWriter(path);
         this.storageReader = new StorageReader(path);
@@ -23,7 +27,7 @@ public class Storage {
         String pathString = System.getProperty("user.dir");
         if (pathString.contains("ip")) {
             pathString = pathString.substring(0, pathString.indexOf("ip") + 2);
-            this.path = Paths.get(pathString, "src", "main", "java", "userinputhistory.txt");
+            this.path = Paths.get(pathString, "src", "main", "java", "data/userinputhistory.txt");
         } else {
             throw new DukeException("Cannot run from outside of ip folder of Duke");
         }
@@ -45,13 +49,6 @@ public class Storage {
         }
     }
 
-    //Define all StorageReader methods
-    public Task fileLineToTask(String line) throws DukeException {
-        return storageReader.fileLineToTask(line);
-    }
-    public LocalDate getDateFromStorage(String line, String compareString) throws DukeException {
-        return storageReader.getDateFromStorage(line, compareString);
-    }
     public List<String> getAllLines() {
         return storageReader.getAllLines();
     }
@@ -68,5 +65,9 @@ public class Storage {
 
     public boolean changeLine(int index, String newString) {
         return storageWriter.changeLine(index, newString);
+    }
+
+    public ArrayList<Task> syncArrayList() throws DukeException{
+            return storageReader.syncArrayList();
     }
 }
