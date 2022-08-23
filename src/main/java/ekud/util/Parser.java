@@ -5,10 +5,21 @@ import ekud.task.TaskList;
 import ekud.task.TaskType;
 
 public class Parser {
+  /**
+   * Constructor that instantiates an instance of Parser.
+   */
   public Parser() {
 
   }
 
+  /**
+   * Parses the given command.
+   * @param command Command to be parsed.
+   * @param taskList Task List to be modified.
+   * @return ParseResult that contains whether program should be terminated, print message and whether
+   * the task list should be re-saved to storage.
+   * @throws EkudException Error that occured.
+   */
   public ParseResult parseCommand(String command, TaskList taskList) throws EkudException {
     String firstWord = command.split(" ")[0];
     if (command.equals("bye")) {

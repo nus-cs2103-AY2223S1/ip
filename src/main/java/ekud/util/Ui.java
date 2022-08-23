@@ -6,6 +6,9 @@ public class Ui {
       " |    __)_|  |/ /  |  \\/ __ |\n" + " |        \\    <|  |  / /_/ | \n" + "/_______  /__|_ \\____/\\____ | \n" +
       "        \\/     \\/          \\/ \n";
 
+  /**
+   * Constructor that instantiates an instance of Ui.
+   */
   public Ui() {
 
   }
@@ -21,15 +24,26 @@ public class Ui {
     return builder.toString();
   }
 
+  /**
+   * Prints a message to the user.
+   * @param message Message to be printed.
+   */
   public void sendMessage(String message) {
     String divider = "___________________________________";
     System.out.println(indentMessage(divider + "\n" + message + "\n" + divider + "\n"));
   }
 
+  /**
+   * Prints the error message of the exception.
+   * @param exception The exception that occurred.
+   */
   public void showErrorMessage(EkudException exception) {
     this.sendMessage(exception.getMessage());
   }
 
+  /**
+   * Greets the user.
+   */
   public void greet() {
     this.sendMessage("Hello from\n" + this.logo + "What can I do for you?");
   }

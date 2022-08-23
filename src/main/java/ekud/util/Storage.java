@@ -57,6 +57,10 @@ public class Storage {
     return task;
   }
 
+  /**
+   * Writes tasks to local txt file.
+   * @param tasks Task list containing tasks to be written.
+   */
   public void writeTasksToFile(List<Task> tasks) {
     try {
       FileWriter writer = new FileWriter(this.file);
@@ -69,6 +73,11 @@ public class Storage {
     }
   }
 
+  /**
+   * Gets task list from local txt file.
+   * @return List of tasks contained in local txt file.
+   * @throws EkudException Error that occurred.
+   */
   public List<Task> getTasksFromFile() throws EkudException {
     List<Task> tasks = new ArrayList<Task>();
     try {
@@ -87,6 +96,9 @@ public class Storage {
     return tasks;
   }
 
+  /**
+   * Constructor that instantiates an instance of Storage.
+   */
   public Storage() {
     this.createDirectoryIfNotExists();
     this.createFileIfNotExists();
