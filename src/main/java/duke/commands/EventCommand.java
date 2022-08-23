@@ -9,7 +9,7 @@ import duke.task.TaskList;
 
 
 /**
- * Create new ToDo.
+ * Create new Event.
  */
 public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";

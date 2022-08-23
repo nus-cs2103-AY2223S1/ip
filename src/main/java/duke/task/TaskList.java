@@ -2,6 +2,7 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.stream.IntStream;
 
 import duke.DukeException;
 import duke.Storage;
@@ -11,6 +12,10 @@ import duke.Storage;
  */
 public class TaskList extends ArrayList<Task> {
     private final Storage storage;
+
+    public TaskList() {
+        this(null);
+    }
 
     /**
      * Create a tasklist which will save tasks to a given storage automatically.
@@ -28,6 +33,21 @@ public class TaskList extends ArrayList<Task> {
         this.storage = storage;
     }
 
+    /**
+     * FInd all tasks in list that matches the keyword.
+     * @param keyword Word to be searched for
+     * @return filtered list of task.
+     */
+    public ArrayList<Task> filterByKeyword(String keyword) {
+        TaskList filtered = new TaskList();
+        for (Task task : this) {
+            if (task.matches(keyword)) {
+                filtered.add(task);
+            }
+        }
+        return filtered;
+    }
+
 
     /**
      * Add task to list.
@@ -36,7 +56,6 @@ public class TaskList extends ArrayList<Task> {
      * @throws DukeException any exception when trying to add new task to the list.
      */
     public boolean addTask(Task task) throws DukeException {
-
         if (super.add(task)) {
             if (storage != null) {
                 storage.saveTasks(this);
@@ -73,6 +92,13 @@ public class TaskList extends ArrayList<Task> {
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new DukeException("Task %d not found.", index + 1);
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder output = new StringBuilder();
+        IntStream.range(0, this.size()).forEach(i -> output.append(String.format("\t%d. %s%n", i + 1, this.get(i))));
+        return output.toString();
     }
 
     @Override

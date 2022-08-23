@@ -9,12 +9,13 @@ import duke.task.TaskList;
 
 
 /**
- * Create new ToDo.
+ * Deletes a task from the task list.
  */
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_DELETE_SUCCESS = "Noted. I've removed this task:\n"
         + "\t%s\nNow you have %d tasks in your list";
+    public static final String MESSAGE_DELETE_ERROR = "Failed to delete task %d";
 
     private final int indexToDelete;
 
@@ -24,8 +25,12 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui) throws DukeException {
-        Task task = tasks.removeTask(indexToDelete);
-        ui.displayText(MESSAGE_DELETE_SUCCESS, task, tasks.size());
+        try {
+            Task task = tasks.removeTask(this.indexToDelete);
+            ui.displayText(MESSAGE_DELETE_SUCCESS, task, tasks.size());
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException(MESSAGE_DELETE_ERROR, indexToDelete + 1);
+        }
     }
 
     @Override
