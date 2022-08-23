@@ -1,5 +1,7 @@
 💬 Hello, Duke here! What can I do for you?
 ─────
+💬 I have gotten you started with an empty task list. Welcome!
+─────
 💬 Sorry, I didn't understand what you said :(
 ─────
 💬 Sorry, I didn't catch that?
