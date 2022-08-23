@@ -10,11 +10,11 @@ public class DeadLine extends Task {
 
     public void addName(String userInput) throws DukeException {
         if (userInput.length() <= 9) {
-            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         }
         int index = userInput.indexOf("/by") - 1;
         if (index <= 8) {
-            throw new DukeException("☹ OOPS!!! Please indicate when the deadline is due with '/by'.");
+            throw new DukeException("OOPS!!! Please indicate when the deadline is due with '/by'.");
         }
         super.addName(userInput.substring(9, index));
 

@@ -10,11 +10,11 @@ public class Event extends Task {
 
     public void addName(String userInput) throws DukeException {
         if (userInput.length() <= 6) {
-            throw new DukeException("☹ OOPS!!! The description of a event cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a event cannot be empty.");
         }
         int index = userInput.indexOf("/at") - 1;
         if (index <= 5) {
-            throw new DukeException("☹ OOPS!!! Please indicate when the event is happening with '/at'.");
+            throw new DukeException("OOPS!!! Please indicate when the event is happening with '/at'.");
         }
         super.addName(userInput.substring(6, index));
 
