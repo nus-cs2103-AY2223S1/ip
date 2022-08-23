@@ -12,7 +12,7 @@ public class Duke {
     private static String DIRECTORY = "./DATA";
     private static String FILENAME = "duke.txt";
     private static String PATHNAME = String.valueOf(Paths.get(DIRECTORY, FILENAME));
-
+//test
      static void showList(){
         System.out.println("Here are the tasks in your list:");
         for (int i = 1; i <= listOfTask.size(); i++) {
