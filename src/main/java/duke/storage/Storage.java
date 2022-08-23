@@ -5,7 +5,7 @@ import duke.exceptions.DukeException;
 import java.io.File;
 import java.io.IOException;
 
-public class Storage {
+abstract public class Storage {
     private static final String FILE_DIRECTORY = "data";
 
     protected static final String ERROR_STORAGE_NOT_INITIALIZED = "Storage is not initialized yet!";

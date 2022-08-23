@@ -7,7 +7,7 @@ import duke.models.task.Task;
 import java.util.function.Supplier;
 
 abstract class AddTaskCommand implements Command {
-    public static final String ADD_TASK_MESSAGE = "Got it. I've added this task:";
+    private static final String ADD_TASK_MESSAGE = "Got it. I've added this task:";
 
     /**
      * Retrieve the task supplied by the caller and adds that task to the specified task manager.
