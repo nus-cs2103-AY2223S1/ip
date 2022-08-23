@@ -28,7 +28,7 @@ public class Gibson {
                 break;
             // LIST
             } else if (input.equals("list")) {
-                ui.printMessage("Here are the task(s) in your list: " + taskList.toString());
+                ui.printMessage("Here are the task(s) in your list:\n" + taskList.toString());
             // MARK
             } else if (Pattern.matches("mark [0-9]+", input)) {
                 int number = Parser.getTrailingInt(input);
