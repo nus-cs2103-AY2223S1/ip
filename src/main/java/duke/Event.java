@@ -10,7 +10,9 @@ import java.time.format.DateTimeFormatter;
  * @version CS2103T AY22/23 Semester 1
  */
 public class Event extends Task {
+    // The date at which the Event occurs.
     protected LocalDate at;
+
     /**
      * Constructor for a event instance.
      *
@@ -41,10 +43,10 @@ public class Event extends Task {
     }
 
     /**
-     * Gets the deadline of the duke.Task, if any.
+     * Gets the date of the Event, if any.
      *
-     * @return A LocalDate representing the duke.Task's deadline if it exists
-     *         null if no such deadline exists
+     * @return A LocalDate representing the Event's date if it exists
+     *         null if no such date exists
      */
     @Override
     public LocalDate getDeadline() {

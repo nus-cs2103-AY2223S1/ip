@@ -31,7 +31,7 @@ public enum Command {
     /**
      * Gets the command with the given name.
      *
-     * @param name the name of the command (i.e. what the user will enter in the CLI)
+     * @param name the name of the command (i.e. what the user will input in the CLI)
      * @return corresponding command if the name is valid
      *         null otherwise
      */
