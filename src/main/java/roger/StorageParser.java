@@ -1,3 +1,10 @@
+package roger;
+
+import roger.tasks.Deadline;
+import roger.tasks.Event;
+import roger.tasks.Task;
+import roger.tasks.ToDo;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 

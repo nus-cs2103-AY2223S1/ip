@@ -1,7 +1,15 @@
-public class UnmarkCommand extends Command {
+package roger.commands;
+
+import roger.Storage;
+import roger.TaskList;
+import roger.Ui;
+import roger.commands.Command;
+import roger.tasks.Task;
+
+public class MarkCommand extends Command {
     protected int taskNum;
 
-    public UnmarkCommand(int taskNum) {
+    public MarkCommand(int taskNum) {
         this.taskNum = taskNum;
     }
 
@@ -14,8 +22,8 @@ public class UnmarkCommand extends Command {
             ui.show("That task does not exist!");
             return;
         }
-        task.unmarkAsDone();
-        ui.showcase("Haven't done yet, mark what mark? Unmarked this task:", task.toString());
+        task.markAsDone();
+        ui.showcase("Fuiyoh, nephew so efficient! Finished this task:", task.toString());
     }
 }
 

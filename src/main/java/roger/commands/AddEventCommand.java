@@ -1,3 +1,10 @@
+package roger.commands;
+
+import roger.Storage;
+import roger.TaskList;
+import roger.Ui;
+import roger.tasks.Event;
+
 import java.time.LocalDate;
 
 public class AddEventCommand extends Command {

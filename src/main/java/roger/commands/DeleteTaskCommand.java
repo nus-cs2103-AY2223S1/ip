@@ -1,3 +1,11 @@
+package roger.commands;
+
+import roger.Storage;
+import roger.TaskList;
+import roger.Ui;
+import roger.commands.Command;
+import roger.tasks.Task;
+
 public class DeleteTaskCommand extends Command {
     protected int taskNum;
 

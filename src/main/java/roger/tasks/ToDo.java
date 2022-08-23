@@ -1,3 +1,7 @@
+package roger.tasks;
+
+import roger.tasks.Task;
+
 public class ToDo extends Task {
 
     public ToDo(String name) {

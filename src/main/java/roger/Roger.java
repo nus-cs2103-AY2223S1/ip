@@ -1,12 +1,11 @@
+package roger;
+
+import roger.commands.Command;
+import roger.exceptions.RogerInvalidInputException;
+
 import java.io.IOException;
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.List;
-import java.lang.NumberFormatException;
-import java.lang.StringIndexOutOfBoundsException;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 
 public class Roger {

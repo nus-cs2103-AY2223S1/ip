@@ -1,3 +1,4 @@
+package roger.exceptions;
 
 public class RogerInvalidInputException extends Exception{
     /**

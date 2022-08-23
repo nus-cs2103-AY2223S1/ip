@@ -1,3 +1,9 @@
+package roger.commands;
+
+import roger.Storage;
+import roger.TaskList;
+import roger.Ui;
+
 public abstract class Command {
     protected Command() {}
 

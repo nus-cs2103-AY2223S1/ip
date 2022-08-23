@@ -1,3 +1,4 @@
+package roger.tasks;
 
 /**
  * Encapsulates a Task. Task supports marking as done, unmarking,
