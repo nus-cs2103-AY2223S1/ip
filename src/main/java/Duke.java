@@ -1,7 +1,7 @@
 import java.sql.SQLOutput;
 import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.time.LocalDate;
 
 public class Duke {
 
@@ -66,7 +66,7 @@ public class Duke {
             } else if (input.startsWith("deadline")){
                 if (input.length() > 9) {
                     String[] dead = input.split(" /by ");
-                    Deadlines deadlines = new Deadlines(dead[0].substring(9), dead[1]);
+                    Deadlines deadlines = new Deadlines(dead[0].substring(9), LocalDate.parse(dead[1]));
                     arr.add(deadlines);
                     index++;
                     System.out.println(deadlines.addString(index));
@@ -76,7 +76,7 @@ public class Duke {
             } else if (input.startsWith("event")){
                 if (input.length() > 6) {
                     String[] time = input.split(" /at ");
-                    Event event = new Event(time[0].substring(6), time[1]);
+                    Event event = new Event(time[0].substring(6), LocalDate.parse(time[1]));
                     arr.add(event);
                     index++;
                     System.out.println(event.addString(index));
