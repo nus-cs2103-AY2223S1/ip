@@ -10,7 +10,6 @@ public class TaskList {
     private List<Task> taskList;
     private final Storage storage;
 
-
     public TaskList(String path) {
         this.storage = new Storage(path);
         this.taskList = this.getSavedTasks();
