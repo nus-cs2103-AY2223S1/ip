@@ -1,9 +1,12 @@
-deadline do homework /by no idea :-p
-event project meeting /at Mon 2-4pm
-mark 1
-mark 2
+hi
+todo
 todo borrow book
-deadline return book /by Sunday
+event run on thursday
+event run on 2/2/2022 1800
+deadline return book by today
+deadline return book by 2/2/2022 1800
+mark 1
+delete 2
 list
-unmark 1
+Get 2022-02-02
 bye

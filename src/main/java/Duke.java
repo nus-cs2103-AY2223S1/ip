@@ -34,6 +34,7 @@ public class Duke {
                 } else if (ans.split(" ")[0].equals("unmark")) {
                     taskList.markUndone(Integer.valueOf(ans.split(" ")[1]) - 1, fileContainer);
                 } else if (ans.split(" ")[0].equals("mark")) {
+
                     taskList.markAsDone(Integer.valueOf(ans.split(" ")[1]) - 1, fileContainer);
                 } else if (ans.split(" ")[0].equals("delete")){
                     taskList.delete(Integer.valueOf(ans.split(" ")[1])
@@ -43,7 +44,9 @@ public class Duke {
                         || ans.split(" ")[0].equals("event")){
                     taskList.addTask(Task.createATask(ans));
                     fileContainer.updateFile(taskList.getTaskList());
-                }else{
+                } else if (ans.split(" ")[0].equals("Get")) {
+                    System.out.println(taskList.getASpecificDay(ans));
+                } else{
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             }catch (DukeException de){

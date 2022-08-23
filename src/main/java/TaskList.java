@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 public class TaskList {
@@ -14,11 +15,15 @@ public class TaskList {
     }
     //delete the task and print out reply
     public void delete(int i, FileContainer fileContainer){
-        int index=i-1;
-        Task deletedTask=this.taskList.remove(i-1);
-        System.out.println(" Noted. I've removed this task:\n"+deletedTask.printTask()+
-                "\n"+"Now you have "+this.countTask()+" tasks in the list.");
-        fileContainer.updateFile(this.taskList);
+        try {
+            int index = i - 1;
+            Task deletedTask = this.taskList.remove(i - 1);
+            System.out.println(" Noted. I've removed this task:\n" + deletedTask.printTask() +
+                    "\n" + "Now you have " + this.countTask() + " tasks in the list.");
+            fileContainer.updateFile(this.taskList);
+        }catch (IndexOutOfBoundsException e){
+            System.out.println("Sorry, the command is not in right format.");
+        }
     }
     public void addTask(Task task){
         this.taskList.add(task);
@@ -52,5 +57,26 @@ public class TaskList {
 
     public List<Task> getTaskList(){
         return this.taskList;
+    }
+    public String getASpecificDay(String s){
+        try {
+            String day = s.split(" ")[1];
+            LocalDate d = LocalDate.parse(day);
+            String res="";
+            for (int i = 0; i < this.taskList.size(); i++){
+                if (this.taskList.get(i).getDay() != null){
+                    if (this.taskList.get(i).getDay().equals(d)){
+                        res += this.taskList.get(i).printTask() + "\n";
+                    }
+                }
+            }
+            if (res.equals("")){
+                return "You don't have tasks on this day.";
+            }else {
+                return res;
+            }
+        }catch (Exception e){
+            return "the input format is not correct " + e.getMessage();
+        }
     }
 }

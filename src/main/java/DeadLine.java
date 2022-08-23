@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class DeadLine extends Task{
     private String by;
     private String description;
@@ -8,16 +10,22 @@ public class DeadLine extends Task{
         }catch (IndexOutOfBoundsException ie) {
             throw (new DukeException("OOPS!!! The description of a deadline cannot be empty."));
         }try{
-            super.correctDescrition(description.split(" /")[0].split(" ", 2)[1]);
-            this.by = description.split("/")[1].split("by ")[1];
+            super.correctDescrition(description.split("by")[0].split(" ", 2)[1]);
+            super.getFullDescription(description.split(" ",2)[1]);
+            this.by = description.split("by")[1];
         }catch (IndexOutOfBoundsException ie){
-            throw(new DukeException("OOPS!!! The description of a deadline is still not complete."));
+            throw(new DukeException("OOPS!!! The description of a deadline is still not correct."));
         }
         this.description=description;
     }
     @Override
     public String printTask(){
-        return "[D]"+super.printTask()+" (by:"+this.by+")";
+        try {
+            return "[D]" + super.printTask() + " (by:" + super.showTime() + ")";
+        }catch (DukeException d){
+            return "[D]" + super.printTask() + " (by:"
+                    + this.by + ")";
+        }
     }
     @Override
     public String getDescription(){
