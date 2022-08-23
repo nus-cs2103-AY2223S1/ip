@@ -11,9 +11,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static final String OUTPUT_FILE_FOLDER = "data";
-    public static final String OUTPUT_FILE_NAME = "duke.txt";
-    public static final String OUTPUT_FILE_PATH = OUTPUT_FILE_FOLDER + File.separator + OUTPUT_FILE_NAME;
+    private static final String OUTPUT_FILE_FOLDER = "data";
+    private static final String OUTPUT_FILE_NAME = "duke.txt";
+    private static final String OUTPUT_FILE_PATH = OUTPUT_FILE_FOLDER + File.separator + OUTPUT_FILE_NAME;
+
+    private enum COMMANDS {
+        mark, unmark, todo, deadline, event, delete, bye, list
+    }
 
     public static void main(String[] args) {
         System.out.println("------------------------------");
@@ -55,10 +59,18 @@ public class Duke {
             FileWriter fw = new FileWriter(OUTPUT_FILE_PATH);
             String command = scanner.nextLine();
             String[] commandArr = command.split(" ");
+            COMMANDS commandWord = null;
             String toBePrinted = "";
             toBePrinted = toBePrinted.concat("------------------------------\n");
-            switch(commandArr[0]) {
-            case "mark":
+
+            try {
+                commandWord = COMMANDS.valueOf(commandArr[0]);
+            } catch (IllegalArgumentException e) {
+                toBePrinted = toBePrinted.concat("🙁 OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+            }
+
+            switch(commandWord) {
+            case mark:
                 int markI;
                 try {
                     markI = Integer.parseInt(commandArr[1]);
@@ -77,7 +89,7 @@ public class Duke {
                     );
                 }
                 break;
-            case "unmark":
+            case unmark:
                 int unmarkI;
                 try {
                     unmarkI = Integer.parseInt(commandArr[1]);
@@ -96,7 +108,7 @@ public class Duke {
                     );
                 }
                 break;
-            case "todo":
+            case todo:
                 boolean todoIsDone = command.contains("/done");
                 if (todoIsDone) {
                     command = command.replace("/done", "");
@@ -114,7 +126,7 @@ public class Duke {
                     );
                 }
                 break;
-            case "deadline":
+            case deadline:
                 boolean deadlineIsDone = command.contains("/done");
                 if (deadlineIsDone) {
                     command = command.replace("/done", "");
@@ -141,7 +153,7 @@ public class Duke {
                     );
                 }
                 break;
-            case "event":
+            case event:
                 boolean eventIsDone = command.contains("/done");
                 if (eventIsDone) {
                     command = command.replace("/done", "");
@@ -168,7 +180,7 @@ public class Duke {
                     );
                 }
                 break;
-            case "delete":
+            case delete:
                 int deleteI;
                 try {
                     deleteI = Integer.parseInt(commandArr[1]);
@@ -193,29 +205,25 @@ public class Duke {
                     );
                 }
                 break;
-            default:
-                switch (command) {
-                case "bye":
-                    toBePrinted = toBePrinted.concat("Bye. Hope to see you again soon!\n");
-                    break;
-                case "list":
-                    if (tasks.isEmpty()) {
-                        toBePrinted = toBePrinted.concat("🙁 OOPS!!! There are no tasks in your list yet.\n");
-                    } else {
-                        toBePrinted = toBePrinted.concat("Here are the tasks in your list:\n");
-                        for (int i = 0; i < tasks.size(); i++) {
-                            toBePrinted = toBePrinted.concat(
+            case bye:
+                toBePrinted = toBePrinted.concat("Bye. Hope to see you again soon!\n");
+                break;
+            case list:
+                if (tasks.isEmpty()) {
+                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! There are no tasks in your list yet.\n");
+                } else {
+                    toBePrinted = toBePrinted.concat("Here are the tasks in your list:\n");
+                    for (int i = 0; i < tasks.size(); i++) {
+                        toBePrinted = toBePrinted.concat(
                                 String.format(
-                                    "%d. %s\n", i + 1, tasks.get(i).toString()
+                                        "%d. %s\n", i + 1, tasks.get(i).toString()
                                 )
-                            );
-                        }
+                        );
                     }
-                    break;
-                default:
-                    toBePrinted = toBePrinted.concat("🙁 OOPS!!! I'm sorry, but I don't know what that means :-(\n");
-                    break;
                 }
+                break;
+            default:
+                break;
             }
             toBePrinted = toBePrinted.concat("------------------------------\n");
             if (isPrinting) {
