@@ -132,4 +132,20 @@ public class UI {
         System.out.println("Aw Mans... I've unmarked this task:");
         System.out.println(taskList.get(index).toString());
     }
+
+    /**
+     * Prints list of tasks that contains the inputted keyword.
+     *
+     * @param taskList list of tasks that contains the inputted keyword.
+     * @throws DukeException if no tasks contains the keyword.
+     */
+    public void showKeywordList(TaskList taskList) throws DukeException {
+        if (taskList.size() == 0) {
+            throw new DukeException("You do not have any tasks in the list that contains the keyword");
+        }
+        System.out.println("Here are matching tasks in your list:");
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println(i + 1 + "." + taskList.get(i).toString());
+        }
+    }
 }

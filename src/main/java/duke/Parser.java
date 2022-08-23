@@ -31,6 +31,8 @@ public class Parser {
                     throw new DukeException(String.format("The description of a %s cannot be empty.", input));
                 case delete:
                     throw new DukeException("Choose which index to delete.");
+                case find:
+                    throw new DukeException("Input a keyword to find.");
                 }
             } catch (IllegalArgumentException e) {
                 throw new DukeException("Sorry I do not understand what that means :(");
@@ -80,6 +82,8 @@ public class Parser {
             } else {
                 throw new DukeException("Event does not have proper format.");
             }
+        case find:
+            return new FindCommand(info);
         }
         throw new DukeException("Unknown Error");
     }
