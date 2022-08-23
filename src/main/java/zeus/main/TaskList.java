@@ -1,9 +1,9 @@
 package zeus.main;
 
-import zeus.exception.ZeusException;
+import java.util.ArrayList;
+
 import zeus.task.Task;
 
-import java.util.ArrayList;
 
 /**
  * Class that represents a list of tasks.
