@@ -73,6 +73,7 @@ public class Parser {
                 String item = command[1];
                 tasks.find(item);
         }
+
         } catch (IllegalArgumentException e) {
             System.out.println("Invalid command");
         }
