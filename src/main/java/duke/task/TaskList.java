@@ -1,11 +1,12 @@
 package duke.task;
 
-import duke.exception.DukeException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
 
 /**
  * A task list is used to store tasks.
@@ -14,19 +15,25 @@ public class TaskList {
     private LinkedList<Task> tasks;
 
     /**
-     * Constructor for a task list.
+     * Constructs an empty task list.
      */
     public TaskList() {
         this.tasks = new LinkedList<>();
     }
 
+    /**
+     * Constructs a task list from a saved file.
+     *
+     * @param savedTasks The file the tasks are to be loaded from
+     * @throws DukeException If there is no such existing file
+     */
     public TaskList(File savedTasks) throws DukeException {
         this.tasks = new LinkedList<>();
         try {
             Scanner sc = new Scanner(savedTasks);
             while (sc.hasNextLine()) {
                 String ln = sc.nextLine();
-                TaskType savedTask = Task.readSavedTaskType(ln.charAt(0));
+                TaskType savedTask = TaskType.readSavedTaskType(ln.charAt(0));
                 this.tasks.add(savedTask.parseSavedFormat(ln));
             }
         } catch (FileNotFoundException e) {
@@ -34,6 +41,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the display message of the number of tasks in the task list.
+     *
+     * @return The display String representation of the number of tasks in the task list
+     */
     public String numberOfTasks() {
         int numTasks = this.tasks.size();
         if (numTasks == 0) {
@@ -109,6 +121,11 @@ public class TaskList {
                 "  %s\nNow you have %d tasks in the list.", task, tasks.size()));
     }
 
+    /**
+     * Parses the task list into a string format ready to be saved to the hard disk.
+     *
+     * @return A savable string representation of the task list
+     */
     public String toSaveFormat() {
         String formatted = "";
         for (Task task : tasks) {

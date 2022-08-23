@@ -116,6 +116,32 @@ public enum TaskType {
 
     public abstract Task parseSavedFormat(String savedFormat);
 
+    /**
+     * Returns the TaskType represented by the specified character.
+     *
+     * @param data The character to be parsed into a TaskType
+     * @return The TaskType represented by the given character
+     * @throws DukeException If the given character is invalid
+     */
+    public static TaskType readSavedTaskType(char data) throws DukeException {
+        switch (data) {
+        case 'T':
+            return TaskType.TODO;
+        case 'D':
+            return TaskType.DEADLINE;
+        case 'E':
+            return TaskType.EVENT;
+        default:
+            throw new DukeException("Duke found an unknown data type: " + data);
+        }
+    }
+
+    /**
+     * Processes the saved data by extracting the deliminators and cleaning escaped characters into an array.
+     *
+     * @param savedFormat A line extracted from the file of saved tasks
+     * @return An array containing the processed data
+     */
     private static String[] parseFormatArray(String savedFormat) {
         String[] result = savedFormat.substring(4).split("\\ \\|\\ ");
         int len = result.length;

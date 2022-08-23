@@ -10,7 +10,7 @@ public class Deadline extends Task {
     protected java.time.LocalDateTime dueDate;
 
     /**
-     * Constructor for a deadline task.
+     * Constructs a deadline task.
      *
      * @param description Description of the deadline task
      * @param dueDate The due date of the deadlined task
@@ -20,11 +20,23 @@ public class Deadline extends Task {
         this.dueDate = dueDate;
     }
 
+    /**
+     * Constructs a deadline task with a specified completion status.
+     *
+     * @param description Description of the deadline task
+     * @param dueDate The due date of the deadlined task
+     * @param completion Whether the Deadline task has been completed
+     */
     public Deadline(String description, LocalDateTime dueDate, boolean completion) {
         super(description, completion);
         this.dueDate = dueDate;
     }
 
+    /**
+     * Parses the Deadline into a savable string format, ready to be written to the hard disk.
+     *
+     * @return Savable string representation of the Deadline Task
+     */
     @Override
     public String toSaveFormat() {
         return String.format("D | %s | %s | %s", this.isDone ? "Y" : "N",
@@ -33,9 +45,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns a string representation for the deadline task,
-     * prefixed with a [D], followed by the deadline status, and
-     * the deadline description.
+     * Returns a string representation for the deadline task, prefixed with a [D],
+     * followed by the deadline status, and the deadline description.
      *
      * @return The string representation of the deadline task
      */

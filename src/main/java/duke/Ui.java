@@ -2,6 +2,9 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Deals with interactions with the user.
+ */
 public class Ui {
     private static final String DIVIDER = "\t____________________________________________________________";
     private Scanner scanner;
@@ -28,6 +31,11 @@ public class Ui {
         System.out.println(DIVIDER);
     }
 
+    /**
+     * Greets the user upon the start of the duke program.
+     *
+     * @param numberOfTasks The number of tasks in the task list initially
+     */
     public static void greet(String numberOfTasks) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

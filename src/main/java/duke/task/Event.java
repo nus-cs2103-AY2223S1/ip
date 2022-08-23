@@ -10,7 +10,7 @@ public class Event extends Task {
     protected LocalDateTime eventDatetime;
 
     /**
-     * Constructor for an event task.
+     * Constructs an event task.
      *
      * @param description Description of the event task
      * @param datetime The start/ end datetime of the event
@@ -20,11 +20,22 @@ public class Event extends Task {
         this.eventDatetime = datetime;
     }
 
+    /**
+     * Constructs an event task with a specified completion status.
+     *
+     * @param description Description of the event task
+     * @param datetime The start/ end datetime of the event
+     * @param completion Whether the event task is done or not
+     */
     public Event(String description, LocalDateTime datetime, boolean completion) {
         super(description, completion);
         this.eventDatetime = datetime;
     }
 
+    /**
+     * Parses the Event into a savable string format, ready to be written to the hard disk.
+     * @return Savable string representation of the Deadline Task
+     */
     @Override
     public String toSaveFormat() {
         return String.format("E | %s | %s | %s", this.isDone ? "Y" : "N",
@@ -33,9 +44,8 @@ public class Event extends Task {
     }
 
     /**
-     * Returns a string representation for the event task,
-     * prefixed with a [E], followed by the event status, and
-     * the event description.
+     * Returns a string representation for the event task, prefixed with a [E],
+     * followed by the event status, and the event description.
      *
      * @return The string representation of the event task
      */
