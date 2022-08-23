@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.UI;
+
 public class OnGoingCommand extends Command {
     private final int index;
 

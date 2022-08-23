@@ -1,3 +1,6 @@
+package duke.task;
+
+import duke.DateConverter;
 import java.time.LocalDate;
 
 public class Deadline extends Task {

@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.UI;
+
 public class DoneCommand extends Command{
     private final int indexToMarkAsDone;
 

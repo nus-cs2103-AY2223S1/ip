@@ -1,3 +1,22 @@
+package duke;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.DoneCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.OnGoingCommand;
+import duke.exception.DukeException;
+import duke.exception.InvalidDeadlineException;
+import duke.exception.InvalidEventException;
+import duke.exception.InvalidIndexException;
+import duke.exception.InvalidInputException;
+import duke.exception.InvalidToDoException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
+
 public class Parser {
     public enum RequestType {
         DONE, ONGOING, TODO, EVENT, DEADLINE, DELETE, LIST, EXIT
