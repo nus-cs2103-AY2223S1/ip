@@ -1,3 +1,12 @@
+package duke;
+
+import duke.commands.Command;
+import duke.exceptions.DukeException;
+import duke.utils.TaskList;
+import duke.utils.Parser;
+import duke.utils.Storage;
+import duke.utils.Ui;
+
 import java.io.FileNotFoundException;
 
 public class Duke {
@@ -16,7 +25,7 @@ public class Duke {
     }
 
     /**
-     * Main application loop for Duke.
+     * Main application loop for duke.Duke.
      */
     public void run() {
         boolean isExit = false;

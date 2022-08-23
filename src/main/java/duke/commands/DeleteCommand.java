@@ -1,3 +1,10 @@
+package duke.commands;
+
+import duke.exceptions.DukeException;
+import duke.utils.Storage;
+import duke.utils.TaskList;
+import duke.utils.Ui;
+
 /**
  * Delete a task and prints a confirmation message.
  *

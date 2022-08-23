@@ -1,3 +1,5 @@
+package duke.tasks;
+
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -15,7 +17,7 @@ public class Todo extends Task {
 
     @Override
     public String getTaskType() {
-        return "Todo";
+        return "duke.tasks.Todo";
     }
 
     @Override

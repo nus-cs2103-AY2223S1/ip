@@ -1,3 +1,10 @@
+package duke.utils;
+
+import duke.tasks.Task;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,7 +16,7 @@ public class Storage {
     /**
      * Reads and parses the task list from persistent storage and returns it.
      *
-     * @return TaskList from persistent storage.
+     * @return duke.utils.TaskList from persistent storage.
      */
     public static TaskList readFromStorage() throws FileNotFoundException {
         TaskList taskList = new TaskList();
@@ -24,16 +31,16 @@ public class Storage {
             boolean isTaskDone = taskStrTokens[2].equals("0") ? false : true;
 
             switch (taskType) {
-            case "Todo":
+            case "duke.tasks.Todo":
                 Todo currTodo = new Todo(taskDescription, isTaskDone);
                 taskList.addTask(currTodo);
                 break;
-            case "Deadline":
+            case "duke.tasks.Deadline":
                 LocalDateTime by = LocalDateTime.parse(taskStrTokens[3]);
                 Deadline currDeadline = new Deadline(taskDescription, isTaskDone, by);
                 taskList.addTask(currDeadline);
                 break;
-            case "Event":
+            case "duke.tasks.Event":
                 LocalDateTime at = LocalDateTime.parse(taskStrTokens[3]);
                 Event currEvent = new Event(taskDescription, isTaskDone, at);
                 taskList.addTask(currEvent);
@@ -57,9 +64,9 @@ public class Storage {
     }
 
     /**
-     * Creates a new, blank persistent storage file and writes the input TaskList into the file.
+     * Creates a new, blank persistent storage file and writes the input duke.utils.TaskList into the file.
      *
-     * @param taskList Input TaskList to read from and write into the persistent storage file.
+     * @param taskList Input duke.utils.TaskList to read from and write into the persistent storage file.
      */
     public static void writeAllToStorage(TaskList taskList) {
         File dataDirectory = new File("data");
@@ -82,7 +89,7 @@ public class Storage {
     }
 
     /**
-     * Appends a new Task to persistent storage.
+     * Appends a new duke.tasks.Task to persistent storage.
      */
     public static void appendTaskToStorage(Task task) {
         File dataDirectory = new File("data");

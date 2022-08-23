@@ -1,3 +1,10 @@
+package duke.commands;
+
+import duke.utils.Storage;
+import duke.tasks.Task;
+import duke.utils.TaskList;
+import duke.utils.Ui;
+
 /**
  * Adds a new task to the task list and prints a confirmation message.
  *

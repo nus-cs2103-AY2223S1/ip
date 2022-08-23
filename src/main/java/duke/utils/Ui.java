@@ -1,3 +1,5 @@
+package duke.utils;
+
 import java.util.Scanner;
 
 /**
@@ -48,12 +50,12 @@ public class Ui {
      * Prints Duke's greeting message.
      */
     public void sayGreetings() {
-        String greetingMsg = "Hello! I'm Duke \nWhat can I do for you?";
+        String greetingMsg = "Hello! I'm Duke!\nWhat can I do for you?";
         prettyPrint(greetingMsg);
     }
 
     /**
-     * Prints Duke's good bye message.
+     * Prints Duke's goodbye message.
      */
     public void sayGoodBye() {
         String goodByeMsg = "Bye. Hope to see you again soon!";

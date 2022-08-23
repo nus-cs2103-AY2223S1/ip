@@ -1,3 +1,7 @@
+package duke.utils;
+
+import duke.tasks.Task;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -11,7 +15,7 @@ public class TaskList {
     /**
      * Add a new task.
      *
-     * @param task Task to be added.
+     * @param task duke.tasks.Task to be added.
      */
     public void addTask(Task task) {
         this.tasks.add(task);
@@ -20,7 +24,7 @@ public class TaskList {
     /**
      * Delete a task.
      *
-     * @param index Index of the task as printed by TaskList's toString.
+     * @param index Index of the task as printed by duke.utils.TaskList's toString.
      */
     public void deleteTask(int index) {
         this.tasks.remove(index);
@@ -39,7 +43,7 @@ public class TaskList {
      * Returns the task with the input index.
      *
      * @param index Index of the task as printed by viewAllTask.
-     * @return Task with the input index.
+     * @return duke.tasks.Task with the input index.
      */
     public Task getTask(int index) {
         return this.tasks.get(index);
@@ -48,7 +52,7 @@ public class TaskList {
     /**
      * Mark a task as done.
      *
-     * @param index Position of the task as indicated by TaskList's string
+     * @param index Position of the task as indicated by duke.utils.TaskList's string
      *              representation.
      */
     public void markTask(int index) {
@@ -59,7 +63,7 @@ public class TaskList {
     /**
      * Mark a task as not done.
      *
-     * @param index Position of the task as indicated by TaskList's string
+     * @param index Position of the task as indicated by duke.utils.TaskList's string
      *              representation.
      */
     public void unmarkTask(int index) {

@@ -1,3 +1,9 @@
+package duke.commands;
+
+import duke.utils.Storage;
+import duke.utils.TaskList;
+import duke.utils.Ui;
+
 public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
 
