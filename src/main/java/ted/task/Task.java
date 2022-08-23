@@ -1,3 +1,8 @@
+package ted.task;
+
+import ted.exception.InvalidEncodingException;
+import ted.exception.TedException;
+
 import java.util.Arrays;
 
 /**

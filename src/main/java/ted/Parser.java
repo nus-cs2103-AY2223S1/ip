@@ -1,4 +1,7 @@
-import java.util.Locale;
+package ted;
+
+import ted.command.*;
+import ted.exception.TedException;
 
 public class Parser {
     enum CommandEnum {

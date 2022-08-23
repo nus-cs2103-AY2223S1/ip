@@ -1,3 +1,9 @@
+package ted;
+
+import ted.exception.InvalidEncodingException;
+import ted.task.Task;
+import ted.task.TaskList;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

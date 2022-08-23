@@ -1,3 +1,10 @@
+package ted;
+
+import ted.command.Command;
+import ted.exception.InvalidEncodingException;
+import ted.exception.TedException;
+import ted.task.TaskList;
+
 public class Ted {
 
     private static final String GREETING =

@@ -1,3 +1,10 @@
+package ted.command;
+
+import ted.*;
+import ted.exception.TedException;
+import ted.task.Deadline;
+import ted.task.TaskList;
+
 public class DeadlineCommand extends Command {
 
     private String by;

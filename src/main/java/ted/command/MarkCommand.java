@@ -1,3 +1,10 @@
+package ted.command;
+
+import ted.Storage;
+import ted.task.TaskList;
+import ted.exception.TedException;
+import ted.Ui;
+
 public class MarkCommand extends Command {
 
     private int index;

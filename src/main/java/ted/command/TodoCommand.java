@@ -1,3 +1,10 @@
+package ted.command;
+
+import ted.*;
+import ted.exception.TedException;
+import ted.task.TaskList;
+import ted.task.ToDo;
+
 public class TodoCommand extends Command {
 
     private String description;

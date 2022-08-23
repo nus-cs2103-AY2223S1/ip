@@ -1,3 +1,9 @@
+package ted;
+
+import ted.exception.TedException;
+import ted.task.Task;
+import ted.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {

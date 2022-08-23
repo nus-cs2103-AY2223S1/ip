@@ -1,3 +1,10 @@
+package ted.command;
+
+import ted.*;
+import ted.exception.TedException;
+import ted.task.Task;
+import ted.task.TaskList;
+
 public class DeleteCommand extends Command {
 
     private int index;

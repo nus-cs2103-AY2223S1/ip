@@ -1,3 +1,5 @@
+package ted.task;
+
 /**
  * A class that encapsulate a todo task
  */

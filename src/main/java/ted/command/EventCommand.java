@@ -1,3 +1,10 @@
+package ted.command;
+
+import ted.*;
+import ted.exception.TedException;
+import ted.task.Event;
+import ted.task.TaskList;
+
 public class EventCommand extends Command {
 
     private String at;
