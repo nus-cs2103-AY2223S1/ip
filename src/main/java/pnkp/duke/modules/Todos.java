@@ -7,11 +7,9 @@ import java.util.Scanner;
 import static java.lang.String.format;
 import static pnkp.duke.IOFormat.say;
 
+import pnkp.duke.FallibleFunction;
 import pnkp.duke.MessagefulException;
-import pnkp.duke.modules.todos.Deadline;
-import pnkp.duke.modules.todos.Event;
 import pnkp.duke.modules.todos.Task;
-import pnkp.duke.modules.todos.Todo;
 
 /**
  * Module handling tracking tasks, optionally with dates or timeranges.
@@ -26,13 +24,8 @@ public class Todos {
         todos = new ArrayList<>();
     }
 
-    private void addWrapper(Task newTask) {
-        todos.add(newTask);
-        say(List.of(
-            "Got it. I've added this task:",
-            newTask.toString(),
-            format("Now you have %d %s in the list.", todos.size(), todos.size() == 1 ? "task" : "tasks")
-        ));
+    private String taskCountMessage() {
+        return format("Now you have %d %s in the list.", todos.size(), todos.size() == 1 ? "task" : "tasks");
     }
 
     private int readTodoID(Scanner rest, String missingNumberPrompt) throws MessagefulException {
@@ -52,51 +45,25 @@ public class Todos {
     }
 
     /**
-     * Command for adding a todo - a task with no date.
+     * Command for adding a task.
      * @param rest The scanner with the remaining text in the message.
+     * @param constructor The fromChat factory function of the given task.
      */
-    public void cmdAddTodo(Scanner rest) {
+    public void cmdAdd(Scanner rest, FallibleFunction<Scanner, Task> constructor) {
         final Task task;
         try {
-            task = Todo.fromChat(rest);
+            task = constructor.apply(rest);
         } catch(MessagefulException e) {
             say(e.message());
             return;
         }
 
-        addWrapper(task);
-    }
-
-    /**
-     * Command for adding a deadline - a task with a due date.
-     * @param rest The scanner with the remaining text in the message.
-     */
-    public void cmdAddDeadline(Scanner rest) {
-        final Task task;
-        try {
-            task = Deadline.fromChat(rest);
-        } catch(MessagefulException e) {
-            say(e.message());
-            return;
-        }
-
-        addWrapper(task);
-    }
-
-    /**
-     * Command for adding an event - a task with a time range.
-     * @param rest The scanner with the remaining text in the message.
-     */
-    public void cmdAddEvent(Scanner rest) {
-        final Task task;
-        try {
-            task = Event.fromChat(rest);
-        } catch(MessagefulException e) {
-            say(e.message());
-            return;
-        }
-
-        addWrapper(task);
+        todos.add(task);
+        say(List.of(
+                "Got it. I've added this task:",
+                task.toString(),
+                taskCountMessage()
+        ));
     }
 
     /**
@@ -165,8 +132,6 @@ public class Todos {
         say(List.of(
                 "OK, I've deleted this task:",
                 taskToDelete.toString(),
-                format("Now you have %d %s in the list.",
-                        todos.size(),
-                        todos.size() == 1 ? "task" : "tasks")));
+                taskCountMessage()));
     }
 }

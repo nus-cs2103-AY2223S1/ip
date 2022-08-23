@@ -1,4 +1,7 @@
 import pnkp.duke.modules.Todos;
+import pnkp.duke.modules.todos.Deadline;
+import pnkp.duke.modules.todos.Event;
+import pnkp.duke.modules.todos.Todo;
 
 import java.util.Scanner;
 
@@ -35,13 +38,13 @@ public class Duke {
                     fExit = true;
                     break;
                 case "todo":
-                    todos.cmdAddTodo(scanner);
+                    todos.cmdAdd(scanner, Todo::fromChat);
                     break;
                 case "deadline":
-                    todos.cmdAddDeadline(scanner);
+                    todos.cmdAdd(scanner, Deadline::fromChat);
                     break;
                 case "event":
-                    todos.cmdAddEvent(scanner);
+                    todos.cmdAdd(scanner, Event::fromChat);
                     break;
                 case "list":
                     todos.cmdList();
