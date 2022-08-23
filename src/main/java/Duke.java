@@ -13,7 +13,7 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         String line_divider = "____________________________________________________________";
-        System.out.println("Wassup from\n" + logo);
+//        System.out.println("Wassup from\n" + logo);
         System.out.println(line_divider);
         System.out.println("Wassup la I'm Duke\nWhat you want?\n" + line_divider);
 
