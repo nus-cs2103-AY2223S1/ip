@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,11 +9,11 @@ public class Ted {
 
     private static final String GREETING =
             "##################################################\n" +
-                    "||                                              ||\n" +
-                    "||                Hello! I'm Ted                ||\n" +
-                    "||            What can I do for you?            ||\n" +
-                    "||                                              ||\n" +
-                    "##################################################";
+            "||                                              ||\n" +
+            "||                Hello! I'm Ted                ||\n" +
+            "||            What can I do for you?            ||\n" +
+            "||                                              ||\n" +
+            "##################################################";
 
     private static final String INPUT_PREFIX = "> ";
 
@@ -17,6 +21,7 @@ public class Ted {
 
     /**
      * Helper to add task to tasks
+     *
      * @param task task to be added
      */
     private void addTask(Task task) {
@@ -162,8 +167,8 @@ public class Ted {
             }
 
             System.out.printf("Noted. I've removed this task:\n" +
-                    "%s\n" +
-                    "Now you have %d tasks in the list.\n",
+                            "%s\n" +
+                            "Now you have %d tasks in the list.\n",
                     this.tasks.get(index - 1),
                     this.tasks.size() - 1
             );
@@ -175,6 +180,13 @@ public class Ted {
     }
 
     private void startup() {
+        try {
+            this.tasks = Storage.loadTasks();
+            System.out.printf("Loaded %d tasks from saved file.\n", this.tasks.size());
+        } catch (InvalidEncodingException e) {
+            System.out.println("Error while loading tasks: saved file's encoding incorrect.");
+        }
+
         System.out.println(GREETING);
 
         Scanner scanner = new Scanner(System.in);
@@ -193,7 +205,7 @@ public class Ted {
                     this.handleListCommand(argument);
                 } else if (command.equals("mark")) {
                     this.handleMarkCommand(argument);
-                }  else if (command.equals("unmark")) {
+                } else if (command.equals("unmark")) {
                     this.handleUnmarkCommand(argument);
                 } else if (command.equals("todo")) {
                     this.handleToDoCommand(argument);
@@ -205,6 +217,14 @@ public class Ted {
                     this.handleDeleteCommand(argument);
                 } else {
                     System.out.println("I'm sorry. I don't understand what that means.");
+                }
+
+                try {
+                    Storage.saveTasks(this.tasks);
+                } catch (IOException e) {
+                    System.out.println("Error while saving tasks: " + e.getMessage());
+                } catch (SecurityException e) {
+                    System.out.println("Error while saving tasks: Permission denied.");
                 }
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());

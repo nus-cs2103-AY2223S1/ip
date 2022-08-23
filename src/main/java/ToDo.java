@@ -7,6 +7,11 @@ public class ToDo extends Task {
     }
 
     @Override
+    public String encode() {
+        return String.format("T | %s", super.encode());
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

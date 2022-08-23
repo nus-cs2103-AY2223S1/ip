@@ -11,6 +11,11 @@ public class Event extends Task {
     }
 
     @Override
+    public String encode() {
+        return String.format("E | %s | %s", super.encode(), this.at);
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
