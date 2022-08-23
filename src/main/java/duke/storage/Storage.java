@@ -1,6 +1,10 @@
 package duke.storage;
 
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 import duke.utilities.DukeException;
 
 import java.io.File;
@@ -27,6 +31,7 @@ public class Storage {
      */
     public Storage(String filePath) throws IOException {
         String[] parts = filePath.split("/");
+
         File folder = new File(parts[0]);
         if (!folder.exists()) {
             folder.mkdir();
@@ -49,6 +54,7 @@ public class Storage {
     public void writeTasksToStorage(TaskList taskList) throws IOException {
         ArrayList<Task> tasks = taskList.getTasks();
         FileWriter fileWriter = new FileWriter(this.file);
+
         for (Task task : tasks) {
             if (task instanceof Todo) {
                 String rep = "T|" + task.getDoneStatus() + "|" + task.getDescription();
@@ -80,6 +86,7 @@ public class Storage {
     public ArrayList<Task> readTasksFromStorage() throws FileNotFoundException, DukeException {
         Scanner sc = new Scanner(file);
         ArrayList<Task> tasks = new ArrayList<>();
+
         while (sc.hasNext()) {
             String line = sc.nextLine();
             String[] lineComponents = line.split("\\|");
@@ -95,7 +102,10 @@ public class Storage {
                 tasks.add(t);
                 break;
             case "D":
-                Deadline d = new Deadline(lineComponents[2], LocalDateTime.parse(lineComponents[3], dateFormat));
+                Deadline d = new Deadline(
+                        lineComponents[2],
+                        LocalDateTime.parse(lineComponents[3], dateFormat)
+                );
                 d.setDoneStatus(doneStatus);
                 tasks.add(d);
                 break;

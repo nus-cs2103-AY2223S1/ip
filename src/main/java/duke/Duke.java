@@ -1,7 +1,11 @@
 package duke;
 
 import duke.storage.Storage;
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
 import duke.utilities.DukeException;
 import duke.utilities.Parser;
 import duke.utilities.Ui;
@@ -55,6 +59,7 @@ public class Duke {
             try {
                 String information = Parser.parseCommand(currentLine);
                 String[] infoArray = information.split("\\|");
+
                 switch (infoArray[0]) {
                 case "list":
                     this.ui.printTasks(this.taskList);
