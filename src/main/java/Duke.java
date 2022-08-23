@@ -35,8 +35,12 @@ public class Duke {
             }
             switch (command) {
                 case LIST: {
-                    for (int i = 0; i < tasks.size(); i++) {
-                        System.out.printf("%d. %s%n", i + 1, tasks.get(i));
+                    if (tasks.size() == 0) {
+                        System.out.println("You have no tasks at the moment!");
+                    } else {
+                        for (int i = 0; i < tasks.size(); i++) {
+                            System.out.printf("%d. %s%n", i + 1, tasks.get(i));
+                        }
                     }
                     break;
                 }

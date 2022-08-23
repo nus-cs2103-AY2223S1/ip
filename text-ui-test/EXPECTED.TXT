@@ -6,6 +6,7 @@
 
 Hello there! I'm Duke!
 How can I help you?
+You have no tasks at the moment!
 Got it, I've added this to-do:
 (T) [ ] Test todo
 Got it, I've added this deadline:
