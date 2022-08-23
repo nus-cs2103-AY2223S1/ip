@@ -1,4 +1,6 @@
-T | 1 |  proj  | 
-D | 0 |  proj  |  10 Dec 2022 19:00 PM
-E | 1 |  proj meeting  |  12 Dec 2020 01:00 AM
-T | 0 | homework | 
+T | 1 |   proj   | 
+D | 0 |   proj   |   10 Dec 2022 19:00 PM
+E | 1 |   proj meeting   |   12 Dec 2020 01:00 AM
+T | 0 |  homework  | 
+T | 1 | proj | 
+E | 0 | festival | 20 May 2019 13:30 PM

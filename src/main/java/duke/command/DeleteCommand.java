@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.task.*;
+import duke.ui.Ui;
+import duke.data.Storage;
+
 public class DeleteCommand extends Command {
 
     private int taskID;

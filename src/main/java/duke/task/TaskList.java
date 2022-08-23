@@ -1,6 +1,6 @@
-import java.util.ArrayList;
+package duke.task;
 
-//contains the task list e.g., it has operations to add/delete tasks in the list
+import java.util.ArrayList;
 
 public class TaskList {
 

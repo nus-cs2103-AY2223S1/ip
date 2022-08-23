@@ -1,3 +1,8 @@
+package duke.ui;
+
+import duke.task.*;
+import duke.exception.DukeException;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -49,13 +54,13 @@ public class Ui {
     public void showMarkTaskMessage(Task t) {
         showToUser(" Nice! I've marked this task as done:\n"
                 + "  [X] "
-                + t.description);
+                + t.getDescription());
     }
 
     public void showUnmarkTaskMessage(Task t) {
         showToUser(" OK, I've marked this task as not done yet:\n"
                 + "  [ ] "
-                + t.description);
+                + t.getDescription());
     }
 
     public void showListMessage(String s) {

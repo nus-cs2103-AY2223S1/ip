@@ -1,6 +1,9 @@
+package duke.task;
+
+import duke.exception.DukeException;
 import java.time.LocalDateTime;
 
-abstract class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
     protected int day, month, year, hours, minutes;
@@ -15,7 +18,7 @@ abstract class Task {
         this.isDone = false;
     }
 
-    abstract String getDate();
+    public abstract String getDate();
 
     /**
      * Returns [X] if task is done. Else, [ ].
@@ -24,6 +27,14 @@ abstract class Task {
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    public boolean getIsDone() {
+        return this.isDone;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     /**
