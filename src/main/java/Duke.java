@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class Duke {
     private final ArrayList<Task> db = new ArrayList<>(10);
@@ -179,8 +181,32 @@ public class Duke {
         fw.close();
     }
 
+    private void load() throws IOException {
+        Scanner s = new Scanner(new File("data/duke.txt"));
+        while (s.hasNext()) {
+            String[] tmp = s.nextLine().split("\\|");
+            for (int i = 0; i < tmp.length; i++) {
+                tmp[i] = tmp[i].strip();
+            }
+
+            switch (tmp[0]) {
+                case "T":
+                    db.add(new Todo(tmp));
+                    break;
+                case "D":
+                    db.add(new Deadline(tmp));
+                    break;
+                case "E":
+                    db.add(new Event(tmp));
+                    break;
+            }
+        }
+    }
+
     // Initializes and starts a Duke instance.
     public static void main(String[] args) {
+        Duke duke = new Duke();
+
         try {
             if (!Files.isDirectory(Paths.get("data/"))) {
                 Files.createDirectories(Paths.get("data/"));
@@ -189,11 +215,12 @@ public class Duke {
             if (!Files.exists(Paths.get("data/duke.txt"))) {
                 Files.createFile(Paths.get("data/duke.txt"));
             }
+
+            duke.load();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        Duke duke = new Duke();
 
         duke.greet();
         while (true) {
