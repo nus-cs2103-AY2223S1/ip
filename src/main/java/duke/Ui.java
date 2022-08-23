@@ -6,13 +6,13 @@ import java.util.Scanner;
 /**
  * Represents UI of application
  */
-public class UI {
+public class Ui {
     private final Scanner sc;
 
     /**
      * Constructor for class Ui.
      */
-    public UI() {
+    public Ui() {
         this.sc = new Scanner(System.in);
     }
 

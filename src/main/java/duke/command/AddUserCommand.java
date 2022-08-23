@@ -4,7 +4,7 @@ import duke.DukeException;
 import duke.Instructions;
 import duke.Storage;
 import duke.TaskList;
-import duke.UI;
+import duke.Ui;
 
 import duke.task.Deadlines;
 import duke.task.Events;
@@ -56,7 +56,7 @@ public class AddUserCommand extends Command {
      * @throws DukeException if timing is of the wrong format.
      */
     @Override
-    public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         Task newTask;
         switch (type) {
         case todo:

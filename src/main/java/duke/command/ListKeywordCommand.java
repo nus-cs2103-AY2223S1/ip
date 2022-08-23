@@ -3,7 +3,7 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.UI;
+import duke.Ui;
 
 /**
  * Represents a command that lists out tasks that contains keyword.
@@ -26,7 +26,7 @@ public class ListKeywordCommand extends Command {
      * @throws DukeException if keyword list is empty.
      */
     @Override
-    public void execute(TaskList keywordList, UI ui, Storage storage) throws DukeException {
+    public void execute(TaskList keywordList, Ui ui, Storage storage) throws DukeException {
         ui.showKeywordList(keywordList);
     }
 }

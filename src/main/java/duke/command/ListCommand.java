@@ -3,7 +3,7 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.UI;
+import duke.Ui;
 
 /**
  * Represents a command to list the contents of task list.
@@ -36,7 +36,7 @@ public class ListCommand extends Command {
      * @throws DukeException if list is empty.
      */
     @Override
-    public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ui.showListOut(taskList);
     }
 }

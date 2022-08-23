@@ -50,7 +50,7 @@ public class Storage {
      * @param ui user interface of application.
      * @param taskList list of tasks.
      */
-    public void startUpPullStorage(UI ui, TaskList taskList) {
+    public void startUpPullStorage(Ui ui, TaskList taskList) {
         createFolder();
         createFile();
         pullSavedTaskList(ui, taskList);
@@ -75,7 +75,7 @@ public class Storage {
      * @param ui user interface of application.
      * @param taskList list of tasks.
      */
-    private void pullSavedTaskList(UI ui, TaskList taskList) {
+    private void pullSavedTaskList(Ui ui, TaskList taskList) {
         File save = new File(filePath);
         try {
             Scanner s = new Scanner(save);

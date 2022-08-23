@@ -3,7 +3,7 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.UI;
+import duke.Ui;
 
 /**
  * Represents a command to mark a task in task list.
@@ -30,7 +30,7 @@ public class MarkCommand extends Command {
      * @throws DukeException if task is already marked or index does not exist.
      */
     @Override
-    public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
             if (!taskList.get(index).getDone()) {
                 taskList.get(index).markTask();

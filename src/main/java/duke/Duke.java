@@ -18,7 +18,7 @@ public class Duke {
 
     private final Storage storage;
     private final TaskList taskList;
-    private final UI ui;
+    private final Ui ui;
     private boolean isBye; //Indicates if bye was input by user
 
     /**
@@ -29,7 +29,7 @@ public class Duke {
      */
     public Duke(String folderPath, String filePath) {
         this.taskList = new TaskList();
-        this.ui = new UI();
+        this.ui = new Ui();
         this.storage = new Storage(folderPath, filePath);
         this.isBye = false;
     }

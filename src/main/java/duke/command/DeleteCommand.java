@@ -1,9 +1,8 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.UI;
+import duke.Ui;
 
 import duke.task.Task;
 
@@ -31,7 +30,7 @@ public class DeleteCommand extends Command {
      * @param storage files storing task list.
      */
     @Override
-    public void execute(TaskList taskList, UI ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         Task deletedTask = taskList.get(index);
         taskList.delete(index);
         ui.showDelete(taskList, deletedTask);

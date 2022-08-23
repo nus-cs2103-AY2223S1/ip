@@ -3,7 +3,7 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.UI;
+import duke.Ui;
 
 /**
  * Represents a command to unmark a task in task list.
@@ -31,7 +31,7 @@ public class UnMarkCommand extends Command {
      * @throws DukeException if task is already unmarked or index does not exist.
      */
     @Override
-    public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
+    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         try {
             if (taskList.get(index).getDone()) {
                 taskList.get(index).unmarkTask();

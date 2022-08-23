@@ -3,7 +3,7 @@ package duke.command;
 import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.UI;
+import duke.Ui;
 
 /**
  * Represents a command to be executed by program.
@@ -32,5 +32,5 @@ public abstract class Command {
      * @param storage files storing task list.
      * @throws DukeException if error occurs during execution of command.
      */
-    public abstract void execute(TaskList taskList, UI ui, Storage storage) throws DukeException;
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
 }

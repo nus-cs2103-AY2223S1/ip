@@ -1,9 +1,8 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
-import duke.UI;
+import duke.Ui;
 
 /**
  * Represents a command to save task list in save file.
@@ -25,7 +24,7 @@ public class SaveCommand extends Command {
      * @param storage files storing task list.
      */
     @Override
-    public void execute(TaskList taskList, UI ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         storage.saveTaskList(taskList);
     }
 }

@@ -40,7 +40,7 @@ public abstract class Task {
     public boolean getDone() {
         return isDone;
     }
-    
+
     public boolean contains(String keyword) {
         return task.contains(keyword);
     }
