@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -156,6 +159,7 @@ public class Duke {
 
     public static void deadline(String userInput, String by) {
         Deadline d = new Deadline(userInput, by);
+        dateProcessor(d);
         storeList.add(d);
         System.out.println("Got it. I've added this task:");
         System.out.println("\t" + d.toString());
@@ -181,6 +185,10 @@ public class Duke {
         if((firstCommand.equals("deadline") || firstCommand.equals("event")) && userInput.split("/", 2).length == 1) {
             throw new DukeException("\t ☹ OOPS!!! The time due or needed cannot be empty.");
         }
+    }
+
+    public static void dateProcessor(Deadline d) {
+        d.convertToDate();
     }
 
     public static void farewell() {
