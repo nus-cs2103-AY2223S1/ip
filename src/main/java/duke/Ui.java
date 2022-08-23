@@ -4,15 +4,27 @@ import java.io.IOException;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * The Ui class that interacts with the user.
+ */
 public class Ui {
 
 	private Parser parser;
 
+	private static final Scanner echo = new Scanner(System.in);
+
+	/**
+	 * Constructs the Ui class.
+	 *
+	 * @param parser The parser that interprets the user input.
+	 */
 	public Ui(Parser parser) {
 		this.parser = parser;
 	}
-	private static final Scanner echo = new Scanner(System.in);
 
+	/**
+	 * To run the program after receiving the user input.
+	 */
 	public void run() {
 		String response;
 		while (!this.parser.isItDone()) {
@@ -30,6 +42,4 @@ public class Ui {
 			}
 		}
 	}
-
-
 }

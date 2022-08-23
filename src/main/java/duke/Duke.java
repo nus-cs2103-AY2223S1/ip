@@ -4,7 +4,7 @@ import java.time.format.DateTimeParseException;
 import java.io.IOException;
 
 /**
- * The main class to run Duke.
+ * The class that sets up the other classes to run.
  */
 public class Duke {
 
@@ -13,6 +13,11 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor of Duke class.
+     *
+     * @param filePath  The String that is the relative path to the text document.
+     */
     public Duke (String filePath) {
         this.storage = new Storage(filePath);
         this.tasks = new TaskList();
@@ -30,6 +35,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Run the ui function.
+     */
     public void run() {
         this.ui.run();
     }

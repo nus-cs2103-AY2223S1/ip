@@ -3,6 +3,9 @@ package duke;
 import java.io.IOException;
 import java.util.regex.Pattern;
 
+/**
+ * Parses the response taken by user from Ui.
+ */
 public class Parser {
 
 	private static Pattern checkString = Pattern.compile("-?\\d+");
@@ -23,12 +26,24 @@ public class Parser {
 		EVENT
 	}
 
+	/**
+	 * Constructor of a Parser class.
+	 *
+	 * @param storage The text doocument used for storing and loading data.
+	 * @param tasks The arraylist used to store tasks.
+	 */
 	public Parser(Storage storage, TaskList tasks) {
 		this.storage = storage;
 		this.tasks = tasks;
 		this.isDone = false;
 	}
 
+	/**
+	 * To check if an integer is given after user input "mark", "unmark" or "delete".
+	 *
+	 * @param strNum The String after user input "mark", "unmark" or "delete".
+	 * @return True if it is an integer, false otherwise.
+	 */
 	private static boolean isInteger(String strNum) {
 		if (strNum == null) {
 			return false;
@@ -36,16 +51,33 @@ public class Parser {
 		return checkString.matcher(strNum).matches();
 	}
 
+	/**
+	 * Check if Duke is done running
+	 *
+	 * @return True when "bye" is inputted, otherwise false
+	 */
 	public boolean isItDone() {
 		return this.isDone;
 	}
 
+	/**
+	 * Load tasks from text document into arraylist.
+	 *
+	 * @throws DukeException If incorrect information is used to add into the arraylist.
+	 * @throws IOException If the relative path to the file in invalid.
+	 */
 	public void load() throws DukeException, IOException {
 		this.storage.load();
 		this.storage.addDukeToList(this.tasks);
 	}
 
-
+	/**
+	 * Actions taken after receiving response from the user.
+	 *
+	 * @param response The string that consists of the user command.
+	 * @throws DukeException If the response is invalid.
+	 * @throws IOException If the relative path to the text document is invalid.
+	 */
 	public void reply(String response) throws DukeException, IOException {
 		String[] parts = response.split(" ", 2);
 		/** the action */
@@ -90,7 +122,6 @@ public class Parser {
 			this.tasks.addTaskType(Type.EVENT, parts);
 			break;
 		case "delete":
-			/** no task declared */
 			if (parts.length <= 1) {
 				throw new DukeException("Please tell me what to delete!");
 			}

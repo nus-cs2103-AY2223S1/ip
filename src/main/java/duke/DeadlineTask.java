@@ -12,9 +12,11 @@ public class DeadlineTask extends Task {
 
     protected LocalDate date;
     protected LocalTime time;
+
     /**
      * Constructor for a DeadlineTask object.
-     * @param description    Name of the task.
+     *
+     * @param description    description of the task.
      * @param by             Date of the deadline.
      */
     public DeadlineTask(String description, String by) throws DukeException {
@@ -34,6 +36,11 @@ public class DeadlineTask extends Task {
         this.time = LocalTime.parse(temp);
     }
 
+    /**
+     * format date and time to a string that would be added into the text document.
+     *
+     * @return String added into the text document.
+     */
     public String dateTimeString() {
         return this.date.toString() + " " + this.time.toString().replace(":", "");
     }

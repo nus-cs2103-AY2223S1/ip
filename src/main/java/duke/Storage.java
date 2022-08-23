@@ -6,14 +6,27 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * The Storage class stores and load the information into a text docmument.
+ */
 public class Storage {
 
 	private final String filePath;
 
+	/**
+	 * Constructor for a Storage class.
+	 *
+	 * @param filePath The relative path to the text document.
+	 */
 	public Storage(String filePath) {
 		this.filePath = filePath;
 	}
 
+	/**
+	 * To create the text document in the relevant file if it does not exist.
+	 *
+	 * @throws IOException If the relative path to the text document is invalid.
+	 */
 	public void load() throws IOException {
 		String dir = this.filePath.substring(0, this.filePath.lastIndexOf("/"));
 		File dataDir = new File(dir);
@@ -22,12 +35,24 @@ public class Storage {
 		newDuke.createNewFile();
 	}
 
+	/**
+	 * Write tasks from the arraylist into the text document.
+	 *
+	 * @param textToAdd String information of the task.
+	 * @throws IOException If the relative path to the text document is invalid.
+	 */
 	public void writeToFile(String textToAdd) throws IOException {
 		FileWriter fw = new FileWriter(this.filePath);
 		fw.write(textToAdd);
 		fw.close();
 	}
 
+	/**
+	 * Format the string of the task.
+	 *
+	 * @param task Task in the arraylist.
+	 * @return The formatted string.
+	 */
 	public String fileFormatString(Task task) {
 		boolean temp = task.getStatusIcon().equals("X") ? true : false;
 		if (task instanceof DeadlineTask) {
@@ -44,6 +69,13 @@ public class Storage {
 		}
 	}
 
+	/**
+	 * Add tasks from the text document into the arraylist.
+	 *
+	 * @param tasks
+	 * @throws FileNotFoundException If the file does not exist.
+	 * @throws DukeException If information from the task in invalid.
+	 */
 	public void addDukeToList(TaskList tasks) throws FileNotFoundException, DukeException {
 		File file = new File(this.filePath); // create a File for the given file path
 		Scanner scanner = new Scanner(file); // create a Scanner using the File as the source
