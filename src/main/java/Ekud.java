@@ -9,12 +9,14 @@ public class Ekud {
     private final String logo = "_____________             .___\n" + "\\_   _____/  | ____ __  __| _/\n" + 
     " |    __)_|  |/ /  |  \\/ __ |\n" + " |        \\    <|  |  / /_/ | \n" + "/_______  /__|_ \\____/\\____ | \n" + 
     "        \\/     \\/          \\/ \n";
+    private final Storage storage;
 
     /**
      * Constructor that instantiates new Ekud instance.
      */
     public Ekud() {
         this.taskList = new ArrayList<Task>();
+        this.storage = new Storage();
     }
 
     /**
