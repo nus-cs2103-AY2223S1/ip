@@ -83,6 +83,17 @@ public class Duke {
                 System.out.println("Now you have " + counter + " tasks in the list.");
                 str = sc.nextLine();
             }
+            else if (str.equals("delete")) {
+                int num = sc.nextInt() - 1;
+                Task temp = taskArray.get(num);
+                taskArray.remove(num);
+                System.out.println("Noted. I've removed this task:\n" + "  " +
+                        temp.toString());
+                counter--;
+                System.out.println("Now you have " + counter + " tasks in the list.");
+                str = sc.nextLine();
+
+            }
 
             else {
                 taskArray.add(new Task(str));
