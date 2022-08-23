@@ -7,6 +7,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.TemporalAccessor;
 
+/**
+ * Represents an parser that translates between strings of date/time and LocalDateTime objects.
+ */
 public class DateParser {
     // DateTimeFormatter for the formats of date/time
     private static final DateTimeFormatter format = new DateTimeFormatterBuilder()
@@ -30,9 +33,9 @@ public class DateParser {
         LocalDateTime dateTime;
         TemporalAccessor temporalAccessor = DateParser.format.parseBest(date, LocalDateTime::from, LocalDate::from);
         if (temporalAccessor instanceof LocalDateTime) {
-            dateTime = (LocalDateTime)temporalAccessor;
+            dateTime = (LocalDateTime) temporalAccessor;
         } else {
-            dateTime = ((LocalDate)temporalAccessor).atStartOfDay();
+            dateTime = ((LocalDate) temporalAccessor).atStartOfDay();
         }
         return dateTime;
     }

@@ -5,9 +5,19 @@ import java.time.LocalDateTime;
 
 import duke.parser.DateParser;
 
+/**
+ * Represents an Event task with date and time.
+ */
 public class Event extends Task {
     private LocalDateTime date;
 
+    /**
+     * Creates an Event task with the given description and date.
+     *
+     * @param description The description of the Event task.
+     * @param date The date which this Event task has to be completed by.
+     * @throws DateTimeException if error occurs while interpreting the date/time given.
+     */
     public Event(String description, String date) throws DateTimeException {
         super(description);
         this.date = DateParser.parseToDate(date);

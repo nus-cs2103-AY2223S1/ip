@@ -4,11 +4,17 @@ import duke.command.Command;
 import duke.parser.Parser;
 import duke.task.TasksList;
 
+/**
+ * Represents Duke Bot that functions and responds according to user's commands.
+ */
 public class Duke {
     private Storage storage;
     private Ui ui;
     private TasksList tasksList;
 
+    /**
+     * Creates a Duke bot and initialise the Storage, Ui and TasksList.
+     */
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();
@@ -45,6 +51,11 @@ public class Duke {
         return "Duke";
     }
 
+    /**
+     * Creates and initiates Duke to run.
+     *
+     * @param args Ignore.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

@@ -13,10 +13,18 @@ import duke.Storage;
 public class TasksList {
     private final List<Task> tasksList;
 
+    /**
+     * Creates an empty TasksList.
+     */
     public TasksList() {
         this.tasksList = new ArrayList<>();
     }
 
+    /**
+     * Checks if the TasksList is empty or not.
+     *
+     * @return true if the list is empty, false otherwise.
+     */
     public boolean isEmpty() {
         return this.tasksList.size() == 0;
     }
@@ -25,7 +33,8 @@ public class TasksList {
      * Add Task (ToDo, Deadline, Event) to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
-     * @throws DukeException if command is invalid
+     * @param storage The storage associated with this command.
+     * @throws DukeException if the add command is invalid.
      */
     public void addTask(String[] command, Storage storage) throws DukeException {
         String taskType = command[0];
@@ -48,7 +57,8 @@ public class TasksList {
      * Add To-do task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
-     * @throws DukeException
+     * @param storage The storage associated with this command.
+     * @throws DukeException if the todo command is invalid.
      */
     public void addTodo(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
@@ -71,7 +81,8 @@ public class TasksList {
      * Add Deadline task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
-     * @throws DukeException
+     * @param storage The storage associated with this command.
+     * @throws DukeException if the deadline command is invalid.
      */
     public void addDeadline(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
@@ -103,7 +114,8 @@ public class TasksList {
      * Add Event task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
-     * @throws DukeException
+     * @param storage The storage associated with this command.
+     * @throws DukeException if the event command is invalid.
      */
     public void addEvent(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
@@ -150,7 +162,8 @@ public class TasksList {
      * Mark the task of the given id as done.
      *
      * @param command The command represented by an array of Strings.
-     * @throws DukeException
+     * @param storage The storage associated with this command.
+     * @throws DukeException if the mark command is invalid.
      */
     public void markTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
@@ -177,7 +190,8 @@ public class TasksList {
      * Mark the task of the given id as not done.
      *
      * @param command The command represented by an array of Strings.
-     * @throws DukeException
+     * @param storage The storage associated with this command.
+     * @throws DukeException if the unmark command is invalid.
      */
     public void unmarkTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {
@@ -202,7 +216,8 @@ public class TasksList {
      * Delete the task of the given id from the list.
      *
      * @param command The command represented by an array of Strings.
-     * @throws DukeException
+     * @param storage The storage associated with this command.
+     * @throws DukeException if the delete command is invalid.
      */
     public void deleteTask(String[] command, Storage storage) throws DukeException {
         if (command.length == 1) {

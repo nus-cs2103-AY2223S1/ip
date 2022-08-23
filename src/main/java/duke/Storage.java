@@ -9,9 +9,15 @@ import java.util.List;
 import duke.task.Task;
 import duke.task.TasksList;
 
+/**
+ * Represents the Storage to deal with loading tasks from and saving tasks to the save file in the user's hard disk.
+ */
 public class Storage {
     private final Path path;
 
+    /**
+     * Represents Storage with the directory of the save file in the user's hard disk.
+     */
     public Storage() {
         this.path = Paths.get(System.getProperty("user.dir"), "data", "duke.txt");
     }
