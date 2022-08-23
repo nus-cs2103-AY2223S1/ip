@@ -11,34 +11,20 @@ public class TaskList {
         this.taskList = taskList;
     }
 
-    public void addTask(String input, Commands type) throws Duke.DukeException {
-        Task t;
-        switch (type) {
-        case TODO: {
-            t = handleTodo(input);
-            break;
-        }
-        case DEADLINE: {
-            t = handleDeadline(input);
-            break;
-        }
-        case EVENT: {
-            t = handleEvent(input);
-            break;
-        }
-        default:
-            throw new IllegalArgumentException("Invalid task type entered");
-            // this should only be seen by developer
-        }
-        this.taskList.add(t);
-        line();
-        System.out.println("Got it. I've added this task:");
-        System.out.println(t);
-        printArraySize();
-        line();
+    public int getSize() {
+        return this.taskList.size();
     }
 
-    public void deleteTask(int index) throws Duke.DukeException {
+    public ArrayList<Task> getTaskList() {
+        return this.taskList;
+    }
+
+    public void addTask(Task t) throws Duke.DukeException {
+        this.taskList.add(t);
+        int count = this.taskList.size();
+    }
+
+    public Task deleteTask(int index) throws Duke.DukeException {
         int numOfTasks = this.taskList.size();
         if (index < 1) {
             throw new Duke.DukeException("Hey there! Are you sure you are referring to a correct task? " +
@@ -53,11 +39,7 @@ public class TaskList {
         Task t = getTask(index);
         int indexInList = index - 1;
         this.taskList.remove(indexInList);
-        line();
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(t);
-        printArraySize();
-        line();
+        return t;
     }
 
     public Task getTask(int index) throws Duke.DukeException {
