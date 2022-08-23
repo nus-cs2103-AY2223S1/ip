@@ -33,10 +33,9 @@ public class StorageTest {
 
     /**
      * Tests if the saved file has been loaded properly into the tasklist.
-     * @throws DukeException
      */
     @Test
-    public void testLoadSavedFile2() throws DukeException {
+    public void testLoadSavedFile2() {
         Storage storage = new Storage("src/test/java/test.txt");
         TaskList task = storage.loadFile(new TaskList());
         String deadline = "[D][X] test (by: DECEMBER 12 2022 10:55)";

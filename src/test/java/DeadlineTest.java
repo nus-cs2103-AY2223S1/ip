@@ -10,7 +10,7 @@ public class DeadlineTest {
 
     /**
      * Tests the creation of a Deadline object.
-     * @throws DukeException
+     * @throws DukeException not thrown.
      */
     @Test
     public void testCreateDeadline() throws DukeException {
@@ -21,7 +21,7 @@ public class DeadlineTest {
 
     /**
      * Tests the save format of an Deadline object.
-     * @throws DukeException
+     * @throws DukeException not thrown.
      */
     @Test
     public void testFormatting() throws DukeException {
@@ -37,7 +37,7 @@ public class DeadlineTest {
     @Test
     public void testIncorrectDateFormat() {
         Throwable exception = assertThrows(Throwable.class, () -> {
-            Deadline deadline = new Deadline("test", "tmr");
+            new Deadline("test", "tmr");
         });
         assertEquals("Invalid Date Format (YYYY-MM-DD HH:MM required)." , exception.getMessage());
     }

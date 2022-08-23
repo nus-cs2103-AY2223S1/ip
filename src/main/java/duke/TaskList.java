@@ -13,7 +13,7 @@ public class TaskList {
     /**
      * The class constructor for a duke.TaskList. It is initialized
      * with an empty ArrayList, but it is filled progressively, or
-     * laoded from a previous session.
+     * loaded from a previous session.
      */
     public TaskList() {
         this.inputList = new ArrayList<Task>();
@@ -42,7 +42,7 @@ public class TaskList {
      * Marks the task as completed via the index of the task on the
      * arraylist. The method throws a duke.DukeException if the
      * task is found to be non-existent.
-     * @param parts
+     * @param parts sliced String input.
      * @throws DukeException thrown if there is no such task.
      */
     public void markTask(String[] parts) throws DukeException {
@@ -60,7 +60,7 @@ public class TaskList {
     /**
      * Removes the task from the arraylist. The method throws a duke.DukeException if the
      * task is found to be non-existent.
-     * @param parts
+     * @param parts sliced String input.
      * @throws DukeException thrown if there is no such task.
      */
     public void deleteTask(String[] parts) throws DukeException {
@@ -82,7 +82,7 @@ public class TaskList {
     /**
      * Adds the task to arraylist, and formats a String representation
      * that is to be printed along with the task representation and size of list.
-     * @param task
+     * @param task from the TaskList.
      */
     public void taskAdd(Task task) {
         this.inputList.add(task);
@@ -94,8 +94,7 @@ public class TaskList {
 
     /**
      * Abstracts the creation of a todo object, with exception handling.
-     * @param input
-     * @return duke.Todo object
+     * @param input from the User.
      * @throws DukeException thrown if there is no description.
      */
     public void createTodo(String input) throws DukeException {
@@ -110,8 +109,7 @@ public class TaskList {
 
     /**
      * Abstracts the creation of a duke.Deadline object, with exception handling.
-     * @param input
-     * @return duke.Deadline object
+     * @param input from the User.
      * @throws DukeException thrown if there is no description or /by field.
      */
     public void createDeadline(String input) throws DukeException{
@@ -129,8 +127,7 @@ public class TaskList {
 
     /**
      * Abstracts the creation of a duke.Event object, with exception handling.
-     * @param input
-     * @return duke.Event object
+     * @param input from the User.
      * @throws DukeException thrown if there is no description or /at field
      */
     public void createEvent(String input) throws DukeException {

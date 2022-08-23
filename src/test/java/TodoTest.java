@@ -2,8 +2,14 @@ import duke.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * To unit test the Todo class.
+ */
 public class TodoTest {
 
+    /**
+     * Tests the creation of a todo object.
+     */
     @Test
     public void testCreateTodo() {
         Todo todo = new Todo("test");
@@ -11,6 +17,9 @@ public class TodoTest {
         assertEquals(result, todo.toString());
     }
 
+    /**
+     * Tests the save format of an Event object.
+     */
     @Test
     public void testFormatting() {
         Todo todo = new Todo("test");

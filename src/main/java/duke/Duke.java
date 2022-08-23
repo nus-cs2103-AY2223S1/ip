@@ -15,7 +15,7 @@ public class Duke {
     /**
      * The class constructor for duke.Duke. Initializes all necessary
      * objects for usage. Reads and loads previous tasks if available.
-     * @param filePath
+     * @param filePath of the file.
      */
     public Duke(String filePath) {
         this.ui = new Ui();
@@ -53,7 +53,7 @@ public class Duke {
 
     /**
      * Kick starts all interactions with the user.
-     * @param args
+     * @param args of user input.
      */
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();

@@ -14,7 +14,7 @@ public class Ui {
      * Outputs a salutation, indicating the programme has started running.
      */
     public void start() {
-        System.out.println("Hello! I'm duke.Duke\nWhat can I do for you?");
+        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
     }
 
     /**
@@ -30,13 +30,13 @@ public class Ui {
      * @param e duke.DukeException
      */
     public void showError(DukeException e) {
-        System.out.println(e);
+        System.out.println(e.getMessage());
     }
 
     /**
      * Outputs the string representation of all tasks that has been
      * added to the arraylist via the duke.Task toString method.
-     * @param tasks
+     * @param tasks in the TaskList
      */
     public void printList(TaskList tasks) {
         Task[] inputArray = tasks.taskListToArray();
