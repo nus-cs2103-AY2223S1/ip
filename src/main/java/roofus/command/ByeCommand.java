@@ -7,6 +7,9 @@ import roofus.Ui;
 import java.io.IOException;
 
 public class ByeCommand extends Command {
+    /**
+     * {@inheritDoc}
+     */
     @Override 
     public void execute(TaskList taskList,
                         Storage storage, Ui ui) {
@@ -18,6 +21,9 @@ public class ByeCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isRunning() {
         return false;

@@ -4,11 +4,28 @@ import roofus.command.Command;
 
 import java.io.FileNotFoundException;
 
+/**
+ * Roofus is a Personal Assistant Chatbot that
+ * helps a person to keep track of various things.
+ *
+ * @author  Darren Wah
+ * @version 0.1
+ * @since   2022-08-13 
+ */
 public class Roofus {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
-    
+
+    /**
+     * Constructs an instance of Roofus with 
+     * Ui, Storage and TaskList instance.
+     *
+     * @param storagePath File path to storage file.
+     * @see Ui
+     * @see Storage
+     * @see TaskList
+     */
     public Roofus(String storagePath) {
         this.storage = new Storage(storagePath);
         this.ui = new Ui();
@@ -19,6 +36,9 @@ public class Roofus {
         }
     }
 
+    /**
+     * Starts Roofus
+     */
     public void run() {
         ui.greet();
         boolean isRunning = true;
