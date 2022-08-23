@@ -45,32 +45,35 @@ public class Deku {
         KeyPhrases keyPhrase = KeyPhrases.get(separate.remove(0));
         try {
             switch (keyPhrase) {
-                case BYE:
-                    reply = "Bye! Until next time!";
-                    break;
-                case LIST:
-                    reply = this.botList.toString();
-                    break;
-                case MARK:
-                    reply = this.botList.mark(Integer.parseInt(separate.get(0)));
-                    break;
-                case UNMARK:
-                    reply = this.botList.unmark(Integer.parseInt(separate.get(0)));
-                    break;
-                case DELETE:
-                    reply = this.botList.delete(Integer.parseInt(separate.get(0)));
-                    break;
-                case DEADLINE:
-                    reply = this.botList.add(new Deadline(separate));
-                    break;
-                case EVENT:
-                    reply = this.botList.add(new Event(separate));
-                    break;
-                case TODO:
-                    reply = this.botList.add(new ToDo(separate));
-                    break;
-                default:
-                    throw new DekuExceptions("I have no idea what that means. (T _ T)");
+            case BYE:
+                reply = "Bye! Until next time!";
+                break;
+            case LIST:
+                reply = this.botList.toString();
+                break;
+            case MARK:
+                reply = this.botList.mark(Integer.parseInt(separate.get(0)));
+                break;
+            case UNMARK:
+                reply = this.botList.unmark(Integer.parseInt(separate.get(0)));
+                break;
+            case DELETE:
+                reply = this.botList.delete(Integer.parseInt(separate.get(0)));
+                break;
+            case DEADLINE:
+                reply = this.botList.add(new Deadline(separate));
+                break;
+            case EVENT:
+                reply = this.botList.add(new Event(separate));
+                break;
+            case TODO:
+                reply = this.botList.add(new ToDo(separate));
+                break;
+            case FIND_DATE:
+                reply = this.botList.find(separate.get(0));
+                break;
+            default:
+                throw new DekuExceptions("I have no idea what that means. (T _ T)");
             }
         } catch (DekuExceptions e) {
             reply = e.toString();
