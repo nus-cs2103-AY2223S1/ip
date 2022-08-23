@@ -5,6 +5,8 @@ import duke.Ui;
 import duke.task.Event;
 import duke.task.TaskList;
 
+import java.util.Objects;
+
 /**
  * Create new ToDo.
  */
@@ -27,5 +29,18 @@ public class EventCommand extends Command {
         } else {
             ui.displayText(MESSAGE_FAILURE);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof EventCommand)) return false;
+        EventCommand that = (EventCommand) o;
+        return Objects.equals(toAdd, that.toAdd);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }

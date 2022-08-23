@@ -6,6 +6,7 @@ import duke.task.Deadline;
 import duke.task.TaskList;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * Create new Deadline task.
@@ -29,5 +30,18 @@ public class DeadlineCommand extends Command {
         } else {
             ui.displayText(MESSAGE_FAILURE);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DeadlineCommand)) return false;
+        DeadlineCommand that = (DeadlineCommand) o;
+        return toAdd.equals(that.toAdd);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }

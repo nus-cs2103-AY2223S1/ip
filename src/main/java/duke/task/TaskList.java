@@ -4,6 +4,7 @@ import duke.DukeException;
 import duke.Storage;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class TaskList extends ArrayList<Task> {
     private final Storage storage;
@@ -46,11 +47,24 @@ public class TaskList extends ArrayList<Task> {
         try {
             Task task = super.get(index);
             task.setDone(completed);
-            storage.saveTasks(this);
+            if (storage != null) storage.saveTasks(this);
             return task;
         } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new DukeException("Task %d not found.", index + 1);
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TaskList)) return false;
+        if (!super.equals(o)) return false;
+        TaskList tasks = (TaskList) o;
+        return Objects.equals(storage, tasks.storage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), storage);
+    }
 }

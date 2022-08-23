@@ -5,6 +5,8 @@ import duke.Ui;
 import duke.task.TaskList;
 import duke.task.ToDo;
 
+import java.util.Objects;
+
 /**
  * Create new ToDo.
  */
@@ -26,5 +28,18 @@ public class ToDoCommand extends Command {
         } else {
             ui.displayText(MESSAGE_FAILURE);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ToDoCommand)) return false;
+        ToDoCommand that = (ToDoCommand) o;
+        return Objects.equals(toAdd, that.toAdd);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(toAdd);
     }
 }

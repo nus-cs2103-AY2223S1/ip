@@ -5,6 +5,8 @@ import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
+import java.util.Objects;
+
 /**
  * Create new ToDo.
  */
@@ -22,5 +24,18 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasks, Ui ui) throws DukeException {
         Task task = tasks.removeTask(indexToDelete);
         ui.displayText(MESSAGE_DELETE_SUCCESS, task, tasks.size());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DeleteCommand)) return false;
+        DeleteCommand that = (DeleteCommand) o;
+        return indexToDelete == that.indexToDelete;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(indexToDelete);
     }
 }

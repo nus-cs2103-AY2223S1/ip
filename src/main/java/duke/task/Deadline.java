@@ -4,6 +4,7 @@ import duke.DukeException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class Deadline extends Task {
     protected LocalDateTime by;
@@ -49,5 +50,18 @@ public class Deadline extends Task {
     @Override
     public String getDisplayText() {
         return String.format("%s (by: %s)", description, by.format(DateTimeFormatter.ofPattern(DISPLAY_DATETIME_FORMAT)));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Deadline)) return false;
+        Deadline deadline = (Deadline) o;
+        return by.equals(deadline.by) && super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(by, description, isDone);
     }
 }

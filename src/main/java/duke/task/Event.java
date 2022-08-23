@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.util.Objects;
+
 public class Event extends Task {
     protected String eventTime;
 
@@ -40,5 +42,18 @@ public class Event extends Task {
     @Override
     public String getDisplayText() {
         return String.format("%s (at: %s)", description, eventTime);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Event)) return false;
+        Event event = (Event) o;
+        return eventTime.compareTo(event.eventTime) == 0 && super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(eventTime, description, isDone);
     }
 }

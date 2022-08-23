@@ -18,4 +18,9 @@ public class ListCommand extends Command {
         IntStream.range(0, tasks.size()).forEach(i -> output.append(String.format("%d. %s%n", i + 1, tasks.get(i))));
         ui.displayText(output.toString());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

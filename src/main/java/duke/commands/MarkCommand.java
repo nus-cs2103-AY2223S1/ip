@@ -5,6 +5,8 @@ import duke.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
+import java.util.Objects;
+
 /**
  * Mark task as completed.
  */
@@ -22,5 +24,18 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui) throws DukeException {
         Task task = tasks.setCompletion(this.indexToMark, true);
         ui.displayText(MESSAGE_SUCCESS, task);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MarkCommand)) return false;
+        MarkCommand that = (MarkCommand) o;
+        return indexToMark == that.indexToMark;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(indexToMark);
     }
 }
