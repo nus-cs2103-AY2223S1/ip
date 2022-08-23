@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -17,6 +19,10 @@ public class Task {
 
     public void markUndone() {
         this.isDone = false;
+    }
+
+    public boolean isHappeningOnDate(LocalDate localDate) {
+        return false;
     }
 
     @Override

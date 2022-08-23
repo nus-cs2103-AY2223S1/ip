@@ -1,22 +1,17 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class Duke {
-    private static class DukeException extends Exception {
-        String message;
-        DukeException(String message) {
-            this.message = message;
-        }
-
-        @Override
-        public String toString() {
-            return this.message;
-        }
-    }
     public static ArrayList<Task> list;
+
     public static void line() {
         System.out.println("________________________________________");
     }
+
     public static void greet() {
         line();
         System.out.println("Hello! I'm Duke");
@@ -30,19 +25,11 @@ public class Duke {
         line();
     }
 
-    private void store(String input) {
-        Task t = new Task(input);
-        list.add(t);
-        line();
-        System.out.println("added: " + t);
-        line();
-    }
-
     public static void enumerateArrayList() throws DukeException {
         int numOfTasks = list.size();
         if (numOfTasks == 0) {
             throw new DukeException("Unfortunately, you do not have any tasks at hand." +
-            " Try creating some first.");
+                    " Try creating some first.");
         }
         line();
         System.out.println("Here are the tasks in your list:");
@@ -110,7 +97,8 @@ public class Duke {
         String when = modifiedInput[1];
         String[] secondModifiedInput = when.split(" ", 2);
         String dateBy = secondModifiedInput[1];
-        return new Deadline(description, dateBy);
+        LocalDate localDateBy = LocalDate.parse(dateBy);
+        return new Deadline(description, localDateBy);
     }
 
     public static Event handleEvent(String input) throws DukeException {
@@ -125,27 +113,28 @@ public class Duke {
         String when = modifiedInput[1];
         String[] secondModifiedInput = when.split(" ", 2);
         String dateAt = secondModifiedInput[1];
-        return new Event(description, dateAt);
+        LocalDate localDateAt = LocalDate.parse(dateAt);
+        return new Event(description, localDateAt);
     }
 
     public static void addTask(String input, Commands type) throws DukeException {
         Task t;
-        switch(type) {
-            case TODO: {
-                t = handleTodo(input);
-                break;
-            }
-            case DEADLINE: {
-                t = handleDeadline(input);
-                break;
-            }
-            case EVENT: {
-                t = handleEvent(input);
-                break;
-            }
-            default:
-                throw new IllegalArgumentException("Invalid task type entered");
-                // this should only be seen by developer
+        switch (type) {
+        case TODO: {
+            t = handleTodo(input);
+            break;
+        }
+        case DEADLINE: {
+            t = handleDeadline(input);
+            break;
+        }
+        case EVENT: {
+            t = handleEvent(input);
+            break;
+        }
+        default:
+            throw new IllegalArgumentException("Invalid task type entered");
+            // this should only be seen by developer
         }
         list.add(t);
         line();
@@ -185,11 +174,26 @@ public class Duke {
         deleteTask(index);
     }
 
+    public static void printTaskOnDate(LocalDate localDate) {
+        List<Task> filteredList = list.stream().filter(task -> task.isHappeningOnDate(localDate))
+                .collect(Collectors.toList());
+        int i = 0;
+        line();
+        System.out.println("Hey, these are what you need to do on this date: "
+                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy")));
+        for (Task t : filteredList) {
+            System.out.println(i + 1 + "." + t);
+            i++;
+        }
+        line();
+    }
+
     public static void exit() {
         line();
         System.out.println("Bye. Hope to see you again soon!");
         line();
     }
+
     public static void main(String[] args) {
         Duke duke = new Duke();
         boolean isDone = false;
@@ -212,48 +216,73 @@ public class Duke {
                     second = strArray[1];
                 }
                 switch (first) {
-                    case ("bye"): {
-                        exit();
-                        isDone = true;
-                        break;
-                    }
-                    case ("list"): {
-                        enumerateArrayList();
-                        break;
-                    }
-                    case ("mark"): {
-                        markDone(Integer.parseInt(second));
-                        break;
-                    }
-                    case ("unmark"): {
-                        markUndone(Integer.parseInt(second));
-                        break;
-                    }
-                    case ("todo"): {
-                        addTask(second, Commands.TODO);
-                        break;
-                    }
-                    case ("deadline"): {
-                        addTask(second, Commands.DEADLINE);
-                        break;
-                    }
-                    case ("event"): {
-                        addTask(second, Commands.EVENT);
-                        break;
-                    }
-                    case ("delete"): {
-                        handleDelete(second);
-                        break;
-                    }
-                    default: {
-                        throw new DukeException("Invalid command entered. I don't recognize it. Sorry!");
-                    }
+                case ("bye"): {
+                    exit();
+                    isDone = true;
+                    break;
+                }
+                case ("list"): {
+                    enumerateArrayList();
+                    break;
+                }
+                case ("mark"): {
+                    markDone(Integer.parseInt(second));
+                    break;
+                }
+                case ("unmark"): {
+                    markUndone(Integer.parseInt(second));
+                    break;
+                }
+                case ("todo"): {
+                    addTask(second, Commands.TODO);
+                    break;
+                }
+                case ("deadline"): {
+                    addTask(second, Commands.DEADLINE);
+                    break;
+                }
+                case ("event"): {
+                    addTask(second, Commands.EVENT);
+                    break;
+                }
+                case ("delete"): {
+                    handleDelete(second);
+                    break;
+                }
+                case ("on"): {
+                    printTaskOnDate(LocalDate.parse(second));
+                    break;
+                }
+                default: {
+                    throw new DukeException("Invalid command entered. I don't recognize it. Sorry!");
+                }
                 }
             } catch (DukeException e) {
                 line();
                 System.out.println(e.toString());
                 line();
             }
+        }
+    }
+
+    private void store(String input) {
+        Task t = new Task(input);
+        list.add(t);
+        line();
+        System.out.println("added: " + t);
+        line();
+    }
+
+    private static class DukeException extends Exception {
+        String message;
+
+        DukeException(String message) {
+            this.message = message;
+        }
+
+        @Override
+        public String toString() {
+            return this.message;
         }
     }
 }
