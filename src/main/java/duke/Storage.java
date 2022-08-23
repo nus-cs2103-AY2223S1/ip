@@ -10,11 +10,23 @@ public class Storage {
     File dirFile;
     File dataFile;
 
+    /**
+     * Constructor for a Storage object used to save files.
+     *
+     * @param dirPath Path to directory of save file.
+     * @param dataName Name of file in the directory.
+     */
     public Storage(String dirPath, String dataName) {
         this.dirFile = new File(dirPath);
         this.dataFile = new File(dirPath + dataName);
     }
 
+    /**
+     * Method that makes the directory if it does not exist already
+     * and saves the state of TaskList by writing to a text file.
+     *
+     * @param t The TaskList to be saved.
+     */
     public void saveFile(TaskList t) {
         try {
             if (!dirFile.exists()) {
@@ -34,6 +46,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Method used to load save file into the TaskList.
+     *
+     * @param t TaskList to be loaded into.
+     */
     public void loadFile(TaskList t) {
         try {
             if (dataFile.exists()) {
@@ -48,6 +65,13 @@ public class Storage {
 
     }
 
+    /**
+     * Helper method used to load the TaskLists with tasks
+     * using the information passed in.
+     *
+     * @param t TaskList to be loaded into.
+     * @param info Info of the task to be loaded.
+     */
     public void loadFileHelper(TaskList t, String info) {
         String[] parts = info.split(" \\| ");
         if (parts[0].equals("T")) {

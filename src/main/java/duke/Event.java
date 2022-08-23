@@ -13,11 +13,20 @@ public class Event extends Task {
     protected LocalTime start_time;
     protected LocalTime end_time;
 
-
+    /**
+     * Constructor for an Event task
+     *
+     * @param description Description of the event.
+     * @param at Start and end time for the event in a String.
+     * @throws DateTimeException Thrown if the time format is wrong.
+     */
     public Event(String description, String at) throws DateTimeException {
         super(description);
         this.at = at;
         String[] split = at.split(" ");
+        if (split.length < 4) {
+            throw new DateTimeException("Missing time/date");
+        }
         this.start_date = LocalDate.parse(split[0]);
         this.start_time = LocalTime.parse(split[1]);
         this.end_date = LocalDate.parse(split[2]);

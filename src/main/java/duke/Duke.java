@@ -10,6 +10,12 @@ public class Duke {
     Ui ui;
     Boolean active;
 
+    /**
+     * Constructor for a Duke object.
+     *
+     * @param dirPath path of directory that storage use to locate save files.
+     * @param dataName name of the save file in directory.
+     */
     public Duke(String dirPath, String dataName) {
         this.storage = new Storage("data/", "save.txt");
         this.ui = new Ui();
@@ -17,11 +23,19 @@ public class Duke {
         this.active = true;
     }
 
+    /**
+     * Simple method that exits the Duke's run method.
+     */
     public void exit(){
         this.active = false;
     }
 
-
+    /**
+     * Method that processes a user's input after parsed
+     * and does the corresponding actions.
+     *
+     * @param s String that the user inputs.
+     */
     public void processingInput(String s) {
         try {
             String[] parsed = Parser.parseInput(s);
@@ -73,7 +87,8 @@ public class Duke {
                 throw new InvalidTaskException("No valid task descriptor");
             }
 
-        } catch (EmptyDescriptionException | InvalidTaskException | InvalidFormatException e) {
+        } catch (EmptyDescriptionException | InvalidTaskException
+                 | InvalidFormatException e) {
             ui.printException(e);
         } catch (DateTimeException e) {
             ui.printErrorMessage("Error! Date format incorrect (YYYY-MM-DD HH:mm)");
@@ -84,7 +99,9 @@ public class Duke {
 
     }
 
-
+    /**
+     * Method that runs the Duke Chat bot.
+     */
     public void run() {
         this.ui.printGreetings();
         this.storage.loadFile(this.tList);
@@ -95,14 +112,11 @@ public class Duke {
             String s = myScan.nextLine();
             processingInput(s);
             storage.saveFile(this.tList);
-
-
         }
 
     }
 
     public static void main(String[] args) {
-
         Duke d = new Duke("data/", "save.txt");
 
         d.run();

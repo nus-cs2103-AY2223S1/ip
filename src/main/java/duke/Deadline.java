@@ -11,6 +11,13 @@ public class Deadline extends Task {
     protected LocalDate date;
     protected LocalTime time;
 
+    /**
+     * Constructor for a deadline task.
+     *
+     * @param description The description of the deadline task.
+     * @param by The time of deadline in a long String.
+     * @throws DateTimeException If missing a date or time.
+     */
     public Deadline(String description, String by) throws DateTimeException {
         super(description);
         this.by = by;

@@ -2,22 +2,38 @@ package duke;
 
 public class Ui {
 
+    /**
+     * Method that prints to screen a line for ease of reading.
+     */
     public void line() {
         System.out.println("----------------------");
     }
 
+    /**
+     * Method that prints the farewell message.
+     */
     public void printFarewell() {
         line();
         System.out.println("Bye, hope to see you again!");
         line();
     }
 
+    /**
+     * Method that prints the exception encountered.
+     *
+     * @param e The exception to be printed.
+     */
     public void printException(Exception e) {
         System.out.println("----------------------");
         System.out.println(e.toString());
         System.out.println("----------------------");
     }
 
+    /**
+     * Method that prints a custom error message.
+     *
+     * @param s Error message to be printed.
+     */
     public void printErrorMessage(String s) {
         System.out.println("----------------------");
         System.out.println(s);
@@ -25,6 +41,12 @@ public class Ui {
 
     }
 
+    /**
+     * Prints to the user the task added and count in updated TaskList.
+     *
+     * @param a Task to be added.
+     * @param tList TaskList to be added to.
+     */
     public void printTaskAdded(Task a, TaskList tList) {
         System.out.println("----------------------");
         System.out.println("added: " + a.toString());
@@ -33,6 +55,11 @@ public class Ui {
 
     }
 
+    /**
+     * Prints all the tasks in the TaskList.
+     *
+     * @param tList TaskList to be printed.
+     */
     public void printList(TaskList tList) {
         System.out.println("----------------------");
         for (int i = 0; i < tList.getCount(); i++) {
@@ -42,6 +69,11 @@ public class Ui {
         System.out.println("----------------------");
     }
 
+    /**
+     * Prints the task to be marked undone.
+     *
+     * @param a Task to be marked undone
+     */
     public void printMarkTestUndone(Task a) {
         System.out.println("----------------------");
         System.out.println("Ok! I've marked this task as undone");
@@ -49,6 +81,12 @@ public class Ui {
         System.out.println("----------------------");
     }
 
+    /**
+     * Prints the task to be deleted.
+     *
+     * @param a Task to be deleted
+     * @param tList TaskList to be deleted from.
+     */
     public void printDelete(Task a, TaskList tList) {
         System.out.println("----------------------");
         System.out.println("Noted! I've removed this task");
@@ -64,6 +102,9 @@ public class Ui {
         System.out.println("----------------------");
     }
 
+    /**
+     * Prints the greeting message.
+     */
     public void printGreetings() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

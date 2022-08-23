@@ -1,7 +1,19 @@
 package duke;
 
 public class Parser {
-    public static String[] parseInput(String s) throws InvalidTaskException, EmptyDescriptionException{
+
+    /**
+     * Static method used to parse player inputs into a String array
+     * that is understood by Duke.
+     *
+     * @param s String input by user to be parsed.
+     * @return String array to be processed by Duke.
+     * @throws InvalidTaskException Thrown if user input wrong task format.
+     * @throws EmptyDescriptionException Throw if task description is empty.
+     * @throws InvalidFormatException Thrown if invalid task format.
+     */
+    public static String[] parseInput(String s) throws InvalidTaskException,
+            EmptyDescriptionException, InvalidFormatException {
         s = s.trim();
         String[] helper = s.split(" ");
         String[] result = new String[6];
