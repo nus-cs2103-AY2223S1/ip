@@ -39,4 +39,31 @@ public class Parser {
         }
 
     }
+
+    public static Command parseCommand(String input) throws DukeException {
+        // Splits the string in an array of [command, others]
+        String[] inputArr = input.split(" ", 2);
+        String command = inputArr[0];
+
+        switch (command) {
+        case ("bye"):
+            return new ExitCommand();
+        case ("list"):
+            return new PrintListCommand();
+        case ("delete"):
+            return new DeleteTaskCommand(inputArr[1]);
+        case ("mark"):
+            return new MarkTaskCommand(inputArr[1]); //Second word is the task's index
+        case ("unmark"):
+            return new UnmarkTaskCommand(inputArr[1]); //Second word is the task's index
+        case ("todo"):
+            return new ToDoCommand(inputArr);
+        case ("deadline"):
+            return new DeadlineCommand(inputArr);
+        case ("event"):
+            return new EventCommand(inputArr);
+        default:
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I do not know what does " + input + " mean. :-(");
+        }
+    }
 }

@@ -98,7 +98,6 @@ public class Storage {
      * Writes all current tasks on the save file
      */
     public void saveData(List<Task> taskList) throws IOException {
-        System.out.println("☺ Saving your data before you go...");
         FileWriter fw = new FileWriter(this.file);
         try {
             for (Task task : taskList) {
