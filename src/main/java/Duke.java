@@ -3,11 +3,22 @@ import models.Event;
 import models.Task;
 import models.Todo;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Duke {
+    void writeToFile() {
+        try{
+            FileWriter myWriter = new FileWriter("saved.txt");
+        } catch (IOException e) {
+            System.out.println("error");
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws DukeException {
         System.out.println(Constants.INDENTED_DOTTED_LINE);
         System.out.println(Constants.WELCOME_MESSAGE);
@@ -15,6 +26,9 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         List<Task> history = new ArrayList<>();
+        //handle folder-does-not-exist-yet case
+        FileOps fileOps = new FileOps();
+        fileOps.run();
 
         while (true) {
             String input = sc.nextLine();
@@ -52,6 +66,7 @@ public class Duke {
             } else if (input.startsWith("todo")) {
                 Task t = new Todo(input);
                 history.add(t);
+                fileOps.write(t + "\n");
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Got it. I've added this task:");
                 System.out.println(Constants.indent + Constants.indent + t);
@@ -70,6 +85,7 @@ public class Duke {
                 }
                 Task t = new Deadline(description, deadline);
                 history.add(t);
+                fileOps.write(t + "\n");
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Got it. I've added this task:");
                 System.out.println(Constants.indent + Constants.indent + t);
@@ -85,6 +101,7 @@ public class Duke {
                 }
                 Task t = new Event(description, date);
                 history.add(t);
+                fileOps.write(t + "\n");
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Got it. I've added this task:");
                 System.out.println(Constants.indent + Constants.indent + t);
@@ -94,10 +111,10 @@ public class Duke {
                 int index = Integer.parseInt(input.replaceAll("[\\D]", ""));
                 Task t = history.get(index - 1);
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
-
                 System.out.println(Constants.indent +"Noted. I've removed this task:");
                 System.out.println(Constants.indent + Constants.indent + t);
                 history.remove(t);
+                fileOps.rewrite(history);
                 System.out.println(Constants.indent +"Now you have " + history.size() + " tasks in the list.");
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
 
@@ -107,3 +124,4 @@ public class Duke {
         }
     }
 }
+
