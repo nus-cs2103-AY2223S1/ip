@@ -1,9 +1,20 @@
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Duke {
 
+    public enum Tasks {
+        BYE,
+        LIST,
+        MARK,
+        UNMARK,
+        DEADLINE,
+        TODO,
+        EVENT,
+        DELETE
+    }
 
     public static void main(String[] args) throws DukeException {
         System.out.println("               __\n" +
@@ -29,16 +40,16 @@ public class Duke {
             curr = sc.nextLine();
             String[] str = curr.split("\\s", 2);
             System.out.print(line);
-            switch(str[0]) {
-                case "bye":
+            switch(Tasks.valueOf(str[0].toUpperCase(Locale.ROOT))) {
+                case BYE:
                     System.out.println("\tBye bye. Hope to see you again soon!");
                     break;
-                case "list":
+                case LIST:
                     for (int i = 0; i < Task.lsSize(); i++) {
                         System.out.println("\t" + (i + 1) + ". " + ls.get(i).toString());
                     }
                     break;
-                case "mark":
+                case MARK:
                     try {
                         index = Integer.parseInt(str[1]) - 1;
                     } catch (Exception e) {
@@ -52,7 +63,7 @@ public class Duke {
                     myTask.markAsDone();
                     System.out.println("\tHooray! You have completed this task:\n\t" + myTask);
                     break;
-                case "unmark":
+                case UNMARK:
                     try {
                         index = Integer.parseInt(str[1]) - 1;
                     } catch (Exception e) {
@@ -66,7 +77,7 @@ public class Duke {
                     myTask.markAsUndone();
                     System.out.println("\tOh no! You have more things to complete:\n\t" + myTask);
                     break;
-                case "deadline":
+                case DEADLINE:
                     String[] dl;
                     try {
                         dl = str[1].split(" /by ");
@@ -84,7 +95,7 @@ public class Duke {
                     System.out.println("\tadded: " + myTask);
                     System.out.println("\tYou have " + Task.lsSize() + " task" + (Task.lsSize() > 1 ? "s!" : "!"));
                     break;
-                case "todo":
+                case TODO:
                     try {
                         myTask = new ToDo(str[1]);
                     } catch (Exception e) {
@@ -95,7 +106,7 @@ public class Duke {
                     System.out.println("\tadded: " + myTask);
                     System.out.println("\tYou have " + Task.lsSize() + " task" + (Task.lsSize() > 1 ? "s!" : "!"));
                     break;
-                case "event":
+                case EVENT:
                     String[] evnt;
                     try {
                         evnt = str[1].split(" /at ");
@@ -113,7 +124,7 @@ public class Duke {
                     System.out.println("\tadded: " + myTask);
                     System.out.println("\tYou have " + Task.lsSize() + " task" + (Task.lsSize() > 1 ? "s!" : "!"));
                     break;
-                case "delete":
+                case DELETE:
                     try {
                         index = Integer.parseInt(str[1]) - 1;
                     } catch (Exception e) {
