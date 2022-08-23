@@ -1,10 +1,14 @@
+import java.time.LocalDate;
+
 /**
  * The Task class represents a task
  * added to the storage.
  */
 public abstract class Task {
-    public String description;
-    public Boolean isDone;
+
+    private String description;
+    private Boolean isDone;
+
 
     /**
      * Construct a Task object.
@@ -37,7 +41,13 @@ public abstract class Task {
         return this.isDone ? "X" : " ";
     }
 
-    public abstract String toStore();
+
+    public String toStore() {
+        return getStatusIcon() + " | " + this.description;
+    }
+
+    public abstract boolean compareDate(LocalDate date);
+
 
     /**
      * Overriding method of toString() for Task.

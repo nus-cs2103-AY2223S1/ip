@@ -1,9 +1,15 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * The Deadline class represents a task
  * with a specific deadline.
  */
 public class Deadline extends Task {
-    private String deadline;
+    private String ddl;
+    private LocalDate deadline;
 
     /**
      * Constructs a Deadline object.
@@ -12,12 +18,33 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String deadline) {
         super(description);
-        this.deadline = deadline;
+        try {
+            LocalDateTime localDateTime;
+            localDateTime = LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern("yyyy-M-d HHmm"));
+            this.deadline = localDateTime.toLocalDate();
+            this.ddl = localDateTime.format(DateTimeFormatter.ofPattern("MMM d yyyy h:mma"));
+        } catch (DateTimeParseException e) {
+            try {
+                String[] strings = deadline.split(" ");
+                this.deadline = LocalDate.parse(strings[0]);
+                this.ddl = this.deadline.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                if (strings.length > 1) {
+                    this.ddl += " " + deadline.substring(deadline.indexOf(" ") + 1);
+                }
+            } catch (DateTimeParseException e2) {
+                this.ddl = deadline;
+            }
+        }
+    }
+
+    @Override
+    public boolean compareDate(LocalDate date) {
+        return date.equals(this.deadline);
     }
 
     public Deadline(int i, String description, String deadline) {
         super(description);
-        this.deadline = deadline;
+        this.ddl = deadline;
         if (i == 1) {
             this.markDone();
         }
@@ -25,9 +52,7 @@ public class Deadline extends Task {
 
     @Override
     public String toStore() {
-        String status = super.isDone ? "1" : "0";
-        String temp = "D" + " | " + status + " | " + super.description + " | " + this.deadline;
-        return temp;
+        return "D" + " | " + super.toStore() + " | " + this.ddl;
     }
 
     /**
@@ -36,6 +61,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by:" + deadline + ")";
+        return "[D]" + super.toString() + " (by: " + ddl + ")";
     }
 }

@@ -1,23 +1,50 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * The Event class represents a task
  * with a specific date or time.
  */
 public class Event extends Task{
-    private String eventTime;
+    private String eventAt;
+    private LocalDate eventDate;
 
     /**
      * Constructs a Event object
      * @param description description for the event.
-     * @param eventTime string that represents time of event.
+     * @param eventDate string that represents time of event.
      */
-    public Event(String description, String eventTime) {
+    public Event(String description, String eventDate) {
         super(description);
-        this.eventTime = eventTime;
+        try {
+            LocalDateTime localDateTime;
+            localDateTime = LocalDateTime.parse(eventDate, DateTimeFormatter.ofPattern("yyyy-M-d HHmm"));
+            this.eventDate = localDateTime.toLocalDate();
+            this.eventAt = localDateTime.format(DateTimeFormatter.ofPattern("MMM d yyyy h:mma"));
+        } catch (DateTimeParseException e) {
+            try {
+                String[] strings = eventDate.split(" ");
+                this.eventDate = LocalDate.parse(strings[0]);
+                this.eventAt = this.eventDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+                if (strings.length > 1) {
+                    this.eventAt += " " + eventDate.substring(eventDate.indexOf(" ") + 1);
+                }
+            } catch (DateTimeParseException e2) {
+                this.eventAt = eventDate;
+            }
+        }
     }
 
-    public Event(int i, String description, String eventTime) {
+    @Override
+    public boolean compareDate(LocalDate date) {
+        return date.equals(this.eventDate);
+    }
+
+    public Event(int i, String description, String eventAt) {
         super(description);
-        this.eventTime = eventTime;
+        this.eventAt = eventAt;
         if (i == 1) {
             this.markDone();
         }
@@ -25,9 +52,7 @@ public class Event extends Task{
 
     @Override
     public String toStore() {
-        String status = super.isDone ? "1" : "0";
-        String temp = "E" + " | " + status + " | " + super.description + " | " + this.eventTime;
-        return temp;
+        return "E" + " | " + super.toStore() + " | " + this.eventAt;
     }
 
 
@@ -37,6 +62,6 @@ public class Event extends Task{
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at:" + eventTime + ")";
+        return "[E]" + super.toString() + " (at: " + eventAt + ")";
     }
 }
