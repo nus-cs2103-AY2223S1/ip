@@ -1,4 +1,6 @@
-import exceptions.TaskDescriptionEmpty;
+package hazell;
+
+import hazell.exceptions.TaskDescriptionEmpty;
 
 public abstract class Task {
     private String description;

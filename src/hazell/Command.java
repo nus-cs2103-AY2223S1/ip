@@ -1,5 +1,6 @@
-import exceptions.KwargNotFound;
+package hazell;
 
+import hazell.exceptions.KwargNotFound;
 import java.util.*;
 
 public class Command {

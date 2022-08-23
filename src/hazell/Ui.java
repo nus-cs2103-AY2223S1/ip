@@ -1,3 +1,5 @@
+package hazell;
+
 import java.util.Scanner;
 
 public class Ui {

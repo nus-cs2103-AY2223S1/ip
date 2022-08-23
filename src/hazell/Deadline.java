@@ -1,4 +1,6 @@
-import exceptions.TaskDescriptionEmpty;
+package hazell;
+
+import hazell.exceptions.TaskDescriptionEmpty;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

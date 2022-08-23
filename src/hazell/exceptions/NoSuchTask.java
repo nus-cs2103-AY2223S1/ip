@@ -1,4 +1,4 @@
-package exceptions;
+package hazell.exceptions;
 
 public class NoSuchTask extends HazellException {
 

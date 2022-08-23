@@ -1,4 +1,6 @@
-import exceptions.NoSuchTask;
+package hazell;
+
+import hazell.exceptions.NoSuchTask;
 
 import java.io.FileWriter;
 import java.io.IOException;

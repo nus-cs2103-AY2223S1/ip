@@ -1,4 +1,6 @@
-import exceptions.TaskDescriptionEmpty;
+package hazell;
+
+import hazell.exceptions.TaskDescriptionEmpty;
 
 public class ToDo extends Task {
     private static final String typeIcon = "T";

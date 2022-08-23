@@ -1,5 +1,7 @@
-import exceptions.HazellException;
-import exceptions.UnknownCommand;
+package hazell;
+
+import hazell.exceptions.HazellException;
+import hazell.exceptions.UnknownCommand;
 
 import java.io.IOException;
 import java.util.Scanner;

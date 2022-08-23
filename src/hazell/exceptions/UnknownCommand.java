@@ -1,4 +1,4 @@
-package exceptions;
+package hazell.exceptions;
 
 public class UnknownCommand extends HazellException {
     @Override
