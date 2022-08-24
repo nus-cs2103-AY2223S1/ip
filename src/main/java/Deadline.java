@@ -1,16 +1,13 @@
 public class Deadline extends Task {
 
-    protected String due;
-    private final String commandWord;
+    public final String tag = "D";
 
-    public Deadline(String description, String due, String commandWord) {
-        super(description);
-        this.due = due;
-        this.commandWord = commandWord;
+    public Deadline (String description, String due, String commandWord) {
+        super(description, due, commandWord);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (" + this.commandWord + ": " + due + ")";
+        return "[" + this.tag + "]" + super.toString() + " (" + this.commandWord + ": " + this.due + ")";
     }
 }

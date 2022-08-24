@@ -25,20 +25,28 @@ public class Pixel {
             }
         }
 
-        if (type.equals("T")) { // todo
-            String description = userInput.substring(5, indexOfEndOfDescription);
-            newTask = new ToDo(description, due, commandWord); // Stores user input
+        switch (type) {
+            case "T": { // todo
+                String description = userInput.substring(5, indexOfEndOfDescription);
+                newTask = new ToDo(description, due, commandWord); // Stores user input
 
-        } else if (type.equals("D")) { // deadline
-            String description = userInput.substring(9, indexOfEndOfDescription);
-            newTask = new Deadline(description, due, commandWord); // Stores user input
+                break;
+            }
+            case "D": { // deadline
+                String description = userInput.substring(9, indexOfEndOfDescription);
+                newTask = new Deadline(description, due, commandWord); // Stores user input
 
-        } else if (type.equals("E")) { // event
-            String description = userInput.substring(6, indexOfEndOfDescription);
-            newTask = new Event(description, due, commandWord); // Stores user input
+                break;
+            }
+            case "E": { // event
+                String description = userInput.substring(6, indexOfEndOfDescription);
+                newTask = new Event(description, due, commandWord); // Stores user input
 
-        } else { //shouldn't reach here
-            throw new IncorrectFormatException("Invalid format of input!"); // programme breaks
+                break;
+            }
+            default:  //shouldn't reach here
+                throw new IncorrectFormatException("Invalid format of input!"); // programme breaks
+
         }
 
         inputTasks.add(count, newTask);
@@ -54,20 +62,20 @@ public class Pixel {
         int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
 
         try {
-            if (userInput.trim().equals("bye")) {
+            if (userInput.strip().equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 System.exit(0);
 
-            } else if (userInput.trim().startsWith("todo ")) {
+            } else if (userInput.strip().startsWith("todo ")) {
                 handleNewTask(userInput, indexOfSlash, "T");
 
-            } else if (userInput.trim().startsWith("deadline ")) {
+            } else if (userInput.strip().startsWith("deadline ")) {
                 handleNewTask(userInput, indexOfSlash, "D");
 
-            } else if (userInput.trim().startsWith("event ")) {
+            } else if (userInput.strip().startsWith("event ")) {
                 handleNewTask(userInput, indexOfSlash, "E");
 
-            } else if (userInput.trim().startsWith("mark ")) {
+            } else if (userInput.strip().startsWith("mark ")) {
                 // truncate the front part
                 String temp = userInput.substring(5);
                 // System.out.println(temp);
@@ -80,7 +88,7 @@ public class Pixel {
                 System.out.println(inputTasks.get(indexToChange - 1));
                 // run();
 
-            } else if (userInput.trim().startsWith("unmark ")) {
+            } else if (userInput.strip().startsWith("unmark ")) {
                 // truncate the front part
                 String temp = userInput.substring(7);
                 // System.out.println(temp);
@@ -93,7 +101,7 @@ public class Pixel {
                 System.out.println(inputTasks.get(indexToChange - 1));
                 // run();
 
-            } else if (userInput.trim().equals("list")) {
+            } else if (userInput.strip().equals("list")) {
                 // System.out.println(inputMemory.length);
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < count; i++) {
@@ -102,7 +110,7 @@ public class Pixel {
                 }
                 // run();
 
-            } else if (userInput.trim().startsWith("delete ")) {
+            } else if (userInput.strip().startsWith("delete ")) {
                 Task tempRecord;
                 // truncate the front part
                 String temp = userInput.substring(7);
@@ -135,10 +143,6 @@ public class Pixel {
 
             } else {
                 throw new IncorrectFormatException("Input should be a task or command!"); // programme breaks
-//                inputTasks.add(count, new Task(userInput)); // Stores user input
-//                System.out.println(userInput);  // Output user input
-//                count += 1;
-//                run();
             }
 
         } catch (IndexOutOfBoundsException e) {
@@ -173,7 +177,15 @@ public class Pixel {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         // System.out.println("Hello from\n" + logo);
         // System.out.println("Hello from\n");
-        System.out.println("Hello! I'm Pixel \r\nWhat can I do for you?");
+        System.out.println("Hello! I'm Pixel \r\n" +
+            "You can input the following commands \n" +
+            " todo/ event/ deadline + <task description> + /by or /at + <due> \n" +
+            " ***date format for due has to be in <YYYY-MM-DD(SPACE)HHHH(24h)> format \n" +
+            " list -- lists out all the tasks \n" +
+            " mark <index of task in the list> -- to mark as done \n" +
+            " unmark <index of task in the list> -- to mark as not done \n" +
+            " end -- leaves the chatbot \n" +
+            "   Your input: ");
         Pixel test = new Pixel();
         test.run();
     }
