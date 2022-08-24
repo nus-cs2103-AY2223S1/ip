@@ -1,47 +1,47 @@
-package Duke.Task;
+package duke.task;
 
-import Duke.Processor.Storage;
-import Duke.Processor.TaskList;
-import Duke.UI;
+import duke.processor.Storage;
+import duke.processor.TaskList;
+import duke.Ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Class to represent "Events" tasks.
+ * Class to represent "Deadline" tasks.
  */
-public class Event extends Task {
+public class Deadline extends Task {
     protected LocalDateTime time;
 
     /**
-     * The constructor for Duke.Task.Event task.
+     * The constructor for Duke.Task.Deadline task.
      *
      * @param description Task description.
      * @param isDone Task state.
      */
-    public Event(String description, boolean isDone, LocalDateTime time) {
+    public Deadline(String description, boolean isDone, LocalDateTime time) {
         super(description, isDone);
         this.time = time;
     }
 
     /**
-     * Marks done an Event task.
+     * Marks done a Deadline task.
      *
-     * @return Duke.Task.Event object.
+     * @return Duke.Task.Deadline object.
      */
     @Override
-    public Event markDone() {
+    public Deadline markDone() {
         super.markDone();
         return this;
     }
 
     /**
-     * Marks undone an Event task.
+     * Marks undone a Deadline task.
      *
-     * @return Duke.Task.Event object.
+     * @return Duke.Task.Deadline object.
      */
     @Override
-    public Event markUndone() {
+    public Deadline markUndone() {
         super.markUndone();
         return this;
     }
@@ -53,28 +53,29 @@ public class Event extends Task {
      */
     public String formatChange() {
         String mark = isDone ? "1" : "0";
-        return "E | " + mark + " | " + this.description + " | " +
+        return "D | " + mark + " | " + this.description + " | " +
                 this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /**
-     * Overridden toString method for Duke.Task.Event task details
+     * Overridden toString method for Duke.Task.Deadline task details.
      *
      * @return String.
      */
     @Override
     public String toString() {
-        return "[E]"  + super.toString() +
-                " (at: " + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
+        return "[D]"  + super.toString() +
+                " (by: " + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
     }
 
     /**
-     * Executes process of given Event task.
+     * Executes process of given Deadline task.
+     *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         tasks.add(this);
         ui.showAddOnTask(tasks, (tasks.size() - 1));
         storage.write(tasks.getTasks());

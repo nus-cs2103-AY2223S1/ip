@@ -1,4 +1,4 @@
-package Duke.Task;
+package duke.task;
 
 /**
  * Class to represent "Bye" tasks.
