@@ -11,6 +11,9 @@ public class UnmarkCommand extends Command {
         super(cmd);
         this.num = num;
     }
+    public int getNum() {
+        return num;
+    }
     @Override
     public void execute(Ui ui, TaskList taskList) throws DukeException {
         Task task = taskList.getTask(num);

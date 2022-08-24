@@ -26,13 +26,19 @@ public class Parser {
         case "list":
             return new ListCommand(cmd[0]);
         case "mark":
+            if (cmd.length < 2 || cmd[1].length() < 1) {
+                throw new DukeException("The index of a task cannot be empty.");
+            }
             num = Integer.parseInt(cmd[1]);
             return new MarkCommand(cmd[0], num - 1);
         case "unmark":
+            if (cmd.length < 2 || cmd[1].length() < 1) {
+                throw new DukeException("The index of a task cannot be empty.");
+            }
             num = Integer.parseInt(cmd[1]);
             return new UnmarkCommand(cmd[0], num - 1);
         case "delete":
-            if (cmd[1].length() < 1) {
+            if (cmd.length < 2 || cmd[1].length() < 1) {
                 throw new DukeException("The index of a task cannot be empty.");
             }
 
