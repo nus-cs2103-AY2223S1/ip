@@ -13,8 +13,8 @@ public class Storage {
 
   private File file;
 
-  public Storage() {
-    this.file = new File(FILEPATH);
+  public Storage(String filePath) {
+    this.file = new File(filePath);
   }
 
   public void createFile() throws DukeException {

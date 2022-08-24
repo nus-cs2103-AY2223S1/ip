@@ -1,33 +1,64 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
+/**
+ * UI of the application
+ * Inspired by AddressBook
+ */
+
 public class Ui {
-    public static void greet() {
+    private final BufferedReader in;
+    private final PrintStream out;
+
+    public Ui() {
+        this(new InputStreamReader(System.in), System.out);
+    }
+
+    public Ui(InputStreamReader in, PrintStream out) {
+        this.in = new BufferedReader(in);
+        this.out = out;
+    }
+
+    public String readCommand() {
+        String input = "";
+        try {
+            input = in.readLine();
+            return input;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return input;
+    }
+
+    public void greet() {
         String logo = " ____        _        \n" + "|  _ \\ _   _| | _____ \n" + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n" + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        this.out.println("Hello from\n" + logo);
     }
 
-    public static void exitMessage() {
-        Ui.printMessage("Bye. Hope to see you again soon!");
+    public void exitMessage() {
+        this.printMessage("Bye. Hope to see you again soon!");
     }
 
-    public static void printMessage(String[] strArray) {
-        System.out.println("_______________________________________________________");
-        System.out.println("\tHere are the tasks in your list:");
+    public void printMessage(String[] strArray) {
+        this.out.println("_______________________________________________________");
+        this.out.println("\tHere are the tasks in your list:");
         for (String str : strArray) {
-            System.out.println("\t" + str);
+            this.out.println("\t" + str);
         }
-        System.out.println("_______________________________________________________");
+        this.out.println("_______________________________________________________");
     }
 
-    public static void printMessage(String str) {
-        System.out.println("_______________________________________________________" + "\n\t" + str + "\n"
+    public void printMessage(String str) {
+        this.out.println("_______________________________________________________" + "\n\t" + str + "\n"
                 + "_______________________________________________________");
     }
 
-    public static String wrapMessage(String str, String taskDescription, ArrayList<Task> taskList) {
+    public String wrapMessage(String str, String taskDescription, ArrayList<Task> taskList) {
         return String.format(
                 str + "\n\t\t" + taskDescription + "\n\tNow you have " + taskList.size() + " tasks in the list.");
     }
-
 }
