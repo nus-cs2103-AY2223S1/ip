@@ -91,7 +91,7 @@ public class Duke {
                     // If delimiting regex is not found, taskTokens returns single item array with the original string
                     String taskName = taskTokens[0];
                     String deadline = taskTokens[1]; // Throws AIOOBE
-                    LocalDateTime date = DateTimeFormatUtils.parseDate(deadline);
+                    LocalDateTime date = DateTimeFormatUtils.parseDate(deadline); // Throws DukeException
                     taskAdded = new Deadline(taskName, date);
                     taskList.add(taskAdded);
                 } catch (ArrayIndexOutOfBoundsException e) {
@@ -109,7 +109,7 @@ public class Duke {
                     // If delimiting regex is not found, taskTokens returns single item array with the original string
                     String taskName = taskTokens[0];
                     String eventTiming = taskTokens[1];
-                    LocalDateTime[] dates = DateTimeFormatUtils.parseDuration(eventTiming);
+                    LocalDateTime[] dates = DateTimeFormatUtils.parseDuration(eventTiming); // Throws DukeException
                     taskAdded = new Event(taskName, dates[0], dates[1]);
                     taskList.add(taskAdded);
                 } catch (ArrayIndexOutOfBoundsException e) {
