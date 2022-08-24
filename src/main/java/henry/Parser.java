@@ -29,6 +29,15 @@ public class Parser {
     private static final String DATE_FORMATTER = "dd-MM-yyyy HH:mm";
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
 
+    /**
+     * Parses a command from a string. There are two types of commands:
+     * single-argument commands, and double-argument commands. The function
+     * first checks if the command matches the appropriate pattern. If it does,
+     * then the corresponding command is returned. If not, then an exception is thrown.
+     *
+     * @param text the string to be parsed.
+     * @return the command corresponding to the string, or an exception if the string is malformed.
+     */
     public Command parseCommand(String text) {
         Matcher matcher = BASIC_COMMAND_FORMAT.matcher(text.trim());
         if (!matcher.matches()) {

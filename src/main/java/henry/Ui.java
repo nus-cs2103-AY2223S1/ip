@@ -18,14 +18,25 @@ public class Ui {
         output("HELLO. I AM HENRY. HOW MAY I ASSIST YOU TODAY?");
     }
 
+    /**
+     * Reads input from the user through Scanner
+     * @return the given input from the user as a String
+     */
     public String getInput() {
         return sc.nextLine();
     }
 
+    /**
+     * Prints the given message in special formatting to the console.
+     * @param message the output to be printed to the console
+     */
     public void output(String message) {
         System.out.println(formatResponse(message));
     }
 
+    /**
+     * Closes the UI
+     */
     public void close() {
         output("GOODBYE!");
     }

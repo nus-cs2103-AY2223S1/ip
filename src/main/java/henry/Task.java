@@ -22,10 +22,14 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public String getStatusIcon() {
+    private String getStatusIcon() {
         return isDone ? "[X]" : "[ ]"; // mark done task with X
     }
 
+    /**
+     * Sets the status of this task as the input boolean.
+     * @param status the desired status of the task
+     */
     public void setComplete(boolean status) {
         this.isDone = status;
     }
@@ -45,6 +49,11 @@ public class Task {
         }
     }
 
+    /**
+     * Returns the file-formatted version of the task. This is different from
+     * the toString() method, in that it is simpler and thus easier to parse.
+     * @return a string representing the task as it would be written to the file
+     */
     public String toSimpleString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         description = description.trim();

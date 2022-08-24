@@ -27,6 +27,11 @@ public class Henry {
         return isActivated;
     }
 
+    /**
+     * Activates the program. The program will take input from
+     * the user and perform the adequate actions until the "bye"
+     * command is entered.
+     */
     public void runProgram() {
         Command command;
         String input;
@@ -57,7 +62,7 @@ public class Henry {
         }
     }
 
-    public void close() {
+    private void close() {
         ui.close();
         isActivated = false;
     }

@@ -19,6 +19,11 @@ public class CommandResult {
         this.list = list;
     }
 
+    /**
+     * Gets the task list from the CommandResult, if it exists.
+     *
+     * @return the task list if it is present, otherwise returns an empty optional.
+     */
     public Optional<TaskList> getTaskList() {
         return Optional.ofNullable(list);
     }
