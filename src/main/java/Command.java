@@ -59,12 +59,17 @@ public class Command {
             this.extraInformation = s;
             break;
         case EVENT:
-            // Fallthrough
+            if (str.contains("/")) {
+                String[] arr = this.message.split(" /at ", 2);
+                this.message = arr[0];
+                this.extraInformation = arr[1];
+            }
+            break;
         case DEADLINE:
             if (str.contains("/")) {
-                String[] arr = this.message.split("/", 2);
+                String[] arr = this.message.split(" /by ", 2);
                 this.message = arr[0];
-                this.extraInformation =arr[1];
+                this.extraInformation = arr[1];
             }
             break;
         }
@@ -77,28 +82,28 @@ public class Command {
             return false;
         case LIST:
             this.storage.iterate();
-            return true;
+            break;
         case MARK:
             this.storage.mark(this.extraInformation);
-            return true;
+            break;
         case UNMARK:
             this.storage.unmark(this.extraInformation);
-            return true;
+            break;
         case TODO:
             Task task1 = new ToDo(this.message);
             this.storage.add(task1);
-            return true;
+            break;
         case DEADLINE:
             Task task2 = new Deadline(this.message, this.extraInformation);
             this.storage.add(task2);
-            return true;
+            break;
         case EVENT:
             Task task3 = new Event(this.message, this.extraInformation);
             this.storage.add(task3);
-            return true;
+            break;
         case DELETE:
             this.storage.delete(this.extraInformation);
-            return true;
+            break;
         case NONE:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
