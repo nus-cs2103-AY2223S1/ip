@@ -26,6 +26,15 @@ public class Ui {
         System.out.println(s);
     }
 
+    public void showFind(TaskList tasks) {
+        if (tasks.getSize() == 0) {
+            System.out.println("There are no matching tasks in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            showList(tasks);
+        }
+    }
+
     public void showLine() {
         System.out.println("_______________");
     }
