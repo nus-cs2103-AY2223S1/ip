@@ -56,4 +56,20 @@ public class TaskList {
         return tasks.size();
     }
 
+
+    /**
+     * Displays the matching tasks based on the keyword.
+     *
+     * @param keyword Specifies the keyword to match the tasks to.
+     */
+    public void displayMatchingTasks(String keyword) {
+        int j = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = getTask(i + 1);
+            if (task.toString().contains(keyword)) {
+                System.out.println(Style.INDENTATION + (j + 1) + "." + task);
+                j++;
+            }
+        }
+    }
 }

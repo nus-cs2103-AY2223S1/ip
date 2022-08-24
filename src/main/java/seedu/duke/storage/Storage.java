@@ -29,7 +29,8 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
-            File directory = new File("/data");
+            File directory = new File("./data");
+            System.out.println(directory.exists());
             if (!directory.exists()) {
                 directory.mkdir();
             }

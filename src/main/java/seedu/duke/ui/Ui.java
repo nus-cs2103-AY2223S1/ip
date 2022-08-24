@@ -76,5 +76,7 @@ public class Ui {
         System.out.println(Style.INDENTATION + "Now you have " + numberOfTasks + " "
                 + taskOrTasks + " in the list.\n");
     }
-
+    public void displayMatchingTasks() {
+        System.out.println(Style.INDENTATION + "Here are the matching tasks in your list:");
+    }
 }
