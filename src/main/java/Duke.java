@@ -1,18 +1,16 @@
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-import task.Task;
-import ui.Ui;
+import command.ByeCommand;
 import command.Command;
 import command.DeleteCommand;
-import command.TaskCommand;
-import command.ByeCommand;
 import command.ListCommand;
 import command.MarkCommand;
+import command.TaskCommand;
 import exception.DukeException;
-import io.createFile;
-import io.loadFile;
-import io.saveFile;
+import storage.Storage;
+import task.Task;
+import ui.Ui;
 
 public class Duke {
 
@@ -195,12 +193,9 @@ public class Duke {
     /**
      * Handling of the .txt file containing the list of tasks.
      */
-    // Location of the .txt file containing the list of tasks
-    String fileLoc = "../../../data/duke.txt";
-    // Create the .txt file if it hasn't already been created
-    createFile.makeFile(fileLoc);
-    // Load the .txt file, and getting the list of tasks as an ArrayList<Task> if the .txt file contains any data
-    tasks = loadFile.load(fileLoc);
+    String filePath = "../../../data/duke.txt";
+    Storage storage = new Storage(filePath);
+    tasks = storage.getTasks();
 
     String input;
     Scanner sc = new Scanner(System.in);
@@ -224,7 +219,7 @@ public class Duke {
       }
     }
 
-    saveFile.save(tasks, fileLoc); // Saving the list of files into a .txt file
+    storage.save();
     System.exit(0);
   }
 }

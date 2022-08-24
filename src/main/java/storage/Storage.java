@@ -1,0 +1,59 @@
+package storage;
+
+import java.util.ArrayList;
+
+import exception.DukeException;
+import task.Task;
+
+/**
+ * Handles the creating, loading and saving of tasks.
+ *
+ * @author Kang Wei
+ */
+public class Storage {
+
+  /**
+   * Stores the path of the .txt file to store
+   * a user's tasks.
+   */
+  private String filePath;
+
+  /**
+   * Stores a user's list of tasks.
+   */
+  private ArrayList<Task> tasks;
+
+  /**
+   * Initialises a Storage object.
+   *
+   * @param filePath The path of the .txt file to store a
+   * user's tasks.
+   */
+  public Storage(String filePath) throws DukeException {
+    this.filePath = filePath;
+
+    // Create the .txt file if it hasn't already been created.
+    createFile.makeFile(filePath);
+
+    /**
+     * Load the .txt file, and get the list of tasks as an ArrayList<Task> if the .txt
+     * file contains any data.
+     */
+    tasks = loadFile.load(filePath);
+  }
+
+  /**
+   * Gets the current tasks stored in this Storage object.
+   */
+  public ArrayList<Task> getTasks() {
+    return tasks;
+  }
+
+  /**
+   * Saves the current tasks to a .txt file, and store it
+   * in filePath.
+   */
+  public void save() throws DukeException {
+    saveFile.save(tasks, filePath);
+  }
+}

@@ -1,4 +1,4 @@
-package io;
+package storage;
 
 import exception.DukeException;
 import task.Task;
@@ -11,10 +11,11 @@ import java.io.IOException;
 /**
  * Assists with loading .txt file containing a <code>Task[]</code> in String
  * format.
+ * Note that this class is package-private.
  *
  * @author Kang Wei
  */
-public class loadFile {
+class loadFile {
 
   /**
    * Parses a task in String format into a <code>Task</code>
@@ -60,14 +61,14 @@ public class loadFile {
    * Loads a .txt file of tasks, converts it to an
    * <code>ArrayList<Task></code> and returns it.
    *
-   * @param fileLoc The location of the file.
+   * @param filePath The location of the file.
    * @return The <code>ArrayList<Task></code> converted from the .txt file.
    * @throws DukeException Throws an exception if an IOException is caught.
    */
-  public static ArrayList<Task> load(String fileLoc) throws DukeException {
+  public static ArrayList<Task> load(String filePath) throws DukeException {
     ArrayList<Task> tasks = new ArrayList<Task>();
     try {
-      File file = new File(fileLoc);
+      File file = new File(filePath);
       Scanner sc = new Scanner(file);
 
       while (sc.hasNext()) {
@@ -77,7 +78,7 @@ public class loadFile {
       }
     } catch (IOException e) {
       throw new DukeException("Honnney! There was a problem with loading your list " +
-          "of tasks from " + fileLoc + "! :,(");
+          "of tasks from " + filePath + "! :,(");
     }
     return tasks;
   }
