@@ -10,8 +10,12 @@ import duke.tools.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Duke is an interactive robot that helps to keep track of your tasks.
+ */
 public class Duke {
 
+    /** Stores the name of the file where the tasks are stored on. */
     private String fileName;
 
     public Duke() {
@@ -27,6 +31,7 @@ public class Duke {
         duke.run();
     }
 
+    /** Starts up Duke. */
     public void run() {
         Storage storage = new Storage(this.fileName);
         Ui ui = new Ui();
