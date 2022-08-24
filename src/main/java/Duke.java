@@ -188,6 +188,11 @@ public class Duke {
                         case "bye":
                             sayGoodbye();
                             printHorizontalLine();
+                            try {
+                                tr.writeTaskListToFile(tasks, DATA_FILEPATH);
+                            } catch (IOException ioe) {
+                                printIndented(ioe.getMessage() + "\nData not saved :((");
+                            }
                             return;
                         case "list":
                             printTasks(tasks);

@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
@@ -12,7 +13,6 @@ public class TaskReader {
      * @param filePath The file path
      * @return List of tasks inside the file path specified
      * @throws FileNotFoundException If file is not found
-     * @throws DukeException If the parsing is not successful
      */
     public static List<Task> convertToTaskList(String filePath)
             throws FileNotFoundException {
@@ -42,6 +42,12 @@ public class TaskReader {
         return listOfTasks;
     }
 
+    /**
+     * Creates the data file if one doesn't exist.
+     *
+     * @param filePath The file path of the data file
+     * @throws IOException If there is an I/O issue
+     */
     public void createDataFile(String filePath) throws IOException {
         String[] pathList = filePath.split("/");
         String currentDirectory = "";
@@ -55,5 +61,21 @@ public class TaskReader {
         }
         File newFile = new File(filePath);
         newFile.createNewFile();
+    }
+
+    /**
+     * (Re)writes the task list into the given filepath.
+     *
+     * @param taskList The list of tasks
+     * @param filePath The destination file path
+     * @throws IOException If any I/O issue happens
+     */
+    public void writeTaskListToFile(List<Task> taskList, String filePath)
+        throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        for (Task task : taskList) {
+            fw.write(task.toFileString() + System.lineSeparator());
+        }
+        fw.close();
     }
 }

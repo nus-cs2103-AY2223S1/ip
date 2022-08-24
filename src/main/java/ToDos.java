@@ -1,7 +1,4 @@
 public class ToDos extends Task {
-
-    protected String by;
-
     public ToDos(String description) {
         super(description);
     }
@@ -9,5 +6,10 @@ public class ToDos extends Task {
     @Override
     public String toString() {
         return "[T]" + super.toString();
+    }
+
+    @Override
+    public String toFileString() {
+        return "T | " + (this.isDone ? 1 : 0) + " | " + this.description;
     }
 }
