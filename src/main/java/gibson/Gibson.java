@@ -127,6 +127,15 @@ public class Gibson {
                 } catch (IndexOutOfBoundsException e) {
                     ui.printErrorMessage("There is not task numbered as " + number + ".");
                 }
+            // FIND
+            } else if (Pattern.matches("(find .+)|(find( )?)", input)) {
+                String searchQuery = Parser.substringAfterToken(input, "find");
+                TaskList result = taskList.find(searchQuery);
+                if (!result.isEmpty()) {
+                    ui.printMessage("Here are your results:\n" + result.toString());
+                } else {
+                    ui.printErrorMessage("Unable to find task with " + input + ".");
+                }
             // NOT RECOGNIZED
             } else {
                 ui.printErrorMessage("I'm sorry. I do not know what that means.");

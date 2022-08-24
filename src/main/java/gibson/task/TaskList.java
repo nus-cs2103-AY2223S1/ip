@@ -8,6 +8,9 @@ import java.util.regex.Matcher;
 public class TaskList {
     private ArrayList<Task> taskList;
 
+    public TaskList() {
+        taskList = new ArrayList<Task>();
+    }
     public TaskList(List<String> list) {
         taskList = new ArrayList<Task>();
         for (String line : list) {
@@ -55,6 +58,20 @@ public class TaskList {
         Task t = taskList.get(i);
         t.unmark();
         return t;
+    }
+
+    public boolean isEmpty() {
+        return taskList.isEmpty();
+    }
+
+    public TaskList find(String searchQuery) {
+        TaskList tl = new TaskList();
+        for (Task t : taskList) {
+            if (t.taskContains(searchQuery)) {
+                tl.add(t);
+            }
+        }
+        return tl;
     }
 
     public int size() {
