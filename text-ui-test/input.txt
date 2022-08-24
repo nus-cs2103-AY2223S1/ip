@@ -1,0 +1,8 @@
+list
+todo task1
+deadline d1 /by 1st Aug
+event d2 /at 2nd June
+mark 3
+mark 2
+list
+unmark 3
