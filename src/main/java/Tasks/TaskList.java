@@ -50,6 +50,18 @@ public class TaskList {
         return ls;
     }
 
+    public String find(String txt) {
+        String result = "";
+        int index = 1;
+        for(int i = 0; i < size(); i++) {
+            Task curr = tasks.get(i);
+            if ((curr.toString().substring(7)).contains(txt)) {
+                result += "\n" + index++ + ". " + curr;
+            }
+        }
+        return result;
+    }
+
     @Override
     public String toString() {
         String list = "";

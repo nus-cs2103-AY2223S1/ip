@@ -41,6 +41,7 @@ public class Ui {
                     "\n    🌹 event \"event\" /at \"yyyy-mm-dd\"   | Add an event on the specified date" +
                     "\n    🪷 mark \"num\"                       | Mark the (num)th item in your list as completed"+
                     "\n    🌻 unmark \"num\"                     | Mark the (num)th item in your list as uncompleted" +
+                    "\n    💐 find \"keyword\"                   | Find a task by searching for a keyword" +
                     "\n    🥀 bye                              | Quit Luna\n");
 
         //print items in storage
@@ -103,6 +104,16 @@ public class Ui {
 
     public void showUnmark(Task task) {
         System.out.println(sep + "\nMarked as uncompleted 🌩\n" + task.toString() + "\n" + sep);
+    }
+
+    public void showFound(String tasks) {
+        showLine();
+        if (tasks.equals("")) {
+            System.out.println("Luna did not manage to find any relevant tasks 🍂");
+        } else {
+            System.out.println("☁️ Here are the tasks Luna has found! ☁️" + tasks);
+        }
+        showLine();
     }
 
     public String readCommand() {

@@ -46,6 +46,9 @@ public class Parser {
         case "unmark":
             c = new UpdateCommand("unmark", Integer.parseInt(cmdSplit[1]));
             break;
+        case "find":
+            c = new FindCommand(cmdSplit[1]);
+            break;
         default:
             throw new LunaException("I'm not sure what that means 🥀");
         }
