@@ -15,6 +15,10 @@ import java.util.ArrayList;
 public class Storage {
     private String filePath;
 
+    /**
+     * Constructs a new storage
+     * @param filePath The relative path that describes where to store the items
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         try {
@@ -32,6 +36,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads data from the storage
+     * @return A list of tasks
+     */
     public ArrayList<Task> load() {
         File file = new File(this.filePath);
         BufferedReader reader = null;
@@ -79,7 +87,7 @@ public class Storage {
 
     private String convertToString(Task task) {
         String taskType = task.getTaskType();
-        boolean isDone = task.getisDone();
+        boolean isDone = task.getIsDone();
         String description = task.getDescription();
         String sep = System.getProperty("line.separator");
 
@@ -93,6 +101,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the list of tasks to the file as described by the filePath
+     * @param tasks The list of tasks
+     * @throws DukeException If there are invalid inputs
+     */
     public void save(TaskList tasks) throws DukeException {
         File file = new File(this.filePath);
         FileWriter fileWriter = null;

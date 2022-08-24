@@ -10,6 +10,10 @@ import java.util.ArrayList;
 public class TaskList {
     private final ArrayList<Task> tasks;
 
+    /**
+     * Constructs a new Task List
+     * @param tasks The list of tasks
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
@@ -29,6 +33,11 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
+    /**
+     * Gets all the task that falls on the specified date
+     * @param date Date of the tasks
+     * @return A string consisting of all the tasks
+     */
     public String getTasks(String date) {
         LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         StringBuilder stringBuilder = new StringBuilder("\tYour tasks for today include:");
@@ -50,14 +59,28 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a task to the list
+     * @param task The task to be added
+     */
     public void addToList(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * Gets the number of tasks in the list
+     * @return The number of tasks in the list
+     */
     public int getSize() {
         return this.tasks.size();
     }
 
+    /**
+     * Gets the task at the specified index
+     * @param i Index of the task
+     * @return The task with the specified index
+     * @throws DukeException If the task does not exist
+     */
     public Task getTask(int i) throws DukeException {
         if (i > this.tasks.size() || i < 0) {
             throw new DukeException("No such task exists!");
@@ -65,6 +88,12 @@ public class TaskList {
         return this.tasks.get(i);
     }
 
+    /**
+     * Deletes the task at the specified index
+     * @param i The index of the task
+     * @return The deleted task
+     * @throws DukeException If the task does not exist
+     */
     public Task deleteTask(int i) throws DukeException {
         if (i > this.tasks.size() || i < 0) {
             throw new DukeException("No such task exist!");

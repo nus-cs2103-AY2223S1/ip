@@ -48,19 +48,39 @@ public abstract class Task {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
 
+    /**
+     * Sets the completion status of the task
+     * @param value The completion status
+     */
     public void setIsDone(boolean value) {
         this.isDone = value;
     }
 
-    public boolean getisDone() {
+    /**
+     * Checks if the task is completed
+     * @return True if the task is completed
+     */
+    public boolean getIsDone() {
         return this.isDone;
     }
 
+    /**
+     * Gets the description of the task
+     * @return The task's description
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Gets the date of the task
+     * @return The date of the task
+     */
     public abstract LocalDate getDate();
 
+    /**
+     * Gets the task type
+     * @return The task type
+     */
     public abstract String getTaskType();
 }

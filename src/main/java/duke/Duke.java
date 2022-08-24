@@ -14,7 +14,7 @@ public class Duke {
     private Storage storage;
 
     /**
-     * Constructor.
+     * Constructs a new Duke
      */
     public Duke() {
         Storage storage = new Storage("./data/duke.txt");
@@ -24,14 +24,17 @@ public class Duke {
     }
 
     /**
-     * Echoes user's input.
-     * @param message A message to echo.
-     * @return The message user's provided.
+     * Echoes user's input
+     * @param message A message to echo
+     * @return The message user's provided
      */
     public String echo(String message) {
         return "\t" + message;
     }
 
+    /**
+     * Runs the chatbot
+     */
     public void run() {
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"

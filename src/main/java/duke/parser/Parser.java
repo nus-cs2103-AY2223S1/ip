@@ -9,6 +9,12 @@ import java.time.format.DateTimeParseException;
 
 public class Parser {
 
+    /**
+     * Checks if the input is valid
+     * @param input The input provided by the user
+     * @return A Command to be executed
+     * @throws DukeException If the input is invalid
+     */
     public static Command parse(String input) throws DukeException {
         String[] components = input.split(" ", 2);
         switch (components[0]) {
@@ -49,12 +55,22 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the input is valid
+     * @param input An array consisting of the command and task
+     * @throws DukeException If the array has a length of less than two
+     */
     public static void checkInput(String[] input) throws DukeException {
         if (input.length <= 1) {
             throw new DukeException("Invalid input!");
         }
     }
 
+    /**
+     * Checks if the date has the required format
+     * @param date The date of the task
+     * @throws DukeException If the date does not follow the required format
+     */
     public static void checkDate(String date) throws DukeException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
