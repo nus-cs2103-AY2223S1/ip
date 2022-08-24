@@ -68,7 +68,7 @@ public class Storage {
 
     /**
      * Writes to the save file based off a given TaskList list.
-     * @param list The given TaskList used to write to the save file.s
+     * @param list The given TaskList used to write to the save file.
      */
     public void writeToFile(TaskList list) {
         String retString = "";
