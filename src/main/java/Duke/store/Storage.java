@@ -16,8 +16,8 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    private final Scanner scanner;      // Scanner that reads the tasks from a text file.
-    private final String filepath;// Path name of file that tasks are stored in.
+    private final Scanner scanner; // Scanner that reads the tasks from a text file.
+    private final String filepath; // Path name of file that tasks are stored in.
 
     /**
      * Constructor for a duke class.

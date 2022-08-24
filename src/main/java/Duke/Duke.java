@@ -104,6 +104,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        System.out.println("||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
         String filepath = "data" + File.separator + "dukeData.txt";
         new Duke(filepath).run();
     }
