@@ -1,7 +1,5 @@
 package Duke;
 
-import Duke.DukeExceptions.BadTaskOperationException;
-import Duke.DukeExceptions.DukeException;
 import Duke.DukeTasks.Task;
 
 import java.time.LocalDate;
@@ -142,4 +140,3 @@ public class TasksManager {
         System.out.println(line);
     }
 }
-
