@@ -1,7 +1,3 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -9,22 +5,22 @@ import java.util.Scanner;
 
 public class TaskList {
     private final ArrayList<Task> userTasks;
+    private final Storage storage;
 
-    public TaskList() {
+    public TaskList(Storage storage) {
+        this.storage = storage;
         userTasks = new ArrayList<>();
-        File tasksFile = new File("duke.txt");
-        if (tasksFile.exists()) {
-            try {
-                InputParser inputParser = new InputParser(this);
-                Scanner fileScanner = new Scanner(tasksFile);
-                while (fileScanner.hasNextLine()) {
-                    inputParser.parseScannerLineInput(fileScanner, inputParser.breakLoopIndicator);
-                    if (inputParser.breakLoopIndicator.getIsScannerDone()) break;
-                }
-                fileScanner.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
+        Parser parser = new Parser(this);
+        try {
+            Scanner fileScanner = storage.getScannerForTasksFile();
+            while (fileScanner.hasNextLine()) {
+                parser.parseScannerLineInput(fileScanner.nextLine(), parser.breakLoopIndicator);
+                if (parser.breakLoopIndicator.getIsExitCommand()) break;
             }
+            fileScanner.close();
+        } catch (CustomMessageException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Using an empty file");
         }
     }
 
@@ -34,22 +30,22 @@ public class TaskList {
 
     public void addToTaskList(Task newTask) {
         userTasks.add(newTask);
-        writeToDisk();
+        storage.writeToDisk(getTasksListForStorage());
     }
 
     public void markTaskAsDone(int index) {
         userTasks.get(index).setTaskAsDone();
-        writeToDisk();
+        storage.writeToDisk(getTasksListForStorage());
     }
 
     public void markTaskAsNotDone(int index) {
         userTasks.get(index).setTaskAsNotDone();
-        writeToDisk();
+        storage.writeToDisk(getTasksListForStorage());
     }
 
     public void removeTask(int index) {
         userTasks.remove(index);
-        writeToDisk();
+        storage.writeToDisk(getTasksListForStorage());
     }
 
     public String getTaskString(int index) {
@@ -77,24 +73,5 @@ public class TaskList {
                 new StringBuilder(), (stringToBuild, currentEntry) -> stringToBuild.append(
                         currentEntry.getValue().getFileStorageString(currentEntry.getKey())), StringBuilder::append);
         return listOfUserText.toString();
-    }
-
-    private void writeToDisk() {
-        try {
-            File tasksFile = new File("duke.txt");
-            if ((tasksFile.exists() && tasksFile.delete()) || !tasksFile.exists()) {
-                FileWriter fileWriter = new FileWriter("duke.txt");
-                try {
-                    fileWriter.write(getTasksListForStorage());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                fileWriter.close();
-            } else {
-                System.out.println("Unable to save your data");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

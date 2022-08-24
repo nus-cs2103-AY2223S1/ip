@@ -1,15 +1,40 @@
-import java.util.Scanner;
-
 public class Duke {
-    private static final TaskList taskList = new TaskList();
+    private final Ui ui;
+    private final TaskList taskList;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        Storage storage = new Storage(filePath);
+//        try {
+            taskList = new TaskList(storage);
+//        } catch (CustomMessageException e) {
+//            ui.showLoadingError();
+//        }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        Parser parser = new Parser(taskList);
+        while (true) {
+            try {
+                String nextCommand = ui.getNextCommand();
+                ui.showLine();
+                System.out.println(parser.parseScannerLineInput(nextCommand, parser.breakLoopIndicator));
+                if (parser.breakLoopIndicator.getIsExitCommand()) {
+                    ui.showExitMessage();
+                    break;
+                }
+//                Command c = Parser.parse(fullCommand);
+//                c.execute(tasks, ui, storage);
+            } catch (CustomMessageException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
+        }
+    }
 
     public static void main(String[] args) {
-        System.out.println(InputParser.initialMessage);
-        Scanner scanner = new Scanner(System.in);
-        InputParser inputParser = new InputParser(taskList);
-        while (scanner.hasNextLine()) {
-            System.out.println(inputParser.parseScannerLineInput(scanner, inputParser.breakLoopIndicator));
-            if (inputParser.breakLoopIndicator.getIsScannerDone()) break;
-        }
+        new Duke("tasks.txt").run();
     }
 }
