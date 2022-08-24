@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Duke {
@@ -66,31 +67,36 @@ public class Duke {
 
         Task newTask = null;
 
-        switch (type) {
-            case "todo" :
-                newTask = new ToDo(task);
-                break;
-            case "deadline":
-                String[] deadlineDesc = task.split("/by", 2);
-                if (deadlineDesc.length != 2 || deadlineDesc[0].equals("") || deadlineDesc[1].equals("")) {
-                    throw new DukeException("OOPS! A deadline must contain a description and a due date.");
-                }
-                newTask = new Deadline(deadlineDesc[0], deadlineDesc[1]);
-                break;
-            case "event":
-                String[] eventDesc = task.split("/at", 2);
-                if (eventDesc.length != 2 || eventDesc[0].equals("") || eventDesc[1].equals("")) {
-                    throw new DukeException("OOPS! An event must contain a description and a date.");
-                }
-                newTask = new Event(eventDesc[0], eventDesc[1]);
-                break;
+        try {
+            switch (type) {
+                case "todo" :
+                    newTask = new ToDo(task.trim());
+                    break;
+                case "deadline":
+                    String[] deadlineDesc = task.split("/by", 2);
+                    if (deadlineDesc.length != 2 || deadlineDesc[0].equals("") || deadlineDesc[1].equals("")) {
+                        throw new DukeException("OOPS! A deadline must contain a description and a due date.");
+                    }
+                    newTask = new Deadline(deadlineDesc[0].trim(), deadlineDesc[1].trim());
+                    break;
+                case "event":
+                    String[] eventDesc = task.split("/at", 2);
+                    if (eventDesc.length != 2 || eventDesc[0].equals("") || eventDesc[1].equals("")) {
+                        throw new DukeException("OOPS! An event must contain a description and a date.");
+                    }
+                    newTask = new Event(eventDesc[0].trim(), eventDesc[1].trim());
+                    break;
+            }
+
+            if (newTask != null) {
+                this.taskList.addTask(newTask);
+                printMessage("Got it. I've added this task:\n\t" + newTask
+                        + "\nNow you have " + this.taskList.totalTask() + " tasks in the list.");
+            }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Date must be in yyyy-mm-dd format");
         }
 
-        if (newTask != null) {
-            this.taskList.addTask(newTask);
-            printMessage("Got it. I've added this task:\n\t" + newTask
-                    + "\nNow you have " + this.taskList.totalTask() + " tasks in the list.");
-        }
     }
     private void deleteTask(String n) {
         try {
