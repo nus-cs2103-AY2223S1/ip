@@ -11,4 +11,7 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + this.duration + ")";
     }
 
+    public String getDuration() {
+        return this.duration;
+    }
 }
