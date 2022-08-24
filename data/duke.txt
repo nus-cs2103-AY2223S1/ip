@@ -1,0 +1,3 @@
+D | 1 | finish tutorial | tomorrow
+E | 0 | birthday | friday
+T | 1 | eat 

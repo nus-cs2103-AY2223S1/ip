@@ -11,24 +11,48 @@ public class Events extends Task {
     /**
      * Constructor to initialize class.
      *
-     * @param name  task name
+     * @param name task name
      */
-    public Events(String name, String timing) {
-        super(name);
+    public Events(String name, boolean init, boolean completed, String timing) {
+        super(name, init, completed);
         this.timing = timing;
-        addMessage();
+        if (!init) {
+            addMessage();
+        }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getDate() {
+        return timing;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String taskType() {
+        return "E";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addMessage() {
         System.out.printf(
                 "    ____________________________________________________________\n" +
-                "     Got it. I've added this task:\n" +
-                "     %s\n" +
-                "     Now you have %d tasks in the list.\n" +
-                "    ____________________________________________________________\n", this, Duke.taskArray.size() + 1);
+                        "     Got it. I've added this task:\n" +
+                        "     %s\n" +
+                        "     Now you have %d tasks in the list.\n" +
+                        "    ____________________________________________________________\n", this, Duke.taskArray.size() + 1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + String.format(" (at: %s)", timing);
