@@ -1,15 +1,15 @@
 package deku;
 
-import deku.task.Deadline;
-import deku.task.Event;
-import deku.task.ToDo;
-
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import deku.task.Deadline;
+import deku.task.Event;
+import deku.task.ToDo;
 
 /**
  * Parses input from user to bot understandable structure
@@ -67,7 +67,10 @@ public class InputParser {
             if (this.time == null) {
                 return output + " " + time + ")";
             }
-            return output + " " + this.time.format(DateTimeFormatter.ofPattern("HH:mm")) + ")";
+            return output
+                   + " "
+                   + this.time.format(DateTimeFormatter.ofPattern("HH:mm"))
+                   + ")";
         }
         return output.substring(0, output.length() - 1);
     }

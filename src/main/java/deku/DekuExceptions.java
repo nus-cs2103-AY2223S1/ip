@@ -13,12 +13,14 @@ public class DekuExceptions extends Exception {
      *
      */
     public DekuExceptions(String errorMsg) {
-        super("AUUUUUGH! " + errorMsg);
+        super("AUUUUUGH! "
+              + errorMsg);
         message = errorMsg;
     }
 
     @Override
     public String toString() {
-        return "AUUUUUGH! " + message;
+        return "AUUUUUGH! "
+               + message;
     }
 }

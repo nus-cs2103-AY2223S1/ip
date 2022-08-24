@@ -1,22 +1,24 @@
 package deku;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
 import deku.task.Deadline;
 import deku.task.Event;
 import deku.task.Task;
 import deku.task.ToDo;
 
-import java.io.*;
-import java.nio.file.Path;
-import java.util.stream.Collectors;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Scanner;
-
-
-
 class Storage {
-    private static Path filePath;
-    private static Path directoryPath;
+    private final Path filePath;
+    private final Path directoryPath;
 
     Storage(Path directoryPath, Path filePath) {
         this.filePath = filePath;

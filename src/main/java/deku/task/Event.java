@@ -1,8 +1,8 @@
 package deku.task;
 
-import deku.DekuExceptions;
-
 import java.util.List;
+
+import deku.DekuExceptions;
 
 /**
  * Task type, on a certain day
