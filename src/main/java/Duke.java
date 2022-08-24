@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
-    protected static final String topWindow = "╔══════════════════════════════════════════════╗";
-    protected static final String bottomWindow = "╚══════════════════════════════════════════════╝";
-    private static final String greeting = "Hi, I'm Ploopy! Nice to meet you!\n\tWhats up?";
-    private static final String farewell = "Okay then, see ya later :)";
-    private static final String completedTask = "Nice! You've completed this task. I'll mark it as done.";
+    protected static final String TOP_WINDOW = "╔══════════════════════════════════════════════╗";
+    protected static final String BOTTOM_WINDOW = "╚══════════════════════════════════════════════╝";
+    private static final String GREETING = "Hi, I'm Ploopy! Nice to meet you!\n\tWhats up?";
+    private static final String FAREWELL = "Okay then, see ya later :)";
+    private static final String COMPLETED_TASK = "Nice! You've completed this task. I'll mark it as done.";
     private static final String incompleteTask = "Alright this task has been marked as undone.";
     private static final String addedTask = "I've added this task to your list.\n\tHere you go: ";
     private static int totalTasks = 0;
@@ -25,31 +25,31 @@ public class Duke {
 
     public static void start() {
         System.out.println(messageFormatter(textArt));
-        System.out.println(messageFormatter(greeting));
+        System.out.println(messageFormatter(GREETING));
         tasks = new ArrayList<>();
         command();
     }
 
     protected static String messageFormatter(String input) {
-        return topWindow + "\n\t" + input + "\n" +bottomWindow;
+        return TOP_WINDOW + "\n\t" + input + "\n" + BOTTOM_WINDOW;
     }
 
     private static void displayList() {
-        System.out.println(topWindow);
+        System.out.println(TOP_WINDOW);
         int index = 1;
         for (Task item : tasks) {
             System.out.println("\t" + index + "." + item);
             index++;
         }
-        System.out.println(bottomWindow);
+        System.out.println(BOTTOM_WINDOW);
     }
 
     private static void markTask(int taskIndex) throws DukeException {
         if (taskIndex > 0 && taskIndex <= totalTasks) {
-        Task current = tasks.get(taskIndex - 1);
-        current.markDone();
-        System.out.println(messageFormatter(completedTask + "\n\t" + " " + current));
-    } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
+            Task current = tasks.get(taskIndex - 1);
+            current.markDone();
+            System.out.println(messageFormatter(COMPLETED_TASK + "\n\t" + " " + current));
+        } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
     }
 
     private static void unmarkTask(int taskIndex) throws DukeException {
@@ -61,7 +61,7 @@ public class Duke {
     }
 
     private static void deleteTask(int taskNumber) throws DukeException {
-        if (taskNumber > 0 && taskNumber <= totalTasks)  {
+        if (taskNumber > 0 && taskNumber <= totalTasks) {
             totalTasks--;
             String message = "Deleted: " + tasks.get(taskNumber - 1) + "\n\tYou have "
                     + totalTasks + " task(s) remaining.";
@@ -84,7 +84,7 @@ public class Duke {
 
     private static void createToDo(String input) throws DukeException {
         if (!isEmptyCommand(input, "todo".length())) {
-            Task newTask = Task.createTask(input, null,"todo");
+            Task newTask = Task.createTask(input, null, "todo");
             tasks.add(newTask);
             addTaskMessage(newTask);
         } else throw new DukeException(messageFormatter(EmptyCommandMessage + " todo"));
@@ -114,7 +114,7 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
         String command;
-        while(!input.equals("bye")) {
+        while (!input.equals("bye")) {
             try {
                 if (input.isBlank() || input.isEmpty()) throw new DukeException(messageFormatter(NoInputMessage));
                 command = input.split(" ")[0];
@@ -140,17 +140,19 @@ public class Duke {
                     case "event":
                         createEvent(input);
                         break;
-                    default: throw new DukeException(messageFormatter(NonsenseInputMessage));
+                    default:
+                        throw new DukeException(messageFormatter(NonsenseInputMessage));
                 }
             } catch (DukeException e) {
-            System.out.println(e.getMessage());
-        }
+                System.out.println(e.getMessage());
+            }
             input = scanner.nextLine();
         }
-        System.out.println(messageFormatter(farewell));
+        System.out.println(messageFormatter(FAREWELL));
     }
-    
+
     public static void main(String[] args) {
-      start();
+        start();
+
     }
 }
