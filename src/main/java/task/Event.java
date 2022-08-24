@@ -21,4 +21,14 @@ public class Event extends Task{
     public String toString() {
         return String.format("%s (at: %s)", super.toString(), this.at);
     }
+
+    /**
+     * Returns the formatted Event task details to be stored in text file.
+     *
+     * @return Formatted Event task details to be stored in text file
+     */
+    @Override
+    public String toFileString() {
+        return super.toFileString() + " | " + this.at ;
+    }
 }
