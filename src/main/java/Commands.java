@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
@@ -64,11 +66,14 @@ public class Commands {
     public static void deadline(String command, ArrayList<Task> taskList) throws DukeException {
         try {
             String taskName = command.substring(command.indexOf(" ") + 1, command.indexOf("/") - 1);
-            String by = command.substring(command.indexOf("/") + 5);
-            Task newTask = new Deadline(taskName, by);
+            String by = command.split("/by")[1].trim();
+            LocalDate date = LocalDate.parse(by);
+            Task newTask = new Deadline(taskName, date);
             taskList.add(newTask);
             int amountOfTasks = taskList.size();
             ui.addTask(newTask, amountOfTasks);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("☹ OOPS!! Date is invalid! Hint: Make it YYYY-MM-DD.");
         } catch (Exception e) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
@@ -85,11 +90,13 @@ public class Commands {
     public static void event(String command, ArrayList<Task> taskList) throws DukeException {
         try {
             String taskName = command.substring(command.indexOf(" ") + 1, command.indexOf("/") - 1);
-            String at = command.substring(command.indexOf("/") + 5);
+            String at = command.split("/at")[1].trim();
             Task newTask = new Event(taskName, at);
             taskList.add(newTask);
             int amountOfTasks = taskList.size();
             ui.addTask(newTask, amountOfTasks);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("☹ OOPS!! Date is invalid! Hint: Make it YYYY-MM-DD.");
         } catch (Exception e) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
         }
