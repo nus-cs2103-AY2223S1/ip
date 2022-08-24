@@ -17,11 +17,15 @@ public class Event extends Task {
     }
 
     /**
-     * Checks event time set by the user.
-     * @return Event time in string representation.
+     * Constructor for creating an event with given isDone status.
+     * @param description Task description.
+     * @param at Event time.
+     * @param isDone True if event is marked as done; false otherwise.
      */
-    public String getEventTime() {
-        return this.at;
+    public Event (String description, String at, boolean isDone) {
+        super(description);
+        this.at = at;
+        this.isDone = isDone;
     }
 
     /**
@@ -40,6 +44,15 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format("%s (at: %s)", super.toString(), this.at);
+    }
+
+    /**
+     * Formats event in a file.
+     * @return Event with task type, status, description and time.
+     */
+    @Override
+    public String toFileFormat() {
+        return String.format("E | %s | %s | %s", this.getStatusIcon(), this.description, at);
     }
 
 }

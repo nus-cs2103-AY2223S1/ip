@@ -67,4 +67,11 @@ public abstract class Task {
         return String.format("[%s][%s] %s", this.taskType(), this.getStatusIcon(), this.getDescription());
     }
 
+    /**
+     * Formats tasks in a file.
+     * @return Format displayed in a file with task type, status (done or undone), description
+     * and date or time (when applicable).
+     */
+    public abstract String toFileFormat();
+
 }

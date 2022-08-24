@@ -42,4 +42,5 @@ event project meeting /at Mon 2-4pm
 todo exercise
 mark 7
 delete 7
+list
 bye

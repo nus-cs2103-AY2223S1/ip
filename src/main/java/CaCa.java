@@ -1,6 +1,6 @@
-import java.util.Scanner;
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * CaCa is a personal assistant chatbot that helps users manage and track things.
@@ -37,8 +37,7 @@ public class CaCa {
     /**
      * A class-level array to store all user inputs.
      */
-    private static final List<Task> tasks = new ArrayList<>();
-
+    private static final List<Task> tasks = Storage.readFile();
 
     /**
      * Checks if task index is valid.
@@ -253,10 +252,12 @@ public class CaCa {
      *
      * @param args Command line arguments.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         // Greets user.
         greet();
+
+        Storage.loadFile();
 
         // Solution below on getting user input is
         // adapted from https://www.w3schools.com/java/java_user_input.asp
@@ -288,11 +289,15 @@ public class CaCa {
 
                     addToDo(command[1]);
 
+                    Storage.updateFile(tasks);
+
                 } else if (commandType.equals("deadline")) {
                     // Checks for valid description, i.e. not empty or blank, before adding deadline.
                     hasDescription(command);
 
                     addDeadline(command[1]);
+
+                    Storage.updateFile(tasks);
 
                 } else if (commandType.equals("event")) {
                     // Checks for valid description, i.e. not empty or blank, before adding event.
@@ -300,17 +305,25 @@ public class CaCa {
 
                     addEvent(command[1]);
 
+                    Storage.updateFile(tasks);
+
                 } else if (commandType.equals("list")) {
                     listTasks();
 
                 } else if (commandType.equals("mark")) {
                     markTask(command[1]);
 
+                    Storage.updateFile(tasks);
+
                 } else if (commandType.equals("unmark")) {
                     unmarkTask(command[1]);
 
+                    Storage.updateFile(tasks);
+
                 } else if (commandType.equals("delete")) {
                     deleteTask(command[1]);
+
+                    Storage.updateFile(tasks);
 
                 } else {
                     // Invalid input.
@@ -327,5 +340,8 @@ public class CaCa {
                 System.out.println(LINE);
             }
         }
+
+        Storage.updateFile(tasks);
+
     }
 }

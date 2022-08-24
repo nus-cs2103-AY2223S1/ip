@@ -21,11 +21,15 @@ public class Deadline extends Task {
     }
 
     /**
-     * Checks date/time set as deadline by the user.
-     * @return Date/time in string representation.
+     * Constructor for creating a deadline with given isDone status.
+     * @param description Task description.
+     * @param by Date/time as deadline.
+     * @param isDone True if deadline is marked as done; false otherwise.
      */
-    public String getDeadline() {
-        return this.by;
+    public Deadline(String description, String by, boolean isDone) {
+        super(description);
+        this.by = by;
+        this.isDone = isDone;
     }
 
     /**
@@ -44,6 +48,15 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("%s (by: %s)", super.toString(), this.by);
+    }
+
+    /**
+     * Formats deadline in a file.
+     * @return Deadline with task type, status, description and date/time.
+     */
+    @Override
+    public String toFileFormat() {
+        return String.format("D | %s | %s | %s", this.getStatusIcon(), this.description, by);
     }
 
 }

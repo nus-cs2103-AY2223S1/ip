@@ -10,6 +10,10 @@ Hello! I'm CaCa.
 What can I do for you?
 ____________________________________________________________
 
+The file to store all your tasks does not exist.
+I will create one now...
+____________________________________________________________
+
 ____________________________________________________________
 OOPS!!! I'm sorry, but I don't know what that means :-(
 ____________________________________________________________
@@ -251,6 +255,53 @@ ____________________________________________________________
 Noted. I've removed this task:
 [T][X] exercise
 Now you have 6 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[T][X] join sports club
+4.[T][ ] borrow book
+5.[D][ ] return book (by: Sunday)
+6.[E][ ] project meeting (at: Mon 2-4pm)
+____________________________________________________________
+
+____________________________________________________________
+Bye. Hope to see you again soon!
+____________________________________________________________
+
+____________________________________________________________
+   _____       _____
+  / ____|     / ____|
+ | |     __ _| |     __ _
+ | |    / _` | |    / _` |
+ | |___| (_| | |___| (_| |
+  \_____\__,_|\_____\__,_|
+
+Hello! I'm CaCa.
+What can I do for you?
+____________________________________________________________
+
+Opening the file that stores all your tasks...
+
+These are the tasks in your list:
+T | X | read book
+D |   | return book | June 6th
+T | X | join sports club
+T |   | borrow book
+D |   | return book | Sunday
+E |   | project meeting | Mon 2-4pm
+____________________________________________________________
+
+____________________________________________________________
+Here are the tasks in your list:
+1.[T][X] read book
+2.[D][ ] return book (by: June 6th)
+3.[T][X] join sports club
+4.[T][ ] borrow book
+5.[D][ ] return book (by: Sunday)
+6.[E][ ] project meeting (at: Mon 2-4pm)
 ____________________________________________________________
 
 ____________________________________________________________
