@@ -16,7 +16,7 @@ public class UI {
         System.out.println("Quack, unmarked! " + item);
     }
     public static void deleteItemMessage(Todo item) {
-        System.out.println("Quack, unmarked! " + item);
+        System.out.println("Quack, deleted! " + item);
     }
     public static void unrecognizedCommandMessage() {
         System.out.println("Quack!?! What does that even mean!?!?!");
