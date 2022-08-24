@@ -90,7 +90,7 @@ public class TaskList {
      */
     public String stored() {
         String ls = "";
-        for(int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             ls += "\n       " + tasks.get(i);
         }
         return ls;
@@ -106,7 +106,7 @@ public class TaskList {
     public String find(String txt) {
         String result = "";
         int index = 1;
-        for(int i = 0; i < size(); i++) {
+        for (int i = 0; i < size(); i++) {
             Task curr = tasks.get(i);
             if ((curr.toString().substring(7).toLowerCase()).contains(txt)) {
                 result += "\n" + index++ + ". " + curr;
@@ -122,7 +122,7 @@ public class TaskList {
      */    @Override
     public String toString() {
         String list = "";
-        for(int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             if (i == tasks.size() - 1) {
                 list += i + 1 + ". " + tasks.get(i);
             } else {
