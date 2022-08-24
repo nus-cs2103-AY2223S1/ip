@@ -1,16 +1,16 @@
 package duke;
+
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.io.FileWriter;
 import java.util.function.Consumer;
-
 /**
  * A class that encapsulates the SavedTaskHandler object
  * which deals with loading tasks from the file and saving tasks in the file
@@ -35,7 +35,7 @@ public class SavedTaskHandler {
         this.taskList = new TaskList();
         if (Files.exists(path)) {
             System.out.println("LUNA still has your previous tasks written on this fine crater...");
-            Scanner scanner =  new Scanner(file);
+            Scanner scanner = new Scanner(file);
 
             if (!scanner.hasNextLine()) {
                 System.out.println(EMPTY_TASKS);
@@ -74,10 +74,11 @@ public class SavedTaskHandler {
             }
 
         } else {
-            System.out.println("You must be new here... Worry not, LUNA has saved you her finest crater...\n" + EMPTY_TASKS);
+            System.out.println("You must be new here... Worry not, "
+                    + "LUNA has saved you her finest crater...\n" + EMPTY_TASKS);
 
-                file.getParentFile().mkdirs();
-                file.createNewFile();
+            file.getParentFile().mkdirs();
+            file.createNewFile();
 
         }
     }

@@ -1,6 +1,6 @@
 package duke;
 import java.text.ParseException;
-import java.util.ArrayList;
+
 
 /**
  * A class that encapsulates the Parser object
@@ -30,7 +30,7 @@ public class Parser {
     public static boolean isNumeric(String string) {
         int intValue;
 
-        if(string == null || string.equals("")) {
+        if (string == null || string.equals("")) {
             return false;
         }
 
@@ -38,9 +38,8 @@ public class Parser {
             intValue = Integer.parseInt(string);
             return true;
         } catch (NumberFormatException e) {
-
+            return false;
         }
-        return false;
     }
 
     /**
@@ -50,8 +49,7 @@ public class Parser {
      */
     public void parse(String input) throws ParseException {
         String[] splitStr = input.split("\\s+");
-        TaskList taskList =  storage.getTaskList();
-
+        TaskList taskList = storage.getTaskList();
 
         if (input.equalsIgnoreCase("bye")) {
             storage.write(taskList);
@@ -62,7 +60,9 @@ public class Parser {
             ui.lineBreak();
             taskList.list();
 
-        } else if (input.substring(0, Math.min(input.length(), 4)).equals("mark") || input.substring(0, Math.min(input.length(), 6)).equals("unmark") || input.substring(0, Math.min(input.length(), 6)).equals("delete")) {
+        } else if (input.substring(0, Math.min(input.length(), 4)).equals("mark")
+                || input.substring(0, Math.min(input.length(), 6)).equals("unmark")
+                || input.substring(0, Math.min(input.length(), 6)).equals("delete")) {
             String str = "";
             boolean error = false;
             String type = splitStr[0];
@@ -73,9 +73,7 @@ public class Parser {
                     error = true;
                     throw new DukeException("LUNA is unsure of what you are asking of her... ");
                 }
-            }
-
-            catch (DukeException e) {
+            } catch (DukeException e) {
                 System.out.println(e);
             }
 
@@ -118,17 +116,18 @@ public class Parser {
                         throw new DukeException("To do? To do what? ");
                     } else if (type.equals("event")) {
                         throw new DukeException("And what event exactly? When is the event? ");
-                    } else if (type.equals("deadline")){
-                        throw new DukeException("You'll probably miss it if you continue to give LUNA vague requests... ");
+                    } else if (type.equals("deadline")) {
+                        throw new DukeException("You'll probably miss it if you continue to "
+                                + "give LUNA vague requests... ");
                     } else {
-                        throw new DukeException("LUNA has consulted the Moon Goddess and even she has no idea what you're saying. ");
+                        throw new DukeException("LUNA has consulted the Moon Goddess and even she "
+                                + "has no idea what you're saying. ");
                     }
                 } else {
                     String theTask = findTask[1].split(" /")[0];
                     actualTask = theTask;
                 }
-            }
-            catch(DukeException e) {
+            } catch (DukeException e) {
                 System.out.println(e);
             }
 
@@ -155,9 +154,9 @@ public class Parser {
 
                 } else {
                     try {
-                        throw new DukeException("LUNA has consulted the Moon Goddess and even she has no idea what you're saying. ");
-                    }
-                    catch(DukeException e) {
+                        throw new DukeException("LUNA has consulted the Moon Goddess and "
+                                + "even she has no idea what you're saying. ");
+                    } catch (DukeException e) {
                         System.out.println(e);
                     }
                 }

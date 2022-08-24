@@ -1,5 +1,4 @@
 package duke;
-
 /**
  * A class that encapsulates exceptions that Duke throws
  *
@@ -12,7 +11,7 @@ public class DukeException extends Exception {
     private String errorMessage;
 
     public DukeException(String errorMessage) {
-        super (errorMessage);
+        super(errorMessage);
         this.errorMessage = errorMessage;
     }
 

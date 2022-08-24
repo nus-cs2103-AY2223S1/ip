@@ -1,7 +1,5 @@
 package duke;
-import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.function.Consumer;
 
 /**
