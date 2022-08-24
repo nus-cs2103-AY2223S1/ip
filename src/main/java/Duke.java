@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -18,6 +19,11 @@ public class Duke {
                 } catch (DukeWrongArgumentException e) {
                     System.out.println(e.getMessage());
                     System.out.println("Pls try again");
+                } catch (DateTimeParseException e) {
+                    System.out.println("'" + e.getParsedString() + "'" + " is not valid date/time format");
+                    System.out.println("It should be dd/MM/yy and optional 24hr time");
+                    System.out.println("Pls try again");
+
                 }
             } else if (input.equals("bye")) {
                 System.out.println("\tBye! Hope that I was of service!");
@@ -44,7 +50,7 @@ public class Duke {
         return false;
     }
 
-    private static void parse(String input) throws DukeWrongArgumentException {
+    private static void parse(String input) throws DukeWrongArgumentException, DateTimeParseException {
         String[] arr = input.split(" ", 2);
         COMMANDS command = COMMANDS.valueOf(arr[0]);
         try {
