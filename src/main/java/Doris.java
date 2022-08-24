@@ -107,15 +107,15 @@ public class Doris {
             saveLocation.mkdir();
             File taskFile = new File(savePath, "doris.txt");
             PrintWriter taskFileWriter = new PrintWriter(new FileWriter(taskFile));
-            for (int i = 0; i < list.size(); i++) {
-                taskFileWriter.write(list.get(i).toString() + "\n");
+            for (Task task : list) {
+                taskFileWriter.write(task.toString() + "\n");
             }
             taskFileWriter.close();
         } else {
             File taskFile = new File(savePath, "doris.txt");
             PrintWriter taskFileWriter = new PrintWriter(new FileWriter(taskFile));
-            for (int i = 0; i < list.size(); i++) {
-                taskFileWriter.write(list.get(i).toStringText() + "\n");
+            for (Task task : list) {
+                taskFileWriter.write(task.toStringText() + "\n");
             }
             taskFileWriter.close();
         }
