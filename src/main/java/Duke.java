@@ -1,3 +1,4 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -118,6 +119,8 @@ public class Duke {
                 tedResponse("Oh no, please indicate task to mark/unmark/delete with a number T_T\n");
             } catch (IndexOutOfBoundsException e) {
                 tedResponse("Oh no, there's no such task T_T\n");
+            } catch (DateTimeParseException e) {
+                tedResponse("Please input the date in yyyy-mm-dd hh:mm format");
             }
         }
     }
