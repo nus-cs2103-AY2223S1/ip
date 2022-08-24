@@ -1,4 +1,4 @@
-public class Task {
+abstract public class Task {
     protected String description;
     protected boolean isDone;
 
@@ -14,6 +14,9 @@ public class Task {
     public void setDone(boolean newDone) {
         this.isDone = newDone;
     }
+
+    abstract public String getName();
+    abstract public String timing();
 
     @Override
     public String toString() {

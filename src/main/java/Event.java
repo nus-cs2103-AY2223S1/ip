@@ -7,6 +7,14 @@ public class Event extends Task {
         this.at = at;
     }
 
+    public String getName() {
+        return "E";
+    }
+
+    public String timing() {
+        return this.at;
+    }
+ 
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
