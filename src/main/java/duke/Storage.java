@@ -6,9 +6,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.nio.file.Path;
 
 public class Storage {
     private TaskList currList;
+    private static final String home = System.getProperty("user.home");
+    private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "duke.txt");
+    private static final File file = new File(FILE_PATH.toUri());
     public Storage(TaskList taskList) {
         this.currList = taskList;
     }
@@ -42,7 +46,7 @@ public class Storage {
 
     public void writeToFile(){
         try {
-            FileWriter myWriter = new FileWriter("./src/main/data/duke.txt");
+            FileWriter myWriter = new FileWriter(file);
             for (int i = 0; i < currList.getLength(); i++) {
                 myWriter.write(currList.getTaskAt(i).toString());
                 myWriter.write("\n");
@@ -54,27 +58,26 @@ public class Storage {
         }
     }
 
-    public static void createFile(File fileToCreate) {
+    public void createFile() {
+        File dir = file;
         try {
-            fileToCreate.createNewFile();
+            dir.createNewFile();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Cannot create file!");
         }
     }
 
     public void handleFile(File taskList) {
         if (!taskList.exists()) {
-            createFile(taskList);
+            this.createFile();
         }
     }
 
-    public void readAndProcessFile(TaskList currList) {
-        File taskList = new File("./src/main/data/duke.txt"); //file to read and write into
-        Storage fileHandler = new Storage(currList);
-        fileHandler.handleFile(taskList);
+    public void readAndProcessFile() {
+        this.handleFile(file);
         try {
-            Scanner myReader = new Scanner(taskList);
-            fileHandler.loadFileInput(myReader);
+            Scanner myReader = new Scanner(file);
+            this.loadFileInput(myReader);
         } catch (FileNotFoundException e) {
             Ui.handleFileNotFoundException();
         }
