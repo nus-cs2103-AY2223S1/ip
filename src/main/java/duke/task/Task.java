@@ -1,16 +1,16 @@
-package Duke.Task;
+package duke.task;
 
-import Duke.Processor.Storage;
-import Duke.Processor.TaskList;
-import Duke.UI;
+import duke.Ui;
+import duke.processor.Storage;
+import duke.processor.TaskList;
 
 /**
  * Class to represent the tasks.
  */
 public abstract class Task {
+    public Boolean isBye;
     protected String description;
     protected Boolean isDone;
-    public Boolean isBye;
 
     /**
      * The constructor for task.
@@ -72,7 +72,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return this.getStatus()  + this.description;
+        return this.getStatus() + this.description;
     }
 
     /**
@@ -80,7 +80,7 @@ public abstract class Task {
      * @param task
      * @param ui
      */
-    public void execute(TaskList task, UI ui, Storage storage) {
+    public void execute(TaskList task, Ui ui, Storage storage) {
 
     };
 }

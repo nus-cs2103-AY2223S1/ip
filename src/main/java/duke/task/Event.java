@@ -1,11 +1,11 @@
-package Duke.Task;
-
-import Duke.Processor.Storage;
-import Duke.Processor.TaskList;
-import Duke.UI;
+package duke.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.Ui;
+import duke.processor.Storage;
+import duke.processor.TaskList;
 
 /**
  * Class to represent "Events" tasks.
@@ -49,8 +49,8 @@ public class Event extends Task {
      */
     public String formatChange() {
         String mark = isDone ? "1" : "0";
-        return "E | " + mark + " | " + this.description + " | " +
-                this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        return "E | " + mark + " | " + this.description + " | "
+                + this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /**
@@ -59,8 +59,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]"  + super.toString() +
-                " (at: " + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
+        return "[E]" + super.toString()
+                + " (at: " + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
     }
 
     /**
@@ -69,7 +69,7 @@ public class Event extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui, Storage storage) {
+    public void execute(TaskList task, Ui ui, Storage storage) {
         task.add(this);
         ui.showAddOnTask(task, (task.size() - 1));
         storage.write(task.getTasks());

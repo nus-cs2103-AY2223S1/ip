@@ -1,4 +1,4 @@
-package Duke.Exception;
+package duke.exception;
 
 /**
  * Class to represent Duke.Exception.WrongTimeFormatException

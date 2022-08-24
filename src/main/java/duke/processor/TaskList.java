@@ -1,20 +1,20 @@
-package Duke.Processor;
-
-import Duke.Task.Task;
+package duke.processor;
 
 import java.util.ArrayList;
 
+import duke.task.Task;
+
 /**
- * Class to represent the task lists.
+ * Class to represent the TASK lists.
  */
 public class TaskList {
-    private static ArrayList<Task> task;
+    private static ArrayList<Task> TASK;
 
     /**
      * The constructor for no input
      */
     public TaskList() {
-        this.task = new ArrayList<Task>();
+        this.TASK = new ArrayList<Task>();
     }
 
     /**
@@ -22,40 +22,40 @@ public class TaskList {
      * @param task
      */
     public TaskList(ArrayList<Task> task) {
-        this.task = task;
+        this.TASK = task;
     }
 
     /**
-     * Method to add a task.
+     * Method to add a TASK.
      * @param t
      */
     public void add(Task t) {
-        task.add(t);
+        TASK.add(t);
     }
 
     /**
-     * Method to remove a task.
+     * Method to remove a TASK.
      * @param i
      * @return Duke.Task.Task taskDeleted
      */
     public Task delete(int i) {
-        return task.remove(i);
+        return TASK.remove(i);
     }
 
     /**
-     * Method to mark a task as done.
+     * Method to mark a TASK as done.
      * @param i
      */
     public void markDone(int i) {
-        task.get(i).markDone();
+        TASK.get(i).markDone();
     }
 
     /**
-     * Method to mark a task as undone.
+     * Method to mark a TASK as undone.
      * @param i
      */
     public void markUndone(int i) {
-        task.get(i).markUndone();
+        TASK.get(i).markUndone();
     }
 
     /**
@@ -63,16 +63,16 @@ public class TaskList {
      * @return int
      */
     public int size() {
-        return task.size();
+        return TASK.size();
     }
 
     /**
-     * Method to get a specific task.
+     * Method to get a specific TASK.
      * @param i
      * @return Duke.Task.Task object
      */
     public Task get(int i) {
-        return task.get(i);
+        return TASK.get(i);
     }
 
     /**
@@ -80,6 +80,6 @@ public class TaskList {
      * @return Arraylist
      */
     public ArrayList<Task> getTasks() {
-        return this.task;
+        return this.TASK;
     }
 }
