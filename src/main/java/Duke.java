@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -130,11 +134,13 @@ public class Duke {
                 throw new CustomMessageException(indentedMessage(generateEmptyDescMessage(taskCommand.getString())));
             }
             String userRequirement = splitString[1].strip();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime dateTime = LocalDateTime.parse(userRequirement, formatter);
             Task newTask;
             if (taskCommand == Command.EVENT) {
-                newTask = new Event(taskDescription, userRequirement);
+                newTask = new Event(taskDescription, dateTime);
             } else {
-                newTask = new Deadline(taskDescription, userRequirement);
+                newTask = new Deadline(taskDescription, dateTime);
             }
             userTasks.add(newTask);
         }

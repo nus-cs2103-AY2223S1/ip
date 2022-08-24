@@ -1,14 +1,18 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
     // original access modifier was protected
-    private final String by;
+    private final LocalDateTime dateTime;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDateTime dateTime) {
         super(description);
-        this.by = by;
+        this.dateTime = dateTime;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"))
+                + ")";
     }
 }
