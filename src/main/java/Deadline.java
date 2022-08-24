@@ -1,10 +1,12 @@
+import java.time.LocalDate;
+
 public class Deadline extends Task {
-    private String end;
-    public Deadline(String description, String end) {
+    private LocalDate end;
+    public Deadline(String description, LocalDate end) {
         super(description);
         this.end = end;
     }
-    public Deadline(String description, Boolean isDone, String end) {
+    public Deadline(String description, Boolean isDone, LocalDate end) {
         super(description, isDone);
         this.end = end;
     }
@@ -15,11 +17,19 @@ public class Deadline extends Task {
 
     @Override
     public String getDescription() {
-        return String.format("%s (%s)", this.description, this.end);
+        return String.format("%s (by %s)", this.description, this.end);
     }
 
     public String toString() {
         String status = isDone ? "Done  " : "UnDone";
         return String.format("Deadline  | %s | %s | %s", status, super.getDescription(), this.end);
+    }
+    @Override
+    public String taskType() {
+        return "deadline";
+    }
+
+    public LocalDate getEnd() {
+        return this.end;
     }
 }

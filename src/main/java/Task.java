@@ -16,6 +16,10 @@ public class Task {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 
+    public boolean getStatus() {
+        return isDone;
+    }
+
     public String getDescription() {
         return this.description;
     }
@@ -26,5 +30,9 @@ public class Task {
 
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    public String taskType() {
+        return "";
     }
 }

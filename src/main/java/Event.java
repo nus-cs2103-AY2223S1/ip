@@ -1,12 +1,17 @@
+import java.time.LocalDate;
+
 public class Event extends Task {
-    private String time;
-    public Event(String description, String time) {
+    private LocalDate startDate;
+    private LocalDate endDate;
+    public Event(String description, LocalDate startDate, LocalDate endDate) {
         super(description);
-        this.time = time;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
-    public Event(String description, Boolean isDone, String time) {
+    public Event(String description, Boolean isDone, LocalDate startDate, LocalDate endDate) {
         super(description, isDone);
-        this.time = time;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
     @Override
     public String getStatusIcon() {
@@ -15,12 +20,23 @@ public class Event extends Task {
 
     @Override
     public String getDescription() {
-        return String.format("%s (%s)", this.description, this.time);
+        return String.format("%s (at %s - %s)", this.description, this.startDate, this.endDate);
     }
 
     public String toString() {
         String status = isDone ? "Done  " : "UnDone";
-        return String.format("Event     | %s | %s | %s", status, super.getDescription(), this.time);
+        return String.format("Event     | %s | %s | %s to %s", status, super.getDescription(), this.startDate, this.endDate);
+    }
+    @Override
+    public String taskType() {
+        return "event";
     }
 
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 }
