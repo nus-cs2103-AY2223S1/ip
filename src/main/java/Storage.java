@@ -36,7 +36,7 @@ public class Storage {
             ArrayList<Task> tasks = new ArrayList<>();
             while (fileScanner.hasNext()) {
                 String line = fileScanner.nextLine();
-                String[] separatedLines = line.split("|");
+                String[] separatedLines = line.split("\\|");
                 switch (separatedLines[0]) {
                 // task
                 case ("T"):
