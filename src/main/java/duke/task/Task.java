@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -8,14 +10,14 @@ public class Task {
     private final LocalDate date;
     private final LocalTime time;
 
-    Task(String taskName, LocalDate date, LocalTime time) {
+    public Task(String taskName, LocalDate date, LocalTime time) {
         this.taskName = taskName;
         this.markDone = false;
         this.date = date;
         this.time = time;
     }
 
-    Task(String taskName, boolean markDone, LocalDate date, LocalTime time) {
+    public Task(String taskName, boolean markDone, LocalDate date, LocalTime time) {
         this.taskName = taskName;
         this.markDone = markDone;
         this.date = date;

@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.task.Task;
+
 public class MarkCommand extends Command {
     public static final boolean IS_EXIT = false;
     public final int markIndex;

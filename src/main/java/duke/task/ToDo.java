@@ -1,14 +1,16 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class ToDo extends Task {
     private static final String TASK_TYPE = "T";
 
-    ToDo(String taskName, LocalDate date, LocalTime time) {
+    public ToDo(String taskName, LocalDate date, LocalTime time) {
         super(taskName, date, time);
     }
 
-    ToDo(String taskName, boolean markDone, LocalDate date, LocalTime time) {
+    public ToDo(String taskName, boolean markDone, LocalDate date, LocalTime time) {
         super(taskName, markDone, date, time);
     }
 

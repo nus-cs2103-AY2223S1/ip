@@ -1,14 +1,16 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Event extends Task {
     private static final String TASK_TYPE = "E";
 
-    Event(String taskName, LocalDate date, LocalTime time) {
+    public Event(String taskName, LocalDate date, LocalTime time) {
         super(taskName, date, time);
     }
 
-    Event(String taskName, boolean markDone, LocalDate date, LocalTime time) {
+    public Event(String taskName, boolean markDone, LocalDate date, LocalTime time) {
         super(taskName, markDone, date, time);
     }
 

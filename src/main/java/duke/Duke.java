@@ -1,14 +1,8 @@
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.Scanner;
+package duke;
 
+import duke.exception.DukeException;
+import duke.command.Command;
 public class Duke {
-
-    //public static boolean listChanged = false;
-    //public static ArrayList<Task> taskList = new ArrayList<Task>();
-
     private Storage storage;
     private TaskList taskList;
     private Ui ui;

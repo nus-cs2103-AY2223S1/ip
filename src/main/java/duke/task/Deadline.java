@@ -1,14 +1,16 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Deadline extends Task {
     private static final String TASK_TYPE = "D";
 
-    Deadline(String taskName, LocalDate date, LocalTime time) {
+    public Deadline(String taskName, LocalDate date, LocalTime time) {
         super(taskName, date, time);
     }
 
-    Deadline(String taskName, boolean markDone, LocalDate date, LocalTime time) {
+    public Deadline(String taskName, boolean markDone, LocalDate date, LocalTime time) {
         super(taskName, markDone, date, time);
     }
 

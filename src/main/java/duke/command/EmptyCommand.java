@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.exception.InvalidCommandException;
+
 public class EmptyCommand extends Command {
     public static final boolean IS_EXIT = false;
 
