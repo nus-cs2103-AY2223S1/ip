@@ -60,6 +60,7 @@ public class Parser {
         }
         return Integer.parseInt(fullCommandArray[COMMAND_DESCRIPTION]);
     }
+
     private static Command parseToAddTodoCommand(String[] fullCommandArray) throws EmptyDescriptionException {
         if (fullCommandArray.length == 1) {
             throw new EmptyDescriptionException();
