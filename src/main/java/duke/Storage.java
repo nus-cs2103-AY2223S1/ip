@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ *  Loads our stored data and saves updated tasks into the file
+ *  Handles exceptions where the file does not exist and creates a new file to write into
+ */
 public class Storage {
     private String pathFile;
 

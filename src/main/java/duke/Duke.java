@@ -2,6 +2,11 @@ package duke;
 
 import java.time.LocalDateTime;
 
+/**
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
+ */
+
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -18,11 +23,16 @@ public class Duke {
         }
     }
 
-    // for purpose of testing
+    /** for purpose of testing StorageTest */
     TaskList getTaskList() {
         return this.tasks;
     }
 
+    /**
+     * Executes the programme with data from storage if it exists
+     * If the data does not exist, create a new file to store our data
+     * Exit the programme only when the bye command is given
+     */
     public void run() {
         ui.showWelcome();
         tasks.printTasks();
@@ -60,7 +70,7 @@ public class Duke {
                         }
                     }
                 } else {
-                    Parser.printUpcomingTasks(fullCommand, tasks);
+                    Parser.printUpcomingTasks(tasks);
                 }
                 storage.save(tasks);
             } catch (DukeException e){
@@ -69,6 +79,7 @@ public class Duke {
                 ui.printLine();
             }
         }
+        System.exit(0);
     }
     public static void main(String[] args)  {
         new Duke("./src/main/data/duke.txt").run();

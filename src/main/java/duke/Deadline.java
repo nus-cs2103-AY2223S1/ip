@@ -19,6 +19,10 @@ public class Deadline extends Task  {
         return this.deadline;
     }
 
+    /** Returns formatted String to write back to our data
+     *
+     * @return String to save to our stored data
+     */
     @Override
     String writeToFile() {
         return "D|" + super.writeToFile() + "|by " + deadline.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
