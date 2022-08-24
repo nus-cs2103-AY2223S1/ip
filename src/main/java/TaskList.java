@@ -28,80 +28,87 @@ public class TaskList {
     }
 
     /**
-     * Getter for tasks.
+     * Getter for all tasks.
      *
-     * @return An array list of tasks.
+     * @return All tasks in TaskList.
      */
     public ArrayList<Task> getTasks() {
         return this.tasks;
     }
 
     /**
+     * Gets the total number of tasks.
+     *
+     * @return The total number of tasks currently.
+     */
+    public int getTaskLen() {
+        return this.tasks.size();
+    }
+
+    /**
      * Adds one To Do task and adds it to the array list.
      *
      * @param description The task description.
+     * @return The new ToDo task created.
      */
-    public void addToDo(String description) {
-        this.tasks.add(new ToDo(description));
+    public ToDo addToDo(String description) {
+        ToDo newToDo = new ToDo(description);
+        this.tasks.add(newToDo);
 
-        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  "
-                + this.tasks.get(this.tasks.size() - 1) + "\n"
-                + "Now you have " + this.tasks.size() + " tasks in the list."));
+        return newToDo;
     }
 
     /**
      * Creates one Deadline and adds it to the array list.
      *
      * @param userInput The description of the task, and deadline.
+     * @return The new Deadline task created.
      * @throws DukeException If userInput is not in the form "description /by deadline".
      * @throws DateTimeParseException If deadline date given by user cannot be casted to a date (require "yyyy-mm-dd")
      */
-    public void addDeadline(String userInput) throws DukeException, DateTimeParseException {
+    public Deadline addDeadline(String userInput) throws DukeException, DateTimeParseException {
         String[] detailsFragments = userInput.split(" /by");
 
         if (detailsFragments.length != 2) {
             throw new DukeException("Usage description /by deadline");
         }
 
-        this.tasks.add(new Deadline(detailsFragments[0], detailsFragments[1].trim()));
+        Deadline newDeadline = new Deadline(detailsFragments[0], detailsFragments[1].trim());
+        this.tasks.add(newDeadline);
 
-        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  "
-                + this.tasks.get(this.tasks.size() - 1) + "\n"
-                + "Now you have " + this.tasks.size() + " tasks in the list."));
+        return newDeadline;
     }
 
     /**
      * Creates one Event and adds it to the array list.
      *
      * @param userInput The description of the task, and event time.
+     * @return The new Event created.
      * @throws DukeException If userInput is not in the form "description /at time".
      */
-    public void addEvent(String userInput) throws DukeException, DateTimeParseException {
+    public Event addEvent(String userInput) throws DukeException, DateTimeParseException {
         String[] detailsFragments = userInput.split(" /at");
 
         if (detailsFragments.length != 2) {
             throw new DukeException("Usage description /at time");
         }
 
-        this.tasks.add(new Event(detailsFragments[0], detailsFragments[1].trim()));
+        Event newEvent = new Event(detailsFragments[0], detailsFragments[1].trim());
+        this.tasks.add(newEvent);
 
-        System.out.println(Duke.formatText("Got it. I've added this task:\n" + "  "
-                + this.tasks.get(this.tasks.size() - 1) + "\n"
-                + "Now you have " + this.tasks.size() + " tasks in the list."));
+        return newEvent;
     }
 
     /**
      * Deletes a task from the tasks array list.
      *
-     * @param userInput The index of item to delete, preceded by an empty space.
+     * @param userInput The index of item to delete.
+     * @return String representation of the task deleted.
      * @throws DukeException If index is empty or out of bounds from the array list.
      * @throws NumberFormatException If index cannot be casted into an integer.
      */
-    public void deleteItem(String userInput) throws DukeException, NumberFormatException {
+    public String deleteItem(String userInput) throws DukeException, NumberFormatException {
         String index = userInput.trim();
-        if (index.length() == 0) {
-            throw new DukeException("Index cannot be empty!");
-        }
 
         int deleteIndex = Integer.parseInt(index);
 
@@ -109,11 +116,8 @@ public class TaskList {
             throw new DukeException("Invalid index, choose a valid item index!");
         }
 
-        System.out.println(Duke.formatText("Noted. I've removed this task:\n  "
-                + this.tasks.get(deleteIndex - 1) + "\n"
-                + "Now you have " + (this.tasks.size() - 1) + " tasks in the list"));
-
-        this.tasks.remove(deleteIndex - 1);
+        // Removes the task, and returns the string representation of the task deleted.
+        return this.tasks.remove(deleteIndex - 1).toString();
     }
 
     /**
@@ -121,14 +125,11 @@ public class TaskList {
      *
      * @param userInput The index of task to be marked as done, preceded by an empty space.
      * @param isMarkDone If true, mark task as done, else, unmark task.
+     * @return String representation of the task that was marked or unmarked.
      * @throws DukeException If index is not given, or index <= 1 or index >= tasks.size().
      * @throws NumberFormatException If index given by user cannot be casted into an integer.
      */
-    public void markOrUnmark(String userInput, boolean isMarkDone) throws DukeException, NumberFormatException {
-        if (userInput.trim().length() == 0) {
-            throw new DukeException("Index of mark cannot be empty!");
-        }
-
+    public String markOrUnmark(String userInput, boolean isMarkDone) throws DukeException, NumberFormatException {
         int index = Integer.parseInt(userInput.trim());
 
         if (index < 1 || index > this.tasks.size()) {
@@ -137,26 +138,26 @@ public class TaskList {
 
         if (!isMarkDone) {
             this.tasks.get(index - 1).unmark();
-            System.out.println(Duke.formatText("OK, I've marked this task as not done yet:\n"
-                    + this.tasks.get(index - 1)));
         } else {
             this.tasks.get(index - 1).markAsDone();
-            System.out.println(Duke.formatText("Nice! I've marked this task as done:\n" + this.tasks.get(index - 1)));
         }
+
+        return this.tasks.get(index - 1).toString();
     }
 
     /**
-     * Prints all items in a list format that is stored.
+     * Returns all tasks in a list format that is stored.
      *
+     * @return String representation of all tasks
      */
-    public void listItems() {
-        StringBuilder string = new StringBuilder();
+    public String allItems() {
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
             int itemIndex = i + 1;
 
-            string.append(itemIndex).append(".").append(this.tasks.get(i)).append("\n");
+            sb.append(itemIndex).append(".").append(this.tasks.get(i)).append("\n");
         }
 
-        System.out.println(Duke.formatText("Here are the tasks in your list\n" + string));
+        return sb.toString();
     }
 }
