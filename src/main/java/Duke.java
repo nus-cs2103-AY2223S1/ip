@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,9 +8,6 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-=======
-import java.time.LocalDate;
->>>>>>> branch-Level-8
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -246,18 +242,20 @@ public class Duke {
                 String type = split[0];
                 String done = split[1];
                 String name = split[2];
-                String date;
+                LocalDate date;
+
                 Task task = null;
                 switch (type) {
                     case ("T"):
                         task = new Todo(name);
                         break;
                     case ("D"):
-                        date = split[3];
+                        date = LocalDate.parse(split[3]);
                         task = new Deadlines(name, date);
                         break;
                     case ("E"):
-                        date = split[3];
+
+                        date = LocalDate.parse(split[3]);
                         task = new Events(name, date);
                 }
 
