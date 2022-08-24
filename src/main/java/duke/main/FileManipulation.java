@@ -14,6 +14,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class FileManipulation {
+
     private static void tryOverwrite(String filePath, String s) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(s);
@@ -51,6 +52,7 @@ public class FileManipulation {
         }
         return arr;
     }
+
     public static void overwrite(String filepath, String s) {
         try {
             tryOverwrite(filepath, s);

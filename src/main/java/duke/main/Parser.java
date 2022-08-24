@@ -5,6 +5,7 @@ import duke.command.*;
 import java.time.DateTimeException;
 
 public class Parser {
+
     public static Command parse(String input) throws DukeException{
         String[] userInput = input.trim().split(" ", 2);
         switch (userInput[0]) {

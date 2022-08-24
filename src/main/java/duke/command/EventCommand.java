@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public class EventCommand extends AddCommand {
     private String description;
     private String date;
+
     public EventCommand(String description, String date) {
         this.description = description;
         this.date = date;
