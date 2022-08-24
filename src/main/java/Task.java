@@ -1,10 +1,16 @@
 public class Task {
+    // consider making this an abstract class
     protected String desc;
     protected boolean isDone;
 
     public Task(String desc) {
         this.desc = desc;
         this.isDone = false;
+    }
+
+    public Task(String desc, boolean isDone) {
+        this.desc = desc;
+        this.isDone = isDone;
     }
 
     public String getStatusIcon() {
@@ -30,6 +36,10 @@ public class Task {
             this.isDone = false;
         }
         System.out.println("    " + this);
+    }
+
+    public String toSaveFormat() {
+        return "| " + (isDone ? 1 : 0) + " | " + this.desc;
     }
 
     @Override
