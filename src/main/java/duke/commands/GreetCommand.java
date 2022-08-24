@@ -2,9 +2,9 @@ package duke.commands;
 
 import duke.enums.*;
 
-public class Greet extends Display {
+public class GreetCommand extends DisplayCommand {
 
-    public Greet() {
+    public GreetCommand() {
 
     }
 

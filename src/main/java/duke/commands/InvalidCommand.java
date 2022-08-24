@@ -3,7 +3,7 @@ package duke.commands;
 import duke.enums.Messages;
 import duke.exceptions.DukeException;
 
-public class InvalidCommand extends Display {
+public class InvalidCommand extends DisplayCommand {
     private String message;
 
     public InvalidCommand(String message) {

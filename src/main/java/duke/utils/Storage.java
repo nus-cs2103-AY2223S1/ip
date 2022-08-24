@@ -21,7 +21,7 @@ import duke.entities.Todo;
 import duke.enums.Regex;
 import duke.exceptions.DukeException;
 
-public class FileHandler {
+public class Storage {
     /* Stores the file location string */
     private final String fname;
     private ArrayList<Task> tasks;
@@ -44,9 +44,9 @@ public class FileHandler {
         }
     };
 
-    public FileHandler(ArrayList<Task> tasks) throws DukeException {
+    public Storage(ArrayList<Task> tasks, String fname) throws DukeException {
         this.tasks = tasks;
-        fname = createFile(".\\data\\duke.txt");
+        this.fname = createFile(fname);
     }
 
     /**

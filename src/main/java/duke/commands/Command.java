@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import duke.exceptions.DukeException;
 
-public interface AbstractCommand {
+public interface Command {
 
     public boolean validate();
 

@@ -9,9 +9,9 @@ import duke.exceptions.DukeException;
  * This is the base command class that does not need to validate anything and
  * only displays something to console
  */
-public class Display implements AbstractCommand {
+public class DisplayCommand implements Command {
 
-    public Display() {
+    public DisplayCommand() {
 
     }
 

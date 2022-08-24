@@ -5,7 +5,7 @@ import java.io.IOException;
 import duke.exceptions.DukeException;
 import duke.lists.TaskList;
 
-public class ShowList extends Display {
+public class ShowList extends DisplayCommand {
     protected TaskList tasks;
 
     public ShowList(TaskList list) {

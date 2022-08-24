@@ -3,11 +3,11 @@ package duke.utils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import duke.commands.AbstractCommand;
-import duke.commands.AddDeadline;
-import duke.commands.AddEvent;
-import duke.commands.AddTodo;
-import duke.commands.Delete;
+import duke.commands.Command;
+import duke.commands.AddDeadlineCommand;
+import duke.commands.AddEventCommand;
+import duke.commands.AddTodoCommand;
+import duke.commands.DeleteCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.Mark;
 import duke.commands.ShowList;
@@ -17,7 +17,7 @@ import duke.enums.Regex;
 import duke.exceptions.DukeException;
 import duke.lists.TaskList;
 
-public class CommandFactory {
+public class Parser {
     private static Pattern INPUT_REGEX = Pattern.compile(Regex.INPUT_REGEX.toString());
     private TaskList tasks;
 
@@ -26,11 +26,11 @@ public class CommandFactory {
      * 
      * @param list
      */
-    public CommandFactory(TaskList list) {
+    public Parser(TaskList list) {
         tasks = list;
     }
 
-    public AbstractCommand handleInput(String input) throws DukeException {
+    public Command handleInput(String input) throws DukeException {
         Matcher m = INPUT_REGEX.matcher(input);
         m.find();
         String cmd = m.group(1).toUpperCase();
@@ -42,15 +42,15 @@ public class CommandFactory {
             Commands command = Commands.valueOf(cmd);
             switch (command) {
                 case TODO:
-                    return new AddTodo(tasks, index_description, input);
+                    return new AddTodoCommand(tasks, index_description, input);
                 case DEADLINE:
-                    return new AddDeadline(tasks, index_description, input, deadline);
+                    return new AddDeadlineCommand(tasks, index_description, input, deadline);
                 case EVENT:
-                    return new AddEvent(tasks, index_description, input, deadline);
+                    return new AddEventCommand(tasks, index_description, input, deadline);
                 case MARK:
                     return new Mark(tasks, index_description);
                 case DELETE:
-                    return new Delete(tasks, index_description);
+                    return new DeleteCommand(tasks, index_description);
                 case LIST:
                     return new ShowList(tasks);
                 default:

@@ -1,7 +1,6 @@
 package duke.commands;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 import duke.entities.*;
@@ -9,16 +8,9 @@ import duke.enums.*;
 import duke.exceptions.*;
 import duke.lists.*;
 
-public class AddDeadline extends AddTodo {
-    protected String deadline;
-    protected DateTimeFormatter datetime_format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
-    public AddDeadline(TaskList task, String desc, String input, String deadline) throws DukeException {
-        super(task, desc, input);
-        if (deadline == null) {
-            throw new DukeException(Messages.ERROR_MISSING_PARAMETERS.toString());
-        }
-        this.deadline = deadline;
+public class AddEventCommand extends AddDeadlineCommand {
+    public AddEventCommand(TaskList tasks, String desc, String input, String deadline) throws DukeException {
+        super(tasks, desc, input, deadline);
     }
 
     /**

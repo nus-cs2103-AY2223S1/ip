@@ -5,11 +5,11 @@ import duke.enums.*;
 import duke.exceptions.*;
 import duke.lists.*;
 
-public class AddTodo extends ShowList {
+public class AddTodoCommand extends ShowList {
     protected String descrition;
     protected String instruction;
 
-    public AddTodo(TaskList list, String description, String input) {
+    public AddTodoCommand(TaskList list, String description, String input) {
         super(list);
         this.descrition = description;
         this.instruction = input;

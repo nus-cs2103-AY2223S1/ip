@@ -7,8 +7,8 @@ import duke.enums.*;
 import duke.exceptions.*;
 import duke.lists.*;
 
-public class Delete extends Mark {
-    public Delete(TaskList tasks, String indx) throws DukeException {
+public class DeleteCommand extends Mark {
+    public DeleteCommand(TaskList tasks, String indx) throws DukeException {
         super(tasks, indx);
     }
 

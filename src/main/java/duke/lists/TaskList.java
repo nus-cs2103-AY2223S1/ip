@@ -1,16 +1,15 @@
 package duke.lists;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import duke.entities.Task;
 import duke.exceptions.DukeException;
-import duke.utils.FileHandler;
+import duke.utils.Storage;
 
 public class TaskList {
     private ArrayList<Task> tasks;
-    private FileHandler fh;
+    private Storage fh;
 
     /**
      * Initialises the task list and the save file if
@@ -18,10 +17,10 @@ public class TaskList {
      * 
      * If the file exists, data will be read from it and loaded into the list.
      */
-    public TaskList() throws DukeException {
+    public TaskList(String fname) throws DukeException {
         tasks = new ArrayList<Task>();
         try {
-            fh = new FileHandler(tasks);
+            fh = new Storage(tasks, fname);
             fh.loadFile();
         } catch (IOException e) {
             throw new DukeException(e.getMessage());

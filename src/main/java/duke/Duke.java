@@ -10,9 +10,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import duke.commands.AbstractCommand;
-import duke.commands.Exit;
-import duke.commands.Greet;
+import duke.commands.Command;
+import duke.commands.ExitCommand;
+import duke.commands.GreetCommand;
 import duke.enums.*;
 import duke.exceptions.*;
 import duke.lists.*;
@@ -21,22 +21,26 @@ import duke.utils.*;
 public class Duke {
     /* Store tasks from user */
     private static TaskList tasks;
-    private static CommandFactory cf;
+    private static Parser cf;
+    private static Ui ui;
 
-    public static void main(String[] args) throws DukeException, IOException {
+    public Duke(String fname) {
         try {
-            tasks = new TaskList();
-            cf = new CommandFactory(tasks);
+            tasks = new TaskList(fname);
+            cf = new Parser(tasks);
+            ui = new Ui();
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
+            ui.display(e.getMessage());
         }
+    }
 
+    public void run() throws DukeException, IOException {
         // Setting up to read command line inputs
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in));
 
         // Greet the user
-        AbstractCommand cmd = new Greet();
+        Command cmd = new GreetCommand();
         cmd.execute();
         // Read inputs until the exit command is entered
         String input = reader.readLine();
@@ -45,12 +49,16 @@ public class Duke {
                 cmd = cf.handleInput(input);
                 cmd.execute();
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                ui.display(e.getMessage());
             }
             input = reader.readLine();
         }
         // Exit the bot
-        cmd = new Exit();
+        cmd = new ExitCommand();
         cmd.execute();
+    }
+
+    public static void main(String[] args) throws DukeException, IOException {
+        new Duke(".\\data\\duke.txt").run();
     }
 }
