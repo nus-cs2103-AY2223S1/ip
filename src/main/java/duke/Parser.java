@@ -49,7 +49,7 @@ public class Parser {
                     break;
 
                 case "delete":
-                    TaskList.deleteTaskfromArray(str2);
+                    TaskList.deleteTaskFromArray(str2);
                     break;
 
                 case "deadline":
