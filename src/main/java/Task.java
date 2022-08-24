@@ -4,7 +4,7 @@ public abstract class Task {
     Task(String name) {
         this.name = name;
     }
-    /*
+    /**
      * sets a task to be done
      *
      */
@@ -12,7 +12,7 @@ public abstract class Task {
         this.done = true;
     }
 
-    /*
+    /**
      * sets a task to be not done
      *
      * @param input

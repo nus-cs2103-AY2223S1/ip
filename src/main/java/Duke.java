@@ -60,7 +60,7 @@ public class Duke {
         }
     }
 
-    /*
+    /**
      * Reports the number of items in the list
      *
      */
@@ -68,7 +68,7 @@ public class Duke {
         System.out.println("Now you have " + index + " in the list.");
     }
 
-    /*
+    /**
      * Sends a greeting to the user
      *
      */
@@ -76,7 +76,7 @@ public class Duke {
         System.out.println("Hello! I'm BotChat123 \nWhat can I do for you?");
     }
 
-    /*
+    /**
      * Terminates the conversation with the user
      *
      */
@@ -84,7 +84,7 @@ public class Duke {
         System.out.println("Bye. Please chat with me again!");
     }
 
-    /*
+    /**
      * Reports all the items that are in the list
      *
      */
@@ -94,7 +94,7 @@ public class Duke {
         }
     }
 
-    /*
+    /**
      * Adds a todo to the list
      *
      * @param input
@@ -113,7 +113,7 @@ public class Duke {
         }
     }
 
-    /*
+    /**
      * Adds an event to the list
      *
      * @param input
@@ -133,7 +133,7 @@ public class Duke {
         }
     }
 
-    /*
+    /**
      * Adds a deadline to the list
      *
      * @param input
@@ -153,7 +153,7 @@ public class Duke {
         }
     }
 
-    /*
+    /**
      * Marks a task in the list as done
      *
      * @param input
@@ -166,7 +166,7 @@ public class Duke {
                 + inputArray.get(markIndex - 1));
     }
 
-    /*
+    /**
      * Marks a task in the list as not done
      *
      * @param input
@@ -179,7 +179,7 @@ public class Duke {
                 + inputArray.get(markIndex - 1));
     }
 
-    /*
+    /**
      * Deletes a task that is in the list
      *
      * @param input
@@ -191,6 +191,10 @@ public class Duke {
         index--;
     }
 
+    /**
+     * Saves all tasks in a file
+     *
+     */
     private void saveTasks() {
         try {
             File myFile = new File("./data/Duke.txt");
@@ -207,6 +211,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Loads all tasks from a file and displays it to the user
+     *
+     */
     private void loadTasks() {
         try {
             Boolean isDirectoryExist = Files.isDirectory(Paths.get("./data"));
