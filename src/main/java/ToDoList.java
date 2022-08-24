@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.util.ArrayList;
+import java.io.FileWriter;
 
 public class ToDoList {
     private final ArrayList<Task> list;
@@ -100,5 +102,18 @@ public class ToDoList {
         this.numOfTasks -= 1;
         System.out.println("Alright! I've removed this task:\n" + t);
         System.out.format("Now you have %d tasks in the list.\n", this.numOfTasks);
+    }
+
+    public void save() {
+        try {
+            FileWriter fw = new FileWriter("./data/Duke.txt");
+            for (int i = 0; i < numOfTasks; i++) {
+                Task t = list.get(i);
+                t.write(fw);
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.print(e.getMessage());
+        }
     }
 }

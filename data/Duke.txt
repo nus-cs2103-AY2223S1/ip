@@ -1,0 +1,5 @@
+T | 1 | read book
+E | 0 | project meeting | Aug 6th 2-4pm
+T | 1 | join sports club
+T | 0 | jump
+T | 0 | sleep
