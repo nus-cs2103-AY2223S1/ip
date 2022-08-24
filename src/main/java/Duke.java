@@ -1,7 +1,13 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import java.io.IOException;
 >>>>>>> branch-Level-7
+=======
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+>>>>>>> branch-Level-8
 import java.util.Arrays;
 import java.util.ArrayList;
 <<<<<<< HEAD
@@ -215,7 +221,6 @@ public class Duke {
                         throw new EmptyDescriptionException("event");
                     }
                     int atMarker = 1;
-                    System.out.println("Got it. I've added this task:");
                     for (int i = 0; i < commands.length; i++) {
                         if (commands[i].equals("/at")) {
                             atMarker = i;
@@ -225,15 +230,21 @@ public class Duke {
                     String newCommand = String.join(" ", newCommands);
                     String[] time = Arrays.copyOfRange(commands, atMarker + 1, commands.length);
                     String timeString = String.join(" ", time);
-                    tasks.add(new Event(newCommand, timeString));
-                    System.out.println(tasks.get(tasks.size() - 1));
-                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    try {
+                        LocalDate timeStringParsed = LocalDate.parse(timeString);
+                        tasks.add(new Event(newCommand, timeStringParsed.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
+                        System.out.println(tasks.get(tasks.size() - 1));
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    } catch (DateTimeParseException error) {
+                        System.out.println("We do not recognise that date time format! Please enter in yyyy-mm-dd format");
+                    }
                 } else if (commands[0].equals("deadline")) {
                     if (commands.length == 1) {
                         throw new EmptyDescriptionException("deadline");
                     }
                     int atMarker = 1;
-                    System.out.println("Got it. I've added this task:");
+
                     for (int i = 0; i < commands.length; i++) {
                         if (commands[i].equals("/by")) {
                             atMarker = i;
@@ -243,9 +254,15 @@ public class Duke {
                     String newCommand = String.join(" ", newCommands);
                     String[] deadline = Arrays.copyOfRange(commands, atMarker + 1, commands.length);
                     String deadlineString = String.join(" ", deadline);
-                    tasks.add(new Deadline(newCommand, deadlineString));
-                    System.out.println(tasks.get(tasks.size() - 1));
-                    System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    try {
+                        LocalDate deadlineParsed = LocalDate.parse(deadlineString);
+                        tasks.add(new Deadline(newCommand, deadlineParsed.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
+                        System.out.println(tasks.get(tasks.size() - 1));
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+                    } catch (DateTimeParseException error) {
+                        System.out.println("We do not recognise that date time format! Please enter in yyyy-mm-dd format");
+                    }
                 } else if (commands[0].equals("delete")) {
                     if (commands.length == 1) {
                         throw new EmptyDescriptionException("delete");
