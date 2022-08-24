@@ -1,5 +1,7 @@
+import java.util.Date;
+
 public class Event extends Task {
-    private String timing;
+    private Date timing;
 
     /**
      * Constructor to create new Event
@@ -7,9 +9,9 @@ public class Event extends Task {
      * @param description Task description
      * @param timing      Timing of Event
      */
-    public Event(String description, String timing) {
+    public Event(String description, Date timing) {
         super(description);
-        this.timing = timing.trim();
+        this.timing = timing;
     }
 
     /**
@@ -21,7 +23,7 @@ public class Event extends Task {
      */
     public Event(String description, String timing, boolean isDone) {
         super(description, isDone);
-        this.timing = timing.trim();
+        // this.timing = timing.trim();
     }
 
     /**
@@ -39,7 +41,7 @@ public class Event extends Task {
         if (input.indexOf("/completed ") == -1) {
             String description = input.split("/at ")[0];
             String timing = input.split("/at ")[1];
-            return new Event(description, timing);
+            return new Event(description, Task.parseDate(timing));
         } else {
             boolean isDone = Boolean.parseBoolean(input.split("/completed ")[1]);
             input = input.split("/completed ")[0];
@@ -56,6 +58,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.timing + ")";
+        return "[E]" + super.toString() + " (at: " + Task.formatDate(this.timing) + ")";
     }
 }

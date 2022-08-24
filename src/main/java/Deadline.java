@@ -1,5 +1,7 @@
+import java.util.Date;
+
 public class Deadline extends Task {
-    private String deadline;
+    private Date deadline;
 
     /**
      * Constructor to create new Deadline
@@ -7,9 +9,9 @@ public class Deadline extends Task {
      * @param description Description of deadline you want to create
      * @param deadline    Deadline of the task
      */
-    public Deadline(String description, String deadline) {
+    public Deadline(String description, Date deadline) {
         super(description);
-        this.deadline = deadline.trim();
+        this.deadline = deadline;
     }
 
     /**
@@ -21,7 +23,7 @@ public class Deadline extends Task {
      */
     public Deadline(String description, String deadline, boolean isDone) {
         super(description, isDone);
-        this.deadline = deadline.trim();
+        // this.deadline = deadline.trim();
     }
 
     /**
@@ -39,7 +41,7 @@ public class Deadline extends Task {
         if (input.indexOf("/completed ") == -1) {
             String description = input.split("/by ")[0];
             String deadline = input.split("/by ")[1];
-            return new Deadline(description, deadline);
+            return new Deadline(description, Task.parseDate(deadline));
         } else {
             boolean isDone = Boolean.parseBoolean(input.split("/completed ")[1]);
             input = input.split("/completed ")[0];
@@ -56,6 +58,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.deadline + ")";
+        return "[D]" + super.toString() + "(by: " + Task.formatDate(this.deadline) + ")";
     }
 }
