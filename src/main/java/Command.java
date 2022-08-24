@@ -14,7 +14,7 @@ public enum Command {
         this.representingString = representingString;
     }
 
-    public static Command parseToEnum(String representingString) throws DukeException {
+    public static Command parseToCommand(String representingString) throws DukeException {
         for (Command command: Command.values()) {
             if (command.representingString.equals(representingString)) {
                 return command;
