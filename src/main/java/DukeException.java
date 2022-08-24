@@ -1,7 +1,9 @@
 public class DukeException extends Exception{
+
     DukeException(String error) {
         super(error);
     }
+
 
     public static String taskErrorMessage(String command) {
         String modifiedComm = command.replace(" ", "");
