@@ -16,6 +16,9 @@ public class DateTimeConverter {
      */
     private DateTimeFormatter dateFormatter;
 
+    private SimpleDateFormat SDF24H = new SimpleDateFormat("HHmm");
+    private SimpleDateFormat SDF12H = new SimpleDateFormat("h:mm a");
+
     public DateTimeConverter(DateTimeFormatter dateFormatter) {
         this.dateFormatter = dateFormatter;
     }
@@ -36,8 +39,6 @@ public class DateTimeConverter {
         if (dateTime.length > 1) {
             try {
                 String timeIn = dateTime[1];
-                SimpleDateFormat SDF24H = new SimpleDateFormat("HHmm");
-                SimpleDateFormat SDF12H = new SimpleDateFormat("h:mm a");
                 Date time24H = SDF24H.parse(timeIn);
                 date += (" " + SDF12H.format(time24H));
             } catch (ParseException e) {
