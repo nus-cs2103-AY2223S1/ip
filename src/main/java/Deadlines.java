@@ -6,8 +6,9 @@ public class Deadlines extends Task {
         this.dateTime = dateTime;
     }
 
+    @Override
     public String savedTaskString() {
-        return "D|" + String.valueOf(this.isDone) + "|" + this.description + "|" + this.dateTime;
+        return String.format("D|%d|%s|%s", this.isDone ? 1 : 0, this.description, this.dateTime);
     }
     @Override
     public String toString() {

@@ -82,19 +82,23 @@ public class Duke {
 
         System.out.println(LINE + "Hello! I'm Duke\n" + "What can I do for you?" + LINE + "\n");
         Scanner command = new Scanner(System.in);
-        ArrayList<Task> taskList = new ArrayList<Task>(100);
+        SaveTasks savedTasks = new SaveTasks();
+        ArrayList<Task> taskList = savedTasks.load();
+
         while (true) {
             String temp = command.nextLine();
             try {
                 if (temp.equals("bye")) {
                     System.out.println(LINE + "Bye. Hope to see you again!" + LINE);
                     command.close();
+                    SaveTasks.save(taskList);
                     break;
                 }
                 run(temp, taskList);
             }
             catch (DukeException err) {
                 command.close();
+                SaveTasks.save(taskList);
                 System.out.println(err);
                 break;
             }

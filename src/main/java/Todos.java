@@ -4,8 +4,9 @@ public class Todos extends Task {
         super(description);
     }
 
+    @Override
     public String savedTaskString() {
-        return "T|" + String.valueOf(this.isDone) + "|" + this.description;
+        return String.format("T|%d|%s", this.isDone ? 1 : 0, this.description);
     }
 
     @Override

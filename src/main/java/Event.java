@@ -6,8 +6,9 @@ public class Event extends Task {
         this.specTime = specTime;
     }
 
+    @Override
     public String savedTaskString() {
-        return "E|" + String.valueOf(this.isDone) + "|" + this.description + "|" + this.specTime;
+        return String.format("E|%d|%s|%s", this.isDone ? 1 : 0, this.description, this.specTime);
     }
     @Override
     public String toString() {
