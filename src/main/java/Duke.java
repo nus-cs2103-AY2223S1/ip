@@ -30,6 +30,7 @@ public class Duke {
                 Ui.errorOccurred(e);
             }
         } while (!isExiting);
+        sc.close();
         exit();
     }
 
