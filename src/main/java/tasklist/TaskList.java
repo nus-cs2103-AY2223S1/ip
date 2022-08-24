@@ -52,4 +52,8 @@ public class TaskList<T extends Task> {
     public T getTask(int n) {
         return userInputHistory.get(n - 1);
     }
+
+    public ArrayList<T> findTasks(String keyword) {
+        return null;
+    }
 }
