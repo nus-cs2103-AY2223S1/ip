@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.ParseException;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
@@ -34,6 +35,8 @@ public class Duke {
             System.out.println("New file created.");
         } catch (DukeException e) {
             System.out.println(e.getMessage());
+        } catch (ParseException e) {
+            System.out.println("Wrong date format stored.");
         }
 
         System.out.println("What can I do for you?");

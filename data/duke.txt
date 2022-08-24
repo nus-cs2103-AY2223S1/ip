@@ -1,4 +1,4 @@
-[T][X] watch tv
-[D][ ] write essay (by: Sunday)
-[E][X] meeting (at: friday)
-[E][ ] birthdaoy (at: monday)
+[T][ ] watch tv
+[E][X] meeting (at: Apr 05 2022)
+[D][ ] write essay (by: Jul 28 2022)
+[D][ ] assignment (by: Mar 14 2022)

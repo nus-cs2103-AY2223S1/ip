@@ -2,7 +2,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -50,7 +53,8 @@ public class Storage {
         this.getCount();
     }
 
-    public void readFileContents(String filePath) throws FileNotFoundException, DukeException {
+    public void readFileContents(String filePath)
+            throws FileNotFoundException, DukeException, ParseException {
         File file = new File(filePath);
         Scanner s = new Scanner(file);
         System.out.println("Reading the file...");
@@ -63,7 +67,7 @@ public class Storage {
         System.out.println("-------------------");
     }
 
-    public void fileInterpreter(String str) throws DukeException {
+    public void fileInterpreter(String str) throws DukeException, ParseException {
         Task task;
         String description = str.split("] ", 2)[1];
         if (str.contains("[T]")) {
@@ -71,17 +75,25 @@ public class Storage {
         } else {
             String message = str.substring(str.indexOf("]", str.indexOf("]") + 1) + 2,
                     str.indexOf(" ("));
-            String date = str.substring(str.indexOf(":") + 2, str.indexOf(")"));
+            String dateString = str.substring(str.indexOf(":") + 2, str.indexOf(")"));
+            String result = parseDate(dateString);
             if (str.contains("[D]")){
-                task = new Deadline(message, date);
+                task = new Deadline(message, result);
             } else {
-                task = new Event(message, date);
+                task = new Event(message, result);
             }
         }
         this.add(task);
         if (str.contains("[X]")) {
             task.markAsDone();
         }
+    }
+
+    public String parseDate(String dateString) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
+        Date date = dateFormat.parse(dateString);
+        dateFormat.applyPattern("yyyy-MM-dd");
+        return dateFormat.format(date);
     }
 
     public void writeToFile(String filePath) throws IOException {
