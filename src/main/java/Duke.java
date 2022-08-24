@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,10 +10,123 @@ import java.util.Scanner;
  */
 public class Duke {
     protected ArrayList<Task> taskList = new ArrayList<Task>();
+    protected String saveFilePath = "data.txt";
+
+    protected Duke() {
+    };
+
+    protected Duke(String saveFilePath) {
+        this.saveFilePath = saveFilePath;
+    }
 
     public static void main(String[] args) {
         System.out.println("Hello from\n" + "MAKIBOT");
-        new Duke().start();
+        if (args.length > 0) {
+            new Duke(args[0]).start();
+        } else {
+            new Duke().start();
+        }
+    }
+
+    protected void start() {
+        try {
+            File saveFile = new File(this.saveFilePath);
+            saveFile.createNewFile();
+            Scanner saveSc = new Scanner(saveFile);
+            while (saveSc.hasNextLine()) {
+                String[] dataArr = saveSc.nextLine().split(" \\| ");
+                char taskType = dataArr[0].charAt(0);
+                boolean isDone = Boolean.parseBoolean(dataArr[1]);
+                String taskDescription = dataArr[2];
+                Task newTask;
+
+                if (taskType == 'D') {
+                    newTask = new Deadline(taskDescription, dataArr[3]);
+                } else if (taskType == 'E') {
+                    newTask = new Event(taskDescription, dataArr[3]);
+                } else if (taskType == 'T') {
+                    newTask = new Todo(taskDescription);
+                } else {
+                    System.out.println("The following task could not be loaded from memory:\n" + dataArr);
+                    continue;
+                }
+
+                if (isDone) {
+                    newTask.markAsDone();
+                }
+
+                taskList.add(newTask);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("ERROR: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("An error occured: " + e + "\nAborting...");
+            return;
+        }
+
+        System.out.println("Hello! I'm Makibot\n" +
+                "What can I do for you?");
+        this.eventLoop();
+    }
+
+    /**
+     * Start a conversation with MakiBot
+     */
+    protected void eventLoop() {
+        Scanner sc = new Scanner(System.in);
+        try {
+            // Event loop
+            while (sc.hasNextLine()) {
+                String input = sc.nextLine();
+                String[] fullCommand = input.split(" ", 2);
+                String command = fullCommand[0];
+
+                // Handle special commands
+                switch (command) {
+                    // Exit command
+                    case "bye":
+                        this.bye();
+                        sc.close();
+                        return;
+                    // List all tasks
+                    case "list":
+                        this.listTasks();
+                        break;
+                    // Mark task as done
+                    case "mark":
+                        this.mark(fullCommand);
+                        this.updateSaveFile();
+                        break;
+                    // Mark task as undone
+                    case "unmark":
+                        this.unmark(fullCommand);
+                        this.updateSaveFile();
+                        break;
+                    case "delete":
+                        this.delete(fullCommand);
+                        this.updateSaveFile();
+                        break;
+                    case "todo":
+                        this.newTodo(fullCommand);
+                        this.updateSaveFile();
+                        break;
+                    case "deadline":
+                        this.newDeadline(fullCommand);
+                        this.updateSaveFile();
+                        break;
+                    case "event":
+                        this.newEvent(fullCommand);
+                        this.updateSaveFile();
+                        break;
+                    default:
+                        throw new DukeInvalidCommandException();
+                }
+            }
+        } catch (DukeException de) {
+            System.out.println(de.getMessage());
+            this.eventLoop();
+        }
+        sc.close();
     }
 
     protected void printNewTaskMessage(Task t) {
@@ -18,6 +135,31 @@ public class Duke {
                         "Now you have %d tasks in the list.",
                 t, taskList.size())
         );
+    }
+
+    protected void updateSaveFile() {
+        try {
+            FileWriter saveFileWriter = new FileWriter("data.txt");
+            taskList.forEach(task -> {
+                String saveMsg = String.format("%c | %s | %s", task.getType(), task.isDone, task.description);
+                if (task instanceof Deadline) {
+                    saveMsg += " | " + ((Deadline) task).by;
+                } else if (task instanceof Event) {
+                    saveMsg += " | " + ((Event) task).at;
+                }
+                try {
+                    saveFileWriter.write(saveMsg + "\n");
+                } catch (IOException e) {
+                    System.out.println("An error occurred while saving your tasks.");
+                    e.printStackTrace();
+                    return;
+                }
+            });
+            saveFileWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while saving your tasks.");
+            e.printStackTrace();
+        }
     }
 
     protected void bye() {
@@ -133,64 +275,5 @@ public class Duke {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeEmptyCommandException("event", "/at");
         }
-    }
-
-    protected void start() {
-        System.out.println("Hello! I'm Makibot\n" +
-                "What can I do for you?");
-        this.eventLoop();
-    }
-
-    /**
-     * Start a conversation with MakiBot
-     */
-    protected void eventLoop() {
-        Scanner sc = new Scanner(System.in);
-        try {
-            // Event loop
-            while (sc.hasNextLine()) {
-                String input = sc.nextLine();
-                String[] fullCommand = input.split(" ", 2);
-                String command = fullCommand[0];
-
-                // Handle special commands
-                switch (command) {
-                    // Exit command
-                    case "bye":
-                        this.bye();
-                        return;
-                    // List all tasks
-                    case "list":
-                        this.listTasks();
-                        break;
-                    // Mark task as done
-                    case "mark":
-                        this.mark(fullCommand);
-                        break;
-                    // Mark task as undone
-                    case "unmark":
-                        this.unmark(fullCommand);
-                        break;
-                    case "delete":
-                        this.delete(fullCommand);
-                        break;
-                    case "todo":
-                        this.newTodo(fullCommand);
-                        break;
-                    case "deadline":
-                        this.newDeadline(fullCommand);
-                        break;
-                    case "event":
-                        this.newEvent(fullCommand);
-                        break;
-                    default:
-                        throw new DukeInvalidCommandException();
-                }
-            }
-        } catch (DukeException de) {
-            System.out.println(de.getMessage());
-            this.eventLoop();
-        }
-        sc.close();
     }
 }

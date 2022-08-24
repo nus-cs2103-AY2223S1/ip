@@ -4,6 +4,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public char getType() {
+        return 'T';
+    }
+
+    @Override
     public String toString() {
         return String.format("[T]%s", super.toString());
     }

@@ -19,6 +19,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public char getType() {
+        return '0';
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), this.description);
