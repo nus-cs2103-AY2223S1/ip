@@ -7,7 +7,7 @@ public class TaskHandler {
             if (input.startsWith("todo") || input.startsWith("deadline") || input.startsWith("event")) {
                 if (input.startsWith("todo")) {
                     if (!input.equals("todo")) {
-                        String newInput = input.replace("todo", "");
+                        String newInput = input.replace("todo ", "");
                         Todo todoTask = new Todo(newInput);
                         taskList.add(todoTask);
                         newTask = todoTask;
@@ -20,12 +20,12 @@ public class TaskHandler {
                         String date = input.substring(input.lastIndexOf("/") + 4);
 
                         if (input.startsWith("deadline")) {
-                                String newDescription = description.replace("deadline", "");
+                                String newDescription = description.replace("deadline ", "");
                                 Deadline deadlineTask = new Deadline(newDescription, date);
                                 taskList.add(deadlineTask);
                                 newTask = deadlineTask;
                         } else if (input.startsWith("event")) {
-                                String newDescription = description.replace("event", "");
+                                String newDescription = description.replace("event ", "");
                                 Event eventTask = new Event(newDescription, date);
                                 taskList.add(eventTask);
                                 newTask = eventTask;

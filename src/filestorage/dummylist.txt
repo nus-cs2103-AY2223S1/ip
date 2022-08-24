@@ -1,0 +1,6 @@
+T | 1 | read book 
+D | 0 | return book | June 6th 
+D | 0 | project meeting | Aug 6th 2-4pm
+T | 1 | join sports club 
+T | 0 | fly kite 
+D | 1 | return dog | June 25th

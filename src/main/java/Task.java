@@ -11,6 +11,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getStatus() {
+        return (isDone ? "1" : "0");
+    }
+
     public void mark() {
         this.isDone = true;
         System.out.println( "Nice! I've marked this task as done: \n" + this.toString());

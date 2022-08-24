@@ -3,6 +3,12 @@ import java.util.ArrayList;
 public class UserInterface {
     private static ArrayList<Task> taskList = new ArrayList<>();
 
+    static void copyList(ArrayList<Task> oldArr) {
+        for (int i = 1; i <= oldArr.size(); i++) {
+            taskList.add(oldArr.get(i-1));
+        }
+    }
+
     static void addTodo(String input) {
         TaskHandler.add(input, taskList);
     }
@@ -29,7 +35,8 @@ public class UserInterface {
         taskList.get(index).unmark();
     }
 
-    static void Bye() {
+    static void Bye(Storage storage) {
+        storage.writeData(taskList);
         System.out.println("Bye Bye!");
     }
 }
