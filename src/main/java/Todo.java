@@ -1,3 +1,5 @@
+import java.lang.annotation.Inherited;
+
 public class Todo extends Task{
 
     public static final String ENCODED_TASK_TYPE = "T";

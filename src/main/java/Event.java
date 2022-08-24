@@ -1,15 +1,19 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    private String timing;
+    private LocalDateTime timing;
 
     public static final String ENCODED_TASK_TYPE = "E";
 
-    public Event(String description, String deadline) {
+    public Event(String description, LocalDateTime timing) {
         super(description);
-        this.timing = deadline;
+        this.timing = timing;
     }
 
     public String getTiming() {
-        return timing;
+        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
+        return dTF.format(timing).toString();
     }
 
     @Override
