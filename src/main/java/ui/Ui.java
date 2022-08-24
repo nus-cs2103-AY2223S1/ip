@@ -1,5 +1,8 @@
 package ui;
 
+import exception.LunaException;
+import exception.LunaLoadingException;
+
 import task.Task;
 import task.TaskList;
 
@@ -38,9 +41,9 @@ public class Ui {
     public void showWelcome() {
         // Print Welcome message
         String logo =
-                  "    _\n"
-                + "   | |    _   _ _____   ___ _\n"
-                + "   | |   | | | |  __ \\ /     |\n"
+                  "    _                     ★ ☁️   ⋆\n"
+                + "   | |    _   _ _____   ___ _ 🌙 ☁️\n"
+                + "   | |   | | | |  __ \\ /     |☁️  ️✴  ⋆\n"
                 + "   | |__ | |_| | |  | |    | |\n"
                 + "   |____| \\__,_|_|  |_|\\__/|_|\n";
         System.out.println(SEP + "\nHello. ⛅️\n   This is\n" + logo);
@@ -66,17 +69,12 @@ public class Ui {
 
                 content.forEach(s -> System.out.println(s));
             } catch (FileNotFoundException e) {
-                showLoadingError();
+                showError(new LunaLoadingException());
             }
         }
 
         // Print final separation line
         System.out.println(SEP);
-    }
-
-    public void showLoadingError() {
-        showError("⚡️Luna has encountered an error while loading tasks⚡️" +
-                    "\n️Please exit and try again ️⛈");
     }
 
     /**
@@ -96,9 +94,9 @@ public class Ui {
      *
      * @param message Error message.
      */
-    public void showError(String message) {
+    public void showError(LunaException e) {
         showLine();
-        System.out.println(message);
+        System.out.println(e.toString());
         showLine();
     }
 

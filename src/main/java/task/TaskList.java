@@ -1,6 +1,8 @@
 package task;
 
 import exception.LunaException;
+import exception.LunaLoadingException;
+
 import java.util.ArrayList;
 
 /**
@@ -17,10 +19,7 @@ public class TaskList {
      * @param tasks Saved tasks to be added to this instance.
      * @throws LunaException
      */
-    public TaskList(ArrayList<Task> tasks) throws LunaException {
-        if (tasks == null) {
-            throw new LunaException("Luna did not find any tasks ⛈");
-        }
+    public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 

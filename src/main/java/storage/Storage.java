@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import exception.LunaException;
+import exception.LunaStorageUpdateException;
 
 import ui.Ui;
 
@@ -75,7 +76,7 @@ public class Storage {
      *
      * @param tasks List of tasks saved by user.
      */
-    public void updateStorage(TaskList tasks) {
+    public void updateStorage(TaskList tasks) throws LunaException {
         try {
             FileWriter writer = new FileWriter(storageFile);
 
@@ -85,8 +86,7 @@ public class Storage {
             writer.write(content);
             writer.close();
         } catch (IOException e) {
-            System.out.println("⚡️Luna has encountered an error while updating tasks⚡️" +
-                                "\n️Please exit and try again ️⛈");
+            throw new LunaStorageUpdateException();
         }
     }
 

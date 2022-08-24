@@ -9,8 +9,14 @@ import command.FindCommand;
 import command.ListCommand;
 import command.UpdateCommand;
 
-// Import Exceptions
+// Import Luna Exceptions
 import exception.LunaException;
+import exception.LunaInvalidCommandException;
+import exception.LunaInvalidDateException;
+import exception.LunaInvalidDescriptionException;
+import exception.LunaInvalidIndexException;
+
+// Import other exceptions
 import java.lang.NumberFormatException;
 import java.time.format.DateTimeParseException;
 
@@ -46,20 +52,20 @@ public class Parser {
         switch (cmdSplit[0]) {
         case "todo":
             if (cmd.length() <= 5) {
-                throw new LunaException("Please enter a task to do 🍂");
+                throw new LunaInvalidDescriptionException();
             }
             c = new AddCommand(cmdSplit[1]);
             break;
         case "deadline":
             if (cmd.length() <= 9) {
-                throw new LunaException("Please enter a task and deadline 🍂");
+                throw new LunaInvalidDescriptionException();
             }
             String[] desSplit = cmdSplit[1].split(" /by ");
             c = new AddCommand("deadline", desSplit[0], parseDate(desSplit[1]));
             break;
         case "event":
             if (cmd.length() <= 6) {
-                throw new LunaException("Please enter an event and date 🍂");
+                throw new LunaInvalidDescriptionException();
             }
             String[] split = cmdSplit[1].split(" /at ");
             c = new AddCommand("event", split[0], parseDate(split[1]));
@@ -83,7 +89,7 @@ public class Parser {
             c = new FindCommand(cmdSplit[1].toLowerCase());
             break;
         default:
-            throw new LunaException("I'm not sure what that means 🥀");
+            throw new LunaInvalidCommandException();
         }
         return c;
     }
@@ -162,10 +168,10 @@ public class Parser {
         try {
             num = Integer.parseInt(txt);
             if (num > TaskList.size()) {
-                throw new LunaException("Please enter a number from 0 to " + TaskList.size() + " 🍂");
+                throw new LunaInvalidIndexException();
             }
         } catch (NumberFormatException e) {
-            throw new LunaException("Please enter a valid number 🍂");
+            throw new LunaInvalidIndexException();
         }
         return num;
     }
@@ -182,7 +188,7 @@ public class Parser {
         try {
             return LocalDate.parse(txt, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } catch (DateTimeParseException e) {
-            throw new LunaException("Luna only reads dates in yyyy-MM-dd format 🍂");
+            throw new LunaInvalidDateException();
         }
     }
 }

@@ -1,5 +1,6 @@
 package command;
 
+import exception.LunaException;
 import storage.Storage;
 import task.TaskList;
 import ui.Ui;
@@ -40,6 +41,10 @@ public class UpdateCommand extends Command {
             ui.showUnmark(tasks.unmark(this.num));
             break;
         }
-        storage.updateStorage(tasks);
+        try {
+            storage.updateStorage(tasks);
+        } catch (LunaException e) {
+            ui.showError(e);
+        }
     }
 }

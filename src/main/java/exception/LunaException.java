@@ -5,14 +5,4 @@ package exception;
  *
  * @author fannyjian
  */
-public class LunaException extends Exception {
-
-    /**
-     * Creates a new exception with the error message.
-     *
-     * @param message Error message.
-     */
-    public LunaException(String message) {
-        super(message);
-    }
-}
+public abstract class LunaException extends Exception{}

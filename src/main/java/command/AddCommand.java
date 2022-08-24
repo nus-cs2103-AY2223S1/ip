@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import storage.Storage;
 
+import exception.LunaException;
+
 // Import Tasks
 import task.Deadline;
 import task.Event;
@@ -54,8 +56,12 @@ import ui.Ui;
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.add(this.task);
-        ui.showAdded(tasks, this.task);
-        storage.updateStorage(tasks);
+        try {
+            tasks.add(this.task);
+            ui.showAdded(tasks, this.task);
+            storage.updateStorage(tasks);
+        } catch (LunaException e) {
+            ui.showError(e);
+        }
     }
 }

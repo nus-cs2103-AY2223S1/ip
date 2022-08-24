@@ -26,11 +26,7 @@ public class Luna {
     public Luna(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
-        try {
-            tasks = new TaskList(storage.load(ui));
-        } catch (LunaException e) {
-            ui.showLoadingError();
-        }
+        tasks = new TaskList(storage.load(ui));
     }
 
     /**
@@ -47,7 +43,7 @@ public class Luna {
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (LunaException e) {
-                ui.showError(e.getMessage());
+                ui.showError(e);
             }
         }
     }
