@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Tasklist class containing a list of tasks.
+ */
 public class TaskList {
     private static ArrayList<Task> taskList;
 
@@ -20,6 +23,12 @@ public class TaskList {
         return taskList;
     }
 
+    /**
+     * Adds a task to the list.
+     *
+     * @param s string description of task.
+     * @param type type of task.
+     */
     public static void addTaskToArray(String s, Task.TYPE type) {
         Task t;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -87,6 +96,11 @@ public class TaskList {
         return taskList.size();
     }
 
+    /**
+     * Removes a task from the list.
+     *
+     * @param taskNumber number for task to be removed.
+     */
     public static void deleteTaskFromArray(String taskNumber) {
         String numberToRemove = taskNumber.replaceAll("[^0-9]", "");
         int numberToRemoveInt = Integer.parseInt(numberToRemove) - 1;
@@ -98,7 +112,11 @@ public class TaskList {
         UI.getLINE();
     }
 
-    //method to mark as done
+    /**
+     * Mark indexed task as done.
+     *
+     * @param removeTaskNumberString index to be marked as done
+     */
     public static void markAsDone(String removeTaskNumberString) {
         String numberToRemove = removeTaskNumberString.replaceAll("[^0-9]", "");
         int numberToRemoveInt = Integer.parseInt(numberToRemove) - 1;
@@ -110,6 +128,11 @@ public class TaskList {
         UI.markAsDoneUI(tsk);
     }
 
+    /**
+     * Mark indexed task as undone.
+     *
+     * @param addTaskNumberString index to be marked as done
+     */
     public static void markAsUndone(String addTaskNumberString) {
         String numberToAddAgain = addTaskNumberString.replaceAll("[^0-9]", "");
         int numberToRemoveInt = Integer.parseInt(numberToAddAgain) - 1;

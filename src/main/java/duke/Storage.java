@@ -9,8 +9,16 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Loads and saves duke.txt.
+ */
 public class Storage {
 
+    /**
+     * Writes list of tasks into a text file.
+     *
+     * @param taskArrayList list of tasks.
+     */
     public static void save(ArrayList<Task> taskArrayList) {
         try {
             File file = new File("data/duke.txt");
@@ -29,6 +37,13 @@ public class Storage {
             throw new DukeException("Save issue.");
         }
     }
+
+    /**
+     * Loads text file from memory.
+     *
+     * @return arraylist of type task.
+     * @throws IOException if file reading issues arise.
+     */
     public static ArrayList<Task> loadTask() throws IOException {
         ArrayList<Task> taskArrayList = new ArrayList<>();
         try {

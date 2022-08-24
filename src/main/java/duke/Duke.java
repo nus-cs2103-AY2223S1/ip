@@ -1,6 +1,9 @@
 package duke;
 
 
+/**
+ * Main Duke function.
+ */
 public class Duke {
 
     public void run() {
