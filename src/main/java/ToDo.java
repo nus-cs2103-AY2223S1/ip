@@ -4,7 +4,6 @@ package main.java;
  * ToDo encapsulates a todo task.
  *
  * @author Totsuka Tomofumi
- * @version Level-6
  */
 public class ToDo extends Task {
 
@@ -23,5 +22,10 @@ public class ToDo extends Task {
     @Override
     public String toString() {
         return "[T]" + super.toString();
+    }
+
+    @Override
+    public String toData() {
+        return "T" + super.toData();
     }
 }

@@ -4,7 +4,6 @@ package main.java;
  * Deadline encapsulates a task with a deadline date/time.
  *
  * @author Totsuka Tomofumi
- * @version Level-6
  */
 public class Deadline extends Task {
     /**
@@ -29,5 +28,10 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + String.format(" (by: %s)", this.time);
+    }
+
+    @Override
+    public String toData() {
+        return "D" + super.toData() + this.time;
     }
 }

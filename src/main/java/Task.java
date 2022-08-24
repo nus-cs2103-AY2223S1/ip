@@ -5,9 +5,8 @@ package main.java;
  * It supports toggling of task status.
  *
  * @author Totsuka Tomofumi
- * @version Level-6
  */
-public class Task {
+abstract public class Task {
     /**
      * Statuses a task can be in.
      */
@@ -57,12 +56,23 @@ public class Task {
     @Override
     public String toString() {
         switch (this.status) {
-            case DONE:
-                return "[X] " + this.description;
-            case NOTDONE:
-                return "[ ] " + this.description;
-            default:
-                return "";  //should not come here
+        case DONE:
+            return "[X] " + this.description;
+        case NOTDONE:
+            return "[ ] " + this.description;
+        default:
+            return "";  //should not come here
+        }
+    }
+
+    public String toData() {
+        switch (this.status) {
+        case DONE:
+            return "1" + this.description.length() + "_" + this.description;
+        case NOTDONE:
+            return "0" + this.description.length() + "_" + this.description;
+        default:
+            return "";  //should not come here
         }
     }
 }

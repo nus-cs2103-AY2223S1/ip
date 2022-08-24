@@ -4,7 +4,6 @@ package main.java;
  * Event encapsulates an event with a date/time period.
  *
  * @author Totsuka Tomofumi
- * @version Level-6
  */
 public class Event extends Task {
     /**
@@ -29,5 +28,10 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + String.format(" (at: %s)", this.time);
+    }
+
+    @Override
+    public String toData() {
+        return "E" + super.toData() + this.time;
     }
 }
