@@ -22,6 +22,7 @@ public class TaskList {
 
     /**
      * Overloaded constructor to allow for loading of previously generated tasks.
+     *
      * @param taskList Array of existing tasks parsed by Storage
      */
     public TaskList(List<Task> taskList) {
@@ -30,6 +31,7 @@ public class TaskList {
 
     /**
      * Marks a task as complete in the Task List.
+     *
      * @param index The index of the task to be marked as complete
      */
     public void markTaskComplete(int index) {
@@ -40,6 +42,7 @@ public class TaskList {
 
     /**
      * Marks a task as incomplete in the Task List.
+     *
      * @param index The index of the task to be marked as incomplete.
      */
     public void markTaskIncomplete(int index) {
@@ -50,6 +53,7 @@ public class TaskList {
 
     /**
      * Adds a task to the Task List.
+     *
      * @param task The task that is to be added to the List.
      */
     public void addTaskToList(Task task) {
@@ -60,6 +64,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the Task List.
+     *
      * @param index The index of the task to be deleted.
      */
     public void deleteTask(int index) {
@@ -72,6 +77,7 @@ public class TaskList {
 
     /**
      * Fetch the size of the task list.
+     *
      * @return The size of the task list.
      */
     public int getSize() {
@@ -79,7 +85,8 @@ public class TaskList {
     }
 
     /**
-     * Returns write string version of TaskList
+     * Returns write string version of TaskList.
+     *
      * @return TaskList in writeString format, to be written into data.txt
      */
     public String getWriteString() {

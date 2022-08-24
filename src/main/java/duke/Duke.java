@@ -15,6 +15,7 @@ public class Duke {
 
     /**
      * The main function to run Duke.
+     *
      * @param args command-line arguments (currently serves no functionality)
      */
     // Currently, the main function takes in user input and echoes it to the user

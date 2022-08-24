@@ -21,6 +21,7 @@ public class Storage {
 
     /**
      * Standard constructor for Duke's Storage tool.
+     *
      * @param filePath Location of Duke's data.
      */
     public Storage(String filePath) {
@@ -29,6 +30,7 @@ public class Storage {
 
     /**
      * Loads data from file into a new TaskList.
+     *
      * @return Duke's TaskList initialised with task data.
      * @throws DukeException If data could not be read.
      */
@@ -97,6 +99,7 @@ public class Storage {
 
     /**
      * Saves taskList to file on drive.
+     *
      * @param taskList List to fetch save data from
      * @throws DukeException if saving data fails
      */

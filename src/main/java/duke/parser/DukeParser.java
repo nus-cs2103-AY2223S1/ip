@@ -37,7 +37,8 @@ public class DukeParser {
     }
 
     /**
-     * Handles user input, and preps parser for instruction execution
+     * Handles user input, and preps parser for instruction execution.
+     *
      * @param inputString The string that we would like to parse.
      */
     public void parseInput(String inputString)  {
@@ -56,6 +57,7 @@ public class DukeParser {
 
     /**
      * Executes a loaded and parsed instruction.
+     *
      * @param st Storage that we want to save data to after the instruction has been executed
      * @throws DukeException if instruction execution fails
      */
@@ -102,6 +104,7 @@ public class DukeParser {
 
     /**
      * Sanitises user input.
+     *
      * @param inputString User input that needs to be sanitised
      * @return Sanitised user input
      */
@@ -132,6 +135,7 @@ public class DukeParser {
 
     /**
      * Handles numerical instructions that act on an indexed element in taskList
+     *
      * @throws DukeException Index is invalid
      */
     public void numericalInstructionHandler() throws DukeException {
@@ -168,6 +172,7 @@ public class DukeParser {
 
     /**
      * Handles adding of instructions to taskList
+     *
      * @throws DukeException User input provided is incomplete / does not match required format.
      */
     public void addTaskInstructionHandler() throws DukeException {
