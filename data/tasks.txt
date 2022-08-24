@@ -1,5 +1,3 @@
-D | 0 | go home | 2022-12-12
-D | 0 | go school | 2022-12-12
-T | 0 | do homework
-E | 0 | career fair | 2022-12-23
-T | 0 | 1
+T | 1 | live
+D | 0 | love | 2022-12-12
+E | 0 | gh | 2022-12-13

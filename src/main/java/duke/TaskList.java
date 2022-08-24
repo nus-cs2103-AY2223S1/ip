@@ -10,7 +10,6 @@ public class TaskList {
 
     public static void add(Task task) {
         taskList.add(task);
-        System.out.println("added: " + task.toString());
     }
 
     public static void read() {
@@ -46,8 +45,6 @@ public class TaskList {
         if (index >= taskList.size() || taskList.get(index) == null) {
             throw new DukeMissingIndexException();
         }
-        Task task = taskList.get(index);
-        System.out.println("Removed the task \n" + task.toString());
         taskList.remove(index);
     }
 

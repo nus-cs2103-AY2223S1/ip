@@ -17,20 +17,16 @@ public class Task {
 
     public void setDone() {
         if (this.isDone) {
-            System.out.println("duke.Task is already done");
             return;
         }
         this.isDone = true;
-        System.out.println("duke.Task is marked as Done \n" + this.toString());
     }
 
     public void setNotDone() {
         if (!this.isDone) {
-            System.out.println("duke.Task is still undone");
             return;
         }
         this.isDone = false;
-        System.out.println("duke.Task is marked as undone \n" + this.toString());
     }
 
     @Override
