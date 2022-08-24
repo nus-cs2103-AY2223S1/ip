@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.function.Function;
 
@@ -20,6 +22,8 @@ public class Duke {
     private static final String noDescriptionMessage = "The description of the task cannot be empty.";
     private static final String noTimeGivenMessage  = "Please provide the relevant time for this type of task,\n"
                                                     + "by typing \"/\" followed by the time.";
+    private static final String invalidDateMessage  = "Invalid date provided.\n"
+                                                    + "Please format the date in YYYY-MM-DD";
     private static final String noIndexGivenMessage = "Please provide the index of he relevant task after the\n"
                                                     + "command.";
     private static final ArrayList<Task> tasks = new ArrayList<>();
@@ -82,10 +86,14 @@ public class Duke {
                         System.out.println(invalidInputMessage);
                     }
                 } else if (taskMaker.containsKey(inputSplit[0])) {
-                    Task newTask = taskMaker.get(inputSplit[0]).apply(inputSplit);
-                    tasks.add(newTask);
-                    System.out.println(addTaskMessage + newTask);
-                    System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
+                    try {
+                        Task newTask = taskMaker.get(inputSplit[0]).apply(inputSplit);
+                        tasks.add(newTask);
+                        System.out.println(addTaskMessage + newTask);
+                        System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
+                    } catch (DateTimeParseException e) {
+                        throw new DukeException(invalidDateMessage);
+                    }
                 }  else {
                     throw new DukeException(invalidInputMessage);
                 }
@@ -133,13 +141,13 @@ public class Duke {
         }
         if (input.contains("deadline") || input.contains("event")) {
             String[] result = new String[3];
-            if (input.lastIndexOf("/") == -1) {
+            if (input.indexOf("/") == -1) {
                 throw new DukeException(noTimeGivenMessage);
             }
             boolean isDeadline = input.substring(0,8).equals("deadline");
             result[0] = isDeadline ? input.substring(0,8) : input.substring(0,5);
-            result[1] = input.substring(isDeadline ? 8 : 5, input.lastIndexOf('/'));
-            result[2] = input.substring(input.lastIndexOf("/") + 1);
+            result[1] = input.substring(isDeadline ? 8 : 5, input.indexOf('/'));
+            result[2] = input.substring(input.indexOf('/') + 1);
             if (result[1].isBlank()) {
                 throw new DukeException(noDescriptionMessage);
             }

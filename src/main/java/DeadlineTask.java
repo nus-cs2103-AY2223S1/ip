@@ -1,8 +1,8 @@
-public class DeadlineTask extends Task {
+public class DeadlineTask extends TimeTask {
     private final String deadline;
-    DeadlineTask(String taskname, String deadline) {
-        super(taskname);
-        this.deadline = deadline;
+    DeadlineTask(String taskname, String deadline){
+        super(taskname, deadline);
+        this.deadline = super.toDisplayDate();
     }
 
     @Override
