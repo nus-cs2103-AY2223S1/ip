@@ -3,14 +3,14 @@ import TaskItems.TaskItem;
 import java.util.ArrayList;
 
 /**
- * DukePrinter to print stuff to the console.
+ * JennyPrinter to print stuff to the console.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
 
-public class DukePrinter {
+public class JennyPrinter {
     /**
      * Prints a horizontal line.
      */
@@ -31,7 +31,7 @@ public class DukePrinter {
      */
     public static void greet() {
         print_line();
-        print("Hello! I'm Duke");
+        print("Hello! I'm Jenny");
         print("What can I do for you?");
         print_line();
     }
