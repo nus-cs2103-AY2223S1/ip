@@ -136,7 +136,7 @@ public class Duke {
             if (input.lastIndexOf("/") == -1) {
                 throw new DukeException(noTimeGivenMessage);
             }
-            boolean isDeadline = input.contains("deadline");
+            boolean isDeadline = input.substring(0,8).equals("deadline");
             result[0] = isDeadline ? input.substring(0,8) : input.substring(0,5);
             result[1] = input.substring(isDeadline ? 8 : 5, input.lastIndexOf('/'));
             result[2] = input.substring(input.lastIndexOf("/") + 1);
