@@ -18,7 +18,7 @@ public class Duke {
             try {
                 Instruction instruction = Parser.parse(sc.nextLine());
                 instruction.execute(taskList);
-                if (instruction instanceof ByeInstruction) {
+                if (instruction.endsProgram()) {
                     break;
                 }
             } catch (InvalidCommandException e) {

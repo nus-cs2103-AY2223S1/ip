@@ -9,4 +9,9 @@ public class ByeInstruction extends Instruction {
     public void execute(TaskList taskList) {
         System.out.println("Ok, see you next time!");
     }
+
+    @Override
+    public boolean endsProgram() {
+        return true;
+    }
 }

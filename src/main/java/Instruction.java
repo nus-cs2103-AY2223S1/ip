@@ -47,4 +47,8 @@ public abstract class Instruction {
     }
 
     public abstract void execute(TaskList taskList);
+
+    public boolean endsProgram() {
+        return false;
+    }
 }
