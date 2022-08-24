@@ -45,6 +45,7 @@ public class Bloop {
                 case "event":
                     addTask(text, 'E');
                     break;
+                    
                 case "deadline":
                     addTask(text, 'D');
                     break;
