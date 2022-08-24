@@ -24,7 +24,7 @@ public class UnmarkResponse extends DukeResponse {
     @Override
     public void run() throws DukeException {
         if (data.isEmpty()) {
-            throw new DukeException("Please enter duke.task to mark as undone.");
+            throw new DukeException("Please enter task to mark as undone.");
         }
 
         int index = Integer.parseInt(data.trim());

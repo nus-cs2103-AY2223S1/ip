@@ -24,7 +24,7 @@ public class DeleteResponse extends DukeResponse {
     @Override
     public void run() throws DukeException {
         if (data.isEmpty()) {
-            throw new DukeException("Please enter duke.task to delete.");
+            throw new DukeException("Please enter task to delete.");
         }
 
         int index = Integer.parseInt(data.trim());
