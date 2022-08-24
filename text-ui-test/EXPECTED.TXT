@@ -19,35 +19,35 @@ Now you have 1 tasks in the list.
 
 ──────────────────────────────────────────
 Got it. I've added this task: 
-[D][ ] deadline d1 (by: 1st Aug)
+[D][ ] d1 (by: 1st Aug)
 Now you have 2 tasks in the list.
 ──────────────────────────────────────────
 
 ──────────────────────────────────────────
 Got it. I've added this task: 
-[E][ ] event d2 (at: 2nd June)
+[E][ ] d2 (at: 2nd June)
 Now you have 3 tasks in the list.
 ──────────────────────────────────────────
 
 ──────────────────────────────────────────
 Nice! I've marked this as done: 
-[E][X] event d2 (at: 2nd June)
+[E][X] d2 (at: 2nd June)
 ──────────────────────────────────────────
 
 ──────────────────────────────────────────
 Nice! I've marked this as done: 
-[D][X] deadline d1 (by: 1st Aug)
+[D][X] d1 (by: 1st Aug)
 ──────────────────────────────────────────
 
 ──────────────────────────────────────────
 1. [T][ ] task1
-2. [D][X] deadline d1 (by: 1st Aug)
-3. [E][X] event d2 (at: 2nd June)
+2. [D][X] d1 (by: 1st Aug)
+3. [E][X] d2 (at: 2nd June)
 
 ──────────────────────────────────────────
 
 ──────────────────────────────────────────
 OK, I've marked this task as not done yet: 
-[E][ ] event d2 (at: 2nd June)
+[E][ ] d2 (at: 2nd June)
 ──────────────────────────────────────────
 
