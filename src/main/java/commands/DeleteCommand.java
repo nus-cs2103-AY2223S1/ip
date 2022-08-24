@@ -1,9 +1,16 @@
 package commands;
 
-import tasks.TaskList;
-import tasks.Task;
-import ui.Ui;
 import storage.Storage;
+
+// Import Tasks
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todo;
+
+import ui.Ui;
+
 
 /**
  * Encapsulates a user instruction to delete a saved task.

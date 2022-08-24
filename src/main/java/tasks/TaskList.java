@@ -9,7 +9,6 @@ import java.util.ArrayList;
  * @author fannyjian
  */
 public class TaskList {
-
     private ArrayList<Task> tasks;
 
     /**

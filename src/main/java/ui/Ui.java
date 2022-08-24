@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  * @author fannyjian
  */
 public class Ui {
-    private static final String sep = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
+    private static final String SEP = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
     private static Scanner sc;
     private boolean loaded;
 
@@ -36,16 +36,16 @@ public class Ui {
      * Shows the bot logo, lists available commands and prints out stored tasks if any.
      */
     public void showWelcome() {
-        //print Welcome message
+        // Print Welcome message
         String logo =
                   "    _\n"
                 + "   | |    _   _ _____   ___ _\n"
                 + "   | |   | | | |  __ \\ /     |\n"
                 + "   | |__ | |_| | |  | |    | |\n"
                 + "   |____| \\__,_|_|  |_|\\__/|_|\n";
-        System.out.println(sep + "\nHello. ⛅️\n   This is\n" + logo);
+        System.out.println(SEP + "\nHello. ⛅️\n   This is\n" + logo);
 
-        //print available commands
+        // Print available commands
         System.out.println("  Luna commands" +
                     "\n    🌸 list                             | View all tasks on your agenda" +
                     "\n    🌷 todo \"task\"                      | Add a task to your agenda" +
@@ -55,7 +55,7 @@ public class Ui {
                     "\n    🌻 unmark \"num\"                     | Mark the (num)th item in your list as uncompleted" +
                     "\n    🥀 bye                              | Quit Luna\n");
 
-        //print items in storage
+        // Print items in storage
         if (!this.loaded) {
             System.out.println("  You do not have anything to do yet!\n  Tell Luna your tasks for the day ☀️");
         } else {
@@ -69,8 +69,8 @@ public class Ui {
             }
         }
 
-        //print final separation line
-        System.out.println(sep);
+        // Print final separation line
+        System.out.println(SEP);
     }
 
     public void showLoadingError() {
@@ -87,7 +87,7 @@ public class Ui {
     }
 
     public void showLine() {
-        System.out.println(sep);
+        System.out.println(SEP);
     }
 
     /**
@@ -108,7 +108,9 @@ public class Ui {
      * @param task Current task added.
      */
     public void showAdded(TaskList tasks, Task task) {
-        System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\n" + tasks.size() + " task(s) left in your list 🌻\n" + sep);
+        showLine();
+        System.out.println("Luna has added:\n" + task.toString() + "\n" + tasks.size() + " task(s) left in your list 🌻");
+        showLine();
     }
 
     /**
@@ -118,7 +120,9 @@ public class Ui {
      * @param task Task deleted.
      */
     public void showDeleted(TaskList tasks, Task task) {
-        System.out.println(sep + "\nLuna has removed:\n" + task.toString() + "\n" + tasks.size() + " task(s) left in your list 🌻\n" + sep);
+        showLine();
+        System.out.println("Luna has removed:\n" + task.toString() + "\n" + tasks.size() + " task(s) left in your list 🌻)");
+        showLine();
 
     }
 
@@ -140,7 +144,9 @@ public class Ui {
      * @param task Task marked as completed.
      */
     public void showMark(Task task) {
-        System.out.println(sep + "\nMarked as completed 🌈️\n" + task.toString() + "\n" + sep);
+        showLine();
+        System.out.println("Marked as completed 🌈️\n" + task.toString());
+        showLine();
     }
 
     /**
@@ -149,7 +155,9 @@ public class Ui {
      * @param task Task marked as uncompleted.
      */
     public void showUnmark(Task task) {
-        System.out.println(sep + "\nMarked as uncompleted 🌩\n" + task.toString() + "\n" + sep);
+        showLine();
+        System.out.println("Marked as uncompleted 🌩\n" + task.toString());
+        showLine();
     }
 
     /**

@@ -1,15 +1,22 @@
 package commands;
 
-import tasks.*;
-import ui.Ui;
 import storage.Storage;
+
+// Import Tasks
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todo;
+
+import ui.Ui;
+
 
 /**
  * Encapsulates a user instruction to create a new task.
  *
  * @author fannyjian
- */
-public class AddCommand extends Command {
+ */public class AddCommand extends Command {
     private Task task;
 
     /**

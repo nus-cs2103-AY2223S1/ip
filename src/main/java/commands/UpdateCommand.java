@@ -1,8 +1,9 @@
 package commands;
 
 import storage.Storage;
-import ui.Ui;
 import tasks.TaskList;
+import ui.Ui;
+
 
 /**
  * Encapsulates a user instruction to mark a saved task as completed or uncompleted.
