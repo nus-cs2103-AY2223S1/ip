@@ -1,7 +1,10 @@
+package duke;
+
+
 /**
- * Child class ToDo
+ * Child class duke.ToDo
  *
- * ToDo class a child class of the task and has similar functionality.
+ * duke.ToDo class a child class of the task and has similar functionality.
  *
  * @author Yuvaraj Kumaresan
  */

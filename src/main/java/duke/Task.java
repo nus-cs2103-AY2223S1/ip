@@ -1,7 +1,9 @@
+package duke;
+
 /**
- * Class Task
+ * Class duke.Task
  *
- * Description: An encapsulation of what a completable task is in the context of Duke.
+ * Description: An encapsulation of what a completable task is in the context of duke.Duke.
  * Has description and isDone field to describe and mark completion status of a task.
  *
  * @author Yuvaraj Kumaresan

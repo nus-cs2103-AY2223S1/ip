@@ -1,7 +1,9 @@
+package duke;
+
 import java.io.IOException;
 
 /**
- * Handles UI aspects of the Duke chatbot.
+ * Handles UI aspects of the duke.Duke chatbot.
  */
 public class Ui {
 
@@ -65,7 +67,7 @@ public class Ui {
     /**
      * Handles the delete keyword and deletes the task.
      *
-     * @param deleted Task to delete.
+     * @param deleted duke.Task to delete.
      */
     public void delete(Task deleted) {
         System.out.println(divider);
@@ -88,7 +90,7 @@ public class Ui {
     /**
      * Handles todo keyword and adds task to the list.
      *
-     * @param item ToDo item to add to the list.
+     * @param item duke.ToDo item to add to the list.
      */
     public void todo(ToDo item) {
         System.out.println(divider);
@@ -261,17 +263,17 @@ public class Ui {
      */
     public void help() {
         System.out.println(divider);
-        System.out.println("Welcome to the user guide. This guide has all the commands that are necessary to operate Duke\n\n" +
+        System.out.println("Welcome to the user guide. This guide has all the commands that are necessary to operate duke.Duke\n\n" +
                 "Main commands : \n\n" +
                 "Todo : adds a todo task to the task list :-> todo <description of the task> \n" +
-                "Deadline : adds a deadline task to the task list :-> deadline <description of the deadline> /by <time of the deadline> \n" +
-                "Event : adds an event task to the task list :-> event <description of the event> /at <time of the event> \n\n" +
+                "duke.Deadline : adds a deadline task to the task list :-> deadline <description of the deadline> /by <time of the deadline> \n" +
+                "duke.Event : adds an event task to the task list :-> event <description of the event> /at <time of the event> \n\n" +
                 "Other commands: \n\n" +
                 "Mark : marks a task as done :-> mark <task number> \n" +
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
                 "Delete : deletes a task :-> delete <task number>\n" +
                 "Help : brings up this display :-> help\n" +
-                "Bye : closes Duke :-> bye \n\n" +
+                "Bye : closes duke.Duke :-> bye \n\n" +
                 "Please enter one of the above to continue.");
         System.out.println(divider);
     }
@@ -287,14 +289,14 @@ public class Ui {
         System.out.println("Please provide a proper command. Formats are as follows: \n\n" +
                 "Main commands : \n\n" +
                 "Todo : adds a todo task to the task list :-> todo <description of the task> \n" +
-                "Deadline : adds a deadline task to the task list :-> deadline <description of the deadline> /by <time of the deadline> \n" +
-                "Event : adds an event task to the task list :-> event <description of the event> /at <time of the event> \n\n" +
+                "duke.Deadline : adds a deadline task to the task list :-> deadline <description of the deadline> /by <time of the deadline> \n" +
+                "duke.Event : adds an event task to the task list :-> event <description of the event> /at <time of the event> \n\n" +
                 "Other commands: \n\n" +
                 "Mark : marks a task as done :-> mark <task number> \n" +
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
                 "Delete : deletes a task :-> delete <task number>\n" +
                 "Help : brings up this display :-> help\n" +
-                "Bye : closes Duke :-> bye\n\n" +
+                "Bye : closes duke.Duke :-> bye\n\n" +
                 "Please enter one of the above to continue.");
         System.out.println(divider);
     }

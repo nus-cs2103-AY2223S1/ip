@@ -1,5 +1,7 @@
+package duke;
+
 /**
- * Class DukeException an extension of the exception class to handle possible exceptions thrown by Duke.
+ * Class duke.DukeException an extension of the exception class to handle possible exceptions thrown by duke.Duke.
  *
  * @author Yuvaraj Kumaresan
  */
@@ -18,7 +20,7 @@ public class DukeException extends Exception {
     /**
      * Nested class DukeToDoException
      * <p>
-     * DukeToDoException handles possible errors with the ToDo input phrase.
+     * DukeToDoException handles possible errors with the duke.ToDo input phrase.
      */
     public static class DukeToDoException extends DukeException {
 

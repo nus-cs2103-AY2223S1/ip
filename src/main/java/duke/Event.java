@@ -1,9 +1,10 @@
-import java.time.LocalDateTime;
+package duke;
+
 
 /**
- * Child class Event
+ * Child class duke.Event
  *
- * Event a child class of Task has the same functionality
+ * duke.Event a child class of duke.Task has the same functionality
  * but adds on with an at field which allows users to set an event timing.
  *
  * @author Yuvaraj Kumaresan
@@ -14,7 +15,8 @@ public class Event extends Task {
 
     /**
      * Constructor
-     *  @param description String describing the event task.
+     *
+     * @param description String describing the event task.
      * @param at          String providing the timeframe for the event task.
      */
     public Event(String description, String at) {

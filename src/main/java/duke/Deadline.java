@@ -1,10 +1,12 @@
+package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Child class Deadline
+ * Child class duke.Deadline
  *
- * Deadline a child class of Task has the same functionality
+ * duke.Deadline a child class of duke.Task has the same functionality
  * but adds on with a by field which allows users to set a deadline.
  *
  * @author Yuvaraj Kumaresan
