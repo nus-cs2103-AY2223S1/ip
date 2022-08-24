@@ -10,17 +10,35 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Encapsulates a command for adding a {@link Deadline} task. The command should be used as follows:
+ * <ul>
+ *     <li>
+ *         {@code deadline {taskDescription} /by {taskDeadline}}: To add a deadline task with the corresponding
+ *         description and deadline.
+ *     </li>
+ * </ul>
+ *
+ * @author Emily Ong Hui Qi
+ */
 public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
     public static final String COMMAND_WORD = "deadline";
     private static final String INVALID_DEADLINE_TASK_ERROR = "Use the 'deadline' command together with the " +
             "task description and deadline\nFor example: 'deadline return book /by 2022-12-02'";
 
-    // Matches a non-empty description and a non-empty deadline, separated by a '/by' command
-    // For example: (<description> /by <deadline>)
+    /**
+     * Matches a non-empty description and a non-empty deadline, separated by a {@code '/by'} indicator.
+     * <p>For example: {@code {taskDescription} /by {taskDeadline}}</p>
+     */
     private static final Pattern MATCH_DEADLINE_TASK = Pattern.compile("(?<taskDescription>.+?)\\s/by\\s(?<taskDeadline>.+)");
 
     private final String arguments;
 
+    /**
+     * Creates a new instance of the Command handler for adding a {@link Deadline} task.
+     *
+     * @param arguments The arguments following the {@code 'deadline'} prefix supplied by the user from keyboard input
+     */
     public AddDeadlineTaskCommand(String arguments) {
         this.arguments = arguments;
     }

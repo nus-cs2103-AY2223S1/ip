@@ -5,19 +5,40 @@ import duke.exceptions.DukeException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Encapsulates the logic for serializing and deserializing a particular object of type {@code T}.
+ *
+ * @param <T> The type of the object that can be serialized and deserialized
+ *
+ * @author Emily Ong Hui Qi
+ */
 abstract public class Serializable<T> {
-    // Use the double slash to escape the pipe character
+    /** Use the double slash to escape the pipe character */
     private static final String formatterRead = " \\| ", formatterWrite = formatterRead.replace("\\", "");
     private final String serialized;
     private final String[] originalData;
 
     private static final String ERROR_MATCHING_SERIALIZABLE_REGEX = "Regex for serialized string does not match!";
 
-    public Serializable(String[] data) {
-        this.originalData = data;
-        this.serialized = String.join(Serializable.formatterWrite, data);
+    /**
+     * Stores the original data and sets up a serialized form of the data.
+     *
+     * @param originalData The original data
+     */
+    public Serializable(String[] originalData) {
+        this.originalData = originalData;
+        this.serialized = String.join(Serializable.formatterWrite, originalData);
     }
 
+    /**
+     * Initializes a new {@code Serializable} object by applying the reverse of the serialization operation on the
+     * serialized string to obtain the original data as well as storing the serialized string, if and only if the
+     * provided serialized string matches the expected format.
+     *
+     * @param serializedString The received serialized string
+     * @param regexMatch The Regex format that the serialized string should match
+     * @throws DukeException If the received serialized string does not match the provided Regex format
+     */
     public Serializable(String serializedString, Pattern regexMatch) throws DukeException {
         Matcher matcher = regexMatch.matcher(serializedString);
         if (!matcher.matches()) {
@@ -28,14 +49,16 @@ abstract public class Serializable<T> {
     }
 
     /**
-     * Supports the deserialization operation of the serializable object
+     * Supports the deserialization operation of the serializable object.
+     *
      * @return The deserialized object
+     * @throws DukeException If the object cannot be deserialized
      */
     abstract public T deserialize() throws DukeException;
 
     /**
-     * Returns the original data passed into the Serializable constructor ie the inverse
-     * operation of serialization
+     * Returns the original data passed into the {@code Serializable} constructor.
+     *
      * @return Original data passed into the constructor
      */
     protected String[] get() {
