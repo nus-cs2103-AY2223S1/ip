@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -194,6 +195,8 @@ public class Duke {
                 tedResponse("Oh no, please indicate task to mark/unmark/delete with a number T_T\n");
             } catch (IndexOutOfBoundsException e) {
                 tedResponse("Oh no, there's no such task T_T\n");
+            } catch (DateTimeParseException e) {
+                tedResponse("Please input the date in yyyy-mm-dd hh:mm format");
             }
         }
     }
