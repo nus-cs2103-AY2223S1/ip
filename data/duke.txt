@@ -1,0 +1,4 @@
+[T][ ] sleep
+[T][ ] wake
+[T][ ] read
+[T][ ] run
