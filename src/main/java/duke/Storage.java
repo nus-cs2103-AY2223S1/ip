@@ -29,7 +29,7 @@ public class Storage {
 
             // Ensure that the parent folder exists.
             if (!parentFolder.exists()) {
-                file.mkdirs();
+                parentFolder.mkdirs();
             }
 
             // Ensure that the file exists.
