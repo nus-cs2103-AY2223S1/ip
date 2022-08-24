@@ -37,6 +37,7 @@ public class Task {
 
     public void markAsDone() {
         this.isDone = true;
+
     }
 
     public void markAsNotDone() {
@@ -46,4 +47,5 @@ public class Task {
     public boolean isToday() {
         return true;
     }
+
 }

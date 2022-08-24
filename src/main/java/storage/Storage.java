@@ -8,6 +8,7 @@ import java.util.List;
 import exceptions.DukeException;
 import task.Task;
 import java.util.ArrayList;
+import tasklist.TaskList;
 
 public class Storage {
     private Path path;
@@ -66,7 +67,7 @@ public class Storage {
         return storageWriter.changeLine(index, newString);
     }
 
-    public ArrayList<Task> syncArrayList() throws DukeException{
+    public TaskList syncArrayList() throws DukeException{
             return storageReader.syncArrayList();
     }
 }

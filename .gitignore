@@ -21,3 +21,6 @@ caches/
 wrapper/
 
 .gitignore
+
+daemon/
+native/

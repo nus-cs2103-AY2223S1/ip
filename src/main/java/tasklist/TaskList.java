@@ -18,10 +18,6 @@ import utility.StorageParser;
 public class TaskList<T extends Task> {
     private  ArrayList<T> userInputHistory = new ArrayList<>();
 
-    public TaskList(ArrayList<T> listOfTasksInStorage) throws DukeException{
-        userInputHistory = listOfTasksInStorage;
-    }
-
     public void addTask(T t) {
         userInputHistory.add(t);
     }
@@ -46,12 +42,14 @@ public class TaskList<T extends Task> {
         }
         return list;
     }
-    public String markTask(int n) {
+    public void markTask(int n) {
         userInputHistory.get(n - 1).markAsDone();
-        return StorageParser.storableTaskDescription("mark", n);
     }
-    public String unmarkTask(int n) {
-        userInputHistory.get(n - 1).markAsDone();
-        return StorageParser.storableTaskDescription("unmark",n);
+    public void unmarkTask(int n) {
+        userInputHistory.get(n - 1).markAsNotDone();
+    }
+
+    public T getTask(int n) {
+        return userInputHistory.get(n - 1);
     }
 }
