@@ -92,13 +92,22 @@ public class Duke {
 
     public static void addTask(String userInput, ArrayList<Task> ls) throws DukeException {
         String line = " _______________________________________ \n";
+        String name = userInput.substring(userInput.indexOf(" ") + 1);
+        String time = name.substring(name.indexOf("/") + 1);
+        String taskType = userInput.substring(0, userInput.indexOf(" ")).toUpperCase();
         if (!userInput.startsWith("todo") && !userInput.startsWith("deadline") && !userInput.startsWith("event")) {
             throw new DukeException("sowwie idk what this means.");
         } else if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {
             throw new DukeException("the description of a task cannot be empty.");
+        } else if (taskType.equals("D") || taskType.equals("E")) {
+            if (time.trim().isEmpty()) {
+                throw new DukeException("please input a date for this task!");
+            } else if (time.charAt(7) != '-' || time.charAt(10) != '-') {
+                throw new DukeException("please input data in the following format: YYYY-MM-DD");
+            }
         }
-        Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
-                userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
+
+        Task t = new Task(name.substring(0, name.indexOf("/") - 1), taskType, time);
         ls.add(t);
         System.out.println(line + " okie! i've added: \n " + t + "\n now you have " + ls.size() + " task(s) in your list!\n" + line);
     }
@@ -124,5 +133,9 @@ public class Duke {
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    public boolean checkDateFormat(String s) {
+
     }
 }

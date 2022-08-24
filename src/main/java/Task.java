@@ -1,27 +1,30 @@
+import java.time.LocalDate;
+
 enum TaskType {
     TODO, DEADLINE, EVENT;
 }
 
 public class Task {
-    private boolean done;
+    private boolean done = false;
     private String taskName;
     private TaskType taskType;
-    private String time;
+    private LocalDate time;
 
-    public Task (String taskName, String taskType, boolean done) {
-        this.done = done;
+    public Task (String taskName, String taskType, String time) {
         if (taskType.equals("TODO")) {
             this.taskType = TaskType.TODO;
             this.taskName = taskName;
-            this.time = "";
+            this.time = null;
         } else if (taskType.equals("DEADLINE")) {
             this.taskType = TaskType.DEADLINE;
             this.taskName = taskName.substring(0, taskName.indexOf("/") - 1);
-            this.time = "(" + taskName.substring(taskName.indexOf("/") + 1) + ")";
+            // this.time = "(" + taskName.substring(taskName.indexOf("/") + 1) + ")";
+            this.time = LocalDate.parse(time);
         } else if (taskType.equals("EVENT")) {
             this.taskType = TaskType.EVENT;
             this.taskName = taskName.substring(0, taskName.indexOf("/") - 1);
-            this.time = "(" + taskName.substring(taskName.indexOf("/") + 1) + ")";
+            // this.time = "(" + taskName.substring(taskName.indexOf("/") + 1) + ")";
+            this.time = LocalDate.parse(time);
         }
     }
 
@@ -52,7 +55,8 @@ public class Task {
             return taskType.toString().charAt(0) + " | 0 | " + this.taskName + "\n";
         }
         if (done) {
-            return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " + this.time.substring(1, this.time.length() - 1) + "\n";
+            // return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " + this.time.substring(1, this.time.length() - 1) + "\n";
+            return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy") + "\n";
         }
         return taskType.toString().charAt(0) + " | 0 | " + this.taskName + " | " + this.time.substring(1, this.time.length() - 1) + "\n";
     }
