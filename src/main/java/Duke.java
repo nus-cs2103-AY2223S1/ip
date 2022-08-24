@@ -1,11 +1,72 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.nio.file.*;
 
 public class Duke {
     static Scanner input = new Scanner(System.in);
+    static String workingDir = System.getProperty("user.dir");
+    static Path pathToDuke = Paths.get(workingDir, "data", "duke.txt");
+
+    public static void fileRead() {
+        boolean directoryExists = Files.exists(pathToDuke);
+        if (directoryExists) {
+            try {
+                FileReader fr = new FileReader(String.valueOf(pathToDuke));
+                BufferedReader br = new BufferedReader(fr);
+
+                String str;
+                if ((str = br.readLine()) == null) {
+                    System.out.println("     You have no saved tasks yet! Add one now!");
+                } else {
+                    System.out.println("     " + str);
+                    while ((str = br.readLine()) != null) {
+                        System.out.println("     " + str);
+                    }
+                }
+                br.close();
+
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+        } else {
+            try {
+                Path path = Paths.get(workingDir, "data");
+                Files.createDirectories(path);
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+
+            try {
+                File duke = new File(String.valueOf(pathToDuke));
+                if (duke.createNewFile()) {
+                    //System.out.println("New file duke created");
+                }
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
+            }
+            System.out.println("     You have no saved tasks yet! Add one now!");
+        }
+    }
+
+    public static void saveTask(String taskToString) {
+        try {
+            FileWriter fw = new FileWriter(String.valueOf(pathToDuke), true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+
+            pw.println(taskToString);
+            pw.close();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
 
     public static void responseRepeater() {
         String response = input.nextLine();
+
+        //FileWriter fw = new FileWriter(String.valueOf(path));
+
         ArrayList<Task> taskStore = new ArrayList<>();
 
         while (!response.equals("bye")) {
@@ -32,6 +93,7 @@ public class Duke {
                 } else {
                     Task newTodo = new Todo(response.substring(5));
                     taskStore.add(newTodo);
+                    saveTask(newTodo.toString());
                     //counter += 1;
                     System.out.println("     Ok! I have added this Todo task:\n"
                             + "       " + newTodo.toString() + "\n"
@@ -46,6 +108,7 @@ public class Duke {
                             response.substring(6, separatorPosition - 1),
                             response.substring(separatorPosition + 4));
                     taskStore.add(newEvent);
+                    saveTask(newEvent.toString());
                     //counter += 1;
                     System.out.println("     Ok! I have added this Event task:\n"
                             + "       " + newEvent.toString() + "\n"
@@ -60,6 +123,7 @@ public class Duke {
                             response.substring(9, separatorPosition - 1),
                             response.substring(separatorPosition + 4));
                     taskStore.add(newDeadline);
+                    saveTask(newDeadline.toString());
                     //counter += 1;
                     System.out.println("     Ok! I have added this Deadline task:\n"
                             + "       " + newDeadline.toString() + "\n"
@@ -84,9 +148,14 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String greetings = "Good day to you! I'm Jake\n"
-                            + "How can I help you?";
+        String greetings = "Good day to you! I'm Jake!\n"
+                    + "I will help you to keep track of your tasks!\n"
+                    + "The following are your saved tasks:";
+        /*String home = System.getProperty("user.dir");
+        System.out.println(home);*/
+        //fileRead();
         System.out.println(greetings);
+        fileRead();
         responseRepeater();
     }
 }
