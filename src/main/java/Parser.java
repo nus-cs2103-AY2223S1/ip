@@ -12,16 +12,16 @@ class Parser {
         String[] parsedTmp = txt.split(SPACE, 2);
 
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
-            return new ParsedData(txt, parsedTmp[0]);
+            return new ParsedData(parsedTmp[0]);
         }
 
         String command = parsedTmp[0];
         parsedTmp = parsedTmp[1].split(SEP, 2);
 
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
-            return new ParsedData(txt, command, parsedTmp[0]);
+            return new ParsedData(command, parsedTmp[0]);
         }
 
-        return new ParsedData(txt, command, parsedTmp[0], parsedTmp[1]);
+        return new ParsedData(command, parsedTmp[0], parsedTmp[1]);
     }
 }
