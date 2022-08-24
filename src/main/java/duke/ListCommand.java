@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Represents a List Command, which lists all tasks.
  *

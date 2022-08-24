@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Scanner;
 
 /**
@@ -123,8 +125,8 @@ public class Ui {
      *
      */
     public void showNumberCastError() {
-        String errorMessage = "Sorry, please input a valid index (i.e. a number)";
-        System.out.println(errorMessage);
+        String errorMessage = "☹ OOPS!!! Please input a valid index (i.e. a number)";
+        System.out.println(Ui.formatText(errorMessage));
     }
 
     /**

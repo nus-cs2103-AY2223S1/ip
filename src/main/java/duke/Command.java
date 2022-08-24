@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Abstract class Command that represents commands on tasks.
  *

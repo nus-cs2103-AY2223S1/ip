@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Represents a Mark Command, which marks a task as completed.
  *

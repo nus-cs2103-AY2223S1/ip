@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -24,7 +26,6 @@ public class Parser {
     public static Command parse(String userInput) throws DukeException {
         String[] inputWords = userInput.trim().split(" ");
 
-        System.out.println(Arrays.toString(inputWords));
         if (userInput.equals("todo") || userInput.equals("deadline") || userInput.equals("event")) {
             throw new DukeException("The description of a task cannot be empty!");
         }

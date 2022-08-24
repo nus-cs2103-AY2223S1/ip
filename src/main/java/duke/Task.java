@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Class Task that encapsulates details of a task.
  *

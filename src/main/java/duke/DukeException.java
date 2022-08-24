@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Exception when user inputs something invalid to Duke.
  *

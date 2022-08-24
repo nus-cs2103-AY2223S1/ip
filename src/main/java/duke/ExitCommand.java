@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Represents an Exit Command, which quits Duke's service to user.
  *

@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Represents an Add Command, to add a task to tasks.
  *

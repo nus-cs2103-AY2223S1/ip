@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Class that encapsulates To Do task.
  *
