@@ -127,4 +127,27 @@ public class Todos {
                 taskCountMessage()));
         storage.saveList(todos);
     }
+
+    /**
+     * Command for showing tasks that match certain keywords.
+     */
+    public void cmdFind(Scanner rest) throws MessagefulException {
+        ArrayList<String> keywords = new ArrayList<>();
+        while (rest.hasNext()) {
+            keywords.add(rest.next());
+        }
+
+        if (keywords.size() == 0) {
+            throw new MessagefulException("no keywords", "Please give me some words to find!");
+        }
+
+        TaskList matches = todos.filter(keywords);
+
+        ArrayList<String> output = new ArrayList<>(matches.size());
+        output.add(format("Here are the tasks that match \"%s\":", String.join("\", \"", keywords)));
+        for (int i = 0; i < matches.size(); i++) {
+            output.add(format("%d. %s", i + 1, matches.get(i).toString()));
+        }
+        say(output);
+    }
 }

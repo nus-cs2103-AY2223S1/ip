@@ -17,7 +17,7 @@ public class TaskList implements Iterable<Task> {
     private final List<Task> todos;
 
     /**
-     * Constructor. Automatically loads the task list from a file.
+     * Constructor for creating a TaskList from a save file.
      *
      * @param storage The Storage used to load the task list.
      */
@@ -30,6 +30,13 @@ public class TaskList implements Iterable<Task> {
             todos = new ArrayList<>();
         }
         this.todos = todos;
+    }
+
+    /**
+     * Constructor for creating an empty TaskList.
+     */
+    public TaskList() {
+        this.todos = new ArrayList<>();
     }
 
     /**
@@ -69,6 +76,19 @@ public class TaskList implements Iterable<Task> {
      */
     public Task remove(int index) {
         return todos.remove(index);
+    }
+
+    public TaskList filter(List<String> segments) {
+        TaskList result = new TaskList();
+
+        for (Task task : this.todos) {
+            String name = task.getName();
+            if (segments.stream().allMatch(name::contains)) {
+                result.add(task);
+            }
+        }
+
+        return result;
     }
 
     /**

@@ -7,8 +7,8 @@ deadline return book
 deadline return book /by 2022-08-30T12:34:56
 deadline The significance of this date is left as an exercise for the reader /by 2006-01-02T15:04:05
 deadline This deadline has an invalid date /by nussu
-event project meeting
-event project meeting /at Mon 2-4pm
+event returning interns meeting
+event returning interns meeting /at Mon 2-4pm
 list
 mark 
 mark 1
@@ -22,6 +22,10 @@ mark 55
 unmark 0
 unmark 55
 list
+find
+find return
+find book return
+find    date      an        
 delete
 delete 2
 delete 0
