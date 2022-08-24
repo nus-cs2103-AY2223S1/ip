@@ -9,7 +9,7 @@ import java.util.ArrayList;
  *  @version v1
  */
 public class Parser {
-    TaskList currList;
+    private TaskList currList;
 
     public Parser(TaskList currList) {
         this.currList = currList;

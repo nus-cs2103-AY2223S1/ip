@@ -18,6 +18,7 @@ public class Storage {
     private static final String home = System.getProperty("user.home");
     private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "duke.txt");
     private static final File file = new File(FILE_PATH.toUri());
+
     public Storage(TaskList taskList) {
         this.currList = taskList;
     }
