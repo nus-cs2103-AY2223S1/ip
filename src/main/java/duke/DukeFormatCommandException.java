@@ -1,3 +1,5 @@
+package duke;
+
 public class DukeFormatCommandException extends DukeException {
     public DukeFormatCommandException(String taskType) {
         super(String.format("☹ OOPS!!! The description of %s cannot be empty.", taskType));

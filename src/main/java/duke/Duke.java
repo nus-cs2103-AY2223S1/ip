@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -28,6 +30,9 @@ public class Duke {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
+    private enum COMMAND {
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE;
+    }
     protected ArrayList<Task> taskList = new ArrayList<>();
     protected String saveFilePath = "data.txt";
     protected ZoneId timeZone = ZoneId.of("GMT+00:00");
@@ -62,46 +67,46 @@ public class Duke {
     protected void eventLoop() {
         Scanner sc = new Scanner(System.in);
         try {
-            // Event loop
+            // duke.Event loop
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
                 String[] fullCommand = input.split(" ", 2);
-                String command = fullCommand[0];
+                COMMAND command = COMMAND.valueOf(fullCommand[0].toUpperCase());
 
-                // Handle special commands
+                // Handle commands
                 switch (command) {
                 // Exit command
-                case "bye":
+                case BYE:
                     this.bye();
                     sc.close();
                     return;
                 // List all tasks
-                case "list":
+                case LIST:
                     this.listTasks();
                     break;
                 // Mark task as done
-                case "mark":
+                case MARK:
                     this.mark(fullCommand);
                     this.updateSaveFile();
                     break;
                 // Mark task as undone
-                case "unmark":
+                case UNMARK:
                     this.unmark(fullCommand);
                     this.updateSaveFile();
                     break;
-                case "delete":
+                case DELETE:
                     this.delete(fullCommand);
                     this.updateSaveFile();
                     break;
-                case "todo":
+                case TODO:
                     this.newTodo(fullCommand);
                     this.updateSaveFile();
                     break;
-                case "deadline":
+                case DEADLINE:
                     this.newDeadline(fullCommand);
                     this.updateSaveFile();
                     break;
-                case "event":
+                case EVENT:
                     this.newEvent(fullCommand);
                     this.updateSaveFile();
                     break;
