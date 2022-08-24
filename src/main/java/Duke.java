@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import java.time.LocalDate;
+
 public class Duke {
 
     public static String breaker = "____________________________________________________________\n";
@@ -54,10 +56,16 @@ public class Duke {
             while (s.hasNext()) {
                 String[] temp = s.nextLine().split("\\|");
                 count++;
-                processInput(temp[0]);
+                String text = temp[0];
+                if (temp.length > 2) { //of event or deadline
+                    text += "/by " + temp[2];
+                    System.out.println(text);
+                }
+                processInput(text);
                 if ("1".equals(temp[1])) {
                     mark(count);
                 }
+
             }
         } catch (FileNotFoundException e) {
             msg("invalid file name");
@@ -120,13 +128,17 @@ public class Duke {
                     if (text.length() <= commandWords[i].length() + 1) {
                         throw new EmptyMessageException();
                     }
+
+                    LocalDate d = null;
                     if (i > 3) {
-                        String[] temp = text.split("/");
-                        text = temp[0].substring(commandWords[i].length()+1) + "(" + temp[1] +")";
+                        String[] temp = text.split("/by");
+                        text = temp[0].strip().substring(commandWords[i].length()+1);
+                        d = LocalDate.parse(temp[1].strip());
                     } else {
                         text = text.substring(commandWords[i].length()+1);
                     }
-                    add(text, commandWords[i], Tasklist);
+
+                    add(text, commandWords[i], d, Tasklist);
                     break;
                 }
             }
@@ -145,8 +157,8 @@ public class Duke {
         System.out.println(breaker + s + "\n" + breaker);
     }
 
-    public static void add(String s, String type, ArrayList<Task> l) {
-        Task t = new Task(s, type);
+    public static void add(String s, String type, LocalDate date, ArrayList<Task> l) {
+        Task t = new Task(s, type, date);
         l.add(t);
         msg("Got it. I've added this task:\n " + "\t" + t + "\n" + "Now you have " + l.size() + " tasks in the list.");
     }

@@ -1,12 +1,17 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Task {
     protected String description;
     protected boolean isDone;
     protected enum Type {TODO, EVENT, DEADLINE}
     protected Type type;
+    protected LocalDate date;
 
-    public Task(String description, String type) {
+    public Task(String description, String type, LocalDate date) {
         this.description = description;
         this.isDone = false;
+        this.date = date;
         if ("todo".equals(type)) {
             this.type = Type.TODO;
         } else if ("event".equals(type)) {
@@ -58,10 +63,22 @@ public class Task {
     }
 
     public String toString() {
-        return "["+ this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description;
+        switch (this.type) {
+            case TODO:
+                return "["+ this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description;
+            default:
+                return "["+ this.getType() + "]" + "[" + this.getStatusIcon() + "] " + this.description
+                        + "(by " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        }
     }
 
     public String getData() {
-        return getTypeLong() + " " + this.description + "|" + this.getStatus();
+        switch (this.type) {
+            case TODO:
+                return getTypeLong() + " " + this.description + "|" + this.getStatus();
+            default:
+                return getTypeLong() + " " + this.description + "|" + this.getStatus() + "|" + this.date;
+        }
+
     }
 }
