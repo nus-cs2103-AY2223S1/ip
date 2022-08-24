@@ -75,6 +75,22 @@ public class Event extends Task{
     }
 
     /**
+     * Returns a string representation of the Event.
+     *
+     * @return string describing the event.
+     */
+    @Override
+    public String toString() {
+        if (!this.getStatus()) {
+            return this.getIndex() + ".[E][ ] " + this.getDescription() + " | at:" +
+                    dateAndTime + "/n";
+        } else {
+            return this.getIndex() + ".[E][X] " + this.getDescription() + " | at:" +
+                    dateAndTime + "/n";
+        }
+    }
+
+    /**
      * Outputs in the console the details of the event and informs users the task
      * has been deleted.
      */
