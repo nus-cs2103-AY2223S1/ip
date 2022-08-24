@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -8,6 +10,11 @@ public class TaskList {
         System.out.println("Got it. I've added this task:");
         System.out.println("\t" + toAdd);
         System.out.println("Now you have " + itemList.size() + " tasks in the list.");
+        updateFile();
+    }
+
+    public void silentAdd(Task toAdd) {
+        itemList.add(toAdd);
     }
 
     public void deleteTask(String stringDex) throws DukeException {
@@ -21,6 +28,7 @@ public class TaskList {
             System.out.println("Now you have " + itemList.size() + " tasks in the list.");
 
         }
+        updateFile();
     }
     @Override
     public String toString() {
@@ -37,11 +45,27 @@ public class TaskList {
         Task marked = itemList.get(index);
         marked.setStatusIcon(true);
         marked.updateStatus();
+        updateFile();
     }
 
     public void unmarkTask(int index) {
         Task marked = itemList.get(index);
         marked.setStatusIcon(false);
         marked.updateStatus();
+        updateFile();
+    }
+
+    public void updateFile() {
+        try {
+            FileWriter myWriter = new FileWriter("dukeHistory.txt");
+            for (int i = 0; i < itemList.size(); i++) {
+                myWriter.write(itemList.get(i).toFile());
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }

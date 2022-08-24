@@ -1,8 +1,12 @@
-import java.util.*;
+import java.util.Scanner;
+import java.io.File;  // Import the File class
+import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.FileNotFoundException;  // Import this class to handle errors
 
 public class Duke {
-    public static void main(String[] args) {
-        TaskList itemList = new TaskList();
+    private static TaskList itemList = new TaskList();
+
+    public static void runDuke() {
         Scanner sc= new Scanner(System.in);
         int index;
         System.out.print("Hello! I'm Duke \nWhat can I do for you? \n");
@@ -82,7 +86,67 @@ public class Duke {
                 command = sc.nextLine();
             }
         }
+    }
 
+    public static void readFile(String fileLocation) throws FileNotFoundException {
+            File dukeHistory = new File(fileLocation);
+            Scanner myReader = new Scanner(dukeHistory);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                addToList(data);
+            }
+            myReader.close();
+    }
+
+    public static void addToList(String taskItem) {
+        String[] details = taskItem.split("[|]");
+        Task toAdd = new ToDo("");
+        switch (details[0]) {
+            case "T":
+                toAdd = new ToDo(details[2]);
+                break;
+            case "D":
+                toAdd = new Deadline(details[2], details[3]);
+                break;
+            case "E":
+                toAdd = new Event(details[2], details[3]);
+                break;
+        }
+
+        switch (details[1]) {
+            case "0":
+                toAdd.setStatusIcon(false);
+                break;
+            case "1":
+                toAdd.setStatusIcon(true);
+        }
+        itemList.silentAdd(toAdd);
+    }
+
+    public static void makeFile() {
+        try {
+            File blankFile = new File("dukeHistory.txt");
+            if (blankFile.createNewFile()) {
+                System.out.println("File created: " + blankFile.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            readFile("dukeHistory.txt");
+        } catch (FileNotFoundException e) {
+            //make file
+            System.out.println("An error occurred.");
+            makeFile();
+        } finally {
+            runDuke();
+        }
 
     }
 }
