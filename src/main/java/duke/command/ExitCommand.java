@@ -16,4 +16,9 @@ public class ExitCommand extends Command {
     public String getCommand() {
         return "exit";
     }
+
+    @Override
+    public String toString() {
+        return "exit";
+    }
 }

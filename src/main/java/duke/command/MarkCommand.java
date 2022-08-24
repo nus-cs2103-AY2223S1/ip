@@ -29,4 +29,9 @@ public class MarkCommand extends Command {
     public String getCommand() {
         return "mark";
     }
+
+    @Override
+    public String toString() {
+        return "mark " + indexString + " " + isComplete;
+    }
 }

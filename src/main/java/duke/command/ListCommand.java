@@ -15,4 +15,9 @@ public class ListCommand extends Command {
     public String getCommand() {
         return "list";
     }
+
+    @Override
+    public String toString() {
+        return "list";
+    }
 }

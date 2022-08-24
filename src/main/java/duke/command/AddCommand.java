@@ -41,4 +41,9 @@ public class AddCommand extends Command {
     public String getCommand() {
         return "add";
     }
+
+    @Override
+    public String toString() {
+        return "add " + taskType + " " + description + " " + date;
+    }
 }

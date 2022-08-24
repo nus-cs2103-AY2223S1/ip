@@ -24,4 +24,9 @@ public class DeleteCommand extends Command {
     public String getCommand() {
         return "delete";
     }
+
+    @Override
+    public String toString() {
+        return "delete " + indexString;
+    }
 }
