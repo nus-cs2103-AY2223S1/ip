@@ -7,8 +7,6 @@ public class Deadline extends Task{
     private String time;
     private String straightLine = "  ----------------------------------------------------------------------------------";
 
-    private String random = "random";
-
     /**
      * A constructor to initialize a Deadline object.
      *
@@ -79,11 +77,11 @@ public class Deadline extends Task{
     @Override
     public String toString() {
         if (!this.getStatus()) {
-            return this.getIndex() + ".[D][ ] " + this.getDescription() + " | by:" +
-                    date;
+            return this.getIndex() + ".[D][ ] " + this.getDescription() + " | by: " +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time;
         } else {
-            return this.getIndex() + ".[D][X] " + this.getDescription() + " | by:" +
-                    date;
+            return this.getIndex() + ".[D][X] " + this.getDescription() + " | by: " +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time;
         }
     }
 

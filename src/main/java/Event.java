@@ -83,10 +83,10 @@ public class Event extends Task{
     public String toString() {
         if (!this.getStatus()) {
             return this.getIndex() + ".[E][ ] " + this.getDescription() + " | at:" +
-                    dateAndTime + "/n";
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + "/n";
         } else {
             return this.getIndex() + ".[E][X] " + this.getDescription() + " | at:" +
-                    dateAndTime + "/n";
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + "/n";
         }
     }
 
