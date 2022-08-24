@@ -1,8 +1,8 @@
 public class ParsedInput {
-    private String command = "";
-    private String task = "";
-    private String during = "";
-    private String time = "";
+    private String command;
+    private String task;
+    private String during;
+    private String time;
     private int listIndex;
 
     public ParsedInput(String command, String task, String during, String time) {
