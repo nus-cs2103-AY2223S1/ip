@@ -1,21 +1,21 @@
-package TaskItems;
+package JennyTasks;
 
 import Exceptions.TodoTaskException;
 
 /**
- * A TodoTask to complete.
+ * A TodoJennyTask to complete.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
-public class TodoTask extends TaskItem {
+public class TodoJennyTask extends JennyTask {
 
     /**
-     * Constructor of a TodoTask.
+     * Constructor of a TodoJennyTask.
      * @param description description of the task.
      */
-    public TodoTask(String description) {
+    public TodoJennyTask(String description) {
         super(description);
         if (description.equals("")) {
             throw new TodoTaskException("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -23,8 +23,7 @@ public class TodoTask extends TaskItem {
     }
 
     /**
-     * Returns the description of the task as a string.
-     * @return the description of the task as a string.
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

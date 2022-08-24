@@ -1,21 +1,21 @@
-package TaskItems;
+package JennyTasks;
 
 /**
- * An abstract class TaskItem that serves as a foundation for all other Tasks.
+ * An abstract class {@code JennyTask} that serves as a foundation for all other tasks.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
-public abstract class TaskItem {
-    private final String description;
-    private boolean isDone;
+public abstract class JennyTask {
+    protected final String description;
+    protected boolean isDone;
 
     /**
-     * Constructor of a TaskItem.
-     * @param description description of the task.
+     * Constructor of a {@code JennyTask}.
+     * @param description Description of the task.
      */
-    public TaskItem(String description) {
+    public JennyTask(String description) {
         this.description = description;
         this.isDone = false;
     }
@@ -34,6 +34,17 @@ public abstract class TaskItem {
      */
     public void isDone(boolean isDone) {
         this.isDone = isDone;
+    }
+
+    /**
+     * Returns a comma delimited {@code String} containing data of the {@code JennyTask}.
+     * @return a comma delimited {@code String}.
+     */
+    public String save() {
+        return String.format("%s,%s,%s",
+                this.getClass().getSimpleName(),
+                this.isDone,
+                this.description);
     }
 
     /**
