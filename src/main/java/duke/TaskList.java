@@ -32,11 +32,6 @@ public class TaskList {
         this.tasks.get(index).setComplete(false);
     }
 
-    public TaskList filter(String searchTerm) {
-        // TODO
-        return new TaskList();
-    }
-
     @Override
     public String toString() {
         // TODO
