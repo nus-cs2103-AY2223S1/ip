@@ -6,7 +6,7 @@ public class Deadline extends Task {
     protected LocalDateTime date;
     private final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss");
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws DukeException {
         super(description);
         this.date = dateTimeParser(by);
     }
@@ -26,14 +26,18 @@ public class Deadline extends Task {
         return this.date.format(this.OUTPUT_FORMAT);
     }
 
-    public static LocalDateTime dateTimeParser(String time) {
-        String[] timing = time.split(" ", 2);
-        String[] dayMonYr = timing[0].split("/", 3);
-        int hr = Integer.valueOf(timing[1].substring(0,2));
-        int minute = Integer.valueOf(timing[1].substring(2));
-        return LocalDateTime.of(Integer.valueOf(dayMonYr[2]),
-                                Integer.valueOf(dayMonYr[1]),
-                                Integer.valueOf(dayMonYr[0]),
-                                hr, minute);
+    public static LocalDateTime dateTimeParser(String time) throws DukeException {
+        try {
+            String[] timing = time.split(" ", 2);
+            String[] dayMonYr = timing[0].split("/", 3);
+            int hr = Integer.valueOf(timing[1].substring(0, 2));
+            int minute = Integer.valueOf(timing[1].substring(2));
+            return LocalDateTime.of(Integer.valueOf(dayMonYr[2]),
+                    Integer.valueOf(dayMonYr[1]),
+                    Integer.valueOf(dayMonYr[0]),
+                    hr, minute);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new DukeException("Invalid deadline input");
+        }
     }
 }

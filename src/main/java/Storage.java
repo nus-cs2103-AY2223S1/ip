@@ -8,23 +8,22 @@ import java.time.format.DateTimeFormatter;
 
 public class Storage {
 
-    public static void saveFile(ArrayList<Task> arr) {
+    private String filePath;
+
+    public Storage(String filepath) {
+        this.filePath = filepath;
+    }
+
+    public void saveFile(ArrayList<String> arr) {
         String fileName = "tasks.txt";
         FileWriter fileWriter = null;
 
         try {
-            File file = new File(fileName);
+            File file = new File(filePath);
             fileWriter = new FileWriter(file);
-            if (!arr.isEmpty()) {
-                for (int i = 0; i < arr.size(); i++) {
-                    Task tsk = arr.get(i);
-                    String type = tsk.toString().substring(1,2);
-                    if (type.equals("T")) {
-                        fileWriter.write(String.format("%s ~ %s ~ %s\n", type, tsk.getStatusIcon(), tsk.getDescription()));
-                    } else {
-                        fileWriter.write(String.format("%s ~ %s ~ %s ~ %s\n", type, tsk.getStatusIcon(), tsk.getDescription(), tsk.getDate()));
-                    }
-                }
+
+            for (int i = 0; i < arr.size(); i++) {
+                fileWriter.write(arr.get(i));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -40,13 +39,13 @@ public class Storage {
 
     }
 
-    public static ArrayList<Task> loadFile() throws DukeException {
+    public TaskList loadFile() throws DukeException {
         BufferedReader reader = null;
-        ArrayList<Task> arr = new ArrayList<>();
+        TaskList arr = new TaskList(new ArrayList<>());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss");
 
         try {
-            reader = new BufferedReader(new FileReader("tasks.txt"));
+            reader = new BufferedReader(new FileReader(filePath));
             String line = reader.readLine();
             while (line != null) {
                 String[] parse = line.split(" ~ ");
@@ -63,7 +62,7 @@ public class Storage {
                 if (parse[1].equals("X")) {
                     tsk.markAsDone();
                 }
-                arr.add(tsk);
+                arr.addTask(tsk);
                 line = reader.readLine();
             }
         } catch (Exception e) {
