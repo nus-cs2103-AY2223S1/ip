@@ -5,9 +5,9 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 public class MarkCommand extends Command {
-    private int t;
-
     public static final String COMMAND_WORD = "mark";
+
+    private int t;
 
     public MarkCommand(int t) {
         this.t = t;

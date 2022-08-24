@@ -1,17 +1,17 @@
 package duke.task;
 
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 import duke.storage.Storage;
 import duke.ui.Ui;
 
 public class TaskList {
-    private ArrayList<Task> tasks = new ArrayList();
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     public TaskList() {}
 
@@ -83,7 +83,8 @@ public class TaskList {
                 } else if (tasks.size() == 1) {
                     System.out.println("  you now have 1 task remaining in the list. type list to see it!");
                 } else {
-                    System.out.println("  now you have " + tasks.size() + " tasks in the list. type list to view them.");
+                    System.out.println(
+                            "  now you have " + tasks.size() + " tasks in the list. type list to view them.");
                 }
             } catch (IndexOutOfBoundsException e) {
                 System.out.println(Ui.sadFace + "please enter an integer from 1 - " + tasks.size());
@@ -142,7 +143,7 @@ public class TaskList {
         }
     }
 
-    public void writeToFile(Storage storage) {
+    public void writeToFile(Storage storage) throws IOException {
         int len = tasks.size();
         String[] taskDescriptions = new String[len];
         for (int i = 0; i < len; i++) {

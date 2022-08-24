@@ -4,10 +4,11 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Event extends Task{
-    String preposition;
-    LocalDateTime startDateTime, endDateTime;
-    LocalTime endTime;
+public class Event extends Task {
+    private String preposition;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
+    private LocalTime endTime;
 
     public Event(String description, String preposition, LocalDateTime startDateTime, LocalDateTime endDateTime) {
         super(description);

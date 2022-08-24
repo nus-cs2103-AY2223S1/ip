@@ -3,8 +3,8 @@ package duke.storage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Storage {
     private File data = new File("src/main/data/");
@@ -33,14 +33,11 @@ public class Storage {
 
     }
 
-    public void save(String[] taskDescriptions) {
-        try {
-            FileWriter fw = new FileWriter("src/main/data/list.txt");
-            for (String task : taskDescriptions) {
-                fw.write(task);
-            }
-            fw.close();
-        } catch (IOException e) {
+    public void save(String[] taskDescriptions) throws IOException {
+        FileWriter fw = new FileWriter("src/main/data/list.txt");
+        for (String task : taskDescriptions) {
+            fw.write(task);
         }
+        fw.close();
     }
 }

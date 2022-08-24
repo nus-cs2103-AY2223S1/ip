@@ -1,8 +1,8 @@
 package duke.ui;
 
-import duke.task.Task.TaskType;
-
 import java.util.Scanner;
+
+import duke.task.Task.TaskType;
 
 public class Ui {
     public static String start = '\u2619' + " ";
@@ -80,6 +80,11 @@ public class Ui {
 
     public void invalidInput() {
         System.out.println(sadFace + "sorry, i don't know what that means :(");
+    }
+
+    public void saveFail() {
+        System.out.println(
+                start + "bye! i was unable to save your list to the hard drive, but i hope to see you again soon! :)");
     }
 
     public void goodbye() {

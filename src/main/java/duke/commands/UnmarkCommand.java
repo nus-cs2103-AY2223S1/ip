@@ -4,10 +4,10 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-public class UnmarkCommand extends Command{
-    private int t;
-
+public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
+
+    private int t;
 
     public UnmarkCommand(int t) {
         this.t = t;

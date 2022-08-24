@@ -5,8 +5,8 @@ import java.io.IOException;
 import duke.commands.Command;
 import duke.parser.Parser;
 import duke.storage.Storage;
+import duke.task.TaskList;
 import duke.ui.Ui;
-import duke.task.*;
 
 public class Duke {
     private Storage storage;

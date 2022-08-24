@@ -1,16 +1,16 @@
 package duke.commands;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
 public class SearchCommand extends Command {
-    LocalDate date;
-
     public static final String COMMAND_WORD = "search";
+
+    private LocalDate date;
 
     public SearchCommand(LocalDate date) throws DateTimeParseException {
         this.date = date;
