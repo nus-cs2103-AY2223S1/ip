@@ -1,11 +1,79 @@
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static ArrayList<Task> tasks;
+    private static File dukeFile = new File("data/duke.txt");
 
     public static void tedResponse(String filler) {
         System.out.println("~ |._.| ~\n" + filler + "~\n");
+    }
+
+    public static void writeToFile() {
+        try {
+            FileWriter fw = new FileWriter("data/duke.txt");
+            for (int i = 0; i < tasks.size(); i++) {
+                fw.write(tasks.get(i).toFileString());
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static ArrayList<Task> loadFromFile() {
+        ArrayList<Task> temp = new ArrayList<>();
+        Scanner sc;
+
+        if (dukeFile.exists()) {
+            try {
+                sc = new Scanner(dukeFile);
+
+                while (sc.hasNextLine()) {
+                    String[] st = sc.nextLine().split(" \\| ");
+                    boolean isTaskDone;
+
+                    if (st[1].equals("1")) {
+                        isTaskDone = true;
+                    } else {
+                        isTaskDone = false;
+                    }
+
+                    switch (st[0]) {
+                        case "T":
+                            temp.add(new Todo(st[2], isTaskDone));
+                            break;
+                        case "D":
+                            temp.add(new Deadline(st[2], isTaskDone, st[3]));
+                            break;
+                        case "E":
+                            temp.add(new Event(st[2], isTaskDone, st[3]));
+                            break;
+                        default:
+                            break;
+
+                    }
+                }
+                sc.close();
+            } catch (FileNotFoundException e) {
+                System.out.println(e.getMessage());
+            }
+        } else {
+            try {
+                File dataFolder = new File("data");
+                dataFolder.mkdirs();
+                dukeFile.createNewFile();
+            } catch (SecurityException e) {
+                System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return temp;
     }
 
     public static void main(String[] args) {
@@ -15,6 +83,8 @@ public class Duke {
         System.out.println(banner);
         System.out.println("Hello! I'm Ted and I'm here to help you keep track of your tasks |._.|\n"
                 + "How can I assist you today?\n");
+
+        tasks = loadFromFile();
 
         Scanner sc = new Scanner(System.in).useDelimiter("\\n");
 
@@ -49,6 +119,7 @@ public class Duke {
                     Task currTask = tasks.get(currTaskNumber - 1);
                     currTask.markDone();
                     tedResponse("Great! Task done:\n" + currTask + "\n");
+                    writeToFile();
 
                 } else if (action.equals("unmark")) {
                     if (temp.length == 1) {
@@ -59,6 +130,7 @@ public class Duke {
                     Task currTask = tasks.get(currTaskNumber - 1);
                     currTask.unmarkDone();
                     tedResponse("Aw :( Task undone:\n" + currTask + "\n");
+                    writeToFile();
 
                 } else if (action.equals("delete")) {
                     if (temp.length == 1) {
@@ -70,6 +142,7 @@ public class Duke {
                     tasks.remove(currTaskNumber - 1);
                     tedResponse("Done! Task deleted:\n" + currTask + "\nremaining task count: "
                             + tasks.size() + "\n");
+                    writeToFile();
 
                 } else if (action.equals("todo")) {
                     if (temp.length == 1) {
@@ -80,6 +153,7 @@ public class Duke {
                     tasks.add(currTask);
                     tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
                             + tasks.size() + "\n");
+                    writeToFile();
 
                 } else if (action.equals("deadline")) {
                     if (temp.length == 1) {
@@ -94,6 +168,7 @@ public class Duke {
                     tasks.add(currTask);
                     tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
                             + tasks.size() + "\n");
+                    writeToFile();
 
                 } else if (action.equals("event")) {
                     if (temp.length == 1) {
@@ -108,6 +183,7 @@ public class Duke {
                     tasks.add(currTask);
                     tedResponse("added to tasklist:\n" + currTask + "\ntask count: "
                             + tasks.size() + "\n");
+                    writeToFile();
 
                 } else {
                     throw new DukeException("Oh no, I don't understand T_T\n");
