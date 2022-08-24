@@ -51,6 +51,8 @@ public class Parser {
             Task task = taskList.getTask(index);
             taskList.remove(index);
             ui.showRemoved(task, taskList.getSize());
+        } else if (command[0].equalsIgnoreCase("find")) {
+            ui.showResults(taskList.search(command[1]));
         } else {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }

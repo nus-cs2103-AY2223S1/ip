@@ -31,6 +31,10 @@ public class Task implements Serializable {
         isDone = false;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
