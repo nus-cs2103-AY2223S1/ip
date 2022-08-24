@@ -4,8 +4,8 @@ public class Deadline extends Task {
      * @param description The details of the task.
      * @param time The time which the task must be done by.
      */
-    public Deadline(String description, String time) {
-        super(description);
+    public Deadline(String description, boolean isDone, String time) {
+        super(description, isDone);
         this.time = time;
     }
 

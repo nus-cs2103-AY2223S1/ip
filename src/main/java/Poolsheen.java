@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.function.Predicate;
 import java.util.Scanner;
 
 /**
@@ -8,21 +13,39 @@ import java.util.Scanner;
  */
 
 public class Poolsheen {
-    public static final String startReply = "      ";
+    public static void main(String[] args) {
+        File saveFile = new File(SAVE_FILE_PATH);
+        try {
+            parseFile(saveFile);
+        } catch (FileNotFoundException e) {
+            System.out.println("No save file was found. Creating a new save file.");
+            saveFile = createFile(SAVE_FILE_PATH);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(Poolsheen.WELCOME_MESSAGE);
+        Poolsheen ps = new Poolsheen(saveFile);
+        ps.run();
+        System.out.println(Poolsheen.END_MESSAGE);
+    }
 
-    private static final String logo = "\n" +
+    private static final String SAVE_FILE_PATH = "SAVE.TXT";
+
+    public static final String START_REPLY = "      ";
+
+    private static final String LOGO = "\n" +
             "POOLSHEEN";
 
-    private static final String welcomeMessage = "Hello from" + logo + "\n" +
+    private static final String WELCOME_MESSAGE = "Hello from" + LOGO + "\n" +
             "Type something in for Poolsheen to respond to you:";
 
-    private static final String lastReply = "meow *_*";
+    private static final String LAST_REPLY = "meow *_*";
 
-    private static final String horizontalLine = "---------------";
+    private static final String HORIZONTAL_LINE = "---------------";
 
-    private static final String exitMessage = "MeoAww... See you next time :(";
+    private static final String EXIT_MESSAGE = "MeoAww... See you next time :(";
 
-    private static final String endMessage = "THE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
+    private static final String END_MESSAGE = "THE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
 
     /** Whether if this poolsheen object has stopped running */
     private boolean hasExited;
@@ -33,25 +56,34 @@ public class Poolsheen {
     /** The scanner object which this poolsheen uses */
     private Scanner scanner;
 
-    /** The list of tasks that the poolsheen object has */
-    private ArrayList<Task> listOfTasks;
+    /** The list of tasks that the Poolsheen class has */
+    private static ArrayList<Task> listOfTasks = new ArrayList<>(100);
+
+    /** The save file that the poolsheen object refers to */
+    private File saveFile;
 
     /**
      * A private constructor to initialise the Poolsheen object.
      */
-    private Poolsheen() {
-        this.listOfTasks = new ArrayList<>(100);
+    private Poolsheen(File saveFile) {
         this.hasExited = false;
         this.userInput = "";
         this.scanner = new Scanner(System.in);
+        this.saveFile = saveFile;
     }
 
+    //The Enum variables here are all caps so that commands
+    //can be processed even if they are caps-locked or not.
+
+    /**
+     * Types of commands which can be processed.
+     */
     private enum Command {
         BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT
     }
 
     /**
-     * The first method to be run for Poolsheen to listen to our user.
+     * Allows Poolsheen to listen to our user.
      */
     private void run() {
         while (!this.hasExited) {
@@ -66,7 +98,6 @@ public class Poolsheen {
                 }
                 String command = arl.get(0);
                 arl.remove(0);
-
                 switch (Enum.valueOf(Command.class, command.toUpperCase())) {
                     case BYE:
                         if (!arl.isEmpty()) {
@@ -108,8 +139,8 @@ public class Poolsheen {
                             throw new IncompleteCommandException(this.userInput, "todo", "The description of a todo cannot be empty");
                         } else {
                             String descTD = String.join(" ", arl);
-                            ToDo t = new ToDo(descTD);
-                            this.listOfTasks.add(t);
+                            ToDo t = new ToDo(descTD, false);
+                            Poolsheen.listOfTasks.add(t);
                             this.say("Poolsheen now remembers: " + descTD);
                         }
                         break;
@@ -124,8 +155,8 @@ public class Poolsheen {
                             if (descD.length() == 0 || timeD.length() == 0) {
                                 throw new IncompleteCommandException(this.userInput, "deadline", "deadline commands must specify a description and time");
                             } else {
-                                Deadline d = new Deadline(descD, timeD);
-                                this.listOfTasks.add(d);
+                                Deadline d = new Deadline(descD, false, timeD);
+                                Poolsheen.listOfTasks.add(d);
                                 this.say("Poolsheen now remembers: " + descD);
                             }
                         }
@@ -141,8 +172,8 @@ public class Poolsheen {
                             if (descE.length() == 0 || timeE.length() == 0) {
                                 throw new IncompleteCommandException(this.userInput, "event", "event commands must specify a description and time");
                             } else {
-                                Event e = new Event(descE, timeE);
-                                this.listOfTasks.add(e);
+                                Event e = new Event(descE, false, timeE);
+                                Poolsheen.listOfTasks.add(e);
                                 this.say("Poolsheen now remembers: " + descE);
                             }
                         }
@@ -150,8 +181,9 @@ public class Poolsheen {
                     default:
                         throw new UnknownCommandException(this.userInput);
                 }
+                update();
             }  catch (UnknownCommandException e) {
-                this.say(e.toString() + "\n" + Poolsheen.startReply + "Please try again!");
+                this.say(e.toString() + "\n" + Poolsheen.START_REPLY + "Please try again!");
             } catch (IncompleteCommandException e) {
                 this.say(e.toString());
             } catch (IndexOutOfBoundsException e) {
@@ -159,7 +191,9 @@ public class Poolsheen {
             } catch (NumberFormatException e) {
                 this.say("Poolsheen believes this command needs an integer. Please try again!");
             } catch(IllegalArgumentException e) {
-                this.say("Poolsheen has never seen this command and is confused :(\n" + Poolsheen.startReply + "Please try again!");
+                this.say("Poolsheen has never seen this command and is confused :(\n" + Poolsheen.START_REPLY + "Please try again!");
+            } catch(IOException e) {
+                this.say("IOException occurred " + e.getMessage());
             } catch (Exception e) {
                 System.out.println("An unexpected error has occurred and the program will end.");
                 System.out.println("Error is: " + e.toString());
@@ -169,45 +203,70 @@ public class Poolsheen {
     }
 
     /**
-     * The last method to be run for Poolsheen to stop listening to our user.
+     * Cleans up leftover code before Poolsheen stops listening to our user.
      */
     private void exit() {
         this.hasExited = true;
-        this.say(Poolsheen.exitMessage);
+        this.say(Poolsheen.EXIT_MESSAGE);
+    }
+
+    /**
+     * Returns a string of the list of tasks that Poolsheen remembers.
+     */
+    private String getListOfTasks() {
+        if (Poolsheen.listOfTasks.isEmpty()) {
+            return "";
+        } else {
+            String displayStr = "";
+            for (int i = 0; i < Poolsheen.listOfTasks.size(); i++) {
+                int currPos = i + 1;
+                Task t = Poolsheen.listOfTasks.get(i);
+                if (t != null) {
+                    String line = currPos + ". " + t.toString();
+                    displayStr += Poolsheen.START_REPLY + line;
+                    if (currPos < Poolsheen.listOfTasks.size()) {
+                        displayStr += "\n";
+                    }
+                }
+            }
+            return displayStr;
+        }
     }
 
     /**
      * Prints the list of tasks this Poolsheen remembers.
      */
     private void displayList() {
-        if (this.listOfTasks.isEmpty()) {
+        if (Poolsheen.listOfTasks.isEmpty()) {
             this.say("Poolsheen thinks back... " +
                     "and remembers you said nothing :(");
         } else {
             String displayStr = "Poolsheen thinks back... " +
-                    "and remembers you said:";
-            int currPos = 1;
-            for (Task task : this.listOfTasks) {
-                if (task != null) {
-                    String line = currPos + ". " + task.toString();
-                    displayStr += "\n" + Poolsheen.startReply + line;
-                    currPos += 1;
-                }
-            }
-            this.say(displayStr);
+                    "and remembers you said:\n";
+            this.say(displayStr + this.getListOfTasks());
         }
     }
 
     /**
-     * A method to format and print a message by Poolsheen.
+     * Prints a formatted message by Poolsheen.
      * @param message The message to be printed.
      */
     private void say(String message) {
-        System.out.println(Poolsheen.horizontalLine + "\n" +
-                Poolsheen.startReply + message + "\n" +
-                Poolsheen.startReply +
-                Poolsheen.lastReply +
-                "\n" + Poolsheen.horizontalLine);
+        System.out.println(Poolsheen.HORIZONTAL_LINE + "\n" +
+                Poolsheen.START_REPLY + message + "\n" +
+                Poolsheen.START_REPLY +
+                Poolsheen.LAST_REPLY +
+                "\n" + Poolsheen.HORIZONTAL_LINE);
+    }
+
+
+    /**
+     * Updates the contents of the save file.
+     */
+    private void update() throws IOException{
+        FileWriter fw = new FileWriter(SAVE_FILE_PATH);
+        fw.write(this.getListOfTasks());
+        fw.close();
     }
 
     /**
@@ -215,10 +274,10 @@ public class Poolsheen {
      * @param pos The index position of the task in the list.
      */
     private void mark(int pos) {
-         Task selectedTask = this.listOfTasks.get(pos-1);
-         selectedTask.markAsDone();
-         this.say("Poolsheen thinks you are done with "
-                 + selectedTask.description);
+        Task selectedTask = Poolsheen.listOfTasks.get(pos-1);
+        selectedTask.markAsDone();
+        this.say("Poolsheen thinks you are done with "
+                + selectedTask.description);
     }
 
     /**
@@ -226,7 +285,7 @@ public class Poolsheen {
      * @param pos The index position of the task in the list.
      */
     private void unmark(int pos) {
-        Task selectedTask = this.listOfTasks.get(pos-1);
+        Task selectedTask = Poolsheen.listOfTasks.get(pos-1);
         selectedTask.markAsNotDone();
         this.say("Poolsheen thinks you are not done with "
                 + selectedTask.description);
@@ -237,15 +296,101 @@ public class Poolsheen {
      * @param pos The index+1 position of the task that is to be deleted.
      */
     private void deleteTask(int pos) {
-        Task t = this.listOfTasks.get(pos - 1);
-        this.listOfTasks.remove(pos-1);
-        this.say("Poolsheen has forgot: " + t.description + " and you now have " + this.listOfTasks.size() + " tasks left");
+        Task t = Poolsheen.listOfTasks.get(pos - 1);
+        Poolsheen.listOfTasks.remove(pos-1);
+        this.say("Poolsheen has forgot: " + t.description + " and you now have " + Poolsheen.listOfTasks.size() + " tasks left");
     }
 
-    public static void main(String[] args) {
-        Poolsheen ps = new Poolsheen();
-        System.out.println(ps.welcomeMessage);
-        ps.run();
-        System.out.println(ps.endMessage);
+    /**
+     * Creates a new save.txt file.
+     * @param filePath The relative path which the file will be created.
+     * @return The File object which refers to the save.txt file.
+     */
+    private static File createFile(String filePath) {
+        File f = new File(filePath);
+        try {
+            if (f.createNewFile()) {
+                System.out.println("New Save File created");
+            } else {
+                System.out.println("File already exists");
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return f;
+    }
+
+    /**
+     * Parses the contents of the save.txt to fill up the list of tasks.
+     * @param f The file which is being parsed.
+     * @throws IOException Thrown if there is an error with parsing the file.
+     */
+    private static void parseFile(File f) throws IOException {
+        if (f.exists()) {
+            System.out.println("Poolsheen has loaded a save file");
+            Scanner s = new Scanner(f);
+            while (s.hasNextLine()) {
+                String[] arr = s.nextLine().split(" ");
+                ArrayList<String> arl = new ArrayList<>();
+                for (String str : arr) {
+                    arl.add(str);
+                }
+                Predicate<String> pred = (x) -> x.equals("");
+                arl.removeIf(pred);
+                //Uncomment to see how the file contents are parsed as arrays.
+                //System.out.println(arl.toString());
+                String taskType = arl.get(1).substring(1, 2);
+                boolean isDone;
+                if (arl.get(2).equals("[X]")) {
+                    isDone = true;
+                } else {
+                    isDone = false;
+                }
+                String taskDesc;
+                String time;
+                switch (taskType.toUpperCase()) {
+                case "T":
+                    taskDesc = String.join(" ", arl.subList(3, arl.size()));
+                    Poolsheen.listOfTasks.add(new ToDo(taskDesc, isDone));
+                    break;
+                case "D":
+                    if (!arl.contains("(by:")) {
+                        throw new IOException("Error with Deadline Task");
+                    }
+                    int byIndex = arl.indexOf("(by:");
+                    taskDesc = String.join(" ", arl.subList(3, byIndex));
+                    time = String.join(" ", arl.subList(byIndex+1, arl.size()));
+                    time = time.substring(0, time.length()-1);
+                    Poolsheen.listOfTasks.add(new Deadline(taskDesc, isDone, time));
+                    break;
+                case "E":
+                    if (!arl.contains("(at:")) {
+                        throw new IOException("Error with Event Task");
+                    }
+                    int atIndex = arl.indexOf("(at:");
+                    taskDesc = String.join(" ", arl.subList(3, atIndex));
+                    time = String.join(" ", arl.subList(atIndex+1, arl.size()));
+                    time = time.substring(0, time.length()-1);
+                    Poolsheen.listOfTasks.add(new Event(taskDesc, isDone, time));
+                    break;
+                default:
+                    throw new IOException("Error with loading");
+                }
+            }
+        } else {
+            System.out.println("Poolsheen was unable to find a save file to load");
+        }
+    }
+
+    /**
+     * Prints out all contents of the file.
+     * @param f The file which is being referred to.
+     * @throws FileNotFoundException Thrown if the save.txt file is not found.
+     */
+    private static void printFile(File f) throws FileNotFoundException {
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            System.out.println(s.nextLine());
+        }
     }
 }

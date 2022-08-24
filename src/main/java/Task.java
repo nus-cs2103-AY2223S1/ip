@@ -16,29 +16,29 @@ public abstract class Task {
 
     /**
      * Returns the status of the task.
-     * @return A string of either "X" or " ".
+     * @return A string of either "X" or "-".
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : "-"); // mark done task with X
     }
 
     /**
-     * A setter method to set the task as done.
+     * Sets the task as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * A setter method to set the task as not done.
+     * Sets the task as not done.
      */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
-    protected Task(String description) {
+    protected Task(String description, boolean isDone) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     @Override
