@@ -6,6 +6,11 @@ public class Task {
         this.name = name;
     }
 
+    Task(String name, boolean status) {
+        this.name = name;
+        this.status = status;
+    }
+
     // Sets status of task at index to be true
     public void mark() {
         String message;
@@ -39,5 +44,15 @@ public class Task {
     public String toString() {
         String mark = status ? "X" : " ";
         return String.format("[%s] %s", mark, name);
+    }
+
+    //Returns status of task
+    public boolean getStatus() {
+        return status;
+    }
+
+    //Returns name of task
+    public String getName() {
+        return name;
     }
 }

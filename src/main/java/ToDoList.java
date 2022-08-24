@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class ToDoList {
     ArrayList<Task> list;
@@ -63,7 +64,7 @@ public class ToDoList {
 
     /* Deletes a Task
      *
-     * @param index
+     * @param index index to delete
      * @Throws IndexOutOfBoundsException
      */
     public void delete(int index) throws IndexOutOfBoundsException {
@@ -76,5 +77,65 @@ public class ToDoList {
             System.out.println("\tNoted. I've removed this task:");
             System.out.println("\t  " + tempTask);
         }
+    }
+
+    /*
+     * Loads all the saved tasks into list
+     * 
+     * @param txtFile list of tasks in String 
+     */
+    public void addTaskFromFile(List<String> txtFile) {
+        if (txtFile.isEmpty()) {
+            return;
+        }
+
+        for (String line : txtFile) {
+            String[] details = line.split(" # ");
+            String taskType = details[0];
+            boolean status = Boolean.parseBoolean(details[1]);
+            String taskName = details[2];
+            String eventInfo = details.length > 3 ? details[3] : "";
+
+            Task task;
+
+            switch (taskType) {
+            case "T": 
+                task = new ToDos(taskName, status);
+                list.add(task);
+                break;
+            case "D":
+                task = new Deadline(taskName, eventInfo, status);
+                list.add(task);
+                break;
+            case "E":
+                task = new Event(taskName, eventInfo, status);
+                list.add(task);
+                break;
+            }
+        }
+    }
+
+    
+    /* Returns todolist formatted for saving in Duke.txt file in hard disk
+     * 
+     * @return string of tasks in todolist
+     */
+    public String createFile() {
+        String result = "";
+        for (Task t : list) {
+            if (t instanceof ToDos) {
+                ToDos td = (ToDos) t;
+                result += String.format("T # %b # %s\n", td.getStatus(), td.getName());
+            } 
+            else if (t instanceof Deadline){
+                Deadline d = (Deadline) t;
+                result += String.format("D # %b # %s # %s\n", d.getStatus(), d.getName(), d.getDeadline());
+            }
+            else if (t instanceof Event) {
+                Event e = (Event) t;
+                result += String.format("E # %b # %s # %s\n", e.getStatus(), e.getName(), e.getTime());
+            }
+        }
+        return result;
     }
 }
