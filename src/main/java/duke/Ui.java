@@ -39,4 +39,14 @@ public class Ui {
     public static void printDukeError(DukeException e) {
         System.out.println(e.getMessage());
     }
+
+    /**
+     * Prints the list of filtered tasks.
+     *
+     * @param filteredTasks the filtered tasks.
+     */
+    public static void printFilteredTasks(TaskList filteredTasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        filteredTasks.printSelf();
+    }
 }

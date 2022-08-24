@@ -96,6 +96,15 @@ public class Parser {
             parsed = splitted;
             break;
 
+        case "find":
+            //No keyword provided
+            if (splitted.length < 2) {
+                throw new DukeException("Please provide a keyword");
+            }
+            //parsed is ["command", "task"]
+            parsed = splitted;
+            break;
+
         case "bye":
             parsed = new String[]{"bye"};
             break;
