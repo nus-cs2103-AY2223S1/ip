@@ -1,14 +1,22 @@
-public class Deadline extends Task {
-    private final String doBy;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Deadline(String name, String doBy) {
+public class Deadline extends Task {
+    private final LocalDate date;
+
+    public Deadline(String name, String date) throws DukeException {
         super(name);
-        this.doBy = doBy;
+        try {
+            this.date = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please use this format for the deadline: YYYY-MM-DD");
+        }
     }
 
-    public Deadline(String name, String doBy, boolean isDone) {
+    public Deadline(String name, String date, boolean isDone) {
         super(name, isDone);
-        this.doBy = doBy;
+        this.date = LocalDate.parse(date);
     }
 
     public static Deadline fromString(String inputString) {
@@ -20,6 +28,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + this.doBy + ")";
+        return "[D]" + super.toString() + "(by: "
+                + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
