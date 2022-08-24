@@ -5,10 +5,12 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 
 public class Duke {
     Scanner scanner = new Scanner(System.in);
@@ -207,6 +209,16 @@ public class Duke {
 
     private void loadTasks() {
         try {
+            Boolean isDirectoryExist = Files.isDirectory(Paths.get("./data"));
+            if (!isDirectoryExist) {
+                new File("data").mkdir();
+            }
+
+            Boolean isFileExist = Files.isRegularFile(Paths.get("./data/Duke.txt"));
+            if (!isFileExist) {
+                new File("./data/Duke.txt").createNewFile();
+            }
+
             FileReader fr = new FileReader("./data/Duke.txt");
             BufferedReader br = new BufferedReader(fr);
 
