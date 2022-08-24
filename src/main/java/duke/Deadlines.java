@@ -1,11 +1,14 @@
+package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Events extends Task {
-    protected String eventTime;
+public class Deadlines extends Task {
+
+    protected String description;
     private LocalDateTime dateTime;
 
-    public Events(String description, LocalDateTime dateTime) {
+    public Deadlines(String description, LocalDateTime dateTime) {
         super(description);
         this.dateTime = dateTime;
     }
@@ -16,11 +19,12 @@ public class Events extends Task {
     }
 
     public String savedData() {
-        return "E |" + super.savedData() + dateStr();
+        return "D |" + super.savedData() + dateStr();
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + dateStr() + ")";
+        //return "[D]" + super.toString() + " (by: " + deadline + ")";
+        return "[D]" + super.toString() + " (by: " + dateStr() + ")";
     }
 }
