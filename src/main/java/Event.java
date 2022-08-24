@@ -1,13 +1,24 @@
-public class Event extends Task {
-    private String timing;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Event(String taskDescription, String timing) {
+public class Event extends Task {
+    private LocalDateTime timing;
+
+    public Event(String taskDescription, String timing) throws UnrecognisedDateTimeException {
         super(taskDescription);
-        this.timing = timing;
+        try {
+            //Alter the timing so that it can be properly added in.
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddHHmm");
+            this.timing = LocalDateTime.parse(timing, formatter);
+        } catch (DateTimeParseException e) {
+            throw new UnrecognisedDateTimeException();
+        }
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), timing);
+        return String.format("[E]%s (at: %s)", super.toString(),
+                timing.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm")));
     }
 }
