@@ -47,3 +47,4 @@ replay_pid*
 
 text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+text-ui-test/duke.txt
