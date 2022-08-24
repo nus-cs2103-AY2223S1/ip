@@ -16,7 +16,7 @@ public class TaskHandler {
                     }
                 } else {
                     try {
-                        String description = input.substring(0, input.toString().lastIndexOf("/") - 1);
+                        String description = input.substring(0, input.toString().indexOf("/") - 1);
                         String date = input.substring(input.lastIndexOf("/") + 4);
 
                         if (input.startsWith("deadline")) {
