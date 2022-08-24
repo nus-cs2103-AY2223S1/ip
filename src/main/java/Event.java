@@ -1,12 +1,24 @@
-public class Event extends Task {
-    protected String at;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, Boolean isDone, String at) {
+public class Event extends Task {
+    private LocalDateTime date;
+    private static final DateTimeFormatter FORMAT = DateTimeFormatter
+            .ofPattern("dd/MM/yyyy HHmm");
+
+
+    /**
+     * Constructor for Event class.
+     * @param description Description for event
+     * @param dateAndTime Date and time of event
+     */
+    public Event(String description, Boolean isDone, String dateAndTime) {
         super(description);
         if (isDone) {
             super.markAsDone();
         }
-        this.at = at;
+
+        this.date = LocalDateTime.parse(dateAndTime, FORMAT);
     }
 
     @Override
@@ -17,11 +29,13 @@ public class Event extends Task {
         } else {
             isDone = "X";
         }
-        return String.format("E | %s | %s | %s\n", isDone, super.description, at);
+        return String.format("E | %s | %s | %s\n", isDone, super.description,
+                date.format(FORMAT));
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return String.format("[E]%s (at: %s)", super.toString(),
+                date.format(DateTimeFormatter.ofPattern("hh:mma MMM dd yyyy")));
     }
 }
