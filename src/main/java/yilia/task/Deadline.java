@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    LocalDate date;
+    private LocalDate date;
     public Deadline(String content, String date) {
         super(content);
         this.date = LocalDate.parse(date);
@@ -19,6 +19,6 @@ public class Deadline extends Task {
     }
     @Override
     public String parse() {
-        return "D / " + (isDone ? "1" : "0") + " / " + super.parse() + " / " + date;
+        return "D / " + (status() ? "1" : "0") + " / " + super.parse() + " / " + date;
     }
 }

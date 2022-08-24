@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    LocalDate date;
+    private LocalDate date;
     public Event(String content, String date) {
         super(content);
         this.date = LocalDate.parse(date);
@@ -19,6 +19,6 @@ public class Event extends Task {
     }
     @Override
     public String parse() {
-        return "E / " + (isDone ? "1" : "0") + " / " + super.parse() + " / " + date;
+        return "E / " + (status() ? "1" : "0") + " / " + super.parse() + " / " + date;
     }
 }

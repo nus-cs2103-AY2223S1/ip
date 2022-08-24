@@ -1,9 +1,17 @@
 package yilia;
 
-import yilia.task.*;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+
+import yilia.task.Deadline;
+import yilia.task.Event;
+import yilia.task.Task;
+import yilia.task.TaskList;
+import yilia.task.Todo;
 
 public class Storage {
     private final String filePath;
@@ -18,15 +26,15 @@ public class Storage {
         while (line != null) {
             String[] info = line.split(" / ");
             switch (info[0]) {
-                case "T":
-                    tasks.add(new Todo(info[2], Parser.parseStringToBoolean(info[1])));
-                    break;
-                case "D":
-                    tasks.add(new Deadline(info[2], Parser.parseStringToBoolean(info[1]), info[3]));
-                    break;
-                case "E":
-                    tasks.add(new Event(info[2], Parser.parseStringToBoolean(info[1]), info[3]));
-                    break;
+            case "T":
+                tasks.add(new Todo(info[2], Parser.parseStringToBoolean(info[1])));
+                break;
+            case "D":
+                tasks.add(new Deadline(info[2], Parser.parseStringToBoolean(info[1]), info[3]));
+                break;
+            default:
+                tasks.add(new Event(info[2], Parser.parseStringToBoolean(info[1]), info[3]));
+                break;
             }
             line = reader.readLine();
         }

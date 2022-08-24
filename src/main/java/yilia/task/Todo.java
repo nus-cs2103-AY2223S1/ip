@@ -12,6 +12,6 @@ public class Todo extends Task {
     }
     @Override
     public String parse() {
-        return "T / " + (isDone ? "1" : "0") + " / " + super.parse();
+        return "T / " + (status() ? "1" : "0") + " / " + super.parse();
     }
 }

@@ -4,7 +4,7 @@ import yilia.Storage;
 import yilia.Ui;
 import yilia.task.TaskList;
 
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
     public ExitCommand() {
         super(true);
     }

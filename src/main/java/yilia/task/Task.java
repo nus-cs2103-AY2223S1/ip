@@ -1,7 +1,7 @@
 package yilia.task;
 
 public class Task {
-    public boolean isDone = false;
+    private boolean isDone = false;
     private final String content;
     public Task(String content) {
         this.content = content;
@@ -16,9 +16,12 @@ public class Task {
     public void uncheck() {
         isDone = false;
     }
+    public boolean status() {
+        return isDone;
+    }
     @Override
     public String toString() {
-        return "[" + (isDone? 'X': ' ') + "] " + content;
+        return "[" + (isDone ? 'X' : ' ') + "] " + content;
     }
     public String parse() {
         return content;

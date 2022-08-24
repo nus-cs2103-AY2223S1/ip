@@ -9,6 +9,7 @@ public class DescriptionEmptyException extends Exception {
     }
     @Override
     public String getMessage() {
-        return "☹ OOPS!!! The description of " + (type == Type.EVENT ? "an " : "a ") + type.toString().toLowerCase() + " cannot be empty.";
+        return "☹ OOPS!!! The description of " + (type == Type.EVENT ? "an " : "a ")
+                + type.toString().toLowerCase() + " cannot be empty.";
     }
 }

@@ -1,7 +1,7 @@
 package yilia.exception;
 
 public class NoIndexException extends Exception {
-    public String operation;
+    private String operation;
     public NoIndexException(String operation) {
         this.operation = operation;
     }

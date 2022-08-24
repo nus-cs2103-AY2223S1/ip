@@ -1,17 +1,18 @@
 package yilia;
-import yilia.task.Task;
-import yilia.task.TaskList;
 
 import java.util.Scanner;
 
+import yilia.task.Task;
+import yilia.task.TaskList;
+
 public class Ui {
     public void showWelcome() {
-        String logo = "  \\‾\\     /‾/  |‾|  |‾|          |‾|       /‾‾‾\\      \n" +
-                "   \\ \\   / /   | |  | |          | |      / /‾\\ \\     \n" +
-                "    \\ \\_/ /    | |  | |          | |     / /___\\ \\    \n" +
-                "     ‾| |‾     | |  | |          | |    / /_____\\ \\   \n" +
-                "      | |      | |  | |_______   | |   / /       \\ \\  \n" +
-                "      |_|      |_|  |_________|  |_|  /_/         \\_\\ \n";
+        String logo = "  \\‾\\     /‾/  |‾|  |‾|          |‾|       /‾‾‾\\      \n"
+                + "   \\ \\   / /   | |  | |          | |      / /‾\\ \\     \n"
+                + "    \\ \\_/ /    | |  | |          | |     / /___\\ \\    \n"
+                + "     ‾| |‾     | |  | |          | |    / /_____\\ \\   \n"
+                + "      | |      | |  | |_______   | |   / /       \\ \\  \n"
+                + "      |_|      |_|  |_________|  |_|  /_/         \\_\\ \n";
         System.out.println("Hello! I'm Yilia\n" + logo + "What can I do for you?");
     }
 
@@ -33,7 +34,8 @@ public class Ui {
     }
 
     public void showAddStatus(TaskList tasks) {
-        System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size()) + "\nNow you have " + tasks.size() + (tasks.size() < 2 ? " task" : " tasks") + " in the list.");
+        System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size())
+                + "\nNow you have " + tasks.size() + (tasks.size() < 2 ? " task" : " tasks") + " in the list.");
     }
 
     public void showMarkStatus(Task task) {
@@ -45,7 +47,8 @@ public class Ui {
     }
 
     public void showDeleteStatus(Task task, TaskList tasks) {
-        System.out.println("Noted. I've removed this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
+        System.out.println("Noted. I've removed this task:\n  " + task + "\nNow you have "
+                + tasks.size() + " tasks in the list.");
     }
 
     public void showBye() {

@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 import yilia.Parser;
 import yilia.Storage;
 import yilia.Ui;
@@ -7,8 +9,6 @@ import yilia.exception.NoIndexException;
 import yilia.exception.TimeFormatException;
 import yilia.exception.YiliaException;
 import yilia.task.TaskList;
-
-import java.io.*;
 
 class Yilia {
     private final Storage storage;
@@ -50,7 +50,7 @@ class Yilia {
         }
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new Yilia("data/yilia.txt").run();
     }
 }

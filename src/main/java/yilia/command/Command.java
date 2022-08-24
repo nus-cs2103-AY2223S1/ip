@@ -8,7 +8,7 @@ import yilia.task.TaskList;
 
 public abstract class Command {
     private boolean isExit = false;
-    public Command(){
+    public Command() {
 
     }
     public Command(boolean isExit) {
@@ -17,5 +17,6 @@ public abstract class Command {
     public boolean isExit() {
         return isExit;
     }
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DescriptionEmptyException, TimeFormatException;
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws
+            DescriptionEmptyException, TimeFormatException;
 }
