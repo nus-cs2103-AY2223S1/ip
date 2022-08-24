@@ -14,9 +14,21 @@ import duke.commands.UnmarkTaskCommand;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Encapsulates the logic for parsing commands and delegating the corresponding {@link Command} handler responsible for
+ * handling the command.
+ *
+ * @author Emily Ong Hui Qi
+ */
 public class ParserManager {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)?");
 
+    /**
+     * Parses the given command string and returns a {@link Command} instance that corresponds to the command string.
+     *
+     * @param fullCommand The full command string supplied by the user from keyboard input
+     * @return The {@link Command} instance responsible for handling the corresponding command
+     */
     public Command parseCommand(String fullCommand) {
         Matcher matcher = ParserManager.BASIC_COMMAND_FORMAT.matcher(fullCommand);
         if (!matcher.matches()) {
