@@ -1,13 +1,14 @@
 package duke.command;
 
+import duke.data.Storage;
 import duke.task.*;
 import duke.ui.Ui;
-import duke.data.Storage;
 
 public class MarkingCommand extends Command {
 
     /** True if user wants to mark a task. False if is unmark */
     private boolean wantsToMark;
+
     private int taskID;
 
     public MarkingCommand(boolean wantsToMark, int taskID) {
