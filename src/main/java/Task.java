@@ -1,15 +1,15 @@
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected int index;
-    protected static int indexCount = 1;
-
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        this.index = indexCount;
-        indexCount++;
+    }
+
+    public Task(String description, boolean done) {
+        this.description = description;
+        this.isDone = done;
     }
 
     public String getStatusIcon() {
@@ -24,7 +24,24 @@ public class Task {
         this.isDone = false;
     }
 
+    @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
+    }
+
+    /**
+     * Getter for the description of the Task.
+     * @return The description of the Task.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
+     * Getter for isDone.
+     * @return If this task is done.
+     */
+    public boolean isDone() {
+        return this.isDone;
     }
 }
