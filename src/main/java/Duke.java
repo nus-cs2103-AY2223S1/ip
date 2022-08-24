@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.function.Function;
 
@@ -22,6 +27,7 @@ public class Duke {
                                                     + "by typing \"/\" followed by the time.";
     private static final String noIndexGivenMessage = "Please provide the index of he relevant task after the\n"
                                                     + "command.";
+    private static final String dataFileErrorMessage    = "There appears to be an issue retrieving your previous records";
     private static final ArrayList<Task> tasks = new ArrayList<>();
 
     private static final Map<String, Function<String[], Task>> taskMaker = Map.of(
@@ -59,6 +65,7 @@ public class Duke {
             }
     );
     public static void main(String[] args) {
+        tasks.addAll(retrieveData());
         System.out.println(startUpMessage);
         Scanner sc = new Scanner(System.in);
         String userInput = sc.nextLine();
@@ -109,6 +116,42 @@ public class Duke {
             }
             return message.toString();
         }
+    }
+
+    static ArrayList<Task> retrieveData() {
+        String DATAPATH = "data/";
+        String SAVE_FILE_NAME = "duke.txt";
+        ArrayList<Task> savedTasks = new ArrayList<>();
+        File file = new File(DATAPATH);
+        File textFile = new File(DATAPATH + SAVE_FILE_NAME);
+        if (!file.isDirectory() || !textFile.exists()) {
+            try {
+                file.mkdir();
+                textFile.createNewFile();
+            } catch (IOException e) {
+                System.out.println(dataFileErrorMessage);
+            }
+        } else {
+            try {
+                Scanner sc = new Scanner(textFile);
+                while (sc.hasNext()) {
+                    String currentRecord = sc.nextLine();
+                    String[] split = currentRecord.split("###");
+                    try {
+                        if (split.length != 3) {
+                            throw new DukeException("Error");
+                        }
+                        Task loadTask = TaskMaker.createTask(split[0], split[1], split[2]);
+                        savedTasks.add(loadTask);
+                    } catch (DukeException e) {
+                        continue;
+                    }
+                }
+            } catch (FileNotFoundException e) {
+                System.out.println(dataFileErrorMessage);
+            }
+        }
+        return savedTasks;
     }
 
     static String[] inputSplit(String input) throws DukeException {
