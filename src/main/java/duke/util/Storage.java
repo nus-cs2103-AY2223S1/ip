@@ -44,7 +44,7 @@ public class Storage {
             List<Task> tasks = new ArrayList<>();
             File file = new File(dataPath + "/" + storageName);
             if (!file.exists()) {
-                throw new DukeException("duke.util.Storage file does not exist yet");
+                throw new DukeException("No storage file found");
             }
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
