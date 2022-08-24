@@ -1,5 +1,6 @@
 package Duke;
 
+import Duke.DukeExceptions.DukeException;
 import Duke.DukeTasks.Task;
 
 import java.io.*;
@@ -14,6 +15,13 @@ public class Storage {
     private FileWriter fileWriter;
     private PrintWriter printWriter;
 
+    /**
+     * A constructor for the Storage class.
+     * Creates director "data" amd file "tasklist.txt"
+     * if not present.
+     *
+     * @return A Storage.
+     */
     public Storage() { // creates new files if needed
         try {
             directory = new File("data");
@@ -32,6 +40,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads data from "data/tasklist/txt" into
+     * the taskmanager.
+     *
+     * @param tasksManager The Tasksmanager to read data into.
+     * @return A boolean on whether reading was successful.
+     */
     public boolean readfile(TasksManager tasksManager) {
         try {
             Scanner sc = new Scanner(this.tasklist);
@@ -47,10 +62,24 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes a task to data/tasklist.txt.
+     *
+     * @param task Task to be recorded.
+     * @return void.
+     */
     public void addTask(Task task) {
         printWriter.println(task.fileForm());
     }
 
+    /**
+     * Rewrites all files in the printwriter to
+     * reflect latest tasks in taskmanager.
+     *
+     * @param tasks An Arraylist containing the
+     *              most updated tasks.
+     * @return A boolean.
+     */
     public boolean rewriteFile(ArrayList<Task> tasks) {
         //delete all file contents
         printWriter.flush();
@@ -69,6 +98,12 @@ public class Storage {
         return true;
     }
 
+    /**
+     * Closes printwriter and writes all data to
+     * the data/tasklist.txt file.
+     *
+     * @return void.
+     */
     public void end() {
         this.printWriter.close();
     }

@@ -14,6 +14,15 @@ import java.time.format.DateTimeParseException;
 
 public class Decoder {
 
+    /**
+     * Returns a Task given the name, date and type of
+     * task: Event, Todo or Deadline, indicated by a tag.
+     *
+     * @param word the name of the task.
+     * @param date the date of the task in YYYY-MM-DD format.
+     * @param tag A character indicating the type of task.
+     * @return a new Task.
+     */
     private static Task makeTask(String word, String date, char tag) {
         Task newTask;
         if (tag == 'D') {
@@ -26,6 +35,19 @@ public class Decoder {
         return newTask;
     }
 
+    /**
+     * Returns a Task given the name, date and type of
+     * task: Event, Todo or Deadline, indicated by a tag.
+     * As well as whether the task is finished. This
+     * function is used for making tasks out of what is
+     * written in the tasklist.txt file
+     *
+     * @param word the name of the task.
+     * @param date the date of the task in YYYY-MM-DD format.
+     * @param tag A character indicating the type of task.
+     * @param isFinished whether a task is completed
+     * @return a new Task.
+     */
     private static Task makeTask(String word, String date, char tag, boolean isFinished) {
         Task newTask;
         if (tag == 'D') {
@@ -42,6 +64,14 @@ public class Decoder {
         return newTask;
     }
 
+    /**
+     * Takes user input from the command line and
+     * returns a task depending on is asked.
+     *
+     * @param word the input read from command line.
+     * @return a new Task.
+     * @throws DukeException if input is not proper.
+     */
     public static Task handleTasks(String word) throws DukeException {
         String[] splitted = word.split(" ", 2);
         if (splitted.length < 2) {
@@ -71,6 +101,14 @@ public class Decoder {
         }
     }
 
+    /**
+     * Returns a Task given the form of a
+     * task in the file tasklist.txt.
+     *
+     * @param word the string form of a task stored
+     *             in tasklist.txt.
+     * @return a new Task.
+     */
     public static Task parseFromFile(String word) {
         String[] splitted = word.split(",");
 
@@ -87,6 +125,14 @@ public class Decoder {
         return null;
     }
 
+    /**
+     * Returns the integer of the task of be deleted.
+     *
+     * @param word the name of the task.
+     * @param len the total number of tasks.
+     * @return an integer indicating task to be deleted.
+     * @throws DukeException if input is bad.
+     */
     public static int handleDelete(String word, int len) throws DukeException {
         String[] deleteTasks = word.split(" ");
 
@@ -103,6 +149,14 @@ public class Decoder {
         return taskNo;
     }
 
+    /**
+     * Returns the integer of the task of be marked as done.
+     *
+     * @param word the name of the task.
+     * @param len the total number of tasks.
+     * @return an integer indicating task to be deleted.
+     * @throws DukeException if input is bad.
+     */
     public static int handleDone(String word, int len) throws DukeException {
         String[] doneTasks = word.split(" ");
         if (doneTasks.length != 2) {
@@ -118,6 +172,13 @@ public class Decoder {
         return taskNo;
     }
 
+    /**
+     * Returns the LocalDate form of user's input.
+     *
+     * @param str user input from command line.
+     * @return A LocalDate.
+     * @throws BadFormatException if input is bad.
+     */
     public static LocalDate parseLD(String str) throws BadFormatException{
         try {
             String[] splitted = str.split(" ");
@@ -127,6 +188,12 @@ public class Decoder {
         }
     }
 
+    /**
+     * Returns if a string is numeric.
+     *
+     * @param num the number in string form.
+     * @return A boolean.
+     */
     public static boolean isValidNum(String num) {
         char[] charas = num.toCharArray();
         for (int i = 0; i < num.length(); i++) {
