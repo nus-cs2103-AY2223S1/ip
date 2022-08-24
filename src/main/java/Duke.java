@@ -64,6 +64,9 @@ public class Duke {
                 System.out.println(err.getMessage());
             } catch (InvalidSecondaryCommandException err) {
                 System.out.printf("Please include %s command and the necessary information\n", err.getMessage());
+            } catch (InvalidDateException err) {
+                System.out.println(err.getMessage());
+                Prompt.listValidDateFormats();
             } catch (DukeException err) {
                 System.out.println("Unhandled Duke Exception");
                 System.out.println(err.getMessage());

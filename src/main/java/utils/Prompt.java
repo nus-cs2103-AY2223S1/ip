@@ -39,6 +39,14 @@ public class Prompt {
     }
 
     /**
+     * Prints a list of valid dateFormats that can be parsed by the application.
+     */
+    public static void listValidDateFormats() {
+        System.out.println("These are the following accepted formats:");
+        System.out.println("1) yyyy-mm-dd");
+    }
+
+    /**
      * Prints a message after marking a task as done.
      */
     public static void markDone(String taskName) {
