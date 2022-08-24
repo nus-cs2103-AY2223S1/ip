@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -93,35 +95,35 @@ public class Duke {
                 else if (answer.equals("blah")) { // Level 5: handle blah exception
                     throw new Exception("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
-                else if (answer.startsWith("deadline")) { // Task 4: deadline
+                else if (answer.startsWith("deadline")) { // Task 4: deadline, Task 8: Dates and Times
                     String deadlineAction = answer.substring(9, answer.indexOf("/") - 1);
-                    String by = answer.substring(answer.indexOf("/") + 1);
-                    Deadline d = new Deadline(deadlineAction, by);
+                    String by = answer.substring(answer.indexOf("/") + 4); // Format: dd/MM/yyyy HHmm
+    
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+                    LocalDateTime dateTime = LocalDateTime.parse(by, formatter);
+    
+                    Deadline d = new Deadline(deadlineAction, dateTime);
                     ls.add(d);
                     System.out.println(line + "\n" +
                             "Got it. I've added this task: " + "\n" +
                             d + "\n" +
                             "Now you have " + ls.size() + " tasks in the list." + "\n" +
                             line + "\n");
-                    if (!hasTaskInFile) {
-                        String toAppend = "deadline " + deadlineAction;
-                        appendToFile(fileName, toAppend);
-                    }
                 }
                 else if (answer.startsWith("event")) { // Task 4: event
                     String eventAction = answer.substring(6, answer.indexOf("/") - 1);
-                    String at = answer.substring(answer.indexOf("/") + 1);
-                    Event e = new Event(eventAction, at);
+                    String at = answer.substring(answer.indexOf("/") + 4); // Format: dd/MM/yyyy HHmm
+    
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+                    LocalDateTime dateTime = LocalDateTime.parse(at, formatter);
+    
+                    Event e = new Event(eventAction, dateTime);
                     ls.add(e);
                     System.out.println(line + "\n" +
                             "Got it. I've added this task: " + "\n" +
                             e + "\n" +
                             "Now you have " + ls.size() + " tasks in the list." + "\n" +
                             line + "\n");
-                    if (!hasTaskInFile) {
-                        String toAppend = "event " + eventAction;
-                        appendToFile(fileName, toAppend);
-                    }
                 } else if (answer.startsWith("delete")) { // Level 6: delete
                     int idx = Integer.parseInt(answer.substring(7)) - 1;
                     Task t = ls.get(idx);
@@ -130,18 +132,11 @@ public class Duke {
                             t + "\n" +
                             "Now you have " + ls.size() + " tasks in the list.\n" +
                             line + "\n");
-                    if (!hasTaskInFile) {
-                        String toAppend = "delete " + (idx + 1);
-                        appendToFile(fileName, toAppend);
-                    }
                 }
                 else { // for normal actions
                     System.out.println(line + "\n" + "added: " + answer + "\n" +
                             line + "\n");
                     ls.add(new Task(answer));
-                    if (!hasTaskInFile) {
-                        appendToFile(fileName, answer);
-                    }
                 }
             }
         } catch (FileNotFoundException e) { // Level 7: handle if file does not exist
