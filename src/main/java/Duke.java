@@ -2,6 +2,8 @@ import java.io.*;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+
 
 public class Duke {
     //private Task[] tasks = new Task[100];
@@ -39,6 +41,14 @@ public class Duke {
                 + "| |    | |_| |   <  __/\n"
                 + "|_|    \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from puke\n" + logo);
+        System.out.println("Features implemented and formats required:");
+        System.out.println("list: lists current tasks in list");
+        System.out.println("mark/unmark x : mark as done or unmark in list");
+        System.out.println("ToDo, Deadline, Event: ");
+        System.out.println("todo xx");
+        System.out.println("deadline xx /by yyyy-mm-dd");
+        System.out.println("event xx /at yyyy-mm-dd");
+        System.out.println("delete x : remove the task from the list");
     }
 
     //Actually does what is needed to do
@@ -65,7 +75,7 @@ public class Duke {
             puke(sc,d);
         } else if (a.equals("todo")) {
             String desc = d.getMessage(s, "ToDo");
-            String date = d.getDate(s);
+            //String date = d.getDate(s);
             Task newTask = new ToDo(desc);
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
@@ -74,7 +84,7 @@ public class Duke {
         } else if (a.equals("deadline")) {
             String desc = d.getMessage(s, "Deadline");
             String date = d.getDate(s);
-            Task newTask = new Deadline(desc, date);
+            Task newTask = new Deadline(desc, LocalDate.parse(date));
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
             saveTasks(Duke.d.tasks);
@@ -82,7 +92,7 @@ public class Duke {
         } else if (a.equals("event")) {
             String desc = d.getMessage(s, "Event");
             String date = d.getDate(s);
-            Task newTask = new Event(desc, date);
+            Task newTask = new Event(desc, LocalDate.parse(date));
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
             saveTasks(Duke.d.tasks);
