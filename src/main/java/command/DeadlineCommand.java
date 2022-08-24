@@ -1,9 +1,13 @@
 package command;
 
-import henry.Task;
-
 import java.time.LocalDateTime;
 
+import henry.Task;
+
+/**
+ * Responsible for adding Deadline tasks to the task list.
+ * Deadline tasks are tasks with a deadline date and time.
+ */
 public class DeadlineCommand extends Command {
 
     public static final String COMMAND_WORD = "deadline";

@@ -1,10 +1,14 @@
 package henry;
 
+import java.nio.file.Path;
+
 import command.Command;
 import command.CommandResult;
 
-import java.nio.file.Path;
-
+/**
+ * The base class of the Henry application.
+ * All functions of Henry pass through this class.
+ */
 public class Henry {
 
     private static final String home = System.getProperty("user.home");
@@ -13,18 +17,18 @@ public class Henry {
     private final Storage storage;
     private final TaskList taskList;
     private final Parser parser;
-    private boolean isActivated;
 
+    /**
+     * When a new instance of Henry is created,
+     * a new UI object, a new Storage object,
+     * a new TaskList object and a new Parser object
+     * is instantiated.
+     */
     public Henry() {
         ui = new Ui();
         storage = new Storage(FILE_PATH.toString());
         taskList = new TaskList(storage.load());
         parser = new Parser();
-        isActivated = true;
-    }
-
-    public boolean isActivated() {
-        return isActivated;
     }
 
     /**
@@ -44,7 +48,7 @@ public class Henry {
             }
             command = parser.parseCommand(input);
             CommandResult result = executeCommand(command);
-            ui.output(result.feedback);
+            ui.output(result.toString());
         } while (true);
     }
 
@@ -64,6 +68,5 @@ public class Henry {
 
     private void close() {
         ui.close();
-        isActivated = false;
     }
 }

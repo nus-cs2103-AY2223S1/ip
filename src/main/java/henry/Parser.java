@@ -1,5 +1,10 @@
 package henry;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import command.Command;
 import command.DeadlineCommand;
 import command.DeleteCommand;
@@ -11,11 +16,10 @@ import command.TodoCommand;
 import command.UnmarkCommand;
 import exceptions.HenryException;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+/**
+ * The parser class is responsible for parsing the user input and
+ * creating the appropriate command.
+ */
 public class Parser {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<command>\\S*)(?<args>.*)");

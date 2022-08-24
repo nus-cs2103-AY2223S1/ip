@@ -2,10 +2,18 @@ package henry;
 
 import java.util.Scanner;
 
+/**
+ * Responsible for reading user input.
+ */
 public class Ui {
 
     private final Scanner sc;
 
+    /**
+     * Instantiates a UI object. When created, the logo will be
+     * printed to the console, and the user will be prompted for
+     * input.
+     */
     public Ui() {
         System.out.println(
             "  _    _ ______ _   _ _______     __\n"
@@ -20,6 +28,7 @@ public class Ui {
 
     /**
      * Reads input from the user through Scanner
+     *
      * @return the given input from the user as a String
      */
     public String getInput() {
@@ -28,6 +37,7 @@ public class Ui {
 
     /**
      * Prints the given message in special formatting to the console.
+     *
      * @param message the output to be printed to the console
      */
     public void output(String message) {

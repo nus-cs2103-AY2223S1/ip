@@ -2,6 +2,10 @@ package command;
 
 import henry.Task;
 
+/**
+ * Responsible for adding Todo tasks to the task list.
+ * Todo tasks are tasks with only a description.
+ */
 public class TodoCommand extends Command {
 
     public static final String COMMAND_WORD = "todo";

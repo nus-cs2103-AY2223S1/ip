@@ -2,6 +2,10 @@ package henry;
 
 import java.util.List;
 
+/**
+ * TaskList represents the actual list to which tasks
+ * can be added, removed or modified.
+ */
 public class TaskList {
 
     private final List<Task> tasks;
@@ -32,7 +36,7 @@ public class TaskList {
     }
 
     /**
-     * Gets the entire task list as a List<Task> object
+     * Gets the entire task list as a List of Tasks.
      *
      * @return the task list
      */
@@ -55,8 +59,7 @@ public class TaskList {
      * in simplified form that is used in file writing and
      * reading
      *
-     * @return a String representing the entire task list that would be
-     * stored in the file
+     * @return a String representing the entire task list.
      */
     public String toSimpleString() {
         StringBuilder sb = new StringBuilder();
