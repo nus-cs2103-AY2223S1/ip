@@ -20,12 +20,20 @@ public abstract class Task {
   /**
    * Overloaded constructor that intialiases isDone state of task
    * 
-   * @param txt task description
-   * @param isDone whether task has been completed
+   * @param txt Task description
+   * @param isDone Whether task has been completed
    */
   public Task(String txt, boolean isDone) {
     this.isDone = isDone;
     this.description = txt;
+  }
+
+  /**
+   * Gets description of task
+   * @return Description of task
+   */
+  public String getDescription() {
+    return this.description;
   }
 
   /**

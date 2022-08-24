@@ -35,4 +35,16 @@ public class TaskList {
         return this.tasks;
     }
 
+    /**
+     * Returns filtered task list based on keyword
+     *
+     * @param text Keyword to be found
+     * @return Filtered task list based on keyword
+     */
+    public ArrayList<Task> find(String text) {
+        ArrayList<Task> filtered = new ArrayList<>(this.tasks);
+        filtered.removeIf(task -> !task.getDescription().contains(text));
+        return filtered;
+    }
+
 }

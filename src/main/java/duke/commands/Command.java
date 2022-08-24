@@ -1,6 +1,6 @@
 package duke.commands;
 
-import duke.exception.*;
+import duke.exception.DukeException;
 import duke.main.Storage;
 import duke.main.Ui;
 import duke.tasks.*;
@@ -10,18 +10,18 @@ import duke.tasks.*;
  */
 
 public abstract class Command {
-  /**
-   * Receives an tasklist and executes a command that may or may not modify the
-   * tasklist
-   * 
-   * @param TaskList
-   * @param storage
-   * @param ui
-   * @throws DukeException
-   */
+
 
   boolean isExit = false;
 
+  /**
+   * Executes a command that may or may not modify the TaskList
+   *
+   * @param tasks TaskList containing all tasks so far
+   * @param storage Storage with dataFile of tasks
+   * @param ui Ui which prints out messages to users
+   * @throws DukeException If command is not executable due to errors in user input
+   */
   public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
   public boolean isExit() {

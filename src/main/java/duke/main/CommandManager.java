@@ -9,4 +9,5 @@ public enum CommandManager {
   todo,
   deadline,
   event,
+  find,
 }
