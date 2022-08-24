@@ -46,10 +46,14 @@ public class Parser {
 
     static LocalDateTime parseDateTime(String command) throws DukeException{
         try {
+            // Splits the date and time into a String array
             String dateTime = command.substring(command.indexOf("/") + 1);
             String[] splitTime = dateTime.split("\\s+");
+
+            //parses the data and time based on a fixed format
             LocalDate date = LocalDate.parse(splitTime[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             LocalTime time = LocalTime.parse(splitTime[2], DateTimeFormatter.ofPattern("HHmm"));
+
             return LocalDateTime.of(date, time);
         } catch (Exception e) {
             throw new DukeException("Date and Time is not of correct format!");
@@ -60,12 +64,16 @@ public class Parser {
         LocalDateTime dateTime = LocalDateTime.now();
         for (Task task : tasks.getTasks()) {
             if (task instanceof Deadline) {
+                //we specify that the task is of the Deadline class by type casting
                 Deadline deadline = (Deadline) task;
+
                 if (deadline.getTime().isBefore(dateTime.plusWeeks(1))) {
                     System.out.println(deadline);
                 }
             } else if (task instanceof Event) {
+                //we specify that the task is of the Event class by type casting
                 Event event = (Event) task;
+
                 if (event.getTime().isBefore(dateTime.plusWeeks(1))) {
                     System.out.println(event);
                 }

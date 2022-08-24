@@ -18,11 +18,17 @@ public class Task {
         return status + " | " + this.name;
     }
 
+    /**
+     *  Marks task done with X
+     * @return status of task with X or " "
+     */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
-
+    /**
+     * Updates boolean isDone depending on the status of the task
+     */
     void mark() {
         this.isDone = true;
     }
