@@ -37,7 +37,16 @@ public class CaCa {
     /**
      * A class-level array to store all user inputs.
      */
-    private static final List<Task> tasks = Storage.readFile();
+    private static List<Task> tasks;
+    static {
+        try {
+            tasks = Storage.readFile();
+        } catch (InvalidDateException e) {
+            System.out.println("You have keyed in an invalid date and time!\n"
+                    + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
+                    + "E.g. 24/08/2022 2359");
+        }
+    }
 
     /**
      * Checks if task index is valid.
@@ -116,7 +125,7 @@ public class CaCa {
      * @param taskInfo Task information with task description and task date/time.
      * @throws MissingDetailException If task description or task date/time is missing.
      */
-    public static void addDeadline(String taskInfo) throws MissingDetailException {
+    public static void addDeadline(String taskInfo) throws MissingDetailException, InvalidDateException {
         String[] detailedCommand = taskInfo.split(" /by ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
@@ -148,7 +157,7 @@ public class CaCa {
      * @param taskInfo Task information with task description and task start & end time.
      * @throws MissingDetailException If task description or task start & end time is missing.
      */
-    public static void addEvent(String taskInfo) throws MissingDetailException {
+    public static void addEvent(String taskInfo) throws MissingDetailException, InvalidDateException {
         String[] detailedCommand = taskInfo.split(" /at ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "

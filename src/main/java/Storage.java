@@ -103,7 +103,7 @@ public class Storage {
      * Reads tasks stored in file.
      * @return A list of all the tasks stored.
      */
-    public static List<Task> readFile() {
+    public static List<Task> readFile() throws InvalidDateException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(FILE_PATH);
 
