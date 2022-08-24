@@ -7,7 +7,8 @@ public class ToDoList {
         list = new ArrayList<>();
     }
 
-    /* Sets status of task at index to be complete
+    /** 
+     * Sets status of task at index to be complete
      *
      * @param index
      * @throws IndexOutOfBoundsException
@@ -19,7 +20,7 @@ public class ToDoList {
         list.get(index).mark();
     }
 
-    /* Sets status of task at index to be incomplete
+    /** Sets status of task at index to be incomplete
      *
      * @param index
      * @throws IndexOutOfBoundsException
@@ -31,7 +32,8 @@ public class ToDoList {
         list.get(index).unmark();
     }
 
-    /* Add task to todoList
+    /**
+     *  Add task to todoList
      *
      * @param task
      */
