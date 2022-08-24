@@ -8,6 +8,9 @@ import duke.task.TaskList;
 /**
  * Represents a <code>find</code> command which given a search term,
  * finds a list <code>Task</code> objects matching the search term.
+ *
+ * @author njxue
+ * @version v0.1
  */
 public class FindCommand extends Command {
     /** Search term of the <code>Task</code> to find. */
