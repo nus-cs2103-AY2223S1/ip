@@ -1,14 +1,32 @@
 package duke.task;
 
+/**
+ * The Event class which represents an event task.
+ *
+ * @author Leong Jia Hao Daniel
+ */
 public class Event extends Task {
 
     protected String time;
 
+    /**
+     * The constructor for Event.
+     *
+     * @param description The description of the event.
+     * @param time The time of the event.
+     */
     public Event(String description, String time) {
         super(description);
         this.time = time;
     }
 
+    /**
+     * Reads from the input file and returns a event based on the data
+     * in the file.
+     *
+     * @param string The string from the input file.
+     * @return A new event task describing the event.
+     */
     public static Event parseFile(String string) {
         String[] details = string.split(" \\| ");
         Event event = new Event(details[2], details[3]);
@@ -18,6 +36,13 @@ public class Event extends Task {
         return event;
     }
 
+    /**
+     * Overrides the toDataFormat() in task to return a String which
+     * is stored in the file.
+     *
+     * @return The task but formatted in the way it is meant to
+     *         be stored in the file.
+     */
     @Override
     public String toDataFormat() {
         String completed = "0";
@@ -27,6 +52,11 @@ public class Event extends Task {
         return "E | " + completed + " | " + this.getDescription() + " | " + this.time;
     }
 
+    /**
+     * Override the toString() method to display the task to the user.
+     *
+     * @return A String representing the event task.
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + time + ")";
