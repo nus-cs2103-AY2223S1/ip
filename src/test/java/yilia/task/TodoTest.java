@@ -18,24 +18,23 @@ public class TodoTest {
 
     @Test
     public void status_check_statusCorrect() {
-        todo1.check();
-        todo2.check();
+        todo1.setDone();
+        todo2.setDone();
         assertTrue(todo1.status());
         assertTrue(todo2.status());
     }
 
     @Test
     public void status_uncheck_statusCorrect() {
-        todo1.uncheck();
-        todo2.uncheck();
+        todo1.setNotDone();
+        todo2.setNotDone();
         assertFalse(todo1.status());
         assertFalse(todo2.status());
     }
 
     @Test
     public void parse_normalInput_writtenCorrectly() {
-        todo2.check();
-        assertEquals(todo1.parse(), "T / 0 / go to the park");
-        assertEquals(todo2.parse(), "T / 1 / return a book");
+        assertEquals(todo1.parse(), "T / 1 / go to the park");
+        assertEquals(todo2.parse(), "T / 0 / return a book");
     }
 }

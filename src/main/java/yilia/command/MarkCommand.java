@@ -17,7 +17,7 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            tasks.get(index).check();
+            tasks.get(index).setDone();
             ui.showMarkStatus(tasks.get(index));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index " + index + " out of bounds\nPlease input another index");

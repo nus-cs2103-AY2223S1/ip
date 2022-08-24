@@ -23,6 +23,7 @@ public class Storage {
     /**
      * Loads tasks from a local file to the task list.
      *
+     * @return The task list loaded.
      * @throws IOException  If the file has an error.
      */
     public ArrayList<Task> load() throws IOException {

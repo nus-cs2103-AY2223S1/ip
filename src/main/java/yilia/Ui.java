@@ -24,6 +24,8 @@ public class Ui {
 
     /**
      * Returns a string from user input.
+     *
+     * @return The text read from user input.
      */
     public String readCommand() {
         Scanner scanner = new Scanner(System.in);

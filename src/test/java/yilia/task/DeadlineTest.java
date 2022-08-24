@@ -18,16 +18,16 @@ public class DeadlineTest {
 
     @Test
     public void status_check_statusCorrect() {
-        deadline1.check();
-        deadline2.check();
+        deadline1.setDone();
+        deadline2.setDone();
         assertTrue(deadline1.status());
         assertTrue(deadline2.status());
     }
 
     @Test
     public void status_uncheck_statusCorrect() {
-        deadline1.uncheck();
-        deadline2.uncheck();
+        deadline1.setNotDone();
+        deadline2.setNotDone();
         assertFalse(deadline1.status());
         assertFalse(deadline2.status());
     }

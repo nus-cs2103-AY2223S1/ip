@@ -18,16 +18,16 @@ public class EventTest {
 
     @Test
     public void status_check_statusCorrect() {
-        event1.check();
-        event2.check();
+        event1.setDone();
+        event2.setDone();
         assertTrue(event1.status());
         assertTrue(event2.status());
     }
 
     @Test
     public void status_uncheck_statusCorrect() {
-        event1.uncheck();
-        event2.uncheck();
+        event1.setNotDone();
+        event2.setNotDone();
         assertFalse(event1.status());
         assertFalse(event2.status());
     }

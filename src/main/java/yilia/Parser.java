@@ -20,6 +20,7 @@ public class Parser {
      * parses the text into commands.
      *
      * @param text The text.
+     * @return The command.
      * @throws YiliaException  If the command is unknown to Yilia.
      * @throws NoIndexException  If the index is not given by users.
      */
@@ -69,6 +70,7 @@ public class Parser {
      * parses the text into boolean values.
      *
      * @param num The text representing a number.
+     * @return The boolean value parsed.
      */
     public static boolean parseStringToBoolean(String num) {
         return Integer.parseInt(num) == 1;

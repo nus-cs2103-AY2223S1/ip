@@ -16,12 +16,23 @@ public class Task {
         this(content);
         this.isDone = isDone;
     }
-    public void check() {
+    /**
+     * Sets the task to be done.
+     */
+    public void setDone() {
         isDone = true;
     }
-    public void uncheck() {
+    /**
+     * Sets the task to be not done.
+     */
+    public void setNotDone() {
         isDone = false;
     }
+    /**
+     * Returns whether the task is done.
+     *
+     * @return The isDone value.
+     */
     public boolean status() {
         return isDone;
     }

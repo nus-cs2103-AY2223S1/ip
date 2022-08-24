@@ -17,7 +17,7 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            tasks.get(index).uncheck();
+            tasks.get(index).setNotDone();
             ui.showUnmarkStatus(tasks.get(index));
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Index " + index + " out of bounds\nPlease input another index");
