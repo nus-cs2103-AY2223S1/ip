@@ -78,10 +78,14 @@ public class Ui {
         lengthMessage(len);
     }
 
+
     public void lengthMessage(int len) {
         System.out.println("You now have " + len + " tasks added\n" + "How many moons before you complete them?" + "\n" + LINE_BREAK);
     }
 
+    /**
+     * Prints a line break
+     */
     public void lineBreak() {
         System.out.println(LINE_BREAK);
     }
