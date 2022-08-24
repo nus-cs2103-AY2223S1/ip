@@ -1,3 +1,0 @@
-D | 0 | rohan | saturday 2359
-D | 0 | dinner with rohan | friday night
-D | 1 | do rohan | saturday 2359

@@ -16,5 +16,8 @@ bin/
 # data storage file
 /data
 
+# class files
+*.class
+
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
