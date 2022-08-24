@@ -15,13 +15,27 @@ import jarvis.task.Task;
 import jarvis.task.TaskList;
 import jarvis.task.ToDo;
 
+/**
+ * Storage - Loads and stores tasks locally.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructor.
+     *
+     * @param filePath file path of where tasks.txt is stored.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from local tasks.txt file.
+     *
+     * @return the list of tasks stored from the previous session.
+     * @throws JarvisException exception for error when loading tasks.
+     */
     public List<Task> loadTasks() throws JarvisException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(this.filePath);
@@ -61,6 +75,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves tasks into local tasks.txt file.
+     *
+     * @param tasks the list of tasks to be stored.
+     */
     public void saveTasks(TaskList tasks) {
         File file = new File(this.filePath);
         file.getParentFile().mkdirs();

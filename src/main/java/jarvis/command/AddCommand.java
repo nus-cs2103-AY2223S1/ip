@@ -8,11 +8,27 @@ import jarvis.task.Task;
 import jarvis.task.TaskList;
 import jarvis.task.ToDo;
 
+/**
+ * AddCommand --- command to create todos, deadlines and events.
+ */
 public class AddCommand extends Command {
+    /**
+     * Constructor.
+     *
+     * @param command the command entered by the user.
+     */
     public AddCommand(String command) {
         super(command);
     }
 
+    /**
+     * Executes the command.
+     *
+     * @param tasks the list of tasks.
+     * @param storage stores the tasks locally.
+     * @return response after executing the command.
+     * @throws JarvisException exception for invalid commands.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) throws JarvisException {
         Task task;
