@@ -1,6 +1,7 @@
+null
 Hello from
- ____        _        
-|  _ \ _   _| | _____ 
+ ____        _
+|  _ \ _   _| | _____
 | | | | | | | |/ / _ \
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
@@ -9,50 +10,34 @@ ________________________________________
 Hello! I'm Duke
 What can I do for you?
 ________________________________________
-________________________________________
 Unfortunately, you do not have any tasks at hand. Try creating some first.
-________________________________________
-________________________________________
 OOPS!!! The description of a todo cannot be empty.
-________________________________________
-________________________________________
 Did you forget to specify what?
-________________________________________
-________________________________________
 Did you forget to specify what?
-________________________________________
 ________________________________________
 Got it. I've added this task:
 [T][ ] borrow book
 Now you have 1 tasks in the list.
 ________________________________________
-________________________________________
 That's magical! You only have 1 task(s) at hand!
-________________________________________
-________________________________________
 Hey there! Are you sure you are referring to a correct task? It definitely has to be at least 1!
-________________________________________
-________________________________________
 Did you forget to specify when your deadline for this is due by?
 ________________________________________
-________________________________________
 Got it. I've added this task:
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: August 25 2022)
 Now you have 2 tasks in the list.
-________________________________________
 ________________________________________
 Did you forget to specify when your event is at?
 ________________________________________
-________________________________________
 Got it. I've added this task:
-[E][ ] project meeting (at: Mon 2-4pm)
+[E][ ] project meeting (at: August 25 2022)
 Now you have 3 tasks in the list.
 ________________________________________
 ________________________________________
 Here are the tasks in your list:
-1.[T][ ] borrow book
-2.[D][ ] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
+2.[T][ ] borrow book
+3.[D][ ] return book (by: August 25 2022)
+4.[E][ ] project meeting (at: August 25 2022)
 ________________________________________
 ________________________________________
 Nice! I've marked this task as done:
@@ -60,13 +45,13 @@ Nice! I've marked this task as done:
 ________________________________________
 ________________________________________
 Nice! I've marked this task as done:
-[D][X] return book (by: Sunday)
+[D][X] return book (by: August 25 2022)
 ________________________________________
 ________________________________________
 Here are the tasks in your list:
-1.[T][X] borrow book
-2.[D][X] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
+2.[T][X] borrow book
+3.[D][X] return book (by: August 25 2022)
+4.[E][ ] project meeting (at: August 25 2022)
 ________________________________________
 ________________________________________
 OK, I've marked this task as not done yet:
@@ -74,18 +59,16 @@ OK, I've marked this task as not done yet:
 ________________________________________
 ________________________________________
 Here are the tasks in your list:
-1.[T][ ] borrow book
-2.[D][X] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
+2.[T][ ] borrow book
+3.[D][X] return book (by: August 25 2022)
+4.[E][ ] project meeting (at: August 25 2022)
 ________________________________________
 ________________________________________
 Noted. I've removed this task:
-[E][ ] project meeting (at: Mon 2-4pm)
+[E][ ] project meeting (at: August 25 2022)
 Now you have 2 tasks in the list.
 ________________________________________
-________________________________________
 Invalid command entered. I don't recognize it. Sorry!
-________________________________________
 ________________________________________
 Bye. Hope to see you again soon!
 ________________________________________

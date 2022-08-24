@@ -1,20 +1,15 @@
+package duke;
+
+import duke.command.Command;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.DukeException;
+
 public class Duke {
 
     private Storage storage;
     private Ui ui;
     private TaskList taskList;
-    public static class DukeException extends Exception {
-        String message;
-
-        DukeException(String message) {
-            this.message = message;
-        }
-
-        @Override
-        public String toString() {
-            return this.message;
-        }
-    }
 
     public Duke(String filePath) {
         this.storage = new Storage(filePath);
@@ -22,7 +17,7 @@ public class Duke {
         try {
             taskList = new TaskList(storage.loadData());
         } catch (DukeException e) {
-            System.out.println(e.getMessage());
+            System.out.println(e);
             taskList = new TaskList();
         }
     }

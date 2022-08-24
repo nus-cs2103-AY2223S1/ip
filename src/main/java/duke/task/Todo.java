@@ -1,7 +1,9 @@
+package duke.task;
+
 import java.time.LocalDate;
 
 public class Todo extends Task {
-    Todo(String description) {
+    public Todo(String description) {
         super(description);
     }
 

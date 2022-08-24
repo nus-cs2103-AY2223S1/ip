@@ -1,3 +1,7 @@
+package duke.storage;
+
+import duke.task.*;
+import duke.DukeException;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,11 +12,11 @@ import java.util.Scanner;
 public class Storage {
     String filePath;
 
-    Storage(String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-    public void saveData(TaskList taskList) throws Duke.DukeException {
+    public void saveData(TaskList taskList) throws DukeException {
         File directory = new File("data");
         if (!directory.exists()) {
             directory.mkdir();
@@ -28,12 +32,12 @@ public class Storage {
             }
             fileWriter.close();
         } catch (IOException e) {
-            throw new Duke.DukeException("Hey! Are you in the wrong directory? You are currently at" +
+            throw new DukeException("Hey! Are you in the wrong directory? You are currently at" +
                     e.getMessage());
         }
     }
 
-    public ArrayList<Task> loadData() throws Duke.DukeException {
+    public ArrayList<Task> loadData() throws DukeException {
         ArrayList<Task> list = new ArrayList<>();
         File directory = new File("data");
         if (!directory.exists()) {
@@ -63,7 +67,7 @@ public class Storage {
                         break;
                     }
                     default: {
-                        throw new Duke.DukeException("What!? How did this happen... I'm pretty sure you" +
+                        throw new DukeException("What!? How did this happen... I'm pretty sure you" +
                                 "have an itchy hand and modified the duke.txt file!!!");
                     }
                     }
@@ -71,10 +75,10 @@ public class Storage {
                 }
             } else {
                 data.createNewFile();
-                throw new Duke.DukeException("Hello there! This is your first time using Duke right?");
+                throw new DukeException("Welcome! This is your first time using Duke right?");
             }
         } catch (IOException e) {
-            throw new Duke.DukeException("Are you a hacker? How on earth did you get to this stage!?");
+            throw new DukeException("Are you a hacker? How on earth did you get to this stage!?");
         }
         return list;
     }
