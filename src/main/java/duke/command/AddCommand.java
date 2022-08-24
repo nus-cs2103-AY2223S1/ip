@@ -6,18 +6,41 @@ import duke.task.*;
 
 import java.time.LocalDate;
 
+/**
+ * The class that encapsulates the add command.
+ */
 public class AddCommand extends Command {
 
+    /** The type of task to be added */
     private String taskType;
+    /** The description of the task to be added */
     private String description;
+    /** The date of the task to be added */
     private LocalDate date;
 
+    /**
+     * The class constructor.
+     *
+     * @param taskType The type of task to be added.
+     * @param description The description of the task
+     *                    to be added.
+     * @param date The date of the task to be added.
+     */
     public AddCommand(String taskType, String description, LocalDate date) {
         this.taskType = taskType;
         this.description = description;
         this.date = date;
     }
 
+    /**
+     * Handles the execution behaviour of the adding of tasks.
+     *
+     * @param tasks The list of tasks to add to.
+     * @param ui The UI of the Duke bot.
+     * @param storage The storage of data.
+     * @throws DukeException If there is an error saving the
+     * new data to the text file.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = null;
@@ -37,11 +60,21 @@ public class AddCommand extends Command {
         ui.printMessage("Got it. I've added this task:\n" + task + "\nNow you have " + tasks.size() + " tasks.");
     }
 
+    /**
+     * Returns the command type.
+     *
+     * @return "add".
+     */
     @Override
     public String getCommand() {
         return "add";
     }
 
+    /**
+     * Returns the string representation of the add command.
+     *
+     * @return The string representation of the add command.
+     */
     @Override
     public String toString() {
         return "add " + taskType + " " + description + " " + date;

@@ -12,7 +12,18 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * A class that encapsulates the loading tasks and saving of tasks
+ * to file.
+ */
 public class Storage {
+    /**
+     * Class constructor that initialises the path where we will
+     * save the data in.
+     *
+     * @throws DukeException If we are unable to create the 'data'
+     * directory.
+     */
     public Storage() throws DukeException {
         String home = System.getProperty("user.dir");
         Path path = Paths.get(home, "data");
@@ -24,6 +35,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads in the data from text file to the given TaskList.
+     *
+     * @param data The TaskList to add the data to.
+     * @throws DukeException If the text in the file is of
+     * invalid format.
+     */
     public void loadData(TaskList data) throws DukeException {
         String home = System.getProperty("user.dir");
         Path path = Paths.get(home, "data", "duke.txt");
@@ -58,6 +76,12 @@ public class Storage {
         } catch (FileNotFoundException ignored){}
     }
 
+    /**
+     * Saves data from the given TaskList to the text file.
+     *
+     * @param data The TaskList that contains all the tasks to be saved.
+     * @throws DukeException If there is an error writing to the text file.
+     */
     public void saveData(TaskList data) throws DukeException {
         try {
             FileWriter file = new FileWriter("data/duke.txt", false);
