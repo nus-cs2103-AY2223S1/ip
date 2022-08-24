@@ -1,5 +1,8 @@
 package main.java;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Event encapsulates an event with a date/time period.
  *
@@ -9,14 +12,14 @@ public class Event extends Task {
     /**
      * Event date/time period.
      */
-    private String time;
+    private LocalDate time;
 
     /**
      * Constructor for this event.
      * @param description Description of event
      * @param time Time period of event
      */
-    public Event(String description, String time) {
+    public Event(String description, LocalDate time) {
         super(description);
         this.time = time;
     }
@@ -27,7 +30,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + String.format(" (at: %s)", this.time);
+        return "[E]" + super.toString()
+                + String.format(" (at: %s)", time.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 
     @Override

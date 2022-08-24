@@ -7,6 +7,10 @@ import java.io.IOException;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import java.time.LocalDate;
+import java.time.DateTimeException;
 
 
 /**
@@ -221,8 +225,11 @@ public class Duke {
                         if (time.length() == 0) {
                             throw new MissingTimeException();
                         }
-                        tasks.add(new Deadline(description, time));
+
+                        //strip leading get rid of white spaces infront, back alr dealt with
+                        tasks.add(new Deadline(description, Duke.parseTime(time.stripLeading())));
                         success = true;
+
                     } catch (MissingTokenException e) {
                         System.out.println(" ☹ OOPS!!! You are mising the \"/by\" token.");
                         continue;
@@ -231,6 +238,9 @@ public class Duke {
                         continue;
                     } catch (MissingTimeException e) {
                         System.out.println(" ☹ OOPS!!! You have not indicated the time for your deadline.");
+                        continue;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(" ☹ OOPS!!! Time inputted was invalid.");
                         continue;
                     }
                 //event command
@@ -259,7 +269,7 @@ public class Duke {
                         if (time.length() == 0) {
                             throw new MissingTimeException();
                         }
-                        tasks.add(new Event(description, time));
+                        tasks.add(new Deadline(description, Duke.parseTime(time.stripLeading())));
                         success = true;
                     } catch (MissingTokenException e) {
                         System.out.println(" ☹ OOPS!!! You are mising the \"/at\" token.");
@@ -269,6 +279,9 @@ public class Duke {
                         continue;
                     } catch (MissingTimeException e) {
                         System.out.println(" ☹ OOPS!!! You have not indicated the time for your event.");
+                        continue;
+                    } catch (IllegalArgumentException e) {
+                        System.out.println(" ☹ OOPS!!! Time inputted was invalid.");
                         continue;
                     }
                 }
@@ -304,5 +317,95 @@ public class Duke {
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
+    }
+
+
+    //accepts
+    //whitespaces adjacent to date separator except when separator itself is whitespace
+    //whitespaces before and after date input
+    //forward slash, hyphen, dot, whitespace as separators
+    //no separators
+    //the order ddmmyyyyy where d/dd, m/mm and yy/yyyy ("20" prepended to yy)
+    //the year omitted
+    //the order dd MMM yyyy where d/dd and yy/yyyy
+    //no input that ends with a seprator
+    private static LocalDate parseTime(String str) throws IllegalArgumentException {
+        String day;
+        String month;
+        String year;
+        //whole part is ton create a hashmap of months as key and month number as value
+        HashMap<String, String> months = new HashMap<>();
+        String[] monthsArr = {"jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"};
+        int dayNum = 1;
+        for (String key: monthsArr) {
+            months.put(key, ""+dayNum);
+            ++dayNum;
+        }
+        //ddmmyyyy
+        String[] arr = new String[3];
+        //forward slash, hyphen, dot, or whitespace, otherwise no separator cases
+        if (str.indexOf('/') >= 0) {
+            arr = Duke.parseTimeHelper('/', str);
+        } else if (str.indexOf('-') >= 0) {
+            arr = Duke.parseTimeHelper('-', str);
+        } else if (str.indexOf('.') >= 0) {
+            arr = Duke.parseTimeHelper('.', str);
+        } else if (str.indexOf(' ') >= 0) {
+            arr = Duke.parseTimeHelper(' ', str);
+        } else if (str.length() == 4|| str.length() == 6 || str.length() == 8) {
+            arr[0] = str.substring(0, 2);
+            arr[1] = str.substring(2, 4);
+            if (str.length() > 4) {
+                arr[2] = str.substring(4);
+            }
+        }
+        //check if null so can strip
+        if (arr[0] == null || arr[1] == null) {
+            throw new IllegalArgumentException();
+        }
+        day = arr[0].strip();
+        month = arr[1].strip();
+        //check if d/dd and m/mm/MMM
+        if (day.length() < 1 || day.length() > 2 || month.length() < 1 || month.length() > 3) {
+            throw new IllegalArgumentException();
+        }
+        //convert month to number
+        if (month.length() == 3) {
+            month = months.get(month.toLowerCase());
+            if (month == null) {
+                throw new IllegalArgumentException();
+            }
+        }
+        //if year null, defaults to current year
+        //else strip
+        if (arr[2] == null) {
+           year = "" + LocalDate.now().getYear();
+        } else {
+            year = arr[2].strip();
+        }
+        //check if yy/yyyy
+        if (year.length() == 2) {
+            year = "20" + year;
+        } else if (year.length() != 4) {
+            throw new IllegalArgumentException();
+        }
+        try {
+            return LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
+        } catch (NumberFormatException | DateTimeException e) {
+            //if cannot parse means invalid input
+            throw new IllegalArgumentException();
+        }
+    }
+
+    //helper that just splits string by specified char separator into array of size 3
+    private static String[] parseTimeHelper(char c, String str) {
+        String[] arr = new String[3];
+        int count = 0;
+        for (int charIndex = str.indexOf(c); charIndex >= 0 && count < 2; charIndex = str.indexOf(c)) {
+            arr[count++] = str.substring(0, charIndex);
+            str = str.substring(charIndex + 1);
+        }
+        arr[count] = str;
+        return arr;
     }
 }
