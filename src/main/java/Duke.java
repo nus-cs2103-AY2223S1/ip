@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 
+
 public class Duke {
     public static void main(String[] args) throws EmptyDescriptionException, OutOfRangeException, UnknownCommandException {
 
@@ -103,7 +104,7 @@ public class Duke {
                 input = input.replaceAll("deadline ", "");
 
                 //string manipulation
-                String[] s_arr = input.split("/", -1); //split array
+                String[] s_arr = input.split("/", 2); //split array
                 s_arr[1] = s_arr[1].replaceAll("by ", "");
                 arr.add(new Deadline(s_arr[0], s_arr[1]));
 
