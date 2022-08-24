@@ -7,6 +7,6 @@ public class ByeInstruction extends Instruction {
 
     @Override
     public void execute(TaskList taskList) {
-
+        System.out.println("Ok, see you next time!");
     }
 }

@@ -5,7 +5,7 @@ public class Deadline extends Task {
 
     private final TemporalAccessor endDateTime;
 
-    private Deadline(String description, TemporalAccessor endDateTime) {
+    public Deadline(String description, TemporalAccessor endDateTime) {
         this(description, false, endDateTime);
     }
 

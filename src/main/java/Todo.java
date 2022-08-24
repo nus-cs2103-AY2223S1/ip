@@ -1,5 +1,5 @@
 public class Todo extends Task {
-    private Todo(String description) {
+    public Todo(String description) {
         this(description, false);
     }
 

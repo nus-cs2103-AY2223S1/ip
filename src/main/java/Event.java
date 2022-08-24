@@ -5,7 +5,7 @@ public class Event extends Task {
 
     private final TemporalAccessor dateTime;
 
-    private Event(String description, TemporalAccessor dateTime) {
+    public Event(String description, TemporalAccessor dateTime) {
         this(description, false, dateTime);
     }
 
