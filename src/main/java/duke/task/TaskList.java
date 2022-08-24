@@ -22,20 +22,26 @@ public class TaskList {
     public Integer getNumOfRemainingTasks() {
         return tasks.size();
     }
+    public boolean isEmpty() {
+        return tasks.size() == 0;
+    }
 
     public Task markTask(Integer index) {
+        index--;
         Task task = tasks.get(index);
         task.markAsDone();
         return task;
     }
 
     public Task unmarkTask(Integer index) {
+        index--;
         Task task = tasks.get(index);
         task.unMark();
         return task;
     }
 
     public Task deleteTask(int index) {
+        index--;
         Task task = tasks.get(index);
         tasks.remove(index);
         return task;
@@ -43,6 +49,17 @@ public class TaskList {
 
     public void addTask(Task task) {
         tasks.add(task);
+    }
+
+    public TaskList find(String string) {
+        TaskList res = new TaskList();
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr = tasks.get(i);
+            if (curr.toString().matches(string)) {
+                res.addTask(curr);
+            }
+        }
+        return res;
     }
 
 }

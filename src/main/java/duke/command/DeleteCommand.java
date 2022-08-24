@@ -21,8 +21,7 @@ public class DeleteCommand extends Command {
             throw new InvalidIndexException();
         }
 
-        Task taskToDelete = tasks.getTasks().get(indexOfTaskToDelete);
-        tasks.deleteTask(indexOfTaskToDelete);
+        Task taskToDelete = tasks.deleteTask(indexOfTaskToDelete);
         storage.save(tasks);
         ui.showDeletedTask(taskToDelete, tasks.getNumOfRemainingTasks());
     }

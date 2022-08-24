@@ -1,7 +1,7 @@
 package duke.parser;
 
-import duke.exception.EmptyIndexException;
 import duke.exception.IllegalDateFormatException;
+import duke.exception.IllegalInputException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
     @Test
-    public void parseToTaskIndexTest() throws EmptyIndexException {
+    public void parseToTaskIndexTest() throws IllegalInputException {
         String[] arr = {"mark", "1"};
         int expected = 1;
         int actual = parseToTaskIndex(arr);

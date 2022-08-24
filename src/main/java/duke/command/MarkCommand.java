@@ -23,11 +23,11 @@ public class MarkCommand extends Command {
             throw new InvalidIndexException();
         }
 
-        Task taskToMark = tasks.getTasks().get(indexOfTaskToMark);
+        Task taskToMark = null;
         if (toMark) {
-            tasks.markTask(indexOfTaskToMark);
+            taskToMark = tasks.markTask(indexOfTaskToMark);
         } else {
-            tasks.unmarkTask(indexOfTaskToMark);
+            taskToMark = tasks.unmarkTask(indexOfTaskToMark);
         }
         storage.save(tasks);
         ui.showTask(taskToMark);

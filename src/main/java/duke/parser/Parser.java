@@ -54,11 +54,15 @@ public class Parser {
 
     }
 
-    protected static int parseToTaskIndex(String[] fullCommandArray) throws EmptyIndexException {
+    protected static int parseToTaskIndex(String[] fullCommandArray) throws IllegalInputException {
         if (fullCommandArray.length == 1) {
             throw new EmptyIndexException();
         }
-        return Integer.parseInt(fullCommandArray[COMMAND_DESCRIPTION]);
+        if (fullCommandArray[COMMAND_DESCRIPTION].matches("\\d+")) {
+            return Integer.parseInt(fullCommandArray[COMMAND_DESCRIPTION]);
+        } else {
+            throw new InvalidIndexException();
+        }
     }
 
     private static Command parseToAddTodoCommand(String[] fullCommandArray) throws EmptyDescriptionException {
