@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -16,11 +17,15 @@ import java.nio.file.Path;
 public class Storage {
     private TaskList currList;
     private static final String home = System.getProperty("user.home");
-    private static final Path FILE_PATH = java.nio.file.Paths.get(home, "Desktop", "duke.txt");
-    private static final File file = new File(FILE_PATH.toUri());
+    private static final String FILE_PATH = "./data/duke.txt";
+    private static final File file = new File(FILE_PATH);
+    private Path path;
+    String dir = System.getProperty("user.dir");
+
 
     public Storage(TaskList taskList) {
         this.currList = taskList;
+        this.path = Paths.get(dir, FILE_PATH);
     }
 
     /**
@@ -75,9 +80,9 @@ public class Storage {
      * A method to create a file in the specified file path.
      */
     public void createFile() {
-        File dir = file;
         try {
-            dir.createNewFile();
+            file.getParentFile().mkdirs();
+            file.createNewFile();
         } catch (IOException e) {
             System.out.println("Cannot create file!");
         }

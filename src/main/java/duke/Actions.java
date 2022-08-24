@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.Scanner;
 /**
  *  A class which encapsulates the functionality Duke can do, current functionality is only the to-do list.
  *  @author  Chen Guanzhou
@@ -7,7 +8,6 @@ package duke;
  */
 
 public class Actions { //actions that Duke can perform
-import java.util.Scanner;
 
     public static void toDoList() {
         TaskList currList = new TaskList();
