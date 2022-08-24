@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -13,6 +16,8 @@ public class Duke {
         // greeting messages
         say("Hello. I'm Jarvis", true, false);
         say("What can I do for you?", false, true);
+
+        readFile();
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
@@ -75,9 +80,10 @@ public class Duke {
 
                         ToDo todo = new ToDo(description);
                         tasks.add(todo);
+                        writeFile(tasks);
 
                         say("Got it. I've added this task:", true, false);
-                        say("  " + todo.toString(), false, false);
+                        say("  " + todo, false, false);
                         say("Now you have " + tasks.size() + " tasks in the list.", false, true);
                     } else if (userInput.startsWith("deadline")) {
                         // the task is a deadline
@@ -89,9 +95,10 @@ public class Duke {
 
                         Deadline deadline = new Deadline(description, by);
                         tasks.add(deadline);
+                        writeFile(tasks);
 
                         say("Got it. I've added this task:", true, false);
-                        say("  " + deadline.toString(), false, false);
+                        say("  " + deadline, false, false);
                         say("Now you have " + tasks.size() + " tasks in the list.", false, true);
                     } else if (userInput.startsWith("event")) {
                         // the task is an event
@@ -103,9 +110,10 @@ public class Duke {
 
                         Event event = new Event(description, at);
                         tasks.add(event);
+                        writeFile(tasks);
 
                         say("Got it. I've added this task:", true, false);
-                        say("  " + event.toString(), false, false);
+                        say("  " + event, false, false);
                         say("Now you have " + tasks.size() + " tasks in the list.", false, true);
                     } else {
                         throw new DukeException("I'm sorry, but I don't quite understand what that means.");
@@ -144,12 +152,14 @@ public class Duke {
 
     public static void mark(ArrayList<Task> tasks, int index) {
         tasks.get(index).setStatus(true);
+        writeFile(tasks);
         say("Nice! I've marked this task as done:", true, false);
         say(tasks.get(index).toString(), false, true);
     }
 
     public static void unmark(ArrayList<Task> tasks, int index) {
         tasks.get(index).setStatus(false);
+        writeFile(tasks);
         say("OK, I've marked this task as not done yet:", true, false);
         say(tasks.get(index).toString(), false, true);
     }
@@ -158,6 +168,62 @@ public class Duke {
         say("Noted. I've removed this task:", true, false);
         say(tasks.get(index).toString(), false, false);
         tasks.remove(index);
+        writeFile(tasks);
         say("Now you have " + tasks.size() + " tasks in the list.", false, true);
+    }
+
+    public static void initialiseFile() {
+        final String PATH = "../ip/";
+        final String directoryName = PATH.concat("data");
+        final String fileName = "duke.txt";
+
+        File directory = new File(directoryName);
+        if (!directory.exists()) {
+            System.out.println("directory created");
+            directory.mkdir();
+        }
+
+        File file = new File(directoryName + "/" + fileName);
+        try {
+            if (!file.exists()) {
+                System.out.println("file created");
+                file.createNewFile();
+            }
+        } catch (IOException exception) {
+            say(exception.getMessage(), true, true);
+        }
+    }
+
+    public static String readFile() {
+//        System.out.println("read file");
+        initialiseFile();
+        File file = new File("data/duke.txt");
+        String output = "";
+
+        try {
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()) {
+                output += scanner.nextLine() + System.lineSeparator();
+            }
+        } catch (IOException exception) {
+            say(exception.getMessage(), true, true);
+        }
+
+        return output;
+    }
+
+    public  static void writeFile(ArrayList<Task> tasks) {
+        initialiseFile();
+        File file = new File("data/duke.txt");
+
+        try {
+            FileWriter writer = new FileWriter(file);
+            for (Task task: tasks) {
+                writer.write(task.toString() + "\n");
+            }
+            writer.close();
+        } catch (IOException exception) {
+            say(exception.getMessage(), true, true);
+        }
     }
 }
