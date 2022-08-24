@@ -30,4 +30,13 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    /**
+     * Method getBy()
+     *
+     * @return String representation of the by attribute.
+     */
+    public String getBy() {
+        return this.by;
+    }
 }

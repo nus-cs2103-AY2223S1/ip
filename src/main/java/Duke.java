@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,22 +15,50 @@ public class Duke {
     /**
      * Method list
      *
-     * @throws DukeException
-     *
-     * Description: Asks for user input using the scanner utility,
-     *              Adds input to memory if input is todo <description>, deadline <description> /by <time> or event <description> /at <time>,
-     *              if input is bye exit message is displayed and program exits,
-     *              if input is list program lists out the stored inputs,
-     *              if input is mark <number> program marks the task as complete and displays it,
-     *              if input is unmark <number> program marks the task as incomplete and displays it.
-     *              if input is delete <number> program deletes the task from the list.
-     *
+     * @throws DukeException Description: Asks for user input using the scanner utility,
+     *                       Adds input to memory if input is todo <description>, deadline <description> /by <time> or event <description> /at <time>,
+     *                       if input is bye exit message is displayed and program exits,
+     *                       if input is list program lists out the stored inputs,
+     *                       if input is mark <number> program marks the task as complete and displays it,
+     *                       if input is unmark <number> program marks the task as incomplete and displays it.
+     *                       if input is delete <number> program deletes the task from the list.
      */
-    public static void list() throws DukeException {
-
+    public static void list() throws DukeException, IOException {
+        try {
+            File myObj = new File("duke.txt");
+            if (myObj.createNewFile()) {
+            } else {
+                FileInputStream saved = new FileInputStream("duke.txt");
+                Scanner scan = new Scanner(saved);
+                while (scan.hasNextLine()) {
+                    String next = scan.nextLine();
+                    if (next.startsWith("ToDo")) {
+                        String[] temp = next.split(" / ");
+                        ToDo item = new ToDo(temp[2]);
+                        item.setIsDone(temp[1].equalsIgnoreCase("true"));
+                        storage.add(item);
+                    } else if (next.startsWith("Deadline")) {
+                        String[] temp = next.split(" / ");
+                        Deadline item = new Deadline(temp[2], temp[3]);
+                        item.setIsDone(temp[1].equalsIgnoreCase("true"));
+                        storage.add(item);
+                    } else if (next.startsWith("Event")) {
+                        String[] temp = next.split(" / ");
+                        Event item = new Event(temp[2], temp[3]);
+                        item.setIsDone(temp[1].equalsIgnoreCase("true"));
+                        storage.add(item);
+                    }
+                }
+                scan.close();
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         Scanner input = new Scanner(System.in);
-
         while (input.hasNext()) {
+            PrintStream fileOut = new PrintStream("duke.txt");
+            PrintStream console = System.out;
             String text = input.nextLine();
 
             if (text.equalsIgnoreCase("list")) {
@@ -50,7 +79,8 @@ public class Duke {
                 System.out.println(divider);
                 System.out.println("Bye. Hope to see you again soon!");
                 System.out.println(divider);
-                break;
+                writeToFile();
+                System.exit(0);
 
             } else if (text.startsWith("delete")) {
                 try {
@@ -73,6 +103,7 @@ public class Duke {
                             System.out.println("The task you want to delete does not exist.");
                             System.out.println(divider);
                         }
+
                     }
                 } catch (NumberFormatException error) {
                     System.out.println(divider);
@@ -82,7 +113,7 @@ public class Duke {
                 }
 
             } else if (text.startsWith("todo")) {
-                if (text.equalsIgnoreCase("todo") || text.equalsIgnoreCase("todo ") || text.replace("todo ", "").trim().length()<1) {
+                if (text.equalsIgnoreCase("todo") || text.equalsIgnoreCase("todo ") || text.replace("todo ", "").trim().length() < 1) {
                     try {
                         throw new DukeException.DukeToDoException("Please provide a description for your todo task.");
                     } catch (DukeException.DukeToDoException error) {
@@ -230,7 +261,30 @@ public class Duke {
                     System.out.println(divider);
                 }
             }
+            writeToFile();
         }
+    }
+
+    /**
+     * Method writeToFile.
+     * Writes the list to the text file.
+     *
+     * @throws IOException
+     */
+    public static void writeToFile() throws IOException {
+        FileWriter dukeWriter = new FileWriter("duke.txt");
+        for (int i = 0; i < storage.size(); i++) {
+            if (storage.get(i).getClass() == ToDo.class) {
+                dukeWriter.write("ToDo / " + storage.get(i).getIsDone() + " / " + storage.get(i).getDescription() + "\n");
+            }
+            if (storage.get(i).getClass() == Event.class) {
+                dukeWriter.write("Event / " + ((Event) storage.get(i)).getIsDone() + " / " + ((Event) storage.get(i)).getDescription() + " / " + ((Event) storage.get(i)).getAt() + "\n");
+            }
+            if (storage.get(i).getClass() == Deadline.class) {
+                dukeWriter.write("Deadline / " + ((Deadline) storage.get(i)).getIsDone() + " / " + ((Deadline) storage.get(i)).getDescription() + " / " + ((Deadline) storage.get(i)).getBy() + "\n");
+            }
+        }
+        dukeWriter.close();
     }
 
     /**
@@ -239,7 +293,7 @@ public class Duke {
      * @param args
      * @throws DukeException
      */
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) throws DukeException, IOException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
