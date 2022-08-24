@@ -5,12 +5,10 @@ What can I do for you
 
 -----------------------------
 Got it. I've added this task:
-[T][ ] borrow book
+[T][ ] eat lunch
 Now you have 1 tasks in the list.
 -----------------------------
 
 -----------------------------
 Bye. Hope to see you again soon!
 -----------------------------
-
-

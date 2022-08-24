@@ -3,6 +3,8 @@ import main.java.ToDo;
 import main.java.Deadline;
 import main.java.Event;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -68,10 +70,14 @@ public class Duke {
             else if (answer.equals("blah")) { // Level 5: handle blah exception
                 throw new Exception("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
-            else if (answer.startsWith("deadline")) { // Task 4: deadline
+            else if (answer.startsWith("deadline")) { // Task 4: deadline, Task 8: Dates and Times
                 String deadlineAction = answer.substring(9, answer.indexOf("/") - 1);
-                String by = answer.substring(answer.indexOf("/") + 1);
-                Deadline d = new Deadline(deadlineAction, by);
+                String by = answer.substring(answer.indexOf("/") + 4); // Format: dd/MM/yyyy HHmm
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+                LocalDateTime dateTime = LocalDateTime.parse(by, formatter);
+
+                Deadline d = new Deadline(deadlineAction, dateTime);
                 ls.add(d);
                 System.out.println(line + "\n" +
                         "Got it. I've added this task: " + "\n" +
@@ -81,8 +87,12 @@ public class Duke {
             }
             else if (answer.startsWith("event")) { // Task 4: event
                 String eventAction = answer.substring(6, answer.indexOf("/") - 1);
-                String at = answer.substring(answer.indexOf("/") + 1);
-                Event e = new Event(eventAction, at);
+                String at = answer.substring(answer.indexOf("/") + 4); // Format: dd/MM/yyyy HHmm
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+                LocalDateTime dateTime = LocalDateTime.parse(at, formatter);
+
+                Event e = new Event(eventAction, dateTime);
                 ls.add(e);
                 System.out.println(line + "\n" +
                         "Got it. I've added this task: " + "\n" +
