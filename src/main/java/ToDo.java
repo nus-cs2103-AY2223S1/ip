@@ -14,6 +14,9 @@ public class ToDo extends Task {
         addMessage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addMessage() {
         System.out.printf(
@@ -24,6 +27,9 @@ public class ToDo extends Task {
                 "    ____________________________________________________________\n", this, Duke.taskArray.size() + 1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();

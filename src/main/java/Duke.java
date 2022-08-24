@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -88,6 +91,8 @@ public class Duke {
                     delete(num - 1);
                 } catch (NumberFormatException e) {
                     System.out.println("Invalid task! Please input a number!");
+                } catch (IndexOutOfBoundsException e) {
+                    System.out.println("Please Include a valid index!");
                 }
             } else {
                 try{
@@ -145,10 +150,8 @@ public class Duke {
         String[] commands = input.split("/", 2);
         String[] inputArr = commands[0].split(" ", 2);
 
-
         if (Objects.equals(inputArr[0], "todo")) {
             try {
-                String test = inputArr[1];
                 if (!(inputArr[1].trim().length() > 0)) {
                     throw new DukeException.EmptyTaskException("OOPS! please include a name for your task!");
                 }
@@ -161,11 +164,12 @@ public class Duke {
             if (Objects.equals(inputArr[0], "deadline") || Objects.equals(inputArr[0], "event")) {
                 try {
                     String[] date = commands[1].split(" ", 2);
-                    System.out.println(date[1]);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime formattedDate = LocalDateTime.parse(date[1], format);
 
                     if (Objects.equals(inputArr[0], "deadline")) {
                         if (Objects.equals(date[0].toLowerCase(), "by")) {
-                            Deadlines newDeadline= new Deadlines(inputArr[1], date[1]);
+                            Deadlines newDeadline= new Deadlines(inputArr[1], formattedDate);
                             taskArray.add(newDeadline);
                         } else {
                             System.out.println("Include '/by' followed by a date after!");
@@ -180,11 +184,12 @@ public class Duke {
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("deadline/event requires date as a third parameter after /by or /at respectively!");
+                } catch (DateTimeParseException e) {
+                    System.out.println("Please input in date time format 'yyyy-MM-dd HH:mm'" );
                 }
             } else {
                 throw new DukeException.UnkownCommandException("OOPS! Indicate todo/deadline/event before a task");
             }
         }
-
     }
 }

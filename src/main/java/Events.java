@@ -19,6 +19,9 @@ public class Events extends Task {
         addMessage();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addMessage() {
         System.out.printf(
@@ -29,6 +32,9 @@ public class Events extends Task {
                 "    ____________________________________________________________\n", this, Duke.taskArray.size() + 1);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + String.format(" (at: %s)", timing);
