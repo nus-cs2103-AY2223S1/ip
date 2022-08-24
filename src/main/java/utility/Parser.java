@@ -47,8 +47,10 @@ public class Parser {
         }
         else if (stringCommand.equals("bye")) {
             return new ExitCommand();
+        } else if (stringCommand.equals("help")) {
+            return new HelpCommand();
         }
-        throw new DukeException("Command invalid. /help for more information.");
+        throw new DukeException("Command invalid. Type help for more information.");
     }
 
     public static Task stringToTask(String userInput) throws DukeException{
