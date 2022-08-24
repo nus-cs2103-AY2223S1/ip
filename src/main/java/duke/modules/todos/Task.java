@@ -40,6 +40,15 @@ public abstract class Task {
         this.done = done;
     }
 
+    /**
+     * Returns the name of the task.
+     *
+     * @return The name of the task.
+     */
+    public String getName() {
+        return this.name;
+    }
+
     public static final String typeCode = "B";
     private final String doneSer = "X";
     private final String undoneSer = "-";

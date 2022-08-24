@@ -24,6 +24,10 @@ public class TaskList implements Iterable<Task> {
         this.todos = todos;
     }
 
+    public TaskList() {
+        this.todos = new ArrayList<>();
+    }
+
     public Task get(int index) {
         return todos.get(index);
     }
@@ -38,6 +42,19 @@ public class TaskList implements Iterable<Task> {
 
     public Task remove(int index) {
         return todos.remove(index);
+    }
+
+    public TaskList filter(List<String> segments) {
+        TaskList result = new TaskList();
+
+        for (Task task : this.todos) {
+            String name = task.getName();
+            if (segments.stream().allMatch(name::contains)) {
+                result.add(task);
+            }
+        }
+
+        return result;
     }
 
     @Override

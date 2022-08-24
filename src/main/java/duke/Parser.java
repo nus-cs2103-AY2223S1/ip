@@ -45,6 +45,9 @@ public class Parser {
             case "delete":
                 todos.cmdDelete(scanner);
                 break;
+            case "find":
+                todos.cmdFind(scanner);
+                break;
             default:
                 sayAsError("Sorry, I didn't understand what you said :(");
                 break;
