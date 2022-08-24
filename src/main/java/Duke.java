@@ -1,6 +1,9 @@
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
@@ -82,9 +85,15 @@ public class Duke {
                     }
                     String task = taskWithDeadline[0];
                     String by = taskWithDeadline[1];
-                    Deadline(task, by);
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate byDateTime = LocalDate.parse(by,dtf);
+                    Deadline(task, byDateTime);
                 } catch (DukeException e) {
                     System.out.println(e.toString());
+                } catch (DateTimeParseException e) {
+                    System.out.println("##############################################");
+                    System.out.println("Sorry! Please include a valid datetime entry!");
+                    System.out.println("##############################################");
                 }
             } else if (userReply.toLowerCase().startsWith("event")) {
                 try {
@@ -101,9 +110,15 @@ public class Duke {
                     }
                     String task = taskWithPeriod[0];
                     String period = taskWithPeriod[1];
-                    Event(task, period);
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate periodDateTime = LocalDate.parse(period,dtf);
+                    Event(task, periodDateTime);
                 } catch (DukeException e) {
                     System.out.println(e.toString());
+                } catch (DateTimeParseException e) {
+                    System.out.println("##############################################");
+                    System.out.println("Sorry! Please include a valid datetime entry!");
+                    System.out.println("##############################################");
                 }
             } else if (userReply.toLowerCase().startsWith("delete")) {
               try {
@@ -184,7 +199,7 @@ public class Duke {
         saveToFile(false, toDo);
     }
 
-    private static void Deadline(String task, String by) {
+    private static void Deadline(String task, LocalDate by) {
         System.out.println("##############################################");
         System.out.println("Nice! This task has been successfully added!");
         Deadline deadline = new Deadline(task, by);
@@ -196,7 +211,7 @@ public class Duke {
         saveToFile(false,deadline);
     }
 
-    private static void Event(String task, String at) {
+    private static void Event(String task, LocalDate at) {
         System.out.println("##############################################");
         System.out.println("Nice! This task has been successfully added!");
         Event event = new Event(task, at);
@@ -245,13 +260,15 @@ public class Duke {
                }
                if (task.length == 4) {
                    if (task[0].equals("D")) {
-                       Deadline deadline = new Deadline(task[2],task[3]);
+                       LocalDate currDate = LocalDate.parse(task[3]);
+                       Deadline deadline = new Deadline(task[2],currDate);
                        boolean isMarked = task[1].equals("T");
                        deadline.setCompleted(isMarked);
                        botArray.add(deadline);
                    }
                    if (task[0].equals("E")) {
-                       Event event = new Event(task[2],task[3]);
+                       LocalDate currDate = LocalDate.parse(task[3]);
+                       Event event = new Event(task[2],currDate);
                        boolean isMarked = task[1].equals("T");
                        event.setCompleted(isMarked);
                        botArray.add(event);
@@ -285,7 +302,7 @@ public class Duke {
             }
             fileWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Please check that parent file is created!");
         }
     }
 
