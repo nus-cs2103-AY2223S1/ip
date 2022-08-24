@@ -24,6 +24,6 @@ public class DukeException extends IllegalArgumentException {
      */
     @Override
     public String getMessage() {
-        return Duke.formatText("☹ OOPS!!! " + this.message);
+        return this.message;
     }
 }
