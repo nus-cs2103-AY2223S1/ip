@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 /**
- * Handles Ui aspects of the Duke chatbot.
+ * Handles UI aspects of the Duke chatbot.
  */
 public class Ui {
 

@@ -42,7 +42,7 @@ public class TaskList {
     /**
      * Handles deleting a task from the list.
      *
-     * @param taskNumber The task number to delete  from the list.
+     * @param taskNumber The task number to delete from the list.
      */
     public void delete(int taskNumber) {
         this.arrayList.remove(taskNumber);
