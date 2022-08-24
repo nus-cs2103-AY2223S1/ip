@@ -19,9 +19,6 @@ public class Duke {
         Storage storage = new Storage("../../../out/duke.txt");
         String s = storage.reader();
 
-        int counter_mark = 1;
-        boolean checker = false;
-
         //duke.duke.Parser
         Parser parser = new Parser();
 
