@@ -1,14 +1,30 @@
 package doke;
 
+/**
+ * An Exception to handle the Exception specific to the Doke program.
+ */
 public class DokeException extends RuntimeException{
-    String text = null;
+    private String text = null;
 
+    /**
+     * a public constructor for the DokeException class.
+     *
+     * @param text the text to be outputted.
+     */
     public DokeException(String text) {
         this.text = text;
     }
 
+    /**
+     * a public constructor for the DokeException class.
+     */
     public DokeException() {}
 
+    /**
+     * Returns a String representation of the DokeException.
+     *
+     * @return a string.
+     */
     @Override
     public String toString() {
         String temp = text == null
