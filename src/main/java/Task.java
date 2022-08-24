@@ -11,6 +11,10 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
+    public String getStatus() {
+        return (isDone ? "1" : "0");
+    }
+
     public String getDescription() {
         return this.description;
     }
@@ -21,6 +25,10 @@ public class Task {
 
     public void markAsUndone() {
         this.isDone = false;
+    }
+
+    public String getTaskType() {
+        return null;
     }
 
     @Override
