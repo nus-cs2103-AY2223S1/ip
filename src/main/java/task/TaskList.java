@@ -26,11 +26,13 @@ public class TaskList {
      * A function that list all the tasks in the list.
      */
     public void listTask() {
-        System.out.println("\nCurrent Tasking");
-        for (int i = 1; i <= taskList.size(); i++) {
-            System.out.println(i + ") " + taskList.get(i - 1));
+        StringBuilder output = new StringBuilder();
+        output.append("\nCurrent Tasking\n");
+        for (int i = 0; i < this.taskList.size(); i++) {
+            output.append(String.format("%d) %s\n", i + 1, this.taskList.get(i)));
         }
-        System.out.println("Number of tasking: " + taskList.size());
+        output.append("Number of tasking: ").append(taskList.size());
+        System.out.println(output);
     }
 
 
@@ -82,15 +84,15 @@ public class TaskList {
         if (index < 0 || index >= taskList.size()) {
             String message;
             switch (taskList.size()) {
-                case 0:
-                    message = "Please add a task first!";
-                    break;
-                case 1:
-                    message = "Please choose the index 1";
-                    break;
-                default:
-                    message = "Please choose an index between 1 and " + taskList.size();
-                    break;
+            case 0:
+                message = "Please add a task first!";
+                break;
+            case 1:
+                message = "Please choose the index 1";
+                break;
+            default:
+                message = "Please choose an index between 1 and " + taskList.size();
+                break;
             }
             throw new InvalidIndexException(message);
         }
