@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
 public class Duke {
-
     private TasksList tasksList;
     private boolean hasEnded = false;
     private static final WelcomeRequest welcomeRequest = new WelcomeRequest();
     private static final GoodbyeRequest goodbyeRequest = new GoodbyeRequest();
+    private static String TASKS_STORAGE_PATH = "./data/duke.txt";
 
     public Duke() {
-        this.tasksList = new TasksList();
+        this.tasksList = new TasksList(Duke.TASKS_STORAGE_PATH);
     }
 
     public static void main(String[] args) {
@@ -25,7 +25,7 @@ public class Duke {
                 String[] inputArray = userInput.trim().split("\\s+", 2);
 
                 //parse to the corresponding Command
-                Command command = Command.parseToEnum(inputArray[0].toLowerCase());
+                Command command = Command.parseToCommand(inputArray[0].toLowerCase());
 
                 switch (command) {
                     case BYE:
@@ -62,6 +62,7 @@ public class Duke {
                         deleteRequest.execute();
                         break;
                 }
+                tasksList.saveTasks();
             } catch (DukeException exception) {
                 InvalidRequest invalidRequest = new InvalidRequest(exception.getMessage());
                 invalidRequest.execute();
