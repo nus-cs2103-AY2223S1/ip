@@ -23,9 +23,10 @@ public class Event extends Task {
         }
     }
 
-    public static Event taskFromSave(String saveString) {
+    public static Event taskFromSave(String saveString) throws DukeException {
         String[] tokens = saveString.split(" \\| ");
-        Event event = new Event(tokens[2], tokens[3]);
+        String time = tokens[3].equals("true") ? tokens[4] + " " + tokens[5] : tokens[4];
+        Event event = new Event(tokens[2], time);
         if (tokens[1].equals("1")) {
             event.markDone();
         }
@@ -34,7 +35,8 @@ public class Event extends Task {
 
     @Override
     public String saveString() {
-        return "E | " + super.saveString() + " | " + at;
+        return "E | " + super.saveString() +  " | " + this.hasTime + " | " + this.d + " | " 
+                + (this.hasTime ? this.t.format(DateTimeFormatter.ofPattern("HHmm")) : "");
     }
     
     @Override

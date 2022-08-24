@@ -1,8 +1,8 @@
 list
 todo Duke
-deadline do Duke /by friday lecture
+deadline do Duke /by 2022-01-02 2359
 list
-event CS2103T lecture /at friday 4-6
+event CS2103T lecture /at 2022-08-27
 list
 mark 1
 list

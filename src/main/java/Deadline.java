@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 public class Deadline extends Task {
     private LocalDate d;
@@ -11,6 +12,7 @@ public class Deadline extends Task {
         super(description);
         String[] dateAndTime = by.split(" ");
         try {
+            System.out.println(dateAndTime[0]);
             this.d = LocalDate.parse(dateAndTime[0]);
             if (dateAndTime.length == 2) {
                 this.t = LocalTime.parse(dateAndTime[1], DateTimeFormatter.ofPattern("HHmm"));
@@ -19,13 +21,14 @@ public class Deadline extends Task {
                 this.hasTime = false;
             }
         } catch (java.time.format.DateTimeParseException e) {
-            throw new DukeException("Please enter a valid date and time YYYY-MM-DD HHMM");
+            throw new DukeException("Please enter a valid date and time (YYYY-MM-DD HHMM) or date only (YYYY-MM-DD)");
         }
     }
 
-    public static Deadline taskFromSave(String saveString) {
+    public static Deadline taskFromSave(String saveString) throws DukeException {
         String[] tokens = saveString.split(" \\| ");
-        Deadline deadline = new Deadline(tokens[2], tokens[3]);
+        String time = tokens[3].equals("true") ? tokens[4] + " " + tokens[5] : tokens[4]; 
+        Deadline deadline = new Deadline(tokens[2], time);
         if (tokens[1].equals("1")) {
             deadline.markDone();
         }
@@ -34,7 +37,8 @@ public class Deadline extends Task {
     
     @Override
     public String saveString() {
-        return "D | " + super.saveString() + " | " + by;
+        return "D | " + super.saveString() + " | " + this.hasTime + " | " + this.d + " | " 
+                + (this.hasTime ? this.t.format(DateTimeFormatter.ofPattern("HHmm")) : "");
     }
 
     @Override
