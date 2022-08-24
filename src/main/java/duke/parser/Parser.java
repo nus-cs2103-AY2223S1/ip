@@ -36,6 +36,9 @@ public class Parser {
                 case "unmark":
                     tasklist.unmark(next[1]);
                     break;
+                case "find":
+                    tasklist.findWithFilter(next[1]);
+                    break;
                 case "mark":
                     tasklist.mark(next[1]);
                     break;
