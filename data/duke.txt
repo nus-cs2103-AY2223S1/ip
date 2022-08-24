@@ -3,3 +3,6 @@
 [T][ ] go library
 [D][ ] go sch (by: by sunday)
 [E][ ] project meeting  (at: Mon 2-4pm)
+[T][X] go meet rueben
+
+[T][ ] go back home
