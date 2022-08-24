@@ -57,6 +57,27 @@ public class TaskList {
             int taskNum = j + 1;
             System.out.println(indent + taskNum + ". " + tasks.get(j));
         }
+    }
 
+    /**
+     * Prints out all the tasks in our task list associated with the given keyword by the user
+     *
+     * @param keyword input user is trying to find
+     * @throws DukeException if none of our tasks description contains the keyword
+     */
+    void findTasks(String keyword) throws DukeException{
+        // initiate a boolean variable to check if the keyword exists in our task list
+        boolean isFindable = false;
+        for (Task task : tasks) {
+            if (task.getDescription().contains(keyword)) {
+                System.out.println(task);
+                isFindable = true;
+            }
+        }
+
+        //Throw a DukeException that there exist no such keyword if we cannot find it in our task list
+        if (!isFindable) {
+            throw new DukeException("There exists no such keyword in the task list!");
+        }
     }
 }

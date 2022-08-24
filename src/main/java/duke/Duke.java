@@ -59,6 +59,8 @@ public class Duke {
                             tasks.add(new Event(fullCommand.substring(6, fullCommand.indexOf("/")), dateTime));
                         }
                     }
+                } else if (commandType.equals("FIND")) {
+                    Parser.parseFindCommand(fullCommand, tasks);
                 } else {
                     Parser.printUpcomingTasks(fullCommand, tasks);
                 }

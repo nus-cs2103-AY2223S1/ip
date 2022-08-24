@@ -23,6 +23,8 @@ public class Parser {
             return "ADD";
         } else if (input.equals("upcoming tasks")) {
             return "UPCOMING";
+        } else if (input.startsWith("find")) {
+            return "FIND";
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -53,6 +55,23 @@ public class Parser {
             return LocalDateTime.of(date, time);
         } catch (Exception e) {
             throw new DukeException("Date and Time is not of correct format!");
+        }
+    }
+
+    /**
+     * Prints the task with the keyword in their description
+     * Otherwise print an error message that keyword does not exist
+     *
+     * @param command the user input
+     * @param tasks
+     * @throws DukeException if keyword cannot be found in our task list
+     */
+    static void parseFindCommand(String command, TaskList tasks) throws DukeException{
+        try {
+            String keyword = command.substring(5);
+            tasks.findTasks(keyword);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
         }
     }
 
