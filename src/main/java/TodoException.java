@@ -1,5 +1,5 @@
 public class TodoException extends TumuException {
-    private static String TODO_EXCEPTION = "\tPlease enter a task.";
+    private static String TODO_EXCEPTION = "Please enter a task.";
 
     public TodoException() {
         super(TODO_EXCEPTION);

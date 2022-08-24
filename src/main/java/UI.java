@@ -27,20 +27,20 @@ public class UI {
          * User exits the chat-bot.
          */
 
-        String goodbyeMessage = "\tGoodbye, and have a nice day ahead!\n";
-        String smileyFace = "\t٩(ˊᗜˋ )و";
-        System.out.println(goodbyeMessage + smileyFace);
+        notifyUser("Goodbye, and have a nice day ahead!\n");
+        notifyUser("٩(ˊᗜˋ )و");
     }
 
-    public String showLine() {
-        return "\t" + "_".repeat(60);
+    public void showLine() {
+        notifyUser("_".repeat(60));
     }
 
     /**
      * Where all the messages seen by the user will pass through.
-     * @param message
+     * @param message The message to be printed, after additional
+     *                formatting.
      */
     public void notifyUser(String message) {
-        System.out.println(message);
+        System.out.println("\t" + message);
     }
 }

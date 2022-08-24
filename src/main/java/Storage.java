@@ -63,14 +63,12 @@ public class Storage {
         File folder = new File(FOLDER_PATH);
         if (!folder.exists()) {
             folder.mkdir();
-            System.out.println("\tFolder is created for data storage!\n");
         }
 
         File file = new File(filePath);
         try {
             if (!file.exists()) {
                 file.createNewFile();
-                System.out.println("\tFile is created for data storage!\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

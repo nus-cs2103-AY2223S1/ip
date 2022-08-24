@@ -42,7 +42,7 @@ public class TaskFormatter {
             markTask(todo);
             return todo;
         default:
-            throw new GeneralException("\tTask type is not found!");
+            throw new GeneralException("Task type is not found!");
         }
     }
 

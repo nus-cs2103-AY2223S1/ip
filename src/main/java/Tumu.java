@@ -12,7 +12,7 @@ public class Tumu {
     private TaskList tasks;
     private UI ui;
 
-    private static List<Task> userTasks = new ArrayList<>();
+    private List<Task> userTasks = new ArrayList<>();
 
     private static final String END_CHAT_BOT_CMD = "bye";
     private static final String LIST_USER_TEXT_CMD = "list";
@@ -27,6 +27,7 @@ public class Tumu {
         ui = new UI();
         storage = new Storage("data/Tumu.txt");
         tasks = new TaskList();
+        loadUserTasks();
     }
 
     public static void main(String[] args) {
@@ -34,7 +35,6 @@ public class Tumu {
     }
 
     private void run() {
-        loadUserTasks();
         ui.greeting();
         response();
     }
@@ -93,11 +93,11 @@ public class Tumu {
                     throw new UnrecognisedCommandException(command.trim());
                 }
             } catch (InputMismatchException e) {
-                System.out.println("\tPlease (un)mark or delete a task by " +
+                ui.notifyUser("Please (un)mark or delete a task by " +
                         "its list position (must be an integer)!");
                 sc.nextLine(); //clear buffer
             } catch (TumuException e) {
-                System.out.println(e);
+                ui.notifyUser(e.toString());
             }
 
             ui.showLine();
@@ -107,20 +107,20 @@ public class Tumu {
         sc.close();
     }
 
-    private static void listTasks() {
+    private void listTasks() {
         /**
          * Lists previous user texts in succession.
          */
 
-        System.out.println("\tHere are your current tasks:");
+        ui.notifyUser("Here are your current tasks:");
         for (int i = 1; i <= userTasks.size(); i++) {
             Task task = userTasks.get(i - 1);
-            String output = String.format("\t %d. %s", i, task);
-            System.out.println(output);
+            String output = String.format(" %d. %s", i, task);
+            ui.notifyUser(output);
         }
     }
 
-    private static void markTask(int oneIndexedNum) throws TumuException {
+    private void markTask(int oneIndexedNum) throws TumuException {
         /**
          * Mark the oneIndexedNumth Task in userTasks.
          */
@@ -131,11 +131,11 @@ public class Tumu {
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.markDone();
-            System.out.println("\tAlright, I have marked this task as done:\n\t" + task);
+            ui.notifyUser("Alright, I have marked this task as done:\n\t" + task);
         }
     }
 
-    private static void unmarkTask(int oneIndexedNum) throws TumuException {
+    private void unmarkTask(int oneIndexedNum) throws TumuException {
         /**
          * Unmark the oneIndexedNumth Task in userTasks.
          */
@@ -147,11 +147,11 @@ public class Tumu {
         } else {
             Task task = userTasks.get(oneIndexedNum - 1);
             task.unmarkDone();
-            System.out.println("\tAlright, I have unmarked this task:\n\t" + task);
+            ui.notifyUser("Alright, I have unmarked this task:\n\t" + task);
         }
     }
 
-    private static void addTodoTask(String userInput) throws TumuException {
+    private void addTodoTask(String userInput) throws TumuException {
         /**
          * Adds a todo task to list.
          */
@@ -160,7 +160,7 @@ public class Tumu {
         else taskTypeFormatting(new Todo(userInput));
     }
 
-    private static void addDeadlineTask(String userInput) throws TumuException {
+    private void addDeadlineTask(String userInput) throws TumuException {
         /**
          * Adds a deadline to list.
          */
@@ -178,7 +178,7 @@ public class Tumu {
         }
     }
 
-    private static void addEventTask(String userInput) throws TumuException {
+    private void addEventTask(String userInput) throws TumuException {
         /**
          * Adds an event to list.
          */
@@ -196,7 +196,7 @@ public class Tumu {
         }
     }
 
-    private static void deleteTask(int oneIndexedNum) throws TumuException {
+    private void deleteTask(int oneIndexedNum) throws TumuException {
         /**
          * Deletes a task at position oneIndexedNum - 1.
          */
@@ -207,14 +207,14 @@ public class Tumu {
             else throw new OutOfBoundsException(userTasks.size());
         } else {
             Task removedTask = userTasks.remove(oneIndexedNum - 1);
-            System.out.println("\tAlright, I have removed this task for you:\n\t\t" + removedTask);
-            System.out.println(String.format("\tYou have %d task(s) in the list.", userTasks.size()));
+            ui.notifyUser("Alright, I have removed this task for you:\n\t\t" + removedTask);
+            ui.notifyUser(String.format("You have %d task(s) in the list.", userTasks.size()));
         }
     }
 
-    private static void taskTypeFormatting(Task task) {
-        System.out.println("\tI've added a task into your list:\n\t\t" + task);
+    private void taskTypeFormatting(Task task) {
+        ui.notifyUser("I've added a task into your list:\n\t\t" + task);
         userTasks.add(task);
-        System.out.println(String.format("\tYou have %d task(s) in the list.", userTasks.size()));
+        ui.notifyUser(String.format("You have %d task(s) in the list.", userTasks.size()));
     }
 }
