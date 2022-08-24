@@ -16,7 +16,7 @@ public class Duke {
         } else if(input.matches("^todo.*")) {
             try {
                 ToDo todo = new ToDo(input.substring(5), false);
-                taskList.add(todo);
+                taskList.add(todo,true);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
@@ -24,7 +24,7 @@ public class Duke {
             try {
                 String[] str = input.substring(9).split(" /by ");
                 Deadline deadline = new Deadline(str[0], str[1], false);
-                taskList.add(deadline);
+                taskList.add(deadline, true);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description and/or the time of a deadline cannot be empty.");
             }
@@ -32,7 +32,7 @@ public class Duke {
             try {
                 String[] str = input.substring(6).split(" /at ");
                 Event event = new Event(str[0], str[1], false);
-                taskList.add(event);
+                taskList.add(event, true);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description and/or the time of an event cannot be empty.");
             }
@@ -93,13 +93,13 @@ public class Duke {
 
                 switch (taskElements[0]) {
                 case "T":
-                    taskList.add(new ToDo(taskElements[2], isTaskDone));
+                    taskList.add(new ToDo(taskElements[2], isTaskDone), false);
                     break;
                 case "D":
-                    taskList.add(new Deadline(taskElements[2], taskElements[3], isTaskDone));
+                    taskList.add(new Deadline(taskElements[2], taskElements[3], isTaskDone), false);
                     break;
                 case "E":
-                    taskList.add(new Event(taskElements[2], taskElements[3], isTaskDone));
+                    taskList.add(new Event(taskElements[2], taskElements[3], isTaskDone), false);
                     break;
                 default:
                     break;

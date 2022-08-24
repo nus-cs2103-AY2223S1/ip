@@ -7,9 +7,11 @@ public class TaskList {
     public TaskList() {
     }
 
-    public void add(Task task) {
+    public void add(Task task, boolean isNewTask) {
         this.tasks.add(task);
-        System.out.println("Got it. I've added this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
+        if(isNewTask) {
+            System.out.println("Got it. I've added this task:\n  " + task + "\nNow you have " + tasks.size() + " tasks in the list.");
+        }
     }
 
     public void markTaskAsDone(int index) {
