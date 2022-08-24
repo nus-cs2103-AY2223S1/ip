@@ -9,187 +9,44 @@ import java.time.LocalDate;
 
 public class Duke {
 
-    public static String breaker = "____________________________________________________________\n";
+    private static String dataFilePath = "src/main/Duke.txt";
 
-    private static ArrayList<Task> Tasklist = new ArrayList<>();
-    private static String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "delete", "bye"};
-    private static String start = "Hello! I'm Duke\nWhat can I do for you?";
-    private static String end = "Bye. Hope to see you again soon!";
+    private Storage storage;
+    private TaskList taskL;
+    private Ui ui;
+    private Parser parser;
 
-    public static class DukeException extends Exception {
-        public DukeException(String msg) {
-            super(msg);
-        }
-    }
-    public static class EmptyMessageException extends DukeException {
-        public EmptyMessageException() {
-            super("☹ OOPS!!! The description of a todo cannot be empty.");
-        }
-    }
-    public static class InvalidCommandException extends DukeException {
-        public InvalidCommandException() {
-            super("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        }
+    public Duke(String filePath) {
+        this.ui = new Ui();
+        this.storage = new Storage(filePath);
+        this.taskL = new TaskList();
+        this.parser = new Parser(this.taskL, this.ui, this.storage);
     }
 
-    protected static String dataFileName = "src/main/data/Duke.txt";
-    protected static String dataDirectory = "src/main/data";
-
-    public static void main(String[] args) throws InvalidCommandException, EmptyMessageException {
-
-        msg(start);
-
-        //loading past data from file
+    public void run() {
         try {
-            File directory = new File(dataDirectory);
-            if (!directory.exists()){
-                directory.mkdir();
-            }
-
-            File f = new File(dataFileName);
-            if (!f.exists()){
-                f.createNewFile();
-            }
-
-            Scanner s = new Scanner(f);
-            int count = 0;
-            while (s.hasNext()) {
-                String[] temp = s.nextLine().split("\\|");
-                count++;
-                String text = temp[0];
-                if (temp.length > 2) { //of event or deadline
-                    text += "/by " + temp[2];
-                    System.out.println(text);
-                }
-                processInput(text);
-                if ("1".equals(temp[1])) {
-                    mark(count);
-                }
-
-            }
-        } catch (FileNotFoundException e) {
-            msg("invalid file name");
-            return;
+            File f = new File(dataFilePath);
+            f.createNewFile();
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
+        this.storage.loadFromFile(taskL);
 
         String text = "";
-        Scanner reader = new Scanner(System.in);  // Reading from System.in
-        while (!"bye".equals(text)) {
-            text = reader.nextLine();
-            if (commandWords[7].equals(text)) {
-                msg(end);
-                reader.close();
-                break;
-            }
+        Scanner reader = new Scanner(System.in);
+        this.ui.start();
+
+        while (this.ui.isActive()) {
             try {
-                processInput(text);
-            } catch (InvalidCommandException e1) {
-                msg(e1.getMessage());
-            } catch (EmptyMessageException e2) {
-                msg(e2.getMessage());
+                text = reader.nextLine();
+                this.parser.parse(text);
+            } catch (Parser.DukeException e) {
+                System.out.println("Something went wrong: " + e.getMessage());
             }
         }
-
     }
 
-    private static void writeToFile() throws IOException {
-        //structure: command|1 (1 for mark, 0 for unmark)
-        FileWriter fw = new FileWriter(dataFileName);
-        for (int i = 0; i < Tasklist.size(); i++) {
-            fw.write(Tasklist.get(i).getData() + "\n");
-        }
-        fw.close();
-    }
-
-    private static boolean checkCommand(String s, int i) {
-        return s.length() >= commandWords[i].length() && commandWords[i].equals(s.substring(0,commandWords[i].length()));
-    }
-
-    private static void processInput(String text) throws EmptyMessageException, InvalidCommandException {
-
-        if (checkCommand(text, 0)) {
-            displayList(Tasklist);
-        } else if (checkCommand(text, 1)) {
-            int i = Integer.parseInt(text.substring(commandWords[1].length()+1, commandWords[1].length()+2));
-            mark(i);
-        } else if (checkCommand(text, 2)) {
-            int i = Integer.parseInt(text.substring(commandWords[2].length() + 1, commandWords[2].length() + 2));
-            unmark(i);
-        } else if (checkCommand(text, 6)) {
-            int i = Integer.parseInt(text.substring(commandWords[6].length() + 1, commandWords[6].length() + 2));
-            delete(i);
-        } else { // is a task, commandwords index 3-5 inclusive
-            boolean sent = false;
-            for (int i = 3; i < 6; i++) {
-                if (checkCommand(text, i)) {
-                    sent = true;
-                    if (text.length() <= commandWords[i].length() + 1) {
-                        throw new EmptyMessageException();
-                    }
-
-                    LocalDate d = null;
-                    if (i > 3) {
-                        String[] temp = text.split("/by");
-                        text = temp[0].strip().substring(commandWords[i].length()+1);
-                        d = LocalDate.parse(temp[1].strip());
-                    } else {
-                        text = text.substring(commandWords[i].length()+1);
-                    }
-
-                    add(text, commandWords[i], d, Tasklist);
-                    break;
-                }
-            }
-            if (!sent) {
-                throw new InvalidCommandException();
-            }
-        }
-        try {
-            writeToFile();
-        } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
-    }
-
-    public static void msg(String s) {
-        System.out.println(breaker + s + "\n" + breaker);
-    }
-
-    public static void add(String s, String type, LocalDate date, ArrayList<Task> l) {
-        Task t = new Task(s, type, date);
-        l.add(t);
-        msg("Got it. I've added this task:\n " + "\t" + t + "\n" + "Now you have " + l.size() + " tasks in the list.");
-    }
-
-    public static void displayList(ArrayList<Task> l) {
-        String result = "";
-        if (l.isEmpty()) {
-            msg("");
-            return;
-        }
-        for (int i = 0; i < l.size()-1; i++) {
-            result += (i+1) + ". " + l.get(i) + "\n";
-        }
-        result += (l.size()) + ". " + l.get(l.size()-1);
-        msg(result);
-    }
-
-    public static void mark(int i) {
-        Task task = Tasklist.get(i-1);
-        task.setStatusIcon(true);
-        msg("Nice! I've marked this task as done:\n" + "\t" + task);
-    }
-
-    public static void unmark(int i) {
-        Task task = Tasklist.get(i-1);
-        task.setStatusIcon(false);
-        msg("OK, I've marked this task as not done yet:\n" + "\t" + task);
-    }
-
-    public static void delete(int i) {
-        msg("Noted. I've removed this task:\n\t" + Tasklist.get(i-1) +"\nNow you have " + (Tasklist.size()-1) + " tasks in the list.");
-        Tasklist.remove(i-1);
+    public static void main(String[] args) {
+        new Duke(dataFilePath).run();
     }
 }
