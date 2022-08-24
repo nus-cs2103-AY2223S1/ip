@@ -44,7 +44,7 @@ public class Ui {
         if (DEV_MODE) {
             sayAsError(e.toString());
         } else {
-            sayAsError(e.message());
+            sayAsError(e.getHint());
         }
     }
 

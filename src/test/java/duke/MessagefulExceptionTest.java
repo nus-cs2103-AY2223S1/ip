@@ -12,8 +12,8 @@ public class MessagefulExceptionTest {
     }
 
     @Test
-    public void message_smokeTest() {
+    public void getHint_smokeTest() {
         MessagefulException me = new MessagefulException("A", "B");
-        assertEquals("B", me.message());
+        assertEquals("B", me.getHint());
     }
 }
