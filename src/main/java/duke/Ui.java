@@ -12,6 +12,9 @@ public class Ui {
 
     Ui() {}
 
+    /**
+     * Handling User Input
+     */
     void getUserCommand(TaskList myTasks) {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNextLine()) {
@@ -58,6 +61,9 @@ public class Ui {
         scanner.close();
     }
     
+    /**
+     * Start message of Duke
+     */
     public void startMessage() {
         System.out.println(toPrint);
     }

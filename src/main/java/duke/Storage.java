@@ -15,6 +15,11 @@ public class Storage {
         this.myList = new ArrayList<>();
     }
 
+    /**
+     * Set up master list with existing text file
+     * Else, creates an empty list
+     * @return ArrayList<Task>
+     */
     ArrayList<Task> setUp() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("duke.txt"));
@@ -33,6 +38,11 @@ public class Storage {
         return myList;
     }
 
+    /**
+     * Parses text file into Task Objects.
+     * @param line in text file
+     * Adds Task objects into master list 
+     */
     void parser(String line) {
         String taskType = Character.toString(line.charAt(1));
         switch (taskType){
@@ -54,6 +64,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Parses String Date into Java LocalDate Format
+     * @return an instance of LocalDate
+     */
     private LocalDate dateFormatter(String myDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
         LocalDate curDate = LocalDate.parse(myDate, formatter);
