@@ -1,11 +1,10 @@
 package Duke;
-import java.util.List;
 import java.util.Scanner;
 
-public class UserInterface {
+public class ui {
     public Scanner sc;
 
-    public UserInterface() {
+    public ui() {
         this.sc = new Scanner(System.in);
     }
 

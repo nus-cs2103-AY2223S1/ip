@@ -6,28 +6,28 @@ public class Duke {
     Scanner sc;
 
     public TaskList tasklist;
-    public UserInterface userInterface;
+    public ui ui;
 
     public Duke() {
 
-        this.userInterface = new UserInterface();
+        this.ui = new ui();
         this.tasklist = new TaskList();
         this.sc = new Scanner(System.in);
 
     }
 
     public void run() {
-        System.out.println(userInterface.greeting());
+        System.out.println(ui.greeting());
         boolean isExit = false;
-        Handler handler = new Handler(tasklist, userInterface);
+        Handler handler = new Handler(tasklist, ui);
         while (!isExit) {
             try {
                 String echo = sc.nextLine();
                 if (echo.equals("bye")) {
-                    System.out.println(userInterface.bye());
+                    System.out.println(ui.bye());
                     isExit = true;
                 } else if (echo.equals("list")) {
-                    System.out.println(userInterface.showList());
+                    System.out.println(ui.showList());
                 } else if (echo.startsWith("mark")) {
                     System.out.println(handler.handleMark(echo));
                 } else if (echo.startsWith("unmark")) {
@@ -44,7 +44,7 @@ public class Duke {
                     throw new DukeUnknownTaskException();
                 }
             } catch (DukeException e){
-                userInterface.printError(e.getMessage());
+                ui.printError(e.getMessage());
 
             }
         }
