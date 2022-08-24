@@ -2,10 +2,7 @@ package Duke;
 
 import Duke.enums.Command;
 import Duke.enums.SecondaryCommand;
-import Duke.exceptions.DukeException;
-import Duke.exceptions.InvalidCommandException;
-import Duke.exceptions.InvalidSecondaryCommandException;
-import Duke.exceptions.InvalidTaskNameException;
+import Duke.exceptions.*;
 
 /**
  * The {@code Input} class formats a string input into an input object.
@@ -60,6 +57,17 @@ public class Parser {
         case CHECK:
         case UNCHECK:
         case DELETE:
+            if (commandWithInfo.length != maxParameters) {
+                throw new InvalidIndexException("Please enter an index");
+            }
+            result.mainData = commandWithInfo[1];
+            break;
+        case FIND:
+            if (commandWithInfo.length != maxParameters) {
+                throw new InvalidFindException();
+            }
+            result.mainData = commandWithInfo[1];
+            break;
         case TODO:
             if (commandWithInfo.length != maxParameters) {
                 throw new InvalidTaskNameException();
