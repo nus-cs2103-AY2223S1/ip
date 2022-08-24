@@ -1,4 +1,10 @@
+package duke.main;
+
 import java.util.Scanner;
+
+import duke.errors.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 //deals with interactions with the user
 public class Ui {

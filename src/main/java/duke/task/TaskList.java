@@ -1,4 +1,8 @@
+package duke.task;
+
 import java.util.ArrayList;
+
+import duke.errors.DukeException;
 
 public class TaskList {
 //delete errors?, 1 indexed
@@ -21,7 +25,6 @@ public class TaskList {
     }
 
     public Task deleteTask(int index) throws DukeException {
-        // add exception handling here
         try {
             return list.remove(index - 1);
         } catch (IndexOutOfBoundsException e) {
