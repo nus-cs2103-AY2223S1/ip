@@ -1,5 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.sound.midi.SysexMessage;
+import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 
 public class Duke {
     static ArrayList<Task> vocabList = new ArrayList<Task>();
@@ -34,6 +44,19 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        Path storagePath = Paths.get("src", "main/data", "DataStorage.txt");
+        String absPath = storagePath.toAbsolutePath().toString();
+
+        try {
+            vocabList = DataLoader.loadData(absPath);
+        } catch (DukeException e) {
+            echo(e.getMessage());
+            return;
+        } catch (FileNotFoundException e) {
+            echo("File DataStorage.txt not found in [project_root]/src/main/data");
+            return;
+        }
+
         String logo = "____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -101,5 +124,7 @@ public class Duke {
                 }
             }
         }
+
+
     }
 }
