@@ -1,7 +1,6 @@
-package main;
-
-import commands.*;
-import exception.*;
+package duke.main;
+import duke.commands.*;
+import duke.exception.*;
 
 /**
  * A parser that parses user input to the commands

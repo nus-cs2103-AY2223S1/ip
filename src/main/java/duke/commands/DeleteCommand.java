@@ -1,8 +1,9 @@
-package commands;
+package duke.commands;
 
-import exception.*;
-import main.*;
-import tasks.*;
+import duke.exception.*;
+import duke.main.Storage;
+import duke.main.Ui;
+import duke.tasks.*;
 
 /**
  * DeleteCommand used to delete tasks

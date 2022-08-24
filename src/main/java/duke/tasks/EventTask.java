@@ -1,4 +1,4 @@
-package tasks;
+package duke.tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -50,6 +50,6 @@ public class EventTask extends Task {
 
   @Override
   public String toSaveString() {
-    return "E " + super.toSaveString() + "| " + this.at;
+    return "E " + super.toSaveString() + " | " + this.at;
   }
 }

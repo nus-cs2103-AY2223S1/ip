@@ -1,8 +1,9 @@
-package commands;
+package duke.commands;
 
-import exception.*;
-import tasks.*;
-import main.*;
+import duke.exception.*;
+import duke.main.Storage;
+import duke.main.Ui;
+import duke.tasks.*;
 
 /**
  * ToDoCommand that creates a new TodoTask and prints message to user

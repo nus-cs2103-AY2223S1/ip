@@ -1,5 +1,4 @@
-package tasks;
-
+package duke.tasks;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -45,6 +44,6 @@ public class DeadlineTask extends Task {
 
   @Override
   public String toSaveString() {
-    return "D " + super.toSaveString() + "| " + this.by;
+    return "D " + super.toSaveString() + " | " + this.by;
   }
 }

@@ -1,9 +1,9 @@
-package commands;
+package duke.commands;
 
-import exception.DukeException;
-import main.Storage;
-import main.Ui;
-import tasks.*;
+import duke.exception.*;
+import duke.main.Storage;
+import duke.main.Ui;
+import duke.tasks.*;
 
 /**
  * Parent class of all commands with single execute method

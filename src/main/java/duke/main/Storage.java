@@ -1,7 +1,6 @@
-package main;
-
-import exception.*;
-import tasks.*;
+package duke.main;
+import duke.exception.*;
+import duke.tasks.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;

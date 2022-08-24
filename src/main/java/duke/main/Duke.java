@@ -1,9 +1,9 @@
-package main;
+package duke.main;
 
-import commands.Command;
-import exception.DukeException;
+import duke.commands.Command;
+import duke.exception.DukeException;
 
-import tasks.*;
+import duke.tasks.*;
 
 /**
  * Duke is our helper which manages the commands

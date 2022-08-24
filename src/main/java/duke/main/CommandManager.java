@@ -1,4 +1,4 @@
-package main;
+package duke.main;
 
 public enum CommandManager {
   bye,

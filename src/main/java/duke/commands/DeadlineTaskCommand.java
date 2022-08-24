@@ -1,12 +1,13 @@
-package commands;
+package duke.commands;
 
-import exception.*;
+import duke.exception.*;
+import duke.main.Storage;
+import duke.main.Ui;
+import duke.tasks.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import tasks.*;
-import main.*;
 
 /**
  * DeadlineCommand which handles creation and message of DeadlineTask

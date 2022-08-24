@@ -1,4 +1,4 @@
-package tasks;
+package duke.tasks;
 
 /**
  * Tasks without any date/time attached to it
@@ -34,6 +34,12 @@ public class ToDoTask extends Task {
     return "[T]" + super.toString();
   }
 
+
+  /**
+   * Returns string representation of TodoTask in Storage
+   *
+   * @return String representation of TodoTask in Storage
+   */
   @Override
   public String toSaveString() {
     return "T " + super.toSaveString();
