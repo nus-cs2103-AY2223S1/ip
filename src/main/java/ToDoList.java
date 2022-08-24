@@ -1,3 +1,7 @@
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class ToDoList {
@@ -25,7 +29,7 @@ public class ToDoList {
                         "   --------------------------------------------------------------------------------\n" +
                                 "     Got it. I've added this task: \n" +
                                 "       " + todo.toString() + "\n" +
-                                "     You now have " + list.size() + " tasks in the list.\n" +
+                                "     You now have " + list.size() + (list.size() == 1 ? " task" : " tasks") + " in the list.\n" +
                                 "   --------------------------------------------------------------------------------"
                 );
             }
@@ -40,16 +44,42 @@ public class ToDoList {
                     );
                 } else {
                     String[] deadline = command.split(" /by ");
-                    Task task = new Deadline(deadline[0], deadline[1]);
-                    list.add(task);
+                    String by = deadline[1];
 
-                    System.out.println(
-                            "   --------------------------------------------------------------------------------\n" +
-                                    "     Got it. I've added this task: \n" +
-                                    "       " + task.toString() + "\n" +
-                                    "     You now have " + list.size() + " tasks in the list.\n" +
-                                    "   --------------------------------------------------------------------------------"
-                    );
+                    // generate boolean indicating if the deadline is before or after current date and time
+                    LocalDateTime currDate = LocalDateTime.now();
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("uuuu-MM-dd kkmm");
+                    LocalDateTime deadlineDate = LocalDateTime.parse(by, format);
+                    Boolean isAfter = deadlineDate.isAfter(currDate);
+
+                    String regex = "(\\d{4})-(\\d{2})-(\\d{2}) (\\d{2})(\\d{2})";
+                    // invalid deadline format
+                    if (!by.trim().matches(regex)) {
+                        System.err.println(
+                                "\n   --------------------------------------------------------------------------------\n" +
+                                        "     Invalid formatting for deadline entered!\n" +
+                                        "     Write your deadlines in the following format: YYYY-MM-DD 0000\n" +
+                                        "   --------------------------------------------------------------------------------"
+                        );
+                    } else if (by.trim().matches(regex) && !isAfter) {
+                        System.err.println(
+                                "\n   --------------------------------------------------------------------------------\n" +
+                                        "     I might be a non-sentient robot but you seem to be a time traveller!\n" +
+                                        "     Please input deadlines BEFORE the current date and time.\n" +
+                                        "   --------------------------------------------------------------------------------"
+                        );
+                    } else {
+                        Task task = new Deadline(deadline[0], deadline[1]);
+                        list.add(task);
+
+                        System.out.println(
+                                "   --------------------------------------------------------------------------------\n" +
+                                        "     Got it. I've added this task: \n" +
+                                        "       " + task.toString() + "\n" +
+                                        "     You now have " + list.size() + (list.size() == 1 ? " task" : " tasks") + " in the list.\n" +
+                                        "   --------------------------------------------------------------------------------"
+                        );
+                    }
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.err.println(
@@ -78,7 +108,7 @@ public class ToDoList {
                             "   --------------------------------------------------------------------------------\n" +
                                     "     Got it. I've added this task: \n" +
                                     "       " + task.toString() + "\n" +
-                                    "     You now have " + list.size() + " tasks in the list.\n" +
+                                    "     You now have " + list.size() + (list.size() == 1 ? " task" : " tasks") + " in the list.\n" +
                                     "   --------------------------------------------------------------------------------"
                     );
                 }
@@ -105,7 +135,7 @@ public class ToDoList {
                  "   --------------------------------------------------------------------------------\n" +
                          "     Got it. I've removed this task: \n" +
                          "       " + this.list.get(index - 1).toString() + "\n" +
-                         "     You now have " + (list.size() - 1) + " tasks in the list.\n" +
+                         "     You now have " + (list.size() - 1) + (list.size() - 1 == 1 ? " task" : " tasks") + " in the list.\n" +
                          "   --------------------------------------------------------------------------------"
         );
         this.list.remove(index - 1);
