@@ -1,9 +1,9 @@
 package duke.commands;
 
-import duke.ui.Ui;
 import duke.data.TaskList;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
+import duke.ui.Ui;
 
 /**
  * Encapsulates the Command from users

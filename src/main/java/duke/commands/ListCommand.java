@@ -1,8 +1,8 @@
 package duke.commands;
 
-import duke.ui.Ui;
 import duke.data.TaskList;
 import duke.storage.Storage;
+import duke.ui.Ui;
 
 /**
  * This class encapsulates an Exit Command

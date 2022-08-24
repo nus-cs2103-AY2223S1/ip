@@ -1,11 +1,11 @@
 package duke.data;
 
-import duke.data.exception.DukeException;
-import duke.tasks.Task;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import duke.data.exception.DukeException;
+import duke.tasks.Task;
 
 /**
  * This class encapsulates a list of tasks

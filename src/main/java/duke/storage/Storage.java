@@ -1,12 +1,5 @@
 package duke.storage;
 
-import duke.data.TaskList;
-import duke.data.exception.DukeException;
-import duke.tasks.Deadline;
-import duke.tasks.Event;
-import duke.tasks.Task;
-import duke.tasks.ToDo;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,6 +8,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import duke.data.TaskList;
+import duke.data.exception.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.ToDo;
 
 /**
  * This class encapsulates the Storage
@@ -71,7 +71,8 @@ public class Storage {
                     LocalDate eventDate = LocalDate.parse(components[3], format);
                     task = new Event(components[2], eventDate.format(formatter));
                     break;
-                default: break;
+                default:
+                    break;
                 }
 
                 task.setIsDone(components[1].equals("true"));
@@ -120,14 +121,10 @@ public class Storage {
 
         try {
             fileWriter = new FileWriter(file);
-            // StringBuilder stringBuilder = new StringBuilder();
             int len = tasks.getSize();
             for (int i = 0; i < len; i++) {
-                // stringBuilder.append(this.convertToString(duke.ui.tasks.getTask(i)));
                 fileWriter.write(this.convertToString(tasks.getTask(i)));
             }
-
-            // fileWriter.write(stringBuilder.toString());
         } catch (IOException e) {
             System.out.println(e.getMessage());
         } finally {
