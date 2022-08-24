@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Represents a task.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -11,6 +14,11 @@ public abstract class Task {
 
     public abstract String getTaskType();
 
+    /**
+     * Returns icon of marked or unmarked status of the task.
+     *
+     * @return Icon of the task status
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
@@ -27,6 +35,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Return string representation of task.
+     *
+     * @return String representation of task
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
