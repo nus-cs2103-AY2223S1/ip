@@ -95,21 +95,11 @@ public class Duke {
                     }
                     else {
                         String[] strArray = str.split("/at");
-                        String des = strArray[0].trim();
-                        String at = strArray[1].trim();
-                        if (des.isEmpty()) {
-                            System.out.println(new DukeException("The description of an event cannot be empty.").getMessage());
-                        }
-                        else if (at.isEmpty()) {
-                            System.out.println(new DukeException("You must specify /at for an event task.").getMessage());
-                        }
-                        else {
-                            Event newEvent = new Event(" " + des, " " + at);
-                            tasks.add(newEvent);
-                            System.out.println("\t Got it. I've added this task:");
-                            System.out.println("\t   " + newEvent);
-                            System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
-                        }
+                        Event newEvent = new Event(strArray[0], strArray[1]);
+                        tasks.add(newEvent);
+                        System.out.println("\t Got it. I've added this task:");
+                        System.out.println("\t   " + newEvent);
+                        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
                     }
                     System.out.println("\t____________________________________________");
                     break;
