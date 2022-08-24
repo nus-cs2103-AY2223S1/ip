@@ -1,14 +1,7 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAccessor;
 
 public class Event extends Task {
     private static final String DATE_TIME_SEPARATOR = " /at ";
-    private static final DateTimeFormatter INPUT_DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("d/M/yy[ HHmm]");
-    private static final DateTimeFormatter OUTPUT_DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("MMM d yyyy[ h:mma]");
 
     private final TemporalAccessor dateTime;
 
@@ -26,8 +19,7 @@ public class Event extends Task {
         if (splitUserInput.length < 2) {
             throw new InvalidTaskFormatException("No time was provided for this event.");
         }
-        TemporalAccessor dateTime = INPUT_DATE_TIME_FORMATTER.parseBest(splitUserInput[1],
-                LocalDateTime::from, LocalDate::from);
+        TemporalAccessor dateTime = DateTimeUtil.parseCompactDateTime(splitUserInput[1]);
         return new Event(splitUserInput[0], dateTime);
     }
 
@@ -38,20 +30,19 @@ public class Event extends Task {
         }
         String description = splitTaskData[2];
         boolean isDone = splitTaskData[1].equals("1");
-        TemporalAccessor dateTime = INPUT_DATE_TIME_FORMATTER.parseBest(splitTaskData[3],
-                LocalDateTime::from, LocalDate::from);
+        TemporalAccessor dateTime = DateTimeUtil.parseCompactDateTime(splitTaskData[3]);
         return new Event(description, isDone, dateTime);
     }
 
     @Override
     public String toEncodedString() {
         return String.format("E|%s|%s", super.toEncodedString(),
-                INPUT_DATE_TIME_FORMATTER.format(this.dateTime));
+                DateTimeUtil.formatCompactDateTime(this.dateTime));
     }
 
     @Override
     public String toString() {
         return String.format("(E) %s (at: %s)", super.toString(),
-                OUTPUT_DATE_TIME_FORMATTER.format(this.dateTime));
+                DateTimeUtil.formatPrettyDateTime(this.dateTime));
     }
 }
