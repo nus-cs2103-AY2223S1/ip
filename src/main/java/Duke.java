@@ -1,5 +1,8 @@
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     public static void main(String[] args) {
@@ -42,15 +45,16 @@ public class Duke {
         }
 
         class Deadline extends Task {
-            private String dateTime;
+            private LocalDate date;
 
-            public Deadline(String item, String dateTime) {
+            public Deadline(String item, LocalDate date) {
                 this.setItem(item);
-                this.dateTime = dateTime;
+                this.date = date;
             }
 
             public String getTask() {
-                return "[D] " + this.getStatusIcon() + this.getItem() + " (by: " + this.dateTime + ")";
+                String d = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                return "[D] " + this.getStatusIcon() + this.getItem() + " (by: " + d + ")";
             }
 
         }
@@ -123,7 +127,8 @@ public class Duke {
                             break;
                         }
                     }
-                    list.add(new Deadline(item.substring(9, slash - 1), item.substring(slash + 4)));
+                    LocalDate date = LocalDate.parse(item.substring(slash + 4));
+                    list.add(new Deadline(item.substring(9, slash - 1), date));
                     System.out.println("Got it. I've added this task:");
                     System.out.println(list.get(list.size() -1).getTask());
                     count = count + 1;
@@ -131,6 +136,8 @@ public class Duke {
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println("☹ OOPS!!! The description of a deadline has to be in the format" +
                             " deadline <task> /by <date and time>");
+                } catch (DateTimeParseException e) {
+                    System.out.println("OOPS!! Format of the date is wrong");
                 }
             }
             else if(item.length() >= 5 &&  item.substring(0,5).equals("event")) {
