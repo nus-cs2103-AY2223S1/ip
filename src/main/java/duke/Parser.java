@@ -3,12 +3,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ *  A class that handles parsing and processing of user inputs.
+ *  @author  Chen Guanzhou
+ *  @version v1
+ */
 public class Parser {
     TaskList currList;
 
     public Parser(TaskList currList) {
         this.currList = currList;
     }
+
     /**
      * A method for Duke to process the input given by the user.
      * @param input The input string picked up by the scanner object.
@@ -35,6 +41,10 @@ public class Parser {
     }
 
 
+    /**
+     * A method to parse the user input and execute the appropriate action accordingly.
+     * @param input The user keyboard input after prompt from Duke.
+     */
     public void parseUserInput(String input) {
         try {
             String[] parts = input.split(" ", 2);

@@ -3,6 +3,12 @@ import java.util.Scanner;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ *  A class which encapsulates the functionality Duke can do, current functionality is only the to-do list.
+ *  @author  Chen Guanzhou
+ *  @version v1
+ */
+
 public class Actions { //actions that Duke can perform
 
     /**
