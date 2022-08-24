@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-    private static ArrayList<Task> todo = new ArrayList<>();
+    private static FileReader fileReader = new FileReader();
+    private static ArrayList<Task> todo = fileReader.readFile();
     private static String[] commandList = new String[]{"list", "Bye", "todo", "mark", "unmark", "event", "deadline", "delete"};
     enum Commands {
         list,
@@ -82,12 +83,13 @@ public class Duke {
 
                         toggleTaskStatus(indexToMark);
                         System.out.println("Nice! I'hv marked this task as done:\n" + todo.get(indexToMark).formatTask());
+                        fileReader.writeFile(todo);
                         break;
                     case unmark:
                         int indexToUnmark = Integer.valueOf(arr[1]) - 1;
                         toggleTaskStatus(indexToUnmark);
                         System.out.println("Sadge u are not done :(\n" + todo.get(indexToUnmark).formatTask());
-
+                        fileReader.writeFile(todo);
                         break;
                     case todo:
                         try {
@@ -96,6 +98,7 @@ public class Duke {
                             todo.add(task);
                             System.out.println(String.format("Got it. I'hv added this task:\n   %s", task.formatTask()));
                             System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
+                            fileReader.writeFile(todo);
                         } catch (descriptionException err) {
                             System.out.println(err.toString());
                         }
@@ -110,6 +113,7 @@ public class Duke {
                             todo.add(task);
                             System.out.println(String.format("Got it. I'hv added this task:\n   %s", task.formatTask()));
                             System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
+                            fileReader.writeFile(todo);
                         } catch (descriptionException err) {
                             System.out.println(err.toString());
                         }
@@ -120,7 +124,7 @@ public class Duke {
                         todo.remove(index);
                         System.out.println(String.format("Noted. I've removed this task:\n   %s", task.formatTask()));
                         System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
-
+                        fileReader.writeFile(todo);
                     default:
                 }
             } catch (NoSuchCommandException err) {
