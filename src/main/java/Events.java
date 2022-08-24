@@ -6,6 +6,10 @@ public class Events extends Task {
     this.specificTime = specificTime;
   }
 
+  public String storedTaskString() {
+    return "E|" + String.valueOf(this.isDone) + "|" + this.description + "|" + this.specificTime;
+  }
+
   @Override
   public String toString() {
     return "[E]" + super.toString() + " (at: " + this.specificTime + ")";
