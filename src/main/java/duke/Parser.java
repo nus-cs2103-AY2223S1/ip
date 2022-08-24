@@ -3,16 +3,30 @@ package duke;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * The Parser class parses the input received when running DUke.
+ */
+
 public class Parser {
     String input = "";
     Scanner scan = new Scanner(System.in);
     String[] validInputs = {"delete", "mark", "unmark", "todo", "deadline", "event"};
     TaskList list;
 
+    /**
+     * Constructor for Parser.
+     *
+     * @param list
+     */
     public Parser(TaskList list) {
         this.list = list;
     }
 
+    /**
+     *
+     * @param input The String input from the user.
+     * @return Whether "bye" has been inputted.
+     */
     public boolean parse(String input) {
         if (input.equals("bye")) {
             return false;

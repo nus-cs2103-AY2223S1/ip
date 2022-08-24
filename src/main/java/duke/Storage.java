@@ -7,22 +7,38 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * The Storage class contains the methods required to load from
+ * and save to the save file.
+ */
 public class Storage {
     File log;
     ArrayList<Task> list;
     String filepath;
 
+    /**
+     * Constructor for Storage.
+     * @param filepath Filepath of the save file.
+     */
     public Storage(String filepath) {
         log = new File(filepath);
         list = new ArrayList<>();
         this.filepath = filepath;
     }
 
+    /**
+     * Creates a save file at filepath.
+     */
     public void createLog() {
         log.mkdirs();
         System.out.println("Save file created");
     }
 
+    /**
+     * Loads from the save file at filepath.
+     * @return Tasks saved in the save file.
+     * @throws FileNotFoundException
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
         Scanner readFile = new Scanner(log);
         while (readFile.hasNext()) {
@@ -50,6 +66,10 @@ public class Storage {
         return list;
     }
 
+    /**
+     * Writes to the save file based off a given TaskList list.
+     * @param list The given TaskList used to write to the save file.s
+     */
     public void writeToFile(TaskList list) {
         String retString = "";
         FileWriter copyTasks = null;

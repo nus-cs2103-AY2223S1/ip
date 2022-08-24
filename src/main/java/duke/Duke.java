@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
- * A bot which helps to track things.
+ * Duke is a bot which helps to record things which people want to remember.
  *
  * @author Lee Ian Ee
  * @version CS2103T AY22/23 Sem 1
@@ -14,6 +14,11 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filepath File path where saved data is stored.
+     */
     public Duke(String filepath) {
         storage = new Storage(filepath);
         try {
@@ -24,6 +29,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the Duke bot.
+     */
     public void run() {
         Ui.startMessage();
         Parser parser = new Parser(this.tasks);
