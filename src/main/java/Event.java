@@ -1,10 +1,20 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 public class Event extends Task {
 
-    protected String by;
+    protected LocalDateTime dateTime;
 
-    public Event(String description, String by) {
+    public Event(String description, String dateTime) {
         super(description);
-        this.by = by;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+        this.dateTime =  LocalDateTime.parse(dateTime,formatter);
+    }
+
+    public String getDate() {
+        return this.dateTime.format(DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.FULL));
     }
 
     public String getDate() {
@@ -13,6 +23,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + by + ")";
+        return "[E]" + super.toString() + " (at: " + dateTime.format(DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.FULL)) + ")";
     }
 }

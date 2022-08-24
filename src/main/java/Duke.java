@@ -11,6 +11,9 @@ public class Duke {
         Storage storage = new Storage("src/filestorage/dummylist.txt");
         ArrayList<Task> list = storage.readData();
         UserInterface.copyList(list);
+//        Storage storage = new Storage("src/filestorage/dummylist.txt");
+//        ArrayList<Task> list = storage.readData();
+//        UserInterface.copyList(list);
         boolean bye = false;
         Scanner sc = new Scanner(System.in);
         String logo = " ____        _        \n"
@@ -24,7 +27,7 @@ public class Duke {
             String input = sc.nextLine();
             if (input.equals("bye")) {
                 bye = true;
-                UserInterface.Bye(storage);
+                //UserInterface.Bye(storage);
             } else if (input.equals("list")) {
                 UserInterface.showList();
             } else if (input.startsWith("mark ")) {
