@@ -16,7 +16,7 @@ public class Duke {
         String input = "";
 
         //duke.duke.Storage
-        Storage storage = new Storage("../../../out/duke.txt");
+        Storage storage = new Storage("duke.txt");
         String s = storage.reader();
 
         //duke.duke.Parser

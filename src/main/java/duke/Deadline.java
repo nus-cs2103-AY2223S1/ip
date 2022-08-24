@@ -30,7 +30,7 @@ public class Deadline extends Task {
         LocalDate d1 = LocalDate.parse(another_format);
         this.final_format = d1.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
-    
+
     /**
      * toString method that turns the input of deadline into a String type
      *

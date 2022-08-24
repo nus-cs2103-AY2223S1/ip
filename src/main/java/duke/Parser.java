@@ -129,6 +129,21 @@ public class Parser {
             count--;
 
             System.out.printf( "Now you have %d tasks in the list.", count);
+        } else if (input.contains("find")) {
+            //string manipulation
+            int count = 1;
+            input = input.replaceAll("find ", "");
+            ArrayList<Task> filtered_List = new ArrayList<>();
+            for (Task item: tasks.getArr()) {
+                if (item.description.contains(input)) {
+                    filtered_List.add(item);
+                }
+            }
+            System.out.println("Here are the matching tasks in your list:");
+            for (Task item: filtered_List) {
+                System.out.println(count + ". " + item.toString());
+                count++;
+            }
         } else {
             try {
                 throw new UnknownCommandException();
