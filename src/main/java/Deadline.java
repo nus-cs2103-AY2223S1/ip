@@ -1,23 +1,29 @@
+import java.time.LocalDateTime;
+
 /**
  * Represents a deadline, a type of task
  */
 public class Deadline extends Task {
-    private final String by;
+    private final LocalDateTime deadline;
 
     /**
      * Constructs a deadline with some description and a datetime string to indicate
      * the deadline
      *
      * @param description The specified description.
-     * @param by          The specified datetime string for the deadline.
+     * @param deadline    The specified datetime string for the deadline.
      */
-    Deadline(String description, String by) {
+    Deadline(String description, LocalDateTime deadline) {
         super(description);
-        this.by = by;
+        this.deadline = deadline;
+    }
+
+    public String getDeadline() {
+        return Task.dateTimeDisplayFormatter.format(this.deadline);
     }
 
     @Override
     public String toString() {
-        return "[" + TaskType.D + "]" + super.toString() + " (by: " + this.by + ")";
+        return "[" + TaskType.D + "]" + super.toString() + " (by: " + this.getDeadline() + ")";
     }
 }
