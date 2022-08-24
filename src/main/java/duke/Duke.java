@@ -48,7 +48,6 @@ public class Duke {
     }
 
     public void exit() {
-        ui.showExitMessage();
         System.exit(0);
     }
 
