@@ -14,11 +14,15 @@ import tako.task.Deadline;
 import tako.task.Event;
 import tako.task.Todo;
 
+/**
+ * Parses input from the user
+ * such that they are valid commands.
+ */
 public class Parser {
     private enum Keyword {
         BYE, LIST, MARK, TODO, DEADLINE, EVENT, DELETE;
 
-        public static boolean contains(String s) {
+        private static boolean contains(String s) {
             for (Keyword k : Keyword.values()) {
                 if (k.name().equals(s)) {
                     return true;
@@ -28,6 +32,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the command parsed from the user's input.
+     *
+     * @param input User input from interacting with Tako.
+     * @return Command.
+     * @throws TakoException If the input cannot be parsed.
+     */
     public static Command parse(String input) throws TakoException {
         String[] splitInput = input.trim().split(" ", 2);
         String stringKeyword = splitInput[0].toUpperCase();

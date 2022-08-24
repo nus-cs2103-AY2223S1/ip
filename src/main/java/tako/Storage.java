@@ -18,11 +18,19 @@ import tako.task.Event;
 import tako.task.Task;
 import tako.task.Todo;
 
+/**
+ * Stores and loads data related to tasks.
+ */
 public class Storage {
     private Path tasksPath;
 
-    public Storage(String filePath) {
-        this.tasksPath = Paths.get(filePath);
+    /**
+     * Constructor for Storage with the path to store tasks at.
+     *
+     * @param tasksPath Path to store tasks at.
+     */
+    public Storage(String tasksPath) {
+        this.tasksPath = Paths.get(tasksPath);
     }
 
     private String convertToFileFormat(Task task) {
@@ -39,6 +47,12 @@ public class Storage {
         return String.format("%c | %d | %s", taskType, isDone, description);
     }
 
+    /**
+     * Saves the task to a file.
+     *
+     * @param task Task to save.
+     * @throws IOException If the file does not exist.
+     */
     public void saveToFile(Task task) throws IOException {
         FileWriter fw = new FileWriter(tasksPath.toString(), true);
         BufferedWriter bw = new BufferedWriter(fw);
@@ -47,6 +61,12 @@ public class Storage {
         bw.close();
     }
 
+    /**
+     * Saves all tasks in a task list to a file.
+     *
+     * @param tasks Tasks to save.
+     * @throws IOException If the file does not exist.
+     */
     public void saveToFile(TaskList tasks) throws IOException {
         BufferedWriter bw = Files.newBufferedWriter(tasksPath);
         for (int i = 0; i < tasks.getSize(); i++) {
@@ -86,6 +106,14 @@ public class Storage {
         return task;
     }
 
+    /**
+     * Loads tasks from the tasks' path into a list.
+     * If the file at the tasks' path does not exist, a new file is created instead.
+     *
+     * @return A list of saved tasks.
+     * @throws IOException If file or directory creation is unsuccessful.
+     *                     If an error occurs while reading the file.
+     */
     public List<Task> load() throws IOException {
         Path parent = tasksPath.getParent();
         if (!Files.isDirectory(parent)) {
