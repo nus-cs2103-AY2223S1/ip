@@ -1,11 +1,11 @@
 package seedu.duke.command;
 
+import java.util.Objects;
+
 import seedu.duke.storage.Storage;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
-
-import java.util.Objects;
 
 /**
  * A class which extends from the Command abstract class.

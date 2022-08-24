@@ -7,11 +7,19 @@ import seedu.duke.storage.Storage;
 import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
+/**
+ * The Duke class is the core of the entire program.
+ * This is where all the commands are first read.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Creates a Duke object.
+     * @param filePath The file path of the file to be read from and written to.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -27,6 +35,9 @@ public class Duke {
         new Duke("./data/duke.txt").run();
     }
 
+    /**
+     * Executes the program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

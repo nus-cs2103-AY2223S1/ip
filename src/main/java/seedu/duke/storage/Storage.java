@@ -34,7 +34,7 @@ public class Storage {
 
 
     /**
-     * Returns an ArrayList<Task> after reading the contents of the file specified by the filePath variable.
+     * Returns an ArrayList Task after reading the contents of the file specified by the filePath variable.
      */
     public ArrayList<Task> load() throws DukeException {
         // Reused from https://www.w3schools.com/java/java_files_create.asp
@@ -81,7 +81,7 @@ public class Storage {
     }
 
     /**
-     * Returns an ArrayList<Task> object after reading the contents of the file.
+     * Returns an ArrayList Task object after reading the contents of the file.
      *
      * @param myObj A file object.
      * @param tasks An array with which the contents of the file read would be written to.
