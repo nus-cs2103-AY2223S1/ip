@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Task {
     protected String itself;
     protected boolean isDone;
@@ -22,6 +24,10 @@ public class Task {
     public String writeToFile() {
         String status = getStatus();
         return status + "|" + itself.trim();
+    }
+    
+    public boolean isOnDate() {
+        return false;
     }
 
     @Override
