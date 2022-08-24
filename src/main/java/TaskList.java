@@ -1,6 +1,3 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -27,16 +24,7 @@ public class TaskList {
         this.taskList.remove(index);
     }
 
-    public void save(File file) {
-        try {
-            FileWriter fileWriter = new FileWriter(file);
-            for (Task task : this.taskList) {
-                fileWriter.write(task.savedString() + "\n");
-            }
-
-            fileWriter.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+    public ArrayList<Task> getAllTasks() {
+        return this.taskList;
     }
 }

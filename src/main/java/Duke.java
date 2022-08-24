@@ -1,17 +1,31 @@
 import java.util.Scanner;
 
 public class Duke {
-    private Scanner inputScanner;
+    private TaskList taskList;
+    private Ui ui;
+    private Storage storage;
 
-    public static final String PATH = "./data/";
-
-    public Duke() {}
+    public Duke() {
+        this.taskList = new TaskList();
+        this.ui = new Ui(new Scanner(System.in));
+        this.storage = new Storage();
+        storage.load();
+    }
 
     public void run() {
-        Scanner scanner = new Scanner(System.in);
-        Ui ui = new Ui(scanner);
-        ui.userInterface();
+        this.ui.greet();
+        boolean terminate = false;
 
+        do {
+            try {
+                String userInput = this.ui.receiveInput();
+                Command c = Parser.parseCommand(userInput);
+                c.execute(taskList, ui, storage);
+                terminate = c.isEnd();
+            } catch (DukeException de) {
+                System.out.println(de.getMessage());
+            }
+        } while (!terminate);
     }
 
 
