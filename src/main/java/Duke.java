@@ -22,7 +22,7 @@ public class Duke {
 
     private static void greet() {
         System.out.println("Hello! I'm Duke\n"
-        + "What can I do for you?\n");
+                + "What can I do for you?\n");
     }
 
     private static void handleCommands() throws DukeException {
@@ -52,7 +52,7 @@ public class Duke {
                 }
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
             } else if (Objects.equals(commands[0], "deadline") || Objects.equals(commands[0], "event")
-                        || Objects.equals(commands[0], "todo")) {
+                    || Objects.equals(commands[0], "todo")) {
                 Task task = new Task("null");
 
                 if (Objects.equals(commands[0], "deadline")) {
