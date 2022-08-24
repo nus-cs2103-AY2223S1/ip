@@ -11,6 +11,11 @@ public class Deadline extends Task {
     };
     private LocalDateTime date;
 
+    /**
+     * Constructs a Deadline object that is represented by a task and a date.
+     * @param taskString the task
+     * @param date the deadline of given task
+     */
     public Deadline(String taskString, String date) {
         super(taskString);
         if (date.isBlank()) {

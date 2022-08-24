@@ -8,6 +8,12 @@ public final class Parser {
 
     // Returns trailing integers from a String
     // Throws error if no trailing integers
+
+    /**
+     * Returns trailing integers from a given String.
+     * @param string the String to get trailing integers from
+     * @return the trailing integers
+     */
     public static int getTrailingInt(String string) {
         Pattern pattern = Pattern.compile("[^0-9]+([0-9]+)$");
         Matcher matcher = pattern.matcher(string);
@@ -18,8 +24,13 @@ public final class Parser {
         }
     }
 
-    // Returns substring after first instance of token string
-    // Throws error if token is not found in String
+    /**
+     * Returns substring after the first instance of the token string.
+     * @param string the String to be substring-ed
+     * @param token the String that marks where to substring-ed
+     * @return substring after the token string
+     * @throws IllegalArgumentException if token is not found in the String
+     */
     public static String substringAfterToken(String string, String token) {
         Pattern pattern = Pattern.compile(token);
         Matcher matcher = pattern.matcher(string);
@@ -34,9 +45,14 @@ public final class Parser {
         }
     }
 
-    // Returns substring before and after first instance of token string
-    // Before stored in [0]. After stored in [1].
-    // Throws error if token is not found in String
+    /**
+     * Returns substring before and after the first instance of the token string.
+     * Before stored in [0]. After stored in [1].
+     * @param string the String to be split
+     * @param token the String that marks where to split
+     * @return an array of 2 Strings
+     * @throws IllegalArgumentException if token cannot be found in given string
+     */
     public static String[] substringBeforeAfterToken(String string, String token) {
         String[] stringArray = new String[2];
         Pattern pattern = Pattern.compile(token);
