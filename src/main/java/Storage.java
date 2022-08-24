@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -7,14 +6,18 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Class for input and output
- * to the file in the storage.
+ * Deals with loading tasks from the file
+ * and saving tasks in the file.
  */
-public class FileIO {
+public class Storage {
     private static final String FOLDER_PATH = "data";
-    private static final String FILE_PATH = "data/Tumu.txt";
+    private String filePath;
 
-    public static List<Task> loadData() {
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public List<Task> loadData() {
         File file = getFile();
         List<Task> userTasks = new ArrayList<>();
         try {
@@ -34,10 +37,10 @@ public class FileIO {
         }
     }
 
-    public static void saveData(List<Task> userTasks) {
+    public void saveData(List<Task> userTasks) {
         try {
             getFile();
-            FileWriter fileWriter = new FileWriter(FILE_PATH);
+            FileWriter fileWriter = new FileWriter(filePath);
 
             //Add contents to file.
             for (Task task : userTasks) {
@@ -50,7 +53,7 @@ public class FileIO {
         }
     }
 
-    private static File getFile() {
+    private File getFile() {
         /**
          * Checks for the file and return it.
          * If the file or folder it is contained in does not exist,
@@ -63,7 +66,7 @@ public class FileIO {
             System.out.println("\tFolder is created for data storage!\n");
         }
 
-        File file = new File(FILE_PATH);
+        File file = new File(filePath);
         try {
             if (!file.exists()) {
                 file.createNewFile();

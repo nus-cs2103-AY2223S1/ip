@@ -8,6 +8,10 @@ import java.util.List;
  * and responds accordingly.
  */
 public class Tumu {
+    private Storage storage;
+    private TaskList tasks;
+    private UI ui;
+
     private static List<Task> userTasks = new ArrayList<>();
     private static final String horizontalLines = "\t" + "_".repeat(60);
 
@@ -20,21 +24,31 @@ public class Tumu {
     private static final String EVENT_CMD = "event";
     private static final String DELETE_CMD = "delete";
 
+    public Tumu() {
+        ui = new UI();
+        storage = new Storage("data/Tumu.txt");
+        tasks = new TaskList();
+    }
+
     public static void main(String[] args) {
+        new Tumu().run();
+    }
+
+    private void run() {
         loadUserTasks();
         greeting();
         response();
     }
 
-    private static void loadUserTasks() {
-        userTasks = FileIO.loadData();
+    private void loadUserTasks() {
+        userTasks = storage.loadData();
     }
 
-    private static void saveUserTasks() {
-        FileIO.saveData(userTasks);
+    private void saveUserTasks() {
+        storage.saveData(userTasks);
     }
 
-    private static void response() {
+    private void response() {
         Scanner sc = new Scanner(System.in);
         String command;
 
