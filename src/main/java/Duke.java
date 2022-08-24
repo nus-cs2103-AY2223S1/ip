@@ -54,9 +54,9 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
         Scanner scanner = new Scanner((System.in));
-        System.out.println("Hello! I'm Duke \n What can i do for you? \n");
+        System.out.println("Hello! I'm Duke\n What can i do for you?\n");
 
-
+        //test
 
         loop: while (true) {
             String input = scanner.nextLine();
@@ -81,12 +81,12 @@ public class Duke {
                         int indexToMark = Integer.valueOf(arr[1]) - 1;
 
                         toggleTaskStatus(indexToMark);
-                        System.out.println("Nice! I'hv marked this task as done: \n" + todo.get(indexToMark).formatTask());
+                        System.out.println("Nice! I'hv marked this task as done:\n" + todo.get(indexToMark).formatTask());
                         break;
                     case unmark:
                         int indexToUnmark = Integer.valueOf(arr[1]) - 1;
                         toggleTaskStatus(indexToUnmark);
-                        System.out.println("Sadge u are not done :( \n" + todo.get(indexToUnmark).formatTask());
+                        System.out.println("Sadge u are not done :(\n" + todo.get(indexToUnmark).formatTask());
 
                         break;
                     case todo:
@@ -94,7 +94,7 @@ public class Duke {
                             description = validateDescription(String.join(" ", Arrays.copyOfRange(arr, 1, arr.length)));
                             task = new Task(description);
                             todo.add(task);
-                            System.out.println(String.format("Got it. I'hv added this task: \n   %s", task.formatTask()));
+                            System.out.println(String.format("Got it. I'hv added this task:\n   %s", task.formatTask()));
                             System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
                         } catch (descriptionException err) {
                             System.out.println(err.toString());
@@ -102,13 +102,13 @@ public class Duke {
                         break;
                     case deadline:
                     case event:
-                        startIndex = Arrays.asList(arr).indexOf(command.equals("deadline") ? "/by" : "/at");
+                        startIndex = Arrays.asList(arr).indexOf(commandString.equals("deadline") ? "/by" : "/at");
                         try {
                             description = validateDescription(String.join(" ", Arrays.copyOfRange(arr, 1, startIndex)));
                             deadline = String.join(" ", Arrays.copyOfRange(arr, startIndex + 1, arr.length));
-                            task = command.equals("deadline") ? new Deadline(description, deadline) : new Event(description, deadline);
+                            task = commandString.equals("deadline") ? new Deadline(description, deadline) : new Event(description, deadline);
                             todo.add(task);
-                            System.out.println(String.format("Got it. I'hv added this task: \n   %s", task.formatTask()));
+                            System.out.println(String.format("Got it. I'hv added this task:\n   %s", task.formatTask()));
                             System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
                         } catch (descriptionException err) {
                             System.out.println(err.toString());
@@ -118,7 +118,7 @@ public class Duke {
                         int index = Integer.valueOf(arr[1]) - 1;
                         task = todo.get(index);
                         todo.remove(index);
-                        System.out.println(String.format("Noted. I've removed this task: \n   %s", task.formatTask()));
+                        System.out.println(String.format("Noted. I've removed this task:\n   %s", task.formatTask()));
                         System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
 
                     default:
