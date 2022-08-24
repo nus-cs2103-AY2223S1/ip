@@ -149,6 +149,11 @@ public class Duke {
             filePath = path;
         }
 
+        /**
+         * Loads data from the text file "Duke.txt". Store the data in the taskList instance
+         *
+         * @throws FileNotFoundException
+         */
         public void loadData() throws FileNotFoundException {
             File f = new File(filePath);
             Scanner sc = new Scanner(f);
@@ -176,7 +181,10 @@ public class Duke {
             }
         }
 
-        public void saveData() throws FileNotFoundException {
+        /**
+         * Write data to the text file "Duke.txt".
+         */
+        public void saveData() {
             try {
                 FileWriter fw = new FileWriter(filePath);
                 String s = "";
@@ -216,6 +224,10 @@ public class Duke {
             this.description = description;
         }
 
+
+        /**
+         * Execute the add command. Determine the type of task added then add it to taskList.
+         */
         @Override
         public void execute() {
             if (type == TaskType.TODO) {
@@ -248,6 +260,9 @@ public class Duke {
     private class ListCommand extends Command {
         public ListCommand() { super(); }
 
+        /**
+         * Execute the List command. List all tasks in taskList.
+         */
         @Override
         public void execute()  {
             taskList.displayList();
@@ -267,6 +282,9 @@ public class Duke {
             this.target = target;
         }
 
+        /**
+         * Execute the find command. Display all tasks containing the input text.
+         */
         @Override
         public void execute()  {
             taskList.findList(target);
@@ -288,6 +306,10 @@ public class Duke {
             this.index = index;
         }
 
+        /**
+         * Execute the mark command.
+         * Mark the task as done or undone.
+         */
         @Override
         public void execute() {
             Task task = taskList.getTask(index - 1);
@@ -315,6 +337,10 @@ public class Duke {
             this.index = index;
         }
 
+        /**
+         * Execute the delete command.
+         * Delete the specified task in taskList.
+         * */
         @Override
         public void execute()  {
             if (index < 1 || index > taskList.count()) {
