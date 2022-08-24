@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-
 public class Duke {
     static String exitWord = "bye";
     static String hLine = "\t____________________________________________";
@@ -33,6 +32,7 @@ public class Duke {
                 else if (command.startsWith("deadline")) {
                     System.out.println(hLine);
                     addDeadline(command);
+                    System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
                     System.out.println(hLine);
                 }
                 else if(command.startsWith("event")) {
