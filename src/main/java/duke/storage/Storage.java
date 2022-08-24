@@ -1,6 +1,10 @@
 package duke.storage;
 
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.TaskList;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 import duke.DukeException;
 import java.io.File;
 import java.io.FileWriter;
@@ -79,22 +83,18 @@ public class Storage {
                     char first = currentlyAt.charAt(0);
                     Task task;
                     switch(first) {
-                    case('T'): {
+                    case 'T':
                         task = Todo.fromFileDescription(currentlyAt);
                         break;
-                    }
-                    case('D'): {
+                    case 'D':
                         task = Deadline.fromFileDescription(currentlyAt);
                         break;
-                    }
-                    case('E'): {
+                    case 'E':
                         task = Event.fromFileDescription(currentlyAt);
                         break;
-                    }
-                    default: {
+                    default:
                         throw new DukeException("What!? How did this happen... I'm pretty sure you" +
                                 "have an itchy hand and modified the duke.txt file!!!");
-                    }
                     }
                     list.add(task);
                 }

@@ -1,6 +1,13 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.ByeCommand;
+import duke.command.OnDateCommand;
+import duke.command.ListCommand;
+import duke.command.DeleteCommand;
+import duke.command.MarkUndoneCommand;
+import duke.command.MarkDoneCommand;
+import duke.command.Command;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -109,45 +116,35 @@ public class Parser {
         }
         Command cmd;
         switch (first) {
-        case ("bye"): {
+        case "bye":
             cmd = new ByeCommand();
             break;
-        }
-        case ("list"): {
+        case "list":
             cmd = new ListCommand();
             break;
-        }
-        case ("mark"): {
+        case "mark":
             cmd = new MarkDoneCommand(parseInt(second));
             break;
-        }
-        case ("unmark"): {
+        case "unmark":
             cmd = new MarkUndoneCommand(parseInt(second));
             break;
-        }
-        case ("todo"): {
+        case "todo":
             cmd = new AddCommand(handleTodo(second));
             break;
-        }
-        case ("deadline"): {
+        case "deadline":
             cmd = new AddCommand(handleDeadline(second));
             break;
-        }
-        case ("event"): {
+        case "event":
             cmd = new AddCommand(handleEvent(second));
             break;
-        }
-        case ("delete"): {
+        case "delete":
             cmd = new DeleteCommand(parseInt(second));
             break;
-        }
-        case ("on"): {
+        case "on":
             cmd = new OnDateCommand(LocalDate.parse(second));
             break;
-        }
-        default: {
+        default:
             throw new DukeException("Invalid command entered. I don't recognize it. Sorry!");
-        }
         }
         return cmd;
     }
