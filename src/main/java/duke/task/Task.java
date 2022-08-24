@@ -1,5 +1,6 @@
 package duke.task;
 
+import duke.exception.DukeCommandFormatException;
 import duke.util.CommandParser;
 
 public abstract class Task {
@@ -10,7 +11,7 @@ public abstract class Task {
 
     // TODO: Try to combine the string literals in line with duke.task.TaskType
 
-    public static Task valueOf(String input) {
+    public static Task valueOf(String input) throws DukeCommandFormatException {
         String firstWord = CommandParser.getFirstWord(input);
 
         String taskTitle = "";
@@ -22,12 +23,12 @@ public abstract class Task {
 
         case (EVENT_TASK_COMMAND_STRING):
             taskTitle = CommandParser.getTaskTitle(input);
-            dateTime = CommandParser.getByDate(input);
+            dateTime = CommandParser.getAtDate(input);
             return new EventTask(taskTitle, dateTime);
 
         case (DEADLINE_TASK_COMMAND_STRING):
             taskTitle = CommandParser.getTaskTitle(input);
-            dateTime = CommandParser.getAtDate(input);
+            dateTime = CommandParser.getByDate(input);
             return new DeadlineTask(taskTitle, dateTime);
 
         default:
@@ -57,13 +58,13 @@ public abstract class Task {
         done = false;
     }
 
-    protected String getStringRepresentation(String label, String displayedTitle) {
+    protected String getStringRepresentation(String label, String displayedText) {
         return "["
                 + (done ? "X" : " ")
                 + "] "
                 + "["
                 + label
                 + "] "
-                + displayedTitle;
+                + displayedText;
     }
 }

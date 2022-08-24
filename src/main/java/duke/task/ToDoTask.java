@@ -10,6 +10,6 @@ public class ToDoTask extends Task {
 
     @Override
     public String toString() {
-        return super.getStringRepresentation(LABEL, taskTitle);
+        return super.getStringRepresentation(LABEL, super.taskTitle);
     }
 }

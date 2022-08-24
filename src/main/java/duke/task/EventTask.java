@@ -15,6 +15,6 @@ public class EventTask extends Task {
 
     @Override
     public String toString() {
-        return super.getStringRepresentation(LABEL, Duke.BY_DATE_DELIMITER + " " + dateTime);
+        return super.getStringRepresentation(LABEL, super.taskTitle + " at " + dateTime);
     }
 }

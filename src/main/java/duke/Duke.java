@@ -1,5 +1,7 @@
 package duke;
 
+import duke.exception.DukeCommandFormatException;
+import duke.exception.DukeIndexException;
 import duke.task.Task;
 import duke.util.CommandParser;
 import duke.util.OutputFormatter;
@@ -9,6 +11,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
+
+    public static final String DELIMITER = "/";
+    public static final String BY_DATE_DELIMITER = "/by";
+    public static final String AT_DATE_DELIMITER = "/at";
+    public static final String TAB = "    ";
 
     private static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
             + "\nWhat can I help you?";
@@ -25,9 +32,6 @@ public class Duke {
     private static final String DELETE_COMMAND_STRING = "delete";
     private static final String DELETE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"delete <index>\"";
     private static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
-    public static final String DELIMITER = "/";
-    public static final String BY_DATE_DELIMITER = "/by";
-    public static final String AT_DATE_DELIMITER = "/at";
 
     List<Task> taskList;
 
@@ -47,6 +51,9 @@ public class Duke {
 
     private String getListInfo() {
         int len = taskList.size();
+        if (len == 0) {
+            return "The list is empty.";
+        }
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < len; i++) {
             stringBuilder
@@ -54,13 +61,13 @@ public class Duke {
                     .append(". ")
                     .append(taskList.get(i));
             if (i < len - 1) {
-                stringBuilder.append('\n');
+                stringBuilder.append('\n' + TAB);
             }
         }
         return stringBuilder.toString();
     }
 
-    private String addNewTask(String input) {
+    private String addNewTask(String input) throws DukeCommandFormatException {
         Task newTask = Task.valueOf(input);
         if (newTask == null) {
             return GENERAL_ERROR_STRING;
@@ -69,37 +76,40 @@ public class Duke {
         return "added: " + newTask.toString();
     }
 
-    private String markTaskDone(int index) {
+    private String markTaskDone(int index) throws DukeIndexException {
         if (index < 0 || index >= taskList.size()) {
-            return MARK_DONE_ERROR_STRING; // error message
+            throw new DukeIndexException(MARK_DONE_ERROR_STRING);
         } else {
             Task targetTask = taskList.get(index);
             targetTask.markDone();
             return MARK_DONE_OUTPUT_STRING
-                    + "\n    "
+                    + "\n"
+                    + TAB
                     + targetTask;
         }
     }
 
-    private String markTaskUndone(int index) {
+    private String markTaskUndone(int index) throws DukeIndexException {
         if (index < 0 || index >= taskList.size()) {
-            return MARK_UNDONE_ERROR_STRING; // error message
+            throw new DukeIndexException(MARK_UNDONE_ERROR_STRING);
         } else {
             Task targetTask = taskList.get(index);
             targetTask.markUndone();
             return MARK_UNDONE_OUTPUT_STRING
-                    + "\n    "
+                    + "\n"
+                    + TAB
                     + targetTask;
         }
     }
 
-    private String deleteTask(int index) {
+    private String deleteTask(int index) throws DukeIndexException {
         if (index < 0 || index >= taskList.size()) {
-            return DELETE_ERROR_STRING; // error message
+            throw new DukeIndexException(DELETE_ERROR_STRING);
         } else {
             Task removedTask = taskList.remove(index);
             return DELETE_OUTPUT_STRING
-                    + "\n    "
+                    + "\n"
+                    + TAB
                     + removedTask;
         }
     }
@@ -107,52 +117,65 @@ public class Duke {
     private void standBy() {
         Scanner scanner = new Scanner(System.in);
         boolean quited = false;
-        String output = "";
 
         while (!quited) {
+
+            String output = "";
             String nextLine = scanner.nextLine();
+
             if (nextLine.isEmpty()) {
                 continue;
             }
 
-            boolean commandFetched = true;
+            boolean commandFetched = false;
 
             String firstWord = CommandParser.getFirstWord(nextLine);
             int index = CommandParser.getTaskIndexFromCommand(nextLine);
-            switch (firstWord) {
-            case (MARK_DONE_COMMAND_STRING):
-                output = markTaskDone(index);
-                break;
 
-            case (MARK_UNDONE_COMMAND_STRING):
-                output = markTaskUndone(index);
-                break;
-
-            case (DELETE_COMMAND_STRING):
-                output = deleteTask(index);
-                break;
-
-            default:
-                commandFetched = false;
-                break;
-            }
-
-            if (!commandFetched) {
-                switch (nextLine) {
-                case (EXIT_COMMAND_STRING):
-                    output = EXIT_OUTPUT_STRING;
-                    quited = true;
+            try {
+                switch (firstWord) {
+                case (MARK_DONE_COMMAND_STRING):
+                    output = markTaskDone(index);
+                    commandFetched = true;
                     break;
 
-                case (DISPLAY_LIST_COMMAND_STRING):
-                    output = getListInfo();
+                case (MARK_UNDONE_COMMAND_STRING):
+                    output = markTaskUndone(index);
+                    commandFetched = true;
+                    break;
+
+                case (DELETE_COMMAND_STRING):
+                    output = deleteTask(index);
+                    commandFetched = true;
                     break;
 
                 default:
-                    output = addNewTask(nextLine);
-                    commandFetched = false;
                     break;
                 }
+
+                if (!commandFetched) {
+                    switch (nextLine) {
+                    case (EXIT_COMMAND_STRING):
+                        output = EXIT_OUTPUT_STRING;
+                        commandFetched = true;
+                        quited = true;
+                        break;
+
+                    case (DISPLAY_LIST_COMMAND_STRING):
+                        output = getListInfo();
+                        commandFetched = true;
+                        break;
+
+                    default:
+                        output = addNewTask(nextLine);
+                        commandFetched = true;
+                        break;
+                    }
+                }
+            } catch (DukeIndexException exception) {
+                output = exception.getMessage();
+            } catch (DukeCommandFormatException exception) {
+                output = exception.getMessage();
             }
 
             System.out.println(OutputFormatter.formatOutput(output));

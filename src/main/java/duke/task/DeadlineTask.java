@@ -16,6 +16,6 @@ public class DeadlineTask extends Task {
 
     @Override
     public String toString() {
-        return super.getStringRepresentation(LABEL, Duke.BY_DATE_DELIMITER + " " + deadline);
+        return super.getStringRepresentation(LABEL, super.taskTitle + " by " + deadline);
     }
 }

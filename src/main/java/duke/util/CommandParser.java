@@ -1,6 +1,7 @@
 package duke.util;
 
 import duke.Duke;
+import duke.exception.DukeCommandFormatException;
 import duke.legacy.Actionable;
 import duke.legacy.Command;
 import duke.legacy.CommandType;
@@ -13,6 +14,10 @@ public class CommandParser {
     private static final String DELIMITER = Duke.DELIMITER;
     private static final String BY_DATE_DELIMITER = Duke.BY_DATE_DELIMITER;
     private static final String AT_DATE_DELIMITER = Duke.AT_DATE_DELIMITER;
+    private static final String EVENT_WITHOUT_AT_ERROR_MESSAGE =
+            "Oops! You didn't specify the date and time with the delimiter " + AT_DATE_DELIMITER;
+    private static final String DEADLINE_WITHOUT_BY_ERROR_MESSAGE =
+            "Oops! You didn't specify the date and time with the delimiter " + BY_DATE_DELIMITER;
 
     public static int getIndexOfFirstOccurrence(String input, String pattern) {
         int indexOfFirstOccurrence = input.indexOf(pattern);
@@ -35,20 +40,22 @@ public class CommandParser {
         return input.substring(0, indexOfFirstWhiteSpace);
     }
 
-    public static String getByDate(String input) {
+    public static String getByDate(String input) throws DukeCommandFormatException {
         int indexOfDelimiter = input.indexOf(BY_DATE_DELIMITER);
         if (indexOfDelimiter == -1) {
-            return null;
+            throw new DukeCommandFormatException(DEADLINE_WITHOUT_BY_ERROR_MESSAGE);
         }
-        return input.substring(indexOfDelimiter + BY_DATE_DELIMITER.length(), input.length());
+        String roughDate = input.substring(indexOfDelimiter + BY_DATE_DELIMITER.length(), input.length());
+        return removeHeadingAndTailingWhiteSpaces(roughDate);
     }
 
-    public static String getAtDate(String input) {
+    public static String getAtDate(String input) throws DukeCommandFormatException {
         int indexOfDelimiter = input.indexOf(AT_DATE_DELIMITER);
         if (indexOfDelimiter == -1) {
-            return null;
+            throw new DukeCommandFormatException(EVENT_WITHOUT_AT_ERROR_MESSAGE);
         }
-        return input.substring(indexOfDelimiter + AT_DATE_DELIMITER.length(), input.length());
+        String roughDate = input.substring(indexOfDelimiter + AT_DATE_DELIMITER.length(), input.length());
+        return removeHeadingAndTailingWhiteSpaces(roughDate);
     }
 
     public static String getTaskTitle(String input) {
@@ -56,7 +63,8 @@ public class CommandParser {
         int indexOfEnd = indexOfStart
                 + getIndexOfFirstDelimiter(input.substring(indexOfStart + 1, input.length()))
                 + 1;
-        return input.substring(indexOfStart + 1, indexOfEnd);
+        String roughTaskTitle = input.substring(indexOfStart + 1, indexOfEnd);
+        return removeHeadingAndTailingWhiteSpaces(roughTaskTitle);
     }
 
     public static int getTaskIndexFromCommand(String input) {
@@ -74,5 +82,17 @@ public class CommandParser {
             // which will be handled in the higher layer
         }
         return taskIndex;
+    }
+
+    public static String removeHeadingAndTailingWhiteSpaces(String input) {
+        int start = 0;
+        int end = input.length();
+        while (start < input.length() && Character.isWhitespace(input.charAt(start))) {
+            start++;
+        }
+        while (end > 0 && Character.isWhitespace(input.charAt(end - 1))) {
+            end--;
+        }
+        return input.substring(start, end);
     }
 }
