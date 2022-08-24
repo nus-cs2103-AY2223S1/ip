@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
     private final String LINE_BREAK = "____________________________________________________________";
 
