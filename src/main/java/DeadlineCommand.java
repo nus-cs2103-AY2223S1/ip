@@ -1,2 +1,20 @@
-package PACKAGE_NAME;public class DeadlineCommand {
+import java.time.LocalDate;
+
+public class DeadlineCommand extends Command {
+
+    private final String description;
+    private final LocalDate date;
+
+    public DeadlineCommand(String description, LocalDate date) {
+        this.description = description;
+        this.date = date;
+    }
+    @Override
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+        Deadline deadline = new Deadline(description, date);
+        tasks.add(deadline);
+        ui.DeadlineTask(tasks, deadline);
+        storage.update(tasks.getTasks());
+
+    }
 }

@@ -1,190 +1,40 @@
 import java.io.*;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 public class Duke {
-    private static ArrayList<Task> tasks = new ArrayList<>();
-    private static final File f = new File("tasks.dat");
-    public static void main(String[] args) throws IOException {
-        String logo = "\n" +
-        "   ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n" +
-        "  ▓██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▀ ██▌▒████▄\n" +
-        "  ▒██░   ▒██  ▀█▄  ▓██    ▓██░░██   █▌▒██  ▀█▄\n" +
-        "  ▒██░   ░██▄▄▄▄██ ▒██    ▒██ ░▓█▄   ▌░██▄▄▄▄██\n" +
-        "  ░██████▒▓█   ▓██▒▒██▒   ░██▒░▒████▓  ▓█   ▓██▒\n" +
-        "  ░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ░  ░ ▒▒▓  ▒  ▒▒   ▓▒█░\n" +
-        "  ░ ░ ▒  ░ ▒   ▒▒ ░░  ░      ░ ░ ▒  ▒   ▒   ▒▒ ░\n" +
-        "    ░ ░    ░   ▒   ░      ░    ░ ░  ░   ░   ▒\n" +
-        "      ░  ░     ░  ░       ░      ░          ░  ░\n" +
-        "                               ░\n";
 
-        System.out.print(logo);
-        System.out.println("Hi, I am LaMDA.\nHow may I assist you today?\n");
-        if (!f.exists()) {
-            f.createNewFile();
-            update();
+    private final Storage storage;
+    private final TaskList tasks;
+    private final Ui ui;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        if (storage.fileExists()) {
+            tasks = new TaskList(storage.load());
         } else {
-            load();
+            ui.showLoadingError();
+            tasks = new TaskList();
         }
-        greet();
     }
-    public static void greet() {
-        Scanner scn = new Scanner(System.in);
-        boolean cont = true;
-        while (cont) {
-            String s = scn.next();
-            System.out.println("\t____________________________________________");
-            switch (s) {
-                case "bye":
-                    System.out.println("\t It's a great time talking with you.\n\t See you next time!");
-                    System.out.println("\t____________________________________________");
-                    cont = false;
-                    scn.close();
-                    break;
-                case "list":
-                    System.out.println("\t Here are the tasks in your list:");
-                    for (int i = 0; i < tasks.size(); i++) {
-                        System.out.println("\t " + (i + 1) + "." + tasks.get(i).toString());
-                    }
-                    System.out.println("\t____________________________________________");
-                    break;
-                case "mark": {
-                    int num = scn.nextInt();
-                    try {
-                        tasks.get(num - 1).markAsDone();
-                        System.out.println("\t I've marked this task as done:");
-                        System.out.println("\t   " + tasks.get(num - 1).toString());
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println(new DukeException("The index you entered is invalid!").getMessage());
-                    }
-                    System.out.println("\t____________________________________________");
-                    break;
-                }
-                case "unmark": {
-                    int num = scn.nextInt();
-                    try {
-                        tasks.get(num - 1).markAsNotDone();
-                        System.out.println("\t I've marked this task as not done yet:");
-                        System.out.println("\t   " + tasks.get(num - 1).toString());
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println(new DukeException("The index you entered is invalid!").getMessage());
-                    }
-                    System.out.println("\t____________________________________________");
-                    break;
-                }
-                case "todo":
-                    String description = scn.nextLine();
-                    if (description.trim().isEmpty()){
-                        System.out.println(new DukeException("The description of a todo cannot be empty.").getMessage());
-                    }
-                    else {
-                        Todo newTodo = new Todo(description);
-                        tasks.add(newTodo);
-                        System.out.println("\t Got it. I've added this task:");
-                        System.out.println("\t   " + newTodo);
-                        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
-                    }
-                    System.out.println("\t____________________________________________");
-                    break;
-                case "event": {
-                    String str = scn.nextLine();
-                    if (!str.contains("/at")) {
-                        System.out.println(new DukeException("You must specify /at for an event task.").getMessage());
-                    }
-                    else {
-                        String[] strArray = str.split("/at");
-                        String des = strArray[0].trim();
-                        String at = strArray[1].trim();
-                        if (des.isEmpty()) {
-                            System.out.println(new DukeException("The description of an event cannot be empty.").getMessage());
-                        }
-                        else if (at.isEmpty()) {
-                            System.out.println(new DukeException("You must specify /at for an event task.").getMessage());
-                        }
-                        else {
-                            Event newEvent = new Event(" " + des, " " + at);
-                            tasks.add(newEvent);
-                            System.out.println("\t Got it. I've added this task:");
-                            System.out.println("\t   " + newEvent);
-                            System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
-                        }
-                    }
-                    System.out.println("\t____________________________________________");
-                    break;
-                }
-                case "deadline": {
-                    String str = scn.nextLine();
-                    if (!str.contains("/by")) {
-                        System.out.println(new DukeException("You must specify /by for a deadline task.").getMessage());
-                    }
-                    else {
-                        String[] strArray = str.split("/by");
-                        String des = strArray[0].trim();
-                        if (des.isEmpty()) {
-                            System.out.println(new DukeException("The description of a deadline cannot be empty.").getMessage());
-                        }
-                        else {
-                            try {
-                                LocalDate date = LocalDate.parse(strArray[1].trim());
-                                Deadline newDeadline = new Deadline(" " + des, date);
-                                tasks.add(newDeadline);
-                                System.out.println("\t Got it. I've added this task:");
-                                System.out.println("\t   " + newDeadline.toString());
-                                System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
-                            } catch (DateTimeParseException e) {
-                                System.out.println(new DukeException("Invalid date format. Try yyyy-mm-dd.").getMessage());
-                            } catch (IndexOutOfBoundsException e) {
-                                System.out.println(new DukeException("The date field cannot be empty.").getMessage());
-                            }
-                        }
-                    }
-                    System.out.println("\t____________________________________________");
-                    break;
-                }
-                case "delete": {
-                    int num = scn.nextInt();
-                    try {
-                        Task toBeRemoved = tasks.get(num - 1);
-                        tasks.remove(num - 1);
-                        System.out.println("\t Noted. I've removed this task:");
-                        System.out.println("\t   " + toBeRemoved.toString());
-                        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
-                    } catch (IndexOutOfBoundsException e) {
-                        System.out.println(new DukeException("The index you entered is invalid!").getMessage());
-                    }
-                    System.out.println("\t____________________________________________");
-                    break;
-                }
-                default:
-                    System.out.println(new DukeException("Sorry. I don't understand your command!!!").getMessage());
-                    System.out.println("\t____________________________________________");
-                    break;
+
+    public void run() {
+        ui.greet();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(tasks, fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = Command.isExit;
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
             }
-            update();
         }
     }
-
-    private static void update() {
-        try (FileOutputStream fos = new FileOutputStream(f);
-             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
-
-            oos.writeObject(Duke.tasks);
-
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
-    private static void load() {
-        try (FileInputStream fis = new FileInputStream(f);
-             ObjectInputStream ois = new ObjectInputStream(fis)) {
-
-            Duke.tasks = (ArrayList<Task>) ois.readObject();
-        }
-        catch (IOException | ClassNotFoundException ex) {
-            ex.printStackTrace();
-        }
+    public static void main(String[] args) throws IOException {
+        new Duke("tasks.dat").run();
     }
 }
