@@ -18,7 +18,7 @@ public class UI {
 
     private static final String GOODBYE_MESSAGE = "Bye, Hope to see you again soon!";
 
-    public static void getLOGO() {
+    private static void getLOGO() {
         System.out.println(LOGO);
     }
 
@@ -26,24 +26,24 @@ public class UI {
         System.out.println(LINE);
     }
 
-    public static void getGREETING() {
+    private static void getGoodbyeMessage() {
+        System.out.println(GOODBYE_MESSAGE);
+    }
+    private static void getGREETING() {
         System.out.println(GREETING);
     }
 
     public static void start() {
-        System.out.println(GREETING);
-        System.out.println(LINE);
+        getGREETING();
+        getLINE();
     }
 
     public static void end() {
-        System.out.println(LINE);
-        System.out.println(GOODBYE_MESSAGE);
-        System.out.println(LINE);
+        getLINE();
+        getGoodbyeMessage();
+        getLINE();
     }
 
-    public static void getGoodbyeMessage() {
-        System.out.println(GOODBYE_MESSAGE);
-    }
 
     //method to print in list format
     public static void printList() {
@@ -54,7 +54,8 @@ public class UI {
         ArrayList<Task> taskArrayList = TaskList.getTaskList();
         int counter = 0;
         int numbering = 1;
-        UI.getLINE();
+        getLINE();
+
         while (counter < len) {
             Task temp = taskArrayList.get(counter);
             System.out.println(numbering + "." + temp);
@@ -66,26 +67,51 @@ public class UI {
 
     public static void printAddition(Task task) {
         int tasksLeft = TaskList.taskListLength();
-        UI.getLINE();
-        ;
+        getLINE();
         System.out.println("Got it. I've added this task:\n " + " " + task.toString() +
                 "\nNow you have " + tasksLeft + " tasks in the list.");
-        UI.getLINE();
-        ;
-
+        getLINE();
     }
 
     public static void markAsDoneUI(Task tsk) {
-        UI.getLINE();
+        getLINE();
         System.out.println("Nice! I've marked this task as done:\n" +
                 "  " + tsk);
-        UI.getLINE();
+        getLINE();
     }
 
     public static void markAsUndoneUI(Task tsk) {
-        UI.getLINE();
+        getLINE();
         System.out.println("OK, I've marked this task as not done yet:\n" +
                 "  " + tsk);
-        UI.getLINE();
+        getLINE();
     }
+
+    public static void deleteTaskUI(ArrayList<Task> arrayList, Task t) {
+        getLINE();
+        System.out.println("Noted. I've removed this task:\n " + " " + t.toString() +
+                "\nNow you have " + arrayList.size() + " tasks in the list.");
+        getLINE();
+    }
+
+    public static void findTasksUI(ArrayList<Task> arrayList) {
+        int len = arrayList.size();
+        if (len < 1) {
+            throw new DukeException("No tasks with the given word!");
+        }
+
+        int counter = 0;
+        int numbering = 1;
+        getLINE();
+
+        System.out.println("Here are the matching tasks in your list:");
+        while (counter < len) {
+            Task temp = arrayList.get(counter);
+            System.out.println(numbering + "." + temp);
+            counter++;
+            numbering++;
+        }
+        getLINE();
+    }
+
 }

@@ -70,6 +70,10 @@ public class Parser {
                     TaskList.addTaskToArray(str2, Task.TYPE.EVENT);
                     break;
 
+                case "find":
+                    TaskList.findTasks(str2);
+                    break;
+
                 default:
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
 
