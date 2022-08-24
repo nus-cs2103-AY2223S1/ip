@@ -1,4 +1,8 @@
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
 public class Parser {
 
     public Parser() {
@@ -50,7 +54,10 @@ public class Parser {
         if (type.equals("T")) {
             t = new Todo(splitInput[2]);
         } else if (type.equals("D")) {
-            t = new Deadline(arguments);
+            String desc = arguments[0];
+            String tempDate = arguments[1];
+            LocalDateTime date = stringToDate(tempDate);
+            t = new Deadline(desc, date);
         } else {
             t = new Event(arguments);
         }
@@ -125,11 +132,16 @@ public class Parser {
         return i;
     }
 
-    public Task getDeadline(String[] splitInput, int byIndex) {
-        String description = String.join(" ", Arrays.copyOfRange(splitInput, 1, byIndex));
-        String dueDate = String.join(" ", Arrays.copyOfRange(splitInput, byIndex + 1, splitInput.length));
-        String[] packagedArguments = {description, dueDate};
-        return new Deadline(packagedArguments);
+    public Task getDeadline(String[] splitInput, int byIndex) throws DukeException {
+        try {
+            String description = String.join(" ", Arrays.copyOfRange(splitInput, 1, byIndex));
+
+            String tempDate = String.join(" ", Arrays.copyOfRange(splitInput, byIndex + 1, splitInput.length));
+            LocalDateTime date = stringToDate(tempDate);
+            return new Deadline(description, date);
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException();
+        }
     }
 
     public Task getEvent(String[] splitInput, int atIndex) {
@@ -139,6 +151,10 @@ public class Parser {
         return new Event(packagedArguments);
     }
 
+    public LocalDateTime stringToDate(String string) {
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        return LocalDateTime.parse(string, format);
+    }
 
 
 }
