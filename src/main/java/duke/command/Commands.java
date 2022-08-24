@@ -12,5 +12,6 @@ public enum Commands {
     Mark,
     Unmark,
     Delete,
-    Date
+    Date,
+    Find
 }
