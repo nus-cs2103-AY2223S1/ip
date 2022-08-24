@@ -8,6 +8,7 @@ public class Task {
         this.description = description;
         this.isDone = false;
         count++;
+
     }
 
     public void mark(){
