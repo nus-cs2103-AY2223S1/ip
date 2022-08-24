@@ -1,4 +1,5 @@
 public class Event extends Task {
+    protected String type = "E";
     protected String at;
 
     public Event(String description, String at) {
@@ -7,7 +8,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String getType() {
+        return this.type;
+    }
+
+    @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + at + ")";
+        return "[" + this.type + "]" + super.toString() + "(at: " + at + ")";
     }
 }
