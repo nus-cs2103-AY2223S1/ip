@@ -1,6 +1,10 @@
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Duke {
     private ArrayList<Task> list;
@@ -11,6 +15,9 @@ public class Duke {
         this.sc = new Scanner(System.in);
     }
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         Task task;
@@ -60,7 +67,26 @@ public class Duke {
             }
 
         }
+        try {
+            duke.write();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         sc.close();
+    }
+
+    private void write() throws IOException{
+        File file = new File("/Users/yiye/Desktop/cs2103Projects/ip/duke.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        for (Task task: list) {
+            printWriter.println(task);
+        };
+        printWriter.close();
+
     }
 
     private void greet() {
