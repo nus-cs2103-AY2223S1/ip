@@ -48,6 +48,11 @@ public class Todo extends Task {
 
     public static final String typeCode = "T";
 
+    /**
+     * Packs the task's data into a List.
+     *
+     * @return The packed data.
+     */
     @Override
     public List<String> flatPack() {
         List<String> result = new ArrayList<>(super.flatPack());
@@ -56,6 +61,11 @@ public class Todo extends Task {
         return result;
     }
 
+    /**
+     * Unpacks the task's data from a List.
+     *
+     * @param l The packed data.
+     */
     public Todo(List<? extends String> l) {
         super(l);
         if (!l.get(0).equals(typeCode)) {

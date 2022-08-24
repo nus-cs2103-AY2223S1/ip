@@ -41,6 +41,9 @@ replay_pid*
 # IntelliJ systematic builds
 out/
 
+# Manual JavaDoc: javadoc -d doc --source-path src/main/java duke duke.modules duke.modules.todos
+doc/
+
 # Test suite temporary files
 text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT

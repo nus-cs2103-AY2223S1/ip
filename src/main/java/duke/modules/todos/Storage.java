@@ -11,19 +11,37 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Task list saving and loading functionalities.
+ */
 public class Storage {
     private final String fileDir;
     private final String filePath;
 
+    /**
+     * Constructor
+     *
+     * @param fileDir The path, relative to the current directory, of the save file.
+     * @param fileName The name of the save file.
+     */
     public Storage(String fileDir, String fileName) {
         this.fileDir = fileDir;
         this.filePath = fileDir + "/" + fileName;
     }
 
+    /**
+     * Constructor using the default savefile location.
+     */
     public Storage() {
         this("data", "tasks.csv");
     }
 
+    /**
+     * Saves the given TaskList.
+     *
+     * @param todos The TaskList to save.
+     * @throws MessagefulException when saving fails.
+     */
     public void saveList(TaskList todos) throws MessagefulException {
         try {
             File fileDir = new File(this.fileDir);
@@ -43,6 +61,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the TaskList from the file.
+     *
+     * @return The loaded TaskList.
+     * @throws MessagefulException when loading fails.
+     */
     public ArrayList<Task> loadList() throws MessagefulException {
         try {
             ArrayList<Task> todos = new ArrayList<>();

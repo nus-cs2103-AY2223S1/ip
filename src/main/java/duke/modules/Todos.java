@@ -53,6 +53,7 @@ public class Todos {
      *
      * @param rest        The scanner with the remaining text in the message.
      * @param constructor The fromChat factory function of the given task.
+     * @throws MessagefulException if there is an issue.
      */
     public void cmdAdd(Scanner rest, FallibleFunction<Scanner, Task> constructor) throws MessagefulException {
         final Task task = constructor.apply(rest);
@@ -82,6 +83,7 @@ public class Todos {
      * Command for marking a task as done.
      *
      * @param rest The scanner with the remaining text in the message.
+     * @throws MessagefulException if there is an issue.
      */
     public void cmdMark(Scanner rest) throws MessagefulException {
         final int taskID = readTodoID(rest, "Please give me a task number to mark!");
@@ -97,6 +99,7 @@ public class Todos {
      * Command for marking a task as not done.
      *
      * @param rest The scanner with the remaining text in the message.
+     * @throws MessagefulException if there is an issue.
      */
     public void cmdUnmark(Scanner rest) throws MessagefulException {
         final int taskID = readTodoID(rest, "Please give me a task number to unmark!");
@@ -111,6 +114,7 @@ public class Todos {
      * Command for deleting a task.
      *
      * @param rest The scanner with the remaining text in the message.
+     * @throws MessagefulException if there is an issue.
      */
     public void cmdDelete(Scanner rest) throws MessagefulException {
         final int taskID = readTodoID(rest, "Please give me a task number to delete!");
