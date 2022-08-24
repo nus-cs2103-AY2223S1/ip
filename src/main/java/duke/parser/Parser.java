@@ -16,41 +16,41 @@ public class Parser {
         String commandName = args[0].getName();
 
         switch (commandName) {
-            case ListCommand.COMMAND_NAME: {
-                return new ListCommand();
-            }
+        case ListCommand.COMMAND_NAME: {
+            return new ListCommand();
+        }
 
-            case ByeCommand.COMMAND_NAME: {
-                return new ByeCommand();
-            }
+        case ByeCommand.COMMAND_NAME: {
+            return new ByeCommand();
+        }
 
-            case TodoCommand.COMMAND_NAME: {
-                return new TodoCommand(new Todo(args[0].getBody()));
-            }
+        case TodoCommand.COMMAND_NAME: {
+            return new TodoCommand(new Todo(args[0].getBody()));
+        }
 
-            case DeadlineCommand.COMMAND_NAME: {
-                return parseDeadlineArgs(args);
-            }
+        case DeadlineCommand.COMMAND_NAME: {
+            return parseDeadlineArgs(args);
+        }
 
-            case EventCommand.COMMAND_NAME: {
-                return parseEventArgs(args);
-            }
+        case EventCommand.COMMAND_NAME: {
+            return parseEventArgs(args);
+        }
 
-            case MarkCommand.COMMAND_NAME: {
-                return new MarkCommand(parseIndex(args[0].getBody()));
-            }
+        case MarkCommand.COMMAND_NAME: {
+            return new MarkCommand(parseIndex(args[0].getBody()));
+        }
 
-            case UnmarkCommand.COMMAND_NAME: {
-                return new UnmarkCommand(parseIndex(args[0].getBody()));
-            }
+        case UnmarkCommand.COMMAND_NAME: {
+            return new UnmarkCommand(parseIndex(args[0].getBody()));
+        }
 
-            case DeleteCommand.COMMAND_NAME: {
-                return new DeleteCommand(parseIndex(args[0].getBody()));
-            }
+        case DeleteCommand.COMMAND_NAME: {
+            return new DeleteCommand(parseIndex(args[0].getBody()));
+        }
 
-            default: {
-                return new UnknownCommand();
-            }
+        default: {
+            return new UnknownCommand();
+        }
         }
     }
 

@@ -25,7 +25,7 @@ public class UnmarkCommand extends Command {
                 ui.showReply(String.format("Sorry, but it seems you haven't marked this task as done:\n  %s", tasks.getTask(this.unmarkIndex)));
             }
             storage.save(tasks);
-        }  catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeException("I do not have a task with that number in my list.", e);
         }
     }

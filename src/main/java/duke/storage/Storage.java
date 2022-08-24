@@ -32,17 +32,17 @@ public class Storage {
                 String[] curTask = sc.nextLine().split(" / ");
                 // duke.task.Task type saved in the third parameter
                 switch (curTask[2]) {
-                    case "T":
-                        ret.addTask(new Todo(curTask[0], curTask[1].equals("true")));
-                        break;
-                    case "D":
-                        ret.addTask(new Deadline(curTask[0], curTask[3], curTask[1].equals("true")));
-                        break;
-                    case "E":
-                        ret.addTask(new Event(curTask[0], curTask[3], curTask[1].equals("true")));
-                        break;
-                    default:
-                        throw new DukeException("Invalid save file data. Will ignore save file.");
+                case "T":
+                    ret.addTask(new Todo(curTask[0], curTask[1].equals("true")));
+                    break;
+                case "D":
+                    ret.addTask(new Deadline(curTask[0], curTask[3], curTask[1].equals("true")));
+                    break;
+                case "E":
+                    ret.addTask(new Event(curTask[0], curTask[3], curTask[1].equals("true")));
+                    break;
+                default:
+                    throw new DukeException("Invalid save file data. Will ignore save file.");
                 }
             }
             return ret;

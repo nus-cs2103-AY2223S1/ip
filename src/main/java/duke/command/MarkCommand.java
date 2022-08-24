@@ -8,9 +8,9 @@ import duke.ui.Ui;
 public class MarkCommand extends Command {
 
     public static final String COMMAND_NAME = "mark";
-    
+
     private final int markIndex;
-    
+
     public MarkCommand(int markIndex) {
         this.markIndex = markIndex;
     }

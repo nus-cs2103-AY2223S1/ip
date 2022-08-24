@@ -47,8 +47,8 @@ public class Ui {
 
     public void showException(Exception e) {
         outputString(String.format("Woah 😲! Undocumented exception encountered:\n"
-                + "%s\n"
-                + "Please let us know on our GitHub Issues along with the steps to recreate this exception.",
+                        + "%s\n"
+                        + "Please let us know on our GitHub Issues along with the steps to recreate this exception.",
                 e.toString()), EXCEPTION_HEADER);
     }
 

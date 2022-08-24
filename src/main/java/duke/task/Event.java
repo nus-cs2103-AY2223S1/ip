@@ -9,8 +9,8 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     private static final String NO_TIMERANGE_MESSAGE = "An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.";
     private static final String INVALID_DATE_MESSAGE = "Please provide me valid date(s) in the following format:\n"
-        + "  YYYY1-MM1-DD1 YYYY2-MM2-DD2\n"
-        + "i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02. You can provide only one date if you choose.";
+            + "  YYYY1-MM1-DD1 YYYY2-MM2-DD2\n"
+            + "i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02. You can provide only one date if you choose.";
     private static final String INVALID_DATERANGE_MESSAGE = "The second date is prior to the first date.";
 
     protected LocalDate startTime;

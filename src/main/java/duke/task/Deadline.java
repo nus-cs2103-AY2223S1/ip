@@ -3,6 +3,7 @@ package duke.task;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import duke.DukeException;
 
 public class Deadline extends Task {
@@ -10,6 +11,7 @@ public class Deadline extends Task {
     private static final String INVALID_DATE_MESSAGE = "Please provide me a valid date in the following format:\n  YYYY-MM-DD\ni.e. 29th February 2000 is 2000-02-29";
 
     protected LocalDate endDate;
+
     public Deadline(String desc, String endTime) throws DukeException {
         super(desc);
         if (endTime == null || endTime.equals("")) {
