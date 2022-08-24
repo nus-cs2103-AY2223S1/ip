@@ -1,9 +1,12 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    private String at;
+    private LocalDate at;
 
     public Event(String taskDescription, String at) {
         super(taskDescription);
-        this.at = at;
+        this.at = LocalDate.parse(at);
     }
 
     public static Event EventFromData(String taskFromData, boolean isDone) throws DukeException {
@@ -28,6 +31,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + "(at:" + at + ")";
+        return super.toString() + " (at:" + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

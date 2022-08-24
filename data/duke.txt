@@ -1,2 +1,3 @@
-T|0|hohoho
-E|1|hehehe | 12-12-12
+T|0|test todo
+E|1|test event|2020-11-12
+D|0|test deadine|2022-11-14
