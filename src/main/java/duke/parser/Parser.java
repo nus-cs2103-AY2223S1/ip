@@ -44,6 +44,9 @@ public class Parser {
             checkInput(components);
             checkDate(components[1]);
             return new TasksCommand(components[1]);
+        case "find":
+            checkInput(components);
+            return new FindCommand(components[1]);
         default:
             return new InvalidCommand();
         }

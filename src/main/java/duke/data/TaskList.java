@@ -73,4 +73,15 @@ public class TaskList {
         this.tasks.remove(i - 1);
         return task;
     }
+
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> list = new ArrayList<>();
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(keyword)) {
+                list.add(task);
+            }
+        }
+
+        return list;
+    }
 }
