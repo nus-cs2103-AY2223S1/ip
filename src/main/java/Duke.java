@@ -38,7 +38,7 @@ public class Duke {
         Scanner sc= new Scanner(System.in);
 
         while (sc.hasNextLine()) {
-            String input = sc.nextLine();
+            String input = sc.nextLine().trim();
             String[] inputArray = input.split(" ", 2);
             String cmd = inputArray[0];
             String target = null;
