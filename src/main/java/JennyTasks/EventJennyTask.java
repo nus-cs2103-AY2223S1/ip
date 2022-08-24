@@ -14,8 +14,9 @@ public class EventJennyTask extends JennyTask {
 
     /**
      * Constructor of a EventJennyTask.
+     *
      * @param description description of the task.
-     * @param dueDate due date of the task.
+     * @param dueDate     due date of the task.
      */
     public EventJennyTask(String description, String dueDate) {
         super(description);
@@ -32,11 +33,7 @@ public class EventJennyTask extends JennyTask {
      */
     @Override
     public String save() {
-        return String.format("%s,%s,%s,%s",
-                this.getClass().getSimpleName(),
-                this.isDone,
-                this.description,
-                this.dueDate);
+        return String.format("%s,%s,%s,%s", this.getClass().getSimpleName(), this.isDone, this.description, this.dueDate);
     }
 
     /**

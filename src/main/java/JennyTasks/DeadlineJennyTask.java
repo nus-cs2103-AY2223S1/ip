@@ -34,8 +34,7 @@ public class DeadlineJennyTask extends JennyTask {
     public String save() {
         return String.format("%s,%s,%s,%s",
                 this.getClass().getSimpleName(),
-                this.isDone,
-                this.description,
+                this.isDone, this.description,
                 this.dueDate);
     }
 

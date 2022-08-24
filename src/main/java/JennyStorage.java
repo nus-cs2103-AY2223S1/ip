@@ -25,6 +25,7 @@ public class JennyStorage {
 
     /**
      * Creates an instance of the class {@code JennyStorage} to handle file I/O operations of the JennyBot application.
+     *
      * @throws IOException When file I/O operation fails.
      */
     public JennyStorage() throws IOException {
@@ -38,17 +39,16 @@ public class JennyStorage {
         File taskStorage = new File(storageLocation);
         boolean fileCreated = taskStorage.createNewFile();
         if (fileCreated) {
-            JennyPrinter.echo(String.format("JennyStorage: JennyTask storage initialised at: [%s]",
-                    this.storageLocation));
+            JennyPrinter.echo(String.format("JennyStorage: JennyTask storage initialised at: [%s]", this.storageLocation));
         } else {
-            JennyPrinter.echo(String.format("JennyStorage: JennyTask storage already exists at: [%s]",
-                    this.storageLocation));
+            JennyPrinter.echo(String.format("JennyStorage: JennyTask storage already exists at: [%s]", this.storageLocation));
         }
     }
 
     /**
      * Saves a list of jennyTasks in the file {@code jennyTasks.txt} at the default save location
      * {@code %HOME%\.jenny\storage\jennyTasks}
+     *
      * @param jennyTasks The list of jennyTasks to be saved.
      * @throws IOException When file I/O operation fails.
      */
@@ -59,13 +59,13 @@ public class JennyStorage {
             fileWriter.write(String.format("%s\n", jennyTask.save()));
         }
         fileWriter.close();
-        JennyPrinter.echo(String.format("JennyStorage: File written successfully in [%s].",
-                this.storageLocation));
+        JennyPrinter.echo(String.format("JennyStorage: File written successfully in [%s].", this.storageLocation));
     }
 
     /**
      * Loads a list of tasks in the file {@code taskItems.txt} at the default save location
      * {@code %HOME%\.jenny\storage\tasks}
+     *
      * @return A list of tasks that was loaded.
      * @throws IOException When file I/O operation fails.
      */

@@ -42,8 +42,7 @@ public abstract class JennyTask {
      */
     public String save() {
         return String.format("%s,%s,%s",
-                this.getClass().getSimpleName(),
-                this.isDone,
+                this.getClass().getSimpleName(), this.isDone,
                 this.description);
     }
 

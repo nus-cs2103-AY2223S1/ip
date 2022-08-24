@@ -20,6 +20,7 @@ public class JennyPrinter {
 
     /**
      * Prints a message.
+     *
      * @param message a message.
      */
     private static void print(String message) {
@@ -47,6 +48,7 @@ public class JennyPrinter {
 
     /**
      * Prints a message.
+     *
      * @param message a message.
      */
     public static void echo(String message) {
@@ -57,6 +59,7 @@ public class JennyPrinter {
 
     /**
      * Prints list of JennyTasks.
+     *
      * @param jennyTasks list of JennyTasks.
      */
     public static void list(ArrayList<JennyTask> jennyTasks) {
@@ -70,6 +73,7 @@ public class JennyPrinter {
 
     /**
      * Prints a mark message.
+     *
      * @param taskItem string representation of a JennyTask.
      */
     public static void mark(String taskItem) {
@@ -81,6 +85,7 @@ public class JennyPrinter {
 
     /**
      * Prints unmark message.
+     *
      * @param taskItem string representation of a JennyTask.
      */
     public static void unmark(String taskItem) {
@@ -92,8 +97,9 @@ public class JennyPrinter {
 
     /**
      * Prints an add message.
+     *
      * @param taskItem string representation of a JennyTask.
-     * @param size size of the list.
+     * @param size     size of the list.
      */
     public static void add(String taskItem, int size) {
         print_line();
@@ -105,8 +111,9 @@ public class JennyPrinter {
 
     /**
      * Prints a delete message.
+     *
      * @param taskItem string representation of a JennyTask.
-     * @param size size of the list.
+     * @param size     size of the list.
      */
     public static void delete(String taskItem, int size) {
         print_line();

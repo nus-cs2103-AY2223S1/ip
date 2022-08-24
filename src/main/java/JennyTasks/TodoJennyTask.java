@@ -13,6 +13,7 @@ public class TodoJennyTask extends JennyTask {
 
     /**
      * Constructor of a TodoJennyTask.
+     *
      * @param description description of the task.
      */
     public TodoJennyTask(String description) {

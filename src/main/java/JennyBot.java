@@ -22,6 +22,7 @@ public class JennyBot {
 
     /**
      * Starting point of the program.
+     *
      * @param args program arguments.
      */
     public static void main(String[] args) {
@@ -37,7 +38,7 @@ public class JennyBot {
         JennyTask jennyTask;
         Scanner sc = new Scanner(System.in);
         String cmd = sc.next(); // get next command.
-        while(!cmd.equals("bye")) {
+        while (!cmd.equals("bye")) {
             switch (cmd) {
                 case "list":
                     sc.nextLine(); // flush extra text after list command.
