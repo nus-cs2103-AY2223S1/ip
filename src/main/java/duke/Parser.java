@@ -41,8 +41,9 @@ public class Parser {
             return new DeleteCommand(getIntegerInUserInput(inputList));
         case FIND:
             return new FindCommand(getToDoDescription(inputList, input));
+        default:
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
     /**

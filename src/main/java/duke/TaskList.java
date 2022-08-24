@@ -1,33 +1,31 @@
 package duke;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 
 /**
  * Encapsulate a list that store all User's tasks.
  */
 public class TaskList {
 
-    protected ArrayList<Task> list;
+    protected ArrayList<Task> tasks;
     protected int length;
 
     /**
      * Class constructor for ToDoList.
      */
     public TaskList() {
-        this.list = new ArrayList<>();
+        this.tasks = new ArrayList<>();
         this.length = 0;
     }
 
     /**
      * Class constructor for ToDoList with an ArrayList argument.
      *
-     * @param list arraylist of task.
+     * @param tasks arraylist of task.
      */
-    public TaskList(ArrayList<Task> list) {
-        this.list = list;
-        this.length = list.size();
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+        this.length = tasks.size();
     }
 
     /**
@@ -36,7 +34,7 @@ public class TaskList {
      * @param item new list item to be added.
      */
     public void add(Task item) {
-        list.add(item);
+        tasks.add(item);
         this.length += 1;
     }
 
@@ -49,8 +47,8 @@ public class TaskList {
      */
     public Task mark(int taskNumber) throws DukeException {
         try {
-            list.get(taskNumber - 1).markAsDone();
-            return list.get(taskNumber - 1);
+            tasks.get(taskNumber - 1).markAsDone();
+            return tasks.get(taskNumber - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("You do not have that item number!");
         }
@@ -65,8 +63,8 @@ public class TaskList {
      */
     public Task unmark(int taskNumber) throws DukeException{
         try {
-            list.get(taskNumber - 1).markAsNotDone();
-            return list.get(taskNumber - 1);
+            tasks.get(taskNumber - 1).markAsNotDone();
+            return tasks.get(taskNumber - 1);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("You do not have that item number!");
         }
@@ -81,8 +79,8 @@ public class TaskList {
     public Task delete(int taskNumber) {
         Task taskToRemove = null;
         try {
-            taskToRemove = list.get(taskNumber - 1);
-            list.remove(taskNumber - 1);
+            taskToRemove = tasks.get(taskNumber - 1);
+            tasks.remove(taskNumber - 1);
             this.length -= 1;
         } catch (IndexOutOfBoundsException e) {
             System.out.println("You do not have that item number!");
@@ -97,7 +95,7 @@ public class TaskList {
      * @throws DukeException if something went wrong with the update.
      */
     public void updateStorage(Storage storage) throws DukeException {
-        storage.update(this.list);
+        storage.update(this.tasks);
     }
 
     public int getLength() {
@@ -105,7 +103,7 @@ public class TaskList {
     }
 
     public TaskList find(String userInput) {
-        ArrayList<Task> currTasks = new ArrayList<>(this.list);
+        ArrayList<Task> currTasks = new ArrayList<>(this.tasks);
         currTasks.removeIf(x -> !x.getDescription().contains(userInput));
         return new TaskList(currTasks);
     }
@@ -114,7 +112,7 @@ public class TaskList {
     public String toString() {
         int counter = 1;
         StringBuilder s = new StringBuilder();
-        for (Task task : list) {
+        for (Task task : tasks) {
             s.append(counter + ". " + task.toString() + "\n");
             counter += 1;
         }
