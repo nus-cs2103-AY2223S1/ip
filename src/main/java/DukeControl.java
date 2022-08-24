@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 public class DukeControl {
@@ -129,8 +132,13 @@ public class DukeControl {
             } else if (deadline == "") {
                 throw new InvalidArgumentException();
             } else {
-                this.tasklist.addTask(new Deadline(title, false, deadline));
-                this.storage.writeTask(new String[]{"D", "0", title, deadline});
+                try {
+                    LocalDate ldt = LocalDate.parse(deadline, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    this.tasklist.addTask(new Deadline(title, false, ldt));
+                    this.storage.writeTask(new String[]{"D", "0", title, deadline});
+                } catch (DateTimeParseException e) {
+                    System.out.println(deadline + " cannot be parsed: must be in the format dd/mm/yyyy");
+                }
             }
         }
     }
