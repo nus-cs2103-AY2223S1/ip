@@ -2,6 +2,17 @@ import java.util.*;
 public class Duke {
 
     private static List<Task> taskList;
+
+    private enum validInput {
+        LIST,
+        MARK,
+        UNMARK,
+        DELETE,
+        TODO,
+        DEADLINE,
+        EVENT
+
+    }
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -13,58 +24,62 @@ public class Duke {
 
         taskList = new ArrayList<>();
 
+
+
         String input;
         Scanner scanner = new Scanner(System.in);
         while(!Objects.equals(input = scanner.nextLine(), "bye")) {
             String[] words = input.split(" ", 2);
             try {
-                switch (words[0]) {
-                    case "list":
+                validInput verb = validInput.valueOf(words[0].toUpperCase());
+                switch (verb) {
+                    case LIST:
                         displayList();
                         break;
-                    case "mark":
+                    case MARK:
                         mark(Integer.parseInt(words[1]));
                         break;
-                    case "unmark":
+                    case UNMARK:
                         unmark(Integer.parseInt(words[1]));
                         break;
-                    case "delete":
+                    case DELETE:
                         delete(Integer.parseInt(words[1]));
                         break;
-                    case "todo":
+                    case TODO:
                         addToDo(words[1]);
                         break;
-                    case "deadline":
+                    case DEADLINE:
                         addDeadline(words[1]);
                         break;
-                    case "event":
+                    case EVENT:
                         addEvent(words[1]);
                         break;
-                    default:
-                        throw new DukeException("Come Again?");
-
                 }
             } catch (DukeException dukeException) {
-                System.out.println(dukeException.getMessage());
-            } catch (IndexOutOfBoundsException e) {
-                System.out.println("We need a task description.");
+                System.out.println("You need something to do for Todo."); //doesn't work rn; fix later
+            } catch (Exception e) {
+                System.out.println("Invalid task description.");
             }
 
         }
 
         System.out.println("Bye");
+        scanner.close();
     }
 
     private static void displayList() {
-        for(int i = 0; i < taskList.size(); i++) {
+        for (int i = 0; i < taskList.size(); i++) {
             System.out.println(i + 1 + ". " + taskList.get(i));
         }
     }
 
+    /*
     private static void addToList(String input) {
         System.out.println("added: " + input);
         taskList.add(new Task(input));
     }
+
+    */
 
     private static void addToDo(String input) throws DukeException {
         Todo newTodo = new Todo(input);
