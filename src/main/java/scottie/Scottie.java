@@ -1,7 +1,7 @@
 package scottie;
 
 import scottie.instructions.Instruction;
-import scottie.parser.InvalidCommandException;
+import scottie.instructions.InvalidCommandException;
 import scottie.parser.Parser;
 import scottie.tasks.TaskList;
 import scottie.ui.Ui;
@@ -20,7 +20,7 @@ public class Scottie {
                     break;
                 }
             } catch (InvalidCommandException e) {
-                ui.showFormattedMessage("Sorry, I don't understand what %s means. :/%n", e.getCommandString());
+                ui.showFormattedMessage("Sorry, I don't understand what %s means. :/%n", e.getCommandName());
             }
         }
     }

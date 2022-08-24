@@ -1,7 +1,7 @@
 package scottie.parser;
 
-import scottie.instructions.Command;
 import scottie.instructions.Instruction;
+import scottie.instructions.InvalidCommandException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,13 +13,10 @@ public class Parser {
 
     public static Instruction parse(String userInput) throws InvalidCommandException {
         String[] splitUserInput = userInput.split(" ", 2);
-        Command command = Command.fromName(splitUserInput[0]);
-        if (command == null) {
-            throw new InvalidCommandException(splitUserInput[0]);
-        }
+        String commandName = splitUserInput[0];
         if (splitUserInput.length == 1) {
             // Instruction has no arguments
-            return Instruction.of(command, null, Map.of());
+            return Instruction.of(commandName, null, Map.of());
         }
         String[] arguments = splitUserInput[1].split(FLAG_REGEX);
         String mainArgument = arguments[0];
@@ -29,6 +26,6 @@ public class Parser {
         while (flagMatcher.find()) {
             flagArgumentsMap.put(flagMatcher.group(1), arguments[i++]);
         }
-        return Instruction.of(command, mainArgument, flagArgumentsMap);
+        return Instruction.of(commandName, mainArgument, flagArgumentsMap);
     }
 }

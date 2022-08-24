@@ -14,7 +14,12 @@ public abstract class Instruction {
         this.flagArgumentsMap = flagArgumentsMap;
     }
 
-    public static Instruction of(Command command, String mainArgument, Map<String, String> flagArgumentsMap) {
+    public static Instruction of(String commandName, String mainArgument, Map<String, String> flagArgumentsMap)
+            throws InvalidCommandException {
+        Command command = Command.fromName(commandName);
+        if (command == null) {
+            throw new InvalidCommandException(commandName);
+        }
         switch (command) {
         case LIST:
             return new ListInstruction(mainArgument, flagArgumentsMap);
