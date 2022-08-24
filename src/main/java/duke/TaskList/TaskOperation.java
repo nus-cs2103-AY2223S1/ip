@@ -1,4 +1,4 @@
-package TaskList;
+package duke.TaskList;
 
 import Ui.Constants;
 

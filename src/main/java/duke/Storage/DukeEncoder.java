@@ -1,6 +1,6 @@
-package Storage;
+package duke.Storage;
 
-import TaskList.Task;
+import duke.TaskList.Task;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

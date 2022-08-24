@@ -1,8 +1,8 @@
-package Parser;
+package duke.Parser;
 
-import Exception.DukeException;
-import Storage.DukeEncoder;
-import TaskList.*;
+import duke.Exception.DukeException;
+import duke.Storage.DukeEncoder;
+import duke.TaskList.*;
 import Ui.Constants;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class ProcessUserInput {
             int index;
             switch (typeOfTask) {
                 case Constants.LIST:
-                    TaskOperation.listItems(workList);
+                    duke.TaskList.TaskOperation.listItems(workList);
                     break;
                 case Constants.UNMARK:
                     try {

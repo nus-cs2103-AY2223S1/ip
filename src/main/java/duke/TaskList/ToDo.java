@@ -1,6 +1,4 @@
-package TaskList;
-
-import TaskList.Task;
+package duke.TaskList;
 
 public class ToDo extends Task {
     public ToDo(String detail) {

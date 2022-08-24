@@ -1,7 +1,9 @@
-import Parser.ProcessUserInput;
-import Storage.DukeDecoder;
-import TaskList.*;
+package duke;
+
+import duke.Storage.DukeDecoder;
+import duke.Parser.ProcessUserInput;
 import Ui.Constants;
+import duke.TaskList.*;
 
 import java.util.ArrayList;
 

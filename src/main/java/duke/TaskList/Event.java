@@ -1,6 +1,4 @@
-package TaskList;
-
-import TaskList.Task;
+package duke.TaskList;
 
 public class Event extends Task {
 
