@@ -83,6 +83,22 @@ public class Task {
         this.isDone = false;
     }
 
+    public String formatTaskBeforeSave() {
+        String isTaskDone = this.isDone ? "Done" : "Not Done";
+        String tag = "";
+
+        if (this instanceof Event) {
+            tag = ((Event) this).tag;
+        } else if (this instanceof Deadline) {
+            tag = ((Deadline) this).tag;
+        } else if (this instanceof ToDo) {
+            tag = ((ToDo) this).tag;
+        }
+
+        String taskToString = tag + " | " + isTaskDone + " | " + this.description + " | " + this.due;
+        return taskToString;
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
