@@ -112,4 +112,38 @@ public class TaskList {
         taskList.get(index).markAsUndone();
         Ui.unmark();
     }
+
+    /**
+     * Method to find and print tasks based on keywords
+     *
+     * @param keywords the string of keywords to be searched
+     */
+    public void find(String keywords) {
+        String[] keywordArr = keywords.split(" ");
+        int arrLen = keywordArr.length;
+        int pointer;
+        TaskList result = new TaskList();
+
+        for (Task task : taskList) {
+            pointer = 0;
+
+            while (pointer < arrLen) {
+                if (!task.getDescription().contains(keywordArr[pointer])) {
+                    break;
+                }
+                pointer++;
+            }
+
+            if (pointer == arrLen) {
+                result.add(task);
+            }
+        }
+
+        if (result.getSize() == 0) {
+            Ui.noTaskFound();
+        } else {
+            Ui.taskFound();
+            result.printTasks();
+        }
+    }
 }

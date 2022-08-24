@@ -18,8 +18,12 @@ public class Parser {
      * @param list the taskList being used
      */
     public static void parse(String in, TaskList list) {
+        //"find": Find tasks based on keywords
+        if (in.startsWith("find")) {
+            String keywords = in.split(" ", 2)[1];
+            list.find(keywords);
         //"clear": Clears the list
-        if (in.equals("clear")) {
+        } else if (in.equals("clear")) {
             list.clear();
 
         //"list": Shows current list
