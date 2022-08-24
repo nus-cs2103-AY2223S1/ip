@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Scanner;
 
-import java.time.LocalDate;
 import java.time.DateTimeException;
+import java.time.LocalDate;
 
 
 /**
@@ -65,10 +65,10 @@ public class Duke {
                 toAdd = new ToDo(line.substring(index));
             }
             if (line.charAt(0) == 'D') {
-                toAdd = new Deadline(line.substring(index, index + length), line.substring(index + length));
+                toAdd = new Deadline(line.substring(index, index + length), LocalDate.parse(line.substring(index + length)));
             }
             if (line.charAt(0) == 'E') {
-                toAdd = new Event(line.substring(index, index + length), line.substring(index + length));
+                toAdd = new Event(line.substring(index, index + length), LocalDate.parse(line.substring(index + length)));
             }
             if (toAdd != null) {
                 if (line.charAt(1) == '1') {
@@ -303,7 +303,6 @@ public class Duke {
                 throw new RuntimeException(e);
             }
             //prepare what to overwrite
-            //TODO StringBuilder
             String overwrite = "";
             for (Task task : tasks) {
                 overwrite += task.toData() + "\n";

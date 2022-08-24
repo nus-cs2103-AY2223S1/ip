@@ -36,6 +36,6 @@ public class Event extends Task {
 
     @Override
     public String toData() {
-        return "E" + super.toData() + this.time;
+        return "E" + super.toData() + this.time.toString();
     }
 }
