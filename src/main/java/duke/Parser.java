@@ -1,18 +1,7 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.DoneCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.OnGoingCommand;
-import duke.exception.DukeException;
-import duke.exception.InvalidDeadlineException;
-import duke.exception.InvalidEventException;
-import duke.exception.InvalidIndexException;
-import duke.exception.InvalidInputException;
-import duke.exception.InvalidToDoException;
+import duke.command.*;
+import duke.exception.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
@@ -25,7 +14,7 @@ public class Parser {
      * Request type that can be used.
      */
     public enum RequestType {
-        DONE, ONGOING, TODO, EVENT, DEADLINE, DELETE, LIST, EXIT
+        DONE, ONGOING, TODO, EVENT, DEADLINE, DELETE, LIST, EXIT, FIND
     }
 
     /**
@@ -47,6 +36,8 @@ public class Parser {
             return RequestType.DELETE;
         } else if (request.matches("(?i)^(todo)(.*)")) {
             return RequestType.TODO;
+        } else if (request.matches("(?i)^(find)(.*)")) {
+            return RequestType.FIND;
         } else if (request.matches("(?i)^(deadline)(.*)")) {
             return RequestType.DEADLINE;
         } else if (request.matches("(?i)^(event)(.*)")) {
@@ -120,11 +111,20 @@ public class Parser {
     }
 
     /**
-     * Splits deadline command into description and time.
-     * @param request input belonging to deadline type.
-     * @return String[] containing the description at index 0 and time at index 1.
-     * @throws DukeException If there is no description or time that are separated by "/by", or time is invalid.
+     * Retrieves keyword from input of find type.
+     * @param request input belonging to find type.
+     * @return keyword string.
+     * @throws DukeException if the keyword is empty.
      */
+    public static String findTask(String request) throws DukeException {
+        String[] rq = request.split(" ", 2);
+        if (rq.length < 2 || rq[1].trim().equals("")) {
+            throw new InvalidFindException();
+        } else {
+            return rq[1];
+        }
+    }
+
     public static String[] deadlineTask(String request) throws DukeException {
         if (request.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
             String[] deadline = request.substring(9).split("\\/(by)\\s", 2);
@@ -169,6 +169,8 @@ public class Parser {
             return new OnGoingCommand(getUnMarkIndex(userInput, taskList));
         case DELETE:
             return new DeleteCommand(getDeleteIndex(userInput, taskList));
+        case FIND:
+            return new FindCommand(findTask(userInput));
         case TODO:
             return new AddCommand(new ToDo(todoTask(userInput)));
         case DEADLINE:
