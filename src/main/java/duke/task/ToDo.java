@@ -1,6 +1,10 @@
 package duke.task;
 
 import duke.dukeexception.DukeException;
+
+/**
+ * Represents a todo task.
+ */
 public class ToDo extends Task{
     private String description;
     public ToDo(String description) throws DukeException{
@@ -17,8 +21,10 @@ public class ToDo extends Task{
         }
         this.description=description;
     }
+    /**
+     * @return A string containing the task in a printable format
+     */
     @Override
-    //return the task in a printable format
     public String printTask(){
         return "[T]"+super.printTask();
     }

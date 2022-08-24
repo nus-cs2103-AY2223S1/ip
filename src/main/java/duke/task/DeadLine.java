@@ -2,6 +2,9 @@ package duke.task;
 
 import duke.dukeexception.DukeException;
 
+/**
+ * A class represents task with deadline.
+ */
 public class DeadLine extends Task{
     private String by;
     private String description;
@@ -20,6 +23,12 @@ public class DeadLine extends Task{
         }
         this.description=description;
     }
+
+    /**
+     * Print the right format of the task when required to show user the task content.
+     * If task comes with a date format, then will print the time as "MMM: DD YYYY".
+     * @return A string containing formatted description of the task.
+     */
     @Override
     public String printTask(){
         try {
@@ -29,6 +38,7 @@ public class DeadLine extends Task{
                     + this.by + ")";
         }
     }
+
     @Override
     public String getDescription(){
         return this.description;

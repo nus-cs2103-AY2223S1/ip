@@ -1,6 +1,10 @@
 package duke.task;
 
 import duke.dukeexception.DukeException;
+
+/**
+ * Represents the task of event format.
+ */
 public class Event extends Task{
     private String at;
     private String description;
@@ -21,6 +25,11 @@ public class Event extends Task{
         this.description=description;
 
     }
+    /**
+     * Print the right format of the task when required to show user the task content.
+     * If task comes with a date format, then will print the time as "MMM: DD YYYY".
+     * @return A string containing formatted description of the task.
+     */
     @Override
     public String printTask(){
         try {
