@@ -61,6 +61,13 @@ public class Parser {
         }
     }
 
+    public static String handleFind(String input) throws DukeException {
+        if (input.length() == 0) {
+            throw new DukeException("Did you forget to specify what you are looking for?");
+        }
+        else return input;
+    }
+
     public static Command parse(String input) throws DukeException {
         String[] strArray = input.split(" ", 2);
         String first = strArray[0];
@@ -106,6 +113,9 @@ public class Parser {
             cmd = new OnDateCommand(LocalDate.parse(second));
             break;
         }
+        case "find":
+            cmd = new FindCommand(handleFind(second));
+            break;
         default: {
             throw new DukeException("Invalid command entered. I don't recognize it. Sorry!");
         }

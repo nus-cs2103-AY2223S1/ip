@@ -34,6 +34,16 @@ public class Task {
         return false;
     }
 
+    /**
+     * Returns a boolean to check if keyword specified by user is in the task's description.
+     *
+     * @param keyword the keyword entered by the user
+     * @return true if and only if the keyword is contained in the description
+     */
+    public boolean containsKeyword(String keyword) {
+        return description.contains(keyword);
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;

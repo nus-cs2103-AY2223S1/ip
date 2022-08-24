@@ -27,7 +27,6 @@ public class TaskList {
 
     public void addTask(Task t) throws DukeException {
         this.taskList.add(t);
-        int count = this.taskList.size();
     }
 
     public Task deleteTask(int index) throws DukeException {
