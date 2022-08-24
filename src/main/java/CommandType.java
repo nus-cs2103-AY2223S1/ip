@@ -1,4 +1,4 @@
-public enum CommandWord {
+public enum CommandType {
 
     BYE("bye"),
     LIST("list"),
@@ -11,14 +11,14 @@ public enum CommandWord {
 
     private final String command;
 
-    CommandWord(String command) {
+    CommandType(String command) {
         this.command = command;
     }
 
-    public static CommandWord get(String command) throws DukeException {
-        for (CommandWord commandWord : CommandWord.values()) {
-            if (commandWord.command.equals(command)) {
-                return commandWord;
+    public static CommandType parse(String command) throws DukeException {
+        for (CommandType commandType : CommandType.values()) {
+            if (commandType.command.equals(command)) {
+                return commandType;
             }
         }
         throw new DukeException("Sorry, there is no such command!");

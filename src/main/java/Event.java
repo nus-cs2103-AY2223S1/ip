@@ -1,5 +1,7 @@
 public class Event extends Task {
 
+    public static final String EVENT_REP = "E";
+
     protected String time;
 
     public Event(String content, String time) {
@@ -9,6 +11,11 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.time + ")";
+        return "[" + EVENT_REP + "]" + super.toString() + " (at: " + this.time + ")";
+    }
+
+    @Override
+    public String toStorage() {
+        return EVENT_REP + super.toStorage() + Task.SEPARATOR + this.time;
     }
 }
