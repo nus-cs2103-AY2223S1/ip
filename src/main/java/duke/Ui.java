@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -24,7 +26,7 @@ public class Ui {
     }
 
     public void showWelcome() {
-        prettyPrint("Hello! I'm Duke\nWhat can I do for you?");
+        prettyPrint("Hello! I'm duke.Duke\nWhat can I do for you?");
     }
 
     public void showBye() {

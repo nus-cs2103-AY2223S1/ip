@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
 
     public static boolean parse(String input, TaskList taskList, Ui ui) throws DukeException {
