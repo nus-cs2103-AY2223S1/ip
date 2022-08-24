@@ -3,19 +3,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
 
-
-//
-//
-//    public void start(){
-//        Scanner input = new Scanner(System.in);
-//
-//        System.out.println("What are your commands sir:");
-//    }
-//
-//    public static void main(String[] args) {
-//        start();
-//    }
-
     public static void read() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("list.txt"));
@@ -57,11 +44,7 @@ public class Duke {
         read();
         Scanner input = new Scanner(System.in);
         System.out.println("What are your commands sir:");
-
-
-
         boolean pred = true;
-
         while(pred) {
             if (input.hasNext()) {
                 String str = input.nextLine();
