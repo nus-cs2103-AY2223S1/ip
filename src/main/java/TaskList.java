@@ -8,6 +8,10 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     // Instance methods
     public void addTask(Task task) {
         this.tasks.add(task);

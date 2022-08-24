@@ -2,11 +2,24 @@ import java.util.Scanner;
 
 public class Ui {
 
-    private Scanner sc = new Scanner(System.in);
+    private Scanner sc;
+
+    // Constructor
+    public Ui() {
+        this.sc = new Scanner(System.in);
+    }
 
     // Instance methods
     private void breakLine() {
         System.out.println("---------------------------------------------------------------------");
+    }
+
+    public String readLine() {
+        return this.sc.nextLine();
+    }
+
+    public void closeScanner() {
+        this.sc.close();
     }
 
     public void greetMessage() {

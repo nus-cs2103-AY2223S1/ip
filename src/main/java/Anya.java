@@ -11,12 +11,23 @@ import java.time.format.DateTimeParseException;
 public class Anya {
     private static String breakLine = "\n---------------------------------------------------------------------";
 
+    private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
-    public Anya() {
+    public Anya(String filePath) {
         this.ui = new Ui();
-        this.tasks = new TaskList();
+        this.storage = new Storage(filePath);
+        try {
+            this.ui.loadingFileMessage();
+            this.tasks = new TaskList(storage.loadFile());
+        } catch (IOException e) {
+            this.ui.errorMessage(e.getMessage() + " Creating a new database");
+            this.tasks = new TaskList();
+        } finally {
+            this.ui.loadFileSuccessMessage();
+            list(tasks);
+        }
     }
 
     public void run() {
@@ -24,14 +35,11 @@ public class Anya {
         String userInput;
         String command;
 
-        String fileName = "data/Anya.txt";
-        loadFile(tasks, fileName);
-
         // Greet
         ui.greetMessage();
 
         // Get user input
-        userInput = sc.nextLine();
+        userInput = this.ui.readLine();
 
         while (!userInput.equals("bye")) {
             try {
@@ -87,16 +95,23 @@ public class Anya {
                 this.ui.errorMessage(e.getMessage());
             }
 
-            userInput = sc.nextLine();
+            userInput = this.ui.readLine();
         }
 
         // Exit
-        saveFile(tasks, fileName);
+        try {
+            this.ui.savingFileMessage();
+            this.storage.saveFile(tasks);
+            this.ui.saveFileSuccessMessage();
+        } catch (IOException e){
+            this.ui.errorMessage(e.getMessage() + " Sorry, Anya is unable to save data.");
+        }
+        this.ui.closeScanner();
         this.ui.exitMessage();
     }
 
     public static void main(String[] args) {
-        new Anya().run();
+        new Anya("data/Anya.txt").run();
     }
 
     // Commands
@@ -127,64 +142,5 @@ public class Anya {
         Task removedTask = tasks.getTaskFromIndex(index);
         tasks.deleteTaskFromIndex(index);
         this.ui.deleteTaskMessage(removedTask, index);
-    }
-
-    public void saveFile(TaskList tasks, String fileName) {
-        this.ui.savingFileMessage();
-        try {
-            FileWriter saveTask = new FileWriter(fileName);
-            for (int i = 0; i < tasks.getLength(); i++) {
-                Task task = tasks.getTaskFromIndex(i + 1);
-                saveTask.write(task.toSave() + "\n");
-            }
-            saveTask.close();
-            this.ui.saveFileSuccessMessage();
-        } catch (IOException e) {
-            this.ui.errorMessage(e.getMessage());
-        }
-    }
-
-    public void loadFile(TaskList tasks, String fileName) {
-        this.ui.loadingFileMessage();
-        File dir = new File("data/");
-        if (!dir.exists()) {
-            dir.mkdir();
-        }
-        try {
-            File savedTask = new File(fileName);
-            if (!savedTask.exists()) {
-                savedTask.createNewFile();
-            }
-            Scanner sc = new Scanner(savedTask);
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                readEntry(tasks, line);
-            }
-        } catch (IOException e) {
-            this.ui.errorMessage(e.getMessage());
-        }
-        this.ui.loadFileSuccessMessage();
-    }
-
-    public void readEntry(TaskList tasks, String line) {
-        String[] arrStr = line.split(" \\| ", 3);
-        String taskType = arrStr[0];
-        boolean isTaskDone = arrStr[1].equals("1");
-        if (taskType.equals("T")) {
-            String taskName = arrStr[2];
-            addTask(tasks, new Todo(taskName));
-        } else if (taskType.equals("D")) {
-            String taskName = arrStr[2].split(" \\| ")[0];
-            String dateTimeStr = arrStr[2].split(" \\| ")[1];
-            addTask(tasks, new Deadline(taskName,
-                    LocalDateTime.parse(dateTimeStr, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"))));
-        } else {
-            String taskName = arrStr[2].split(" \\| ")[0];
-            String time = arrStr[2].split(" \\| ")[1];
-            addTask(tasks, new Event(taskName, time));
-        }
-        if (isTaskDone) {
-            mark(tasks, tasks.getLength());
-        }
     }
 }
