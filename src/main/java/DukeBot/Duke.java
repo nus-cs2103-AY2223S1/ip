@@ -10,11 +10,19 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static ArrayList<Task> tasks = new ArrayList<>();
+    //private Storage storage;
+    private static TaskList tasks = new TaskList();
+    //private Ui ui;
 
     private static File fileToRead;
 
     private static Path path;
+
+    /*
+    public Duke(String filePath) {
+
+    }
+     */
 
     public static void writeToFile() {
         try {
@@ -75,7 +83,7 @@ public class Duke {
             if (command[1].equals("1")) {
                 newTask.markComplete();
             }
-            tasks.add(newTask);
+            tasks.addTask(newTask, true);
         }
     }
 
@@ -99,12 +107,18 @@ public class Duke {
     }
 
     public static void delete(int taskToDelete) {
-        Task deletedTask = tasks.remove(taskToDelete);
-        Task.reduceTaskCount();
-        System.out.println("    Noted. I've removed this task:");
-        System.out.println(String.format("      %s", deletedTask));
-        System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
+        tasks.deleteTask(taskToDelete);
     }
+
+    /*
+    public void run() {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+
+        }
+
+    }
+     */
 
     public static void main(String[] args) {
         try {
@@ -194,11 +208,7 @@ public class Duke {
                     System.out.println("    OOPS!!! I'm sorry, but I don't know what that means :-(");
                     continue;
                 }
-                tasks.add(newTask);
-                System.out.println("    Got it. I've added this task:");
-                System.out.print("      ");
-                System.out.println(newTask);
-                System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
+                tasks.addTask(newTask, false);
             }
             System.out.println("    ____________________________________________________________");
         }
