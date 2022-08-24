@@ -1,7 +1,7 @@
 package duke.exception;
 
 public class FileIOException extends DukeException {
-    FileIOException(String errorMessage) {
+    public FileIOException(String errorMessage) {
         super(errorMessage);
     }
 }

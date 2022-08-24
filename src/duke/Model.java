@@ -1,4 +1,4 @@
-package duke.task;
+package duke;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -11,6 +11,10 @@ import java.util.List;
 
 import duke.command.dukeCommands;
 import duke.exception.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 public class Model {
     private static List<Task> memo = new ArrayList<>();

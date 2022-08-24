@@ -1,7 +1,7 @@
 package duke.exception;
 
 public class FileDoesNotExistException extends FileIOException {
-    FileDoesNotExistException() {
+    public FileDoesNotExistException() {
         super("OOPS!!! The saved list had disappeared.");
     }
 }
