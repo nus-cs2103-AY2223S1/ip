@@ -7,6 +7,7 @@ import jarvis.command.AddCommand;
 import jarvis.command.ByeCommand;
 import jarvis.command.Command;
 import jarvis.command.DeleteCommand;
+import jarvis.command.FindCommand;
 import jarvis.command.ListCommand;
 import jarvis.command.MarkCommand;
 
@@ -35,6 +36,8 @@ public class Parser {
             return new MarkCommand(command);
         case "delete":
             return new DeleteCommand(command);
+        case "find":
+            return new FindCommand(command);
         case "todo":
         case "deadline":
         case "event":
