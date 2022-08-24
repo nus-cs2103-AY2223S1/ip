@@ -7,6 +7,8 @@ public class Deadline extends Task{
     private String time;
     private String straightLine = "  ----------------------------------------------------------------------------------";
 
+    private String random = "random";
+
     /**
      * A constructor to initialize a Deadline object.
      *
