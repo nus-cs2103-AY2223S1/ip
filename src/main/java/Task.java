@@ -4,9 +4,9 @@ public abstract class Task {
     private String description;
     private String taskIcon;
 
-    public Task(String description, String taskIcon) {
+    public Task(String description, String taskIcon, boolean isDone) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
         this.taskIcon = taskIcon;
     }
 
@@ -27,5 +27,9 @@ public abstract class Task {
     public void markAsNotDone() {
         this.isDone = false;
         System.out.printf("OK, I've marked this task as not done yet:\n  %s\n", this);
+    }
+
+    public String getCsvString() {
+        return String.format("%b %s", isDone, description);
     }
 }

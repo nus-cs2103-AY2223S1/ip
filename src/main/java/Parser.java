@@ -40,6 +40,15 @@ public class Parser {
         return command;
     }
 
+    public static Task parseFromFile(String fullCommand) {
+        // split into ["userCommand", "isDone", "description"]
+        String[] userInput = fullCommand.split(" ", 3);
+        String userCommand = userInput[0].toLowerCase();
+        boolean isDone = Boolean.parseBoolean(userInput[1]);
+
+        return createTask(userCommand, userInput[2], isDone);
+    }
+
     private static String getDescription(String[] userInput) throws DukeException {
         if (userInput.length < 2) {
             throw new DukeException(
@@ -58,16 +67,19 @@ public class Parser {
     }
 
     private static Task createTask(String taskName, String taskDescription) {
+        return createTask(taskName, taskDescription, false);
+    }
 
+    private static Task createTask(String taskName, String taskDescription, boolean isDone) {
         String[] temp = taskDescription.split(" /");
 
         switch (taskName) {
         case "todo":
-            return new Todo(taskDescription);
+            return new Todo(taskDescription, isDone);
         case "event":
-            return new Event(temp[0], temp[1].split(" ", 2)[1]);
+            return new Event(temp[0], temp[1].split(" ", 2)[1], isDone);
         case "deadline":
-            return new Deadline(temp[0], temp[1].split(" ", 2)[1]);
+            return new Deadline(temp[0], temp[1].split(" ", 2)[1], isDone);
         default:
             // should not reach this part
             return null;
