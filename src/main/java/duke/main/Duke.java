@@ -97,6 +97,10 @@ public class Duke {
                     Task item = tasks.getTask(delValue - 1);
                     tasks.removeTask(delValue - 1);
                     ui.printDeleteMessage(item, tasks.getSize());
+                } else if (firstWord.equals("find")) {
+                    String keyword = parser.getKeyword();
+                    TaskList relatedTasks = tasks.findRelatedTask(keyword);
+                    ui.printFindMessage(relatedTasks);
                 } else {
                     ui.printUnknownMessage();
                 }

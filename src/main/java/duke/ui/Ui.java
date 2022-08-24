@@ -71,4 +71,17 @@ public class Ui {
     public void showLoadingError() {
         formatPrint("Error loading data from file");
     }
+
+    public void printFindMessage(TaskList taskList) {
+        if (taskList.getSize() == 0) {
+            formatPrint("HAHA unlucky! There is no matching task in your list!");
+        } else {
+            System.out.println(HORIZONTAL_LINE + "Tsk! Be grateful I searched through your entire list to find these:");
+            for (int i = 1; i < taskList.getSize() + 1; i++) {
+                Task item = taskList.getTask(i - 1);
+                System.out.println(i + ". " + item.toString());
+            }
+            System.out.println(HORIZONTAL_LINE);
+        }
+    }
 }
