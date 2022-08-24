@@ -5,6 +5,9 @@ import duke.exception.DukeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Encapsulates the logic of parsing the user input.
+ */
 public class Parser {
     protected String input;
     protected String[] inputArr ;
@@ -14,6 +17,11 @@ public class Parser {
         this.inputArr = input.split(" ");
     }
 
+    /**
+     * Returns the first word that user inputted.
+     *
+     * @return First word inputted
+     */
     public String getFirstText() {
         return inputArr[0];
     }
@@ -22,6 +30,12 @@ public class Parser {
         return Integer.parseInt(inputArr[1]);
     }
 
+    /**
+     * Return the description of the to-do task.
+     *
+     * @return Description of to-do task
+     * @throws DukeException If input description is empty
+     */
     public String getTodoDescription() throws DukeException {
         int firstSpaceIndex = input.indexOf(" ");
         if (firstSpaceIndex == -1) {
@@ -50,6 +64,12 @@ public class Parser {
         return desc;
     }
 
+    /**
+     * Return date of the deadline.
+     *
+     * @return Date of the deadline in LocalDate type
+     * @throws DukeException If there is not /by clause
+     */
     public LocalDate getDeadlineDate() throws DukeException {
         int byIndex = input.indexOf("/by");
         if (byIndex == -1) {

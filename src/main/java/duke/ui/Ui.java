@@ -3,6 +3,9 @@ package duke.ui;
 import duke.task.Task;
 import duke.tasklist.TaskList;
 
+/**
+ * Represents a controller that handles output for a user.
+ */
 public class Ui {
 
     final String HORIZONTAL_LINE = "______________________________________\n";
@@ -16,15 +19,26 @@ public class Ui {
         System.out.println(HORIZONTAL_LINE + str + "\n" + HORIZONTAL_LINE);
     }
 
+    /**
+     * Prints the introductory message to the user.
+     */
     public void printIntroduction() {
         String firstText = "hi... I'm Karen\nWhat do you want this time?";
         formatPrint(firstText);
     }
 
+    /**
+     * Prints the concluding message to the user.
+     */
     public void printByeMessage() {
         formatPrint("K finally, good riddance!");
     }
 
+    /**
+     * Prints the tasks stored inside the task list.
+     *
+     * @param list TaskList that contains tasks
+     */
     public void printListMessage(TaskList list) {
         if (list.getSize() == 0) {
             formatPrint("pff there is nothing in your list");
@@ -38,11 +52,21 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the mark message to the user.
+     *
+     * @param task Task that was marked
+     */
     public void printMarkMessage(Task task) {
         String str = "Took you long enough to complete this duke.task:\n" + task.toString();
         formatPrint(str);
     }
 
+    /**
+     * Prints the unmark message to the user.
+     *
+     * @param task Task that was unmarked
+     */
     public void printUnmarkMessage(Task task) {
         String str = "Another duke.task marked as not done?? Slow indeed\n" + task.toString();
         formatPrint(str);

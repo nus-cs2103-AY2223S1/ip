@@ -15,6 +15,9 @@ import java.util.Scanner;
 
 import java.time.LocalDate;
 
+/**
+ * Represents the karen chatbot.
+ */
 public class Duke {
 
     private Storage storage;
@@ -32,6 +35,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the chatbot when called.
+     */
     public void run() {
         ui.printIntroduction();
 

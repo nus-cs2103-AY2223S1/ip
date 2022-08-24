@@ -18,11 +18,16 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Handles loading data and saving data
+ * Represents storage that handles loading and saving data.
  */
 public class Storage {
     private String filePath;
 
+    /**
+     * Creates an instance of a data storage.
+     *
+     * @param filePath Creates storage at that specific location
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -69,9 +74,9 @@ public class Storage {
     }
 
     /**
-     * Save data from the to-do list into the file specified by filepath
+     * Save data from the to-do list into the file specified by filepath.
      *
-     * @param list ArrayList of Task.Task to be saved
+     * @param list TaskList to be saved
      */
     public void saveData(TaskList list) {
         try {
