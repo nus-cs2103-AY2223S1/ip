@@ -51,29 +51,29 @@
 	X Invalid `deadline` command format!
 	Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>
 	Examples:
-		- deadline d1 /at 2022-01-01
-		- deadline d1 /at 2022-01-01 18:00
+		- deadline d1 /by 2022-01-01
+		- deadline d1 /by 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
 	X Invalid `deadline` command format!
 	Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>
 	Examples:
-		- deadline d1 /at 2022-01-01
-		- deadline d1 /at 2022-01-01 18:00
+		- deadline d1 /by 2022-01-01
+		- deadline d1 /by 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
 	X Invalid `deadline` command format!
 	Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>
 	Examples:
-		- deadline d1 /at 2022-01-01
-		- deadline d1 /at 2022-01-01 18:00
+		- deadline d1 /by 2022-01-01
+		- deadline d1 /by 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
 	X Invalid `deadline` command format!
 	Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>
 	Examples:
-		- deadline d1 /at 2022-01-01
-		- deadline d1 /at 2022-01-01 18:00
+		- deadline d1 /by 2022-01-01
+		- deadline d1 /by 2022-01-01 18:00
 	--------------------------------------------------
 	--------------------------------------------------
 	Got it. I've added this task:
