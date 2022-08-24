@@ -3,13 +3,13 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Ui {
-    private static final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
+    private static final String LOGO = " ____            _   _   _\n"
+            + "/ ___|  ___ ___ | |_| |_(_) ___\n"
+            + "\\___ \\ / __/ _ \\| __| __| |/ _ \\\n"
+            + " ___) | (_| (_) | |_| |_| |  __/\n"
+            + "|____/ \\___\\___/ \\__|\\__|_|\\___|\n";
 
-    private static final String WELCOME_MESSAGE = "Hello there! I'm Duke!\n"
+    private static final String WELCOME_MESSAGE = "Hello there! I'm Scottie!\n"
             + "How can I help you?";
 
     private final Scanner in;

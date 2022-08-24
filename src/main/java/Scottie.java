@@ -1,4 +1,4 @@
-public class Duke {
+public class Scottie {
     public static void main(String[] args) {
         TaskList taskList = new TaskList(new Storage());
         Ui ui = new Ui(System.in, System.out);
