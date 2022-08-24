@@ -127,6 +127,14 @@ public class Decoder {
         }
     }
 
+    public static String parseFind(String str) throws EmptyDescException {
+        String[] split = str.split(" ");
+        if (split.length < 2) {
+            throw new EmptyDescException("empty description");
+        }
+        return split[1];
+    }
+
     public static boolean isValidNum(String num) {
         char[] charas = num.toCharArray();
         for (int i = 0; i < num.length(); i++) {

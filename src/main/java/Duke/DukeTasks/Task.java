@@ -30,4 +30,8 @@ public class Task {
     public boolean compareDate(LocalDate localDate) {
         return false;
     }
+
+    public boolean getMatching(String search) {
+        return this.name.contains(search);
+    }
 }
