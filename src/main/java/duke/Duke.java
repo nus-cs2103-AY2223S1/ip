@@ -7,11 +7,17 @@ import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
+/**
+ * Represents the Duke chatbot.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for a Duke.
+     */
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();
@@ -23,6 +29,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke chatbot.
+     */
     public void run() {
         this.ui.showGreeting();
         boolean isBye = false;
@@ -31,7 +40,6 @@ public class Duke {
                 String input = this.ui.readInput();
                 Command command = Parser.parse(input);
                 command.execute(this.tasks, this.ui, this.storage);
-                this.storage.save(this.tasks);
                 isBye = command.isBye();
             } catch (DukeException e) {
                 this.ui.show(e.getMessage());
@@ -39,6 +47,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Initialises and runs the Duke chatbot.
+     * @param args The command line arguments.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

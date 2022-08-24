@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Identifies user input as invalid or translates them into commands that can be executed.
+ */
 public class Parser {
     private static final String DATE_INPUT_FORMAT = "yyyy-MM-dd";
 
@@ -15,6 +18,12 @@ public class Parser {
         TASK_NUMBER, DESCRIPTION, DESCRIPTION_AND_DATE
     }
 
+    /**
+     * Translates the user input into the corresponding command to be executed.
+     * @param input The user input.
+     * @return The Command matching the user input.
+     * @throws DukeException If the user input is invalid.
+     */
     public static Command parse(String input) throws DukeException {
         String[] splitInputArray = input.split(" ", 2);
         String commandWord = splitInputArray[0];
@@ -40,6 +49,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a LocalDate object that represents the given date.
+     * @param date The date to be parsed into a LocalDate object.
+     * @return The LocalDate object representing the given date.
+     */
     public static LocalDate parseDate(String date) {
         return LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_INPUT_FORMAT));
     }

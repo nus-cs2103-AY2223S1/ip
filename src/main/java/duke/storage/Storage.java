@@ -14,6 +14,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Loads and saves the list of tasks in a file.
+ */
 public class Storage {
     private static final String FILEPATH = "data/tasklist.txt";
 
@@ -34,6 +37,11 @@ public class Storage {
         return String.format("%s;%s;%s;%s", type, status, description, date) + System.lineSeparator();
     }
 
+    /**
+     * Saves the list of tasks to a file.
+     * @param taskList The list of tasks to be saved.
+     * @throws DukeException If there is an IOException saving the list of tasks to the file.
+     */
     public void save(TaskList taskList) throws DukeException {
         int numTasks = taskList.numTasks();
         FileWriter writer = null;
@@ -57,6 +65,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads and returns the list of tasks from the file.
+     * @return The list of tasks from the file.
+     * @throws DukeException If there is an IOException reading the list of tasks from the file.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
         File file = new File(FILEPATH);
