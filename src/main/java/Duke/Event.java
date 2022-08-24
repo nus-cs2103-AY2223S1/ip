@@ -10,18 +10,15 @@ public class Event extends Task {
 
     public Event(String description, String time) {
         super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-        LocalDate date = LocalDate.parse(time,formatter);
-        timeobject =date;
+        this.timeobject = Parser.stringToDate(time);
     }
 
     public String storeToString() {
-        return "E|" + this.binarytoString() + "|" + this.description.substring(0,description.length()-1) + "|" + this.time;
+        return "E|" + this.binarytoString() + "|" + this.description.substring(0,description.length()-1) + "|" + Parser.dateToString(this.timeobject);
     }
 
     @Override
     public String toString() {
-        return "[E]"  + super.toString() + "(at: " + this.timeobject.format(DateTimeFormatter
-                .ofLocalizedDate(FormatStyle.FULL)) + ")";
+        return "[E]"  + super.toString() + "(at: " + Parser.displayDate(timeobject) + ")";
     }
 }

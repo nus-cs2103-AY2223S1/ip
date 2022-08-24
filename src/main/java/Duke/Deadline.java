@@ -11,22 +11,18 @@ public class Deadline extends Task {
 
     public Deadline(String description, String time) {
         super(description);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
-        LocalDate date = LocalDate.parse(time,formatter);
-        timeobject =date;
-        System.out.println("printing time");
-        System.out.println(timeobject.toString());
+        this.timeobject = Parser.stringToDate(time);
 
     }
     @Override
     public String storeToString() {
-        return "D|" + this.binarytoString() + "|" + this.description.substring(0,description.length()-1) + "|" + this.time;
+        return "D|" + this.binarytoString() + "|" + this.description.substring(0,description.length()-1) + "|"
+                + Parser.dateToString(this.timeobject);
     }
 
     @Override
     public String toString() {
-        return "[D]"  + super.toString() + "(by: " + this.timeobject.format(DateTimeFormatter
-                .ofLocalizedDate(FormatStyle.FULL)) + ")";
+        return "[D]"  + super.toString() + "(by: " + Parser.displayDate(timeobject) + ")";
     }
 
 }

@@ -1,2 +1,2 @@
-E|0|fl|monday
-D|1|wor|sunday 2pm
+D|0|do w|12-12-2022
+E|0|job|22-12-2022
