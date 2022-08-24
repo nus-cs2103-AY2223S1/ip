@@ -134,6 +134,14 @@ public class Ui {
     }
 
     /**
+     * Informs the user when they have not specified any search terms for the
+     * "find" command.
+     */
+    public void emptyFindInput() {
+        System.out.println(SAD_FACE + "please enter the keywords you would like to search for.");
+    }
+
+    /**
      * Sends a goodbye message in the event that the task list created by Duke could not be
      * saved to the hard drive.
      */

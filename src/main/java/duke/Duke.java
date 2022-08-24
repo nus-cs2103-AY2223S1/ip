@@ -21,15 +21,16 @@ import duke.ui.Ui;
  *
  * Tasks can be added and deleted from the task list using their index. Each task can be
  * marked as done when the user has completed it, or marked as not done. The entire task
- * list can be sent to the user upon request. Users can even search for the tasks occurring
- * on a specified date. Duke will inform the user if it receives a command that it does not
- * understand, or if the input format is unable to be understood by Duke's parser.
+ * list can be sent to the user upon request. Users can either search for the tasks occurring
+ * on a specified date, or tasks containing a specified search term. Duke will inform the user
+ * if it receives a command that it does not understand, or if the input format is unable to be
+ * understood by Duke's parser.
  *
  * Duke will stop running upon receiving the "bye" command.
  */
 public class Duke {
-    private Storage storage;
-    private Ui ui;
+    private final Storage storage;
+    private final Ui ui;
     private TaskList tasks;
 
     /**

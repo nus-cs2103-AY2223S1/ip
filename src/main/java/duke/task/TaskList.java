@@ -144,6 +144,32 @@ public class TaskList {
     }
 
     /**
+     * Finds tasks containing the given keyword(s) and returns
+     * a list of the results to the user.
+     *
+     * @param keyword Keyword(s) to search for.
+     */
+    public void find(String keyword) {
+        String list = "";
+        int x = 1;
+        for (Task task : tasks) {
+            if (task.containsSearchTerm(keyword)) {
+                list = list + "\n  " + x + ". " + task;
+                x++;
+            }
+        }
+        if (x == 1) {
+            System.out.println(
+                    Ui.START + "there are no tasks matching the search term '"
+                            + keyword + "'.");
+        } else {
+            System.out.println(
+                    Ui.START + "These are the matching tasks in your list:" + list
+            );
+        }
+    }
+
+    /**
      * Marks the task at the specified position in the task list
      * as done.
      *

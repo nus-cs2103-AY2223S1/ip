@@ -72,6 +72,16 @@ public class Task {
     }
 
     /**
+     * Indicates whether the task description contains the given search term.
+     *
+     * @param searchTerm Search term to search for.
+     * @return True if the task description contains the given search term.
+     */
+    public boolean containsSearchTerm(String searchTerm) {
+        return this.description.contains(searchTerm);
+    }
+
+    /**
      * Returns a string representation of the task.
      *
      * @return String representation of the task.

@@ -18,7 +18,7 @@ public class SearchCommand extends Command {
 
     /**
      * Constructs a Search Command with the date the user wants
-     * to search.
+     * to search for.
      *
      * @param date Date to be searched for.
      * @throws DateTimeParseException If date is in an invalid format.
