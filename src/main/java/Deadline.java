@@ -1,21 +1,14 @@
-public class Deadline extends Task {
+import java.time.format.DateTimeFormatter;
 
-    protected String timeQualifier;
-    protected String timeDescription;
-
+public class Deadline extends Event {
 
     Deadline(String description, String timeQualifier, String timeDescription) {
-        super(description);
-        this.timeQualifier = timeQualifier;
-        this.timeDescription = timeDescription;
-    }
-
-    public String getDeadlineStatusIcon() {
-        return "D";
+        super(description, timeQualifier, timeDescription);
     }
 
     @Override
-    public String toString() {
-        return "[" + getDeadlineStatusIcon() + "]" + super.toString() + " (" + this.timeQualifier + ": " + this.timeDescription + ")";
+    public String getTaskTypeIcon() {
+        return "D";
     }
+
 }

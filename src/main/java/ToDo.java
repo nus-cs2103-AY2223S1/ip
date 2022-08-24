@@ -3,12 +3,12 @@ public class ToDo extends Task{
         super(description);
     }
 
-    public String getToDoStatusIcon() {
+    public String getTaskTypeIcon() {
         return "T";
     }
 
     @Override
     public String toString() {
-        return "[" + getToDoStatusIcon() + "]" + super.toString();
+        return "[" + getTaskTypeIcon() + "]" + super.toString();
     }
 }
