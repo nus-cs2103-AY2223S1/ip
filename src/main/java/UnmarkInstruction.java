@@ -6,14 +6,14 @@ public class UnmarkInstruction extends Instruction {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public void execute(TaskList taskList, Ui ui) {
         if (this.hasMainArgument()) {
             int taskNum = Integer.parseInt(this.getMainArgument());
             taskList.unmarkTask(taskNum - 1);
-            System.out.printf("Sure, I've marked task %d as not done:%n", taskNum);
-            System.out.println(taskList.getTask(taskNum - 1));
+            ui.showFormattedMessage("Sure, I've marked task %d as not done:%n", taskNum);
+            ui.showMessages(taskList.getTask(taskNum - 1).toString());
         } else {
-            System.out.println("Sorry, you need to tell me which task to unmark.");
+            ui.showMessages("Sorry, you need to tell me which task to unmark.");
         }
     }
 }

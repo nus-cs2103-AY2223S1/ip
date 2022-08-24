@@ -6,8 +6,8 @@ public class ByeInstruction extends Instruction {
     }
 
     @Override
-    public void execute(TaskList taskList) {
-        System.out.println("Ok, see you next time!");
+    public void execute(TaskList taskList, Ui ui) {
+        ui.showMessages("Ok, see you next time!");
     }
 
     @Override

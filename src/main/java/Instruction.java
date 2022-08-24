@@ -46,7 +46,7 @@ public abstract class Instruction {
         return this.flagArgumentsMap.get(flag);
     }
 
-    public abstract void execute(TaskList taskList);
+    public abstract void execute(TaskList taskList, Ui ui);
 
     public boolean endsProgram() {
         return false;

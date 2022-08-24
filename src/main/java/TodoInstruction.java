@@ -6,14 +6,13 @@ public class TodoInstruction extends Instruction {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            System.out.println("Sorry, I will need a description for the to-do.");
+            ui.showMessages("Sorry, I will need a description for the to-do.");
             return;
         }
         Todo todo = new Todo(this.getMainArgument());
         taskList.addTask(todo);
-        System.out.println("Got it, I've added this to-do:");
-        System.out.println(todo);
+        ui.showMessages("Got it, I've added this to-do:", todo.toString());
     }
 }

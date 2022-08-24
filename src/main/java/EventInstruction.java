@@ -7,21 +7,20 @@ public class EventInstruction extends Instruction {
     }
 
     @Override
-    public void execute(TaskList taskList) {
+    public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
-            System.out.println("Sorry, I will need a description for the event.");
+            ui.showMessages("Sorry, I will need a description for the event.");
             return;
         }
         String endDateTimeString = this.getFlagArgument("at");
         if (endDateTimeString == null) {
-            System.out.println("Sorry, I will need a date for the event.");
+            ui.showMessages("Sorry, I will need a date for the event.");
             return;
         }
 
         TemporalAccessor endDateTime = DateTimeUtil.parseCompactDateTime(endDateTimeString);
         Event event = new Event(this.getMainArgument(), endDateTime);
         taskList.addTask(event);
-        System.out.println("Got it, I've added this event:");
-        System.out.println(event);
+        ui.showMessages("Got it, I've added this event:", event.toString());
     }
 }
