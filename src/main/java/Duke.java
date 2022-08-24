@@ -1,6 +1,11 @@
-import java.io.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -24,6 +29,8 @@ public class Duke {
     private static final String INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE = "Oopsieee! There are only %s tasks in Tob Tob Brain.\n\t"
                                                                 + "Index should be a positive number and less than %s.\n\t"
                                                                 + "To see the task list, input \"list\"";
+    private static final String DATE_TIME_FORMAT_ERROR_MESSAGE = "Oopsieee! Tob Tob cannot recognize the input datetime '%s'.\n\t"
+                                                                + "Please make sure that it's in format 'yyyy-mm-dd'";
 
     public static void printTobTobIndent(String s) {
         System.out.print("\t");
@@ -107,8 +114,10 @@ public class Duke {
         Task task;
         String taskDescription;
         String separator;
-        String datetime;
+        LocalDate datetime;
         int separatorIndex;
+        DateTimeFormatter inputformatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+        String datetimeString;
 
         switch (taskType) {
             case "todo":
@@ -130,15 +139,20 @@ public class Duke {
                     tobTobKonslet(String.format(TASK_INCORRECT_FORMAT_ERROR_MESSAGE, separator, taskType));
                 } else {
                     taskDescription = commandDescription.substring(0, separatorIndex);
-                    datetime = commandDescription.substring(separatorIndex + 5);
-                    task = new Deadline(taskDescription, datetime);
-                    tobTobBrain.add(task);
+                    datetimeString = commandDescription.substring(separatorIndex + 5);
+                    try {
+                        datetime = LocalDate.parse(datetimeString, inputformatter);
+                        task = new Deadline(taskDescription, datetime);
+                        tobTobBrain.add(task);
 
-                    printTobTobIndent("Wiii! Now Tob Tob's brain has more stuffs");
-                    printTobTobIndent(task.toString());
-                    printTobTobIndent("");
-                    showTobTobBrain("");
-                    migrateTobTobBrainToTxt();
+                        printTobTobIndent("Wiii! Now Tob Tob's brain has more stuffs");
+                        printTobTobIndent(task.toString());
+                        printTobTobIndent("");
+                        showTobTobBrain("");
+                        migrateTobTobBrainToTxt();
+                    } catch (DateTimeParseException e) {
+                        tobTobKonslet(String.format(DATE_TIME_FORMAT_ERROR_MESSAGE, datetimeString));
+                    }
                 }
                 break;
             default:
@@ -149,15 +163,20 @@ public class Duke {
                     tobTobKonslet(String.format(TASK_INCORRECT_FORMAT_ERROR_MESSAGE, separator, taskType));
                 } else {
                     taskDescription = commandDescription.substring(0, separatorIndex);
-                    datetime = commandDescription.substring(separatorIndex + 5);
-                    task = new Event(taskDescription, datetime);
-                    tobTobBrain.add(task);
+                    datetimeString = commandDescription.substring(separatorIndex + 5);
+                    try {
+                        datetime = LocalDate.parse(datetimeString, inputformatter);
+                        task = new Event(taskDescription, datetime);
+                        tobTobBrain.add(task);
 
-                    printTobTobIndent("Wiii! Now Tob Tob's brain has more stuffs");
-                    printTobTobIndent(task.toString());
-                    printTobTobIndent("");
-                    showTobTobBrain("");
-                    migrateTobTobBrainToTxt();
+                        printTobTobIndent("Wiii! Now Tob Tob's brain has more stuffs");
+                        printTobTobIndent(task.toString());
+                        printTobTobIndent("");
+                        showTobTobBrain("");
+                        migrateTobTobBrainToTxt();
+                    } catch (DateTimeParseException e) {
+                        tobTobKonslet(String.format(DATE_TIME_FORMAT_ERROR_MESSAGE, datetimeString));
+                    }
                 }
         }
     }
