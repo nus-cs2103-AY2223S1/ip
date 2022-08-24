@@ -122,4 +122,14 @@ public class Ui {
                 + " tasks in the list.\n";
         System.out.println(printLine);
     }
+
+    public void showFind(ArrayList<Task> filteredTaskList) {
+        String newList = "Here are the matching tasks in your list:\n";
+        int count = 1;
+        for (Task item: filteredTaskList) {
+            newList += (count + "." + item.toString() + "\n");
+            count++;
+        }
+        System.out.println(newList);
+    }
 }
