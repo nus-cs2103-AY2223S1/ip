@@ -36,7 +36,7 @@ public abstract class Task {
     }
 
     public String getTaskName() {
-        return this.taskName;
+        return taskName;
     }
 
     /**
@@ -44,7 +44,7 @@ public abstract class Task {
      */
     public void markDone() {
         this.done = true;
-        Prompt.markDone(this.taskName);
+        Prompt.markDone(taskName);
     }
 
     /**
@@ -52,7 +52,7 @@ public abstract class Task {
      */
     public void markUndone() {
         this.done = false;
-        Prompt.markUndone(this.taskName);
+        Prompt.markUndone(taskName);
     }
 
     /**
@@ -62,8 +62,8 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        String checkbox = this.done ? "[X] " : "[ ] ";
-        return checkbox + this.taskName;
+        String checkbox = done ? "[X] " : "[ ] ";
+        return checkbox + taskName;
     }
 
     /**
@@ -72,7 +72,7 @@ public abstract class Task {
      * @return a string representing the task for storage.
      */
     public String toStorageString() {
-        String done = this.done ? DONE : UNDONE;
-        return done + "\n";
+        String doneString = done ? DONE : UNDONE;
+        return doneString + "\n";
     }
 }

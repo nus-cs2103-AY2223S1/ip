@@ -17,8 +17,8 @@ public class Input {
     private String secondaryData;
 
     private Input() {
-        this.mainData = "";
-        this.secondaryData = "";
+        mainData = "";
+        secondaryData = "";
     }
 
     public Command getCommand() {

@@ -61,7 +61,7 @@ public class TaskList {
         try {
             FileWriter fileWriter = new FileWriter(filepath);
             StringBuilder input = new StringBuilder();
-            for (Object o : this.taskList) {
+            for (Object o : taskList) {
                 Task task = (Task) o;
                 input.append(task.toStorageString());
             }
