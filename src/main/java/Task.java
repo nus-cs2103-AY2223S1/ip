@@ -75,4 +75,8 @@ public class Task {
     public void delete(Task b, int index, ArrayList<Task> list) {};
 
     public void list() {};
+
+    public String toString() {
+        return " ";
+    };
 }

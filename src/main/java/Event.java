@@ -72,4 +72,8 @@ public class Event extends Task {
     public String getType() {
         return type;
     }
+
+    public String toString() {
+        return this.getType() + this.getStatus() + this.getName() + " (at: " + this.time + ")" + "\n";
+    }
 }

@@ -71,4 +71,8 @@ public class Todo extends Task {
         System.out.println("Now you have " + Duke.count+ " tasks in the list." + "\n" + Duke.line);
     };
 
+    public String toString() {
+        return this.getType() + this.getStatus() + this.getName() + "\n";
+    }
+
 }

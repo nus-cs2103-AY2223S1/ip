@@ -1,11 +1,17 @@
-import java.nio.InvalidMarkException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     public static final String line = "____________________________________________________________";
     public Scanner sc = new Scanner(System.in);
-    public static ArrayList<Task> list = new ArrayList<>();
+    public static ArrayList<Task> list = updateFile(new File("duke.txt"));
     public static int count = 0;
 
     public Duke() {};
@@ -19,12 +25,152 @@ public class Duke {
         );
     }
 
+    public void loadTask() {
+        try {
+            File file = new File("duke.txt");
+            if (file.createNewFile()) {
+                System.out.println("File successfully created: " + file.getName());
+                readFile(file);
+            } else {
+                System.out.println("Loading tasks...");
+                readFile(file);
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
+    public static ArrayList<Task> readFile(File file) {
+
+        ArrayList<Task> t = new ArrayList<Task>();
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String st;
+
+        while (true)
+
+            // Print the string
+        {
+            try {
+                if (!((st = br.readLine()) != null)) {
+
+                    break;
+
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            t.add(stringToTask(st));
+            count++;
+            System.out.println(st);
+        }
+        return t;
+    }
+
+    public static ArrayList<Task> updateFile(File file) {
+
+        ArrayList<Task> t = new ArrayList<Task>();
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader(file));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        String st;
+
+        while (true)
+
+        // Print the string
+        {
+            try {
+                if (!((st = br.readLine()) != null)) {
+
+                    break;
+
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            t.add(stringToTask(st));
+        }
+        return t;
+    }
+
+    public static void renewFile(File file) {
+        try {
+            FileWriter fw = new FileWriter(file);
+            fw.write("");
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void addTaskToFile(File file, Task t) {
+        try {
+            FileWriter fw = new FileWriter(file, true);
+            fw.write(t.toString());
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void overwriteFile(File f, List<Task> t) {
+        try {
+            FileWriter fw = new FileWriter(f);
+            fw.close();
+            fw = new FileWriter(f,true);
+            for (Task task : t) {
+                fw.write(task.toString());
+            }
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static Task stringToTask(String s) {
+        if (s.length() == 0) {
+            return null;
+        }
+        char task_type = s.charAt(1);
+        char done = s.charAt(4);
+        Task task = null;
+        if (task_type == 'T') {
+            task = new Todo(s.substring(6));
+        } else if (task_type == 'E') {
+            int indexofdate = s.indexOf('(');
+            int indexofdates = s.indexOf(')');
+            String name = s.substring(6,indexofdate);
+            String date = s.substring(indexofdate + 5, indexofdates);
+            task = new Event(name,date);
+        } else if (task_type == 'D') {
+            int indexofdate = s.indexOf('(');
+            int indexofdates = s.indexOf(')');
+            String name = s.substring(6,indexofdate);
+            String date = s.substring(indexofdate + 5, indexofdates);
+            task = new Deadline(name,date);
+        }
+        if (done == 'X') {
+            task.setStatus("[X]");
+        } return task;
+    }
+
+
     public void respond()  {
         try {
             String input = sc.nextLine();
 
             String[] arr = input.split(" ", 2);
             String command = arr[0];
+            File file = new File("duke.txt");
             if (command.equals("mark") || command.equals("unmark")) {
                 if (arr.length == 1) {
                     throw new MarkException(command);
@@ -37,6 +183,8 @@ public class Duke {
 
                     b.unmark(b, index);
                 }
+
+                overwriteFile(file, list);
                 respond();
 
             }
@@ -48,6 +196,7 @@ public class Duke {
                 Task b = list.get(Integer.parseInt(arr[1]) - 1);
                 count--;
                 b.delete(b,Integer.parseInt(arr[1]) - 1, list);
+                overwriteFile(file,list);
                 respond();
             }
 
@@ -59,20 +208,26 @@ public class Duke {
 
                 if (command.equals("todo")) {
 
-                    list.add(new Todo(arr[1]));
+                    Todo todo = new Todo(arr[1]);
+                    list.add(todo);
                     list.get(count++).print();
+                    addTaskToFile(file,todo);
                     respond();
                 }
                 else if (command.equals("event")) {
                     String[] deets = arr[1].split("/at", 2);
-                    list.add(new Event(deets[0], deets[1]));
+                    Event e = new Event(deets[0], deets[1]);
+                    list.add(e);
                     list.get(count++).print();
+                    addTaskToFile(file,e);
                     respond();
                 }
                 else if (command.equals("deadline")) {
                     String[] deets = arr[1].split("/by", 2);
-                    list.add(new Deadline(deets[0], deets[1]));
+                    Deadline d = new Deadline(deets[0], deets[1]);
+                    list.add(d);
                     list.get(count++).print();
+                    addTaskToFile(file,d);
                     respond();
                 }
             }
@@ -135,6 +290,7 @@ public class Duke {
     public static void main (String[] args) {
         Duke duke = new Duke();
         duke.greet();
+        duke.loadTask();
         duke.respond();
     }
 

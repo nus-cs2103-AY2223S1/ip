@@ -73,4 +73,8 @@ public class Deadline extends Task {
     public String getDeadline() {
         return deadline;
     }
+
+    public String toString() {
+        return this.getType() + this.getStatus() + this.getName() + " (by: " + this.deadline + ")" + "\n";
+    }
 }
