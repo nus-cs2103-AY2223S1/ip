@@ -26,6 +26,29 @@ public class Duke {
 
     private static void endProgram(ArrayList<Task> arrayList) {
         Duke.FormatPrint(ENDING);
+        // code below adapted from
+        // stackoverflow.com/questions/28947250/create-a-directory-if-it-does-not-exist-and-then-create-the-files-in-that-direct
+
+        String path = "data";
+        File dest = new File(path);
+
+        // create dir if not exist
+        boolean isPathExist = dest.exists();
+        if (isPathExist) {
+            dest.mkdir();
+        }
+
+        File file = new File(path + "/duke.txt");
+        try {
+            FileWriter fw = new FileWriter(file);
+
+            for (Task t : arrayList) {
+                fw.write(t.toString() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Fail to write file.");
+        }
     }
 
     private static void ListPrint(ArrayList<Task> arr) {
