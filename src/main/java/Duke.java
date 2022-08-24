@@ -1,4 +1,6 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -70,10 +72,16 @@ public class Duke {
 
             class Deadline extends Task {
                 String deadline;
+                LocalDate date;
 
                 public Deadline(String description, String deadline) {
                     super(description);
                     this.deadline = deadline;
+                }
+
+                public Deadline(String description, LocalDate date) {
+                    super(description);
+                    this.date = date;
                 }
 
                 @Override
@@ -125,6 +133,13 @@ public class Duke {
                 Deadline val = new Deadline(desc, deadline);
                 this.list.add(val);
 //                this.list[pointer] = new Deadline(desc, deadline);
+                pointer++;
+                return val;
+            }
+
+            public Deadline addDeadline(String desc, LocalDate date) {
+                Deadline val = new Deadline(desc, date);
+                this.list.add(val);
                 pointer++;
                 return val;
             }
@@ -276,6 +291,16 @@ public class Duke {
 
                             todolist.addDeadline(desc, deadline);
                             System.out.println(String.format("Added: %s (by: %s)", desc, deadline));
+                            break;
+                        }
+
+                        if (line.matches("deadline .* /by .*")) {
+                            String[] res = line.substring(9).split(" /by ");
+                            String desc = res[0];
+                            LocalDate date = LocalDate.parse(res[1]);
+
+                            todolist.addDeadline(desc, date);
+                            System.out.println(String.format("Added: %s (by: %s)", desc, date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
                             break;
                         }
 
