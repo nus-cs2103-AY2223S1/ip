@@ -1,18 +1,15 @@
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
-
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    protected LocalDateTime by;
+    protected LocalDate by;
     public Deadline(String description, String by) throws DukeException {
-
         super(description);
         try {
-            this.by = LocalDateTime.parse(by, formatter);
+            this.by = LocalDate.parse(by);
         } catch (DateTimeParseException exception) {
-            throw new DukeException("Date and time should be in yyyy-mm-dd hh:mm format");
+            throw new DukeException("Date should be in yyyy-mm-dd format.");
         }
     }
 
@@ -25,7 +22,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString()
-                + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm"))
+                + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ")";
     }
 }

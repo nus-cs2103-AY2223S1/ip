@@ -1,19 +1,19 @@
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Event extends Task{
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    protected LocalDateTime at;
+
+    protected LocalDate at;
 
     public Event(String description, String at) throws DukeException {
         super(description);
         try {
-            this.at = LocalDateTime.parse(at, formatter);
+            this.at = LocalDate.parse(at);
 
         } catch (DateTimeParseException exception) {
-            throw new DukeException("Date and time should be in yyyy-mm-dd hh:mm format");
+            throw new DukeException("Date should be in yyyy-mm-dd format.");
         }
     }
 
@@ -26,7 +26,7 @@ public class Event extends Task{
     @Override
     public String toString() {
         return "[E]" + super.toString()
-                + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy hh:mm"))
+                + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ")";
     }
 }

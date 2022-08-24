@@ -1,2 +1,2 @@
-D | 0 | CS1231 | Monday
-E | 0 | meeting with Tom | Tuesday 2-3pm
+D | 0 | CS1231 | 2020-02-17
+E | 0 | meeting with Tom | 2020-02-17

@@ -46,10 +46,19 @@ public class Task {
                 task = new Todo(storageStringArray[2]);
                 break;
             case EVENT:
-                task = new Event(storageStringArray[2], storageStringArray[3]);
+                try {
+                    task = new Event(storageStringArray[2], storageStringArray[3]);
+                } catch (DukeException exception) {
+                    throw new RuntimeException(exception.getMessage());
+                }
                 break;
             case DEADLINE:
-                task = new Deadline(storageStringArray[2], storageStringArray[3]);
+                try {
+                    task = new Deadline(storageStringArray[2], storageStringArray[3]);
+                } catch (DukeException exception) {
+                    throw new RuntimeException(exception.getMessage());
+                }
+
                 break;
             default:
                 throw new RuntimeException(String.format("Invalid task type %s.", taskType));

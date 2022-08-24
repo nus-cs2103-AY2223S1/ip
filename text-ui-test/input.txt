@@ -4,11 +4,11 @@ deadline CS1231 /by Monday
 deadline
 deadline CS1231
 deadline CS1231 /by
-deadline CS1231 /by 2020-02-17 05:30
+deadline CS1231 /by 2020-02-17
 event meeting with Tom /at Tuesday 2-3pm
 event
 event meeting with Tom
-event meeting with Tom /at 2020-02-17 05:30
+event meeting with Tom /at 2020-02-17
 mark 1
 list
 mark 2
