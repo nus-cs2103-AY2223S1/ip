@@ -42,6 +42,15 @@ public abstract class Task {
     }
 
     /**
+     * Checks if the description of the Task contains the keyword.
+     * @param keyword The keyword to check the Task's description for.
+     * @return True if the description of the Task contains the keyword.
+     */
+    public boolean hasKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
+
+    /**
      * Returns the String representation of the Task.
      * @return a String indicating the Task's status and description.
      */

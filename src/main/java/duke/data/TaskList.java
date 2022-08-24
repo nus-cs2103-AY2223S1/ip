@@ -24,7 +24,7 @@ public class TaskList {
      * Constructor for a TaskList when there is an error loading the list of tasks.
      */
     public TaskList() {
-        this.tasks = new ArrayList<Task>();
+        this.tasks = new ArrayList<>();
     }
 
     /**
@@ -82,5 +82,20 @@ public class TaskList {
         } else {
             throw new DukeException(Messages.MESSAGE_NO_SUCH_TASK);
         }
+    }
+
+    /**
+     * Finds matching tasks whose description contains the given keyword.
+     * @param keyword The keyword to check each Task's description for.
+     * @return A list of tasks whose description contains the given keyword.
+     */
+    public ArrayList<Task> getMatchingTasks(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (Task task : this.tasks) {
+            if (task.hasKeyword(keyword)) {
+                matchingTasks.add(task);
+            }
+        }
+        return matchingTasks;
     }
 }

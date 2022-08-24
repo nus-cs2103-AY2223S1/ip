@@ -1,5 +1,6 @@
 package duke.ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.common.Messages;
@@ -99,6 +100,24 @@ public class Ui {
             }
         } else {
             show(Messages.MESSAGE_EMPTY_TASK_LIST);
+        }
+    }
+
+    /**
+     * Displays all matching tasks on the list to the user.
+     * @param matchingTasks The list of matching tasks.
+     */
+    public void showMatchingTasks(ArrayList<Task> matchingTasks) {
+        int size = matchingTasks.size();
+        if (size != 0) {
+            show(Messages.MESSAGE_MATCHING_TASKS);
+            int taskNum = 1;
+            for (Task task : matchingTasks) {
+                show(taskNum + "." + task);
+                taskNum++;
+            }
+        } else {
+            show(Messages.MESSAGE_NO_MATCHING_TASKS);
         }
     }
 }
