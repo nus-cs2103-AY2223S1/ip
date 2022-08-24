@@ -1,3 +1,4 @@
+package duke;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +11,10 @@ public class TaskList {
         this.myList = myList;
     }
 
-    void addTask(Task myTask) {
+    /**
+     * Adds new task to master list
+     */
+    public void addTask(Task myTask) {
         try {
             myList.add(myTask);
             System.out.println("Got it. I've added this task:");
@@ -21,7 +25,30 @@ public class TaskList {
         }
     }
 
-    void listTasks() {
+    /**
+     * Find matching tasks from master list
+     */
+    public void findTasks(String myString) {
+        final ArrayList<Task> findList = new ArrayList<>();
+        for (Task myTask: myList) {
+            if (myTask.description.toUpperCase().contains(myString.toUpperCase())) {
+                findList.add(myTask);
+            }
+        }
+        if (findList.size() == 0) {
+            System.out.println("You have no matching search results.");
+        } else {
+            System.out.println("Here are the matching tasks in your list: ");
+            for(int i = 0; i<findList.size(); i++) {
+                System.out.println(i+1 + "." + findList.get(i));
+            }
+        }
+    }
+
+    /**
+     * List all tasks from master list
+     */
+    public void listTasks() {
         if (myList.size() == 0) {
             System.out.println("You have no tasks in your list.");
         } else {
@@ -32,7 +59,10 @@ public class TaskList {
         }
     }
 
-    void markTask(Integer itemNumber) {
+    /**
+     * Marks task as done
+     */
+    public void markTask(Integer itemNumber) {
         myList.get(itemNumber).markAsDone();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println("["
@@ -40,14 +70,20 @@ public class TaskList {
         + myList.get(itemNumber).getDescription());
     }
 
-    void removeTask(Integer itemNumber) {
+    /**
+     * Removes task from master list
+     */
+    public void removeTask(Integer itemNumber) {
         System.out.println("Noted. I've removed this task:");
         System.out.println(myList.get(itemNumber));
         myList.remove(myList.get(itemNumber));
         System.out.println("Now you have " + myList.size() + " in the list.");
     }
 
-    void saveTasks() {
+    /**
+     * Saves tasks into duke textfile
+     */
+    public void saveTasks() {
         try {
             FileWriter myWriter = new FileWriter("duke.txt");
             for (Task myTask : myList) {
@@ -60,11 +96,25 @@ public class TaskList {
           }
     }
 
-    void unmarkTask (Integer itemNumber) {
+    /**
+     * Marks task as undone
+     */
+    public void unmarkTask (Integer itemNumber) {
         myList.get(itemNumber).markAsUndone();
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("["
         + myList.get(itemNumber).getStatusIcon() + "] "
         + myList.get(itemNumber).getDescription());
+    }
+
+    /**
+     * For JUnit tests
+     */
+    public String testListTasks () {
+        StringBuilder sb = new StringBuilder();
+        for (Task myTask: myList) {
+            sb.append(myTask.toString());
+        }
+        return sb.toString();
     }
 }

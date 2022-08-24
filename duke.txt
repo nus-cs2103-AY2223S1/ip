@@ -1,0 +1,3 @@
+[T][ ] new book
+[T][ ] sell book
+[T][ ] buy magazine
