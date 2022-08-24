@@ -66,10 +66,10 @@ public class SaveTasks {
         }
     }
 
-    public static void save(ArrayList<Task> storedTasks) {
+    public static void save(ArrayList<Task> savedTasks) {
         try {
             FileWriter fw = new FileWriter(FILEPATH);
-            for (Task task : storedTasks) {
+            for (Task task : savedTasks) {
                 fw.write(task.savedTaskString() + "\n");
             }
             fw.close();
