@@ -1,73 +1,88 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class Duke {
-    public static void main(String[] args) {
+    static abstract class Task {
+        private boolean isDone = false;
+        private String item;
 
-        abstract class Task {
-            private boolean isDone = false;
-            private String item;
-
-            public void setDone() {
-                this.isDone = true;
-            }
-
-            public void setNotDone() {
-                this.isDone = false;
-            }
-
-            public String getStatusIcon() {
-                return (isDone ? "[X] " : "[ ] "); // mark done task with X
-            }
-
-            public abstract String getTask();
-
-            public void setItem(String item) {
-                this.item = item;
-            }
-
-            public String getItem() {
-                return this.item;
-            }
+        public void setDone() {
+            this.isDone = true;
         }
 
-        class Todo extends Task {
-            public Todo(String item){
-                this.setItem(item);
-            }
-
-            public String getTask() {
-                return "[T] " + this.getStatusIcon() + this.getItem();
-            }
+        public void setNotDone() {
+            this.isDone = false;
         }
 
-        class Deadline extends Task {
-            private String dateTime;
-
-            public Deadline(String item, String dateTime) {
-                this.setItem(item);
-                this.dateTime = dateTime;
-            }
-
-            public String getTask() {
-                return "[D] " + this.getStatusIcon() + this.getItem() + " (by: " + this.dateTime + ")";
-            }
-
+        public String getStatusIcon() {
+            return (isDone ? "[X] " : "[ ] "); // mark done task with X
         }
 
-        class Event extends Task {
-            private String dateTime;
+        public abstract String getTask();
 
-            public Event(String item, String dateTime) {
-                this.setItem(item);
-                this.dateTime = dateTime;
-            }
-
-            public String getTask() {
-                return "[E] " + this.getStatusIcon() + this.getItem() + " (at: " + this.dateTime + ")";
-            }
-
+        public void setItem(String item) {
+            this.item = item;
         }
+
+        public String getItem() {
+            return this.item;
+        }
+    }
+
+    static class Todo extends Task {
+        public Todo(String item){
+            this.setItem(item);
+        }
+
+        public String getTask() {
+            return "[T] " + this.getStatusIcon() + this.getItem();
+        }
+    }
+
+    static class Deadline extends Task {
+        private String dateTime;
+
+        public Deadline(String item, String dateTime) {
+            this.setItem(item);
+            this.dateTime = dateTime;
+        }
+
+        public String getTask() {
+            return "[D] " + this.getStatusIcon() + this.getItem() + " (by: " + this.dateTime + ")";
+        }
+
+    }
+
+    static class Event extends Task {
+        private String dateTime;
+
+        public Event(String item, String dateTime) {
+            this.setItem(item);
+            this.dateTime = dateTime;
+        }
+
+        public String getTask() {
+            return "[E] " + this.getStatusIcon() + this.getItem() + " (at: " + this.dateTime + ")";
+        }
+
+    }
+    private static void writeToFile(ArrayList<Task> arr){
+        try {
+            new FileWriter("data/duke.txt", false).close();
+            for (int i = 0; i < arr.size(); i++) {
+                FileWriter fw = new FileWriter("data/duke.txt", true); // create a FileWriter in append mode
+                fw.write(arr.get(i).getTask());
+                fw.write(System.lineSeparator());
+                fw.close();
+            }
+        } catch(IOException e) {
+            System.out.println("File not found");
+        }
+    }
+    public static void main(String[] args) throws IOException {
+
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -75,6 +90,7 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         ArrayList<Task> list = new ArrayList<>();
+
         int count = 0;
         String marked = "[X]";
         String unmarked = "[ ]";
@@ -100,6 +116,7 @@ public class Duke {
                     list.get(index).setDone();
                     System.out.println("Nice! I've marked this task as done:");
                     System.out.println(list.get(index).getTask());
+                    writeToFile(list);
                 } catch (NullPointerException e){
                     System.out.println("Oops! Looks like the task number is incorrect :(");
                 }
@@ -110,6 +127,7 @@ public class Duke {
                 list.get(index).setNotDone();
                 System.out.println("OK, I've marked this task as not done yet:");
                 System.out.println(list.get(index).getTask());
+                writeToFile(list);
                 } catch (NullPointerException e){
                     System.out.println("Oops! Looks like the task number is incorrect :(");
                 }
@@ -126,6 +144,7 @@ public class Duke {
                     list.add(new Deadline(item.substring(9, slash - 1), item.substring(slash + 4)));
                     System.out.println("Got it. I've added this task:");
                     System.out.println(list.get(list.size() -1).getTask());
+                    writeToFile(list);
                     count = count + 1;
                     System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
                 } catch (IndexOutOfBoundsException e) {
@@ -145,6 +164,7 @@ public class Duke {
                     list.add(new Event(item.substring(6, slash - 1), item.substring(slash + 4)));
                     System.out.println("Got it. I've added this task:");
                     System.out.println(list.get(list.size() - 1).getTask());
+                    writeToFile(list);
                     count = count + 1;
                     System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
                 } catch (IndexOutOfBoundsException e) {
@@ -157,6 +177,7 @@ public class Duke {
                     list.add(new Todo(item.substring(5)));
                     System.out.println("Got it. I've added this task:");
                     System.out.println(list.get(list.size() - 1).getTask());
+                    writeToFile(list);
                     count = count + 1;
                     System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
                 } catch (IndexOutOfBoundsException e) {
@@ -170,6 +191,7 @@ public class Duke {
                     list.remove(index);
                     System.out.println("Noted. I've removed this task:");
                     System.out.println(text);
+                    writeToFile(list);
                     count = count - 1;
                     System.out.println("Now you have " + Integer.toString(count) + " tasks in the list");
                 } catch (IndexOutOfBoundsException e){
