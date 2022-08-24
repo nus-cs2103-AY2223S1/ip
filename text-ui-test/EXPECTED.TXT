@@ -29,14 +29,14 @@
 🟡 Events are added like this: event project meeting /at Mon 2-4pm
 ─────
 💬 Got it. I've added this task:
-   [E][ ]  project meeting (at: Mon 2-4pm)
+   [E][ ]  returning interns meeting (at: Mon 2-4pm)
    Now you have 4 tasks in the list.
 ─────
 💬 Here are the tasks in your list:
    1. [T][ ]  borrow book
    2. [D][ ]  return book (by: 30 Aug 2022, 12:34:56)
    3. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006, 15:04:05)
-   4. [E][ ]  project meeting (at: Mon 2-4pm)
+   4. [E][ ]  returning interns meeting (at: Mon 2-4pm)
 ─────
 🟡 Please give me a task number to mark!
 ─────
@@ -44,13 +44,13 @@
    [T][X]  borrow book
 ─────
 💬 Nice! I've marked this task as done:
-   [E][X]  project meeting (at: Mon 2-4pm)
+   [E][X]  returning interns meeting (at: Mon 2-4pm)
 ─────
 💬 Here are the tasks in your list:
    1. [T][X]  borrow book
    2. [D][ ]  return book (by: 30 Aug 2022, 12:34:56)
    3. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006, 15:04:05)
-   4. [E][X]  project meeting (at: Mon 2-4pm)
+   4. [E][X]  returning interns meeting (at: Mon 2-4pm)
 ─────
 🟡 Please give me a task number to unmark!
 ─────
@@ -61,7 +61,7 @@
    1. [T][ ]  borrow book
    2. [D][ ]  return book (by: 30 Aug 2022, 12:34:56)
    3. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006, 15:04:05)
-   4. [E][X]  project meeting (at: Mon 2-4pm)
+   4. [E][X]  returning interns meeting (at: Mon 2-4pm)
 ─────
 🟡 Hmm... a task with that number doesn't seem to exist. You can see a list of all tasks by saying "list".
 ─────
@@ -75,7 +75,19 @@
    1. [T][ ]  borrow book
    2. [D][ ]  return book (by: 30 Aug 2022, 12:34:56)
    3. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006, 15:04:05)
-   4. [E][X]  project meeting (at: Mon 2-4pm)
+   4. [E][X]  returning interns meeting (at: Mon 2-4pm)
+─────
+🟡 Please give me some words to find!
+─────
+💬 Here are the tasks that match "return":
+   1. [D][ ]  return book (by: 30 Aug 2022, 12:34:56)
+   2. [E][X]  returning interns meeting (at: Mon 2-4pm)
+─────
+💬 Here are the tasks that match "book", "return":
+   1. [D][ ]  return book (by: 30 Aug 2022, 12:34:56)
+─────
+💬 Here are the tasks that match "date", "an":
+   1. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006, 15:04:05)
 ─────
 🟡 Please give me a task number to delete!
 ─────
@@ -88,7 +100,7 @@
 💬 Here are the tasks in your list:
    1. [T][ ]  borrow book
    2. [D][ ]  The significance of this date is left as an exercise for the reader (by: 2 Jan 2006, 15:04:05)
-   3. [E][X]  project meeting (at: Mon 2-4pm)
+   3. [E][X]  returning interns meeting (at: Mon 2-4pm)
 ─────
 💬 OK. See you next time! *boings away*
 ─────
