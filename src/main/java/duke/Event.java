@@ -19,7 +19,10 @@ public class Event extends Task{
         return this.time;
     }
 
-
+    /** Returns formatted String to write back to our data
+     *
+     * @return String to save to our stored data
+     */
     @Override
     String writeToFile() {
         return "E|" + super.writeToFile() + "|at " + time.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));

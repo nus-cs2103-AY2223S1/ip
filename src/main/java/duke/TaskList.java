@@ -3,6 +3,10 @@ package duke;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ *  Contains the task list that is generated from our stored data, or newly created
+ *  Has operations to update the status of our tasks or add/delete them
+ */
 public class TaskList {
     private int numOfTasks;
     private static List<Task> tasks;

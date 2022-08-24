@@ -2,6 +2,9 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Represents an interface that interacts with the user by printing the necessary messages
+ */
 public class Ui {
 
     void showWelcome() {

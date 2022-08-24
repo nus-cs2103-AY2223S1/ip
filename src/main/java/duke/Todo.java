@@ -10,6 +10,10 @@ public class Todo extends Task{
         super(description);
     }
 
+    /** Returns formatted String to write back to our data
+     *
+     * @return String to save to our stored data
+     */
     @Override
     String writeToFile() {
         return "T|" + super.writeToFile();

@@ -7,7 +7,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 public class Parser {
-    //here we read the input to give us the type of command that the user has typed
+
+    /**
+     * Returns a String that characterises the type of command the user has input
+     * If the command is not of a certain format for some inputs, DukeException is thrown
+     *
+     * @param input
+     * @return command type
+     * @throws DukeException if todo command has no description or the command is not meaningful
+     */
     static String getCommandType(String input) throws DukeException {
         if (input.equals("bye")) {
             return "EXIT";
@@ -28,8 +36,14 @@ public class Parser {
         }
     }
 
-    // we set the first arr int to be 1 if it is a mark command, and 2 if it is a unmark command
-    // the 2nd int will then be the task index
+    /** Return an int array after parsing the mark or unmark command
+     * The first integer will determine if its a mark or unmark command
+     * The second integer is the task index
+     *
+     * @param command mark/unmark command
+     * @return integer array containing task index
+     */
+
     static int[] parseUpdateCommand(String command) {
         String[] parsedCommand = command.split("\\s+");
         if (command.startsWith("mark")) {
@@ -38,12 +52,23 @@ public class Parser {
         return new int[]{2, Integer.valueOf(parsedCommand[1])};
     }
 
-
+    /** Returns index of task to delete
+     *
+     * @param deleteCommand
+     * @return task index
+     */
     static int getDeleteNum(String deleteCommand) {
         String[] parsedCommand = deleteCommand.split("\\s+");
         return Integer.valueOf(parsedCommand[1]);
     }
 
+    /** Returns date and time of a deadline or event command
+     * If the date and time is not of correct format, DukeException is thrown
+     *
+     * @param command event/deadline command
+     * @return LocalDateTime of event/deadline
+     * @throws DukeException if date and time is not formatted correctly
+     */
     static LocalDateTime parseDateTime(String command) throws DukeException{
         try {
             String dateTime = command.substring(command.indexOf("/") + 1);
@@ -56,7 +81,11 @@ public class Parser {
         }
     }
 
-    static void printUpcomingTasks(String fullCommand, TaskList tasks) {
+    /** Prints all the tasks that are due within a week from the current time
+     *
+     * @param tasks all the tasks in our task list
+     */
+    static void printUpcomingTasks(TaskList tasks) {
         LocalDateTime dateTime = LocalDateTime.now();
         for (Task task : tasks.getTasks()) {
             if (task instanceof Deadline) {
