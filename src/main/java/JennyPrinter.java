@@ -1,4 +1,4 @@
-import TaskItems.TaskItem;
+import JennyTasks.JennyTask;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class JennyPrinter {
      */
     public static void greet() {
         print_line();
-        print("Hello! I'm Jenny");
+        print("Hello! I'm JennyBot");
         print("What can I do for you?");
         print_line();
     }
@@ -56,21 +56,21 @@ public class JennyPrinter {
     }
 
     /**
-     * Prints list of TaskItems.
-     * @param taskItems list of TaskItems.
+     * Prints list of JennyTasks.
+     * @param jennyTasks list of JennyTasks.
      */
-    public static void list(ArrayList<TaskItem> taskItems) {
+    public static void list(ArrayList<JennyTask> jennyTasks) {
         print_line();
         int i = 1;
-        for (TaskItem taskItem : taskItems) {
-            print(i++ + "." + taskItem.toString());
+        for (JennyTask jennyTask : jennyTasks) {
+            print(i++ + "." + jennyTask.toString());
         }
         print_line();
     }
 
     /**
      * Prints a mark message.
-     * @param taskItem string representation of a TaskItem.
+     * @param taskItem string representation of a JennyTask.
      */
     public static void mark(String taskItem) {
         print_line();
@@ -81,7 +81,7 @@ public class JennyPrinter {
 
     /**
      * Prints unmark message.
-     * @param taskItem string representation of a TaskItem.
+     * @param taskItem string representation of a JennyTask.
      */
     public static void unmark(String taskItem) {
         print_line();
@@ -92,7 +92,7 @@ public class JennyPrinter {
 
     /**
      * Prints an add message.
-     * @param taskItem string representation of a TaskItem.
+     * @param taskItem string representation of a JennyTask.
      * @param size size of the list.
      */
     public static void add(String taskItem, int size) {
@@ -105,7 +105,7 @@ public class JennyPrinter {
 
     /**
      * Prints a delete message.
-     * @param taskItem string representation of a TaskItem.
+     * @param taskItem string representation of a JennyTask.
      * @param size size of the list.
      */
     public static void delete(String taskItem, int size) {
