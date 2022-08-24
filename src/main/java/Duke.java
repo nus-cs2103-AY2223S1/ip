@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+=======
+import java.time.format.DateTimeParseException;
+>>>>>>> branch-Level-8
 import java.util.Scanner;
+
+
 public class Duke {
 
     private String input;
@@ -47,6 +53,8 @@ public class Duke {
                 System.out.println(e.getMessage());
             } catch (IOException e) {
                 System.out.println("Something went wrong: " + e.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Please enter the date as YYYY-MM-DD.");
             }
         }
     }

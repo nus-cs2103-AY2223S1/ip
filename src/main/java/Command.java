@@ -15,11 +15,9 @@ public class Command {
         DELETE("delete");
 
         private String value;
-
         private Instruction(String value) {
             this.value = value;
         }
-
         public static Optional<Instruction> get(String str) {
             return Arrays.stream(Instruction.values())
                     .filter(instruction -> instruction.value.equals(str))
