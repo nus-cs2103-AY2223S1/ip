@@ -1,0 +1,4 @@
+Here are your tasks =0w0=
+[T] [ ]  one
+[D] [ ]  two (by: 2pm)
+[E] [ ]  three (at: 3pm)

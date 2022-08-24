@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,11 +24,33 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String userInput;
 
+        System.out.println("Working Directory = " + System.getProperty("user.dir"));
+
+
         //Loop continues until bye cmd is given
         while (numOfInputs < 100) {
             userInput = sc.next();
             Task task;
             int taskNum;
+
+            //Create save file
+            try {
+                File taskSave = new File("data/duke.txt");
+                if (!taskSave.exists()) {
+                    taskSave.createNewFile();
+                }
+
+                PrintWriter printWriter = new PrintWriter(taskSave);
+                printWriter.println("Here are your tasks =0w0=");
+                for (Task t : taskList) {
+                    printWriter.println(t.toString());
+                }
+                printWriter.close();
+
+            } catch (IOException e) {
+                //auto gen try catch block
+                e.printStackTrace();
+            }
 
             switch (userInput) {
             case "list":
@@ -103,16 +129,24 @@ public class Duke {
                 continue;
 
             case "deadline":
-                userInput = sc.nextLine();
-                String[] splitB = userInput.split("/by");
-                String deadline = splitB[1];
-                Task d = new Deadlines(splitB[0], deadline);
-                taskList.add(d);
-                numOfInputs += 1;
+                try {
+                    userInput = sc.nextLine();
+                    String[] splitB = userInput.split("/by");
 
-                System.out.println("(=^-w-^=) " + d + " has been added to your task list!\n");
-                System.out.println("You now have " + numOfInputs + " tasks >w<");
-                continue;
+                    if (splitB.length <= 1) {
+                        throw new DukeException("You need to put in a timing using /by");
+                    } else {
+                        String deadline = splitB[1];
+                        Task d = new Deadlines(splitB[0], deadline);
+                        taskList.add(d);
+                        numOfInputs += 1;
+                        System.out.println("(=^-w-^=) " + d + " has been added to your task list!\n");
+                        System.out.println("You now have " + numOfInputs + " tasks >w<");
+                        continue;
+                    }
+                } catch (DukeException e) {
+                    System.out.println(e.message);
+                }
 
             case "event":
                 userInput = sc.nextLine();
