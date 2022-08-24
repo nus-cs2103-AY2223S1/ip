@@ -1,6 +1,7 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
+
+
 public class Duke {
 
     private String input;
@@ -32,6 +33,8 @@ public class Duke {
             } catch (DukeException e) {
                 this.keepRunning = true;
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Please enter the date as YYYY-MM-DD.");
             }
         }
     }

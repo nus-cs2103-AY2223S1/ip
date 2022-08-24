@@ -1,18 +1,16 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-
-    private String by;
-
+    private LocalDate by;
     public Deadline(String description, String by) throws DukeException {
         super(description);
-        if (by == null) {
-            throw new DukeException("☹ OOPS!!! Please follow the format </by date>.");
-        }
-        this.by = by;
+        this.by = LocalDate.parse(by);
     }
-
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(" + by + ")";
+        return "[D]" + super.toString() + " (by: "
+                + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
 }
