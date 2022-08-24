@@ -32,13 +32,4 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + byTime.toString() + ")";
     }
-
-    /**
-     * A string representation to write to the file
-     * @return a string that represents what to write to the file
-     */
-    public String saveToDisk() {
-        String alreadyDone = super.getStatusIcon();
-        return "D | " + alreadyDone + " | " + super.getDescription() + "\n";
-    }
 }
