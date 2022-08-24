@@ -8,6 +8,11 @@ public class ToDo extends Task{
     }
 
     @Override
+    public String toWrite() {
+        return "T," + (super.isDone ? "1," : "0,") + super.description + "\n";
+    }
+
+    @Override
     public String toString() {
         return "[" + getToDoStatusIcon() + "]" + super.toString();
     }

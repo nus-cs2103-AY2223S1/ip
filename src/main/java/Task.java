@@ -15,6 +15,18 @@ public class Task {
         isDone = false;
     }
 
+    public boolean getIsDone() {
+        return isDone;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String toWrite() {
+        return "";
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }

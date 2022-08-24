@@ -14,6 +14,11 @@ public class Event extends Task {
     }
 
     @Override
+    public String toWrite() {
+        return "D," + (super.isDone ? "1," : "0,") + super.description + "," + timeQualifier + "," + timeDescription + "\n";
+    }
+
+    @Override
     public String toString() {
         return "[" + getDeadlineStatusIcon() + "]" + super.toString() + " (" + this.timeQualifier + ": " + this.timeDescription + ")";
     }
