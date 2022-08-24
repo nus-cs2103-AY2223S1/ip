@@ -1,13 +1,19 @@
-public class Task {
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
+public abstract class Task {
     protected String description;
     protected boolean isDone;
+
+    public abstract String format();
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
-    private String getStatusIcon() {
+    public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
@@ -17,6 +23,12 @@ public class Task {
 
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    public static void writeToFile(String item) throws IOException {
+        FileWriter fw = new FileWriter("data" + File.separator + "taskList.txt", true);
+        fw.write(item + "\n");
+        fw.close();
     }
 
     @Override

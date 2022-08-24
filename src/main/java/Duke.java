@@ -1,25 +1,34 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
     private static final ArrayList<Task> store = new ArrayList<>();
+    private static final String FILE_PATH = "data" + File.separator + "taskList.txt";
+    private static final String[] COMMAND_HELP = new String[] { "todo [description]",
+                                                                "deadline [description] /by [date]",
+                                                                "event [description] /at [date]",
+                                                                "list",
+                                                                "bye" };
     enum COMMANDS {todo, deadline, event, mark, unmark, delete, }
 
-
     public static void main(String[] args) {
-
+        loadFromFile();
         System.out.println("Hello! What are we gonna do today?");
+        System.out.println("Use '/?' for help");
+
+        Scanner sc = new Scanner(System.in);
         while (true) {
-            Scanner sc = new Scanner(System.in);
             String input = sc.nextLine();
             if (isCommand(input.split(" ")[0])) {
                 try {
-                    parse(input);
+                    parse(input, false);
                 } catch (DukeWrongArgumentException e) {
                     System.out.println(e.getMessage());
                     System.out.println("Pls try again");
                 }
             } else if (input.equals("bye")) {
+                saveToFile();
                 System.out.println("\tBye! Hope that I was of service!");
                 break;
             } else if (input.equals("list")) {
@@ -30,11 +39,19 @@ public class Duke {
                     number++;
                 }
                 System.out.println("\nYou currently have " + store.size() + " tasks in the list");
-                System.out.println("Pls don't procrastinate on the above tasks!");
+                if (store.size() != 0) {
+                    System.out.println("Pls don't procrastinate on the above tasks!");
+                }
+            } else if (input.equals("/?")) {
+                System.out.println("These are the commands available:\n");
+                for (String desc : COMMAND_HELP) {
+                    System.out.println("\t" + desc);
+                }
             } else {
                 System.out.println("what's this?! REDO!!!!");
             }
         }
+        sc.close();
     }
 
     private static boolean isCommand(String input) {
@@ -44,8 +61,17 @@ public class Duke {
         return false;
     }
 
-    private static void parse(String input) throws DukeWrongArgumentException {
-        String[] arr = input.split(" ", 2);
+    private static void parse(String input, boolean fromSave) throws DukeWrongArgumentException {
+        String mark = null;
+        String[] arr;
+        if (fromSave) {
+            String[] item = input.split("\\|");
+            mark = item[1];
+            arr = item[0].split(" ", 2);
+        } else {
+            arr = input.split(" ", 2);
+        }
+
         COMMANDS command = COMMANDS.valueOf(arr[0]);
         try {
             switch (command) {
@@ -82,7 +108,7 @@ public class Duke {
         switch (command) {
             case todo: {
                 try {
-                    store.add(new ToDo((arr[1])));
+                    store.add(new ToDo(arr[1]));
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeWrongArgumentException("The proper command is: todo [description]", e);
                 }
@@ -107,7 +133,49 @@ public class Duke {
                 break;
             }
         }
-        System.out.println("\tadded: " + store.get(store.size() - 1));
-        System.out.println("You now have " + store.size() + " tasks in the list");
+        Task latestTask = store.get(store.size() - 1);
+        if (mark != null && mark.equals("X")) {
+            latestTask.markAsDone();
+        }
+        String item = latestTask.toString();
+        if (!fromSave) {
+            System.out.println("\tadded: " + item);
+            System.out.println("You now have " + store.size() + " tasks in the list");
+        }
+    }
+
+    private static void loadFromFile() {
+        File dataFile = new File(FILE_PATH);
+        if (dataFile.exists()) {
+            try {
+                Scanner s = new Scanner(dataFile);
+                while (s.hasNext()) {
+                    String item = s.nextLine();
+                    parse(item, true);
+                }
+            } catch (FileNotFoundException | DukeWrongArgumentException e) {
+                System.out.println("something went wrong while loading save file\n" + e);
+            }
+        }
+    }
+
+    private static void saveToFile() {
+        File directory = new File("data" + File.separator);
+        File save = new File(FILE_PATH);
+        directory.mkdir();
+        try {
+            save.createNewFile();
+        } catch (IOException f) {
+            System.out.println("something went wrong while creating save file\n" + f);
+        }
+        try {
+            FileWriter fw = new FileWriter(FILE_PATH);
+            for (Task item : store) {
+                fw.write(item.format() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("something went wrong while writing to save file\n" + e);
+        }
     }
 }

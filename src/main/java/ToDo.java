@@ -3,6 +3,10 @@ public class ToDo extends Task {
         super(description);
     }
 
+    public String format() {
+        return "todo " + this.description + "|" + this.getStatusIcon();
+    }
+
     @Override
     public String toString(){
         return "[T]" + super.toString();
