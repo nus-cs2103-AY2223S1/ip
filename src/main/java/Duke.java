@@ -44,18 +44,15 @@ public class Duke {
                         }
                         tasksList.add(new Todo(taskName));
                         System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
-                    }
-                    else if (command.contains("deadline")) {
+                    } else if (command.contains("deadline")) {
                         String[] res = command.split("deadline ")[1].split("\\\\by ");
                         tasksList.add(new Deadline(res[0], res[1]));
                         System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
-                    }
-                    else if (command.contains("event")) {
+                    } else if (command.contains("event")) {
                         String[] res = command.split("event ")[1].split("\\\\at ");
                         tasksList.add(new Event(res[0], res[1]));
                         System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
-                    }
-                    else {
+                    } else {
                         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
                 } catch (DukeException e) {
