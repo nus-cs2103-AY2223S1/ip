@@ -2,33 +2,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
 
-
-//
-//
-//    public void start(){
-//        Scanner input = new Scanner(System.in);
-//
-//        System.out.println("What are your commands sir:");
-//    }
-//
-//    public static void main(String[] args) {
-//        start();
-//    }
-
-
-
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         System.out.println("What are your commands sir:");
 
         ArrayList<DukeTask> tasklist = new ArrayList<>();
 
-//        String[] arr = new String[100];
-//        char[] markArr = new char[100];
-//        char[] eventTypeArr = new char[100];
         boolean pred = true;
-//        int i = 0;
-
         while(pred) {
             if (input.hasNext()) {
                 String str = input.nextLine();
@@ -42,7 +22,6 @@ public class Duke {
                     pred = false;
 
                 } else if (str.startsWith("mark")) {
-//                    System.out.println(str.substring(5));
                     try {
                         int j = Integer.valueOf(str.substring(5));
                         tasklist.get(j).isMarked = true;
@@ -114,12 +93,5 @@ public class Duke {
             }
         }
 
-//
-//        String logo = " ____        _        \n"
-//                    + "|  _ \\ _   _| | _____ \n"
-//                    + "| | | | | | | |/ / _ \\\n"
-//                    + "| |_| | |_| |   <  __/\n"
-//                    + "|____/ \\__,_|_|\\_\\___|\n";
-//        System.out.println("Bye from\n" + logo);
     }
 }
