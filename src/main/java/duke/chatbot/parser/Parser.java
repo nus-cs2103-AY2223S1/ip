@@ -66,7 +66,7 @@ public class Parser {
                     }
                 }
             } else if (caseString.equals("check") && sc.hasNext()) {
-                arguments.add(sc.nextLine());
+                arguments.add(sc.nextLine().substring(1));
                 return new CheckDateCommand(arguments);
             }
             throw new InvalidInputException();

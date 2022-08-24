@@ -22,7 +22,7 @@ public abstract class TimedTask extends Task {
     }
 
     public boolean hasMatchingDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" yyyy-MM-dd");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return dateTime.toLocalDate().format(formatter).equals(date);
     }
 

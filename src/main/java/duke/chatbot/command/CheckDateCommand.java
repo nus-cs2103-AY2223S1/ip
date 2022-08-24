@@ -17,7 +17,7 @@ public class CheckDateCommand extends Command {
         List<String> message = new ArrayList<>();
         message.add(MessageConstants.MESSAGE_CHECK_DATE);
 
-        TaskList timedTaskList = taskList.filterTaskList(arguments.get(0));
+        TaskList timedTaskList = taskList.filterTaskListByDate(arguments.get(0));
 
         for (int entry = 1; entry <= timedTaskList.size(); entry++) {
             Task task = timedTaskList.get(entry);

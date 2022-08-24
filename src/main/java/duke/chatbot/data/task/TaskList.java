@@ -44,7 +44,7 @@ public class TaskList extends ArrayList<Task> {
         return result;
     }
 
-    public TaskList filterTaskList(String date) {
+    public TaskList filterTaskListByDate(String date) {
         TaskList result = new TaskList();
         for (int entry = 1; entry < this.size() + 1; entry++) {
             Task task = this.get(entry);
