@@ -1,35 +1,42 @@
+package duke.parse;
+
+import duke.command.*;
+import duke.exception.*;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 public class Parser {
 
-    public Command parse(String input) throws InvalidInputException, MissingDescriptionException{
+    public Command parse(String input) throws InvalidInputException, MissingDescriptionException {
         Command commandToReturn = null;
         String[] inputSpilt = input.split(" ", 2);
         if (inputSpilt.length == 2) {
             if (inputSpilt[0].equals(MarkCommand.COMMAND_WORD)) {
                 commandToReturn = new MarkCommand(HandleParseInt(inputSpilt[1], "mark as done"));
-            } else if (inputSpilt[0].equals(UnmarkCommand.COMMAND_WORD)) {
+            } else if (inputSpilt[0].compareTo(UnmarkCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new UnmarkCommand(HandleParseInt(inputSpilt[1], "mark as not done"));
-            } else if (inputSpilt[0].equals(DeleteCommand.COMMAND_WORD)) {
+            } else if (inputSpilt[0].compareTo(DeleteCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new DeleteCommand(HandleParseInt(inputSpilt[1], "delete"));
-            } else if (inputSpilt[0].equals(ToDoCommand.COMMAND_WORD)) {
+            } else if (inputSpilt[0].compareTo(ToDoCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new ToDoCommand(inputSpilt[1]);
-            } else if (inputSpilt[0].equals(DeadlineCommand.COMMAND_WORD)) {
+            } else if (inputSpilt[0].compareTo(DeadlineCommand.COMMAND_WORD) == 0) {
                 commandToReturn = HandleDeadlineParse(inputSpilt[1]);
-            } else if (inputSpilt[0].equals(EventCommand.COMMAND_WORD)) {
+            } else if (inputSpilt[0].compareTo(EventCommand.COMMAND_WORD) == 0) {
                 commandToReturn = HandleEventParse(inputSpilt[1]);
+            } else {
+                throw new InvalidInputException();
             }
         } else if (inputSpilt.length == 1) {
-            if (inputSpilt[0].equals(ByeCommand.COMMAND_WORD)) {
+            if (inputSpilt[0].compareTo(ByeCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new ByeCommand();
-            } else if (inputSpilt[0].equals(ListCommand.COMMAND_WORD)) {
+            } else if (inputSpilt[0].compareTo(ListCommand.COMMAND_WORD) == 0) {
                 commandToReturn = new ListCommand();
-            } else if (inputSpilt[0].equals("todo") || inputSpilt[0].equals("deadline") ||
-                    inputSpilt[0].equals("event")) {
+            } else if (inputSpilt[0].compareTo(ToDoCommand.COMMAND_WORD) == 0 ||
+                    inputSpilt[0].compareTo(DeadlineCommand.COMMAND_WORD) == 0 ||
+                    inputSpilt[0].compareTo(EventCommand.COMMAND_WORD) == 0) {
                 throw new MissingDescriptionException(inputSpilt[0]);
             } else {
                 throw new InvalidInputException();
@@ -48,7 +55,7 @@ public class Parser {
         }
     }
 
-    private Command HandleDeadlineParse(String input) throws MissingDeadlineDescriptionException{
+    private Command HandleDeadlineParse(String input) throws MissingDeadlineDescriptionException {
         String[] deadlineSpilt = input.split("/by ", 2);
         Command commandToReturn;
         try {

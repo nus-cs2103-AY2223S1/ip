@@ -1,3 +1,7 @@
+package duke.ui;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,7 +19,7 @@ public class Ui {
 
     public void displayHello() {
         displaySeparator();
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+        System.out.println("Hello! I'm Duke.Duke\nWhat can I do for you?");
         displaySeparator();
     }
 
@@ -76,6 +80,12 @@ public class Ui {
         } else {
             System.out.println("Now you have " + taskSize + " tasks in the list.");
         }
+    }
+
+    public void displayInvalidTaskIndex() {
+        displaySeparator();
+        System.out.println("There is no task at this index");
+        displaySeparator();
     }
 
     public void displaySeparator() {
