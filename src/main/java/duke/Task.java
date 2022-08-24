@@ -42,6 +42,18 @@ public abstract class Task {
     }
 
     /**
+     * Returns whether the string s is contained in
+     * the task description.
+     *
+     * @param s the string to be checked.
+     * @return whether the string is contained in
+     *     the task description.
+     */
+    public boolean isStringContained(String s) {
+        return task.contains(s);
+    }
+
+    /**
      * Returns the string representation of the task.
      *
      * @return the string representation of the task.

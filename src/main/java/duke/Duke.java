@@ -78,6 +78,12 @@ public class Duke {
                     taskList.delete(index);
                     break;
 
+                case "find":
+                    String keyword = parsed[1];
+                    TaskList filtered = taskList.filter(keyword);
+                    Ui.printFilteredTasks(filtered);
+                    break;
+
                 case "bye":
                     Ui.printGoodbyeMessage();
                     shouldContinue = false;

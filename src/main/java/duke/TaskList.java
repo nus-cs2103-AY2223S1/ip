@@ -121,4 +121,25 @@ public class TaskList {
 
         return tasks;
     }
+
+    /**
+     * Returns a Tasklist matching a given query string.
+     *
+     * @param query the query string.
+     * @return the filtered TaskList.
+     */
+    public TaskList filter(String query) {
+        TaskList filteredTasks = new TaskList();
+
+        for (int i = 0; i < taskList.size(); ++i) {
+            //pass the string which does not fulfill query
+            Task task = taskList.get(i);
+            if (!task.isStringContained(query)) {
+                continue;
+            }
+            filteredTasks.add(task);
+        }
+
+        return filteredTasks;
+    }
 }
