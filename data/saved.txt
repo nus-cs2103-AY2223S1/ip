@@ -2,6 +2,7 @@
 [D][ ] lab (by:Dec 11 2020)
 [T][ ] work
 [D][ ] homework (by:Nov 15 2019)
-[T][ ] hello
+[T][X] hello
 [E][ ] birthday (at: noon tomorrow)
 [T][ ] work
+[T][ ] gugugaga

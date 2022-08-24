@@ -1,4 +1,5 @@
-public class ToDos extends Task{
+package duke;
+public class ToDos extends Task {
 
     public ToDos(String todo) {
         super(todo);

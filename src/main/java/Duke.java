@@ -1,11 +1,8 @@
+package duke;
 import java.text.ParseException;
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.Files;
 import java.io.IOException;
-import java.io.File;
+
 
 public class Duke {
 

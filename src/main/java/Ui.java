@@ -1,3 +1,4 @@
+package duke;
 public class Ui {
     private final String LINE_BREAK = "------------------";
     private final String GREETING_MESSAGE = "\n Hello I am LUNA!\n How can I be of help?\n";
