@@ -24,7 +24,7 @@ public class TaskListTest {
             tasks.mark(2);
             fail();
         } catch (DukeException e) {
-            assertEquals("You do not have that item number!", e.getMessage());
+            assertEquals("Please enter a valid task number!", e.getMessage());
         }
 
     }
