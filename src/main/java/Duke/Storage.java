@@ -1,34 +1,43 @@
 package Duke;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Objects;
 
-// deals with loading tasks from the file and saving tasks in the file
+/**
+ * deals with loading tasks from the file and saving tasks in the file
+ */
+
 public class Storage {
     static String filePath;
     BufferedReader bR;
+    File dukeFile;
 
-    public Storage(String filePath) {
-        Storage.filePath = filePath;
-        if (!Files.exists(Paths.get(filePath))) {
+    public Storage(String pathName, String fileName) {
+        Path file = Paths.get(pathName);
+        File curr = new File(String.valueOf(pathName), fileName);
+        filePath = pathName + "/" + fileName;
+        if (!Files.exists(Paths.get(pathName + fileName))) {
+            curr.getParentFile().mkdir();
             try {
-                Files.createFile(Paths.get(filePath));
+                curr.createNewFile();
             } catch (IOException e) {
-                Ui.printErrorMessage(e.toString());
+                e.printStackTrace();
             }
         }
+        this.dukeFile = curr;
     }
 
+    /**
+     * @return returns an object of type ArrayList
+     */
     public ArrayList<Task> load() {
         try {
-            bR = new BufferedReader(new FileReader(filePath));
+            bR = new BufferedReader(new FileReader(dukeFile));
             ArrayList<Task> tasksToDo = new ArrayList<>();
             String currLine = bR.readLine();
             while (currLine != null) {
@@ -60,6 +69,10 @@ public class Storage {
         return null;
     }
 
+    /**
+     * @param task The input to be received
+     * @return returns a boolean
+     */
     public static boolean updateFile(Task task) {
         try {
             String taskStr = task.getType() == 'T' ?
@@ -73,6 +86,10 @@ public class Storage {
         }
     }
 
+    /**
+     * @param tasks The input to be received
+     * @return returns a boolean
+     */
     public static boolean rewriteEntireFile(ArrayList<Task> tasks) {
         try {
             BufferedWriter bW = Files.newBufferedWriter(Paths.get(filePath));

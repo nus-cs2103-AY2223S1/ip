@@ -2,8 +2,14 @@ package Duke;
 
 import java.util.Scanner;
 
-//making sense of the user command
+/**
+* Making sense of the user command
+ */
+
 public class Parser {
+    /**
+     * @param tasks of type TaskList
+     */
     public static void readLine(TaskList tasks) {
         Ui.printHelloMsg();
         Scanner scanner = new Scanner(System.in);

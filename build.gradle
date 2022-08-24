@@ -36,6 +36,16 @@ shadowJar {
     archiveClassifier = null
 }
 
+jar {
+    manifest {
+        attributes "Main-Class": "seedu.duke.Duke"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 run{
     standardInput = System.in
 }

@@ -3,6 +3,9 @@ package Duke;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * An extension to the Task with the functionality to add date
+ */
 public class Event extends Task {
     LocalDateTime at;
 
@@ -11,21 +14,33 @@ public class Event extends Task {
         this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
+    /**
+     * @return this returns a string
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + getFormattedDetail() + ")";
     }
 
+    /**
+     * @return this returns a char
+     */
     @Override
     public char getType() {
         return 'E';
     }
 
+    /**
+     * @return this returns a string
+     */
     @Override
     public String getOriginalDetail() {
         return at.toString();
     }
 
+    /**
+     * @return this returns a string
+     */
     @Override
     public String getFormattedDetail() {
         return at.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));

@@ -3,12 +3,16 @@ import Duke.Storage;
 import Duke.TaskList;
 import Duke.Ui;
 
+/**
+* Contains Storage and TaskList as parameters
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
 
     public Duke(String filePath) {
-        storage = new Storage(filePath);
+        String[] seperates = filePath.split("/");
+        storage = new Storage(seperates[0], seperates[1]);
         try {
             tasks = new TaskList(storage.load());
         } catch (Exception e) {
