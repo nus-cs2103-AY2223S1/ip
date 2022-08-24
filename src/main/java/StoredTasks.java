@@ -4,7 +4,10 @@ import java.util.ArrayList;
 public class StoredTasks {
     private static final String FILEDIR = "data";
     private static final String FILEPATH = FILEDIR + File.separator + "duke.txt";
-
+    private static final int TASKTYPE = 0;
+    private static final int ISTASKDONE = 1;
+    private static final int TASKDESCRIPTION = 2;
+    private static final int TASKTIME = 3;
 
     public static ArrayList<Task> load() {
         ArrayList<Task> storedTasks = new ArrayList<>(100);
@@ -21,7 +24,30 @@ public class StoredTasks {
             BufferedReader br = new BufferedReader(new FileReader(fileName));
             String line = br.readLine();
             while (line != null) {
-                System.out.println(line);
+                String[] taskArr = line.split("\\|");
+                switch (taskArr[TASKTYPE]) {
+                case "T":
+                    Todos todo = new Todos(taskArr[TASKDESCRIPTION]);
+                    if (Boolean.parseBoolean(taskArr[ISTASKDONE])) {
+                        todo.markAsDone();
+                    }
+                    storedTasks.add(todo);
+                    break;
+                case "D":
+                    Deadlines deadline = new Deadlines(taskArr[TASKDESCRIPTION], taskArr[TASKTIME]);
+                    if (Boolean.parseBoolean(taskArr[ISTASKDONE])) {
+                        deadline.markAsDone();
+                    }
+                    storedTasks.add(deadline);
+                    break;
+                case "E":
+                    Events event = new Events(taskArr[TASKDESCRIPTION], taskArr[TASKTIME]);
+                    if (Boolean.parseBoolean(taskArr[ISTASKDONE])) {
+                        event.markAsDone();
+                    }
+                    storedTasks.add(event);
+                    break;
+                }
                 line = br.readLine();
             }
             br.close();
@@ -36,7 +62,7 @@ public class StoredTasks {
         try {
             FileWriter fw = new FileWriter(FILEPATH);
             for (Task task : storedTasks) {
-                fw.write(task + "\n");
+                fw.write(task.storedTaskString() + "\n");
             }
             fw.close();
         } catch (IOException e) {
