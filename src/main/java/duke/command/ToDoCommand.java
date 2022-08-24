@@ -7,6 +7,10 @@ import duke.task.Todo;
 
 import java.io.IOException;
 
+/**
+ * Handles a "todo" command.
+ * @author Jason
+ */
 public class ToDoCommand extends Command {
     private String[] commandDetails;
 
@@ -15,10 +19,10 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * Handles a to do task
-     * @param taskList duke.TaskList to add to do task to
-     * @param storage duke.utils.Storage to save new to do task
-     * @throws DukeException Tto do task has no description
+     * Handles a to do task.
+     * @param taskList TaskList to add to do task to.
+     * @param storage Storage to save new to do task.
+     * @throws DukeException To do task has no description.
      */
     @Override
     public void run(TaskList taskList, Storage storage) throws DukeException, IOException {

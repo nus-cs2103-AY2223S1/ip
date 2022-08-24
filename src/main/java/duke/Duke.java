@@ -9,16 +9,21 @@ import java.io.IOException;
 
 import java.util.Scanner;
 
+/**
+ * Stores the main logic of the AIlfred bot.
+ * @author Jason
+ */
 public class Duke {
     private Scanner scanner;
     private TaskList taskList;
     private Storage storage;
+
     private final String PATH_FILE = "src/data/duke.txt";
     private final String PATH_DIRECTORY = "src/data";
 
 
     /**
-     * Initializing the application 
+     * Initializes the application.
      */
     public void initialize() throws DukeException, IOException {
         scanner = new Scanner(System.in);
@@ -30,7 +35,7 @@ public class Duke {
     }
 
     /**
-     * Listens to System.in for input
+     * Listens to System.in for input.
      */
     public void listen() throws DukeException, IOException {
         String input; // initializing the input

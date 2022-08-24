@@ -2,6 +2,10 @@ package duke.task;
 
 import duke.Task;
 
+/**
+ * Creates a Task object that needs to be done.
+ * @author Jason
+ */
 public class Todo extends Task {
 
     public Todo(String description) {
@@ -14,8 +18,8 @@ public class Todo extends Task {
     }
 
     /**
-     * Rewrites this to do task into the save file format
-     * @return String to be stored in save file
+     * Writes this to do task into the save file format.
+     * @return String to be stored in save file.
      */
     @Override
     public String saveData() {

@@ -1,5 +1,9 @@
 package duke;
 
+/**
+ * Represents a skeleton for a Task Class.
+ * @author Jason
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -10,30 +14,31 @@ public abstract class Task {
     }
 
     /**
-     * Provides the current "marked" status of a task
-     * @return Marked status of task
+     * Provides the current "marked" status of a task.
+     * @return Marked status of task.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        //Mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     /**
-     * Gets the description of current task
-     * @return Description of task
+     * Gets the description of current task.
+     * @return Description of task.
      */
     public String getDescription() {
         return this.description;
     }
 
     /**
-     * Marks current task as done
+     * Marks current task as done.
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * Unmarks current task as undone
+     * Unmarks current task as undone.
      */
     public void markAsUndone() {
         this.isDone = false;
@@ -45,8 +50,8 @@ public abstract class Task {
     }
 
     /**
-     * Rewrites this event task into the save file format
-     * @return String to be stored in save file
+     * Writes this event task into the save file format.
+     * @return String to be stored in save file.
      */
     public abstract String saveData();
 }

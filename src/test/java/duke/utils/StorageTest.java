@@ -1,20 +1,23 @@
 package duke.utils;
 
-import duke.*;
+import duke.DukeException;
+import duke.TaskListStub;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
+/**
+ * Tests the Storage class.
+ */
 public class StorageTest {
     private final String PATH_FILE = "src/test/data/duke.txt";
     private final String PATH_DIRECTORY = "src/test/data";
 
     /**
-     * Test Case 1 of load() method
-     * Tests for a singular task in save file
+     * Test Case 1 of load() method.
+     * Tests for a singular task in save file.
      */
     @Test
     public void load_loadingOneTaskData_dataLoadedCorrectly() throws DukeException, IOException {
@@ -26,8 +29,8 @@ public class StorageTest {
     }
 
     /**
-     * Test Case 2 of load() method
-     * Tests for multiple tasks in save file
+     * Test Case 2 of load() method.
+     * Tests for multiple tasks in save file.
      */
     @Test
     public void load_loadingMultipleTaskData_dataLoadedCorrectly() throws DukeException, IOException {

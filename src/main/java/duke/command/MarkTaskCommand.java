@@ -7,6 +7,10 @@ import duke.utils.Ui;
 
 import java.io.IOException;
 
+/**
+ * Handles the "mark" command.
+ * @author Jason
+ */
 public class MarkTaskCommand extends Command {
     private String taskIndex;
 
@@ -15,10 +19,10 @@ public class MarkTaskCommand extends Command {
     }
 
     /**
-     *
-     * @param taskList duke.TaskList to update the task that is marked
-     * @param storage duke.utils.Storage to save marked task
-     * @throws DukeException Index out of bounds / Uncreated task index
+     * Marks a task in the list.
+     * @param taskList TaskList to update the task that is marked.
+     * @param storage Storage to save marked task.
+     * @throws DukeException Index out of bounds or task at index has not been created
      */
     @Override
     public void run(TaskList taskList, Storage storage) throws DukeException, IOException {

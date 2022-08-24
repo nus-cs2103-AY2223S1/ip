@@ -7,11 +7,14 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the Deadline class.
+ */
 public class DeadlineTest {
 
     /**
-     * Test Case 1 of toString() method
-     * Tests for a Deadline task with only 1 word as description
+     * Test Case 1 of toString() method.
+     * Tests for a Deadline task with only 1 word as description.
      */
     @Test
     public void toString_oneWordDescription_stringFormattedCorrectly() {
@@ -21,8 +24,8 @@ public class DeadlineTest {
     }
 
     /**
-     * Test Case 2 of toString() method
-     * Tests for a Deadline task with more than one word as description
+     * Test Case 2 of toString() method.
+     * Tests for a Deadline task with more than one word as description.
      */
     @Test
     public void toString_multipleWordDescription_stringFormattedCorrectly() {
@@ -32,8 +35,8 @@ public class DeadlineTest {
     }
 
     /**
-     * Test Case 3 of toString() method
-     * Tests for a Deadline task that has been marked as done
+     * Test Case 3 of toString() method.
+     * Tests for a Deadline task that has been marked as done.
      */
     @Test
     public void toString_taskMarkedAsDone_stringFormattedCorrectly() {
@@ -44,8 +47,8 @@ public class DeadlineTest {
     }
 
     /**
-     * Test Case 1 of saveData() method
-     * Tests if Deadline tasked that is unmarked has been saved
+     * Test Case 1 of saveData() method.
+     * Tests if Deadline tasked that is unmarked has been saved.
      */
     @Test
     public void saveData_unMarkedTask_stringFormattedCorrectly() {
@@ -55,8 +58,8 @@ public class DeadlineTest {
     }
 
     /**
-     * Test Case 2 of saveData() method
-     * Tests if Deadline tasked that is marked has been saved
+     * Test Case 2 of saveData() method.
+     * Tests if Deadline tasked that is marked has been saved.
      */
     @Test
     public void saveData_markedTask_stringFormattedCorrectly() {
