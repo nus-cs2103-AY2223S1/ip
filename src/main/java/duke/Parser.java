@@ -1,3 +1,7 @@
+/**
+ * Project Duke CS2103
+ * Done by Hong Jin.
+ */
 package duke;
 
 import duke.command.*;
@@ -7,7 +11,14 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 
+/**
+ * class Parser to parse through commands input by user.
+ */
 public class Parser {
+
+    /**
+     * private enum class that stores Command Cases.
+     */
     private enum CommandCases {
         BYE,
         LIST,
@@ -19,14 +30,18 @@ public class Parser {
         DELETE
     }
 
+    //formatter for date.
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" d/MM/uuuu");
 
-
-
+    /**
+     * public static method parse that parse input from user and returns Command for Duke to operate.
+     * @param fullCommand
+     * @return Command that user input.
+     * @throws DukeException
+     */
     public static Command parse(String fullCommand) throws DukeException {
 
         String[] com = fullCommand.split(" ", 2);
-
 
         CommandCases cs;
 
