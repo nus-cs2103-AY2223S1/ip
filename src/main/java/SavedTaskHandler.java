@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.io.FileWriter;
+import java.util.function.Consumer;
 
 public class SavedTaskHandler {
 
@@ -16,13 +17,13 @@ public class SavedTaskHandler {
     private final File file;
     private final Path path;
     private final String EMPTY_TASKS = "Go ahead, your first task, tell LUNA and she will write it down...";
-    private final ArrayList<Task> taskList;
+    private final TaskList taskList;
     SavedTaskHandler() throws IOException, ParseException {
 
         this.file = new File(filePath);
         String dir = System.getProperty("user.dir");
         this.path = Paths.get(dir, filePath);
-        this.taskList = new ArrayList<>(100);
+        this.taskList = new TaskList();
         if (Files.exists(path)) {
             System.out.println("LUNA still has your previous tasks written on this fine crater...");
             Scanner scanner =  new Scanner(file);
@@ -72,17 +73,22 @@ public class SavedTaskHandler {
         }
     }
 
-    public ArrayList<Task> getTaskList() {
+    public TaskList getTaskList() {
         return this.taskList;
     }
 
 
-    public void write(ArrayList<Task> taskList) {
+    public void write(TaskList taskList) {
         try {
             FileWriter writer = new FileWriter(filePath);
-            for(Task task: taskList) {
-                writer.write(task + System.lineSeparator());
-            }
+            Consumer consumer = x -> {
+                try {
+                    writer.write(x + System.lineSeparator());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            };
+            taskList.forEach(consumer);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
