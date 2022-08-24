@@ -50,7 +50,7 @@ public class TaskList {
             tasks.get(taskNumber - 1).markAsDone();
             return tasks.get(taskNumber - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("You do not have that item number!");
+            throw new DukeException("Please enter a valid task number!");
         }
     }
 
@@ -66,7 +66,7 @@ public class TaskList {
             tasks.get(taskNumber - 1).markAsNotDone();
             return tasks.get(taskNumber - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("You do not have that item number!");
+            throw new DukeException("Please enter a valid task number!");
         }
     }
 
@@ -75,15 +75,16 @@ public class TaskList {
      *
      * @param taskNumber item with the number user want to delete.
      * @return Task to be deleted.
+     * @throws DukeException if task number not valid.
      */
-    public Task delete(int taskNumber) {
+    public Task delete(int taskNumber) throws DukeException {
         Task taskToRemove = null;
         try {
             taskToRemove = tasks.get(taskNumber - 1);
             tasks.remove(taskNumber - 1);
             this.length -= 1;
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("You do not have that item number!");
+            throw new DukeException("Please enter a valid task number!");
         }
         return taskToRemove;
     }
