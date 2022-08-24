@@ -49,6 +49,11 @@ public class Ui {
         System.out.println(message);
     }
 
+    /**
+     * Informs the user on the tasks that have been found.
+     *
+     * @param tasks Task list containing the tasks that were found.
+     */
     public void showFind(TaskList tasks) {
         if (tasks.getSize() == 0) {
             System.out.println("There are no matching tasks in your list.");

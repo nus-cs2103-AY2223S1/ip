@@ -88,6 +88,12 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Find a task containing the keyword in their description.
+     *
+     * @param keyword Keyword in the description of tasks.
+     * @return Task list with tasks containing the keyword in their descriptions.
+     */
     public TaskList find(String keyword) {
         List<Task> tasks = descriptionToTaskMap.get(keyword);
         return tasks == null ? new TaskList() : new TaskList(tasks);

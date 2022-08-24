@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import tako.command.AddCommand;
 import tako.command.DeleteCommand;
 import tako.command.ExitCommand;
+import tako.command.FindCommand;
 import tako.command.ListCommand;
 import tako.command.MarkCommand;
 
@@ -23,6 +24,7 @@ public class ParserTest {
         assertEquals(AddCommand.class,
                 Parser.parse("event sleep /at 2022-11-11 11:11").getClass());
         assertEquals(DeleteCommand.class, Parser.parse("delete 1").getClass());
+        assertEquals(FindCommand.class, Parser.parse("find this").getClass());
     }
 
     @Test
