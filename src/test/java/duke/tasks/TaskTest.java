@@ -14,7 +14,7 @@ public class TaskTest {
     @Test
     public void markUndoneTest() {
         Task todoTask = new ToDoTask("read book", true);
-        todoTask.markUndone();
+        todoTask.setUndone();
         assertEquals("[ ]", todoTask.getStatusIcon());
 
     }
