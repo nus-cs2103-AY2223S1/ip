@@ -1,24 +1,32 @@
 public abstract class Task {
     // original access modifier was protected
-    private final String description;
+    protected final String description;
     private boolean isDone;
+    protected final Command taskCommand;
 
-    public Task(String description) {
+    public Task(String description, Command taskCommand) {
         this.description = description;
-        this.isDone = false;
+        isDone = false;
+        this.taskCommand = taskCommand;
     }
 
     public String getStatusIcon() {
-        return (this.isDone ? "X" : " ");
+        return (isDone ? "X" : " ");
     }
 
     public void setTaskAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public void setTaskAsNotDone() {
-        this.isDone = false;
+        isDone = false;
     }
+
+    protected String getTaskDoneString(int index) {
+        return isDone ? "mark " + index + "\n" : "";
+    }
+
+    abstract public String getFileStorageString(int index);
 
     @Override
     public String toString() {
