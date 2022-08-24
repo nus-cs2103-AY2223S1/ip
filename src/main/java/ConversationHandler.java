@@ -30,44 +30,48 @@ public class ConversationHandler {
     public String commandHandler(String input) {
 //        We get the first word, since that determines the command
         HashMap<String, String> command = InputParser.getInputArguments(input);
-        switch (command.get("keyword")) {
-            case "Bye":
-            case "bye":
-                return this.closeCommand(command);
+        try {
+            switch (command.get("keyword")) {
+                case "Bye":
+                case "bye":
+                    return this.closeCommand(command);
 
-            case "list":
-            case "List":
-                return this.listCommand(command);
+                case "list":
+                case "List":
+                    return this.listCommand(command);
 
-            case "mark":
-            case "Mark":
-                return this.markCommand(command);
+                case "mark":
+                case "Mark":
+                    return this.markCommand(command);
 
-            case "unmark":
-            case "Unmark":
-                return this.unMarkCommand(command);
+                case "unmark":
+                case "Unmark":
+                    return this.unMarkCommand(command);
 
-            case "todo":
-            case "Todo":
-                return this.addTodoCommand(command);
+                case "todo":
+                case "Todo":
+                    return this.addTodoCommand(command);
 
-            case "deadline":
-            case "Deadline":
-                return this.addDeadlineCommand(command);
+                case "deadline":
+                case "Deadline":
+                    return this.addDeadlineCommand(command);
 
-            case "event":
-            case "Event":
-                return this.addEventCommand(command);
+                case "event":
+                case "Event":
+                    return this.addEventCommand(command);
 
-            case "delete":
-            case "Delete":
-            case "remove":
-            case "Remove":
-                return this.deleteCommand(command);
+                case "delete":
+                case "Delete":
+                case "remove":
+                case "Remove":
+                    return this.deleteCommand(command);
 
 
-            default:
-                return input;
+                default:
+                    return input;
+            }
+        } catch (IllegalArgumentException e) {
+            return "Something went wrong 😔: " + e.getMessage();
         }
     }
 
