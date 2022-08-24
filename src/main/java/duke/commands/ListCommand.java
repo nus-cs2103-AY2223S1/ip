@@ -13,7 +13,7 @@ public class ListCommand extends Command {
     public static final String COMMAND_WORD = "list";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Displays all tasks as a list with index numbers.\n"
-            + "\tEx.: " + COMMAND_WORD;
+            + "\tEx. " + COMMAND_WORD;
 
     @Override
     public void execute(TaskList taskList, Ui ui, StorageFile storage) {

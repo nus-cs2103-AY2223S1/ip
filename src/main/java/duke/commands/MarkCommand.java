@@ -1,11 +1,10 @@
 package duke.commands;
 
 import duke.exceptions.InvalidInputException;
+import duke.exceptions.UnableToSaveException;
 import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Marks a task in the task list as done.
@@ -15,7 +14,7 @@ public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a task as done.\n"
-            + "\tEx.: " + COMMAND_WORD + " <number>";
+            + "\tEx. " + COMMAND_WORD;
 
     private final int taskNumber;
 
@@ -29,7 +28,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws Exception {
+    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
         taskList.markTask(taskNumber);
         storage.saveList(taskList);
     }

@@ -1,5 +1,6 @@
 package duke.parser;
 
+import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -14,12 +15,17 @@ import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
 import duke.common.Messages;
+
+import duke.exceptions.EmptyBodyException;
+import duke.exceptions.InvalidInputException;
 import duke.ui.Ui;
 
 public class Parser {
 
     // commandWord arguments (. - matches any character, * - zero or more times)
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    private static final Pattern DATE_FORMAT = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+    private static final Pattern NUMBER_FORMAT = Pattern.compile("\\d+");
     /**
      * Parses user input into command for execution.
      *
@@ -60,8 +66,11 @@ public class Parser {
         try {
             System.out.println(Messages.MESSAGE_TASK_DESCRIPTION);
             final String description = Ui.readNextLine();
+            if (description.equals("")) {
+                throw new EmptyBodyException();
+            }
             return new TodoCommand(description);
-        } catch (Exception e) {
+        } catch (EmptyBodyException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -70,10 +79,16 @@ public class Parser {
         try {
             System.out.println(Messages.MESSAGE_TASK_DESCRIPTION);
             final String description = Ui.readNextLine();
+            if (description.equals("")) {
+                throw new EmptyBodyException();
+            }
             System.out.println(Messages.MESSAGE_EVENT);
             final String eventDate = Ui.readNextLine();
+            if (!eventDate.matches(String.valueOf(DATE_FORMAT))) {
+                throw new InvalidInputException(Messages.MESSAGE_INVALID_DATE_INPUT);
+            }
             return new EventCommand(description, eventDate);
-        } catch (Exception e) {
+        } catch (EmptyBodyException | InvalidInputException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -82,10 +97,16 @@ public class Parser {
         try {
             System.out.println(Messages.MESSAGE_TASK_DESCRIPTION);
             final String description = Ui.readNextLine();
+            if (description.equals("")) {
+                throw new EmptyBodyException();
+            }
             System.out.println(Messages.MESSAGE_DEADLINE);
             final String deadline = Ui.readNextLine();
+            if (!deadline.matches(String.valueOf(DATE_FORMAT))) {
+                throw new InvalidInputException(Messages.MESSAGE_INVALID_DATE_INPUT);
+            }
             return new DeadlineCommand(description, deadline);
-        } catch (Exception e) {
+        } catch (EmptyBodyException | InvalidInputException e) {
             return new InvalidCommand(e.getMessage());
         }
     }
@@ -93,8 +114,11 @@ public class Parser {
     private Command prepareMark() {
         try {
             System.out.println(Messages.MESSAGE_MARK_TASK);
-            final int taskNumber = Ui.readNextInt();
-            return new MarkCommand(taskNumber);
+            final String taskNumber = Ui.readNextLine();
+            if (!taskNumber.matches(String.valueOf(NUMBER_FORMAT))) {
+                throw new InvalidInputException(Messages.MESSAGE_INVALID_TASK_NUMBER);
+            }
+            return new MarkCommand(Integer.parseInt(taskNumber));
         } catch (Exception e) {
             return new InvalidCommand(e.getMessage());
         }
@@ -103,8 +127,11 @@ public class Parser {
     private Command prepareDelete() {
         try {
             System.out.println(Messages.MESSAGE_TASK_REMOVE);
-            final int taskNumber = Ui.readNextInt();
-            return new DeleteCommand(taskNumber);
+            final String taskNumber = Ui.readNextLine();
+            if (!taskNumber.matches(String.valueOf(NUMBER_FORMAT))) {
+                throw new InvalidInputException(Messages.MESSAGE_INVALID_TASK_NUMBER);
+            }
+            return new DeleteCommand(Integer.parseInt(taskNumber));
         } catch (Exception e) {
             return new InvalidCommand(e.getMessage());
         }

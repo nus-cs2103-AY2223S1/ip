@@ -3,7 +3,7 @@ package duke.common;
 public class Messages {
 
     public static final String MESSAGE_DEADLINE = "When does this need to get completed by?";
-    public static final String MESSAGE_EVENT = "When is this event happening?";
+    public static final String MESSAGE_EVENT = "When is this event happening? (Input your date as YYYY-MM-DD)";
 
     public static final String MESSAGE_TASK_NUMBER = "Task number: ";
     public static final String MESSAGE_TASK_LIST = "Here are the tasks in your list:";
@@ -17,9 +17,9 @@ public class Messages {
             "Else, you can input a new task!\n";
 
     public static final String MESSAGE_INVALID_TASK_NUMBER = "Are you sure this number corresponds to a task?\n";
+    public static final String MESSAGE_INVALID_DATE_INPUT = "Please follow the date formate of YYYY-MM-DD!";
     public static final String MESSAGE_INVALID_COMMAND = "Invalid command!";
-    public static final String MESSAGE_EMPTY_TASK_DESCRIPTION = "Task description cannot be nothing! " +
-            "Since you gave me nothing I'll return you nothing!";
+    public static final String MESSAGE_EMPTY_TASK_DESCRIPTION = "Task description cannot be nothing!";
 
     public static final String MESSAGE_OTHER_ACTIONS = "What else would you like to do?\n";
 

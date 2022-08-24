@@ -1,5 +1,6 @@
 package duke.storage;
 
+import duke.exceptions.UnableToSaveException;
 import duke.task.*;
 
 import java.io.BufferedWriter;
@@ -41,9 +42,7 @@ public class StorageFile {
      *
      * @param list todolist data to save
      */
-    public void saveList(TaskList list) throws IOException {
-        //FileWriter fw = new FileWriter(file.getAbsoluteFile());
-        //BufferedWriter bw = new BufferedWriter(fw);
+    public void saveList(TaskList list) throws UnableToSaveException {
         BufferedWriter bw;
         try {
             bw = Files.newBufferedWriter(Paths.get(DEFAULT_STORAGE_FILEPATH));
@@ -52,7 +51,7 @@ public class StorageFile {
             bw.write(list.encodeToString());
             bw.close();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
+            throw new UnableToSaveException();
         }
     }
 

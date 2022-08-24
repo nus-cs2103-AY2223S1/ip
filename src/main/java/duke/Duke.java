@@ -1,6 +1,8 @@
 package duke;
 
 import duke.commands.Command;
+import duke.exceptions.InvalidInputException;
+import duke.exceptions.UnableToSaveException;
 import duke.parser.Parser;
 import duke.storage.StorageFile;
 import duke.task.*;
@@ -25,7 +27,7 @@ public class Duke {
     }
 
     /** Runs the program until termination */
-    public void run() throws Exception {
+    public void run() {
         ui.showWelcomeMessage();
         runProgram();
         exit();
@@ -39,7 +41,7 @@ public class Duke {
                 final Command command = new Parser().parseCommand(userCommand);
                 command.execute(tasks, ui, storageFile);
                 hasEnded = command.hasEnded();
-            } catch (Exception e) {
+            } catch (UnableToSaveException | InvalidInputException e) {
                 ui.showMessages(e.getMessage());
             }
         }
@@ -50,31 +52,8 @@ public class Duke {
         System.exit(0);
     }
 
-    public static void main(String[] args) throws Exception {
-
+    public static void main(String[] args) {
         new Duke().run();
-
-
-//        try {
-//            ArrayList<Task> toDoList = new ArrayList<>();
-//            String path="./test.txt";
-//            File file = new File(path);
-//            if (!file.exists()) {
-//                file.createNewFile();
-//            } else {
-//                toDoList = loadTasks();
-//                printTasksInList(toDoList);
-//            }
-//
-//            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-//            BufferedWriter bw = new BufferedWriter(fw);
-//
-//            bw.write(saveList(toDoList));
-//            bw.close();
-//        } catch (EmptyBodyException | InvalidInputException | IOException e) {
-//            System.out.println(e.getMessage());
-//        }
-
     }
 
 }

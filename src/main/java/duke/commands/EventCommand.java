@@ -1,10 +1,9 @@
 package duke.commands;
 
+import duke.exceptions.UnableToSaveException;
 import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
-import java.io.IOException;
 
 /**
  * Adds a new event to the task list.
@@ -14,7 +13,7 @@ public class EventCommand extends Command {
     public static final String COMMAND_WORD = "event";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Creates a new Event.\n"
-            + "\tEx.: " + COMMAND_WORD + " <description> /at <date/time>";
+            + "\tEx. " + COMMAND_WORD;
 
     private final String description;
     private final String eventDate;
@@ -31,7 +30,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws IOException {
+    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException {
         taskList.addEventTask(description, eventDate);
         storage.saveList(taskList);
     }

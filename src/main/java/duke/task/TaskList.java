@@ -1,7 +1,5 @@
 package duke.task;
 
-import duke.common.Messages;
-import duke.exceptions.EmptyBodyException;
 import duke.exceptions.InvalidInputException;
 
 import java.util.ArrayList;
@@ -11,8 +9,8 @@ import static duke.common.Messages.*;
 
 public class TaskList {
 
-    private ArrayList<Task> tasks = new ArrayList<>(); // KIV initialization
-    private int taskCount = 0; // KIV
+    private ArrayList<Task> tasks = new ArrayList<>();
+    private int taskCount = 0;
 
     /**
      * Constructor for a new task list.
@@ -74,7 +72,7 @@ public class TaskList {
      *
      * @param taskNumber index of the task in the list
      */
-    public void deleteTask(int taskNumber) throws Exception {
+    public void deleteTask(int taskNumber) throws InvalidInputException {
         Task chosenTask = getTask(checkIndex(taskNumber));
         tasks.remove(chosenTask);
         System.out.println(this);
@@ -88,20 +86,20 @@ public class TaskList {
      *
      * @param taskNumber visible index of the task
      */
-    public void markTask(int taskNumber) throws Exception {
+    public void markTask(int taskNumber) throws InvalidInputException {
         Task chosenTask = getTask(checkIndex(taskNumber));
         if (chosenTask.isDone) {
-            throw new Exception("Task already marked!");
+            throw new InvalidInputException("Task already marked!");
         }
         chosenTask.markDone();
         System.out.println(this);
         System.out.printf(MESSAGE_TASK_MARKED, taskNumber);
     }
 
-    private int checkIndex(int taskNumber) throws Exception {
+    private int checkIndex(int taskNumber) throws InvalidInputException {
         int actualTaskIndex = taskNumber - 1;
         if (actualTaskIndex >= tasks.size() || actualTaskIndex < 0) {
-            throw new Exception(MESSAGE_INVALID_TASK_NUMBER);
+            throw new InvalidInputException(MESSAGE_INVALID_TASK_NUMBER);
         }
         return actualTaskIndex;
     }

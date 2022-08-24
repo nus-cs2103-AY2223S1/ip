@@ -1,5 +1,7 @@
 package duke.commands;
 
+import duke.exceptions.InvalidInputException;
+import duke.exceptions.UnableToSaveException;
 import duke.storage.StorageFile;
 import duke.task.TaskList;
 import duke.ui.Ui;
@@ -22,8 +24,8 @@ public abstract class Command {
      * @param taskList task list manager
      * @param ui manages Duke's interaction with the user
      * @param storage manages the storage of Duke's data
-     * @throws Exception exceptions and errors caught
+     * @throws UnableToSaveException unable to save file
      */
-    public abstract void execute(TaskList taskList, Ui ui, StorageFile storage) throws Exception;
+    public abstract void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException;
 
 }

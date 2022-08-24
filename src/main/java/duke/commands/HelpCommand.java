@@ -12,7 +12,7 @@ public class HelpCommand extends Command {
     public static final String COMMAND_WORD = "help";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows this help page.\n"
-            + "\tEx.: " + COMMAND_WORD;
+            + "\tEx. " + COMMAND_WORD;
 
     @Override
     public void execute(TaskList taskList, Ui ui, StorageFile storage) {
