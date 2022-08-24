@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Duke {
 
-    //private Storage storage;
+    private static Storage storage;
     private static TaskList tasks = new TaskList();
     //private Ui ui;
 
@@ -23,69 +23,6 @@ public class Duke {
 
     }
      */
-
-    public static void writeToFile() {
-        try {
-            ArrayList<String> commandToWrite = new ArrayList<>();
-            for (Task task : tasks) {
-                String command = task.getTaskType() + ",";
-                if (task.getStatusIcon().equals("X")) {
-                    command += "1,";
-                } else {
-                    command += "0,";
-                }
-                command += task.getDescription();
-                if (task.getTaskType().equals("D") || task.getTaskType().equals("E")) {
-                    command = command + "," + task.getTime();
-                }
-                commandToWrite.add(command);
-            }
-            Files.write(path, commandToWrite);
-        }
-        catch (IOException e) {
-            System.out.println("Error writing to tasks.txt");
-        }
-    }
-
-    public static void loadFile() throws DukeException {
-        path = Paths.get(System.getProperty("user.dir"), "src", "main", "tasks.txt");
-        fileToRead = new File(path.toUri());
-        if (!fileToRead.exists()) {
-            try {
-                fileToRead.createNewFile();
-            } catch (IOException e) {
-                System.out.println("Unable to create tasks.txt file.");
-            }
-            return;
-        }
-        Scanner scanner;
-        try {
-            scanner = new Scanner(fileToRead);
-        } catch (FileNotFoundException e) {
-            throw new DukeException("Unable to read file.");
-        }
-        while (scanner.hasNext()) {
-            String[] command = scanner.nextLine().split(",");
-            Task newTask;
-            switch (command[0]) {
-            case "T":
-                newTask = new ToDo(command[2]);
-                break;
-            case "D":
-                newTask = new Deadline(command[2], command[3]);
-                break;
-            case "E":
-                newTask = new Event(command[2], command[3]);
-                break;
-            default:
-                throw new DukeException("    Ensure Task is in this format\n    \"D,1,Read book,Sunday");
-            }
-            if (command[1].equals("1")) {
-                newTask.markComplete();
-            }
-            tasks.addTask(newTask, true);
-        }
-    }
 
     public static void list() {
         System.out.println("    Here are the tasks in your list:");
@@ -121,11 +58,13 @@ public class Duke {
      */
 
     public static void main(String[] args) {
+        storage = new Storage("src/main/tasks.txt");
         try {
-            Duke.loadFile();
+            tasks = storage.load();
         } catch (DukeException e) {
             System.out.println(e);
-            return;
+            System.out.println("Creating new file.");
+            tasks = new TaskList();
         }
         System.out.println("-----------------------------------------------");
         System.out.println("| Hi this is Thesh. What can I do for you? |");
@@ -214,6 +153,6 @@ public class Duke {
         }
         System.out.println("    Bye. Hope to see you again soon!");
         System.out.println("    ____________________________________________________________");
-        Duke.writeToFile();
+        storage.write(tasks);
     }
 }
