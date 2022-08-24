@@ -10,7 +10,7 @@ public class Duke {
     }
 
     // IMPORTANT: Configure isTest to true if you are running ./runtest.sh
-    private static final Boolean isTest = true;
+    private static final Boolean isTest = false;
     private static final String FILE_PATH =
             isTest
             ? "../src/main/java/data/tasksTest.txt"
