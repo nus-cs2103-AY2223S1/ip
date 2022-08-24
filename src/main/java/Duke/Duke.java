@@ -44,10 +44,10 @@ public class Duke {
      * Starts the duke to allow usage.
      */
     public void run() {
-        try {
-            ui.startPrompt();
-            Scanner scanner = new Scanner(System.in);
-            while (scanner.hasNext()) {
+        ui.startPrompt();
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+            try {
                 String inputString = scanner.nextLine();
                 if (inputString.isEmpty()) {
                     continue;
@@ -82,24 +82,24 @@ public class Duke {
                 default:
                     break;
                 }
+            } catch (InvalidCommandException err) {
+                ui.showError(String.format("%s is not a valid command", err.getMessage()));
+            } catch (InvalidTaskNameException | InvalidIndexException err) {
+                ui.showError(err.getMessage());
+            } catch (InvalidSecondaryCommandException err) {
+                ui.showError(String.format("Please include %s command and the necessary information\n", err.getMessage()));
+            } catch (InvalidDateException err) {
+                ui.showError(err.getMessage());
+                ui.listValidDateFormats();
+            } catch (DukeException err) {
+                ui.showError(String.format("Unhandled Duke Exception: %s", err.getMessage()));
+            } catch (IOException err) {
+                ui.showError(String.format("IO Exception: %s", err.getMessage()));
+            } catch (Exception err) {
+                ui.showError(String.format("Unhandled Exception: %s", err.getMessage()));
+            } finally {
+                ui.lineDivider();
             }
-        } catch (InvalidCommandException err) {
-            ui.showError(String.format("%s is not a valid command\n", err.getMessage()));
-        } catch (InvalidTaskNameException | InvalidIndexException err) {
-            ui.showError(err.getMessage());
-        } catch (InvalidSecondaryCommandException err) {
-            ui.showError(String.format("Please include %s command and the necessary information\n", err.getMessage()));
-        } catch (InvalidDateException err) {
-            ui.showError(err.getMessage());
-            ui.listValidDateFormats();
-        } catch (DukeException err) {
-            ui.showError(String.format("Unhandled Duke Exception: %s", err.getMessage()));
-        } catch (IOException err) {
-            ui.showError(String.format("IO Exception: %s", err.getMessage()));
-        } catch (Exception err) {
-            ui.showError(String.format("Unhandled Exception: %s", err.getMessage()));
-        } finally {
-            ui.lineDivider();
         }
     }
 
