@@ -16,41 +16,45 @@ public class Duke {
 //        start();
 //    }
 
-//    public void read() {
-//        try {
-//            BufferedReader reader = new BufferedReader(new FileReader("list.txt"));
-//            String line;
-//            while ((line = reader.readLine()) != null) {
-//
-//
-//            }
-//            reader.close();
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e);
-//        }
-//    }
-//
-//    public void save(String s) {
-//        try {
-//            BufferedWriter writer = new BufferedWriter(new FileWriter("list.txt")); // putthis under start probablu
-//            // rewrite constantly
-//
-//            for(int i = 0; i < tasklist.size(); i ++) {
-//                DukeTask t = tasklist.get(i);
-//                writer.write(t.taskType + " | " + (t.isMarked ? 'X' : 'O' + " | " + t.task));
-//            }
-//
-//
-//            writer.close(); // put this under bye probably
-//
-//        } catch (IOException e) {
-//            System.out.println("Error: " + e);
-//        }
-//
-//    }
+    public static void read() {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("list.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] temp = line.split("/");
+                if (temp.length == 3) {
+                    tasklist.add(new DukeTask(temp[2], temp[1].contains("X"), temp[0].charAt(0)));
+                } else {
+                    tasklist.add(new DukeTask(temp[2], temp[1].contains("X"), temp[0].charAt(0), temp[3]));
+                }
+
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+    }
+
+    public static void save() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("list.txt"));
+            for (int i = 0; i < tasklist.size(); i ++) {
+                DukeTask t = tasklist.get(i);
+                System.out.println(t.task);
+                System.out.println(t.time);
+                writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + t.time +"\n");
+            }
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("Error: " + e);
+        }
+
+    }
 
     private static final ArrayList<DukeTask> tasklist = new ArrayList<>();
     public static void main(String[] args) {
+        read();
         Scanner input = new Scanner(System.in);
         System.out.println("What are your commands sir:");
 
@@ -71,12 +75,12 @@ public class Duke {
                     pred = false;
 
                 } else if (str.startsWith("mark")) {
-//                    System.out.println(str.substring(5));
                     try {
                         int j = Integer.valueOf(str.substring(5));
                         tasklist.get(j).isMarked = true;
                         System.out.println("Nice! I've marked this task as done:");
                         System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
+                        save();
                     } catch (Exception e) {
                         System.out.println("Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e);
                     }
@@ -87,6 +91,7 @@ public class Duke {
                     tasklist.get(j).isMarked = false;
                     System.out.println("Got it. I've mark this task as not done:");
                     System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
+                    save();
 
                 } else if (str.startsWith("todo")) {
                     try {
@@ -99,6 +104,7 @@ public class Duke {
                         tasklist.add(t);
                         System.out.println("Got it. I've added this task:");
                         System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
+                        save();
                     } catch (StringIndexOutOfBoundsException e) {
                         System.out.println("Oops, todo can't be empty");
                     } catch (Exception e) {
@@ -109,29 +115,31 @@ public class Duke {
 
                 } else if (str.startsWith("deadline")) {
                     str = str.substring(9);
-                    String s1 = str.substring(0, str.indexOf('/'));
-                    String s2 = " (" + str.substring(str.indexOf('/') + 1) + ')';
+                    String s1 = str.substring(0, str.indexOf('/') - 1);
+                    String s2 = "(" + str.substring(str.indexOf('/') + 1) + ')';
                     DukeTask t = new DukeTask(s1, false, 'D', s2);
                     tasklist.add(t);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
+                    save();
 
                 } else if (str.startsWith("event")) {
                     str = str.substring(6);
-                    String s1 = str.substring(0, str.indexOf('/'));
-                    String s2 = " (" + str.substring(str.indexOf('/') + 1) + ')';
+                    String s1 = str.substring(0, str.indexOf('/') - 1);
+                    String s2 = "(" + str.substring(str.indexOf('/') + 1) + ')';
                     DukeTask t = new DukeTask(s1, false, 'E', s2);
                     tasklist.add(t);
                     System.out.println("Got it. I've added this task:");
                     System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
+                    save();
 
                 } else if (str.startsWith("delete")) {
-//                    System.out.println(str.substring(5));
                     try {
                         int j = Integer.valueOf(str.substring(7));
                         System.out.println("Alight! I've deleted this task for you:");
                         System.out.println(String.format("List %d: ", j) + tasklist.get(j).toString());
                         tasklist.remove(j);
+                        save();
 
                     } catch (Exception e) {
                         System.out.println("Something went wrong, here's the error message cuz im lazy to figure it out for you: " + e);
