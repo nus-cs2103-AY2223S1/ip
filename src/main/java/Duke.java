@@ -1,21 +1,18 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
 import java.io.IOException;
->>>>>>> branch-Level-7
-=======
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
->>>>>>> branch-Level-8
+
 import java.util.Arrays;
 import java.util.ArrayList;
-<<<<<<< HEAD
+
 import java.util.Scanner;
-=======
+
 import java.io.File;
 import java.io.FileWriter;
->>>>>>> branch-Level-7
+
 
 public class Duke {
 
