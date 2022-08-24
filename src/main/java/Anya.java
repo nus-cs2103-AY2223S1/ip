@@ -17,7 +17,7 @@ public class Anya {
         Scanner sc = new Scanner(System.in);
         String userInput;
         String command;
-        ArrayList<Task> tasks = new ArrayList<>();
+        TaskList tasks = new TaskList();
         String fileName = "data/Anya.txt";
 
         loadFile(tasks, fileName);
@@ -33,13 +33,13 @@ public class Anya {
                 if (command.equals("list")) {
                     list(tasks);
                 } else if (command.equals("mark")) {
-                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    int index = Integer.parseInt(userInput.split(" ")[1]);
                     mark(tasks, index);
                 } else if (command.equals("unmark")) {
-                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    int index = Integer.parseInt(userInput.split(" ")[1]);
                     unmark(tasks, index);
                 } else if (command.equals("delete")) {
-                    int index = Integer.parseInt(userInput.split(" ")[1]) - 1;
+                    int index = Integer.parseInt(userInput.split(" ")[1]);
                     delete(tasks, index);
                 } else if (command.equals("todo")) {
                     try {
@@ -90,44 +90,47 @@ public class Anya {
     }
 
     // Commands
-    public static void addTask(ArrayList<Task> tasks, Task task) {
-        tasks.add(task);
+    // put in tasklist
+    public static void addTask(TaskList tasks, Task task) {
+        tasks.addTask(task);
         System.out.println("Anya added: " + task);
-        System.out.println("Anya sees that you have " + tasks.size() + " task(s) in your list." + breakLine);
+        System.out.println("Anya sees that you have " + tasks.getLength() + " task(s) in your list." + breakLine);
     }
 
-    public static void list(ArrayList<Task> tasks) {
+    public static void list(TaskList tasks) {
         System.out.println("Anya is getting you your list...");
-        for (int i = 0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.getLength(); i++) {
             int num = i + 1;
-            System.out.println(num + ". " + tasks.get(i).toString());
+            System.out.println(num + ". " + tasks.getTaskFromIndex(num).toString());
         }
         System.out.println(breakLine);
     }
 
-    public static void mark(ArrayList<Task> tasks, int index) {
-        Task task = tasks.get(index);
+    public static void mark(TaskList tasks, int index) {
+        Task task = tasks.getTaskFromIndex(index);
         task.markDone();
         System.out.println("Anya has marked this task as done: \n  " + task.toString() + breakLine);
     }
 
-    public static void unmark(ArrayList<Task> tasks, int index) {
-        Task task = tasks.get(index);
+    public static void unmark(TaskList tasks, int index) {
+        Task task = tasks.getTaskFromIndex(index);
         task.markUndone();
         System.out.println("Anya has marked this task as uncompleted: \n  " + task.toString() + breakLine);
     }
 
-    public static void delete(ArrayList<Task> tasks, int index) {
-        Task removedTask = tasks.get(index);
-        tasks.remove(index);
+    // put in tasklist
+    public static void delete(TaskList tasks, int index) {
+        Task removedTask = tasks.getTaskFromIndex(index);
+        tasks.deleteTaskFromIndex(index);
         System.out.println("Anya has removed this task : \n" + removedTask.toString() + breakLine);
     }
 
-    public static void saveFile(ArrayList<Task> tasks, String fileName) {
+    public static void saveFile(TaskList tasks, String fileName) {
         System.out.println("Anya is saving your data...");
         try {
             FileWriter saveTask = new FileWriter(fileName);
-            for (Task task : tasks) {
+            for (int i = 0; i < tasks.getLength(); i++) {
+                Task task = tasks.getTaskFromIndex(i + 1);
                 saveTask.write(task.toSave() + "\n");
             }
             saveTask.close();
@@ -137,7 +140,7 @@ public class Anya {
         }
     }
 
-    public static void loadFile(ArrayList<Task> tasks, String fileName) {
+    public static void loadFile(TaskList tasks, String fileName) {
         System.out.println("Anya is loading your saved file...");
         File dir = new File("data/");
         if (!dir.exists()) {
@@ -160,9 +163,8 @@ public class Anya {
         System.out.println("Anya has finished loading your saved file!" + breakLine);
     }
 
-    public static void readEntry(ArrayList<Task> tasks, String line) {
+    public static void readEntry(TaskList tasks, String line) {
         String[] arrStr = line.split(" \\| ", 3);
-        System.out.println(arrStr[0] + " " + arrStr[1] + " " + arrStr[2]);
         String taskType = arrStr[0];
         boolean isTaskDone = arrStr[1].equals("1");
         if (taskType.equals("T")) {
@@ -179,7 +181,7 @@ public class Anya {
             addTask(tasks, new Event(taskName, time));
         }
         if (isTaskDone) {
-            mark(tasks, tasks.size() - 1);
+            mark(tasks, tasks.getLength());
         }
     }
 }
