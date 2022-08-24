@@ -20,14 +20,14 @@ public class Parser {
                 switch (text) {
                     //Handle case when task aTodo
                     case "todo" :
-                        String tDescription = input.nextLine();
+                        String tDescription = input.next() + input.nextLine();
                         printTodo(tDescription);
                         storage.save(tasks);
                         break;
 
                     //Handle case when task is a deadline
                     case "deadline": {
-                        String str = input.nextLine();
+                        String str = input.next() + input.nextLine();
                         String dDescription = str.substring(0, str.indexOf('/') - 1);
                         String dBy = str.substring(str.indexOf('/') + 4);
                         printDeadline(dDescription, dBy);
@@ -37,7 +37,7 @@ public class Parser {
 
                     //Handle case when task is an event
                     case "event": {
-                        String str = input.nextLine();
+                        String str = input.next() + input.nextLine();
                         String eDescription = str.substring(0, str.indexOf('/') - 1);
                         String eAt = str.substring(str.indexOf('/') + 4);
                         printEvent(eDescription, eAt);

@@ -1,5 +1,6 @@
 package duke;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,41 +17,47 @@ public class Storage {
 
     public List<Task> load() throws IOException, DukeException {
         List<Task> lst = new ArrayList<>();
-        Scanner input = new Scanner(listOfTasks);
-            while (input.hasNextLine()) {
-                String taskInString = input.nextLine();
-                String[] taskInArray = taskInString.split(" \\| ");
-                String taskType = taskInArray[0];
-                switch (taskType) {
-                    case "T" : {
-                        Task task= new Todo(taskInArray[2]);
-                        lst.add(task);
-                        if (taskInArray[1].equals("1")) {
-                            task.markAsDone();
+        try {
+            if (listOfTasks.exists()) {
+                Scanner input = new Scanner(listOfTasks);
+                while (input.hasNextLine()) {
+                    String taskInString = input.nextLine();
+                    String[] taskInArray = taskInString.split(" \\| ");
+                    String taskType = taskInArray[0];
+                    switch (taskType) {
+                        case "T" : {
+                            Task task= new Todo(taskInArray[2]);
+                            lst.add(task);
+                            if (taskInArray[1].equals("1")) {
+                                task.markAsDone();
+                            }
+                            break;
                         }
-                        break;
-                    }
-                    case "D" : {
-                        Task task = new Deadline(taskInArray[2], taskInArray[3]);
-                        lst.add(task);
-                        if (taskInArray[1].equals("1")) {
-                            task.markAsDone();
+                        case "D" : {
+                            Task task = new Deadline(taskInArray[2], taskInArray[3]);
+                            lst.add(task);
+                            if (taskInArray[1].equals("1")) {
+                                task.markAsDone();
+                            }
+                            break;
                         }
-                        break;
-                    }
-                    case "E" : {
-                        Task task = new Event(taskInArray[2], taskInArray[3]);
-                        lst.add(task);
-                        if (taskInArray[1].equals("1")) {
-                            task.markAsDone();
+                        case "E" : {
+                            Task task = new Event(taskInArray[2], taskInArray[3]);
+                            lst.add(task);
+                            if (taskInArray[1].equals("1")) {
+                                task.markAsDone();
+                            }
+                            break;
                         }
-                        break;
+                        default:
+                            throw new DukeException("OOPS!I cannot find a valid task type!");
                     }
-                    default:
-                        throw new DukeException("OOPS!I cannot find a valid task type!");
                 }
             }
-            return lst;
+        } catch (FileNotFoundException e) {
+            throw new DukeException("OOPS! I cannot find your file!");
+        }
+        return lst;
     }
 
     public void save(TaskList tasklist) {
