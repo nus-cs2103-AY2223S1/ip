@@ -12,7 +12,7 @@ ____________________________________________________________
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-[D][ ] homework (by: tomorrow)
+[D][ ] homework (by: 2022-08-28)
 Now you have 2 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
@@ -34,7 +34,7 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] Run in the Morning
-2.[D][ ] homework (by: tomorrow)
+2.[D][ ] homework (by: 2022-08-28)
 3.[E][ ] Concert (at: Buona Vista)
 4.[T][ ] sleep
 ____________________________________________________________
@@ -50,24 +50,24 @@ Now you have 6 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-[D][ ] assignment 3 (by: 26th June)
+[D][ ] assignment 3 (by: 2022-08-31)
 Now you have 7 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Got it. I've added this task:
-[D][ ] cca commitments (by: 2044)
+[D][ ] cca commitments (by: 2022-09-15)
 Now you have 8 tasks in the list.
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] Run in the Morning
-2.[D][ ] homework (by: tomorrow)
+2.[D][ ] homework (by: 2022-08-28)
 3.[E][ ] Concert (at: Buona Vista)
 4.[T][ ] sleep
 5.[T][ ] test 5
 6.[T][ ] test 6
-7.[D][ ] assignment 3 (by: 26th June)
-8.[D][ ] cca commitments (by: 2044)
+7.[D][ ] assignment 3 (by: 2022-08-31)
+8.[D][ ] cca commitments (by: 2022-09-15)
 ____________________________________________________________
 ____________________________________________________________
 Noted. I've removed this task:
@@ -77,12 +77,12 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] Run in the Morning
-2.[D][ ] homework (by: tomorrow)
+2.[D][ ] homework (by: 2022-08-28)
 3.[E][ ] Concert (at: Buona Vista)
 4.[T][ ] test 5
 5.[T][ ] test 6
-6.[D][ ] assignment 3 (by: 26th June)
-7.[D][ ] cca commitments (by: 2044)
+6.[D][ ] assignment 3 (by: 2022-08-31)
+7.[D][ ] cca commitments (by: 2022-09-15)
 ____________________________________________________________
 ____________________________________________________________
 Noted. I've removed this task:
@@ -92,15 +92,15 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] Run in the Morning
-2.[D][ ] homework (by: tomorrow)
+2.[D][ ] homework (by: 2022-08-28)
 3.[E][ ] Concert (at: Buona Vista)
 4.[T][ ] test 6
-5.[D][ ] assignment 3 (by: 26th June)
-6.[D][ ] cca commitments (by: 2044)
+5.[D][ ] assignment 3 (by: 2022-08-31)
+6.[D][ ] cca commitments (by: 2022-09-15)
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
-[D][X] homework (by: tomorrow)
+[D][X] homework (by: 2022-08-28)
 ____________________________________________________________
 ____________________________________________________________
 Nice! I've marked this task as done:
@@ -109,28 +109,34 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] Run in the Morning
-2.[D][X] homework (by: tomorrow)
+2.[D][X] homework (by: 2022-08-28)
 3.[E][X] Concert (at: Buona Vista)
 4.[T][ ] test 6
-5.[D][ ] assignment 3 (by: 26th June)
-6.[D][ ] cca commitments (by: 2044)
+5.[D][ ] assignment 3 (by: 2022-08-31)
+6.[D][ ] cca commitments (by: 2022-09-15)
 ____________________________________________________________
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-[D][ ] homework (by: tomorrow)
+[D][ ] homework (by: 2022-08-28)
 ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] Run in the Morning
-2.[D][ ] homework (by: tomorrow)
+2.[D][ ] homework (by: 2022-08-28)
 3.[E][X] Concert (at: Buona Vista)
 4.[T][ ] test 6
-5.[D][ ] assignment 3 (by: 26th June)
-6.[D][ ] cca commitments (by: 2044)
+5.[D][ ] assignment 3 (by: 2022-08-31)
+6.[D][ ] cca commitments (by: 2022-09-15)
 ____________________________________________________________
 ____________________________________________________________
 ☹ OOPS!!! The number you are talking about does not exist.
 Perhaps it is not a number at all? Please check again!
+____________________________________________________________
+____________________________________________________________
+☹ OOPS!! Date is invalid! Hint: Make it YYYY-MM-DD.
+____________________________________________________________
+____________________________________________________________
+☹ OOPS!! Date is invalid! Hint: Make it YYYY-MM-DD.
 ____________________________________________________________
 ____________________________________________________________
 Bye. Hope to see you again soon!

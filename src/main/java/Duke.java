@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -64,7 +65,8 @@ public class Duke {
                             .substring(0, deadlineDescription[0].length() - 1)
                             .trim();
                     String by = deadlineDescription[1].substring(1, deadlineDescription[1].length() - 1).trim();
-                    Task deadline = new Deadline(deadlineName, by);
+                    LocalDate deadlineDate = LocalDate.parse(by);
+                    Task deadline = new Deadline(deadlineName, deadlineDate);
                     if (marked == "X") {
                         deadline.markAsDone();
                     }
@@ -76,7 +78,7 @@ public class Duke {
                             .substring(0, eventDescription[0].length() - 1)
                             .trim();
                     String at = eventDescription[1].substring(0, eventDescription[1].length() - 1).trim();
-                    Task event = new Deadline(eventName, at);
+                    Task event = new Event(eventName, at);
                     if (marked == "X") {
                         event.markAsDone();
                     }

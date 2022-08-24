@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * Class to represent tasks of the type Deadline.
  *
@@ -5,7 +7,7 @@
  */
 public class Deadline extends Task {
     /** String that represents when a task must be done by. */
-    protected String by;
+    protected LocalDate by;
 
     /**
      * Constructor for the Deadline class.
@@ -13,7 +15,7 @@ public class Deadline extends Task {
      * @param taskName The name of the task.
      * @param by The time it has to be done by.
      */
-    public Deadline(String taskName, String by) {
+    public Deadline(String taskName, LocalDate by) {
         super(taskName);
         this.by = by;
     }

@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * Class to represent tasks of the type Event.
  *
