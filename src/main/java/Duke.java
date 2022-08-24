@@ -1,10 +1,7 @@
-<<<<<<< HEAD
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-=======
 import java.time.format.DateTimeParseException;
->>>>>>> branch-Level-8
 import java.util.Scanner;
 
 
