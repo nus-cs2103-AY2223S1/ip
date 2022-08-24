@@ -21,7 +21,7 @@ public class Duke {
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
-        this.tasks = new TaskList(storage.loadfromFile());
+        this.tasks = new TaskList(storage.loadFromFile());
     }
 
     /**
@@ -47,7 +47,7 @@ public class Duke {
                 com.execute(tasks, ui, storage);
                 isExit = com.isExit();
             } catch (DukeException e) {
-                ui.printMsg(e.getMessage());
+                ui.printMessage(e.getMessage());
             }
         }
     }

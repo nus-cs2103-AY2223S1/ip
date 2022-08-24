@@ -54,60 +54,60 @@ public class Parser {
         try {
             if (com.length == 1) {
                 switch (cs) {
-                    case LIST:
-                        return new ListCommand();
+                case LIST:
+                    return new ListCommand();
 
-                    case MARK:
-                        throw new DukeException("The index to mark cannot be left empty");
+                case MARK:
+                    throw new DukeException("The index to mark cannot be left empty");
 
-                    case UNMARK:
-                        throw new DukeException("The index to unmark cannot be left empty");
+                case UNMARK:
+                    throw new DukeException("The index to unmark cannot be left empty");
 
-                    case TODO:
-                        throw new DukeException("The description of todo cannot be left empty");
+                case TODO:
+                    throw new DukeException("The description of todo cannot be left empty");
 
-                    case DEADLINE:
-                        throw new DukeException("The description of deadline cannot be left empty");
+                case DEADLINE:
+                    throw new DukeException("The description of deadline cannot be left empty");
 
-                    case EVENT:
-                        throw new DukeException("The description of event cannot be left empty");
+                case EVENT:
+                    throw new DukeException("The description of event cannot be left empty");
 
-                    case DELETE:
-                        throw new DukeException("The index to delete cannot be left empty");
+                case DELETE:
+                    throw new DukeException("The index to delete cannot be left empty");
 
-                    case BYE:
-                        return new ByeCommand();
+                case BYE:
+                    return new ByeCommand();
 
-                    default:
-                        throw new DukeException("Invalid argument, please re enter a valid command...");
+                default:
+                    throw new DukeException("Invalid argument, please re enter a valid command...");
                 }
             } else {
                 switch (cs) {
-                    case LIST:
-                        return new ListCommand();
+                case LIST:
+                    return new ListCommand();
 
-                    case MARK:
-                        return new MarkCommand(Integer.parseInt(com[1]));
+                case MARK:
+                    return new MarkCommand(Integer.parseInt(com[1]));
 
-                    case UNMARK:
-                        return new UnmarkCommand(Integer.parseInt(com[1]));
+                case UNMARK:
+                    return new UnmarkCommand(Integer.parseInt(com[1]));
 
-                    case TODO:
-                        return new TodoCommand(com[1]);
+                case TODO:
+                    return new TodoCommand(com[1]);
 
-                    case DEADLINE:
-                        String[] parse = com[1].split("/by", 2);
-                        return new DeadlineCommand(parse[0], LocalDate.parse(parse[1], formatter));
+                case DEADLINE:
+                    String[] parse = com[1].split("/by", 2);
+                    return new DeadlineCommand(parse[0], LocalDate.parse(parse[1], formatter));
 
-                    case EVENT:
-                        String[] parse1 = com[1].split("/at", 2);
-                        return new EventCommand(parse1[0], LocalDate.parse(parse1[1], formatter));
+                case EVENT:
+                    String[] parse1 = com[1].split("/at", 2);
+                    return new EventCommand(parse1[0], LocalDate.parse(parse1[1], formatter));
 
-                    case DELETE:
-                        return new DeleteCommand(Integer.parseInt(com[1]));
+                case DELETE:
+                    return new DeleteCommand(Integer.parseInt(com[1]));
 
-                    default:
-                        throw new DukeException("No such command exist... please try again");
+                default:
+                    throw new DukeException("No such command exist... please try again");
                 }
             }
         } catch (DateTimeParseException e) {
