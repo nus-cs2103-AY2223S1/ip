@@ -27,19 +27,14 @@ public class Duke {
         boolean isExit = false;
         while (!isExit) {
             String fullInput = ui.readCommand();
-            if (fullInput.equals("list")) {
-                tasks.printList();
-            } else {
-                try {
-                    Command command = parser.parse(fullInput);
-                    command.execute(tasks, ui, storage);
-                    ui.printBlankLine();
-                    isExit = command.isExit();
-                } catch (DukeException e) {
-                    System.out.println(e);
-                }
+            try {
+                Command command = parser.parse(fullInput);
+                command.execute(tasks, ui, storage);
+                ui.printBlankLine();
+                isExit = command.isExit();
+            } catch (DukeException e) {
+                System.out.println(e);
             }
-
         }
         storage.writeToTaskList(filePath, tasks);
         System.out.println("Bye. Hope to see you again soon!");

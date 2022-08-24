@@ -4,7 +4,6 @@ public abstract class Command {
         this.task = task;
     }
     public Command() {
-
     }
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
