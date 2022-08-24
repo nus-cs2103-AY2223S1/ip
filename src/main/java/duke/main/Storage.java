@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class Storage {
     protected ArrayList<Task> arr;
     protected String filePath;
+
     private Formatting f = new Formatting();
     public Storage(String filePath) {
         this.filePath = filePath;
