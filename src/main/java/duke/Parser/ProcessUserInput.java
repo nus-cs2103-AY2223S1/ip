@@ -113,6 +113,15 @@ public class ProcessUserInput {
                     break;
                 }
                 break;
+            case Constants.FIND:
+                System.out.println(Constants.FIND_MESSAGE);
+                String keyword = userInput.substring(5);
+                for (int i = 0; i < workList.size(); i++) {
+                    if (workList.get(i).contain(keyword)) {
+                        System.out.println(workList.get(i).toString());
+                    }
+                }
+                break;
             default:
                 new DukeException.InvalidInputException();
                 break;

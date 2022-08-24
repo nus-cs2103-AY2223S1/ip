@@ -69,4 +69,8 @@ public class Task {
     public String storedData() {
         return statusIcon() + "|" + detail;
     }
+
+    public boolean contain(String s) {
+        return detail.contains(s);
+    }
 }
