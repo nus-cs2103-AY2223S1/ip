@@ -132,24 +132,9 @@ public class Duke {
         ls.remove(index);
     }
 
-    protected void createFile() {
-        try {
-            File myObj = new File("tasks.txt");
-            if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-
     protected void taskLoop() throws DukeException {
         Scanner sc = new Scanner(System.in);
         String curr = "";
-        createFile();
 
         while (!Objects.equals(curr, "bye")) {
             curr = sc.nextLine();
