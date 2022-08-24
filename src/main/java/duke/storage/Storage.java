@@ -88,9 +88,11 @@ public class Storage {
                 if (t instanceof Todo) {
                     taskString.append(((Todo) t).getDescription() + "\n");
                 } else if (t instanceof Event) {
-                    taskString.append(((Event) t).getDescription() + " | " + ((Event) t).getEventAt() + "\n");
+                    taskString.append(((Event) t).getDescription()
+                            + " | " + ((Event) t).getEventAt() + "\n");
                 } else {
-                    taskString.append(((Deadline) t).getDescription() + " | " + ((Deadline) t).getDeadlineBy() + "\n");
+                    taskString.append(((Deadline) t).getDescription()
+                            + " | " + ((Deadline) t).getDeadlineBy() + "\n");
                 }
                 fw.write(taskString.toString());
             }
