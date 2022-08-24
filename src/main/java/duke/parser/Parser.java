@@ -13,9 +13,8 @@ public class Parser {
         this.in = in;
     }
 
-    public void handleInput() throws DukeException {
+    public boolean handleInput() throws DukeException {
         TaskList tasklist = TaskList.getInstance();
-//        Scanner in = new Scanner(System.in);
 
         while (in.hasNext()) {
             String[] temp = in.nextLine().split(" ", 2);
@@ -30,7 +29,7 @@ public class Parser {
             switch (command) {
                 case "bye":
                     System.out.println("Bye. Hope to see you again soon!");
-                    return;
+                    return true;
                 case "list":
                     tasklist.list();
                     break;
@@ -53,6 +52,7 @@ public class Parser {
 
             }
         }
+        return false;
     }
 }
 

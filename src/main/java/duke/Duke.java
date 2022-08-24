@@ -29,10 +29,16 @@ public class Duke {
 
     private void loopInputRead() {
         Parser parser = new Parser(new Scanner(System.in));
-        try {
-            parser.handleInput();
-        } catch (DukeException e) {
-            e.getMessage();
+        while(true) {
+            try {
+                boolean complete = parser.handleInput();
+
+                if (complete) {
+                    break;
+                }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
     }
