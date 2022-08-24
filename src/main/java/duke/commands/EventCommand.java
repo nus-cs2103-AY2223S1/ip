@@ -8,6 +8,9 @@ import duke.tools.Ui;
 
 import java.time.LocalDateTime;
 
+/**
+ * This class tells Duke to store a new event.
+ */
 public class EventCommand implements Command {
 
     private Event event;

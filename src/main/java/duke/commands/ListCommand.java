@@ -5,6 +5,9 @@ import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
 
+/**
+ * This class performs the required actions for Duke to list out all the tasks stored.
+ */
 public class ListCommand implements Command {
 
     @Override

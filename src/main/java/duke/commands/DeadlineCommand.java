@@ -8,6 +8,9 @@ import duke.tools.Ui;
 
 import java.time.LocalDateTime;
 
+/**
+ * This class tells Duke to store a new task with a deadline.
+ */
 public class DeadlineCommand implements Command {
 
     private Deadline deadline;

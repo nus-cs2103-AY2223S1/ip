@@ -5,6 +5,9 @@ import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
 
+/**
+ * This class tells Duke to mark the indexed task as not done.
+ */
 public class UnmarkCommand implements Command {
 
     private int index;

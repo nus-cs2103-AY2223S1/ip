@@ -4,6 +4,9 @@ import duke.tools.Parser;
 
 import java.time.LocalDateTime;
 
+/**
+ * This calss encapsulates a task with a deadline from the user.
+ */
 public class Deadline extends Task {
     private LocalDateTime dateTime;
 
