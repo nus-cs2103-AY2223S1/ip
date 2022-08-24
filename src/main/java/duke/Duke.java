@@ -25,6 +25,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Handles the main run time of duke application
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

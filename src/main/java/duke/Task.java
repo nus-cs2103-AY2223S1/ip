@@ -30,7 +30,6 @@ public abstract class Task {
 
     /**
      * Mark item as Done.
-     *
      */
     public void markAsDone() {
         this.isDone = true;
@@ -38,7 +37,6 @@ public abstract class Task {
 
     /**
      * Mark item as not Done.
-     *
      */
     public void markAsNotDone() {
         this.isDone = false;
@@ -52,6 +50,11 @@ public abstract class Task {
         return "[ ] " + this.description;
     }
 
+    /**
+     * Converts Task to string representation that is suitable for storage.
+     *
+     * @return string to be stored in data file.
+     */
     public String toStorageString() {
         if (isDone) {
             return " | " + "1" + " | " + this.description;
