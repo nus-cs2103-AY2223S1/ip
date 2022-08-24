@@ -1,3 +1,7 @@
+package TaskList;
+
+import Ui.Constants;
+
 public class Task {
     protected String detail;
     protected boolean isDone;
@@ -34,7 +38,7 @@ public class Task {
     /**
      * Mark task as Done and Print acknowledge message.
      */
-    protected void markAsDone() {
+    public void markAsDone() {
         System.out.println(Constants.MARK_AS_DONE_MESSAGE);
         this.isDone = true;
         System.out.println(this.toString());
@@ -43,7 +47,7 @@ public class Task {
     /**
      * Mark task as not Done and Print acknowledge message.
      */
-    protected void unmark() {
+    public void unmark() {
         System.out.println(Constants.UNMARK_MESSAGE);
         this.isDone = false;
         System.out.println(this.toString());
@@ -58,7 +62,7 @@ public class Task {
         return (this.isDone ? "1" : "0");
     }
 
-    protected String storedData() {
+    public String storedData() {
         return statusIcon() + "|" + detail;
     }
 }

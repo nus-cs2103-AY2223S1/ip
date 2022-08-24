@@ -1,3 +1,5 @@
+package Ui;
+
 public class Constants {
     // Logo
     public static final String LOGO =

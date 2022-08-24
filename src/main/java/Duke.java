@@ -1,15 +1,15 @@
+import Storage.DukeEncoder;
+import TaskList.*;
+import Ui.Constants;
+
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    // List to store text entered by the user and display them back to the user when requested
-    private static final ArrayList<Task> workList = Duke.loadDataFromList();
 
+    // List to store text entered by the user and display them back to the user when requested
+    public static ArrayList<Task> workList = Duke.loadDataFromList();
     /**
      * Start the program
      */
@@ -26,47 +26,12 @@ public class Duke {
     }
 
     /**
-     * Add text that user typed to the word list
-     * @param task text the user typed
-     */
-    private static void add(Task task) {
-        System.out.println(Constants.ARROW + "Added task: " + task.toString());
-        Duke.workList.add(task);
-        System.out.println("Now you have " + workList.size() + " task(s) on your list.");
-    }
-
-    /**
-     * Delete a task
-     * @param task text the user typed
-     */
-    private static void delete(Task task) {
-        System.out.println(Constants.ARROW + "Deleted task: " + task.toString());
-        Duke.workList.remove(task);
-        System.out.println("Now you have " + workList.size() + " task(s) on your list.");
-    }
-
-    /**
      * Print all item in the word list
      */
     private static void listItems() {
         System.out.println(Constants.LISTING_MESSAGE);
-        for (int i = 0; i < workList.size(); i++) {
-            System.out.println((i+1) + ") " + workList.get(i).toString());
-        }
-    }
-
-    private static void rewriteList() {
-        try {
-            Path file = Paths.get("src/main/List.txt");
-            ArrayList<String> stringArrayList = new ArrayList<>();
-            for (int i = 0; i < workList.size(); i++) {
-                stringArrayList.add(workList.get(i).storedData());
-            }
-            Files.write(file, stringArrayList, StandardCharsets.UTF_8);
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found!");
-        } catch (IOException e) {
-            System.out.println("Cannot save the list!");
+        for (int i = 0; i < Duke.workList.size(); i++) {
+            System.out.println((i+1) + ") " + Duke.workList.get(i).toString());
         }
     }
 
@@ -147,7 +112,7 @@ public class Duke {
                         // Error when to-do followed by a blank space
                         userInput.substring(6);
                         // Error when just to-do
-                        Duke.add(new ToDo(userInput.substring(5)));
+                        TaskOperation.add(new ToDo(userInput.substring(5)), workList);
                     } catch (StringIndexOutOfBoundsException e) {
                         new DukeException.EmptyTodoException();
                         break;
@@ -159,7 +124,7 @@ public class Duke {
                         userInput.substring(10);
                         // Error when just deadline
                         String[] deadline = userInput.substring(9).split(" /by ");
-                        Duke.add(new Deadline(deadline[0], deadline[1]));
+                        TaskOperation.add(new Deadline(deadline[0], deadline[1]),workList);
                     } catch (StringIndexOutOfBoundsException e) {
                         new DukeException.EmptyDeadlineException();
                         break;
@@ -173,7 +138,7 @@ public class Duke {
                         userInput.substring(7);
                         // Error when just event
                         String[] event = userInput.substring(6).split(" /at ");
-                        Duke.add(new Event(event[0], event[1]));
+                        TaskOperation.add(new Event(event[0], event[1]), workList);
                     } catch (StringIndexOutOfBoundsException e) {
                         new DukeException.EmptyEventException();
                         break;
@@ -185,7 +150,7 @@ public class Duke {
                     try {
                         userInput.substring(8);
                         index =  Integer.parseInt(userInput.split(" ")[1]);
-                        Duke.delete(Duke.workList.get(index-1));
+                        TaskOperation.delete(workList.get(index-1), workList);
                     } catch (StringIndexOutOfBoundsException e) {
                         new DukeException.EmptyDeleteException();
                         break;
@@ -202,14 +167,14 @@ public class Duke {
                     break;
             }
             // Update data
-            rewriteList();
+            DukeEncoder.rewriteList(Duke.workList);
 
             // Next input
             userInput = scanner.nextLine();
         }
 
         // Update data
-        rewriteList();
+        DukeEncoder.rewriteList(Duke.workList);
     }
     public static void main(String[] args){
         // Greeting
