@@ -43,8 +43,8 @@ public class EventTask extends Task{
     }
 
     /**
-     * Returns tthe string representation of the event.
-     * @return String representation of the event
+     * Returns the string representation of the event.
+     * @return String representation of the event.
      */
     @Override
     public String toString() {
@@ -53,6 +53,12 @@ public class EventTask extends Task{
         return String.format("%s (at: %s to %s)", super.toString(), startTimeString, endTimeString);
     }
 
+    /**
+     * Encodes the event for storage.
+     * Format of the event is TASK_TYPE|IS_MARKED|DESCRIPTION|START_TIME|END_TIME. Note, time is 
+     * encoded in ISO compliant format.
+     * @return String encoding of the event.
+     */
     @Override
     public String encodeForStorage() {
         return String.format("%s|%s|%s", 

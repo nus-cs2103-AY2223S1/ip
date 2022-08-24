@@ -63,6 +63,11 @@ public abstract class Task {
         return String.format("[%s][%s] %s", this.taskTypeString(),isMarked ? "X" : " ", description);
     }
 
+    /**
+     * Encodes the task for storage.
+     * Format of the event is TASK_TYPE|IS_MARKED|DESCRIPTION.
+     * @return String encoding of the task.
+     */
     public String encodeForStorage() {
         return String.format("%s|%s|%s", this.taskTypeString(), this.isMarked ? "Y" : "N", this.description);
     }
