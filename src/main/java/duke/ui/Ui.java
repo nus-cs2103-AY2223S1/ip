@@ -9,7 +9,8 @@ import duke.task.Task.TaskType;
  */
 public class Ui {
     public static final String START = '\u2619' + " ";
-    public static final String SADFACE = '\u2639' + " ";
+    public static final String SAD_FACE = '\u2639' + " ";
+
     private Scanner sc = new Scanner(System.in);
 
     /**
@@ -18,8 +19,8 @@ public class Ui {
      */
     public void fileLoadError() {
         System.out.println(
-                SADFACE + "hmm, i was not able to create a file to store your list.\n"
-                        + "  note that your list will not be saved if you quit and restart duke.Duke!\n"
+                SAD_FACE + "hmm, i was not able to create a file to store your list.\n"
+                + "  note that your list will not be saved if you quit and restart duke.Duke!"
         );
     }
 
@@ -51,7 +52,7 @@ public class Ui {
      * "mark" command.
      */
     public void invalidMarkInput() {
-        System.out.println(SADFACE + "please enter an integer so i know which task to mark!");
+        System.out.println(SAD_FACE + "please enter an integer so i know which task to mark!");
     }
 
     /**
@@ -59,7 +60,7 @@ public class Ui {
      * "unmark" command.
      */
     public void invalidUnmarkInput() {
-        System.out.println(SADFACE + "please enter an integer so i know which task to unmark!");
+        System.out.println(SAD_FACE + "please enter an integer so i know which task to unmark!");
     }
 
     /**
@@ -70,15 +71,15 @@ public class Ui {
      */
     public void invalidTaskInput(TaskType t) {
         if (t == TaskType.TODO) {
-            System.out.println(SADFACE + "please tell me the name of the todo task.");
+            System.out.println(SAD_FACE + "please tell me the name of the todo task.");
         } else if (t == TaskType.DEADLINE) {
             System.out.println(
-                    SADFACE + "for tasks with deadlines, please tell me the name of the task, followed "
+                    SAD_FACE + "for tasks with deadlines, please tell me the name of the task, followed "
                             + "by '/by',\n  and then the date/time it needs to be completed by\n"
                             + "  in DD/MM/YYYY HHMM (time optional) format e.g. 27/02/2023 2359.");
         } else {
             System.out.println(
-                    SADFACE + "for events, please tell me the name of the event, when it starts and when it ends.");
+                    SAD_FACE + "for events, please tell me the name of the event, when it starts and when it ends.");
         }
     }
 
@@ -88,14 +89,14 @@ public class Ui {
      */
     public void emptyDateInput() {
         System.out.println(
-                SADFACE + "please enter the date you would like to search for in the format DD/MM/YYYY.");
+                SAD_FACE + "please enter the date you would like to search for in the format DD/MM/YYYY.");
     }
 
     /**
      * Informs the user when they have not entered the date in a valid format.
      */
     public void invalidDateInput() {
-        System.out.println(SADFACE + "please enter a valid date in the format DD/MM/YYYY.");
+        System.out.println(SAD_FACE + "please enter a valid date in the format DD/MM/YYYY.");
     }
 
     /**
@@ -104,7 +105,7 @@ public class Ui {
      */
     public void invalidDateTimeInput() {
         System.out.println(
-                SADFACE + "please input a valid date and time in the format DD/MM/YYYY HHMM (time optional)");
+                SAD_FACE + "please input a valid date and time in the format DD/MM/YYYY HHMM (time optional)");
     }
 
     /**
@@ -112,7 +113,7 @@ public class Ui {
      */
     public void invalidStartEndDateInput() {
         System.out.println(
-                SADFACE + "please input valid starting and ending dates and times in the format\n"
+                SAD_FACE + "please input valid starting and ending dates and times in the format\n"
                         + "  DD/MM/YYYY HHMM - DD/MM/YYYY HHMM (ending date optional)"
         );
     }
@@ -122,14 +123,14 @@ public class Ui {
      * "delete" command.
      */
     public void invalidDeleteInput() {
-        System.out.println(SADFACE + "please enter an integer so i know which task to delete!");
+        System.out.println(SAD_FACE + "please enter an integer so i know which task to delete!");
     }
 
     /**
      * Sends when the user enters any commands not recognised by Duke.
      */
     public void invalidInput() {
-        System.out.println(SADFACE + "sorry, i don't know what that means :(");
+        System.out.println(SAD_FACE + "sorry, i don't know what that means :(");
     }
 
     /**

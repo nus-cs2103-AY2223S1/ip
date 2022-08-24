@@ -63,7 +63,7 @@ public class TaskList {
      */
     public void printList() {
         if (tasks.size() == 0) {
-            System.out.println(Ui.START + "your list is empty. START adding some tasks to do now!");
+            System.out.println(Ui.START + "your list is empty. start adding some tasks to do now!");
         } else {
             System.out.println(Ui.START + "these are the tasks in your list:");
             int x = 1;
@@ -113,7 +113,7 @@ public class TaskList {
                             "  now you have " + tasks.size() + " tasks in the list. type list to view them.");
                 }
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(Ui.SADFACE + "please enter an integer from 1 - " + tasks.size());
+                System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
             }
         }
     }
@@ -162,7 +162,7 @@ public class TaskList {
                 System.out.println("     " + doneTask);
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Ui.SADFACE + "please enter an integer from 1 - " + tasks.size());
+            System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
         }
     }
 
@@ -183,7 +183,7 @@ public class TaskList {
                 System.out.println("     " + undoneTask);
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Ui.SADFACE + "please enter an integer from 1 - " + tasks.size());
+            System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
         }
     }
 
