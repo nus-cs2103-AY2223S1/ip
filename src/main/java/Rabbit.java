@@ -1,5 +1,7 @@
+import java.time.DateTimeException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 /**
  * Rabbit is a short-tempered, annoyed bot that puts in her 30% efforts
@@ -8,7 +10,7 @@ import java.util.ArrayList;
  * @author Jiang Zhimeng
  */
 public class Rabbit {
-    private static String greet = "-----------------------------------------------------------------------------\n"
+    private static final String greet = "-----------------------------------------------------------------------------\n"
             + "-----------------------------------------------------------------------------\n"
             + "Yo...nice to meet you. This is rabbit...Ughhhhh I hate this job.\n"
             + "You can input stuff that you want me to write on this grandma-aged notebook.\n"
@@ -16,8 +18,10 @@ public class Rabbit {
             + "1. Type the type of a task followed by its content and time to add it into the list.\n"
             + "   There are three types: todo, deadline and event.\n"
             + "   - To add todo, type 'todo the content' such as 'todo do homework'.\n"
-            + "   - To add deadline, type 'deadline the content /the time' such as 'deadline do homework /9am'.\n"
-            + "   - To add event, type 'event the content /the time' such as 'event do homework /9am'.\n"
+            + "   - To add deadline, type 'deadline the content /year-month-day-time' "
+            + "such as 'deadline do homework /2022-08-22-1800'.\n"
+            + "   - To add event, type 'event the content /year-month-day-time' "
+            + "such as 'deadline do homework /2022-08-22-1800'.\n"
             + "2. Type 'list' then I'll show all the existing lines to you.\n"
             + "3. Type 'mark + the index of an existing task' to marks it as done. Like 'mark 1'.\n"
             + "4. Type 'unmark + the index of an existing task' to unmark a task.\n"
@@ -25,7 +29,7 @@ public class Rabbit {
             + "-----------------------------------------------------------------------------\n"
             + "Actually why not just do me a favour? Type 'bye' in the console and free both of us.";
 
-    private static String bye = "Thanks a lot. I'm gonna have some carrot tea later. See you...";
+    private static final String bye = "Thanks a lot. I'm gonna have some carrot tea later. See you...";
     // initialise the list that stores tasks.
     /** a list that keeps all the tasks */
     private static ArrayList<Task> list = new ArrayList<>();
@@ -50,9 +54,12 @@ public class Rabbit {
         try {
             // initialise the task to be added
             Task added = new Todo("");
+            String content = "";
+            LocalDateTime time = LocalDateTime.now();
             switch (task) {
             case TODO:
-                added = new Todo(input.substring(5, input.length()));
+                content = input.substring(5, input.length());
+                added = new Todo(content);
                 list.add(added);
                 break;
             case DEADLINE:
@@ -60,7 +67,9 @@ public class Rabbit {
                 String deadline = input.substring(9, input.length());
                 // the index of the character in the string before which is the content
                 int i = scanContent(deadline);
-                added = new Deadline(deadline.substring(0, i - 1), deadline.substring(i + 1, deadline.length()));
+                content = deadline.substring(0, i - 1);
+                time = scanTime(deadline.substring(i + 1, deadline.length()));
+                added = new Deadline(content, time);
                 list.add(added);
                 break;
             case EVENT:
@@ -68,7 +77,9 @@ public class Rabbit {
                 String event = input.substring(6, input.length());
                 // the index of the character in the string before which is the content
                 int j = scanContent(event);
-                added = new Event(event.substring(0, j - 1), event.substring(j + 1, event.length()));
+                content = event.substring(0, j - 1);
+                time = scanTime(event.substring(j + 1, event.length()));
+                added = new Event(event.substring(0, j - 1), time);
                 list.add(added);
                 break;
             }
@@ -78,6 +89,8 @@ public class Rabbit {
             // StringIndexOutOfBoundsException, catch it
             // and throw an AddToListException
             throw new AddToListException(AddToListException.Type.FORMAT);
+        } catch (DateTimeException e) {
+            throw new AddToListException(AddToListException.Type.TIMEFORMAT);
         }
     }
 
@@ -181,6 +194,27 @@ public class Rabbit {
             }
         }
         return -1;
+    }
+
+    /**
+     * Returns localDataTime according to the input.
+     *
+     * @param input the time input from the user.
+     * @return a LocalDataTime instance.
+     */
+    private static LocalDateTime scanTime(String input) throws AddToListException {
+        try {
+            int year = Integer.parseInt(input.substring(0,4));
+            int month = Integer.parseInt(input.substring(5,7));
+            int day = Integer.parseInt(input.substring(8,10));
+            int hour = Integer.parseInt(input.substring(11,13));
+            int minute = Integer.parseInt(input.substring(13,15));
+            return LocalDateTime.of(year, month, day, hour, minute);
+        } catch (NumberFormatException e) {
+            // if input is delete + a non-integer,
+            // throws an exception due to incorrect format
+            throw new AddToListException(AddToListException.Type.FORMAT);
+        }
     }
 
     /**
