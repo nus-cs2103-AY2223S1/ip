@@ -52,6 +52,7 @@ abstract public class Serializable<T> {
      * Supports the deserialization operation of the serializable object.
      *
      * @return The deserialized object
+     * @throws DukeException If the object cannot be deserialized
      */
     abstract public T deserialize() throws DukeException;
 
