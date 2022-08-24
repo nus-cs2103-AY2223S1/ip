@@ -1,3 +1,6 @@
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class Events extends Task {
 
     private static final char SYMBOL = 'E';
@@ -7,6 +10,12 @@ public class Events extends Task {
     public Events(String s1, String s2) {
         super(s1);
         this.period = s2;
+    }
+
+    @Override
+    public void write(FileWriter fw) throws IOException {
+        String str = String.format("E | %d | %s | %s\n", this.getDone(), this.getName(), this.period);
+        fw.write(str);
     }
 
     @Override

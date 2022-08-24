@@ -1,12 +1,24 @@
-import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Duke {
 
     public static void main(String[] args) {
 
         //Initialize Scanner and ToDoList
-        Scanner sc = new Scanner(System.in);
         ToDoList list = new ToDoList();
+
+
+        try {
+            FileReader fr = new FileReader(list);
+            fr.read();
+        } catch (FileNotFoundException e) {
+            System.out.print(e.getMessage());
+        }
+
+        Scanner sc = new Scanner(System.in);
 
         //Welcome message
         String logo = "*\\(^o^)/*";
@@ -29,6 +41,9 @@ public class Duke {
                 response = sc.nextLine();
             }
         }
+
+
+        list.save();
 
         System.out.print("Awww see you soon!!");
         sc.close();
