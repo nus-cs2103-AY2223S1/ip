@@ -1,14 +1,18 @@
 package duke;
 
-import duke.tasks.Deadline;
-import duke.tasks.Event;
-import duke.tasks.Todo;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Todo;
+
+
+/**
+ * Parses in the user input and executes the corresponding actions
+ */
 public class Parser {
     private final String command;
     private final Ui ui;
@@ -18,6 +22,12 @@ public class Parser {
         this.ui = ui;
     }
 
+    /**
+     * Parses the command and matches it with the corresponding action to be taken
+     * Executes the action on the task list given
+     * @param tasks ArrayList of current tasks stored on the chatbot
+     * @return boolean true if bye command entered and chatbot should be stopped, false otherwise
+     */
     public boolean executeCommand(TaskList tasks) {
         String[] commands = command.split(" ");
         try {
@@ -64,7 +74,8 @@ public class Parser {
                 String timeString = String.join(" ", time);
                 try {
                     LocalDate timeStringParsed = LocalDate.parse(timeString);
-                    tasks.add(new Event(newCommand, timeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
+                    tasks.add(new Event(newCommand,
+                            timeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
                     ui.printCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
                 } catch (DateTimeParseException error) {
                     ui.printErrorMessage("datetime");
@@ -86,7 +97,8 @@ public class Parser {
                 String deadlineString = String.join(" ", deadline);
                 try {
                     LocalDate deadlineParsed = LocalDate.parse(deadlineString);
-                    tasks.add(new Deadline(newCommand, deadlineParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
+                    tasks.add(new Deadline(newCommand,
+                            deadlineParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
                     ui.printCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
                 } catch (DateTimeParseException e) {
                     ui.printErrorMessage("datetime");
@@ -98,6 +110,13 @@ public class Parser {
                 int index = Integer.parseInt(commands[1]) - 1;
                 tasks.delete(index);
                 ui.printCorrectMessage(Ui.Commands.DELETE, tasks, index);
+            } else if (commands[0].equals("find")) {
+                if (commands.length == 1) {
+                    throw new EmptyDescriptionException("find");
+                }
+                String[] keyword = Arrays.copyOfRange(commands, 1, commands.length);
+                String keywordString = String.join(" ", keyword);
+                ui.printCorrectMessage(Ui.Commands.FIND, tasks.find(keywordString), 0);
             } else {
                 throw new UnknownCommandException();
             }
