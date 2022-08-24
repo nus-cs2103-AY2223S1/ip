@@ -115,7 +115,12 @@ public class Parser {
     }
 
     private void handleSearchCommand(String userCommand) {
-        // TODO
+        String searchTerm = userCommand.substring(7).strip();
+        System.out.println("Duke: Here are your tasks that match the search term '" + searchTerm + "'.");
+        for (int i = 0; i < taskList.size(); i++) {
+            if (taskList.get(i).getName().contains(searchTerm)) {
+                System.out.printf("%3d: %s\n", i + 1, taskList.get(i).toString());
+            }
+        }
     }
-
 }
