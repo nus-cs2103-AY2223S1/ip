@@ -5,8 +5,19 @@ import duke.managers.TaskManager;
 import duke.managers.UiManager;
 import duke.models.task.Task;
 
+/**
+ * Encapsulates a command for deleting a {@link Task}. The command should be used as follows:
+ * <ul>
+ *     <li>
+ *         {@code delete {taskNumber}}: To delete a task corresponding to the task number.
+ *     </li>
+ * </ul>
+ *
+ * @author Emily Ong Hui Qi
+ */
 public class DeleteTaskCommand implements Command {
     public static final String COMMAND_WORD = "delete";
+
     private static final String DELETE_TASK_MESSAGE = "Noted. I've removed this task:";
     private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n" +
             "Use the 'list' command to view the tasks and their number.";
@@ -16,6 +27,12 @@ public class DeleteTaskCommand implements Command {
 
     private final String arguments;
 
+    /**
+     * Creates a new instance of the Command handler for deleting a {@link Task}.
+     *
+     * @param arguments The arguments following the {@code 'delete'} prefix that is supplied by the user from keyboard
+     *                  input, and should denote the corresponding task number
+     */
     public DeleteTaskCommand(String arguments) {
         this.arguments = arguments;
     }
