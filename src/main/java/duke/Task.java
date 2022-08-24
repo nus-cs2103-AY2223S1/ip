@@ -1,7 +1,7 @@
 package duke;
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
 
     /**
      * A task message.
@@ -35,6 +35,10 @@ public class Task {
      * String representation of the current task.
      * @return The task description and whether the task is done as a string.
      */
+    public String getDescription() {
+        return this.description;
+    }
+    
     @Override
     public String toString(){
         return this.isDone ? "[X] " + this.description : "[ ] " + this.description;

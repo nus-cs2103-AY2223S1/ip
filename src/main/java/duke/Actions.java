@@ -1,7 +1,4 @@
 package duke;
-import java.util.Scanner;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  *  A class which encapsulates the functionality Duke can do, current functionality is only the to-do list.
@@ -10,12 +7,9 @@ import java.nio.file.Paths;
  */
 
 public class Actions { //actions that Duke can perform
+import java.util.Scanner;
 
-    /**
-     * The current chatbot functionality which takes in user input and reacts accordingly to the input.
-     */
     public static void toDoList() {
-        Path p = Paths.get(System.getProperty("user.dir"), "data", "data.txt");
         TaskList currList = new TaskList();
         Storage fileHandler = new Storage(currList);
         fileHandler.readAndProcessFile();
