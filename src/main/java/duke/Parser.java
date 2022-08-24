@@ -104,7 +104,7 @@ public class Parser {
         }
     }
 
-    static void printUpcomingTasks(String fullCommand, TaskList tasks) {
+    static void printUpcomingTasks(TaskList tasks) {
         LocalDateTime dateTime = LocalDateTime.now();
         for (Task task : tasks.getTasks()) {
             if (task instanceof Deadline) {
