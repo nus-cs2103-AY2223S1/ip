@@ -1,0 +1,20 @@
+public class Parser {
+    public static Command parse(String command) {
+        if (command.startsWith("bye")) {
+            return Command.QUIT;
+        } else if (command.startsWith("list")) {
+            return Command.LIST;
+        } else if (command.startsWith("unmark")) {
+            return Command.UNMARK;
+        } else if (command.startsWith("mark")) {
+            return Command.MARK;
+        } else if (command.startsWith("deadline") || command.startsWith("todo")
+                || command.startsWith("event")) {
+            return Command.ADD;
+        } else if (command.startsWith("delete")) {
+            return Command.DELETE;
+        } else {
+            return Command.INVALID;
+        }
+    }
+}
