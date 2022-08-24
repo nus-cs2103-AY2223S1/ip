@@ -1,6 +1,13 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 class Event extends Task {
     public static String FLAG = " /at";
-    private String time;
+    private static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(
+            "yyyy-MM-dd HHmm"
+            );
+    private LocalDate time;
 
     private static String extractName(String input) {
         int flagIndex = input.indexOf(Event.FLAG);
@@ -13,15 +20,21 @@ class Event extends Task {
         }
     }
 
-    private static String extractTime(String input) {
+    private static LocalDate extractTime(String input) throws CarbonException {
         int len = input.length();
         int flagIndex = input.indexOf(Event.FLAG);
         if (len <= flagIndex + Event.FLAG.length() + 1) {
             CarbonException invalidParam = new InvalidParamException(input);
             throw invalidParam;
         } else {
-            String time = input.substring(flagIndex + Event.FLAG.length() + 1);
-            return time;
+            String timeString = input.substring(flagIndex + Event.FLAG.length() + 1);
+            try {
+                LocalDate time = LocalDate.parse(timeString, Event.timeFormat);
+                return time;
+            } catch (DateTimeParseException error) {
+                CarbonException invalidTime = new InvalidTimeException(timeString);
+                throw invalidTime;
+            }
         }
     }
 
@@ -33,6 +46,7 @@ class Event extends Task {
     @Override
     public String toString() {
         String type = "\u001B[34m(EVNT)\u001B[0m";
-        return String.format("%s %s @ %s", type, super.toString(), this.time);
+        String timeFormatted = this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return String.format("%s %s @ %s", type, super.toString(), timeFormatted);
     }
 }

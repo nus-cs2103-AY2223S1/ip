@@ -1,6 +1,14 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 class Deadline extends Task {
     public static String FLAG = " /by";
-    private String time;
+    private static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(
+            "yyyy-MM-dd HHmm"
+            );
+    // TODO: allow including time and also excluding time
+    private LocalDate time;
 
     private static String extractName(String input) throws CarbonException {
         int flagIndex = input.indexOf(Deadline.FLAG);
@@ -13,15 +21,21 @@ class Deadline extends Task {
         }
     }
 
-    private static String extractTime(String input) throws CarbonException {
+    private static LocalDate extractTime(String input) throws CarbonException {
         int len = input.length();
         int flagIndex = input.indexOf(Deadline.FLAG);
         if (len <= flagIndex + Deadline.FLAG.length() + 1) {
             CarbonException invalidParam = new InvalidParamException(input);
             throw invalidParam;
         } else {
-            String time = input.substring(flagIndex + Deadline.FLAG.length() + 1);
-            return time;
+            String timeString = input.substring(flagIndex + Deadline.FLAG.length() + 1);
+            try {
+                LocalDate time = LocalDate.parse(timeString, Deadline.timeFormat);
+                return time;
+            } catch (DateTimeParseException error) {
+                CarbonException invalidTime = new InvalidTimeException(timeString);
+                throw invalidTime;
+            }
         }
     }
 
@@ -33,6 +47,7 @@ class Deadline extends Task {
     @Override
     public String toString() {
         String type = "\u001B[32m(DEAD)\u001B[0m";
-        return String.format("%s %s < %s", type, super.toString(), this.time);
+        String timeFormatted = this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return String.format("%s %s < %s", type, super.toString(), timeFormatted);
     }
 }
