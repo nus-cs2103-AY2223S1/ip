@@ -37,7 +37,7 @@ public class Duke {
     }
 
     /**
-     * Run the ui function.
+     * Runs the ui function.
      */
     public void run() {
         this.ui.run();

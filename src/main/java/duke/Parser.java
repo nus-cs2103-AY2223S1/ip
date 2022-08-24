@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
  */
 public class Parser {
 
-	private static Pattern checkString = Pattern.compile("-?\\d+");
+	private static Pattern CHECKSTRING = Pattern.compile("-?\\d+");
 
 	private boolean isDone;
 
@@ -49,11 +49,11 @@ public class Parser {
 		if (strNum == null) {
 			return false;
 		}
-		return checkString.matcher(strNum).matches();
+		return CHECKSTRING.matcher(strNum).matches();
 	}
 
 	/**
-	 * Check if Duke is done running
+	 * Checks if Duke is done running
 	 *
 	 * @return True when "bye" is inputted, otherwise false
 	 */
@@ -62,7 +62,7 @@ public class Parser {
 	}
 
 	/**
-	 * Load tasks from text document into arraylist.
+	 * Loads tasks from text document into arraylist.
 	 *
 	 * @throws DukeException If incorrect information is used to add into the arraylist.
 	 * @throws IOException If the relative path to the file in invalid.
@@ -73,7 +73,7 @@ public class Parser {
 	}
 
 	/**
-	 * Actions taken after receiving response from the user.
+	 * runs command after receiving response from the user.
 	 *
 	 * @param response The string that consists of the user command.
 	 * @throws DukeException If the response is invalid.

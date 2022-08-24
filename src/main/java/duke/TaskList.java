@@ -8,14 +8,15 @@ import java.util.regex.Pattern;
  */
 public class TaskList {
 
-	private static Pattern checkString = Pattern.compile("-?\\d+");
-	private static ArrayList<Task> list = new ArrayList<Task>();
+	private static Pattern CHECKSTRING = Pattern.compile("-?\\d+");
+
+	private ArrayList<Task> list;
 
 	/**
 	 * Constructor of a tasklist
 	 */
 	public TaskList() {
-		this.list = new ArrayList<>();
+		this.list = new ArrayList<Task>();
 	}
 
 	/**
@@ -28,11 +29,11 @@ public class TaskList {
 		if (strNum == null) {
 			return false;
 		}
-		return checkString.matcher(strNum).matches();
+		return CHECKSTRING.matcher(strNum).matches();
 	}
 
 	/**
-	 * Add task from the text document to the arraylist.
+	 * Adds task from the text document to the arraylist.
 	 *
 	 * @param task The task from the text document.
 	 */
@@ -42,7 +43,7 @@ public class TaskList {
 	}
 
 	/**
-	 * get index from the arraylist.
+	 * gets index from the arraylist.
 	 *
 	 * @param number The inndex
 	 * @return The task in that index.
@@ -52,7 +53,7 @@ public class TaskList {
 	}
 
 	/**
-	 * Get the length of the arraylist.
+	 * Gets the length of the arraylist.
 	 *
 	 * @return The length of the arraylist
 	 */
@@ -61,14 +62,14 @@ public class TaskList {
 	}
 
 	/**
-	 * Clear the arraylist.
+	 * Clears the arraylist.
 	 */
 	public void clear() {
 		this.list.clear();
 	}
 
 	/**
-	 * mark task with an X
+	 * marks task with an X
 	 *
 	 * @param task
 	 */
@@ -81,7 +82,7 @@ public class TaskList {
 	}
 
 	/**
-	 * Unmark task by removing the X.
+	 * Unmarks task by removing the X.
 	 *
 	 * @param task
 	 */
@@ -143,7 +144,7 @@ public class TaskList {
 	}
 
 	/**
-	 * Add task into the arraylist.
+	 * Adds task into the arraylist.
 	 *
 	 * @param task The task added into the arraylist.
 	 */
@@ -156,7 +157,7 @@ public class TaskList {
 	}
 
 	/**
-	 * add the right type of task to the list.
+	 * Adds the right type of task to the list.
 	 *
 	 * @param type     Type of task.
 	 * @param parts    The string response broken down into its keywords.
@@ -215,7 +216,7 @@ public class TaskList {
 	}
 
 	/**
-	 * Delete task from the list.
+	 * Deletes task from the list.
 	 *
 	 * @param number The index to be removed.
 	 */

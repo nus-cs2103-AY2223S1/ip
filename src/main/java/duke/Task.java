@@ -17,7 +17,7 @@ package duke;
     }
 
     /**
-     * Get the right icon.
+     * Gets the right icon.
      *
      * @return The string icon.
      */
@@ -26,14 +26,14 @@ package duke;
     }
 
     /**
-     * Mark the task.
+     * Marks the task.
      */
     public void mark() {
         this.isDone = true;
     }
 
     /**
-     * Unmark the task.
+     * Unmarks the task.
      */
     public void unMark() {
         this.isDone = false;

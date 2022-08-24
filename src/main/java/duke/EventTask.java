@@ -38,7 +38,7 @@ public class EventTask extends Task {
     }
 
     /**
-     * format date and time to a string that would be added into the text document.
+     * formats date and time to a string that would be added into the text document.
      *
      * @return String added into the text document.
      */

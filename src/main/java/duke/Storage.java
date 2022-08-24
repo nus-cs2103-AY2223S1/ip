@@ -37,7 +37,7 @@ public class Storage {
 	}
 
 	/**
-	 * Write tasks from the arraylist into the text document.
+	 * Writes tasks from the arraylist into the text document.
 	 *
 	 * @param textToAdd String information of the task.
 	 * @throws IOException If the relative path to the text document is invalid.
@@ -49,7 +49,7 @@ public class Storage {
 	}
 
 	/**
-	 * Format the string of the task.
+	 * Formats the string of the task.
 	 *
 	 * @param task Task in the arraylist.
 	 * @return The formatted string.
@@ -71,7 +71,7 @@ public class Storage {
 	}
 
 	/**
-	 * Add tasks from the text document into the arraylist.
+	 * Adds tasks from the text document into the arraylist.
 	 *
 	 * @param tasks
 	 * @throws FileNotFoundException If the file does not exist.
