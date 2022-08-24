@@ -20,15 +20,15 @@ public class DukeDecoder {
                 String[] task = s.nextLine().split("\\|");
                 String typeOfTask = task[0];
                 switch (typeOfTask) {
-                    case "T":
-                        workList.add(new ToDo(task[2], task[1].equals("1")));
-                        break;
-                    case "D":
-                        workList.add(new Deadline(task[2], task[1].equals("1"), task[3]));
-                        break;
-                    case "E":
-                        workList.add(new Event(task[2], task[1].equals("1"), task[3]));
-                        break;
+                case "T":
+                    workList.add(new ToDo(task[2], task[1].equals("1")));
+                    break;
+                case "D":
+                    workList.add(new Deadline(task[2], task[1].equals("1"), task[3]));
+                    break;
+                case "E":
+                    workList.add(new Event(task[2], task[1].equals("1"), task[3]));
+                    break;
                 }
             }
             s.close();

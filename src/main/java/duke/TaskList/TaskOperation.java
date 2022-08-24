@@ -9,7 +9,7 @@ public class TaskOperation {
     /**
      * Add text that user typed to the word list
      *
-     * @param task     text the user typed
+     * @param task text the user typed
      * @param workList
      */
     public static void add(Task task, ArrayList<Task> workList) {
@@ -21,7 +21,7 @@ public class TaskOperation {
     /**
      * Delete a task
      *
-     * @param task     text the user typed
+     * @param task text the user typed
      * @param workList
      */
     public static void delete(Task task, ArrayList<Task> workList) {
