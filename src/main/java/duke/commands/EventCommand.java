@@ -21,10 +21,10 @@ public class EventCommand implements Command {
         try {
             taskList.addTask(this.event);
             storage.appendToFile(this.event);
-            ui.addTask(this.event);
-            ui.showTaskListCapacity(taskList);
+            ui.sayAddTask(this.event);
+            ui.sayTaskListSize(taskList);
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 

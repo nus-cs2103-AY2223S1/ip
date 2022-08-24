@@ -1,28 +1,27 @@
 package duke.tools;
 
-import duke.exceptions.DukeException;
 import duke.tasks.Task;
 
 import java.util.Scanner;
 
 public class Ui {
 
-    private boolean isExit = false;
+    private boolean isContinue = true;
     private static Scanner sc = new Scanner(System.in);
 
     public String readCommand() {
         return sc.nextLine();
     }
 
-    public boolean isContinue() {
-        return !this.isExit;
+    public boolean canContinue() {
+        return this.isContinue;
     }
 
-    public void greet() {
+    public void sayGreet() {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
     }
 
-    public void bye() {
+    public void sayBye() {
         System.out.println("Bye! Hope to see you again soon");
     }
 
@@ -38,26 +37,26 @@ public class Ui {
         System.out.println("That's all!");
     }
 
-    public void markTask(int index, Task task) {
+    public void sayMarkTask(int index, Task task) {
         System.out.println("Marked following task as done:");
         System.out.printf("%d. %s\n", index + 1, task);
     }
 
-    public void unmarkTask(int index, Task task) {
+    public void sayUnmarkTask(int index, Task task) {
         System.out.println("Marked following task as not done:");
         System.out.printf("%d. %s\n", index + 1, task);
     }
 
-    public void deleteTask(int index, Task task) {
+    public void sayDeleteTask(int index, Task task) {
         System.out.println("The following task is deleted:");
         System.out.printf("%d. %s\n", index + 1, task);
     }
 
-    public void addTask(Task task) {
+    public void sayAddTask(Task task) {
         System.out.println("Got it! I stored this task:\n" + task);
     }
 
-    public void showTaskListCapacity(TaskList taskList) {
+    public void sayTaskListSize(TaskList taskList) {
         System.out.printf("Now you have %d tasks in the list.\n", taskList.getSize());
     }
 
@@ -65,11 +64,11 @@ public class Ui {
         System.out.println("Here are the matching tasks in your list:");
     }
 
-    public void handleException(Exception e) {
+    public void sayExceptionMessage(Exception e) {
         System.out.println(e);
     }
 
     public void exit() {
-        this.isExit = true;
+        this.isContinue = false;
     }
 }

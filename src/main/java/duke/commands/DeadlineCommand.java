@@ -21,10 +21,10 @@ public class DeadlineCommand implements Command {
         try {
             taskList.addTask(this.deadline);
             storage.appendToFile(this.deadline);
-            ui.addTask(this.deadline);
-            ui.showTaskListCapacity(taskList);
+            ui.sayAddTask(this.deadline);
+            ui.sayTaskListSize(taskList);
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 

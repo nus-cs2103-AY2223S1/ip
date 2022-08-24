@@ -20,9 +20,9 @@ public class DeleteCommand implements Command {
             Task task = taskList.getTask(index);
             taskList.deleteTask(index);
             storage.writeToFile(taskList);
-            ui.deleteTask(index, task);
+            ui.sayDeleteTask(index, task);
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 

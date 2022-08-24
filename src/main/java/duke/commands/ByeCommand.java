@@ -9,11 +9,11 @@ public class ByeCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            ui.bye();
+            ui.sayBye();
             storage.writeToFile(taskList);
             ui.exit();
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 

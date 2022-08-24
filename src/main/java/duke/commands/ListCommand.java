@@ -16,7 +16,7 @@ public class ListCommand implements Command {
             }
             ui.finishListing();
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 

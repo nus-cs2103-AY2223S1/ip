@@ -34,31 +34,31 @@ public class Storage {
         this.filePath = directoryPath.resolve(fileName);
     }
 
-    public TaskList readFromFile() throws DukeException {
-        List<Task> storedTasks = new ArrayList<>();
-        checkDirectory();
-        checkFile();
+    public TaskList loadFromFile() throws DukeException {
+        ensureDirectoryExist();
+        ensureFileExist();
         try {
             File data = new File(filePath.toString());
             Scanner sc = new Scanner(data);
+            List<Task> storedTasks = new ArrayList<>();
             while (sc.hasNext()) {
-                storedTasks.add(dataStringToTask(sc.nextLine()));
+                storedTasks.add(convertDataStringToTask(sc.nextLine()));
             }
             sc.close();
+            return new TaskList(storedTasks);
         } catch (FileNotFoundException e) {
             throw new DukeException("Exception: Cannot open file");
         }
-        return new TaskList(storedTasks);
     }
 
     public void writeToFile(TaskList tasks) throws DukeException {
         List<Task> storedTasks = tasks.getStoredTasks();
-        checkDirectory();
-        checkFile();
+        ensureDirectoryExist();
+        ensureFileExist();
         try {
             FileWriter data = new FileWriter(filePath.toString());
             for (int i = 0; i < storedTasks.size(); i++) {
-                data.write(taskToDataString(storedTasks.get(i)));
+                data.write(convertTaskToDataString(storedTasks.get(i)));
             }
             data.close();
         } catch (IOException e) {
@@ -67,39 +67,37 @@ public class Storage {
     }
 
     public void appendToFile(Task task) throws DukeException {
-        checkDirectory();
-        checkFile();
+        ensureDirectoryExist();
+        ensureFileExist();
         try {
             FileWriter data = new FileWriter(filePath.toString(), true);
-            data.write(taskToDataString(task));
+            data.write(convertTaskToDataString(task));
             data.close();
         } catch (IOException e) {
             throw new DukeException("Exception: Cannot open file");
         }
     }
 
-    private static void checkDirectory() {
+    private static void ensureDirectoryExist() {
         File folder = new File(directoryPath.toString());
         if (!folder.exists()) {
-            System.out.println("N");
             folder.mkdir();
         }
     }
 
-    private void checkFile() {
+    private void ensureFileExist() throws DukeException {
         try {
             File data = new File(directoryPath.resolve("data.txt").toString());
             if (!data.exists()) {
-                System.out.println("new file");
                 data.createNewFile();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DukeException("Exception: Unable to create new file. Tasks might not be stored.");
         }
     }
 
-    private static String taskToDataString(Task task) throws DukeException {
-        switch (task.getType()) {
+    private static String convertTaskToDataString(Task task) throws DukeException {
+        switch (task.getTaskType()) {
         case TODO:
             return "T " + (task.isDone() ? "Y " : "N ") + task.getDescription() + System.lineSeparator();
         case DEADLINE:
@@ -115,7 +113,7 @@ public class Storage {
         }
     }
 
-    private static Task dataStringToTask(String str) throws DukeException {
+    private static Task convertDataStringToTask(String str) throws DukeException {
         String[] taskInfo = str.split(" ", 3);
         try {
             TaskType type = parseTaskType(taskInfo[0]);
@@ -123,21 +121,21 @@ public class Storage {
             case TODO:
                 Todo todo = new Todo(taskInfo[2]);
                 if ("Y".equals(taskInfo[1].strip())) {
-                    todo.markAsDone();
+                    todo.setIsDone(true);
                 }
                 return todo;
             case DEADLINE:
                 String[] deadlineInfo = taskInfo[2].split("/by ", 2);
                 Deadline deadline = new Deadline(deadlineInfo[0].strip(), LocalDateTime.parse(deadlineInfo[1]));
                 if ("Y".equals(taskInfo[1])) {
-                    deadline.markAsDone();
+                    deadline.setIsDone(true);
                 }
                 return deadline;
             case EVENT:
                 String[] eventInfo = taskInfo[2].split("/at ", 2);
                 Event event = new Event(eventInfo[0].strip(), LocalDateTime.parse(eventInfo[1]));
                 if ("Y".equals(taskInfo[1])) {
-                    event.markAsDone();
+                    event.setIsDone(true);
                 }
                 return event;
             default:

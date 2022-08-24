@@ -18,9 +18,9 @@ public class MarkCommand implements Command {
         try {
             taskList.setTaskDoneStatus(index, true);
             storage.writeToFile(taskList);
-            ui.markTask(index, taskList.getTask(index));
+            ui.sayMarkTask(index, taskList.getTask(index));
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 

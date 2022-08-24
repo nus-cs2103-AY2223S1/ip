@@ -18,7 +18,8 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s (at: %s)", super.getTaskIcon(), super.toString(), Parser.displayDateTime(this.dateTime));
+        return String.format("[%s] %s (at: %s)", super.getTaskIcon(), super.toString(),
+                Parser.formatDateTimeToPrint(this.dateTime));
     }
 
     @Override
