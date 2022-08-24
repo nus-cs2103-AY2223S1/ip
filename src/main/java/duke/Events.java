@@ -1,3 +1,4 @@
+package duke;
 public class Events extends Task{
     String time;
     String type;

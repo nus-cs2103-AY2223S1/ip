@@ -1,3 +1,4 @@
+package duke;
 public class DukeEventEmptyException extends DukeException{
      DukeEventEmptyException() {
         super();

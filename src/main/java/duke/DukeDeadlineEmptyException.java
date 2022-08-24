@@ -1,3 +1,4 @@
+package duke;
 public class DukeDeadlineEmptyException extends DukeException {
     DukeDeadlineEmptyException() {
         super();

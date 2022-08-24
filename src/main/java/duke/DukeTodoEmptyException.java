@@ -1,3 +1,4 @@
+package duke;
 public class DukeTodoEmptyException extends DukeException{
     DukeTodoEmptyException() {
         super();

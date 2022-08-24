@@ -1,4 +1,4 @@
 [T][] 1
-[D][] do Homework (by: Monday)
+[D][X] do Homework (by: Monday)
 [T][] 2
 [E][] outing 1 (at: Monday)
