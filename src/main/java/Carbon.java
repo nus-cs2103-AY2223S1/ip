@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -42,7 +46,12 @@ public class Carbon {
     };
 
     // scanner for inputs
-    private static Scanner sc = new Scanner(System.in);
+    private static Scanner sysScanner = new Scanner(System.in);
+    
+    // filepath for tasks savefile
+    private static String WORKINGDIR = System.getProperty("user.dir");
+    private static String SAVEFILE = Carbon.WORKINGDIR + "/../../../store/tasks.txt";
+    private static String SAVEFILEDIR = Carbon.WORKINGDIR + "/../../../store/";
 
     // own fields
     private Random rand;
@@ -60,7 +69,7 @@ public class Carbon {
         String receiver = "\n··-··--···--\n";
         System.out.println(receiver);
         System.out.print("<-- ");
-        String input = Carbon.sc.nextLine();
+        String input = Carbon.sysScanner.nextLine();
         return input;
     }
 
@@ -68,7 +77,7 @@ public class Carbon {
     private Carbon() {
         // init fields
         this.rand = new Random();
-        this.tasks = new ArrayList<Task>();
+        this.tasks = this.loadSavefile();
 
         // String randomPrompt = Carbon.initPrompts[
         //     this.rand.nextInt(Carbon.initPrompts.length)
@@ -93,6 +102,58 @@ public class Carbon {
                 this.exit();
             }
         }
+    }
+
+    private List<Task> loadSavefile() {
+        List<Task> savedTasks = new ArrayList<Task>();
+        try {
+            File savefile = new File(Carbon.SAVEFILE);
+            if (savefile.isFile()) {
+                Scanner savefileScanner = new Scanner(savefile);
+                while (savefileScanner.hasNextLine()) {
+                    String data = savefileScanner.nextLine();
+                    this.loadTask(data, savedTasks);
+                }
+                savefileScanner.close();
+            }
+        } catch (FileNotFoundException error) {
+            System.out.println(error);
+        }
+        return savedTasks;
+    }
+
+    private void loadTask(String data, List<Task> savedTasks) {
+        try {
+            Task task = Task.decodeTask(data);
+            savedTasks.add(task);
+        } catch (CarbonException error) {
+            this.processError(error);
+        }
+    }
+
+    private void saveTasks() throws CarbonException {
+        File savefile = new File(Carbon.SAVEFILE);
+        File savefileDir = new File(Carbon.SAVEFILEDIR);
+        try {
+            // ensures dir and file exists
+            savefileDir.mkdir();
+            savefile.createNewFile();
+
+            FileWriter writer = new FileWriter(savefile);
+            writer.write(this.encodeTasks(this.tasks));
+            writer.close();
+        } catch (IOException error) {
+            System.out.println(error);
+        }
+    }
+
+    private String encodeTasks(List<Task> tasks) {
+        String encodedTasks = "";
+        int len = tasks.size();
+        for (int i = 0; i < len; i++) {
+            encodedTasks += tasks.get(i).encode();
+        }
+        return encodedTasks;
     }
 
     private void process(String input) {
@@ -130,6 +191,7 @@ public class Carbon {
                 CarbonException invalidInput = new InvalidInputException(input);
                 throw invalidInput;
             }
+            this.saveTasks();
         } catch (CarbonException error) {
             this.processError(error);
         }
@@ -179,15 +241,15 @@ public class Carbon {
         Task newTask;
         switch (type) {
             case TODO: {
-                newTask = new Todo(input);
+                newTask = Todo.createTask(input);
                 break;
             }
             case DEADLINE: {
-                newTask = new Deadline(input);
+                newTask = Deadline.createTask(input);
                 break;
             }
             case EVENT: {
-                newTask = new Event(input);
+                newTask = Event.createTask(input);
                 break;
             }
             default:

@@ -19,3 +19,6 @@ src/main/resources/docs/
 # Java stuff
 *.class
 .java-version
+
+# Local store of tasks data
+/store/
