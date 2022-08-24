@@ -22,7 +22,7 @@ public class Duke {
     private final Ui ui;     // Deals with making sense of the user command.
 
     /**
-     * Constructor for a duke class.
+     * Constructor for a duke object.
      */
     public Duke(String filePath) {
         ui = new Ui();

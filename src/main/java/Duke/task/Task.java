@@ -33,6 +33,9 @@ public abstract class Task {
         this.done = done;
     }
 
+    /**
+     * @return A string which represents the task name of the task.
+     */
     public String getTaskName() {
         return taskName;
     }

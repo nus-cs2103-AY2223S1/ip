@@ -8,7 +8,7 @@ import Duke.exceptions.InvalidSecondaryCommandException;
 import Duke.exceptions.InvalidTaskNameException;
 
 /**
- * The {@code Input} class formats a string input into an input object.
+ * The {@code Parser} class formats a string input into an input object.
  */
 public class Parser {
 
@@ -16,19 +16,31 @@ public class Parser {
     private String mainData;
     private String secondaryData;
 
+    /**
+     * Constructor for a parser object.
+     */
     private Parser() {
         mainData = "";
         secondaryData = "";
     }
 
+    /**
+     * @return the command of the input.
+     */
     public Command getCommand() {
         return command;
     }
 
+    /**
+     * @return the main data of the input.
+     */
     public String getMainData() {
         return mainData;
     }
 
+    /**
+     * @return the secondary data of the input.
+     */
     public String getSecondaryData() {
         return secondaryData;
     }

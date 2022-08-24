@@ -6,7 +6,7 @@ import Duke.task.Task;
 import Duke.task.TaskList;
 
 /**
- * The {@code Prompt} class contains outputs used throughout the application.
+ * The {@code Ui} class contains outputs used throughout the application.
  */
 public class Ui {
 
