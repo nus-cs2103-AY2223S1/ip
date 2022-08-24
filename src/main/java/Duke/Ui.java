@@ -58,6 +58,20 @@ public class Ui {
                 + "Now you have " + TaskList.taskList.size() + " tasks in the list." + "\n";
 
     }
+    public String printFind(String description) {
+        String output = "";
+        TaskList.searchKeyword(description);
+        if (TaskList.getTempList().size() == 0) {
+            output = "Sorry could not find a match";
+        } else {
+            output = "Here are your results:" + "\n";
+            for (int i = 0; i < TaskList.getTempList().size(); i++) {
+                int number = i + 1;
+                output += number + "." + TaskList.getTempList().get(i) + "\n";
+            }
+        }
+        return output;
+    }
 
     public void printError(String message) {
         System.out.println(message);

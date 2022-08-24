@@ -115,6 +115,11 @@ public class Handler {
         return ui.printDelete(task,index);
     }
 
+    public String handleFind(String toEcho){
+        String tofind = toEcho.substring(5);
+        return ui.printFind(tofind);
+    }
+
     public String addTask(Task task){
         taskList.add(task);
         return ui.printTask(task);
