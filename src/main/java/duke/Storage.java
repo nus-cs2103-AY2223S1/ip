@@ -12,18 +12,28 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.time.LocalDate;
 
+/**
+ * public class Storage to handle file input/read and file output/saving of text file.
+ */
 public class Storage {
     private String filepath;
 
+    /**
+     * public constructor for Storage.
+     * @param filePath
+     */
     public Storage(String filePath) {
         this.filepath = filePath;
     }
 
+    /**
+     * public method loadfromFile to load/read commands from text file.
+     * @return an arraylist containing the list of task read from file.
+     */
     public ArrayList<Task> loadfromFile() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" d/MM/uuuu");
         ArrayList<Task> memo = new ArrayList<>();
@@ -71,6 +81,10 @@ public class Storage {
         return memo;
     }
 
+    /**
+     * public method savetoFile to write a new file containing the return of input/element of list on each line.
+     * @param input
+     */
     public void savetoFile(List<String> input) {
         try {
             new File(this.filepath).getParentFile().mkdirs();

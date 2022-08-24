@@ -1,3 +1,7 @@
+/**
+ * Project Duke CS2103
+ * Done by Hong Jin.
+ */
 package duke.command;
 
 import java.time.LocalDate;
@@ -7,6 +11,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Deadline;
 
+/**
+ *
+ */
 public class DeadlineCommand extends Command{
     private String event;
     private LocalDate time;
