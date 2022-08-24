@@ -1,3 +1,5 @@
+package Duke;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -7,7 +9,7 @@ public class Parser {
     private Ui bot;
     private Storage storage;
 
-    public Parser(TaskList tasklist,Ui bot,Storage storage){
+    public Parser(TaskList tasklist, Ui bot, Storage storage){
         this.tasklist = tasklist;
         this.bot = bot;
          this.storage = storage;
@@ -17,6 +19,7 @@ public class Parser {
     public void readInput() throws DukeException, IOException {
         Scanner scanner = new Scanner(System.in);
         String str;
+        int initialSize = tasklist.oldTasksSize();
         do{
             str = scanner.next(); //This will check for the action word
             if(str.equals("bye")){
@@ -89,14 +92,23 @@ public class Parser {
 //                scanner.nextLine();
             }
             else{
-                storage.addTasks("data/Duke2.txt",tasklist.newTasks);
+                if(tasklist.oldTasksSize()<initialSize){
+                    storage.replaceTasks("data/Duke2.txt",tasklist.oldTasks,tasklist.newTasks);
+
+                } else{
+                    storage.addTasks("data/Duke2.txt",tasklist.newTasks);
+                }
                 bot.displayError();
             }
 
         }  while(!str.equals("bye"));
         if (str.equals("bye")) {
-            storage.addTasks("data/Duke2.txt",tasklist.newTasks); //need to modify add task
-            bot.goodBye();
+            if(tasklist.oldTasksSize()<initialSize){
+                storage.replaceTasks("data/Duke2.txt",tasklist.oldTasks,tasklist.newTasks);
+            } else{
+                storage.addTasks("data/Duke2.txt",tasklist.newTasks);
+                bot.displayError();
+            }
         }
    }
 

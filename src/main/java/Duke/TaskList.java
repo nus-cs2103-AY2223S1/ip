@@ -1,3 +1,5 @@
+package Duke;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,10 @@ public class TaskList {
 
     public int size(){
         return oldTasks.size() + newTasks.size();
+    }
+
+    public int oldTasksSize(){
+        return oldTasks.size();
     }
 
 }

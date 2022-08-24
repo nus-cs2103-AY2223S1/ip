@@ -1,3 +1,5 @@
+package Duke;
+
 import java.util.List;
 
 public class Ui {
@@ -22,7 +24,7 @@ public class Ui {
         }
     }
 
-    public void addTask(int total,Task task){
+    public void addTask(int total, Task task){
         System.out.println("Got it. I've added this task: ");
         System.out.println(task.toString());
         System.out.println("Now you have "+ total + " tasks in the list.");

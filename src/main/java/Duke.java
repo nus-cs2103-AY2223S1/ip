@@ -1,11 +1,15 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import Duke.Ui;
+import Duke.TaskList;
+import Duke.Storage;
+import Duke.Parser;
+import Duke.DukeException;
+import Duke.Task;
 
 public class Duke {
     private Ui bot; //bot is in charge of printing statements
