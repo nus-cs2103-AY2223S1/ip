@@ -1,15 +1,17 @@
+import java.time.LocalDateTime;
+
 public class Deadline extends Task {
     /* Time frame that the Deadline object should be completed by*/
-    protected String by;
+    protected LocalDateTime deadlineDate;
 
     /**
      * Constructor for Deadline Class.
      * @param name String representation of task name.
-     * @param by String representation of task deadline.
+     * @param deadlineDate LocalDateTime representation of task deadline.
      */
-    public Deadline(String name, String by) {
+    public Deadline(String name, LocalDateTime deadlineDate) {
         super(name);
-        this.by = by;
+        this.deadlineDate = deadlineDate;
     }
 
     /**
@@ -18,6 +20,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + DateTimeFormatUtils.printDate(deadlineDate) + ")";
     }
+
 }

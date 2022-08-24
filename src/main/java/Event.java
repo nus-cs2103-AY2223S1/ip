@@ -1,15 +1,22 @@
+import java.time.LocalDateTime;
+
 public class Event extends Task {
     /* Duration of Event */
-    protected String duration;
+    protected LocalDateTime startDate;
+    protected LocalDateTime endDate;
 
     /**
      * Constructor for Event Class.
-     * @param name String representation of task name.
-     * @param duration String representation of duration of event.
+     *
+     * @param name String representation of task name
+     * @param start LocalTimeDate representing start of event.
+     * @param end LocalTimeDate representing end of event.
      */
-    public Event(String name, String duration) {
+
+    public Event(String name, LocalDateTime start, LocalDateTime end) {
         super(name);
-        this.duration = duration;
+        this.startDate = start;
+        this.endDate = end;
     }
     /**
      * Returns string representation of Event object.
@@ -17,6 +24,9 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + duration + ")";
+        return "[E]" + super.toString() + " (at: " + DateTimeFormatUtils.printDate(startDate)
+                + " to " + DateTimeFormatUtils.printDate(endDate) + ")";
     }
+
+
 }
