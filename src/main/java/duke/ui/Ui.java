@@ -1,10 +1,10 @@
 package duke.ui;
 
-import duke.common.Message;
+import java.util.Scanner;
+
+import duke.common.Messages;
 import duke.data.TaskList;
 import duke.tasks.Task;
-
-import java.util.Scanner;
 
 /**
  * Displays messages to the user to provide information of the tasks or of errors encountered.
@@ -39,14 +39,14 @@ public class Ui {
      * Displays the greeting message to the user.
      */
     public void showGreeting() {
-        show(Message.GREETING);
+        show(Messages.MESSAGE_GREETING);
     }
 
     /**
      * Displays the goodbye message to the user.
      */
     public void showGoodbye() {
-        show(Message.GOODBYE);
+        show(Messages.MESSAGE_GOODBYE);
         this.in.close();
     }
 
@@ -54,35 +54,35 @@ public class Ui {
      * Displays the task added to the user.
      */
     public void showTaskAdded(Task task) {
-        show(Message.TASK_ADDED + task);
+        show(Messages.MESSAGE_TASK_ADDED + task);
     }
 
     /**
      * Displays the task removed to the user.
      */
     public void showTaskRemoved(Task task) {
-        show(Message.TASK_REMOVED + task);
+        show(Messages.MESSAGE_TASK_REMOVED + task);
     }
 
     /**
      * Displays the task marked as done to the user.
      */
     public void showTaskDone(Task task) {
-        show(Message.TASK_DONE + task);
+        show(Messages.MESSAGE_TASK_DONE + task);
     }
 
     /**
      * Displays the task marked as not done to the user.
      */
     public void showTaskNotDone(Task task) {
-        show(Message.TASK_NOT_DONE + task);
+        show(Messages.MESSAGE_TASK_NOT_DONE + task);
     }
 
     /**
      * Displays the number of tasks to the user.
      */
     public void showNumberOfTasks(int count) {
-        show(String.format(Message.NUMBER_OF_TASKS, count));
+        show(String.format(Messages.MESSAGE_NUMBER_OF_TASKS, count));
     }
 
     /**
@@ -91,14 +91,14 @@ public class Ui {
     public void showAllTasks(TaskList taskList) {
         int size = taskList.numTasks();
         if (size != 0) {
-            show(Message.TASK_LIST);
+            show(Messages.MESSAGE_TASK_LIST);
             for (int i = 0; i < size; i++) {
                 int taskNum = i + 1;
                 Task task = taskList.getTask(i);
                 show(taskNum + "." + task);
             }
         } else {
-            show(Message.EMPTY_TASK_LIST);
+            show(Messages.MESSAGE_EMPTY_TASK_LIST);
         }
     }
 }

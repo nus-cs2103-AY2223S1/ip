@@ -1,10 +1,10 @@
 package duke.commands;
 
+import duke.data.TaskList;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
-import duke.data.TaskList;
-import duke.ui.Ui;
 import duke.tasks.Deadline;
+import duke.ui.Ui;
 
 /**
  * Represents the command to add a Deadline task to the list of tasks.

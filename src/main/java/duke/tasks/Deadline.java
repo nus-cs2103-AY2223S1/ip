@@ -1,16 +1,16 @@
 package duke.tasks;
 
-import duke.parser.Parser;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import duke.parser.Parser;
 
 /**
  * Represents a task that needs to be done before a specific date.
  */
 public class Deadline extends Task {
     private static final String TASK_SYMBOL = "D";
-    private static final String OUTPUT_FORMAT = "d MMM yyyy";
+    private static final String DATE_OUTPUT_FORMAT = "d MMM yyyy";
     private String by;
 
     /**
@@ -52,6 +52,6 @@ public class Deadline extends Task {
 
     private String getFormattedDate() {
         LocalDate date = Parser.parseDate(this.by);
-        return date.format(DateTimeFormatter.ofPattern(OUTPUT_FORMAT));
+        return date.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT));
     }
 }

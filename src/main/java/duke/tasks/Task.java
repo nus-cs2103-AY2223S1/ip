@@ -21,7 +21,7 @@ public abstract class Task {
      * @return "X" if the Task is done or an empty String is the Task is not done.
      */
     public String getStatusIcon() {
-        return (this.isDone ? "X" : " "); // mark done task with X
+        return (this.isDone ? "X" : " ");
     }
 
     /**

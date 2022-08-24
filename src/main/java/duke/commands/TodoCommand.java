@@ -1,10 +1,10 @@
 package duke.commands;
 
+import duke.data.TaskList;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
-import duke.data.TaskList;
-import duke.ui.Ui;
 import duke.tasks.Todo;
+import duke.ui.Ui;
 
 /**
  * Represents the command to add a Todo task to the list of tasks.
