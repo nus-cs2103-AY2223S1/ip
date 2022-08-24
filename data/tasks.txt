@@ -1,4 +1,4 @@
-T | 1 |  project
-E | 1 |  meeting  |  22 Dec 2022 18:00 PM
-D | 0 |  homework  |  25 Dec 2022 01:00 AM
-T | 0 | bio project
+T | 1 |   project
+E | 1 |   meeting   |   22 Dec 2022 18:00 PM
+D | 0 |   homework   |   25 Dec 2022 01:00 AM
+T | 0 |  bio project
