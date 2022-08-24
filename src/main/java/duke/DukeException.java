@@ -1,7 +1,7 @@
 package duke;
 
-public class DukeException extends Exception {
-    protected String msg;
+class DukeException extends Exception {
+    String msg;
 
     public DukeException(String s) {
         this.msg = s;
