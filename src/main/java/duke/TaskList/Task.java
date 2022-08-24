@@ -32,14 +32,6 @@ public class Task {
     }
 
     /**
-     * Get detail of the task
-     * @return String
-     */
-    public String getDetail() {
-        return detail;
-    }
-
-    /**
      * Mark task as Done and Print acknowledge message.
      */
     public void markAsDone() {
