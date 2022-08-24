@@ -16,7 +16,6 @@ public class TaskList {
         this.taskList.add(t);
     }
 
-
     public int getLength() {
         return taskList.size();
     }

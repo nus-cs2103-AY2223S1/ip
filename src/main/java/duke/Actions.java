@@ -1,15 +1,12 @@
 package duke;
+
 import java.util.Scanner;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
-public class Actions { //actions that Duke can perform
-
+public class Actions {
     /**
      * The current chatbot functionality which takes in user input and reacts accordingly to the input.
      */
     public static void toDoList() {
-        Path p = Paths.get(System.getProperty("user.dir"), "data", "data.txt");
         TaskList currList = new TaskList();
         Storage fileHandler = new Storage(currList);
         fileHandler.readAndProcessFile();
