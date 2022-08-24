@@ -1,17 +1,22 @@
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.File;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Duke {
     public static final String BORDER = ">>=========================="
             + "============[**]============="
             + "=========================<<";
-    private static ArrayList<Task> taskList = new ArrayList<Task>();
+
+    private static ArrayList<Task> taskList = new ArrayList<>();
     private static boolean isRunning = true;
 
     // encapsulate in a TaskList class later with other methods
@@ -28,7 +33,7 @@ public class Duke {
 
     public static String convertTasksToSaveFormat() {
         StringBuilder sb = new StringBuilder();
-        taskList.forEach(t -> sb.append(t.toSaveFormat() + "\n"));
+        taskList.forEach(t -> sb.append(t.toSaveFormat()).append("\n"));
         return sb.toString();
     }
 
@@ -50,7 +55,6 @@ public class Duke {
             System.out.println("Error: Unable to save tasks.");
             e.printStackTrace();
         }
-
     }
 
     public static void loadTasks() {
@@ -62,18 +66,35 @@ public class Duke {
                 for (String line : allLines) {
                     String[] parsedTask = line.split(" \\| ", 4);
                     boolean isDone = parsedTask[1].compareTo("1") == 0;
+                    String desc = parsedTask[2];
                     switch (parsedTask[0]) {
                     case "T":
-                        ToDo todo = new ToDo(parsedTask[2], isDone);
+                        ToDo todo = new ToDo(desc, isDone);
                         taskList.add(todo);
                         break;
                     case "D":
-                        Deadline deadline = new Deadline(parsedTask[2], parsedTask[3], isDone);
-                        taskList.add(deadline);
+                        String[] parsedDateTime = parsedTask[3].split(" ", 2);
+                        if (parsedDateTime.length < 2) {
+                            LocalDate date = convertStringToDate(parsedTask[3]);
+                            Deadline deadline = new Deadline(desc, date, isDone);
+                            taskList.add(deadline);
+                        } else {
+                            LocalDateTime dateTime = convertStringToDateTime(parsedTask[3]);
+                            Deadline deadline = new Deadline(desc, dateTime, isDone);
+                            taskList.add(deadline);
+                        }
                         break;
                     case "E":
-                        Event event = new Event(parsedTask[2], parsedTask[3], isDone);
-                        taskList.add(event);
+                        parsedDateTime = parsedTask[3].split(" ", 2);
+                        if (parsedDateTime.length < 2) {
+                            LocalDate date = convertStringToDate(parsedTask[3]);
+                            Event event = new Event(desc, date, isDone);
+                            taskList.add(event);
+                        } else {
+                            LocalDateTime dateTime = convertStringToDateTime(parsedTask[3]);
+                            Event event = new Event(desc, dateTime, isDone);
+                            taskList.add(event);
+                        }
                         break;
                     }
                 }
@@ -91,10 +112,10 @@ public class Duke {
             msg = "  Type \"" + keyword + " <description>\" to add a new todo.";
             break;
         case DEADLINE:
-            msg = "  Type \"" + keyword + " <description> /<time>\" to add a new deadline.";
+            msg = "  Type \"" + keyword + " <description> /by <date> <time>[optional]\" to add a new deadline.";
             break;
         case EVENT:
-            msg = "  Type \"" + keyword + " <description> /<time>\" to add a new event.";
+            msg = "  Type \"" + keyword + " <description> /at <date> <time>[optional]\" to add a new event.";
             break;
         case MARK:
             msg = "  Type \"" + keyword + " <task number>\" to mark a task as complete.";
@@ -110,7 +131,7 @@ public class Duke {
     }
 
     // overload method
-    public static void addTask(String description) {
+    public static void addTask(String description) throws MissingDescriptionException {
         ToDo todo = new ToDo(description);
         taskList.add(todo);
         saveTasks();
@@ -119,13 +140,26 @@ public class Duke {
                 + (taskList.size() > 1 ? "s" : "") + ". Bummer.");
     }
 
-    public static void addTask(String taskType, String description, String time) {
+    public static void addTask(String taskType, String description, String dateTimeStr) throws MissingDescriptionException {
         Task task = null;
-        if (taskType.compareTo("deadline") == 0) {
-            task = new Deadline(description, time);
+        String[] parsedDateTime = dateTimeStr.split(" ", 2);
+        
+        if (parsedDateTime.length < 2) {
+            LocalDate date = convertStringToDate(dateTimeStr);
+            if (taskType.compareTo("deadline") == 0) {
+                task = new Deadline(description, date);
+            } else {
+                task = new Event(description, date);
+            }
         } else {
-            task = new Event(description, time);
+            LocalDateTime dateTime = convertStringToDateTime(dateTimeStr);
+            if (taskType.compareTo("deadline") == 0) {
+                task = new Deadline(description, dateTime);
+            } else {
+                task = new Event(description, dateTime);
+            }
         }
+        
         taskList.add(task);
         saveTasks();
         System.out.println("  Seriously? Another one?\n" + "  Give me strength...\n"
@@ -178,7 +212,7 @@ public class Duke {
     }
 
     public static void parseCommand(String input, Scanner sc) throws UnknownCommandException,
-            MissingTaskNumberException, MissingDescriptionException, MissingTimeException {
+            MissingTaskNumberException, MissingDescriptionException, MissingDateException {
         String[] parsed = input.split(" ", 2); // splits string at the first whitespace encountered
         String keyword = parsed[0];
         try {
@@ -216,19 +250,14 @@ public class Duke {
                 }
                 addTask(parsed[1]);
             } else if (keyword.compareTo("deadline") == 0) {
-                // handles case where only "deadline" or "deadline<whitespace>" is entered
                 if (parsed.length < 2 || parsed[1].isBlank()) {
                     throw new MissingDescriptionException(commandGuide(keyword, Command.DEADLINE));
                 } else {
-                    String[] parsedTask = parsed[1].split(" /", 2); // only splits at first instance of /
-                    // handles case where description is an empty string/only made up of whitespace
-                    if ((parsedTask.length < 2 && parsedTask[0].isBlank())
-                            || parsed[1].trim().startsWith("/")) {
+                    String[] parsedTask = parsed[1].split(" /by ", 2);
+                    if (parsedTask[0].startsWith("/by")) {
                         throw new MissingDescriptionException(commandGuide(keyword, Command.DEADLINE));
-                    // case where description is filled in but not the deadline (deadline is either blank or whitespace)
-                    } else if ((parsedTask.length < 2 && !parsedTask[0].startsWith("/"))
-                            || parsedTask[1].isBlank()) {
-                        throw new MissingTimeException(commandGuide(keyword, Command.DEADLINE));
+                    } else if (parsedTask.length < 2) {
+                        throw new MissingDateException(commandGuide(keyword, Command.DEADLINE));
                     } else {
                         addTask(keyword, parsedTask[0], parsedTask[1]);
                     }
@@ -237,13 +266,11 @@ public class Duke {
                 if (parsed.length < 2 || parsed[1].isBlank()) {
                     throw new MissingDescriptionException(commandGuide(keyword, Command.EVENT));
                 } else {
-                    String[] parsedTask = parsed[1].split(" /", 2); // only splits at first instance of /
-                    if ((parsedTask.length < 2 && parsedTask[0].isBlank())
-                            || parsed[1].trim().startsWith("/")) {
+                    String[] parsedTask = parsed[1].split(" /at ", 2);
+                    if (parsedTask[0].startsWith("/at")) {
                         throw new MissingDescriptionException(commandGuide(keyword, Command.EVENT));
-                    } else if ((parsedTask.length < 2 && !parsedTask[0].startsWith("/"))
-                            || parsedTask[1].isBlank()) {
-                        throw new MissingTimeException(commandGuide(keyword, Command.EVENT));
+                    } else if (parsedTask.length < 2) {
+                        throw new MissingDateException(commandGuide(keyword, Command.EVENT));
                     } else {
                         addTask(keyword, parsedTask[0], parsedTask[1]);
                     }
@@ -253,8 +280,16 @@ public class Duke {
             }
         } catch (NumberFormatException e) {
             System.out.println("  Do you need me to teach you what a number is?\n"
-                    + "  " + parsed[1] + " is not a number.");
+                    + "  '" + parsed[1] + "' is not a number.");
         }
+    }
+    
+    public static LocalDateTime convertStringToDateTime(String dateTime) {
+        return LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+    }
+
+    public static LocalDate convertStringToDate(String date) {
+        return LocalDate.parse(date, DateTimeFormatter.ofPattern("d/M/yyyy"));
     }
 
     public static void printResponse(String input, Scanner sc) {
@@ -266,11 +301,14 @@ public class Duke {
         } catch (MissingDescriptionException e) {
             System.out.println("  It seems you've invented a way to do nothing. Typical...\n"
                     + e.getMessage());
-        } catch (MissingTimeException e) {
+        } catch (MissingDateException e) {
             System.out.println("  You do realise deadlines and events usually have a time or date, right?\n"
                     + e.getMessage());
         } catch (UnknownCommandException e) {
             System.out.println("  If you want my help, the least you could do is say something I understand.");
+        } catch (DateTimeParseException e) {
+            System.out.println("  Invalid date or time.\n  Please enter a date and time with either of the following "
+                    + "formats:\n  'dd/mm/yyyy HHMM' or 'dd/mm/yyyy'.");
         }
         System.out.println(BORDER);
     }

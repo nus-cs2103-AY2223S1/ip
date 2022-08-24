@@ -1,6 +1,10 @@
 T | 0 | read a book
-E | 0 | project meeting/tea | on Sunday 2-4pm
-E | 0 | project meeting | on Sunday 2-4pm
-E | 0 | project meeting | on Sunday 2-4pm /3-5pm
-D | 0 | spanish homework/extra | by Wednesday 6pm
-D | 0 | spanish homework | by Wednesday 6pm
+E | 0 | project meeting | 1/1/2022
+E | 0 | project meeting | 1/1/2022 1630
+E | 0 | project meeting | 1/1/2022 1630
+E | 0 | project meeting | 1/1/2022 1630
+D | 0 | spanish homework | 1/4/2022
+D | 0 | spanish homework | 1/4/2022 0815
+D | 0 | spanish homework | 1/4/2022 0815
+D | 0 | spanish homework | 1/4/2022 0815
+D | 0 | spanish homework | 1/4/2022 0815
