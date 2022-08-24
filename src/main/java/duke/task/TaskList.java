@@ -1,5 +1,7 @@
 package duke.task;
+
 import java.util.ArrayList;
+
 import duke.helper.Ui;
 
 public class TaskList {
@@ -21,7 +23,9 @@ public class TaskList {
      *
      * @param task the task to be added
      */
-    public void add(Task task) { taskList.add(task); }
+    public void add(Task task) {
+        taskList.add(task);
+    }
 
     /**
      * Method to delete a task into the taskList based on its index
@@ -32,6 +36,7 @@ public class TaskList {
         taskList.remove(index);
     }
 
+<<<<<<< HEAD
     /**
      * Method to get the task given its index
      *
@@ -46,6 +51,15 @@ public class TaskList {
      * @return the size of the taskList
      */
     public int getSize() { return taskList.size(); }
+=======
+    public Task getTask(int index) {
+        return taskList.get(index);
+    }
+
+    public int getSize() {
+        return taskList.size();
+    }
+>>>>>>> branch-A-CodingStandard
 
     /**
      * Method to clear the entire taskList

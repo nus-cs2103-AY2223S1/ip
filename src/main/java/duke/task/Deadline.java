@@ -1,4 +1,5 @@
 package duke.task;
+
 import java.time.LocalDate;
 
 public class Deadline extends Task {
@@ -19,7 +20,9 @@ public class Deadline extends Task {
      *
      * @return the date of the deadline
      */
-    public String getDate() { return this.dateStr; }
+    public String getDate() {
+        return this.dateStr;
+    }
 
     /**
      * Method to get the info of the event
@@ -29,7 +32,8 @@ public class Deadline extends Task {
      */
     @Override
     public String getInfo() {
-        return (super.getInfo() + "--" + getDate());
+        return (super.getInfo() + "--"
+                + getDate());
     }
 
     /**
@@ -40,6 +44,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return SYMBOL + super.toString() + " (by: " + dateStr + ")";
+        return SYMBOL + super.toString()
+                + " (by: " + dateStr + ")";
     }
 }

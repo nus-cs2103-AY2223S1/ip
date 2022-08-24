@@ -1,11 +1,16 @@
 package duke.helper;
+
 import java.io.File;
 import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
 import java.util.ArrayList;
 import java.util.Scanner;
-import duke.task.*;
+
+import duke.task.Task;
+import duke.task.TaskCreator;
 
 public class Storage {
     /**
@@ -24,9 +29,7 @@ public class Storage {
                 Files.createDirectories(Paths.get(directory));
                 boolean result = file.createNewFile();
             }
-        }
-
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -46,9 +49,7 @@ public class Storage {
                 String line = input.nextLine();
                 list.add(TaskCreator.createFromStorage(line));
             }
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

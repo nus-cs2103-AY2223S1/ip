@@ -51,7 +51,9 @@ public class Task {
      *
      * @return the symbol of the task
      */
-    public String getSymbol() { return this.symbol; }
+    public String getSymbol() {
+        return this.symbol;
+    }
 
     /**
      * Method to get the info of the task
@@ -60,7 +62,9 @@ public class Task {
      * @return the info of the task
      */
     public String getInfo() {
-        return (getSymbol() + "--" + getStatusIcon() + "--" + getDescription());
+        return (getSymbol() + "--"
+                + getStatusIcon() + "--"
+                        + getDescription());
     }
 
     /**
@@ -71,6 +75,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        return getStatusIcon() + " " + getDescription();
+        return getStatusIcon() + " "
+                + getDescription();
     }
 }

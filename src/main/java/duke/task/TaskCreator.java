@@ -1,6 +1,8 @@
 package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import duke.helper.DateTimeConverter;
 
 public class TaskCreator {
@@ -13,7 +15,7 @@ public class TaskCreator {
         DEADLINE,
         EVENT
     }
-    private static int SIZEOFPREPOSITION = 4;
+    private static int SIZE_OF_PREPOSITION = 4;
 
     /**
      * Method to create an appropriate task given an input string
@@ -26,11 +28,14 @@ public class TaskCreator {
         Task task = null;
         Type type;
 
-        if (!in.startsWith("todo") && !in.startsWith("deadline") && !in.startsWith("event")) {
-            return task;
+        if (!in.startsWith("todo")
+                && !in.startsWith("deadline")
+                        && !in.startsWith("event")) {
+            return null;
         }
 
         String[] inArr = in.split(" ", 2);
+
         if (inArr.length < 2) {
             return new Task("", "[]");
         }
@@ -60,23 +65,29 @@ public class TaskCreator {
             }
             try {
                 description = info.substring(0, indexOfSplit - 1);
-                String[] dateTimeDeadline = info.substring(indexOfSplit + SIZEOFPREPOSITION).split(" ");
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d");
+                String[] dateTimeDeadline = info.substring(indexOfSplit +
+                        SIZE_OF_PREPOSITION)
+                                .split(" ");
+
+                DateTimeFormatter formatter = DateTimeFormatter
+                        .ofPattern("uuuu-M-d");
+
                 DateTimeConverter converter = new DateTimeConverter(formatter);
                 String date;
 
                 if (converter.isValidDate(dateTimeDeadline[0])) {
                     date = converter.convert(dateTimeDeadline);
-                    task = new Deadline(description, date, LocalDate.parse(dateTimeDeadline[0], formatter));
+                    task = new Deadline(description, date,
+                            LocalDate.parse(dateTimeDeadline[0], formatter));
                 } else {
-                    date = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+                    date = info.substring(indexOfSplit +
+                            SIZE_OF_PREPOSITION);
+
                     task = new Deadline(description, date, null);
                 }
 
                 break;
-            }
-
-            catch (StringIndexOutOfBoundsException e) {
+            } catch (StringIndexOutOfBoundsException e) {
                 return new Task("","[]");
             }
 
@@ -88,13 +99,12 @@ public class TaskCreator {
                 }
 
                 description = info.substring(0, indexOfSplit - 1);
-                String dateTimeEvent = info.substring(indexOfSplit + SIZEOFPREPOSITION);
+                String dateTimeEvent = info.substring(indexOfSplit +
+                        SIZE_OF_PREPOSITION);
 
                 task = new Event(description, dateTimeEvent);
                 break;
-            }
-
-            catch (StringIndexOutOfBoundsException e) {
+            } catch (StringIndexOutOfBoundsException e) {
                 return new Task("","[]");
             }
         }
@@ -117,10 +127,12 @@ public class TaskCreator {
             info += (" " + lineParts[2]);
         } else if (lineParts[0].equals("[D]")) {
             info += "deadline";
-            info += (" " + lineParts[2] + " /by " + lineParts[3]);
+            info += (" " + lineParts[2]
+                    + " /by " + lineParts[3]);
         } else {
             info += "event";
-            info += (" " + lineParts[2] + " /at " + lineParts[3]);
+            info += (" " + lineParts[2]
+                    + " /at " + lineParts[3]);
         }
 
         Task task = createTask(info);

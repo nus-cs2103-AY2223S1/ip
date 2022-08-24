@@ -1,9 +1,12 @@
 package duke.helper;
-import java.text.ParseException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import java.util.Date;
 
 public class DateTimeConverter {
@@ -27,7 +30,8 @@ public class DateTimeConverter {
     public String convert(String[] dateTime) {
         String dateIn = dateTime[0];
         LocalDate dateOut = LocalDate.parse(dateIn, dateFormatter);
-        String date = dateOut.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        String date = dateOut.format(DateTimeFormatter
+                .ofPattern("MMM d yyyy"));
 
         if (dateTime.length > 1) {
             try {
@@ -36,9 +40,7 @@ public class DateTimeConverter {
                 SimpleDateFormat SDF12H = new SimpleDateFormat("h:mm a");
                 Date time24H = SDF24H.parse(timeIn);
                 date += (" " + SDF12H.format(time24H));
-            }
-
-            catch (ParseException e) {
+            } catch (ParseException e) {
                 e.printStackTrace();
             }
         }

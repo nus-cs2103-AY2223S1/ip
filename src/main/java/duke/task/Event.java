@@ -16,7 +16,9 @@ public class Event extends Task {
      *
      * @return the date of the event
      */
-    public String getDate() { return this.dateTime; }
+    public String getDate() {
+        return this.dateTime;
+    }
 
     /**
      * Method to get the info of the event
@@ -26,7 +28,8 @@ public class Event extends Task {
      */
     @Override
     public String getInfo() {
-        return (super.getInfo() + "--" + getDate());
+        return (super.getInfo() + "--"
+                + getDate());
     }
 
     /**
@@ -37,7 +40,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return SYMBOL + super.toString() + " (at: " + dateTime + ")";
+        return SYMBOL + super.toString()
+                + " (at: " + dateTime + ")";
     }
 }
 

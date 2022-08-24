@@ -1,7 +1,13 @@
 package duke.helper;
 
-import duke.task.*;
-import duke.exception.*;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.TaskCreator;
+import duke.task.ErrorTask;
+
+import duke.exception.NoDescriptionException;
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidDateException;
 
 public class Parser {
 
@@ -15,17 +21,21 @@ public class Parser {
         //"clear": Clears the list
         if (in.equals("clear")) {
             list.clear();
+
         //"list": Shows current list
         } else if (in.equals("list")) {
             list.printTasks();
+
         //"mark": Mark a task as done
         } else if (in.startsWith("mark")) {
             int index = Integer.valueOf(in.split(" ")[1]) - 1;
             list.mark(index);
+
         //"unmark": Unmark a task
         } else if (in.startsWith("unmark")) {
             int index = Integer.valueOf(in.split(" ")[1]) - 1;
             list.unmark(index);
+
         //"delete": Delete a task
         } else if (in.startsWith("delete")) {
             int index = Integer.valueOf(in.split(" ")[1]) - 1;
@@ -39,11 +49,10 @@ public class Parser {
                 Ui.delete(task);
                 list.delete(index);
                 Ui.countTasks(list);
-            }
-
-            catch (InvalidCommandException e) {
+            } catch (InvalidCommandException e) {
                 System.out.println(e.toString());
             }
+
         //Create a task
         } else {
             try {
@@ -58,17 +67,7 @@ public class Parser {
                     list.add(task);
                     Ui.add(task);
                 }
-            }
-
-            catch (InvalidCommandException e) {
-                System.out.println(e.toString());
-            }
-
-            catch (InvalidDateException e) {
-                System.out.println(e.toString());
-            }
-
-            catch (NoDescriptionException e){
+            } catch (Exception e) {
                 System.out.println(e.toString());
             }
         }
