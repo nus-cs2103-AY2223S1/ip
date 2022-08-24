@@ -1,36 +1,33 @@
 package duke;
 
 import duke.command.*;
-import duke.task.TasksController;
 import duke.exception.InvalidCommandException;
 import duke.command.Command;
 
+/**
+ * Parser classes parse user's input of commands
+ */
 public class Parser {
-    private final Storage storage;
-    private final TasksController controller;
-    private final Ui ui;
-
-    public Parser(TasksController controller, Ui ui, Storage storage) {
-        this.controller = controller;
-        this.ui = ui;
-        this.storage = storage;
-    }
 
     /**
      * Check the legitimacy of user's input for command
+     *
      * @param command input command
-     * @return boolean value
      * @throws InvalidCommandException if command < 1 or command > 8
      */
-    private boolean checkCommand(int command) throws InvalidCommandException {
+    private void checkCommand(int command) throws InvalidCommandException {
         if (command < 1 || command > 8) {
             throw new InvalidCommandException("ERROR");
         }
-        return true;
     }
 
-
-    public Command parse(String commandText) {
+    /**
+     * Parses user's input of commands and returns a Duke command
+     * @param commandText user's input
+     * @param ui Duke Ui object
+     * @return corresponding Duke command
+     */
+    public Command parse(String commandText, Ui ui) {
         Command command = null;
         try {
             int commandNumber = Integer.parseInt(commandText);

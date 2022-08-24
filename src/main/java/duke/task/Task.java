@@ -3,7 +3,7 @@ package duke.task;
 import java.io.Serializable;
 
 /**
- * This class encapsulate the behavior of a task
+ * Task class encapsulate the behavior of a Duke task
  */
 public class Task implements Serializable {
     private final String taskDescription;
@@ -25,6 +25,10 @@ public class Task implements Serializable {
         this.taskStatus = newStatus;
     }
 
+    /**
+     * Stringify a task
+     * @return a string
+     */
     @Override
     public String toString() {
         if (taskStatus) {

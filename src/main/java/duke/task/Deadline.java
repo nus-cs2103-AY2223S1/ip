@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * This class Deadline tasks
+ * Deadline class encapsulates Duke deadlines
  */
 public class Deadline extends Task{
     private final LocalDateTime ddlTime;

@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import duke.task.Task;
 /**
- * Processes IO requests
+ * Storage class processes IO requests
  */
 public class Storage {
     private final String filePath;
@@ -15,6 +15,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         this.filePath = filePath;
+        initialize();
     }
 
     private void createFile() {
@@ -36,7 +37,7 @@ public class Storage {
     }
 
     /**
-     * Initializes the file processor.
+     * Initializes the file.
      */
     public void initialize() {
         this.createFolder();
@@ -44,8 +45,8 @@ public class Storage {
     }
 
     /**
-     * Saves new tasks
-     * @param taskList the task list which contains new added tasks
+     * Saves task list
+     * @param taskList the task list
      */
     public void save(ArrayList<Task> taskList) {
         File file = new File(filePath);
@@ -63,7 +64,7 @@ public class Storage {
 
     /**
      * Loads task list
-     * @return user's previous tasklist
+     * @return user's previous task list
      */
     public ArrayList<Task> load() {
         File file = new File(filePath);

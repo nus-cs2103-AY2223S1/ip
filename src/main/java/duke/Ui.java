@@ -2,6 +2,9 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Ui class deals with interactions with users
+ */
 public class Ui {
 
     private final String listString = "list";
@@ -22,10 +25,18 @@ public class Ui {
         System.out.println(splitLine);
     }
 
+    /**
+     * Prints the given text
+     * @param s
+     */
     public void prompt(String s) {
         System.out.println(s);
     }
 
+    /**
+     * Report a checked Duke exception
+     * @param error exception message
+     */
     public void reportError(String error) {
         System.out.println(error);
     }
@@ -94,6 +105,9 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints the split line
+     */
     public void showSplitLine() {
         System.out.println(splitLine);
     }

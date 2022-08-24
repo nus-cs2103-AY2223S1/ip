@@ -1,14 +1,13 @@
 package duke;
 
-import duke.task.TasksController;
-import duke.Ui;
-import duke.Storage;
+import duke.task.*;
 import duke.command.Command;
+
 public class Duke {
     private static final Storage storage = new Storage("data/Duke.dat");
     private static final TasksController controller = new TasksController(storage.load());
     private static final Ui ui = new Ui();
-    private static final Parser parser = new Parser(controller, ui, storage);
+    private static final Parser parser = new Parser();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -20,7 +19,7 @@ public class Duke {
         ui.startGreeting();
         while (true) {
             String commandText = ui.inputCommand();
-            Command command = parser.parse(commandText);
+            Command command = parser.parse(commandText, ui);
             command.execute(controller, ui, storage);
             ui.showCommandList();
         }
