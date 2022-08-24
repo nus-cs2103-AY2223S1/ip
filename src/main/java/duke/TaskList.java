@@ -90,4 +90,23 @@ public class TaskList {
     public Task get(int index) {
         return this.memo.get(index - 1);
     }
+
+    /**
+     * public method findTask to search for description of task that match keyword in the TaskList.
+     * @param keyword
+     * @return list of tasks that match keyword.
+     */
+    public String findTask(String keyword) {
+        String result = "Here are the matching tasks in your list:";
+        int count = 0;
+        String check;
+        for (Task t: this.memo) {
+            check = t.getTaskName();
+            if (check.contains(keyword)) {
+                count ++;
+                result += "\n    " + count + ". " + t.toString();
+            }
+        }
+        return result;
+    }
 }
