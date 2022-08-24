@@ -4,6 +4,9 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Duke {
     static final String SEPARATING_LINE = "    ____________________________________________________________";
@@ -109,6 +112,20 @@ public class Duke {
         Event
     }
 
+    // Todo: include more support for date string
+    private static String parseDateTimeString(String arg) {
+        String result = arg;
+
+        return result;
+    }
+
+    private static LocalDate parseString2LocalDate(String arg) {
+        // current supported format: "2009-10-12"
+        String dateString = parseDateTimeString(arg);
+        LocalDate res = LocalDate.parse(dateString);
+        return res;
+    }
+
     private static void createEvent(ArrayList<Task> tasks, TaskEnum taskEnum, String command) throws DukeException{
         String args[];
         Task res;
@@ -122,7 +139,7 @@ public class Duke {
                 if (args.length != 2) {
                     throw new DukeException("Invalid Input");
                 }
-                res = new Deadline(args[0].trim(), args[1].substring(3));
+                res = new Deadline(args[0].trim(), parseString2LocalDate(args[1].substring(3)));
                 break;
 
             case Event:
@@ -130,7 +147,7 @@ public class Duke {
                 if (args.length != 2) {
                     throw new DukeException("Invalid Input");
                 }
-                res = new Event(args[0].trim(), args[1].substring(3));;
+                res = new Event(args[0].trim(), parseString2LocalDate(args[1].substring(3)));;
                 break;
 
             default:
