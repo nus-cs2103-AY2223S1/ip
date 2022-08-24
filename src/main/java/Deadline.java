@@ -1,31 +1,39 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * This class represents tasks that need to be done before a specific date/time.
  * @author Carrie Zheng Jiarui
  * @version CS2103T AY22/23 Semester 1, iP
  */
 public class Deadline extends Task {
-    protected String by;
+    protected LocalDateTime by;
 
     /**
      * Constructor for creating a deadline.
      * @param description Task description from user input.
-     * @param by Date/time as deadline from user input.
+     * @param dateTimeInput Date/time as deadline from user input.
+     * @throws InvalidDateException If date entered by user is not in the specified format.
      */
-    //@@author carriezhengjr-reused
-    // Reused code under subsection "Extension: A-Inheritance" of the
-    // section "Duke Level-4: ToDo, Event, Deadline"
-    // from https://nus-cs2103-ay2223s1.github.io/website/schedule/week2/project.html#ip
-    public Deadline(String description, String by) {
-        super(description);
-        this.by = by;
-    }
 
-    /**
-     * Checks date/time set as deadline by the user.
-     * @return Date/time in string representation.
-     */
-    public String getDeadline() {
-        return this.by;
+    public Deadline(String description, String dateTimeInput) throws InvalidDateException {
+        super(description);
+
+        try {
+            // Adapted from 3. LocalDate parse() method and 4. LocalDateTime parse() method of
+            // https://codegym.cc/groups/posts/parse-methods-in-java
+            // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times" from
+            // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            by = LocalDateTime.parse(dateTimeInput, formatter);
+
+        } catch (DateTimeParseException e) {
+            throw new InvalidDateException("You have keyed in an invalid date and time!\n"
+                    + "Please specify date and time in the format: dd/MM/yyyy HHmm\n"
+                    + "E.g. 24/08/2022 2359");
+
+        }
     }
 
     /**
@@ -43,7 +51,13 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(), this.by);
+        // Adapted from 3. LocalDate parse() method and 4. LocalDateTime parse() method of
+        // https://codegym.cc/groups/posts/parse-methods-in-java
+        // and subsection "Using dates/times in Java" of section "Duke Level-8: Dates and Times" from
+        // https://nus-cs2103-ay2223s1.github.io/website/schedule/week3/project.html
+        String newDateTime = by.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+
+        return String.format("%s (by: %s)", super.toString(), newDateTime);
     }
 
 }
