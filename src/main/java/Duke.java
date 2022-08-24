@@ -10,8 +10,9 @@ public class Duke {
     private static final File FILE_PATH = new File("./data/duke.txt");
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);  // Create a Scanner object
+        Scanner sc = new Scanner(System.in);
         welcome();
+        readData();
 
         String input = sc.nextLine();
         while (!input.equals("bye")) {
@@ -32,11 +33,11 @@ public class Duke {
                 "How may i help you today?");
     }
 
-    private static void ReadData() {
+    private static void readData() {
         try {
             Scanner fileScanner = new Scanner(FILE_PATH);
             while (fileScanner.hasNextLine()) {
-                String[] storedInfo = fileScanner.nextLine().split(" | ");
+                String[] storedInfo = fileScanner.nextLine().split(" \\| ");
                 String type = storedInfo[0];
                 boolean isDone = storedInfo[1].equals("O") ? true : false;
                 String description = storedInfo[2];
@@ -150,7 +151,7 @@ public class Duke {
             throw new DukeException("☹ OOPS!!! " +
                     "The description of deadline cannot be empty.");
         }
-        String[] descAndDue = commandAndDescription[1].split("/by ");
+        String[] descAndDue = commandAndDescription[1].split(" /by ");
         if (descAndDue.length == 1) {
             throw new DukeException("☹ OOPS!!! " +
                     "There is no specified date/time for the deadline.");
@@ -167,7 +168,7 @@ public class Duke {
             throw new DukeException("☹ OOPS!!! " +
                     "The description of event cannot be empty.");
         }
-        String[] descAndDuration = commandAndDescription[1].split("/at ");
+        String[] descAndDuration = commandAndDescription[1].split(" /at ");
         if (descAndDuration.length == 1) {
             throw new DukeException("☹ OOPS!!! " +
                     "There is no specified time duration for the event.");
