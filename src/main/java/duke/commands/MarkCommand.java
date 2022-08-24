@@ -37,7 +37,7 @@ public class MarkCommand extends Command {
       throw new DukeException("No such tasks found");
     } else {
       Task task = tasks.get(index - 1);
-      task.markAsDone();
+      task.setDone();
       storage.save(tasks);
       System.out.println("Fuyoh! I've marked this task as done:");
       System.out.println(task.toString());

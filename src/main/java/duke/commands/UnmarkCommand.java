@@ -35,7 +35,7 @@ public class UnmarkCommand extends Command {
       throw new DukeException("No such tasks found");
     } else {
       Task task = tasks.get(index - 1);
-      task.markUndone();
+      task.setUndone();
       storage.save(tasks);
       System.out.println("Aiyah! I've marked this task as not done yet: ");
       System.out.println(task.toString());
