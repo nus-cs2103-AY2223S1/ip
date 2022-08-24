@@ -13,28 +13,28 @@ public class SallyException extends Exception {
     public static class SallyNoDescriptionException extends SallyException {
         @Override
         public String toString() {
-            return "Oops! The description cannot be empty.";
+            return Sally.border() + "\nOops! The description cannot be empty.\n" + Sally.border();
         }
     }
 
     public static class SallyInvalidInputException extends SallyException {
         @Override
         public String toString() {
-            return "Oops! I'm sorry, I don't understand that :(";
+            return Sally.border() + "\nOops! I'm sorry, I don't understand that :(\n" + Sally.border();
         }
     }
 
     public static class SallyNoDeadlineException extends SallyException {
         @Override
         public String toString() {
-            return "Oops! Deadline has to be followed by '/by' and deadline time";
+            return Sally.border() + "\nOops! Deadline has to be followed by '/by' and deadline time\n" + Sally.border();
         }
     }
 
     public static class SallyNoPlaceException extends SallyException {
         @Override
         public String toString() {
-            return "Oops! Event has to be followed by '/at' and event place";
+            return Sally.border() + "\nOops! Event has to be followed by '/at' and event place\n" + Sally.border();
         }
     }
 }

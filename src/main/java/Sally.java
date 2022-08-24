@@ -100,19 +100,14 @@ public class Sally {
                 //Deadlines
                 else if (message.startsWith("deadline")) {
                     String description, by;
-                    if (message.length() > 8) {
-                        if (message.contains("/by")) {
-                            if (message.length() > 12) {
-                                description = message.substring(9, message.indexOf("/by") - 1);
-                                by = message.substring(message.indexOf("/by") + 4);
-                                Task.makeTask(description, by, Task.Type.DEADLINE);
-                            } else {
-                                // No /by
-                                throw new SallyException.SallyNoDeadlineException();
-                            }
-                        } else {
-                            throw new SallyException.SallyInvalidInputException();
-                        }
+                    if (message.length() <= 8) {
+                        throw new SallyException.SallyInvalidInputException();
+                    } else if (message.contains("/by ")) {
+                        description = message.substring(9, message.indexOf("/by") - 1);
+                        by = message.substring(message.indexOf("/by") + 4);
+                        Task.makeTask(description, by, Task.Type.DEADLINE);
+                    } else {
+                        throw new SallyException.SallyNoDeadlineException();
                     }
                 }
                 //Events
