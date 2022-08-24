@@ -1,4 +1,3 @@
-import javax.security.auth.login.FailedLoginException;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -15,8 +14,6 @@ public class Duke {
 
     private static final String BYE_MESSAGE = "\t-------------------------------\n" +
             "\tBye! Hope to see you again\n" + "\t-------------------------------\n";
-
-    private File file; // used by Duke to write to the file whenever tasks change
 
     public Duke(String fileName, FileOperations fo) {
         FILE_NAME = fileName;
@@ -43,6 +40,8 @@ public class Duke {
         } catch (IOException e) {
             System.out.println(String.format("\tError opening/creating %s!!!", duke.FILE_NAME));
             return;
+        } finally {
+            sc.close();
         }
 
         String input = sc.nextLine().trim();
