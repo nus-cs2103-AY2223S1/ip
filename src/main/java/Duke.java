@@ -70,10 +70,7 @@ public class Duke {
                 }
             }
 
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate formattedDateTime = LocalDate.parse(dateTime, formatter);
-
-            Task deadline = new Deadlines(description.toString(), dateTime.toString(), formattedDateTime);
+            Task deadline = new Deadlines(description.toString(), dateTime.toString(), DateAndTimeParser.validateAndParse(dateTime));
             storedTasks.add(deadline);
             System.out.println(
                     HORIZONTAL_LINE + "\n  Got it. I've added this task:\n  " + deadline + "\n  Now you have "

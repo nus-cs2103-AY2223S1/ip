@@ -1,20 +1,22 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Deadlines extends Task {
   private String dateTime;
-  private LocalDate formattedDateTime;
-  private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd uuuu");
+  private LocalDate date;
 
-  public Deadlines(String description, String dateTime, LocalDate formattedDateTime) {
+  public Deadlines(String description, String dateTime, LocalDate date) {
     super(description);
     this.dateTime= dateTime;
-    this.formattedDateTime = formattedDateTime;
+    this.date = date;
   }
 
   @Override
   public String toString() {
-    return "[D]" + super.toString() + " (by: " + this.formattedDateTime.format(formatter) + ")";
+    if (date != null) {
+      return "[D]" + super.toString() + " (by: " + DateAndTimeParser.convertDate(this.date) + ")";
+    } else {
+      return "[D]" + super.toString() + " (by: " + this.dateTime + ")";
+    }
   }
 
 }
