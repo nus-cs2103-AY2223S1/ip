@@ -1,0 +1,5 @@
+T|X|readbook
+E| |meeting| monday
+T| |read book
+E|X|meeting| monday
+D| |homework| tmr

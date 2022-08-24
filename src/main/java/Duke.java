@@ -8,7 +8,19 @@ public class Duke {
     static final String PARTITION = "<><><><><><><><><><><><><><><><><><><><><><><><><><><><>\n";
     static List<Task> list = new ArrayList<>();
 
+    private Storage storage;
+
+    public Duke(String filePath) {
+        //ui = new Ui();
+        storage = new Storage(filePath);
+        list = storage.load();
+    }
+
     public static void main(String[] args) {
+        new Duke("data/tasks.txt").run();
+    }
+
+    public void run(){
         String input = "";
         Scanner sc = new Scanner(System.in);
         boolean inputIsValid;
@@ -35,6 +47,7 @@ public class Duke {
                 if (input.equalsIgnoreCase("list")) {
                     printMessage(listToString());
                 } else if (input.equalsIgnoreCase("bye")) {
+                    storage.saveTasksInStorage(list);
                     printMessage("Gone so soon? Bye (._.)\n");
                 } else if (input.toLowerCase().startsWith("unmark")) {
                     Task curr = list.get(Integer.parseInt(segments[1]) - 1);
