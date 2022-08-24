@@ -1,9 +1,13 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Duke {
     protected static boolean terminate = false;
     protected static ArrayList<Task> taskList = new ArrayList<Task>();
+    // protected static HashMap<LocalDate, ArrayList<Task>> dateToTasks = new HashMap<>();
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -96,6 +100,19 @@ public class Duke {
         Duke.lineFormat();
     }
 
+//    public static void addTask(Task task, LocalDate date) {
+//        taskList.add(task);
+//        if (!dateToTasks.containsKey(date)) {
+//            dateToTasks.put(date, new ArrayList<>());
+//        }
+//        dateToTasks.get(date).add(task);
+//        Duke.lineFormat();
+//        System.out.println("     Got it. I've added this task:\n" +
+//                "       " + task.toString() + "\n" +
+//                "     Now you have " + taskList.size() + " tasks in the list.");
+//        Duke.lineFormat();
+//    }
+
     public static void addTask(Task task) {
         taskList.add(task);
         Duke.lineFormat();
@@ -128,22 +145,30 @@ public class Duke {
         if (description.equals("")) {
             throw new DukeException("OOPS!!! The description of a event cannot be empty.");
         }
-        if (at.equals("")) {
-            throw new DukeException("OOPS!!! The time of a event cannot be empty.");
+        try {
+            int indexOfDate = at.indexOf(" ") + 1;
+            String date = at.substring(indexOfDate);
+            LocalDate d1 = LocalDate.parse(date);
+            Task task = new Event(description, d1);
+            Duke.addTask(task);
+        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+            System.out.println("     OOPS!!! Please enter a valid date format (/at yyyy-mm-dd)");
         }
-        Task task = new Event(description, at);
-        Duke.addTask(task);
     }
 
     public static void addDeadline(String description, String by) {
         if (description.equals("")) {
             throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         }
-        if (by.equals("")) {
-            throw new DukeException("OOPS!!! The time of a deadline cannot be empty.");
+        try {
+            int indexOfDate = by.indexOf(" ") + 1;
+            String date = by.substring(indexOfDate);
+            LocalDate d1 = LocalDate.parse(date);
+            Task task = new Deadline(description, d1);
+            Duke.addTask(task);
+        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+            System.out.println("     OOPS!!! Please enter a valid date format (/by yyyy-mm-dd)");
         }
-        Task task = new Deadline(description, by);
-        Duke.addTask(task);
     }
 
     public static void displayList() {
@@ -184,6 +209,17 @@ public class Duke {
                 "       " + taskDescription);
         Duke.lineFormat();
     }
+
+//    public static void displayTasksOnDate(String time) {
+//        try {
+//            int indexOfDate = time.indexOf(" ") + 1;
+//            String date = time.substring(indexOfDate);
+//            LocalDate d1 = LocalDate.parse(date);
+//
+//        } catch (DateTimeParseException | IndexOutOfBoundsException e) {
+//            System.out.println("     OOPS!!! Please enter a valid date format (/by yyyy-mm-dd)");
+//        }
+//    }
 
     public static void exit() {
         Duke.terminate = true;
