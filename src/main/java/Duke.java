@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -8,15 +6,15 @@ import java.util.Scanner;
 public class Duke {
     // Constants for messages to be printed to the console
     public static final String LONG_LINE = "    ____________________________________________________________\n";
-    public static final String GREETING_MESSAGE = LONG_LINE +
-            "     Hello! I'm Duke\n" +
-            "     What can I do for you?\n" +
-            LONG_LINE;
-    public static final String GOODBYE_MESSAGE = LONG_LINE +
-            "     Bye. Hope to see you again soon!\n" +
-            LONG_LINE;
+    public static final String GREETING_MESSAGE = LONG_LINE
+            + "     Hello! I'm Duke\n"
+            + "     What can I do for you?\n"
+            + LONG_LINE;
+    public static final String GOODBYE_MESSAGE = LONG_LINE
+            + "     Bye. Hope to see you again soon!\n"
+            + LONG_LINE;
 
-    private final List<Task> taskList = new ArrayList<>(100);
+    private final Storage taskStorage = new Storage();
 
     public static void main(String[] args) {
         // Initialize Duke chatbot
@@ -34,6 +32,7 @@ public class Duke {
             command = in.nextLine();
         }
         in.close();
+        chatBot.taskStorage.saveTasks();
 
         // Goodbye message is always printed
         System.out.println(GOODBYE_MESSAGE);
@@ -56,8 +55,8 @@ public class Duke {
             case "list": {
                 // Return all tasks
                 sb.append(LONG_LINE).append("     Here are the tasks in your list:\n");
-                for (int i = 0; i < taskList.size(); i++) {
-                    sb.append("     ").append(i + 1).append(".").append(taskList.get(i)).append("\n");
+                for (int i = 0; i < taskStorage.size(); i++) {
+                    sb.append("     ").append(i + 1).append(".").append(taskStorage.getTask(i)).append("\n");
                 }
                 sb.append(LONG_LINE);
                 break;
@@ -66,7 +65,7 @@ public class Duke {
                 // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
                 // Hence, we need to account for this offset here
                 int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
-                Task task = this.taskList.get(taskIndex);
+                Task task = this.taskStorage.getTask(taskIndex);
                 task.markTask();
 
                 sb.append(LONG_LINE)
@@ -79,7 +78,7 @@ public class Duke {
                 // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
                 // Hence, we need to account for this offset here
                 int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
-                Task task = this.taskList.get(taskIndex);
+                Task task = this.taskStorage.getTask(taskIndex);
                 task.unmarkTask();
 
                 sb.append(LONG_LINE)
@@ -92,7 +91,7 @@ public class Duke {
                 if (inputStrings.length == 1) {
                     throw new DukeException("     ☹ OOPS!!! The description of a todo cannot be empty.\n");
                 }
-                Todo todo = new Todo(inputStrings[1]);
+                Todo todo = new Todo(inputStrings[1], false);
 
                 sb.append(this.addTask(todo));
                 break;
@@ -105,7 +104,7 @@ public class Duke {
                 if (deadlineStrings.length == 1 || deadlineStrings[1].equals("")) {
                     throw new DukeException("     ☹ OOPS!!! The date/time of a deadline cannot be empty.\n");
                 }
-                Deadline deadline = new Deadline(deadlineStrings[0], deadlineStrings[1]);
+                Deadline deadline = new Deadline(deadlineStrings[0], false, deadlineStrings[1]);
 
                 sb.append(this.addTask(deadline));
                 break;
@@ -118,7 +117,7 @@ public class Duke {
                 if (eventStrings.length == 1 || eventStrings[1].equals("")) {
                     throw new DukeException("     ☹ OOPS!!! The date/time of an event cannot be empty.\n");
                 }
-                Event event = new Event(eventStrings[0], eventStrings[1]);
+                Event event = new Event(eventStrings[0], false, eventStrings[1]);
 
                 sb.append(this.addTask(event));
                 break;
@@ -127,9 +126,8 @@ public class Duke {
                 // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
                 // Hence, we need to account for this offset here
                 int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
-                Task task = this.taskList.remove(taskIndex);
 
-                sb.append(this.addTask(task));
+                sb.append(this.removeTask(taskIndex));
                 break;
             }
             default: {
@@ -150,18 +148,35 @@ public class Duke {
     }
 
     /**
-     * Add task to the current task list, and returns the formatted response message
-     * to be printed to the console
+     * Add task to the current task list, and returns the formatted response message to be printed to the
+     * console
      *
      * @param task The specified task.
      * @return formatted message after adding a task.
      */
     public String addTask(Task task) {
-        this.taskList.add(task);
-        return LONG_LINE +
-                "     Noted. I've removed this task:\n" +
-                "       " + task + "\n" +
-                "     Now you have " + this.taskList.size() + " task(s) in the list.\n" +
-                LONG_LINE;
+        this.taskStorage.addTask(task);
+        return LONG_LINE
+                + "     Got it. I've added this task:\n"
+                + "       " + task + "\n"
+                + "     Now you have " + this.taskStorage.size() + " task(s) in the list.\n"
+                + LONG_LINE;
     }
+
+    /**
+     * Remove task from current task list, and returns the formatted response message to be printed to the
+     * console
+     *
+     * @param taskIndex The specified task index.
+     * @return formatted message after removing a task.
+     */
+    public String removeTask(int taskIndex) {
+        Task task = this.taskStorage.removeTask(taskIndex);
+        return LONG_LINE
+                + "     Noted. I've removed this task:\n"
+                + "       " + task + "\n"
+                + "     Now you have " + this.taskStorage.size() + " task(s) in the list.\n"
+                + LONG_LINE;
+    }
+
 }
