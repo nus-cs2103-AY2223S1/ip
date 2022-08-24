@@ -27,55 +27,23 @@ public class Duke {
             }
             writer.close();
             System.out.println("Duke.txt is fully updated.");
-        } catch (IOException e) {bran
-            System.out.println("An error occured when trying to save your task list. Please try again.");
+        } catch (IOException e) {
+            System.out.println("An error occurred when trying to save your task list. Please try again.");
         }
     }
 
-    private static boolean isMarked(String toProcess) {
-        if (toProcess.startsWith("[ ")) {
-            return false;
-        }
-        return true;
-    }
-
-    public static void retrieveFile(ArrayList<Task> ls) {
+    public static ArrayList<Task> retrieveFile() {
         System.out.println("Retrieving files...");
         try {
             File savedFile = new File("Duke.txt");
-            Scanner reader = new Scanner(savedFile);
-            while (reader.hasNextLine()) {
-                String info = reader.nextLine();
-                if (info.startsWith("  [T]")) {
-                    String[] infoData = info.split("] ");
-                    ToDo toAdd = new ToDo(infoData[infoData.length - 1]);
-                    if (isMarked(infoData[infoData.length - 2])) {
-                        toAdd.mark();
-                    }
-                    ls.add(toAdd);
-                } else if (info.startsWith("  [D]")) {
-                    String[] infoData = info.split("] ");
-                    String[] descBy = infoData[infoData.length - 1].split("by: ");
-                    Deadline toAdd = new Deadline(descBy[0].substring(0, descBy[0].length() - 2), descBy[1].substring(0, descBy[1].length() - 1));
-                    if (isMarked(infoData[infoData.length - 2])) {
-                        toAdd.mark();
-                    }
-                    ls.add(toAdd);
-                } else if (info.startsWith("  [E]")) {
-                    String[] infoData = info.split("] ");
-                    String[] descAt = infoData[infoData.length - 1].split("at: ");
-                    Event toAdd = new Event(descAt[0].substring(0, descAt[0].length() - 2), descAt[1].substring(0, descAt[1].length() - 1));
-                    if (isMarked(infoData[infoData.length -2])) {
-                        toAdd.mark();
-                    }
-                    ls.add(toAdd);
-                }
-            }
-            reader.close();
-            System.out.println("Retrieval complete!");
+            SaveFile retrieved = new SaveFile(savedFile);
+            return retrieved.retrieveInfo();
         } catch (FileNotFoundException e) {
             System.out.println("No saved files. Starting a new task sheet!");
+        } catch (DukeException e) {
+            System.out.println("Error occured: " + e.getMessage() + "\nData retrieval has stopped.");
         }
+        return new ArrayList<Task>();
     }
 
     public static void greet() {
@@ -85,8 +53,7 @@ public class Duke {
         greet();
         Scanner scanner = new Scanner(System.in);
         String input = "";
-        ArrayList<Task> list = new ArrayList<>();
-        retrieveFile(list);
+        ArrayList<Task> list = retrieveFile();
         while (true) {
             input = scanner.nextLine();
             try {
@@ -153,6 +120,7 @@ public class Duke {
 
         }
         saveFile(list);
+        scanner.close();
         System.out.println("Bye. Hope to see you again soon!");
     }
 }

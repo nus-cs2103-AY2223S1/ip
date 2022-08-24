@@ -1,4 +1,4 @@
   [T] [ ] Buy eggs
   [T] [X] Charge laptop
-  [D] [ ] Watch MA2104 Lecture (by: Friday)
+  [D] [ ] Watch MA2104 Lecture (by: 2022-08-24)
   [E] [ ] Attend Web3 Meetup (at: Raffles Place)
