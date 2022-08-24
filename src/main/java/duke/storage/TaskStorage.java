@@ -36,6 +36,7 @@ public class TaskStorage extends Storage {
      * Adds a {@link Task} to the task storage.
      *
      * @param addingTask Task object to be added
+     *
      * @return The added task object
      * @throws DukeException If the task cannot be added
      */
@@ -48,6 +49,7 @@ public class TaskStorage extends Storage {
      * Returns the {@link Task} specified by the task index.
      *
      * @param taskIndex 0-indexed specifier for the task
+     *
      * @return The corresponding task
      * @throws DukeException If the task cannot be found
      */
@@ -63,6 +65,7 @@ public class TaskStorage extends Storage {
      * Deletes the {@link Task} corresponding to the task index from the task storage and returns the deleted task.
      *
      * @param taskIndex The task index corresponding to the task to be deleted
+     *
      * @return The deleted task
      * @throws DukeException If the task cannot be deleted
      */
@@ -82,6 +85,7 @@ public class TaskStorage extends Storage {
      *
      * @param taskIndex    0-based indexed specifier for the task to be updated
      * @param updatingTask The task object containing the updated task
+     *
      * @return The updated task
      * @throws DukeException If the task cannot be updated
      */
@@ -110,6 +114,7 @@ public class TaskStorage extends Storage {
      * Returns a filtered {@link Task} list based on the provided predicate.
      *
      * @param condition Predicate provided for the filter operation
+     *
      * @return Filtered task list
      * @throws DukeException If the tasks cannot be read or retrieved
      */

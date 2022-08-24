@@ -8,13 +8,8 @@ import duke.models.task.Task;
 import duke.storage.TaskStorage;
 
 /**
- * <<<<<<< HEAD
  * Encapsulates the logic to manage the list of {@link Task tasks} and provides augmenting operations to support CRUD
  * operations on the tasks.
- * =======
- * Encapsulates the logic to manage the list of {@link Task tasks} and provides augmenting operations to support CRUD operations on
- * the tasks.
- * >>>>>>> ece6aa47e5c01f60f8fb9a11dde15eb20e7c1194
  *
  * @author Emily Ong Hui Qi
  */
@@ -39,6 +34,7 @@ public class TaskManager {
      * of the tasks
      *
      * @param tasks The tasks to be displayed
+     *
      * @return String representation of the tasks
      */
     public static String display(List<Task> tasks) {
@@ -58,6 +54,7 @@ public class TaskManager {
      * Adds the received {@link Task} into the task storage.
      *
      * @param task Task received from the caller
+     *
      * @return The added task
      * @throws DukeException If the task cannot be added
      */
@@ -70,6 +67,7 @@ public class TaskManager {
      *
      * @param taskNumber The 1-based task number, possibly corresponding to a particular task
      * @param task       the task to be updated
+     *
      * @return The updated task
      * @throws DukeException If the task cannot be updated
      */
@@ -82,6 +80,7 @@ public class TaskManager {
      * {@link Task}.
      *
      * @param taskNumber The 1-based task number, possibly corresponding to a particular task
+     *
      * @return The deleted task
      * @throws DukeException If the task cannot be deleted
      */
@@ -93,6 +92,7 @@ public class TaskManager {
      * Returns the {@link Task} corresponding to the task number.
      *
      * @param taskNumber A 1-based task number, possibly corresponding to a particular task
+     *
      * @return Task corresponding to the particular task number
      * @throws DukeException If the task cannot be read or retrieved
      */
@@ -139,6 +139,7 @@ public class TaskManager {
      * predicate.
      *
      * @param condition The predicate to test if the task should be returned
+     *
      * @return List of tasks
      * @throws DukeException If the tasks cannot be read or retrieved
      */

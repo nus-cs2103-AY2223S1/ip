@@ -28,6 +28,7 @@ public class ParserManager {
      * Parses the given command string and returns a {@link Command} instance that corresponds to the command string.
      *
      * @param fullCommand The full command string supplied by the user from keyboard input
+     *
      * @return The {@link Command} instance responsible for handling the corresponding command
      */
     public Command parseCommand(String fullCommand) {

@@ -13,6 +13,7 @@ public class DukeFormatter {
      * Returns the formatted date according to the {@code MMM d yyyy} format.
      *
      * @param date The date object
+     *
      * @return The formatted date
      */
     public static String formatDate(LocalDate date) {

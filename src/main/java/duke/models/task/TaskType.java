@@ -29,6 +29,7 @@ public enum TaskType {
      * Returns a corresponding TaskType from the given string.
      *
      * @param str The received string input
+     *
      * @return The corresponding TaskType
      */
     public static TaskType fromString(String str) {

@@ -25,8 +25,9 @@ public class DukeValidator {
      * Returns the {@link LocalDate} object parsed from the provided date string.
      *
      * @param date The provided date string
+     *
      * @return The date object corresponding to the provided date string if and only if the provided date string
-     * matches the expected format
+     *         matches the expected format
      * @throws DukeException If the provided date string does not match the expected format
      */
     public static LocalDate parseDate(String date) throws DukeException {

@@ -8,8 +8,9 @@ import duke.exceptions.DukeException;
 /**
  * Encapsulates the logic for serializing and deserializing a particular object of type {@code T}.
  *
- * @param <T> The type of the object that can be serialized and deserialized
  * @author Emily Ong Hui Qi
+ * @param <T> The type of the object that can be serialized and deserialized
+ *
  */
 public abstract class Serializable<T> {
     private static final String ERROR_MATCHING_SERIALIZABLE_REGEX = "Regex for serialized string does not match!";
@@ -40,6 +41,7 @@ public abstract class Serializable<T> {
      *
      * @param serializedString The received serialized string
      * @param regexMatch       The Regex format that the serialized string should match
+     *
      * @throws DukeException If the received serialized string does not match the provided Regex format
      */
     public Serializable(String serializedString, Pattern regexMatch) throws DukeException {

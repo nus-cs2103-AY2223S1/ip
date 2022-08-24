@@ -24,6 +24,7 @@ abstract class AddTaskCommand implements Command {
      *
      * @param taskManager  Task manager in charge of the managing all the tasks
      * @param taskSupplier Supplier method that returns a task
+     *
      * @return Status message indicating the status of adding the task
      */
     public String addTask(TaskManager taskManager, Supplier<? extends Task> taskSupplier) {
