@@ -5,6 +5,11 @@ public class Todo extends Task {
     }
 
     @Override
+    public String getWriteString() {
+        return String.format("T | %s", super.getWriteString());
+    }
+
+    @Override
     public String toString() {
         return String.format("[T] %s", super.toString());
     }

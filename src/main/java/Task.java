@@ -23,6 +23,11 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getWriteString() {
+        String marked = this.isDone() ? "1" : "0";
+        return String.format("%s | %s", marked, this.description);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);

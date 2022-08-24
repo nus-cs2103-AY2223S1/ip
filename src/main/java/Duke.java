@@ -1,5 +1,9 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class Duke {
     public static void main(String[] args) throws Exception {
@@ -13,8 +17,41 @@ public class Duke {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
 
-
         ArrayList<Task> tasks = new ArrayList<Task>();
+
+        String filePath = "data/duke.txt";
+
+        try {
+
+            File f = new File(filePath);
+            Scanner fileScanner = new Scanner(f);
+
+            while (fileScanner.hasNext()) {
+                String[] input = fileScanner.nextLine().split(" \\| ");
+                Task task = new Task("");
+
+                switch (input[0]) {
+                    case "D":
+                        task = new Deadline(input[2], input[3]);
+                        break;
+
+                    case "E":
+                        task = new Event(input[2], input[3]);
+                        break;
+
+                    case "T":
+                        task = new Todo(input[2]);
+                        break;
+                }
+
+                if (input[1].equals("1")) {
+                    task.mark();
+                }
+                tasks.add(task);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
 
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
@@ -155,7 +192,7 @@ public class Duke {
                         System.out.println("Noted. I've removed this task:");
                         System.out.println(taskToRemove);
                         System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
-                        
+
 
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Please input a valid item to mark!");
@@ -172,5 +209,16 @@ public class Duke {
 
             }
         }
+
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            for (Task task : tasks) {
+                fw.write(task.getWriteString() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+
     }
 }
