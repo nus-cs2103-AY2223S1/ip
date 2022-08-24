@@ -9,7 +9,6 @@ import duke.storage.Storage;
  */
 abstract public class Command {
     private boolean isExit = false;
-    private String fullCommand;
 
     /**
      * Execute the command and throws DukeException. Override by its subclass for different execution.
@@ -18,7 +17,6 @@ abstract public class Command {
      * @throws DukeException Throws exception when errors occur in execution.
      */
     public abstract void execute(TaskList taskList, Storage storage) throws DukeException;
-
     /**
      * Change the isExit field of the object to true. Means the program will exit.
      */
@@ -30,7 +28,7 @@ abstract public class Command {
      * Returns the instruction about whether the program will end.
      * @return The isExit field of the object, indicating the ending of the program.
      */
-    public boolean getIsExit(){
+    public boolean getIsExit() {
         return this.isExit;
     }
 }

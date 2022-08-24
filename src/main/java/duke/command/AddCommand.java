@@ -8,16 +8,16 @@ import duke.task.Task;
 /**
  * Represents a command. An AddCommand Object corresponds to a command
  */
-public class AddCommand extends Command{
-    private String fullCommand;
 
+public class AddCommand extends Command {
+    private String fullCommand;
     /**
      * An object constructor. Gives an AddCommand object.
      * @param fullCommand A string which is the same as a line of System.in. Start with
      *                    'event' or 'deadline' or 'todo', followed by different format of
      *                    description of the task.
      */
-    public AddCommand(String fullCommand){
+    public AddCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
     /**
@@ -31,8 +31,7 @@ public class AddCommand extends Command{
      *                       or the task cannot be created.
      */
     @Override
-    public void execute(TaskList taskList, Storage
-                         storage) throws DukeException{
+    public void execute(TaskList taskList, Storage storage) throws DukeException {
         taskList.addTask(Task.createATask(fullCommand));
         storage.updateFile(taskList.getTaskList());
     }

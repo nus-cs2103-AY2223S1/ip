@@ -25,7 +25,7 @@ public class Storage {
      * @param filepath A string represents the file path of the taskList.
      * @throws IOException Throws exception when error occurs.
      */
-    public Storage(String filepath) throws IOException{
+    public Storage(String filepath) throws IOException {
         String s = "./" + filepath.split("duke")[0];
         File f = new File(s);
         this.file = new File(s + "duke.txt");
@@ -34,13 +34,12 @@ public class Storage {
             this.file.createNewFile();
         }
     }
-
     /**
      * Update the taskList content in the file.
      * @param t the corresponding list of task that will be written in the file.
      * @throws DukeException Throws exception when file operation fails.
      */
-    public void updateFile(List<Task> t) throws DukeException{
+    public void updateFile(List<Task> t) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.file);
             for (int i = 0; i < t.size(); i++) {
@@ -48,13 +47,13 @@ public class Storage {
                     if (t.get(i).getStatusIcon().equals("X")) {
                         fw.write(t.get(i).getStatusIcon() +" "
                                 + t.get(i).getDescription() + "\n");
-                    }else {
+                    } else {
                         fw.write("Wait " + t.get(i).getDescription() + "\n");
                     }
                 }
             }
             fw.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             throw new DukeException("Sorry, something went wrong when updating the file.");
         }
     }
@@ -67,25 +66,25 @@ public class Storage {
             Scanner s = new Scanner(this.file); // create a Scanner using the File as the source
             TaskList taskList = new TaskList();
             while (s.hasNextLine()) {
-                String s0 =s.nextLine();
+                String s0 = s.nextLine();
                 String s1 = s0.split(" ",2)[1];
                 String s2 = s0.split(" ", 2)[0];
                 Task t = Task.createATask(s1);
-                if (t!= null) {
-                    if (s2.equals("X")){
+                if (t != null) {
+                    if (s2.equals("X")) {
                         t.taskDone();
                         taskList.getTaskList().add(t);
-                    }else {
+                    } else {
                         taskList.getTaskList().add(t);
                     }
                 }
             }
             s.close();
             return taskList;
-        }catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println("Sorry, but something went wrong when loading task "
                     +e.getMessage());
-        }catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             System.out.println("Sorry, but something went wrong when loading task "
                     +e.getMessage());
         } catch (DukeException d) {

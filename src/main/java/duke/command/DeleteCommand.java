@@ -7,9 +7,8 @@ import duke.storage.Storage;
 /**
  * Represents a command to delete task in the taskList.
  */
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
     String fullCommand;
-
     /**
      * Class constructor. Construct a deleteCommand object.
      * @param fullCommand A string of a line from the System.in. With the format as "delete x"
@@ -27,7 +26,7 @@ public class DeleteCommand extends Command{
      * @throws DukeException Throws DukeException when the task index is out of index.
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) throws DukeException{
+    public void execute(TaskList taskList, Storage storage) throws DukeException {
         taskList.delete(Integer.valueOf(this.fullCommand.split(" ")[1])
                 , storage);
     }

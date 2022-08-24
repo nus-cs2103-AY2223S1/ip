@@ -7,9 +7,8 @@ import duke.storage.Storage;
 /**
  * Represents a command to mark a certain task as done or undone.
  */
-public class MarkingCommand extends Command{
+public class MarkingCommand extends Command {
     String fullCommand;
-
     /**
      * Class constructor.Construct a command for marking.
      * @param fullCommand A string of a line from System.in. Begin with "mark" or "unmark".
@@ -25,7 +24,7 @@ public class MarkingCommand extends Command{
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList taskList, Storage storage) throws DukeException{
+    public void execute(TaskList taskList, Storage storage) throws DukeException {
         if (this.fullCommand.split(" ")[0].equals("mark")) {
             taskList.markAsDone(Integer.valueOf(this.fullCommand.split(" ")[1]) - 1, storage);
         } else {
