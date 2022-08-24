@@ -15,6 +15,10 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Constructor for task.
+     * @param detail String
+     */
     public Task(String detail, boolean isDone) {
         this.detail = detail;
         this.isDone = isDone;
@@ -53,6 +57,10 @@ public class Task {
         System.out.println(this.toString());
     }
 
+    /**
+     * Returns String form of the task
+     * @return String
+     */
     @Override
     public String toString() {
         return this.getStatusIcon() + " " + this.detail;
@@ -62,6 +70,10 @@ public class Task {
         return (this.isDone ? "1" : "0");
     }
 
+    /**
+     * Returns String to be stored in the hardware list.
+     * @return String
+     */
     public String storedData() {
         return statusIcon() + "|" + detail;
     }

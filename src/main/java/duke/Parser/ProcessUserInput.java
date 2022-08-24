@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ProcessUserInput {
+    /**
+     * Converts user command.
+     * @param workList
+     */
     public static void process(ArrayList<Task> workList) {
         // User Input
         Scanner scanner = new Scanner(System.in);

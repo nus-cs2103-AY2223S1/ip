@@ -11,6 +11,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class DukeEncoder {
+    /**
+     * Updates the change to List.txt.
+     * @param workList ArrayList of Task used to store Task in the program
+     */
     public static void rewriteList(ArrayList<Task> workList) {
         try {
             Path file = Paths.get("src/main/java/duke/Storage/List.txt");
