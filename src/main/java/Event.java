@@ -21,6 +21,17 @@ public class Event extends Task {
     }
 
     /**
+     * Returns ListLoader friendly summary of the event task.
+     *
+     * @return String representing summary of the event task.
+     */
+    public  String summary() {
+        String status = isCompleted ? "1" : "0";
+        String message = "E | " + status + " | " + description + " | " + at;
+        return message;
+    }
+
+    /**
      * Returns a string representation of the event.
      *
      * @return a string consisting of the event completion status and description.

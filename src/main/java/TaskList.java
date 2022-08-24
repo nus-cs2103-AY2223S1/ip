@@ -9,6 +9,7 @@ public class TaskList {
     private Integer totalTasks = 0;
 
     private ArrayList<Task> allTaskList = new ArrayList<>();
+    private ListLoader updater = new ListLoader(this);
 
     /**
      * Returns a message reporting the number of tasks in list.
@@ -31,12 +32,16 @@ public class TaskList {
      *
      * @param description String representing the description of the task.
      * @param isCompleted Boolean representing whether the task is completed.
+     * @param isNewTask Boolean representing whether to save task to data list.
      * @return String representation of addition of task and list status.
      */
-    public String addTodo(String description, Boolean isCompleted) {
+    public String addTodo(String description, Boolean isCompleted, Boolean isNewTask) {
         totalTasks++;
         Task task = new Todo(description, isCompleted);
         allTaskList.add(task);
+        if (isNewTask) {
+            updater.appendToList(task.summary());
+        }
         return "Meow! I'm a cat. I've added this task:\n"
                             + task + "\n"
                             + tasksLeft();
@@ -49,12 +54,16 @@ public class TaskList {
      * @param description String representing the description of the task.
      * @param date String representing the time of the event.
      * @param isCompleted Boolean representing whether the task is completed.
+     * @param isNewTask Boolean representing whether to save task to data list.
      * @return String representation of addition of task and list status.
      */
-    public String addEvent(String description, String date, Boolean isCompleted) {
+    public String addEvent(String description, String date, Boolean isCompleted, Boolean isNewTask) {
         totalTasks++;
         Task task = new Event(description, date, isCompleted);
         allTaskList.add(task);
+        if (isNewTask) {
+            updater.appendToList(task.summary());
+        }
         return "Moo! I'm a cat. I've added this task:\n"
                 + task + "\n"
                 + tasksLeft();
@@ -67,12 +76,16 @@ public class TaskList {
      * @param description String representing the description of the task.
      * @param date String representing the deadline of the event.
      * @param isCompleted Boolean representing whether the task is completed.
+     * @param isNewTask Boolean representing whether to save task to data list.
      * @return String representation of addition of task and list status.
      */
-    public String addDeadline(String description, String date, Boolean isCompleted) {
+    public String addDeadline(String description, String date, Boolean isCompleted, Boolean isNewTask) {
         totalTasks++;
         Task task = new Deadline(description, date, isCompleted);
         allTaskList.add(task);
+        if (isNewTask) {
+            updater.appendToList(task.summary());
+        }
         return "Woof! I'm a cat. I've added this task:\n"
                 + task + "\n"
                 + tasksLeft();
@@ -89,6 +102,7 @@ public class TaskList {
             msg = "There are NYA tasks hereeeee";
         } else {
             Task t = allTaskList.get(rank - 1);
+            updater.markTask(t.summary());
             t.markAsDone();
             msg = "Nyace! One step closer to nap!\n"
                 + "    " + t;
@@ -107,6 +121,7 @@ public class TaskList {
             msg = "There are NYA tasks hereeeee";
         } else {
             Task t = allTaskList.get(rank - 1);
+            updater.unmarkTask(t.summary());
             t.markAsNotDone();
             msg = "You nyapped for too long!\n"
                     + "    " + t;
@@ -126,6 +141,8 @@ public class TaskList {
         } else {
             totalTasks--;
             Task t = allTaskList.get(rank - 1);
+            allTaskList.remove(t);
+            updater.deleteTask(t.summary());
             msg = "It's dead!! It's deadsss!\n"
                     + "    "
                     + t + "\n"

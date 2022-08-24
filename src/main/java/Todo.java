@@ -18,6 +18,17 @@ public class Todo extends Task {
     }
 
     /**
+     * Returns ListLoader friendly summary of the todo task.
+     *
+     * @return String representing summary of the todo task.
+     */
+    public  String summary() {
+        String status = isCompleted ? "1" : "0";
+        String message = "T | " + status + " | " + description;
+        return message;
+    }
+
+    /**
      * Returns a string representation of the todo task.
      *
      * @return a string consisting of the todo task's completion status and description.

@@ -31,7 +31,7 @@ public class Duke {
         System.out.println(border + "Meow from\n" + cat + service + border);
 
         TaskList list = new TaskList();
-        ListLoader updater = new ListLoader((list));
+        //ListLoader updater = new ListLoader((list));
 
 
 
@@ -62,21 +62,24 @@ public class Duke {
                     if (target == null) {
                         throw new IllegalArgumentException();
                     }
-                    System.out.println(list.addTodo(target, false));
+                    System.out.println(list.addTodo(target, false, true));
+                    //updater.AppendToDo(target, false);
                     break;
                 case EVENT:
                     if (target == null || target.split(" /at ").length != 2) {
                         throw new IllegalArgumentException();
                     }
                     String[] inputE = target.split(" /at ");
-                    System.out.println(list.addEvent(inputE[0], inputE[1], false));
+                    System.out.println(list.addEvent(inputE[0], inputE[1], false, true));
+                    //updater.AppendEvent(inputE[0], inputE[1], false);
                     break;
                 case DEADLINE:
                     if (target == null || target.split(" /by ").length != 2) {
                         throw new IllegalArgumentException();
                     }
                     String[] inputD = target.split(" /by ");
-                    System.out.println(list.addDeadline(inputD[0], inputD[1], false));
+                    System.out.println(list.addDeadline(inputD[0], inputD[1], false, true));
+                    //updater.AppendDeadline(inputD[0], inputD[1], false);
                     break;
                 case MARK:
                     if (target == null) {

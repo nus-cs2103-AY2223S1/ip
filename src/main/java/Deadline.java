@@ -21,6 +21,17 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns ListLoader friendly summary of the deadline task.
+     *
+     * @return String representing summary of the deadline task.
+     */
+    public  String summary() {
+        String status = isCompleted ? "1" : "0";
+        String message = "D | " + status + " | " + description + " | " + by;
+        return message;
+    }
+
+    /**
      * Returns a string representation of the deadline.
      *
      * @return a string consisting of the deadline completion status and description.
