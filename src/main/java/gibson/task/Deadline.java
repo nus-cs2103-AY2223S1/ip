@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
 
-    private static final String[] formats = new String[] {
+    private static final String[] FORMATS = new String[] {
             "y-M-d H:m", "d MMM yyyy H:m"
     };
     private LocalDateTime date;
@@ -16,12 +16,12 @@ public class Deadline extends Task {
         if (date.isBlank()) {
             throw new IllegalArgumentException("Time of deadline cannot be empty.");
         } else {
-            for (int i = 0; i < formats.length; i++) {
+            for (int i = 0; i < FORMATS.length; i++) {
                 try {
-                    this.date = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(formats[i]));
+                    this.date = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(FORMATS[i]));
                     break;
                 } catch (DateTimeParseException e) {
-                    if (i == formats.length - 1) {
+                    if (i == FORMATS.length - 1) {
                         throw new IllegalArgumentException("Date format is invalid. Try it in y-M-d H:m. For example, 2020-1-12 23:59.");
                     }
                 }
