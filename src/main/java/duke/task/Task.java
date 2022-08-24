@@ -26,6 +26,10 @@ public class Task {
         return this.title;
     }
 
+    public boolean isCompleted() {
+        return this.completed;
+    }
+
     public void markAsCompleted() {
         this.completed = true;
         System.out.println(String.format("Nice! I've marked this task as done:\n\t%s", this));

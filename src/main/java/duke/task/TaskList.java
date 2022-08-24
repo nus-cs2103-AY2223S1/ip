@@ -1,7 +1,6 @@
 package duke.task;
 
 import duke.exceptions.NoSuchTaskException;
-import duke.task.Task;
 
 import java.util.List;
 

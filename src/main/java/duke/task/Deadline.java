@@ -1,4 +1,5 @@
 package duke.task;
+
 import duke.exceptions.*;
 
 import java.time.LocalDate;
@@ -10,6 +11,11 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline extends Task {
     protected LocalDate by;
+
+    public Deadline(String description, LocalDate by) {
+        super(description);
+        this.by = by;
+    }
 
     public Deadline(String description, String by) throws InvalidDeadlineException {
         super(description);
@@ -28,14 +34,16 @@ public class Deadline extends Task {
             throw new InvalidDeadlineException();
         }
     }
+
     public String getFormattedDate() {
         return this.by.format(DateTimeFormatter.ofLocalizedDate(DATE_FORMAT));
 
     }
+
     @Override
     public String toString() {
         return "[D]" + super.toString()
-                + " (by: " +  this.getFormattedDate()
+                + " (by: " + this.getFormattedDate()
                 + ")";
     }
 

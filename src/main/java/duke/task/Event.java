@@ -12,6 +12,10 @@ public class Event extends Task {
 
     protected LocalDate at;
 
+    public Event(String description, LocalDate at) {
+        super(description);
+        this.at = at;
+    }
     public Event(String description, String at) throws InvalidEventException {
         super(description);
         try {
