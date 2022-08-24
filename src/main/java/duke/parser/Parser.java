@@ -23,11 +23,22 @@ import duke.task.Task;
 import duke.task.ToDo;
 import duke.ui.Ui;
 
+/**
+ * Represents a parser to parse inputs from the user.
+ */
 public class Parser {
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HHmm");
     private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
 
+    /**
+     * Makes sense of the user input and returns the
+     * corresponding command to be executed.
+     *
+     * @param input Input from the user.
+     * @param ui Ui to interact with the user.
+     * @return Command to be executed.
+     */
     public static Command parse(String input, Ui ui) {
         String[] arr = input.split(" ", 2);
         String command = arr[0];
