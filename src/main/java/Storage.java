@@ -1,18 +1,17 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Processes IO requests
  */
-public class FileProcessor {
+public class Storage {
     private final String filePath;
 
     /**
      * Constructor for FileProcessor
      * @param filePath user's data file path
      */
-    public FileProcessor(String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
@@ -78,7 +77,7 @@ public class FileProcessor {
             System.out.println(e);
             System.out.println("Oops! Something wrong with your personal file...");
         }
-        return taskList;
+        return taskList == null ? new ArrayList<>() : taskList;
     }
 
 }
