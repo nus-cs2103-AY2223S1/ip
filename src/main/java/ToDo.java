@@ -11,6 +11,17 @@ public class ToDo extends Task {
     }
 
     @Override
+    public String saveData() {
+        String isDone;
+        if (super.isDone) {
+            isDone = "O";
+        } else {
+            isDone = "X";
+        }
+        return String.format("T | %s | %s\n", isDone, super.description);
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

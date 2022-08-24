@@ -1,8 +1,13 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private static ArrayList<Task> taskList  = new ArrayList<Task>();
+    private static final File FILE_PATH = new File("./data/duke.txt");
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);  // Create a Scanner object
@@ -18,12 +23,45 @@ public class Duke {
                 input = sc.nextLine();
             }
         }
+        storeData();
         terminate();
     }
 
     private static void welcome() {
         System.out.println("Hello!\n" +
                 "How may i help you today?");
+    }
+
+    private static void ReadData() {
+        try {
+            Scanner fileScanner = new Scanner(FILE_PATH);
+            while (fileScanner.hasNextLine()) {
+                String[] storedInfo = fileScanner.nextLine().split(" | ");
+                String type = storedInfo[0];
+                boolean isDone = storedInfo[1].equals("O") ? true : false;
+                String description = storedInfo[2];
+                Task task;
+                switch (type) {
+                case "T":
+                    task = new ToDo(description, isDone);
+                    break;
+                case "D":
+                    task = new Deadline(description, isDone, storedInfo[3]);
+                    break;
+                case "E":
+                    task = new Event(description, isDone, storedInfo[3]);
+                    break;
+                default:
+                    throw new DukeException("No save data found");
+                }
+                taskList.add(task);
+            }
+            fileScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Data not found");
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private static void terminate() {
@@ -156,5 +194,18 @@ public class Duke {
     private static void listStatus(ArrayList<Task> list) {
         System.out.println(String.format("Now you have %d tasks in the list.",
                 list.size()));
+    }
+
+    private static void storeData() {
+        try {
+            FileWriter fw = new FileWriter(FILE_PATH);
+            for (Task task : taskList) {
+                String dataToSave = task.saveData();
+                fw.write(dataToSave);
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Data cannot be stored");
+        }
     }
 }
