@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 public class Duke {
     private static final int HORIZONTAL_LINE_LENGTH = 50;
     private static final String NAME = "Stashy";
+    private static final String DATA_FILEPATH = "src/main/data/duke.txt";
 
     /**
      * Prints multiple lines, each indented by 4 spaces.
@@ -31,7 +34,7 @@ public class Duke {
      *
      * @param tasks The list of tasks
      */
-    public static void printTasks(ArrayList<Task> tasks) {
+    public static void printTasks(List<Task> tasks) {
         printIndented("Listing all task(s) in your list...");
         for (int i = 1; i <= tasks.size(); i++) {
             printIndented(i + "." + tasks.get(i - 1));
@@ -169,41 +172,55 @@ public class Duke {
      * The main function of this chatbot.
      */
     public static void main(String[] args) {
+        TaskReader tr = new TaskReader();
         Scanner sc = new Scanner(System.in);
-        ArrayList<Task> tasks = new ArrayList<Task>();
-        printHorizontalLine();
-        printIndented("Beep boop! I'm " + NAME + "\nWhat can I do for you, busy guy?");
-        printHorizontalLine();
-        while (true) {
-            String input = sc.nextLine().strip();
-            String keyword = input.split(" ")[0];
+        try {
+            List<Task> tasks = tr.convertToTaskList(DATA_FILEPATH);
             printHorizontalLine();
-            try {
-                switch (keyword) {
-                    case "bye":
-                        sayGoodbye();
-                        printHorizontalLine();
-                        return;
-                    case "list":
-                        printTasks(tasks);
-                        break;
-                    case "mark":
-                        markTaskAsDone(tasks, input);
-                        break;
-                    case "unmark":
-                        unmarkTaskAsNotDone(tasks, input);
-                        break;
-                    case "delete":
-                        deleteTask(tasks, input);
-                        break;
-                    case "todo": case "deadline": case "event":
-                        createNewTask(tasks, input);
-                        break;
-                    default:
-                        throw new DukeException("I have no idea what are you saying :<");
+            printIndented("Beep boop! I'm " + NAME + "\nWhat can I do for you, busy guy?");
+            printHorizontalLine();
+            while (true) {
+                String input = sc.nextLine().strip();
+                String keyword = input.split(" ")[0];
+                printHorizontalLine();
+                try {
+                    switch (keyword) {
+                        case "bye":
+                            sayGoodbye();
+                            printHorizontalLine();
+                            return;
+                        case "list":
+                            printTasks(tasks);
+                            break;
+                        case "mark":
+                            markTaskAsDone(tasks, input);
+                            break;
+                        case "unmark":
+                            unmarkTaskAsNotDone(tasks, input);
+                            break;
+                        case "delete":
+                            deleteTask(tasks, input);
+                            break;
+                        case "todo":
+                        case "deadline":
+                        case "event":
+                            createNewTask(tasks, input);
+                            break;
+                        default:
+                            throw new DukeException("I have no idea what are you saying :<");
+                    }
+                } catch (DukeException d) {
+                    printIndented(d.getMessage());
                 }
-            } catch (DukeException d) {
-                printIndented(d.getMessage());
+                printHorizontalLine();
+            }
+        } catch (FileNotFoundException e) {
+            printHorizontalLine();
+            printIndented(e.getMessage() + "\nCreating file and/or directory...");
+            try {
+                tr.createDataFile(DATA_FILEPATH);
+            } catch (IOException ioe) {
+                printIndented(ioe.getMessage());
             }
             printHorizontalLine();
         }
