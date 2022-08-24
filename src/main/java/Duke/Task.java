@@ -2,11 +2,11 @@ package Duke;
 
 abstract public class Task {
     private String task;
-    private boolean done;
+    private boolean isDone;
 
     Task(String task, boolean done) {
         this.task = task;
-        this.done = done;
+        this.isDone = done;
     }
 
     @Override
@@ -16,24 +16,24 @@ abstract public class Task {
 
 
     public String getStatusIcon() {
-        return this.done ? "[X]" : "[ ]";
+        return this.isDone ? "[X]" : "[ ]";
     }
 
     public String getTask() {
         return this.task;
     }
 
-    public void markTaskAsDone() {
-        done = true;
+    public void setTaskAsDone() {
+        isDone = true;
     }
 
 
-    public void unMarkTaskAsDone() {
-        done = false;
+    public void setTaskAsUnDone() {
+        isDone = false;
     }
 
     public int getDone() {
-        return done ? 1 : 0;
+        return isDone ? 1 : 0;
     }
 
     abstract char getType();
