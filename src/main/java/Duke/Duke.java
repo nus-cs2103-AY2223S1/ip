@@ -1,29 +1,64 @@
 package Duke;
 
+import java.io.IOException;
 
 import java.util.Scanner;
 
 public class Duke {
     Scanner sc;
-
+    public Storage storage;
     public TaskList tasklist;
     public ui ui;
 
     public Duke() {
 
+
         this.ui = new ui();
+
+        this.storage = new Storage("data/tasks.txt");
+        this.ui = new ui();
+
         this.tasklist = new TaskList();
         this.sc = new Scanner(System.in);
 
+        try {
+            this.tasklist = new TaskList();
+            storage.load();
+        } catch (IOException e) {
+            this.tasklist = new TaskList();
+            ui.printError(e.getMessage());
+        }
+
+    }
+
+    public Duke(String path) {
+        this.ui = new ui();
+        this.storage = new Storage(path);
+        try {
+            this.tasklist = new TaskList();
+            storage.load();
+
+        } catch (IOException e){
+            this.tasklist = new TaskList();
+            ui.printError(e.getMessage());
+
+        }
     }
 
     public void run() {
         System.out.println(ui.greeting());
         boolean isExit = false;
+
         Handler handler = new Handler(tasklist, ui);
+
+
+
         while (!isExit) {
             try {
-                String echo = sc.nextLine();
+
+
+                String echo = ui.getInput();
+
                 if (echo.equals("bye")) {
                     System.out.println(ui.bye());
                     isExit = true;
@@ -44,6 +79,8 @@ public class Duke {
                 } else {
                     throw new DukeUnknownTaskException();
                 }
+                storage.save();
+
             } catch (DukeException e){
                 ui.printError(e.getMessage());
 
