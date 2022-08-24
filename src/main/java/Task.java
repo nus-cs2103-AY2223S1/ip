@@ -31,18 +31,36 @@ public class Task {
         this.isDone = isDone;
     }
 
+    /**
+     * Returns status of the task (difference depends on whether it is done or not done).
+     *
+     * @return [X] if task is done, [ ] otherwise.
+     */
     public String getStatusIcon() {
         return (this.isDone ? "[X] " : "[ ] ");
     }
 
+    /**
+     * Marks the task as done, and sets isDone to true.
+     *
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Unmarks the task, and sets isDone to false.
+     *
+     */
     public void unmark() {
         this.isDone = false;
     }
 
+    /**
+     * String representation of a Task.
+     *
+     * @return Status concatenated with the task's name.
+     */
     @Override
     public String toString() {
         return this.getStatusIcon() + this.taskName;

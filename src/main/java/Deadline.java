@@ -35,6 +35,11 @@ public class Deadline extends Task {
         this.date = LocalDate.parse(date);
     }
 
+    /**
+     * String representation of a Deadline.
+     *
+     * @return Deadline representation.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
