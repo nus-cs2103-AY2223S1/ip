@@ -39,7 +39,7 @@ public class EventCommand extends Command{
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Event e = new Event(this.event, this.time);
         tasks.addTask(e);
-        storage.savetoFile(tasks.saveList());
+        storage.saveToFile(tasks.saveList());
         ui.printAddTask(e, tasks.getSize());
     }
 }

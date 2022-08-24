@@ -32,7 +32,7 @@ public class MarkCommand extends Command{
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.printMark(tasks.get(index));
-        storage.savetoFile(tasks.saveList());
+        storage.saveToFile(tasks.saveList());
     }
 }
 

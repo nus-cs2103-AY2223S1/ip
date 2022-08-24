@@ -44,14 +44,14 @@ public class Ui {
      */
     public void printWelcome() {
         System.out.println("Hello from\n" + logo);
-        printMsg(initText);
+        printMessage(initText);
     }
 
     /**
      * class method to print bye message.
      */
     public void printBye() {
-        printMsg(endText);
+        printMessage(endText);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Ui {
      */
     public void printMark(Task t) {
         t.mark();
-        printMsg("Nice! I've marked this task as done :)\n      "
+        printMessage("Nice! I've marked this task as done :)\n      "
                 + t.toString());
     }
 
@@ -68,7 +68,7 @@ public class Ui {
      */
     public void printUnmark(Task t) {
         t.unmark();
-        printMsg("ok I mark this task as not done yet... \n      "
+        printMessage("ok I mark this task as not done yet... \n      "
                 + t.toString());
     }
 
@@ -77,7 +77,7 @@ public class Ui {
      */
     public void printAddTask(Task t, int n) {
         String note = "Now you have " + n + " tasks in the list.";
-        printMsg("Got it, I've added this task:\n      " + t.toString()
+        printMessage("Got it, I've added this task:\n      " + t.toString()
                 + "\n    " + note);
     }
 
@@ -86,14 +86,14 @@ public class Ui {
      */
     public void printDeleteTask(Task t, int n) {
         String noteUpdated = "Now you have " + n + " tasks in the list.";
-        printMsg("Noted. I've deleted this task:\n      " + t.toString()
+        printMessage("Noted. I've deleted this task:\n      " + t.toString()
                 + "\n    " + noteUpdated);
     }
 
     /**
      * class method to print message - the lines and indentation and formatting.
      */
-    public static void printMsg (String str){
+    public static void printMessage (String str){
         System.out.println("  ____________________________________________________________");
         System.out.println("    " + str);
         System.out.println("  ____________________________________________________________");

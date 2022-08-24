@@ -34,7 +34,7 @@ public class Storage {
      * public method loadfromFile to load/read commands from text file.
      * @return an arraylist containing the list of task read from file.
      */
-    public ArrayList<Task> loadfromFile() {
+    public ArrayList<Task> loadFromFile() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(" d/MM/uuuu");
         ArrayList<Task> memo = new ArrayList<>();
 
@@ -85,7 +85,7 @@ public class Storage {
      * public method savetoFile to write a new file containing the return of input/element of list on each line.
      * @param input
      */
-    public void savetoFile(List<String> input) {
+    public void saveToFile(List<String> input) {
         try {
             new File(this.filepath).getParentFile().mkdirs();
             FileWriter writer = new FileWriter(this.filepath);
