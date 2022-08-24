@@ -2,6 +2,14 @@ package duke;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+/**
+ * A class that encapsulates the Parser object
+ * which deals with making sense of the user command
+ *
+ * @author  Wee Xin Yang, Markus
+ * @version 0.1
+ * @since   2022-8-24
+ */
 public class Parser {
 
     private final Ui ui;
@@ -13,6 +21,12 @@ public class Parser {
 
     }
 
+    /**
+     * Returns a boolean value representing whether the input is Numeric
+     * @param string The string that will be parsed to check if it is Numeric
+     *
+     * @return A boolean showing if the input string is Numeric
+     */
     public static boolean isNumeric(String string) {
         int intValue;
 
@@ -29,6 +43,11 @@ public class Parser {
         return false;
     }
 
+    /**
+     * Parses the user's input and assign different actions according to the input
+     * @param input The string that will be parsed
+     *
+     */
     public void parse(String input) throws ParseException {
         String[] splitStr = input.split("\\s+");
         TaskList taskList =  storage.getTaskList();

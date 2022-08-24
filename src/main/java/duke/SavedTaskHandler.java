@@ -11,6 +11,14 @@ import java.nio.file.Path;
 import java.io.FileWriter;
 import java.util.function.Consumer;
 
+/**
+ * A class that encapsulates the SavedTaskHandler object
+ * which deals with loading tasks from the file and saving tasks in the file
+ *
+ * @author  Wee Xin Yang, Markus
+ * @version 0.1
+ * @since   2022-8-24
+ */
 public class SavedTaskHandler {
 
     private final String filePath = "./data/saved.txt";
@@ -18,6 +26,7 @@ public class SavedTaskHandler {
     private final Path path;
     private final String EMPTY_TASKS = "Go ahead, your first task, tell LUNA and she will write it down...";
     private final TaskList taskList;
+
     SavedTaskHandler() throws IOException, ParseException {
 
         this.file = new File(filePath);
@@ -73,11 +82,20 @@ public class SavedTaskHandler {
         }
     }
 
+    /**
+     * Returns the TaskList object encapsulated in this SavedTaskHandler object
+     * @return TaskList obejct
+     *
+     */
     public TaskList getTaskList() {
         return this.taskList;
     }
 
-
+    /**
+     * Writes the Tasks inside the inputted TaskList into a .txt file
+     * @param taskList The tasklist object to be written into a .txt file
+     *
+     */
     public void write(TaskList taskList) {
         try {
             FileWriter writer = new FileWriter(filePath);
