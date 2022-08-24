@@ -9,9 +9,9 @@ import seedu.duke.task.ToDo;
 import seedu.duke.ui.Ui;
 
 public class AddCommand extends Command {
-    String typeOfTask;
-    String description;
-    String deadline;
+    protected String typeOfTask;
+    protected String description;
+    protected String deadline;
 
     public AddCommand(String typeOfTask, String description) {
         super(false);

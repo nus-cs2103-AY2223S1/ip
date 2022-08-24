@@ -8,8 +8,8 @@ import seedu.duke.ui.Ui;
 import java.util.Objects;
 
 public class MarkCommand extends Command {
-    boolean toMark;
-    int index;
+    protected boolean toMark;
+    protected int index;
 
     public MarkCommand(String mark, String index) {
         super(false);

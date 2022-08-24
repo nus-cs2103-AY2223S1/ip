@@ -6,7 +6,7 @@ import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 public class DeleteCommand extends Command {
-    int indexOfTask;
+    protected int indexOfTask;
     public DeleteCommand(int indexOfTask) {
         super(false);
         this.indexOfTask = indexOfTask;
