@@ -29,4 +29,14 @@ public class TaskOperation {
         workList.remove(task);
         System.out.println("Now you have " + workList.size() + " task(s) on your list.");
     }
+
+    /**
+     * Print all item in the word list
+     */
+    public static void listItems(ArrayList<Task> workList) {
+        System.out.println(Constants.LISTING_MESSAGE);
+        for (int i = 0; i < workList.size(); i++) {
+            System.out.println((i+1) + ") " + workList.get(i).toString());
+        }
+    }
 }

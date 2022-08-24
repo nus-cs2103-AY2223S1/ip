@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Duke {
 
     // List to store text entered by the user and display them back to the user when requested
-    public static ArrayList<Task> workList = Duke.loadDataFromList();
+    private static ArrayList<Task> workList = Duke.loadDataFromList();
     /**
      * Start the program
      */
@@ -23,16 +23,6 @@ public class Duke {
      */
     private static void exit() {
         System.out.println("Great that you joined. See you soon. Bye!");
-    }
-
-    /**
-     * Print all item in the word list
-     */
-    private static void listItems() {
-        System.out.println(Constants.LISTING_MESSAGE);
-        for (int i = 0; i < Duke.workList.size(); i++) {
-            System.out.println((i+1) + ") " + Duke.workList.get(i).toString());
-        }
     }
 
     private static ArrayList<Task> loadDataFromList() {
@@ -73,7 +63,7 @@ public class Duke {
             int index;
             switch (typeOfTask) {
                 case Constants.LIST:
-                    Duke.listItems();
+                    TaskOperation.listItems(workList);
                     break;
                 case Constants.UNMARK:
                     try {
