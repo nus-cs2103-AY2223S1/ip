@@ -28,8 +28,8 @@ public class DeleteTaskCommand extends Command {
             int numOfTasks = taskList.size();
 
             String message = "Noted. I've removed this task: \n  " +
-                             task + "\n" +
-                             "Now you have " + numOfTasks + " tasks in the list.\n";
+                    task + "\n" +
+                    "Now you have " + numOfTasks + " tasks in the list.\n";
 
             Ui.printMessage(message);
         }  catch (IndexOutOfBoundsException e) {

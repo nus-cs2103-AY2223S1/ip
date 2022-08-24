@@ -18,7 +18,7 @@ public class Duke {
 
 
     /**
-     * Initializing the application 
+     * Initializes the application
      */
     public void initialize() throws DukeException, IOException {
         scanner = new Scanner(System.in);
