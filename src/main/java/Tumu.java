@@ -3,6 +3,10 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.List;
 
+/**
+ * Chatbot driver code. Receives the input from the user
+ * and responds accordingly.
+ */
 public class Tumu {
     private static List<Task> userTasks = new ArrayList<>();
     private static final String horizontalLines = "\t" + "_".repeat(60);
@@ -17,15 +21,20 @@ public class Tumu {
     private static final String DELETE_CMD = "delete";
 
     public static void main(String[] args) {
+        loadUserTasks();
         greeting();
         response();
     }
 
-    private static void response() {
-        /**
-         * Receives user response and replies accordingly.
-         */
+    private static void loadUserTasks() {
+        userTasks = FileIO.loadData();
+    }
 
+    private static void saveUserTasks() {
+        FileIO.saveData(userTasks);
+    }
+
+    private static void response() {
         Scanner sc = new Scanner(System.in);
         String command;
 
@@ -35,34 +44,40 @@ public class Tumu {
             printHorizontalLine();
             try {
                 switch (command) {
-                    case END_CHAT_BOT_CMD:
-                        goodbye();
-                        break;
-                    case LIST_USER_TEXT_CMD:
-                        listTasks();
-                        break;
-                    case MARK_CMD:
-                        markTask(sc.nextInt());
-                        break;
-                    case UNMARK_CMD:
-                        unmarkTask(sc.nextInt());
-                        break;
-                    case TODO_CMD:
-                        addTodoTask(sc.nextLine().trim());
-                        break;
-                    case DEADLINE_CMD:
-                        addDeadlineTask(sc.nextLine().trim());
-                        break;
-                    case EVENT_CMD:
-                        addEventTask(sc.nextLine().trim());
-                        break;
-                    case DELETE_CMD:
-                        deleteTask(sc.nextInt());
-                        break;
-                    default:
-                        //No commands are recognised.
-                        sc.nextLine(); //clear buffer
-                        throw new UnrecognisedCommandException(command.trim());
+                case END_CHAT_BOT_CMD:
+                    goodbye();
+                    break;
+                case LIST_USER_TEXT_CMD:
+                    listTasks();
+                    break;
+                case MARK_CMD:
+                    markTask(sc.nextInt());
+                    saveUserTasks();
+                    break;
+                case UNMARK_CMD:
+                    unmarkTask(sc.nextInt());
+                    saveUserTasks();
+                    break;
+                case TODO_CMD:
+                    addTodoTask(sc.nextLine().trim());
+                    saveUserTasks();
+                    break;
+                case DEADLINE_CMD:
+                    addDeadlineTask(sc.nextLine().trim());
+                    saveUserTasks();
+                    break;
+                case EVENT_CMD:
+                    addEventTask(sc.nextLine().trim());
+                    saveUserTasks();
+                    break;
+                case DELETE_CMD:
+                    deleteTask(sc.nextInt());
+                    saveUserTasks();
+                    break;
+                default:
+                    //No commands are recognised.
+                    sc.nextLine(); //clear buffer
+                    throw new UnrecognisedCommandException(command.trim());
                 }
             } catch (InputMismatchException e) {
                 System.out.println("\tPlease (un)mark or delete a task by " +
@@ -75,6 +90,8 @@ public class Tumu {
             printHorizontalLine();
 
         } while (!command.equalsIgnoreCase(END_CHAT_BOT_CMD));
+
+        sc.close();
     }
 
     private static void greeting() {
