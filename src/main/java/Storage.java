@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
+import java.time.format.DateTimeFormatter;
 
 public class Storage {
 
@@ -42,6 +43,7 @@ public class Storage {
     public static ArrayList<Task> loadFile() throws DukeException {
         BufferedReader reader = null;
         ArrayList<Task> arr = new ArrayList<>();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss");
 
         try {
             reader = new BufferedReader(new FileReader("tasks.txt"));
@@ -54,7 +56,7 @@ public class Storage {
                 } else if (parse[0].equals("E")) {
                     tsk = new Event(parse[2], parse[3]);
                 } else if (parse[0].equals("D")) {
-                    tsk = new Deadline(parse[2], parse[3]);
+                    tsk = new Deadline(parse[2], parse[3], formatter);
                 } else {
                     throw new DukeException("Invalid File");
                 }
