@@ -16,6 +16,16 @@ public abstract class Task {
         this.done = false;
     }
 
+    /** a constructor of Task.
+     *
+     * @param content the content of the task.
+     * @param isDone whether the task is done.
+     */
+    public Task(String content, boolean isDone) {
+        this.content = content;
+        this.done = isDone;
+    }
+
     /**
      * returns the content of the task
      *

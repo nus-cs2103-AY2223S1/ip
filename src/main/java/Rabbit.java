@@ -1,5 +1,12 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.io.File;
+import java.nio.file.Files;
+import java.io.FileWriter;
 
 /**
  * Rabbit is a short-tempered, annoyed bot that puts in her 30% efforts
@@ -29,6 +36,11 @@ public class Rabbit {
     // initialise the list that stores tasks.
     /** a list that keeps all the tasks */
     private static ArrayList<Task> list = new ArrayList<>();
+
+    final static String dir = System.getProperty("user.dir");
+    /** path of data.txt */
+    private static Path path = Paths.get(dir, "data", "data.txt");
+
     private enum TaskType {
         TODO, DEADLINE, EVENT;
     }
@@ -209,11 +221,116 @@ public class Rabbit {
     }
 
     /**
+     * Imports a task from data.txt into the list.
+     *
+     * @param input the line of the task to be imported.
+     */
+    private static void importData(String input) {
+        char type = input.charAt(0);
+        /** indicates the index of the second "|" */
+        int contentBreak = 0;
+
+        if (type == 'E' || type == 'D') {
+            for (int i = 2; i < input.length(); i++) {
+                if (input.charAt(i) == '|') {
+                    contentBreak = i;
+                }
+            }
+
+            try {
+                boolean isDone = input.charAt(2) == 'X';
+                String content = input.substring(4, contentBreak);
+                String time = input.substring(contentBreak + 1, input.length());
+                if (type == 'E') {
+                    list.add(new Event(content, time, isDone));
+                }
+                if (type == 'D') {
+                    list.add(new Deadline(content, time, isDone));
+                }
+            } catch (StringIndexOutOfBoundsException e) {
+                System.out.println("Fail to import one or more lines from data.txt due to format error.");
+            }
+
+        } else if (type == 'T') {
+            boolean isDone = input.charAt(2) == 'X';
+            String content = input.substring(4, input.length());
+            list.add(new Todo(content, isDone));
+        } else {
+            System.out.println("Fail to import one or more lines from data.txt due to format error.");
+        }
+    }
+
+    /**
+     * Exports tasks from the list into data.txt
+     */
+    private static void exportData() {
+        try {
+            FileWriter fw = new FileWriter(path.toString());
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i) instanceof Todo) {
+                    Todo todo = (Todo) list.get(i);
+                    fw.write("T") ;
+                    fw.write("|" + (todo.isDone() ? "X" : " ")
+                            + "|"  + todo.getContent() + "\n");
+                } else if (list.get(i) instanceof Event) {
+                    Event event = (Event) list.get(i);
+                    fw.write("E") ;
+                    fw.write("|" + (event.isDone() ? "X" : " ")
+                            + "|"  + event.getContent()
+                    + "|" + event.getTime() + "\n");
+                } else if (list.get(i) instanceof Deadline) {
+                    Deadline deadline = (Deadline) list.get(i);
+                    fw.write("D") ;
+                    fw.write("|" + (deadline.isDone() ? "X" : " ")
+                            + "|"  + deadline.getContent()
+                            + "|" + deadline.getTime() + "\n");
+                } else {
+                    System.out.println("Failed to write one or more lines from" +
+                            "the list into data.txt due to wrong format of tasks.");
+                }
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error when writing into data.txt.");
+        }
+    }
+
+    /**
      * Main method of Rabbit.
      *
      * @param args The commandline arguments.
      */
     public static void main(String[] args) {
+        // if directory ./date does not exist, create it
+        if (!Files.exists(path.getParent())) {
+            try {
+                Files.createDirectories(path.getParent());
+            } catch (IOException e) {
+                System.out.println("Error when creating directory ./data.");
+                return;
+            }
+        }
+
+        // try import data.txt from ./data
+        try {
+            File data = new File(path.toString());
+            Scanner s = new Scanner(data); // create a Scanner using the File as the source
+            while (s.hasNext()) {
+                String input = s.nextLine();
+                importData(input);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("File data.txt is not found.");
+            System.out.println("Create a new data.txt.");
+            // if data.txt is not found, create a new data.txt file under ./data
+            try {
+                Files.createFile(path);
+            } catch (IOException ioException) {
+                System.out.println("Error when creating data.txt.");
+                return;
+            }
+        }
+
         System.out.println(greet);
         Scanner sc = new Scanner(System.in);
 
@@ -251,13 +368,16 @@ public class Rabbit {
                     break;
                 default:
                     // the user keyed in an invalid input
-                    System.out.println("Ummm...what is that? I don't get it.");
+                    throw new InvalidInputException();
                 }
+                exportData();
             } catch (MarkUnmarkException e) {
                 System.out.println(e.toString());
             } catch (AddToListException e) {
                 System.out.println(e.toString());
             } catch (DeleteException e) {
+                System.out.println(e.toString());
+            } catch (InvalidInputException e) {
                 System.out.println(e.toString());
             }
         }

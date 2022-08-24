@@ -1,0 +1,4 @@
+T|X|do homework
+E| |do homework|9am
+E|X|do homework|10am
+T| |do homework
