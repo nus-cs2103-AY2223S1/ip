@@ -16,9 +16,11 @@ import duke.utils.DukeValidator;
  */
 public class ListTasksCommand implements Command {
     public static final String COMMAND_WORD = "list";
+
     private static final String ERROR_UNKNOWN_OPTION = "Unknown option provided! Use either a '/on' or\n"
             + "'/before' command together with a date in order to\n"
             + "filter the tasks by their date!";
+
     // Matches a '/on' command followed by a (possibly invalid) date string. This is used
     // to show the list of tasks occurring on the specific date.
     // For example: /on <date>

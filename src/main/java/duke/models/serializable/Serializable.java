@@ -10,6 +10,7 @@ import duke.exceptions.DukeException;
  */
 public abstract class Serializable<T> {
     private static final String ERROR_MATCHING_SERIALIZABLE_REGEX = "Regex for serialized string does not match!";
+
     // Use the double slash to escape the pipe character
     private static final String formatterRead = " \\| ";
     private static final String formatterWrite = formatterRead.replace("\\", "");

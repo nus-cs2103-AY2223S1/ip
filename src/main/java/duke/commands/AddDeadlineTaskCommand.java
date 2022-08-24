@@ -15,7 +15,8 @@ import duke.utils.DukeValidator;
  */
 public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
     public static final String COMMAND_WORD = "deadline";
-    private static final String INVALID_DEADLINE_TASK_ERROR = "Use the 'deadline' command together with the "
+
+    private static final String ERROR_INVALID_DEADLINE_TASK = "Use the 'deadline' command together with the "
             + "task description and deadline\nFor example: 'deadline return book /by 2022-12-02'";
 
     // Matches a non-empty description and a non-empty deadline, separated by a '/by' command
@@ -37,7 +38,7 @@ public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
     public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
         Matcher matcher = AddDeadlineTaskCommand.MATCH_DEADLINE_TASK.matcher(this.arguments);
         if (!matcher.matches()) {
-            throw new DukeException(AddDeadlineTaskCommand.INVALID_DEADLINE_TASK_ERROR);
+            throw new DukeException(AddDeadlineTaskCommand.ERROR_INVALID_DEADLINE_TASK);
         }
 
         String description = matcher.group("taskDescription").strip();

@@ -8,7 +8,8 @@ import duke.managers.UiManager;
  */
 public class ByeCommand implements Command {
     public static final String COMMAND_WORD = "bye";
-    private static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
+
+    private static final String MESSAGE_GOODBYE = "Bye. Hope to see you again soon!";
 
     public static boolean is(Command command) {
         return command instanceof ByeCommand;
@@ -16,6 +17,6 @@ public class ByeCommand implements Command {
 
     @Override
     public void execute(TaskManager taskManager, UiManager uiManager) {
-        uiManager.print(ByeCommand.GOODBYE_MESSAGE);
+        uiManager.print(ByeCommand.MESSAGE_GOODBYE);
     }
 }

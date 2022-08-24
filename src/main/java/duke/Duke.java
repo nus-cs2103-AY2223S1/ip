@@ -16,7 +16,7 @@ public class Duke {
     private static final String NAME = "Duke";
 
     // The greeting message used by the chatbot when the program starts
-    private static final String GREETING_MESSAGE = String.format("Hello! I'm %s\nWhat can I do for you?", Duke.NAME);
+    private static final String MESSAGE_GREETING = String.format("Hello! I'm %s\nWhat can I do for you?", Duke.NAME);
 
     /**
      * TODO: Add JavaDocs
@@ -36,7 +36,7 @@ public class Duke {
         ParserManager parserManager = new ParserManager();
 
         // Greet the user
-        ui.print(Duke.GREETING_MESSAGE);
+        ui.print(Duke.MESSAGE_GREETING);
 
         boolean isExit = false;
 

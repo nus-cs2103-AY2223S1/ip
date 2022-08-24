@@ -15,9 +15,9 @@ import duke.storage.TaskStorage;
  */
 public class TaskManager {
     // The list of tasks, accessed using 0-based indices
-    private static final String NO_TASKS_AVAILABLE = "There are currently no tasks available. Add one now!";
-    private static final String TASK_LIST_STATUS_MESSAGE = "Now you have %s task(s) in the list.";
-    private static final String TASK_LIST_CANNOT_READ_STATUS_MESSAGE = "Uh oh, I cannot read the tasks in the list!";
+    private static final String MESSAGE_NO_TASKS_AVAILABLE = "There are currently no tasks available. Add one now!";
+    private static final String MESSAGE_TASK_LIST_STATUS = "Now you have %s task(s) in the list.";
+    private static final String MESSAGE_TASK_LIST_CANNOT_READ_STATUS = "Uh oh, I cannot read the tasks in the list!";
 
     private final TaskStorage taskStorage;
 
@@ -34,7 +34,7 @@ public class TaskManager {
      */
     public static String display(List<Task> tasks) {
         if (tasks.size() == 0) {
-            return TaskManager.NO_TASKS_AVAILABLE;
+            return TaskManager.MESSAGE_NO_TASKS_AVAILABLE;
         }
 
         StringBuilder taskManagerDisplay = new StringBuilder();
@@ -106,9 +106,9 @@ public class TaskManager {
      */
     public String getStatus() {
         try {
-            return String.format(TaskManager.TASK_LIST_STATUS_MESSAGE, this.count());
+            return String.format(TaskManager.MESSAGE_TASK_LIST_STATUS, this.count());
         } catch (DukeException e) {
-            return String.format("%s: %s", TaskManager.TASK_LIST_CANNOT_READ_STATUS_MESSAGE, e.getMessage());
+            return String.format("%s: %s", TaskManager.MESSAGE_TASK_LIST_CANNOT_READ_STATUS, e.getMessage());
         }
     }
 

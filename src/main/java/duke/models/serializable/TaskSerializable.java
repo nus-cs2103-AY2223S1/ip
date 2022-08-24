@@ -21,7 +21,9 @@ public class TaskSerializable extends Serializable<Task> {
             + "(?<taskDescription>(.+))(\\s\\|\\s"
             + "(?<taskMeta>(.+)))?"
     );
+
     private static final String ERROR_UNKNOWN_TASK_TYPE = "Unknown task type %s!";
+
     private final TaskType taskType;
     private final String taskDescription;
     private final boolean taskIsDone;

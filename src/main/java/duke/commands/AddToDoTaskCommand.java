@@ -13,7 +13,8 @@ import duke.models.task.ToDo;
  */
 public class AddToDoTaskCommand extends AddTaskCommand implements Command {
     public static final String COMMAND_WORD = "todo";
-    private static final String INVALID_TODO_TASK_ERROR = "Use the 'todo' command together with a task "
+
+    private static final String ERROR_INVALID_TODO_TASK = "Use the 'todo' command together with a task "
             + "description!\nFor example: 'todo borrow book'";
 
     // Matches a non-empty description, for example: <description>
@@ -32,7 +33,7 @@ public class AddToDoTaskCommand extends AddTaskCommand implements Command {
     public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
         Matcher matcher = AddToDoTaskCommand.MATCH_TODO_TASK.matcher(this.arguments);
         if (!matcher.matches()) {
-            throw new DukeException(AddToDoTaskCommand.INVALID_TODO_TASK_ERROR);
+            throw new DukeException(AddToDoTaskCommand.ERROR_INVALID_TODO_TASK);
         }
 
         uiManager.print(this.addTask(taskManager, () -> new ToDo(this.arguments.strip())));

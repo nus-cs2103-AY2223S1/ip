@@ -10,9 +10,10 @@ import duke.exceptions.DukeException;
  */
 public abstract class Storage {
     protected static final String ERROR_STORAGE_NOT_INITIALIZED = "Storage is not initialized yet!";
-    private static final String FILE_DIRECTORY = "data";
     private static final String ERROR_CREATING_DATA_FOLDER = "No permission to create data folder!";
     private static final String ERROR_CREATING_DATA_FILE = "No permission to create data file!";
+
+    private static final String FILE_DIRECTORY = "data";
 
     private final File storage;
     private boolean isInitialized;

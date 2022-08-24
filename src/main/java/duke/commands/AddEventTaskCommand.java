@@ -15,7 +15,8 @@ import duke.utils.DukeValidator;
  */
 public class AddEventTaskCommand extends AddTaskCommand implements Command {
     public static final String COMMAND_WORD = "event";
-    private static final String INVALID_EVENT_TASK_ERROR = "Use the 'event' command together with the "
+
+    private static final String ERROR_INVALID_EVENT_TASK = "Use the 'event' command together with the "
             + "task description and date\nFor example: 'event project meeting /at 2022-12-02'";
 
     // Matches a non-empty description and a non-empty date, separated by a '/at' command
@@ -32,7 +33,7 @@ public class AddEventTaskCommand extends AddTaskCommand implements Command {
     public void execute(TaskManager taskManager, UiManager uiManager) throws DukeException {
         Matcher matcher = AddEventTaskCommand.MATCH_EVENT_TASK.matcher(this.arguments);
         if (!matcher.matches()) {
-            throw new DukeException(AddEventTaskCommand.INVALID_EVENT_TASK_ERROR);
+            throw new DukeException(AddEventTaskCommand.ERROR_INVALID_EVENT_TASK);
         }
         String description = matcher.group("taskDescription").strip();
         String dateString = matcher.group("taskDate").strip();
