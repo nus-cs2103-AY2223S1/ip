@@ -1,5 +1,9 @@
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
     public static void main(String[] args) throws Exception {
@@ -18,6 +22,8 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
         boolean exit = false;
+        String timeInputPattern = "dd-MM-yyyy HHmm";
+        String deadlineTimeInputPattern = "dd-MM-yyyy";
 
         while (!exit) {
             String input = sc.nextLine();
@@ -102,7 +108,10 @@ public class Duke {
                         String taskName = parameters.split(" /by ")[0];
                         String by = parameters.split(" /by ")[1];
 
-                        Task task = new Deadline(taskName, by);
+
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timeInputPattern);
+                        LocalDateTime byDateTime = LocalDateTime.parse(by, formatter);
+                        Task task = new Deadline(taskName, byDateTime);
                         tasks.add(task);
 
                         System.out.println("Got it. I've added this task:");
@@ -111,6 +120,8 @@ public class Duke {
 
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Please input a valid date/time!");
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Please input the date and time in the following format: " + timeInputPattern);
                     }
                     break;
 
@@ -119,9 +130,11 @@ public class Duke {
                     try {
 
                         String taskName = parameters.split(" /at ")[0];
-                        String by = parameters.split(" /at ")[1];
+                        String at = parameters.split(" /at ")[1];
 
-                        Task task = new Event(taskName, by);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(timeInputPattern);
+                        LocalDateTime byDateTime = LocalDateTime.parse(at, formatter);
+                        Task task = new Event(taskName, byDateTime);
                         tasks.add(task);
 
                         System.out.println("Got it. I've added this task:");
@@ -130,6 +143,8 @@ public class Duke {
 
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("Please input a valid date/time!");
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Please input the date and time in the following format: " + timeInputPattern);
                     }
                     break;
 
@@ -139,7 +154,7 @@ public class Duke {
 
                     System.out.println("Got it. I've added this task:");
                     System.out.println(task);
-                    System.out.printf("Now you have %d tasks in the list.%n", tasks.size());
+                    System.out.printf("Now you have %d task in the list.%n", tasks.size());
                     break;
 
                 case "delete":
@@ -163,6 +178,33 @@ public class Duke {
                         System.out.println("Please input a number!");
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println("Task not found!");
+                    }
+                    break;
+
+                case "deadlines":
+                    try {
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(deadlineTimeInputPattern);
+                        LocalDate deadlineDate = LocalDate.parse(parameters, formatter);
+
+                        boolean[] hasElements = {false};
+
+                        tasks
+                                .stream()
+                                .filter(t -> t.getDateTime().getYear() == deadlineDate.getYear())
+                                .filter(t -> t.getDateTime().getDayOfYear() == deadlineDate.getDayOfYear())
+                                .forEach((t) -> {
+                                    int itemNumber = tasks.indexOf(t) + 1;
+                                    String result = String.format("%d: %s", itemNumber, t);
+                                    hasElements[0] = true;
+                                    System.out.println(result);
+                                });
+
+                        if (!hasElements[0]) {
+                            System.out.println("You do not have any deadlines for this date!");
+                        }
+
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Please input the date and time in the following format: " + deadlineTimeInputPattern);
                     }
                     break;
 

@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -21,6 +23,10 @@ public class Task {
 
     public void unmark() {
         this.isDone = false;
+    }
+
+    public LocalDateTime getDateTime() {
+        return LocalDateTime.of(0,1,1,0,0);
     }
 
     @Override
