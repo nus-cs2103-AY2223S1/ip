@@ -9,13 +9,20 @@ import java.util.regex.Pattern;
 public class ChatBotController {
 
     private final Scanner sc = new Scanner(System.in);
-    private final String initialGreeting = "Hello, I'm Duke. What can I do for you?";
-    private final String goodbyeGreeting = "Bye. Hope to see you soon!";
     private final String listString = "list";
     private final String commandList = "1. Add a ToDo\n" + "2. Add an Event\n" + "3. Add a Deadline\n" +
             "4. List all Tasks\n" + "5. Mark\n" + "6. Unmark\n" + "7. Delete a Task\n" + "8. Exit";
     private final String splitLine = "*".repeat(80);
-    private final ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks;
+    private final FileProcessor fileProcessor = new FileProcessor("data/Duke.dat");
+
+    public ChatBotController() {
+        fileProcessor.initialize();
+        tasks = fileProcessor.load();
+        if (tasks == null) {
+            tasks = new ArrayList<>();
+        }
+    }
 
     /**
      * Retrieve input from the user
@@ -138,6 +145,7 @@ public class ChatBotController {
      */
     public void startGreeting() {
         System.out.println(splitLine);
+        String initialGreeting = "Hello, I'm Duke. What can I do for you?";
         System.out.println(initialGreeting);
         System.out.println(commandList);
         System.out.println(splitLine);
@@ -148,8 +156,10 @@ public class ChatBotController {
      */
     public void sayBye() {
         System.out.println(splitLine);
+        String goodbyeGreeting = "Bye. Hope to see you soon!";
         System.out.println(goodbyeGreeting);
         System.out.println(splitLine);
+        fileProcessor.save(tasks);
     }
 
     /**

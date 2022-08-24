@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * This class encapsulate the behavior of a task
  */
-public class Task {
+public class Task implements Serializable {
     private final String taskDescription;
     private boolean taskStatus;
 
