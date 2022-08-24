@@ -5,6 +5,15 @@
  * such as todo.
  */
 public abstract class Task {
+
+    enum TaskType {
+        TODO,
+        DEADLINE,
+        EVENT
+    }
+
+    private TaskType type;
+
    /**
     * Marks the completion status of the task, 
     * True indicates that the user marks the task as
@@ -16,8 +25,15 @@ public abstract class Task {
     private String description = "";
 
     /** Constructor for a general task */
-    public Task(String description) {
+    public Task(String description, TaskType type) {
         this.description = description;
+        this.type = type;
+    }
+
+    public Task(String description, TaskType type, boolean isMarked) {
+        this.description = description;
+        this.type = type;
+        this.isMarked = isMarked;
     }
 
     /**
@@ -44,6 +60,23 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%c] %s", isMarked ? 'X' : ' ', description);
+        return String.format("[%s][%s] %s", this.taskTypeString(),isMarked ? "X" : " ", description);
+    }
+
+    public String encodeForStorage() {
+        return String.format("%s|%s|%s", this.taskTypeString(), this.isMarked ? "Y" : "N", this.description);
+    }
+
+    private String taskTypeString() {
+        switch (this.type) {
+        case TODO:
+            return "T";
+        case EVENT:
+            return "E";
+        case DEADLINE:
+            return "D";
+        default:
+            return "";
+        }
     }
 }
