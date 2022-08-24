@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -13,7 +15,7 @@ public class Duke {
             taskList.list();
         } else if(input.matches("^todo.*")) {
             try {
-                ToDo todo = new ToDo(input.substring(5));
+                ToDo todo = new ToDo(input.substring(5), false);
                 taskList.add(todo);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
@@ -21,7 +23,7 @@ public class Duke {
         } else if(input.matches("^deadline.*")) {
             try {
                 String[] str = input.substring(9).split(" /by ");
-                Deadline deadline = new Deadline(str[0], str[1]);
+                Deadline deadline = new Deadline(str[0], str[1], false);
                 taskList.add(deadline);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description and/or the time of a deadline cannot be empty.");
@@ -29,7 +31,7 @@ public class Duke {
         } else if(input.matches("^event.*")) {
             try {
                 String[] str = input.substring(6).split(" /at ");
-                Event event = new Event(str[0], str[1]);
+                Event event = new Event(str[0], str[1], false);
                 taskList.add(event);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description and/or the time of an event cannot be empty.");
@@ -64,6 +66,50 @@ public class Duke {
     public static void main(String[] args) {
         String welcomeMsg = "Hi there! Baymax at your service.";
         System.out.println(welcomeMsg);
+
+        File dir = new File("data");
+        File file = new File("data/TaskList.txt");
+
+        //Creates the data directory if it does not exist, does nothing otherwise.
+        try {
+            if(!dir.exists()) {
+                dir.mkdir();
+            }
+        } catch (SecurityException e) {
+            System.out.println(e);
+        }
+
+        //Creates the file TaskList.txt in the data directory if it does not exist.
+        try {
+            file.createNewFile();
+            Scanner scFile = new Scanner(file);
+            while(scFile.hasNextLine()) {
+                String taskString = scFile.nextLine();
+                if (taskString.isBlank()) {
+                    continue;
+                }
+                String[] taskElements = taskString.split(" \\| ");
+                boolean isTaskDone = taskElements[1].equals("1");
+
+                switch (taskElements[0]) {
+                case "T":
+                    taskList.add(new ToDo(taskElements[2], isTaskDone));
+                    break;
+                case "D":
+                    taskList.add(new Deadline(taskElements[2], taskElements[3], isTaskDone));
+                    break;
+                case "E":
+                    taskList.add(new Event(taskElements[2], taskElements[3], isTaskDone));
+                    break;
+                default:
+                    break;
+                }
+            }
+            scFile.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+
         String input = sc.nextLine();
 
         while(true) {
