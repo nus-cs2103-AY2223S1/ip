@@ -1,0 +1,6 @@
+T | 0 | read a book
+E | 0 | project meeting/tea | on Sunday 2-4pm
+E | 0 | project meeting | on Sunday 2-4pm
+E | 0 | project meeting | on Sunday 2-4pm /3-5pm
+D | 0 | spanish homework/extra | by Wednesday 6pm
+D | 0 | spanish homework | by Wednesday 6pm

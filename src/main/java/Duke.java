@@ -8,9 +8,9 @@ import java.nio.file.Path;
 import java.util.List;
 
 public class Duke {
-    public static final String BORDER = ">>========================="
-            + "===========[**]============"
-            + "========================<<";
+    public static final String BORDER = ">>=========================="
+            + "============[**]============="
+            + "=========================<<";
     private static ArrayList<Task> taskList = new ArrayList<Task>();
     private static boolean isRunning = true;
 
@@ -34,8 +34,7 @@ public class Duke {
 
     public static void saveTasks() {
         try {
-            String home = System.getProperty("user.home");
-            Path dir = Paths.get(home, "duke", "data");
+            Path dir = Paths.get("..", "data");
             File taskFileDirectory = new File(dir.toString());
             Path path = Paths.get(dir.toString(), "duke.txt");
             File taskFile = new File(path.toString());
@@ -56,15 +55,13 @@ public class Duke {
 
     public static void loadTasks() {
         try {
-            String home = System.getProperty("user.home");
-            Path dir = Paths.get(home, "duke", "data");
+            Path dir = Paths.get("..", "data");
             Path path = Paths.get(dir.toString(), "duke.txt");
             if (Files.exists(dir) && Files.exists(path)) {
                 List<String> allLines = Files.readAllLines(path);
                 for (String line : allLines) {
                     String[] parsedTask = line.split(" \\| ", 4);
                     boolean isDone = parsedTask[1].compareTo("1") == 0;
-                    System.out.println(isDone);
                     switch (parsedTask[0]) {
                     case "T":
                         ToDo todo = new ToDo(parsedTask[2], isDone);
@@ -148,6 +145,12 @@ public class Duke {
                     + "  Task number " + num + " does not exist.");
         }
     }
+    
+    public static void deleteAllTasks() {
+        taskList.removeAll(taskList);
+        saveTasks();
+        System.out.println("  All tasks deleted.");
+    }
 
     public static void quit() {
         System.out.println("  With all due disrespect, leave me alone next time.");
@@ -182,6 +185,8 @@ public class Duke {
             if (input.compareTo("bye") == 0) {
                 sc.close();
                 quit();
+            } else if (input.compareTo("delete all") == 0) {
+                deleteAllTasks();
             } else if (input.compareTo("list") == 0) {
                 list();
             } else if (keyword.compareTo("mark") == 0) {
@@ -272,16 +277,16 @@ public class Duke {
 
     public static void main(String[] args) {
         loadTasks();
-        String mort = "                               .---.        .-----------\n"
-                + "                              /     \\  __  /    ------\n"
-                + "                             / /     \\(  )/    -----\n"
-                + "                            //////   ' \\/ `   ---\n"
-                + "                           //// / // :    : ---\n"
-                + "                          // /   /  /`    '--\n"
-                + "                         //          //..\\\\\n"
-                + ">>==================================UU[**]UU==================================<<\n"
-                + "                                    '//||\\\\`\n"
-                + "                                      ''``";
+        String mort = "                                 .---.        .-----------\n"
+                + "                                /     \\  __  /    ------\n"
+                + "                               / /     \\(  )/    -----\n"
+                + "                              //////   ' \\/ `   ---\n"
+                + "                             //// / // :    : ---\n"
+                + "                            // /   /  /`    '--\n"
+                + "                           //          //..\\\\\n"
+                + ">>====================================UU[**]UU====================================<<\n"
+                + "                                      '//||\\\\`\n"
+                + "                                        ''``";
 
         System.out.println(mort);
         System.out.println("  Oh, it's you again...\n  Mort, begrudgingly at your service.");
