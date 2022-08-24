@@ -111,6 +111,26 @@ public class TaskList {
         }
     }
 
+    public void find(String keyword) {
+        String list = "";
+        int x = 1;
+        for (Task task : tasks) {
+            if (task.containsSearchTerm(keyword)) {
+                list = list + "\n  " + x + ". " + task;
+                x++;
+            }
+        }
+        if (x == 1) {
+            System.out.println(
+                    Ui.start + "there are no tasks matching the search term '"
+                            + keyword + "'.");
+        } else {
+            System.out.println(
+                    Ui.start + "These are the matching tasks in your list:" + list
+            );
+        }
+    }
+
     public void mark(int t) {
         try {
             if (tasks.size() == 0) {

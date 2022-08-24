@@ -41,6 +41,10 @@ public class Task {
         return false;
     }
 
+    public boolean containsSearchTerm(String searchTerm) {
+        return this.description.contains(searchTerm);
+    }
+
     @Override
     public String toString() {
         String done;

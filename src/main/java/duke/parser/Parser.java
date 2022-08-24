@@ -6,17 +6,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import duke.commands.ByeCommand;
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.DefaultCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.EventCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
-import duke.commands.SearchCommand;
-import duke.commands.TodoCommand;
-import duke.commands.UnmarkCommand;
+import duke.commands.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -108,6 +98,13 @@ public class Parser {
                 ui.emptyDateInput();
             } catch (DateTimeParseException e) {
                 ui.invalidDateInput();
+            }
+            return null;
+        case FindCommand.COMMAND_WORD:
+            try {
+                return new FindCommand(arr[1]);
+            } catch (IndexOutOfBoundsException e) {
+                ui.emptyFindInput();
             }
             return null;
         default:

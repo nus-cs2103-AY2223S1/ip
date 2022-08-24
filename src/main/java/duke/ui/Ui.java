@@ -82,6 +82,10 @@ public class Ui {
         System.out.println(sadFace + "sorry, i don't know what that means :(");
     }
 
+    public void emptyFindInput() {
+        System.out.println(sadFace + "please enter the keywords you would like to search for.");
+    }
+
     public void saveFail() {
         System.out.println(
                 start + "bye! i was unable to save your list to the hard drive, but i hope to see you again soon! :)");
