@@ -1,5 +1,6 @@
 package duke.tasks;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -33,6 +34,12 @@ public class TaskList {
 
     public ArrayList<Task> getTasks() {
         return this.tasks;
+    }
+
+    public ArrayList<Task> find(String text) {
+        ArrayList<Task> filtered = new ArrayList<>(this.tasks);
+        filtered.removeIf(task -> !task.getDescription().contains(text));
+        return filtered;
     }
 
 }

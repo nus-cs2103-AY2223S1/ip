@@ -33,6 +33,8 @@ public class Parser {
         return new UnmarkCommand(text);
       case delete:
         return new DeleteCommand(text);
+      case find:
+        return new FindCommand(text);
       default:
         throw new DukeException("Unknown command received.");
 
