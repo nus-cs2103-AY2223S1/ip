@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.time.format.DateTimeFormatter;
 
 abstract class Task {
     public static enum Type {
@@ -7,6 +8,20 @@ abstract class Task {
         DEADLINE,
         EVENT
     };
+
+    protected static enum FormatType {
+        READ,
+        PRINT
+    };
+    
+    protected static final DateTimeFormatter dateFormat = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd");
+    protected static final DateTimeFormatter dateFormatPrint = DateTimeFormatter
+            .ofPattern("MMM dd yyyy");
+    protected static final DateTimeFormatter dateTimeFormat = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HHmm");
+    protected static final DateTimeFormatter dateTimeFormatPrint = DateTimeFormatter
+            .ofPattern("MMM dd yyyy HH:mm");
 
     private static List<Type> typeKeys = Arrays.asList(Type.values());
 
