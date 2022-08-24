@@ -5,9 +5,6 @@ package duke;
  */
 public class DukeException extends Exception {
 
-    /**
-     * Exception message printed by Duke.
-     */
     private String message;
 
     /**
