@@ -6,8 +6,11 @@ public class Event extends Task {
      * @param description description for event
      * @param at duration of event
      */
-    public Event(String description, String at) {
+    public Event(String description, Boolean isDone, String at) {
         super(description);
+        if (isDone) {
+            super.markAsDone();
+        }
         this.at = at;
     }
 

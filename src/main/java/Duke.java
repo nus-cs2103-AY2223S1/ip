@@ -41,7 +41,7 @@ public class Duke {
         case "mark" :
             markAsDone(commandAndDescription);
             break;
-        case "unmark":
+        case "unmark" :
             markAsUndone(commandAndDescription);
             break;
         case "delete" :
@@ -118,7 +118,7 @@ public class Duke {
                     "There is no specified date/time for the deadline.");
         }
         System.out.println("Got it. I've added this task:");
-        taskList.add(new Deadline(descAndDue[0], descAndDue[1]));
+        taskList.add(new Deadline(descAndDue[0], false, descAndDue[1]));
         System.out.println(String.format("\t%s",
                 taskList.get(taskList.size() - 1)));
         listStatus(taskList);
@@ -135,7 +135,7 @@ public class Duke {
                     "There is no specified time duration for the event.");
         }
         System.out.println("Got it. I've added this task:");
-        taskList.add(new Event(descAndDuration[0], descAndDuration[1]));
+        taskList.add(new Event(descAndDuration[0], false, descAndDuration[1]));
         System.out.println(String.format("\t%s",
                 taskList.get(taskList.size() - 1)));
         listStatus(taskList);
@@ -147,7 +147,7 @@ public class Duke {
                     "The description of todo cannot be empty.");
         }
         System.out.println("Got it. I've added this task:");
-        taskList.add(new ToDo(commandAndDescription[1]));
+        taskList.add(new ToDo(commandAndDescription[1], false));
         System.out.println(String.format("\t%s",
                 taskList.get(taskList.size() - 1)));
         listStatus(taskList);

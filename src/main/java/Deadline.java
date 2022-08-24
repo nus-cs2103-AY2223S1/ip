@@ -6,8 +6,11 @@ public class Deadline extends Task {
      * @param description Description of deadline
      * @param by Due timing/date of deadline
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, Boolean isDone, String by) {
         super(description);
+        if (isDone) {
+            super.markAsDone();
+        }
         this.by = by;
     }
 
