@@ -21,16 +21,24 @@ public class Task {
         return status + " | " + this.name;
     }
 
+    /**
+     *  Marks task done with X
+     * @return status of task with X or " "
+     */
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
-    /** Updates the status of our task */
+    /**
+     * Updates boolean isDone depending on the status of the task
+     */
     void mark() {
         this.isDone = true;
     }
 
-    /** Updates the status of our task */
+    /**
+     * Updates boolean isDone depending on the status of the task
+     */
     void unmark() {
         this.isDone = false;
     }

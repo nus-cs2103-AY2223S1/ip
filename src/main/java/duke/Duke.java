@@ -41,7 +41,10 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 ui.printLine();
+
+                //we get the commandType to know how to process the command
                 String commandType = Parser.getCommandType(fullCommand);
+
                 if (commandType.equals("EXIT")) {
                     System.out.println("Bye. Hope to see you again soon!");
                     isExit = true;
@@ -49,6 +52,8 @@ public class Duke {
                     tasks.printTasks();
                 } else if (commandType.equals("UPDATE")) {
                     int[] arr = Parser.parseUpdateCommand(fullCommand);
+
+                    //mark/unmark the task depending on the integer in the first entry of our array
                     if (arr[0] == 1) {
                         tasks.mark(arr[1]);
                     } else {
@@ -64,9 +69,11 @@ public class Duke {
                     } else {
                         LocalDateTime dateTime = Parser.parseDateTime(fullCommand);
                         if (fullCommand.startsWith("deadline")) {
-                            tasks.add(new Deadline(fullCommand.substring(9, fullCommand.indexOf("/")), dateTime));
+                            tasks.add(new Deadline(fullCommand.substring(9, fullCommand.indexOf("/"))
+                                    , dateTime));
                         } else {
-                            tasks.add(new Event(fullCommand.substring(6, fullCommand.indexOf("/")), dateTime));
+                            tasks.add(new Event(fullCommand.substring(6, fullCommand.indexOf("/"))
+                                    , dateTime));
                         }
                     }
                 } else {
