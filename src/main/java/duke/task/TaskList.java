@@ -126,6 +126,11 @@ public class TaskList {
         return numberedTaskList;
     }
 
+    /**
+     * Returns a {@code TaskList} of all tasks that contains the search keyword in their description.
+     *
+     * @return {@code TaskList} of all tasks containing the search keyword in their description.
+     */
     public TaskList find(String keyword) {
         TaskList tasksMatched = new TaskList();
         for (Task task : this.tasks) {

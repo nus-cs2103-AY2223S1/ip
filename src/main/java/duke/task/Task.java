@@ -45,6 +45,12 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Checks if the {@code Task} description contains the keyword provided.
+     *
+     * @param keyword
+     * @return {@code true} if keyword is present in description, {@code false} otherwise.
+     */
     public boolean contains(String keyword) {
         return this.description.contains(keyword);
     }

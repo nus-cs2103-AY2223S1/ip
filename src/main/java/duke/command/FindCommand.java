@@ -2,13 +2,24 @@ package duke.command;
 
 import duke.task.TaskList;
 
+/**
+ * Command to search tasks.
+ */
 public class FindCommand extends Command {
     private String keyword;
 
+    /**
+     * Constructor for {@code FindCommand}.
+     *
+     * @param keyword Search keyword.
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * Searches the {@code TaskList} using the given keyword, and prints the tasks found, if any.
+     */
     @Override
     public void execute() {
         TaskList tasksFound = Command.taskList.find(keyword);
