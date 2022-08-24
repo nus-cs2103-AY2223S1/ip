@@ -19,10 +19,10 @@ public class TodoCommand implements Command {
         try {
             taskList.addTask(this.todo);
             storage.appendToFile(todo);
-            ui.addTask(this.todo);
-            ui.showTaskListCapacity(taskList);
+            ui.sayAddTask(this.todo);
+            ui.sayTaskListSize(taskList);
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 

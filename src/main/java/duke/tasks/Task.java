@@ -10,7 +10,7 @@ public abstract class Task {
 
         public final String value;
 
-        private TaskType(String value) {
+        TaskType(String value) {
             this.value = value;
         }
 
@@ -23,18 +23,17 @@ public abstract class Task {
             case "E":
                 return EVENT;
             default:
-                System.out.println(str);
                 throw new DukeException("Exception: Unknown task type.");
             }
         }
     }
     private String description;
-    private TaskType type;
+    private TaskType taskType;
     private boolean isDone;
 
-    public Task(String description, TaskType type) {
+    public Task(String description, TaskType taskType) {
         this.description = description;
-        this.type = type;
+        this.taskType = taskType;
         this.isDone = false;
     }
 
@@ -42,8 +41,8 @@ public abstract class Task {
         return this.description;
     }
 
-    public TaskType getType() {
-        return this.type;
+    public TaskType getTaskType() {
+        return this.taskType;
     }
 
     public boolean isDone() {
@@ -51,20 +50,20 @@ public abstract class Task {
     }
 
     public String getTaskIcon() {
-        return type.value;
+        return taskType.value;
     }
 
     public String getStatusIcon() {
         return this.isDone ? "x" : " ";
     }
 
-    public void markAsDone() {
-        this.isDone = true;
-    }
-
-    public void markAsNotDone() {
-        this.isDone = false;
-    }
+//    public void mark() {
+//        this.isDone = true;
+//    }
+//
+//    public void unmark() {
+//        this.isDone = false;
+//    }
 
     public void setIsDone(boolean isDone) {
         this.isDone = isDone;

@@ -10,9 +10,9 @@ public class ListCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            ui.listTasks(taskList);
+            ui.sayTasks(taskList);
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 

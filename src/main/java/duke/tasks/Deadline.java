@@ -19,7 +19,7 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format("[%s] %s (by: %s)", super.getTaskIcon(), super.toString(),
-                Parser.displayDateTime(this.dateTime));
+                Parser.formatDateTimeToPrint(this.dateTime));
     }
 
     @Override

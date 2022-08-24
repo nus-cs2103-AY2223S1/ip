@@ -33,21 +33,21 @@ public class Duke {
         TaskList taskList;
 
         try {
-            taskList = storage.readFromFile();
+            taskList = storage.loadFromFile();
         } catch (DukeException e) {
             taskList = new TaskList(new ArrayList<Task>());
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
 
-        ui.greet();
+        ui.sayGreet();
 
-        while (ui.isContinue()) {
+        while (ui.canContinue()) {
             try {
                 String str = ui.readCommand();
                 Command command = Parser.parseCommand(str);
                 command.execute(taskList, ui, storage);
             } catch (DukeException e) {
-                ui.handleException(e);
+                ui.sayExceptionMessage(e);
             }
         }
     }

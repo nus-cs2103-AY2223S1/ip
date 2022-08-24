@@ -18,9 +18,9 @@ public class UnmarkCommand implements Command {
         try {
             taskList.setTaskDoneStatus(index, false);
             storage.writeToFile(taskList);
-            ui.unmarkTask(index, taskList.getTask(index));
+            ui.sayUnmarkTask(index, taskList.getTask(index));
         } catch (DukeException e) {
-            ui.handleException(e);
+            ui.sayExceptionMessage(e);
         }
     }
 
