@@ -97,6 +97,7 @@ public class Duke {
                     Task item = tasks.getTask(delValue - 1);
                     tasks.removeTask(delValue - 1);
                     ui.printDeleteMessage(item, tasks.getSize());
+                    //firstWord is not a keyword
                 } else {
                     ui.printUnknownMessage();
                 }
