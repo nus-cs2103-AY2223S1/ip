@@ -16,14 +16,14 @@ public class Deadline extends Task {
 
     public Deadline(String name, String date, boolean isDone) {
         super(name, isDone);
-        this.date = LocalDate.parse(date);
+        this.date = LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
     public static Deadline fromString(String inputString) {
         boolean isDone = inputString.charAt(4) == 'X';
         String name = inputString.substring(7, inputString.indexOf("(by"));
-        String doBy = inputString.substring(inputString.indexOf("(by: ") + 5, inputString.length() - 1);
-        return new Deadline(name, doBy, isDone);
+        String dateString = inputString.substring(inputString.indexOf("(by: ") + 5, inputString.length() - 1);
+        return new Deadline(name, dateString, isDone);
     }
 
     @Override
