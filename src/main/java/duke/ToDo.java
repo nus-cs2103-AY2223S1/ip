@@ -3,7 +3,7 @@ package duke;
 /**
  * Encapsulate Todo which is-a Task.
  */
-public class ToDo extends Task {
+public class ToDo extends Task{
 
     /**
      * Class constructor for Todo.

@@ -61,7 +61,7 @@ public class TaskList {
      * @return the task that got unmarked.
      * @throws DukeException if task number is not valid.
      */
-    public Task unmark(int taskNumber) throws DukeException {
+    public Task unmark(int taskNumber) throws DukeException{
         try {
             tasks.get(taskNumber - 1).markAsNotDone();
             return tasks.get(taskNumber - 1);
@@ -103,12 +103,6 @@ public class TaskList {
         return this.length;
     }
 
-    /**
-     * Finds existing tasks' description that matches user search input.
-     *
-     * @param userInput String that user wants to match with task's description.
-     * @return TaskList with tasks that matches string provided by user.
-     */
     public TaskList find(String userInput) {
         ArrayList<Task> currTasks = new ArrayList<>(this.tasks);
         currTasks.removeIf(x -> !x.getDescription().contains(userInput));

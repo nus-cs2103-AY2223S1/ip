@@ -7,15 +7,15 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private static final String DUKE_LOGO = " ____        _        \n"
+    private Scanner scanner;
+
+    private final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private static final String DUKE_LINE = "_______________________________";
-
-    private Scanner scanner;
+    private final String LINE = "_______________________________";
 
     /**
      * Class constructor for Ui class.
@@ -29,7 +29,7 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        System.out.println(DUKE_LOGO);
+        System.out.println(LOGO);
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         showLine();
     }
@@ -38,7 +38,7 @@ public class Ui {
      * Handles line showing.
      */
     public void showLine() {
-        System.out.println(DUKE_LINE);
+        System.out.println(LINE);
     }
 
     /**
@@ -109,7 +109,7 @@ public class Ui {
      */
     public void showBye() {
         System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(DUKE_LINE);
+        System.out.println(LINE);
     }
 
     /**

@@ -5,10 +5,7 @@ package duke;
  */
 public class Parser {
 
-    /**
-     * Represents list of valid user commands.
-     */
-    public enum UserCommand {
+    public enum userCommand {
         BYE, LIST, UNMARK, MARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
@@ -87,7 +84,7 @@ public class Parser {
             String[] descriptionWithBy = input.split(" ", 2);
             return descriptionWithBy[1].split(" /by ", 2)[1];
         }
-        return " ";
+        return " " ;
     }
 
     /**
@@ -125,7 +122,7 @@ public class Parser {
      * @param inputList user input after spliting by " ".
      * @throws DukeException if input list length > 2 or input list length < 2.
      */
-    public static int getIntegerInUserInput(String[] inputList) throws DukeException {
+    public static int getIntegerInUserInput(String[] inputList) throws DukeException{
         if (inputList.length > 2) {
             throw new DukeException("Please provide only 1 task number!");
         } else if (inputList.length < 2) {
@@ -144,9 +141,9 @@ public class Parser {
      * @param userInputCommand string user input command.
      * @throws DukeException if user input command is not any valid command.
      */
-    public static UserCommand userInputToCommand(String userInputCommand) throws DukeException {
+    public static userCommand userInputToCommand(String userInputCommand) throws DukeException {
         try {
-            return UserCommand.valueOf(userInputCommand.toUpperCase());
+            return userCommand.valueOf(userInputCommand.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
