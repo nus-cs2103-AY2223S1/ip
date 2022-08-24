@@ -63,23 +63,17 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        String welcomeMsg = "Hi there! Baymax at your service.";
-        System.out.println(welcomeMsg);
-
-        File dir = new File("data");
-        File file = new File("data/TaskList.txt");
-
-        //Creates the data directory if it does not exist, does nothing otherwise.
+    public static void createDirectory(File filePath) {
         try {
-            if(!dir.exists()) {
-                dir.mkdir();
+            if(!filePath.exists()) {
+                filePath.mkdir();
             }
         } catch (SecurityException e) {
             System.out.println(e);
         }
+    }
 
-        //Creates the file TaskList.txt in the data directory if it does not exist.
+    public static void getTasksFromFile(File file) {
         try {
             file.createNewFile();
             Scanner scFile = new Scanner(file);
@@ -109,6 +103,21 @@ public class Duke {
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    public static void main(String[] args) {
+        String welcomeMsg = "Hi there! Baymax at your service.";
+        System.out.println(welcomeMsg);
+
+        File dir = new File("data");
+        File file = new File("data/TaskList.txt");
+
+        //Creates the data directory if it does not exist, does nothing otherwise.
+        createDirectory(dir);
+
+        //Retrieves Tasks from local file, TaskList.txt.
+        //Creates the file TaskList.txt in the data directory if it does not exist.
+        getTasksFromFile(file);
 
         String input = sc.nextLine();
 
