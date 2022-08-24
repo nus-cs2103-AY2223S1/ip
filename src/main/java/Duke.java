@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -19,6 +22,49 @@ public class Duke {
         dukeReply("Hello! I'm Ee Suan!\nWhat can I do for you?");
     }
 
+    private void loadSaveData() throws DukeException, IOException {
+
+        File savedFile = new File("src/main/duke.txt");
+        if (!savedFile.exists()) {
+            savedFile.createNewFile();
+        } else {
+            Scanner scan = new Scanner(savedFile);
+            while (scan.hasNextLine()) {
+                String taskString = scan.nextLine();
+
+                // split and organise task data
+                String[] taskSplit = taskString.split(" \\| ");
+                String taskType = taskSplit[0];
+                boolean isTaskDone = taskSplit[1].equals("1");
+                String taskDescription = taskSplit[2];
+
+                Task task;
+                switch (taskType) {
+                case "T": {
+                    task = new ToDo(taskDescription);
+                    break;
+                }
+                case "D": {
+                    String taskDate = taskSplit[3];
+                    task = new Deadline(taskDescription, taskDate);
+                    break;
+                }
+                case "E": {
+                    String taskDate = taskSplit[3];
+                    task = new Event(taskDescription, taskDate);
+                    break;
+                }
+                default:
+                    throw new DukeException("Task type is not supported!");
+            }
+                if (isTaskDone) {
+                    task.markAsDone();
+                }
+                this.tasks.add(task);
+            }
+        }
+    }
+
     private void start() {
         this.greet();
         input = sc.next();
@@ -31,11 +77,13 @@ public class Duke {
                     case "mark": {
                         int index = sc.nextInt();
                         mark(index);
+                        save();
                         break;
                     }
                     case "unmark": {
                         int index = sc.nextInt();
                         unmark(index);
+                        save();
                         break;
                     }
                     case "todo": {
@@ -44,6 +92,7 @@ public class Duke {
                             Task todo = createToDo();
                             addTask(todo);
                             echoTask(todo);
+                            save();
                             break;
                     }
                     case "deadline": {
@@ -51,6 +100,7 @@ public class Duke {
                         Task deadline = createDeadline();
                         addTask(deadline);
                         echoTask(deadline);
+                        save();
                         break;
                     }
                     case "event": {
@@ -58,15 +108,16 @@ public class Duke {
                         Task event = createEvent();
                         addTask(event);
                         echoTask(event);
+                        save();
                         break;
                     }
                     case "delete": {
                         int index = sc.nextInt();
                         delete(index);
+                        save();
                         break;
                     }
                     default:
-
                         input += sc.nextLine();
                         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
@@ -76,6 +127,19 @@ public class Duke {
             input = sc.next();
         }
 }
+
+    private void save() {
+        try {
+            File file = new File("src/main/duke.txt");
+            FileWriter fw = new FileWriter(file);
+            for (Task task : tasks) {
+                fw.write(task.saveTaskAsString() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
+    }
 
     private void exit() {
         dukeReply("Bye. Hope to see you again soon!");
@@ -166,9 +230,13 @@ public class Duke {
 
     public static void main(String[] args) {
 
-        Duke duke = new Duke();
-        duke.start();
-        duke.exit();
-
+        try {
+            Duke duke = new Duke();
+            duke.loadSaveData();
+            duke.start();
+            duke.exit();
+        } catch (DukeException | IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
