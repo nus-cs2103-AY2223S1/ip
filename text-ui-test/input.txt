@@ -1,5 +1,5 @@
 todo item1
-deadline item2 \by tomorrow
+deadline item2 \by 2023-01-14
 event item3 \at Sat to Sun
 list
 mark 1
