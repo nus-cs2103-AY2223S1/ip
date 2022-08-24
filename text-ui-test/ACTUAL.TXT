@@ -1,4 +1,4 @@
-Hello! i am Duke
+Hello! i am duke.Duke
 ------------------------------------
 What do you want me to do?
 There are too many arguments for this command
@@ -34,16 +34,16 @@ Here are the tasks in your list:
 ------------------------------------
 What do you want me to do?
 ------------------------------------
-Task is marked as Done 
+duke.Task is marked as Done
 [D][X]  Math Homework  (by: 24 Aug)
 ------------------------------------
 What do you want me to do?
 ------------------------------------
-Task is still undone
+duke.Task is still undone
 ------------------------------------
 What do you want me to do?
 ------------------------------------
-Task is marked as undone 
+duke.Task is marked as undone
 [D][ ]  Math Homework  (by: 24 Aug)
 ------------------------------------
 What do you want me to do?

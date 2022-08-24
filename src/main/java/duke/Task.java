@@ -1,6 +1,8 @@
+package duke;
+
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
 
     public Task(String description) {
         this.description = description;
@@ -15,20 +17,20 @@ public class Task {
 
     public void setDone() {
         if (this.isDone) {
-            System.out.println("Task is already done");
+            System.out.println("duke.Task is already done");
             return;
         }
         this.isDone = true;
-        System.out.println("Task is marked as Done \n" + this.toString());
+        System.out.println("duke.Task is marked as Done \n" + this.toString());
     }
 
     public void setNotDone() {
         if (!this.isDone) {
-            System.out.println("Task is still undone");
+            System.out.println("duke.Task is still undone");
             return;
         }
         this.isDone = false;
-        System.out.println("Task is marked as undone \n" + this.toString());
+        System.out.println("duke.Task is marked as undone \n" + this.toString());
     }
 
     @Override

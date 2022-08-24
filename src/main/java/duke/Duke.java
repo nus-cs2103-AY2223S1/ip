@@ -1,0 +1,274 @@
+package duke;
+
+import duke.exceptions.*;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.DateTimeException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Duke {
+
+    private final static Scanner myScanner = new Scanner(System.in);
+    private final static String SEPARATOR = "------------------------------------";
+
+//    private void add(Task task) {
+//
+//        if (currEmpty == 100) {
+//            System.out.println("List is Already Full, Cannot add anymore item");
+//            return;
+//        }
+//        taskList.add(task);
+//        System.out.println("added: " + task.toString());
+//        currEmpty++;
+//    }
+//
+//    private void read() {
+//        if (currEmpty == 0) {
+//            System.out.println("You have no task");
+//            return;
+//        }
+//
+//        System.out.println("Here are the tasks in your list:");
+//        for (int i = 0; i < taskList.size(); i++) {
+//            Task curr = taskList.get(i);
+//            if (curr != null) {
+//                System.out.println(i + 1 + "." + curr.toString());
+//            }
+//        }
+//    }
+//
+//    private void mark(int index) throws DukeMissingIndexException {
+//        if (index >= currEmpty) {
+//            throw new DukeMissingIndexException();
+//        }
+//        taskList.get(index).setDone();
+//    }
+//
+//    private void unMark(int index) throws DukeMissingIndexException {
+//        if (index >= currEmpty) {
+//            throw new DukeMissingIndexException();
+//        }
+//        taskList.get(index).setNotDone();
+//    }
+//
+//    private void delete(int index) throws DukeMissingIndexException {
+//        if (index >= currEmpty) {
+//            throw new DukeMissingIndexException();
+//        }
+//        Task task = taskList.get(index);
+//        System.out.println("Removed the task \n" + task.toString());
+//        taskList.remove(index);
+//    }
+
+//    private void save() {
+//        String filePath = "data/tasks.txt";
+//        try {
+//            FileWriter fw = new FileWriter(filePath);
+//            for (Task tsk : taskList) {
+//                System.out.println(tsk.toString());
+//                fw.write(tsk.toStorageFormat());
+//                fw.write(System.lineSeparator());
+//            }
+//            fw.close();
+//            System.out.println("Saved task into local storage");
+//        } catch (IOException e) {
+//            System.out.println("Something's wrong, I can feel it. Its: " + e.getMessage());
+//        }
+//    }
+//
+//    private void load() throws IOException {
+//        String directoryPath = "data";
+//        String filePath =  "data/tasks.txt";
+//        File directory = new File(directoryPath);
+//        File file = new File(filePath);
+//        if (!directory.exists()) {
+//            directory.mkdirs();
+//            file.createNewFile();
+//        }
+//
+//        Scanner sc = new Scanner(file);
+//
+//        while (sc.hasNextLine()) {
+//            String taskString = sc.nextLine();
+//            String[] content = taskString.split(" \\| ", 0);
+//            char type = content[0].charAt(0);
+//            boolean isDone = content[1].charAt(0) == '1';
+//            String description = content[2];
+//            Task newTask;
+//            try {
+//                if (type == 'T') {
+//                    if (isDone) {
+//                        newTask = new ToDo(description, true);
+//                    } else {
+//                        newTask = new ToDo(description);
+//                    }
+//                } else if (type == 'D') {
+//                    String by = content[3];
+//                    if (isDone) {
+//                        newTask = new Deadline(description, true, by);
+//                    } else {
+//                        newTask = new Deadline(description, by);
+//                    }
+//                } else if (type == 'E') {
+//                    String at = content[3];
+//                    if (isDone) {
+//                        newTask = new Event(description, true, at);
+//                    } else {
+//                        newTask = new Event(description, at);
+//                    }
+//
+//                } else {
+//                    throw new DukeInvalidReadException();
+//                }
+//                this.add(newTask);
+//            } catch (DukeInvalidReadException e) {
+//                System.out.println(e.getMessage());
+//            }
+//        };
+//
+//    }
+
+
+    public static void main(String[] args) {
+
+        Duke duke = new Duke();
+
+        System.out.println("Hello! i am duke.Duke");
+
+        TaskList tasklist = new TaskList();
+
+//        try {
+//            duke.load();
+//        } catch (IOException e) {
+//            System.out.println(e.getMessage());
+//            System.out.println("Initiating an Empty duke.Task List");
+//       }
+
+        while (true) {
+
+            try {
+                System.out.println(SEPARATOR);
+                System.out.println("What do you want me to do?");
+                String line = myScanner.nextLine().trim();
+                if (line.equals("list")) {
+                    if (line.length() > 4) {
+                        throw new DukeTooManyArgumentException();
+                    }
+
+                    System.out.println(SEPARATOR);
+                    tasklist.read();
+                    continue;
+                } else if (line.startsWith("mark")) {
+                    if (line.length() <= 5) {
+                        throw new DukeEmptyCommandException();
+                    }
+
+                    int index = Integer.parseInt(line.substring(5));
+
+                    System.out.println(SEPARATOR);
+
+                    if (index <= 0) {
+                        throw new DukeArrayOutOfBoundException();
+                    }
+                    tasklist.mark(index - 1);
+
+                    continue;
+                } else if (line.startsWith("unmark")) {
+                    if (line.length() <= 7) {
+                        throw new DukeEmptyCommandException();
+                    }
+
+                    int index = Integer.parseInt(line.substring(7));
+
+                    System.out.println(SEPARATOR);
+
+                    if (index < 0) {
+                        throw new DukeArrayOutOfBoundException();
+                    }
+                    tasklist.unMark(index - 1);
+
+                    continue;
+                } else if (line.startsWith("delete")) {
+                    if (line.length() <= 7) {
+                        throw new DukeEmptyCommandException();
+                    }
+
+                    int index = Integer.parseInt(line.substring(7));
+
+                    System.out.println(SEPARATOR);
+
+                    if (index < 0) {
+                        throw new DukeArrayOutOfBoundException();
+                    }
+                    tasklist.delete(index - 1);
+
+
+                    continue;
+                } else if (line.startsWith("deadline")) {
+                    if (line.length() <= 9) {
+                        throw new DukeEmptyCommandException();
+                    }
+
+                    System.out.println(line.substring(9));
+                    String[] information = line.substring(9).split(" /by ", 3);
+
+                    if (information.length != 2) {
+                        throw new DukeInvalidDescriptionException();
+                    }
+                    System.out.println(SEPARATOR);
+
+                    Task newTask = new Deadline(information[0], information[1]);
+                    tasklist.add(newTask);
+                    continue;
+                } else if (line.startsWith("event")) {
+                    if (line.length() <= 6) {
+                        throw new DukeEmptyCommandException();
+                    }
+
+                    String[] information = line.substring(9).split(" /at ", 3);
+
+                    if (information.length != 2) {
+                        throw new DukeInvalidDescriptionException();
+                    }
+                    System.out.println(SEPARATOR);
+
+                    Task newTask = new Event(information[0], information[1]);
+                    tasklist.add(newTask);
+                    continue;
+                } else if (line.startsWith("todo")) {
+                    if (line.length() <= 5) {
+                        throw new DukeEmptyCommandException();
+                    }
+                    String description = line.substring(5);
+
+                    System.out.println(SEPARATOR);
+                    Task newTask = new ToDo(description);
+                    tasklist.add(newTask);
+                    continue;
+                } else if (line.equals("bye")) {
+                    System.out.println(SEPARATOR);
+
+                    //tasklist.save();
+                    System.out.println("See you later :)");
+                    System.exit(0);
+                } else {
+                    throw new DukeUnknownCommandException();
+                }
+            } catch (DukeException e) {
+                System.out.println(e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("Index can only be Integer");
+            } catch (DateTimeException e) {
+                System.out.println("Sorry i could not recognize the date. Pls use this format \"YYYY-MM-DD\"");
+            }
+
+
+        }
+
+
+    }
+
+}
