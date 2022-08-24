@@ -8,7 +8,7 @@ class Deadline extends Task {
 
     public Deadline(String itself, String by) {
         super(itself);
-        this.by = LocalDate.parse(by);
+        this.by = LocalDate.parse(by, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
     public boolean isOnDate(LocalDate localDate) {
@@ -17,12 +17,12 @@ class Deadline extends Task {
 
     @Override
     public String writeToFile() {
-        return "D|" + super.writeToFile() + "|" + by.trim();
+        return "D|" + super.writeToFile() + "|" + by;
     }
 
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " +
-                by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ")";
+                by.format(DateTimeFormatter.ofPattern("MMMM d yyyy")) + ")";
     }
 }

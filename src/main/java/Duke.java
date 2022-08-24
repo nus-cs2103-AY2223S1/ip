@@ -2,8 +2,9 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
 import java.util.stream.Collectors;
 
 public class Duke {
@@ -58,6 +59,11 @@ public class Duke {
                     break;
                 } else if (str.startsWith("delete")) {
                     delete(str);
+                } else if (str.startsWith("on")) {
+                    String[] temp = str.split(" ");
+                    String date = temp[1].trim();
+                    LocalDate lc = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                    getOnDate(lc);
                 } else {
                     throw new CannotUnderstandException();
                 }
@@ -157,8 +163,8 @@ public class Duke {
             throw new WrongMessageException();
         }
         String[] temp = ddlstr.split("/by");
-        String ddlinfo = temp[0];
-        String date = temp[1];
+        String ddlinfo = temp[0].trim();
+        String date = temp[1].trim();
         Task deadline = new Deadline(ddlinfo, date);
         willDo.add(deadline);
         int nowsize = willDo.size();
@@ -173,14 +179,14 @@ public class Duke {
             throw new WrongMessageException();
         }
         String[] temp = eventstr.split("/at");
-        String eventinfo = temp[0];
-        String takeplace = temp[1];
+        String eventinfo = temp[0].trim();
+        String takeplace = temp[1].trim();
         Task event = new Event(eventinfo, takeplace);
         willDo.add(event);
         int finalsize = willDo.size();
         System.out.println("Got it, I've added it to the task list:\n"
                 + event.toString() + "\n"
-                + "Now you have " + (finalsize) + " tasks");
+                + "Now you have " + finalsize + " tasks");
     }
 
     public static void mark(int target) {
@@ -211,6 +217,18 @@ public class Duke {
         System.out.println("ok I will delete the task" + willDo.get(key3 - 1) + "it right now!");
         willDo.remove(key3 - 1);
         System.out.println("now you have " + willDo.size() + " tasks in the list");
+    }
+
+    public static void getOnDate(LocalDate localDate) {
+        List<Task> shortList = willDo.stream().filter(task -> task.isOnDate(localDate))
+                .collect(Collectors.toList());
+        int i = 0;
+        System.out.println("Hey, these are what you need to do on this date: "
+                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy")));
+        for (Task t : shortList) {
+            System.out.println((i + 1) + "." + t);
+            i++;
+        }
     }
 
     public static void checkArray(Object[] o) {

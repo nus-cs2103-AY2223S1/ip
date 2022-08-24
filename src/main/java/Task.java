@@ -26,7 +26,7 @@ public class Task {
         return status + "|" + itself.trim();
     }
     
-    public boolean isOnDate() {
+    public boolean isOnDate(LocalDate lc) {
         return false;
     }
 
