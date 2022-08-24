@@ -7,6 +7,10 @@ import duke.utils.Ui;
 
 import java.io.IOException;
 
+/**
+ * Handles an "unmark" command.
+ * @author Jason
+ */
 public class UnmarkTaskCommand extends Command {
     private String taskIndex;
 
@@ -15,10 +19,10 @@ public class UnmarkTaskCommand extends Command {
     }
 
     /**
-     * Unmarks a task in the list
-     * @param taskList duke.TaskList to update the task that is unmarked
-     * @param storage duke.utils.Storage to save unmarked task
-     * @exception DukeException Index out of bounds / Uncreated task index
+     * Unmarks a task in the list.
+     * @param taskList TaskList to update the task that is unmarked.
+     * @param storage Storage to save unmarked task.
+     * @exception DukeException Index out of bounds or task at index has not been created.
      */
     @Override
     public void run(TaskList taskList, Storage storage) throws DukeException, IOException {

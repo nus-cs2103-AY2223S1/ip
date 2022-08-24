@@ -4,12 +4,16 @@ import duke.utils.Storage;
 import duke.TaskList;
 import duke.utils.Ui;
 
+/**
+ * Handles the "list" command.
+ * @author Jason
+ */
 public class PrintListCommand extends Command {
 
     /**
-     * Prints all values of list currently
-     * @param taskList duke.TaskList to print from
-     * @param storage duke.utils.Storage to store duke.TaskList data to
+     * Prints all values of list currently.
+     * @param taskList TaskList to print from.
+     * @param storage Storage to store duke.TaskList data to.
      */
     @Override
     public void run(TaskList taskList, Storage storage) {

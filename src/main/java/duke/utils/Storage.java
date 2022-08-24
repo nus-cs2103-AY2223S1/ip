@@ -7,13 +7,22 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Stores the data recorded by the user.
+ * @author Jason
+ */
 public class Storage {
     private File file;
     private File directory;
@@ -42,9 +51,9 @@ public class Storage {
     }
 
     /**
-     * Parses the save file to load previously saved contents
-     * @throws DukeException Thrown if any input in save file is wrong
-     * @throws IOException Thrown if Buffered reader fails the reading of data
+     * Parses the save file to load previously saved contents.
+     * @throws DukeException Inputs in save file is wrong.
+     * @throws IOException Buffered reader fails the reading of data.
      */
     public List<Task> load() throws DukeException, IOException {
         List<Task> list = new ArrayList<>(100);
@@ -104,7 +113,7 @@ public class Storage {
     }
 
     /**
-     * Writes all current tasks on the save file
+     * Writes all current tasks on the save file.
      */
     public void saveData(List<Task> taskList) throws IOException {
         FileWriter fw = new FileWriter(this.file);

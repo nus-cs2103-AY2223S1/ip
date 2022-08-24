@@ -3,6 +3,10 @@ package duke.task;
 import duke.Date;
 import duke.Task;
 
+/**
+ * Creates a Task object to be done by a specific time.
+ * @author Jason
+ */
 public class Deadline extends Task {
 
     protected Date by;
@@ -18,8 +22,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Rewrites this deadline task into the save file format
-     * @return String to be stored in save file
+     * Writes this Deadline task into the save file format.
+     * @return String to be stored in save file.
      */
     @Override
     public String saveData() {

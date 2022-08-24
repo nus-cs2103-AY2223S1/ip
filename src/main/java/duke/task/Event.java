@@ -3,6 +3,10 @@ package duke.task;
 import duke.Date;
 import duke.Task;
 
+/**
+ * Creates a Task object that occurs at a specific time.
+ * @author Jason
+ */
 public class Event extends Task {
 
     protected Date at;
@@ -18,8 +22,8 @@ public class Event extends Task {
     }
 
     /**
-     * Rewrites this event task into the save file format
-     * @return String to be stored in save file
+     * Writes this Event task into the save file format.
+     * @return String to be stored in save file.
      */
     @Override
     public String saveData() {
