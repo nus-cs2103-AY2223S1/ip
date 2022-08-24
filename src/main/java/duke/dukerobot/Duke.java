@@ -8,10 +8,19 @@ import duke.ui.Ui;
 import duke.command.Command;
 import duke.dukeexception.DukeException;
 import duke.parser.Parser;
+
+/**
+ * Represents the duke robot. Contains the main function.
+ */
 public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
+
+    /**
+     * Class constructor.
+     * @param filepath Load taskList from this filepath, and save the taskList after updating.
+     */
     public Duke(String filepath){
         this.ui = new Ui();
         try {
@@ -21,6 +30,11 @@ public class Duke {
             this.ui.showFileCreatingError();
         }
     }
+
+    /**
+     * Instruct the robot to show user interface and read in command and execute.
+     * Catch and dispose exceptions.
+     */
     public void run(){
         this.ui.showWelcomeMessage();
         boolean isExit = false;
@@ -37,7 +51,10 @@ public class Duke {
         ui.showGoodbyeMessage();
     }
 
-
+    /**
+     * The start point of the program. Run the duke itself.
+     * @param args
+     */
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
     }

@@ -8,9 +8,17 @@ import java.util.List;
 import duke.task.Task;
 import duke.dukeexception.DukeException;
 import duke.storage.Storage;
+
+/**
+ * A class containing taskList and its operation.
+ */
 public class TaskList {
     private List<Task> taskList=new ArrayList<>();
-    //the method that add task to list and print reply.
+
+    /**
+     * Count the task in the taskList.
+     * @return The number of task in the taskList.
+     */
     public int countTask(){
         int res=0;
         for (int i=0;i<taskList.size();i++){
@@ -20,7 +28,12 @@ public class TaskList {
         }
         return res;
     }
-    //delete the task and print out reply
+
+    /**
+     *  Delete the indexed task and print out reply and update corresponding file.
+     * @param i The index of the deleted task.
+     * @param storage The storage containing the this taskList.
+     */
     public void delete(int i, Storage storage) throws DukeException{
         try {
             int index = i - 1;
@@ -32,12 +45,21 @@ public class TaskList {
             throw new DukeException("Sorry, the command is not in right format.");
         }
     }
+
+    /**
+     * Add a task to the taskList and print response.
+     * @param task Task to be added.
+     */
     public void addTask(Task task){
         this.taskList.add(task);
         System.out.println("Got it. I've added this task:\n"+task.printTask()+
                 "\nNow you have "+this.countTask()+" task in the list.");
     }
-    //the method that return all the tasks in a formatted string
+
+    /**
+     * The method that list all the tasks in a formatted string.
+     * @return A string of lines of tasks in the print format.
+     */
     public String listAllTask(){
         String res="";
         for(int i=0;i<this.taskList.size();i++){

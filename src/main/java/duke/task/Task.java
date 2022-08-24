@@ -4,6 +4,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import duke.dukeexception.DukeException;
+
+/**
+ * Represents a task.
+ */
 public class Task {
     private String description;
     private boolean isDone;
@@ -13,23 +17,36 @@ public class Task {
         this.description=description;
         this.isDone=false;
     }
-    //return the status of this task
+
+    /**
+     * Return the status of this task
+     * @return " " if the task is not done, "X" if the task is done.
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
-    //mark this task as Done without reply
+
+    /**
+     * Mark this task as Done without reply
+     */
     public void taskDone(){
         this.isDone=true;
     }
     public void correctDescrition(String rightDescription){
         this.description=rightDescription;
     }
-    //undone this task and print reply
+    /**
+     * Undone this task and print reply
+     */
     public void taskUndone(){
         this.isDone=false;
 
     }
-    //print the representation of this task containing status and description
+
+    /**
+     * Print the representation of this task containing status and description
+     * @return A string of right format describe the task.
+     */
     public String printTask(){
         return ("["+this.getStatusIcon()+"]"+" "+this.description);
     }
