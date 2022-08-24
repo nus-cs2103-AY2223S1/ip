@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
     private static final int lineLength = 60;
-    private Scanner sc;
+    private final Scanner sc;
 
     Ui() {
         this.sc = new Scanner(System.in);

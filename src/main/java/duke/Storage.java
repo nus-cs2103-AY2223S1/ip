@@ -11,8 +11,8 @@ import duke.task.TaskList;
  * This class saves and retrieves Tasks to and fro the hard disk.
  */
 public class Storage {
-    private Path filePath;
-    private Path folderPath;
+    private final Path filePath;
+    private final Path folderPath;
 
     Storage() {
         String userDir = System.getProperty("user.dir");
