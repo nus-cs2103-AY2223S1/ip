@@ -1,10 +1,13 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
     // original access modifier was protected
-    private final String start;
+    private final LocalDateTime dateTime;
 
-    public Event(String description, Command taskCommand, String start) {
+    public Event(String description, Command taskCommand, LocalDateTime dateTime) {
         super(description, taskCommand);
-        this.start = start;
+        this.dateTime = dateTime;
     }
 
     @Override
@@ -14,6 +17,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + start + ")";
+        return "[E]" + super.toString() + " (at: " + dateTime.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm"))
+                + ")";
     }
 }
