@@ -58,6 +58,6 @@ public class Duke {
      * @param args arguments from the commandline.
      */
     public static void main(String[] args) {
-        new Duke("data//tasks.txt").run();
+        new Duke("data//Duke.txt").run();
     }
 }

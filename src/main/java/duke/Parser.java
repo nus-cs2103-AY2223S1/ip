@@ -89,15 +89,13 @@ public class Parser {
      * @throws DukeException When the command does not parse properly.
      */
     public static Command parse(String fullCommand) throws DukeException {
-        switch (getFirstWord(fullCommand)) {
-        case FIND_SYNTAX:
-            return new FindCommand(fullCommand.substring(FIND_LENGTH));
-        }
+        // DO NOT USE ARROW SWTICH AS IT IS A JAVA12 FEATURE
         if (isAddCommand(fullCommand)) {
             return new AddCommand(fullCommand);
         }
-        // DO NOT USE ARROW SWTICH AS IT IS A JAVA12 FEATURE
         switch (getFirstWord(fullCommand)) {
+        case FIND_SYNTAX:
+            return new FindCommand(fullCommand.substring(FIND_LENGTH));
         case LIST_SYNTAX:
             return new ListCommand();
         case EXIT_SYNTAX:
