@@ -114,6 +114,20 @@ public class Parser {
                         throw DukeException.DukeInvalidIndexException();
                     }
                     break;
+                case "find":
+                    try {
+                        String keyword = split[1];
+                        TaskList matchedTasks = taskList.match(keyword);
+                        if (matchedTasks.getSize() > 0) {
+                            header = "Here are the matching tasks in your list";
+                            response = String.format("%s\n%s", header, matchedTasks);
+                        } else {
+                            response = "There are no matching tasks in your list";
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        throw DukeException.DukeUnknownCommandException();
+                    }
+                    break;
                 case "bye":
                     if (input.equals("bye")) {
                         response = "Bye. Hope to see you again soon!";

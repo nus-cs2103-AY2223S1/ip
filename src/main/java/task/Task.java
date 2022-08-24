@@ -49,4 +49,8 @@ public abstract class Task {
     public void unmark() {
         this.isDone = false;
     }
+
+    public boolean match(String keyword) {
+        return this.getName().contains(keyword.trim());
+    }
 }

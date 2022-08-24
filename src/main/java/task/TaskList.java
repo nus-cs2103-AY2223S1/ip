@@ -7,7 +7,7 @@ public class TaskList {
     protected final ArrayList<Task> taskList;
 
     public TaskList() {
-        taskList = new ArrayList<>();
+        this.taskList = new ArrayList<>();
     }
 
     public String toString() {
@@ -37,6 +37,16 @@ public class TaskList {
 
     public Task getTask(int num) {
         return this.taskList.get(num-1);
+    }
+
+    public TaskList match(String keyword) {
+        TaskList matchedTasks = new TaskList();
+        for (Task task: this.taskList) {
+            if (task.match(keyword)) {
+                matchedTasks.addTask(task);
+            }
+        }
+        return matchedTasks;
     }
 }
 
