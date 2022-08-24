@@ -11,6 +11,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String savedData() {
+        return getStatusIcon() + "| " + description + " | ";
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
