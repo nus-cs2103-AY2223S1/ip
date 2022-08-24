@@ -1,4 +1,12 @@
 package duke.command;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -7,10 +15,8 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-import org.junit.jupiter.api.Test;
-import java.time.LocalDate;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+
+
 
 public class AddCommandTest {
     private TaskList tasks;

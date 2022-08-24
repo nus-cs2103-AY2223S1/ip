@@ -1,13 +1,16 @@
 package duke.command;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
+
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
 import duke.exception.InvalidInput;
 import duke.task.ToDo;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 public class MarkCommandTest {
     private final TaskList tasks;

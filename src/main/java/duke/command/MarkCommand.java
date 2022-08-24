@@ -1,10 +1,10 @@
 package duke.command;
 
 import duke.Storage;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.task.Task;
 
 public class MarkCommand extends Command {
     private final String indexString;

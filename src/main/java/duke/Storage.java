@@ -1,8 +1,5 @@
 package duke;
 
-import duke.exception.DukeException;
-import duke.task.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 public class Storage {
     public Storage() throws DukeException {
@@ -38,24 +41,31 @@ public class Storage {
                 }
                 Task task = null;
                 switch (taskData[0]) {
-                    case "T":
-                        task = new ToDo(taskData[2]);
-                        break;
-                    case "D":
-                        task = new Deadline(taskData[2], LocalDate.parse(taskData[3]));
-                        break;
-                    case "E":
-                        task = new Event(taskData[2], LocalDate.parse(taskData[3]));
-                        break;
+                case "T":
+                    task = new ToDo(taskData[2]);
+                    break;
+                case "D":
+                    task = new Deadline(taskData[2], LocalDate.parse(taskData[3]));
+                    break;
+                case "E":
+                    task = new Event(taskData[2], LocalDate.parse(taskData[3]));
+                    break;
+                default:
+                    break;
                 }
                 if (task != null) {
                     data.add(task);
-                    if ("1".equals(taskData[1])) task.markDone();
-                    else task.markNotDone();
+                    if ("1".equals(taskData[1])) {
+                        task.markDone();
+                    } else {
+                        task.markNotDone();
+                    }
                 }
             }
             sc.close();
-        } catch (FileNotFoundException ignored){}
+        } catch (FileNotFoundException ignored) {
+            return;
+        }
     }
 
     public void saveData(TaskList data) throws DukeException {

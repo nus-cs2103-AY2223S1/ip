@@ -1,12 +1,22 @@
 package duke;
-import duke.command.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
 import duke.exception.DukeException;
 import duke.exception.InvalidInput;
 import duke.exception.UnknownCommand;
-import org.junit.jupiter.api.Test;
-import java.time.LocalDate;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+
 
 public class ParserTest {
 
