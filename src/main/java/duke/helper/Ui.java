@@ -40,6 +40,14 @@ public class Ui {
     public static void clear() {
         System.out.println("The list has been successfully cleared!");
     }
+    
+    public static void taskFound() {
+        System.out.println("Woohoo here are some matches found!");
+    }
+
+    public static void noTaskFound() {
+        System.out.println("Ohno I could not find any tasks fitting the keywords...");
+    }
 
     public static void line() {
         System.out.println("-------------------------------------------");
