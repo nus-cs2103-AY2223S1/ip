@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import duke.task.Task;
 
+/**
+ * Represents a list of tasks.
+ */
 public class DukeList {
     private final List<Task> listItems;
 
@@ -17,25 +20,39 @@ public class DukeList {
         this.listItems = listItems;
     }
 
+    /**
+     * Converts Task list to String representation for saving to file.
+     * @return A list of the Tasks in String format to save to file.
+     */
     public List<String> getListToDataStr() {
         return listItems.stream().map(this::taskToDataStr).collect(Collectors.toList());
     }
 
+    /**
+     * Converts a Task to String for storing in a file.
+     * @param t The Task to convert.
+     * @return A String representation of the Task for storing in a file.
+     */
     private String taskToDataStr(Task t) {
         String taskType = t.getTaskType().toString().toLowerCase();
         String description = t.getDesc();
         String isDone = t.getStatus() ? "1" : "0";
         String otherData = t.getOtherData();
 
-        String taskStr = taskType + Storage.fileStrDivider + isDone + Storage.fileStrDivider + description;
+        String taskStr = taskType + Storage.FILE_STR_DIVIDER + isDone + Storage.FILE_STR_DIVIDER + description;
 
         if (otherData.isEmpty()) {
             return taskStr;
         } else {
-            return taskStr + Storage.fileStrDivider + otherData;
+            return taskStr + Storage.FILE_STR_DIVIDER + otherData;
         }
     }
 
+    /**
+     * Adds a Task to the list.
+     * @param item The task to add to the list.
+     * @return A String of the message to be displayed.
+     */
     public String add(Task item) {
         listItems.add(item);
         return "Got it. I've added this task:\n"
@@ -46,6 +63,12 @@ public class DukeList {
                 + " in the list.";
     }
 
+    /**
+     * Marks a task in the list as done.
+     * @param index The index of the task to mark as done.
+     * @return A String of the message to be displayed.
+     * @throws DukeException If index is invalid.
+     */
     public String done(int index) throws DukeException {
         int listIndex = index - 1;
         if (listIndex < 0 || listIndex > listItems.size() - 1) {
@@ -57,6 +80,12 @@ public class DukeList {
         return "Nice! I've marked this task as done:\n" + t;
     }
 
+    /**
+     * Marks a task in the list as not done.
+     * @param index The index of the task to mark as not done.
+     * @return A String of the message to be displayed.
+     * @throws DukeException If index is invalid.
+     */
     public String undone(int index) throws DukeException {
         int listIndex = index - 1;
         if (listIndex < 0 || listIndex > listItems.size() - 1) {
@@ -68,6 +97,12 @@ public class DukeList {
         return "OK, I've marked this task as not done yet:\n" + t;
     }
 
+    /**
+     * Deletes a task in the list.
+     * @param index The index of the task to delete.
+     * @return A String of the message to be displayed.
+     * @throws DukeException If index is invalid.
+     */
     public String delete(int index) throws DukeException {
         int listIndex = index - 1;
         if (listIndex < 0 || listIndex > listItems.size() - 1) {
@@ -84,6 +119,10 @@ public class DukeList {
                 + " in the list.";
     }
 
+    /**
+     * Returns number of tasks in the list.
+     * @return The number of tasks in the list.
+     */
     public int getListSize() {
         return listItems.size();
     }

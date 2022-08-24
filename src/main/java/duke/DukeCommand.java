@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Valid Duke commands.
+ */
 public enum DukeCommand {
     EXIT("bye"),
     LIST("list"),
@@ -17,6 +20,11 @@ public enum DukeCommand {
         this.command = command;
     }
 
+    /**
+     * Reads an input String and converts to DukeCommand.
+     * @param inputCommand The input to read.
+     * @return The appropriate DukeCommand, or UNKNOWN if invalid input.
+     */
     public static DukeCommand read(String inputCommand) {
         for (DukeCommand dc : DukeCommand.values()) {
             if (dc.command.equals(inputCommand)) {

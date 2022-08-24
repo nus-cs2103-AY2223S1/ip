@@ -3,10 +3,18 @@ package duke.response;
 import duke.DukeException;
 import duke.DukeList;
 
+/**
+ * A DukeResponse to mark a Task as not done.
+ */
 public class UnmarkResponse extends DukeResponse {
     protected DukeList list;
     protected String data;
 
+    /**
+     * Constructor for an UnmarkResponse.
+     * @param list The task list.
+     * @param data The data for marking Task as not done.
+     */
     public UnmarkResponse(DukeList list, String data) {
         this.list = list;
         this.data = data;
