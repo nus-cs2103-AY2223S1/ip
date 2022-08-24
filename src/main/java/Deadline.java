@@ -1,16 +1,24 @@
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class Deadline extends Task {
 
     // Attributes of a Deadline
-    protected String by;
+    protected LocalDate byDate;
+    protected String byTime;
+
 
     /**
-     * The constructor for the Deadline
-     * @param description the description of the task
-     * @param by the deadline of the task
+     * The information regarding the Deadline
+     * @param description the description of the task to do by the deadline
+     * @param byDate the due date
+     * @param byTime the due time
+     * @throws DukeException self created exception
      */
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, LocalDate byDate, String byTime) throws DukeException {
         super(description);
-        this.by = by;
+        this.byDate = byDate;
+        this.byTime = byTime;
         if (description.equals("")) {
             throw new DukeException("The description of a deadline cannot be empty.");
         }
@@ -22,6 +30,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + byTime.toString() + ")";
     }
 }
