@@ -6,31 +6,39 @@ import duke.exception.*;
 
 public class TaskList {
 
-    private static List<Task> tasks;
+    private List<Task> tasks;
 
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
-    public static Task markTask(Integer index) {
+    public TaskList(List<Task> taskList) {
+        tasks = taskList;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public Task markTask(Integer index) {
         Task task = tasks.get(index);
         task.markAsDone();
         return task;
     }
 
-    public static Task unmarkTask(Integer index) {
+    public Task unmarkTask(Integer index) {
         Task task = tasks.get(index);
         task.unMark();
         return task;
     }
 
-    public static Task deleteTask(int index) {
+    public Task deleteTask(int index) {
         Task task = tasks.get(index);
         tasks.remove(index);
         return task;
     }
 
-    public static Task addTodoTask(String description) throws EmptyDescriptionException {
+    public Task addTodoTask(String description) throws EmptyDescriptionException {
         if (description == null) {
             throw new EmptyDescriptionException();
         }
@@ -40,7 +48,7 @@ public class TaskList {
     }
 
     //TODO improve the code
-    public static Task addDeadlineTask(String description) throws EmptyDescriptionException {
+    public Task addDeadlineTask(String description) throws EmptyDescriptionException {
         if (description == null) {
             throw new EmptyDescriptionException();
         }
@@ -51,7 +59,7 @@ public class TaskList {
     }
 
     //TODO improve the code
-    public static Task addEventTask(String description) throws EmptyDescriptionException {
+    public Task addEventTask(String description) throws EmptyDescriptionException {
         if (description == null) {
             throw new EmptyDescriptionException();
         }

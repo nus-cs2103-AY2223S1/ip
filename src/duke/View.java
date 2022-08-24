@@ -37,7 +37,7 @@ public class View {
     }
 
     public static void printTask(Task task) {
-        if (task.isDone) {
+        if (task.isDone()) {
             System.out.println(dialog("Nice! I've marked this task as done:", task.toString()));
         } else {
             System.out.println(dialog("Nice! I've marked this task as not done yet:", task.toString()));

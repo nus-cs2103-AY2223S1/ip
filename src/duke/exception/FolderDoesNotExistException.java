@@ -1,7 +1,7 @@
 package duke.exception;
 
 public class FolderDoesNotExistException extends FileIOException {
-    FolderDoesNotExistException() {
+    public FolderDoesNotExistException() {
         super("OOPS!!! The selected folder had disappeared.");
     }
 }

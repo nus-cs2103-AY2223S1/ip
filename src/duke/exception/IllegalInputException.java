@@ -1,7 +1,7 @@
 package duke.exception;
 
 public class IllegalInputException extends DukeException {
-    IllegalInputException(String errorMessage) {
+    public IllegalInputException(String errorMessage) {
         super(errorMessage);
     }
 }
