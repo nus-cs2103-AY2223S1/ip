@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
  * Contains description of task and task completion status.
  */
 public abstract class Task {
-    protected final static DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    protected static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd MMM yyyy");
     private String description;
     private boolean isDone;
 

@@ -1,9 +1,9 @@
 package duke.util;
 
-import duke.task.TaskList;
-import duke.task.Task;
-
 import java.util.Scanner;
+
+import duke.task.Task;
+import duke.task.TaskList;
 
 public class Ui {
     private static final String LOGO = " ____        _        \n"
@@ -13,10 +13,19 @@ public class Ui {
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String LINE_DIVIDER = "    ____________________________________________________________";
     private static final String INDENTATION = "     ";
-    public static Scanner in;
+    private static Scanner in;
 
     public Ui() {
-        this.in = new Scanner(System.in);
+        Ui.in = new Scanner(System.in);
+    }
+
+    /**
+     * Returns the system input scanner.
+     *
+     * @return {@code Scanner} for system input.
+     */
+    public static Scanner getInputScanner() {
+        return Ui.in;
     }
 
     public void showWelcome() {
@@ -43,9 +52,9 @@ public class Ui {
 
     public void printTaskListChange(String message, Task task, TaskList taskList) {
         printMessages(new String[] {
-                message,
-                task.toString(),
-                String.format("Now you have %d tasks in the list.", taskList.size())
+            message,
+            task.toString(),
+            String.format("Now you have %d tasks in the list.", taskList.size())
         });
     }
 }

@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.DukeException;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
+
+import duke.DukeException;
 
 /**
  * List data structure to track all tasks.
@@ -24,8 +24,9 @@ public class TaskList {
     }
 
     String getIndexOutOfBoundsExceptionMessage() {
-        return this.size() > 0 ? String.format("Task index out of range. Please choose from index 1 to %d", this.size()) :
-                "Tasks index out of range. There are no tasks.";
+        return this.size() > 0
+                ? String.format("Task index out of range. Please choose from index 1 to %d", this.size())
+                : "Tasks index out of range. There are no tasks.";
     }
 
     Task getTask(int index) throws DukeException {

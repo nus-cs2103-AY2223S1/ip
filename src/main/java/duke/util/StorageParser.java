@@ -17,8 +17,9 @@ public class StorageParser {
             return parseDeadline(arguments);
         case 'E':
             return parseEvent(arguments);
+        default:
+            throw new DukeException("Failed to parse task from storage");
         }
-        throw new DukeException("Failed to parse task from storage");
     }
 
     private static Todo parseToDo(String[] arguments) throws DukeException {

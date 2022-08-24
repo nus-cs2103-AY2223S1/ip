@@ -33,9 +33,9 @@ public class Duke {
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
-        while (!isExit && Ui.in.hasNextLine()) {
+        while (!isExit && Ui.getInputScanner().hasNextLine()) {
             try {
-                String input = Ui.in.nextLine();
+                String input = Ui.getInputScanner().nextLine();
                 Command c = Parser.parseCommand(input);
                 c.execute();
                 storage.writeTaskListToStorage(taskList);
