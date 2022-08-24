@@ -1,8 +1,11 @@
 import java.io.*;
 import java.nio.file.Path;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
+import java.util.Date;
 
 public class Duck {
     /**
@@ -12,7 +15,7 @@ public class Duck {
      * It also allows the program to keep track of the arguments the user gives
      * It also handles possible invalid inputs given by the user
      * **/
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
         java.nio.file.Path path = java.nio.file.Paths.get("data");
         File duckTxt = new File(String.valueOf(path), "duck.txt");
         if (!java.nio.file.Files.exists(Path.of(path + "duck.txt"))) {
@@ -31,13 +34,16 @@ public class Duck {
                         list.add(new Todo(readerArray[1], readerArray[2].equals("1")));
                         break;
                     case ("D"):
-                        list.add(new Deadline(readerArray[1], readerArray[3].equals("1"), readerArray[2]));
+                        list.add(new Deadline(readerArray[1], readerArray[3].equals("1"), dateStorageConverter(readerArray[2])));
                         break;
                     case ("E"):
-                        list.add(new Event(readerArray[1], readerArray[3].equals("1"), readerArray[2]));
+                        list.add(new Event(readerArray[1], readerArray[3].equals("1"), dateStorageConverter(readerArray[2])));
                         break;
                 }
             }
+        } catch (ParseException e) {
+            System.out.println("uh oh something went wrong in reading the file, try deleting it");
+            return ;
         }
         System.out.println("Hello! Got any grapes?");
         Scanner scanner = new Scanner(System.in);
@@ -67,13 +73,13 @@ public class Duck {
                             break;
                         case "DEADLINE":
                             String[] deadlineArgs = arguments.split("/by");
-                            Deadline newDeadline = new Deadline(deadlineArgs[0].trim(), false, deadlineArgs[1].trim());
+                            Deadline newDeadline = new Deadline(deadlineArgs[0].trim(), false, dateStorageConverter(deadlineArgs[1].trim()));
                             list.add(newDeadline);
                             System.out.println("Added new Deadline " + newDeadline + " Quack!");
                             break;
                         case "EVENT":
                             String[] eventArgs = arguments.split("/at");
-                            Event newEvent = new Event(eventArgs[0].trim(), false, eventArgs[1].trim());
+                            Event newEvent = new Event(eventArgs[0].trim(), false, dateStorageConverter(eventArgs[1].trim()));
                             list.add(newEvent);
                             System.out.println("Added new Event " + newEvent + " Quack!");
                             break;
@@ -111,6 +117,8 @@ public class Duck {
                 System.out.println("Item does not exist!! Quack!");
             } catch (UnallowedCharacterException e) {
                 System.out.println("Character: "+ e.getMessage() + " is not allowed! Quack!!");
+            } catch (ParseException e) {
+                System.out.println("Wrong date time format! Quack! (use: dd/MM/yyyy HHmm) ");
             }
         }
         for(Todo t : list){
@@ -118,6 +126,14 @@ public class Duck {
         }
         writer.close();
         System.out.println("Quack!");
+    }
+    public static Date dateStorageConverter(String date) throws ParseException {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
+        return dateFormatter.parse(date);
+    }
+    public static String dateToStringConverter(Date date) {
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
+        return dateFormatter.format(date);
     }
 
 }

@@ -1,6 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.ParseException;
 
 public class Todo {
 
@@ -36,7 +37,7 @@ public class Todo {
         this.completed = false;
     }
 
-    public void writeToFile(FileWriter writer) throws IOException {
+    public void writeToFile(FileWriter writer) throws IOException, ParseException {
         writer.write(String.format("T;%s;%d\n", this.title, this.completed ? 1 : 0));
     }
     public String toString() {
