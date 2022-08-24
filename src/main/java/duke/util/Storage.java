@@ -11,15 +11,30 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class to manage file storage operations.
+ */
 public class Storage {
     public final String dataPath;
     public final String storageName;
 
+    /**
+     * Constructor for {@code Storage}.
+     *
+     * @param dataPath Path to data storage directory.
+     * @param storageName Name of storage file.
+     */
     public Storage(String dataPath, String storageName) {
         this.dataPath = dataPath;
         this.storageName = storageName;
     }
 
+    /**
+     * Stores all tasks in given {@code TaskList} to storage.
+     *
+     * @param taskList {@code TaskList} containing tasks to save to storage.
+     * @throws DukeException Checked exceptions that may occur when writing to storage file.
+     */
     public void writeTaskListToStorage(TaskList taskList) throws DukeException {
         try {
             File directory = new File(dataPath);
@@ -39,6 +54,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads all tasks in storage into a {@code List}.
+     *
+     * @return {@code List} object containing {@code Task} objects.
+     * @throws DukeException Checked exceptions that may occur when reading from storage file.
+     */
     public List<Task> load() throws DukeException {
         try {
             List<Task> tasks = new ArrayList<>();

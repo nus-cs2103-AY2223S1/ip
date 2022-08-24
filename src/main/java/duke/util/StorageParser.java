@@ -6,7 +6,18 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Class to parse string representation of task in storage.
+ */
 public class StorageParser {
+
+    /**
+     * Parses a task string from storage into a {@code Task} object.
+     *
+     * @param taskString A string representation of {@code Task}.
+     * @return {@code Task} object.
+     * @throws DukeException Checked exceptions that may occur when parsing task string into {@code Task}.
+     */
     public static Task parseTaskString(String taskString) throws DukeException {
         Character taskType = taskString.charAt(0);
         String[] arguments = taskString.substring(taskString.indexOf(" | ") + 3).split(" \\| ");

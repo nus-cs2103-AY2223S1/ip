@@ -19,10 +19,20 @@ import duke.task.Todo;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Class to parse user input.
+ */
 public class Parser {
     private static final String DEADLINE_INDICATOR = "\\s*/by\\s*";
     private static final String EVENT_INDICATOR = "\\s*/at\\s*";
 
+    /**
+     * Parses an input string into a {@code Command} object.
+     *
+     * @param input User input string.
+     * @return {@code Command} object.
+     * @throws DukeException Checked exceptions that may occur when parsing user input into {@code Command}.
+     */
     public static Command parseCommand(String input) throws DukeException {
         input = input.strip();
         String inputCommand = input.indexOf(" ") == -1 ?
@@ -116,6 +126,13 @@ public class Parser {
         return args;
     }
 
+    /**
+     * Parses a date string into a {@code LocalDate} object.
+     *
+     * @param dateString date string to parse.
+     * @return {@code LocalDate} object.
+     * @throws DukeException Checked exceptions that may occur when parsing date string into {@code LocalDate}.
+     */
     public static LocalDate parseDate(String dateString) throws DukeException {
         try {
             return LocalDate.parse(dateString);
