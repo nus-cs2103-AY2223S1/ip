@@ -10,6 +10,7 @@ import duke.response.DeleteResponse;
 import duke.response.DukeResponse;
 import duke.response.EventResponse;
 import duke.response.ExitResponse;
+import duke.response.FindResponse;
 import duke.response.ListResponse;
 import duke.response.MarkResponse;
 import duke.response.TodoResponse;
@@ -37,6 +38,8 @@ public class Parser {
         case LIST:
             // Print list
             return new ListResponse(list);
+        case FIND:
+            return new FindResponse(list, data);
         case MARK:
             // Mark duke.task as done
             return new MarkResponse(list, data);
