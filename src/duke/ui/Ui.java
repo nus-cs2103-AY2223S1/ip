@@ -46,6 +46,16 @@ public class Ui {
     }
 
     public void showHelpMenu() {
+        System.out.println(dialog("The following is the list of commands:",
+                    "BYE    To terminate the programme.",
+                    "LIST   To see the list of current tasks.",
+                    "Mark {any number}    To mark a task as done.",
+                    "Unmark {any number}    To unmark a task.",
+                    "Delete {any number}    To delete a task.",
+                    "Todo {Task description}    To add a TODO task.",
+                    "Deadline {Task description}/{YYYY-MM-DD}    To add a DEADLINE task.",
+                    "Event {Task description}/{YYYY-MM-DD}    To add an EVENT task.",
+                    "Help    To see the list of commands."));
     }
 
     public void showList(List<? extends Task> memo) {
