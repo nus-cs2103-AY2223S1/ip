@@ -1,6 +1,6 @@
 public abstract class Task {
-    private String description;
-    private boolean isDone;
+    protected String description;
+    protected boolean isDone;
 
     /**
      * Constructor to create new Task
@@ -8,8 +8,19 @@ public abstract class Task {
      * @param description Task Description
      */
     public Task(String description) {
-        this.description = description;
+        this.description = description.trim();
         this.isDone = false;
+    }
+
+    /**
+     * Constructor to create new Task with isDone
+     * 
+     * @param description Task Description
+     * @param isDone      Whether the task is done or not
+     */
+    public Task(String description, boolean isDone) {
+        this.description = description.trim();
+        this.isDone = isDone;
     }
 
     /**
@@ -70,5 +81,12 @@ public abstract class Task {
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
     }
+
+    /**
+     * Returns the string represetation of task when saving to file
+     * 
+     * @return String representation of task when saving to file
+     */
+    public abstract String getFileString();
 
 }

@@ -1,9 +1,56 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+
 public class Duke {
 
     private static ArrayList<Task> tasks = new ArrayList<>();
+    private static File dataFile = new File("data/duke.txt");
+
+    /**
+     * Reads existing tasks from dataFile and adds them to tasks
+     */
+    public static void readFile() {
+        try {
+            File dataFolder = new File("data/");
+            if (dataFolder.exists() && !dataFolder.isDirectory()) {
+                dataFolder.delete();
+                dataFolder.mkdir();
+            }
+            dataFile.createNewFile();
+            if (!dataFile.exists()) {
+                dataFile.createNewFile();
+            }
+            Scanner scanner = new Scanner(dataFile);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                tasks.add(Task.createTask(line));
+            }
+            scanner.close();
+        } catch (IOException | DukeException e) {
+            System.out.println("Something when wrong when reading your file :( \nError: " + e.getMessage());
+        }
+    }
+
+    /**
+     * Writes tasks to dataFile
+     */
+    public static void writeFile() {
+        try {
+            FileWriter writer = new FileWriter(dataFile);
+            String fileString = "";
+            for (Task task : tasks) {
+                fileString += task.getFileString() + "\n";
+            }
+            writer.write(fileString);
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Something when wrong when writing your file :( \nError: " + e.getMessage());
+        }
+    }
 
     /**
      * Display all stored tasks
@@ -63,6 +110,7 @@ public class Duke {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         boolean hasNextInput = true;
+        readFile();
 
         String logo = "_________                     ___\n" + "\\    ___ \\  ___________   ____\\_ |_________  ____\n"
                 + "/    \\  \\/_/ __ \\_  __ \\_/ __ \\| __ \\_  __ \\/  _ \\\n"
@@ -81,6 +129,7 @@ public class Duke {
                 case bye:
                     hasNextInput = false;
                     scanner.close();
+                    writeFile();
                     break;
                 case list:
                     displayList();

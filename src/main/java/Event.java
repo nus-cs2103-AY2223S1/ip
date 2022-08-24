@@ -9,7 +9,19 @@ public class Event extends Task {
      */
     public Event(String description, String timing) {
         super(description);
-        this.timing = timing;
+        this.timing = timing.trim();
+    }
+
+    /**
+     * Constructor to create new Event with isDone
+     * 
+     * @param description Task description
+     * @param timing      Timing of Event
+     * @param isDone      Whether the task is done or not
+     */
+    public Event(String description, String timing, boolean isDone) {
+        super(description, isDone);
+        this.timing = timing.trim();
     }
 
     /**
@@ -24,9 +36,22 @@ public class Event extends Task {
         if (input.indexOf("/at ") == -1) {
             throw new DukeException("Please enter a valid event timing using the /at flag.");
         }
-        String eventDescription = input.split("/at ")[0];
-        String event = input.split("/at ")[1];
-        return new Event(eventDescription, event);
+        if (input.indexOf("/completed ") == -1) {
+            String description = input.split("/at ")[0];
+            String timing = input.split("/at ")[1];
+            return new Event(description, timing);
+        } else {
+            boolean isDone = Boolean.parseBoolean(input.split("/completed ")[1]);
+            input = input.split("/completed ")[0];
+            String description = input.split("/at ")[0];
+            String timing = input.split("/at ")[1];
+            return new Event(description, timing, isDone);
+        }
+    }
+
+    @Override
+    public String getFileString() {
+        return "event " + this.description + " /at " + this.timing + " /completed " + this.isDone;
     }
 
     @Override
