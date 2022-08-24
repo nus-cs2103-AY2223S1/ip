@@ -1,12 +1,14 @@
 package duke;
-import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
 
 public class DeadlineTest {
 
     @Test
-    public void toString_nonYYYYMMDD_exceptionThrow() {
+    public void toString_nonyyyymmdd_exceptionThrow() {
         try {
             assertEquals("[D][ ] testing (by: blah)",
                     new Deadline("testing", "blah").toString());

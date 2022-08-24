@@ -85,6 +85,8 @@ public class Storage {
                 currTask = new Deadline(taskDataArray[2], taskDataArray[3]);
                 memory.add(currTask);
                 break;
+            default:
+                throw new DukeException("Invalid task found in data file!");
             }
             if (taskDataArray[1].equals("1")) {
                 assert currTask != null;
