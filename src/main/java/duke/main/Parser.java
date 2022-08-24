@@ -12,6 +12,7 @@ public class Parser {
    *
    * @param text The text received from user
    * @throws DukeException
+   * @throws Exception
    */
   static Command parse(String text) throws DukeException {
     String command = text.split(" ")[0];

@@ -8,7 +8,7 @@ public abstract class Task {
   private String description;
 
   /**
-   * Constructor of Task, initializes as unmarked
+   * Constructor of task, and initialise it as unmarked
    * 
    * @param txt Description of task
    */
@@ -18,7 +18,7 @@ public abstract class Task {
   }
 
   /**
-   * Constructor of Task that initializes isDone state of task
+   * Overloaded constructor that intialiases isDone state of task
    * 
    * @param txt task description
    * @param isDone whether task has been completed
@@ -29,7 +29,7 @@ public abstract class Task {
   }
 
   /**
-   * Return the status icon of Task
+   * Based on isDone, return the correct status Icon
    * 
    * @return String representation of status Icon
    */
@@ -38,14 +38,14 @@ public abstract class Task {
   }
 
   /**
-   * Marks Task as done
+   * Mark task as done
    */
   public void markAsDone() {
     this.isDone = true;
   }
 
   /**
-   * Marks Task as undone
+   * Mark task as undone
    */
   public void markUndone() {
     this.isDone = false;
