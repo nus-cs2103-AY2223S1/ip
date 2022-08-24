@@ -1,28 +1,55 @@
 package Duke;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
     Scanner sc;
-
+    public Storage storage;
     public TaskList tasklist;
     public UserInterface userInterface;
 
     public Duke() {
-
+        this.storage = new Storage("data/tasks.txt");
         this.userInterface = new UserInterface();
         this.tasklist = new TaskList();
         this.sc = new Scanner(System.in);
 
+        try {
+            this.tasklist = new TaskList();
+            storage.load();
+        } catch (IOException e) {
+            this.tasklist = new TaskList();
+            userInterface.printError(e.getMessage());
+        }
+
+    }
+
+    public Duke(String path) {
+        this.userInterface = new UserInterface();
+        this.storage = new Storage(path);
+        try {
+            this.tasklist = new TaskList();
+            storage.load();
+
+        } catch (IOException e){
+            this.tasklist = new TaskList();
+            userInterface.printError(e.getMessage());
+
+        }
     }
 
     public void run() {
         System.out.println(userInterface.greeting());
         boolean isExit = false;
-        Handler handler = new Handler(tasklist, userInterface);
+
         while (!isExit) {
             try {
-                String echo = sc.nextLine();
+                Handler handler = new Handler(tasklist, userInterface);
+
+                String echo = userInterface.getInput();
+
                 if (echo.equals("bye")) {
                     System.out.println(userInterface.bye());
                     isExit = true;
@@ -43,6 +70,8 @@ public class Duke {
                 } else {
                     throw new DukeUnknownTaskException();
                 }
+                storage.save();
+
             } catch (DukeException e){
                 userInterface.printError(e.getMessage());
 
