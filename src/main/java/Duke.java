@@ -4,11 +4,13 @@ import java.util.Scanner;
 
 public class Duke {
     private static ArrayList<Task> storage = new ArrayList<>();
+    private static SaveFile save = new SaveFile();
 
     /**
      * Lists all the tasks currently being stored.
      */
     private static void list() {
+
         System.out.println("____________________________________________________________ \n"
                 + "Here are the tasks in your list:");
 
@@ -36,6 +38,8 @@ public class Duke {
             Task toRemove = storage.get(index);
             storage.remove(index);
 
+            save.reload(storage);
+
             System.out.println(
                     "____________________________________________________________ \n"
                             + "Noted. I've removed this task: \n"
@@ -49,10 +53,11 @@ public class Duke {
                             + "____________________________________________________________");
         }
 
-
     }
 
     public static void main(String[] args) {
+        save.initialise(storage);
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -67,14 +72,16 @@ public class Duke {
         while (!command.equals("bye")) {
             // Create and store Tasks
             if (!command.equals("list") && !(command.startsWith("mark") || command.startsWith("unmark"))
-                    && !command.startsWith("delete")) {
+                    && !command.startsWith("delete") && !command.equals("reset")) {
                 if (command.startsWith("todo")) {
                     try {
                         if (command.length() <= 5) {
                             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                         }
 
-                        storage.add(new Todo(command.substring(5)));
+                        Task newTask = new Todo(command.substring(5));
+                        storage.add(newTask);
+                        save.addTask(newTask.toStore());
                     } catch (DukeException e) {
                         System.out.println(
                                 "____________________________________________________________ \n"
@@ -91,7 +98,10 @@ public class Duke {
                         }
 
                         String[] temp = command.substring(9).split("/by ");
-                        storage.add(new Deadline(temp[0], temp[1]));
+
+                        Task newTask = new Deadline(temp[0], temp[1]);
+                        storage.add(newTask);
+                        save.addTask(newTask.toStore());
                     } catch (IndexOutOfBoundsException | DukeException e) {
                         System.out.println(
                                 "____________________________________________________________ \n"
@@ -108,7 +118,10 @@ public class Duke {
                         }
 
                         String[] temp = command.substring(6).split("/at ");
-                        storage.add(new Event(temp[0], temp[1]));
+
+                        Task newTask = new Event(temp[0], temp[1]);
+                        storage.add(newTask);
+                        save.addTask(newTask.toStore());
                     } catch (IndexOutOfBoundsException | DukeException e) {
                         System.out.println(
                                 "____________________________________________________________ \n"
@@ -127,6 +140,7 @@ public class Duke {
                     command = scan.nextLine();
                     continue;
                 }
+
             }
 
             // Commands
@@ -137,6 +151,7 @@ public class Duke {
 
                 try {
                     storage.get(index - 1).toggleDone(command);
+                    save.reload(storage);
                 } catch (IndexOutOfBoundsException e) {
                     System.out.println(
                             "____________________________________________________________ \n"
@@ -146,6 +161,8 @@ public class Duke {
             } else if (command.startsWith("delete")) {
                 int index = Character.getNumericValue(command.charAt(command.length() - 1));
                 delete(index - 1);
+            } else if (command.equals("reset")) {
+                save.reset(storage);
             } else {
                 System.out.println(
                         "____________________________________________________________ \n"
