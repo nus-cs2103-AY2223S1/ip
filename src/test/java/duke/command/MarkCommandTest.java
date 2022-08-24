@@ -51,11 +51,7 @@ public class MarkCommandTest {
 
     @Test
     public void markTest_markSuccess() {
-        try {
-            tasks.add(new ToDo("test test"));
-        } catch (DukeException e) {
-            fail("Exception when adding test task");
-        }
+        tasks.add(new ToDo("test test"));
         try {
             Command commandMark = new MarkCommand("1", true);
             commandMark.execute(tasks, ui, storage);

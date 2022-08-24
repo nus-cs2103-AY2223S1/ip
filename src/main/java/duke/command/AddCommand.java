@@ -2,11 +2,6 @@ package duke.command;
 
 import java.time.LocalDate;
 
-<<<<<<< HEAD
-/**
- * The class that encapsulates the add command.
- */
-=======
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -16,8 +11,9 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-
->>>>>>> branch-A-CodingStandard
+/**
+ * The class that encapsulates the add command.
+ */
 public class AddCommand extends Command {
 
     /** The type of task to be added */
@@ -48,7 +44,7 @@ public class AddCommand extends Command {
      * @param ui The UI of the Duke bot.
      * @param storage The storage of data.
      * @throws DukeException If there is an error saving the
-     * new data to the text file.
+     *                       new data to the text file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

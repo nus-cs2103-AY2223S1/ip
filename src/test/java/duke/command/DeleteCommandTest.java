@@ -29,11 +29,7 @@ public class DeleteCommandTest {
 
     @Test
     public void deleteTest() {
-        try {
-            tasks.add(new ToDo("test test"));
-        } catch (DukeException e) {
-            fail("Exception thrown when adding task");
-        }
+        tasks.add(new ToDo("test test"));
         try {
             Command command = new DeleteCommand("1");
             command.execute(tasks, ui, storage);
