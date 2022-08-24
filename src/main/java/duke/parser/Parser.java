@@ -52,7 +52,7 @@ public class Parser {
 
     public static ToDo handleToDo(String information) throws EmptyArgumentException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.TODO);
+            throw new EmptyArgumentException(Commands.ToDo);
         }
         ToDo todo = new ToDo(information);
         return todo;
@@ -60,10 +60,10 @@ public class Parser {
 
     public static Deadline handleDeadline(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.DEADLINE);
+            throw new EmptyArgumentException(Commands.Deadline);
         }
         if (!information.contains("/by")) {
-            throw new InvalidArgumentException(Commands.DEADLINE);
+            throw new InvalidArgumentException(Commands.Deadline);
         }
         String[] stringArr = information.split(" /by ",2);
         String[] dateTimeArr = stringArr[1].split(" ");
@@ -71,17 +71,17 @@ public class Parser {
         try {
             deadline = new Deadline(stringArr[0], stringArr[1]);
         } catch (java.time.format.DateTimeParseException e) {
-            throw new InvalidArgumentException(Commands.DATE);
+            throw new InvalidArgumentException(Commands.Date);
         }
         return deadline;
     }
 
     public static Event handleEvent(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.EVENT);
+            throw new EmptyArgumentException(Commands.Event);
         }
         if (!information.contains("/at")) {
-            throw new InvalidArgumentException(Commands.EVENT);
+            throw new InvalidArgumentException(Commands.Event);
         }
         String[] stringArr = information.split(" /at ",2);
         Event event = new Event(stringArr[0], stringArr[1]);
@@ -90,10 +90,10 @@ public class Parser {
 
     public static int handleMark(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.MARK);
+            throw new EmptyArgumentException(Commands.Mark);
         }
         if (!information.chars().allMatch( Character :: isDigit )) {
-            throw new InvalidArgumentException(Commands.MARK);
+            throw new InvalidArgumentException(Commands.Mark);
         }
         int index = Integer.parseInt(information) - 1;
         if (index < 0) {
@@ -104,10 +104,10 @@ public class Parser {
 
     public static int handleDelete(String information) throws DukeException {
         if (information.isEmpty()) {
-            throw new EmptyArgumentException(Commands.DELETE);
+            throw new EmptyArgumentException(Commands.Delete);
         }
         if (!information.chars().allMatch( Character :: isDigit )) {
-            throw new InvalidArgumentException(Commands.DELETE);
+            throw new InvalidArgumentException(Commands.Delete);
         }
         int index = Integer.parseInt(information) - 1;
         if (index < 0) {

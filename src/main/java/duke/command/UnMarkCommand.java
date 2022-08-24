@@ -17,7 +17,7 @@ public class UnMarkCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         if (index >= taskList.numberOfTasks()) {
-            throw new InvalidArgumentException(Commands.MARK);
+            throw new InvalidArgumentException(Commands.Mark);
         }
         Task task = taskList.getTask(index);
         task.markAsIncomplete();

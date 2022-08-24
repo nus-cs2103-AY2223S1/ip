@@ -17,7 +17,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) throws DukeException {
         if (index >= taskList.numberOfTasks()) {
-            throw new InvalidArgumentException(Commands.DELETE);
+            throw new InvalidArgumentException(Commands.Delete);
         }
         Task task = taskList.getTask(index);
         taskList.deleteTask(index);

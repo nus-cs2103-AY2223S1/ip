@@ -37,7 +37,6 @@ public class Deadline extends Task {
         return "D | " + completed + " | " + this.getDescription() + " | " + this.dateTime;
     }
 
-
     @Override
     public String toString() {
         DateTimeFormatter displayFormat = DateTimeFormatter.ofPattern("MMM dd yyyy");
