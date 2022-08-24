@@ -1,6 +1,12 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.io.File;
+import java.nio.file.Files;
+import java.io.IOException;
+import java.io.FileWriter;
 import java.util.Scanner;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 
 enum Command {
 
@@ -17,7 +23,7 @@ enum Command {
 }
 
 public class Duke {
-
+    
     public static void main(String[] args) throws DukeException {
         final String ADDED_TASK = "Got it. I've added this task:";
         final String REMOVED_TASK = "Noted. I've removed this task:";
@@ -27,7 +33,44 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hello! I'm Luke\nWhat can I do for you?");
         String input = "";
+        System.out.println("hi");
+
+
         
+
+        try {
+            Path path = Paths.get("./data/");
+            Files.createDirectories(path);
+            File file = new File("./data/Duke.txt");
+            file.createNewFile();
+
+            Scanner reader = new Scanner(file);
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
+                char action = data.charAt(1);
+                if (action == 'T') {
+                    Task task = new Todo(data.substring(7));
+                    tasks.add(task);
+                } else if(action =='E') {
+                    int symbol = data.indexOf("(");
+                    Task task = new Event(data.substring(7, symbol), data.substring(symbol + 5, data.length() - 1));
+                    tasks.add(task);
+                } else {
+                    int symbol = data.indexOf("(");
+                    Task task = new Deadline(data.substring(7, symbol), data.substring(symbol + 5, data.length() - 1));
+                    tasks.add(task);
+                }
+
+                
+
+            }
+            reader.close();
+
+
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
         
         while (!input.equals("bye")) {
             try {
@@ -133,13 +176,30 @@ public class Duke {
 
                     default:    
                         throw new DukeException("I'm sorry, but I dont know what you mean :(");
-                }             
+                }
+                
                 
             } catch (DukeException e) {
                 System.out.println(e);
+            } finally {
+                try {
+                    FileWriter writer = new FileWriter("./data/Duke.txt");
+                    String str = "";
+                    for (int i = 0; i <tasks.size(); i++) {
+                        str += tasks.get(i).toString();
+                        str += "\n";
+                    }
+                    writer.write(str);
+                    writer.close();
+
+                } catch (IOException e) {
+                    System.out.println(e);
+                }
             }
 
         }
     
     }
+
+    
 }
