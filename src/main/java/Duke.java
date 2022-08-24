@@ -4,12 +4,13 @@ import java.util.Scanner;
 
 public class Duke {
 
-    private static TaskList taskList = new TaskList();
+    private static TaskList taskList;
     private static final Scanner sc = new Scanner(System.in);
 
     public static void printMessage(String input) throws DukeException {
         if(input.equalsIgnoreCase("bye")) {
             System.out.println("Goodbye!");
+            taskList.closeWriter();
             System.exit(0);
         } else if(input.equalsIgnoreCase("list")) {
             taskList.list();
@@ -76,6 +77,7 @@ public class Duke {
     public static void getTasksFromFile(File file) {
         try {
             file.createNewFile();
+            taskList = new TaskList(file);
             Scanner scFile = new Scanner(file);
             while(scFile.hasNextLine()) {
                 String taskString = scFile.nextLine();
