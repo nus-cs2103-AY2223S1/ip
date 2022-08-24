@@ -1,7 +1,6 @@
 public class ToDo extends Task {
 
     private String straightLine = "  ----------------------------------------------------------------------------------";
-    private String strung = "hello";
     /**
      * A constructor to initialize the ToDo object.
      *
