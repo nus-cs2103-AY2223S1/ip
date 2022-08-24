@@ -3,7 +3,7 @@ public class DukeTodoEmptyException extends DukeException{
         super();
     }
     public String toString() {
-      return "OOPS!!! The description of a todo cannot be empty.";
+        Ui ui = new Ui();
+        return ui.getEmptyTodoExceptionUi();
     }
-
 }

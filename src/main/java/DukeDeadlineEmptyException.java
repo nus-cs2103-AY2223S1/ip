@@ -3,6 +3,7 @@ public class DukeDeadlineEmptyException extends DukeException {
         super();
     }
     public String toString() {
-        return "OOPS!!! The description of a deadline cannot be empty.";
+        Ui ui = new Ui();
+        return ui.getEmptyDeadlineExceptionUi();
     }
 }
