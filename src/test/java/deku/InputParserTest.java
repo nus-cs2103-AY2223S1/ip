@@ -39,7 +39,7 @@ public class InputParserTest {
         testInput.add("test test test");
         testInput.add("/by");
         testInput.add("12/12/2022");
-        assertEquals("test test test (by:  12 Dec 2022)",
+        assertEquals("test test test (by: 12 Dec 2022)",
                 new InputParser().parseTask(testInput),
                 "deadline command as input, with only date");
     }
@@ -51,7 +51,7 @@ public class InputParserTest {
         testInput.add("/by");
         testInput.add("12/12/2022");
         testInput.add("1800");
-        assertEquals("test test test (by:  12 Dec 2022 18:00)",
+        assertEquals("test test test (by: 12 Dec 2022 18:00)",
                 new InputParser().parseTask(testInput),
                 "deadline command as input, with date and time");
     }

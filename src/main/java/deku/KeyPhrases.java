@@ -13,6 +13,7 @@ public enum KeyPhrases {
     EVENT("event"),
     TODO("todo"),
     FIND_DATE("find_date"),
+    FIND_WORD("find_word"),
     OTHERS("");
 
     private String commandPhrase;

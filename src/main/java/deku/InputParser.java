@@ -59,7 +59,7 @@ public class InputParser {
             if (this.date == null) {
                 return output + misc + ")";
             }
-            output += " " + this.date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+            output += this.date.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
             if (time.equals("")) {
                 return output + ")";
             }
@@ -142,7 +142,10 @@ public class InputParser {
                 reply = botList.add(new ToDo(separate));
                 break;
             case FIND_DATE:
-                reply = botList.find(separate.get(0));
+                reply = botList.find_date(separate.get(0));
+                break;
+            case FIND_WORD:
+                reply = botList.find_word(separate.get(0));
                 break;
             default:
                 throw new DekuExceptions("I have no idea what that means. (T _ T)");
