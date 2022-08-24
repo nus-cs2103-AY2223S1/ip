@@ -6,6 +6,7 @@ import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
 import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.FindCommand;
 import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.command.MarkCommand;
@@ -56,6 +57,12 @@ public class Parser {
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeException("The description of a todo cannot be empty.");
                 }
+            }
+        } else if (Objects.equals(commands[0], "find")) {
+            try {
+                return new FindCommand(commands[1]);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("There needs to be a keyword specified");
             }
         } else if (Objects.equals(commands[0], "delete")) {
             return new DeleteCommand(Integer.parseInt(commands[1]));
