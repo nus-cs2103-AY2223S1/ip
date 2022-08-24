@@ -4,24 +4,24 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Tasklist implements Iterable<Task> {
-    private final ArrayList<Task> list = new ArrayList<>();
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     public void add(Task task) {
-        this.list.add(task);
+        this.tasks.add(task);
     }
 
     public Task get(int index) {
-        return this.list.get(index);
+        return this.tasks.get(index);
     }
 
     public Task remove(int index) {
-        Task item = this.list.get(index);
-        this.list.remove(index);
+        Task item = this.tasks.get(index);
+        this.tasks.remove(index);
         return item;
     }
 
     public int size() {
-        return this.list.size();
+        return this.tasks.size();
     }
 
     public Iterator<Task> iterator() {
@@ -42,6 +42,6 @@ public class Tasklist implements Iterable<Task> {
     }
 
     public String toString() {
-        return this.list.toString();
+        return this.tasks.toString();
     }
 }
