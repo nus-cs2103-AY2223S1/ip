@@ -1,4 +1,5 @@
-Poolsheen was unable to find a save file to load
+Poolsheen UI has loaded
+New Save File created
 Hello from
 POOLSHEEN
 Type something in for Poolsheen to respond to you:
@@ -66,85 +67,136 @@ Type something in for Poolsheen to respond to you:
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks no task has this position. Please try another number!
-      meow *_*
----------------
----------------
-      Poolsheen has never seen this command and is confused :(
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
       Please try again!
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks you did not fill up the list command properly
-      Were you trying to enter 'list'?
+      The following UI error has occurred
+      The error type is: UnknownCommandException
+      Poolsheen thinks this command does not exist.
+      Please try again!
       meow *_*
 ---------------
 ---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
+      Poolsheen thinks you did not fill up the bye command properly
+      Were you trying to enter 'list'?
+      Please try again!
+      meow *_*
+---------------
+---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
       Poolsheen thinks you did not fill up the bye command properly
       Were you trying to enter 'bye'?
+      Please try again!
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks no task has this position. Please try another number!
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks no task has this position. Please try another number!
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks no task has this position. Please try another number!
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
       meow *_*
 ---------------
 ---------------
-      Poolsheen thinks no task has this position. Please try another number!
+      The following UI error has occurred
+      The error type is: IndexOutOfBoundsException
+      Poolsheen thinks no task has this position.
+      Please try again!
       meow *_*
 ---------------
 ---------------
-      Poolsheen believes this command needs an integer. Please try again!
+      The following UI error has occurred
+      The error type is: NumberFormatException
+      Poolsheen believes this command needs an integer.
+      Please try again!
       meow *_*
 ---------------
 ---------------
-      Poolsheen believes this command needs an integer. Please try again!
+      The following UI error has occurred
+      The error type is: NumberFormatException
+      Poolsheen believes this command needs an integer.
+      Please try again!
       meow *_*
 ---------------
 ---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
       Poolsheen thinks you did not fill up the todo command properly
       The description of a todo cannot be empty
+      Please try again!
       meow *_*
 ---------------
 ---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
       Poolsheen thinks you did not fill up the deadline command properly
       Deadlines need a description and time
+      Please try again!
       meow *_*
 ---------------
 ---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
       Poolsheen thinks you did not fill up the event command properly
       Events need a description and time
+      Please try again!
       meow *_*
 ---------------
 ---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
       Poolsheen thinks you did not fill up the deadline command properly
       deadline commands need a '/by'
+      Please try again!
       meow *_*
 ---------------
 ---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
       Poolsheen thinks you did not fill up the event command properly
       event commands need an '/at'
+      Please try again!
       meow *_*
 ---------------
 ---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
       Poolsheen thinks you did not fill up the Deadline command properly
       Enter an appropriate date and time format
+      Please try again!
       meow *_*
 ---------------
 ---------------
+      The following UI error has occurred
+      The error type is: IncompleteCommandException
       Poolsheen thinks you did not fill up the Event command properly
       Enter an appropriate date and time format
+      Please try again!
       meow *_*
 ---------------
 ---------------
-      MeoAww... See you next time :(
+      Goodbye :(
       meow *_*
 ---------------
+MeoAww... See you next time :(
 THE POOLSHEEN PROGRAM HAS STOPPED RUNNING

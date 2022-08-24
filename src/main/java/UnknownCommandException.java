@@ -11,6 +11,6 @@ public class UnknownCommandException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "Poolsheen has never seen this command and is confused :(";
+        return "Poolsheen thinks this command does not exist.";
     }
 }
