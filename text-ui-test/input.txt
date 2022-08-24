@@ -7,4 +7,6 @@ delete 3
 list
 event project meeting /at 27 Aug 3:30pm
 list
+find book
+find meet
 bye

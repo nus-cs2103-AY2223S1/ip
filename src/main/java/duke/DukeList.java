@@ -84,6 +84,32 @@ public class DukeList {
                 + " in the list.";
     }
 
+    /**
+     * Searches the task list.
+     * @param searchTerm The term to search the task list with.
+     * @return A String with the results of the search.
+     */
+    public String search(String searchTerm) {
+        StringBuilder results = new StringBuilder();
+        boolean isFound = false;
+        for (int i = 0; i < listItems.size(); i++) {
+            Task task = listItems.get(i);
+
+            if (task.getDesc().contains(searchTerm)) {
+                if (!isFound) {
+                    isFound = true;
+                    results.append("Here are the matching tasks in your list:");
+                }
+                results.append("\n").append(i + 1).append(". ").append(task);
+            }
+        }
+
+        if (!isFound) {
+            results.append("Nothing was found.");
+        }
+        return results.toString();
+    }
+
     public int getListSize() {
         return listItems.size();
     }

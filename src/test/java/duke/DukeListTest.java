@@ -65,4 +65,19 @@ public class DukeListTest {
             fail(e);
         }
     }
+
+    @Test
+    public void search_book_taskFound() {
+        list.add(task);
+        String expectedStr = "Here are the matching tasks in your list:\n"
+                + "1. "
+                + task;
+        assertEquals(expectedStr, list.search("book"));
+    }
+
+    @Test
+    public void search_meet_nothingFound() {
+        String expectedStr = "Nothing was found.";
+        assertEquals(expectedStr, list.search("meet"));
+    }
 }

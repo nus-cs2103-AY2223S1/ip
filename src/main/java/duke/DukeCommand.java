@@ -3,6 +3,7 @@ package duke;
 public enum DukeCommand {
     EXIT("bye"),
     LIST("list"),
+    FIND("find"),
     MARK("mark"),
     UNMARK("unmark"),
     DELETE("delete"),
