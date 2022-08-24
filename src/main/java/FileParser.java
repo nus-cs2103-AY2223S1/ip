@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,9 +32,10 @@ public class FileParser {
             case "T":
                 return new ToDoTask(data[2], isMarked);
             case "D":
-                return new DeadlineTask(data[2], data[3], isMarked);
+                return new DeadlineTask(data[2], LocalDateTime.parse(data[3]), isMarked);
             case "E":
-                return new EventTask(data[2], data[3], isMarked);
+                return new EventTask(data[2], LocalDateTime.parse(data[3]), 
+                        LocalDateTime.parse(data[3]), isMarked);
             default:
                 System.out.println("I do not recognise this:\n[Line]\t" + dataline);
                 return null;
