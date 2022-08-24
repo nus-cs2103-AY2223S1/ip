@@ -28,7 +28,8 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    sourceSets.main.java.srcDirs = ['src']
+    mainClassName = "duke.Duke"
 }
 
 shadowJar {
