@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,17 +12,17 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-import domain.Task;
-import domain.Todo;
-import exceptions.IncorrectArgumentException;
-import exceptions.InvalidDateTimeException;
-import exceptions.InvalidTaskSpecificationException;
-import exceptions.MissingArgumentException;
-import exceptions.TaskNotFoundException;
-import exceptions.UnknownCommandException;
+import duke.domain.Task;
+import duke.domain.Todo;
+import duke.exceptions.IncorrectArgumentException;
+import duke.exceptions.InvalidDateTimeException;
+import duke.exceptions.InvalidTaskSpecificationException;
+import duke.exceptions.MissingArgumentException;
+import duke.exceptions.TaskNotFoundException;
+import duke.exceptions.UnknownCommandException;
 
 /**
- * The type Duke.
+ * The type duke.Duke.
  */
 public class Duke {
 
@@ -70,8 +72,8 @@ public class Duke {
                 System.out.println(sc.nextLine());
             }
             sc.close();
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+        } catch (FileNotFoundException ignored) {
+            ;
         }
 
         System.out.println("Welcome to Aladdin Services");
@@ -85,8 +87,8 @@ public class Duke {
     }
 
     /**
-     * Starts up the duke machine and load the data from the hard disk.
-     * The method also creates the folder and data file if it does not exist.
+     * Starts up the duke machine and load the duke.data from the hard disk.
+     * The method also creates the folder and duke.data file if it does not exist.
      */
     private static void startUp(TaskController taskController) {
     }
@@ -100,7 +102,7 @@ public class Duke {
             TaskController taskController = new TaskController();
             List<Task> initTask = new ArrayList<>();
 
-            File dataFile = new File("src/main/java/data/data.txt");
+            File dataFile = new File("src/main/java/duke.data/duke.data.txt");
             try {
                 Scanner sc = new Scanner(dataFile);
                 while (sc.hasNextLine()) {
@@ -120,7 +122,7 @@ public class Duke {
                 return taskController;
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(
-                        "This cannot happen has the data file is ensured to be there");
+                        "This cannot happen has the duke.data file is ensured to be there");
             }
         } catch (Exception e) {
             System.out.println("UH OH");
@@ -135,7 +137,7 @@ public class Duke {
     private static void writeDataToFile(List<String> tasks) {
         FileWriter writer;
         try {
-            writer = new FileWriter("src/main/java/data/data.txt", false);
+            writer = new FileWriter("src/main/java/duke.data/duke.data.txt", false);
             for (String task : tasks) {
                 try {
                     writer.write(task + "\n" + "");
@@ -162,11 +164,11 @@ public class Duke {
      */
     private static void ensureDataFileExist()
             throws IOException, SecurityException {
-        String dataDirPathString = "src/main/java/data/";
+        String dataDirPathString = "src/main/java/duke.data/";
         Path dataDirPath = Paths.get(dataDirPathString);
         boolean dataDirExists = Files.isDirectory(dataDirPath);
 
-        String dataFilePathString = dataDirPathString + "data.txt";
+        String dataFilePathString = dataDirPathString + "duke.data.txt";
         Path dataFilePath = Paths.get(dataFilePathString);
         boolean dataFileExists = Files.exists(dataFilePath);
         if (!(dataDirExists && dataFileExists)) {
@@ -178,7 +180,7 @@ public class Duke {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private static void createDataFile() throws IOException, SecurityException {
-        File dataFile = new File("src/main/java/data/data.txt");
+        File dataFile = new File("src/main/java/duke.data/duke.data.txt");
         dataFile.getParentFile().mkdirs();
         dataFile.createNewFile();
     }

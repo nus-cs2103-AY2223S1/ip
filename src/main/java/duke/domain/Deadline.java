@@ -1,4 +1,4 @@
-package domain;
+package duke.domain;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

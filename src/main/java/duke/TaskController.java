@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -5,8 +7,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import domain.Task;
-import exceptions.TaskNotFoundException;
+import duke.domain.Task;
+import duke.exceptions.TaskNotFoundException;
 
 /**
  * The type Task controller.

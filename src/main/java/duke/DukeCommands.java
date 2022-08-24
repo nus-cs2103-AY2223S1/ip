@@ -1,5 +1,7 @@
+package duke;
+
 /**
- * The enum Duke commands.
+ * The enum duke.Duke commands.
  */
 public enum DukeCommands {
     /**

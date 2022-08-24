@@ -1,4 +1,4 @@
-package exceptions;
+package duke.exceptions;
 
 /**
  * The type Invalid date time exception.

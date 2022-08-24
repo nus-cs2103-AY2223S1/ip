@@ -1,12 +1,12 @@
-package exceptions;
+package duke.exceptions;
 
 /**
- * The type Duke exception.
+ * The type duke.Duke exception.
  */
 public class DukeException extends Exception {
 
     /**
-     * Instantiates a new Duke exception.
+     * Instantiates a new duke.Duke exception.
      *
      * @param errorString the error string
      */
