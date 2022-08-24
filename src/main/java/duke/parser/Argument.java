@@ -23,6 +23,6 @@ public class Argument {
 
     @Override
     public String toString() {
-        return String.format("duke.parser.Argument %s: %s", this.name, this.body);
+        return String.format("Argument %s: %s", this.name, this.body);
     }
 }
