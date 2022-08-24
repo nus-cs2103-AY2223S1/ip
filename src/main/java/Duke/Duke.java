@@ -38,7 +38,7 @@ public class Duke {
     }
 
     public static void main(String[] args) throws IOException, DukeException {
-        Duke duke = new Duke("src/main/data/Duke.txt");
+        Duke duke = new Duke("text-ui-test/data/Duke.txt");
         duke.run();
     }
 }
