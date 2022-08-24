@@ -99,6 +99,11 @@ public class Task {
 
     }
 
+    /**
+     * Returns a string representation of the Task.
+     *
+     * @return string describing the task.
+     */
     public String toString() {
         if (!isDone) {
             return "  " + index + ".[ ] " + taskDescription;

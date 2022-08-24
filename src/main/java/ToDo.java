@@ -58,6 +58,11 @@ public class ToDo extends Task {
         }
     }
 
+    /**
+     * Returns a string representation of the ToDo.
+     *
+     * @return string describing the ToDo.
+     */
     @Override
     public String toString() {
         if (!this.getStatus()) {

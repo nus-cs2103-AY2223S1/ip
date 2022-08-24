@@ -63,6 +63,11 @@ public class Deadline extends Task{
         }
     }
 
+    /**
+     * Returns a string representation of the Deadline.
+     *
+     * @return string describing the Deadline.
+     */
     @Override
     public String toString() {
         if (!this.getStatus()) {

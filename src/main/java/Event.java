@@ -68,6 +68,11 @@ public class Event extends Task{
         }
     }
 
+    /**
+     * Returns a string representation of the Event.
+     *
+     * @return string describing the event.
+     */
     @Override
     public String toString() {
         if (!this.getStatus()) {
