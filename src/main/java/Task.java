@@ -8,7 +8,7 @@ public class Task {
     }
 
     public String getStatus() {
-        return isDone ? "X" : " ";
+        return isDone ? "Y" : "N";
     }
 
     public void donelah() {
@@ -17,6 +17,11 @@ public class Task {
 
     public void nodone() {
         isDone = false;
+    }
+
+    public String writeToFile() {
+        String status = getStatus();
+        return status + "|" + itself.trim();
     }
 
     @Override

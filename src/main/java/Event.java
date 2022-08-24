@@ -7,7 +7,12 @@ class Event extends Task{
     }
 
     @Override
+    public String writeToFile() {
+        return "E|" + super.writeToFile() + "|" + time.trim();
+    }
+
+    @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + time + ")";
+        return "[E]" + super.toString() + "(at:" + time + ")";
     }
 }
