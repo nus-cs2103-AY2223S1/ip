@@ -1,10 +1,12 @@
+package Duke;
+
 import java.util.ArrayList;
 
 // contains the task list e.g., it has operations to add/delete tasks in the list
 public class TaskList {
     ArrayList<Task> tasks;
 
-    TaskList(ArrayList<Task> tasks) {
+    public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 

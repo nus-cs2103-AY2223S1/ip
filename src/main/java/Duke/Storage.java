@@ -1,3 +1,5 @@
+package Duke;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -13,7 +15,7 @@ public class Storage {
     static String filePath;
     BufferedReader bR;
 
-    Storage(String filePath) {
+    public Storage(String filePath) {
         Storage.filePath = filePath;
         if (!Files.exists(Paths.get(filePath))) {
             try {
