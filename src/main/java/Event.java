@@ -11,7 +11,7 @@ public class Event extends Task {
 
     public Event(String deadline, String dateAndTime, boolean isDone) {
         super(deadline, isDone);
-        this.dateAndTime = dateAndTime;
+        this.dateAndTime = LocalDate.parse(dateAndTime);
     }
 
     @Override

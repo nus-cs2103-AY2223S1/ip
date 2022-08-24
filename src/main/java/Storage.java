@@ -6,24 +6,28 @@ import java.util.Objects;
 import java.util.Scanner; // Import the Scanner class to read text files
 import java.util.ArrayList;
 
-public class FileManager {
+public class Storage {
+    String filePath;
+
+    public Storage(String filePath) {
+        this.filePath = filePath;
+    }
+
     // Reused from https://www.w3schools.com/java/java_files_create.asp
     // Reused from https://www.w3schools.com/java/java_files_read.asp
-    public static ArrayList<Task> createFile() {
+    public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
-            File directory = new File("./data");
+            File directory = new File("/data");
             if (!directory.exists()) {
                 directory.mkdir();
             }
 
-            File myObj = new File("./data/duke.txt");
+            File myObj = new File(this.filePath);
             if (myObj.createNewFile()) {
-                System.out.println("File created: " + myObj.getName() + "\n");
                 return tasks;
             } else {
-                System.out.println("Successfully from file that exists \n");
                 return readFile(myObj, tasks);
             }
         } catch (IOException e) {
@@ -33,9 +37,10 @@ public class FileManager {
         return null;
     }
 
-    public static void writeToFile(ArrayList<Task> data) {
+    public void writeToFile(TaskList tasks) {
         try {
-            FileWriter myWriter = new FileWriter("./data/duke.txt");
+            FileWriter myWriter = new FileWriter(this.filePath);
+            ArrayList<Task> data = tasks.getAllTasks();
             for (int i = 0; i < data.size(); i++) {
                 myWriter.write(data.get(i).toFileString() + System.getProperty("line.separator"));
             }
@@ -47,7 +52,7 @@ public class FileManager {
         }
     }
 
-    private static ArrayList<Task> readFile(File myObj, ArrayList<Task> tasks) {
+    private ArrayList<Task> readFile(File myObj, ArrayList<Task> tasks) throws DukeException {
         try {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
@@ -63,8 +68,7 @@ public class FileManager {
                 }
             }
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            throw new DukeException("An error occurred.");
         }
         return tasks;
     }
