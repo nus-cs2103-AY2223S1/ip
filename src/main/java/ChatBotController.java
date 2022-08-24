@@ -74,8 +74,8 @@ public class ChatBotController {
      * @return boolean value
      */
     public boolean checkTime(String s) {
-        Pattern pattern1 = Pattern.compile("[0-9]+/[0-9]+/[0-9]+");
-        Pattern pattern2 = Pattern.compile("[0-9]+:[0-9]+:[0-9]+");
+        Pattern pattern1 = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
+        Pattern pattern2 = Pattern.compile("[0-9]{2}:[0-9]{2}");
         Matcher matcher1 = pattern1.matcher(s);
         Matcher matcher2 = pattern2.matcher(s);
         return matcher1.find() && matcher2.find();

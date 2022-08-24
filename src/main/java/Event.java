@@ -1,8 +1,12 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 /**
  * This class encapsulates Event tasks
  */
 public class Event extends Task {
-    private final String eventTime;
+    private final LocalDateTime eventTime;
 
     /**
      * Constructor for Event class
@@ -11,11 +15,12 @@ public class Event extends Task {
      */
     public Event(String taskDescription, String eventTime) {
         super(taskDescription);
-        this.eventTime = eventTime;
+        this.eventTime = LocalDateTime.parse(eventTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " " + "(at: " + eventTime + ")";
+        return "[E]" + super.toString() + " " + "(at: " + eventTime.format(DateTimeFormatter.
+                ofPattern("yyyy-MM-dd HH:mm")) + ")";
     }
 }
