@@ -1,16 +1,18 @@
+package Duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Event extends Task {
+public class Deadline extends Task {
 
-    protected String at;
+    protected String by;
     protected LocalDate date;
 
-    public Event(String description, String at) {
+    public Deadline(String description, String by) {
         super(description);
-        this.at = at;
-        this.date = LocalDate.parse(at);
+        this.by = by;
+        this.date = LocalDate.parse(by);
     }
 
     @Override
@@ -24,6 +26,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        return "[D]" + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 }
+

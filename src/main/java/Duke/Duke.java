@@ -1,3 +1,5 @@
+package Duke;
+
 public class Duke {
 
     private Storage storage;

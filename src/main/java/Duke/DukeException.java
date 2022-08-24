@@ -1,3 +1,5 @@
+package Duke;
+
 public class DukeException extends Exception{
     String description;
 
@@ -12,6 +14,6 @@ public class DukeException extends Exception{
 
     @Override
     public String toString() {
-        return "DukeException detected.";
+        return "Duke.DukeException detected.";
     }
 }
