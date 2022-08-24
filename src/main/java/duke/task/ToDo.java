@@ -1,9 +1,6 @@
 package duke.task;
 
-/**
- * A class that encapsulates the Todo task.
- */
-public class ToDo extends Task{
+public class ToDo extends Task {
 
     /**
      * The class constructor.

@@ -1,10 +1,10 @@
 package duke.command;
 
 import duke.Storage;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * The class that encapsulates the delete command.
@@ -37,7 +37,8 @@ public class DeleteCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task deletedTask = tasks.deleteTask(indexString);
         storage.saveData(tasks);
-        ui.printMessage("Noted. I've removed this task:\n" + deletedTask + "\nNow you have " + tasks.size() + " tasks.");
+        ui.printMessage("Noted. I've removed this task:\n" + deletedTask
+                + "\nNow you have " + tasks.size() + " tasks.");
     }
 
     /**

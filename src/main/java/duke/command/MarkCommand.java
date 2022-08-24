@@ -1,10 +1,10 @@
 package duke.command;
 
 import duke.Storage;
-import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * A class that encapsulates the mark command.

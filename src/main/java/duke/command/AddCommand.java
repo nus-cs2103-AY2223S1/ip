@@ -1,14 +1,23 @@
 package duke.command;
 
-import duke.*;
-import duke.exception.DukeException;
-import duke.task.*;
-
 import java.time.LocalDate;
 
+<<<<<<< HEAD
 /**
  * The class that encapsulates the add command.
  */
+=======
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
+
+>>>>>>> branch-A-CodingStandard
 public class AddCommand extends Command {
 
     /** The type of task to be added */
@@ -45,15 +54,17 @@ public class AddCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task task = null;
         switch (taskType) {
-            case "T":
-                task = new ToDo(description);
-                break;
-            case "E":
-                task = new Event(description, date);
-                break;
-            case "D":
-                task = new Deadline(description, date);
-                break;
+        case "T":
+            task = new ToDo(description);
+            break;
+        case "E":
+            task = new Event(description, date);
+            break;
+        case "D":
+            task = new Deadline(description, date);
+            break;
+        default:
+            break;
         }
         tasks.add(task);
         storage.saveData(tasks);

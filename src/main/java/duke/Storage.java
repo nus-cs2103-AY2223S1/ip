@@ -1,8 +1,5 @@
 package duke;
 
-import duke.exception.DukeException;
-import duke.task.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,6 +8,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 /**
  * A class that encapsulates the loading tasks and saving of tasks
@@ -22,7 +25,7 @@ public class Storage {
      * save the data in.
      *
      * @throws DukeException If we are unable to create the 'data'
-     * directory.
+     *                       directory.
      */
     public Storage() throws DukeException {
         String home = System.getProperty("user.dir");
@@ -40,7 +43,7 @@ public class Storage {
      *
      * @param data The TaskList to add the data to.
      * @throws DukeException If the text in the file is of
-     * invalid format.
+     *                       invalid format.
      */
     public void loadData(TaskList data) throws DukeException {
         String home = System.getProperty("user.dir");
@@ -56,24 +59,31 @@ public class Storage {
                 }
                 Task task = null;
                 switch (taskData[0]) {
-                    case "T":
-                        task = new ToDo(taskData[2]);
-                        break;
-                    case "D":
-                        task = new Deadline(taskData[2], LocalDate.parse(taskData[3]));
-                        break;
-                    case "E":
-                        task = new Event(taskData[2], LocalDate.parse(taskData[3]));
-                        break;
+                case "T":
+                    task = new ToDo(taskData[2]);
+                    break;
+                case "D":
+                    task = new Deadline(taskData[2], LocalDate.parse(taskData[3]));
+                    break;
+                case "E":
+                    task = new Event(taskData[2], LocalDate.parse(taskData[3]));
+                    break;
+                default:
+                    break;
                 }
                 if (task != null) {
                     data.add(task);
-                    if ("1".equals(taskData[1])) task.markDone();
-                    else task.markNotDone();
+                    if ("1".equals(taskData[1])) {
+                        task.markDone();
+                    } else {
+                        task.markNotDone();
+                    }
                 }
             }
             sc.close();
-        } catch (FileNotFoundException ignored){}
+        } catch (FileNotFoundException ignored) {
+            return;
+        }
     }
 
     /**

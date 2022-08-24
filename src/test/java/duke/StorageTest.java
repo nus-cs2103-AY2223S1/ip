@@ -1,11 +1,8 @@
 package duke;
 
-import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,7 +13,15 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
+
 
 public class StorageTest {
     private TaskList taskList;
@@ -48,9 +53,9 @@ public class StorageTest {
             storage.loadData(taskList);
             assertEquals(3, taskList.size());
             Task[] tasks = {
-                    new ToDo("test test"),
-                    new Deadline("test deadline", LocalDate.parse("2019-10-15")),
-                    new Event("test duke", LocalDate.parse("2019-01-20")),
+                new ToDo("test test"),
+                new Deadline("test deadline", LocalDate.parse("2019-10-15")),
+                new Event("test duke", LocalDate.parse("2019-01-20")),
             };
             tasks[0].markDone();
             for (int i = 0; i < tasks.length; i++) {

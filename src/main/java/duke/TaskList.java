@@ -1,10 +1,11 @@
 package duke;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.exception.InvalidInput;
 import duke.task.Task;
 
-import java.util.ArrayList;
 
 /**
  * A class that encapsulates the storing of all the task data.
@@ -57,10 +58,14 @@ public class TaskList {
      * less than 0 or more than the size of the ArrayList.
      */
     public int stringIndexToInt(String res) throws InvalidInput {
-        if (!res.matches("[0-9]+")) throw new InvalidInput("Input is not a number");
-        int target_index = Integer.parseInt(res) - 1;
-        if (target_index < 0 || target_index >= data.size()) throw new InvalidInput("Please input a correct number");
-        return target_index;
+        if (!res.matches("[0-9]+")) {
+            throw new InvalidInput("Input is not a number");
+        }
+        int targetIndex = Integer.parseInt(res) - 1;
+        if (targetIndex < 0 || targetIndex >= data.size()) {
+            throw new InvalidInput("Please input a correct number");
+        }
+        return targetIndex;
     }
 
     /**
@@ -73,8 +78,11 @@ public class TaskList {
      */
     public Task setTaskCompletion(String indexString, boolean isComplete) throws DukeException {
         Task task = data.get(stringIndexToInt(indexString));
-        if (isComplete) task.markDone();
-        else task.markNotDone();
+        if (isComplete) {
+            task.markDone();
+        } else {
+            task.markNotDone();
+        }
         return task;
     }
 
@@ -86,9 +94,9 @@ public class TaskList {
      * @throws DukeException If the provided string is not valid.
      */
     public Task deleteTask(String indexString) throws DukeException {
-        int target_index = stringIndexToInt(indexString);
-        Task task = data.get(target_index);
-        data.remove(target_index);
+        int targetIndex = stringIndexToInt(indexString);
+        Task task = data.get(targetIndex);
+        data.remove(targetIndex);
         return task;
     }
 
@@ -99,13 +107,15 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        if (data.size() == 0) return "Nothing here...";
+        if (data.size() == 0) {
+            return "Nothing here...";
+        }
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < data.size(); i++) {
             Task task = data.get(i);
-            output.append(i+1).append(". ").append(task).append("\n");
+            output.append(i + 1).append(". ").append(task).append("\n");
         }
-        return output.substring(0, output.length()-1);
+        return output.substring(0, output.length() - 1);
     }
 
 }
