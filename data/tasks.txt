@@ -1,1 +1,4 @@
-D|X|read|2022-10-12
+T| |readbook
+E| |meeting | Mon 10pm
+D| |do homework |2022-08-25
+T| |pass lunchbox

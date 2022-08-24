@@ -27,7 +27,7 @@ public class Storage {
         }
     }
 
-    public List<Task> load() {
+    public List<Task> load() throws DukeException {
         List<Task> loadedTasks = new ArrayList<>();
         try {
             BufferedReader storageReader = new BufferedReader(new FileReader(this.filePath));
