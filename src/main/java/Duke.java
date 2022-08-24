@@ -1,14 +1,14 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import tasks.Task;
-import commands.Command;
-import commands.DeleteCommand;
-import commands.TaskCommand;
-import commands.ByeCommand;
-import commands.ListCommand;
-import commands.MarkCommand;
-import exceptions.DukeException;
+import task.Task;
+import command.Command;
+import command.DeleteCommand;
+import command.TaskCommand;
+import command.ByeCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import exception.DukeException;
 import io.createFile;
 import io.loadFile;
 import io.saveFile;
