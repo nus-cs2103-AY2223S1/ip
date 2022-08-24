@@ -108,6 +108,7 @@ public class Duke {
         command = sc.nextLine();
     }
 
+    sc.close();
     System.out.println("Hiks. I'm sad, but see you again!!");
 
     }

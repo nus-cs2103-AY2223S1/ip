@@ -20,6 +20,7 @@ public class Echo {
             sc = new Scanner(System.in);
             command = sc.nextLine();
         }
+        sc.close();
         System.out.println("Hiks. I'm sad, but see you again!!");
     }
 

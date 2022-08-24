@@ -1,9 +1,13 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    protected String by;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    private LocalDateTime dateTime;
 
     public Deadline(String description, String by) throws DukeException {
         super(description);
-        this.by = by;
+        this.dateTime = LocalDateTime.parse(by, formatter);
         if (description.isBlank()) {
             throw new DukeException("Take me seriouslyy :( What do you want to do?\n");
         }
@@ -14,6 +18,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by + ")";
+        return "[D]" + super.toString() + " (by: " + this.dateTime.format(formatter) + ")";
     }
 }
