@@ -11,7 +11,9 @@ public class OtherCommand extends Command{
     public void execute(TaskList taskList, Storage storage){
         if (this.fullCommand.split(" ")[0].equals("Get")){
             System.out.println(taskList.getASpecificDay(fullCommand));
-        }else{
+        } else if (this.fullCommand.split(" ")[0].equals("find")) {
+            System.out.println(taskList.find(fullCommand));
+        } else{
             System.out.println(taskList.listAllTask());
         }
     }
