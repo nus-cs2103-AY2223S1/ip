@@ -1,5 +1,6 @@
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 /**
  * Main class of Duke.
@@ -93,37 +94,45 @@ public class Duke {
             }
             case DEADLINE: {
                 String[] taskTokens = content.split(" /by "); // delimit over "/by" to retrieve deadline
+
                 try {
                     // If delimiting regex is not found, taskTokens returns single item array with the original string
                     String taskName = taskTokens[0];
                     String deadline = taskTokens[1]; // Throws AIOOBE
-                    taskAdded = new Deadline(taskName, deadline);
+                    LocalDateTime date = DateTimeFormatUtils.parseDate(deadline); // Throws DukeException
+                    taskAdded = new Deadline(taskName, date);
                     taskList.add(taskAdded);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("\tDeadline not found! Please input in the following format: " +
                             "deadline <Task Name> /by <Deadline> ");
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
                 } finally {
                     break;
                 }
             }
             case EVENT: {
                 String[] taskTokens = content.split(" /at "); // delimit over "/at" to retrieve deadline
+
                 try {
                     // If delimiting regex is not found, taskTokens returns single item array with the original string
                     String taskName = taskTokens[0];
-                    String eventTiming = taskTokens[1];
-                    taskAdded = new Event(taskName, eventTiming);
+                    String eventTiming = taskTokens[1]; // Throws AIOOBE
+                    LocalDateTime[] dates = DateTimeFormatUtils.parseDuration(eventTiming); // Throws DukeException
+                    taskAdded = new Event(taskName, dates[0], dates[1]);
                     taskList.add(taskAdded);
-
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("\tEvent Timing not found! Please input in the following format: " +
                             "event <Task Name> /at <Event Timing> ");
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
                 } finally {
                     break;
                 }
             }
-
             }
+
+
 
             /* Handles success message output */
             successMessage(taskAdded, taskList.size());

@@ -4,6 +4,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 /**
@@ -103,12 +104,14 @@ public class SaveUtils {
             }
             case "E": {
                 String taskTiming = taskProperties[3];
-                task = new Event(taskName, taskTiming);
+                LocalDateTime[] eventDates = DateTimeFormatUtils.parseDuration(taskTiming);
+                task = new Event(taskName, eventDates[0], eventDates[1]);
                 break;
             }
             case "D": {
                 String taskTiming = taskProperties[3];
-                task = new Deadline(taskName, taskTiming);
+                LocalDateTime deadlineDate = DateTimeFormatUtils.parseDate(taskTiming);
+                task = new Deadline(taskName, deadlineDate);
                 break;
             }
             }
@@ -120,7 +123,7 @@ public class SaveUtils {
 
             return task;
 
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+        } catch (ArrayIndexOutOfBoundsException | NullPointerException | DukeException e) {
 
             throw new DukeException("Error reading file");
         }

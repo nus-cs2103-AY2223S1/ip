@@ -1,20 +1,21 @@
+import java.time.LocalDateTime;
+
 /**
  * Class handling the deadline task type.
  */
 public class Deadline extends Task {
     /* Time frame that the Deadline object should be completed by*/
-    protected String by;
+    protected LocalDateTime deadlineDate;
 
     /**
      * Constructor for Deadline Class.
      *
      * @param name String representation of task name.
-     * @param by   String representation of task deadline.
+     * @param deadlineDate LocalDateTime representation of task deadline.
      */
-    public Deadline(String name, String by) {
+    public Deadline(String name, LocalDateTime deadlineDate) {
         this.name = name;
-        this.isDone = false;
-        this.by = by;
+        this.deadlineDate = deadlineDate;
     }
 
     /**
@@ -24,8 +25,9 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + DateTimeFormatUtils.printDate(deadlineDate) + ")";
     }
+
 
     /**
      * Returns formatted string representation of deadline task for save processing.
@@ -35,6 +37,7 @@ public class Deadline extends Task {
     @Override
     public String saveFormat() {
         int status = isDone ? 1 : 0;
-        return String.format("%s | %d | %s | %s", "D", status, name, by);
+        return String.format("%s | %d | %s | %s", "D", status, name,
+                DateTimeFormatUtils.inputFormat(deadlineDate));
     }
 }
