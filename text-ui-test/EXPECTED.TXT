@@ -11,12 +11,12 @@ Hello. ⛅️
 
   Luna commands
     🌸 list                             | View all tasks on your agenda
-    🌷 todo "task"                      | Add a task to your agenda
-    🌺 deadline "task" /by "yyyy-mm-dd" | Add a task to complete by the specified deadline
-    🌹 event "event" /at "yyyy-mm-dd"   | Add an event on the specified date
-    🪷 mark "num"                       | Mark the (num)th item in your list as completed
-    🌻 unmark "num"                     | Mark the (num)th item in your list as uncompleted
-    💐 find "keyword"                   | Find a task by searching for a keyword
+    🌷 todo <task>                      | Add a task to your agenda
+    🌺 deadline <task> /by <yyyy-mm-dd> | Add a task to complete by the specified deadline
+    🌹 event <event> /at <yyyy-mm-dd>   | Add an event on the specified date
+    🪷 mark <num>                       | Mark the (num)th item in your list as completed
+    🌻 unmark <num>                     | Mark the (num)th item in your list as uncompleted
+    💐 find <keyword>                   | Find a task by searching for a keyword
     🥀 bye                              | Quit Luna
 
   You do not have anything to do yet!
