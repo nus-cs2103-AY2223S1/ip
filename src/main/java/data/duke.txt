@@ -1,5 +1,2 @@
-T> >rtea
-T> >teada
-T>X>afas
-E> >fasfa >42342
-D> >gadsfa >by hsf
+T> >test
+E> >testing 2 >2019-10-16

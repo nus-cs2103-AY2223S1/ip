@@ -2,6 +2,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Storage{
@@ -24,14 +25,18 @@ public class Storage{
                             break;
 
                         case "E":
-                            taskList.add(new Event(segments[2], segments[3]));
+                            String time = segments[3].strip();
+                            LocalDate date = LocalDate.parse(time);
+                            taskList.add(new Event(segments[2], date));
                             if (segments[1].equals("X")) {
                                 taskList.get(taskList.size() - 1).taskDone();
                             }
                             break;
 
                         case "D":
-                            taskList.add(new Deadline(segments[2], segments[3]));
+                            String time2 = segments[1].strip();
+                            LocalDate date2 = LocalDate.parse(time2);
+                            taskList.add(new Deadline(segments[2], date2));
                             if (segments[1].equals("X")) {
                                 taskList.get(taskList.size() - 1).taskDone();
                             }
