@@ -13,10 +13,22 @@ public class Event extends Task {
      *
      * @param description String representing the description of the event.
      * @param at String representing the time of the event.
+     * @param isCompleted Boolean representing whether the task is completed.
      */
-    public Event(String description, String at) {
-        super(description);
+    public Event(String description, String at, Boolean isCompleted) {
+        super(description, isCompleted);
         this.at = at;
+    }
+
+    /**
+     * Returns ListLoader friendly summary of the event task.
+     *
+     * @return String representing summary of the event task.
+     */
+    public  String summary() {
+        String status = isCompleted ? "1" : "0";
+        String message = "E | " + status + " | " + description + " | " + at;
+        return message;
     }
 
     /**

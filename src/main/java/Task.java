@@ -6,9 +6,9 @@
 
 abstract public class Task {
     private  String modifier = "[?]";
-    private String description;
+    protected String description;
     private String addOn = "nya!";
-    private Boolean isCompleted;
+    protected Boolean isCompleted;
     private String notDoneSymbol = "[Zzzzzzz]";
     private String doneSymbol    = "[=^._.^=]";
 
@@ -16,10 +16,11 @@ abstract public class Task {
      * Constructor of the Task object to be called by its subclasses.
      *
      * @param description String representing the details of the task.
+     * @param isCompleted Boolean representing whether the task is completed.
      */
-    public Task(String description) {
+    public Task(String description, Boolean isCompleted) {
         this.description = description;
-        this.isCompleted = false;
+        this.isCompleted = isCompleted;
     }
 
     /**
@@ -35,6 +36,13 @@ abstract public class Task {
     public void markAsNotDone() {
         this.isCompleted = false;
     }
+
+    /**
+     * Returns ListLoader friendly summary of task.
+     *
+     * @return String representing summary of task.
+     */
+    public abstract String summary();
 
     /**
      * Returns a string representation of the task.

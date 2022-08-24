@@ -11,9 +11,21 @@ public class Todo extends Task {
      * Constructor for the todo task.
      *
      * @param description String representing the description of the todo task.
+     * @param isCompleted Boolean representing whether the task is completed.
      */
-    public Todo(String description) {
-        super(description);
+    public Todo(String description, Boolean isCompleted) {
+        super(description, isCompleted);
+    }
+
+    /**
+     * Returns ListLoader friendly summary of the todo task.
+     *
+     * @return String representing summary of the todo task.
+     */
+    public  String summary() {
+        String status = isCompleted ? "1" : "0";
+        String message = "T | " + status + " | " + description;
+        return message;
     }
 
     /**
