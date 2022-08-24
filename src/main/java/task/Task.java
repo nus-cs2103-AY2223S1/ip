@@ -45,6 +45,8 @@ public class Task {
       } catch (DateTimeParseException e) {
         this.miscDescription = miscDescription;
       }
+    } else if (taskType.equals(Type.EVENT)) {
+      this.miscDescription = miscDescription;
     }
   }
 
