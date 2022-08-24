@@ -29,7 +29,6 @@ public class Duke {
     public void run() throws IOException {
         ui.showWelcome();
 
-
         while (true) {
             String command = ui.readCommand();
             ui.showLine();

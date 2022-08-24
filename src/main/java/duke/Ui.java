@@ -70,12 +70,9 @@ public class Ui {
             System.out.println("OK, I've marked this task as not done yet:");
             taskList.printByIndex(index);
             break;
-<<<<<<< HEAD
-=======
         case FIND:
             System.out.println("Here are the matching tasks in your list:");
             taskList.printTaskList();
->>>>>>> branch-Level-9
         default:
             break;
         }

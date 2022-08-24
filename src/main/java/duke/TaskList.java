@@ -80,8 +80,6 @@ public class TaskList {
         return this.tasks.size();
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Finds all tasks in the current task list that has a description containing keyword
      * @param keyword keyword that should be searched for in tasks
@@ -96,5 +94,5 @@ public class TaskList {
         }
         return foundTasks;
     }
->>>>>>> branch-Level-9
+
 }
