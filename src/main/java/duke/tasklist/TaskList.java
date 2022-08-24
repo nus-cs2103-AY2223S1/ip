@@ -252,6 +252,32 @@ public class TaskList {
         return tasklist;
     }
 
+
+    /**
+     * Finds and prints tasks according to input keywords.
+     *
+     * @param filter Keywords to filter tasks, given by user.
+     */
+    public void findWithFilter(String filter) {
+        ArrayList<Task> filteredList = new ArrayList<>();
+
+        for (Task x: this.storage) {
+            if (x.toString().contains(filter)) {
+                filteredList.add(x);
+            }
+        }
+
+        if (filteredList.isEmpty()) {
+            System.out.println("No matching tasks found");
+        } else {
+            System.out.println("Here are the tasks that match:");
+            for (int i = 0; i < filteredList.size(); i++) {
+                System.out.printf("%d.%s\n", i + 1,
+                        filteredList.get(i).toString());
+            }
+        }
+    }
+
     /**
      *
      * Getter for the list of tasks stored within the task list object.
