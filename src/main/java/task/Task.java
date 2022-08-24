@@ -7,7 +7,7 @@ import utils.Prompt;
  * It contains the {@link Task#taskName task name}, and a {@link Task#done boolean} to indicate if
  * it is done or not.
  */
-public class Task {
+public abstract class Task {
 
     final private String taskName;
     private boolean done;
