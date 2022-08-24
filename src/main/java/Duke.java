@@ -22,9 +22,7 @@ public class Duke {
         try {
            hardDiskTasks.createNewFile();
            tempTasks.createNewFile();
-        } catch (IOException e) {
-            System.out.println("     " + e.getMessage());
-        } catch (SecurityException e) {
+        } catch (IOException | SecurityException e) {
             System.out.println("     " + e.getMessage());
         }
 
@@ -148,14 +146,21 @@ public class Duke {
 
     public static void addTaskFromDisk(String task, String description, String time, boolean isDone) {
         Task newTask = null;
-        LocalDate date = LocalDate.parse(time);
-        if (task.equals("T")) {
+        LocalDate date = null;
+        if (time != "") {
+            date = LocalDate.parse(time);
+        }
+        switch (task) {
+        case "T":
             newTask = new ToDo(description);
-        } else if (task.equals("D")) {
+            break;
+        case "D":
             newTask = new Deadline(description, date);
-        } else if (task.equals("E")) {
+            break;
+        case "E":
             newTask = new Event(description, date);
-        } else {
+            break;
+        default:
             throw new DukeException("OOPS!!! The Disk memory is invalid");
         }
         newTask.setTaskStatus(isDone);
