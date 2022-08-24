@@ -26,13 +26,13 @@ public class FindTaskCommand implements Command {
 
     private static final String MESSAGE_MATCHING_TASKS_FOUND = "Here are the matching tasks in your list:";
     private static final String MESSAGE_NO_MATCHING_TASKS_FOUND = "No matching tasks are found in your list!";
+
     private final String arguments;
 
     /**
      * Creates a new instance of the Command handler for finding a {@link Task}.
      *
      * @param arguments The arguments following the {@code 'find'} prefix supplied by the user from keyboard input
-     *
      */
     public FindTaskCommand(String arguments) {
         this.arguments = arguments;

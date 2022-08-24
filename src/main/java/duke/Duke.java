@@ -14,6 +14,7 @@ import duke.managers.UiManager;
  * @author Emily Ong Hui Qi
  */
 public class Duke {
+
     /**
      * Name of the chatbot
      */

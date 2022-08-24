@@ -13,10 +13,12 @@ public class UiManager {
      * Horizontal line separator used in beautifying print commands
      */
     private static final String SEPARATOR = "-";
+
     /**
      * Denotes the number of separator symbols to used when printing the input
      */
     private static final int SEPARATOR_SIZE = 60;
+
     private final Scanner scanner;
     private final PrintStream printer;
 

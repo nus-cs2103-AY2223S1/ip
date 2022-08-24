@@ -18,6 +18,7 @@ public class DukeValidator {
     private static final Pattern MATCH_DATE = Pattern.compile(
             "^(?<year>\\d{4})-(?<month>0[0-9]|1[0-2])-(?<day>0[0-9]|1[0-9]|2[0-9]|3[0-1])$"
     );
+
     private static final String ERROR_INVALID_DATE = "Date is not in the specified yyyy-mm-dd format!";
 
     /**
@@ -25,7 +26,7 @@ public class DukeValidator {
      *
      * @param date The provided date string
      * @return The date object corresponding to the provided date string if and only if the provided date string
-     *         matches the expected format
+     * matches the expected format
      * @throws DukeException If the provided date string does not match the expected format
      */
     public static LocalDate parseDate(String date) throws DukeException {
