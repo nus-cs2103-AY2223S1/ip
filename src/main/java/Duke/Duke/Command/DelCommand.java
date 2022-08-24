@@ -1,3 +1,10 @@
+package Duke.Command;
+
+import Duke.TaskList;
+import Duke.Ui;
+import Duke.FileStorage.Storage;
+import Duke.Task.Task;
+
 public class DelCommand extends Command{
 
     private int taskID;

@@ -1,4 +1,9 @@
-import java.util.Scanner;
+package Duke;
+
+import Duke.Command.Command;
+import Duke.Command.InvalidCommandException;
+import Duke.FileStorage.InvalidStorageException;
+import Duke.FileStorage.Storage;
 
 /**
  * This class represents the chatbot interface that allows
