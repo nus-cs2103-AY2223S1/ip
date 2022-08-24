@@ -1,6 +1,9 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
-    private final String at;
-    public Event(String description, String at) {
+    private final LocalDate at;
+    public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
     }

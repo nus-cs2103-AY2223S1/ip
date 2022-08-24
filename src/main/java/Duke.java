@@ -4,6 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,9 +38,11 @@ public class Duke {
                 String[] split = sc.nextLine().split("##");
                 Task task;
                 if ("D".equals(split[0])) {
-                    task = new Deadline(split[2], split[3]);
+                    LocalDate localDate = LocalDate.parse(split[3]);
+                    task = new Deadline(split[2], localDate);
                 } else if ("E".equals(split[0])) {
-                    task = new Event(split[2], split[3]);
+                    LocalDate localDate = LocalDate.parse(split[3]);
+                    task = new Event(split[2], localDate);
                 } else if ("T".equals(split[0])) {
                     task = new ToDo(split[2]);
                 } else {
@@ -100,7 +103,7 @@ public class Duke {
                     // this is under task creation
                     if (input.startsWith("event")) {
                         String[] inputArr = input.split("/");
-                        taskArr.add(new Event(inputArr[0], inputArr[1].substring(3)));
+                        taskArr.add(new Event(inputArr[0], LocalDate.parse(inputArr[1].substring(3))));
                         echo(taskArr.get(taskArr.size() - 1).toString());
                     } else if (input.startsWith("todo")) {
 
@@ -112,7 +115,7 @@ public class Duke {
                         }
                     } else if (input.startsWith("deadline")) {
                         String[] inputArr = input.split("/");
-                        taskArr.add(new Deadline(inputArr[0], inputArr[1].substring(3)));
+                        taskArr.add(new Deadline(inputArr[0], LocalDate.parse(inputArr[1].substring(3))));
                         echo(taskArr.get(taskArr.size() - 1).toString());
                     } else if (input.startsWith("delete")) {
                         int index = Integer.parseInt(input.substring(7)) - 1;
