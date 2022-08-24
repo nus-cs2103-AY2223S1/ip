@@ -16,4 +16,9 @@ public class AddCommand extends Command {
         tasks.addTask(this.task);
         ui.showAddTask(this.task, tasks);
     }
+
+    @Override
+    public String toString() {
+        return "Add command of task: " + task.toString();
+    }
 }

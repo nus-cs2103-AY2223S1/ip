@@ -1,6 +1,6 @@
 package duke.task;
 
-public class Todo extends Task{
+public class Todo extends Task {
 
     public Todo(String description) {
         super(description);
@@ -16,4 +16,5 @@ public class Todo extends Task{
         int mark = this.isDone ? 1 : 0;
         return String.format("T # %d # %s\n", mark, this.description);
     }
+
 }

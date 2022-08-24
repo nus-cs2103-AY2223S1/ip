@@ -5,7 +5,7 @@ import duke.exception.*;
 
 import java.io.IOException;
 
-public class ExitCommand extends Command{
+public class ExitCommand extends Command {
 
     @Override
     public boolean isExit() {
@@ -20,5 +20,10 @@ public class ExitCommand extends Command{
         } catch (IOException e) {
             System.out.println("Error saving file!!");
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Exit command";
     }
 }

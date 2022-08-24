@@ -4,7 +4,8 @@ import duke.*;
 import duke.exception.*;
 import duke.task.Task;
 
-public class UnmarkCommand extends Command{
+public class UnmarkCommand extends Command {
+
     private int idx;
 
     public UnmarkCommand(int idx) {
@@ -15,5 +16,10 @@ public class UnmarkCommand extends Command{
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.unmarkTask(idx);
         ui.showUnmarkTask(task);
+    }
+
+    @Override
+    public String toString() {
+        return "Unmark command for index: " + this.idx;
     }
 }

@@ -1,10 +1,10 @@
 package duke;
 
-import duke.exception.*;
-import duke.command.*;
-import duke.task.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import duke.command.Command;
+import duke.exception.DukeException;
 
 public class Duke {
 
@@ -41,13 +41,9 @@ public class Duke {
         }
     }
 
-
     public static void main(String[] args) throws DukeException, IOException {
         String filePath = "data/duke.txt";
         new Duke(filePath).run();
     }
-
-
-
 
 }
