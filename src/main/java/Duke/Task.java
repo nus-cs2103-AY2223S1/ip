@@ -22,8 +22,23 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String binarytoString() {
+        return isDone
+                ? "1"
+                : "0";
+    }
+
+    public String storeToString() {
+        return "Task type|binarytoString|task description";
+    }
+
     @Override
     public String toString() {
         return "[" + getStatus() + "]" + " " + this.description;
     }
+
 }

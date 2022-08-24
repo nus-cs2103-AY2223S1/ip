@@ -18,6 +18,11 @@ public class Deadline extends Task {
         System.out.println(timeobject.toString());
 
     }
+    @Override
+    public String storeToString() {
+        return "D|" + this.binarytoString() + "|" + this.description.substring(0,description.length()-1) + "|" + this.timeobject.format(DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.FULL));
+    }
 
     @Override
     public String toString() {

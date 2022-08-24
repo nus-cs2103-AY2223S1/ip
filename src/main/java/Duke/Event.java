@@ -15,6 +15,10 @@ public class Event extends Task {
         timeobject =date;
     }
 
+    public String storeToString() {
+        return "E|" + this.binarytoString() + "|" + this.description.substring(0,description.length()-1) + "|" + this.timeobject;
+    }
+
     @Override
     public String toString() {
         return "[E]"  + super.toString() + "(at: " + this.timeobject.format(DateTimeFormatter
