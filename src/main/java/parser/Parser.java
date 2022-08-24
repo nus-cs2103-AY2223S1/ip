@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Handles the processing of user input and commands the Duke to do specific tasks.
+ */
 public class Parser {
 
     protected static final String[] DATE_PATTERNS = {
@@ -32,6 +35,13 @@ public class Parser {
             "dd-MMMM-yyyy HH:mm", "dd/MMMM/yyyy HH:mm", "dd MMMM yyyy HH:mm"
     };
 
+    /**
+     * Reads user input and executes task on the {@code taskList}.
+     *
+     * @param input String line that the user inputs.
+     * @param taskList TaskList object at the moment when the method is called.
+     * @return Response line of the UI.
+     */
     public String processInput(String input, TaskList taskList) {
         String header;
         String line;
@@ -141,6 +151,15 @@ public class Parser {
             return e.getMessage();
         }
     }
+
+    /**
+     * Reads user input and executes task on the {@code taskList}.
+     *
+     * @param input String line that the user inputs.
+     * @param taskList TaskList object at the moment when the method is called.
+     * @return Response line of the UI.
+     * @throws DukeException
+     */
     public LocalDateTime parseTime(String date) throws DukeException {
         for (String pattern : DATE_PATTERNS) {
             try {

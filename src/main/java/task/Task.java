@@ -5,20 +5,36 @@ public abstract class Task {
     protected final String name;
     protected boolean isDone;
 
+    /**
+     * Constructs an unmarked {@code Task} object.
+     *
+     * @param name Name of the task.
+     */
     public Task(String name) {
         this.name = name;
         this.isDone = false;
     }
 
+    /**
+     * Constructs a marked or an unmarked {@code Task} object.
+     *
+     * @param name Name of the task.
+     * @param isDone The marked status of the task.
+     */
     public Task(String name, boolean isDone) {
         this.name = name;
         this.isDone = isDone;
     }
-
+    @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatus(), this.getName());
     }
 
+    /**
+     * Describes the object in a specific format for saving it to the text file.
+     *
+     * @return String representation of the object.
+     */
     public String toFileString() {
         return String.format("%s||%s||%s", this.getType(), this.getBooleanStatus(), this.getName());
     }
@@ -32,20 +48,37 @@ public abstract class Task {
     }
 
     public abstract String getTime();
+
     public abstract String getType();
 
+    /**
+     * Turns the {@code isDone} status into a string representation.
+     *
+     * @return X if done, empty string if not done.
+     */
     public String getStatus() {
         return this.isDone() ? "X" : " ";
     }
 
+    /**
+     * Turns the {@code isDone} status into a string representation.
+     *
+     * @return true if done, false if not done.
+     */
     public String getBooleanStatus() {
         return this.isDone() ? "true" : "false";
     }
 
+    /**
+     * Marks the object as done.
+     */
     public void mark() {
         this.isDone = true;
     }
 
+    /**
+     * Unmarks the object as not done.
+     */
     public void unmark() {
         this.isDone = false;
     }

@@ -15,11 +15,20 @@ import java.io.FileNotFoundException;
 
 import java.util.Scanner;
 
+/**
+ * Stores the task list in a text file.
+ */
 public class Storage {
 
     protected final String filePath;
     protected final Parser parser;
 
+    /**
+     * Constructs a {@code Storage} object.
+     *
+     * @param fileDirectoryString Folder directory to put the storage in.
+     * @param fileName File name of the storage.
+     */
     public Storage(String fileDirectoryString, String fileName) {
         this.parser = new Parser();
         File fileDirectory = new File(fileDirectoryString);
@@ -37,6 +46,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts the {@code inputLine} into a {@code Task} object.
+     *
+     * @param inputLine String line that the user inputs.
+     * @return One of the 3 {@code Task} object subclass.
+     * @throws DukeException
+     */
     public Task createTask(String inputLine) throws DukeException {
         String[] split = inputLine.split("\\|\\|");
         String command = split[0];
@@ -56,6 +72,12 @@ public class Storage {
         return task;
     }
 
+    /**
+     * Reads the stored {@code Tasklist}.
+     *
+     * @return The last saved {@code tasklist}.
+     * @throws DukeException
+     */
     public TaskList readFile() throws DukeException {
         TaskList taskList = new TaskList();
         File file = new File(this.filePath);
@@ -71,6 +93,9 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Saves the latest version of the {@code tasklist}.
+     */
     public void writeFile(TaskList taskList) {
         String text = "";
         for (int i=0; i<taskList.getSize(); i++) {
