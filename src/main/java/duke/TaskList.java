@@ -6,11 +6,8 @@ package duke;
 
 import duke.task.*;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
-
 
 /**
  * Class TaskList to store the list of Tasks.

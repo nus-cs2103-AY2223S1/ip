@@ -4,11 +4,6 @@
  */
 package duke.task;
 
-import java.util.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
-
 /**
  * Class Task to store Task.
  */
@@ -25,10 +20,16 @@ public abstract class Task {
         this.done = "[ ]";
     }
 
+    /**
+     * public method mark to mark Task.
+     */
     public void mark() {
         this.done = "[X]";
     }
 
+    /**
+     * public method mark to unmark Task.
+     */
     public void unmark() {
         this.done = "[ ]";
     }
