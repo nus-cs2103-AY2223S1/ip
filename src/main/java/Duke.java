@@ -1,3 +1,10 @@
+import duke.utils.Parser;
+import duke.utils.Storage;
+import duke.utils.TaskList;
+import duke.utils.UI;
+import duke.command.Command;
+import duke.exception.DukeException;
+
 public class Duke {
     private Storage storage = new Storage();
     private UI ui = new UI();

@@ -1,3 +1,6 @@
+package duke.utils;
+
+import duke.task.Task;
 import java.util.List;
 
 public class TaskList {
@@ -7,30 +10,30 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    void add(Task task) {
+    public void add(Task task) {
         this.tasks.add(task);
     }
 
-    void delete(int num) {
+    public void delete(int num) {
         this.tasks.remove(num);
     }
 
-    Task getTask(int num) {
+    public Task getTask(int num) {
         return this.tasks.get(num);
     }
 
-    void read() {
+    public void read() {
         System.out.println("Here are the tasks in your list:");
         for(int i = 0; i < size(); i++) {
             System.out.println(i + 1 + ". " + getTask(i));
         }
     }
 
-    int size() {
+    public int size() {
         return this.tasks.size();
     }
 
-    List<Task> list() {
+    public List<Task> list() {
         return this.tasks;
     }
 }

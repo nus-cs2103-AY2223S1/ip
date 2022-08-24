@@ -1,3 +1,5 @@
+package duke.exception;
+
 public class DateTimeException extends DukeException{
     @Override
     public String toString() {

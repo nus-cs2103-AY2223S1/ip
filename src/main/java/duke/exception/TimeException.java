@@ -1,3 +1,5 @@
+package duke.exception;
+
 public class TimeException extends DukeException{
     public TimeException() {
         super();

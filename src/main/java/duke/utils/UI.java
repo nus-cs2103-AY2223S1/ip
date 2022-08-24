@@ -1,3 +1,6 @@
+package duke.utils;
+
+import duke.exception.DukeException;
 import java.util.Scanner;
 
 public class UI {
@@ -7,15 +10,15 @@ public class UI {
         reader = new Scanner(System.in);
     }
 
-    protected void showWelcome() {
+    public void showWelcome() {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
     }
 
-    protected String readCommand() {
+    public String readCommand() {
         return reader.nextLine();
     }
 
-    protected void showError(DukeException e) {
+    public void showError(DukeException e) {
         System.out.println(e);
     }
 }

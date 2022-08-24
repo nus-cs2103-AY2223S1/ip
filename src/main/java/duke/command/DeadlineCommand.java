@@ -1,17 +1,24 @@
+package duke.command;
+
+import duke.utils.Storage;
+import duke.utils.TaskList;
+import duke.utils.UI;
+import duke.task.Task;
+import duke.task.Deadline;
 import java.time.LocalDateTime;
 
-public class EventCommand extends Command{
+public class DeadlineCommand extends Command{
     private String taskDetails;
     private LocalDateTime time;
 
-    EventCommand(String taskDetails, LocalDateTime time) {
+    public DeadlineCommand(String taskDetails, LocalDateTime time) {
         this.taskDetails = taskDetails;
         this.time = time;
     }
 
     @Override
-    void execute(Storage storage, UI ui, TaskList taskList) {
-        Task task = new Event(taskDetails, time);
+    public void execute(Storage storage, UI ui, TaskList taskList) {
+        Task task = new Deadline(taskDetails, time);
         taskList.add(task);
         System.out.println("Got it. I've added this task:\n" + task);
         System.out.println("Now you have " + taskList.size() + " tasks in the list");

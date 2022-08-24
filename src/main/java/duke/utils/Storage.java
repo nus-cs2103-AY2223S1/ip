@@ -1,3 +1,9 @@
+package duke.utils;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +18,7 @@ import java.util.List;
 
 public class Storage {
 
-    protected void save(List<Task> tasks)  {
+    public void save(List<Task> tasks)  {
         try {
             //duke.txt will always exist since we have already created it upon loading up the duke program
             //however, users may delete the directory and hence we still need to check for the existence
@@ -41,7 +47,7 @@ public class Storage {
         }
     }
 
-    List<Task> read() {
+    public List<Task> read() {
         ArrayList<Task> tasks = new ArrayList<>();
         String path = System.getProperty("user.dir") + System.getProperty("file.separator") + "duke";
         File saveLocation = new File(path);

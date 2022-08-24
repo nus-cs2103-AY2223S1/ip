@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.utils.Storage;
+import duke.utils.TaskList;
+import duke.utils.UI;
+import duke.exception.DukeException;
+
 public abstract class Command {
     Storage storage;
     UI ui;
@@ -13,5 +20,5 @@ public abstract class Command {
 
     }
 
-    abstract void execute(Storage storage, UI ui, TaskList taskList) throws DukeException;
+    public abstract void execute(Storage storage, UI ui, TaskList taskList) throws DukeException;
 }

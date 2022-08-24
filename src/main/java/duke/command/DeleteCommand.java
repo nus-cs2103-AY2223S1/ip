@@ -1,12 +1,19 @@
+package duke.command;
+
+import duke.utils.Storage;
+import duke.utils.TaskList;
+import duke.utils.UI;
+import duke.exception.MarkException;
+
 public class DeleteCommand extends Command{
     private int num;
 
-    DeleteCommand(int num) {
+    public DeleteCommand(int num) {
         this.num = num;
     }
 
     @Override
-    void execute(Storage storage, UI ui, TaskList taskList) throws MarkException {
+    public void execute(Storage storage, UI ui, TaskList taskList) throws MarkException {
         if (num > taskList.size() || num < 0) {
             throw new MarkException();
         }

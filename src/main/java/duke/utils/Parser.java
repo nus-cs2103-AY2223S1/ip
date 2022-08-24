@@ -1,10 +1,28 @@
+package duke.utils;
+
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
+import duke.exception.DateTimeException;
+import duke.exception.DukeException;
+import duke.exception.InputException;
+import duke.exception.MarkException;
+import duke.exception.TaskException;
+import duke.exception.TimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+
 public class Parser {
 
-    protected Command parse(String input) throws DukeException {
+    public Command parse(String input) throws DukeException {
         String[] strings = input.split(" ", 2);
         if (strings.length == 1) { //input is guaranteed to not be empty
             return singleCommand(strings);
