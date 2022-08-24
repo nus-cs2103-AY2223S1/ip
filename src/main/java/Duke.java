@@ -13,14 +13,6 @@ public class Duke {
         Scanner help = new Scanner(System.in);
 
 
-
-        class DukeException extends Exception {
-
-            public DukeException(String error) {
-                super(error);
-            }
-        }
-
         ArrayList<Task> lst = new ArrayList<>();
         for(int j = 0;j<100;j++) {
             lst.add(null);
