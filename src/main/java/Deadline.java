@@ -22,7 +22,6 @@ public class Deadline extends ListObject{
     }
 
     public String formatDateTime(String txt){
-        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate deadline = LocalDate.parse(txt, formatter);
         DateTimeFormatter formatNew = DateTimeFormatter.ofPattern("MMM dd yyyy");
