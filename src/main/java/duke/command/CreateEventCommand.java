@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.task.Event;
+import duke.task.TasksController;
+import duke.Ui;
+import duke.Storage;
+import duke.exception.EmptyContentException;
+import duke.exception.InvalidTimeException;
 public class CreateEventCommand extends Command {
 
     public void execute(TasksController controller, Ui ui, Storage storage) {

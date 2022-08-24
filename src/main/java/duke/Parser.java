@@ -1,3 +1,10 @@
+package duke;
+
+import duke.command.*;
+import duke.task.TasksController;
+import duke.exception.InvalidCommandException;
+import duke.command.Command;
+
 public class Parser {
     private final Storage storage;
     private final TasksController controller;

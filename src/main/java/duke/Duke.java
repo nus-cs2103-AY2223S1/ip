@@ -1,3 +1,9 @@
+package duke;
+
+import duke.task.TasksController;
+import duke.Ui;
+import duke.Storage;
+import duke.command.Command;
 public class Duke {
     private static final Storage storage = new Storage("data/Duke.dat");
     private static final TasksController controller = new TasksController(storage.load());
