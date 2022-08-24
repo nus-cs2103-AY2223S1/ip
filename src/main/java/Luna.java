@@ -1,8 +1,8 @@
 import exception.LunaException;
 import parser.Parser;
 import storage.Storage;
-import tasks.*;
-import commands.*;
+import tasks.TaskList;
+import commands.Command;
 import ui.Ui;
 
 public class Luna {
@@ -23,6 +23,7 @@ public class Luna {
 
     public void run() {
         ui.showWelcome();
+
         boolean isExit = false;
         while (!isExit) {
             try {

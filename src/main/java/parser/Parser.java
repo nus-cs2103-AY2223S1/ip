@@ -1,8 +1,23 @@
 package parser;
 
-import commands.*;
+// Import Commands
+import commands.AddCommand;
+import commands.Command;
+import commands.DeleteCommand;
+import commands.ExitCommand;
+import commands.ListCommand;
+import commands.UpdateCommand;
+
 import exception.LunaException;
-import tasks.*;
+
+// Import Tasks;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todo;
+
+// Imports for dates
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -55,24 +70,32 @@ public class Parser {
     public static Task parseSaved(String tasks) {
         String txt = tasks.substring(7);
         if (txt.startsWith("[T]")) {
+            // Abstract task description
             String[] split = txt.split("] ");
+
+            // Create new Todo
             Task tsk = new Todo(split[1]);
 
+            // Update status
             if (split[0].substring(3).equals("[✧")) {
                 tsk.setStatusIcon(true);
             }
+
             return tsk;
-
-
         } else if (txt.startsWith("[D]")) {
+            // Abstract task description and date
             String[] split = txt.split("] ");
             String [] desSplit = split[1].split(" BY ");
             String des = desSplit[0];
             String by = desSplit[1].substring(0, 11);
+
+            // Create date
             LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd MMM yyyy"));
 
+            // Create new Deadline
             Task tsk = new Deadline(des, date);
 
+            // Update status
             if (split[0].substring(3).equals("[✧")) {
                 tsk.setStatusIcon(true);
             }
@@ -80,19 +103,23 @@ public class Parser {
 
 
         } else if (txt.startsWith("[E]")) {
+            // Abstract task description and date
             String[] split = txt.split("] ");
             String [] desSplit = split[1].split(" AT ");
             String des = desSplit[0];
             String at = desSplit[1].substring(0, 11);
+
+            // Create date
             LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd MMM yyyy"));
 
+            // Create new Event
             Task tsk = new Event(des, date);
 
+            // Update status
             if (split[0].substring(3).equals("[✧")) {
                 tsk.setStatusIcon(true);
             }
             return tsk;
-
         } else {
             return null;
         }
