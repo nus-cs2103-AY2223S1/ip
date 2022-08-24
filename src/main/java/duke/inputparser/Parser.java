@@ -13,6 +13,7 @@ import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
 import duke.command.Command;
 import duke.command.MarkCommand;
+import duke.command.FindCommand;
 import duke.common.InputChecker;
 
 
@@ -43,6 +44,8 @@ public class Parser {
                 return new MarkCommand(command, detail);
             } else if (command.equals("delete")) {
                 return new DeleteCommand(command, detail);
+            } else if (command.equals("find")){
+                return new FindCommand(command, detail);
             } else {
                 throw new DukeException(UI.invalidFormat());
             }

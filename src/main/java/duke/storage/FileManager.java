@@ -15,8 +15,8 @@ import duke.inputparser.Parser;
 
 public class FileManager {
 
-    private static String home = System.getProperty("user.home");
-    private static java.nio.file.Path path = java.nio.file.Paths.get(home
+    private static final String home = System.getProperty("user.home");
+    private static final java.nio.file.Path path = java.nio.file.Paths.get(home
             , "CS2103", "ip", "src", "main", "java", "data", "duke.txt");
     private static final String SECTION_DIVIDER = " __ ";
 

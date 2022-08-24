@@ -1,10 +1,11 @@
-todo read book
-deadline individual project /by Thursday
-event attend lecture /at Friday
 list
-mark 2
-unmark 2
-delete 2
-event attend lecture /at :P Skip lecture
-list
+mark 1
+mark 4
+mark 0
+unmark 1
+event addEvent /at alkdjasld
+event addEvent /at 2011-01-05 1900
+todo
+todo addTodo
+delete 5
 bye
