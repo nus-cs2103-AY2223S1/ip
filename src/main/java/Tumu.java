@@ -12,8 +12,6 @@ public class Tumu {
     private TaskList tasks;
     private UI ui;
 
-    private List<Task> userTasks = new ArrayList<>();
-
     private static final String END_CHAT_BOT_CMD = "bye";
     private static final String LIST_USER_TEXT_CMD = "list";
     private static final String MARK_CMD = "mark";
@@ -26,8 +24,7 @@ public class Tumu {
     public Tumu() {
         ui = new UI();
         storage = new Storage("data/Tumu.txt");
-        tasks = new TaskList();
-        loadUserTasks();
+        tasks = new TaskList(storage.loadData());
     }
 
     public static void main(String[] args) {
@@ -39,12 +36,8 @@ public class Tumu {
         response();
     }
 
-    private void loadUserTasks() {
-        userTasks = storage.loadData();
-    }
-
     private void saveUserTasks() {
-        storage.saveData(userTasks);
+        storage.saveData(tasks.getTasks());
     }
 
     private void response() {
@@ -113,10 +106,10 @@ public class Tumu {
          */
 
         ui.notifyUser("Here are your current tasks:");
-        for (int i = 1; i <= userTasks.size(); i++) {
-            Task task = userTasks.get(i - 1);
-            String output = String.format(" %d. %s", i, task);
-            ui.notifyUser(output);
+        List<String> taskPrint = new ArrayList<>();
+        tasks.fillTaskPrint(taskPrint);
+        for (String task : taskPrint) {
+            ui.notifyUser(task);
         }
     }
 
@@ -124,13 +117,9 @@ public class Tumu {
         /**
          * Mark the oneIndexedNumth Task in userTasks.
          */
-        if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
-            //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) throw new NoTaskException();
-            else throw new OutOfBoundsException(userTasks.size());
-        } else {
-            Task task = userTasks.get(oneIndexedNum - 1);
-            task.markDone();
+
+        Task task = tasks.markTask(oneIndexedNum);
+        if (task != null) {
             ui.notifyUser("Alright, I have marked this task as done:\n\t" + task);
         }
     }
@@ -140,13 +129,8 @@ public class Tumu {
          * Unmark the oneIndexedNumth Task in userTasks.
          */
 
-        if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
-            //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) throw new NoTaskException();
-            else throw new OutOfBoundsException(userTasks.size());
-        } else {
-            Task task = userTasks.get(oneIndexedNum - 1);
-            task.unmarkDone();
+        Task task = tasks.unmarkTask(oneIndexedNum);
+        if (task != null) {
             ui.notifyUser("Alright, I have unmarked this task:\n\t" + task);
         }
     }
@@ -157,7 +141,7 @@ public class Tumu {
          */
 
         if (userInput.isBlank()) throw new TodoException();
-        else taskTypeFormatting(new Todo(userInput));
+        else addTaskType(new Todo(userInput));
     }
 
     private void addDeadlineTask(String userInput) throws TumuException {
@@ -174,7 +158,7 @@ public class Tumu {
             if (parse.length > 2) throw new DETimingOverflowException();
             else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank())
                 throw new DENoArgException();
-            else taskTypeFormatting(new Deadline(parse[0], parse[1]));
+            else addTaskType(new Deadline(parse[0], parse[1]));
         }
     }
 
@@ -192,7 +176,7 @@ public class Tumu {
             if (parse.length > 2) throw new DETimingOverflowException();
             else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank())
                 throw new DENoArgException();
-            else taskTypeFormatting(new Event(parse[0], parse[1]));
+            else addTaskType(new Event(parse[0], parse[1]));
         }
     }
 
@@ -201,20 +185,16 @@ public class Tumu {
          * Deletes a task at position oneIndexedNum - 1.
          */
 
-        if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
-            //Specified index from user is out of bounds of list.
-            if (userTasks.isEmpty()) throw new NoTaskException();
-            else throw new OutOfBoundsException(userTasks.size());
-        } else {
-            Task removedTask = userTasks.remove(oneIndexedNum - 1);
+        Task removedTask = tasks.deleteTask(oneIndexedNum);
+        if (removedTask != null) {
             ui.notifyUser("Alright, I have removed this task for you:\n\t\t" + removedTask);
-            ui.notifyUser(String.format("You have %d task(s) in the list.", userTasks.size()));
+            ui.notifyUser(String.format("You have %d task(s) in the list.", tasks.getListSize()));
         }
     }
 
-    private void taskTypeFormatting(Task task) {
+    private void addTaskType(Task task) {
         ui.notifyUser("I've added a task into your list:\n\t\t" + task);
-        userTasks.add(task);
-        ui.notifyUser(String.format("You have %d task(s) in the list.", userTasks.size()));
+        tasks.addTask(task);
+        ui.notifyUser(String.format("You have %d task(s) in the list.", tasks.getListSize()));
     }
 }
