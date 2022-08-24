@@ -1,12 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 public class Duke {
 
     private String input;
     private Scanner scanner = new Scanner(System.in);
     private Storage storage = new Storage();
-    protected boolean keepRunning = true;
+    protected boolean isRunning = true;
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -21,17 +22,31 @@ public class Duke {
 
     public void console() {
         System.out.println("Just a moment...\nHello! I am Duke.");
-        System.out.println("Just ignore the symbol above. What can I do for you?");
 
-        while (this.keepRunning) {
+        try {
+            this.storage.readFileContents("data/duke.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found.");
+            File file = new File("data/duke.txt");
+            System.out.println("New file created.");
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("What can I do for you?");
+
+        while (this.isRunning) {
             System.out.println("-------------------");
             this.input = scanner.nextLine();
             try {
                 Command command = new Command(input, this.storage);
-                this.keepRunning = command.execution();
+                this.isRunning = command.execution();
+                this.storage.writeToFile("data/duke.txt");
             } catch (DukeException e) {
-                this.keepRunning = true;
+                // this.isRunning = true;
                 System.out.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println("Something went wrong: " + e.getMessage());
             }
         }
     }

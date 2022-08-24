@@ -1,0 +1,4 @@
+[T][X] watch tv
+[D][ ] write essay (by: Sunday)
+[E][X] meeting (at: friday)
+[E][ ] birthdaoy (at: monday)
