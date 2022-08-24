@@ -1,23 +1,23 @@
 package duke.util;
 
-import duke.DukeException;
-import duke.command.Command;
-import duke.command.HelpCommand;
-import duke.command.ByeCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.command.AddCommand;
-import duke.command.DeleteCommand;
-import duke.command.EmptyCommand;
-import duke.command.UnknownCommand;
-import duke.task.Task;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Todo;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
+import duke.command.AddCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.EmptyCommand;
+import duke.command.HelpCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnknownCommand;
+import duke.command.UnmarkCommand;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 /**
  * Class to parse user input.
@@ -35,8 +35,8 @@ public class Parser {
      */
     public static Command parseCommand(String input) throws DukeException {
         input = input.strip();
-        String inputCommand = input.indexOf(" ") == -1 ?
-                input.toLowerCase() : input.toLowerCase().substring(0, input.indexOf(" "));
+        String inputCommand = input.indexOf(" ") == -1
+                ? input.toLowerCase() : input.toLowerCase().substring(0, input.indexOf(" "));
         String[] commandAndArguments = input.split(" ", 2);
         String args = "";
         if (commandAndArguments.length > 1) {
@@ -137,8 +137,8 @@ public class Parser {
         try {
             return LocalDate.parse(dateString);
         } catch (DateTimeParseException e) {
-            throw new DukeException("Invalid date format, please enter yyyy-mm-dd." +
-                    System.lineSeparator() + "Example: 2022-08-22, 2022-12-02");
+            throw new DukeException("Invalid date format, please enter yyyy-mm-dd."
+                    + System.lineSeparator() + "Example: 2022-08-22, 2022-12-02");
         }
     }
 }

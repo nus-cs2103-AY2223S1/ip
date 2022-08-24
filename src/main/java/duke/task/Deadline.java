@@ -1,9 +1,10 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 import duke.DukeException;
 import duke.util.Parser;
 
-import java.time.LocalDate;
 
 /**
  * Task with a deadline.

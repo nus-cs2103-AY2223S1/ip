@@ -1,15 +1,15 @@
 package duke.util;
 
-import duke.DukeException;
-import duke.task.TaskList;
-import duke.task.Task;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+
+import duke.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Class to manage file storage operations.
