@@ -134,7 +134,7 @@ public class Gibson {
                 if (!result.isEmpty()) {
                     ui.printMessage("Here are your results:\n" + result.toString());
                 } else {
-                    ui.printErrorMessage("Unable to find task with " + input + ".");
+                    ui.printErrorMessage("Unable to find task with \"" + searchQuery + "\".");
                 }
             // NOT RECOGNIZED
             } else {
