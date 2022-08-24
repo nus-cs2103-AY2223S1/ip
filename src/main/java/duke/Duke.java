@@ -51,13 +51,10 @@ public class Duke {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.inputCommand(fullCommand, tasks, ui);
-                c.execute();
-                storage.saveDuke(tasks);
+                c.execute(storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showDukeException(e.getMessage());
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
             }
         }
         ui.finalGoodbye();

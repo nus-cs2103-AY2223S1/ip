@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.ToDo;
@@ -41,7 +42,7 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(Storage storage) throws DukeException {
         String[] returnedArray = command.split(" ");
         if (returnedArray.length == 1) {
             throw new DukeException("your [todo] duke.command is empty."
@@ -50,6 +51,7 @@ public class ToDoCommand extends Command {
         ToDo toDo = new ToDo(command);
         tasks.add(toDo);
         ui.addTask(toDo, tasks.size());
+        storage.saveDuke(tasks);
     }
 
     @Override

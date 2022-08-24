@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import duke.task.Deadline;
@@ -29,7 +30,7 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(Storage storage) throws DukeException {
         String[] returnedArray = command.split(" /by ");
         if (returnedArray.length <= 0) {
             throw new DukeException("your duke.command is incomplete."
@@ -48,6 +49,7 @@ public class DeadlineCommand extends Command {
         Deadline deadline = new Deadline(returnedArray[0], returnedArray[1]);
         tasks.add(deadline);
         ui.addTask(deadline, tasks.size());
+        storage.saveDuke(tasks);
     }
 
     @Override

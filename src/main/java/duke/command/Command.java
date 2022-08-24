@@ -3,6 +3,7 @@ package duke.command;
 import java.util.Locale;
 
 import duke.DukeException;
+import duke.Storage;
 
 /**
  * RecognisedCommand that Duke can execute
@@ -19,10 +20,11 @@ public abstract class Command {
 
     /**
      * Executes the command
-     * @throws DukeException
+     * @param storage Duke's storage system for tasks
+     * @throws DukeException for invalid inputs
      * @since 0.1
      */
-    public abstract void execute() throws DukeException;
+    public abstract void execute(Storage storage) throws DukeException;
 
     /**
      * Checks if the command leads to the end of the current Duke session

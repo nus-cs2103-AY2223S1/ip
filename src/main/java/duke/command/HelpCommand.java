@@ -1,5 +1,8 @@
 package duke.command;
 
+import duke.DukeException;
+import duke.Storage;
+
 /**
  * Command to execute helping the user to know all the tasks Duke can do
  * @author Nephelite
@@ -7,7 +10,7 @@ package duke.command;
  */
 public class HelpCommand extends Command {
     @Override
-    public void execute() {
+    public void execute(Storage storage) throws DukeException {
         System.out.println("These are the commands I know.");
         for (RecognisedCommand e : RecognisedCommand.values()) {
             switch (e) {

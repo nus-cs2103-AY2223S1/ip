@@ -38,17 +38,21 @@ public class Storage {
      * @throws IOException
      * @since 0.1
      */
-    public void saveDuke(TaskList tasks) throws IOException {
-        File save = new File(saveFilePath);
-        FileWriter saveWriter = new FileWriter(save);
-        String saveString = "";
+    public void saveDuke(TaskList tasks) {
+        try {
+            File save = new File(saveFilePath);
+            FileWriter saveWriter = new FileWriter(save);
+            String saveString = "";
 
-        for (int i = 0; i < tasks.size(); i++) {
-            saveString += tasks.getTask(i) + "\n";
+            for (int i = 0; i < tasks.size(); i++) {
+                saveString += tasks.getTask(i) + "\n";
+            }
+            saveWriter.write(saveString);
+            saveWriter.flush();
+            saveWriter.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
         }
-        saveWriter.write(saveString);
-        saveWriter.flush();
-        saveWriter.close();
     }
 
     /**

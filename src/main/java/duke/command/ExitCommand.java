@@ -1,5 +1,8 @@
 package duke.command;
 
+import duke.DukeException;
+import duke.Storage;
+
 /**
  * Command to execute ending the current session
  * @author Nephelite
@@ -7,7 +10,7 @@ package duke.command;
  */
 public class ExitCommand extends Command {
     @Override
-    public void execute() {
+    public void execute(Storage storage) throws DukeException {
         System.out.println("Will that be all? Alright then.");
     }
 

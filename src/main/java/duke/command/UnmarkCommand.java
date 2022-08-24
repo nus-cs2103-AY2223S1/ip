@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.DukeException;
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
@@ -44,7 +45,7 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    public void execute() throws DukeException { //TODO: ui components
+    public void execute(Storage storage) throws DukeException {
         if (splitCommands.length == 1) {
             throw new DukeException("your duke.command is incomplete."
                     + "\nPlease use the [help] duke.command to check the proper usage of [unmark].");
@@ -59,6 +60,7 @@ public class UnmarkCommand extends Command {
             } else {
                 tasks.getTask(taskId).setUndone();
                 ui.unmark(tasks.getTask(taskId));
+                storage.saveDuke(tasks);
             }
         } else {
             throw new DukeException("your duke.command is incorrect."
