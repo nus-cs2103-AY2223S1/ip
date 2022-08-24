@@ -1,25 +1,15 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.DoneCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.OnGoingCommand;
-import duke.exception.DukeException;
-import duke.exception.InvalidDeadlineException;
-import duke.exception.InvalidEventException;
-import duke.exception.InvalidIndexException;
-import duke.exception.InvalidInputException;
-import duke.exception.InvalidToDoException;
+import duke.command.*;
+import duke.exception.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
 
+
 public class Parser {
     public enum RequestType {
-        DONE, ONGOING, TODO, EVENT, DEADLINE, DELETE, LIST, EXIT
+        DONE, ONGOING, TODO, EVENT, DEADLINE, DELETE, LIST, EXIT, FIND
     }
     public static RequestType checkRequest(String request) throws DukeException {
         if (request.equals("bye")) {
@@ -34,6 +24,8 @@ public class Parser {
             return RequestType.DELETE;
         } else if (request.matches("(?i)^(todo)(.*)")) {
             return RequestType.TODO;
+        } else if (request.matches("(?i)^(find)(.*)")) {
+            return RequestType.FIND;
         } else if (request.matches("(?i)^(deadline)(.*)")) {
             return RequestType.DEADLINE;
         } else if (request.matches("(?i)^(event)(.*)")) {
@@ -79,6 +71,21 @@ public class Parser {
         }
     }
 
+    /**
+     * Retrieves keyword from input of find type.
+     * @param request input belonging to find type.
+     * @return keyword string.
+     * @throws DukeException if the keyword is empty.
+     */
+    public static String findTask(String request) throws DukeException {
+        String[] rq = request.split(" ", 2);
+        if (rq.length < 2 || rq[1].trim().equals("")) {
+            throw new InvalidFindException();
+        } else {
+            return rq[1];
+        }
+    }
+
     public static String[] deadlineTask(String request) throws DukeException {
         if (request.matches("(?i)^deadline\\s.+\\s\\/(by)\\s.+")) {
             String[] deadline = request.substring(9).split("\\/(by)\\s", 2);
@@ -100,27 +107,29 @@ public class Parser {
         }
     }
 
-    public static Command parse(String userInput, TaskList taskList) throws DukeException{
+    public static Command parse(String userInput, TaskList taskList) throws DukeException {
         RequestType rqType = checkRequest(userInput);
         switch (rqType) {
-            case LIST:
-                return new ListCommand();
-            case DONE:
-                return new DoneCommand(getMarkIndex(userInput, taskList));
-            case ONGOING:
-                return new OnGoingCommand(getUnMarkIndex(userInput, taskList));
-            case DELETE:
-                return new DeleteCommand(getDeleteIndex(userInput, taskList));
-            case TODO:
-                return new AddCommand(new ToDo(todoTask(userInput)));
-            case DEADLINE:
-                String[] deadline = deadlineTask(userInput);
-                return new AddCommand(new Deadline(deadline[0], deadline[1]));
-            case EVENT:
-                String[] event = eventTask(userInput);
-                return new AddCommand(new Event(event[0], event[1]));
-            default:
-                return new ExitCommand();
+        case LIST:
+            return new ListCommand();
+        case DONE:
+            return new DoneCommand(getMarkIndex(userInput, taskList));
+        case ONGOING:
+            return new OnGoingCommand(getUnMarkIndex(userInput, taskList));
+        case DELETE:
+            return new DeleteCommand(getDeleteIndex(userInput, taskList));
+        case FIND:
+            return new FindCommand(findTask(userInput));
+        case TODO:
+            return new AddCommand(new ToDo(todoTask(userInput)));
+        case DEADLINE:
+            String[] deadline = deadlineTask(userInput);
+            return new AddCommand(new Deadline(deadline[0], deadline[1]));
+        case EVENT:
+            String[] event = eventTask(userInput);
+            return new AddCommand(new Event(event[0], event[1]));
+        default:
+            return new ExitCommand();
         }
     }
 }

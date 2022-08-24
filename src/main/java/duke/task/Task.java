@@ -21,6 +21,21 @@ public class Task {
         isDone = false;
     }
 
+    /**
+     * Checks if description of Task contains given keyword.
+     * @param keyword Keyword to check.
+     * @return true if the task contains keyword, otherwise false.
+     */
+    public boolean hasKeyword(String keyword) {
+        String[] splitDescription = description.split(" ");
+        for (int i = 0; i < splitDescription.length; i++) {
+            if (splitDescription[i].toUpperCase().contains(keyword.toUpperCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String statusIcon() {
         return isDone ? "1" : "0";
     }

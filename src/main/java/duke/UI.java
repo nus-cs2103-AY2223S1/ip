@@ -27,9 +27,14 @@ public class UI {
         printWithDivider(mess);
     }
 
-    public void print(TaskList ls) {
+    /**
+     * Prints out TaskList in form of a list and the given title.
+     * @param ls TaskList to be printed.
+     * @param title Title of printed TaskList.
+     */
+    public void printTaskList(TaskList ls, String title) {
         print(DIVIDER);
-        print("Here are the tasks in your list:");
+        print(title);
         for (int i = 0; i < ls.getSize() ; i++) {
             print((i + 1) + ". " + ls.taskToString(i));
         }
