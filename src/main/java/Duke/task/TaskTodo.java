@@ -1,6 +1,6 @@
-package task;
+package Duke.task;
 
-import enums.Command;
+import Duke.enums.Command;
 
 /**
  * The {@code TaskTodo} class stores relevant information for a todoTask.
@@ -36,6 +36,11 @@ public class TaskTodo extends Task {
         return String.format("[T] %s", super.toString());
     }
 
+    /**
+     * Returns a string representation to store taskTodo in a file.
+     *
+     * @return The string representation of a taskTodo for storage.
+     */
     @Override
     public String toStorageString() {
         return String.format("%s %s\n%s", Command.TODO.getValue(), getTaskName(), super.toStorageString());

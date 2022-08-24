@@ -1,9 +1,9 @@
-package task;
+package Duke.task;
 
-import enums.Command;
-import enums.SecondaryCommand;
-import exceptions.InvalidDateException;
-import utils.Utils;
+import Duke.enums.Command;
+import Duke.enums.SecondaryCommand;
+import Duke.exceptions.InvalidDateException;
+import Duke.utils.Utils;
 
 import java.time.LocalDate;
 
@@ -43,13 +43,18 @@ public class TaskEvent extends Task {
     /**
      * Returns string representation of a taskEvent.
      *
-     * @return a string representing the taskEvent.
+     * @return The string representing the taskEvent.
      */
     @Override
     public String toString() {
         return String.format("[E] %s (at: %s)", super.toString(), Utils.formatDateToString(this.taskAt));
     }
 
+    /**
+     * Returns a string representation to store task event in a file.
+     *
+     * @return The string representation of a task event for storage.
+     */
     @Override
     public String toStorageString() {
         return String.format("%s %s %s %s\n%s",

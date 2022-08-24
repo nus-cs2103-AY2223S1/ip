@@ -1,4 +1,4 @@
-package exceptions;
+package Duke.exceptions;
 
 /**
  * {@code InvalidSecondaryCommandException} is an exception thrown when a

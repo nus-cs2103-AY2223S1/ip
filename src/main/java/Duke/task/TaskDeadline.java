@@ -1,9 +1,9 @@
-package task;
+package Duke.task;
 
-import enums.Command;
-import enums.SecondaryCommand;
-import exceptions.InvalidDateException;
-import utils.Utils;
+import Duke.enums.Command;
+import Duke.enums.SecondaryCommand;
+import Duke.exceptions.InvalidDateException;
+import Duke.utils.Utils;
 
 import java.time.LocalDate;
 
@@ -50,6 +50,11 @@ public class TaskDeadline extends Task {
         return String.format("[D] %s (by: %s)", super.toString(), Utils.formatDateToString(this.taskBy));
     }
 
+    /**
+     * Returns a string representation to store task deadline in a file.
+     *
+     * @return The string representation of a task deadline for storage.
+     */
     @Override
     public String toStorageString() {
         return String.format("%s %s %s %s\n%s",

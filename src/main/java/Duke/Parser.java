@@ -1,22 +1,22 @@
-package utils;
+package Duke;
 
-import enums.Command;
-import enums.SecondaryCommand;
-import exceptions.DukeException;
-import exceptions.InvalidCommandException;
-import exceptions.InvalidSecondaryCommandException;
-import exceptions.InvalidTaskNameException;
+import Duke.enums.Command;
+import Duke.enums.SecondaryCommand;
+import Duke.exceptions.DukeException;
+import Duke.exceptions.InvalidCommandException;
+import Duke.exceptions.InvalidSecondaryCommandException;
+import Duke.exceptions.InvalidTaskNameException;
 
 /**
  * The {@code Input} class formats a string input into an input object.
  */
-public class Input {
+public class Parser {
 
     private Command command;
     private String mainData;
     private String secondaryData;
 
-    private Input() {
+    private Parser() {
         mainData = "";
         secondaryData = "";
     }
@@ -39,8 +39,8 @@ public class Input {
      * @param input A string containing text provided by the user.
      * @return An input object containing important information from the user.
      */
-    public static Input formatInput(String input) throws DukeException {
-        Input result = new Input();
+    public static Parser formatInput(String input) throws DukeException {
+        Parser result = new Parser();
         int maxParameters = 2;
 
         String[] commandWithInfo = input.split(" ", maxParameters);

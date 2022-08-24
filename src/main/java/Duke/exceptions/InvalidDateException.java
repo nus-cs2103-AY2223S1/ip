@@ -1,4 +1,4 @@
-package exceptions;
+package Duke.exceptions;
 
 /**
  * {@code InvalidDateException} is an exception thrown when a

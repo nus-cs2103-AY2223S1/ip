@@ -1,4 +1,4 @@
-package exceptions;
+package Duke.exceptions;
 
 /**
  * {@code DukeException} is the superclass of those

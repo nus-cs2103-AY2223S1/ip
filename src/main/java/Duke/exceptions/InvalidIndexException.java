@@ -1,4 +1,4 @@
-package exceptions;
+package Duke.exceptions;
 
 /**
  * {@code InvalidIndexException} is an exception thrown when an

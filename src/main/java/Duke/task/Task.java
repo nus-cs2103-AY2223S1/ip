@@ -1,6 +1,4 @@
-package task;
-
-import utils.Prompt;
+package Duke.task;
 
 /**
  * The {@code Task} stores relevant information for a task.
@@ -44,7 +42,6 @@ public abstract class Task {
      */
     public void markDone() {
         this.done = true;
-        Prompt.markDone(taskName);
     }
 
     /**
@@ -52,7 +49,6 @@ public abstract class Task {
      */
     public void markUndone() {
         this.done = false;
-        Prompt.markUndone(taskName);
     }
 
     /**
