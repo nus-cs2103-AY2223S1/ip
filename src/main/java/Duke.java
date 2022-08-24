@@ -3,7 +3,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
-    private final static List<Task> taskList = new ArrayList<>();
+    private static List<Task> taskList = new ArrayList<>();
+
+    private static Storage storage;
 
     public static void main(String[] args) {
         final String LOGO = " ____        _        \n"
@@ -12,13 +14,17 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
 
-        final String GREETING = "Hello! I'm Duke\n"
+        final String GREETING_MESSSAGE = "Hello! I'm Duke\n"
                 + "What can I do for you?\n";
-        final String GOODBYE = "Bye. Hope to see you again soon!\n";
+        final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!\n";
 
         System.out.println("Hello from\n" + LOGO);
 
-        printTextWithDivider(GREETING);
+        printTextWithDivider(GREETING_MESSSAGE);
+
+        storage = new Storage();
+
+        taskList = storage.loadTasks();
 
         Scanner sc = new Scanner(System.in);
 
@@ -27,7 +33,7 @@ public class Duke {
 
             // Quit when user enters "bye"
             if (command.equals("bye")) {
-                printTextWithDivider(GOODBYE);
+                printTextWithDivider(GOODBYE_MESSAGE);
                 break;
             }
 
@@ -152,6 +158,8 @@ public class Duke {
 
         taskList.add(task);
 
+        storage.appendTaskToFile(task);
+
         String addTaskMessage =  "Got it. I've added this task:\n" +
                 "  " + task + "\n" +
                 "Now you have " + taskList.size() + " task(s) in the list.\n";
@@ -169,6 +177,7 @@ public class Duke {
             int taskIndex = Integer.parseInt(inputs[1]) - 1;
             Task task = taskList.get(taskIndex);
             task.markAsDone();
+            storage.writeAllTasksToFile(taskList);
 
             String str = "Nice! I've marked this as done:\n" +
                     task + "\n";
@@ -188,6 +197,7 @@ public class Duke {
             int taskIndex = Integer.parseInt(inputs[1]) - 1;
             Task task = taskList.get(taskIndex);
             task.maskUndone();
+            storage.writeAllTasksToFile(taskList);
 
             String str = "Ok, I've marked this task as not done yet:\n" +
                     task + "\n";
@@ -207,6 +217,7 @@ public class Duke {
             int taskIndex = Integer.parseInt(inputs[1]) - 1;
             Task task = taskList.get(taskIndex);
             taskList.remove(task);
+            storage.writeAllTasksToFile(taskList);
 
             String str = "Noted. I've removed this task:\n" +
                     "  " + task + "\n" +
