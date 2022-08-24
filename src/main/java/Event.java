@@ -11,7 +11,7 @@ public class Event extends Task{
 
     Event(String name, String time, boolean status) {
         super(name, status);
-        this.time = time;
+        this.time = LocalDate.parse(time);
     }
 
     @Override
@@ -21,6 +21,6 @@ public class Event extends Task{
 
     //Returns time of task
     public String getTime() {
-        return time;
+        return time.toString();
     }
 }

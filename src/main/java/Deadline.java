@@ -11,7 +11,7 @@ public class Deadline extends Task{
 
     Deadline(String name, String deadline, boolean status) {
         super(name, status);
-        this.deadline = deadline;
+        this.deadline = LocalDate.parse(deadline);
     }
 
     @Override
@@ -21,6 +21,6 @@ public class Deadline extends Task{
 
     //Returns deadline of task
     public String getDeadline() {
-        return deadline;
+        return deadline.toString();
     }
 }
