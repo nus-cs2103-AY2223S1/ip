@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
+    /** Deadline date of the task */
     private String date;
 
     public Deadline(String description, String by, boolean dateIsFormatted) throws DukeException {

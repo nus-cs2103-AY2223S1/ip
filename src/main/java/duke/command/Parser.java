@@ -5,6 +5,12 @@ import duke.exception.DukeException;
 
 public class Parser {
 
+    /**
+     * Returns a Command object.
+     *
+     * @param strInput String input from user.
+     * @return Command object.
+     */
     public static Command parse(String strInput) throws DukeException{
         if (strInput.equalsIgnoreCase("bye"))  {
             return new ExitCommand();
