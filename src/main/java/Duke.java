@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 public class Duke {
     private Storage storage;
-    private TaskList tasks;
+    private List tasks;
     private Ui ui;
 
     public Duke(String filePath) {
@@ -18,7 +18,8 @@ public class Duke {
             ui.showErrorMessage(e.getMessage());
         }
         try {
-            tasks = new TaskList(storage.load());
+            tasks = new List();
+            storage.load(tasks);
         } catch (DukeException e) {
             ui.showLoadingError();
             throw new RuntimeException(e);
@@ -44,6 +45,12 @@ public class Duke {
                 ui.showLine();
             }
         }
+        try {
+            storage.save();
+        } catch (DukeException e) {
+            ui.showErrorMessage(e.getMessage());
+        }
+        ui.showGoodbyeMessage();
     }
 
     public static void main(String[] args) throws DukeException {
