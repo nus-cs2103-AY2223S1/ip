@@ -90,5 +90,22 @@ public class Parser {
         return atDate;
     }
 
+    /**
+     * Return keyword after first word find was inputted.
+     *
+     * @return A single keyword
+     * @throws DukeException If there is no keyword inputted after "find"
+     */
+    public String getKeyword() throws DukeException {
+        if (inputArr.length == 1) {
+            throw new DukeException("You need to type in a keyword to find!!");
+        }
+        String keyword = inputArr[1];
+        if (keyword.trim().equals("")) {
+            throw new DukeException("You need to type in a keyword to find!!");
+        }
+        return keyword;
+    }
+
 
 }

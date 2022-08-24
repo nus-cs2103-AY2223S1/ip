@@ -11,17 +11,18 @@ public class Event extends Task {
         this.atDate = atDate;
     }
 
-    public String getDescription() {
-        return super.description;
-    }
-
     public String getEventAt() {
         return this.atDate.toString();
     }
 
     @Override
+    public String getDescription() {
+        return super.description;
+    }
+
+    @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[E]" + super.toString() + " (at: " + this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     @Override

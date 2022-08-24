@@ -27,4 +27,14 @@ public class TaskList {
         this.list.remove(index);
     }
 
+    public TaskList findRelatedTask(String keyword) {
+        ArrayList<Task> newList = new ArrayList<>();
+        for (Task task : this.list) {
+            if (task.getDescription().contains(keyword)) {
+                newList.add(task);
+            }
+        }
+        return new TaskList(newList);
+    }
+
 }

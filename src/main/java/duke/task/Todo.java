@@ -6,6 +6,7 @@ public class Todo extends Task {
         super(desc);
     }
 
+    @Override
     public String getDescription() {
         return super.description;
     }
