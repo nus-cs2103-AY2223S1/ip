@@ -1,3 +1,10 @@
+package duke;
+
+import duke.dukeExceptions.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.ToDo;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
@@ -36,7 +43,7 @@ public class Storage {
                 }
             }
         } catch (IOException e) {
-            throw new DukeException("Storage error");
+            throw new DukeException("duke.Storage error");
         } 
     }
     
@@ -51,7 +58,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("Storage error");
+            throw new DukeException("duke.Storage error");
         }
     }
 }

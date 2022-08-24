@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
@@ -41,7 +43,7 @@ public class UI {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        String intro = "Hello I am Duke";
+        String intro = "Hello I am duke";
         
         showToUser(logo, intro);
     }
