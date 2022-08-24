@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Task {
     /**
      * The description of the task.
@@ -7,6 +9,10 @@ public class Task {
      * A boolean indicating if the task is marked as done.
      */
     private boolean isDone;
+    /**
+     * Stores the task data to be saved.
+     */
+    public static ArrayList<String> SAVE_DATA = new ArrayList<>();
 
     /**
      * Constructor for a Task object.

@@ -1,4 +1,9 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -67,7 +72,9 @@ public class Doemon {
                 int listNum = 1;
                 String listStr = "Here is what's on my bread:\n\t";
                 for (Task task : tasks) {
-                    if (task == null) break;
+                    if (task == null) {
+                        break;
+                    }
                     listStr += listNum++ + "." + task.toString() + "\n\t";
                 }
                 listStr = listNum == 1 ? "You have no tasks!" : listStr.trim();
@@ -79,7 +86,9 @@ public class Doemon {
 
             // Check for mark/unmark/delete
             try {
-                if (hasMarkedOrDeleted(inputArr)) continue;
+                if (hasMarkedOrDeleted(inputArr)) {
+                    continue;
+                }
             } catch (InvalidTaskNumberException itne) {
                 System.out.println(output(itne.toString()));
             }
@@ -117,17 +126,24 @@ public class Doemon {
                     String taskDescription = taskDataArr[2];
                     if (taskType.equals("T")) {
                         Task task = new Todo(taskDescription);
-                        if (isMarked) task.mark();
+                        if (isMarked) {
+                            task.mark();
+                        }
                         tasks.add(task);
                     } else if (taskType.equals("D")) {
                         Task task = new Deadline(taskDescription, taskDataArr[3]);
-                        if (isMarked) task.mark();
+                        if (isMarked) {
+                            task.mark();
+                        }
                         tasks.add(task);
                     } else {
                         Task task = new Event(taskDescription, taskDataArr[3]);
-                        if (isMarked) task.mark();
+                        if (isMarked) {
+                            task.mark();
+                        }
                         tasks.add(task);
                     }
+                    Task.SAVE_DATA.add(taskData);
                     taskData = br.readLine();
                 }
             } else {
@@ -142,6 +158,29 @@ public class Doemon {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+        }
+    }
+
+    private void saveTasks() {
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter(new FileWriter(new File(TASK_FILE_PATH)));
+            StringBuilder toWrite = new StringBuilder();
+            for (int i = 0; i < Task.SAVE_DATA.size(); i++) {
+                toWrite.append(Task.SAVE_DATA.get(i));
+                if (i < Task.SAVE_DATA.size() - 1) {
+                    toWrite.append('\n');
+                }
+            }
+            bw.write(toWrite.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                bw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -161,22 +200,26 @@ public class Doemon {
             if (index >= 0 && index < this.tasks.size()) {
                 if (inputArr[0].equals("mark")) {
                     this.tasks.get(index).mark();
+                    Task.SAVE_DATA.set(index, Task.SAVE_DATA.get(index).replaceFirst("0", "1"));
                     System.out.println(
                             output(String.format("Yay! This task is now marked as done:\n\t  %s",
                                     this.tasks.get(index).toString())));
                 } else if (inputArr[0].equals("unmark")){
                     this.tasks.get(index).unmark();
+                    Task.SAVE_DATA.set(index, Task.SAVE_DATA.get(index).replaceFirst("1", "0"));
                     System.out.println(
                             output(String.format("I guess you weren't done with that one:\n\t  %s",
                                     this.tasks.get(index).toString())));
                 } else {
                     Task removed = this.tasks.remove(index);
+                    Task.SAVE_DATA.remove(index);
                     System.out.println(
                             output(String.format("I used a knife to slice off this task from my bread:\n\t  %s" +
                                             "\n\tThere are %d items left on my bread.",
                                     removed.toString(),
                                     this.tasks.size())));
                 }
+                saveTasks();
                 return true;
             } else {
                 throw new InvalidTaskNumberException(inputArr[0]);
@@ -213,6 +256,9 @@ public class Doemon {
         } else {
             throw new InvalidTaskException();
         }
+        // Add new task to SAVE_DATA and overwrite txt file
+        Task.SAVE_DATA.add(this.tasks.get(this.tasks.size() - 1).saveString());
+        saveTasks();
         System.out.println(output("Alright! I have recorded this task on my bread:\n\t  "
                 + this.tasks.get(this.tasks.size() - 1).toString()
                 + "\n\tYou now have " + this.tasks.size() + " task(s) recorded on my bread."));
