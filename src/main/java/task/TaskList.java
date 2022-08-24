@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @author fannyjian
  */
 public class TaskList {
-    private ArrayList<Task> tasks;
+    private static ArrayList<Task> tasks;
 
     /**
      * Initialises the task list with an already saved list of tasks.
@@ -36,8 +36,8 @@ public class TaskList {
      *
      * @return Size of TaskList.
      */
-    public int size() {
-        return this.tasks.size();
+    public static int size() {
+        return tasks.size();
     }
 
     /**

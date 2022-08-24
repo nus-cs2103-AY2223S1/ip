@@ -10,6 +10,8 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import exception.LunaException;
+
 import ui.Ui;
 
 import parser.Parser;
@@ -65,13 +67,6 @@ public class Storage {
             writer.close();
         } finally {
             return tasks;
-        }
-    }
-
-    public void handleString(String s, ArrayList<Task> tasks) {
-        Task tsk = Parser.parseSaved(s);
-        if (tsk != null) {
-            tasks.add(tsk);
         }
     }
 

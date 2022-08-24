@@ -1,5 +1,7 @@
 package command;
 
+import java.time.LocalDate;
+
 import storage.Storage;
 
 // Import Tasks
@@ -35,7 +37,7 @@ import ui.Ui;
      * @param des Description of Task.
      * @param date Date to be completed by.
      */
-    public AddCommand(String type, String des, String date) {
+    public AddCommand(String type, String des, LocalDate date) {
         switch (type) {
         case "deadline":
             this.task = new Deadline(des, date);

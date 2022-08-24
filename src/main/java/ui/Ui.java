@@ -75,7 +75,7 @@ public class Ui {
     }
 
     public void showLoadingError() {
-        System.out.println("⚡️Luna has encountered an error while loading tasks⚡️" +
+        showError("⚡️Luna has encountered an error while loading tasks⚡️" +
                     "\n️Please exit and try again ️⛈");
     }
 

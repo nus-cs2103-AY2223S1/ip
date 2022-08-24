@@ -10,7 +10,6 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    private static final DateTimeFormatter ACCEPT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter TO = DateTimeFormatter.ofPattern("dd MMM yyyy");
     protected LocalDate by;
 
@@ -21,11 +20,6 @@ public class Deadline extends Task {
      * @param description Specification of task to be completed.
      * @param by Target date of completion.
      */
-    public Deadline(String description, String by) {
-        super(description);
-        this.by = LocalDate.parse(by, ACCEPT);
-    }
-
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;

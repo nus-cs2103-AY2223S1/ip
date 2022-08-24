@@ -9,7 +9,10 @@ import command.FindCommand;
 import command.ListCommand;
 import command.UpdateCommand;
 
+// Import Exceptions
 import exception.LunaException;
+import java.lang.NumberFormatException;
+import java.time.format.DateTimeParseException;
 
 // Import Tasks;
 import task.Deadline;
@@ -43,23 +46,23 @@ public class Parser {
         switch (cmdSplit[0]) {
         case "todo":
             if (cmd.length() <= 5) {
-                throw new LunaException("Please enter a task to do 🌷");
+                throw new LunaException("Please enter a task to do 🍂");
             }
             c = new AddCommand(cmdSplit[1]);
             break;
         case "deadline":
             if (cmd.length() <= 9) {
-                throw new exception.LunaException("Please enter a task and deadline 🌷");
+                throw new LunaException("Please enter a task and deadline 🍂");
             }
             String[] desSplit = cmdSplit[1].split(" /by ");
-            c = new AddCommand("deadline", desSplit[0], desSplit[1]);
+            c = new AddCommand("deadline", desSplit[0], parseDate(desSplit[1]));
             break;
         case "event":
             if (cmd.length() <= 6) {
-                throw new exception.LunaException("Please enter an event and date 🌷");
+                throw new LunaException("Please enter an event and date 🍂");
             }
             String[] split = cmdSplit[1].split(" /at ");
-            c = new AddCommand("event", split[0], split[1]);
+            c = new AddCommand("event", split[0], parseDate(split[1]));
             break;
         case "list":
             c = new ListCommand();
@@ -68,13 +71,13 @@ public class Parser {
             c = new ExitCommand();
             break;
         case "delete":
-            c = new DeleteCommand(Integer.parseInt(cmdSplit[1]));
+            c = new DeleteCommand(parseNum(cmdSplit[1]));
             break;
         case "mark":
-            c = new UpdateCommand("mark", Integer.parseInt(cmdSplit[1]));
+            c = new UpdateCommand("mark", parseNum(cmdSplit[1]));
             break;
         case "unmark":
-            c = new UpdateCommand("unmark", Integer.parseInt(cmdSplit[1]));
+            c = new UpdateCommand("unmark", parseNum(cmdSplit[1]));
             break;
         case "find":
             c = new FindCommand(cmdSplit[1].toLowerCase());
@@ -114,7 +117,7 @@ public class Parser {
             String by = desSplit[1].substring(0, 11);
 
             // Create date
-            LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd MMM yyyy"));
+            LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
 
             // Create new Deadline
             Task tsk = new Deadline(des, date);
@@ -132,7 +135,7 @@ public class Parser {
             String at = desSplit[1].substring(0, 11);
 
             // Create date
-            LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd MMM yyyy"));
+            LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd-MMM-yyyy"));
 
             // Create new Event
             Task tsk = new Event(des, date);
@@ -144,6 +147,42 @@ public class Parser {
             return tsk;
         } else {
             return null;
+        }
+    }
+
+    /**
+     * Checks if input string represents a valid number index and converts it to an integer.
+     *
+     * @param txt String to be checked.
+     * @return A number index.
+     * @throws LunaException.
+     */
+    public static int parseNum(String txt) throws LunaException {
+        int num;
+        try {
+            num = Integer.parseInt(txt);
+            if (num > TaskList.size()) {
+                throw new LunaException("Please enter a number from 0 to " + TaskList.size() + " 🍂");
+            }
+        } catch (NumberFormatException e) {
+            throw new LunaException("Please enter a valid number 🍂");
+        }
+        return num;
+    }
+
+    /**
+     * Checks if input string represents a valid date in the correct format
+     * and converts it to a LocalDate instance.
+     *
+     * @param txt String to be checked.
+     * @return A LocalDate in dd-MMM-yyyy format.
+     * @throws LunaException.
+     */
+    public static LocalDate parseDate(String txt) throws LunaException {
+        try {
+            return LocalDate.parse(txt, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } catch (DateTimeParseException e) {
+            throw new LunaException("Luna only reads dates in yyyy-MM-dd format 🍂");
         }
     }
 }

@@ -6,7 +6,6 @@ package exception;
  * @author fannyjian
  */
 public class LunaException extends Exception {
-    private static String sep = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
 
     /**
      * Creates a new exception with the error message.
@@ -15,10 +14,5 @@ public class LunaException extends Exception {
      */
     public LunaException(String message) {
         super(message);
-    }
-
-    @Override
-    public String toString() {
-        return sep + "\n" + getMessage() + "\n" + sep;
     }
 }
