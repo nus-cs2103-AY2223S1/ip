@@ -2,7 +2,17 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * The main class of the Duke application.
+ *
+ * @author Elbert Benedict
+ */
 public class Duke {
+    /**
+     * Runs the main logic of the Duke application.
+     *
+     * @param args not important, ignore.
+     */
     public static void main(String[] args) {
         TaskList taskList;
         try {
