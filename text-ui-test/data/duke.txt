@@ -1,0 +1,6 @@
+[T][ ] wake up
+[D][ ] sleep (by: Mar 25 2022)
+[E][ ] do tutorial (at: Dec 05 2017)
+[T][ ] wake up
+[D][ ] sleep (by: Mar 25 2022)
+[E][ ] do tutorial (at: Dec 05 2017)
