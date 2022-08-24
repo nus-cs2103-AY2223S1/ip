@@ -4,6 +4,7 @@ import duke.common.Message;
 import duke.data.TaskList;
 import duke.tasks.Task;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -61,6 +62,20 @@ public class Ui {
             }
         } else {
             show(Message.EMPTY_TASK_LIST);
+        }
+    }
+
+    public void showMatchingTasks(ArrayList<Task> matchingTasks) {
+        int size = matchingTasks.size();
+        if (size != 0) {
+            show(Message.MATCHING_TASKS);
+            int taskNum = 1;
+            for (Task task : matchingTasks) {
+                show(taskNum + "." + task);
+                taskNum++;
+            }
+        } else {
+            show(Message.NO_MATCHING_TASKS);
         }
     }
 }

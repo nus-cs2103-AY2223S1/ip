@@ -21,6 +21,10 @@ public abstract class Task {
         return this.description;
     }
 
+    public boolean hasKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), this.description);

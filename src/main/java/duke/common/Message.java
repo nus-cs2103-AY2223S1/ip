@@ -18,4 +18,7 @@ public class Message {
     public static final String TASK_ADDED = "Task added:\n\t";
     public static final String TASK_REMOVED = "Task removed:\n\t";
     public static final String NUMBER_OF_TASKS = "You have %d task(s) in the list.";
+    public static final String MATCHING_TASKS = "Here are the matching task(s) in your list:";
+    public static final String NO_MATCHING_TASKS = "There are no matching tasks in your list!";
+    public static final String PROVIDE_KEYWORD = "Please provide a keyword!";
 }
