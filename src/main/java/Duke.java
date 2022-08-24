@@ -1,19 +1,13 @@
-<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
-=======
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
->>>>>>> 3cf1fba103676a69e11e840a4434a5176a8468d9
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
-<<<<<<< HEAD
 import java.io.FileWriter;
-=======
 import java.time.LocalDate;
->>>>>>> 3cf1fba103676a69e11e840a4434a5176a8468d9
 
 public class Duke {
 
@@ -53,10 +47,10 @@ public class Duke {
         return outputString.toString();
     }
 
-<<<<<<< HEAD
     public static FileWriter createFileWriter() throws IOException {
         return new FileWriter(fileDestination);
-=======
+    }
+
     public static LocalDate createLocalDate(String stringDate) {
         String[] currDateWords = stringDate.split("/");
         String year = currDateWords[2];
@@ -64,7 +58,6 @@ public class Duke {
         String day = currDateWords[0].length() < 2 ? "0" + currDateWords[0] : currDateWords[0];
         String currDateString = year + '-' + month + '-' + day;
         return LocalDate.parse(currDateString);
->>>>>>> 3cf1fba103676a69e11e840a4434a5176a8468d9
     }
 
     /**
@@ -205,7 +198,6 @@ public class Duke {
                                 // Cut down a white spacing at the end
                                 by = by.substring(0, by.length() - 1);
                             }
-                            System.out.println(Arrays.toString(dateTimeArray));
                             assert dateTimeArray != null;
                             LocalDate byDate = createLocalDate(dateTimeArray[0].strip());
                             Deadline newDeadline = new Deadline(description, byDate, by);
@@ -266,6 +258,5 @@ public class Duke {
             departure.printCommand();
         }
     }
-
 
 }
