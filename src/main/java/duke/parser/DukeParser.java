@@ -73,6 +73,9 @@ public class DukeParser {
         case "bye":
             this.byeInstructionHandler();
             break;
+        case "find":
+            this.findInstructionHandler();
+            break;
         case "mark":
             this.numericalInstructionHandler();
             st.save(this.taskList);
@@ -170,6 +173,29 @@ public class DukeParser {
         }
 
         System.out.println(BREAK_LINES);
+    }
+
+    /**
+     * Handles find instructions on the taskList
+     *
+     * @throws DukeException If no valid search parameters are found in user input
+     */
+    public void findInstructionHandler() throws DukeException {
+        System.out.println(BREAK_LINES);
+        if (this.restOfInputString.equals("")) {
+            throw new DukeException("Oops! Please provide a valid string to search for.");
+        }
+        String[] searchTerms = this.restOfInputString.split(" ");
+        String found = taskList.search(searchTerms);
+        if (found.equals("")) {
+            System.out.println("Hmm... I couldn't find any tasks matching your queries :(");
+            System.out.println(BREAK_LINES);
+            return;
+        }
+        System.out.println("Here are the matching tasks in your list that I found!");
+        System.out.println(found);
+        System.out.println(BREAK_LINES);
+
     }
 
     /**

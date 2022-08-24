@@ -59,16 +59,3 @@ public class Duke {
 
 }
 
-/* TODO
-Add error checking for user input after the /: Should be "at" and "by" for Event and Deadline
-Help command
-
-Possible code refactor:
-while (true) {
-    fetch user input
-    sanitise user input
-    pass sanitised input to duke.parser, including ArrayList
-    duke.parser will parse the code, hand it to individual handler classes
-    individual handler classes will modify the List accordingly
-}
- */
