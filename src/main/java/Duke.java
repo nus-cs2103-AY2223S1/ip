@@ -2,9 +2,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Main class for Duke Chatbot
+ */
 public class Duke {
+    // Constants for messages to be printed to the console
     public static final String LONG_LINE = "    ____________________________________________________________\n";
-
     public static final String GREETING_MESSAGE = LONG_LINE +
             "     Hello! I'm Duke\n" +
             "     What can I do for you?\n" +
@@ -50,88 +53,88 @@ public class Duke {
         String[] inputStrings = command.split(" ", 2);
         try {
             switch (inputStrings[0]) {
-                case "list": {
-                    // Return all tasks
-                    sb.append(LONG_LINE).append("     Here are the tasks in your list:\n");
-                    for (int i = 0; i < taskList.size(); i++) {
-                        sb.append("     ").append(i + 1).append(".").append(taskList.get(i)).append("\n");
-                    }
-                    sb.append(LONG_LINE);
-                    break;
+            case "list": {
+                // Return all tasks
+                sb.append(LONG_LINE).append("     Here are the tasks in your list:\n");
+                for (int i = 0; i < taskList.size(); i++) {
+                    sb.append("     ").append(i + 1).append(".").append(taskList.get(i)).append("\n");
                 }
-                case "mark": {
-                    // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
-                    // Hence, we need to account for this offset here
-                    int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
-                    Task task = this.taskList.get(taskIndex);
-                    task.markTask();
+                sb.append(LONG_LINE);
+                break;
+            }
+            case "mark": {
+                // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
+                // Hence, we need to account for this offset here
+                int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
+                Task task = this.taskList.get(taskIndex);
+                task.markTask();
 
-                    sb.append(LONG_LINE)
-                            .append("     Nice! I've marked this task as done:\n")
-                            .append("       ").append(task).append("\n")
-                            .append(LONG_LINE);
-                    break;
-                }
-                case "unmark": {
-                    // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
-                    // Hence, we need to account for this offset here
-                    int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
-                    Task task = this.taskList.get(taskIndex);
-                    task.unmarkTask();
+                sb.append(LONG_LINE)
+                        .append("     Nice! I've marked this task as done:\n")
+                        .append("       ").append(task).append("\n")
+                        .append(LONG_LINE);
+                break;
+            }
+            case "unmark": {
+                // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
+                // Hence, we need to account for this offset here
+                int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
+                Task task = this.taskList.get(taskIndex);
+                task.unmarkTask();
 
-                    sb.append(LONG_LINE)
-                            .append("     OK, I've marked this task as not done yet:\n")
-                            .append("       ").append(task).append("\n")
-                            .append(LONG_LINE);
-                    break;
+                sb.append(LONG_LINE)
+                        .append("     OK, I've marked this task as not done yet:\n")
+                        .append("       ").append(task).append("\n")
+                        .append(LONG_LINE);
+                break;
+            }
+            case "todo": {
+                if (inputStrings.length == 1) {
+                    throw new DukeException("     ☹ OOPS!!! The description of a todo cannot be empty.\n");
                 }
-                case "todo": {
-                    if (inputStrings.length == 1) {
-                        throw new DukeException("     ☹ OOPS!!! The description of a todo cannot be empty.\n");
-                    }
-                    Todo todo = new Todo(inputStrings[1]);
+                Todo todo = new Todo(inputStrings[1]);
 
-                    sb.append(this.addTask(todo));
-                    break;
+                sb.append(this.addTask(todo));
+                break;
+            }
+            case "deadline": {
+                if (inputStrings.length == 1) {
+                    throw new DukeException("     ☹ OOPS!!! The description of a deadline cannot be empty.\n");
                 }
-                case "deadline": {
-                    if (inputStrings.length == 1) {
-                        throw new DukeException("     ☹ OOPS!!! The description of a deadline cannot be empty.\n");
-                    }
-                    String[] deadlineStrings = inputStrings[1].split(" /by ", 2);
-                    if (deadlineStrings.length == 1 || deadlineStrings[1] == "") {
-                        throw new DukeException("     ☹ OOPS!!! The date/time of a deadline cannot be empty.\n");
-                    }
-                    Deadline deadline = new Deadline(deadlineStrings[0], deadlineStrings[1]);
+                String[] deadlineStrings = inputStrings[1].split(" /by ", 2);
+                if (deadlineStrings.length == 1 || deadlineStrings[1].equals("")) {
+                    throw new DukeException("     ☹ OOPS!!! The date/time of a deadline cannot be empty.\n");
+                }
+                Deadline deadline = new Deadline(deadlineStrings[0], deadlineStrings[1]);
 
-                    sb.append(this.addTask(deadline));
-                    break;
+                sb.append(this.addTask(deadline));
+                break;
+            }
+            case "event": {
+                if (inputStrings.length == 1) {
+                    throw new DukeException("     ☹ OOPS!!! The description of an event cannot be empty.\n");
                 }
-                case "event": {
-                    if (inputStrings.length == 1) {
-                        throw new DukeException("     ☹ OOPS!!! The description of an event cannot be empty.\n");
-                    }
-                    String[] eventStrings = inputStrings[1].split(" /at ", 2);
-                    if (eventStrings.length == 1 || eventStrings[1] == "") {
-                        throw new DukeException("     ☹ OOPS!!! The date/time of an event cannot be empty.\n");
-                    }
-                    Event event = new Event(eventStrings[0], eventStrings[1]);
+                String[] eventStrings = inputStrings[1].split(" /at ", 2);
+                if (eventStrings.length == 1 || eventStrings[1].equals("")) {
+                    throw new DukeException("     ☹ OOPS!!! The date/time of an event cannot be empty.\n");
+                }
+                Event event = new Event(eventStrings[0], eventStrings[1]);
 
-                    sb.append(this.addTask(event));
-                    break;
-                }
-                case "delete": {
-                    // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
-                    // Hence, we need to account for this offset here
-                    int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
-                    Task task = this.taskList.remove(taskIndex);
+                sb.append(this.addTask(event));
+                break;
+            }
+            case "delete": {
+                // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
+                // Hence, we need to account for this offset here
+                int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
+                Task task = this.taskList.remove(taskIndex);
 
-                    sb.append(this.addTask(task));
-                    break;
-                }
-                default: {
-                    throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
-                }
+                sb.append(this.addTask(task));
+                break;
+            }
+            default: {
+                throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
+            }
             }
         } catch (NumberFormatException | IndexOutOfBoundsException exception) {
             // Catches exceptions thrown when parsing integers in mark/unmark commands or
