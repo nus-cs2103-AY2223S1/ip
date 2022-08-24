@@ -1,3 +1,5 @@
+package byu;
+
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.Scanner;
 

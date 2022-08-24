@@ -1,3 +1,5 @@
+package exceptions;
+
 public class InvalidIndex extends DukeException {
 
     public InvalidIndex() {

@@ -1,12 +1,17 @@
-public class DeleteCommand extends Command{
+package commands;
+import byu.*;
+import exceptions.InvalidIndex;
+
+public class UnmarkCommand extends Command {
 
     int index;
 
-    public DeleteCommand(int index) {
+    public UnmarkCommand(int index) {
         this.index = index;
     }
+
     public void execute(ToDoList list, Ui ui) throws InvalidIndex {
-        list.delete(this.index);
+        list.unMark(this.index);
     }
 
     public boolean isExit() {

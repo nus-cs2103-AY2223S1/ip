@@ -1,3 +1,7 @@
+package commands;
+import byu.*;
+import task.Task;
+
 public class AddCommand extends Command {
 
     Task task;

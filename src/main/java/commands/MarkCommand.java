@@ -1,3 +1,7 @@
+package commands;
+import byu.*;
+import exceptions.InvalidIndex;
+
 public class MarkCommand extends Command {
 
     int index;
