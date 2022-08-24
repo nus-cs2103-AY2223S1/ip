@@ -1,4 +1,4 @@
-public class EmptyTaskException extends Exception {
+public class EmptyTaskException extends DukeException {
 
     public EmptyTaskException() {}
 

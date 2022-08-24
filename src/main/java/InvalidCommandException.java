@@ -1,4 +1,4 @@
-public class InvalidCommandException extends Exception {
+public class InvalidCommandException extends DukeException {
     public InvalidCommandException() {}
 
     public InvalidCommandException(String message) {

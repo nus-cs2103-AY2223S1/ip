@@ -38,10 +38,18 @@ public class Task {
         return taskName;
     }
 
-    public String getDateAndTime() {
+    public String getOutputDateAndTime() {
         if (this.time != null && this.date != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-            return " " + this.date.format(formatter) + ", " + this.time.toString() + ")";
+            return this.date.format(formatter) + ", " + this.time.toString() + ")";
+        } else {
+            return "";
+        }
+    }
+
+    public String getToStringDateAndTime() {
+        if (this.time != null && this.date != null) {
+            return "," + this.getDate() + "," + this.getTime();
         } else {
             return "";
         }
@@ -55,8 +63,13 @@ public class Task {
         return this.time;
     }
 
+    public String getTaskType() {
+        return "PARENT TYPE (GOT BUG)";
+    }
+
     @Override
     public String toString() {
-        return "[" + (this.isMarked() ? "X" : " ") + "]" + this.taskName + this.getDateAndTime() + "\n";
+        //return "[" + (this.isMarked() ? "X" : " ") + "]" + this.taskName + this.getDateAndTime() + "\n";
+        return (this.isMarked() ? "1" : "0") + "," + this.taskName + this.getToStringDateAndTime() + "\n";
     }
 }

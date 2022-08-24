@@ -6,162 +6,48 @@ import java.util.Scanner;
 
 public class Duke {
 
-    public static final String GREETING_MESSAGE = "Hello! I'm RyanBot ☺\nWhat can I do for you?";
-    public static final String GOODBYE_MESSAGE = "Bye. Please don't leave me :( Hope to see you again soon!";
-    public static boolean listChanged = false;
-    public static ArrayList<Task> taskList = new ArrayList<Task>();
+    //public static boolean listChanged = false;
+    //public static ArrayList<Task> taskList = new ArrayList<Task>();
+
+    private Storage storage;
+    private TaskList taskList;
+    private Ui ui;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            taskList = new TaskList(storage.load());
+            if (taskList.isEmpty()) {
+                throw new DukeException();
+            }
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            taskList = new TaskList();
+        }
+    }
 
     public static void main(String[] args) {
-        System.out.println(GREETING_MESSAGE);
+        new Duke("duke.txt").run();
+    }
 
-        Scanner in = new Scanner(System.in);
-        String s = in.nextLine();
-        String parts[] = s.split(" ", 0);
-        String command = parts[0];
 
-        Storage storage = new Storage("duke.txt");
-
-        while(!command.equals("bye")) {
-
-            if (command.equals("list")) {
-                String list = getList();
-                System.out.println(list);
+    public void run() {
+        this.ui.showGreetingMessage();
+        this.ui.printList(this.taskList);
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(taskList, ui, storage);
+                isExit = c.isExit();
+            } catch (Exception e) {
+                ui.showError(e.getMessage());
             }
-
-            else if (command.equals("mark") || command.equals("unmark")) {
-                try {
-                    if (command.equals("mark")) {
-                        int pos = Integer.parseInt(parts[1]) - 1;
-                        Task markedTask = taskList.get(pos).mark();
-                        taskList.set(pos, markedTask);
-                        System.out.println("Nice! I've marked this task as done:\n " + markedTask);
-                        listChanged = true;
-                    } else if (command.equals("unmark")) {
-                        int pos = Integer.parseInt(parts[1]) - 1;
-                        Task unmarkedTask = taskList.get(pos).unmark();
-                        taskList.set(pos, unmarkedTask);
-                        System.out.println("OK, I've marked this task as not done yet:\n " + unmarkedTask);
-                        listChanged = true;
-                    }
-                }
-                catch (ArrayIndexOutOfBoundsException ex) {
-                    System.out.println("☹ OOPS!!! You did not specify which task to be marked/unmarked.");
-                }
-                catch (IndexOutOfBoundsException ex) {
-                    System.out.println("☹ OOPS!!! Your list only has " + taskList.size() + " tasks.");
-                }
-            }
-
-            else if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
-                try {
-                    if (parts.length == 1) {
-                        throw new EmptyTaskException();
-                    }
-                    String taskName = "";
-                    String dateString = "";
-                    String timeString = "";
-                    for (int i = 1; i < parts.length; i++) {
-                        if (parts[i].charAt(0) != '/') {
-                            taskName += " " + parts[i];
-                        } else {
-                            taskName += " (" + parts[i].substring(1) + ":";
-                            dateString = parts[i + 1];
-                            timeString = parts[i + 2];
-                            break;
-                        }
-                    }
-
-                    LocalDate date = null;
-                    if (!dateString.equals("")) {
-                        date = validateDateString(dateString);
-                    }
-
-                    LocalTime time = null;
-                    if (!timeString.equals("")) {
-                        time = validateTimeString(timeString);
-                    }
-
-                    Task task = new Task("DummyTask", date, time);
-                    if (command.equals("todo")) {
-                            task = new ToDo(taskName, date, time);
-                    } else if (command.equals("deadline")) {
-                            task = new Deadline(taskName, date, time);
-                    } else if (command.equals("event")) {
-                            task = new Event(taskName, date, time);
-                    }
-                    taskList.add(task);
-                    System.out.println("Got it. I've added this task:\n" + task + "Now you have " + taskList.size() + " tasks in the list.\n");
-                    listChanged = true;
-                }
-                catch (EmptyTaskException ex){
-                    System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
-                }
-                catch (DateTimeParseException ex) {
-                    System.out.println("Invalid date & time format. Please follow the format of date as \"YYYY-MM-DD\" and time as \"HHMM\".");
-
-                }
-            }
-
-            else if (command.equals("delete")) {
-                try {
-                    int pos = Integer.parseInt(parts[1]) - 1;
-                    Task removedTask = taskList.get(pos);
-                    taskList.remove(pos);
-                    System.out.println("Noted. I've removed this task:\n " + removedTask + "Now you have " + taskList.size() + " tasks in the list.\n");
-                    listChanged = true;
-                }
-                catch (ArrayIndexOutOfBoundsException ex) {
-                    System.out.println("☹ OOPS!!! You did not specify which task to be delete.");
-                }
-                catch (IndexOutOfBoundsException ex) {
-                    System.out.println("☹ OOPS!!! Your list only has " + taskList.size() + " tasks.");
-                }
-            }
-
-            else {
-                try {
-                    throw new InvalidCommandException();
-                }
-                catch (InvalidCommandException ex) {
-                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-                }
-            }
-
-            if (listChanged) {
-                String list = getList();
-                storage.write(list);
-                listChanged = false;
-            }
-
-
-            s = in.nextLine();
-            parts = s.split(" ", 0);
-            command = parts[0];
         }
 
-        System.out.println(GOODBYE_MESSAGE);
+        this.ui.showGoodbyeMessage();
     }
 
-
-    public static String getList() {
-        String listOutput = "Here are the tasks in your list:\n";
-        int index = 1;
-        for (Task t : taskList) {
-            listOutput += index + "." + t;
-            index++;
-        }
-        return listOutput;
-    }
-
-    public static LocalTime validateTimeString(String timeString) {
-        //desired date format "1800"
-        String validatedTimeString = timeString.substring(0,2) + ":" + timeString.substring(2,4) + ":" + "00";
-        LocalTime time = LocalTime.parse(validatedTimeString);
-        return time;
-    }
-
-    public static LocalDate validateDateString(String dateString) {
-        LocalDate date = LocalDate.parse(dateString);
-        return date;
-    }
 }

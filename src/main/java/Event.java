@@ -26,6 +26,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + this.getTaskType() + "]" + super.toString();
+        return this.getTaskType() + "," + super.toString();
     }
 }
