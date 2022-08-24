@@ -9,7 +9,25 @@ public class TaskList {
         taskMessager = new TaskMessager();
         if (text != "") {
             String[] texts = text.split("\n");
-            System.out.println(texts[texts.length -1]);
+            String taskType;
+            for (int i = 0; i < texts.length; i++) {
+                taskType = texts[i].substring(3,6);
+                String[] descriptions;
+                switch (taskType) {
+                case "[T]":
+                    tasks.add(new Todo(texts[i].substring(10), texts[i].charAt(7) == 'X'));
+                    break;
+                case "[D]":
+                    descriptions = texts[i].substring(10).split(" / by ");
+                    tasks.add(new Deadline(descriptions[0], descriptions[1], texts[i].charAt(7) == 'X'));
+                    break;
+                case "[E]":
+                    descriptions = texts[i].substring(10).split(" / at ");
+                    tasks.add(new Event(descriptions[0], descriptions[1], texts[i].charAt(7) == 'X'));
+                    break;
+                }
+
+            }
         }
     }
 
