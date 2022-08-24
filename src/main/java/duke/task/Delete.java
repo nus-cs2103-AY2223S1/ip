@@ -1,8 +1,8 @@
-package Duke.Task;
+package duke.task;
 
-import Duke.Processor.Storage;
-import Duke.Processor.TaskList;
-import Duke.UI;
+import duke.processor.Storage;
+import duke.processor.TaskList;
+import duke.Ui;
 
 /**
  * Class to represent "Duke.Task.Delete" tasks.
@@ -24,7 +24,7 @@ public class Delete extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui, Storage storage) {
+    public void execute(TaskList task, Ui ui, Storage storage) {
         Task taskDeleted = task.delete(num);
         ui.showDeleteTask(task, taskDeleted);
         storage.write(task.getTasks());

@@ -1,20 +1,20 @@
-package Duke.Processor;
+package duke.processor;
 
-import Duke.Exception.NoCommandException;
-import Duke.Exception.NoDescriptionException;
-import Duke.Exception.NoTimeException;
-import Duke.Exception.WrongTimeFormatException;
-import Duke.Task.Bye;
-import Duke.Task.Deadline;
-import Duke.Task.Delete;
-import Duke.Task.Event;
-import Duke.Task.Find;
-import Duke.Task.List;
-import Duke.Task.Mark;
-import Duke.Task.Task;
-import Duke.Task.Todo;
-import Duke.Task.Unmark;
-import Duke.UI;
+import duke.exception.NoCommandException;
+import duke.exception.NoDescriptionException;
+import duke.exception.NoTimeException;
+import duke.exception.WrongTimeFormatException;
+import duke.task.Bye;
+import duke.task.Deadline;
+import duke.task.Delete;
+import duke.task.Event;
+import duke.task.Find;
+import duke.task.List;
+import duke.task.Mark;
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.Unmark;
+import duke.Ui;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,7 +28,7 @@ public class Parser {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
     private final static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static UI ui = new UI();
+    private static Ui ui = new Ui();
 
     /**
      * The method to mark done command task process

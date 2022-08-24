@@ -1,9 +1,9 @@
-package Duke;
+package duke;
 
-import Duke.Processor.Parser;
-import Duke.Processor.Storage;
-import Duke.Processor.TaskList;
-import Duke.Task.Task;
+import duke.processor.Parser;
+import duke.processor.Storage;
+import duke.processor.TaskList;
+import duke.task.Task;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -16,7 +16,7 @@ import java.util.Scanner;
  * This is the Main Class that contains the Main method.
  */
 public class Duke {
-    private UI ui;
+    private Ui ui;
     private TaskList tasklist;
     private Storage storage;
 
@@ -24,7 +24,7 @@ public class Duke {
      * Private constructor of Duke.Duke.
      */
     private Duke(String filePath) {
-        ui = new UI();
+        ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasklist = new TaskList(storage.read());

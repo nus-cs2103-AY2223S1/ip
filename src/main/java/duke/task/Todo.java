@@ -1,8 +1,8 @@
-package Duke.Task;
+package duke.task;
 
-import Duke.Processor.Storage;
-import Duke.Processor.TaskList;
-import Duke.UI;
+import duke.processor.Storage;
+import duke.processor.TaskList;
+import duke.Ui;
 
 /**
  * Class to represent "To Do" tasks.
@@ -61,7 +61,7 @@ public class Todo extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui, Storage storage) {
+    public void execute(TaskList task, Ui ui, Storage storage) {
         task.add(this);
         ui.showAddOnTask(task, (task.size() - 1));
         storage.write(task.getTasks());

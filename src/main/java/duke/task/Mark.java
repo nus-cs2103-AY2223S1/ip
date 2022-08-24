@@ -1,8 +1,8 @@
-package Duke.Task;
+package duke.task;
 
-import Duke.Processor.Storage;
-import Duke.Processor.TaskList;
-import Duke.UI;
+import duke.processor.Storage;
+import duke.processor.TaskList;
+import duke.Ui;
 
 /**
  * Class to represent "Duke.Task.Mark" tasks.
@@ -24,7 +24,7 @@ public class Mark extends Task {
      * @param ui
      */
     @Override
-    public void execute(TaskList task, UI ui, Storage storage) {
+    public void execute(TaskList task, Ui ui, Storage storage) {
         task.markDone(num);
         ui.showDoneTask(task, num);
         storage.write(task.getTasks());

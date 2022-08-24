@@ -1,12 +1,12 @@
-package Duke;
+package duke;
 
-import Duke.Processor.TaskList;
-import Duke.Task.Task;
+import duke.processor.TaskList;
+import duke.task.Task;
 
 /**
  * Class to represent the user interfaces
  */
-public class UI {
+public class Ui {
     private final static String underline = "____________________________________________________________";
     private final static String indentation = "  ";
 
