@@ -35,7 +35,7 @@ public class Storage {
                 String[] details = currLine.split("\\|");
                 boolean done = !Objects.equals(details[1], "0");
                 String type = details[0];
-                String date[];
+                String[] date;
                 switch (type) {
                     case "T":
                         tasksToDo.add(new Todo(details[2], done));
@@ -77,8 +77,7 @@ public class Storage {
         try {
             BufferedWriter bW = Files.newBufferedWriter(Paths.get(filePath));
             bW.write("");
-            for (int i = 0; i < tasks.size(); i++) {
-                Task task = tasks.get(i);
+            for (Task task : tasks) {
                 updateFile(task);
             }
             return true;

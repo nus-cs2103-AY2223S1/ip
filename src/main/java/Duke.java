@@ -1,9 +1,6 @@
-import Duke.Task;
-import Duke.Event;
 import Duke.Parser;
 import Duke.Storage;
 import Duke.TaskList;
-import Duke.Todo;
 import Duke.Ui;
 
 public class Duke {
