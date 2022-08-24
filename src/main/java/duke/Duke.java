@@ -60,6 +60,7 @@ public class Duke {
 
     /**
      * Loop that is called to receive and process user input.
+     * This loop continues to run until the exit signal is flagged as true.
      */
     public void runLoop() {
         boolean isExit = false;
