@@ -1,8 +1,30 @@
-import java.util.*;
-import java.io.*;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Duke {
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+    public void run() {
+
+    }
+
     public static void main(String[] args) throws DukeException {
         File dukeFile = new File("C:/Users/HEWLETT PACKARD/ip/Duke.txt");
         FileWriter output;
