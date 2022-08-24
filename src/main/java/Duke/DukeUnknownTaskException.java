@@ -1,5 +1,9 @@
 package Duke;
 
+/**
+ * If task is unknown, DukeUnknownCommandException
+ * will be thrown.
+ */
 public class DukeUnknownTaskException extends DukeException {
 
     public DukeUnknownTaskException() {

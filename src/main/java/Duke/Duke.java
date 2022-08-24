@@ -8,31 +8,18 @@ public class Duke {
     Scanner sc;
     public Storage storage;
     public TaskList tasklist;
-    public ui ui;
-
-    public Duke() {
+    public Ui ui;
 
 
-        this.ui = new ui();
 
-        this.storage = new Storage("data/tasks.txt");
-        this.ui = new ui();
-
-        this.tasklist = new TaskList();
-        this.sc = new Scanner(System.in);
-
-        try {
-            this.tasklist = new TaskList();
-            storage.load();
-        } catch (IOException e) {
-            this.tasklist = new TaskList();
-            ui.printError(e.getMessage());
-        }
-
-    }
-
+    /**
+     * Constructor for Duke.
+     * Loads if there are any existing tasks in storage.
+     *
+     * @param filePath filepath
+     */
     public Duke(String path) {
-        this.ui = new ui();
+        this.ui = new Ui();
         this.storage = new Storage(path);
         try {
             this.tasklist = new TaskList();
@@ -45,20 +32,17 @@ public class Duke {
         }
     }
 
+    /**
+     * Run Duke programme
+     *
+     */
     public void run() {
         System.out.println(ui.greeting());
         boolean isExit = false;
-
         Handler handler = new Handler(tasklist, ui);
-
-
-
         while (!isExit) {
             try {
-
-
                 String echo = ui.getInput();
-
                 if (echo.equals("bye")) {
                     System.out.println(ui.bye());
                     isExit = true;
@@ -80,15 +64,13 @@ public class Duke {
                     throw new DukeUnknownTaskException();
                 }
                 storage.save();
-
             } catch (DukeException e){
                 ui.printError(e.getMessage());
-
             }
         }
     }
 
     public static void main(String[] args) {
-        new Duke().run();
+        new Duke("data/tasks.txt").run();
     }
 }
