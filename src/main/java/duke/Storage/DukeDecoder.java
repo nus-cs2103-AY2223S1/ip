@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DukeDecoder {
+    /**
+     * Loads List of task from existing text file.
+     * @return an ArrayList of Task
+     */
     public static ArrayList<Task> loadDataFromList() {
         ArrayList<Task> workList = new ArrayList<>();
         try {
