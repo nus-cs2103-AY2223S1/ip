@@ -36,30 +36,24 @@ public class TaskList {
         taskList.remove(index);
     }
 
-<<<<<<< HEAD
     /**
      * Method to get the task given its index
      *
      * @param index the index of the task to be found
      * @return the task in the index given
      */
-    public Task getTask(int index) { return taskList.get(index); }
+    public Task getTask(int index) {
+        return taskList.get(index);
+    }
 
     /**
      * Method to get the size of the taskList
      *
      * @return the size of the taskList
      */
-    public int getSize() { return taskList.size(); }
-=======
-    public Task getTask(int index) {
-        return taskList.get(index);
-    }
-
     public int getSize() {
         return taskList.size();
     }
->>>>>>> branch-A-CodingStandard
 
     /**
      * Method to clear the entire taskList
