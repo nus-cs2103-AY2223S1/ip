@@ -18,10 +18,10 @@ public abstract class Command {
     public abstract void execute(TaskList tasks, Ui ui) throws DukeException;
 
     /**
-     * Define if the command should cause the program to terminate
+     * Defines if the command should cause the program to terminate
      * @return whether the program should terminate.
      */
-    public boolean isExit() {
+    public boolean getShouldExit() {
         return false;
     }
 }

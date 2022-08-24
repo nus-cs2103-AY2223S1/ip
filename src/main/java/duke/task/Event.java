@@ -19,7 +19,7 @@ public class Event extends Task {
     }
 
     /**
-     * Factory method to create a Event task from an encoded string.
+     * Creates an Event task from an encoded string.
      *
      * @param encodedInput the encoded entry with format eventTime|description
      * @param completed the completion status of the Event task

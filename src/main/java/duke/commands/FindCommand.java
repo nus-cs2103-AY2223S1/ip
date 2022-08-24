@@ -8,7 +8,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Search for a task given certain constraints.
+ * Command to search for a task given certain constraints.
  */
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";

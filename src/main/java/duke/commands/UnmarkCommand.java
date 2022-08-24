@@ -8,7 +8,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Mark task as uncompleted.
+ * Command to mark task as uncompleted.
  */
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";

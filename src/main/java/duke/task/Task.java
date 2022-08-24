@@ -10,7 +10,7 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Create task with a given description
+     * Creates task with a given description
      * @param description description of the task.
      */
     public Task(String description) {
@@ -19,7 +19,7 @@ public abstract class Task {
     }
 
     /**
-     * String representation of the completion status.
+     * Gets string representation of the completion status.
      *
      * @return X if done else " "
      */
@@ -28,7 +28,7 @@ public abstract class Task {
     }
 
     /**
-     * Setter for the completion status of the task.
+     * Sets completion status of the task.
      *
      * @param isDone the new completion status
      */

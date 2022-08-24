@@ -18,7 +18,7 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Create a tasklist which will save tasks to a given storage automatically.
+     * Creates a tasklist which will save tasks to a given storage automatically.
      * @param storage storage object to save and load tasks.
      */
     public TaskList(Storage storage) {
@@ -34,7 +34,7 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * FInd all tasks in list that matches the keyword.
+     * Finds all tasks in list that matches the keyword.
      * @param keyword Word to be searched for
      * @return filtered list of task.
      */
@@ -50,7 +50,7 @@ public class TaskList extends ArrayList<Task> {
 
 
     /**
-     * Add task to list.
+     * Adds task to list.
      * @param task Task to be added
      * @return Whether the task was added successfully.
      * @throws DukeException any exception when trying to add new task to the list.
@@ -66,7 +66,7 @@ public class TaskList extends ArrayList<Task> {
     }
 
     /**
-     * Remove the specified task from the list.
+     * Removes the specified task from the list.
      * @param index Index of the task to be removed.
      * @return Task that was removed
      * @throws DukeException any error when removing the task from the list.
@@ -81,6 +81,13 @@ public class TaskList extends ArrayList<Task> {
         }
     }
 
+    /**
+     * Sets the completion status of a task in the list.
+     * @param index The index of task to change.
+     * @param completed new completion status of task.
+     * @return The task that was changed.
+     * @throws DukeException any error when changing the completion status of the task.
+     */
     public Task setCompletion(int index, boolean completed) throws DukeException {
         try {
             Task task = super.get(index);

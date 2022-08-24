@@ -18,7 +18,7 @@ import duke.task.Task;
 import duke.task.ToDo;
 
 /**
- * Handles the storage and retrieval of tasks.
+ * Storage class that handles the storage and retrieval of tasks.
  */
 public class Storage {
     private final String directoryPath;
@@ -79,20 +79,20 @@ public class Storage {
             br.lines().forEach(line -> {
                 String[] entries = line.strip().split("\\|", 3);
                 Task.Type type = Task.Type.decode(entries[0]);
-                boolean completed = entries[1].equals("1");
+                boolean isCompleted = entries[1].equals("1");
                 switch (type) {
                 case DEADLINE:
                     try {
-                        tasks.add(Deadline.decode(entries[2], completed));
+                        tasks.add(Deadline.decode(entries[2], isCompleted));
                     } catch (DukeException e) {
                         break;
                     }
                     break;
                 case EVENT:
-                    tasks.add(Event.decode(entries[2], completed));
+                    tasks.add(Event.decode(entries[2], isCompleted));
                     break;
                 case TODO:
-                    tasks.add(ToDo.decode(entries[2], completed));
+                    tasks.add(ToDo.decode(entries[2], isCompleted));
                     break;
                 default:
                     break;

@@ -43,7 +43,7 @@ public class Parser {
 
 
     /**
-     * Main method to parse the user input and return the corresponding command.
+     * Parses the user input and return the corresponding command.
      *
      * @param inputString input from user
      * @return command object

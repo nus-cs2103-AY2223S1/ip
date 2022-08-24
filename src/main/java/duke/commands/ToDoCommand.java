@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import duke.task.ToDo;
 
 /**
- * Create new ToDo.
+ * Command to create a new ToDo.
  */
 public class ToDoCommand extends Command {
     public static final String COMMAND_WORD = "todo";

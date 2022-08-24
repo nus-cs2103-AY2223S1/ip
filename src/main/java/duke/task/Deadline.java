@@ -7,7 +7,7 @@ import java.util.Objects;
 import duke.DukeException;
 
 /**
- * Deadline with a description and ending date time.
+ * Deadline task with a description and ending date time.
  */
 public class Deadline extends Task {
     public static final String EVENT_DATETIME_FORMAT = "dd/MM/yyyy HH:mm";
@@ -26,7 +26,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Factory method to create a Deadline task from an encoded string.
+     * Creates a Deadline task from an encoded string.
      *
      * @param encodedInput the encoded entry with format deadline|description
      * @param completed    the completion status of the Deadline task

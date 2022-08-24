@@ -8,7 +8,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Mark task as completed.
+ * Command to mark task as completed.
  */
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";

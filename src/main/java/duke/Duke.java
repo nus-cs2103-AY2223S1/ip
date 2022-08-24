@@ -11,7 +11,7 @@ public class Duke {
     private final Ui ui;
 
     /**
-     * Create a duke chatbot which persists tasks to the file named fileName.
+     * Creates a duke chatbot which persists tasks to the file named fileName.
      * @param fileName Name of the file to store tasks in.
      */
     public Duke(String fileName) {
@@ -32,7 +32,7 @@ public class Duke {
     }
 
     /**
-     * execute the duke task chat bot.
+     * Executes the duke task chat bot.
      */
     public void run() {
         ui.showWelcome();
@@ -43,7 +43,7 @@ public class Duke {
                 ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui);
-                isExit = c.isExit();
+                isExit = c.getShouldExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             } finally {

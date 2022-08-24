@@ -22,7 +22,7 @@ public class DeadlineCommand extends Command {
     private final Deadline toAdd;
 
     /**
-     * Create a Deadline Command with description and an event time.
+     * Creates a Deadline Command with description and an event time.
      * @param description description of deadline
      * @param eventTime date time of deadline
      */
