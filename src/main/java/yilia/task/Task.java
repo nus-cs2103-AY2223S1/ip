@@ -1,11 +1,17 @@
 package yilia.task;
 
+/**
+ * Represents an abstract task.
+ */
 public class Task {
     private boolean isDone = false;
     private final String content;
     public Task(String content) {
         this.content = content;
     }
+    /**
+     * Class constructor specifying the content and whether it is done.
+     */
     public Task(String content, boolean isDone) {
         this(content);
         this.isDone = isDone;

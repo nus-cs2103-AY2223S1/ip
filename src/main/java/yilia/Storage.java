@@ -1,7 +1,6 @@
 package yilia;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,11 +12,19 @@ import yilia.task.Task;
 import yilia.task.TaskList;
 import yilia.task.Todo;
 
+/**
+ * Represents the storage to load and save data.
+ */
 public class Storage {
     private final String filePath;
     public Storage(String filePath) {
         this.filePath = filePath;
     }
+    /**
+     * Loads tasks from a local file to the task list.
+     *
+     * @throws IOException  If the file has an error.
+     */
     public ArrayList<Task> load() throws IOException {
         BufferedReader reader;
         reader = new BufferedReader(new FileReader(filePath));
@@ -42,18 +49,18 @@ public class Storage {
         return tasks;
     }
 
-    public void save(TaskList tasks) {
-        try {
-            FileWriter writer = new FileWriter(filePath);
-            for (int i = 1; i <= tasks.size(); i++) {
-                writer.write(tasks.get(i).parse());
-                writer.write('\n');
-            }
-            writer.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("Cannot read the file!");
-        } catch (IOException e) {
-            e.printStackTrace();
+    /**
+     * Saves tasks into a local file.
+     *
+     * @param tasks The task list.
+     * @throws IOException  If the file has an error.
+     */
+    public void save(TaskList tasks) throws IOException {
+        FileWriter writer = new FileWriter(filePath);
+        for (int i = 1; i <= tasks.size(); i++) {
+            writer.write(tasks.get(i).parse());
+            writer.write('\n');
         }
+        writer.close();
     }
 }

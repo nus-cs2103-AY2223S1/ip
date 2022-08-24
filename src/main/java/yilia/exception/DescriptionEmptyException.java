@@ -2,6 +2,9 @@ package yilia.exception;
 
 import yilia.Type;
 
+/**
+ * Represents an exception to be thrown when the description of a task is empty.
+ */
 public class DescriptionEmptyException extends Exception {
     private final Type type;
     public DescriptionEmptyException(Type content) {

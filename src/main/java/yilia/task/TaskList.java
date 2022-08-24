@@ -1,6 +1,9 @@
 package yilia.task;
 import java.util.ArrayList;
 
+/**
+ * Represents a task list that contains a lot of tasks.
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
     public TaskList() {

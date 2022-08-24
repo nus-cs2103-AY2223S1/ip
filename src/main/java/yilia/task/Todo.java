@@ -1,4 +1,8 @@
 package yilia.task;
+
+/**
+ * Represents a task that does not have a specific time or deadline.
+ */
 public class Todo extends Task {
     public Todo(String content) {
         super(content);

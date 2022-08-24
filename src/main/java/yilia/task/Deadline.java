@@ -3,12 +3,21 @@ package yilia.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents a task that has a deadline.
+ */
 public class Deadline extends Task {
     private LocalDate date;
+    /**
+     * Class constructor specifying the content and date.
+     */
     public Deadline(String content, String date) {
         super(content);
         this.date = LocalDate.parse(date);
     }
+    /**
+     * Class constructor specifying the content, whether it is done and date.
+     */
     public Deadline(String content, boolean isDone, String date) {
         super(content, isDone);
         this.date = LocalDate.parse(date);

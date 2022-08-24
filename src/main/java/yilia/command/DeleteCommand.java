@@ -5,6 +5,9 @@ import yilia.Ui;
 import yilia.task.Task;
 import yilia.task.TaskList;
 
+/**
+ * Represents a command to delete a task from the task list.
+ */
 public class DeleteCommand extends Command {
     private final int index;
 

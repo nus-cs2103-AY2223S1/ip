@@ -1,4 +1,8 @@
 package yilia.exception;
+
+/**
+ * Represents an exception to be thrown when the command is unknown.
+ */
 public class YiliaException extends Exception {
     @Override
     public String getMessage() {

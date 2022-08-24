@@ -5,11 +5,20 @@ import yilia.Type;
 import yilia.Ui;
 import yilia.exception.DescriptionEmptyException;
 import yilia.exception.TimeFormatException;
-import yilia.task.*;
+import yilia.task.Deadline;
+import yilia.task.Event;
+import yilia.task.TaskList;
+import yilia.task.Todo;
 
+/**
+ * Represents a command to add a task into the task list.
+ */
 public class AddCommand extends Command {
     private final String text;
     private final Type type;
+    /**
+     * Class constructor specifying the content and command type.
+     */
     public AddCommand(String text, Type type) {
         this.text = text;
         this.type = type;
@@ -25,7 +34,7 @@ public class AddCommand extends Command {
             ui.showAddStatus(tasks);
             return;
         }
-        String info[] = text.split("/");
+        String[] info = text.split("/");
         if (info.length == 1 || info[1].isBlank()) {
             throw new DescriptionEmptyException(type);
         }

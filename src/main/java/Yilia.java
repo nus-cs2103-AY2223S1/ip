@@ -10,6 +10,9 @@ import yilia.exception.TimeFormatException;
 import yilia.exception.YiliaException;
 import yilia.task.TaskList;
 
+/**
+ * Represents a chat box to complete given commands.
+ */
 class Yilia {
     private final Storage storage;
     private TaskList tasks;
@@ -26,6 +29,9 @@ class Yilia {
         }
     }
 
+    /**
+     * Runs the main body of the chat box.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -49,7 +55,6 @@ class Yilia {
             }
         }
     }
-
     public static void main(String[] args) {
         new Yilia("data/yilia.txt").run();
     }

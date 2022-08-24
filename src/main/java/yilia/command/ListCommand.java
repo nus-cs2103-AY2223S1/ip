@@ -4,6 +4,9 @@ import yilia.Storage;
 import yilia.Ui;
 import yilia.task.TaskList;
 
+/**
+ * Represents a command to show the whole list of tasks.
+ */
 public class ListCommand extends Command {
     public ListCommand(boolean isExit) {
         super(isExit);

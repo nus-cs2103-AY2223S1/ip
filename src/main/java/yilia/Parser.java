@@ -12,7 +12,17 @@ import yilia.exception.NoIndexException;
 import yilia.exception.TimeFormatException;
 import yilia.exception.YiliaException;
 
+/**
+ * Represents the parser to parse text to other meaning types.
+ */
 public class Parser {
+    /**
+     * parses the text into commands.
+     *
+     * @param text The text.
+     * @throws YiliaException  If the command is unknown to Yilia.
+     * @throws NoIndexException  If the index is not given by users.
+     */
     public static Command parse(String text) throws YiliaException, NoIndexException,
             DescriptionEmptyException, TimeFormatException {
         String[] info = text.strip().split(" ", 2);
@@ -55,6 +65,11 @@ public class Parser {
         }
     }
 
+    /**
+     * parses the text into boolean values.
+     *
+     * @param num The text representing a number.
+     */
     public static boolean parseStringToBoolean(String num) {
         return Integer.parseInt(num) == 1;
     }
