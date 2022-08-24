@@ -27,7 +27,7 @@ public class Storage {
                 Files.createFile(filePath);
             }
         } catch (IOException e) {
-            System.err.println("Failed to create directory/file. " + e.getMessage());
+            System.out.println("Failed to create directory/file. " + e.getMessage());
         }
     }
 
@@ -39,7 +39,7 @@ public class Storage {
         try {
             Files.write(filePath, data.getBytes());
         } catch (IOException e) {
-            System.err.println("Failed to write to Gibson.txt. " + e.getMessage());
+            System.out.println("Failed to write to Gibson.txt. " + e.getMessage());
         }
     }
 
@@ -48,7 +48,7 @@ public class Storage {
         try {
             linesInSave = Files.readAllLines(filePath);
         } catch (IOException e) {
-            System.err.println("Failed to read Gibson.txt. " + e.getMessage());
+            System.out.println("Failed to read Gibson.txt. " + e.getMessage());
         }
         return linesInSave;
     }

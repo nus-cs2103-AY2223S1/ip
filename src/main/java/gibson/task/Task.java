@@ -24,12 +24,16 @@ public class Task {
         return 'T';
     }
 
+    public boolean taskContains(String s) {
+        return taskString.contains(s);
+    }
+
     @Override
     public String toString() {
         if (done) {
-            return "[" + this.getChar() + "][X] " + this.taskString;
+            return "[" + getChar() + "][X] " + taskString;
         } else {
-            return "[" + this.getChar() + "][ ] " + this.taskString;
+            return "[" + getChar() + "][ ] " + taskString;
         }
     }
 }

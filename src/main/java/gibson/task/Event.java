@@ -18,6 +18,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.startEnd + ")";
+        return super.toString() + " (at: " + startEnd + ")";
     }
 }
