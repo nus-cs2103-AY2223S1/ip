@@ -11,6 +11,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
+import duke.command.FindCommand;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
@@ -47,6 +48,8 @@ public class Parser {
                 return new DeadlineCommand(taskList, inputArr);
             case DELETE:
                 return new DeleteCommand(taskList, inputArr);
+            case FIND:
+                return new FindCommand(taskList, inputArr);
             }
         } catch (DukeException e) {
             return new InvalidCommand(e.getMessage());

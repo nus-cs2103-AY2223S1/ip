@@ -2,6 +2,8 @@ todo borrow book
 deadline return book /by 2022-09-21
 event project meeting /at 2022-09-23
 list
+find book
+find
 mark 1
 mark 2
 mark 3
