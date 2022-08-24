@@ -13,6 +13,10 @@ public class Duke {
     // String array used to store duke.tasks
     private static TaskList taskList = new TaskList();
 
+    /**
+     * The main function to run Duke.
+     * @param args command-line arguments (currently serves no functionality)
+     */
     // Currently, the main function takes in user input and echoes it to the user
     public static void main(String[] args) {
 
@@ -50,25 +54,5 @@ public class Duke {
                 continue;
             }
         }
-
-
-
     }
-
-
-
 }
-
-/* TODO
-Add error checking for user input after the /: Should be "at" and "by" for Event and Deadline
-Help command
-
-Possible code refactor:
-while (true) {
-    fetch user input
-    sanitise user input
-    pass sanitised input to duke.parser, including ArrayList
-    duke.parser will parse the code, hand it to individual handler classes
-    individual handler classes will modify the List accordingly
-}
- */

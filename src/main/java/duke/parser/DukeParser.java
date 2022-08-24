@@ -37,8 +37,7 @@ public class DukeParser {
     }
 
     /**
-     * Handles user input, and preps duke.parser for instruction execution
-     *
+     * Handles user input, and preps parser for instruction execution
      * @param inputString The string that we would like to parse.
      */
     public void parseInput(String inputString)  {
@@ -55,6 +54,11 @@ public class DukeParser {
 
     }
 
+    /**
+     * Executes a loaded and parsed instruction.
+     * @param st Storage that we want to save data to after the instruction has been executed
+     * @throws DukeException if instruction execution fails
+     */
     public void execute(Storage st) throws DukeException {
         if (this.keyword == null) {
             throw new DukeException("Error: Parser has not been loaded with an instruction yet!");
@@ -65,7 +69,6 @@ public class DukeParser {
             throw new DukeException("I can't do anything based off a blank instruction!");
         }
 
-        // TODO: Fix switch case indentation
         switch (this.keyword) {
         case "list":
             this.listInstructionHandler();
@@ -74,25 +77,17 @@ public class DukeParser {
             this.byeInstructionHandler();
             break;
         case "mark":
-            this.numericalInstructionHandler();
-            st.save(this.taskList);
-            break;
+            // Intentional fallthrough
         case "unmark":
-            this.numericalInstructionHandler();
-            st.save(this.taskList);
-            break;
+            // Intentional fallthrough
         case "delete":
             this.numericalInstructionHandler();
             st.save(this.taskList);
             break;
         case "todo":
-            this.addTaskInstructionHandler();
-            st.save(this.taskList);
-            break;
+            // Intentional fallthrough
         case "event":
-            this.addTaskInstructionHandler();
-            st.save(this.taskList);
-            break;
+            // Intentional fallthrough
         case "deadline":
             this.addTaskInstructionHandler();
             st.save(this.taskList);
@@ -107,7 +102,6 @@ public class DukeParser {
 
     /**
      * Sanitises user input.
-     *
      * @param inputString User input that needs to be sanitised
      * @return Sanitised user input
      */
@@ -118,7 +112,7 @@ public class DukeParser {
     }
 
     /**
-     * Handles a list instruction by printing user's duke.tasks to the screen.
+     * Handles a list instruction by printing user's tasks to the screen.
      */
     public void listInstructionHandler() {
         System.out.println(BREAK_LINES);
@@ -127,7 +121,7 @@ public class DukeParser {
     }
 
     /**
-     * Handles a bye instruction by exiting duke.Duke.
+     * Handles a bye instruction by exiting Duke.
      */
     public void byeInstructionHandler() {
         System.out.println(BREAK_LINES);
