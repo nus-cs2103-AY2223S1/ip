@@ -2,6 +2,8 @@ package tasklist;
 import exceptions.DukeException;
 
 import java.util.ArrayList;
+import java.util.Locale;
+
 import task.Task;
 import task.Event;
 import task.Deadline;
@@ -54,6 +56,18 @@ public class TaskList<T extends Task> {
     }
 
     public ArrayList<T> findTasks(String keyword) {
-        return null;
+        ArrayList<T> matchingTasks = new ArrayList<>();
+        T currTask;
+        String description;
+        boolean matches;
+        for(int i = 0; i < userInputHistory.size(); i ++) {
+            currTask = userInputHistory.get(i);
+            description = currTask.getDescription().toLowerCase();
+            matches = description.contains(keyword.toLowerCase());
+            if (matches) {
+                matchingTasks.add(currTask);
+            }
+        }
+        return matchingTasks;
     }
 }

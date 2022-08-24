@@ -135,6 +135,6 @@ public class Parser {
 }
 
 public static String stringToFind(String userInput) {
-     return null;
+     return userInput.substring(userInput.indexOf("find") + 5);
 }
 }
