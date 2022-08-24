@@ -1,6 +1,8 @@
 package duke;
 
-
+/**
+ * Task class.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -23,10 +25,20 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * String format for text file.
+     *
+     * @return string to be written into the text file.
+     */
     public String toStringFileFormat() {
         return (isDone ? 1 : 0 ) + " | " + this.description;
     }
 
+    /**
+     * String representation of Task.
+     *
+     * @return string representation of Task.
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;

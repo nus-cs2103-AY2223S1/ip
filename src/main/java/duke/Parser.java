@@ -5,13 +5,19 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Parse user input.
+ */
 public class Parser {
 
-    public static String[] parseTypingInput(String str) {
+    protected static String[] parseTypingInput(String str) {
         String allLowerCase = str.toLowerCase();
         return allLowerCase.strip().split(" ", 2);
     }
 
+    /**
+     * Parses user input.
+     */
     public static void parseInput() {
         Scanner sc = new Scanner(System.in);
         boolean running = true;
