@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 public class ParserTest {
     @Test
-    public void convertToDateTest() {
+    public void convertToDate_validDate_localDateReturned() {
         try {
             LocalDate date = Parser.convertToDateObj("2022-02-02");
             assertEquals(date, LocalDate.parse("2022-02-02"));
@@ -20,7 +20,7 @@ public class ParserTest {
     }
 
     @Test
-    public void convertToDateTest2() {
+    public void convertToDate_invalidString_dukeExceptionThrown() {
         try {
             Parser.convertToDateObj("someRandomString");
             fail();

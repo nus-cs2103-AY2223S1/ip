@@ -6,31 +6,31 @@ import org.junit.jupiter.api.Test;
 
 public class ToDoTest {
     @Test
-    public void createToDoTest() {
+    public void createToDo_noMarkSpecified_unmarkedToDoReturned() {
         ToDo todo = new ToDo("Test");
         assertEquals("[T][ ] Test", todo.toString());
     }
 
     @Test
-    public void createToDoTest2() {
+    public void createToDo_unmarkedToDo_unmarkedToDoReturned() {
         ToDo todo = new ToDo("Test", false);
         assertEquals("[T][ ] Test", todo.toString());
     }
 
     @Test
-    public void createToDoTest3() {
+    public void createToDo_markedToDo_markedToDoReturned() {
         ToDo todo = new ToDo("Test", true);
         assertEquals("[T][X] Test", todo.toString());
     }
 
     @Test
-    public void saveFileStringTest() {
+    public void toSaveFileString_unmarkedToDo_stringRepresentationMatch() {
         ToDo todo = new ToDo("Test", false);
         assertEquals("[T] @ [ ] @ Test", todo.toSaveFileString());
     }
 
     @Test
-    public void saveFileStringTest2() {
+    public void toSaveFileStringTest_markedToDo_stringRepresentationMatch() {
         ToDo todo = new ToDo("Test", true);
         assertEquals("[T] @ [X] @ Test", todo.toSaveFileString());
     }

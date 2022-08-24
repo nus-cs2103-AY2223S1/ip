@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class EventTest {
     @Test
-    public void createEventTest() {
+    public void createEvent_noMarkSpecified_unmarkedEventReturned() {
         try {
             Event event = new Event("Test", "2022-02-02");
             assertEquals("[E][ ] Test (at: Feb 2 2022)", event.toString());
@@ -17,7 +17,7 @@ public class EventTest {
     }
 
     @Test
-    public void createEventTest2() {
+    public void createEvent_eventUnmarked_unmarkedEventReturned() {
         try {
             Event event = new Event("Test", "2022-04-04", false);
             assertEquals("[E][ ] Test (at: Apr 4 2022)", event.toString());
@@ -27,7 +27,7 @@ public class EventTest {
     }
 
     @Test
-    public void createEventTest3() {
+    public void createEvent_eventMarked_markedEventReturned() {
         try {
             Event event = new Event("Test", "2023-03-03", true);
             assertEquals("[E][X] Test (at: Mar 3 2023)", event.toString());
@@ -37,7 +37,7 @@ public class EventTest {
     }
 
     @Test
-    public void saveFileStringTest() {
+    public void toSaveFileString_eventUnmarked_stringRepresentationMatch() {
         try {
             Event event = new Event("Test", "2022-02-02", false);
             assertEquals("[E] @ [ ] @ Test @ 2022-02-02", event.toSaveFileString());
@@ -47,7 +47,7 @@ public class EventTest {
     }
 
     @Test
-    public void saveFileStringTest2() {
+    public void toSaveFileString_eventMarked_stringRepresentationMatch() {
         try {
             Event event = new Event("Test", "2022-02-02", true);
             assertEquals("[E] @ [X] @ Test @ 2022-02-02", event.toSaveFileString());
