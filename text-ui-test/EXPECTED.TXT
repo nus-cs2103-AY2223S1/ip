@@ -1,46 +1,46 @@
 	____________________________________________________________
-	Hello! I'm Jenny
+	Hello! I'm JennyBot
 	What can I do for you?
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [T][ ] read book
-	Now you have 1 tasks in the list.
+	Now you have 1 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [D][ ] return book  (by:  June 6th)
-	Now you have 2 tasks in the list.
+	Now you have 2 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [E][ ] project meeting  (at:  Aug 6th 2-4pm)
-	Now you have 3 tasks in the list.
+	Now you have 3 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [T][ ] join sports club
-	Now you have 4 tasks in the list.
+	Now you have 4 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [T][ ] borrow book
-	Now you have 5 tasks in the list.
+	Now you have 5 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [D][ ] return book  (by:  Sunday)
-	Now you have 6 tasks in the list.
+	Now you have 6 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [E][ ] project meeting  (at:  Mon 2-4pm)
-	Now you have 7 tasks in the list.
+	Now you have 7 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [D][ ] do homework  (by:  no idea :-p)
-	Now you have 8 tasks in the list.
+	Now you have 8 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	1.[T][ ] read book
@@ -53,11 +53,11 @@
 	8.[D][ ] do homework  (by:  no idea :-p)
 	____________________________________________________________
 	____________________________________________________________
-	Nice! I've marked this task as done:
+	Nice! I've marked this jennyTask as done:
 	  [T][X] read book
 	____________________________________________________________
 	____________________________________________________________
-	Nice! I've marked this task as done:
+	Nice! I've marked this jennyTask as done:
 	  [T][X] join sports club
 	____________________________________________________________
 	____________________________________________________________
@@ -77,9 +77,9 @@
 	☹ OOPS!!! I'm sorry, but I don't know what that means :-(
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
+	Got it. I've added this jennyTask:
 	  [E][ ] project meeting  (at:  Aug 6th 2-4pm)
-	Now you have 7 tasks in the list.
+	Now you have 7 jennyTasks in the list.
 	____________________________________________________________
 	____________________________________________________________
 	1.[T][X] read book
