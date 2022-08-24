@@ -14,6 +14,12 @@ public class Parser {
         this.taskList = taskList;
     }
 
+    /**
+     * Parses a user command and returns its type as a CommandType
+     *
+     * @param userCommand the command entered by the user.
+     * @return            the type of the command, as a CommandType
+     */
     public CommandType getCommandType(String userCommand) {
         if (userCommand.startsWith("bye")) {
             return CommandType.EXIT;

@@ -17,6 +17,11 @@ public class Event extends Task {
         return String.format("[E] %s (at %s)", super.toString(), this.startTime.toString());
     }
 
+    /**
+     * Converts this Event to a String to be stored in a .txt file.
+     *
+     * @return the String representation of this Event
+     */
     @Override
     public String toFileRepresentation() {
         return "E" + "|" + (this.isComplete() ? "1" : "0") + "|" + this.getName() + "|" + this.startTime.toString();

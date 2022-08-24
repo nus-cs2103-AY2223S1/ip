@@ -16,10 +16,18 @@ public class Storage {
 
     private final String filePath;
 
+    /** 
+     * Constructs a new Storage object. 
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the tasks from disk at the location specified at <code>filePath</code>.
+     *
+     * @return the tasks saved on disk as a <code>TaskList</code>
+     */
     public TaskList readFromDisk() {
 
         try {
@@ -74,6 +82,10 @@ public class Storage {
         return new TaskList();
     }
 
+    /**
+     * Saves the tasks in <code>taskList</code> to disk at <code>filePath</code>.
+     * @param taskList the list of tasks
+     */
     public void saveToDisk(TaskList taskList) {
         try {
             // Note: This conveniently deletes the existing contents of data/duke.txt.

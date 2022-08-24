@@ -6,6 +6,9 @@ import duke.Ui;
 import duke.CommandType;
 import duke.Parser;
 
+/**
+ * Represents an instance of Duke.
+ */
 public class Duke {
 
     private Storage storage;
@@ -19,6 +22,9 @@ public class Duke {
         this.taskList = storage.readFromDisk();
     }
 
+    /**
+     * Continuously accepts user commands until "bye" is entered.
+     */
     public void run() {
 
         String userCommand;

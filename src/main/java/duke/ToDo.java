@@ -12,6 +12,11 @@ public class ToDo extends Task {
         return String.format("[T] %s", super.toString());
     }
 
+    /**
+     * Converts this Todo to a String to be stored in a .txt file.
+     *
+     * @return the String representation of this Todo
+     */
     @Override
     public String toFileRepresentation() {
         return "T" + "|" + (this.isComplete() ? "1" : "0") + "|" + this.getName();
