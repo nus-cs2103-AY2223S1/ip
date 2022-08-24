@@ -1,3 +1,4 @@
+Poolsheen was unable to find a save file to load
 Hello from
 POOLSHEEN
 Type something in for Poolsheen to respond to you:
@@ -19,9 +20,9 @@ Type something in for Poolsheen to respond to you:
 ---------------
 ---------------
       Poolsheen thinks back... and remembers you said:
-      1. [T] [ ] Eat Cake
-      2. [D] [ ] Finish CS2103 Quiz (by: Tuesday)
-      3. [E] [ ] Touch the World (at: I3 Auditorium 5-6PM)
+      1. [T] [-] Eat Cake
+      2. [D] [-] Finish CS2103 Quiz (by: Tuesday)
+      3. [E] [-] Touch the World (at: I3 Auditorium 5-6PM)
       meow *_*
 ---------------
 ---------------
@@ -39,7 +40,7 @@ Type something in for Poolsheen to respond to you:
 ---------------
       Poolsheen thinks back... and remembers you said:
       1. [T] [X] Eat Cake
-      2. [D] [ ] Finish CS2103 Quiz (by: Tuesday)
+      2. [D] [-] Finish CS2103 Quiz (by: Tuesday)
       3. [E] [X] Touch the World (at: I3 Auditorium 5-6PM)
       meow *_*
 ---------------
@@ -49,8 +50,8 @@ Type something in for Poolsheen to respond to you:
 ---------------
 ---------------
       Poolsheen thinks back... and remembers you said:
-      1. [T] [ ] Eat Cake
-      2. [D] [ ] Finish CS2103 Quiz (by: Tuesday)
+      1. [T] [-] Eat Cake
+      2. [D] [-] Finish CS2103 Quiz (by: Tuesday)
       3. [E] [X] Touch the World (at: I3 Auditorium 5-6PM)
       meow *_*
 ---------------
@@ -60,8 +61,8 @@ Type something in for Poolsheen to respond to you:
 ---------------
 ---------------
       Poolsheen thinks back... and remembers you said:
-      1. [T] [ ] Eat Cake
-      2. [D] [ ] Finish CS2103 Quiz (by: Tuesday)
+      1. [T] [-] Eat Cake
+      2. [D] [-] Finish CS2103 Quiz (by: Tuesday)
       meow *_*
 ---------------
 ---------------

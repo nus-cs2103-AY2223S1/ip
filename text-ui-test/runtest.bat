@@ -6,6 +6,9 @@ if not exist ..\bin mkdir ..\bin
 REM delete output from previous run
 if exist ACTUAL.TXT del ACTUAL.TXT
 
+REM delete save from previous run
+if exist save.txt del save.txt
+
 REM compile the code into the bin folder
 javac  -encoding ISO-8859-1  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java
 IF ERRORLEVEL 1 (

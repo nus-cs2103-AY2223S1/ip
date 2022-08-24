@@ -17,6 +17,6 @@ public class IncompleteCommandException extends RuntimeException {
     @Override
     public String toString() {
         return "Poolsheen thinks you did not fill up the " + commandType +
-                " command properly\n" + Poolsheen.startReply + this.whatToDo;
+                " command properly\n" + Poolsheen.START_REPLY + this.whatToDo;
     }
 }

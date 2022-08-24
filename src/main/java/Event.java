@@ -4,8 +4,8 @@ public class Event extends Task {
      * @param description The details of the task.
      * @param time The time which the task must be done by.
      */
-    public Event(String description, String time) {
-        super(description);
+    public Event(String description, boolean isDone, String time) {
+        super(description, isDone);
         this.time = time;
     }
 
