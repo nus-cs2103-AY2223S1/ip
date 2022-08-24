@@ -5,14 +5,14 @@ public class Deadlines extends Task{
     String by;
     LocalDate byDate = null;
     String type;
-    Deadlines(String name, String by){
-        super(name);
+    Deadlines(String name, boolean isDone, String by){
+        super(name, isDone);
         this.by = by;
         this.type = "[D]";
     }
 
-     Deadlines(String name, LocalDate byDate) {
-        super(name);
+     Deadlines(String name, boolean isDone, LocalDate byDate) {
+        super(name,isDone);
         this.byDate = byDate;
         this.type = "[D]";
     }
