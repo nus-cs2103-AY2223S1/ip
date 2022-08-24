@@ -265,7 +265,17 @@ public class Poolsheen {
      */
     private void update() throws IOException{
         FileWriter fw = new FileWriter(SAVE_FILE_PATH);
-        fw.write(this.getListOfTasks());
+        String str = "";
+        int max = Poolsheen.listOfTasks.size();
+        for (int pos = 0 ; pos < max; pos++) {
+            Task t = Poolsheen.listOfTasks.get(pos);
+            int listPos = pos + 1;
+            str += listPos + "|" + String.join("|" , t.toArr());
+            if (pos < max) {
+                str += "\n";
+            }
+        }
+        fw.write(str);
         fw.close();
     }
 
@@ -298,7 +308,8 @@ public class Poolsheen {
     private void deleteTask(int pos) {
         Task t = Poolsheen.listOfTasks.get(pos - 1);
         Poolsheen.listOfTasks.remove(pos-1);
-        this.say("Poolsheen has forgot: " + t.description + " and you now have " + Poolsheen.listOfTasks.size() + " tasks left");
+        this.say("Poolsheen has forgot: " + t.description +
+                " and you now have " + Poolsheen.listOfTasks.size() + " tasks left");
     }
 
     /**
@@ -330,7 +341,7 @@ public class Poolsheen {
             System.out.println("Poolsheen has loaded a save file");
             Scanner s = new Scanner(f);
             while (s.hasNextLine()) {
-                String[] arr = s.nextLine().split(" ");
+                String[] arr = s.nextLine().split("\\|");
                 ArrayList<String> arl = new ArrayList<>();
                 for (String str : arr) {
                     arl.add(str);
@@ -338,10 +349,10 @@ public class Poolsheen {
                 Predicate<String> pred = (x) -> x.equals("");
                 arl.removeIf(pred);
                 //Uncomment to see how the file contents are parsed as arrays.
-                //System.out.println(arl.toString());
-                String taskType = arl.get(1).substring(1, 2);
+//                System.out.println(arl.toString());
+                String taskType = arl.get(1);
                 boolean isDone;
-                if (arl.get(2).equals("[X]")) {
+                if (arl.get(2).equals("X")) {
                     isDone = true;
                 } else {
                     isDone = false;
@@ -350,27 +361,23 @@ public class Poolsheen {
                 String time;
                 switch (taskType.toUpperCase()) {
                 case "T":
-                    taskDesc = String.join(" ", arl.subList(3, arl.size()));
+                    taskDesc = arl.get(3);
                     Poolsheen.listOfTasks.add(new ToDo(taskDesc, isDone));
                     break;
                 case "D":
-                    if (!arl.contains("(by:")) {
+                    if (arl.size() != 5) {
                         throw new IOException("Error with Deadline Task");
                     }
-                    int byIndex = arl.indexOf("(by:");
-                    taskDesc = String.join(" ", arl.subList(3, byIndex));
-                    time = String.join(" ", arl.subList(byIndex+1, arl.size()));
-                    time = time.substring(0, time.length()-1);
+                    taskDesc = arl.get(3);
+                    time = arl.get(4);
                     Poolsheen.listOfTasks.add(new Deadline(taskDesc, isDone, time));
                     break;
                 case "E":
-                    if (!arl.contains("(at:")) {
+                    if (arl.size() != 5) {
                         throw new IOException("Error with Event Task");
                     }
-                    int atIndex = arl.indexOf("(at:");
-                    taskDesc = String.join(" ", arl.subList(3, atIndex));
-                    time = String.join(" ", arl.subList(atIndex+1, arl.size()));
-                    time = time.substring(0, time.length()-1);
+                    taskDesc = arl.get(3);
+                    time = arl.get(4);
                     Poolsheen.listOfTasks.add(new Event(taskDesc, isDone, time));
                     break;
                 default:

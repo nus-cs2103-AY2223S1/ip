@@ -8,6 +8,11 @@ public class ToDo extends Task {
     }
 
     @Override
+    public String[] toArr() {
+        return new String[]{"T", this.getStatusIcon(), this.description};
+    }
+
+    @Override
     public String toString() {
         return "[T] " + super.toString();
     }
