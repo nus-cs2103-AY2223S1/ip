@@ -162,7 +162,12 @@ public class Duke {
             taskListReader();
         } else {
             try {
+                File directory = new File("./data/");
+                if (!directory.exists()) {
+                    directory.mkdir();
+                } 
                 taskFile.createNewFile();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
