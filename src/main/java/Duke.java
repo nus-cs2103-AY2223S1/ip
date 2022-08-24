@@ -23,7 +23,7 @@ public class Duke {
         System.out.println("Just a moment...\nHello! I am Duke.");
         System.out.println("Just ignore the symbol above. What can I do for you?");
 
-        while(this.keepRunning) {
+        while (this.keepRunning) {
             System.out.println("-------------------");
             this.input = scanner.nextLine();
             try {
