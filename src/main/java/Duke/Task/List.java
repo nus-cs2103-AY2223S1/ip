@@ -5,23 +5,24 @@ import Duke.Processor.TaskList;
 import Duke.UI;
 
 /**
- * Class to represent "Duke.Task.List" tasks.
+ * Class to represent "List" tasks.
  */
 public class List extends Task {
     /**
-     * The constructor for Duke.Task.List task
+     * The constructor for Duke.Task.List task.
      */
     public List() {
         super("list", false);
     }
 
     /**
-     * Executes input list task
-     * @param task
-     * @param ui
+     * Executes process to show the list of tasks.
+     *
+     * @param tasks TaskList
+     * @param ui Class to print the ui.
      */
     @Override
-    public void execute(TaskList task, UI ui, Storage storage) {
-        ui.showListDetails(task);
+    public void execute(TaskList tasks, UI ui, Storage storage) {
+        ui.showListDetails(tasks);
     }
 }

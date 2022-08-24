@@ -5,8 +5,9 @@ package Duke.Exception;
  */
 public class NoTimeException extends Exception {
     /**
-     * The Constructor for Duke.Exception.NoTimeException
-     * @param message
+     * The Constructor for Duke.Exception.NoTimeException.
+     *
+     * @param message Message of the exception.
      */
     public NoTimeException(String message) {
         super(String.format("☹ OOPS!!! The Time of " + message + " is missing!"));

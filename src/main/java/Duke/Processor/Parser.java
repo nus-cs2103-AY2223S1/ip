@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Class to represent a parser.
+ * Class to represent a parser to read the input/file.
  */
 public class Parser {
     // usage of Enum
@@ -30,12 +30,13 @@ public class Parser {
     private static UI ui = new UI();
 
     /**
-     * The method to mark done command task process
-     * @param chat
-     * @param tasklist
-     * @return Duke.Task.Task object
-     * @throws NoDescriptionException
-     * @throws NoCommandException
+     * Returns a new mark task of the specified current task.
+     *
+     * @param chat Input from the scanner.
+     * @param tasklist ArrayList of tasks.
+     * @return Duke.Task.Task object.
+     * @throws NoDescriptionException If there are no description.
+     * @throws NoCommandException If there are no commands.
      */
     public static Task mark(String chat, TaskList tasklist) throws NoDescriptionException, NoCommandException {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
@@ -43,12 +44,13 @@ public class Parser {
     }
 
     /**
-     * The method to mark undone command task process
-     * @param chat
-     * @param tasklist
-     * @return Duke.Task.Task object
-     * @throws NoDescriptionException
-     * @throws NoCommandException
+     * Returns a new unmark task of the specified current task.
+     *
+     * @param chat Input from the scanner.
+     * @param tasklist ArrayList of tasks.
+     * @return Duke.Task.Task object.
+     * @throws NoDescriptionException If there are no description.
+     * @throws NoCommandException If there are no commands.
      */
     public static Task unmark(String chat, TaskList tasklist) throws NoDescriptionException, NoCommandException {
         int num = Integer.parseInt(chat.split(" ")[1]) - 1;
@@ -56,12 +58,13 @@ public class Parser {
     }
 
     /**
-     * The method for Duke.Task.Todo, Duke.Task.Deadline, Duke.Task.Event command task process
-     * @param chat
-     * @param tasklist
-     * @return Duke.Task.Task object
-     * @throws NoDescriptionException
-     * @throws NoCommandException
+     * Returns a new task of todo, deadline, or event.
+     *
+     * @param chat Input from the scanner.
+     * @param tasklist ArrayList of tasks.
+     * @return Duke.Task.Task object.
+     * @throws NoDescriptionException If there are no description.
+     * @throws NoCommandException If there are no commands.
      */
     public static Task addTask(String chat, TaskList tasklist) throws NoDescriptionException, NoCommandException,
             NoTimeException, WrongTimeFormatException {
@@ -122,12 +125,13 @@ public class Parser {
     }
 
     /**
-     * The method to delete task.
-     * @param tasklist
-     * @param chat
+     * Returns a new delete task of the specified current task.
+     *
+     * @param chat Input from the scanner.
+     * @param tasklist ArrayList of tasks.
      * @return Duke.Task.Task object
-     * @throws NoDescriptionException
-     * @throws NoCommandException
+     * @throws NoDescriptionException If there are no description.
+     * @throws NoCommandException If there are no commands.
      */
     public static Task delete(String chat, TaskList tasklist) throws NoDescriptionException {
 
@@ -141,12 +145,14 @@ public class Parser {
     }
 
     /**
-     * The method to parse the command.
-     * @param chat
-     * @param tasklist
-     * @return Duke.Task.Task object
+     * Parses the input and returns the task of the specified command.
+     *
+     * @param chat Input from the scanner.
+     * @param tasklist ArrayList of tasks.
+     * @return Duke.Task.Task object.
+     * @throws NoCommandException If there are no commands.
      */
-    public static Task parse(String chat, TaskList tasklist) {
+    public static Task parse(String chat, TaskList tasklist) throws NoCommandException {
 
         Commands command;
 

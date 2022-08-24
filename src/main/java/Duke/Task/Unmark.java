@@ -5,13 +5,15 @@ import Duke.Processor.TaskList;
 import Duke.UI;
 
 /**
- * Class to represent "Duke.Task.Unmark" tasks.
+ * Class to represent "Unmark" tasks.
  */
 public class Unmark extends Task {
     int num;
 
     /**
-     * The constructor for Duke.Task.Mark task
+     * The constructor for Duke.Task.Mark task.
+     *
+     * @param num Index of the specified task.
      */
     public Unmark(int num) {
         super("unmark", false);

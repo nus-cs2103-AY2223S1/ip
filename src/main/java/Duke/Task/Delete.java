@@ -5,7 +5,7 @@ import Duke.Processor.TaskList;
 import Duke.UI;
 
 /**
- * Class to represent "Duke.Task.Delete" tasks.
+ * Class to represent "Delete" tasks.
  */
 public class Delete extends Task {
     int num;
@@ -19,14 +19,15 @@ public class Delete extends Task {
     }
 
     /**
-     * Executes input list task
-     * @param task
-     * @param ui
+     * Executes process to delete a specific task.
+     *
+     * @param tasks TaskList.
+     * @param ui Class to print the ui.
      */
     @Override
-    public void execute(TaskList task, UI ui, Storage storage) {
-        Task taskDeleted = task.delete(num);
-        ui.showDeleteTask(task, taskDeleted);
-        storage.write(task.getTasks());
+    public void execute(TaskList tasks, UI ui, Storage storage) {
+        Task taskDeleted = tasks.delete(num);
+        ui.showDeleteTask(tasks, taskDeleted);
+        storage.write(tasks.getTasks());
     }
 }
