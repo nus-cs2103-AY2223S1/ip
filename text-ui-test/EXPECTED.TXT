@@ -3,9 +3,9 @@
 
 Hello. ⛅️
    This is
-    _
-   | |    _   _ _____   ___ _
-   | |   | | | |  __ \ /     |
+    _                     ★ ☁️   ⋆
+   | |    _   _ _____   ___ _ 🌙 ☁️
+   | |   | | | |  __ \ /     |☁️  ️✴  ⋆
    | |__ | |_| | |  | |    | |
    |____| \__,_|_|  |_|\__/|_|
 
@@ -13,9 +13,10 @@ Hello. ⛅️
     🌸 list                             | View all tasks on your agenda
     🌷 todo "task"                      | Add a task to your agenda
     🌺 deadline "task" /by "yyyy-mm-dd" | Add a task to complete by the specified deadline
-    🌹 event "event" /at "yyyy-mm-dd"    | Add an event on the specified date
+    🌹 event "event" /at "yyyy-mm-dd"   | Add an event on the specified date
     🪷 mark "num"                       | Mark the (num)th item in your list as completed
     🌻 unmark "num"                     | Mark the (num)th item in your list as uncompleted
+    💐 find "keyword"                   | Find a task by searching for a keyword
     🥀 bye                              | Quit Luna
 
   You do not have anything to do yet!
@@ -36,7 +37,7 @@ Luna has added:
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
 Luna has added:
-[D][ ] task (by: 02 Feb 2002)
+[D][ ] task BY 02 Feb 2002
 2 task(s) left in your list 🌻
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
@@ -44,9 +45,31 @@ Luna has added:
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
+Luna does not understand what that means 🥀
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
 Luna has added:
-[E][ ] task (at: 02 Feb 2002)
+[E][ ] gathering AT 02 Feb 2002
 3 task(s) left in your list 🌻
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+☁️ Here are the tasks Luna has found! ☁️
+1. [E][ ] gathering AT 02 Feb 2002
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+Luna only reads numbers from 0 to 3 for this command 🍂
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
@@ -57,8 +80,15 @@ Luna has added:
 ☀️ Stuff you have to do! ☀️
 
 1. [T][ ] task
-2. [D][ ] task (by: 02 Feb 2002)
-3. [E][ ] task (at: 02 Feb 2002)
+2. [D][ ] task BY 02 Feb 2002
+3. [E][ ] gathering AT 02 Feb 2002
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+Luna wants to know what your task is about 🌷
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
@@ -67,7 +97,7 @@ Luna has added:
 
 Luna has removed:
 [T][ ] task
-2 task(s) left in your list 🌻
+2 task(s) left in your list 🌻)
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
@@ -75,7 +105,18 @@ Luna has removed:
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 
 Marked as completed 🌈️
-[E][✧] task (at: 02 Feb 2002)
+[E][✧] gathering AT 02 Feb 2002
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+
+✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
+
+
+☀️ Stuff you have to do! ☀️
+
+1. [D][ ] task BY 02 Feb 2002
+2. [E][✧] gathering AT 02 Feb 2002
 
 ✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨
 

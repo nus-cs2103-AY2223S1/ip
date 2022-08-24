@@ -10,6 +10,6 @@ import task.TaskList;
 public class LunaInvalidIndexException extends LunaException{
     @Override
     public String toString() {
-        return "Luna reads numbers from 0 to " + TaskList.size() + " for this command🍂";
+        return "Luna only reads numbers from 0 to " + TaskList.size() + " for this command 🍂";
     }
 }
