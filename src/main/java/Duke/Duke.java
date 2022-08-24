@@ -93,6 +93,10 @@ public class Duke {
         public void exit() {
             System.out.println("Bye!");
         }
+
+        public void showLine() {
+            System.out.println("_______________________________");
+        }
     }
 
     private class TaskList {
@@ -160,10 +164,10 @@ public class Duke {
                     newTask = new Todo(des);
                 } else if (type == 'D') {
                     int i = des.indexOf('(');
-                    newTask = new Deadline(des.substring(0, i - 1), parser.parseStringToDate(des.substring(i + 5)));
+                    newTask = new Deadline(des.substring(0, i - 1), parser.parseStringToDate(des.substring(i + 5, i + 15)));
                 } else if (type == 'E') {
                     int i = des.indexOf('(');
-                    newTask = new Event(des.substring(0, i - 1), parser.parseStringToDate(des.substring(i + 5)));
+                    newTask = new Event(des.substring(0, i - 1), parser.parseStringToDate(des.substring(i + 5, i + 15)));
                 } else {
                     newTask = null;
                 }
@@ -429,19 +433,25 @@ public class Duke {
     }
 
     public void run() {
+        try {
+            storage.loadData();
+        } catch (FileNotFoundException e) {
+            ui.showError("file duke.txt not found under the directory!");
+        }
         ui.welcome();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                //ui.showLine(); // show the divider line ("_______")
+                ui.showLine(); // show the divider line ("_______")
                 Command c = parser.parse(fullCommand);
                 c.execute();
                 isExit = c.isExit();
-            } catch (DukeException e) {
+                storage.saveData();
+            } catch (Exception e) {
                 ui.showError(e.getMessage());
             } finally {
-                //ui.showLine();
+                ui.showLine();
             }
         }
     }
