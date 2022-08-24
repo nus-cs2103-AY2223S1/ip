@@ -37,7 +37,6 @@ public class Storage {
         try {
             Scanner scanner = new Scanner(this.file);
             StringBuilder fileTasks = new StringBuilder();
-
             if (!scanner.hasNextLine()) {
                 return null;
             }
