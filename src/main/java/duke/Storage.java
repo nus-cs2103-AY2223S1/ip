@@ -4,7 +4,6 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.FileNotFoundException;
@@ -12,12 +11,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
 
+
 /**
  * Represents class that stores and loads tasks
  *
  * @author benjytan45678
  * @version 0.1
  */
+
 public class Storage {
     private File file;
     private String filepath;
@@ -93,7 +94,7 @@ public class Storage {
     /**
      * Saves specified list of tasks to local file.
      *
-     * @param taskList
+     * @param taskList the list of tasks
      */
     public void store(ArrayList<Task> taskList) throws DukeException {
         try {

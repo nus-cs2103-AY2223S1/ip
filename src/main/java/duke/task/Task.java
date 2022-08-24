@@ -28,6 +28,7 @@ public abstract class Task {
         this.hasCompleted = true;
     }
 
+
     /**
      * Return completion status of the task
      */

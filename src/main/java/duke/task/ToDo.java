@@ -1,5 +1,6 @@
 package duke.task;
 
+
 /**
  * Represents a toDo task
  *
@@ -15,7 +16,6 @@ public class ToDo extends Task {
      * @param name name of the toDo task
      */
     public ToDo(String name) {
-
         super(name);
         this.name = name;
     }
@@ -26,6 +26,7 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
+
         return "[T]" + super.toString();
     }
 

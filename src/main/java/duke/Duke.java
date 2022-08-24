@@ -10,7 +10,6 @@ import duke.command.Command;
  * @version 0.1
  */
 public class Duke {
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -41,7 +40,7 @@ public class Duke {
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
+                ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
@@ -54,6 +53,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+
         new Duke("data/tasks.txt").run();
     }
 }

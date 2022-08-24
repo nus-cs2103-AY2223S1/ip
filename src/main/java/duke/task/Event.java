@@ -1,5 +1,6 @@
 package duke.task;
 
+
 /**
  * Represents an event task
  *

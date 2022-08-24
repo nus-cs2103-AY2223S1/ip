@@ -21,6 +21,7 @@ public class DeleteCommand extends Command {
      * @param number deletes specified task based on its position in the list
      */
     public DeleteCommand(int number) {
+
         this.number = number;
     }
 
