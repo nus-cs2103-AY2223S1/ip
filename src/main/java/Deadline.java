@@ -1,5 +1,5 @@
 public class Deadline extends Task {
-    protected final String TAG = "[D]";
+    protected final static String TAG = "[D]";
     protected String due;
 
     public Deadline(String descriptor, String due) {
@@ -8,5 +8,6 @@ public class Deadline extends Task {
     }
     @Override
     public String toString() {
-        return TAG + super.toString() + "(by: " + this.due + ")";
+        return TAG + super.toString() + " (by: " + this.due + ")";
+    }
 }

@@ -1,7 +1,7 @@
 public class Task {
     protected String description;
     protected boolean isDone;
-
+    protected final static String TAG = "[ ]";
     public Task(String description) {
         this.description = description;
         this.isDone = false;
