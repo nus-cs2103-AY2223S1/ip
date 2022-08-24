@@ -1,3 +1,7 @@
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public abstract class Task {
     private String description;
     private boolean isDone;
@@ -64,6 +68,29 @@ public abstract class Task {
         this.isDone = false;
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("\t" + this);
+    }
+
+    public static Date parseDate(String input) throws DukeException {
+        SimpleDateFormat formatter;
+        if (input.indexOf("/") != 1) {
+            formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        } else if (input.indexOf("-") != 1) {
+            formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        } else {
+            throw new DukeException(
+                    "Please make sure your date is in `dd/MM/yyyy HH:mm` or `dd-MM-yyyy HH:mm` format.");
+        }
+        try {
+            return formatter.parse(input);
+        } catch (ParseException e) {
+            throw new DukeException(
+                    "Please make sure your date is in `dd/MM/yyyy HH:mm` or `dd-MM-yyyy HH:mm` format.");
+        }
+    }
+
+    public static String formatDate(Date date) {
+        SimpleDateFormat standardDateFormat = new SimpleDateFormat("EEE, MMM d, hh:mm a");
+        return standardDateFormat.format(date);
     }
 
     @Override
