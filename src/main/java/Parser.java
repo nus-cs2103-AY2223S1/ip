@@ -71,7 +71,7 @@ public class Parser {
     }
 
     private static Task createTask(String taskName, String taskDescription, boolean isDone) {
-        String[] temp = taskDescription.split(" /");
+        String[] temp = taskDescription.split(" /", 2);
 
         switch (taskName) {
         case "todo":
