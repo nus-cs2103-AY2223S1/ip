@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Skyler {
     public static void printTask(Task task, int num) {
@@ -8,6 +11,19 @@ public class Skyler {
         System.out.println(str);
         String summary = String.format("Total number of tasks: %d", num);
         System.out.println(summary);
+    }
+
+    public static LocalDateTime processDateTime(String strDateTime) {
+        String[] timeInfo = strDateTime.split(" ", 2);
+
+        String unformattedTime = timeInfo[1];
+        String hour = unformattedTime.substring(0, 2);
+        String minute = unformattedTime.substring(2, 4);
+        String formattedTime = String.format("%s:%s", hour, minute);
+
+        LocalDate date = LocalDate.parse(timeInfo[0]);
+        LocalTime time = LocalTime.parse(formattedTime);
+        return LocalDateTime.of(date, time);
     }
 
     public static void main(String[] args) {
@@ -58,7 +74,10 @@ public class Skyler {
                     String item = arr[1];
                     String[] arr1 = item.split(" /by ", 2);
 
-                    Deadline newDeadline = new Deadline(arr1[0], arr1[1]);
+                    // process date and time
+                    LocalDateTime dt = processDateTime(arr1[1]);
+
+                    Deadline newDeadline = new Deadline(arr1[0], dt);
                     tasks.add(newDeadline);
 
                     printTask(newDeadline, tasks.size());
@@ -70,7 +89,10 @@ public class Skyler {
                     String item = arr[1];
                     String[] arr1 = item.split(" /at ", 2);
 
-                    Event newEvent = new Event(arr1[0], arr1[1]);
+                    // process date and time
+                    LocalDateTime dt = processDateTime(arr1[1]);
+
+                    Event newEvent = new Event(arr1[0], dt);
                     tasks.add(newEvent);
 
                     printTask(newEvent, tasks.size());
