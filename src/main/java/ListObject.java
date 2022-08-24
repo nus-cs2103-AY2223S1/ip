@@ -1,7 +1,9 @@
+import java.io.Serializable;
+
 /**
  * Class to store list items with task and status of completion
  */
-public class ListObject{
+public class ListObject implements Serializable {
     private String task;
     private int status;
 
