@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.component.TaskList;
+import duke.exception.DukeException;
+import duke.task.Event;
+
 public class EventCommand extends Command {
 
     public EventCommand(String content, TaskList tasks) {

@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.component.TaskList;
+import duke.exception.DukeException;
+
 public abstract class Command {
 
     protected String content;

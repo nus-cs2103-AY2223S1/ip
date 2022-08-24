@@ -1,3 +1,5 @@
+package duke.exception;
+
 public class DukeException extends RuntimeException {
 
     public static final String OOPS = " ☹ OOPS!!! ";

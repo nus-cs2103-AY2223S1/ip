@@ -1,3 +1,5 @@
+package duke.component;
+
 public class Ui {
 
     private static final String LINES = "_________________________\n";

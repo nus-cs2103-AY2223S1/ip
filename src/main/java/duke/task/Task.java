@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.exception.DukeException;
+
 public abstract class Task {
     private static final String DONE = "[X]";
     private static final String NOT_DONE = "[ ]";

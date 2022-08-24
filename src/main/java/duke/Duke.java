@@ -1,3 +1,13 @@
+package duke;
+
+import duke.command.Command;
+import duke.command.EndCommand;
+import duke.component.Parser;
+import duke.component.Storage;
+import duke.component.TaskList;
+import duke.component.Ui;
+import duke.exception.DukeException;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;

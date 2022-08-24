@@ -1,6 +1,11 @@
-public class DeleteCommand extends Command {
+package duke.command;
 
-    public DeleteCommand(String content, TaskList tasks) {
+import duke.component.TaskList;
+import duke.exception.DukeException;
+
+public class UnmarkCommand extends Command {
+
+    public UnmarkCommand(String content, TaskList tasks) {
         super(content, tasks);
     }
 
@@ -8,7 +13,7 @@ public class DeleteCommand extends Command {
     public String run() throws DukeException {
         String reply;
         try {
-            reply = this.tasks.deleteTask(Integer.parseInt(this.content) - 1);
+            reply = this.tasks.unmarkTask(Integer.parseInt(content) - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Task number need to be an integer!");
         }

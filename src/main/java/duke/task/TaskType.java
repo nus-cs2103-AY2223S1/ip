@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.exception.DukeException;
+
 public enum TaskType {
 
     DEADLINE("D"),

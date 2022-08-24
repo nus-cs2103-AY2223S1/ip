@@ -1,4 +1,9 @@
- public class MarkCommand extends Command {
+package duke.command;
+
+import duke.component.TaskList;
+import duke.exception.DukeException;
+
+public class MarkCommand extends Command {
 
     public MarkCommand(String content, TaskList tasks) {
         super(content, tasks);
