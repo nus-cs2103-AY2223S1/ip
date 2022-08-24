@@ -25,4 +25,15 @@ public class DeleteCommand implements Command {
             ui.handleException(e);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof DeleteCommand) {
+            DeleteCommand that = (DeleteCommand) o;
+            if (this.index == that.index) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

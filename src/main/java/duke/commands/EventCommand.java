@@ -27,4 +27,15 @@ public class EventCommand implements Command {
             ui.handleException(e);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof EventCommand) {
+            EventCommand that = (EventCommand) o;
+            if (this.event.equals(that.event)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

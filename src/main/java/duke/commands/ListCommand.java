@@ -15,4 +15,12 @@ public class ListCommand implements Command {
             ui.handleException(e);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ListCommand) {
+            return true;
+        }
+        return false;
+    }
 }

@@ -18,6 +18,17 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("[%s] %s (by: %s)", super.getTaskIcon(), super.toString(), Parser.displayDateTime(this.dateTime));
+        return String.format("[%s] %s (by: %s)", super.getTaskIcon(), super.toString(),
+                Parser.displayDateTime(this.dateTime));
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Deadline) {
+            Deadline that = (Deadline) o;
+            return this.getDescription().equals(that.getDescription())
+                    && this.getDateTime().isEqual(that.getDateTime());
+        }
+        return false;
     }
 }

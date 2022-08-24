@@ -23,4 +23,15 @@ public class UnmarkCommand implements Command {
             ui.handleException(e);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof UnmarkCommand) {
+            UnmarkCommand that = (UnmarkCommand) o;
+            if (this.index == that.index) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

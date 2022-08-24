@@ -20,4 +20,14 @@ public class Event extends Task {
     public String toString() {
         return String.format("[%s] %s (at: %s)", super.getTaskIcon(), super.toString(), Parser.displayDateTime(this.dateTime));
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Event) {
+            Event that = (Event) o;
+            return this.getDescription().equals(that.getDescription())
+                    && this.getDateTime().isEqual(that.getDateTime());
+        }
+        return false;
+    }
 }

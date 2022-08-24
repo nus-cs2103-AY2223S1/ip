@@ -10,19 +10,6 @@ import java.time.format.DateTimeParseException;
 
 public class Parser {
 
-    public static void main(String[] args) {
-        try {
-            String date = parseDateTime("12-1-6 1600").toString();
-            LocalDateTime dateTime = LocalDateTime.parse(date);
-            System.out.println(displayDateTime(dateTime));
-            System.out.println(dateTime);
-            LocalDate dateOnly = dateTime.toLocalDate();
-            System.out.println(dateOnly);
-        } catch (DukeException e) {
-            System.out.println(e);
-        }
-    }
-
     public static Command parseCommand(String str) throws DukeException {
         try {
             String[] inputLine = str.split(" ", 2);
@@ -48,7 +35,7 @@ public class Parser {
             default:
                 throw new DukeException("Exception: Unknown command.");
             }
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new DukeException("Exception: Wrong command parameters.");
         }
     }

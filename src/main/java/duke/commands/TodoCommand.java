@@ -25,4 +25,15 @@ public class TodoCommand implements Command {
             ui.handleException(e);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof TodoCommand) {
+            TodoCommand that = (TodoCommand) o;
+            if (this.todo.equals(that.todo)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

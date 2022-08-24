@@ -16,4 +16,12 @@ public class ByeCommand implements Command {
             ui.handleException(e);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof ByeCommand) {
+            return true;
+        }
+        return false;
+    }
 }

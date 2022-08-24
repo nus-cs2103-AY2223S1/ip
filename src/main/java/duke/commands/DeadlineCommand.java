@@ -27,4 +27,15 @@ public class DeadlineCommand implements Command {
             ui.handleException(e);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof DeadlineCommand) {
+            DeadlineCommand that = (DeadlineCommand) o;
+            if (this.deadline.equals(that.deadline)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
