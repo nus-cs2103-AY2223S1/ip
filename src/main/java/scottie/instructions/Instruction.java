@@ -4,6 +4,7 @@ import scottie.tasks.TaskList;
 import scottie.ui.Ui;
 
 import java.util.Map;
+import java.util.Objects;
 
 public abstract class Instruction {
     private final String mainArgument;
@@ -60,5 +61,18 @@ public abstract class Instruction {
 
     public boolean endsProgram() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Instruction that = (Instruction) o;
+        return Objects.equals(this.mainArgument, that.mainArgument)
+                && Objects.equals(this.flagArgumentsMap, that.flagArgumentsMap);
     }
 }
