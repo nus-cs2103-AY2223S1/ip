@@ -1,11 +1,10 @@
+import duke.*;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 public class Duke {
 
@@ -73,7 +72,7 @@ public class Duke {
             sc.next();
             String next = sc.nextLine();
             String[] date = next.split(" ");
-            Deadline deadline = new Deadline(description, date[1]);
+            Deadline deadline = new Deadline(description, date);
             lst.add(deadline);
             System.out.println("Got it. I've added this task: ");
             System.out.println("\t" + deadline.toString());
@@ -95,7 +94,7 @@ public class Duke {
             sc.next();
             String next = sc.nextLine();
             String[] date = next.split(" ");
-            Event event = new Event(description, date[1]);
+            Event event = new Event(description, date);
             lst.add(event);
             System.out.println("Got it. I've added this task: ");
             System.out.println("\t" + event.toString());
