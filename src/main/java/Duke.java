@@ -30,8 +30,7 @@ public class Duke {
                             System.out.println(i + ". " + task.toString() + "\n");
                         }
                     }
-                }
-                if (command.split(" ")[0].equals("mark")) {
+                } else if (command.split(" ")[0].equals("mark")) {
                     try {
                         taskNumber = Integer.parseInt(command.split(" ")[1]);
                         task = list.getTask(taskNumber - 1);
