@@ -13,8 +13,6 @@ public class Duke {
     private static String[] commandWords = new String[]{"list", "mark", "unmark", "todo", "event", "deadline", "delete", "bye"};
     private static String start = "Hello! I'm Duke\nWhat can I do for you?";
     private static String end = "Bye. Hope to see you again soon!";
-<<<<<<< HEAD
-=======
 
     public static class DukeException extends Exception {
         public DukeException(String msg) {
@@ -37,10 +35,6 @@ public class Duke {
 
     public static void main(String[] args) throws InvalidCommandException, EmptyMessageException {
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
         msg(start);
 
         //loading past data from file
