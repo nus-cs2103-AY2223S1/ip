@@ -12,17 +12,38 @@ public class Duke {
 
     public Duke(String filePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+        try {
+            storage = new Storage(filePath);
+        } catch (DukeException e) {
+            ui.showErrorMessage(e.getMessage());
+        }
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             ui.showLoadingError();
-            tasks = new TaskList();
+            throw new RuntimeException(e);
         }
     }
 
-    public void run() {
+    public static void main(String[] args) {
+        new Duke("Duke/Duke.txt").run();
+    }
 
+    public void run() {
+        ui.showWelcomeMessage();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.getUserCommand();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showErrorMessage(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
+        }
     }
 
     public static void main(String[] args) throws DukeException {
