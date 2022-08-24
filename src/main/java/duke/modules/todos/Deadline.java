@@ -24,6 +24,7 @@ public class Deadline extends Task {
      * Constructor
      *
      * @param name The name of the task.
+     * @param deadline The deadline of the task.
      */
     public Deadline(String name, LocalDateTime deadline) {
         this(name, false, deadline);
@@ -75,6 +76,11 @@ public class Deadline extends Task {
 
     public static final String typeCode = "D";
 
+    /**
+     * Packs the task's data into a List.
+     *
+     * @return The packed data.
+     */
     @Override
     public List<String> flatPack() {
         List<String> result = new ArrayList<>(super.flatPack());
@@ -84,6 +90,11 @@ public class Deadline extends Task {
         return result;
     }
 
+    /**
+     * Unpacks the task's data from a List.
+     *
+     * @param l The packed data.
+     */
     public Deadline(List<? extends String> l) {
         super(l);
         if (!l.get(0).equals(typeCode)) {

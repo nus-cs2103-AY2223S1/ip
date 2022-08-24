@@ -11,7 +11,16 @@ import static duke.Ui.say;
 import static duke.Ui.sayAsError;
 import static duke.Ui.sayError;
 
+/**
+ * Command parser cum evaluator.
+ */
 public class Parser {
+    /**
+     * Parses and executes the given input using the given module instances.
+     * @param line The input given to the bot.
+     * @param todos The Todos module instance to use.
+     * @return Whether the process should exit after this command.
+     */
     public static boolean execute(String line, Todos todos) {
         try {
             Scanner scanner = new Scanner(line);

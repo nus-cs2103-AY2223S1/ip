@@ -9,5 +9,13 @@ package duke;
  */
 @FunctionalInterface
 public interface FallibleFunction<T, R> {
+
+    /**
+     * Applies this function to the given argument.
+     *
+     * @param t The function argument.
+     * @return The function result.
+     * @throws MessagefulException when thrown by the wrapped function.
+     */
     R apply(T t) throws MessagefulException;
 }

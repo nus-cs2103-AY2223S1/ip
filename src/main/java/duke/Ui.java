@@ -35,6 +35,11 @@ public class Ui {
 
     private static final boolean DEV_MODE = false;
 
+    /**
+     * Output an error message.
+     *
+     * @param e The MessagefulException to output.
+     */
     public static void sayError(MessagefulException e) {
         if (DEV_MODE) {
             sayAsError(e.toString());
@@ -43,6 +48,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Output an arbitrary string as if it is an error message.
+     *
+     * @param message The message to output.
+     */
     public static void sayAsError(String message) {
         System.out.println("\uD83D\uDFE1 " + message);
         System.out.println("─────");
@@ -50,6 +60,11 @@ public class Ui {
 
     private static final Scanner stdin = new Scanner(System.in);
 
+    /**
+     * Reads a line of text from standard input.
+     *
+     * @return The read line of text.
+     */
     public static String readLine() {
         return stdin.nextLine();
     }

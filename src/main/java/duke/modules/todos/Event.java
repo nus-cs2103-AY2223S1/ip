@@ -20,6 +20,7 @@ public class Event extends Task {
      * Constructor
      *
      * @param name The name of the task.
+     * @param timeRange The time range of the task.
      */
     public Event(String name, String timeRange) {
         this(name, false, timeRange);
@@ -63,6 +64,11 @@ public class Event extends Task {
 
     public static final String typeCode = "E";
 
+    /**
+     * Packs the task's data into a List.
+     *
+     * @return The packed data.
+     */
     @Override
     public List<String> flatPack() {
         List<String> result = new ArrayList<>(super.flatPack());
@@ -72,6 +78,11 @@ public class Event extends Task {
         return result;
     }
 
+    /**
+     * Unpacks the task's data from a List.
+     *
+     * @param l The packed data.
+     */
     public Event(List<? extends String> l) {
         super(l);
         if (!l.get(0).equals(typeCode)) {
