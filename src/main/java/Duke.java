@@ -57,7 +57,12 @@ public class Duke {
                         } else if (taskName.length == 1 || taskName[1].length() < 3) {
                             throw new DukeException("OOPS!!! The time and date of the Deadline cannot be empty.");
                         } else {
-                            Task toAdd = new Deadline(taskName[0].substring(9), taskName[1].substring(3));
+                            //eg. by 2019-10-03 18:00
+                            String[] dateTime = taskName[1].split(" ");
+                            String date = dateTime[1];
+                            String time = dateTime[2];
+
+                            Task toAdd = new Deadline(taskName[0].substring(9), date, time);
                             itemList.addTask(toAdd);
                             command = sc.nextLine();
                         }
@@ -68,7 +73,12 @@ public class Duke {
                         } else if (taskName.length == 1 || taskName[1].length() < 3) {
                             throw new DukeException("OOPS!!! The time and date of the Event cannot be empty.");
                         } else {
-                            Task toAdd = new Event(taskName[0].substring(6), taskName[1].substring(3));
+                            String[] dateTime = taskName[1].split(" ");
+                            //eg. at 2019-10-3 10:30-16:00
+                            String date = dateTime[1];
+                            String[] time = dateTime[2].split("-");
+
+                            Task toAdd = new Event(taskName[0].substring(6), date, time[0], time[1]);
                             itemList.addTask(toAdd);
                             command = sc.nextLine();
                         }

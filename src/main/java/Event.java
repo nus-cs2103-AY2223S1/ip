@@ -1,13 +1,24 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
+
 public class Event extends Task {
     protected String type = "[E]";
-    protected String dateTime = "(at: ";
-    Event(String description, String dateTime) {
+    protected LocalDate date;
+    protected LocalTime from;
+    protected LocalTime to;
+
+    Event(String description, String date, String from, String to) {
         super(description);
-        this.dateTime = this.dateTime + dateTime + ")";
+        this.date = LocalDate.parse(date);
+        this.from = LocalTime.parse(from);
+        this.to = LocalTime.parse(to);
     }
 
     @Override
     public String toString() {
-        return type + super.toString() + dateTime;
+        return type + super.toString() + "(at: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                + ", " + from.format(DateTimeFormatter.ofPattern("HHmm")) + " to "
+                + to.format(DateTimeFormatter.ofPattern("HHmm")) + ")";
     }
 }
