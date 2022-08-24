@@ -34,7 +34,7 @@ public class TaskListTest {
     public void testPrintEmptyList() {
         tasks.printList();
         assertEquals(
-                '\u2619' + " your list is empty. start adding some tasks to do now!\n",
+                '\u2619' + " your list is empty. START adding some tasks to do now!\n",
                 output.toString());
     }
 

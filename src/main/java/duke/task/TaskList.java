@@ -2,8 +2,8 @@ package duke.task;
 
 import java.io.IOException;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
@@ -47,9 +47,9 @@ public class TaskList {
 
     public void printList() {
         if (tasks.size() == 0) {
-            System.out.println(Ui.start + "your list is empty. start adding some tasks to do now!");
+            System.out.println(Ui.START + "your list is empty. start adding some tasks to do now!");
         } else {
-            System.out.println(Ui.start + "these are the tasks in your list:");
+            System.out.println(Ui.START + "these are the tasks in your list:");
             int x = 1;
             for (Task task : tasks) {
                 System.out.println("  " + x + ". " + task.toString());
@@ -60,7 +60,7 @@ public class TaskList {
 
     public void add(Task t) {
         tasks.add(t);
-        System.out.println(Ui.start + "added:\n" + "     " + t);
+        System.out.println(Ui.START + "added:\n" + "     " + t);
         if (tasks.size() == 1) {
             System.out.println("  you now have 1 task in the list. type list to see it!");
         } else {
@@ -71,12 +71,12 @@ public class TaskList {
     public void delete(int i) {
         if (tasks.size() == 0) {
             System.out.println(
-                    Ui.start + "hmm, you do not have any tasks in your list to delete. add some now!"
+                    Ui.START + "hmm, you do not have any tasks in your list to delete. add some now!"
             );
         } else {
             try {
                 Task t = tasks.remove(i);
-                System.out.println(Ui.start + "okay! i have deleted the following task from your list:");
+                System.out.println(Ui.START + "okay! i have deleted the following task from your list:");
                 System.out.println("     " + t);
                 if (tasks.size() == 0) {
                     System.out.println("  your list is now empty. time to add some more!");
@@ -87,7 +87,7 @@ public class TaskList {
                             "  now you have " + tasks.size() + " tasks in the list. type list to view them.");
                 }
             } catch (IndexOutOfBoundsException e) {
-                System.out.println(Ui.sadFace + "please enter an integer from 1 - " + tasks.size());
+                System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
             }
         }
     }
@@ -103,10 +103,10 @@ public class TaskList {
         }
         if (x == 1) {
             System.out.println(
-                    Ui.start + "There are no tasks occurring on " + date + ".");
+                    Ui.START + "There are no tasks occurring on " + date + ".");
         } else {
             System.out.println(
-                    Ui.start + "These are the tasks occurring on " + date + ":" + list
+                    Ui.START + "These are the tasks occurring on " + date + ":" + list
             );
         }
     }
@@ -115,31 +115,31 @@ public class TaskList {
         try {
             if (tasks.size() == 0) {
                 System.out.println(
-                        Ui.start + "hmm, you do not have any tasks in your list to be marked. add some now!"
+                        Ui.START + "hmm, you do not have any tasks in your list to be marked. add some now!"
                 );
             } else {
                 Task doneTask = tasks.get(t);
                 doneTask.setDone();
-                System.out.println(Ui.start + "good job! this task has been marked as done:");
+                System.out.println(Ui.START + "good job! this task has been marked as done:");
                 System.out.println("     " + doneTask);
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Ui.sadFace + "please enter an integer from 1 - " + tasks.size());
+            System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
         }
     }
 
     public void unmark(int t) {
         try {
             if (tasks.size() == 0) {
-                System.out.println(Ui.start + "hmm, you do not have any tasks in your list. add some now!");
+                System.out.println(Ui.START + "hmm, you do not have any tasks in your list. add some now!");
             } else {
                 Task undoneTask = tasks.get(t);
                 undoneTask.setUndone();
-                System.out.println(Ui.start + "ok, i've marked this task as not done yet:");
+                System.out.println(Ui.START + "ok, i've marked this task as not done yet:");
                 System.out.println("     " + undoneTask);
             }
         } catch (IndexOutOfBoundsException e) {
-            System.out.println(Ui.sadFace + "please enter an integer from 1 - " + tasks.size());
+            System.out.println(Ui.SAD_FACE + "please enter an integer from 1 - " + tasks.size());
         }
     }
 

@@ -13,6 +13,6 @@ src/main/resources/docs/
 *.iml
 bin/
 
-src/main/data/
+data/
 /src/test/ACTUAL.TXT
 /src/test/EXPECTED-UNIX.TXT
