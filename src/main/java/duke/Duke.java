@@ -4,7 +4,7 @@ import duke.exceptions.DukeException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
-import ui.Ui;
+import duke.ui.Ui;
 
 import java.util.Scanner;
 
@@ -29,10 +29,9 @@ public class Duke {
 
     private void loopInputRead() {
         Parser parser = new Parser(new Scanner(System.in));
-        while(true) {
+        while (true) {
             try {
                 boolean complete = parser.handleInput();
-
                 if (complete) {
                     break;
                 }

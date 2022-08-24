@@ -18,9 +18,10 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String savedFileFormat() {
+    public String getSavedFileFormat() {
         return "D | " + (this.isDone ? 1 : 0) + " | " + this.description
-                + " | " + this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                + " | "
+                + this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
 }

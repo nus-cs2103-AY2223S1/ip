@@ -12,7 +12,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String savedFileFormat() {
+    public String getSavedFileFormat() {
         return "T | " + (this.isDone ? 1 : 0) + " | " + this.description;
     }
 }

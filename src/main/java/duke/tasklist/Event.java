@@ -19,9 +19,10 @@ public class Event extends Task {
     }
 
     @Override
-    public String savedFileFormat() {
+    public String getSavedFileFormat() {
         return "E | " + (this.isDone ? 1 : 0) + " | " + this.description
-                + " | " + this.at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                + " | "
+                + this.at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
 }

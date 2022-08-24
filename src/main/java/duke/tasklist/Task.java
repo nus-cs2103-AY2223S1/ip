@@ -19,7 +19,7 @@ public class Task {
         }
     }
 
-    public void savedTaskMarkAsDone() {
+    public void markSavedTaskAsDone() {
         if (!this.isDone) {
             this.isDone = true;
         }
@@ -38,7 +38,7 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
-    public String savedFileFormat() {
+    public String getSavedFileFormat() {
         return (this.isDone ? 1 : 0) + "|" + this.description;
     }
 

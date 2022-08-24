@@ -3,12 +3,10 @@ package duke.storage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import duke.exceptions.DukeException;
 import duke.tasklist.Task;
 import duke.tasklist.TaskList;
 
@@ -24,8 +22,7 @@ public class Storage {
     }
 
 
-
-    public void readSavedTasks(){
+    public void readSavedTasks() {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.
                     ofPattern("yyyy MM dd HH:mm");
@@ -54,7 +51,7 @@ public class Storage {
             FileWriter writer = new FileWriter("data/duke.txt");
             ArrayList<Task> storage = TaskList.getInstance().getTaskList();
             for (Task x : storage) {
-                writer.write(x.savedFileFormat() + "\n");
+                writer.write(x.getSavedFileFormat() + "\n");
             }
             writer.close();
         } catch (IOException e) {

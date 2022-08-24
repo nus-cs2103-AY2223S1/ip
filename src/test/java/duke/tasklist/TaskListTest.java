@@ -1,8 +1,7 @@
-package duke;
+package duke.tasklist;
 
 import duke.exceptions.DukeException;
 import org.junit.jupiter.api.*;
-import duke.tasklist.TaskList;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -11,8 +10,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TaskListTest {
 
-    private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final static ByteArrayOutputStream errContent = new ByteArrayOutputStream();
+    private final static ByteArrayOutputStream outContent =
+            new ByteArrayOutputStream();
+    private final static ByteArrayOutputStream errContent =
+            new ByteArrayOutputStream();
     private final static PrintStream originalOut = System.out;
     private final static PrintStream originalErr = System.err;
 
@@ -38,7 +39,7 @@ class TaskListTest {
         assertEquals(expected, outContent.toString());
 
         outContent.reset();
-        input = new String[] {
+        input = new String[]{
                 "event", "project meeting /at 2022-08-22 1800"
         };
         expected = "added [E][ ] project meeting (at: Aug 22 2022 18:00)\n" +
@@ -47,7 +48,7 @@ class TaskListTest {
         assertEquals(expected, outContent.toString());
         outContent.reset();
 
-        input = new String[] {
+        input = new String[]{
                 "deadline", "math submission /by 2022-08-23 2359"
         };
         expected = "added [D][ ] math submission (by: Aug 23 2022 23:59)\n" +
@@ -77,7 +78,7 @@ class TaskListTest {
     @Test
     void getTaskList() {
         TaskList curr = TaskList.getInstance();
-        DukeException e = assertThrows(DukeException.class,  () -> curr.delete("0"));
+        DukeException e = assertThrows(DukeException.class, () -> curr.delete("0"));
         assertEquals("Invalid selection for deletion", e.getMessage());
 
     }
