@@ -1,6 +1,8 @@
 package duke.task;
 
 import duke.exception.DukeCommandFormatException;
+import duke.exception.DukeTaskDateTimeMissingException;
+import duke.exception.DukeTaskTitleMissingException;
 import duke.util.CommandParser;
 
 public abstract class Task {
@@ -11,7 +13,8 @@ public abstract class Task {
 
     // TODO: Try to combine the string literals in line with duke.task.TaskType
 
-    public static Task valueOf(String input) throws DukeCommandFormatException {
+    public static Task valueOf(String input)
+            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException {
         String firstWord = CommandParser.getFirstWord(input);
 
         String taskTitle = "";

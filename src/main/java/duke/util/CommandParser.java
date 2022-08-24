@@ -2,6 +2,9 @@ package duke.util;
 
 import duke.Duke;
 import duke.exception.DukeCommandFormatException;
+import duke.exception.DukeIndexMissingException;
+import duke.exception.DukeTaskDateTimeMissingException;
+import duke.exception.DukeTaskTitleMissingException;
 import duke.legacy.Actionable;
 import duke.legacy.Command;
 import duke.legacy.CommandType;
@@ -18,6 +21,12 @@ public class CommandParser {
             "Oops! You didn't specify the date and time with the delimiter " + AT_DATE_DELIMITER;
     private static final String DEADLINE_WITHOUT_BY_ERROR_MESSAGE =
             "Oops! You didn't specify the date and time with the delimiter " + BY_DATE_DELIMITER;
+    private static final String INDEX_MISSING_ERROR_MESSAGE =
+            "Oops! You didn't specify the index, starting from 1.";
+    private static final String TASK_TITLE_MISSING_ERROR_MESSAGE =
+            "Oops! You didn't specify the title of the task.";
+    private static final String TASK_DATE_TIME_MISSING_ERROR_MESSAGE =
+            "Oops! You didn't specify the title of the task.";
 
     public static int getIndexOfFirstOccurrence(String input, String pattern) {
         int indexOfFirstOccurrence = input.indexOf(pattern);
@@ -40,46 +49,60 @@ public class CommandParser {
         return input.substring(0, indexOfFirstWhiteSpace);
     }
 
-    public static String getByDate(String input) throws DukeCommandFormatException {
+    public static String getByDate(String input) throws DukeCommandFormatException, DukeTaskDateTimeMissingException {
         int indexOfDelimiter = input.indexOf(BY_DATE_DELIMITER);
         if (indexOfDelimiter == -1) {
             throw new DukeCommandFormatException(DEADLINE_WITHOUT_BY_ERROR_MESSAGE);
         }
         String roughDate = input.substring(indexOfDelimiter + BY_DATE_DELIMITER.length(), input.length());
-        return removeHeadingAndTailingWhiteSpaces(roughDate);
+        String realDate = removeHeadingAndTailingWhiteSpaces(roughDate);
+        if (realDate.isEmpty()) {
+            throw new DukeTaskDateTimeMissingException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
+        }
+        return realDate;
     }
 
-    public static String getAtDate(String input) throws DukeCommandFormatException {
+    public static String getAtDate(String input) throws DukeCommandFormatException, DukeTaskDateTimeMissingException {
         int indexOfDelimiter = input.indexOf(AT_DATE_DELIMITER);
         if (indexOfDelimiter == -1) {
             throw new DukeCommandFormatException(EVENT_WITHOUT_AT_ERROR_MESSAGE);
         }
         String roughDate = input.substring(indexOfDelimiter + AT_DATE_DELIMITER.length(), input.length());
-        return removeHeadingAndTailingWhiteSpaces(roughDate);
+        String realDate = removeHeadingAndTailingWhiteSpaces(roughDate);
+        if (realDate.isEmpty()) {
+            throw new DukeTaskDateTimeMissingException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
+        }
+        return realDate;
     }
 
-    public static String getTaskTitle(String input) {
+    public static String getTaskTitle(String input) throws DukeTaskTitleMissingException {
         int indexOfStart = getIndexOfFirstWhiteSpace(input);
+        if (indexOfStart == input.length()) {
+            throw new DukeTaskTitleMissingException(TASK_TITLE_MISSING_ERROR_MESSAGE);
+        }
         int indexOfEnd = indexOfStart
                 + getIndexOfFirstDelimiter(input.substring(indexOfStart + 1, input.length()))
                 + 1;
         String roughTaskTitle = input.substring(indexOfStart + 1, indexOfEnd);
+        String realTaskTitle = removeHeadingAndTailingWhiteSpaces(roughTaskTitle);
+        if (realTaskTitle.isEmpty()) {
+            throw new DukeTaskTitleMissingException(TASK_TITLE_MISSING_ERROR_MESSAGE);
+        }
         return removeHeadingAndTailingWhiteSpaces(roughTaskTitle);
     }
 
-    public static int getTaskIndexFromCommand(String input) {
+    public static int getTaskIndexFromCommand(String input) throws DukeIndexMissingException {
         int indexOfFirstWhiteSpace = CommandParser.getIndexOfFirstWhiteSpace(input);
         String tailSubString = input.substring(indexOfFirstWhiteSpace, input.length());
         tailSubString = tailSubString.replace(" ", "");
         if (tailSubString.isEmpty()) {
-            return -1;
+            throw new DukeIndexMissingException(INDEX_MISSING_ERROR_MESSAGE);
         }
-        int taskIndex = -1;
+        int taskIndex;
         try {
             taskIndex = Integer.parseInt(tailSubString) - 1; // Minus 1 because user input indices start from 1
         } catch (NumberFormatException ex) {
-            // No need to do anything, because the output will be -1
-            // which will be handled in the higher layer
+            throw new DukeIndexMissingException(INDEX_MISSING_ERROR_MESSAGE);
         }
         return taskIndex;
     }
@@ -90,7 +113,7 @@ public class CommandParser {
         while (start < input.length() && Character.isWhitespace(input.charAt(start))) {
             start++;
         }
-        while (end > 0 && Character.isWhitespace(input.charAt(end - 1))) {
+        while (end > start && Character.isWhitespace(input.charAt(end - 1))) {
             end--;
         }
         return input.substring(start, end);

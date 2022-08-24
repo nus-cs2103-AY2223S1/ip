@@ -1,7 +1,6 @@
 package duke;
 
-import duke.exception.DukeCommandFormatException;
-import duke.exception.DukeIndexException;
+import duke.exception.*;
 import duke.task.Task;
 import duke.util.CommandParser;
 import duke.util.OutputFormatter;
@@ -67,7 +66,8 @@ public class Duke {
         return stringBuilder.toString();
     }
 
-    private String addNewTask(String input) throws DukeCommandFormatException {
+    private String addNewTask(String input)
+            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException {
         Task newTask = Task.valueOf(input);
         if (newTask == null) {
             return GENERAL_ERROR_STRING;
@@ -76,9 +76,9 @@ public class Duke {
         return "added: " + newTask.toString();
     }
 
-    private String markTaskDone(int index) throws DukeIndexException {
+    private String markTaskDone(int index) throws DukeIndexOutOfBoundException {
         if (index < 0 || index >= taskList.size()) {
-            throw new DukeIndexException(MARK_DONE_ERROR_STRING);
+            throw new DukeIndexOutOfBoundException(MARK_DONE_ERROR_STRING);
         } else {
             Task targetTask = taskList.get(index);
             targetTask.markDone();
@@ -89,9 +89,9 @@ public class Duke {
         }
     }
 
-    private String markTaskUndone(int index) throws DukeIndexException {
+    private String markTaskUndone(int index) throws DukeIndexOutOfBoundException {
         if (index < 0 || index >= taskList.size()) {
-            throw new DukeIndexException(MARK_UNDONE_ERROR_STRING);
+            throw new DukeIndexOutOfBoundException(MARK_UNDONE_ERROR_STRING);
         } else {
             Task targetTask = taskList.get(index);
             targetTask.markUndone();
@@ -102,15 +102,23 @@ public class Duke {
         }
     }
 
-    private String deleteTask(int index) throws DukeIndexException {
+    private String deleteTask(int index) throws DukeIndexOutOfBoundException {
         if (index < 0 || index >= taskList.size()) {
-            throw new DukeIndexException(DELETE_ERROR_STRING);
+            throw new DukeIndexOutOfBoundException(DELETE_ERROR_STRING);
         } else {
             Task removedTask = taskList.remove(index);
+            boolean onlyOneTask = taskList.size() == 1;
             return DELETE_OUTPUT_STRING
                     + "\n"
                     + TAB
-                    + removedTask;
+                    + removedTask
+                    + "\n"
+                    + TAB
+                    + "There "
+                    + (onlyOneTask ? "is " : "are ")
+                    + taskList.size()
+                    + (onlyOneTask ? " task" : " tasks")
+                    + " in the list";
         }
     }
 
@@ -130,21 +138,24 @@ public class Duke {
             boolean commandFetched = false;
 
             String firstWord = CommandParser.getFirstWord(nextLine);
-            int index = CommandParser.getTaskIndexFromCommand(nextLine);
+            int index;
 
             try {
                 switch (firstWord) {
                 case (MARK_DONE_COMMAND_STRING):
+                    index = CommandParser.getTaskIndexFromCommand(nextLine);
                     output = markTaskDone(index);
                     commandFetched = true;
                     break;
 
                 case (MARK_UNDONE_COMMAND_STRING):
+                    index = CommandParser.getTaskIndexFromCommand(nextLine);
                     output = markTaskUndone(index);
                     commandFetched = true;
                     break;
 
                 case (DELETE_COMMAND_STRING):
+                    index = CommandParser.getTaskIndexFromCommand(nextLine);
                     output = deleteTask(index);
                     commandFetched = true;
                     break;
@@ -172,9 +183,15 @@ public class Duke {
                         break;
                     }
                 }
-            } catch (DukeIndexException exception) {
+            } catch (DukeIndexOutOfBoundException exception) {
                 output = exception.getMessage();
             } catch (DukeCommandFormatException exception) {
+                output = exception.getMessage();
+            } catch (DukeIndexMissingException exception) {
+                output = exception.getMessage();
+            } catch (DukeTaskTitleMissingException exception) {
+                output = exception.getMessage();
+            } catch (DukeTaskDateTimeMissingException exception) {
                 output = exception.getMessage();
             }
 
