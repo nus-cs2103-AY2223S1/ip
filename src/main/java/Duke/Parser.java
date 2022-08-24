@@ -5,7 +5,6 @@ import java.util.Scanner;
 /**
 * Making sense of the user command
  */
-
 public class Parser {
     /**
      * @param tasks of type TaskList

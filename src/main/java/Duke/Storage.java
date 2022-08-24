@@ -11,7 +11,6 @@ import java.util.Objects;
 /**
  * deals with loading tasks from the file and saving tasks in the file
  */
-
 public class Storage {
     static String filePath;
     BufferedReader bR;
