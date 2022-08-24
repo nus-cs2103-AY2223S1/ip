@@ -1,3 +1,10 @@
+package duke;
+
+import duke.Deadline;
+import duke.EmptyDescriptionException;
+import duke.Event;
+import duke.OutOfRangeException;
+
 import java.util.ArrayList;
 
 
