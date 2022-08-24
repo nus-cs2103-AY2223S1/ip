@@ -1,13 +1,6 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.ByeCommand;
-import duke.command.OnDateCommand;
-import duke.command.ListCommand;
-import duke.command.DeleteCommand;
-import duke.command.MarkUndoneCommand;
-import duke.command.MarkDoneCommand;
-import duke.command.Command;
+import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -101,6 +94,20 @@ public class Parser {
     }
 
     /**
+     * Handles the case where user inputs a <code>Find</code>.
+     *
+     * @param input the input string from the user
+     * @return the string from the user
+     * @throws DukeException if there is an error in the input given from the user
+     */
+    public static String handleFind(String input) throws DukeException {
+        if (input.length() == 0) {
+            throw new DukeException("Did you forget to specify what you are looking for?");
+        }
+        else return input;
+    }
+
+    /**
      * Handles the reading of the input from the user.
      *
      * @param   input the input from the user
@@ -142,6 +149,9 @@ public class Parser {
             break;
         case "on":
             cmd = new OnDateCommand(LocalDate.parse(second));
+            break;
+        case "find":
+            cmd = new FindCommand(handleFind(second));
             break;
         default:
             throw new DukeException("Invalid command entered. I don't recognize it. Sorry!");
