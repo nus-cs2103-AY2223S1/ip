@@ -3,10 +3,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Parser {
-
-
-
-
         public static LocalDate stringToDate(String string) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate myDateObj = LocalDate.parse(string, formatter);
