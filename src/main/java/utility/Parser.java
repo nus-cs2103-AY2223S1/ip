@@ -50,7 +50,7 @@ public class Parser {
         } else if (stringCommand.equals("help")) {
             return new HelpCommand();
         } else if (stringCommand.equals("find")) {
-            return new GetLongDescriptionCommand();
+            return new FindCommand();
         }
         throw new DukeException("Command invalid. Type help for more information.");
     }

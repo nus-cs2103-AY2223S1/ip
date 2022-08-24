@@ -5,13 +5,15 @@ import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
 import utility.Parser;
-
+import command.ListCommand;
 
 public class FindCommand extends Command  {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String findString = Parser.stringToFind(ui.currentInput);
-        System.out.println(taskList.findTasks(findString).get(1));
+        TaskList matchedTasks = taskList.findTasks(findString);
+        ListCommand listCommand = new ListCommand();
+        listCommand.execute(matchedTasks, ui, storage);
     }
 
     @Override

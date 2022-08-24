@@ -1,18 +1,11 @@
 package tasklist;
-import exceptions.DukeException;
+
 
 import java.util.ArrayList;
-import java.util.Locale;
+
 
 import task.Task;
-import task.Event;
-import task.Deadline;
 
-/**
- * Represents ArrayList maintained in program
- */
-import task.Task;
-import utility.StorageParser;
 
 /**
  * Manage all interactions between Duke and UserInputHistory FILE storage.
@@ -55,8 +48,8 @@ public class TaskList<T extends Task> {
         return userInputHistory.get(n - 1);
     }
 
-    public ArrayList<T> findTasks(String keyword) {
-        ArrayList<T> matchingTasks = new ArrayList<>();
+    public TaskList findTasks(String keyword) {
+        TaskList<T> matchingTasks = new TaskList<>();
         T currTask;
         String description;
         boolean matches;
@@ -65,7 +58,7 @@ public class TaskList<T extends Task> {
             description = currTask.getDescription().toLowerCase();
             matches = description.contains(keyword.toLowerCase());
             if (matches) {
-                matchingTasks.add(currTask);
+                matchingTasks.userInputHistory.add(currTask);
             }
         }
         return matchingTasks;

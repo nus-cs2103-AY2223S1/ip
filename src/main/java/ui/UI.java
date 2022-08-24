@@ -52,6 +52,6 @@ public class UI {
         System.out.print("Thank you for swinging by :)");
     }
     public void showHelpMessage() {
-        System.out.println("Hi, it seems you are having trouble using Falcon,\ntry these command: \ntodo\nlist\nevent\ndeadline\nmark\nunmark\nlongdesc\nistoday");
+        System.out.println("Hi, it seems you are having trouble using Falcon,\ntry these command: \ntodo\nlist\nevent\ndeadline\nmark\nunmark\nlongdesc\nistoday\nfind");
     }
 }
