@@ -1,5 +1,6 @@
 package duke.ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.data.exception.DukeException;
@@ -106,5 +107,17 @@ public class Ui {
      */
     public void printList(String list) {
         System.out.println(list);
+    }
+
+    public void printFind(ArrayList<Task> list) {
+        StringBuilder stringBuilder = new StringBuilder("\tHere are the matching tasks in your list:");
+        int count = 1;
+        for (Task task: list) {
+            String item = String.format("\n\t%d. %s", count, task);
+            stringBuilder.append(item);
+            count++;
+        }
+
+        System.out.println(stringBuilder);
     }
 }

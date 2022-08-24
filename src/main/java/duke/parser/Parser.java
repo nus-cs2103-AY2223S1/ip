@@ -9,6 +9,7 @@ import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
@@ -63,6 +64,9 @@ public class Parser {
             checkInput(components);
             checkDate(components[1]);
             return new TasksCommand(components[1]);
+        case "find":
+            checkInput(components);
+            return new FindCommand(components[1]);
         default:
             return new InvalidCommand();
         }
