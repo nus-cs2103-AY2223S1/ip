@@ -1,5 +1,6 @@
-import java.util.Scanner;
+package duke;
 
+import java.util.Scanner;
 public class Duke {
     protected Storage storage;
     protected TaskList tasks;

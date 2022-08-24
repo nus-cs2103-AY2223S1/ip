@@ -1,5 +1,6 @@
-import java.util.ArrayList;
+package duke;
 
+import java.util.ArrayList;
 public class TaskList {
     protected ArrayList<Task> storeList;
     protected Storage storage;

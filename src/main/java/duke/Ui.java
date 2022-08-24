@@ -1,3 +1,4 @@
+package duke;
 public class Ui {
     protected String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
