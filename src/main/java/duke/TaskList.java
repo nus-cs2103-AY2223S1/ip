@@ -6,14 +6,20 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class TaskList {
+
+    private Ui ui;
+    private Storage storage;
     private ArrayList<Task> tasks;
 
     /**
      * Creates a TaskList object from a reference input ArrayList<Task>
-     * @param input ArrayList<Task>
+     * @param ui a UI Object
+     * @param storage a Storage object
      */
-    public TaskList(ArrayList<Task> input) {
-        this.tasks = input;
+    public TaskList(Ui ui, Storage storage) {
+        this.ui = ui;
+        this.storage = storage;
+        this.tasks = storage.read();
     }
 
     /**
@@ -21,7 +27,7 @@ public class TaskList {
      */
     public void list() {
         //move Ui calls to Parser instead. Function is redundant.
-        Ui.listPrint(tasks);
+        ui.listPrint(tasks);
     }
 
     /**
@@ -39,16 +45,16 @@ public class TaskList {
         case "todo":
             currTask = new Todo(item);
             tasks.add(currTask);
-            Ui.addTask("todo", currTask, tasks.size());
-            Storage.save(tasks);
+            ui.addTask("todo", currTask, tasks.size());
+            storage.save(tasks);
             break;
         case "deadline":
             args = item.split("/by ");
             try{
                 currTask = new Deadline(args[0], args[1]);
                 tasks.add(currTask);
-                Ui.addTask("deadline", currTask, tasks.size());
-                Storage.save(tasks);
+                ui.addTask("deadline", currTask, tasks.size());
+                storage.save(tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(type);
             } catch (DateTimeParseException e) {
@@ -60,8 +66,8 @@ public class TaskList {
             try{
                 currTask = new Event(args[0], args[1]);
                 tasks.add(currTask);
-                Ui.addTask("event", currTask, tasks.size());
-                Storage.save(tasks);
+                ui.addTask("event", currTask, tasks.size());
+                storage.save(tasks);
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeMissingInputException(type);
             } catch (DateTimeParseException e) {
@@ -87,8 +93,8 @@ public class TaskList {
             throw new DukeListOOBException(index + 1);
         }
         Task currTask = tasks.remove(index);
-        Ui.deleteTask(currTask, tasks.size());
-        Storage.save(tasks);
+        ui.deleteTask(currTask, tasks.size());
+        storage.save(tasks);
     }
 
     /**
@@ -108,8 +114,8 @@ public class TaskList {
         }
         Task currTask = tasks.get(index);
         currTask.completeToggle();
-        Ui.toggleTask(currTask);
-        Storage.save(tasks);
+        ui.toggleTask(currTask);
+        storage.save(tasks);
     }
 
     /**
@@ -117,6 +123,6 @@ public class TaskList {
      * @param regex
      */
     public void find(String regex) {
-        Ui.find(tasks, regex);
+        ui.find(tasks, regex);
     }
 }

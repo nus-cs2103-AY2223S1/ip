@@ -11,7 +11,7 @@ public class Storage {
      * Writes the ArrayList<Task> input to the specified save file
      * @param  array ArrayList<Task>
      */
-    public static void save(ArrayList<Task> array) {
+    public void save(ArrayList<Task> array) {
         try {
             FileOutputStream writeData = new FileOutputStream(FILENAME);
             ObjectOutputStream writeStream = new ObjectOutputStream(writeData);
@@ -27,7 +27,7 @@ public class Storage {
      * Returns an ArrayList<Task> retrieved from the specified save file
      * @return ArrayList<Task>
      */
-    public static ArrayList<Task> read() {
+    public ArrayList<Task> read() {
         try {
             FileInputStream readData = new FileInputStream(FILENAME);
             ObjectInputStream readStream = new ObjectInputStream(readData);

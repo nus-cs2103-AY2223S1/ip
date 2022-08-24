@@ -9,7 +9,7 @@ public class Ui {
     /**
      * Prints the greeting message
      */
-    public static void greet() {
+    public void greet() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -25,14 +25,14 @@ public class Ui {
     /**
      * Prints the exit message
      */
-    public static void exit() {
+    public void exit() {
         System.out.println(DIVIDER + "Bye. Hope to see you again soon!\n" + DIVIDER);
     }
 
     /**
      * Prints the TaskList ArrayList<Task> in pretty UI
      */
-    public static void listPrint(ArrayList<Task> input) {
+    public void listPrint(ArrayList<Task> input) {
         if (input.isEmpty()) {
             System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
         } else {
@@ -50,7 +50,7 @@ public class Ui {
      * @param currTask Task object
      * @param size New size of TaskList
      */
-    public static void addTask(String type, Task currTask, int size) {
+    public void addTask(String type, Task currTask, int size) {
         System.out.printf(DIVIDER + "OK, I've added this %s:\n %s\n"
                 + "Number of tasks in list: %d\n" + DIVIDER + "\n",
                 type, currTask, size);
@@ -61,7 +61,7 @@ public class Ui {
      * @param currTask Task object
      * @param size New size of TaskList
      */
-    public static void deleteTask(Task currTask, int size) {
+    public void deleteTask(Task currTask, int size) {
         System.out.printf(DIVIDER + "OK, I've removed this task:\n"
                 + "  %s \nNumber of tasks in list: %d\n" + DIVIDER + "\n",
                 currTask, size);
@@ -71,7 +71,7 @@ public class Ui {
      * Prints the newly toggled task from TaskList
      * @param currTask Task Object
      */
-    public static void toggleTask(Task currTask) {
+    public void toggleTask(Task currTask) {
         if(currTask.isCompleted()) {
             System.out.println(DIVIDER + "Nice! I've marked this task as done:\n"
                     + "  " + currTask + "\n" + DIVIDER);
@@ -85,7 +85,7 @@ public class Ui {
      * Prints any exception message handled by Parser in pretty UI
      * @param e Exception
      */
-    public static void printException(DukeException e) {
+    public void printException(DukeException e) {
         System.out.println(DIVIDER + e.getMessage() + DIVIDER);
     }
 
@@ -94,7 +94,7 @@ public class Ui {
      * @param input ArrayList<Task>
      * @param regex
      */
-    public static void find(ArrayList<Task> input, String regex) {
+    public void find(ArrayList<Task> input, String regex) {
         if (input.isEmpty()) {
             System.out.println(DIVIDER + "List is empty\n" + DIVIDER);
         } else {

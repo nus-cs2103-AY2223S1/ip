@@ -13,7 +13,7 @@ public class Duke {
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();
-        this.tasks = new TaskList(Storage.read());
+        this.tasks = new TaskList(this.ui, this.storage);
         this.parser = new Parser(ui, storage, tasks);
         this.isEnded = false;
     }
@@ -22,13 +22,13 @@ public class Duke {
         String command;
         Scanner sc = new Scanner(System.in);
 
-        Ui.greet();
+        ui.greet();
         while (!this.isEnded) {
             command = sc.nextLine();
             try {
                 isEnded = parser.handler(command);
             } catch (DukeException e) {
-                Ui.printException(e);
+                ui.printException(e);
             }
         }
     }
