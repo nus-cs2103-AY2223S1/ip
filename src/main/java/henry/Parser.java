@@ -5,6 +5,7 @@ import command.DeadlineCommand;
 import command.DeleteCommand;
 import command.EchoCommand;
 import command.EventCommand;
+import command.FindCommand;
 import command.ListCommand;
 import command.MarkCommand;
 import command.TodoCommand;
@@ -63,6 +64,8 @@ public class Parser {
                 throw new HenryException("ARGUMENT IS NOT A NUMBER!");
             }
             return new DeleteCommand(Integer.parseInt(args.trim()));
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand(args.trim());
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         case TodoCommand.COMMAND_WORD:
