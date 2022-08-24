@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 /**
  * Class for the details of a task that Poolsheen can remember.
  * @author Ong Wee, Marcus (Tut Grp 03)
@@ -12,7 +14,7 @@ public abstract class Task {
     protected boolean isDone;
 
     /** The time for the task */
-    protected String time;
+    protected LocalDate time;
 
     /**
      * Returns the status of the task.

@@ -1,7 +1,7 @@
 list
 todo Eat Cake
-deadline Finish CS2103 Quiz /by Tuesday
-event Touch the World /at I3 Auditorium 5-6PM
+deadline Finish CS2103 Quiz /by 2019-12-01
+event Touch the World /at 2019-12-02
 list
 mark 1
 mark 3
@@ -26,4 +26,6 @@ deadline
 event
 deadline desc
 event desc
+deadline desc /by onetwothree
+event desc /at onetwothree
 bye

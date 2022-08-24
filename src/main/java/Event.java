@@ -1,3 +1,6 @@
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
 public class Event extends Task {
     /**
      * A public constructor to initialise an Event task.
@@ -6,11 +9,20 @@ public class Event extends Task {
      */
     public Event(String description, String time) {
         super(description);
-        this.time = time;
+        //Ensure that the time input is proper.
+        String[] arr = time.split("-");
+        if (arr.length != 3) {
+            throw new IncompleteCommandException(description, "Event", "Enter an appropriate date and time format");
+        }
+        for (String s : arr) {
+            Integer.parseInt(s);
+        }
+        this.time = LocalDate.parse(time);
     }
 
     @Override
     public String toString() {
-        return "[E] " + super.toString() + " (at: " + this.time + ")";
+        return "[E] " + super.toString() + " (at: " +
+                this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }
