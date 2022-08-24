@@ -1,0 +1,3 @@
+T |   | breakfast | null | null
+E |   | smth  | at |  9
+T | X | lunch |  | null
