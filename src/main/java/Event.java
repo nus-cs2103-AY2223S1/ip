@@ -1,11 +1,6 @@
 public class Event extends Task {
     protected String at;
 
-    /**
-     * Constructor for Event class.
-     * @param description description for event
-     * @param at duration of event
-     */
     public Event(String description, Boolean isDone, String at) {
         super(description);
         if (isDone) {
@@ -15,7 +10,18 @@ public class Event extends Task {
     }
 
     @Override
+    public String saveData() {
+        String isDone;
+        if (super.isDone) {
+            isDone = "O";
+        } else {
+            isDone = "X";
+        }
+        return String.format("E | %s | %s | %s\n", isDone, super.description, at);
+    }
+
+    @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + at + ")";
     }
 }
