@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> list = new ArrayList<>();
-        ArrayList<Boolean> marked = new ArrayList<>();
-        ArrayList<String> type = new ArrayList<>();
+        ArrayList<Task> list = new ArrayList<>();
+//        ArrayList<Boolean> marked = new ArrayList<>();
+//        ArrayList<String> type = new ArrayList<>();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -28,39 +28,33 @@ public class Duke {
                     System.out.println(line_divider);
                     System.out.println("Here are your tasks la:");
                     for (int j = 0; j < list.size(); j++) {
-                        System.out.println(j + 1 + "." + type.get(j) + (marked.get(j) ? "[X] " : "[ ] ") + list.get(j));
+                        System.out.println(j + 1 + ":" + list.get(j).toString());
                     }
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("mark")) {
                     int index = Integer.parseInt(msgWords[2]) - 1;
-                    marked.remove(index);
-                    marked.add(index, true);
+                    list.get(index).mark();
                     System.out.println(line_divider);
                     System.out.println("Ok ticked this already");
-                    System.out.println(type.get(index) + (marked.get(index) ? "[X] " : "[ ] ") + list.get(index));
+                    System.out.println(list.get(index).toString());
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("unmark")) {
                     int index = Integer.parseInt(msgWords[2]) - 1;
-                    marked.remove(index);
-                    marked.add(index, false);
+                    list.get(index).unMark();
                     System.out.println(line_divider);
                     System.out.println("Ok not done yet ah");
-                    System.out.println(type.get(index) + (marked.get(index) ? "[X] " : "[ ] ") + list.get(index));
+                    System.out.println(list.get(index).toString());
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("delete")) {
                     int index = Integer.parseInt(msgWords[2]) - 1;
-                    String removeMark = marked.get(index) ? "[X] " : "[ ] ";
-                    String removeItem = list.get(index);
-                    String removeType = type.get(index);
-                    marked.remove(index);
+                    Task removed = list.get(index);
                     list.remove(index);
-                    type.remove(index);
                     System.out.println(line_divider);
                     System.out.println("I remove this ah:");
-                    System.out.println(removeType + removeMark + removeItem);
+                    System.out.println(removed.toString());
                     System.out.println("Now " + list.size() + " tasks only");
                     System.out.println(line_divider);
                     break;
@@ -70,12 +64,11 @@ public class Duke {
                         break;
                     }
                     String item = curr.substring(5);
-                    marked.add(false);
-                    list.add(item);
-                    type.add("[T]");
+                    Todo newTodo = new Todo(item);
+                    list.add(newTodo);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
-                    System.out.println("[T]" + "[ ] " + item + "\nNow " + list.size() + " tasks already");
+                    System.out.println(newTodo + "\nNow " + list.size() + " tasks already");
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("deadline")) {
@@ -85,13 +78,12 @@ public class Duke {
                     }
                     int slashPos = curr.indexOf("/by");
                     String taskName = curr.substring(9, slashPos - 1);
-                    String deadline = " (by:" + curr.substring(slashPos + 3) + ")";
-                    marked.add(false);
-                    list.add(taskName + deadline);
-                    type.add("[D]");
+                    String deadline = curr.substring(slashPos + 3);
+                    Deadline newDL = new Deadline(taskName, deadline);
+                    list.add(newDL);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
-                    System.out.println("[D]" + "[ ] " + taskName + deadline + "\nNow " + list.size() + " tasks already!");
+                    System.out.println(newDL + "\nNow " + list.size() + " tasks already!");
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("event")) {
@@ -101,13 +93,12 @@ public class Duke {
                     }
                     int slashPos = curr.indexOf("/at");
                     String taskName = curr.substring(6, slashPos - 1);
-                    String deadline = " (at:" + curr.substring(slashPos + 3) + ")";
-                    marked.add(false);
-                    list.add(taskName + deadline);
-                    type.add("[E]");
+                    String deadline = curr.substring(slashPos + 3);
+                    Event newEvent = new Event(taskName, deadline);
+                    list.add(newEvent);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
-                    System.out.println("[E]" + "[ ] " + taskName + deadline + "\nNow " + list.size() + " tasks already!");
+                    System.out.println(newEvent + "\nNow " + list.size() + " tasks already!");
                     System.out.println(line_divider);
                     break;
                 } else {
