@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class ToDo extends Task {
 
     public ToDo(String description) {
@@ -16,4 +18,9 @@ public class ToDo extends Task {
         String status = isDone ? "Done  " : "UnDone";
         return String.format("Todo      | %s | %s", status, super.getDescription());
     }
+    @Override
+    public String taskType() {
+        return "todo";
+    }
+
 }
