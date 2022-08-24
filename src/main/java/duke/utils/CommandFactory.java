@@ -13,11 +13,12 @@ import duke.commands.Mark;
 import duke.commands.ShowList;
 import duke.enums.Commands;
 import duke.enums.Messages;
+import duke.enums.Regex;
 import duke.exceptions.DukeException;
 import duke.lists.TaskList;
 
 public class CommandFactory {
-    private static Pattern INPUT_REGEX = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: ([^/]*))?$");
+    private static Pattern INPUT_REGEX = Pattern.compile(Regex.INPUT_REGEX.toString());
     private TaskList tasks;
 
     /**
@@ -34,18 +35,18 @@ public class CommandFactory {
         m.find();
         String cmd = m.group(1).toUpperCase();
         String index_description = m.group(2);
-        String flag = m.group(3);
+        // String flag = m.group(3);
         String deadline = m.group(4);
 
         try {
             Commands command = Commands.valueOf(cmd);
             switch (command) {
                 case TODO:
-                    return new AddTodo(tasks, index_description);
+                    return new AddTodo(tasks, index_description, input);
                 case DEADLINE:
-                    return new AddDeadline(tasks, index_description, deadline);
+                    return new AddDeadline(tasks, index_description, input, deadline);
                 case EVENT:
-                    return new AddEvent(tasks, index_description, deadline);
+                    return new AddEvent(tasks, index_description, input, deadline);
                 case MARK:
                     return new Mark(tasks, index_description);
                 case DELETE:

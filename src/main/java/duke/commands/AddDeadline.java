@@ -13,8 +13,8 @@ public class AddDeadline extends AddTodo {
     protected String deadline;
     protected DateTimeFormatter datetime_format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-    public AddDeadline(TaskList task, String desc, String deadline) throws DukeException {
-        super(task, desc);
+    public AddDeadline(TaskList task, String desc, String input, String deadline) throws DukeException {
+        super(task, desc, input);
         if (deadline == null) {
             throw new DukeException(Messages.ERROR_MISSING_PARAMETERS.toString());
         }

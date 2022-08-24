@@ -20,10 +20,17 @@ import duke.utils.*;
 
 public class Duke {
     /* Store tasks from user */
-    private static TaskList tasks = new TaskList();
-    private static CommandFactory cf = new CommandFactory(tasks);
+    private static TaskList tasks;
+    private static CommandFactory cf;
 
     public static void main(String[] args) throws DukeException, IOException {
+        try {
+            tasks = new TaskList();
+            cf = new CommandFactory(tasks);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+
         // Setting up to read command line inputs
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(System.in));

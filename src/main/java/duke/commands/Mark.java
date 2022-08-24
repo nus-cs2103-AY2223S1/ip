@@ -1,5 +1,7 @@
 package duke.commands;
 
+import java.io.IOException;
+
 import duke.entities.*;
 import duke.enums.*;
 import duke.exceptions.*;
@@ -21,12 +23,12 @@ public class Mark extends ShowList {
      * Unmarks the indx being pointed at.
      * 
      * @throws DukeException When the index is out of bound
+     * @throws IOException
      */
     @Override
-    public void execute() throws DukeException {
+    public void execute() throws DukeException, IOException {
         try {
-            Task current_task = tasks.get(indx);
-            current_task.toggleComplete();
+            Task current_task = tasks.markTask(indx);
             // out.display the marked message
             if (current_task.isDone()) {
                 wrapWithLines(Messages.MARK_DONE.toString(), current_task.toString());

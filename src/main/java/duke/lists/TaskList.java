@@ -1,14 +1,31 @@
 package duke.lists;
 
+import java.io.IOError;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import duke.entities.Task;
+import duke.exceptions.DukeException;
+import duke.utils.FileHandler;
 
 public class TaskList {
     private ArrayList<Task> tasks;
+    private FileHandler fh;
 
-    public TaskList() {
+    /**
+     * Initialises the task list and the save file if
+     * the save file does not already exist.
+     * 
+     * If the file exists, data will be read from it and loaded into the list.
+     */
+    public TaskList() throws DukeException {
         tasks = new ArrayList<Task>();
+        try {
+            fh = new FileHandler(tasks);
+            fh.loadFile();
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
+        }
     }
 
     /**
@@ -26,12 +43,37 @@ public class TaskList {
      * 
      * @param task Task to be added
      */
-    public void addTask(Task task) {
+    public void addTask(Task task) throws DukeException {
         tasks.add(task);
+        try {
+            fh.writeToFile(task);
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
+        }
     }
 
-    public Task removeTask(int indx) {
-        return tasks.remove(indx);
+    /**
+     * Removes task at the specified index
+     * Also removes it from the saved txt file
+     * 
+     * @param indx of the tasks to be removed
+     * @return
+     */
+    public Task removeTask(int indx) throws DukeException {
+        Task deleted = tasks.remove(indx);
+        try {
+            fh.deleteFromFile(indx);
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
+        }
+        return deleted;
+    }
+
+    public Task markTask(int indx) throws DukeException, IOException {
+        Task currentTask = tasks.get(indx);
+        currentTask.toggleComplete();
+        fh.markTask(indx, currentTask.toString());
+        return currentTask;
     }
 
     @Override
