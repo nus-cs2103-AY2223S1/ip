@@ -1,16 +1,20 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Duke {
     private final static String LINE = "____________________________________________________________";
     private final static String INDENTATION = "   ";
+    private static String projectRoot = System.getProperty("user.home");
     private TaskList taskList;
     private boolean isGoodBye;
+    private Storage storage;
 
 
     public Duke() {
         this.taskList = new TaskList();
         this.isGoodBye = false;
+        this.storage = new Storage(projectRoot);
     }
 
 //    /**
@@ -84,6 +88,15 @@ public class Duke {
 
 
     public void run() {
+        if (!storage.isDirectoryCreated()){
+            storage.createDirectory();
+        }
+        if (!storage.isFilePresent()) {
+            storage.createFile();
+        }
+        ArrayList<Task> loadedTaskList = storage.load();
+        taskList = new TaskList(loadedTaskList);
+
         Scanner sc = new Scanner(System.in);
         System.out.println(INDENTATION + LINE);
         System.out.println(INDENTATION + "Hello! I'm Duke");
@@ -99,6 +112,7 @@ public class Duke {
                         case BYE:
                             System.out.println(INDENTATION + "Bye. Hope to see you again soon!");
                             isGoodBye = true;
+                            storage.save(taskList.getTaskList());
                             break;
                         case LIST:
                             int numOfTasks = taskList.getSize();

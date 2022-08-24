@@ -10,6 +10,16 @@ public class TaskList {
         this.taskList = new ArrayList<Task>();
     }
 
+
+    public TaskList(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
+
+    public ArrayList<Task> getTaskList() {
+        return taskList;
+    }
+
     /**
      * Function to add task to taskList
      * @param task task to be added to taskList
