@@ -105,7 +105,7 @@ public class Ui {
      * Prints a line to divide outputs from the application.
      */
     public void lineDivider() {
-        System.out.println("-------------------------------------------------------------");
+        System.out.println("-".repeat(60));
     }
 
     /**
