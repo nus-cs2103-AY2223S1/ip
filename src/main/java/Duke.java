@@ -71,7 +71,8 @@ public class Duke {
         goodBye();
     }
 
-    /* Changes status of the task according to index given
+    /**
+     * Changes status of the task according to index given
      *
      * @param command
      */
@@ -91,7 +92,8 @@ public class Duke {
         }
     }
 
-    /* Changes status of the task according to index given
+    /**
+     * Changes status of the task according to index given
      *
      * @param command
      */
@@ -104,7 +106,8 @@ public class Duke {
         System.out.println(hLine);
     }
 
-    /* Creates a ToDos instance and adds it to ToDoList
+    /**
+     * Creates a ToDos instance and adds it to ToDoList
      *
      * @param command
      * @throws Exception
@@ -118,7 +121,8 @@ public class Duke {
         toDoList.addTask(new ToDos(name));
     }
 
-    /* Creates a Deadline instance and adds it to ToDoList
+    /**
+     * Creates a Deadline instance and adds it to ToDoList
      *
      * @param command
      * @throws Exception
@@ -137,7 +141,8 @@ public class Duke {
         toDoList.addTask(new Deadline(name, deadline));
     }
 
-    /* Creates an Event instance and adds it to ToDoList
+    /**
+     * Creates an Event instance and adds it to ToDoList
      *
      * @param command
      * @throws Exception

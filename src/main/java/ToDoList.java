@@ -63,7 +63,8 @@ public class ToDoList {
         return list.size();
     }
 
-    /* Deletes a Task
+    /**
+     * Deletes a Task
      *
      * @param index
      * @Throws IndexOutOfBoundsException
