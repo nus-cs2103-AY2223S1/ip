@@ -130,6 +130,9 @@ public class Todos {
 
     /**
      * Command for showing tasks that match certain keywords.
+     *
+     * @param rest The scanner with the remaining text in the message.
+     * @throws MessagefulException if there is an issue.
      */
     public void cmdFind(Scanner rest) throws MessagefulException {
         ArrayList<String> keywords = new ArrayList<>();

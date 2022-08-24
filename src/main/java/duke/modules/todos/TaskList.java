@@ -78,6 +78,12 @@ public class TaskList implements Iterable<Task> {
         return todos.remove(index);
     }
 
+    /**
+     * Returns a sub-TaskList containing only tasks whose names contain all the given segments.
+     *
+     * @param segments The string segments the return tasks will contain.
+     * @return The matching tasks.
+     */
     public TaskList filter(List<String> segments) {
         TaskList result = new TaskList();
 
