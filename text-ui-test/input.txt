@@ -2,7 +2,7 @@ todo
 deadline
 event
 todo return book
-deadline ip /by 5pm
+deadline ip /by 2030-12-01
 mark 1
 list
 delete 1

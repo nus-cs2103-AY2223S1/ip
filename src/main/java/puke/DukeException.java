@@ -1,3 +1,4 @@
+package puke;
 public class DukeException extends Exception {
 
     private String errorMessage;
