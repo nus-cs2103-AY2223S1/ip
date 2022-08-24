@@ -16,9 +16,19 @@ public class Event extends Task {
         return dTF.format(timing).toString();
     }
 
+    /**
+     * Encodes the timing as the same string representation that the user entered.
+     * Removes the T to match that representation.
+     *
+     * @return The encoded string representation of the event timing
+     */
+    public String encodeTiming() {
+        return timing.toString().replaceAll("T", " ");
+    }
+
     @Override
     public String toString() {
-        return String.format("[E] %s %s (at: %s)", this.getStatusIcon(), this.getDescription(), this.getTiming());
+        return String.format("[E] %s %s (at: %s)", getStatusIcon(), getDescription(),getTiming());
     }
 
     /**
@@ -26,6 +36,6 @@ public class Event extends Task {
      */
     @Override
     public String encode() {
-        return String.format("%s|%d|%s|%s\n", ENCODED_TASK_TYPE, getIsDone() ? 1 : 0, this.getDescription(), this.getTiming());
+        return String.format("%s|%d|%s|%s\n", ENCODED_TASK_TYPE, getIsDone() ? 1 : 0, getDescription(), encodeTiming());
     }
 }

@@ -16,9 +16,15 @@ public class Deadline extends Task {
         return dTF.format(deadline).toString();
     }
 
+    public String encodeDeadline() {
+        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return deadline.toString().replaceAll("T", " ");
+    }
+
     @Override
     public String toString() {
-        return String.format("[D] %s %s (by: %s)", getStatusIcon(), getDescription(), getDeadline());
+        return String.format("[D] %s %s (by: %s)", getStatusIcon(), getDescription(), 
+        getDeadline());
     }
 
     /**
@@ -26,6 +32,6 @@ public class Deadline extends Task {
      */
     @Override
     public String encode() {
-        return String.format("%s|%d|%s|%s\n", ENCODED_TASK_TYPE, getIsDone() ? 1 : 0, getDescription(), getDeadline());
+        return String.format("%s|%d|%s|%s\n", ENCODED_TASK_TYPE, getIsDone() ? 1 : 0, getDescription(), encodeDeadline());
     }
 }

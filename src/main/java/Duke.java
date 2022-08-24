@@ -11,6 +11,8 @@ public class Duke {
     public final String FILE_NAME;
     private FileOperations fo;
 
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
     private static final String WELCOME_MESSAGE = "\t-------------------------------\n"
             + "\tHello, I'm Duke!\n" + "\tWhat can I do for you?\n" + "\t-------------------------------";
 
@@ -24,8 +26,6 @@ public class Duke {
 
     public static void main(String[] args) {
         Duke duke = new Duke("data.txt", new FileOperations("data.txt"));
-        Scanner sc = new Scanner(System.in);
-
 
         System.out.println(WELCOME_MESSAGE);
 
@@ -38,18 +38,18 @@ public class Duke {
             } else { // load tasks from file to Task.tasks
                 duke.fo.loadAllTasksFromFile();
                 System.out.println(String.format("\tLoaded tasks from %s", duke.FILE_NAME));
+                System.out.println("\t-------------------------------");
             }
         } catch (IOException e) {
             System.out.println(String.format("\tError opening/creating %s!!!", duke.FILE_NAME));
             return;
-        } finally {
-            sc.close();
         }
 
+        Scanner sc = new Scanner(System.in);
         String input = sc.nextLine().trim();
         while (!input.equals(Commands.BYE)) {
             duke.run(input);
-            input = sc.nextLine().trim();
+            input = sc.nextLine();
         }
 
         // cleaning up and shutting down Duke
@@ -59,8 +59,7 @@ public class Duke {
 
     public void run(String input) {
         try {
-            String[] inputString = input.split(" ", 1);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String[] inputString = input.split(" ", 2);
             String command = inputString[0];
             System.out.println("\t-------------------------------");
             switch (command) {
@@ -72,20 +71,20 @@ public class Duke {
                     throw new DukeException("Oops! you forgot to indicate the task number");
                 }
                 int taskNumber = parseInt(inputString[1].trim());
-                Task.markAsDone(taskNumber - 1, this.fo); // since display is 1-indexed
+                Task.markAsDone(taskNumber - 1, fo); // since display is 1-indexed
                 break;
             case Commands.UNMARK:
                 if (inputString.length == 1) {
                     throw new DukeException("Oops! You forgot to indicate the task number");
                 }
                 taskNumber = parseInt(inputString[1].trim());
-                Task.markAsNotDone(taskNumber - 1, this.fo); // since display is 1-indexed
+                Task.markAsNotDone(taskNumber - 1, fo); // since display is 1-indexed
                 break;
             case Commands.TODO:
                 if (inputString.length == 1) {
                     throw new DukeException("Oops! You forgot to indicate the description for your todo");
                 }
-                Task.add(new Todo(inputString[1]), this.fo);
+                Task.add(new Todo(inputString[1]), fo);
                 break;
             case Commands.DEADLINE:
                 if (inputString.length == 1) {
@@ -106,9 +105,9 @@ public class Duke {
                     if (deadline.length() == 0) {
                         throw new DukeException("Oops! You forgot to indicate the deadline");
                     }
-                    
-                    LocalDateTime dateTime = LocalDateTime.parse(deadline, formatter);
-                    Task.add(new Deadline(description, dateTime), this.fo);
+
+                    LocalDateTime dateTime = LocalDateTime.parse(deadline, Duke.DATE_TIME_FORMATTER);
+                    Task.add(new Deadline(description, dateTime), fo);
                 } else {
                     throw new DukeException("Oops! You forgot to use /by to separate " +
                             "the description and deadline");
@@ -136,20 +135,19 @@ public class Duke {
                         throw new DukeException("Oops! You forgot to indicate the timing " +
                                 "for your event");
                     }
-                    LocalDateTime dateTime = LocalDateTime.parse(timing, formatter);
+                    LocalDateTime dateTime = LocalDateTime.parse(timing, DATE_TIME_FORMATTER);
                     Task.add(new Event(description, dateTime), fo);
+                } else {
+                    throw new DukeException("Oops! You forgot to use /at to separate " +
+                            "the description and timing");
                 }
-                    else {
-                        throw new DukeException("Oops! You forgot to use /at to separate " +
-                                "the description and timing");
-                    }
                 break;
             case Commands.DELETE:
                 if (inputString.length == 1 || inputString[1].trim().length() == 0) {
                     throw new DukeException("Oops! You forgot to specify which task number to delete");
                 }
                 taskNumber = parseInt(inputString[1]);
-                Task.delete(taskNumber - 1, this.fo); // since we store tasks 0-indexed in ArrayList
+                Task.delete(taskNumber - 1, fo); // since we store tasks 0-indexed in ArrayList
                 break;
             default:
                 System.out.println("\tOops! I've no idea what you're talking about!");

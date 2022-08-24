@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.ArrayList;
 
 abstract public class Task {
@@ -105,80 +104,6 @@ abstract public class Task {
      */
     public static void addTasks(ArrayList<Task> tasks) {
         Task.tasks.addAll(tasks);
-    }
-
-    /**
-     * Takes a given encodedTask and returns the corresponding Task object.
-     *
-     * @param encodedTask the text-representation of a task
-     * @return
-     */
-    public static Task decode(String encodedTask) throws DukeException {
-        // Skip Empty line
-        if (encodedTask.trim().equals("")) {
-            return null;
-        }
-        encodedTask = encodedTask.trim();
-        String[] encodedDetails = encodedTask.split("\\|");
-        String taskType = encodedDetails[0];
-
-        switch (taskType) {
-        case Todo.ENCODED_TASK_TYPE:
-            if (encodedDetails.length == 2) {
-                throw new DukeException("Error reading Todo from file in Task.decode");
-            }
-            if (encodedDetails[2].trim().equals("")) {
-                throw new DukeException("Oops! You forgot to specify a description for your Todo");
-            }
-            Task todo = new Todo(encodedDetails[2]);
-            if (encodedDetails[1].trim().equals("1")) {
-                todo.markAsDone();
-            }
-            return todo;
-
-        case Deadline.ENCODED_TASK_TYPE:
-
-            if (encodedDetails.length == 3) {
-                throw new DukeException("Error reading Deadline from file in Task.decode");
-            }
-            String deadlineDescription = encodedDetails[2].trim();
-            String deadlineDeadline = encodedDetails[3].trim();
-            if (deadlineDescription.length() == 0) {
-                throw new DukeException("Oops! You forgot to indicate the description " +
-                        "for your deadline");
-            }
-            if (deadlineDeadline.length() == 0) {
-                throw new DukeException("Oops! You forgot to indicate the deadline");
-            }
-            Deadline deadlineTask = new Deadline(deadlineDescription, deadlineDeadline);
-            if (encodedDetails[1].trim().equals("1")) {
-                deadlineTask.markAsDone();
-            }
-            return deadlineTask;
-
-        case Event.ENCODED_TASK_TYPE:
-            if (encodedDetails.length == 3) {
-                throw new DukeException("Error reading Event from file in Task.decode");
-            }
-            String eventDescription = encodedDetails[2].trim();
-            String eventTiming = encodedDetails[3].trim();
-            if (eventDescription.length() == 0) {
-                throw new DukeException("Oops! You forgot to indicate the description " +
-                        "for your event");
-            }
-            if (eventTiming.length() == 0) {
-                throw new DukeException("Oops! You forgot to indicate the event");
-            }
-            Event eventTask = new Event(eventDescription, eventTiming);
-            if (encodedDetails[1].trim().equals("1")) {
-                eventTask.markAsDone();
-            }
-            return eventTask;
-
-        default:
-            return null;
-        }
-
     }
 
     abstract public String encode();
