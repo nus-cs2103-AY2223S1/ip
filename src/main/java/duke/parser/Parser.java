@@ -6,8 +6,22 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
 
+/**
+ * The Parser class which helps Duke parse
+ * the inputs from the user.
+ *
+ * @author Leong Jia Hao Daniel
+ */
 public class Parser {
 
+    /**
+     * The main parsing command which handles the raw input string from
+     * the user.
+     *
+     * @param input The input from the CLI.
+     * @return The command to be executed.
+     * @throws DukeException If the input String has an error.
+     */
     public static Command parse(String input) throws DukeException {
         String[] inputArray = input.split(" ",2);
         String keyPhrase = inputArray[0];
@@ -50,6 +64,13 @@ public class Parser {
         return command;
     }
 
+    /**
+     * Handles the parsing of the todo string.
+     *
+     * @param information The details of the todo task.
+     * @return An instance of ToDo which contains the information.
+     * @throws EmptyArgumentException If no details of the task is provided.
+     */
     public static ToDo handleToDo(String information) throws EmptyArgumentException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.TODO);
@@ -58,6 +79,13 @@ public class Parser {
         return todo;
     }
 
+    /**
+     * Handles the parsing of the deadline string.
+     *
+     * @param information The details of the deadline task.
+     * @return An instance of Deadline which contains the information.
+     * @throws DukeException If the information provided is in the wrong format.
+     */
     public static Deadline handleDeadline(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.DEADLINE);
@@ -76,6 +104,13 @@ public class Parser {
         return deadline;
     }
 
+    /**
+     * Handles the parsing of the event string.
+     *
+     * @param information The details of the event task.
+     * @return An instance of Event with the provided details.
+     * @throws DukeException If the information provided is in the wrong format.
+     */
     public static Event handleEvent(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.EVENT);
@@ -88,6 +123,13 @@ public class Parser {
         return event;
     }
 
+    /**
+     * Handles the mark string.
+     *
+     * @param information The index of the task to be marked.
+     * @return the index of the task in int.
+     * @throws DukeException If the information provided is not an int.
+     */
     public static int handleMark(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.MARK);
@@ -102,6 +144,13 @@ public class Parser {
         return index;
     }
 
+    /**
+     * Handles the delete string.
+     *
+     * @param information The index of the task to be deleted.
+     * @return The index of the task to be deleted in int.
+     * @throws DukeException If the information provided is not a valid int.
+     */
     public static int handleDelete(String information) throws DukeException {
         if (information.isEmpty()) {
             throw new EmptyArgumentException(Commands.DELETE);

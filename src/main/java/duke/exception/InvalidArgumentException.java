@@ -2,15 +2,31 @@ package duke.exception;
 
 import duke.command.Commands;
 
+/**
+ * The InvalidArgumentException which handles the case in which
+ * the user input invalid arguments.
+ *
+ * @author Leong Jia Hao Daniel
+ */
 public class InvalidArgumentException extends DukeException {
 
     private Commands command;
 
+    /**
+     * The constructor for the InvalidArgumentException.
+     *
+     * @param commands The command that has the invalid argument exception.
+     */
     public InvalidArgumentException(Commands commands) {
         super(commands.name());
         this.command = commands;
     }
 
+    /**
+     * Returns the custom message depending on the command.
+     *
+     * @return The custom error message for each command.
+     */
     @Override
     public String toString() {
         String message = "";

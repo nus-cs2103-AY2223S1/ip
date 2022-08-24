@@ -7,12 +7,23 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Duke, a cli app that helps users to track their tasks.
+ *
+ * @author Leong Jia Hao Daniel
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filePath The filepath where the data that duke
+     *                 uses is stored.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -24,6 +35,9 @@ public class Duke {
         }
     }
 
+    /**
+     * The main loop that allows Duke to run.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

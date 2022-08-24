@@ -19,7 +19,7 @@ public class Storage {
     private File currentFile;
 
     /**
-     *
+     * The Storage constructor.
      *
      * @param filePath
      */
@@ -27,6 +27,12 @@ public class Storage {
         this.currentFile = new File(filePath);
     }
 
+    /**
+     * Loads the ArrayList of tasks from the input file.
+     *
+     * @return An ArrayList containing the tasks in the input file.
+     * @throws DukeException If file not found.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> temp = new ArrayList<>();
         File directory = new File("data");
@@ -70,6 +76,12 @@ public class Storage {
         return temp;
     }
 
+    /**
+     * Saves the tasks to the file.
+     *
+     * @param data The tasklist of data that is meant to
+     *             be saved.
+     */
     public void saveFile(TaskList data) {
         File directory = new File("data");
         if (!directory.exists()) {
