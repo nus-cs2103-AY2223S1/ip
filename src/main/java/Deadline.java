@@ -1,19 +1,20 @@
-public class Deadline extends Task {
-    protected String by;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String description, String by) throws DukeException {
+public class Deadline extends Task {
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+    protected LocalDate date;
+
+    public Deadline(String description, LocalDate date) throws DukeException {
         super(description);
-        this.by = by;
+        this.date = date;
         if (description.isBlank()) {
             throw new DukeException("Take me seriouslyy :( What do you want to do?\n");
-        }
-        if (by.isBlank()) {
-            throw new DukeException("When do you want to get it done??\n");
         }
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.by + ")";
+        return "[D]" + super.toString() + " (by: " + this.date.format(formatter) + ")";
     }
 }
