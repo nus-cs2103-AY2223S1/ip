@@ -1,0 +1,80 @@
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
+
+public class Parser {
+    
+    public LocalDateTime parseDateTime(String dateTime) throws IllegalDateTimeException {
+        // abide by format dd-MM-yyyy-HH-mm (e.g. 23-04-2000-23-04)
+        String[] dateTimeData = dateTime.split("-");
+        if (dateTimeData.length != 5) {
+            throw new IllegalDateTimeException(dateTime);
+        } else {
+            try {
+                int[] dateTimeDataInt = new int[5];
+                for (int i = 0; i < dateTimeData.length; ++i) {
+                    dateTimeDataInt[i] = Integer.parseInt(dateTimeData[i]);
+                }
+                LocalDateTime localDateTime = LocalDateTime.of(
+                        dateTimeDataInt[2], dateTimeDataInt[1],
+                        dateTimeDataInt[0], dateTimeDataInt[3],
+                        dateTimeDataInt[4]);
+                return localDateTime;
+            } catch (NumberFormatException e) {
+                throw new IllegalDateTimeException(dateTime);
+            } catch (DateTimeException e) {
+                throw new IllegalDateTimeException(dateTime);
+            }
+        }
+    }
+
+    public Command parseCommand(String[] commandArgs) 
+            throws DukeException {
+        String keyword = commandArgs[0];
+        switch (keyword) {
+            case "bye":
+                return new Command(Keyword.BYE, commandArgs);
+            case "list":
+                return new Command(Keyword.LIST, commandArgs);
+            case "mark":
+                if (commandArgs.length == 1) {
+                    throw new EmptyCommandException(commandArgs[0]);
+                }
+                return new Command(Keyword.MARK, commandArgs);
+            case "unmark":
+                if (commandArgs.length == 1) {
+                    throw new EmptyCommandException(commandArgs[0]);
+                }
+                return new Command(Keyword.UNMARK, commandArgs);
+            case "delete":
+                if (commandArgs.length == 1) {
+                    throw new EmptyCommandException(commandArgs[0]);
+                }
+                return new Command(Keyword.DELETE, commandArgs);
+            case "todo":
+                if (commandArgs.length == 1) {
+                    throw new EmptyCommandException(commandArgs[0]);
+                }
+                return new Command(Keyword.TODO, commandArgs);
+            case "deadline":
+                if (commandArgs.length == 1) {
+                    throw new EmptyCommandException(commandArgs[0]);
+                }
+                String[] deadlineDetails = commandArgs[1].split(" /by ");
+                if (deadlineDetails.length == 1) {
+                    throw new IllegalCommandException(commandArgs[0]);
+                }
+                return new Command(Keyword.DEADLINE, deadlineDetails);
+            case "event":
+                if (commandArgs.length == 1) {
+                    throw new EmptyCommandException(commandArgs[0]);
+                }
+                String[] eventDetails = commandArgs[1].split(" /at ");
+                if (eventDetails.length <= 1) {
+                    throw new IllegalCommandException(commandArgs[0]);
+                }
+                return new Command(Keyword.EVENT, eventDetails);
+            default:
+                throw new CommandNotFoundException(commandArgs[0]);
+        }
+    }
+}

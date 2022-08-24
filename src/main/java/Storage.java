@@ -3,9 +3,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-public class TaskSaver {
+public class Storage {
 
-    private static File createSaveDirectory() throws IOException {
+    public File createSaveDirectory() throws IOException {
         try {
             String path = ".." + File.separator + ".." + File.separator + ".."
                     + File.separator + "data";
@@ -21,7 +21,7 @@ public class TaskSaver {
         }
     }
     
-    public static void saveToDirectory(ArrayList<Task> tasks) {
+    public void saveToDirectory(ArrayList<Task> tasks) {
         try {
             File saveFile = createSaveDirectory(); 
             PrintWriter printWriter = new PrintWriter(saveFile);

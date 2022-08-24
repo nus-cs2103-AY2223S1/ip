@@ -31,8 +31,6 @@ public class Task {
      */
     public void mark() {
         this.status = true;
-        System.out.println("Marked this task as done:");
-        System.out.println(this);
     }
 
     /**
@@ -40,8 +38,6 @@ public class Task {
      */
     public void unmark() {
         this.status = false;
-        System.out.println("Marked this task as undone:");
-        System.out.println(this);
     }
 
     /**
