@@ -5,6 +5,11 @@ import duke.exceptions.DukeException;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Encapsulates the logic for managing data in files.
+ *
+ * @author Emily Ong Hui Qi
+ */
 abstract public class Storage {
     private static final String FILE_DIRECTORY = "data";
 
@@ -16,6 +21,11 @@ abstract public class Storage {
     private final File storage;
     private boolean isInitialized;
 
+    /**
+     * Sets up the storage object for the provided file name.
+     *
+     * @param dataFilename The file name specifying where the data should be stored
+     */
     public Storage(String dataFilename) {
         this.storage = new File(String.format("%s/%s", Storage.FILE_DIRECTORY, dataFilename));
         this.isInitialized = false;
