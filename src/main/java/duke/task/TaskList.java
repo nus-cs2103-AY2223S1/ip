@@ -126,6 +126,16 @@ public class TaskList {
         return numberedTaskList;
     }
 
+    public TaskList find(String keyword) {
+        TaskList tasksMatched = new TaskList();
+        for (Task task : this.tasks) {
+            if (task.contains(keyword)) {
+                tasksMatched.addTask(task);
+            }
+        }
+        return tasksMatched;
+    }
+
     /**
      * Returns a String representation of {@code TaskList} in display format.
      */

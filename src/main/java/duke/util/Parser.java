@@ -9,6 +9,7 @@ import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.EmptyCommand;
+import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
@@ -68,6 +69,9 @@ public class Parser {
         case "delete":
             verifyArgumentsIsNotEmpty(args);
             return new DeleteCommand(parseTaskIndex(args));
+        case "find":
+            verifyArgumentsIsNotEmpty(args);
+            return new FindCommand(args);
         case "":
             return new EmptyCommand();
         default:

@@ -45,6 +45,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public boolean contains(String keyword) {
+        return this.description.contains(keyword);
+    }
+
     /**
      * Returns a String representation of the {@code Task} in storage format.
      */
