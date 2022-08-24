@@ -9,14 +9,14 @@ public class Deadline extends DukeTask {
   private final String description;
   private String formattedBy;
 
-  public Deadline(String description, String by) {
+  public Deadline(String description, String by) throws DukeException {
     super(description);
     this.description = description;
     this.by = by;
     formatTime();
   }
 
-  private void formatTime() {
+  private void formatTime() throws DukeException {
     this.formattedBy = DukeDateTimeFormatter.format(by);
   }
 

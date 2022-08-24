@@ -9,14 +9,14 @@ public class Event extends DukeTask {
   private final String description;
   private String formattedAt;
 
-  public Event(String description, String at) {
+  public Event(String description, String at) throws DukeException {
     super(description);
     this.description = description;
     this.at = at;
     formatTime();
   }
 
-  private void formatTime() {
+  private void formatTime() throws DukeException {
     this.formattedAt = DukeDateTimeFormatter.format(at);
   }
 
