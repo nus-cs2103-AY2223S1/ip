@@ -1,8 +1,5 @@
 package duke;
 
-/**
- * Represents the user interface of the Duke bot.
- */
 public class Ui {
     private String logo = " ____            _\n"
             + "|  _ \\ _   _  __| | ___\n"
@@ -10,11 +7,6 @@ public class Ui {
             + "| |_| | |_| | |_| |  __/\n"
             + "|____/ \\__,_|\\__,_|\\___|\n";
 
-    /**
-     * Returns the logo printed at the start.
-     *
-     * @return Duke bot logo.
-     */
     public String logo() {
         return this.logo;
     }

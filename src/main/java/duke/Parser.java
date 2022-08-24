@@ -4,9 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-/**
- * Represents a parser to parse inputs into actions to be taken.
- */
 public class Parser {
     private String bye = "bye";
     private String list = "list";
@@ -20,13 +17,6 @@ public class Parser {
     private String delete = "delete";
     private String space = " ";
 
-    /**
-     * Parses an input to decode it.
-     *
-     * @param d Duke bot to be instructed.
-     * @param input Input to be parsed.
-     * @param isLoading Boolean to indicate if the Duke bot is loading.
-     */
     public void parse(Duke d, String input, boolean isLoading) {
         if (input.equals(this.bye)) {
             System.out.println("Byebye! See you again soon!");
