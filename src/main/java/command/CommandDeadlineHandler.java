@@ -6,8 +6,6 @@ import data.tasks.TaskDeadline;
 import java.util.regex.Pattern;
 import java.util.regex.MatchResult;
 
-import util.CommandUtils;
-
 public class CommandDeadlineHandler extends CommandHandler {
 
     private static final Pattern commandRegexPattern = Pattern.compile(
@@ -37,7 +35,6 @@ public class CommandDeadlineHandler extends CommandHandler {
             parseDateTime(deadlineDateTimeStr));
         taskList.addTask(deadlineTask);
 
-        return new CommandResponse(
-            CommandUtils.generateAddTaskResponse(deadlineTask, taskList.size()), true);
+        return new AddTaskResponse(deadlineTask, taskList.size());
     }
 }

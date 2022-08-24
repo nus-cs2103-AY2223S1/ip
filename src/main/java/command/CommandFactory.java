@@ -1,7 +1,5 @@
 package command;
 
-import data.TaskList;
-
 public class CommandFactory {
 
     public Command parseCommand(String commandStr) throws CommandException {
@@ -29,6 +27,8 @@ public class CommandFactory {
                 return new CommandEventHandler(commandStr);
             case DELETE:
                 return new CommandDeleteHandler(commandStr);
+            case BYE:
+                return new CommandTerminateHandler(commandStr);
         }
 
         return null;

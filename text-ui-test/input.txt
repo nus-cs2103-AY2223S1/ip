@@ -41,4 +41,5 @@ todo todo task-2
 deadline dl task-3 /by 2022-08-23 20:00
 event event task-3 /at 2022-08-23
 list
+bye abc
 bye

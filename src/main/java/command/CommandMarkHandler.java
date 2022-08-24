@@ -1,7 +1,10 @@
 package command;
 
+import command.UpdateTaskResponse.UpdateType;
+
 import data.TaskList;
 import data.tasks.Task;
+
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
@@ -32,19 +35,14 @@ public class CommandMarkHandler extends CommandHandler {
             int taskIdx = Integer.parseInt(taskIdxStr);
             if (taskIdx <= 0 || taskIdx > taskList.size()) {
                 throw new CommandException("Invalid task selected!");
-            } else {
-                Task task = taskList.getTask(taskIdx - 1);
-                if (toMark) {
-                    task.mark();
-                    return new CommandResponse(
-                        String.format("Nice! I've mark this task as done:\n\t%s", task), true);
-                } else {
-                    task.unmark();
-                    return new CommandResponse(
-                        String.format("OK, I've marked this task as not done yet:\n\t%s", task),
-                        true);
-                }
             }
+            Task task = taskList.getTask(taskIdx - 1);
+            if (toMark) {
+                task.mark();
+            } else {
+                task.unmark();
+            }
+            return new UpdateTaskResponse(task, toMark ? UpdateType.MARK : UpdateType.UNMARK);
         } catch (NumberFormatException error) {
             throw new CommandException(String.join("\n",
                 "Task number should be a number!",

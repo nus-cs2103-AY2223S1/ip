@@ -6,8 +6,6 @@ import data.tasks.TaskTodo;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-import util.CommandUtils;
-
 public class CommandTodoHandler extends CommandHandler {
 
     private static final Pattern commandRegexPattern = Pattern.compile("^todo (.+)");
@@ -31,7 +29,6 @@ public class CommandTodoHandler extends CommandHandler {
         TaskTodo todoTask = new TaskTodo(regexMatchResult.group(1));
         taskList.addTask(todoTask);
 
-        return new CommandResponse(CommandUtils.generateAddTaskResponse(todoTask, taskList.size()),
-            true);
+        return new AddTaskResponse(todoTask, taskList.size());
     }
 }

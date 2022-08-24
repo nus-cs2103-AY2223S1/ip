@@ -6,8 +6,6 @@ import data.tasks.Task;
 import java.util.regex.Pattern;
 import java.util.regex.MatchResult;
 
-import util.CommandUtils;
-
 public class CommandDeleteHandler extends CommandHandler {
 
     private static final Pattern commandRegexPattern = Pattern.compile("^delete (\\d+)");
@@ -34,8 +32,7 @@ public class CommandDeleteHandler extends CommandHandler {
                 throw new CommandException("Invalid task selected!");
             } else {
                 Task deletedTask = taskList.deleteTask(taskIdx - 1);
-                return new CommandResponse(
-                    CommandUtils.generateDeleteTaskResponse(deletedTask, taskList.size()), true);
+                return new DeleteTaskResponse(deletedTask, taskList.size());
             }
         } catch (NumberFormatException error) {
             throw new CommandException(String.join("\n",

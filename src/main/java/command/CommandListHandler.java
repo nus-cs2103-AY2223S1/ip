@@ -22,13 +22,13 @@ public class CommandListHandler extends CommandHandler {
     @Override
     public CommandResponse run(TaskList taskList) {
         if (taskList.isEmpty()) {
-            return new CommandResponse("There are no items in the task list!", false);
+            return new CommandResponse("There are no items in the task list!", false, false);
         }
 
         List<String> responseList = new ArrayList<>();
         for (int taskIdx = 0; taskIdx < taskList.size(); taskIdx++) {
             responseList.add(String.format("%d. %s", taskIdx + 1, taskList.getTask(taskIdx)));
         }
-        return new CommandResponse(String.join("\n", responseList), false);
+        return new CommandResponse(String.join("\n", responseList), false, false);
     }
 }

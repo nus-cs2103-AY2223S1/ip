@@ -6,8 +6,6 @@ import data.tasks.TaskEvent;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-import util.CommandUtils;
-
 public class CommandEventHandler extends CommandHandler {
 
     private static final Pattern commandRegexPattern = Pattern.compile(
@@ -36,7 +34,6 @@ public class CommandEventHandler extends CommandHandler {
         TaskEvent eventTask = new TaskEvent(eventTitle, parseDateTime(eventDateTimeStr));
         taskList.addTask(eventTask);
 
-        return new CommandResponse(CommandUtils.generateAddTaskResponse(eventTask, taskList.size()),
-            true);
+        return new AddTaskResponse(eventTask, taskList.size());
     }
 }
