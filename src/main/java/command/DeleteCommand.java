@@ -1,3 +1,10 @@
+package command;
+
+import storage.Storage;
+import task.Task;
+import task.TaskList;
+import ui.Ui;
+
 public class DeleteCommand extends Command {
     int indexOfTask;
     public DeleteCommand(int indexOfTask) {
@@ -6,8 +13,8 @@ public class DeleteCommand extends Command {
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        tasks.deleteTask(indexOfTask);
-        ui.deleteTask(tasks.getTask(indexOfTask));
+        Task task = tasks.deleteTask(indexOfTask);
+        ui.deleteTask(task);
         ui.displayNumberOfTasks(tasks.getNumberOfTasks());
         storage.writeToFile(tasks);
     }

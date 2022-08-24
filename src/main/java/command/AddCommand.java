@@ -1,3 +1,13 @@
+package command;
+
+import storage.Storage;
+import task.TaskList;
+import task.Deadline;
+import task.Task;
+import task.Event;
+import task.ToDo;
+import ui.Ui;
+
 public class AddCommand extends Command {
     String typeOfTask;
     String description;

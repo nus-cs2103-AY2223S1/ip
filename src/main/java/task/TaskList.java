@@ -1,3 +1,7 @@
+package task;
+
+import ui.Style;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -19,15 +23,10 @@ public class TaskList {
         return task;
     }
 
-    public void deleteTask(int index) {
-        Task task = tasks.get(index);
+    public Task deleteTask(int index) {
+        Task task = getTask(index);
         tasks.remove(index - 1);
-
-        String taskOrTasks = tasks.size() == 1 ? "task" : "tasks";
-        System.out.println(Style.INDENTATION + "Noted. I've removed this task:");
-        System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
-        System.out.println(Style.INDENTATION + "Now you have " + tasks.size() + " "
-                + taskOrTasks + " in the list.\n");
+        return task;
     }
 
     public Task markTask(int index) {

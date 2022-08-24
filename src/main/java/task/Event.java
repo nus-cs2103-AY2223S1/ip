@@ -1,25 +1,28 @@
+package task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
+public class Event extends Task {
     protected LocalDate dateAndTime;
 
-    public Deadline(String deadline, String dateAndTime) {
+    public Event(String deadline, String dateAndTime) {
         super(deadline);
         this.dateAndTime = LocalDate.parse(dateAndTime);
     }
 
-    public Deadline(String deadline, String dateAndTime, boolean isDone) {
+    public Event(String deadline, String dateAndTime, boolean isDone) {
         super(deadline, isDone);
         this.dateAndTime = LocalDate.parse(dateAndTime);
     }
+
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: "
+        return "[E]" + super.toString() + " (at: "
                 + dateAndTime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
     public String toFileString() {
-        return "D , " + super.toFileString()  + " , " + dateAndTime;
+        return "E , " + super.toFileString()  + " , " + dateAndTime;
     }
 }
