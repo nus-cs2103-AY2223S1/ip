@@ -3,6 +3,12 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.function.Function;
 public class Formatting implements Function<ArrayList<Task>, String> {
+    /**
+     * Returns a representation of tasks in the array list.
+     *
+     * @param arr the array list containing the tasks
+     * @return string of tasks
+     */
     public String apply(ArrayList<Task> arr) {
         String s = "";
         for (int i = 0; i < arr.size(); i++) {

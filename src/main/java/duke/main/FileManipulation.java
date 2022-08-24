@@ -51,6 +51,13 @@ public class FileManipulation {
         }
         return arr;
     }
+
+    /**
+     * Updates the current file.
+     *
+     * @param filepath the filepath of the file to be updated
+     * @param s the contents that will be updated to the file
+     */
     public static void overwrite(String filepath, String s) {
         try {
             tryOverwrite(filepath, s);
@@ -59,6 +66,13 @@ public class FileManipulation {
         }
     }
 
+    /**
+     * Converts the string representation of tasks on the data file to
+     * an array of tasks.
+     *
+     * @param filepath the filepath of the file that is read
+     * @return an array list converted from the data file
+     */
     public static ArrayList<Task> read(String filepath) throws DukeException {
         try {
             return tryRead(filepath);

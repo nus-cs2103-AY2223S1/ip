@@ -5,6 +5,11 @@ public class ToDo extends Task{
         super(description);
     }
 
+    /**
+     * Returns the string representation of a todo task.
+     *
+     * @return the string of todo
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();

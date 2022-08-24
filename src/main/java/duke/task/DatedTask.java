@@ -10,7 +10,11 @@ public class DatedTask extends Task {
         super(description);
         this.date = date;
     }
-
+    /**
+     * Returns the date of dated task.
+     *
+     * @return a date
+     */
     public LocalDate getDate() {
         return date;
     }

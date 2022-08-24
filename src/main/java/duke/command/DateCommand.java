@@ -18,7 +18,7 @@ public class DateCommand extends Command {
         this.date = LocalDate.parse(date);
     }
 
-    public ArrayList<Task> filter(ArrayList<Task> arr, Predicate<? super Task> p) {
+    private ArrayList<Task> filter(ArrayList<Task> arr, Predicate<? super Task> p) {
         ArrayList<Task> newArr = new ArrayList<>();
         for (Task t: arr) {
             if (p.test(t)) {
@@ -28,6 +28,13 @@ public class DateCommand extends Command {
         return newArr;
     }
 
+    /**
+     * Prints a list of tasks happening on a particular date.
+     *
+     * @param tasks the list of tasks
+     * @param ui the user interface
+     * @param storage the storage
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ui.sayList(filter(tasks.getArr(), x -> x instanceof DatedTask
                 && ((DatedTask) x).getDate().equals(this.date)));

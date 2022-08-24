@@ -14,10 +14,15 @@ public class DeadlineCommand extends AddCommand {
         this.date = date;
     }
 
+    /**
+     * Add new tasks.
+     *
+     * @param taskList the list of tasks
+     */
     @Override
-    public void add(TaskList tasks) throws DukeException {
+    public void add(TaskList taskList) throws DukeException {
         try {
-            tasks.add(new Deadline(description, LocalDate.parse(date)));
+            taskList.add(new Deadline(description, LocalDate.parse(date)));
         } catch(DateTimeException e) {
             throw new DukeException("Please give a valid date in YYYY-MM-DD format!");
         }

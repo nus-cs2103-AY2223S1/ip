@@ -7,6 +7,11 @@ public class Deadline extends DatedTask {
     public Deadline(String description, LocalDate by) throws DateTimeException {
         super(description, by);
     }
+    /**
+     * Returns the string of deadline.
+     *
+     * @return the string of deadline.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: "

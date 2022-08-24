@@ -11,6 +11,14 @@ public class DeleteCommand extends Command {
     public DeleteCommand(int i) {
         this.num = i;
     }
+
+    /**
+     * Delete existing task.
+     *
+     * @param tasks the list of tasks
+     * @param ui the user interface
+     * @param storage the storage
+     */
     @Override
     public void execute (TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {

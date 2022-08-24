@@ -14,6 +14,11 @@ public class EventCommand extends AddCommand {
         this.date = date;
     }
 
+    /**
+     * Add new tasks.
+     *
+     * @param taskList the list of tasks
+     */
     @Override
     public void add(TaskList taskList) throws DukeException {
         try {

@@ -10,6 +10,14 @@ public class MarkCommand extends Command {
     public MarkCommand(int num) {
         this.num = num;
     }
+
+    /**
+     * Mark a particular task.
+     *
+     * @param tasks the list of tasks
+     * @param ui the user interface
+     * @param storage the storage
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {

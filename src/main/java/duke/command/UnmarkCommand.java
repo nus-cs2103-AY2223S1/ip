@@ -10,6 +10,14 @@ public class UnmarkCommand extends Command {
     public UnmarkCommand(int num) {
         this.num = num;
     }
+
+    /**
+     * Unmark a particular task.
+     *
+     * @param tasks the list of tasks
+     * @param ui the user interface
+     * @param storage the storage
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {

@@ -8,8 +8,14 @@ public class ToDoCommand extends AddCommand {
     public ToDoCommand(String description) {
         this.description = description;
     }
+
+    /**
+     * Add new tasks.
+     *
+     * @param taskList
+     */
     @Override
-    public void add(TaskList tasks) {
-        tasks.add(new ToDo(description));
+    public void add(TaskList taskList) {
+        taskList.add(new ToDo(description));
     }
 }

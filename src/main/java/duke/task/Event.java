@@ -9,6 +9,11 @@ public class Event extends DatedTask {
         super(description, at);
     }
 
+    /**
+     * Returns the string of event.
+     *
+     * @return the string of event
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: "
