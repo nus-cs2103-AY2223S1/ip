@@ -5,11 +5,27 @@ import jarvis.storage.Storage;
 import jarvis.task.Task;
 import jarvis.task.TaskList;
 
+/**
+ * DeleteCommand --- command to delete tasks.
+ */
 public class DeleteCommand extends Command {
+    /**
+     * Constructor.
+     *
+     * @param command the command entered by the user.
+     */
     public DeleteCommand(String command) {
         super(command);
     }
 
+    /**
+     * Executes the command.
+     *
+     * @param tasks the list of tasks.
+     * @param storage stores the tasks locally.
+     * @return response after executing the command.
+     * @throws JarvisException exception for invalid commands.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) throws JarvisException {
         int taskIndex = super.getTaskIndex();

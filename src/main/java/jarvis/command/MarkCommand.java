@@ -4,11 +4,27 @@ import jarvis.JarvisException;
 import jarvis.storage.Storage;
 import jarvis.task.TaskList;
 
+/**
+ * MarkCommand --- command to mark tasks as done or undone.
+ */
 public class MarkCommand extends Command {
+    /**
+     * Constructor.
+     *
+     * @param command the command entered by the user.
+     */
     public MarkCommand(String command) {
         super(command);
     }
 
+    /**
+     * Executes the command.
+     *
+     * @param tasks the list of tasks.
+     * @param storage stores the tasks locally.
+     * @return response after executing the command.
+     * @throws JarvisException exception for invalid commands.
+     */
     @Override
     public String execute(TaskList tasks, Storage storage) throws JarvisException {
         int taskIndex = super.getTaskIndex();

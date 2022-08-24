@@ -8,11 +8,17 @@ import jarvis.storage.Storage;
 import jarvis.task.TaskList;
 import jarvis.ui.Ui;
 
+/**
+ * Jarvis --- Task manager.
+ */
 public class Jarvis {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor.
+     */
     public Jarvis() {
         this.storage = new Storage(System.getProperty("user.dir") + "/data/tasks.txt");
         this.ui = new Ui();
@@ -23,6 +29,9 @@ public class Jarvis {
         }
     }
 
+    /**
+     *
+     */
     public void run() {
         this.ui.greet();
 
