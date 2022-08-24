@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,19 +9,26 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Anya {
-    static final String breakLine = "\n---------------------------------------------------------------------";
+    private static String breakLine = "\n---------------------------------------------------------------------";
 
-    public static void main(String[] args) {
-        // Initialising variables
+    private TaskList tasks;
+    private Ui ui;
+
+    public Anya() {
+        this.ui = new Ui();
+        this.tasks = new TaskList();
+    }
+
+    public void run() {
         Scanner sc = new Scanner(System.in);
         String userInput;
         String command;
-        TaskList tasks = new TaskList();
-        String fileName = "data/Anya.txt";
 
+        String fileName = "data/Anya.txt";
         loadFile(tasks, fileName);
+
         // Greet
-        System.out.println("Hello! Anya is happy to meet you.\nHow can Anya help?" + breakLine);
+        ui.greetMessage();
 
         // Get user input
         userInput = sc.nextLine();
@@ -43,9 +49,9 @@ public class Anya {
                     delete(tasks, index);
                 } else if (command.equals("todo")) {
                     try {
-                    String inputTask = userInput.split(" ", 2)[1];
-                    Task task = new Todo(inputTask);
-                    addTask(tasks, task);
+                        String inputTask = userInput.split(" ", 2)[1];
+                        Task task = new Todo(inputTask);
+                        addTask(tasks, task);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new AnyaException("The description of a todo cannot be empty.");
                     }
@@ -61,8 +67,8 @@ public class Anya {
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new AnyaException("The description/cut-off time of a deadline cannot be empty.");
                     } catch (DateTimeParseException e) {
-                        System.out.println("Wrong format. Format: <name> /by <dd/MM/yyyy> <HHmm>. " +
-                                "Example: return book /by 01/01/2022 2030");
+                        this.ui.errorMessage("Invalid format.");
+                        this.ui.deadlineFormatExample();
                     }
                 } else if (command.equals("event")) {
                     try {
@@ -78,7 +84,7 @@ public class Anya {
                 }
 
             } catch (AnyaException e) {
-                System.out.println(e.getMessage() + breakLine);
+                this.ui.errorMessage(e.getMessage());
             }
 
             userInput = sc.nextLine();
@@ -86,47 +92,45 @@ public class Anya {
 
         // Exit
         saveFile(tasks, fileName);
-        System.out.println("Anya is sad to see you leave. Please be back soon." + breakLine);
+        this.ui.exitMessage();
+    }
+
+    public static void main(String[] args) {
+        new Anya().run();
     }
 
     // Commands
     // put in tasklist
-    public static void addTask(TaskList tasks, Task task) {
+    public void addTask(TaskList tasks, Task task) {
         tasks.addTask(task);
-        System.out.println("Anya added: " + task);
-        System.out.println("Anya sees that you have " + tasks.getLength() + " task(s) in your list." + breakLine);
+        this.ui.addTaskMessage(task, tasks.getLength());
     }
 
-    public static void list(TaskList tasks) {
-        System.out.println("Anya is getting you your list...");
-        for (int i = 0; i < tasks.getLength(); i++) {
-            int num = i + 1;
-            System.out.println(num + ". " + tasks.getTaskFromIndex(num).toString());
-        }
-        System.out.println(breakLine);
+    public void list(TaskList tasks) {
+        this.ui.getListMessage(tasks);
     }
 
-    public static void mark(TaskList tasks, int index) {
+    public void mark(TaskList tasks, int index) {
         Task task = tasks.getTaskFromIndex(index);
         task.markDone();
-        System.out.println("Anya has marked this task as done: \n  " + task.toString() + breakLine);
+        this.ui.markTaskMessage(task);
     }
 
-    public static void unmark(TaskList tasks, int index) {
+    public void unmark(TaskList tasks, int index) {
         Task task = tasks.getTaskFromIndex(index);
         task.markUndone();
-        System.out.println("Anya has marked this task as uncompleted: \n  " + task.toString() + breakLine);
+        this.ui.unmarkTaskMessage(task);
     }
 
     // put in tasklist
-    public static void delete(TaskList tasks, int index) {
+    public void delete(TaskList tasks, int index) {
         Task removedTask = tasks.getTaskFromIndex(index);
         tasks.deleteTaskFromIndex(index);
-        System.out.println("Anya has removed this task : \n" + removedTask.toString() + breakLine);
+        this.ui.deleteTaskMessage(removedTask, index);
     }
 
-    public static void saveFile(TaskList tasks, String fileName) {
-        System.out.println("Anya is saving your data...");
+    public void saveFile(TaskList tasks, String fileName) {
+        this.ui.savingFileMessage();
         try {
             FileWriter saveTask = new FileWriter(fileName);
             for (int i = 0; i < tasks.getLength(); i++) {
@@ -134,14 +138,14 @@ public class Anya {
                 saveTask.write(task.toSave() + "\n");
             }
             saveTask.close();
-            System.out.println("Anya has successfully saved your data!" + breakLine);
+            this.ui.saveFileSuccessMessage();
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            this.ui.errorMessage(e.getMessage());
         }
     }
 
-    public static void loadFile(TaskList tasks, String fileName) {
-        System.out.println("Anya is loading your saved file...");
+    public void loadFile(TaskList tasks, String fileName) {
+        this.ui.loadingFileMessage();
         File dir = new File("data/");
         if (!dir.exists()) {
             dir.mkdir();
@@ -149,7 +153,6 @@ public class Anya {
         try {
             File savedTask = new File(fileName);
             if (!savedTask.exists()) {
-                System.out.println("Anya cannot find your saved file... Let Anya create one now!");
                 savedTask.createNewFile();
             }
             Scanner sc = new Scanner(savedTask);
@@ -158,12 +161,12 @@ public class Anya {
                 readEntry(tasks, line);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage() + breakLine);
+            this.ui.errorMessage(e.getMessage());
         }
-        System.out.println("Anya has finished loading your saved file!" + breakLine);
+        this.ui.loadFileSuccessMessage();
     }
 
-    public static void readEntry(TaskList tasks, String line) {
+    public void readEntry(TaskList tasks, String line) {
         String[] arrStr = line.split(" \\| ", 3);
         String taskType = arrStr[0];
         boolean isTaskDone = arrStr[1].equals("1");

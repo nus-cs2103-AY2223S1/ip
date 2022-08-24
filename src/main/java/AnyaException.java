@@ -5,6 +5,6 @@ public class AnyaException extends Exception{
 
     @Override
     public String getMessage() {
-        return "Ahh Error! " + super.getMessage();
+        return super.getMessage();
     }
 }
