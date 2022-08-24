@@ -1,3 +1,5 @@
+package task;
+
 public abstract class Task {
 
     protected final String name;

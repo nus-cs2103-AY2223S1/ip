@@ -1,3 +1,10 @@
+package duke;
+
+import parser.Parser;
+import storage.Storage;
+import task.TaskList;
+import ui.Ui;
+
 public class Duke {
 
     protected final Parser parser;

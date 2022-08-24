@@ -1,3 +1,13 @@
+package storage;
+
+import duke.DukeException;
+import parser.Parser;
+import task.Task;
+import task.Todo;
+import task.Deadline;
+import task.Event;
+import task.TaskList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,7 +20,7 @@ public class Storage {
     protected final String filePath;
     protected final Parser parser;
 
-    Storage(String fileDirectoryString, String fileName) {
+    public Storage(String fileDirectoryString, String fileName) {
         this.parser = new Parser();
         File fileDirectory = new File(fileDirectoryString);
         if (!fileDirectory.exists()) {

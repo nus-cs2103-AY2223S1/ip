@@ -1,22 +1,24 @@
+package task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
+public class Event extends Task {
 
     protected final LocalDateTime time;
 
-    public Deadline(String name, LocalDateTime time) {
+    public Event(String name, LocalDateTime time) {
         super(name);
         this.time = time;
     }
 
-    public Deadline(String name, LocalDateTime time, boolean isDone) {
+    public Event(String name, LocalDateTime time, boolean isDone) {
         super(name, isDone);
         this.time = time;
     }
 
     public String toString() {
-        return String.format("[%s]%s (by: %s)", this.getType(), super.toString(), this.getTime());
+        return String.format("[%s]%s (at: %s)", this.getType(), super.toString(), this.getTime());
     }
 
     public String toFileString() {
@@ -28,6 +30,6 @@ public class Deadline extends Task {
     }
 
     public String getType() {
-        return "D";
+        return "E";
     }
 }
