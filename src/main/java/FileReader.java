@@ -8,13 +8,17 @@ public class FileReader {
     Scanner sc;
     ToDoList list;
 
-    FileReader(ToDoList list) throws FileNotFoundException {
-        this.file = new File("./data/duke.txt");
-        this.sc = new Scanner(file);
-        this.list = list;
+    FileReader(String filePath) {
+        try {
+            this.file = new File("./data/duke.txt");
+            this.sc = new Scanner(file);
+            this.list = new ToDoList();
+        } catch (FileNotFoundException e) {
+            System.out.print(e.getMessage());
+        }
     }
 
-    public void read() {
+    public ToDoList load() {
         while(sc.hasNext()) {
             String line = sc.nextLine();
             String[] details = line.split(" \\| ");
@@ -38,5 +42,7 @@ public class FileReader {
             list.addTask(t);
         }
         sc.close();
+        return this.list;
     }
+
 }
