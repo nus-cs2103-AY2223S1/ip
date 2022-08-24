@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.io.IOException;
 import java.util.InputMismatchException;
-import java.util.List;
 
 public class Duke {
     static final String EXITWORD = "bye";
