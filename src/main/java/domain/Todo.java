@@ -2,7 +2,11 @@ package domain;
 
 import java.util.Objects;
 
+/**
+ * The type Todo.
+ */
 public class Todo extends Task {
+
     private Todo(String text) {
         super(text);
     }
@@ -14,20 +18,30 @@ public class Todo extends Task {
 
     @Override
     public String exportString() {
-        return String.format("%s%s%s",
-                "T",
-                super.exportString(),
-                "$_$");
+        return String.format("%s%s%s", "T", super.exportString(), "$_$");
     }
 
+    /**
+     * Of todo.
+     *
+     * @param todoText the todo text
+     * @return the todo
+     */
     public static Todo of(String todoText) {
         return new Todo(todoText);
     }
 
+    /**
+     * Of todo.
+     *
+     * @param done     the done
+     * @param todoText the todo text
+     * @return the todo
+     */
     public static Todo of(String done, String todoText) {
         Todo newTodo = Todo.of(todoText);
-        if(Objects.equals(done, "1")) {
-            newTodo.setComplete();            
+        if (Objects.equals(done, "1")) {
+            newTodo.setComplete();
         }
         return newTodo;
     }

@@ -1,11 +1,38 @@
+/**
+ * The enum Duke commands.
+ */
 public enum DukeCommands {
+    /**
+     * Exit duke commands.
+     */
     EXIT("bye"),
+    /**
+     * List duke commands.
+     */
     LIST("list"),
+    /**
+     * Mark duke commands.
+     */
     MARK("mark"),
+    /**
+     * Unmark duke commands.
+     */
     UNMARK("unmark"),
+    /**
+     * Todo duke commands.
+     */
     TODO("todo"),
+    /**
+     * Deadline duke commands.
+     */
     DEADLINE("deadline"),
+    /**
+     * Event duke commands.
+     */
     EVENT("event"),
+    /**
+     * Delete duke commands.
+     */
     DELETE("delete");
 
     private final String text;

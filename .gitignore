@@ -16,3 +16,9 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 text-ui-test/src/**
+
+.prettierrc.yaml
+
+.vscode/
+
+eclipse-formatter.xml

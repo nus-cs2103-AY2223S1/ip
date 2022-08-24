@@ -8,13 +8,25 @@ import java.util.Objects;
 import exceptions.InvalidDateTimeException;
 import exceptions.InvalidTaskSpecificationException;
 
+/**
+ * The type Task.
+ */
 public class Task {
+
+    /**
+     * The constant FORMATTER.
+     */
+    protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(
+            "dd-MM-yyyy HH:mm");
     private final String text;
     private Boolean isComplete;
-    protected static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-            "dd-MM-yyyy HH:mm");
 
-    public Task(String text) {
+    /**
+     * Instantiates a new Task.
+     *
+     * @param text the text
+     */
+    protected Task(String text) {
         this.text = text;
         this.isComplete = false;
     }
@@ -40,13 +52,29 @@ public class Task {
                 : String.format("[ ] %s", this.text);
     }
 
-    private static LocalDateTime interpretLocalDateTime(String input) throws DateTimeParseException {
+    private static LocalDateTime interpretLocalDateTime(String input)
+            throws DateTimeParseException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
                 "dd-MM-yyyy HH:mm");
         return LocalDateTime.parse(input, formatter);
     }
 
-    public static Task of(String type, String done, String text, String dateTimeInput)
+    /**
+     * Of task.
+     *
+     * @param type          the type
+     * @param done          the done
+     * @param text          the text
+     * @param dateTimeInput the date time input
+     * @return the task
+     * @throws InvalidDateTimeException          the invalid date time exception
+     * @throws InvalidTaskSpecificationException the invalid task specification exception
+     */
+    public static Task of(
+            String type,
+            String done,
+            String text,
+            String dateTimeInput)
             throws InvalidDateTimeException, InvalidTaskSpecificationException {
         Boolean isEvent = Objects.equals(type, "E");
         Boolean isDeadline = Objects.equals(type, "D");
@@ -54,32 +82,29 @@ public class Task {
         if (isEvent || isDeadline || isTodo) {
             if (isEvent || isDeadline) {
                 try {
-                    LocalDateTime dateTime = interpretLocalDateTime(dateTimeInput);
+                    LocalDateTime dateTime = interpretLocalDateTime(
+                            dateTimeInput);
                     if (isEvent) {
-                        return Event.of(
-                                done,
-                                text,
-                                dateTime);
+                        return Event.of(done, text, dateTime);
                     }
-                    return Deadline.of(
-                            done,
-                            text,
-                            dateTime);
+                    return Deadline.of(done, text, dateTime);
                 } catch (DateTimeParseException e) {
                     throw new InvalidDateTimeException(
                             "Must have valid date time!");
                 }
             }
-            return Todo.of(
-                    done,
-                    text);
+            return Todo.of(done, text);
         } else {
             throw new InvalidTaskSpecificationException(
                     "Impossible for task to be not e d or t");
         }
-
     }
 
+    /**
+     * Export the export string.
+     *
+     * @return the string
+     */
     public String exportString() {
         return String.format(
                 "%s%d%s%s%s",
@@ -92,8 +117,13 @@ public class Task {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Task task)) return false;
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Task)) {
+            return false;
+        }
+        Task task = (Task) o;
         return text.equals(task.text) && isComplete.equals(task.isComplete);
     }
 
@@ -102,10 +132,22 @@ public class Task {
         return Objects.hash(text, isComplete);
     }
 
+    /**
+     * Is before boolean.
+     *
+     * @param dateTime the date time
+     * @return the boolean
+     */
     public Boolean isBefore(LocalDateTime dateTime) {
         return true;
     }
 
+    /**
+     * Is after boolean.
+     *
+     * @param dateTime the date time
+     * @return the boolean
+     */
     public Boolean isAfter(LocalDateTime dateTime) {
         return true;
     }

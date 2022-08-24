@@ -6,7 +6,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -20,30 +19,35 @@ import exceptions.MissingArgumentException;
 import exceptions.TaskNotFoundException;
 import exceptions.UnknownCommandException;
 
+/**
+ * The type Duke.
+ */
 public class Duke {
-    static private final String exitCommand = "bye";
-    static private final String listCommand = "list";
-    static private final String markCommand = "mark";
-    static private final String todoCommand = "todo";
-    static private final String deadlineCommand = "deadline";
-    static private final String deadlineSubCommand = " /by ";
-    static private final String eventCommand = "event";
-    static private final String eventSubCommand = " /at ";
-    static private final String advancedListSubCommand1 = "/before ";
-    static private final String advancedListSubCommand2 = "/after ";
-    static private final String unmarkCommand = "unmark";
-    static private final String deleteCommand = "delete";
-    static private final String exitMessage = "Goodbye and have a nice day!";
-    static private final String delimiter = "@@@";
-    static private final String nullSymbol = "$_$";
+
+    private static final String exitCommand = "bye";
+    private static final String listCommand = "list";
+    private static final String markCommand = "mark";
+    private static final String todoCommand = "todo";
+    private static final String deadlineCommand = "deadline";
+    private static final String deadlineSubCommand = " /by ";
+    private static final String eventCommand = "event";
+    private static final String eventSubCommand = " /at ";
+    private static final String advancedListSubCommand1 = "/before ";
+    private static final String advancedListSubCommand2 = "/after ";
+    private static final String unmarkCommand = "unmark";
+    private static final String deleteCommand = "delete";
+    private static final String exitMessage = "Goodbye and have a nice day!";
+    private static final String delimiter = "@@@";
+    private static final String nullSymbol = "$_$";
 
     /**
      * Returns a boolean corresponding to whether the given string is numeric.
      *
-     * @param strNum String to be tested
+     * @param strNum
+     *            String to be tested
      * @return boolean representing whether the string is numeric
      */
-    static private boolean isNumeric(String strNum) {
+    private static boolean isNumeric(String strNum) {
         if (strNum == null) {
             return false;
         }
@@ -66,7 +70,8 @@ public class Duke {
                 System.out.println(sc.nextLine());
             }
             sc.close();
-        } catch (FileNotFoundException ignored) {
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
         }
 
         System.out.println("Welcome to Aladdin Services");
@@ -84,7 +89,6 @@ public class Duke {
      * The method also creates the folder and data file if it does not exist.
      */
     private static void startUp(TaskController taskController) {
-
     }
 
     /**
@@ -103,7 +107,12 @@ public class Duke {
                     String taskString = sc.nextLine();
                     if (!Objects.equals(taskString, "")) {
                         String[] taskArgs = taskString.split(delimiter);
-                        initTask.add(Task.of(taskArgs[0], taskArgs[1], taskArgs[2], taskArgs[3]));
+                        initTask.add(
+                                Task.of(
+                                        taskArgs[0],
+                                        taskArgs[1],
+                                        taskArgs[2],
+                                        taskArgs[3]));
                     }
                 }
                 sc.close();
@@ -147,7 +156,12 @@ public class Duke {
         }
     }
 
-    private static void ensureDataFileExist() throws IOException, SecurityException {
+    /**
+     * @throws IOException
+     * @throws SecurityException
+     */
+    private static void ensureDataFileExist()
+            throws IOException, SecurityException {
         String dataDirPathString = "src/main/java/data/";
         Path dataDirPath = Paths.get(dataDirPathString);
         boolean dataDirExists = Files.isDirectory(dataDirPath);
@@ -169,6 +183,11 @@ public class Duke {
         dataFile.createNewFile();
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         // Set up
         TaskController taskController = Duke.initializeTaskControllerFromDataFile();
@@ -186,110 +205,132 @@ public class Duke {
 
             String[] commandArgs = userInput.split(" ");
             String[] commandArgsCopy = new String[commandArgs.length - 1];
-            System.arraycopy(commandArgs, 1, commandArgsCopy, 0, commandArgs.length - 1);
+            System.arraycopy(
+                    commandArgs,
+                    1,
+                    commandArgsCopy,
+                    0,
+                    commandArgs.length - 1);
 
             try {
                 switch (commandArgs[0]) {
-                    case exitCommand:
-                        flag = false;
-                        break;
+                case exitCommand:
+                    flag = false;
+                    break;
+                case todoCommand:
+                    String todoText = String.join(" ", commandArgsCopy);
 
-                    case todoCommand:
-                        String todoText = String.join(" ", commandArgsCopy);
+                    if (commandArgsCopy.length > 0) {
+                        Task newTodo = Todo.of(todoText);
+                        taskController.addTask(newTodo);
+                        Duke.writeDataToFile(
+                                taskController.exportTaskList());
+                    } else {
+                        throw new MissingArgumentException(
+                                "The description of the todo cannot be empty!");
+                    }
+                    break;
+                case deadlineCommand:
+                    String deadlineText = String.join(" ", commandArgsCopy);
+                    if (deadlineText.contains(deadlineSubCommand)) {
+                        String[] deadlineArgs = deadlineText.split(
+                                deadlineSubCommand);
+                        String deadlineTitle = deadlineArgs[0];
+                        String deadline = deadlineArgs[1];
 
-                        if (commandArgsCopy.length > 0) {
-                            Task newTodo = Todo.of(todoText);
-                            taskController.addTask(newTodo);
-                            Duke.writeDataToFile(taskController.exportTaskList());
-                        } else {
-                            throw new MissingArgumentException(
-                                    "The description of the todo cannot be empty!");
-                        }
-                        break;
+                        Task newDeadline = Task.of(
+                                "D",
+                                "0",
+                                deadlineTitle,
+                                deadline);
+                        taskController.addTask(newDeadline);
+                        Duke.writeDataToFile(
+                                taskController.exportTaskList());
+                    } else {
+                        throw new MissingArgumentException(
+                                "Deadlines need a /by command");
+                    }
+                    break;
+                case eventCommand:
+                    String eventText = String.join(" ", commandArgsCopy);
+                    if (eventText.contains(eventSubCommand)) {
+                        String[] eventArgs = eventText.split(
+                                eventSubCommand);
+                        String eventTitle = eventArgs[0];
+                        String eventDateTime = eventArgs[1];
 
-                    case deadlineCommand:
-                        String deadlineText = String.join(" ", commandArgsCopy);
-                        if (deadlineText.contains(deadlineSubCommand)) {
-                            String[] deadlineArgs = deadlineText.split(deadlineSubCommand);
-                            String deadlineTitle = deadlineArgs[0];
-                            String deadline = deadlineArgs[1];
-
-                            Task newDeadline = Task.of("D", "0", deadlineTitle, deadline);
-                            taskController.addTask(newDeadline);
-                            Duke.writeDataToFile(taskController.exportTaskList());
-                        } else {
-                            throw new MissingArgumentException(
-                                    "Deadlines need a /by command");
-                        }
-                        break;
-
-                    case eventCommand:
-                        String eventText = String.join(" ", commandArgsCopy);
-                        if (eventText.contains(eventSubCommand)) {
-                            String[] eventArgs = eventText.split(eventSubCommand);
-                            String eventTitle = eventArgs[0];
-                            String eventDateTime = eventArgs[1];
-
-                            Task newEvent = Task.of("E", "0", eventTitle, eventDateTime);
-                            taskController.addTask(newEvent);
-                            Duke.writeDataToFile(taskController.exportTaskList());
-                        } else {
-                            throw new MissingArgumentException(
-                                    "Events need a /at command");
-                        }
-                        break;
-
-                    case markCommand:
-                        if (isNumeric(commandArgs[1])) {
-                            int idx = Integer.parseInt(commandArgs[1]);
-                            taskController.markTask(idx - 1);
-                        } else {
-                            throw new IncorrectArgumentException(
-                                    "Sorry the second argument is not a number");
-                        }
-                        break;
-
-                    case unmarkCommand:
-                        if (isNumeric(commandArgs[1])) {
-                            int idx = Integer.parseInt(commandArgs[1]);
-                            taskController.unmarkTask(idx - 1);
-                        } else {
-                            throw new IncorrectArgumentException(
-                                    "Sorry the second argument is not a number");
-                        }
-                        break;
-
-                    case deleteCommand:
-                        if (isNumeric(commandArgs[1])) {
-                            int idx = Integer.parseInt(commandArgs[1]);
-                            taskController.deleteTask(idx - 1);
-                        } else {
-                            throw new IncorrectArgumentException(
-                                    "Sorry the second argument is not a number");
-                        }
-                        break;
-
-                    case listCommand:
-                        String advancedListText = String.join(" ", commandArgsCopy);
-                        if (advancedListText.contains(advancedListSubCommand1)) {
-                            String[] advancedListArgs = advancedListText.split(advancedListSubCommand1);
-                            String advancedListDateTime = advancedListArgs[1];
-                            taskController.listTasks(advancedListDateTime, true);
-                        } else if (advancedListText.contains(advancedListSubCommand2)) {
-                            String[] advancedListArgs = advancedListText.split(advancedListSubCommand2);
-                            String advancedListDateTime = advancedListArgs[1];
-                            taskController.listTasks(advancedListDateTime, false);
-                        } else {
-                            taskController.listTasks();
-                        }
-                        break;
-
-                    default:
-                        throw new UnknownCommandException(
-                                "Sorry I don't understand that command");
+                        Task newEvent = Task.of(
+                                "E",
+                                "0",
+                                eventTitle,
+                                eventDateTime);
+                        taskController.addTask(newEvent);
+                        Duke.writeDataToFile(
+                                taskController.exportTaskList());
+                    } else {
+                        throw new MissingArgumentException(
+                                "Events need a /at command");
+                    }
+                    break;
+                case markCommand:
+                    if (isNumeric(commandArgs[1])) {
+                        int idx = Integer.parseInt(commandArgs[1]);
+                        taskController.markTask(idx - 1);
+                    } else {
+                        throw new IncorrectArgumentException(
+                                "Sorry the second argument is not a number");
+                    }
+                    break;
+                case unmarkCommand:
+                    if (isNumeric(commandArgs[1])) {
+                        int idx = Integer.parseInt(commandArgs[1]);
+                        taskController.unmarkTask(idx - 1);
+                    } else {
+                        throw new IncorrectArgumentException(
+                                "Sorry the second argument is not a number");
+                    }
+                    break;
+                case deleteCommand:
+                    if (isNumeric(commandArgs[1])) {
+                        int idx = Integer.parseInt(commandArgs[1]);
+                        taskController.deleteTask(idx - 1);
+                    } else {
+                        throw new IncorrectArgumentException(
+                                "Sorry the second argument is not a number");
+                    }
+                    break;
+                case listCommand:
+                    String advancedListText = String.join(
+                            " ",
+                            commandArgsCopy);
+                    if (advancedListText.contains(advancedListSubCommand1)) {
+                        String[] advancedListArgs = advancedListText.split(
+                                advancedListSubCommand1);
+                        String advancedListDateTime = advancedListArgs[1];
+                        taskController.listTasks(
+                                advancedListDateTime,
+                                true);
+                    } else if (advancedListText.contains(advancedListSubCommand2)) {
+                        String[] advancedListArgs = advancedListText.split(
+                                advancedListSubCommand2);
+                        String advancedListDateTime = advancedListArgs[1];
+                        taskController.listTasks(
+                                advancedListDateTime,
+                                false);
+                    } else {
+                        taskController.listTasks();
+                    }
+                    break;
+                default:
+                    throw new UnknownCommandException(
+                            "Sorry I don't understand that command");
                 }
-            } catch (UnknownCommandException | MissingArgumentException | TaskNotFoundException
-                    | IncorrectArgumentException | InvalidDateTimeException | InvalidTaskSpecificationException e) {
+            } catch (UnknownCommandException
+                    | MissingArgumentException
+                    | TaskNotFoundException
+                    | IncorrectArgumentException
+                    | InvalidDateTimeException
+                    | InvalidTaskSpecificationException e) {
                 System.out.println(e.getMessage());
             }
         }
