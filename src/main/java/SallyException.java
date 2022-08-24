@@ -6,7 +6,7 @@ public class SallyException extends Exception {
     public static class SallyTaskNotFoundException extends SallyException {
         @Override
         public String toString() {
-            return "I can't find this task number. You might want to check your list again!";
+            return Sally.border() + "\nI can't find this task number. You might want to check your list again!\n" + Sally.border();
         }
     }
 
