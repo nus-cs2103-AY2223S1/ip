@@ -3,9 +3,9 @@ package Duke;
 public class Handler {
 
     private TaskList taskList;
-    private ui ui;
+    private Ui ui;
 
-    public Handler(TaskList taskList, ui ui) {
+    public Handler(TaskList taskList, Ui ui) {
         this.taskList = taskList;
         this.ui = ui;
     }

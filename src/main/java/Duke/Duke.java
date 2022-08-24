@@ -8,15 +8,15 @@ public class Duke {
     Scanner sc;
     public Storage storage;
     public TaskList tasklist;
-    public ui ui;
+    public Ui ui;
 
     public Duke() {
 
 
-        this.ui = new ui();
+        this.ui = new Ui();
 
         this.storage = new Storage("data/tasks.txt");
-        this.ui = new ui();
+        this.ui = new Ui();
 
         this.tasklist = new TaskList();
         this.sc = new Scanner(System.in);
@@ -32,7 +32,7 @@ public class Duke {
     }
 
     public Duke(String path) {
-        this.ui = new ui();
+        this.ui = new Ui();
         this.storage = new Storage(path);
         try {
             this.tasklist = new TaskList();
