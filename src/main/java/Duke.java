@@ -1,16 +1,62 @@
+import java.io.IOException;
 import java.util.*;
+import java.util.Scanner;
+
+import java.io.File;
+import java.io.FileWriter;
 
 public class Duke {
     private static final String TAB = "    ";
     private static final String LINEBREAK = "___________________________________";
     private static Scanner sc = new Scanner(System.in);
     private static List<Task> store = new ArrayList<>();
+    private static File dataFile;
 
     public static void main(String[] args) {
+        loadData();
         greet();
         String s = sc.nextLine();
         String[] arr = s.split(" ", 2);
         command(arr, s);
+    }
+
+    private static void loadData() {
+        try {
+            File dataFolder = new File("data");
+            if (!dataFolder.exists()) {
+                dataFolder.mkdir();
+            }
+            File f = new File("data/duke.txt");
+            if (!f.exists()) {
+                f.createNewFile();
+            }
+            dataFile = f;
+            Scanner s = new Scanner(dataFile);
+            while (s.hasNext()) {
+                String line = s.nextLine();
+                String[] tempArr = line.split(" \\| ");
+                Task t = new Task("");
+                switch (tempArr[0]) {
+                case "T":
+                    t = new Todo(tempArr[2]);
+                    break;
+                case "D":
+                    t = new Deadline(tempArr[2], tempArr[3]);
+                    break;
+                case "E":
+                    t = new Event(tempArr[2], tempArr[3]);
+                    break;
+                default:
+                    throw new DukeException("Invalid data in duke.txt");
+                }
+                if (tempArr[1].equals("1")) {
+                    t.mark();
+                }
+                store.add(t);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void printTab(String content) {
@@ -27,30 +73,30 @@ public class Duke {
         } else {
             try {
                 switch (comm) {
-                    case "list":
-                        list();
-                        break;
-                    case "mark":
-                        mark(arr);
-                        break;
-                    case "unmark":
-                        unMark(arr);
-                        break;
-                    case "todo":
-                        todo(arr);
-                        break;
-                    case "deadline":
-                        deadline(arr);
-                        break;
-                    case "event":
-                        event(arr);
-                        break;
-                    case "delete":
-                        delete(arr);
-                        break;
-                    default:
-//                        add(s);
-                        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+                case "list":
+                    list();
+                    break;
+                case "mark":
+                    mark(arr);
+                    break;
+                case "unmark":
+                    unMark(arr);
+                    break;
+                case "todo":
+                    todo(arr);
+                    break;
+                case "deadline":
+                    deadline(arr);
+                    break;
+                case "event":
+                    event(arr);
+                    break;
+                case "delete":
+                    delete(arr);
+                    break;
+                default:
+//                    add(s);
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
                 printTab(LINEBREAK);
