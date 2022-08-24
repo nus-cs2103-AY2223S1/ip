@@ -25,15 +25,13 @@ public class Storage {
     }
 
     public void save(TaskList taskList) throws IOException {
-        BufferedWriter writer = null;
         try {
-            writer = new BufferedWriter(new FileWriter(filepath));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filepath));
+            writer.write(taskList.toString());
+            writer.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        writer.write(taskList.toString());
-
-        writer.close();
     }
 
     private void parseFileToTasks(String filepath) {
