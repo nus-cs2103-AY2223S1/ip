@@ -5,11 +5,12 @@ public class Parser {
     static final int TLENGTH = 5;
     static final int ELENGTH = 6;
     static final int DLENGTH = 9;
+    static final int FIND_LENGTH = 5;
     static final int MARK_LENGTH = 5;
     static final int UNMARK_LENGTH = 7;
     static final int DEL_LENGTH = 7;
     static final String[] ADD_COMMANDS = {"todo", "event", "deadline"};
-
+    static final String FIND_SYNTAX = "find";
     private static String getFirstWord(String input) {
         return input.split(" ")[0].toLowerCase();
     }
@@ -74,7 +75,10 @@ public class Parser {
     }
 
     public static Command parse(String fullCommand) throws DukeException {
-
+        switch (getFirstWord(fullCommand)) {
+        case FIND_SYNTAX:
+            return new FindCommand(fullCommand.substring(FIND_LENGTH));
+        }
         if (isAddCommand(fullCommand)) {
             return new AddCommand(fullCommand);
         } else if (isListCommand(fullCommand)) {
