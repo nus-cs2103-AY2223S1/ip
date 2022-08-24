@@ -88,10 +88,11 @@ public class Duke {
         printLine();
         Task removedTask = tasks.get(num - 1);
         tasks.remove(num - 1);
-        System.out.println("Noted. I've removed this task:" + "\n" + tasks.get(num - 1).toString()
+        System.out.println("Noted. I've removed this task:" + "\n" + removedTask.toString()
                 + "Now you have " + tasks.size() + " tasks in the list.");
         printLine();
     }
+
 
 
     public static void main(String[] args) {
