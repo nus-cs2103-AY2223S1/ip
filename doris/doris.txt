@@ -1,0 +1,3 @@
+T | false | yes
+E | false | weee | 2
+D | false | wow | 3

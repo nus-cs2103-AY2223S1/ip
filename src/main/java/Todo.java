@@ -12,4 +12,9 @@ public class Todo extends Task {
             return "[T][ ] " + this.description;
         }
     }
+
+    @Override
+    public String toStringText() {
+        return "T | " + this.done + " | " + this.description;
+    }
 }
