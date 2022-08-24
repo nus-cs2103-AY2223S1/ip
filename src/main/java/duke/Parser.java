@@ -1,3 +1,9 @@
+package duke;
+
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Todo;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -58,7 +64,7 @@ public class Parser {
                 String timeString = String.join(" ", time);
                 try {
                     LocalDate timeStringParsed = LocalDate.parse(timeString);
-                    tasks.add(new Event(newCommand, timeStringParsed.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
+                    tasks.add(new Event(newCommand, timeStringParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
                     ui.printCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
                 } catch (DateTimeParseException error) {
                     ui.printErrorMessage("datetime");
@@ -80,7 +86,7 @@ public class Parser {
                 String deadlineString = String.join(" ", deadline);
                 try {
                     LocalDate deadlineParsed = LocalDate.parse(deadlineString);
-                    tasks.add(new Deadline(newCommand, deadlineParsed.format(DateTimeFormatter.ofPattern("MMM d yyyy"))));
+                    tasks.add(new Deadline(newCommand, deadlineParsed.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))));
                     ui.printCorrectMessage(Ui.Commands.TASK, tasks, tasks.getSize() - 1);
                 } catch (DateTimeParseException e) {
                     ui.printErrorMessage("datetime");

@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -31,6 +33,6 @@ public class Duke {
     }
 
     public static void main(String[] args) throws IOException {
-        new Duke("tasks.txt").run();
+        new Duke("duke.tasks.txt").run();
     }
 }

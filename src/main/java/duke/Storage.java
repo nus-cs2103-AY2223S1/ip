@@ -1,3 +1,10 @@
+package duke;
+
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -38,8 +45,8 @@ public class Storage {
     }
 
     public void saveTasks(TaskList tasks) throws IOException {
-        new FileWriter("tasks.txt").close();
-        FileWriter fileWriter = new FileWriter("tasks.txt");
+        new FileWriter("duke.tasks.txt").close();
+        FileWriter fileWriter = new FileWriter("duke.tasks.txt");
         for (Task task : tasks.getTasks()) {
             fileWriter.write(task.getLetterTag() + "~~" + task.getStatusIcon() + "~~" +
                     task.getDescription() + "~~" + task.getAdditionalInfo() + System.lineSeparator());
