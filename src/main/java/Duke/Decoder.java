@@ -188,6 +188,14 @@ public class Decoder {
         }
     }
 
+    /**
+     * Returns a string representing user's
+     * search input.
+     *
+     * @param str user input from command line.
+     * @return A String.
+     * @throws EmptyDescException if input is bad.
+     */
     public static String parseFind(String str) throws EmptyDescException {
         String[] split = str.split(" ");
         if (split.length < 2) {
@@ -196,6 +204,12 @@ public class Decoder {
         return split[1];
     }
 
+    /**
+     * Returns is number is valid
+     *
+     * @param num user input from command line.
+     * @return A boolean.
+     */
     public static boolean isValidNum(String num) {
         char[] charas = num.toCharArray();
         for (int i = 0; i < num.length(); i++) {
