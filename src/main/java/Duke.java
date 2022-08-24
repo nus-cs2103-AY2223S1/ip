@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -27,7 +33,8 @@ public class Duke {
         result += "-".repeat(100);
         for (int i = 0; i < tasks.size(); i++) {
             int number = i + 1;
-            result += "\n" + number + ". " + tasks.get(i).toString(); ;
+            result += "\n" + number + ". " + tasks.get(i).toString();
+            ;
             //System.out.println(number + ". " + tasks.get(i).toString());
         }
         result += "\n" + "-".repeat(100);
@@ -97,7 +104,22 @@ public class Duke {
         printLine();
     }
 
+    public static void update(Path path) {
+        String str = listAllItems();
+        try {
+            // Now calling Files.writeString() method
+            // with path , content & standard charsets
+            Files.writeString(path, str,
+                    StandardCharsets.UTF_8);
+        }
 
+        // Catch block to handle the exception
+        catch (IOException ex) {
+            // Print messqage exception occurred as
+            // invalid. directory local path is passed
+            System.out.print("Invalid Path");
+        }
+    }
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -109,6 +131,10 @@ public class Duke {
 
         greetings();
         Scanner sc = new Scanner(System.in);
+        //create the duke file that stores the text
+        String filePath = new File("").getAbsolutePath();
+        filePath = filePath.concat("/src/main/java/duke.txt");
+        Path path = Paths.get(filePath);
         while (true) {
             String input = sc.nextLine();
             String command = input.split(" ")[0];
@@ -134,6 +160,7 @@ public class Duke {
                 default:
                     try {
                         addATask(input);
+                        update(path);
                     } catch (DukeException e) {
                         printLine();
                         System.out.println(e.getMessage());
