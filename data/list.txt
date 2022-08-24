@@ -2,3 +2,4 @@ D|1|sleep|tonight
 E|0|school|tomorrow
 T|1|attend lecture
 T|0|sleep
+D|0|wake up|today

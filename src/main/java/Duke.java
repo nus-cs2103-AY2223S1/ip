@@ -31,35 +31,11 @@ public class Duke {
             if (fullInput.equals("list")) {
                 tasks.printList();
             } else {
-
                 try {
- /*                   if (command.length >= 1) {
-                        switch (command[0]) {
-                            case "mark":
-                                ui.mark(command[1],this.tasks);
-                                break;
-                            case "unmark":
-                                ui.unmark(command[1], this.tasks);
-                                break;
-                            case "deadline":
-                                ui.proccessDeadline(command, this.tasks);
-                                break;
-                            case "todo":
-                                ui.proccessTodo(command, this.tasks);
-                                break;
-                            case "event":
-                                ui.proccessEvent(command, this.tasks);
-                                break;
-                            case "delete":
-                                ui.proccessRemove(command, this.tasks);
-                                break;
-                            default:
-                                throw new UnknownCommand();
-                        }
-                    }*/
-                Command command = parser.parse(fullInput);
-                command.execute(tasks, ui, storage);
-                isExit = command.isExit();
+                    Command command = parser.parse(fullInput);
+                    command.execute(tasks, ui, storage);
+                    ui.printBlankLine();
+                    isExit = command.isExit();
                 } catch (DukeException e) {
                     System.out.println(e);
                 }
