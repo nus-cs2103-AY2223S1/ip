@@ -151,7 +151,6 @@ public class Parser {
             throw new InvalidEventException();
         }
     }
-
     /**
      * Parses the input string and returns a command for Duke to execute.
      * @param userInput input needed to be parsed.
