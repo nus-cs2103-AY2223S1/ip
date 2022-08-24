@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Duke {
 
@@ -23,19 +24,23 @@ public class Duke {
                 break;
 
             case DEADLINE:
-                segments = input.split("/");
+                segments = input.split("/by");
                 if (segments.length != 2) {
                     throw new DukeException("Error with deadline input");
                 }
-                task = new Deadline(segments[0], segments[1]);
+                String time = segments[1].strip();
+                LocalDate date = LocalDate.parse(time);
+                task = new Deadline(segments[0], date);
                 break;
 
             case EVENT:
-                segments = input.split("/");
+                segments = input.split("/at");
                 if (segments.length != 2) {
                     throw new DukeException("Error with event input");
                 }
-                task = new Event(segments[0], segments[1].substring(3));
+                String time2 = segments[1].strip();
+                LocalDate date2 = LocalDate.parse(time2);
+                task = new Event(segments[0], date2);
                 break;
 
             default:
