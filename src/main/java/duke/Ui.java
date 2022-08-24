@@ -7,47 +7,22 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private Scanner scanner;
-
-    private final String LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-
-    private final String LINE = "_______________________________";
-
-    /**
-     * Class constructor for Ui class.
-     */
-    public Ui() {
-        scanner = new Scanner(System.in);
-    }
-
     /**
      * Handles what to show during Duke's startup.
+     *
+     * @return response of duke in string.
      */
-    public void showWelcome() {
-        showLine();
-        System.out.println(LOGO);
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
-        showLine();
-    }
-
-    /**
-     * Handles line showing.
-     */
-    public void showLine() {
-        System.out.println(LINE);
+    public static String showWelcome() {
+        return "Hello! I'm Duke\nWhat can I do for you?";
     }
 
     /**
      * Handles user interface for loading error.
+     *
+     * @return response of duke in string.
      */
-    public void showLoadingError() {
-        showLine();
-        System.out.println("Storage file not found at specified path!");
-        showLine();
+    public String showLoadingError() {
+        return "Storage file not found at specified path!";
     }
 
     /**
@@ -55,11 +30,12 @@ public class Ui {
      *
      * @param taskToAdd task to be shown on ui.
      * @param tasks list of tasks to get number of existing tasks.
+     * @return response of duke in string.
      */
-    public void showAddedTask(Task taskToAdd, TaskList tasks) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(taskToAdd);
-        System.out.println("Now you have " + tasks.getLength() + " tasks in the list");
+    public String showAddedTask(Task taskToAdd, TaskList tasks) {
+        return "Got it. I've added this task:\n"
+                + taskToAdd.toString() + "\n"
+                + "Now you have " + tasks.getLength() + " tasks in the list";
     }
 
     /**
@@ -67,75 +43,62 @@ public class Ui {
      *
      * @param taskToRemove task to be shown on ui.
      * @param tasks list of tasks to get number of existing tasks.
+     * @return response of duke in string.
      */
-    public void showDeletedTask(Task taskToRemove, TaskList tasks) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(taskToRemove);
-        System.out.println("Now you have " + tasks.getLength() + " tasks in the list");
+    public String showDeletedTask(Task taskToRemove, TaskList tasks) {
+        return "Noted. I've removed this task:\n" + taskToRemove.toString()
+                + "Now you have " + tasks.getLength() + " tasks in the list";
     }
 
     /**
      * Handles user interface for marking task as done.
      *
      * @param markedTask task to be shown on ui.
+     * @return response of duke in string.
      */
-    public void showMarkedTask(Task markedTask) {
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(markedTask);
+    public String showMarkedTask(Task markedTask) {
+        return "Nice! I've marked this task as done:\n" + markedTask.toString();
     }
 
     /**
      * Handles user interface for marking task as not done.
      *
      * @param unmarkedTask task to be shown.
+     * @return response of duke in string.
      */
-    public void showUnmarkedTask(Task unmarkedTask) {
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(unmarkedTask);
+    public String showUnmarkedTask(Task unmarkedTask) {
+        return "OK, I've marked this task as not done yet:\n"
+                + unmarkedTask.toString();
     }
 
     /**
      * Prints out all existing tasks in list.
      *
      * @param tasks list of existing tasks.
+     * @return response of duke in string.
      */
-    public void showList(TaskList tasks) {
-        System.out.println("Here are the tasks in your list:");
-        System.out.println(tasks);
+    public String showList(TaskList tasks) {
+        return "Here are the tasks in your list:\n"
+                + tasks.toString();
     }
 
     /**
      * Handles user interface exiting program.
-     */
-    public void showBye() {
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(LINE);
-    }
-
-    /**
-     * Handles user interface for reading user commands.
-     */
-    public String readCommand() {
-        return scanner.nextLine();
-    }
-
-    /**
-     * Handles user interface for errors.
      *
-     * @param message message for ui to show.
+     * @return response of duke in string.
      */
-    public void showError(String message) {
-        showLine();
-        System.out.println(message);
+    public String showBye() {
+        return "Bye. Hope to see you again soon!";
     }
 
     /**
      * Handles user interface for showing matching tasks.
      *
      * @param tasks list of matching tasks to show.
+     * @return response of duke in string.
      */
-    public void showFilteredList(TaskList tasks) {
-        System.out.println("Here are the matching tasks in your list:");
-        System.out.println(tasks);
+    public String showFilteredList(TaskList tasks) {
+        return "Here are the matching tasks in your list:\n"
+                + tasks;
     }
 }

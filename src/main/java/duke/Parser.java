@@ -42,7 +42,7 @@ public class Parser {
         case FIND:
             return new FindCommand(getToDoDescription(inputList, input));
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
@@ -145,7 +145,7 @@ public class Parser {
         try {
             return userCommand.valueOf(userInputCommand.toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 

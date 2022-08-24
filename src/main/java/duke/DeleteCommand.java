@@ -26,10 +26,10 @@ public class DeleteCommand extends Command {
      * @throws DukeException if something went wrong with the update of data file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task deletedTask = tasks.delete(taskNumber);
-        ui.showDeletedTask(deletedTask, tasks);
         tasks.updateStorage(storage);
+        return ui.showDeletedTask(deletedTask, tasks);
     }
 
 }

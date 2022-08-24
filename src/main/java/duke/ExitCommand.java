@@ -14,8 +14,8 @@ public class ExitCommand extends Command {
      * @param storage to rewrite the data file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showBye();
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         this.setIsExit(true);
+        return ui.showBye();
     }
 }
