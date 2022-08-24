@@ -8,7 +8,8 @@ public class ToDoList {
         list = new ArrayList<>();
     }
 
-    /* Sets status of task at index to be complete
+    /** 
+     * Sets status of task at index to be complete
      *
      * @param index
      * @throws IndexOutOfBoundsException
@@ -20,7 +21,7 @@ public class ToDoList {
         list.get(index).mark();
     }
 
-    /* Sets status of task at index to be incomplete
+    /** Sets status of task at index to be incomplete
      *
      * @param index
      * @throws IndexOutOfBoundsException
@@ -32,7 +33,8 @@ public class ToDoList {
         list.get(index).unmark();
     }
 
-    /* Add task to todoList
+    /**
+     *  Add task to todoList
      *
      * @param task
      */
@@ -62,7 +64,8 @@ public class ToDoList {
         return list.size();
     }
 
-    /* Deletes a Task
+    /**
+     * Deletes a Task
      *
      * @param index index to delete
      * @Throws IndexOutOfBoundsException

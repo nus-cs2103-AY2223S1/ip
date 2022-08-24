@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.io.IOException;
 import java.util.InputMismatchException;
 
+
 public class Duke {
     static final String EXITWORD = "bye";
     static final String HLINE = "\t____________________________________________";
@@ -50,6 +51,7 @@ public class Duke {
                     System.out.println(HLINE);
                     addDeadline(command);
                     saveFile();
+                    System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.getSize());
                     System.out.println(HLINE);
                 }
                 else if(command.startsWith("event")) { // create event
@@ -91,7 +93,8 @@ public class Duke {
         goodBye();
     }
 
-    /* Changes status of the task according to index given
+    /**
+     * Changes status of the task according to index given
      *
      * @param command
      */
@@ -111,7 +114,8 @@ public class Duke {
         }
     }
 
-    /* Changes status of the task according to index given
+    /**
+     * Changes status of the task according to index given
      *
      * @param command
      */
@@ -124,7 +128,8 @@ public class Duke {
         System.out.println(HLINE);
     }
 
-    /* Creates a ToDos instance and adds it to ToDoList
+    /**
+     * Creates a ToDos instance and adds it to ToDoList
      *
      * @param command
      * @throws Exception
@@ -138,7 +143,8 @@ public class Duke {
         toDoList.addTask(new ToDos(name));
     }
 
-    /* Creates a Deadline instance and adds it to ToDoList
+    /**
+     * Creates a Deadline instance and adds it to ToDoList
      *
      * @param command
      * @throws Exception
@@ -157,7 +163,8 @@ public class Duke {
         toDoList.addTask(new Deadline(name, deadline));
     }
 
-    /* Creates an Event instance and adds it to ToDoList
+    /**
+     * Creates an Event instance and adds it to ToDoList
      *
      * @param command
      * @throws Exception

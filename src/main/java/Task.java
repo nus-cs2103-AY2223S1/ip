@@ -37,7 +37,9 @@ public class Task {
         System.out.println("\t   " + toString());
     }
 
-    /* Returns name of task and its status to be used when list is called
+    /**
+     * Returns name of task and its status to be used when list is called
+     * 
      * @return Returns String of name of task formatted with status showing
      */
     @Override
