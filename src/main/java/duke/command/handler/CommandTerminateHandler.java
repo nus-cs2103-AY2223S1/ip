@@ -9,15 +9,19 @@ import java.util.regex.Pattern;
 
 public class CommandTerminateHandler extends CommandHandler {
 
+    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+        "Invalid `bye` command format!",
+        "Expected format: bye"
+    );
     private static final Pattern commandRegexPattern = Pattern.compile("^bye$");
 
     public CommandTerminateHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
-        if (!isCommandValid()) {
-            throw new CommandException(String.join("\n",
-                "Invalid `bye` command format!",
-                "Expected format: bye"));
-        }
+    }
+
+    @Override
+    protected String getInvalidFormatMessage() {
+        return INVALID_FORMAT_MSG;
     }
 
     @Override

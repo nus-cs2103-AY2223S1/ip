@@ -11,15 +11,19 @@ import java.util.regex.Pattern;
 
 public class CommandListHandler extends CommandHandler {
 
+    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+        "Invalid `list` command format!",
+        "Expected format: list"
+    );
     private static final Pattern commandRegexPattern = Pattern.compile("^list$");
 
     public CommandListHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
-        if (!isCommandValid()) {
-            throw new CommandException(String.join("\n",
-                "Invalid `list` command format!",
-                "Expected format: list"));
-        }
+    }
+
+    @Override
+    protected String getInvalidFormatMessage() {
+        return INVALID_FORMAT_MSG;
     }
 
     @Override

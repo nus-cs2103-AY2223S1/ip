@@ -12,18 +12,21 @@ import java.util.regex.Pattern;
 
 public class CommandTodoHandler extends CommandHandler {
 
+    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+        "Invalid `todo` command format!",
+        "Expected format: todo <task-title>",
+        "Examples:",
+        "\t- todo task-1"
+    );
     private static final Pattern commandRegexPattern = Pattern.compile("^todo (.+)");
 
     public CommandTodoHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
-        if (!isCommandValid()) {
-            throw new CommandException(String.join("\n",
-                "Invalid `todo` command format!",
-                "Expected format: todo <task-title>",
-                "Examples:",
-                "\t- todo task-1"
-            ));
-        }
+    }
+
+    @Override
+    protected String getInvalidFormatMessage() {
+        return INVALID_FORMAT_MSG;
     }
 
     @Override

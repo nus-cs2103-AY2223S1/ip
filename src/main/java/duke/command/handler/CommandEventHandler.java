@@ -12,20 +12,23 @@ import java.util.regex.Pattern;
 
 public class CommandEventHandler extends CommandHandler {
 
+    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+        "Invalid `event` command format!",
+        "Expected format: event <title> /at <YYYY-mm-dd HH:mm>",
+        "Examples:",
+        "\t- event e1 /at 2022-01-01",
+        "\t- event e1 /at 2022-01-01 18:00"
+    );
     private static final Pattern commandRegexPattern = Pattern.compile(
         String.format("^event (.+) /at %s", commandDateTimeRegexStr));
 
     public CommandEventHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
-        if (!isCommandValid()) {
-            throw new CommandException(String.join("\n",
-                "Invalid `event` command format!",
-                "Expected format: event <title> /at <YYYY-mm-dd HH:mm>",
-                "Examples:",
-                "\t- event e1 /at 2022-01-01",
-                "\t- event e1 /at 2022-01-01 18:00")
-            );
-        }
+    }
+
+    @Override
+    protected String getInvalidFormatMessage() {
+        return INVALID_FORMAT_MSG;
     }
 
     @Override

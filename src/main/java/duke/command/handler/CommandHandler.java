@@ -25,10 +25,13 @@ public abstract class CommandHandler {
     protected final Pattern commandRegexPattern;
     protected final Matcher commandRegexMatcher;
 
-    public CommandHandler(String commandStr, Pattern commandRegexPattern) {
+    public CommandHandler(String commandStr, Pattern commandRegexPattern) throws CommandException {
         this.commandStr = commandStr;
         this.commandRegexPattern = commandRegexPattern;
         this.commandRegexMatcher = commandRegexPattern.matcher(commandStr);
+        if (!isCommandValid()) {
+            throw new CommandException(this.getInvalidFormatMessage());
+        }
     }
 
     protected static LocalDateTime parseDateTime(String dateTimeStr) throws CommandException {
@@ -42,9 +45,11 @@ public abstract class CommandHandler {
         }
     }
 
-    protected boolean isCommandValid() {
+    private boolean isCommandValid() {
         return commandRegexMatcher.find();
     }
+
+    abstract protected String getInvalidFormatMessage();
 
     abstract public CommandResponse run(TaskList taskList) throws CommandException;
 }

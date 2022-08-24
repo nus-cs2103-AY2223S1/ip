@@ -13,19 +13,22 @@ import java.util.regex.Pattern;
 
 public class CommandMarkHandler extends CommandHandler {
 
+    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+        "Invalid `mark`/`unmark` command format!",
+        "Expected format: mark <task-number> / unmark <task-number>",
+        "Examples:",
+        "\t- mark 1",
+        "\t- unmark 1"
+    );
     private static final Pattern commandRegexPattern = Pattern.compile("^(u?n?mark) (\\d+)");
 
     public CommandMarkHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
-        if (!isCommandValid()) {
-            throw new CommandException(String.join("\n",
-                "Invalid `mark`/`unmark` command format!",
-                "Expected format: mark <task-number> / unmark <task-number>",
-                "Examples:",
-                "\t- mark 1",
-                "\t- unmark 1"
-            ));
-        }
+    }
+
+    @Override
+    protected String getInvalidFormatMessage() {
+        return INVALID_FORMAT_MSG;
     }
 
     @Override

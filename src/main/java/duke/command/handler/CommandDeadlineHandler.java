@@ -12,20 +12,23 @@ import java.util.regex.MatchResult;
 
 public class CommandDeadlineHandler extends CommandHandler {
 
+    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+        "Invalid `deadline` command format!",
+        "Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>",
+        "Examples:",
+        "\t- deadline d1 /by 2022-01-01",
+        "\t- deadline d1 /by 2022-01-01 18:00"
+    );
     private static final Pattern commandRegexPattern = Pattern.compile(
         String.format("^deadline (.+) /by %s", commandDateTimeRegexStr));
 
     public CommandDeadlineHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
-        if (!isCommandValid()) {
-            throw new CommandException(String.join("\n",
-                "Invalid `deadline` command format!",
-                "Expected format: deadline <title> /by <YYYY-mm-dd HH:mm>",
-                "Examples:",
-                "\t- deadline d1 /at 2022-01-01",
-                "\t- deadline d1 /at 2022-01-01 18:00")
-            );
-        }
+    }
+
+    @Override
+    protected String getInvalidFormatMessage() {
+        return INVALID_FORMAT_MSG;
     }
 
     @Override

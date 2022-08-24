@@ -12,18 +12,21 @@ import java.util.regex.MatchResult;
 
 public class CommandDeleteHandler extends CommandHandler {
 
+    protected static final String INVALID_FORMAT_MSG = String.join("\n",
+        "Invalid `delete` command format!",
+        "Expected format: delete <task-number>",
+        "Examples:",
+        "\t- delete 1"
+    );
     private static final Pattern commandRegexPattern = Pattern.compile("^delete (\\d+)");
 
     public CommandDeleteHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
-        if (!isCommandValid()) {
-            throw new CommandException(String.join("\n",
-                "Invalid `delete` command format!",
-                "Expected format: delete <task-number>",
-                "Examples:",
-                "\t- delete 1"
-            ));
-        }
+    }
+
+    @Override
+    protected String getInvalidFormatMessage() {
+        return INVALID_FORMAT_MSG;
     }
 
     @Override
