@@ -49,6 +49,15 @@ public class Ui {
         System.out.println(message);
     }
 
+    public void showFind(TaskList tasks) {
+        if (tasks.getSize() == 0) {
+            System.out.println("There are no matching tasks in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            showList(tasks);
+        }
+    }
+
     /**
      * Prints a line.
      */

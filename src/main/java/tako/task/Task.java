@@ -26,6 +26,10 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     /**
      * Marks the task as done.
      */

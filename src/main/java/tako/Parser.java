@@ -7,6 +7,7 @@ import tako.command.AddCommand;
 import tako.command.Command;
 import tako.command.DeleteCommand;
 import tako.command.ExitCommand;
+import tako.command.FindCommand;
 import tako.command.ListCommand;
 import tako.command.MarkCommand;
 
@@ -20,7 +21,7 @@ import tako.task.Todo;
  */
 public class Parser {
     private enum Keyword {
-        BYE, LIST, MARK, TODO, DEADLINE, EVENT, DELETE;
+        BYE, LIST, MARK, TODO, DEADLINE, EVENT, DELETE, FIND;
 
         private static boolean contains(String s) {
             for (Keyword k : Keyword.values()) {
@@ -68,7 +69,7 @@ public class Parser {
                     throw new TakoException("The task number to mark cannot be empty.");
                 } else if (splitInput.length == 2) {
                     int taskNumber = Integer.parseInt(splitInput[1]) - 1;
-                    return new MarkCommand(taskNumber - 1);
+                    return new MarkCommand(taskNumber);
                 }
             } catch (NumberFormatException e) {
                 throw new TakoException("The task number to mark is invalid.");
@@ -126,10 +127,17 @@ public class Parser {
                     throw new TakoException("The task number to delete cannot be empty.");
                 } else if (splitInput.length == 2) {
                     int taskNumber = Integer.parseInt(splitInput[1]) - 1;
-                    return new DeleteCommand(taskNumber - 1);
+                    return new DeleteCommand(taskNumber);
                 }
             } catch (NumberFormatException e) {
                 throw new TakoException("The task number to delete is invalid.");
+            }
+            break;
+        case FIND:
+            if (splitInput.length == 1) {
+                throw new TakoException("The task to find cannot be empty.");
+            } else if (splitInput.length == 2) {
+                return new FindCommand(splitInput[1]);
             }
             break;
         default:
