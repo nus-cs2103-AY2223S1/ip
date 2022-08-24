@@ -1,13 +1,19 @@
+package duke;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.exception.DukeException;
+
+
 public class Duke {
-    
     private Storage storage;
-    private  TaskList taskList;
+    private TaskList taskList;
     private Ui ui;
 
-    public Duke (String filePath) throws FileNotFoundException {
+    public Duke(String filePath) throws FileNotFoundException {
         ui = new Ui();
         storage = new Storage(ui, filePath);
         try {

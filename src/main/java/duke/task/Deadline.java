@@ -1,11 +1,12 @@
+package duke.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
     private LocalDateTime byTime;
-
-    public Deadline (TaskType type, String name, boolean isMarked, String timeStr) {
+    public Deadline(TaskType type, String name, boolean isMarked, String timeStr) {
         super(type, name, isMarked);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm, d/MM/yyyy");
         LocalDateTime time = LocalDateTime.parse(timeStr, formatter);

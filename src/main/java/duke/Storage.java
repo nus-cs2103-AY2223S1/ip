@@ -1,6 +1,7 @@
+package duke;
+
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,13 +9,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskType;
+import duke.task.Todo;
+
 public class Storage {
 
     private String filePath;
     private ArrayList<Task> tasks;
     private Ui ui;
 
-    public Storage (Ui ui, String filePath) {
+    public Storage(Ui ui, String filePath) {
         this.ui = ui;
         this.filePath = filePath;
     }
@@ -26,7 +34,8 @@ public class Storage {
 
     public void readFile() throws DukeException {
         try {
-            File file ,txt;
+            File file;
+            File txt;
             FileReader fr;
             BufferedReader br;
 
@@ -54,17 +63,17 @@ public class Storage {
 
                 String[] info = line.split(" / ", 4);
                 switch (info[0]) {
-                    case "T":
-                        tasks.add(new Todo(TaskType.TODO, info[2], info[1].equals("1")));
-                        break;
-                    case "D":
-                        tasks.add(new Deadline(TaskType.DEADLINE, info[2], info[1].equals("1"), info[3]));
-                        break;
-                    case "E":
-                        tasks.add(new Event(TaskType.EVENT, info[2], info[1].equals("1"), info[3]));
-                        break;
-                    default:
-                        throw new DukeException("Invalid task");
+                case "T":
+                    tasks.add(new Todo(TaskType.TODO, info[2], info[1].equals("1")));
+                    break;
+                case "D":
+                    tasks.add(new Deadline(TaskType.DEADLINE, info[2], info[1].equals("1"), info[3]));
+                    break;
+                case "E":
+                    tasks.add(new Event(TaskType.EVENT, info[2], info[1].equals("1"), info[3]));
+                    break;
+                default:
+                    throw new DukeException("Invalid task");
                 }
 
             }
@@ -78,13 +87,13 @@ public class Storage {
     public void writeFile(TaskList taskList) throws IOException, DukeException {
         try {
             File writeF = new File("./data/duke.txt");
-            if(!writeF.exists()) {
+            if (!writeF.exists()) {
                 writeF.createNewFile();
             }
             FileWriter fw = new FileWriter(writeF);
 
             ArrayList<Task> tasks = taskList.getTasks();
-            for (int i = 0; i < tasks.size(); i ++) {
+            for (int i = 0; i < tasks.size(); i++) {
                 Task curr = tasks.get(i);
                 String type = "";
                 String marked;
@@ -97,21 +106,21 @@ public class Storage {
                 name = curr.getName() + " / ";
 
                 switch (curr.getTaskType()) {
-                    case TODO:
-                        type = "T / ";
-                        break;
-                    case DEADLINE:
-                        type = "D / ";
-                        Deadline dl = (Deadline) curr;
-                        time = dl.getByTime();
-                        break;
-                    case EVENT:
-                        type = "E / ";
-                        Event event = (Event) curr;
-                        time = event.getAtTime();
-                        break;
-                    default :
-                        break;
+                case TODO:
+                    type = "T / ";
+                    break;
+                case DEADLINE:
+                    type = "D / ";
+                    Deadline dl = (Deadline) curr;
+                    time = dl.getByTime();
+                    break;
+                case EVENT:
+                    type = "E / ";
+                    Event event = (Event) curr;
+                    time = event.getAtTime();
+                    break;
+                default:
+                    break;
                 }
 
                 String line = type + marked + name;
