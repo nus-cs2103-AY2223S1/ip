@@ -27,6 +27,7 @@ public class FindCommand extends Command {
             String taskRepresentation = taskList.get(i).toString();
             if (taskRepresentation.contains(target)) {
                 results.addTask(taskList.get(i));
+
             }
         }
 
