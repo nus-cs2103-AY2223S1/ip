@@ -1,3 +1,5 @@
+package Duke;
+
 public class Parser {
     public static String[] parseInput(String input) throws DukeException {
         String phrases[] = input.split(" /.. ", 2); // splits sentence and removes by/at
