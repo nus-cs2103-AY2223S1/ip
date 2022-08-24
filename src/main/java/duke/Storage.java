@@ -20,7 +20,7 @@ public class Storage {
      * Else, creates an empty list
      * @return ArrayList<Task>
      */
-    ArrayList<Task> setUp() {
+    public ArrayList<Task> setUp() {
         try {
             BufferedReader br = new BufferedReader(new FileReader("duke.txt"));
             String line = br.readLine();
@@ -43,7 +43,7 @@ public class Storage {
      * @param line in text file
      * Adds Task objects into master list 
      */
-    void parser(String line) {
+    public void parser(String line) {
         String taskType = Character.toString(line.charAt(1));
         switch (taskType){
             case "T":
@@ -51,12 +51,12 @@ public class Storage {
                 break;
             case "D":
                 myList.add(new Deadline(line.substring(7).split(" \\(by")[0], 
-                    this.dateFormatter(line.split("\\(by: ")[1].split("\\)")[0]))
+                    dateFormatter(line.split("\\(by: ")[1].split("\\)")[0]))
                 );
                 break;
             case "E":
                 myList.add(new Event(line.substring(7).split(" \\(at")[0], 
-                    this.dateFormatter(line.split("\\(at: ")[1].split("\\)")[0]))
+                    dateFormatter(line.split("\\(at: ")[1].split("\\)")[0]))
                 );
                 break;
             default:
@@ -68,7 +68,7 @@ public class Storage {
      * Parses String Date into Java LocalDate Format
      * @return an instance of LocalDate
      */
-    private LocalDate dateFormatter(String myDate) {
+    public static LocalDate dateFormatter(String myDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
         LocalDate curDate = LocalDate.parse(myDate, formatter);
         return curDate;

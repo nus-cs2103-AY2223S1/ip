@@ -14,7 +14,7 @@ public class TaskList {
     /**
      * Adds new task to master list
      */
-    void addTask(Task myTask) {
+    public void addTask(Task myTask) {
         try {
             myList.add(myTask);
             System.out.println("Got it. I've added this task:");
@@ -28,7 +28,7 @@ public class TaskList {
     /**
      * List all tasks from master list
      */
-    void listTasks() {
+    public void listTasks() {
         if (myList.size() == 0) {
             System.out.println("You have no tasks in your list.");
         } else {
@@ -42,7 +42,7 @@ public class TaskList {
     /**
      * Marks task as done
      */
-    void markTask(Integer itemNumber) {
+    public void markTask(Integer itemNumber) {
         myList.get(itemNumber).markAsDone();
         System.out.println("Nice! I've marked this task as done:");
         System.out.println("["
@@ -53,7 +53,7 @@ public class TaskList {
     /**
      * Marks task as undone
      */
-    void removeTask(Integer itemNumber) {
+    public void removeTask(Integer itemNumber) {
         System.out.println("Noted. I've removed this task:");
         System.out.println(myList.get(itemNumber));
         myList.remove(myList.get(itemNumber));
@@ -63,7 +63,7 @@ public class TaskList {
     /**
      * Saves tasks into duke textfile
      */
-    void saveTasks() {
+    public void saveTasks() {
         try {
             FileWriter myWriter = new FileWriter("duke.txt");
             for (Task myTask : myList) {
@@ -79,7 +79,7 @@ public class TaskList {
     /**
      * Marks task as undone
      */
-    void unmarkTask (Integer itemNumber) {
+    public void unmarkTask (Integer itemNumber) {
         myList.get(itemNumber).markAsUndone();
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println("["
@@ -90,7 +90,7 @@ public class TaskList {
     /**
      * For JUnit tests
      */
-    String testListTasks () {
+    public String testListTasks () {
         StringBuilder sb = new StringBuilder();
         for (Task myTask: myList) {
             sb.append(myTask.toString());
