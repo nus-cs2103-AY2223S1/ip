@@ -3,16 +3,16 @@ test
 list
 todo borrow book
 list
-deadline return book /by Sunday
+deadline return book /by 20/05/2018
 list
-event project meeting /at Mon 2-4pm
+event project meeting /at 11/01/2020
 list
 mark
 mark2
 list
 unmark2
 list
-deadline do homework /by no idea :-p
+deadline do homework /by 05/04/2022
 list
 delete5
 delete4
