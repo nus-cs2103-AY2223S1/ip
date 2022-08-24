@@ -9,15 +9,27 @@ public class Event extends Task {
      * time
      *
      * @param description The specified description.
+     * @param isDone      The boolean indicating whether the task is done.
      * @param at          The specified datetime string for the start time.
      */
-    Event(String description, String at) {
-        super(description);
+    Event(String description, boolean isDone, String at) {
+        super(description, isDone);
         this.at = at;
+        this.taskType = TaskType.E;
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Event has an additional datetime field for at
+     */
+    @Override
+    public String encode(String delimiter) {
+        return super.encode(delimiter) + delimiter + this.at;
     }
 
     @Override
     public String toString() {
-        return "[" + TaskType.E + "]" + super.toString() + " (at: " + this.at + ")";
+        return super.toString() + " (at: " + this.at + ")";
     }
 }
