@@ -1,0 +1,68 @@
+import java.util.ArrayList;
+
+/**
+ * Handles the list and list edit functions.
+ */
+public class TaskList {
+
+    protected ArrayList<Task> arrayList;
+
+
+    public TaskList(ArrayList<Task> list) {
+        this.arrayList = list;
+    }
+
+    /**
+     * Handles adding a todo task to the list.
+     *
+     * @param task The todo task to add to the list.
+     */
+    public void addTodo(ToDo task) {
+        this.arrayList.add(task);
+    }
+
+    /**
+     * Handles adding a deadline task to the list.
+     *
+     * @param task The deadline task to add to the list.
+     */
+    public void addDeadline(Deadline task) {
+        this.arrayList.add(task);
+    }
+
+    /**
+     * Handles adding an event task to the list.
+     *
+     * @param task The event task to add to the list.
+     */
+    public void addEvent(Event task) {
+        this.arrayList.add(task);
+    }
+
+    /**
+     * Handles deleting a task from the list.
+     *
+     * @param taskNumber The task number to delete  from the list.
+     */
+    public void delete(int taskNumber) {
+        this.arrayList.remove(taskNumber);
+    }
+
+    /**
+     * Handles marking a task.
+     *
+     * @param toBeMarked The task to be marked.
+     */
+    public void mark(Task toBeMarked) {
+        toBeMarked.setIsDone(true);
+    }
+
+    /**
+     * Handles unmarking a task.
+     *
+     * @param toBeUnmarked The task to be unmarked.
+     */
+    public void unmark(Task toBeUnmarked) {
+        toBeUnmarked.setIsDone(true);
+    }
+}
