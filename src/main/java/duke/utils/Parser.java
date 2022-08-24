@@ -68,6 +68,8 @@ public class Parser {
             return new DeadlineCommand(inputArr);
         case ("event"):
             return new EventCommand(inputArr);
+        case("find"):
+            return new FindCommand(inputArr[1]);
         default:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I do not know what does \"" + input + "\" mean. :-(");
         }
