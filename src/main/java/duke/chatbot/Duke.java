@@ -13,8 +13,6 @@ import java.io.FileNotFoundException;
 
 
 public class Duke {
-    private static final String MESSAGE_SEPARATOR = "\t____________________________________________________________";
-
     private Storage storage;
     private TaskList taskList;
     private Ui ui;

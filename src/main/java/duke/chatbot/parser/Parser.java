@@ -44,6 +44,9 @@ public class Parser {
                         return new DeleteCommand(arguments);
                     }
                 }
+            } else if (caseString.equals("find") && sc.hasNext()) {
+                arguments.add(sc.nextLine().substring(1));
+                return new FindCommand(arguments);
             } else if (caseString.equals("todo") && sc.hasNext()) {
                 arguments.add(sc.nextLine().substring(1));
                 return new AddToDoCommand(arguments);

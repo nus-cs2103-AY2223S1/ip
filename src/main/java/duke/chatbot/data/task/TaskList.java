@@ -46,13 +46,22 @@ public class TaskList extends ArrayList<Task> {
 
     public TaskList filterTaskListByDate(String date) {
         TaskList result = new TaskList();
-        for (int entry = 1; entry < this.size() + 1; entry++) {
-            Task task = this.get(entry);
+        for (Task task : this) {
             if (task instanceof TimedTask) {
                 TimedTask timedTask = (TimedTask) task;
                 if (timedTask.hasMatchingDate(date)) {
                     result.add(timedTask);
                 }
+            }
+        }
+        return result;
+    }
+
+    public TaskList filterTaskListBySubstring(String substring) {
+        TaskList result = new TaskList();
+        for (Task task : this) {
+            if (task.hasSubstring(substring)) {
+                result.add(task);
             }
         }
         return result;

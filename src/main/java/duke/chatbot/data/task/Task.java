@@ -33,4 +33,8 @@ public abstract class Task {
     public String encode() {
         return ",,," + (isDone ? 1 : 0) + ",,," + description;
     }
+
+    public boolean hasSubstring(String substring) {
+        return description.contains(substring);
+    }
 }
