@@ -9,10 +9,10 @@ public class Formatting implements Function<ArrayList<Task>, String> {
                 + "\n";
             } else if (arr.get(i) instanceof Event) {
                 s += "E | " + checkMark(arr.get(i)) + " | " + arr.get(i).description
-                        + " | " + ((Event) arr.get(i)).at + "\n";
+                        + " | " + ((Event) arr.get(i)).date + "\n";
             } else {
                 s += "D | " + checkMark(arr.get(i)) + " | " + arr.get(i).description
-                        + " | " + ((Deadline) arr.get(i)).by + "\n";
+                        + " | " + ((Deadline) arr.get(i)).date + "\n";
             }
         }
         return s;

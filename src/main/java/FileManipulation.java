@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
+import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -27,14 +28,14 @@ public class FileManipulation {
                 arr.add(t);
             } else if (c == 'D') {
                 String[] strings = s.substring(8).split(" \\| ");
-                Deadline d = new Deadline(strings[0], strings[1]);
+                Deadline d = new Deadline(strings[0], LocalDate.parse(strings[1]));
                 if (s.charAt(4) == '1') {
                     d.mark();
                 }
                 arr.add(d);
             } else {
                 String[] strings = s.substring(8).split(" \\| ");
-                Event e = new Event(strings[0], strings[1]);
+                Event e = new Event(strings[0], LocalDate.parse(strings[1]));
                 if (s.charAt(4) == '1') {
                     e.mark();
                 }
@@ -51,12 +52,11 @@ public class FileManipulation {
         }
     }
 
-    public static ArrayList<Task> read(String filepath) {
+    public static ArrayList<Task> read(String filepath) throws DukeException {
         try {
             return tryRead(filepath);
         } catch (FileNotFoundException e) {
-            System.out.println("Something went wrong. " + e.getMessage());
+            throw new DukeException("Something went wrong. " + e.getMessage());
         }
-        return new ArrayList<>();
     }
 }

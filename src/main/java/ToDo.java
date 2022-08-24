@@ -1,5 +1,3 @@
-import javax.swing.plaf.synth.SynthDesktopIconUI;
-
 public class ToDo extends Task{
     public ToDo(String description) {
         super(description);

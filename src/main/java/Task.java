@@ -17,8 +17,6 @@ public class Task {
 
     public void unmark() {
         isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:\n"
-                + this.toString());
     }
 
     @Override

@@ -1,8 +1,8 @@
-todo borrow book
+todo write letter
 list
-deadline return book /by Sunday
-event project meeting /at Mon 2-4pm
-deadline do homework /by no idea :-p
+deadline return book /by 2022-08-01
+event project meeting /at 2022-08-07
+deadline do homework /by 2022-08-07
 list
 mark 4
 list
@@ -13,4 +13,5 @@ ni fa ru xue qi mei le li bie :) yay, Jay Chou my fav singer
 todo
 event
 deadline hey i am handsome
+event abc /at abc
 bye

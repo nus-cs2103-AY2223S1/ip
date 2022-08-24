@@ -1,41 +1,82 @@
 Hey Dude here
 What can I do for you?
+________________
 Got it. I've added this task:
-[T][ ] borrow book
+[T][ ] write letter
 Now you have 1 tasks in the list.
+________________
+________________
 Here are the tasks in your list:
-1.[T][ ] borrow book
+1.[T][ ] write letter
+________________
+________________
 Got it. I've added this task:
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: Aug 1 2022)
 Now you have 2 tasks in the list.
+________________
+________________
 Got it. I've added this task:
-[E][ ] project meeting (at: Mon 2-4pm)
+[E][ ] project meeting (at: Aug 7 2022)
 Now you have 3 tasks in the list.
+________________
+________________
 Got it. I've added this task:
-[D][ ] do homework (by: no idea :-p)
+[D][ ] do homework (by: Aug 7 2022)
 Now you have 4 tasks in the list.
+________________
+________________
 Here are the tasks in your list:
-1.[T][ ] borrow book
-2.[D][ ] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
-4.[D][ ] do homework (by: no idea :-p)
+1.[T][ ] write letter
+2.[D][ ] return book (by: Aug 1 2022)
+3.[E][ ] project meeting (at: Aug 7 2022)
+4.[D][ ] do homework (by: Aug 7 2022)
+________________
+________________
 Nice! I've marked this task as done:
-[D][X] do homework (by: no idea :-p)
+[D][X] do homework (by: Aug 7 2022)
+________________
+________________
 Here are the tasks in your list:
-1.[T][ ] borrow book
-2.[D][ ] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
-4.[D][X] do homework (by: no idea :-p)
+1.[T][ ] write letter
+2.[D][ ] return book (by: Aug 1 2022)
+3.[E][ ] project meeting (at: Aug 7 2022)
+4.[D][X] do homework (by: Aug 7 2022)
+________________
+________________
 OK, I've marked this task as not done yet:
-[D][ ] do homework (by: no idea :-p)
+[D][ ] do homework (by: Aug 7 2022)
+________________
+________________
 Here are the tasks in your list:
-1.[T][ ] borrow book
-2.[D][ ] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
-4.[D][ ] do homework (by: no idea :-p)
-OOPS!!! I'm sorry, but I don't know what that means :-(
-OOPS!!! I'm sorry, but I don't know what that means :-(
-OOPS!!! The description of a todo cannot be empty.
-OOPS!!! The description of a event cannot be empty.
-OOPS!!! Please follow the appropriate format for deadline!
-Bye. Hope to see you again soon!
+1.[T][ ] write letter
+2.[D][ ] return book (by: Aug 1 2022)
+3.[E][ ] project meeting (at: Aug 7 2022)
+4.[D][ ] do homework (by: Aug 7 2022)
+________________
+________________
+ERROR... I just died XP
+OOPS!!! I'm sorry, but I don't know what that means T.T
+________________
+________________
+ERROR... I just died XP
+OOPS!!! I'm sorry, but I don't know what that means T.T
+________________
+________________
+ERROR... I just died XP
+OOPS!!! The description of a todo cannot be empty!
+________________
+________________
+ERROR... I just died XP
+OOPS!!! Invalid input for event!
+________________
+________________
+ERROR... I just died XP
+OOPS!!! Invalid input for deadline!
+________________
+________________
+ERROR... I just died XP
+OOPS!!! Please give a valid date in YYYY-MM-DD format!
+________________
+________________
+Bye^2!! :p
+________________

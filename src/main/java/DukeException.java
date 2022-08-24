@@ -4,8 +4,7 @@ public class DukeException extends Exception {
         this.description = description;
     }
     @Override
-    public String toString() {
+    public String getMessage() {
         return "OOPS!!! " + this.description;
     }
-
 }
