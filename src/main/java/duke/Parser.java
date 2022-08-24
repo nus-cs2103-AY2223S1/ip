@@ -8,19 +8,24 @@ public class Parser {
     static final int MARK_LENGTH = 5;
     static final int UNMARK_LENGTH = 7;
     static final int DEL_LENGTH = 7;
+    static final String EXIT_SYNTAX = "bye";
+    static final String LIST_SYNTAX = "list";
+    static final String DELETE_SYNTAX = "delete";
+    static final String MARK_SYNTAX = "mark";
+    static final String UNMARK_SYNTAX = "unmark";
     static final String[] ADD_COMMANDS = {"todo", "event", "deadline"};
 
     private static String getFirstWord(String input) {
         return input.split(" ")[0].toLowerCase();
     }
 
-    private static boolean isListCommand(String input) {
-        return getFirstWord(input).equals("list");
-    }
-
-    private static boolean isExitCommand(String input) {
-        return getFirstWord(input).equals("bye");
-    }
+//    private static boolean isListCommand(String input) {
+//        return getFirstWord(input).equals("list");
+//    }
+//
+//    private static boolean isExitCommand(String input) {
+//        return getFirstWord(input).equals("bye");
+//    }
 
     private static boolean isAddTodoCommand(String input) {
         return getFirstWord(input).equals("todo");
@@ -34,17 +39,17 @@ public class Parser {
         return getFirstWord(input).equals("deadline");
     }
 
-    private static boolean isDeleteCommand(String input) {
-        return getFirstWord(input).equals("delete");
-    }
-
-    private static boolean isMarkCommand(String input) {
-        return getFirstWord(input).equals("mark");
-    }
-
-    private static boolean isUnmarkCommand(String input) {
-        return getFirstWord(input).equals("unmark");
-    }
+//    private static boolean isDeleteCommand(String input) {
+//        return getFirstWord(input).equals("delete");
+//    }
+//
+//    private static boolean isMarkCommand(String input) {
+//        return getFirstWord(input).equals("mark");
+//    }
+//
+//    private static boolean isUnmarkCommand(String input) {
+//        return getFirstWord(input).equals("unmark");
+//    }
 
     /**
      * @param fullCommand input Command from the user.
@@ -70,7 +75,7 @@ public class Parser {
 
     private static boolean isAddCommand(String fullCommand) {
         for (String addCommands : ADD_COMMANDS) {
-            if (fullCommand.toLowerCase().contains(addCommands)) {
+            if (getFirstWord(fullCommand).toLowerCase().contains(addCommands)) {
                 return true;
             }
         }
@@ -86,19 +91,35 @@ public class Parser {
 
         if (isAddCommand(fullCommand)) {
             return new AddCommand(fullCommand);
-        } else if (isListCommand(fullCommand)) {
+        }
+        // DO NOT USE ARROW SWTICH AS IT IS A JAVA12 FEATURE
+        switch (getFirstWord(fullCommand)) {
+        case LIST_SYNTAX:
             return new ListCommand();
-        } else if (isExitCommand(fullCommand)) {
+        case EXIT_SYNTAX:
             return new ExitCommand();
-        } else if (isDeleteCommand(fullCommand)) {
+        case DELETE_SYNTAX:
             return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
-        } else if (isMarkCommand(fullCommand)) {
+        case MARK_SYNTAX:
             return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
-        } else if (isUnmarkCommand(fullCommand)) {
+        case UNMARK_SYNTAX:
             return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
-        } else {
+        default:
             throw new DukeException("Parsing error");
         }
+//        else if (isListCommand(fullCommand)) {
+//            return new ListCommand();
+//        } else if (isExitCommand(fullCommand)) {
+//            return new ExitCommand();
+//        } else if (isDeleteCommand(fullCommand)) {
+//            return new DeleteCommand(Integer.parseInt(fullCommand.substring(DEL_LENGTH)));
+//        } else if (isMarkCommand(fullCommand)) {
+//            return new MarkCommand(Integer.parseInt(fullCommand.substring(MARK_LENGTH)));
+//        } else if (isUnmarkCommand(fullCommand)) {
+//            return new UnmarkCommand(Integer.parseInt(fullCommand.substring(UNMARK_LENGTH)));
+//        } else {
+//            throw new DukeException("Parsing error");
+//        }
     }
 
 }
