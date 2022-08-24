@@ -24,6 +24,4 @@ public class DeadlineTest {
         assertEquals("D#0#return book#Dec 01 2019#06:00 PM", deadline.parse());
     }
 
-
-
 }

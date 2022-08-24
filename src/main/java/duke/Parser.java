@@ -8,8 +8,22 @@ import duke.task.ToDo;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Represents class that allocate the relevant commands based on the input string
+ *
+ * @author benjytan45678
+ * @version 0.1
+ */
 public class Parser {
     private Command command;
+
+    /**
+     * Returns a command based on the specified user input.
+     *
+     * @param command Represents the user input.
+     * @return A command based on the user input.
+     * @throws DukeException If user input is an invalid string command.
+     */
     public static Command parse(String command) throws DukeException {
         String[] strArr = command.split(" ");
         String firstWord = strArr[0];
