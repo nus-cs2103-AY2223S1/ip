@@ -5,6 +5,10 @@ import duke.tasks.Task;
 
 import java.util.List;
 
+/**
+ * This class manages the list of tasks that has been registered by the user.
+ * This class provides methods to access and modify the tasks stored by the user.
+ */
 public class TaskList {
     private List<Task> storedTasks;
 

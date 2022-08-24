@@ -6,6 +6,9 @@ import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
 
+/**
+ * This class tells Duke to add a new Todo task with the specified description.
+ */
 public class TodoCommand implements Command {
 
     private Todo todo;

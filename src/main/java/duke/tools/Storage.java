@@ -20,6 +20,10 @@ import java.util.Scanner;
 
 import static duke.tasks.Task.TaskType.parseTaskType;
 
+/**
+ * This class manages the storage of the user's task list.
+ * The list of tasks are stored as a text file and is being modified in-time with the user's commands.
+ */
 public class Storage {
 
     private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");

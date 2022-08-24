@@ -1,20 +1,17 @@
 package duke.commands;
 
-import duke.exceptions.DukeException;
 import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
 
+/**
+ * This class performs the preparatory instructions before Duke is stopped.
+ */
 public class ByeCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
-        try {
-            ui.sayBye();
-            storage.writeToFile(taskList);
-            ui.exit();
-        } catch (DukeException e) {
-            ui.sayExceptionMessage(e);
-        }
+        ui.sayBye();
+        ui.exit();
     }
 
     @Override

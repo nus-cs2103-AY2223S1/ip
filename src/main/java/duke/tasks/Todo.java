@@ -1,5 +1,8 @@
 package duke.tasks;
 
+/**
+ * This class encapsulates a todo task from the user.
+ */
 public class Todo extends Task {
     public Todo(String description) {
         super(description, TaskType.TODO);

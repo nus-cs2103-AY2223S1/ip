@@ -4,6 +4,9 @@ import duke.tools.Parser;
 
 import java.time.LocalDateTime;
 
+/**
+ * This calss encapsulates an event from the user.
+ */
 public class Event extends Task {
     private LocalDateTime dateTime;
 

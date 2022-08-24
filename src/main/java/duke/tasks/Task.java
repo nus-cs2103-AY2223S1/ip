@@ -2,6 +2,9 @@ package duke.tasks;
 
 import duke.exceptions.DukeException;
 
+/**
+ * This abstract class encapsulates the task that the user is trying to store on Duke.
+ */
 public abstract class Task {
     public enum TaskType {
         TODO("T"),

@@ -15,6 +15,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * This class makes sense of the user's input commands.
+ * Text commands from the user are being understood and translated into instructions sets for Duke.
+ */
 public class Parser {
 
     public static Command parseCommand(String str) throws DukeException {

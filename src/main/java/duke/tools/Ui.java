@@ -4,6 +4,10 @@ import duke.tasks.Task;
 
 import java.util.Scanner;
 
+/**
+ * This class takes care of the interaction with the user.
+ * This class manages the input and output from the Duke system.
+ */
 public class Ui {
 
     private boolean isContinue = true;

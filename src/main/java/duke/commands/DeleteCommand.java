@@ -6,6 +6,9 @@ import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
 
+/**
+ * This class tells Duke to delete a specific task from the stored tasks.
+ */
 public class DeleteCommand implements Command {
 
     private int index;
