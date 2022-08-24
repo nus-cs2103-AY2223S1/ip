@@ -1,5 +1,8 @@
 package duke.command;
 
+/**
+ * User commands and how to use them.
+ */
 public enum CommandUsage {
     HELP("help"),
     BYE("bye"),
@@ -17,6 +20,11 @@ public enum CommandUsage {
         this.usageText = usageText;
     }
 
+    /**
+     * Returns the correct usage of a command.
+     *
+     * @return String containing the correct command usage.
+     */
     @Override
     public String toString() {
         return usageText;

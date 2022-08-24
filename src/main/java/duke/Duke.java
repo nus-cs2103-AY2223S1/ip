@@ -6,6 +6,9 @@ import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.Ui;
 
+/**
+ * Main class of Duke, a personal assistant chatbot.
+ */
 public class Duke {
     public static final String PATH_TO_DATA_DIRECTORY = "./data/";
     public static final String TASK_LIST_STORAGE_NAME = "duke.txt";
@@ -13,6 +16,9 @@ public class Duke {
     private final Ui ui;
     private TaskList taskList;
 
+    /**
+     * Constructor for {@code Duke}.
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage(PATH_TO_DATA_DIRECTORY, TASK_LIST_STORAGE_NAME);
@@ -26,10 +32,18 @@ public class Duke {
         Command.setTaskList(taskList);
     }
 
+    /**
+     * Entry point for the chatbot application.
+     *
+     * @param args System arguments.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }
 
+    /**
+     * Activates the Duke chatbot.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
