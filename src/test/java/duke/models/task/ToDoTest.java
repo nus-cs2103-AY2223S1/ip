@@ -10,7 +10,7 @@ public class ToDoTest {
     @Test
     public void testMarkAsDone() {
         Task task = new ToDo("TaskA");
-        task.markAsDone();t
+        task.markAsDone();
         assertTrue(task.isDone);
     }
 
