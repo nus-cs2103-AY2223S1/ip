@@ -1,10 +1,17 @@
 package duke.parser;
 
-import duke.DukeException;
-import duke.command.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import duke.DukeException;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnknownCommand;
 
 public class ParserTest {
 
@@ -42,7 +49,8 @@ public class ParserTest {
 
     @Test
     public void parse_markCommandNonPositive_exceptionThrown() {
-        assertEquals("You must pass a positive integer value. -1 is a non-positive integer value.", failToParse("mark -1").getMessage());
+        assertEquals("You must pass a positive integer value. -1 is a non-positive integer value.",
+                failToParse("mark -1").getMessage());
     }
 
     private Command parseSuccessfully(String command) {

@@ -19,7 +19,8 @@ public class MarkCommand extends Command {
     public void exec(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             if (tasks.getTask(this.markIndex).getIsDone()) {
-                ui.showReply(String.format("Sorry, but it seems you have marked this task as done:\n  %s", tasks.getTask(markIndex)));
+                ui.showReply(String.format("Sorry, but it seems you have marked this task as done:\n  %s",
+                        tasks.getTask(markIndex)));
             } else {
                 tasks.getTask(this.markIndex).setDone(true);
                 ui.showReply(String.format("Noice! I've marked this task as done:\n  %s", tasks.getTask(markIndex)));

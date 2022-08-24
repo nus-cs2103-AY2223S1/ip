@@ -7,8 +7,10 @@ import java.time.format.DateTimeFormatter;
 import duke.DukeException;
 
 public class Deadline extends Task {
-    private static final String NO_ENDTIME_MESSAGE = "A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.";
-    private static final String INVALID_DATE_MESSAGE = "Please provide me a valid date in the following format:\n  YYYY-MM-DD\ni.e. 29th February 2000 is 2000-02-29";
+    private static final String NO_ENDTIME_MESSAGE = "A Deadline-type Task must be provided with an ending time."
+            + " Use the /by parameter to add a deadline.";
+    private static final String INVALID_DATE_MESSAGE = "Please provide me a valid date in the following format:\n"
+            + "YYYY-MM-DD\ni.e. 29th February 2000 is 2000-02-29";
 
     protected LocalDate endDate;
 

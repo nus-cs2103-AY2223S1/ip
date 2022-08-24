@@ -1,12 +1,19 @@
 package duke.task;
 
-import duke.DukeException;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Test;
+
+import duke.DukeException;
+
 public class DeadlineTest {
+
+    private static final String NO_ENDTIME_MESSAGE = "A Deadline-type Task must be provided with an ending time."
+            + " Use the /by parameter to add a deadline.";
+    private static final String INVALID_DATE_MESSAGE = "Please provide me a valid date in the following format:\n"
+            + "YYYY-MM-DD\ni.e. 29th February 2000 is 2000-02-29";
+
     @Test
     public void newDeadline_unmarked_success() {
         try {
@@ -53,7 +60,7 @@ public class DeadlineTest {
             Deadline deadline = new Deadline("UwU", "01 Jan 1970");
             fail();
         } catch (DukeException e) {
-            assertEquals("Please provide me a valid date in the following format:\n  YYYY-MM-DD\ni.e. 29th February 2000 is 2000-02-29", e.getMessage());
+            assertEquals(INVALID_DATE_MESSAGE, e.getMessage());
         }
     }
 
@@ -63,7 +70,7 @@ public class DeadlineTest {
             Deadline deadline = new Deadline("UwU", "1900-02-29");
             fail();
         } catch (DukeException e) {
-            assertEquals("Please provide me a valid date in the following format:\n  YYYY-MM-DD\ni.e. 29th February 2000 is 2000-02-29", e.getMessage());
+            assertEquals(INVALID_DATE_MESSAGE, e.getMessage());
         }
     }
 
@@ -73,7 +80,7 @@ public class DeadlineTest {
             Deadline deadline = new Deadline("UwU", "");
             fail();
         } catch (DukeException e) {
-            assertEquals("A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.", e.getMessage());
+            assertEquals(NO_ENDTIME_MESSAGE, e.getMessage());
         }
     }
 
@@ -83,7 +90,7 @@ public class DeadlineTest {
             Deadline deadline = new Deadline("UwU", null);
             fail();
         } catch (DukeException e) {
-            assertEquals("A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.", e.getMessage());
+            assertEquals(NO_ENDTIME_MESSAGE, e.getMessage());
         }
     }
 

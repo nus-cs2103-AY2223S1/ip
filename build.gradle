@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
@@ -38,6 +39,10 @@ shadowJar {
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 run {

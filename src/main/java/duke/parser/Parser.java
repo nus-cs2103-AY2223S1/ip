@@ -1,13 +1,21 @@
 package duke.parser;
 
+import java.util.stream.Stream;
+
 import duke.DukeException;
-import duke.command.*;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnknownCommand;
+import duke.command.UnmarkCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-
-import java.util.stream.Stream;
-
 public class Parser {
 
     public static Command parse(String command) throws DukeException {
@@ -63,8 +71,11 @@ public class Parser {
         return Stream.of(command.trim().split("\\s+/"))
                 .map(s -> s.split("\\s+", 2))
                 .map(arr -> {
-                    if (arr.length == 1) return new Argument(arr[0]);
-                    else return new Argument(arr[0], arr[1]);
+                    if (arr.length == 1) {
+                        return new Argument(arr[0]);
+                    } else {
+                        return new Argument(arr[0], arr[1]);
+                    }
                 })
                 .toArray(Argument[]::new);
     }
@@ -73,7 +84,8 @@ public class Parser {
         try {
             int indexValue = Integer.parseInt(idx) - 1;
             if (indexValue < 0) {
-                throw new DukeException("You must pass a positive integer value. " + idx + " is a non-positive integer value.");
+                throw new DukeException("You must pass a positive integer value. "
+                        + idx + " is a non-positive integer value.");
             }
             return indexValue;
         } catch (NumberFormatException e) {

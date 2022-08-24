@@ -1,7 +1,8 @@
 package duke.parser;
 
 public class Argument {
-    private final String name, body;
+    private final String name;
+    private final String body;
 
     public Argument(String name) {
         this.name = name;

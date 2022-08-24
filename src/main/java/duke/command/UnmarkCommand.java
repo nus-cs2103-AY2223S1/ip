@@ -20,9 +20,11 @@ public class UnmarkCommand extends Command {
         try {
             if (tasks.getTask(this.unmarkIndex).getIsDone()) {
                 tasks.getTask(this.unmarkIndex).setDone(false);
-                ui.showReply(String.format("Alright, I've marked this task as not done:\n  %s", tasks.getTask(this.unmarkIndex)));
+                ui.showReply(String.format("Alright, I've marked this task as not done:\n  %s",
+                        tasks.getTask(this.unmarkIndex)));
             } else {
-                ui.showReply(String.format("Sorry, but it seems you haven't marked this task as done:\n  %s", tasks.getTask(this.unmarkIndex)));
+                ui.showReply(String.format("Sorry, but it seems you haven't marked this task as done:\n  %s",
+                        tasks.getTask(this.unmarkIndex)));
             }
             storage.save(tasks);
         } catch (IndexOutOfBoundsException e) {

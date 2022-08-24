@@ -1,12 +1,20 @@
 package duke.task;
 
-import duke.DukeException;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Test;
+
+import duke.DukeException;
+
 public class EventTest {
+    private static final String NO_TIMERANGE_MESSAGE = "An Event-type Task must be provided with a time range."
+            + " Use the /at parameter to add a time range.";
+    private static final String INVALID_DATE_MESSAGE = "Please provide me valid date(s) in the following format:\n"
+            + "  YYYY1-MM1-DD1 YYYY2-MM2-DD2\n"
+            + "i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02."
+            + " You can provide only one date if you choose.";
+    private static final String INVALID_DATERANGE_MESSAGE = "The second date is prior to the first date.";
     @Test
     public void newEvent_unmarked_success() {
         try {
@@ -31,7 +39,8 @@ public class EventTest {
     public void newEvent_twoDates_success() {
         try {
             Event event = new Event("Test Event", "1970-01-01 1970-01-04", false);
-            assertEquals("[E][ ] Test Event (at: Thursday, 01 January 1970 - Sunday, 04 January 1970)", event.toString());
+            assertEquals("[E][ ] Test Event (at: Thursday, 01 January 1970 - Sunday, 04 January 1970)",
+                    event.toString());
         } catch (DukeException e) {
             fail();
         }
@@ -63,9 +72,7 @@ public class EventTest {
             Event event = new Event("UwU", "01 Jan 1970");
             fail();
         } catch (DukeException e) {
-            assertEquals("Please provide me valid date(s) in the following format:\n"
-                    + "  YYYY1-MM1-DD1 YYYY2-MM2-DD2\n"
-                    + "i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02. You can provide only one date if you choose.", e.getMessage());
+            assertEquals(INVALID_DATE_MESSAGE, e.getMessage());
         }
     }
 
@@ -75,9 +82,7 @@ public class EventTest {
             Event event = new Event("UwU", "1900-02-29");
             fail();
         } catch (DukeException e) {
-            assertEquals("Please provide me valid date(s) in the following format:\n"
-                    + "  YYYY1-MM1-DD1 YYYY2-MM2-DD2\n"
-                    + "i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02. You can provide only one date if you choose.", e.getMessage());
+            assertEquals(INVALID_DATE_MESSAGE, e.getMessage());
         }
     }
 
@@ -87,9 +92,7 @@ public class EventTest {
             Event event = new Event("UwU", "2000-02-29 01 Jan 2003");
             fail();
         } catch (DukeException e) {
-            assertEquals("Please provide me valid date(s) in the following format:\n"
-                    + "  YYYY1-MM1-DD1 YYYY2-MM2-DD2\n"
-                    + "i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02. You can provide only one date if you choose.", e.getMessage());
+            assertEquals(INVALID_DATE_MESSAGE, e.getMessage());
         }
     }
 
@@ -99,7 +102,7 @@ public class EventTest {
             Event event = new Event("UwU", "2022-08-24 2022-08-21");
             fail();
         } catch (DukeException e) {
-            assertEquals("The second date is prior to the first date.", e.getMessage());
+            assertEquals(INVALID_DATERANGE_MESSAGE, e.getMessage());
         }
     }
 
@@ -109,7 +112,7 @@ public class EventTest {
             Event event = new Event("UwU", "");
             fail();
         } catch (DukeException e) {
-            assertEquals("An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.", e.getMessage());
+            assertEquals(NO_TIMERANGE_MESSAGE, e.getMessage());
         }
     }
 
@@ -119,7 +122,7 @@ public class EventTest {
             Event event = new Event("UwU", null);
             fail();
         } catch (DukeException e) {
-            assertEquals("An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.", e.getMessage());
+            assertEquals(NO_TIMERANGE_MESSAGE, e.getMessage());
         }
     }
 
