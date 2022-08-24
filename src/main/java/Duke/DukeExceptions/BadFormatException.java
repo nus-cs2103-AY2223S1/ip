@@ -5,17 +5,36 @@ public class BadFormatException extends DukeException {
     private String taskType;
     private String format;
 
+    /**
+     * Constructor for BadFormatException.
+     *
+     * @param errorMessage the errormMessage.
+     * @return A BadFormatException.
+     */
     public BadFormatException(String errorMessage, String taskType) {
         super(errorMessage);
         this.taskType = taskType;
     }
 
+    /**
+     * Constructor for BadFormatException.
+     *
+     * @param message the errormMessage.
+     * @param taskType type of task.
+     * @param format the correct format.
+     * @return A BadFormatException.
+     */
     public BadFormatException(String message, String taskType, String format) {
         super(message);
         this.taskType = taskType;
         this.format = format;
     }
 
+    /**
+     * Returns String version of this.
+     *
+     * @return A String in specific format.
+     */
     @Override
     public String toString() {
         String separator = taskType.equals("deadline") ? "/by" : "/at";
