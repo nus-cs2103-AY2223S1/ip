@@ -4,12 +4,23 @@ import duke.command.Command;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Duke, the personal chatbot that helps a person keep track of
+ * todos, events, deadlines.
+ *
+ * @author Derrick Khoo
+ */
 public class Duke {
 
     private Storage storage;
     private Ui ui;
     private TaskList taskList;
 
+    /**
+     * Constructs an instance of Duke.
+     *
+     * @param filePath the file location for saving data
+     */
     public Duke(String filePath) {
         this.storage = new Storage(filePath);
         this.ui = new Ui();
@@ -21,6 +32,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the instance of Duke.
+     */
     public void run() {
         ui.greet();
         boolean isDone = false;
