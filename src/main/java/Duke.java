@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,6 +17,8 @@ public class Duke {
 
     private static final String GREETINGS = "Hello! I'm Duke\nWhat can I do for you?\n";
 
+    private static ArrayList<Task> taskArr = new ArrayList<>();
+
     private static void echo(String str) {
         System.out.println("Got it. I've added this task:\n" + str);
     }
@@ -21,11 +29,61 @@ public class Duke {
         }
     }
 
+    private static void loadFileData() throws DukeException {
+        try {
+            File file = new File("data/duke.txt");
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                String[] split = sc.nextLine().split("##");
+                Task task;
+                if ("D".equals(split[0])) {
+                    task = new Deadline(split[2], split[3]);
+                } else if ("E".equals(split[0])) {
+                    task = new Event(split[2], split[3]);
+                } else if ("T".equals(split[0])) {
+                    task = new ToDo(split[2]);
+                } else {
+                    throw new DukeException("Unable to parse items in file.");
+                }
+                if (split[1].equals("Y")) {
+                    task.toggleDone();
+                }
+                taskArr.add(task);
+            }
+        } catch (FileNotFoundException e) {
+            try {
+                Files.createDirectories(Paths.get("data/"));
+                File file = new File("data/duke.txt");
+                System.out.println("New file created to store tasks.");
+            } catch (IOException ex) {
+                throw new DukeException(ex.getMessage());
+            }
+        }
+    }
+
+    private static void saveFileData() throws DukeException {
+        try {
+            FileWriter fw = new FileWriter("data/duke.txt");
+            for (Task task : taskArr) {
+                String str = task.stringify();
+                fw.write(str + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
+        }
+    }
+
     public static void main(String[] args) {
         System.out.println("Hello from\n" + logo);
         System.out.println(GREETINGS);
 
-        ArrayList<Task> taskArr = new ArrayList<>();
+        try {
+            loadFileData();
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+
         Scanner sc = new Scanner(System.in);
         String input = sc.nextLine();
 
@@ -65,6 +123,7 @@ public class Duke {
                         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
 //                    echo(taskArr.get(taskArr.size() - 1).toString());
+                    saveFileData();
                 }
 
             } catch (DukeException e) {
@@ -74,9 +133,6 @@ public class Duke {
             input = sc.nextLine();
         }
         System.out.println("Bye. Hope to see you again soon!\n");
-
-
-
 
     }
 

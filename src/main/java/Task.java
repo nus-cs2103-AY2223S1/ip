@@ -17,6 +17,13 @@ public abstract class Task {
         System.out.println(this);
     }
 
+    public void toggleDone() {
+        isDone = !isDone;
+    }
+    public String stringify() {
+        return isDone ? "Y##" + this.description : "N##" + this.description;
+    }
+
     public void unmark() {
         this.isDone = false;
         System.out.println("OK, I've marked this task as not done yet:");

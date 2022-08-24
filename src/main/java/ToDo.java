@@ -5,6 +5,10 @@ public class ToDo extends Task {
     }
 
     @Override
+    public String stringify() {
+        return "T##" + super.stringify();
+    }
+    @Override
     public String toString() {
         return String.format("[T]%s", super.toString());
     }

@@ -6,6 +6,10 @@ public class Event extends Task {
     }
 
     @Override
+    public String stringify() {
+        return String.format("D##%s##%s", super.stringify(), this.at);
+    }
+    @Override
     public String toString() {
         return String.format("[E]%s(at: %s)", super.toString(), this.at);
     }
