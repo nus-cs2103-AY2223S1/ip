@@ -44,6 +44,19 @@ public class Task {
         return "[" + taskType.toString().charAt(0) + "][ ] " + this.taskName + " " + this.time;
     }
 
+    public String toTxt() {
+        if (taskType == TaskType.TODO) {
+            if (done) {
+                return taskType.toString().charAt(0) + " | 1 | " + this.taskName + "\n";
+            }
+            return taskType.toString().charAt(0) + " | 0 | " + this.taskName + "\n";
+        }
+        if (done) {
+            return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " + this.time.substring(1, this.time.length() - 1) + "\n";
+        }
+        return taskType.toString().charAt(0) + " | 0 | " + this.taskName + " | " + this.time.substring(1, this.time.length() - 1) + "\n";
+    }
+
     public void markDone() {
         done = true;
     }

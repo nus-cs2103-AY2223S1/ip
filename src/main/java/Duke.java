@@ -1,9 +1,18 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
         ArrayList<Task> list = new ArrayList<>();
+        /* FileWriter write = null;
+        try {
+            write = new FileWriter("data/duke.txt");
+        } catch (IOException e) {
+            System.out.println("e");
+        } */
 
         String line = " _______________________________________ \n";
         System.out.println(line + " I'm Dukie\n" + " What can I do for you?\n" + line);
@@ -24,23 +33,27 @@ public class Duke {
                 } else {
                     System.out.println(line + makeList(list) + line);
                 }
-            } else if (userInput.startsWith("mark")){
+            } else if (userInput.startsWith("mark")) {
                 String task = userInput.substring(5);
                 String s = markDone(task, list);
                 System.out.println(line + s + line);
-            } else if (userInput.startsWith("unmark")){
+                writeItems(list);
+            } else if (userInput.startsWith("unmark")) {
                 String task = userInput.substring(7);
                 String s = unmarkDone(task, list);
                 System.out.println(line + s + line);
+                writeItems(list);
             } else if (userInput.startsWith("delete")) {
                 try {
                     deleteItem(userInput.substring(7), list);
+                    writeItems(list);
                 } catch (DukeException e) {
                     System.out.println(line + e.getMessage() + "\n" + line);
                 }
             } else {
                 try {
                     addTask(userInput, list);
+                    writeItems(list);
                 } catch (DukeException e) {
                     System.out.println(line + e.getMessage() + "\n" + line);
                 }
@@ -99,5 +112,17 @@ public class Duke {
         Task taskRemoved = ls.get(index - 1);
         ls.remove(index - 1);
         System.out.println(line + " okie! i've removed: \n " + taskRemoved + "\n now you have " + ls.size() + " task(s) in your list!\n" + line);
+    }
+
+    public static void writeItems(ArrayList<Task> al) {
+        try {
+            FileWriter writer = new FileWriter("data/duke.txt");
+            for (int i = 0; i < al.size(); i++) {
+                writer.write(al.get(i).toTxt());
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
 }
