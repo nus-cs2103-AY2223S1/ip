@@ -4,6 +4,7 @@ import duke.tasks.Task;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 /**
@@ -73,6 +74,31 @@ public class TaskList {
         System.out.println("Okay, I've removed this task:");
         System.out.println(removedTask);
         System.out.println("You now have " + taskList.size() + " tasks in your list.");
+    }
+
+    /**
+     * Searches for tasks in the list that contain any of the search terms.
+     * Search terms are all individual words that come after the [list] keyword.
+     * For an example, "list new test" will return all tasks in the list that have
+     * "new" or "test" in their descriptions.
+     *
+     * The current implementation of search only supports exact matching (case-insensitive).
+     *
+     * @param terms Array of search terms.
+     * @return String that contains all matching tasks, formatted.
+     */
+    public String search(String[] terms) {
+        String result = "";
+        for (Task task: this.taskList) {
+            for (String term: terms) {
+                if (task.toString().toLowerCase().contains(term.toLowerCase())) {
+                   if (!result.contains(task.toString())) {
+                       result += task.toString() + "\n";
+                   }
+                }
+            }
+        }
+        return result.equals("") ? result : result.substring(0, result.length() - 1);
     }
 
     /**
