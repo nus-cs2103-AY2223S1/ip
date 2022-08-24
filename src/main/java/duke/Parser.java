@@ -14,6 +14,11 @@ public class Parser {
         this.tasks = tasklist;
     }
 
+    /**
+     * Processes the commands entered by the user.
+     *
+     * @param next The user's input.
+     */
     public void processCommand(String next) {
         String[] nextWords = next.split(" ");
         switch(nextWords[0]) {
@@ -61,6 +66,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Processes commands related to creating tasks.
+     *
+     * @param input The user's input.
+     * @param type The type of task.
+     */
     public void processTask(String input, String type) {
         DateTimeFormatter parserFormats = new DateTimeFormatterBuilder()
                 .appendOptional(DateTimeFormatter.ISO_LOCAL_DATE)
