@@ -1,28 +1,28 @@
 package duke.storage;
 
-import duke.data.exception.DukeException;
-import duke.common.Message;
-import duke.data.TaskList;
-import duke.tasks.Deadline;
-import duke.tasks.Event;
-import duke.tasks.Task;
-import duke.tasks.Todo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.common.Messages;
+import duke.data.TaskList;
+import duke.data.exception.DukeException;
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
+
 public class Storage {
-    private static final String FILEPATH = "data/tasklist.txt";
+    private static final String FILE_PATH = "data/tasklist.txt";
 
     private void createFile(File file) throws DukeException {
         new File("data").mkdir();
         try {
             file.createNewFile();
         } catch (IOException e) {
-            throw new DukeException(Message.STORAGE_ERROR);
+            throw new DukeException(Messages.MESSAGE_STORAGE_ERROR);
         }
     }
 
@@ -39,19 +39,19 @@ public class Storage {
         FileWriter writer = null;
 
         try {
-            writer = new FileWriter(FILEPATH);
+            writer = new FileWriter(FILE_PATH);
             for (int i = 0; i < numTasks; i++) {
                 Task task = taskList.getTask(i);
                 writer.write(formatTask(task));
             }
         } catch (IOException e) {
-            throw new DukeException(Message.STORAGE_ERROR);
+            throw new DukeException(Messages.MESSAGE_STORAGE_ERROR);
         } finally {
             if (writer != null) {
                 try {
                     writer.close();
                 } catch (IOException e) {
-                    throw new DukeException(Message.STORAGE_ERROR);
+                    throw new DukeException(Messages.MESSAGE_STORAGE_ERROR);
                 }
             }
         }
@@ -59,7 +59,7 @@ public class Storage {
 
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
-        File file = new File(FILEPATH);
+        File file = new File(FILE_PATH);
         createFile(file);
         Scanner sc = null;
 
@@ -86,7 +86,7 @@ public class Storage {
             }
             return tasks;
         } catch (IOException e) {
-            throw new DukeException(Message.STORAGE_ERROR);
+            throw new DukeException(Messages.MESSAGE_STORAGE_ERROR);
         } finally {
             if (sc != null) {
                 sc.close();

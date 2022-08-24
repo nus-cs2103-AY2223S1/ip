@@ -1,12 +1,20 @@
 package duke.parser;
 
-import duke.data.exception.DukeException;
-import duke.common.Message;
-import duke.commands.*;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.commands.ByeCommand;
+import duke.commands.Command;
+import duke.commands.DeadlineCommand;
+import duke.commands.DeleteCommand;
+import duke.commands.EventCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.TodoCommand;
+import duke.commands.UnmarkCommand;
+import duke.common.Messages;
+import duke.data.exception.DukeException;
 
 public class Parser {
     private static final String DATE_INPUT_FORMAT = "yyyy-MM-dd";
@@ -36,7 +44,7 @@ public class Parser {
         case DeleteCommand.COMMAND_WORD:
             return prepareDelete(splitInputArray);
         default:
-            throw new DukeException(Message.INVALID_COMMAND);
+            throw new DukeException(Messages.MESSAGE_INVALID_COMMAND);
         }
     }
 
@@ -48,13 +56,13 @@ public class Parser {
         if (splitInputArray.length < 2) {
             switch (details) {
             case TASK_NUMBER:
-                throw new DukeException(Message.PROVIDE_TASK_NUMBER);
+                throw new DukeException(Messages.MESSAGE_PROVIDE_TASK_NUMBER);
             case DESCRIPTION:
-                throw new DukeException(Message.PROVIDE_DESCRIPTION);
+                throw new DukeException(Messages.MESSAGE_PROVIDE_DESCRIPTION);
             case DESCRIPTION_AND_DATE:
-                throw new DukeException(Message.PROVIDE_DESCRIPTION_AND_DATE);
+                throw new DukeException(Messages.MESSAGE_PROVIDE_DESCRIPTION_AND_DATE);
             default:
-                throw new DukeException(Message.PROVIDE_MORE_DETAILS);
+                throw new DukeException(Messages.MESSAGE_PROVIDE_MORE_DETAILS);
             }
         }
     }
@@ -63,7 +71,7 @@ public class Parser {
         try {
             return Integer.parseInt(taskNum);
         } catch (NumberFormatException e) {
-            throw new DukeException(Message.PROVIDE_TASK_NUMBER);
+            throw new DukeException(Messages.MESSAGE_PROVIDE_TASK_NUMBER);
         }
     }
 
@@ -89,7 +97,7 @@ public class Parser {
         try {
             LocalDate.parse(date, DateTimeFormatter.ofPattern(DATE_INPUT_FORMAT));
         } catch (DateTimeParseException e) {
-            throw new DukeException(String.format(Message.INVALID_DATE_FORMAT, DATE_INPUT_FORMAT));
+            throw new DukeException(String.format(Messages.MESSAGE_INVALID_DATE_FORMAT, DATE_INPUT_FORMAT));
         }
     }
 

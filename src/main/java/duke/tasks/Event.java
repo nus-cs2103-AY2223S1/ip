@@ -1,13 +1,13 @@
 package duke.tasks;
 
-import duke.parser.Parser;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import duke.parser.Parser;
+
 public class Event extends Task {
     private static final String TASK_SYMBOL = "E";
-    private static final String OUTPUT_FORMAT = "d MMM yyyy";
+    private static final String DATE_OUTPUT_FORMAT = "d MMM yyyy";
     private String at;
 
     public Event(String description, String at) {
@@ -32,6 +32,6 @@ public class Event extends Task {
 
     private String getFormattedDate() {
         LocalDate date = Parser.parseDate(this.at);
-        return date.format(DateTimeFormatter.ofPattern(OUTPUT_FORMAT));
+        return date.format(DateTimeFormatter.ofPattern(DATE_OUTPUT_FORMAT));
     }
 }

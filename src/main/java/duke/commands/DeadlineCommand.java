@@ -1,9 +1,9 @@
 package duke.commands;
 
-import duke.storage.Storage;
 import duke.data.TaskList;
-import duke.ui.Ui;
+import duke.storage.Storage;
 import duke.tasks.Deadline;
+import duke.ui.Ui;
 
 public class DeadlineCommand extends Command {
     public static final String COMMAND_WORD = "deadline";

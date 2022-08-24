@@ -1,10 +1,10 @@
 package duke.data;
 
-import duke.data.exception.DukeException;
-import duke.common.Message;
-import duke.tasks.Task;
-
 import java.util.ArrayList;
+
+import duke.common.Messages;
+import duke.data.exception.DukeException;
+import duke.tasks.Task;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -26,12 +26,12 @@ public class TaskList {
     }
 
     public Task changeTaskStatus(int index, boolean isDone) throws DukeException {
-        if (index >=0 && index < this.tasks.size()) {
+        if (index >= 0 && index < this.tasks.size()) {
             Task task = this.tasks.get(index);
             task.changeStatus(isDone);
             return task;
         } else {
-            throw new DukeException(Message.NO_SUCH_TASK);
+            throw new DukeException(Messages.MESSAGE_NO_SUCH_TASK);
         }
     }
 
@@ -40,12 +40,12 @@ public class TaskList {
     }
 
     public Task deleteTask(int index) throws DukeException {
-        if (index >=0 && index < this.tasks.size()) {
+        if (index >= 0 && index < this.tasks.size()) {
             Task task = this.tasks.get(index);
             this.tasks.remove(task);
             return task;
         } else {
-            throw new DukeException(Message.NO_SUCH_TASK);
+            throw new DukeException(Messages.MESSAGE_NO_SUCH_TASK);
         }
     }
 }
