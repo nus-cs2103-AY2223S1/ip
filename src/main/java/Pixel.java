@@ -180,7 +180,7 @@ public class Pixel {
         System.out.println("Hello! I'm Pixel \r\n" +
             "You can input the following commands \n" +
             " todo/ event/ deadline + <task description> + /by or /at + <due> \n" +
-            " ***date format for due has to be in <YYYY-MM-DD(SPACE)HHHH(24h)> format \n" +
+            " ***date format for due has to be in <yyyy-MM-dd(SPACE)HHmm(24h)> format \n" +
             " list -- lists out all the tasks \n" +
             " mark <index of task in the list> -- to mark as done \n" +
             " unmark <index of task in the list> -- to mark as not done \n" +

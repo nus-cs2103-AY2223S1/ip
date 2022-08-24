@@ -54,16 +54,16 @@ public class Task {
                 return month + " " + date + " " + year + " " + finalTimeFormat;
 
             } else {
-                System.out.println("(Note: Due is not in yyyy-mm-dd(SPACE)hhhh format)");
+                System.out.println("(Note: Due is not in yyyy-MM-dd(SPACE)HHmm format)");
                 return due;
             }
 
         } catch (DateTimeParseException e) {
             System.out.println(e);
-            System.out.println("Please ensure that your date & time input are in YYYY-MM-DD(SPACE)HHHH(24h) format");
+            System.out.println("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format");
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e);
-            System.out.println("Please ensure that you have entered both date and time in YYYY-MM-DD(SPACE)HHHH(24h) format");
+            System.out.println("Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format");
         } catch (ParseException e) {
             System.out.println(e);
             System.out.println("Caught parse exception!");
