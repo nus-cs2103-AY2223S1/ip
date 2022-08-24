@@ -65,6 +65,12 @@ public class Duke {
                         setEvent(description, at);
                         break;
                     }
+                    
+                    case "delete": {
+                        int index = sc.nextInt() - 1;
+                        deleteTask(index);
+                        break;
+                    }
 
                     default:
                         sc.nextLine();
@@ -136,6 +142,15 @@ public class Duke {
         taskList.add(event);
         System.out.println(horizontalLine);
         System.out.println("Got it. I've added this task:" + "\n" + event + "\n" + "Now you have " + taskList.size()
+                + " tasks in your list.");
+        System.out.println(horizontalLine);
+    }
+    
+    private void deleteTask(int index) {
+        Task toBeDeleted = taskList.get(index);
+        taskList.remove(index);
+        System.out.println(horizontalLine);
+        System.out.println("Noted. I've removed this task:" + "\n" + toBeDeleted + "\n" + "Now you have " + taskList.size()
                 + " tasks in your list.");
         System.out.println(horizontalLine);
     }
