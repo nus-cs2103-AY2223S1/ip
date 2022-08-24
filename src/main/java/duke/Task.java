@@ -1,7 +1,7 @@
 package duke;
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
 
     public void addTaskMessage(){
         System.out.println("Gotcha, I've added this task:");
@@ -20,6 +20,10 @@ public class Task {
 
     public void setUndone(){
         this.isDone = false;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     @Override
