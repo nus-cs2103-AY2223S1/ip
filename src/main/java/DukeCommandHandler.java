@@ -2,12 +2,15 @@ public class DukeCommandHandler {
     private DukeMessager dukeMessager;
     private TaskList taskList;
     private CommandFilter commandFilter;
+    private Storage storage;
     private boolean isRunning = false;
 
     public DukeCommandHandler() {
         dukeMessager = new DukeMessager();
-        taskList = new TaskList();
+        storage = new Storage();
+        taskList = new TaskList(storage.readFromFile());
         commandFilter = new CommandFilter();
+
     }
 
     private void listCommand() throws ExcessDukeCommandException, EmptyListException {
@@ -122,6 +125,10 @@ public class DukeCommandHandler {
         default:
             throw new DukeCommandNotFoundException();
         }
+        if (commandFilter.getCommand() != "list" || commandFilter.getCommand() != "bye") {
+            storage.writeToFile(taskList);
+        }
+
     }
 
     public void run() {

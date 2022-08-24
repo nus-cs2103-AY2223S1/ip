@@ -1,4 +1,4 @@
-public abstract class Messager {
+public class Messager {
     protected IOHelper ioHelper;
 
     public Messager() {
@@ -9,7 +9,7 @@ public abstract class Messager {
         ioHelper.closeScanner();
     }
 
-    protected void message(Object message) {
+    public void message(Object message) {
         ioHelper.print(message);
     }
 

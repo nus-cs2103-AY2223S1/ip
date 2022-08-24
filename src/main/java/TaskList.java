@@ -4,9 +4,13 @@ public class TaskList {
     private ArrayList<Task> tasks;
     private TaskMessager taskMessager;
 
-    public TaskList() {
+    public TaskList(String text) {
         tasks = new ArrayList<>();
         taskMessager = new TaskMessager();
+        if (text != "") {
+            String[] texts = text.split("\n");
+            System.out.println(texts[texts.length -1]);
+        }
     }
 
     public void addTask(Task task) {
