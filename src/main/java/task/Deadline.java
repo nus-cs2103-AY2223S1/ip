@@ -21,4 +21,14 @@ public class Deadline extends Task{
     public String toString() {
         return String.format("%s (by: %s)", super.toString(), this.by);
     }
+
+    /**
+     * Returns the formatted Event task details to be stored in text file.
+     *
+     * @return Formatted Event task details to be stored in text file
+     */
+    @Override
+    public String toFileString() {
+        return super.toFileString() + " | " + this.by ;
+    }
 }

@@ -18,4 +18,14 @@ public class ToDo extends Task {
     public String toString() {
         return super.toString();
     }
+
+    /**
+     * Returns the formatted ToDo task details to be stored in text file.
+     *
+     * @return Formatted ToDo task details to be stored in text file
+     */
+    @Override
+    public String toFileString() {
+        return super.toFileString();
+    }
 }

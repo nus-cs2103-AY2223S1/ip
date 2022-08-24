@@ -48,4 +48,15 @@ public abstract class Task {
         return String.format("[%s][%s] %s", this.type.getAbbreviation(),
                 this.getStatusIcon(), this.description);
     }
+
+    /**
+     * Returns the formatted task details for storing in text file.
+     *
+     * @return Formatted task details for storing in text file
+     */
+    public String toFileString() {
+        return String.format("%s | %d | %s", this.type.getAbbreviation(),
+                this.isDone ? 1 : 0, this.description);
+    }
+
 }
