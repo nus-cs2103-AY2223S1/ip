@@ -9,13 +9,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents a storage to load and save all <code>Task</code> in the list
+ * of tasks to a file.
+ *
+ * @author Derrick Khoo
+ */
 public class Storage {
     String filePath;
 
+    /**
+     * Constructs a storage to load and save all <code>Task</code> in the list
+     * of tasks to a file.
+     *
+     * @param filePath the path of the file that stores the data in the hard disk
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves all the <code>Task</code> to a file in the hard disk.
+     *
+     * @param taskList the list of tasks
+     * @throws DukeException if there is an error saving the list
+     *                       of tasks to the hard drive.
+     */
     public void saveData(TaskList taskList) throws DukeException {
         File directory = new File("data");
         if (!directory.exists()) {
@@ -37,6 +56,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads all the <code>Task</code> saved in the file located in the hard disk.
+     *
+     * @return the list of <code>Task</code>
+     * @throws DukeException if there is an error loading the tasks from the file
+     */
     public ArrayList<Task> loadData() throws DukeException {
         ArrayList<Task> list = new ArrayList<>();
         File directory = new File("data");

@@ -4,11 +4,22 @@ import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-import duke.DukeException;
 import java.time.LocalDate;
 
+/**
+ * Handles the input given by the user.
+ *
+ * @author Derrick Khoo
+ */
 public class Parser {
 
+    /**
+     * Handles the case where the user inputs a <code>Todo</code>.
+     *
+     * @param   input the input from the user
+     * @return  the <code>Todo</code> that the user specified
+     * @throws DukeException if there is an error parsing the input from the user
+     */
     public static Todo handleTodo(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
@@ -16,6 +27,13 @@ public class Parser {
         return new Todo(input);
     }
 
+    /**
+     * Handles the case where the user inputs a <code>Event</code>.
+     *
+     * @param   input the input from the user
+     * @return  the <code>Event</code> that the user specified
+     * @throws DukeException if there is an error parsing the input from the user
+     */
     public static Event handleEvent(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("Did you forget to specify what?");
@@ -33,6 +51,13 @@ public class Parser {
         return new Event(description, localDateAt);
     }
 
+    /**
+     * Handles the case where the user inputs a <code>Deadline</code>.
+     *
+     * @param   input the input from the user
+     * @return  the <code>Deadline</code> that the user specified
+     * @throws DukeException if there is an error parsing the input from the user
+     */
     public static Deadline handleDeadline(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("Did you forget to specify what?");
@@ -50,6 +75,13 @@ public class Parser {
         return new Deadline(description, localDateBy);
     }
 
+    /**
+     * Handles the number input given from the user.
+     *
+     * @param   input the input from the user
+     * @return  the integer that the user specified
+     * @throws DukeException if there is an error parsing the input from the user
+     */
     public static int parseInt(String input) throws DukeException {
         if (input.length() == 0) {
             throw new DukeException("Did you forget to specify which task to delete?");
@@ -61,6 +93,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles the reading of the input from the user.
+     *
+     * @param   input the input from the user
+     * @return  the <code>Command</code> corresponding to the input from the user
+     * @throws DukeException if there is an error parsing the input from the user
+     */
     public static Command parse(String input) throws DukeException {
         String[] strArray = input.split(" ", 2);
         String first = strArray[0];

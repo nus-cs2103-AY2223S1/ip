@@ -3,18 +3,41 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an event-type of task.
+ *
+ * @author Derrick Khoo
+ */
 public class Event extends Task {
     protected LocalDate at;
-    
+
+    /**
+     * Constructs an event-type of task.
+     *
+     * @param description the description of the task
+     * @param at the date when the task is happening at
+     */
     public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
     }
 
+    /**
+     * Returns a string description of the event task for saving the task
+     * to the hard disk.
+     *
+     * @return the string description
+     */
     public String toFileDescription() {
         return "E" + " | " + super.toFileDescription() + " | " + this.at;
     }
 
+    /**
+     * Returns an event-type task from the string description stored in the hard disk.
+     *
+     * @param input the string description of the event task
+     * @return the event-type task
+     */
     public static Event fromFileDescription(String input) {
         String[] strArray = input.split(" \\| ", 4);
         String description = strArray[2];
@@ -26,10 +49,23 @@ public class Event extends Task {
         }
         return event;
     }
+
+    /**
+     * Returns a boolean denoting if the event is happening at the queried date.
+     *
+     * @param localDate the queried date
+     * @return true if and only if the queried date is the same as the event-type
+     * task's event date.
+     */
     public boolean isHappeningOnDate(LocalDate localDate) {
         return this.at.equals(localDate);
     }
-    
+
+    /**
+     * Returns a string representation of this event.
+     *
+     * @return the string representation
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(at: " + at.format(DateTimeFormatter.ofPattern("MMMM d yyyy")) + ")";
