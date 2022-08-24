@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -21,6 +23,10 @@ public class Task {
 
     public String toDataFormat() {
         return "The data are as follows:";
+    }
+
+    public boolean isOn(LocalDate date) {
+        return false;
     }
 
     @Override

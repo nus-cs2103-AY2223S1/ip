@@ -1,5 +1,10 @@
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 public class Duke {
     /** Using ArrayList to store Task */
@@ -38,31 +43,41 @@ public class Duke {
     }
 
     public static Deadline addDeadline(String input) throws DukeException {
-        if (input.length() == 0) {
-            throw new DukeException("\t OOPS!!! The description of a deadline cannot be empty.");
+        try {
+            if (input.length() == 0) {
+                throw new DukeException("\t OOPS!!! The description of a deadline cannot be empty.");
+            }
+            String[] inputArray = input.split(" /by ", 2);
+            if (inputArray.length == 1) {
+                throw new DukeException("\t OOPS!!! You need to add a deadline.");
+            }
+            String description = inputArray[0];
+            String by = inputArray[1];
+            Deadline deadline = new Deadline(description, LocalDate.parse(by));
+            return deadline;
+        } catch (DateTimeParseException e) {
+            throw new DukeException("\t Invalid date format (yyyy-mm-dd)");
         }
-        String[] inputArray = input.split(" /by ", 2);
-        if (inputArray.length == 1) {
-            throw new DukeException("\t OOPS!!! You need to add a deadline.");
-        }
-        String description = inputArray[0];
-        String by = inputArray[1];
-        Deadline deadline = new Deadline(description, by);
-        return deadline;
+
     }
 
     public static Event addEvent(String input) throws DukeException {
-        if (input.length() == 0) {
-            throw new DukeException("\t OOPS!!! The description of a event cannot be empty.");
+        try {
+            if (input.length() == 0) {
+                throw new DukeException("\t OOPS!!! The description of a event cannot be empty.");
+            }
+            String[] inputArray = input.split(" /at ", 2);
+            if (inputArray.length == 1) {
+                throw new DukeException("\t OOPS!!! You need to add a duration.");
+            }
+            String description = inputArray[0];
+            String at = inputArray[1];
+            Event event = new Event(description, LocalDate.parse(at));
+            return event;
+        } catch (DateTimeParseException e) {
+            throw new DukeException("\t Invalid date format (yyyy-mm-dd)");
         }
-        String[] inputArray = input.split(" /at ", 2);
-        if (inputArray.length == 1) {
-            throw new DukeException("\t OOPS!!! You need to add a duration.");
-        }
-        String description = inputArray[0];
-        String at = inputArray[1];
-        Event event = new Event(description, at);
-        return event;
+
     }
 
     public static void addTask(String input, Commands type) throws DukeException {
@@ -161,6 +176,22 @@ public class Duke {
         tasks.add(task);
     }
 
+    public static void listTasksOn(LocalDate date) {
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("E, d MMM yyyy"));
+        ArrayList<Task> filteredTasks = tasks.stream().filter(task -> task.isOn(date))
+                .collect(Collectors.toCollection(ArrayList::new));
+        printLine();
+        if (filteredTasks.size() > 0) {
+            System.out.println(String.format("\t Here are the tasks you have on %s:", formattedDate));
+            for (int i = 0; i < filteredTasks.size(); i++) {
+                System.out.println("\t " + (i + 1) + ". " + filteredTasks.get(i));
+            }
+        } else {
+            System.out.println(String.format("\t You have no tasks on %s", formattedDate));
+        }
+        printLine();
+    }
+
     public static void startDuke() throws DukeException {
         storage.loadFile();
         Scanner sc = new Scanner(System.in);
@@ -227,6 +258,13 @@ public class Duke {
                             deleteTask(Integer.parseInt(inputArray[1]));
                         } catch (NumberFormatException e) {
                             throw new DukeException("\t OOPS!!! You need to delete a number");
+                        }
+                        break;
+                    case "on":
+                        try {
+                            listTasksOn(LocalDate.parse(secondWord));
+                        } catch (DateTimeParseException e) {
+                            throw new DukeException("\t Please enter a valid date (yyyy-mm-dd).");
                         }
                         break;
                     default:

@@ -1,18 +1,26 @@
-public class Event extends Task {
-    protected String at;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Event(String description, String at) {
+public class Event extends Task {
+    protected LocalDate at;
+
+    public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
     }
 
-    public static Event parseFile(String data) {
+    public static Event parseFile(String data) throws DukeException{
         String[] details = data.split(" \\| ");
-        Event event = new Event(details[2], details[3]);
-        if (details[1].equals("1")) {
-            event.markAsDone();
+        try {
+            Event event = new Event(details[2], LocalDate.parse(details[3]));
+            if (details[1].equals("1")) {
+                event.markAsDone();
+            }
+            return event;
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid date format (yyyy-mm-dd)");
         }
-        return event;
     }
 
     @Override
@@ -27,7 +35,13 @@ public class Event extends Task {
     }
 
     @Override
+    public boolean isOn(LocalDate date) {
+        return this.at.equals(date);
+    }
+
+    @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: "
+                + this.at.format(DateTimeFormatter.ofPattern("E, d MMM yyyy")) + ")";
     }
 }
