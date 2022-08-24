@@ -1,0 +1,3 @@
+T | true | something
+E | false | aslkd | aksjd
+D | false | asjld | kajsld
