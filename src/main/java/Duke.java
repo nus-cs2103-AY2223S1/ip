@@ -112,7 +112,7 @@ public class Duke {
         System.out.println(HORIZONTAL_LINE + "\n  Hello! I'm Duke\n  What can I do for you?\n" + HORIZONTAL_LINE);
 
         Scanner commands = new Scanner(System.in);
-        ArrayList<Task> storedTasks = new ArrayList<Task>(100);
+        ArrayList<Task> storedTasks = StoredTasks.load();
 
         while (true) {
             String command = commands.nextLine();
@@ -120,10 +120,12 @@ public class Duke {
                 tracker(command, storedTasks);
                 if (command.equals("bye")) {
                     commands.close();
+                    StoredTasks.save(storedTasks);
                     break;
                 }
             } catch (DukeException de) {
                 commands.close();
+                StoredTasks.save(storedTasks);
                 System.out.println(de);
                 break;
             }
