@@ -6,7 +6,6 @@ public class Parser {
 
 
 
-
         public static LocalDate stringToDate(String string) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate myDateObj = LocalDate.parse(string, formatter);

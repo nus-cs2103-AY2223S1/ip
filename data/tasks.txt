@@ -1,2 +1,5 @@
-D|0|do w|12-12-2022
-E|0|job|22-12-2022
+D|0|do |12-12-2022
+E|0|jo|22-12-2022
+T|0|sleep tonight
+D|0|sleep|22-12-2022
+E|0|sleep soundly|22-12-2022
