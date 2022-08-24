@@ -7,7 +7,7 @@ public class TaskList {
     private ArrayList<Task> arrayList;
 
     public TaskList() {
-        this.arrayList = new ArrayList<>();
+        this.arrayList = new ArrayList<>(100);
     }
 
     public ArrayList<Task> getTaskList() {
