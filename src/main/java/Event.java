@@ -2,15 +2,16 @@ public class Event extends Task {
     /**
      * The time of Event
      */
-    protected String time;
+    private String time;
 
     /**
      * Constructor for Event
      * @param title The title of Event
+     * @param isDone The isDone status of the Task
      * @param time The time of Event
      */
-    public Event(String title, String time) {
-        super(title);
+    public Event(String title, boolean isDone, String time) {
+        super(title, isDone);
         this.time = time;
     }
 

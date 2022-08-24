@@ -2,20 +2,21 @@ public abstract class Task {
     /**
      * The title of the Task
      */
-    protected String title;
+    private String title;
 
     /**
      * The completion status of the Task
      */
-    protected boolean isDone;
+    private boolean isDone;
 
     /**
      * Constructor for Task
      * @param title The title of the Task
+     * @param isDone The isDone status of the Task
      */
-    public Task(String title) {
+    public Task(String title, boolean isDone) {
         this.title = title;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     /**

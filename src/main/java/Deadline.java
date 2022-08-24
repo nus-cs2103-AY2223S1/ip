@@ -2,15 +2,16 @@ public class Deadline extends Task {
     /**
      * The deadline of Deadline
      */
-    protected String deadline;
+    private String deadline;
 
     /**
      * Constructor for Deadline
      * @param title The title of Deadline
+     * @param isDone The isDone status of the Task
      * @param deadline The deadline of Deadline
      */
-    public Deadline(String title, String deadline) {
-        super(title);
+    public Deadline(String title, boolean isDone, String deadline) {
+        super(title, isDone);
         this.deadline = deadline;
     }
 
