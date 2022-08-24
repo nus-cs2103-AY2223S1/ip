@@ -21,13 +21,17 @@ public class Duke {
         printLine();
     }
 
-    public static void listAllItems() {
-        printLine();
+    public static String listAllItems() {
+        //printLine();
+        String result = "";
+        result += "-".repeat(100);
         for (int i = 0; i < tasks.size(); i++) {
             int number = i + 1;
-            System.out.println(number + ". " + tasks.get(i).toString());
+            result += "\n" + number + ". " + tasks.get(i).toString(); ;
+            //System.out.println(number + ". " + tasks.get(i).toString());
         }
-        printLine();
+        result += "\n" + "-".repeat(100);
+        return result;
     }
 
     public static void addATask(String item) throws DukeException {
@@ -113,7 +117,7 @@ public class Duke {
                     printBye();
                     return;
                 case "list":
-                    listAllItems();
+                    System.out.println(listAllItems());
                     break;
                 case "mark":
                     int num1 = Integer.parseInt(input.split(" ")[1]);
