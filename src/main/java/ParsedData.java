@@ -23,6 +23,10 @@ class ParsedData {
         this(command, description, "");
     }
 
+    static ParsedData makeParsedData(String[] data) {
+        return new ParsedData(data[0], data[1], data[2]);
+    }
+
     public String getSavedString() {
         return String.format("%s%s%s%s%s", command, SEP, description, SEP, additionalInfo);
     }
