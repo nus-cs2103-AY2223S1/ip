@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -18,7 +20,7 @@ public class Event extends Task {
     }
 
     public String getTime(){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         return this.time.format(formatter);
     }
 }
