@@ -6,6 +6,9 @@ public class Ui {
     public String readCommand() {
         return this.sc.nextLine();
     }
+    public void printBlankLine() {
+        System.out.println("---------------------------------------------");
+    }
 
     public void showWelcome() {
         String logo = " ____        _        \n"
