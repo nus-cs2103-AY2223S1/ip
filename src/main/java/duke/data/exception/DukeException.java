@@ -1,5 +1,8 @@
 package duke.data.exception;
 
+/**
+ * This class encapsulates the Duke Exception
+ */
 public class DukeException extends Exception {
 
     /**

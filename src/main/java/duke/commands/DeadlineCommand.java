@@ -6,6 +6,10 @@ import duke.tasks.Deadline;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
 
+
+/**
+ * This class encapsulates a Deadline Command
+ */
 public class DeadlineCommand extends Command {
 
     private String description;

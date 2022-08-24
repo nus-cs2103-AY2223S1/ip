@@ -7,11 +7,18 @@ import duke.tasks.Event;
 import duke.tasks.Task;
 import duke.tasks.ToDo;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * This class encapsulates the Storage
+ */
 public class Storage {
     private String filePath;
 
@@ -64,6 +71,7 @@ public class Storage {
                     LocalDate eventDate = LocalDate.parse(components[3], format);
                     task = new Event(components[2], eventDate.format(formatter));
                     break;
+                default: break;
                 }
 
                 task.setIsDone(components[1].equals("true"));

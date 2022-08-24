@@ -6,6 +6,9 @@ import duke.data.exception.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
 
+/**
+ * This class encapsulates a Mark Command
+ */
 public class MarkCommand extends Command {
 
     private int taskNumber;

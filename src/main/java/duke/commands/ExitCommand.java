@@ -1,10 +1,12 @@
 package duke.commands;
 
-import duke.data.exception.DukeException;
 import duke.ui.Ui;
 import duke.data.TaskList;
 import duke.storage.Storage;
 
+/**
+ * This class encapsulates an Exit Command
+ */
 public class ExitCommand extends Command {
 
     /**
@@ -21,7 +23,6 @@ public class ExitCommand extends Command {
      * @param ui Prints the messages based on the type of Command
      * @param storage Saves the modified list of tasks
      * @param taskList List of tasks
-     * @throws DukeException if invalid inputs are provided
      */
     @Override
     public void execute(Ui ui, Storage storage, TaskList taskList) {

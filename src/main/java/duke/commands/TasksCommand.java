@@ -1,10 +1,13 @@
 package duke.commands;
 
-import duke.data.exception.DukeException;
-import duke.ui.Ui;
 import duke.data.TaskList;
+import duke.data.exception.DukeException;
 import duke.storage.Storage;
+import duke.ui.Ui;
 
+/**
+ * This class encapsulates a Tasks Command
+ */
 public class TasksCommand extends Command {
 
     private String date;

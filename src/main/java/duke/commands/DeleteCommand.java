@@ -6,6 +6,9 @@ import duke.data.exception.DukeException;
 import duke.storage.Storage;
 import duke.tasks.Task;
 
+/**
+ * This class encapsulates a Delete Command
+ */
 public class DeleteCommand extends Command {
 
     private int taskNumber;

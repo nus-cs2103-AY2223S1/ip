@@ -5,8 +5,11 @@ import duke.data.TaskList;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
 
+/**
+ * Encapsulates the Command from users
+ */
 public abstract class Command {
-    boolean isExit = false;
+    private boolean isExit = false;
 
     /**
      * Checks if the command is an Exit Command

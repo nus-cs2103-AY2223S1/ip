@@ -5,6 +5,9 @@ import duke.data.TaskList;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
 
+/**
+ * This class encapsulates an Invalid Command
+ */
 public class InvalidCommand extends Command {
 
     /**

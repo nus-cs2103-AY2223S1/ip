@@ -5,6 +5,9 @@ import duke.tasks.Task;
 
 import java.util.Scanner;
 
+/**
+ * This class encapsulates the user interface
+ */
 public class Ui {
 
     private Scanner scanner;

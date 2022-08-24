@@ -6,7 +6,10 @@ import duke.tasks.Event;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
 
-public class EventCommand extends Command{
+/**
+ * This class encapsulates an Event Command
+ */
+public class EventCommand extends Command {
 
     private String description;
     private String at;

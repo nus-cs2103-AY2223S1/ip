@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * This class encapsulates a list of tasks
+ */
 public class TaskList {
     private final ArrayList<Task> tasks;
 
@@ -53,7 +56,7 @@ public class TaskList {
         }
 
         if (count == 1) {
-             return String.format("\tNo tasks on %s", parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+            return String.format("\tNo tasks on %s", parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
         } else {
             return stringBuilder.toString();
         }

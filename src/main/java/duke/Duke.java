@@ -2,14 +2,17 @@ package duke;
 
 import duke.commands.Command;
 import duke.data.TaskList;
-import duke.parser.Parser;
 import duke.data.exception.DukeException;
+import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
+/**
+ * Driver class
+ */
 public class Duke {
 
-    final private TaskList tasks;
+    private TaskList tasks;
     private Ui ui;
     private Storage storage;
 
@@ -57,6 +60,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the program
+     * @param args Command line arguments
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

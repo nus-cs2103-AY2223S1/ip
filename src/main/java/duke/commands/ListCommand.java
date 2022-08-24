@@ -1,10 +1,12 @@
 package duke.commands;
 
-import duke.data.exception.DukeException;
 import duke.ui.Ui;
 import duke.data.TaskList;
 import duke.storage.Storage;
 
+/**
+ * This class encapsulates an Exit Command
+ */
 public class ListCommand extends Command {
 
     /**

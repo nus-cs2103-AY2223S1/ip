@@ -1,11 +1,14 @@
 package duke.commands;
 
-import duke.ui.Ui;
 import duke.data.TaskList;
-import duke.tasks.ToDo;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
+import duke.tasks.ToDo;
+import duke.ui.Ui;
 
+/**
+ * This class encapsulates a ToDo Command
+ */
 public class TodoCommand extends Command {
 
     private String description;
