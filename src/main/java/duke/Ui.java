@@ -31,10 +31,10 @@ public class Ui {
             case TASK:
                 System.out.println("Got it. I've added this task:");
                 taskList.printByIndex(index);
-                System.out.println("Now you have " + taskList.getSize() + " duke.tasks in the list.");
+                System.out.println("Now you have " + taskList.getSize() + " tasks in the list.");
                 break;
             case LIST:
-                System.out.println("Here are the duke.tasks in your list:");
+                System.out.println("Here are the tasks in your list:");
                 taskList.printTaskList();
                 break;
             case MARK:
