@@ -1,7 +1,11 @@
+package duke.main;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
-    protected ArrayList<Task> arr;
+    private ArrayList<Task> arr;
     public TaskList(Storage storage){
         this.arr = new ArrayList<Task>();
         storage.arr = this.arr;
@@ -18,5 +22,11 @@ public class TaskList {
     }
     public int getSize() {
         return this.arr.size();
+    }
+    public Task getTask(int i) {
+        return this.arr.get(i);
+    }
+    public ArrayList<Task> getArr() {
+        return this.arr;
     }
 }

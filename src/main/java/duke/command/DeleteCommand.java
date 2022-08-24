@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.main.DukeException;
+import duke.main.Storage;
+import duke.main.TaskList;
+import duke.main.Ui;
+import duke.task.Task;
+
 public class DeleteCommand extends Command {
     private int num;
     public DeleteCommand(int i) {

@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.main.DukeException;
+import duke.main.Storage;
+import duke.main.TaskList;
+import duke.main.Ui;
+import duke.task.DatedTask;
+import duke.task.Task;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,8 +29,8 @@ public class DateCommand extends Command {
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        ui.sayList(filter(tasks.arr, x -> x instanceof DatedTask
-                && ((DatedTask) x).date.equals(this.date)));
+        ui.sayList(filter(tasks.getArr(), x -> x instanceof DatedTask
+                && ((DatedTask) x).getDate().equals(this.date)));
     }
     public boolean isExit() {
         return false;

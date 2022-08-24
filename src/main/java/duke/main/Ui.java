@@ -1,3 +1,7 @@
+package duke.main;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Ui {
@@ -35,9 +39,9 @@ public class Ui {
                 + arr.get(num - 1).toString());
     }
 
-    public void sayUnmarked(int num, ArrayList<Task> arr) {
+    public void sayUnmarked(int num, Task t) {
         System.out.println("OK, I've marked this task as not done yet:\n"
-                + arr.get(num - 1).toString());
+                + t.toString());
     }
 
     public void sayAdded(ArrayList<Task> arr) {
