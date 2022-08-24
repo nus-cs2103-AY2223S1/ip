@@ -1,5 +1,7 @@
 package duke.commands;
 
+import java.io.IOException;
+
 import duke.enums.*;
 import duke.exceptions.DukeException;
 
@@ -40,8 +42,9 @@ public class Display implements AbstractCommand {
      * Prints a message
      * 
      * @throws DukeException
+     * @throws IOException
      */
-    public void execute() throws DukeException {
+    public void execute() throws DukeException, IOException {
         wrapWithLines("Testing...1,2,3...");
     }
 }

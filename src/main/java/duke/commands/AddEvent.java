@@ -9,8 +9,8 @@ import duke.exceptions.*;
 import duke.lists.*;
 
 public class AddEvent extends AddDeadline {
-    public AddEvent(TaskList tasks, String desc, String deadline) throws DukeException {
-        super(tasks, desc, deadline);
+    public AddEvent(TaskList tasks, String desc, String input, String deadline) throws DukeException {
+        super(tasks, desc, input, deadline);
     }
 
     /**
