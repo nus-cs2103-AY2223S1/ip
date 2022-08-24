@@ -1,8 +1,11 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
 
-    private String time;
+    private final LocalDateTime time;
 
-    public Event(String command, String time) {
+    public Event(String command, LocalDateTime time) {
         super(command);
         this.time = time;
     }
@@ -10,9 +13,11 @@ public class Event extends Task {
     @Override
     public String toString() {
         if (done) {
-            return "[E][X] " + this.description + " (at: " + this.time + ")";
+            return "[E][X] " + this.description + " (by: " +
+                    this.time.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm a")) + ")";
         } else {
-            return "[E][ ] " + this.description + " (at: " + this.time + ")";
+            return "[E][ ] " + this.description + " (by: " +
+                    this.time.format(DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm a")) + ")";
         }
     }
 

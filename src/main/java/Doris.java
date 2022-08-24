@@ -1,9 +1,14 @@
 import java.io.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class Doris {
     ArrayList<Task> list = new ArrayList<Task>();
+
+    DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
     public void start (){
         String logo = "                                                      \n" +
@@ -64,8 +69,8 @@ public class Doris {
                     if (command.length() <= 9) {
                         throw new DorisException("Oi don't anyhow type must enter a task to do leh");
                     }
-                    String[] commands = command.substring(9).split(" /by ");
-                    Deadline deadline = new Deadline(commands[0], commands[1]);
+                    String[] commands = command.split(" /by ");
+                    Deadline deadline = new Deadline(commands[0], LocalDateTime.parse(commands[1], df));
                     list.add(deadline);
                     save();
                     System.out.println("Eh this one due soon stop wasting time go do now:");
@@ -75,8 +80,8 @@ public class Doris {
                     if (command.length() <= 6) {
                         throw new DorisException("Oi don't anyhow type must enter a task to do leh");
                     }
-                    String[] commands = command.substring(6).split(" /at ");
-                    Event event = new Event(commands[0], commands[1]);
+                    String[] commands = command.split(" /at ");
+                    Event event = new Event(commands[0], LocalDateTime.parse(commands[1], df));
                     list.add(event);
                     save();
                     System.out.println("Oi remember to attend this ah:");
@@ -96,6 +101,8 @@ public class Doris {
                 System.out.println(e);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (DateTimeParseException e) {
+                System.out.println("I can only read in this format: 'yyyy-MM-dd hh:mm a', can don't confuse me");
             }
         }
     }
