@@ -1,10 +1,10 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import duke.task.Task;
 
 public class DukeList {
     private final List<Task> listItems;
@@ -18,7 +18,7 @@ public class DukeList {
     }
 
     public List<String> getListToDataStr() {
-       return listItems.stream().map(this::taskToDataStr).collect(Collectors.toList());
+        return listItems.stream().map(this::taskToDataStr).collect(Collectors.toList());
     }
 
     private String taskToDataStr(Task t) {
@@ -38,7 +38,7 @@ public class DukeList {
 
     public String add(Task item) {
         listItems.add(item);
-        return "Got it. I've added this duke.task:\n"
+        return "Got it. I've added this task:\n"
                 + item
                 + "\nNow you have "
                 + listItems.size()
@@ -49,39 +49,43 @@ public class DukeList {
     public String done(int index) throws DukeException {
         int listIndex = index - 1;
         if (listIndex < 0 || listIndex > listItems.size() - 1) {
-            throw new DukeException("Invalid duke.task to mark as done.");
+            throw new DukeException("Invalid task to mark as done.");
         }
 
         Task t = listItems.get(listIndex);
         t.markAsDone();
-        return "Nice! I've marked this duke.task as done:\n" + t;
+        return "Nice! I've marked this task as done:\n" + t;
     }
 
     public String undone(int index) throws DukeException {
         int listIndex = index - 1;
         if (listIndex < 0 || listIndex > listItems.size() - 1) {
-            throw new DukeException("Invalid duke.task to mark as undone.");
+            throw new DukeException("Invalid task to mark as undone.");
         }
 
         Task t = listItems.get(listIndex);
         t.markAsUndone();
-        return "OK, I've marked this duke.task as not done yet:\n" + t;
+        return "OK, I've marked this task as not done yet:\n" + t;
     }
 
     public String delete(int index) throws DukeException {
         int listIndex = index - 1;
         if (listIndex < 0 || listIndex > listItems.size() - 1) {
-            throw new DukeException("Invalid duke.task to delete.");
+            throw new DukeException("Invalid task to delete.");
         }
 
         Task t = listItems.get(listIndex);
         listItems.remove(listIndex);
-        return "Noted. I've removed this duke.task:\n"
+        return "Noted. I've removed this task:\n"
                 + t
                 + "\nNow you have "
                 + listItems.size()
                 + (listItems.size() == 1 ? " task" : " tasks")
                 + " in the list.";
+    }
+
+    public int getListSize() {
+        return listItems.size();
     }
 
     @Override
