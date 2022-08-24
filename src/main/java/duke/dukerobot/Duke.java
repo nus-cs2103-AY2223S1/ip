@@ -12,16 +12,16 @@ public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
-    public Duke(String filepath){
+    public Duke(String filepath) {
         this.ui = new Ui();
         try {
             this.storage = new Storage(filepath);
             this.taskList = this.storage.loadTasks();
-        }catch (IOException e){
+        } catch (IOException e) {
             this.ui.showFileCreatingError();
         }
     }
-    public void run(){
+    public void run() {
         this.ui.showWelcomeMessage();
         boolean isExit = false;
         while (!isExit) {

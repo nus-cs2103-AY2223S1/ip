@@ -9,7 +9,7 @@ public class Task {
     private boolean isDone;
     private LocalDate day;
     private String fullDescription;
-    public Task (String description){
+    public Task (String description) {
         this.description=description;
         this.isDone=false;
     }

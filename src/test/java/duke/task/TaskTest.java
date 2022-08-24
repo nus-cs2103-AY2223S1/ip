@@ -1,13 +1,12 @@
 package duke.task;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
-import duke.dukeexception.DukeException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 public class TaskTest {
     @Test
-    public void testMark(){
+    public void testMark() {
         Task t = new Task("todo borrow book");
         assertEquals(" ",t.getStatusIcon());
         t.taskDone();
@@ -15,6 +14,4 @@ public class TaskTest {
         t.taskUndone();
         assertEquals(" ",t.getStatusIcon());
     }
-
-
 }

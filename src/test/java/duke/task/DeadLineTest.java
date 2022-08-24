@@ -1,19 +1,20 @@
 package duke.task;
 
 import duke.dukeexception.DukeException;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class DeadLineTest {
     @Test
-    public void testPrintedDeadline(){
+    public void testPrintedDeadline() {
         try {
             assertEquals("[D][ ] return book  (by: 2/2/2022)",
                     new DeadLine("deadline return book by 2/2/2022").printTask());
             assertEquals("[D][ ] return book  (by: today)",
                     new DeadLine("deadline return book by today").printTask());
-        }catch (DukeException e){
+        } catch (DukeException e) {
             fail();
         }
     }
