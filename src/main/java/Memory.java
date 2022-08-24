@@ -8,12 +8,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 
-/*
-This class encapsulates the idea of a memory/ram of the chatbot
+/**
+ * This class encapsulates the idea of a memory/taskLists of the chatbot.
  */
 public class Memory {
-    //this is the ram of the chatbot
-    private ArrayList<Task> ram;
+    //this is where the tasks are stored
+    private ArrayList<Task> taskLists;
     //this is the physical file saving the items
     private static final File storageFile = new File("C:\\Users\\xudao\\OneDrive" +
             "\\Documents\\NUS FILES\\year 2\\sem 1\\cs2103t\\git\\ip\\storage.txt");
@@ -21,23 +21,35 @@ public class Memory {
     private BufferedReader reader;
     private BufferedWriter writer;
 
+    /**
+     * Constructor for the memory
+     */
     public Memory() {
-        this.ram = new ArrayList<Task>();
+        this.taskLists = new ArrayList<Task>();
         readData();
     }
 
-    public Task getTask(int index) { return ram.get(index);
+    /**
+     * Returns the task with the given index.
+     * @param index index of the task you want to retrieve
+     * @return the stored task
+     */
+    public Task getTask(int index) { return taskLists.get(index);
     }
 
+    /**
+     * Returns the number of tasks stored
+     * @return number of tasks stored
+     */
     public int getNumOfTask() {
-        return ram.size();
+        return taskLists.size();
     }
 
-    public boolean checkValidIndex(int index) {
-        return index > -1 && index < ram.size();
+    private boolean checkValidIndex(int index) {
+        return index > -1 && index < taskLists.size();
     }
 
-    //reads data in text file and saves it in ram
+    //reads data in text file and saves it in taskLists
     private void readData() {
         try {
             this.reader = new BufferedReader(new FileReader(storageFile));
@@ -50,11 +62,17 @@ public class Memory {
                 status = currentLine.substring(4, 5).equals("T");
                 switch(type) {
                     case "T":
-                        ram.add(new ToDo(currentLine.substring(8), status));
+                        taskLists.add(new ToDo(currentLine.substring(8), status));
                         break;
                     case "D":
+                        int divider = currentLine.substring(8).indexOf("|") + 8;
+                        taskLists.add(new Deadline(currentLine.substring(8, divider - 1),
+                                status, currentLine.substring(divider + 2)));
                         break;
                     case "E":
+                        int divider_2 = currentLine.substring(8).indexOf("|") + 8;
+                        taskLists.add(new Event(currentLine.substring(8, divider_2 - 1),
+                                status, currentLine.substring(divider_2 + 2)));
                         break;
                 }
             }
@@ -65,12 +83,12 @@ public class Memory {
         }
     }
 
-    //copies data stored in ram into external file
+    //copies data stored in taskLists into external file
     private void transferData() {
         try {
-            for (int i = 0; i < ram.size(); i++) {
+            for (int i = 0; i < taskLists.size(); i++) {
                 this.writer = new BufferedWriter(new FileWriter(storageFile));
-                writer.write(ram.get(i).getDescription());
+                writer.write(taskLists.get(i).getDescription());
             }
             writer.close();
         }
@@ -79,8 +97,12 @@ public class Memory {
         }
     }
 
+    /**
+     * Saves the given task.
+     * @param task given task
+     */
     public void saveTask(Task task) {
-        ram.add(task);
+        taskLists.add(task);
         try {
             this.writer = new BufferedWriter(new FileWriter(storageFile, true));
             writer.write(task.getDescription());
@@ -91,9 +113,14 @@ public class Memory {
         }
     }
 
+    /**
+     * Marks the task as completed.
+     * @param index given index of the task
+     * @throws DukeException
+     */
     public void markTask(int index) throws DukeException {
         if (checkValidIndex(index)) {
-            Task current = ram.get(index);
+            Task current = taskLists.get(index);
             if (current.getStatus()) {
                 throw new DukeException("☹ OOPS!!! The task you want to mark is already marked.");
             }
@@ -106,9 +133,14 @@ public class Memory {
         }
     }
 
+    /**
+     * Marks the task as incomplete.
+     * @param index given index of the task
+     * @throws DukeException
+     */
     public void unMarkTask(int index) throws DukeException {
-        if (index > -1 && index < ram.size()) {
-            Task current = ram.get(index);
+        if (index > -1 && index < taskLists.size()) {
+            Task current = taskLists.get(index);
             if (!current.getStatus()) {
                 throw new DukeException("☹ OOPS!!! The task you want to mark is already marked.");
             }
@@ -121,10 +153,15 @@ public class Memory {
         }
     }
 
+    /**
+     * Deletes the tasks with the given index
+     * @param index given index
+     * @throws DukeException
+     */
     public void deleteTask(int index) throws DukeException {
         if (checkValidIndex(index)) {
-            Task deletedTask = ram.get(index);
-            ram.remove(index);
+            Task deletedTask = taskLists.get(index);
+            taskLists.remove(index);
             transferData();
             String content = "Noted. I've removed this task:\n" + deletedTask.toString()
                     + numOfTaskToString();
@@ -135,19 +172,27 @@ public class Memory {
 
     }
 
+    /**
+     * Returns the string representation of the stored tasks.
+     * @return a table listing all the stored tasks
+     */
     public String toString() {
         String output = "";
-        for (int i = 0; i < ram.size(); i ++) {
-            Task current = ram.get(i);
+        for (int i = 0; i < taskLists.size(); i ++) {
+            Task current = taskLists.get(i);
             output = output + String.valueOf(i + 1) + "." + current.toString();
-            if (i != ram.size() - 1) {
+            if (i != taskLists.size() - 1) {
                 output = output + "\n";
             }
         }
         return output;
     }
 
+    /**
+     * Returns a string detailing how many tasks are stored.
+     * @return a string
+     */
     public String numOfTaskToString() {
-        return "\n" + "Now you have " + String.valueOf(ram.size()) + " tasks in the list.";
+        return "\n" + "Now you have " + String.valueOf(taskLists.size()) + " tasks in the list.";
     }
 }

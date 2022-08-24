@@ -1,2 +1,1 @@
-T | T | read book
-T | F | do ps1
+E | F | play squad | 5-8pm

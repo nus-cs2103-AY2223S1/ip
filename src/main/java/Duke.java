@@ -1,23 +1,27 @@
 import java.util.Scanner;
 
+/**
+ * This class represents a chat bot.
+ */
 public class Duke {
-    private static final String line = "------------------------------------------";
-    private static boolean END;
+    private static final String LINE = "------------------------------------------";
+    private static boolean isEnd;
     private static Memory memory;
 
     /*
     Wraps the text with lines on top and below
      */
     public static String wrapper(String content) {
-        return line + "\n" + content + "\n" + line;
+        return LINE + "\n" + content + "\n" + LINE;
     }
+
     /*
     Decides on what the chatbox will respond with based on user input.
      */
     public void Response(String input) throws DukeException {
         String done = "Got it. I've added this task:\n";
         if (input.equals("bye")) {
-            END = true;
+            isEnd = true;
             System.out.println(wrapper("Bye. Hope to see you again soon!"));
         } else if (input.equals("list")) {
             System.out.println(wrapper(memory.toString()));
@@ -78,9 +82,10 @@ public class Duke {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
+
     public static void main(String[] args) {
         Duke duke = new Duke();
-        END = false;
+        isEnd = false;
         Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -89,7 +94,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println(duke.wrapper(logo + "Hello! I'm Duke\nWhat can I do for you?"));
         memory = new Memory();
-        while (!END) {
+        while (!isEnd) {
             try {
                 duke.Response(myScanner.nextLine());
             } catch (DukeException e){

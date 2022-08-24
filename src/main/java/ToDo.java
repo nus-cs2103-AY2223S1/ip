@@ -1,8 +1,13 @@
-/*
-This class encapsulates the idea of a to do
+/**
+ * This class encapsulates the idea of a todo.
  */
 public class ToDo extends Task {
 
+    /**
+     * Constructor for ToDo.
+     * @param description what the todo is
+     * @param status whether it has been completed
+     */
     public ToDo(String description, boolean status) {
         super(description, status);
     }
