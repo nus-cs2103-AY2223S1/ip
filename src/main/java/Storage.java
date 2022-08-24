@@ -45,14 +45,14 @@ public class Storage {
     }
 
     private void createFile() {
+        this.dataFile.getParentFile().mkdir();
         try {
             if (this.dataFile.createNewFile()) {
-                System.out.println("File created: " + this.dataFile.getName());
+                System.out.println("File created: " + this.dataFile.getPath());
             }
         } catch (IOException e) {
             System.out.println(e);
             System.out.println("File not successfully created");
-            System.exit(0);
         }
     }
 
