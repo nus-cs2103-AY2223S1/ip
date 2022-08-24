@@ -16,11 +16,13 @@ Nice! I've marked this task as done:
 Noted. I've removed this task:
 [D][ ] sleep (by: 4am)
 Now you have 2 task(s) in the list.
+Here are the tasks in your list:
 1.[T][X] eat
 2.[E][X] meeting (at: 7am)
 Noted. I've removed this task:
 [T][X] eat
 Now you have 1 task(s) in the list.
+Here are the tasks in your list:
 1.[E][X] meeting (at: 7am)
 ☹ OOPS!!! The description of a todo cannot be empty.
 ☹ OOPS!!! Please indicate a description and date/time separated by /by
