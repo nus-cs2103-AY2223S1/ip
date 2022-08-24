@@ -2,124 +2,67 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
-        Scanner dukeScanner = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Hello i'm Duke\nHow may i help you today?");
-        ArrayList<Task> taskList  = new ArrayList<Task>();
+    private static ArrayList<Task> taskList  = new ArrayList<Task>();
 
-        String input;
-        while (true) {
-            input = dukeScanner.nextLine();
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);  // Create a Scanner object
+        welcome();
+
+        String input = sc.nextLine();
+        while (!input.equals("bye")) {
             try {
-                if (input.equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!");
-                    break;
-                } else if (input.equals("list")) {
-                    taskDisplay(taskList);
-                } else {
-                    checkTask(input, taskList);
-                }
+                processCommand(input);
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
+            } finally {
+                input = sc.nextLine();
             }
         }
+        terminate();
     }
 
-    /**
-     * Checks input of user and react accordingly based on the command
-     * @param input String input of the user
-     * @param taskArrayList Arraylist which stores tasks added by user
-     */
-    private static void checkTask(String input, ArrayList<Task> taskArrayList) throws DukeException {
-        String[] cmdAndDesc = input.split(" ", 2);
-        String command = cmdAndDesc[0];
+    private static void welcome() {
+        System.out.println("Hello!\n" +
+                "How may i help you today?");
+    }
+
+    private static void terminate() {
+        System.out.println("Bye. Hope to see you again soon!");
+    }
+
+    private static void processCommand(String input) throws DukeException {
+        String[] commandAndDescription = input.split(" ", 2);
+        String command = commandAndDescription[0];
 
         switch (command) {
-            case "mark":
-                if (cmdAndDesc.length == 1) {
-                    throw new DukeException("☹ OOPS!!! " +
-                            "The description of mark cannot be empty.");
-                }
-                int indexToMark = Integer.parseInt(cmdAndDesc[1]) - 1;
-                taskArrayList.get(indexToMark).markAsDone();
-                System.out.println("Nice! I've marked this task as done:\n" +
-                        String.format("%s", taskArrayList.get(indexToMark)));
-                break;
-            case "unmark":
-                if (cmdAndDesc.length == 1) {
-                    throw new DukeException("☹ OOPS!!! " +
-                            "The description of unmark cannot be empty.");
-                }
-                int indexToUnmark = Integer.parseInt(cmdAndDesc[1]) - 1;
-                taskArrayList.get(indexToUnmark).markAsUndone();
-                System.out.println("Ok! I've marked this task as not done yet:\n" +
-                        String.format("%s", taskArrayList.get(indexToUnmark)));
-                break;
-            case "delete" :
-                if (cmdAndDesc.length == 1) {
-                    throw new DukeException("☹ OOPS!!! " +
-                            "The description of delete cannot be empty.");
-                }
-                int indexToDelete = Integer.parseInt(cmdAndDesc[1]) - 1;
-                System.out.println("Noted. I've removed this task:\n" +
-                        String.format("\t%s", taskArrayList.get(indexToDelete)));
-                taskArrayList.remove(indexToDelete);
-                listStatus(taskArrayList);
-                break;
-            case "deadline" :
-                if (cmdAndDesc.length == 1) {
-                    throw new DukeException("☹ OOPS!!! " +
-                            "The description of deadline cannot be empty.");
-                }
-                String[] descAndDue = cmdAndDesc[1].split("/by ");
-                if (descAndDue.length == 1) {
-                    throw new DukeException("☹ OOPS!!! " +
-                            "There is no specified date/time for the deadline.");
-                }
-                taskAddition();
-                taskArrayList.add(new Deadline(descAndDue[0], descAndDue[1]));
-                System.out.println(String.format("\t%s",
-                        taskArrayList.get(taskArrayList.size() - 1)));
-                listStatus(taskArrayList);
-                break;
-            case "event" :
-                if (cmdAndDesc.length == 1) {
-                    throw new DukeException("☹ OOPS!!! " +
-                            "The description of event cannot be empty.");
-                }
-                String[] descAndDuration = cmdAndDesc[1].split("/at ");
-                if (descAndDuration.length == 1) {
-                    throw new DukeException("☹ OOPS!!! " +
-                            "There is no specified time duration for the event.");
-                }
-                taskAddition();
-                taskArrayList.add(new Event(descAndDuration[0], descAndDuration[1]));
-                System.out.println(String.format("\t%s",
-                        taskArrayList.get(taskArrayList.size() - 1)));
-                listStatus(taskArrayList);
-                break;
-            case "todo" :
-                if (cmdAndDesc.length == 1) {
-                    throw new DukeException("☹ OOPS!!! " +
-                            "The description of todo cannot be empty.");
-                }
-                taskAddition();
-                taskArrayList.add(new ToDo(cmdAndDesc[1]));
-                System.out.println(String.format("\t%s",
-                        taskArrayList.get(taskArrayList.size() - 1)));
-                listStatus(taskArrayList);
-                break;
-            default:
-                throw new DukeException("☹ OOPS!!! " +
-                        "I'm sorry, but I don't know what that means :-(");
+        case "list" :
+            listDisplay(taskList);
+            break;
+        case "mark" :
+            markAsDone(commandAndDescription);
+            break;
+        case "unmark":
+            markAsUndone(commandAndDescription);
+            break;
+        case "delete" :
+            deleteTask(commandAndDescription);
+            break;
+        case "deadline" :
+            createDeadline(commandAndDescription);
+            break;
+        case "event" :
+            createEvent(commandAndDescription);
+            break;
+        case "todo" :
+            createToDo(commandAndDescription);
+            break;
+        default:
+            throw new DukeException("☹ OOPS!!! " +
+                    "I'm sorry, but I don't know what that means :-(");
         }
     }
 
-    /**
-     * Returns string representation of list of tasks.
-     * @param list Arraylist of tasks as inputted by the user
-     */
-    private static void taskDisplay(ArrayList<Task> list) {
+    private static void listDisplay(ArrayList<Task> list) {
         if (list.size() == 0) {
             System.out.println("There are currently no tasks in your list");
         } else {
@@ -130,17 +73,86 @@ public class Duke {
         }
     }
 
-    /**
-     * Print message for addition of task.
-     */
-    private static void taskAddition() {
-        System.out.println("Got it. I've added this task:");
+    private static void markAsDone(String[] commandAndDescription) throws DukeException {
+        if (commandAndDescription.length == 1) {
+            throw new DukeException("☹ OOPS!!! " +
+                    "The description of mark cannot be empty.");
+        }
+        int indexToMark = Integer.parseInt(commandAndDescription[1]) - 1;
+        taskList.get(indexToMark).markAsDone();
+        System.out.println("Nice! I've marked this task as done:\n" +
+                String.format("%s", taskList.get(indexToMark)));
     }
 
-    /**
-     * Prints current status of arraylist.
-     * @param list Arraylist
-     */
+    private static void markAsUndone(String[] commandAndDescription) throws DukeException {
+        if (commandAndDescription.length == 1) {
+            throw new DukeException("☹ OOPS!!! " +
+                    "The description of unmark cannot be empty.");
+        }
+        int indexToUnmark = Integer.parseInt(commandAndDescription[1]) - 1;
+        taskList.get(indexToUnmark).markAsUndone();
+        System.out.println("Ok! I've marked this task as not done yet:\n" +
+                String.format("%s", taskList.get(indexToUnmark)));
+    }
+
+    private static void deleteTask(String[] commandAndDescription) throws DukeException {
+        if (commandAndDescription.length == 1) {
+            throw new DukeException("☹ OOPS!!! " +
+                    "The description of delete cannot be empty.");
+        }
+        int indexToDelete = Integer.parseInt(commandAndDescription[1]) - 1;
+        System.out.println("Noted. I've removed this task:\n" +
+                String.format("\t%s", taskList.get(indexToDelete)));
+        taskList.remove(indexToDelete);
+        listStatus(taskList);
+    }
+
+    private static void createDeadline(String[] commandAndDescription) throws DukeException {
+        if (commandAndDescription.length == 1) {
+            throw new DukeException("☹ OOPS!!! " +
+                    "The description of deadline cannot be empty.");
+        }
+        String[] descAndDue = commandAndDescription[1].split("/by ");
+        if (descAndDue.length == 1) {
+            throw new DukeException("☹ OOPS!!! " +
+                    "There is no specified date/time for the deadline.");
+        }
+        System.out.println("Got it. I've added this task:");
+        taskList.add(new Deadline(descAndDue[0], descAndDue[1]));
+        System.out.println(String.format("\t%s",
+                taskList.get(taskList.size() - 1)));
+        listStatus(taskList);
+    }
+
+    private static void createEvent(String[] commandAndDescription) throws DukeException {
+        if (commandAndDescription.length == 1) {
+            throw new DukeException("☹ OOPS!!! " +
+                    "The description of event cannot be empty.");
+        }
+        String[] descAndDuration = commandAndDescription[1].split("/at ");
+        if (descAndDuration.length == 1) {
+            throw new DukeException("☹ OOPS!!! " +
+                    "There is no specified time duration for the event.");
+        }
+        System.out.println("Got it. I've added this task:");
+        taskList.add(new Event(descAndDuration[0], descAndDuration[1]));
+        System.out.println(String.format("\t%s",
+                taskList.get(taskList.size() - 1)));
+        listStatus(taskList);
+    }
+
+    private static void createToDo(String[] commandAndDescription) throws DukeException {
+        if (commandAndDescription.length == 1) {
+            throw new DukeException("☹ OOPS!!! " +
+                    "The description of todo cannot be empty.");
+        }
+        System.out.println("Got it. I've added this task:");
+        taskList.add(new ToDo(commandAndDescription[1]));
+        System.out.println(String.format("\t%s",
+                taskList.get(taskList.size() - 1)));
+        listStatus(taskList);
+    }
+    
     private static void listStatus(ArrayList<Task> list) {
         System.out.println(String.format("Now you have %d tasks in the list.",
                 list.size()));
