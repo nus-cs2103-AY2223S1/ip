@@ -1,13 +1,21 @@
 package duke.task;
 
-import duke.DukeCommand;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import duke.DukeCommand;
+
+/**
+ * A Task which is an Event.
+ */
 public class Event extends Task {
     protected LocalDateTime at;
 
+    /**
+     * Constructor for an Event.
+     * @param description The description of the Event.
+     * @param at The time of the Event.
+     */
     public Event(String description, LocalDateTime at) {
         super(description);
         this.at = at;

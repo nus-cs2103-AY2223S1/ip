@@ -1,21 +1,31 @@
 package duke;
 
-import duke.response.DeadlineResponse;
-import duke.response.DeleteResponse;
-import duke.response.DukeResponse;
-import duke.response.ExitResponse;
-import duke.response.EventResponse;
-import duke.response.ListResponse;
-import duke.response.MarkResponse;
-import duke.response.TodoResponse;
-import duke.response.UnmarkResponse;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 
+import duke.response.DeadlineResponse;
+import duke.response.DeleteResponse;
+import duke.response.DukeResponse;
+import duke.response.EventResponse;
+import duke.response.ExitResponse;
+import duke.response.ListResponse;
+import duke.response.MarkResponse;
+import duke.response.TodoResponse;
+import duke.response.UnmarkResponse;
+
+/**
+ * Parses user input and converts strings to datetime formats.
+ */
 public class Parser {
+    /**
+     * Returns a DukeResponse based on input.
+     * @param list The task list.
+     * @param input The user input.
+     * @return An appropriate DukeResponse.
+     * @throws DukeException If unable to read command.
+     */
     public static DukeResponse getResponse(DukeList list, String input) throws DukeException {
         DukeCommand command = getCommand(input);
         String data = getData(input);
@@ -61,14 +71,20 @@ public class Parser {
         return "";
     }
 
+    /**
+     * Converts a String with date and time from user input to LocalDateTime.
+     * @param dateTimeStr The String with a date and time.
+     * @return A LocalDateTime object.
+     * @throws DukeException If the String contains an invalid date time format.
+     */
     public static LocalDateTime strToDate(String dateTimeStr) throws DukeException {
         try {
             DateTimeFormatterBuilder formatBuilder = new DateTimeFormatterBuilder()
                     .parseCaseInsensitive()
-                    .appendPattern("[d MMM yyyy h[:mm][ ]a]")   // 23 Aug 2022 6[:30][ ]pm
-                    .appendPattern("[d MMM h[:mm][ ]a]")        // 23 Aug 6[:30][ ]pm
-                    .appendPattern("[d/M/yyyy HHmm]")           // 23/8/2022 1830
-                    .appendPattern("[d/M HHmm]")                // 23/8 1830
+                    .appendPattern("[d MMM yyyy h[:mm][ ]a]") // 23 Aug 2022 6[:30][ ]pm
+                    .appendPattern("[d MMM h[:mm][ ]a]")      // 23 Aug 6[:30][ ]pm
+                    .appendPattern("[d/M/yyyy HHmm]")         // 23/8/2022 1830
+                    .appendPattern("[d/M HHmm]")              // 23/8 1830
                     .parseDefaulting(ChronoField.YEAR_OF_ERA, LocalDateTime.now().getYear())
                     .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0);
             return LocalDateTime.parse(dateTimeStr, formatBuilder.toFormatter());
@@ -77,6 +93,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts a String with date and time from data file to LocalDateTime.
+     * @param dateTimeStr The String with a date and time.
+     * @return A LocalDateTime object.
+     */
     public static LocalDateTime strToDateFromStorage(String dateTimeStr) {
         return LocalDateTime.parse(dateTimeStr);
     }

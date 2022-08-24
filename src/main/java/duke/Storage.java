@@ -1,10 +1,5 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -12,14 +7,31 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
+/**
+ * Handles the reading and writing of the task list to storage.
+ */
 public class Storage {
-    public static final String fileStrDivider = " | ";
+    public static final String FILE_STR_DIVIDER = " | ";
     private final Path dataPath;
 
+    /**
+     * Constructor for Storage.
+     * @param dataPath The path to store the data.
+     */
     public Storage(Path dataPath) {
         this.dataPath = dataPath;
     }
 
+    /**
+     * Reads the data file and gets the task list.
+     * @return The task list.
+     * @throws DukeException If the data file cannot be read.
+     */
     public List<Task> read() throws DukeException {
         if (Files.exists(this.dataPath)) {
             // File and dir exists, read from file
@@ -54,6 +66,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts the String representation to a Task object.
+     * @param taskStr The String representation of a Task.
+     * @return A Task.
+     * @throws DukeException If the Task cannot be read.
+     */
     private Task readTask(String taskStr) throws DukeException {
         String[] data = taskStr.split("\\|", 3);
 
@@ -61,11 +79,11 @@ public class Storage {
         int status = Integer.parseInt(data[1].trim());
         String desc = data[2].trim();
         String time = "";
-        if (data[2].contains(fileStrDivider)) {
+        if (data[2].contains(FILE_STR_DIVIDER)) {
             // String contains more data
-            int timeIndex = data[2].lastIndexOf(fileStrDivider);
+            int timeIndex = data[2].lastIndexOf(FILE_STR_DIVIDER);
             desc = desc.substring(0, timeIndex).trim();
-            time = data[2].substring(timeIndex + fileStrDivider.length()).trim();
+            time = data[2].substring(timeIndex + FILE_STR_DIVIDER.length()).trim();
         }
 
         switch (command) {
@@ -95,6 +113,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the task list to storage.
+     * @param list The task list to save.
+     * @throws DukeException If the data file cannot be written to.
+     */
     public void write(DukeList list) throws DukeException {
         try {
             Files.write(this.dataPath, list.getListToDataStr(), Charset.defaultCharset());

@@ -3,10 +3,18 @@ package duke.response;
 import duke.DukeException;
 import duke.DukeList;
 
+/**
+ * A DukeResponse to mark a Task as done.
+ */
 public class MarkResponse extends DukeResponse {
     protected DukeList list;
     protected String data;
 
+    /**
+     * Constructor for a MarkResponse.
+     * @param list The task list.
+     * @param data The data for marking Task as done.
+     */
     public MarkResponse(DukeList list, String data) {
         this.list = list;
         this.data = data;

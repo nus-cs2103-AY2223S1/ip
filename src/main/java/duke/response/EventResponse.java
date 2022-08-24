@@ -3,13 +3,20 @@ package duke.response;
 import duke.DukeException;
 import duke.DukeList;
 import duke.Parser;
-
 import duke.task.Event;
 
+/**
+ * A DukeResponse for an Event.
+ */
 public class EventResponse extends DukeResponse {
     protected DukeList list;
     protected String data;
 
+    /**
+     * Constructor for an EventResponse.
+     * @param list The task list.
+     * @param data The data for a new Event.
+     */
     public EventResponse(DukeList list, String data) {
         this.list = list;
         this.data = data;

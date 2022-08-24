@@ -3,13 +3,20 @@ package duke.response;
 import duke.DukeException;
 import duke.DukeList;
 import duke.Parser;
-
 import duke.task.Deadline;
 
+/**
+ * A DukeResponse for a Deadline.
+ */
 public class DeadlineResponse extends DukeResponse {
     protected DukeList list;
     protected String data;
 
+    /**
+     * Constructor for a DeadlineResponse.
+     * @param list The task list.
+     * @param data The data for a new Deadline.
+     */
     public DeadlineResponse(DukeList list, String data) {
         this.list = list;
         this.data = data;

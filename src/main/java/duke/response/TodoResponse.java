@@ -2,13 +2,20 @@ package duke.response;
 
 import duke.DukeException;
 import duke.DukeList;
-
 import duke.task.Todo;
 
+/**
+ * A DukeResponse for a Todo.
+ */
 public class TodoResponse extends DukeResponse {
     protected DukeList list;
     protected String data;
 
+    /**
+     * Constructor for a TodoResponse.
+     * @param list The task list.
+     * @param data The data for a new Todo.
+     */
     public TodoResponse(DukeList list, String data) {
         this.list = list;
         this.data = data;

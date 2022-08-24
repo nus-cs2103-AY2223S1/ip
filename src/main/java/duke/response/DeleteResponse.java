@@ -3,17 +3,25 @@ package duke.response;
 import duke.DukeException;
 import duke.DukeList;
 
+/**
+ * A DukeResponse for a task deletion.
+ */
 public class DeleteResponse extends DukeResponse {
     protected DukeList list;
     protected String data;
 
+    /**
+     * Constructor for a DeleteResponse.
+     * @param list The task list.
+     * @param data The data for task deletion.
+     */
     public DeleteResponse(DukeList list, String data) {
         this.list = list;
         this.data = data;
     }
 
     @Override
-    public void run () throws DukeException {
+    public void run() throws DukeException {
         if (data.isEmpty()) {
             throw new DukeException("Please enter duke.task to delete.");
         }
