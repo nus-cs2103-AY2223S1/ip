@@ -1,6 +1,6 @@
 class Deadline extends Task {
     public static String FLAG = " /by";
-    private String time;
+    private static int typeKey = Task.getTypeKey(Task.Type.DEADLINE);
 
     private static String extractName(String input) throws CarbonException {
         int flagIndex = input.indexOf(Deadline.FLAG);
@@ -25,9 +25,33 @@ class Deadline extends Task {
         }
     }
 
-    public Deadline(String input) {
-        super(Deadline.extractName(input));
-        this.time = Deadline.extractTime(input);
+    public static Task createTask(String input) {
+        String name = Deadline.extractName(input);
+        String time = Deadline.extractTime(input);
+        Task deadline = new Deadline(name, false, time);
+        return deadline;
+    }
+
+    public static Task loadTask(String name, Boolean isDone, String time) {
+        Task deadline = new Deadline(name, isDone, time);
+        return deadline;
+    }
+
+    private String time;
+    
+    private Deadline(String name, Boolean isDone, String time) {
+        super(name, isDone);
+        this.time = time;
+    }
+
+    @Override
+    public String encode() {
+        int typeKey = Deadline.typeKey;
+        int isDone = this.isDone ? 1 : 0;
+        String result = String.format(
+                "%d|%d|%s|%s\n", typeKey, isDone, this.name, this.time
+                );
+        return result;
     }
 
     @Override

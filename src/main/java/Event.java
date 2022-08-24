@@ -1,6 +1,6 @@
 class Event extends Task {
     public static String FLAG = " /at";
-    private String time;
+    private static int typeKey = Task.getTypeKey(Task.Type.EVENT);
 
     private static String extractName(String input) {
         int flagIndex = input.indexOf(Event.FLAG);
@@ -25,9 +25,33 @@ class Event extends Task {
         }
     }
 
-    public Event(String input) {
-        super(Event.extractName(input));
-        this.time = Event.extractTime(input);
+    public static Task createTask(String input) {
+        String name = Event.extractName(input);
+        String time = Event.extractTime(input);
+        Task event = new Event(name, false, time);
+        return event;
+    }
+
+    public static Task loadTask(String name, Boolean isDone, String time) {
+        Task event = new Event(name, isDone, time);
+        return event;
+    }
+
+    private String time;
+
+    private Event(String name, Boolean isDone, String time) {
+        super(name, isDone);
+        this.time = time;
+    }
+
+    @Override
+    public String encode() {
+        int typeKey = Event.typeKey;
+        int isDone = this.isDone ? 1 : 0;
+        String result = String.format(
+                "%d|%d|%s|%s\n", typeKey, isDone, this.name, this.time
+                );
+        return result;
     }
 
     @Override
