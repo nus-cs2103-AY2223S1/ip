@@ -69,6 +69,11 @@ public class Parser {
                 AddCommand addEventNameCommand = new AddCommand(event);
                 return addEventNameCommand;
 
+            case "find":
+                String keyword = strArr[1];
+                FindCommand findCommand = new FindCommand(keyword);
+                return findCommand;
+
             default:
                 DefaultCommand defaultCommand = new DefaultCommand();
                 return defaultCommand;

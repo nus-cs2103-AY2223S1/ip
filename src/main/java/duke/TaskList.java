@@ -37,4 +37,14 @@ public class TaskList {
         this.tasks.add(task);
     }
 
+    public ArrayList<Task> find(String keyword) {
+        ArrayList<Task> filteredList = new ArrayList<>();
+        for (Task task: tasks) {
+            if (task.toString().contains(keyword)) {
+                filteredList.add(task);
+            }
+        }
+        return filteredList;
+    }
+
 }
