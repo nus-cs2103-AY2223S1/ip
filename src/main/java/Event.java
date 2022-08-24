@@ -1,13 +1,20 @@
-public class Event extends Task {
-    protected String at;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, String at) {
+public class Event extends Task {
+    protected ZonedDateTime at;
+
+    public Event(String description, ZonedDateTime at) {
         super(description);
         this.at = at;
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.at);
+        return String.format(
+                "[E]%s (at: %s)",
+                super.toString(),
+                this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy, hh:mma"))
+        );
     }
 }

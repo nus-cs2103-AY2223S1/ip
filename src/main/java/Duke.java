@@ -1,3 +1,8 @@
+import java.time.DateTimeException;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.*;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,6 +11,17 @@ import java.util.Scanner;
  */
 public class Duke {
     protected ArrayList<Task> taskList = new ArrayList<Task>();
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
+            .appendPattern("dd/MM/yyyy ")
+            .optionalStart()
+            .appendPattern("HH:mm ")
+            .optionalEnd()
+            .appendZoneText(TextStyle.SHORT)
+            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+            .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+            .toFormatter();
+    protected ZoneId timeZone = ZoneId.of("GMT+00:00");
 
     public static void main(String[] args) {
         System.out.println("Hello from\n" + "MAKIBOT");
@@ -18,6 +34,23 @@ public class Duke {
                         "Now you have %d tasks in the list.",
                 t, taskList.size())
         );
+    }
+
+    protected void getTimeZone() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("You are currently in timezone: " + this.timeZone +
+                "\nWould you like to change your timezone? Y/N");
+
+        if (sc.hasNextLine() && sc.nextLine().toUpperCase().equals("Y")) {
+            System.out.println("What is your timezone relative to GMT? (+/-HH:mm)");
+            try {
+                this.timeZone = ZoneId.of("GMT" + sc.nextLine());
+                System.out.println("Your timezone is now " + this.timeZone);
+            } catch (DateTimeException e){
+                System.out.println("☹ OOPS!!! I don't understand that timezone.");
+                this.getTimeZone();
+            }
+        }
     }
 
     protected void bye() {
@@ -37,7 +70,7 @@ public class Duke {
 
     protected void mark(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
-            throw new DukeEmptyCommandException("mark");
+            throw new DukeFormatCommandException("mark");
         }
 
         if (taskList.isEmpty()) {
@@ -56,7 +89,7 @@ public class Duke {
 
     protected void unmark(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
-            throw new DukeEmptyCommandException("unmark");
+            throw new DukeFormatCommandException("unmark");
         }
 
         if (taskList.isEmpty()) {
@@ -75,7 +108,7 @@ public class Duke {
 
     protected void delete(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
-            throw new DukeEmptyCommandException("delete");
+            throw new DukeFormatCommandException("delete");
         }
 
         if (taskList.isEmpty()) {
@@ -97,7 +130,7 @@ public class Duke {
 
     protected void newTodo(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
-            throw new DukeEmptyCommandException("todo");
+            throw new DukeFormatCommandException("todo");
         }
 
         Todo td = new Todo(fullCommand[1]);
@@ -107,37 +140,41 @@ public class Duke {
 
     protected void newDeadline(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
-            throw new DukeEmptyCommandException("deadline");
+            throw new DukeFormatCommandException("deadline");
         }
 
         try {
             String[] newDeadline = fullCommand[1].split(" /by ", 2);
-            Deadline dl = new Deadline(newDeadline[0], newDeadline[1]);
+            System.out.println(newDeadline[1]);
+            ZonedDateTime by = ZonedDateTime.parse(newDeadline[1] + " " + this.timeZone, DATE_TIME_FORMATTER);
+            Deadline dl = new Deadline(newDeadline[0], by);
             taskList.add(dl);
             printNewTaskMessage(dl);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeEmptyCommandException("deadline", "/by");
+        } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
+            throw new DukeFormatCommandException("deadline", "/by");
         }
     }
 
     protected void newEvent(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
-            throw new DukeEmptyCommandException("event");
+            throw new DukeFormatCommandException("event");
         }
 
         try {
             String[] newEvent = fullCommand[1].split(" /at ", 2);
-            Event ev = new Event(newEvent[0], newEvent[1]);
+            ZonedDateTime at = ZonedDateTime.parse(newEvent[1] + " " + this.timeZone, DATE_TIME_FORMATTER);
+            Event ev = new Event(newEvent[0], at);
             taskList.add(ev);
             printNewTaskMessage(ev);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new DukeEmptyCommandException("event", "/at");
+        } catch (ArrayIndexOutOfBoundsException | DateTimeParseException  e) {
+            throw new DukeFormatCommandException("event", "/at");
         }
     }
 
     protected void start() {
-        System.out.println("Hello! I'm Makibot\n" +
-                "What can I do for you?");
+        System.out.println("Hello! I'm MAKIBOT");
+        this.getTimeZone();
+        System.out.println("Welcome! What can I do for you?");
         this.eventLoop();
     }
 
