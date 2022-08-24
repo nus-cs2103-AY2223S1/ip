@@ -1,5 +1,7 @@
 package ui;
 
+import java.util.Scanner;
+
 public class Ui {
 
   /**
@@ -14,18 +16,20 @@ public class Ui {
    *
    * @param message The message to be printed.
    */
-  public static void println(String message) {
+  public static void print(String message) {
     System.out.println(message);
     endMessage();
   }
 
   /**
-   * Prints a message to the ui. Does not print a new line.
+   * Sets the ui to await the user's input.
    *
-   * @param message The message to be printed.
+   * @param sc The Scanner object with which to read the user's input.
+   * @return Returns the user's input.
    */
-  public static void print(String message) {
-    System.out.print(message);
-    endMessage();
+  public static String awaitUserInput(Scanner sc) {
+    System.out.println("You: ");
+    String input = sc.nextLine();
+    return input;
   }
 }
