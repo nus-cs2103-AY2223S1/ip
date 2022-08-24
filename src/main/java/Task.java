@@ -7,12 +7,20 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     public void markAsDone() {
         this.isDone = true;
     }
 
     public void markAsNotDone() {
         this.isDone = false;
+    }
+
+    public String toDataFormat() {
+        return "The data are as follows:";
     }
 
     @Override
