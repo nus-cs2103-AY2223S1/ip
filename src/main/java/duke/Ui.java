@@ -1,9 +1,11 @@
+package duke;
+
 public class Ui {
     public Ui() {
     }
 
     public void greet() {
-        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+        System.out.println("Hello! I'm Duke.\nWhat can I do for you?");
     }
 
     public void showLoadingError(Exception e) {

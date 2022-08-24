@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -73,7 +75,7 @@ public class Storage {
                 writer.write(tasks.get(i) + "\n");
             }
             writer.close();
-            System.out.println("Duke.txt is fully updated.");
+            System.out.println("duke.Duke.txt is fully updated.");
         } catch (IOException e) {
             System.out.println("An error occurred when trying to save your task list. Please try again.");
         }
