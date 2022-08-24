@@ -1,12 +1,12 @@
 public class Task {
     private TaskType type;
     private String name;
-    private boolean marked;
+    private boolean isMarked;
 
-    public Task(TaskType type, String name, boolean marked) {
+    public Task(TaskType type, String name, boolean isMarked) {
         this.type = type;
         this.name = name;
-        this.marked = marked;
+        this.isMarked = isMarked;
     }
 
     public TaskType getTaskType() {
@@ -18,20 +18,20 @@ public class Task {
     }
 
     public boolean isMarked() {
-        return marked;
+        return isMarked;
     }
 
     public void markT() {
-        marked = true;
+        isMarked = true;
     }
 
     public void unmarkT() {
-        marked = false;
+        isMarked = false;
     }
 
     @Override
     public String toString() {
-        if (marked) {
+        if (isMarked) {
             return "[X] " + name;
         }
 

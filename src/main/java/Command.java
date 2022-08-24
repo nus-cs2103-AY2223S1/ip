@@ -1,15 +1,12 @@
-import java.util.ArrayList;
-
 abstract class Command {
-    private String cmd;
+    private String info;
 
-    public Command (String cmd) {
-        this.cmd = cmd;
+    public Command (String info) {
+        this.info = info;
     }
 
-    public String getCmd () {
-        return this.cmd;
+    public String getInfo () {
+        return this.info;
     }
-
-    abstract void execute (String str, ArrayList<Task> tasks) throws DukeException;
+    abstract void execute (Ui ui, TaskList taskList) throws DukeException;
 }

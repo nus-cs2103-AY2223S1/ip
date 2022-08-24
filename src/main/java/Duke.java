@@ -1,120 +1,39 @@
-import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Duke {
+    
+    private Storage storage;
+    private  TaskList taskList;
+    private Ui ui;
 
-    private static ArrayList<Task> tasks = new ArrayList<Task>();
-
-
-    public static void readFile() throws FileNotFoundException {
+    public Duke (String filePath) throws FileNotFoundException {
+        ui = new Ui();
+        storage = new Storage(ui, filePath);
         try {
-            File file ,txt;
-            FileReader fr;
-            BufferedReader br;
-
-            file = new File("./data/");
-            if (!file.exists()) {
-                file.mkdir();
-            }
-
-            txt = new File("./data/duke.txt");
-            if (!txt.exists()) {
-                txt.createNewFile();
-            }
-            fr = new FileReader(txt);
-
-            br = new BufferedReader(fr);
-            String line;
-
-            while (true) {
-                line = br.readLine();
-                if (line == null) {
-                    break;
-                }
-
-                String[] info = line.split(" / ", 4);
-                switch (info[0]) {
-                    case "T":
-                        tasks.add(new Todo(TaskType.TODO, info[2], info[1].equals("1")));
-                        break;
-                    case "D":
-                        tasks.add(new Deadline(TaskType.TODO, info[2], info[1].equals("1"), info[3]));
-                        break;
-                    case "E":
-                        tasks.add(new Event(TaskType.TODO, info[2], info[1].equals("1"), info[3]));
-                        break;
-                    default:
-                        break;
-                }
-
-            }
-        } catch (FileNotFoundException msg) {
-            System.out.println(msg);
-        } catch (IOException e) {
-            e.printStackTrace();
+            taskList = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError(e.toString());
+            taskList = new TaskList();
         }
     }
 
-    private static void writeFile(ArrayList<Task> tasks) throws IOException {
-        try {
-            File writeF = new File("./data/duke.txt");
-            if(!writeF.exists()) {
-                writeF.createNewFile();
+    public void run() throws DukeException, IOException {
+        ui.showGreetMsg();
+        while (true) {
+            ui.showLine();
+            String input = ui.readCommand();
+            Command currCmd = ui.run(input);
+            currCmd.execute(ui, taskList);
+
+            if (currCmd instanceof ExitCommand) {
+                break;
             }
-            FileWriter fw = new FileWriter(writeF);
-            for (int i = 0; i < tasks.size(); i ++) {
-                Task curr = tasks.get(i);
-                String type = "";
-                String marked;
-                String name;
-                String time = "";
-
-                marked = curr.isMarked()
-                        ? "1 / "
-                        : "0 / ";
-                name = curr.getName() + " / ";
-
-                switch (curr.getTaskType()) {
-                    case TODO:
-                        type = "T / ";
-                        time = "";
-                        break;
-                    case DEADLINE:
-                        type = "D / ";
-                        Deadline dl = (Deadline) curr;
-                        time = dl.getTime();
-                        break;
-                    case EVENT:
-                        type = "E / ";
-                        Event event = (Event) curr;
-                        time = event.getTime();
-                        break;
-                    default :
-                        break;
-                }
-
-                String line = type + marked + name + time + "\n";
-
-                fw.write(line);
-            }
-
-            fw.close();
-
-        } catch (FileNotFoundException msg) {
-            System.out.println(msg);
         }
+        storage.writeFile(taskList);
     }
 
     public static void main(String[] args) throws DukeException, IOException {
-        readFile();
-
-        Command cmd = new GreetCmd("");
-        cmd.execute("", tasks);
-
-        Echo start = new Echo();
-        start.echo(tasks);
-
-        writeFile(tasks);
+        new Duke("./data/duke.txt").run();
     }
 }
