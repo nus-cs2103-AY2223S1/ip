@@ -5,14 +5,27 @@ import java.util.Scanner;
 import duke.exceptions.DukeException;
 import duke.tasklist.TaskList;
 
+/**
+ * Parser to handle user input.
+ */
 public class Parser {
 
+    /** Scanner to take in user input. */
     private Scanner in;
 
+    /**
+     * Constructor for parser object.
+     * @param in Scanner object that reads user input.
+     */
     public Parser(Scanner in) {
         this.in = in;
     }
 
+    /**
+     * Handles user input and calls methods accordingly.
+     * @return Boolean to indicate end command has been sent.
+     * @throws DukeException In the event that the command is not recognised.
+     */
     public boolean handleInput() throws DukeException {
         TaskList tasklist = TaskList.getInstance();
 
