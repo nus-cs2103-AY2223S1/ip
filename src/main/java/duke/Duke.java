@@ -2,12 +2,18 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * A console App.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * @param filePath file location to store and access information stored for Duke.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -19,6 +25,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Begins the console Duke app.
+     * Calling the run() method starts the interaction with the program.
+     */
     public void run() {
 //        ui.showWelcome();
         boolean isExit = false;
@@ -43,6 +53,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Driver of Duke app.
+     * @param args arguments from the commandline.
+     */
     public static void main(String[] args) {
         new Duke("data//tasks.txt").run();
     }

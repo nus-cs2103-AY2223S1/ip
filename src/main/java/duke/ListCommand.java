@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.List;
-
 public class ListCommand extends Command {
 
     @Override
@@ -14,8 +12,12 @@ public class ListCommand extends Command {
         return false;
     }
 
+    /**
+     * @param o Object we are comparing to.
+     * @return boolean whether the object o is an instance of ListCommand.
+     */
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         return o instanceof ListCommand;
     }
 }

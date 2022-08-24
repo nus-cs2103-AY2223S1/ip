@@ -1,8 +1,14 @@
 package duke;
 
+/**
+ * Stores the index of the task to be deleted from TaskList.
+ */
 public class DeleteCommand extends Command {
     int indexToDelete;
 
+    /**
+     * @param number 1 based indexing for the task to be deleted.
+     */
     DeleteCommand(int number) {
         this.indexToDelete = number - 1;
     }

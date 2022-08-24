@@ -4,16 +4,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test the Parser class.
+ */
 class ParserTest {
 
+    /**
+     * Test the Parser's commandToTask method.
+     */
     @Test
-    void commandToTask() {
+    public void commandToTask() {
         assertEquals(new Todo("123"), Parser.commandToTask("todo 123"));
         assertNotEquals(new Todo(" 123"), Parser.commandToTask("todo 123"));
     }
 
+    /**
+     * Test the Parser's parse method.
+     */
     @Test
-    void parse() {
+    public void parse() {
         try {
             assertEquals(
                     new AddCommand("todo 123"),

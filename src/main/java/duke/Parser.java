@@ -46,6 +46,10 @@ public class Parser {
         return getFirstWord(input).equals("unmark");
     }
 
+    /**
+     * @param fullCommand input Command from the user.
+     * @return Task object
+     */
     public static Task commandToTask(String fullCommand) {
         if (isAddTodoCommand(fullCommand)) {
             String desc = fullCommand.substring(TLENGTH);
@@ -73,6 +77,11 @@ public class Parser {
         return false;
     }
 
+    /**
+     * @param fullCommand input Command from the user.
+     * @return Command to be executed .
+     * @throws DukeException When the command does not parse properly.
+     */
     public static Command parse(String fullCommand) throws DukeException {
 
         if (isAddCommand(fullCommand)) {

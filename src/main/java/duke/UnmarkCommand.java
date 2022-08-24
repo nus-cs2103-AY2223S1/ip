@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Stores the index of the Task to be unmarked when executed.
+ */
 public class UnmarkCommand extends Command{
     int indexToUnmark;
     public UnmarkCommand(int number) {

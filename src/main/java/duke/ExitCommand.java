@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Command that tells the App the terminate
+ */
 public class ExitCommand extends Command {
 
     @Override

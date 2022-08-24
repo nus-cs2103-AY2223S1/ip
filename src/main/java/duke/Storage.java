@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Storage is used to store and read Tasks.
+ */
 public class Storage {
     String filepath;
     private ArrayList<Task> tasks = new ArrayList<>();
@@ -18,12 +21,19 @@ public class Storage {
         this.filepath = filepath;
     }
 
+    /**
+     * @return
+     */
     public List<Task> load() {
 
         parseFileToTasks(filepath);
         return tasks;
     }
 
+    /**
+     * @param taskList TaskList object to be stored in the file
+     * @throws IOException when the BufferedWritter is unable to initialise properly
+     */
     public void save(TaskList taskList) throws IOException {
         BufferedWriter writer = null;
         try {
@@ -36,6 +46,11 @@ public class Storage {
         writer.close();
     }
 
+    /**
+     * Converts all lines of tasks stored in the text file to Task Object
+     *
+     * @param filepath location of file stored
+     */
     private void parseFileToTasks(String filepath) {
         try {
             new File("data").mkdir();
