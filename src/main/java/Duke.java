@@ -1,5 +1,14 @@
+import java.text.ParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.io.IOException;
+import java.io.File;
+
+
+
 public class Duke {
 
     public static boolean isNumeric(String string) {
@@ -18,27 +27,30 @@ public class Duke {
         return false;
     }
 
-    public static void main(String[] args) throws DukeException {
 
-        String lineBreak = "------------------";
-        System.out.println("\n" + "Hello I am LUNA!\n" + "How can I be of help?\n" + lineBreak);
-        ArrayList<Task> arrayList =  new ArrayList<>(100);
+
+    public static void main(String[] args) throws DukeException, IOException, ParseException {
+        String LINE_BREAK = "------------------";
+        System.out.println("\n" + "Hello I am LUNA!\n" + "How can I be of help?\n" + LINE_BREAK);
         Scanner sc = new Scanner(System.in);
+        SavedTaskHandler savedFile = new SavedTaskHandler();
+        ArrayList<Task> taskList =  savedFile.getTaskList();
 
         while(true) {
             String input = sc.nextLine();
             String[] splitStr = input.split("\\s+");
-            String farewell = lineBreak + "\n" + "LUNA bids farewell\n\n May the Moon shine bright and illuminate your night.";
+            String farewell = LINE_BREAK + "\n" + "LUNA bids farewell\n\n May the Moon shine bright and illuminate your night.";
 
             if (input.equalsIgnoreCase("bye")) {
+                savedFile.write(taskList);
                 System.out.println(farewell);
                 break;
 
             } else if (input.equalsIgnoreCase("list")) {
                 int counter = 1;
-                System.out.println(lineBreak);
-                for (Task s : arrayList) {
-                    System.out.println(counter + ". " + s.toString());
+                System.out.println(LINE_BREAK);
+                for (Task task : taskList) {
+                    System.out.println(counter + ". " + task.toString());
                     counter++;
                 }
 
@@ -64,24 +76,24 @@ public class Duke {
                     int index = Integer.valueOf(str) - 1;
 
                     if (input.contains("unmark")) {
-                        Task task = arrayList.get(index);
+                        Task task = taskList.get(index);
                         task.unmark();
                         String taskName = task.toString();
-                        arrayList.set(index, task);
-                        System.out.println("LUNA thought you were already done with this?\n" + taskName + "\n" + lineBreak);
+                        taskList.set(index, task);
+                        System.out.println("LUNA thought you were already done with this?\n" + taskName + "\n" + LINE_BREAK);
 
                     } else if (input.contains("mark")) {
-                        Task task = arrayList.get(index);
+                        Task task = taskList.get(index);
                         task.mark();
                         String taskName = task.toString();
-                        arrayList.set(index, task);
-                        System.out.println("LUNA waited many moons for you to finish this one\n" + taskName + "\n" + lineBreak);
+                        taskList.set(index, task);
+                        System.out.println("LUNA waited many moons for you to finish this one\n" + taskName + "\n" + LINE_BREAK);
                     } else {
-                        Task task = arrayList.get(index);
-                        arrayList.remove(index);
+                        Task task = taskList.get(index);
+                        taskList.remove(index);
                         String taskName = task.toString();
                         System.out.println("LUNA has deleted that task... Erased forever, lost in the depth of Space...\n" + taskName);
-                        System.out.println("You now have " + arrayList.size() + " tasks left\n" + "How many moons before you complete them?" + "\n" + lineBreak);
+                        System.out.println("You now have " + taskList.size() + " tasks left\n" + "How many moons before you complete them?" + "\n" + LINE_BREAK);
 
                     }
                 }
@@ -117,25 +129,25 @@ public class Duke {
                     if (type.equals("todo")) {
 
                             ToDos todo = new ToDos(actualTask);
-                            arrayList.add(todo);
-                            System.out.println(lineBreak + "\n" + "LUNA will write this one down on her finest crater...:\n" + todo + "\n" + lineBreak);
-                            System.out.println("You now have " + arrayList.size() + " tasks added\n" + "How many moons before you complete them?");
+                            taskList.add(todo);
+                            System.out.println(LINE_BREAK + "\n" + "LUNA will write this one down on her finest crater...:\n" + todo + "\n" + LINE_BREAK);
+                            System.out.println("You now have " + taskList.size() + " tasks added\n" + "How many moons before you complete them?");
 
                     } else if (type.equals("event")) {
                         String[] splitStr2 = input.split("/at");
                         Events event = new Events(actualTask, splitStr2[1]);
 
-                        arrayList.add(event);
-                        System.out.println(lineBreak + "\n" + "What event could possibly be more important than the Moon Festival?\n" + event + "\n" + lineBreak);
-                        System.out.println("You now have " + arrayList.size() + " tasks added\n" + "How many moons before you complete them?");
+                        taskList.add(event);
+                        System.out.println(LINE_BREAK + "\n" + "What event could possibly be more important than the Moon Festival?\n" + event + "\n" + LINE_BREAK);
+                        System.out.println("You now have " + taskList.size() + " tasks added\n" + "How many moons before you complete them?");
 
                     } else if (type.equals("deadline")) {
-                        String[] splitStr2 = input.split("/by");
+                        String[] splitStr2 = input.split("/by ");
                         Deadlines deadline = new Deadlines(actualTask, splitStr2[1]);
 
-                        arrayList.add(deadline);
-                        System.out.println(lineBreak + "\n" + "Deadlines... LUNA isn't too good with those...\n" + deadline + "\n" + lineBreak);
-                        System.out.println("You now have " + arrayList.size() + " tasks added\n" + "How many moons before you complete them?");
+                        taskList.add(deadline);
+                        System.out.println(LINE_BREAK + "\n" + "Deadlines... LUNA isn't too good with those...\n" + deadline + "\n" + LINE_BREAK);
+                        System.out.println("You now have " + taskList.size() + " tasks added\n" + "How many moons before you complete them?");
 
                     } else {
                         try {
