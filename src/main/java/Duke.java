@@ -133,14 +133,14 @@ public class Duke {
         }
     }
 
-    private Task createDeadline() {
+    private Task createDeadline() throws DukeException {
         int end = input.indexOf('/');
         String description = input.substring(9, end - 1);
         String by = input.substring(end + 4);
         return new Deadline(description, by);
     }
 
-    private Task createEvent() {
+    private Task createEvent() throws DukeException {
         int end = input.indexOf('/');
         String description = input.substring(6, end - 1);
         String at = input.substring(end + 4);
