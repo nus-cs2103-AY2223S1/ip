@@ -32,7 +32,7 @@ public class ChatBot {
                         if (!controller.checkContent(event)) {
                             throw new EmptyContentException("ERROR: The content of your task is empty! ");
                         }
-                        System.out.println("Please type in the time (D/M/Y H:M:S):");
+                        System.out.println("Please type in the time (yyyy-mm-dd HH:MM):");
                         String eventTime = controller.inputFromUser();
                         if (!controller.checkTime(eventTime)) {
                             throw new InvalidTimeException("ERROR: The format of time you input is invalid!");
@@ -47,7 +47,7 @@ public class ChatBot {
                         if (!controller.checkContent(ddl)) {
                             throw new EmptyContentException("ERROR: The content of your task is empty!");
                         }
-                        System.out.println("Please type in deadline (D/M/Y H:M:S):");
+                        System.out.println("Please type in deadline (yyyy-mm-dd HH:MM):");
                         String ddlTime = controller.inputFromUser();
                         if (!controller.checkTime(ddlTime)) {
                             throw new InvalidTimeException("ERROR: The format of time you input is invalid!");

@@ -1,8 +1,12 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+
 /**
  * This class Deadline tasks
  */
 public class Deadline extends Task{
-    private final String ddlTime;
+    private final LocalDateTime ddlTime;
 
     /**
      * Constructor for Deadline class
@@ -11,12 +15,13 @@ public class Deadline extends Task{
      */
     public Deadline(String taskDescription, String ddlTime) {
         super(taskDescription);
-        this.ddlTime = ddlTime;
+        this.ddlTime = LocalDateTime.parse(ddlTime, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " " + "(by: " + this.ddlTime + ")";
+        return "[D]" + super.toString() + " " + "(by: " + ddlTime.format(DateTimeFormatter.
+                ofPattern("yyyy-MM-dd HH:mm")) + ")";
     }
 
 }
