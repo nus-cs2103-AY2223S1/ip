@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.*;
+import duke.exception.*;
+
 public abstract class Command {
 
     public boolean isExit() {

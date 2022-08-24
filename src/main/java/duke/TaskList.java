@@ -1,3 +1,6 @@
+package duke;
+
+import duke.task.Task;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;

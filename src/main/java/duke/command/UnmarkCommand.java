@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.*;
+import duke.exception.*;
+import duke.task.Task;
+
 public class UnmarkCommand extends Command{
     private int idx;
 
