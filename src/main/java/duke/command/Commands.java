@@ -7,5 +7,6 @@ public enum Commands {
     MARK,
     UNMARK,
     DELETE,
-    DATE
+    DATE,
+    Find
 }

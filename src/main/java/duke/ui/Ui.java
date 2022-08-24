@@ -69,4 +69,14 @@ public class Ui {
         }
         formatMessage(display);
     }
+
+    public void displayMatchingList(ArrayList<Task> arrayList) {
+        int i = 1;
+        String display = "Here are the matching tasks in your list: ";
+        for (Task task : arrayList) {
+            display += "\n" + i + ". " + task;
+            i++;
+        }
+        formatMessage(display);
+    }
 }

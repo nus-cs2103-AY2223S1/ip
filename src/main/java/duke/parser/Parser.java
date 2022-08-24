@@ -44,6 +44,9 @@ public class Parser {
             case "delete":
                 command = new DeleteCommand(handleDelete(argument));
                 break;
+            case "find":
+                command = new FindCommand(handleFind(argument));
+                break;
             default:
                 throw new InvalidCommandException(keyPhrase);
         }
@@ -114,6 +117,13 @@ public class Parser {
             throw new InvalidTaskNumberException();
         }
         return index;
+    }
+
+    public static String handleFind(String information) throws DukeException {
+        if (information.isEmpty()) {
+            throw new EmptyArgumentException(Commands.Find);
+        }
+        return information;
     }
 
 }
