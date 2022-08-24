@@ -1,0 +1,9 @@
+T || X || read book
+D ||   || return book || June 6th
+E ||   || project meeting || Aug 6th 2-4pm
+T || X || go clubbing
+E ||   || Funeral || 243
+T ||   || join sports club
+D ||   || return book || Sunday
+D ||   || do homework || no idea :-p
+T ||   || go to heaven

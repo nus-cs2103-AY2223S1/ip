@@ -1,3 +1,6 @@
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -68,6 +71,7 @@ public class Duke {
 
             printTobTobIndent("Yoohooo! Tob Tob has marked this task as done:");
             printTobTobIndent(task.toString());
+            migrateTobTobBrainToTxt();
         } catch (NumberFormatException e) {
             tobTobKonslet(String.format(INTEGER_INDEX_ERROR_MESSAGE, "mark"));
         } catch (IndexOutOfBoundsException e) {
@@ -87,6 +91,7 @@ public class Duke {
 
             printTobTobIndent("Saddd! Tob Tob has marked this task as not done yet:");
             printTobTobIndent(task.toString());
+            migrateTobTobBrainToTxt();
         } catch (NumberFormatException e) {
             tobTobKonslet(String.format(INTEGER_INDEX_ERROR_MESSAGE, "unmark"));
         } catch (IndexOutOfBoundsException e) {
@@ -115,6 +120,7 @@ public class Duke {
                 printTobTobIndent(task.toString());
                 printTobTobIndent("");
                 showTobTobBrain("");
+                migrateTobTobBrainToTxt();
                 break;
             case "deadline":
                 separator = " /by ";
@@ -132,6 +138,7 @@ public class Duke {
                     printTobTobIndent(task.toString());
                     printTobTobIndent("");
                     showTobTobBrain("");
+                    migrateTobTobBrainToTxt();
                 }
                 break;
             default:
@@ -150,6 +157,7 @@ public class Duke {
                     printTobTobIndent(task.toString());
                     printTobTobIndent("");
                     showTobTobBrain("");
+                    migrateTobTobBrainToTxt();
                 }
         }
     }
@@ -168,6 +176,8 @@ public class Duke {
             printTobTobIndent("");
             printTobTobIndent(task.toString());
             showTobTobBrain("");
+
+            migrateTobTobBrainToTxt();
         } catch (NumberFormatException e) {
             tobTobKonslet(String.format(INTEGER_INDEX_ERROR_MESSAGE, "delete"));
         } catch (IndexOutOfBoundsException e) {
@@ -180,6 +190,31 @@ public class Duke {
         printTobTobIndent("Don't you dare come back");
         printTobTobIndent("Tob Tob hates you");
         printTobTobBoundary();
+    }
+
+    public static void migrateTobTobBrainToTxt() {
+        ArrayList<String> txtList = new ArrayList<>();
+        for (int i = 0; i < tobTobBrain.size(); i++) {
+            Task task = tobTobBrain.get(i);
+            txtList.add(task.toTxt());
+        }
+
+        String fileDirectory = "..\\data";
+        String fileName = "duke.txt";
+        System.out.println(fileDirectory);
+
+        try {
+            Files.createDirectories(Paths.get(fileDirectory));
+            File file = new File(fileDirectory + "\\" + fileName);
+            file.createNewFile();
+
+            PrintWriter out = new PrintWriter(fileDirectory + "\\" + fileName);
+            out.println(String.join("\n", txtList));
+            out.close();
+        } catch (IOException e) {
+            printTobTobIndent("An error occured when trying to save to Duke.txt");
+            printTobTobIndent(e.getMessage());
+        }
     }
 
     public static void main(String[] args) {

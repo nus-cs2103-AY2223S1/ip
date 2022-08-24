@@ -7,4 +7,9 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    @Override
+    public String toTxt() {
+        return String.format("T || %s", super.toTxt());
+    }
 }
