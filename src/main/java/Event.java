@@ -13,6 +13,6 @@ public class Event extends ListObject{
 
     @Override
     public String toString(){
-        return "\n[E]" + super.toString() + " (at: " + eventTime + ")";
+        return "[E]" + super.toString() + " (at: " + eventTime + ")";
     }
 }

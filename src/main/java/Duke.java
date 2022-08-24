@@ -1,9 +1,9 @@
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.io.File;
 import java.nio.file.Path;
 
 public class Duke {
@@ -50,7 +50,7 @@ public class Duke {
      */
     public static void makeList(){
 
-        ArrayList<ListObject> listOfItems = new ArrayList<>();
+        ArrayList<ListObject> listOfItems = readFromFile();
         String showList = "list";
         String markAsDone = "mark ";
         String markAsNotDone = "unmark ";
@@ -180,15 +180,33 @@ public class Duke {
     public static void makeListFile(ArrayList<ListObject> lst){
         try {
             File listFile = new File("src\\main\\java\\DukeList.txt");
-            Path path = Path.of("src\\main\\java\\DukeList.txt");
-            String lstStr = lst.toString();
-            Files.writeString(path, lstStr);
+            //adapted from https://stackoverflow.com/questions/10404698/saving-arrays-to-the-hard-disk
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(listFile));
+            out.writeObject(lst);
+            out.close();
         }
         catch(IOException e){
             System.out.println(e.toString());
         }
 
     }
+
+    public static ArrayList<ListObject> readFromFile(){
+        ArrayList<ListObject> inList = new ArrayList<>();
+        try {
+            File listFile = new File("src\\main\\java\\DukeList.txt");
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(listFile));
+            inList = (ArrayList<ListObject>) in.readObject();
+            in.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        finally{
+            return inList;
+        }
+    }
+
+
 
 
     /**
