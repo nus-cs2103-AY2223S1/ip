@@ -1,4 +1,6 @@
 import java.util.*;
+import java.time.LocalDate;
+
 public class Duke {
     final static String HORIZON = "____________________________________________________________\n";
     static List<Task> tasks = new ArrayList<>();
@@ -96,10 +98,16 @@ public class Duke {
             } else if (input.startsWith("deadline ") && input.contains(" /by ")) {
                 String temp1 = input.split(" ",2)[1];
                 String[] temp2 = temp1.split(" /by ",2);
-                Deadline newDDL = new Deadline(temp2[0],temp2[1]);
-                tasks.add(newDDL);
-                tempStr = "Pikapi(added): " + newDDL + '\n';
-                tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
+                try {
+                    LocalDate date = LocalDate.parse(temp2[1]);
+                    Deadline newDDL = new Deadline(temp2[0],date);
+                    tasks.add(newDDL);
+                    tempStr = "Pikapi(added): " + newDDL + '\n';
+                    tempStr += "Pikaaaaa: " + tasks.size() + (tasks.size() > 1 ? " tasks" : " task");
+                } catch(Exception e) {
+                    System.out.println("Need valid date format(yyyy-mm-dd) Pikaaaa");
+                }
+                
             } else if (input.startsWith("event ") && input.contains(" /at ")){
                 String temp1 = input.split(" ",2)[1];
                 String[] temp2 = temp1.split(" /at ",2);
