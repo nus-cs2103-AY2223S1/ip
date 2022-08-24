@@ -1,19 +1,19 @@
 package duke;
 
-import duke.response.DeadlineResponse;
-import duke.response.DeleteResponse;
-import duke.response.DukeResponse;
-import duke.response.ExitResponse;
-import duke.response.EventResponse;
-import duke.response.ListResponse;
-import duke.response.MarkResponse;
-import duke.response.TodoResponse;
-import duke.response.UnmarkResponse;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
+
+import duke.response.DeadlineResponse;
+import duke.response.DeleteResponse;
+import duke.response.DukeResponse;
+import duke.response.EventResponse;
+import duke.response.ExitResponse;
+import duke.response.ListResponse;
+import duke.response.MarkResponse;
+import duke.response.TodoResponse;
+import duke.response.UnmarkResponse;
 
 public class Parser {
     public static DukeResponse getResponse(DukeList list, String input) throws DukeException {
@@ -65,10 +65,10 @@ public class Parser {
         try {
             DateTimeFormatterBuilder formatBuilder = new DateTimeFormatterBuilder()
                     .parseCaseInsensitive()
-                    .appendPattern("[d MMM yyyy h[:mm][ ]a]")   // 23 Aug 2022 6[:30][ ]pm
-                    .appendPattern("[d MMM h[:mm][ ]a]")        // 23 Aug 6[:30][ ]pm
-                    .appendPattern("[d/M/yyyy HHmm]")           // 23/8/2022 1830
-                    .appendPattern("[d/M HHmm]")                // 23/8 1830
+                    .appendPattern("[d MMM yyyy h[:mm][ ]a]") // 23 Aug 2022 6[:30][ ]pm
+                    .appendPattern("[d MMM h[:mm][ ]a]")      // 23 Aug 6[:30][ ]pm
+                    .appendPattern("[d/M/yyyy HHmm]")         // 23/8/2022 1830
+                    .appendPattern("[d/M HHmm]")              // 23/8 1830
                     .parseDefaulting(ChronoField.YEAR_OF_ERA, LocalDateTime.now().getYear())
                     .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0);
             return LocalDateTime.parse(dateTimeStr, formatBuilder.toFormatter());

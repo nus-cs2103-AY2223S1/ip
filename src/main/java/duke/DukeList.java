@@ -27,12 +27,12 @@ public class DukeList {
         String isDone = t.getStatus() ? "1" : "0";
         String otherData = t.getOtherData();
 
-        String taskStr = taskType + Storage.fileStrDivider + isDone + Storage.fileStrDivider + description;
+        String taskStr = taskType + Storage.FILE_STR_DIVIDER + isDone + Storage.FILE_STR_DIVIDER + description;
 
         if (otherData.isEmpty()) {
             return taskStr;
         } else {
-            return taskStr + Storage.fileStrDivider + otherData;
+            return taskStr + Storage.FILE_STR_DIVIDER + otherData;
         }
     }
 

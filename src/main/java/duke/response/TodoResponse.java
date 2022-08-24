@@ -2,7 +2,6 @@ package duke.response;
 
 import duke.DukeException;
 import duke.DukeList;
-
 import duke.task.Todo;
 
 public class TodoResponse extends DukeResponse {

@@ -1,15 +1,15 @@
 package duke;
 
+import java.util.Scanner;
+
 import duke.response.DukeResponse;
 import duke.response.ExceptionResponse;
 
-import java.util.Scanner;
-
 public class DukeUi {
-    private final Scanner SCANNER = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public DukeResponse readInput(DukeList list) {
-        String input = SCANNER.nextLine();
+        String input = scanner.nextLine();
         try {
             return Parser.getResponse(list, input);
         } catch (DukeException e) {
@@ -22,6 +22,6 @@ public class DukeUi {
     }
 
     public void closeScanner() {
-        this.SCANNER.close();
+        this.scanner.close();
     }
 }

@@ -3,7 +3,6 @@ package duke.response;
 import duke.DukeException;
 import duke.DukeList;
 import duke.Parser;
-
 import duke.task.Event;
 
 public class EventResponse extends DukeResponse {

@@ -1,10 +1,5 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -12,8 +7,13 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 public class Storage {
-    public static final String fileStrDivider = " | ";
+    public static final String FILE_STR_DIVIDER = " | ";
     private final Path dataPath;
 
     public Storage(Path dataPath) {
@@ -61,11 +61,11 @@ public class Storage {
         int status = Integer.parseInt(data[1].trim());
         String desc = data[2].trim();
         String time = "";
-        if (data[2].contains(fileStrDivider)) {
+        if (data[2].contains(FILE_STR_DIVIDER)) {
             // String contains more data
-            int timeIndex = data[2].lastIndexOf(fileStrDivider);
+            int timeIndex = data[2].lastIndexOf(FILE_STR_DIVIDER);
             desc = desc.substring(0, timeIndex).trim();
-            time = data[2].substring(timeIndex + fileStrDivider.length()).trim();
+            time = data[2].substring(timeIndex + FILE_STR_DIVIDER.length()).trim();
         }
 
         switch (command) {

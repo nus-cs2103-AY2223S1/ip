@@ -11,8 +11,8 @@ public class ExceptionResponse extends DukeResponse {
 
     @Override
     public void run() {
-        String OOPS = "☹ OOPS!!! ";
-        super.message(OOPS + exception.getMessage());
+        String oops = "☹ OOPS!!! ";
+        super.message(oops + exception.getMessage());
     }
 
     @Override

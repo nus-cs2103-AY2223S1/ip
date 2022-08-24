@@ -13,7 +13,7 @@ public class DeleteResponse extends DukeResponse {
     }
 
     @Override
-    public void run () throws DukeException {
+    public void run() throws DukeException {
         if (data.isEmpty()) {
             throw new DukeException("Please enter duke.task to delete.");
         }
