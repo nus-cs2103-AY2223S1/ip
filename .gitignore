@@ -15,3 +15,9 @@ bin/
 
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
+text-ui-test/input.txt
+text-ui-test/runtest.bat
+text-ui-test/runtest.sh
+
+data/
+

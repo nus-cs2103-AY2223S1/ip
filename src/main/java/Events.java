@@ -7,6 +7,11 @@ public class Events extends Task {
     }
 
     @Override
+    public String textFormat() {
+        return "E|" + (isDone ? 1 : 0) + "|" + description + "|" + by;
+    }
+
+    @Override
     public String toString() {
         return "[E]" + super.toString() + " (by: " + by + ")";
     }
