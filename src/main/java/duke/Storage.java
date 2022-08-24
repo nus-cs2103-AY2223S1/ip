@@ -62,7 +62,7 @@ public class Storage {
             taskReader.close();
             return tasks;
         } catch (FileNotFoundException e) {
-            throw new DukeException("File not Found!");
+            throw new DukeException("File Not Found!");
         }
     }
 

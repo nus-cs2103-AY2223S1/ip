@@ -18,6 +18,11 @@ public class Duke {
         }
     }
 
+    // for purpose of testing
+    TaskList getTaskList() {
+        return this.tasks;
+    }
+
     public void run() {
         ui.showWelcome();
         tasks.printTasks();
