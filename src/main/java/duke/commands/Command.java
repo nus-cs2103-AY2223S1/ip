@@ -11,13 +11,13 @@ import duke.tasks.*;
 
 public abstract class Command {
   /**
-   * Receives an tasklist and executes a command that may or may not modify the
-   * tasklist
+   * Receives a TaskList and executes a command that may or may not modify the
+   * TaskList
    * 
-   * @param TaskList
-   * @param storage
-   * @param ui
-   * @throws DukeException
+   * @param TaskList TaskList containing all tasks so far
+   * @param storage Storage which handles data of TaskList
+   * @param ui ui which prints messages to user
+   * @throws DukeException in case of invalid input by user
    */
 
   boolean isExit = false;

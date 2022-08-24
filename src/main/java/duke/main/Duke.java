@@ -13,9 +13,16 @@ public class Duke {
   /** The tasklist keeps track of all the tasks added */
   private TaskList tasks;
 
+  /** The ui prints out message to user */
   private Ui ui;
+
+  /** The storage handles all loading and saving to data file*/
   private Storage storage;
 
+  /**
+   * Constructor for Duke
+   * @param filePath relative path where data of tasklist stored
+   */
   public Duke(String filePath) {
     ui = new Ui();
     storage = new Storage(filePath);
@@ -28,6 +35,10 @@ public class Duke {
     }
   }
 
+  /**
+   * Welcomes user when first loading
+   * Executes commands until Duke is closed with ByeCommand
+   */
   void run() {
     ui.showWelcome();
     boolean isExit = false;

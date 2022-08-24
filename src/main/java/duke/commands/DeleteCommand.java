@@ -13,9 +13,9 @@ public class DeleteCommand extends Command {
   private int index;
 
   /**
-   * Constuctor for DeleteCommand
+   * Constructor for DeleteCommand
    *
-   * @param description String representation of task number to be marked
+   * @param description String representation of task number to be deleted
    * @throws DukeException if user did not type in a correct task number
    */
   public DeleteCommand(String description) throws DukeException {
@@ -28,8 +28,7 @@ public class DeleteCommand extends Command {
   }
 
   /**
-   * Marks command and prints out message to users depending on whether the
-   * command was successful
+   * Deletes tasks and prints out message to users regarding task that has been deleted
    */
   @Override
   public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

@@ -2,6 +2,9 @@ package duke.main;
 
 import java.util.Scanner;
 
+/**
+ * Ui handles showing message to user
+ */
 public class Ui {
     /** sc takes in user input infinitely until Duke is closed */
     private Scanner sc = new Scanner(System.in);

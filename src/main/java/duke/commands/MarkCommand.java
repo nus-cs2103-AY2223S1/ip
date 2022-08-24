@@ -13,7 +13,7 @@ public class MarkCommand extends Command {
   private int index;
 
   /**
-   * Constuctor for MarkCommand
+   * Constructor for MarkCommand
    *
    * @param description String representation of task number to be marked
    * @throws DukeException if user did not type in a correct task number
