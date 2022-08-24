@@ -30,7 +30,7 @@ public class Duke {
         }
     }
 
-    public void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         new Duke("tasks.txt").run();
     }
 }
