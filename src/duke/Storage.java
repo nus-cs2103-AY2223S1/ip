@@ -22,7 +22,9 @@ public class Storage {
         try {
             this.storageFile.createNewFile();
         } catch (IOException e) {
-            System.out.println("COULD NOT CREATE NEW FILE\nPLEASE RESTART DUKE");
+            System.out.println("COULD NOT CREATE NEW FILE\n"
+                    + "REASON: "
+                    + e.getMessage());
         }
     }
     public void load(TaskList taskList) throws FileNotFoundException, ImproperFormatException {
