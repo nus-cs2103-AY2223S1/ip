@@ -16,7 +16,7 @@ public abstract class Command {
      * @param ui The UI of the Duke bot.
      * @param storage The storage of data.
      * @throws DukeException If there is an error that arise from the
-     * associated behaviour of the command.
+     *                       associated behaviour of the command.
      */
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 

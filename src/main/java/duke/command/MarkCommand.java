@@ -34,7 +34,7 @@ public class MarkCommand extends Command {
      * @param ui The UI of the Duke bot.
      * @param storage The storage of data.
      * @throws DukeException If there is an error that arise from the
-     * mark command.
+     *                       mark command.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {

@@ -17,11 +17,11 @@ import duke.task.ToDo;
 public class AddCommand extends Command {
 
     /** The type of task to be added */
-    private String taskType;
+    private final String taskType;
     /** The description of the task to be added */
-    private String description;
+    private final String description;
     /** The date of the task to be added */
-    private LocalDate date;
+    private final LocalDate date;
 
     /**
      * The class constructor.

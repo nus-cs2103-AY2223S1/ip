@@ -55,7 +55,7 @@ public class TaskList {
      * @param res The string to check.
      * @return The valid index in Integer.
      * @throws InvalidInput If the string given is not a number or the number is
-     * less than 0 or more than the size of the ArrayList.
+     *                      less than 0 or more than the size of the ArrayList.
      */
     public int stringIndexToInt(String res) throws InvalidInput {
         if (!res.matches("[0-9]+")) {
@@ -100,12 +100,18 @@ public class TaskList {
         return task;
     }
 
-    public ArrayList<? super Task> find(String query) {
-        ArrayList<? super Task> res = new ArrayList<>();
-        for (int i = 0; i < data.size(); i++) {
-            String taskDescription = data.get(i).getDescription();
+    /**
+     * Returns an ArrayList of tasks that matches the given query.
+     *
+     * @param query The query inputted by the user.
+     * @return An ArrayList of tasks matching the query.
+     */
+    public ArrayList<Task> find(String query) {
+        ArrayList<Task> res = new ArrayList<>();
+        for (Task t : data) {
+            String taskDescription = t.getDescription();
             if (taskDescription.contains(query)) {
-                res.add(data.get(i));
+                res.add(t);
             }
         }
         return res;
