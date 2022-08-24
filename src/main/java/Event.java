@@ -6,6 +6,18 @@ public class Event extends Task{
         this.at = at;
     }
 
+    public Event(String description, String at, boolean isDone) {
+        super(description);
+        this.at = at;
+        this.isDone = isDone;
+    }
+
+
+    @Override
+    public String encodeToString() {
+        return "E|" + this.getStatusIcon() + "|" + this.description + "|" + this.at;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";

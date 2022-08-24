@@ -3,15 +3,15 @@ import java.util.Scanner;
 
 public class Duke {
 
-    static ArrayList<Task> taskList = new ArrayList<>();
+    
     static String divider = "____________________________________________________________";
 
     public static void addTask(Task task) {
-        taskList.add(task);
+        TaskList.add(task);
         System.out.println(divider);
         System.out.println("K. Added your task:");
         System.out.println(task);
-        System.out.println("Now you have " + taskList.size() + " tasks.");
+        System.out.println("Now you have " + TaskList.size() + " tasks.");
         System.out.println(divider);
     }
 
@@ -21,6 +21,9 @@ public class Duke {
         System.out.println(divider);
     }
     public static void main(String[] args) {
+        
+        TaskList.initFile();
+        
         System.out.println("Hello I'm Karen. What do you want??\n" + divider);
         Scanner input = new Scanner(System.in);
         while (true) {
@@ -32,8 +35,8 @@ public class Duke {
             }
             if (text.equals("list")) {
                 System.out.println(divider);
-                for (int i = 0; i < taskList.size(); i++) {
-                    Task taskI = taskList.get(i);
+                for (int i = 0; i < TaskList.size(); i++) {
+                    Task taskI = TaskList.get(i);
                     System.out.println(i+1 + ". " + taskI);
                 }
                 System.out.println(divider);
@@ -41,28 +44,26 @@ public class Duke {
             }
             if (text.startsWith("mark ")) {
                 int index = Integer.parseInt(text.split(" ")[1]) - 1;
-                if (index < 0 || index >= taskList.size()) {
+                if (index < 0 || index >= TaskList.size()) {
                     System.out.println(divider);
                     System.out.println("Umm can you count?" + "\n" + divider);
                     continue;
                 }
-                Task t = taskList.get(index);
-                t.mark();
+                TaskList.mark(index);
                 System.out.println(divider);
-                System.out.println("Oh you did a task. Congratulations.\n" + t + "\n" + divider);
+                System.out.println("Oh you did a task. Congratulations.\n" + TaskList.get(index) + "\n" + divider);
                 continue;
             }
             if (text.startsWith("unmark ")) {
                 int index = Integer.parseInt(text.split(" ")[1]) - 1;
-                if (index < 0 || index >= taskList.size()) {
+                if (index < 0 || index >= TaskList.size()) {
                     System.out.println(divider);
                     System.out.println("Uh can you count?" + "\n" + divider);
                     continue;
                 }
-                Task t = taskList.get(index);
-                t.unmark();
+                TaskList.unmark(index);
                 System.out.println(divider);
-                System.out.println("Hmm make up your mind maybe??.\n" + t + "\n" + divider);
+                System.out.println("Hmm make up your mind maybe??.\n" + TaskList.get(index) + "\n" + divider);
                 continue;
             }
             if (text.startsWith("todo ")) {
@@ -108,17 +109,17 @@ public class Duke {
             }
             if (text.startsWith("delete ")) {
                 int index = Integer.parseInt(text.split(" ")[1]) - 1;
-                if (index < 0 || index >= taskList.size()) {
+                if (index < 0 || index >= TaskList.size()) {
                     System.out.println(divider);
                     System.out.println("Umm can you count?" + "\n" + divider);
                     continue;
                 }
-                Task toRemove = taskList.get(index);
-                taskList.remove(index);
+                Task toRemove = TaskList.get(index);
+                TaskList.delete(index);
                 System.out.println(divider);
                 System.out.println("K. Removed your task:");
                 System.out.println(toRemove);
-                System.out.println("Now you have " + taskList.size() + " tasks.");
+                System.out.println("Now you have " + TaskList.size() + " tasks.");
                 System.out.println(divider);
                 continue;
             }
