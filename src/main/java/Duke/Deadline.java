@@ -1,17 +1,28 @@
 package Duke;
 
-public class Deadline extends Task {
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
-    String time;
+public class Deadline extends Task {
+    protected LocalDate timeobject;
+
 
     public Deadline(String description, String time) {
         super(description);
-        this.time = time;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        LocalDate date = LocalDate.parse(time,formatter);
+        timeobject =date;
+        System.out.println("printing time");
+        System.out.println(timeobject.toString());
+
     }
 
     @Override
     public String toString() {
-        return "[D]"  + super.toString() + "(by: " + this.time + ")";
+        return "[D]"  + super.toString() + "(by: " + this.timeobject.format(DateTimeFormatter
+                .ofLocalizedDate(FormatStyle.FULL)) + ")";
     }
 
 }
