@@ -8,25 +8,25 @@ Got it. I've added this task:
 [T][ ] 1
 Now you have 1 tasks in the list
 ( • ᴖ • ｡) Error encountered: please input a time (/at for events and /by for deadlines)
-Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
-Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
+( • ᴖ • ｡) Error encountered: Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
+( • ᴖ • ｡) Error encountered: Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
 Got it. I've added this task:
 [D][ ] 2 (23-Aug-2022 23:59)
 Now you have 2 tasks in the list
-Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
+( • ᴖ • ｡) Error encountered: Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
 Got it. I've added this task:
 [D][ ] 3 (23-Aug-2022 18:00)
 Now you have 3 tasks in the list
 ( • ᴖ • ｡) Error encountered: please input a time (/at for events and /by for deadlines)
-Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
-Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
+( • ᴖ • ｡) Error encountered: Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
+( • ᴖ • ｡) Error encountered: Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
 Got it. I've added this task:
 [E][ ] 1 (23-Aug-2022 23:59)
 Now you have 4 tasks in the list
 Got it. I've added this task:
 [E][ ] 2 (23-Aug-2022 23:59)
 Now you have 5 tasks in the list
-Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
+( • ᴖ • ｡) Error encountered: Please use the specified date-time format: yyyy-MM-dd HH:mm, or yyyy-MM-dd if you want the time to be 23:59
 Got it. I've added this task:
 [E][ ] 3 (23-Aug-2022 18:00)
 Now you have 6 tasks in the list
