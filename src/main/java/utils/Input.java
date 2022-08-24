@@ -54,86 +54,77 @@ public class Input {
         }
 
         switch (command) {
-            case LIST:
-            case BYE:
-                break;
-            case CHECK:
-            case UNCHECK:
-            case DELETE:
-            case TODO:
-                if (commandWithInfo.length != maxParameters) {
-                    throw new InvalidTaskNameException();
-                }
-                result.mainData = commandWithInfo[1];
-                if (result.mainData.isEmpty()) {
-                    throw new InvalidTaskNameException();
-                }
-                break;
-            case EVENT:
-                if (commandWithInfo.length != maxParameters) {
-                    throw new InvalidTaskNameException();
-                }
+        case LIST:
+        case BYE:
+            break;
+        case CHECK:
+        case UNCHECK:
+        case DELETE:
+        case TODO:
+            if (commandWithInfo.length != maxParameters) {
+                throw new InvalidTaskNameException();
+            }
+            result.mainData = commandWithInfo[1];
+            if (result.mainData.isEmpty()) {
+                throw new InvalidTaskNameException();
+            }
+            break;
+        case EVENT:
+            if (commandWithInfo.length != maxParameters) {
+                throw new InvalidTaskNameException();
+            }
 
-                String info = commandWithInfo[1];
-                SecondaryCommand at = SecondaryCommand.AT;
-                int atIndex = info.lastIndexOf(at.getValue());
+            String info = commandWithInfo[1];
+            SecondaryCommand at = SecondaryCommand.AT;
 
-                if (atIndex == -1) {
-                    throw new InvalidSecondaryCommandException(at.getValue());
-                }
-                if (atIndex == 0) {
-                    throw new InvalidTaskNameException();
-                }
+            if (!info.contains(SecondaryCommand.AT.getValue() + ' ')) {
+                throw new InvalidSecondaryCommandException(at.getValue());
+            }
 
-                result.mainData = info.substring(0, atIndex - 1);
+            int atIndex = info.lastIndexOf(at.getValue());
+            if (atIndex == 0) {
+                throw new InvalidTaskNameException();
+            }
 
-                if (atIndex + at.getLength() == info.length()) {
-                    throw new InvalidSecondaryCommandException(at.getValue());
-                }
+            result.mainData = info.substring(0, atIndex - 1);
+            result.secondaryData = info.substring(atIndex + 1 + at.getLength());
 
-                result.secondaryData = info.substring(atIndex + 1 + at.getLength());
+            if (result.mainData.isEmpty()) {
+                throw new InvalidTaskNameException();
+            }
+            if (result.secondaryData.isEmpty()) {
+                throw new InvalidSecondaryCommandException(at.getValue());
+            }
+            break;
+        case DEADLINE:
+            if (commandWithInfo.length != maxParameters) {
+                throw new InvalidTaskNameException();
+            }
 
-                if (result.mainData.isEmpty()) {
-                    throw new InvalidTaskNameException();
-                }
-                if (result.secondaryData.isEmpty()) {
-                    throw new InvalidSecondaryCommandException(at.getValue());
-                }
+            info = commandWithInfo[1];
+            SecondaryCommand by = SecondaryCommand.BY;
 
-                break;
-            case DEADLINE:
-                if (commandWithInfo.length != maxParameters) {
-                    throw new InvalidTaskNameException();
-                }
+            if (!info.contains(SecondaryCommand.BY.getValue() + ' ')) {
+                throw new InvalidSecondaryCommandException(by.getValue());
+            }
 
-                info = commandWithInfo[1];
-                SecondaryCommand by = SecondaryCommand.BY;
-                int byIndex = info.lastIndexOf(by.getValue());
+            int byIndex = info.lastIndexOf(by.getValue());
+            if (byIndex == 0) {
+                throw new InvalidTaskNameException();
+            }
 
-                if (byIndex == -1) {
-                    throw new InvalidSecondaryCommandException(by.getValue());
-                }
-                if (byIndex == 0) {
-                    throw new InvalidTaskNameException();
-                }
+            result.mainData = info.substring(0, byIndex - 1);
+            result.secondaryData = info.substring(byIndex + 1 + by.getLength());
 
-                result.mainData = info.substring(0, byIndex - 1);
-
-                if (byIndex + by.getLength() == info.length()) {
-                    throw new InvalidSecondaryCommandException(by.getValue());
-                }
-
-                result.secondaryData = info.substring(byIndex + 1 + by.getLength());
-
-                if (result.mainData.isEmpty()) {
-                    throw new InvalidTaskNameException();
-                }
-                if (result.secondaryData.isEmpty()) {
-                    throw new InvalidSecondaryCommandException(by.getValue());
-                }
-                break;
-            default:
-                throw new InvalidCommandException("Command not implemented :(");
+            if (result.mainData.isEmpty()) {
+                throw new InvalidTaskNameException();
+            }
+            if (result.secondaryData.isEmpty()) {
+                throw new InvalidSecondaryCommandException(by.getValue());
+            }
+            break;
+        default:
+            throw new InvalidCommandException("Command not implemented :(");
         }
         result.mainData = result.mainData.trim();
         result.secondaryData = result.secondaryData.trim();

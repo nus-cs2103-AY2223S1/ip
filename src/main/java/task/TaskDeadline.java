@@ -2,6 +2,10 @@ package task;
 
 import enums.Command;
 import enums.SecondaryCommand;
+import exceptions.InvalidDateException;
+import utils.Utils;
+
+import java.time.LocalDate;
 
 /**
  * The {@code TaskDeadline} class stores relevant information for a taskDeadline.
@@ -11,7 +15,7 @@ public class TaskDeadline extends Task {
     /**
      * The deadline for the task.
      */
-    private final String taskBy;
+    private final LocalDate taskBy;
 
     /**
      * Constructor for a task deadline.
@@ -19,9 +23,9 @@ public class TaskDeadline extends Task {
      * @param taskName a string representing the name of the task.
      * @param taskBy   a string representing the deadline for the task.
      */
-    public TaskDeadline(String taskName, String taskBy) {
+    public TaskDeadline(String taskName, String taskBy) throws InvalidDateException {
         super(taskName);
-        this.taskBy = taskBy;
+        this.taskBy = Utils.formatStringToDate(taskBy);
     }
 
     /**
@@ -31,9 +35,9 @@ public class TaskDeadline extends Task {
      * @param taskBy   a string representing the deadline for the task.
      * @param done     a boolean representing if the task is done.
      */
-    public TaskDeadline(String taskName, String taskBy, boolean done) {
+    public TaskDeadline(String taskName, String taskBy, boolean done) throws InvalidDateException {
         super(taskName, done);
-        this.taskBy = taskBy;
+        this.taskBy = Utils.formatStringToDate(taskBy);
     }
 
     /**
@@ -43,7 +47,7 @@ public class TaskDeadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D] %s (by: %s)", super.toString(), this.taskBy);
+        return String.format("[D] %s (by: %s)", super.toString(), Utils.formatDateToString(this.taskBy));
     }
 
     @Override
