@@ -31,6 +31,8 @@ public class Parser {
             return "ADD";
         } else if (input.equals("upcoming tasks")) {
             return "UPCOMING";
+        } else if (input.startsWith("find")) {
+            return "FIND";
         } else {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -85,11 +87,24 @@ public class Parser {
         }
     }
 
-    /** Prints all the tasks that are due within a week from the current time
+    /**
+     * Prints the task with the keyword in their description
+     * Otherwise print an error message that keyword does not exist
      *
-     * @param tasks all the tasks in our task list
+     * @param command the user input
+     * @param tasks
+     * @throws DukeException if keyword cannot be found in our task list
      */
-    static void printUpcomingTasks(TaskList tasks) {
+    static void parseFindCommand(String command, TaskList tasks) throws DukeException{
+        try {
+            String keyword = command.substring(5);
+            tasks.findTasks(keyword);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    static void printUpcomingTasks(String fullCommand, TaskList tasks) {
         LocalDateTime dateTime = LocalDateTime.now();
         for (Task task : tasks.getTasks()) {
             if (task instanceof Deadline) {

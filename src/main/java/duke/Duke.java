@@ -76,6 +76,8 @@ public class Duke {
                                     , dateTime));
                         }
                     }
+                } else if (commandType.equals("FIND")) {
+                    Parser.parseFindCommand(fullCommand, tasks);
                 } else {
                     Parser.printUpcomingTasks(tasks);
                 }
