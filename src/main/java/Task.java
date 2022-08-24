@@ -17,6 +17,10 @@ public class Task {
         this.isCompleted = isCompleted;
     }
 
+    public String stringFormatting() {
+        String marker = getStatus().equals("X") ? "T" : "F";
+        return " # " + marker + " # " + this.description;
+    }
     @Override
     public String toString() {
         return "[" + getStatus() + "] " + this.description;

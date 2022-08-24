@@ -1,5 +1,9 @@
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
 
 public class Duke {
 
@@ -7,6 +11,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Greet();
+        readFile();
         Scanner userInput = new Scanner(System.in);
         String userReply = userInput.nextLine().strip();
 
@@ -154,6 +159,7 @@ public class Duke {
         currentTask.setCompleted(true);
         System.out.println("\t\t\t" + currentTask);
         System.out.println("##############################################");
+        saveToFile(true,null);
     }
 
     private static void UnMark(int num) {
@@ -163,6 +169,7 @@ public class Duke {
         currentTask.setCompleted(false);
         System.out.println("\t\t\t" + currentTask);
         System.out.println("##############################################");
+        saveToFile(true,null);
     }
 
     private static void ToDo(String task) {
@@ -174,6 +181,7 @@ public class Duke {
         String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
         System.out.println(numOfTasks);
         System.out.println("##############################################");
+        saveToFile(false, toDo);
     }
 
     private static void Deadline(String task, String by) {
@@ -185,6 +193,7 @@ public class Duke {
         String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
         System.out.println(numOfTasks);
         System.out.println("##############################################");
+        saveToFile(false,deadline);
     }
 
     private static void Event(String task, String at) {
@@ -196,6 +205,7 @@ public class Duke {
         String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
         System.out.println(numOfTasks);
         System.out.println("##############################################");
+        saveToFile(false,event);
     }
 
     private static void Delete(int num) {
@@ -206,6 +216,7 @@ public class Duke {
         String numOfTasks = String.format("You currently have %d tasks in the list",botArray.size());
         System.out.println(numOfTasks);
         System.out.println("##############################################");
+        saveToFile(true,null);
     }
 
     private static void GoodBye() {
@@ -213,4 +224,69 @@ public class Duke {
         System.out.println("So Long, farewell!");
         System.out.println("##############################################");
     }
+
+    private static void readFile() {
+        try {
+            File dataDirectory = new File("Info");
+            if (!dataDirectory.isDirectory()) {
+                dataDirectory.mkdir();
+            }
+            File dataFile = new File("Info/data.txt");
+            dataFile.createNewFile();
+            Scanner scanningFile = new Scanner(dataFile);
+            while (scanningFile.hasNext()) {
+               String currLine = scanningFile.nextLine();
+               String[] task = currLine.split(" # ");
+               if (task.length == 3) {
+                   ToDo todo = new ToDo(task[2]);
+                   boolean isMarked = task[1].equals("T");
+                   todo.setCompleted(isMarked);
+                   botArray.add(todo);
+               }
+               if (task.length == 4) {
+                   if (task[0].equals("D")) {
+                       Deadline deadline = new Deadline(task[2],task[3]);
+                       boolean isMarked = task[1].equals("T");
+                       deadline.setCompleted(isMarked);
+                       botArray.add(deadline);
+                   }
+                   if (task[0].equals("E")) {
+                       Event event = new Event(task[2],task[3]);
+                       boolean isMarked = task[1].equals("T");
+                       event.setCompleted(isMarked);
+                       botArray.add(event);
+                   }
+               }
+            }
+            scanningFile.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("File should have been created by now!");
+        } catch (IOException e) {
+            System.out.println("Sorry! This should not be happening!");
+        }
+    }
+
+    private static void saveToFile(boolean isDeleted, Task task) {
+        try {
+            File dataFile = new File("Info/data.txt");
+            if (isDeleted) {
+                dataFile.delete();
+                dataFile.createNewFile();
+            }
+            FileWriter fileWriter = new FileWriter(dataFile, true);
+            if (task == null) {
+                for (Task value : botArray) {
+                    String currLine = value.stringFormatting();
+                    fileWriter.write(currLine + System.lineSeparator());
+                }
+            } else {
+                String currLine = task.stringFormatting();
+                fileWriter.write(currLine + System.lineSeparator());
+            }
+            fileWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

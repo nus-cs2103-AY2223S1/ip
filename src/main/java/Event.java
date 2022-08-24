@@ -10,4 +10,9 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.period + ")";
     }
+
+    @Override
+    public String stringFormatting() {
+        return "E" + super.stringFormatting() + " # " + this.period;
+    }
 }
