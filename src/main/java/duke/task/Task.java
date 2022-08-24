@@ -2,6 +2,9 @@ package duke.task;
 
 import duke.exception.DukeException;
 
+/**
+ * Task encapsulates a task with a description and a completion status.
+ */
 public class Task {
     private static final String DONE_STATUS = "X";
     private static final String NOT_DONE_STATUS = " ";
@@ -12,34 +15,63 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructor for Task.
+     *
+     * @param description Description of the Task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
-
+    /**
+     * Returns the String representation of completion status.
+     *
+     * @return String representation of the completion status.
+     */
     public String getStatusIcon() {
         return (isDone ? DONE_STATUS : NOT_DONE_STATUS);
     }
 
+    /**
+     * Returns the String representation of the ToDo.
+     *
+     * @return String representation of the ToDo.
+     */
     @Override
     public String toString() {
         return ("[" + this.getStatusIcon() + "] " + this.description);
     }
 
+    /**
+     * Marks the Task as completed.
+     */
     public void markDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the Task as uncompleted.
+     */
     public void markUndone() {
         this.isDone = false;
     }
 
-
+    /**
+     * Returns the String representation to be stored.
+     *
+     * @return storage String representation of the ToDo.
+     */
     public String toStorageString() {
         String statusStorage = this.isDone ? DONE_STORAGE : NOT_DONE_STORAGE;
         return statusStorage + Task.STORAGE_DELIMITER + this.description;
     }
 
+    /**
+     * Creates a Task object from a storage String.
+     * @param string The Storage String representing the Task.
+     * @return The Task represented by the Storage String.
+     */
     public static Task fromStorageString(String string) {
         String[] taskSubstrings = string.split(" \\| ");
         TaskType taskType = TaskType.parse(taskSubstrings[0]);
@@ -69,7 +101,6 @@ public class Task {
         if (taskSubstrings[1].equals(Task.DONE_STORAGE)) {
             task.isDone = true;
         }
-
         return task;
     }
 }

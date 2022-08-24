@@ -4,9 +4,18 @@ import duke.command.*;
 import duke.exception.DukeException;
 import duke.task.TaskList;
 
-
+/**
+ * Parser to make sense of user input.
+ */
 public class Parser {
 
+    /**
+     * Parses a command from a string.
+     *
+     * @param userInput The string to parse.
+     * @param taskList The task list to pass in to the Command.
+     * @return The command corresponding to the user input.
+     */
     public Command parseCommand(String userInput, TaskList taskList) {
         try {
             String [] inputArr = userInput.split(" ", 2);

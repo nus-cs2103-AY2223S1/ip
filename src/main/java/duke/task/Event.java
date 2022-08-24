@@ -6,9 +6,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Event is a task that happens at a specific date/time.
+ */
 public class Event extends Task {
     protected LocalDate date;
 
+    /**
+     * Constructor for Event.
+     *
+     * @param description Description of the Event.
+     * @param date The date/time when the Event happens.
+     * @throws DukeException If the date is invalid.
+     */
     public Event(String description, String date) throws DukeException {
         super(description);
         try {
@@ -18,12 +28,22 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Returns the String representation of the Event.
+     *
+     * @return String representation of the Event.
+     */
     @Override
     public String toString() {
         return ("[E]" + super.toString() + " (at: "
                 + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")");
     }
 
+    /**
+     * Returns the String representation to be stored.
+     *
+     * @return String storage representation of the Event.
+     */
     @Override
     public String toStorageString() {
         String doneDescriptionString = super.toStorageString();

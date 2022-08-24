@@ -6,16 +6,27 @@ import duke.exception.DukeException;
 import duke.task.TaskList;
 import java.util.Scanner;
 
+/**
+ * Duke is the class that represents the chat-bot.
+ */
 public class Duke {
     private static String TASKS_STORAGE_PATH = "./data/duke.txt";
     private TaskList taskList;
     private Ui ui;
 
+
+    /**
+     * Constructs for Duke
+     */
     public Duke() {
         this.taskList = new TaskList(TASKS_STORAGE_PATH);
         this.ui = new Ui();
     }
 
+
+    /**
+     * Runs the Duke chat-bot.
+     */
     public void run() {
         boolean hasEnded = false;
         Scanner scanner = new Scanner(System.in);

@@ -4,15 +4,28 @@ import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * MarkCommand represents a command to mark a task as completed.
+ */
 public class MarkCommand extends Command {
     private TaskList taskList;
     private String[] inputArr;
 
+    /**
+     * Creates a MarkCommand to mark a task as completed.
+     * @param taskList The TaskList that the task belongs to.
+     * @param inputArr The input String array.
+     */
     public MarkCommand(TaskList taskList, String[] inputArr) {
         this.taskList = taskList;
         this.inputArr = inputArr;
     }
 
+    /**
+     * Marks the task in the TaskList as completed.
+     * @return The message to be displayed.
+     * @throws DukeException If the input array is invalid.
+     */
     @Override
     public String action() throws DukeException {
         if (this.inputArr.length < 2) {

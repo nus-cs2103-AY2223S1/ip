@@ -4,15 +4,28 @@ import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * UnmarkCommand represents a command to mark a task as uncompleted.
+ */
 public class UnmarkCommand extends Command {
     private TaskList taskList;
     private String[] inputArr;
 
+    /**
+     * Creates a UnmarkCommand to mark a task as uncompleted.
+     * @param taskList The TaskList that the task belongs to.
+     * @param inputArr The input String array.
+     */
     public UnmarkCommand(TaskList taskList, String[] inputArr) {
         this.taskList = taskList;
         this.inputArr = inputArr;
     }
 
+    /**
+     * Marks the task in the TaskList as uncompleted.
+     * @return The message to be displayed.
+     * @throws DukeException If the input array is invalid.
+     */
     @Override
     public String action() throws DukeException {
         if (this.inputArr.length < 2) {
