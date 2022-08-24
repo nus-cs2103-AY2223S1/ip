@@ -50,6 +50,6 @@ public class Deadline extends Task {
      * @return A string representation of a Deadline object in the format of D , do this , 2019-10-15
      */
     public String toFileString() {
-        return "D , " + super.toFileString()  + " , " + dateAndTime;
+        return "D , " + super.toFileString() + " , " + dateAndTime;
     }
 }

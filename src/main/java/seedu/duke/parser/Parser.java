@@ -1,16 +1,15 @@
 package seedu.duke.parser;
 
+import java.util.Objects;
+
+import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.command.MarkCommand;
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
-
-
-import java.util.Objects;
 
 /**
  * The parser class handles the parsing of a user input into a Command object that the program can handle.
@@ -35,7 +34,8 @@ public class Parser {
             } catch (ArrayIndexOutOfBoundsException e) {
                 throw new DukeException("An index must be provided for mark or unmark commands.");
             }
-        } else if (Objects.equals(commands[0], "deadline") || Objects.equals(commands[0], "event") || Objects.equals(commands[0], "todo")) {
+        } else if (Objects.equals(commands[0], "deadline") || Objects.equals(commands[0], "event")
+                || Objects.equals(commands[0], "todo")) {
             if (Objects.equals(commands[0], "deadline")) {
                 try {
                     String[] taskDetails = commands[1].split(" /by ");

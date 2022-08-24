@@ -52,6 +52,6 @@ public class Event extends Task {
      * @return A string representation of an Event object in the format of E , do this , 2019-10-15
      */
     public String toFileString() {
-        return "E , " + super.toFileString()  + " , " + dateAndTime;
+        return "E , " + super.toFileString() + " , " + dateAndTime;
     }
 }
