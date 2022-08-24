@@ -1,8 +1,14 @@
+package duke.command;
+
+import duke.task.TaskList;
+import duke.ui.Ui;
+import duke.storage.Storage;
+
 public class ByeCommand extends Command {
 
     public static final String COMMAND_NAME = "bye";
 
-    ByeCommand() {
+    public ByeCommand() {
 
     }
 

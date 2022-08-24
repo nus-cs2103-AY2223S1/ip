@@ -1,3 +1,11 @@
+package duke.storage;
+
+import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.TaskList;
+import duke.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -8,21 +16,21 @@ public class Storage {
 
     private final File saveFile;
 
-    Storage(File saveFile) {
+    public Storage(File saveFile) {
         this.saveFile = saveFile;
     }
 
-    Storage(String filePath) {
+    public Storage(String filePath) {
         this.saveFile = new File(filePath);
     }
 
-    TaskList load() throws DukeException {
+    public TaskList load() throws DukeException {
         try {
             Scanner sc = new Scanner(this.saveFile);
             TaskList ret = new TaskList();
             while (sc.hasNext()) {
                 String[] curTask = sc.nextLine().split(" / ");
-                // Task type saved in the third parameter
+                // duke.task.Task type saved in the third parameter
                 switch (curTask[2]) {
                     case "T":
                         ret.addTask(new Todo(curTask[0], curTask[1].equals("true")));
@@ -51,7 +59,7 @@ public class Storage {
         }
     }
 
-    void save(TaskList taskList) throws DukeException {
+    public void save(TaskList taskList) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.saveFile);
             for (int i = 0; i < taskList.getLength(); i++) {

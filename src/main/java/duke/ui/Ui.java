@@ -1,3 +1,7 @@
+package duke.ui;
+
+import duke.DukeException;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -11,7 +15,7 @@ public class Ui {
 
     private final Scanner sysInScanner;
 
-    Ui() {
+    public Ui() {
         sysInScanner = new Scanner(System.in);
     }
 

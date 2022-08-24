@@ -1,10 +1,17 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 public class UnmarkCommand extends Command {
 
     public static final String COMMAND_NAME = "unmark";
 
     private final int unmarkIndex;
 
-    UnmarkCommand(int unmarkIndex) {
+    public UnmarkCommand(int unmarkIndex) {
         this.unmarkIndex = unmarkIndex;
     }
 

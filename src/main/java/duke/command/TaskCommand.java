@@ -1,8 +1,16 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 public abstract class TaskCommand extends Command {
 
     private final Task newTask;
 
-    TaskCommand(Task newTask) {
+    public TaskCommand(Task newTask) {
         this.newTask = newTask;
     }
 

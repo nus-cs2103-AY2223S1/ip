@@ -1,10 +1,18 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_NAME = "delete";
 
     private final int delIndex;
 
-    DeleteCommand(int delIndex) {
+    public DeleteCommand(int delIndex) {
         this.delIndex = delIndex;
     }
 

@@ -1,12 +1,14 @@
+package duke.parser;
+
 public class Argument {
     private final String name, body;
 
-    Argument(String name) {
+    public Argument(String name) {
         this.name = name;
         this.body = null;
     }
 
-    Argument(String name, String body) {
+    public Argument(String name, String body) {
         this.name = name;
         this.body = body;
     }
@@ -21,6 +23,6 @@ public class Argument {
 
     @Override
     public String toString() {
-        return String.format("Argument %s: %s", this.name, this.body);
+        return String.format("duke.parser.Argument %s: %s", this.name, this.body);
     }
 }

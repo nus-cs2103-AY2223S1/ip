@@ -1,8 +1,12 @@
+package duke.command;
+
+import duke.task.Todo;
+
 public class TodoCommand extends TaskCommand {
 
     public static final String COMMAND_NAME = "todo";
 
-    TodoCommand(Todo newTodo) {
+    public TodoCommand(Todo newTodo) {
         super(newTodo);
     }
 }

@@ -1,9 +1,13 @@
+package duke.task;
+
+import duke.DukeException;
+
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    private static final String NO_TIMERANGE_MESSAGE = "An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.";
+    private static final String NO_TIMERANGE_MESSAGE = "An duke.task.Event-type duke.task.Task must be provided with a time range. Use the /at parameter to add a time range.";
     private static final String INVALID_DATE_MESSAGE = "Please provide me valid date(s) in the following format:\n"
         + "  YYYY1-MM1-DD1 YYYY2-MM2-DD2\n"
         + "i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02. You can provide only one date if you choose.";
@@ -32,7 +36,7 @@ public class Event extends Task {
         }
     }
 
-    Event(String desc, String timeRange) throws DukeException {
+    public Event(String desc, String timeRange) throws DukeException {
         super(desc);
         if (timeRange == null || timeRange.equals("")) {
             throw new DukeException(Event.NO_TIMERANGE_MESSAGE);
@@ -40,7 +44,7 @@ public class Event extends Task {
         parseTimeRange(timeRange);
     }
 
-    Event(String desc, String timeRange, boolean isDone) throws DukeException {
+    public Event(String desc, String timeRange, boolean isDone) throws DukeException {
         super(desc, isDone);
         if (timeRange == null || timeRange.equals("")) {
             throw new DukeException(Event.NO_TIMERANGE_MESSAGE);
@@ -50,7 +54,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM YYYY");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, dd MMMM yyyy");
         if (this.startTime.equals(this.endTime)) {
             return String.format("[E]%s (at: %s)", super.toString(), this.startTime.format(formatter));
         } else {

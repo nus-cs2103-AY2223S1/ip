@@ -43,19 +43,19 @@
      [E][ ] NUS SoC Career Fair (at: Wednesday, 17 August 2022)
    Currently, I have 3 tasks recorded
 
-<< !>> Uh-oh ☹! The description of a Task must not be empty.
+<< !>> Uh-oh ☹! The description of a duke.task.Task must not be empty.
 
-<< !>> Uh-oh ☹! The description of a Task must not be empty.
+<< !>> Uh-oh ☹! The description of a duke.task.Task must not be empty.
 
-<< !>> Uh-oh ☹! The description of a Task must not be empty.
+<< !>> Uh-oh ☹! The description of a duke.task.Task must not be empty.
 
-<< !>> Uh-oh ☹! A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.
+<< !>> Uh-oh ☹! A duke.task.Deadline-type duke.task.Task must be provided with an ending time. Use the /by parameter to add a deadline.
 
-<< !>> Uh-oh ☹! An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.
+<< !>> Uh-oh ☹! An duke.task.Event-type duke.task.Task must be provided with a time range. Use the /at parameter to add a time range.
 
-<< !>> Uh-oh ☹! A Deadline-type Task must be provided with an ending time. Use the /by parameter to add a deadline.
+<< !>> Uh-oh ☹! A duke.task.Deadline-type duke.task.Task must be provided with an ending time. Use the /by parameter to add a deadline.
 
-<< !>> Uh-oh ☹! An Event-type Task must be provided with a time range. Use the /at parameter to add a time range.
+<< !>> Uh-oh ☹! An duke.task.Event-type duke.task.Task must be provided with a time range. Use the /at parameter to add a time range.
 
 << !>> Uh-oh ☹! You must pass an index value.
 
