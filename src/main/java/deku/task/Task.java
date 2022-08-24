@@ -50,6 +50,29 @@ public class Task {
         return parser.getTime();
     }
 
+
+    /**
+     * Searches for a particular word within the information user inputs
+     *
+     * @param word Word to be searched for
+     * @return boolean if the word is present
+     */
+    public boolean find_word(String word) {
+        for (String storedWord: taskArray) {
+            if (storedWord.equals(word)) {
+                return true;
+            }
+            if (storedWord.charAt(0) == '/' && storedWord.length() > 1) {
+                String specialChar = storedWord.substring(1, storedWord.length());
+                if (specialChar.equals(word)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
     private String getSpecial() {
         String output = "";
         for (int i = 0; i < taskArray.size(); i++) {

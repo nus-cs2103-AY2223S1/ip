@@ -6,6 +6,7 @@ list
 mark 1
 mark 2
 list
+find_word book
 unmark 2
 list
 delete 1
@@ -20,3 +21,4 @@ deadline return book /by 23/08/2022
 event project meeting /at 23/08/2022 1800
 event project meeting part 2 /at 23/08/2022 hahahaha
 deadline return book /by hahahaha 1800
+find_date 23/08/2022

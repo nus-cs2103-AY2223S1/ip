@@ -67,31 +67,49 @@ class BotList {
         return "Noted.\n" + task.toString() + "\nhas been deleted.\n" + getNoTasks();
     }
 
-    String find(String date) throws DekuExceptions {
-        ArrayList<Task> newArray = new ArrayList<>();
+    String find_date(String date) throws DekuExceptions {
+        List<Task> containsDate = new ArrayList<>();
         InputParser parser = new InputParser();
-        for (Task task: this.internalArray) {
+        for (Task task: internalArray) {
             parser.parseDate(date);
-            if (task.getDate().equals(parser.getDate())) {
-                newArray.add(task);
+            if (task.getDate() != null && task.getDate().equals(parser.getDate())) {
+                containsDate.add(task);
+            } else {
+                containsDate.add(null);
             }
         }
-        return this.outputList("Here are the tasks with the same date: ", newArray);
+        return outputList("Here are the tasks with the same date:", containsDate);
+    }
+
+    String find_word(String word) throws DekuExceptions {
+        List<Task> containsWord = new ArrayList<>();
+
+        for (Task task: internalArray) {
+            if (task.find_word(word)) {
+                containsWord.add(task);
+            } else {
+                containsWord.add(null);
+            }
+        }
+        return outputList("Here are the tasks containing the word: "
+                + word, containsWord);
     }
 
     private String outputList(String message, List<Task> array) {
-        StringBuilder output = new StringBuilder(message);
-        for (int i = 1; i < array.size() + 1; i++) {
-            if (output.length() != 0) {
-                output.append("\n");
+        StringBuilder output = new StringBuilder(message + "\n");
+        for (int i = 0; i < array.size(); i++) {
+            if (array.get(i) != null) {
+                if (output.length() != 0) {
+                    output.append("\n");
+                }
+                output.append(i + 1).append(") ").append(array.get(i));
             }
-            output.append(i).append(") ").append(array.get(i - 1));
         }
         return output.toString();
     }
 
     @Override
     public String toString() {
-        return this.outputList("Here are your tasks:\n", this.internalArray);
+        return this.outputList("Here are your tasks:", this.internalArray);
     }
 }
