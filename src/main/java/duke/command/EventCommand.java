@@ -17,10 +17,10 @@ import duke.task.TaskList;
  */
 public class EventCommand extends Command {
     /** Description of the event task. */
-    private final String description;
+    private String description;
 
     /** Date and time of the event task. */
-    private final LocalDateTime atDateTime;
+    private LocalDateTime atDateTime;
     
     /**
      * Creates an <code>EventCommand</code>.

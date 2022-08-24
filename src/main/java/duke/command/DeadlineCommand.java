@@ -18,10 +18,10 @@ import duke.task.TaskList;
 public class DeadlineCommand extends Command {
     
     /** Description of the deadline task. */
-    private final String description;
+    private String description;
     
     /** Deadline of the deadline task. */
-    private final LocalDateTime byDateTime;
+    private LocalDateTime byDateTime;
 
     /**
      * Creates a <code>DeadlineCommand</code>.
