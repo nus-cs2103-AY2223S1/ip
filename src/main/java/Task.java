@@ -1,10 +1,18 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.TimeZone;
+
 public class Task {
     protected String description;
     protected boolean isDone;
+    protected LocalDateTime time;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.time = null;
     }
 
     public String getStatusIcon() {
