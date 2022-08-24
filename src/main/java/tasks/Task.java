@@ -1,5 +1,9 @@
 package tasks;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Task {
 
   public enum Type {
@@ -11,7 +15,9 @@ public class Task {
   Type taskType;
 
   protected String taskDescription;
-  protected String dateDescription;
+  protected String miscDescription;
+  protected LocalDate taskDate;
+  protected boolean hasDateTime = false; // Changed to true if the task is linked to a LocalDateTime dateTime
   protected boolean isDone;
 
   public Task(String taskDescription) {
@@ -20,16 +26,31 @@ public class Task {
     this.taskType = Type.TODO;
   }
 
-  public Task(String taskDescription, String dateDescription, Type taskType) {
+  public Task(String taskDescription, String miscDescription, Type taskType) {
     this.taskDescription = taskDescription;
-    this.dateDescription = dateDescription;
     this.taskType = taskType;
+
+    if (taskType.equals(Type.DEADLINE)) {
+      /**
+       * If miscDescription is of a particular format, then convert it into a LocalDateTime object.
+       * If not, then the miscDescription is stored as a String.
+       */
+      DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+      DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+      try {
+        LocalDate date = LocalDate.parse(miscDescription, inputFormatter);
+        taskDate = date;
+        hasDateTime = true;
+        this.miscDescription = outputFormatter.format(date);
+      } catch (DateTimeParseException e) {
+        this.miscDescription = miscDescription;
+      }
+    }
   }
 
-  public String getStatusIcon() {
+  private String getStatusIcon() {
     return ("[" + (isDone ? "X" : " ") + "]");
   }
-
 
   /*
    * Updates the status of the task. If task status
@@ -66,9 +87,9 @@ public class Task {
     case TODO: 
       return "[T]" + getStatusIcon() + " " + taskDescription;
     case DEADLINE:
-      return "[D]" + getStatusIcon() + " " + taskDescription + " (by: " + dateDescription + ")";
+      return "[D]" + getStatusIcon() + " " + taskDescription + " (by: " + miscDescription + ")";
     case EVENT:
-      return "[E]" + getStatusIcon() + " " + taskDescription + " (at: " + dateDescription + ")";
+      return "[E]" + getStatusIcon() + " " + taskDescription + " (at: " + miscDescription + ")";
     default:
       return "";
     }
