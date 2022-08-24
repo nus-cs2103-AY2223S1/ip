@@ -1,9 +1,14 @@
 package task;
 
+import exceptions.DukeException;
 import exceptions.InvalidIndexException;
+import utils.Input;
 import utils.Prompt;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 /**
@@ -21,6 +26,51 @@ public class TaskList {
         this.taskList = new ArrayList<>();
     }
 
+    /**
+     * A function that loads a text file into the task list
+     */
+    public void loadTask(Scanner scanner) throws DukeException {
+        while (scanner.hasNext()) {
+            String inputString = scanner.nextLine();
+            Input input = Input.formatInput(inputString);
+            String additionalInputString = scanner.nextLine();
+            boolean done = additionalInputString.equals(Task.DONE);
+            switch (input.getCommand()) {
+            case TODO:
+                taskList.add(new TaskTodo(input.getMainData(), done));
+                break;
+            case DEADLINE:
+                taskList.add(new TaskDeadline(input.getMainData(), input.getSecondaryData(), done));
+                break;
+            case EVENT:
+                taskList.add(new TaskEvent(input.getMainData(), input.getSecondaryData(), done));
+                break;
+            }
+        }
+        Prompt.fileSuccessfullyLoaded();
+        if (taskList.size() > 0) {
+            listTask();
+            Prompt.lineDivider();
+        }
+    }
+
+    /**
+     * A function that stores a text file into the task list
+     */
+    public void storeTask(String filepath) {
+        try {
+            FileWriter fileWriter = new FileWriter(filepath);
+            StringBuilder input = new StringBuilder();
+            for (Object o : this.taskList) {
+                Task task = (Task) o;
+                input.append(task.toStorageString());
+            }
+            fileWriter.write(input.toString());
+            fileWriter.close();
+        } catch (IOException ioException) {
+            System.out.println(ioException.getMessage());
+        }
+    }
 
     /**
      * A function that list all the tasks in the list.

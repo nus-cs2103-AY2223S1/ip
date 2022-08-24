@@ -4,6 +4,9 @@ import utils.Input;
 import utils.Prompt;
 import utils.Utils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Scanner;
 
 
@@ -20,7 +23,10 @@ public class Duke {
      */
     private static final TaskList taskList = new TaskList();
 
+    private static final String FILE_PATH = "data" + File.separator + "dukeData.txt";
+
     public static void main(String[] args) {
+        initialiseTaskList();
         Prompt.startPrompt();
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()) {
@@ -32,6 +38,7 @@ public class Duke {
                 Input input = Input.formatInput(inputString.trim());
                 switch (input.getCommand()) {
                 case BYE:
+                    taskList.storeTask(FILE_PATH);
                     Prompt.endPrompt();
                     return;
                 case LIST:
@@ -75,6 +82,32 @@ public class Duke {
             }
         }
 
+    }
+
+    /**
+     * Read saved task from a file with the file path specified in {@link Duke#FILE_PATH }.
+     * Store the file information in the TaskList provided.
+     * If there is no such file, create a file with file name dukeData.txt.
+     */
+    private static void initialiseTaskList() {
+        try {
+            File file = new File(FILE_PATH);
+            if (!file.exists()) {
+                boolean isMakeDirectorySuccessful = file.getParentFile().mkdirs();
+                boolean isFileCreatedSuccessful = file.createNewFile();
+                if (!isFileCreatedSuccessful || !isMakeDirectorySuccessful) {
+                    Prompt.fileFailedToLoad();
+                }
+            }
+            Scanner scanner = new Scanner(file);
+            taskList.loadTask(scanner);
+        } catch (FileNotFoundException e) {
+            System.out.println("FILE NOT FOUND " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IO EXCEPTION " + e.getMessage());
+        } catch (DukeException e) {
+            System.out.println("Error Loading file");
+        }
     }
 
     /**

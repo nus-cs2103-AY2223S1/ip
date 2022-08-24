@@ -79,4 +79,18 @@ public class Prompt {
     public static void lineDivider() {
         System.out.println("-------------------------------------------------------------");
     }
+
+    /**
+     * Prints a success message when a file is successfully loaded.
+     */
+    public static void fileSuccessfullyLoaded() {
+        System.out.println("File successfully loaded!");
+    }
+
+    /**
+     * Prints a success message when a file failed to load.
+     */
+    public static void fileFailedToLoad() {
+        System.out.println("File failed to load!");
+    }
 }
