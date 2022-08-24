@@ -1,21 +1,13 @@
-import java.io.File;
+package duke.ui;
+
 import java.util.Scanner;
 
 public class Ui {
-
     private String userInput;
-
     private Scanner scanner;
-    private TaskList taskList;
-    private Storage storage;
-    private File file;
-
-    public static final String PATH = "./data/";
 
     public Ui(Scanner scanner) {
         this.scanner = scanner;
-        this.taskList = new TaskList();
-        this.storage = new Storage();
 
     }
 
@@ -38,6 +30,5 @@ public class Ui {
     public String userString() {
         return this.userInput;
     }
-
 
 }

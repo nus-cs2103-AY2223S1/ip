@@ -1,3 +1,10 @@
+package duke.commands;
+
+import duke.data.TaskList;
+import duke.storage.Storage;
+import duke.ui.Ui;
+
+
 public class EndCommand extends Command{
 
     @Override

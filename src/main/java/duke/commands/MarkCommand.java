@@ -1,3 +1,9 @@
+package duke.commands;
+
+import duke.data.TaskList;
+import duke.storage.Storage;
+import duke.ui.Ui;
+
 public class MarkCommand extends Command{
 
     private boolean mark;
