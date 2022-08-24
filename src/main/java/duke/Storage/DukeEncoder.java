@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class DukeEncoder {
     public static void rewriteList(ArrayList<Task> workList) {
         try {
-            Path file = Paths.get("src/main/List.txt");
+            Path file = Paths.get("src/main/java/duke/Storage/List.txt");
             ArrayList<String> stringArrayList = new ArrayList<>();
             for (int i = 0; i < workList.size(); i++) {
                 stringArrayList.add(workList.get(i).storedData());

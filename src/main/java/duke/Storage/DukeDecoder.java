@@ -11,7 +11,7 @@ public class DukeDecoder {
     public static ArrayList<Task> loadDataFromList() {
         ArrayList<Task> workList = new ArrayList<>();
         try {
-            Scanner s = new Scanner(new File("src/main/List.txt"));
+            Scanner s = new Scanner(new File("src/main/java/duke/Storage/List.txt"));
             while (s.hasNextLine()){
                 String[] task = s.nextLine().split("\\|");
                 String typeOfTask = task[0];
