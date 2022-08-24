@@ -11,14 +11,12 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public String mark() {
+    public void mark() {
         this.isDone = true;
-        return "Nice! I've marked this task as done:\n" + this.toString();
     }
 
-    public String unmark() {
+    public void unmark() {
         this.isDone = false;
-        return "OK, I've marked this task as not done yet:\n" + this.toString();
     }
 
     @Override
