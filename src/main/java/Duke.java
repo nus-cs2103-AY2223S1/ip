@@ -1,15 +1,12 @@
-import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.nio.file.Paths;
-import java.nio.file.Files;
 
 
 public class Duke {
     public static void main(String[] args) throws EmptyDescriptionException, OutOfRangeException, UnknownCommandException {
 
         ArrayList<Task> arr = new ArrayList<>();
-        int count = 0;
+
 
         System.out.println("Hello I'm Duke" + "\nWhat can I do for you?");
 
@@ -17,10 +14,15 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String input = "";
 
-        String s = reader();
+        //duke.Storage
+        Storage storage = new Storage("duke.txt");
+        String s = storage.reader();
+
         int counter_mark = 1;
         boolean checker = false;
 
+        //duke.Parser
+        Parser parser = new Parser();
 
         //process string
         s = s.replace("[T]", "todo");
@@ -37,16 +39,20 @@ public class Duke {
 
         //code mechanics
         while (true) {
-
-            if (s.equals("")) {
-                checker = true;
+            if (parser.terminator) {
+                break;
+            } else if (s.equals("")) {
+                parser.setChecker();
                 input = sc.nextLine();
+                parser.parse(input);
             } else {
                 int temp = s.indexOf("%");
                 input = s.substring(0, temp);
+                parser.parse(input);
                 s = s.replaceAll(input + "%", ""); //remove old string
             }
 
+<<<<<<< HEAD
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
@@ -156,54 +162,17 @@ public class Duke {
                 }
             }
 
+=======
+>>>>>>> branch-Level-7
         }
 
         sc.close();
 
         // write to file once scanner closes
-        writer(arr);
+        storage.writer(parser.getArr());
 
     }
 
-    //file writer function
-    public static void writer(ArrayList<Task> arr) {
-        String temp = "";
-
-        for (Task item: arr) {
-            temp += (item.toString() + "\n");
-        }
-
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("duke.txt"));
-            writer.write(temp);
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    //file reader function
-    public static String reader() {
-        String s = "";
-        int counter_mark = 1;
-        StringBuilder builder = new StringBuilder();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("duke.txt"));
-            while ((s = reader.readLine()) != null) {
-                    builder.append(s).append("%");
-                    if (s.contains("X")) {
-                        builder.append("mark ").append(counter_mark).append("%");
-                    }
-                    counter_mark++;
-            }
-                reader.close();
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        return builder.toString();
-    }
 
 }
 
