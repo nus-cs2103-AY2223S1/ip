@@ -2,12 +2,12 @@ public abstract class Task {
     /**
      * The title of the Task
      */
-    private String title;
+    protected String title;
 
     /**
      * The completion status of the Task
      */
-    private boolean isDone;
+    protected boolean isDone;
 
     /**
      * Constructor for Task
@@ -39,4 +39,6 @@ public abstract class Task {
     public String toString() {
         return String.format("[%s] %s", this.isDone ? "X" : " ", this.title);
     }
+
+    public abstract String fileFormat();
 }

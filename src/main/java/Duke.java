@@ -1,41 +1,34 @@
-import java.util.Scanner;
-
 public class Duke {
+    private Storage storage;
+    private TaskList tasklist;
+    private Parser parser;
+    private UI ui;
+
+    public Duke(String filePath) {
+        this.storage = new Storage(filePath);
+        this.tasklist = new TaskList(this.storage.load());
+        this.ui = new UI();
+        this.parser = new Parser(this.storage, this.tasklist, this.ui);
+    }
+
     public static void main(String[] args) {
-        hello();
+        new Duke("data/aRC.txt").run();
+    }
 
-        Scanner sc = new Scanner(System.in);
-        DukeControl dc = new DukeControl("data/aRC.txt");
-
-        System.out.print("\n");
-        String input = sc.nextLine();
+    public void run() {
+        this.ui.hello();
+        String input = this.ui.readInput();
 
         // Keeps reading user input until the user types "bye"
         while(!input.equals("bye")) {
             try {
-                dc.run(input);
+                this.parser.parse(input);
             } catch (DukeException e) {
-                System.out.println(e);
+                this.ui.printException(e);
             }
-            System.out.print("\n");
-            input = sc.nextLine();
+            input = this.ui.readInput();
         }
 
-        bye();
-        sc.close();
-    }
-
-    /**
-     * Prints hello message to the screen
-     */
-    public static void hello() {
-        System.out.println("Hello! I'm aRC! (°▽°)/\nWhat can I do for you?");
-    }
-
-    /**
-     * Print goodbye message to the screen
-     */
-    public static void bye() {
-        System.out.println("Bye. Hope to see you again soon! ʘ ͜ʖ ʘ");
+        this.ui.bye();
     }
 }

@@ -22,4 +22,9 @@ public class Deadline extends Task {
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), this.deadline.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
     }
+
+    @Override
+    public String fileFormat() {
+        return String.format("D|%d|%s|%s", this.isDone ? 1 : 0, this.title, this.deadline.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    }
 }

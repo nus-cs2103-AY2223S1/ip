@@ -3,17 +3,18 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
-public class DukeControl {
+public class Parser {
     private Storage storage;
-    private TaskList tasklist;
-
+    private TaskList taskList;
+    private UI ui;
     /**
      * Constructor for DukeControl
      * Initializes arrayList
      */
-    public DukeControl(String filePath) {
-        this.storage = new Storage(filePath);
-        this.tasklist = new TaskList(this.storage.load());
+    public Parser(Storage storage, TaskList taskList, UI ui) {
+        this.storage = storage;
+        this.taskList = taskList;
+        this.ui = ui;
     }
 
     /**
@@ -21,7 +22,7 @@ public class DukeControl {
      * @param input User input represented by a String
      * @throws DukeException Throws a DukeException specific to this program
      */
-    public void run(String input) throws DukeException {
+    public void parse(String input) throws DukeException {
         String[] command = input.split(" ");
         String mainCommand = command[0];
         String[] commandArgs = Arrays.copyOfRange(command, 1, command.length);
@@ -62,7 +63,7 @@ public class DukeControl {
         if (commandArgs.length != 0) {
             throw new InvalidArgumentException();
         } else {
-            this.tasklist.listTasks();
+            this.taskList.listTasks();
         }
     }
 
@@ -74,11 +75,11 @@ public class DukeControl {
     public void parseMark(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.tasklist.numTasks()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
             throw new InvalidArgumentException();
         } else {
-            this.tasklist.getTask(Integer.parseInt(commandArgs[0]) - 1).mark();
-            this.storage.markTask(Integer.parseInt(commandArgs[0]) - 1);
+            this.taskList.getTask(Integer.parseInt(commandArgs[0]) - 1).mark();
+            this.storage.save(this.taskList);
         }
     }
 
@@ -90,11 +91,11 @@ public class DukeControl {
     public void parseUnmark(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.tasklist.numTasks()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
             throw new InvalidArgumentException();
         } else {
-            this.tasklist.getTask(Integer.parseInt(commandArgs[0]) - 1).unmark();
-            this.storage.unmarkTask(Integer.parseInt(commandArgs[0]) - 1);
+            this.taskList.getTask(Integer.parseInt(commandArgs[0]) - 1).unmark();
+            this.storage.save(this.taskList);
         }
     }
 
@@ -109,8 +110,8 @@ public class DukeControl {
         if (title == "") {
             throw new EmptyTitleException();
         } else {
-            this.tasklist.addTask(new Todo(title, false));
-            this.storage.writeTask(new String[]{"T", "0", title});
+            this.taskList.addTask(new Todo(title, false));
+            this.storage.save(this.taskList);
         }
     }
 
@@ -134,8 +135,8 @@ public class DukeControl {
             } else {
                 try {
                     LocalDate ldt = LocalDate.parse(deadline, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                    this.tasklist.addTask(new Deadline(title, false, ldt));
-                    this.storage.writeTask(new String[]{"D", "0", title, deadline});
+                    this.taskList.addTask(new Deadline(title, false, ldt));
+                    this.storage.save(this.taskList);
                 } catch (DateTimeParseException e) {
                     System.out.println(deadline + " cannot be parsed: must be in the format dd/mm/yyyy");
                 }
@@ -161,8 +162,8 @@ public class DukeControl {
             } else if (time == "") {
                 throw new InvalidArgumentException();
             } else {
-                this.tasklist.addTask(new Event(title, false, time));
-                this.storage.writeTask(new String[]{"E", "0", title, time});
+                this.taskList.addTask(new Event(title, false, time));
+                this.storage.save(this.taskList);
             }
         }
     }
@@ -175,11 +176,11 @@ public class DukeControl {
     public void parseDelete(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.tasklist.numTasks()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
             throw new InvalidArgumentException();
         } else {
-            this.tasklist.deleteTask(Integer.parseInt(commandArgs[0]) - 1);
-            this.storage.removeTask(Integer.parseInt(commandArgs[0]) - 1);
+            this.taskList.deleteTask(Integer.parseInt(commandArgs[0]) - 1);
+            this.storage.save(this.taskList);
         }
     }
 }

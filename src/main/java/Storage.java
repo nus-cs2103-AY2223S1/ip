@@ -59,41 +59,14 @@ public class Storage {
         }
     }
 
-    public void writeTask(String[] taskInfo) {
-        try {
-            FileWriter fw = new FileWriter(this.dataFile, true);
-            String line = String.join("|", taskInfo);
+    public void save(TaskList taskList) {
+        ArrayList<String> newData = new ArrayList<>();
 
-            if (this.dataFile.length() != 0) {
-                fw.write("\n");
-            }
-
-            fw.write(line);
-            fw.close();
-        } catch (IOException e) {
-            System.out.println(e);
+        for (int i = 0; i < taskList.numTasks(); i++) {
+            newData.add(taskList.getTask(i).fileFormat());
         }
 
-    }
-
-    public void removeTask(int index) {
         try {
-            Scanner sc = new Scanner(this.dataFile);
-            ArrayList<String> newData = new ArrayList<>();
-            int currTaskIndex = 0;
-
-            while (sc.hasNextLine()) {
-                String currTask = sc.nextLine();
-
-                if (currTaskIndex != index) {
-                    newData.add(currTask);
-                }
-
-                currTaskIndex++;
-            }
-
-            sc.close();
-
             FileWriter fw = new FileWriter(this.dataFile);
             fw.write(String.join("\n", newData));
             fw.close();
@@ -101,61 +74,4 @@ public class Storage {
             System.out.println(e);
         }
     }
-
-    public void markTask(int index) {
-        try {
-            Scanner sc = new Scanner(this.dataFile);
-            ArrayList<String> newData = new ArrayList<>();
-            int currTaskIndex = 0;
-
-            while (sc.hasNextLine()) {
-                String currTask = sc.nextLine();
-
-                if (currTaskIndex == index) {
-                    newData.add(currTask.substring(0, 2) + "1" + currTask.substring(3));
-                } else {
-                    newData.add(currTask);
-                }
-
-                currTaskIndex++;
-            }
-
-            sc.close();
-
-            FileWriter fw = new FileWriter(this.dataFile);
-            fw.write(String.join("\n", newData));
-            fw.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-
-    public void unmarkTask(int index) {
-        try {
-            Scanner sc = new Scanner(this.dataFile);
-            ArrayList<String> newData = new ArrayList<>();
-            int currTaskIndex = 0;
-
-            while (sc.hasNextLine()) {
-                String currTask = sc.nextLine();
-
-                if (currTaskIndex == index) {
-                    newData.add(currTask.substring(0, 2) + "0" + currTask.substring(3));
-                } else {
-                    newData.add(currTask);
-                }
-
-                currTaskIndex++;
-            }
-
-            sc.close();
-
-            FileWriter fw = new FileWriter(this.dataFile);
-            fw.write(String.join("\n", newData));
-            fw.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-
 }
