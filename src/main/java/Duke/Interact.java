@@ -8,6 +8,11 @@ public class Interact {
     private String line = "_______________________________________";
     private TasksManager tasksManager;
 
+    /**
+     * Initializes the user interface and greets the user.
+     *
+     * @return void.
+     */
     public void start() {
         tasksManager = new TasksManager();
         String logo = " ____        _\n"
@@ -18,6 +23,15 @@ public class Interact {
         System.out.println("Hello from\n" + logo);
         greet();
     }
+
+    /**
+     * Calls the task manager to do certain tasks
+     * depending on the command-line argument.
+     *
+     * @param word  A String read from the command line.
+     * @return void.
+     * @throws DukeException  If input is not proper.
+     */
     public void handle(String word) throws DukeException {
         if (word.startsWith("bye") || word.startsWith("Bye")) {
             bye();
@@ -36,6 +50,11 @@ public class Interact {
         }
     }
 
+    /**
+     * Greets the user.
+     *
+     * @return void.
+     */
     public void greet() {
         System.out.println(line);
         System.out.println("Hello! I'm Duke");
@@ -43,6 +62,12 @@ public class Interact {
         System.out.println(line);
     }
 
+    /**
+     * Says bye to the user and calls the taskmanager
+     * to shut down and write files to tasklist.txt.
+     *
+     * @return void.
+     */
     public void bye() {
         tasksManager.closePW();
         System.out.println(line);
@@ -51,6 +76,16 @@ public class Interact {
         System.exit(0);
     }
 
+    /**
+     * The main class creates an interact object,
+     * which controls interactions with the user
+     * and calls on other classes to do what the
+     * user wishes, accordingly. The Scanner takes in
+     * these inputs and seeds them to Interact.
+     *
+     * @param args user input.
+     * @return void.
+     */
     public static void main(String[] args) {
         Interact interact = new Interact();
         interact.start();
