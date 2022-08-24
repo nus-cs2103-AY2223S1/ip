@@ -3,6 +3,13 @@ package duke;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * A bot which helps to track things.
+ *
+ * @author Lee Ian Ee
+ * @version CS2103T AY22/23 Sem 1
+ */
+
 public class Duke {
     private Storage storage;
     private TaskList tasks;
