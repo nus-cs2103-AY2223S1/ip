@@ -15,9 +15,4 @@ public class Event extends Task {
             return "[E][ ] " + this.description + " (at: " + this.time + ")";
         }
     }
-
-    @Override
-    public String toStringText() {
-        return "E | " + this.done + " | " + this.description + " | " + this.time;
-    }
 }

@@ -15,9 +15,4 @@ public class Deadline extends Task {
             return "[D][ ] " + this.description + " (by: " + this.time + ")";
         }
     }
-
-    @Override
-    public String toStringText() {
-        return "D | " + this.done + " | " + this.description + " | " + this.time;
-    }
 }
