@@ -1,7 +1,9 @@
 package command;
 
-import tasks.Task;
 import java.util.ArrayList;
+
+import task.Task;
+import ui.Ui;
 
 public class DeleteCommand extends Command {
 
@@ -14,11 +16,11 @@ public class DeleteCommand extends Command {
     Integer index = Integer.parseInt(this.commandArgs[1]) - 1;
     Task taskToRemove = tasks.get(index);
     tasks.remove(index.intValue());
-    System.out.println(
+    Ui.print(
         "I've successfully removed this task:\n" +
         taskToRemove +
         "\n\n" +
-        "Do your own chores next time hunbun!\n"
+        "Do your own chores next time hunbun!"
         );
     return true;
   }

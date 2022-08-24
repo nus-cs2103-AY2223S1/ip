@@ -28,7 +28,7 @@ public class Ui {
    * @return Returns the user's input.
    */
   public static String awaitUserInput(Scanner sc) {
-    System.out.println("You: ");
+    System.out.print("You: ");
     String input = sc.nextLine();
     return input;
   }

@@ -1,7 +1,9 @@
 package command;
 
 import java.util.ArrayList;
-import tasks.Task;
+
+import task.Task;
+import ui.Ui;
 
 public class ListCommand extends Command {
 
@@ -11,9 +13,12 @@ public class ListCommand extends Command {
 
   @Override
   public boolean performAction() {
-    System.out.println("Sweetie, here is the list of tasks that you have <3");
+    Ui.print("Sweetie, here is the list of tasks that you have <3");
     for (int i = 0; i < this.tasks.size(); i++) {
-      System.out.println((i + 1) + ". " + this.tasks.get(i));
+      Ui.print(
+          (i + 1)
+          + ". " 
+          + this.tasks.get(i));
     }
 
     System.out.println("");

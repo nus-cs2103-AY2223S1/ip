@@ -1,7 +1,9 @@
 package command;
 
-import tasks.Task;
 import java.util.ArrayList;
+
+import task.Task;
+import ui.Ui;
 
 public class ByeCommand extends Command {
 
@@ -11,7 +13,7 @@ public class ByeCommand extends Command {
 
   @Override
   public boolean performAction() {
-    System.out.println("MumBot: Goodbyeeee sweetheart <3");
+    Ui.print("MumBot: Goodbyeeee sweetheart <3");
     return false;
   }
 }

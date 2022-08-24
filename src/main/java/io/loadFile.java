@@ -1,7 +1,8 @@
 package io;
 
-import tasks.Task;
-import exceptions.DukeException;
+import exception.DukeException;
+import task.Task;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;

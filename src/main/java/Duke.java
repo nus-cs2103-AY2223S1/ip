@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 import task.Task;
+import ui.Ui;
 import command.Command;
 import command.DeleteCommand;
 import command.TaskCommand;
@@ -31,7 +32,6 @@ public class Duke {
    * second element is the command description and if the command is a:
    *  - deadline: The third element is the due date.
    *  - event: The third element is the location of the event.
-   *
    * @throws DukeException Throws exceptions if the following conditions
    * are fulfilled:
    *   - The input has no task description.
@@ -190,7 +190,7 @@ public class Duke {
 
   public static void main(String[] args) throws DukeException {
     // Welcome message
-    System.out.println("MumBot: Hi dear! You are precious <3\n");
+    Ui.print("MumBot: Hi dear! You are precious <3\n");
 
     /**
      * Handling of the .txt file containing the list of tasks.
@@ -202,14 +202,9 @@ public class Duke {
     // Load the .txt file, and getting the list of tasks as an ArrayList<Task> if the .txt file contains any data
     tasks = loadFile.load(fileLoc);
 
-    /**
-     * Take in user input.
-     * All inputs are considered as Strings.
-     */
-    System.out.print("You: ");
+    String input;
     Scanner sc = new Scanner(System.in);
-
-    String input = sc.nextLine();
+    input = Ui.awaitUserInput(sc);
 
     while (true) {
       boolean notTerminated;
@@ -217,15 +212,13 @@ public class Duke {
       try {
         notTerminated = settleInput(input);
       } catch (DukeException e) {
-        System.out.println(e + "\n");
-        System.out.print("You: ");
-        input = sc.nextLine();
+        Ui.print(e + "\n");
+        input = Ui.awaitUserInput(sc);
         continue;
       }
 
       if (notTerminated) {
-        System.out.print("You: ");
-        input = sc.nextLine();
+        input = Ui.awaitUserInput(sc);
       } else {
         break;
       }

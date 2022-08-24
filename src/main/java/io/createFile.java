@@ -1,8 +1,10 @@
 package io;
 
-import exceptions.DukeException;
 import java.io.File;
 import java.io.IOException;
+
+import exception.DukeException;
+import ui.Ui;
 
 /**
  * Creates a txt file that should eventually be used for
@@ -22,17 +24,17 @@ public class createFile {
     try {
       File file = new File(fileLoc);
       if (file.createNewFile()) {
-        System.out.println("Mumbot: A .txt file has been created in " +
+        Ui.print("Mumbot: A .txt file has been created in " +
             fileLoc + " , which will contain your list of tasks once this session " +
-            "terminates <3\n");
+            "terminates <3");
       } else {
-        System.out.println("Mumbot: A .txt file already existing in " +
+        Ui.print("Mumbot: A .txt file already existing in " +
             fileLoc + " will be used for loading your previous list of tasks; and for " + 
-            "saving your list of tasks when this session terminates <3\n");
+            "saving your list of tasks when this session terminates <3");
       }
     } catch (IOException e) {
       throw new DukeException("Honey! There was a problem with creating or obtaining " + 
-          "your list of tasks at " + fileLoc + " ! :(\n");
+          "your list of tasks at " + fileLoc + " ! :(");
     }
   }
 }

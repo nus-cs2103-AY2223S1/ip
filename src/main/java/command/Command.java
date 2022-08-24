@@ -1,8 +1,9 @@
 package command;
 
-import tasks.Task;
 import java.util.ArrayList;
-import exceptions.DukeException;
+
+import exception.DukeException;
+import task.Task;
 
 public abstract class Command {
 

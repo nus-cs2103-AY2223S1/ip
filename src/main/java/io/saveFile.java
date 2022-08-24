@@ -1,7 +1,9 @@
 package io;
 
-import tasks.Task;
-import exceptions.DukeException;
+import task.Task;
+import exception.DukeException;
+import ui.Ui;
+
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -29,11 +31,11 @@ public class saveFile {
         writer.write(System.getProperty("line.separator"));
       }
       writer.close();
-      System.out.println("Mumbot: Your list of tasks has been successfully saved to " +
-          fileLoc + " , hunbun~!\n");
+      Ui.print("Mumbot: Your list of tasks has been successfully saved to " +
+          fileLoc + " , hunbun~!");
     } catch (IOException e) {
       throw new DukeException("Honey! There was a problem with saving your list of " + 
-          "tasks to " + fileLoc + " ! :(\n");
+          "tasks to " + fileLoc + " ! :(");
     }
   }
 }
