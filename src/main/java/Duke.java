@@ -5,19 +5,13 @@ import models.Todo;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Duke {
-    void writeToFile() {
-        try{
-            FileWriter myWriter = new FileWriter("saved.txt");
-        } catch (IOException e) {
-            System.out.println("error");
-            e.printStackTrace();
-        }
-    }
 
     public static void main(String[] args) throws DukeException {
         System.out.println(Constants.INDENTED_DOTTED_LINE);
@@ -25,10 +19,10 @@ public class Duke {
         System.out.println(Constants.INDENTED_DOTTED_LINE);
 
         Scanner sc = new Scanner(System.in);
-        List<Task> history = new ArrayList<>();
         //handle folder-does-not-exist-yet case
         FileOps fileOps = new FileOps();
         fileOps.run();
+        List<Task> history = fileOps.loadData();
 
         while (true) {
             String input = sc.nextLine();
@@ -66,7 +60,7 @@ public class Duke {
             } else if (input.startsWith("todo")) {
                 Task t = new Todo(input);
                 history.add(t);
-                fileOps.write(t + "\n");
+                fileOps.write(t.stringToWrite());
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Got it. I've added this task:");
                 System.out.println(Constants.indent + Constants.indent + t);
@@ -80,18 +74,28 @@ public class Duke {
                 Pattern pattern = Pattern.compile("deadline(.*?)/by");
                 Matcher matcher = pattern.matcher(input);
                 String description = "";
+                try{
+                    LocalDate.parse(deadline);
+                } catch (DateTimeParseException e) {
+                    e.printStackTrace();
+                } finally {
+
+                }
                 while (matcher.find()) {
                     description = matcher.group(1);
                 }
-                Task t = new Deadline(description, deadline);
+                Task t = new Deadline(description, LocalDate.parse(deadline));
                 history.add(t);
-                fileOps.write(t + "\n");
+                fileOps.write(t.stringToWrite());
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Got it. I've added this task:");
                 System.out.println(Constants.indent + Constants.indent + t);
                 System.out.println(Constants.indent +"Now you have " + history.size() + " tasks in the list.");
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
             } else if (input.startsWith("event")) {
+                if(!input.contains("/at")) {
+                    throw new DukeException("please use /by to indicate date for deadline");
+                }
                 String date = input.substring(input.lastIndexOf("/at") + 4);
                 Pattern pattern = Pattern.compile("event(.*?)/at");
                 Matcher matcher = pattern.matcher(input);
@@ -99,9 +103,15 @@ public class Duke {
                 while (matcher.find()) {
                     description = matcher.group(1);
                 }
-                Task t = new Event(description, date);
+                try{
+                    LocalDate parsedDate = LocalDate.parse(date);
+                } catch (DateTimeParseException e) {
+                    e.printStackTrace();
+                }
+
+                Task t = new Event(description, LocalDate.parse(date));
                 history.add(t);
-                fileOps.write(t + "\n");
+                fileOps.write(t.stringToWrite());
                 System.out.println(Constants.INDENTED_DOTTED_LINE);
                 System.out.println(Constants.indent + "Got it. I've added this task:");
                 System.out.println(Constants.indent + Constants.indent + t);

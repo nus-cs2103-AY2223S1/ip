@@ -1,26 +1,36 @@
 package models;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * A child class Deadline that inherits properties description and isDone from Task
  */
 public class Deadline extends Task {
-    protected String by;
-    public Deadline(String description, String by) {
+    protected LocalDate by;
+    public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;
     }
 
     @Override
     public String getSymbol() {
-        return "T";
+        return "D";
     }
+
     @Override
     public String getDescription() {
         return this.description;
     }
+
+    @Override
+    public String stringToWrite() {
+        return this.getSymbol() + "|" + (super.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.by;
+    }
+
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
 }
