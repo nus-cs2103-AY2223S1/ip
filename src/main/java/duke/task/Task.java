@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.Command;
+
 public abstract class Task {
     // original access modifier was protected
     protected final String description;

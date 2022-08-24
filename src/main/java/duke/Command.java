@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * An enum class that contains all the valid user commands.
  */

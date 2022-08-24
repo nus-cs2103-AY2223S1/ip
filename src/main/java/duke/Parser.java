@@ -1,3 +1,9 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -18,7 +24,7 @@ public class Parser {
     }
 
     private String generateTasksNumberMessage() {
-        return "Now you have " + taskList.sizeOfList() + " task" + (taskList.sizeOfList() == 1 ? "" : "s")
+        return "Now you have " + taskList.sizeOfList() + "duke/task" + (taskList.sizeOfList() == 1 ? "" : "s")
                 + " in the list" + ".\n";
     }
 
@@ -96,7 +102,7 @@ public class Parser {
             throw new CustomMessageException((generateEmptyDescMessage(taskCommand.getString())));
         }
         if (taskCommand == Command.TODO) {
-            taskList.addToTaskList(new ToDo(command.substring(5).strip(), Command.TODO));
+            taskList.addToTaskList(new ToDo(command.substring(5).strip(), duke.Command.TODO));
         } else if (taskCommand == Command.EVENT || taskCommand == Command.DEADLINE) {
             String[] splitString = command.split(toSplitBy);
             String taskDescription = splitString[0].substring(taskCommand.getString().length() + 1).strip();
