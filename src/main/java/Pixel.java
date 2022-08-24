@@ -1,4 +1,3 @@
-import javax.print.DocFlavor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,18 +6,6 @@ public class Pixel {
     private static int count = 0;
     private final Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
     private final ArrayList<Task> inputTasks = new ArrayList<>(100);
-
-    // char[] numbers = {"s", "s"};
-
-//    private int getListIndex(String userInput) {
-//        char[] inputCharArray = userInput.toCharArray();
-//        for (char character: inputCharArray) {
-//            if (numArray.contains()) {
-//                return Character.getNumericValue(character);
-//            }
-//        };
-//        return -1;
-//    }
 
     private void handleNewTask(String userInput, int indexOfSlash, String type) {
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
