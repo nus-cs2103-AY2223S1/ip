@@ -3,6 +3,7 @@
 /out/
 /*.iml
 *.class
+*.jar
 
 # Gradle build files
 /.gradle/

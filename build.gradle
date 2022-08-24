@@ -33,7 +33,7 @@ test {
 }
 
 application {
-    mainClassName = "Duke.Duke"
+    mainClassName = "duke.Duke"
 }
 
 shadowJar {
