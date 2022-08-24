@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -76,14 +77,16 @@ public class Storage {
             if (taskValues.length != 4) {
                 throw new DukeException("     ☹ OOPS!!! Invalid format for deadline.\n" + taskData);
             }
-            decodedTask = new Deadline(taskValues[2], taskValues[1].equals("1"), taskValues[3]);
+            decodedTask = new Deadline(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
+                    Task.dateTimeParser));
             break;
         }
         case "E": {
             if (taskValues.length != 4) {
                 throw new DukeException("     ☹ OOPS!!! Invalid format for event.\n" + taskData);
             }
-            decodedTask = new Event(taskValues[2], taskValues[1].equals("1"), taskValues[3]);
+            decodedTask = new Event(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
+                    Task.dateTimeParser));
             break;
         }
         }

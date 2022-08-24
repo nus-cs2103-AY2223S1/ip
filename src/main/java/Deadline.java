@@ -31,7 +31,7 @@ public class Deadline extends Task {
      */
     @Override
     public String encode(String delimiter) {
-        return super.encode(delimiter) + delimiter + this.deadline;
+        return super.encode(delimiter) + delimiter + this.deadline.format(Task.dateTimeParser);
     }
 
     @Override

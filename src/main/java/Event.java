@@ -31,7 +31,7 @@ public class Event extends Task {
      */
     @Override
     public String encode(String delimiter) {
-        return super.encode(delimiter) + delimiter + this.timing;
+        return super.encode(delimiter) + delimiter + this.timing.format(Task.dateTimeParser);
     }
 
     @Override
