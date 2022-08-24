@@ -2,6 +2,10 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Represents a chatbot that can do many things, just like
+ * what a regular chatbot should be able to do.
+ */
 public class Duke {
     private static final int HORIZONTAL_LINE_LENGTH = 50;
     private static final String NAME = "Stashy";
@@ -46,6 +50,7 @@ public class Duke {
      *
      * @param tasks     The list of tasks
      * @param input     Raw input string to be processed within
+     * @throws DukeException If any invalid input is given
      */
     public static void markTaskAsDone(List<Task> tasks, String input) throws DukeException {
         int taskID;
@@ -69,6 +74,7 @@ public class Duke {
      *
      * @param tasks The list of tasks
      * @param input     Raw input string to be processed within
+     * @throws DukeException If any invalid input is given
      */
     public static void unmarkTaskAsNotDone(List<Task> tasks, String input) throws DukeException {
         int taskID;
@@ -92,6 +98,7 @@ public class Duke {
      *
      * @param tasks     The list of tasks
      * @param input     Raw input string to be processed within
+     * @throws DukeException If any invalid input is given
      */
     public static void deleteTask(List<Task> tasks, String input) throws DukeException {
         int taskID;
@@ -115,6 +122,7 @@ public class Duke {
      *
      * @param tasks The list of tasks
      * @param input The input string, consists of the keyword, the task name, and the by/at metadata
+     * @throws DukeException If any invalid input is given
      */
     public static void createNewTask(List<Task> tasks, String input) throws DukeException {
         String taskName;
