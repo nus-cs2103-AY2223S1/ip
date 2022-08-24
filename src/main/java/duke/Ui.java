@@ -96,4 +96,22 @@ public class Ui {
         }
         System.out.println(INDENTATION + UNDERLINE);
     }
+
+    /**
+     * Shows the find details.
+     * @param tasks TaskList.
+     * @param description Find target.
+     */
+    public void showFindDetails(TaskList tasks, String description) {
+        System.out.println(INDENTATION + UNDERLINE);
+        System.out.println(INDENTATION + "Here are the matching tasks in your list:");
+        int increment = 1;
+        for (int i = 0; i < tasks.size(); i++) {
+            if (tasks.get(i).getDescription().contains(description)) {
+                System.out.println(INDENTATION + (increment) + "." + INDENTATION + tasks.get(i));
+                increment++;
+            }
+        }
+        System.out.println(INDENTATION + UNDERLINE);
+    }
 }

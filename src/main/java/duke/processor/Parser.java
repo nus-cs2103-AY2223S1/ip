@@ -12,6 +12,7 @@ import duke.task.Bye;
 import duke.task.Deadline;
 import duke.task.Delete;
 import duke.task.Event;
+import duke.task.Find;
 import duke.task.List;
 import duke.task.Mark;
 import duke.task.Task;
@@ -24,7 +25,7 @@ import duke.task.Unmark;
 public class Parser {
     // usage of Enum
     private enum Commands {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static Ui ui = new Ui();
@@ -143,6 +144,22 @@ public class Parser {
     }
 
     /**
+     * Returns a new find task to find task with the matching keyword
+     *
+     * @param chat Input from the scanner.
+     * @param tasklist ArrayList of tasks.
+     * @return Duke.Task.Find object
+     * @throws NoDescriptionException If there are no description.
+     */
+    public static Find find(String chat, TaskList tasklist) throws NoDescriptionException {
+        if (chat.split(" ").length == 1) {
+            throw new NoDescriptionException("Find");
+        } else {
+            return new Find(chat.substring(5));
+        }
+    }
+
+    /**
      * Parses the input and returns the task of the specified command.
      *
      * @param chat Input from the scanner.
@@ -184,6 +201,9 @@ public class Parser {
 
             case DELETE:
                 return delete(chat, tasklist);
+
+            case FIND:
+                return find(chat, tasklist);
 
             default:
                 throw new NoCommandException(chat);
