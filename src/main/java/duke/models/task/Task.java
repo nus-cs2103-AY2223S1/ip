@@ -27,7 +27,7 @@ public abstract class Task {
      * Initializes the Task object with the provided description and completion status.
      *
      * @param description The received description
-     * @param isDone The received completion status
+     * @param isDone      The received completion status
      */
     public Task(String description, boolean isDone) {
         this.description = description;

@@ -12,14 +12,14 @@ import duke.utils.DukeFormatter;
  */
 
 public class Event extends Task {
-    protected LocalDate date;
     private static final TaskType taskType = TaskType.EVENT;
+    protected LocalDate date;
 
     /**
      * Initializes the Event task with the provided description and date.
      *
      * @param description The received description
-     * @param date The received date
+     * @param date        The received date
      */
     public Event(String description, LocalDate date) {
         super(description);
@@ -30,8 +30,8 @@ public class Event extends Task {
      * Initializes the Event task with the provided description, date and completion status.
      *
      * @param description The received description
-     * @param date The received date
-     * @param isDone The received completion status
+     * @param date        The received date
+     * @param isDone      The received completion status
      */
     public Event(String description, LocalDate date, boolean isDone) {
         super(description, isDone);

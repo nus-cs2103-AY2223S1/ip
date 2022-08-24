@@ -31,7 +31,9 @@ public class AddDeadlineTaskCommand extends AddTaskCommand implements Command {
      * Matches a non-empty description and a non-empty deadline, separated by a {@code '/by'} indicator.
      * <p>For example: {@code {taskDescription} /by {taskDeadline}}</p>
      */
-    private static final Pattern MATCH_DEADLINE_TASK = Pattern.compile("(?<taskDescription>.+?)\\s/by\\s(?<taskDeadline>.+)");
+    private static final Pattern MATCH_DEADLINE_TASK = Pattern.compile(
+            "(?<taskDescription>.+?)\\s/by\\s(?<taskDeadline>.+)"
+    );
 
     private final String arguments;
 

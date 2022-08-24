@@ -4,19 +4,21 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
-
  * Encapsulates the logic for reading keyboard input and writing to screen display.
  *
  * @author Emily Ong Hui Qi
  */
 public class UiManager {
+    /**
+     * Horizontal line separator used in beautifying print commands
+     */
+    private static final String SEPARATOR = "-";
+    /**
+     * Denotes the number of separator symbols to used when printing the input
+     */
+    private static final int SEPARATOR_SIZE = 60;
     private final Scanner scanner;
     private final PrintStream printer;
-
-    /** Horizontal line separator used in beautifying print commands */
-    private static final String SEPARATOR = "-";
-    /** Denotes the number of separator symbols to used when printing the input */
-    private static final int SEPARATOR_SIZE = 60;
 
     /**
      * Initializes the scanner and printer objects used for reading keyboard inputs and writing to screen display.

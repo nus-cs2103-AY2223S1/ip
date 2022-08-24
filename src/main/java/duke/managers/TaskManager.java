@@ -8,8 +8,8 @@ import duke.models.task.Task;
 import duke.storage.TaskStorage;
 
 /**
- * Encapsulates the logic to manage the list of {@link Task tasks} and provides augmenting operations to support CRUD operations on
- * the tasks.
+ * Encapsulates the logic to manage the list of {@link Task tasks} and provides augmenting operations to support CRUD
+ * operations on the tasks.
  *
  * @author Emily Ong Hui Qi
  */

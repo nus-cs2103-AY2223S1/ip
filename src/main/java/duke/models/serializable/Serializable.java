@@ -8,19 +8,21 @@ import duke.exceptions.DukeException;
 /**
  * Encapsulates the logic for serializing and deserializing a particular object of type {@code T}.
  *
- * @param <T> The type of the object that can be serialized and deserialized
- *
  * @author Emily Ong Hui Qi
+ *
+ * @param <T> The type of the object that can be serialized and deserialized
  */
 public abstract class Serializable<T> {
-    /** Use the double slash to escape the pipe character */
-    private static final String formatterRead = " \\| ", formatterWrite = formatterRead.replace("\\", "");
-
     private static final String ERROR_MATCHING_SERIALIZABLE_REGEX = "Regex for serialized string does not match!";
+
+    /**
+     * Use the double slash to escape the pipe character
+     */
+    private static final String formatterRead = " \\| ";
+    private static final String formatterWrite = formatterRead.replace("\\", "");
 
     private final String serialized;
     private final String[] originalData;
-
     /**
      * Stores the original data and sets up a serialized form of the data.
      *
@@ -37,7 +39,7 @@ public abstract class Serializable<T> {
      * provided serialized string matches the expected format.
      *
      * @param serializedString The received serialized string
-     * @param regexMatch The Regex format that the serialized string should match
+     * @param regexMatch       The Regex format that the serialized string should match
      * @throws DukeException If the received serialized string does not match the provided Regex format
      */
     public Serializable(String serializedString, Pattern regexMatch) throws DukeException {
@@ -70,4 +72,6 @@ public abstract class Serializable<T> {
     public String toString() {
         return this.serialized;
     }
+
+
 }

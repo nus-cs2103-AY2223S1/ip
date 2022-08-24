@@ -80,7 +80,7 @@ public class TaskStorage extends Storage {
      * Updates the {@link Task} corresponding to the task index using the updated Task object provided by the caller,
      * and returns the updated task.
      *
-     * @param taskIndex 0-based indexed specifier for the task to be updated
+     * @param taskIndex    0-based indexed specifier for the task to be updated
      * @param updatingTask The task object containing the updated task
      * @return The updated task
      * @throws DukeException If the task cannot be updated

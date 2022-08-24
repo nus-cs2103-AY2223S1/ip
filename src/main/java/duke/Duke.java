@@ -14,10 +14,14 @@ import duke.managers.UiManager;
  * @author Emily Ong Hui Qi
  */
 public class Duke {
-    /** Name of the chatbot */
+    /**
+     * Name of the chatbot
+     */
     private static final String NAME = "Duke";
 
-    /** The greeting message used by the chatbot when the application starts */
+    /**
+     * The greeting message used by the chatbot when the application starts
+     */
     private static final String MESSAGE_GREETING = String.format("Hello! I'm %s\nWhat can I do for you?", Duke.NAME);
 
     /**

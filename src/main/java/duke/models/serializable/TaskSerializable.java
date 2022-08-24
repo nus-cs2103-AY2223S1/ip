@@ -34,10 +34,10 @@ public class TaskSerializable extends Serializable<Task> {
     /**
      * Initializes the serializable {@link Task} object from parameters for the {@link Task} model.
      *
-     * @param taskType The type of the task
+     * @param taskType        The type of the task
      * @param taskDescription The description of the task
-     * @param taskIsDone The completion status of the task
-     * @param taskMetaData The meta data associated with the task
+     * @param taskIsDone      The completion status of the task
+     * @param taskMetaData    The meta data associated with the task
      */
     public TaskSerializable(
             TaskType taskType,

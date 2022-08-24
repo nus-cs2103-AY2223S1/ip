@@ -41,6 +41,9 @@ public class ParserManager {
         // List all tasks in the task manager
         case ListTasksCommand.COMMAND_WORD:
             return new ListTasksCommand(arguments);
+        case FindTaskCommand.COMMAND_WORD:
+            return new FindTaskCommand(arguments);
+
         // Modifying operations on a task
         case MarkTaskCommand.COMMAND_WORD:
             return new MarkTaskCommand(arguments);
