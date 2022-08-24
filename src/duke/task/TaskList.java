@@ -2,7 +2,6 @@ package duke.task;
 
 import java.util.ArrayList;
 import java.util.List;
-import duke.exception.*;
 
 public class TaskList {
 
@@ -18,6 +17,10 @@ public class TaskList {
 
     public List<Task> getTasks() {
         return tasks;
+    }
+
+    public Integer getNumOfRemainingTasks() {
+        return tasks.size();
     }
 
     public Task markTask(Integer index) {
@@ -38,35 +41,8 @@ public class TaskList {
         return task;
     }
 
-    public Task addTodoTask(String description) throws EmptyDescriptionException {
-        if (description == null) {
-            throw new EmptyDescriptionException();
-        }
-        Task todoTask = new Todo(description);
-        tasks.add(todoTask);
-        return todoTask;
-    }
-
-    //TODO improve the code
-    public Task addDeadlineTask(String description) throws EmptyDescriptionException {
-        if (description == null) {
-            throw new EmptyDescriptionException();
-        }
-        String[] splittedStr = description.split("/");
-        Task deadlineTask = new Deadline(splittedStr[0], splittedStr[1].substring(3));
-        tasks.add(deadlineTask);
-        return deadlineTask;
-    }
-
-    //TODO improve the code
-    public Task addEventTask(String description) throws EmptyDescriptionException {
-        if (description == null) {
-            throw new EmptyDescriptionException();
-        }
-        String[] splittedStr = description.split("/");
-        Task eventTask = new Event(splittedStr[0], splittedStr[1].substring(3));
-        tasks.add(eventTask);
-        return eventTask;
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 
 }

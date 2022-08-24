@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.time.LocalDate;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -11,7 +13,7 @@ public abstract class Task {
 
     public abstract String getTaskType();
 
-    public abstract String getDate();
+    public abstract LocalDate getDate();
 
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X

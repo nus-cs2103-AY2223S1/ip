@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import duke.exception.DukeException;
 import duke.exception.FileDoesNotExistException;
 import duke.exception.StorageOperationException;
 import duke.task.TaskList;
@@ -20,7 +21,7 @@ public class Storage {
     public final Path path;
 
 
-    public Storage(String filePath) throws FileDoesNotExistException {
+    public Storage() throws FileDoesNotExistException {
         String currentDir = System.getProperty(CURRENT_DIRECTORY);
         this.path = Paths.get(currentDir, DEFAULT_STORAGE_SOURCE_FOLDER, DEFAULT_STORAGE_DUKE_FOLDER,DEFAULT_STORAGE_FILE);
     }
@@ -40,7 +41,7 @@ public class Storage {
 
     }
 
-    public TaskList load() throws StorageOperationException {
+    public TaskList load() throws DukeException {
         if (!Files.exists(path) || !Files.isRegularFile(path)) {
             return new TaskList();
         }
