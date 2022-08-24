@@ -4,6 +4,9 @@ import java.util.List;
 
 import henry.Task;
 
+/**
+ * Responsible for finding tasks given a search term.
+ */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
