@@ -2,6 +2,8 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeException;
+import duke.exception.FileDoesNotExistException;
+import duke.exception.StorageOperationException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;

@@ -1,6 +1,8 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.exception.FileDoesNotExistException;
+import duke.exception.StorageOperationException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -14,7 +16,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) throws FileDoesNotExistException {
+    public void execute(TaskList tasks, Storage storage, Ui ui) throws DukeException {
         tasks.addTask(taskToAdd);
         storage.save(tasks);
         ui.showAddTask(taskToAdd, tasks.getNumOfRemainingTasks());

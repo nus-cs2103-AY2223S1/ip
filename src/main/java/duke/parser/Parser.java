@@ -101,9 +101,10 @@ public class Parser {
     }
 
     public static LocalDate parseToLocalDateTime(String date) throws IllegalDateFormatException {
+        date = date.trim();
         LocalDate res = null;
         try {
-            res = LocalDate.parse(date.trim());
+            res = LocalDate.parse(date);
         } catch (DateTimeParseException e) {
             throw new IllegalDateFormatException();
         }

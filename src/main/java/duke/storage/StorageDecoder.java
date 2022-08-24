@@ -18,9 +18,9 @@ public class StorageDecoder {
     public static final String DIVIDER = " | ";
 
     public static final int TASK_TYPE = 0;
-    public static final int TASK_STATUS = 1;
-    public static final int TASK_DESCRIPTION = 2;
-    public static final int TASK_DATE = 3;
+    public static final int TASK_STATUS = 2;
+    public static final int TASK_DESCRIPTION = 4;
+    public static final int TASK_DATE = 6;
 
     public static TaskList decode(Path path) throws DukeException {
         List<Task> taskList = new ArrayList<>();

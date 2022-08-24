@@ -13,20 +13,18 @@ import duke.task.TaskList;
 
 public class Storage {
 
-    public static final String DEFAULT_STORAGE_FILE = "tasklist.txt";
-    public static final String DEFAULT_STORAGE_SOURCE_FOLDER = "src";
-    public static final String DEFAULT_STORAGE_DUKE_FOLDER = "duke";
-    public static final String CURRENT_DIRECTORY = "user.dir";
+    private static final String DEFAULT_STORAGE_FILE = "tasklist.txt";
+    private static final String CURRENT_DIRECTORY = "user.dir";
 
-    public final Path path;
+    private Path path;
 
 
     public Storage() throws FileDoesNotExistException {
         String currentDir = System.getProperty(CURRENT_DIRECTORY);
-        this.path = Paths.get(currentDir, DEFAULT_STORAGE_SOURCE_FOLDER, DEFAULT_STORAGE_DUKE_FOLDER,DEFAULT_STORAGE_FILE);
+        this.path = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
     }
 
-    public void save(TaskList taskList) throws FileDoesNotExistException {
+    public void save(TaskList taskList) throws StorageOperationException {
         List<String> encodedTasks = StorageEncoder.encode(taskList);
 
         try {
@@ -36,16 +34,28 @@ public class Storage {
             }
             printWriter.close();
         } catch (FileNotFoundException e) {
-            throw new FileDoesNotExistException();
+            create();
         }
 
     }
 
     public TaskList load() throws DukeException {
-        if (!Files.exists(path) || !Files.isRegularFile(path)) {
+        if (!Files.exists(path)) {
             return new TaskList();
         }
         return StorageDecoder.decode(path);
+    }
+
+    public void create() throws StorageOperationException {
+        String currentDir = System.getProperty(CURRENT_DIRECTORY);
+        Path newPath = Paths.get(currentDir,DEFAULT_STORAGE_FILE);
+        File newFile = newPath.toFile();
+        try {
+            newFile.createNewFile();
+            this.path = newPath;
+        } catch (IOException e) {
+            throw new StorageOperationException("Error creating file: " + path);
+        }
     }
 
 }
