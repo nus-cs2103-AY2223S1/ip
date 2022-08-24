@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.util.DukeException;
+
 import java.util.Objects;
 
 public class Task {
@@ -5,7 +9,7 @@ public class Task {
     protected boolean isDone;
     protected String date;
 
-    Task(String action, boolean isDone, String date) throws DukeException {
+    public Task(String action, boolean isDone, String date) throws DukeException {
         if (Objects.equals(action, "")) {
             throw new DukeException();
         }
@@ -14,15 +18,23 @@ public class Task {
         this.date = date;
     }
 
-    String getAction() {
+    public String getAction() {
         return action;
     }
 
-    void markDone() {
+    public boolean getDone() {
+        return isDone;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void markDone() {
         isDone = true;
     }
 
-    void markUnDone() {
+    public void markUnDone() {
         isDone = false;
     }
 

@@ -1,3 +1,14 @@
+package duke;
+
+import duke.data.Storage;
+import duke.data.TaskList;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.TodoTask;
+import duke.util.DukeException;
+import duke.util.Parser;
+import duke.util.Ui;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -14,7 +25,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("src/main/java/data.txt").run();
+        new Duke("src/main/java/duke/data/data.txt").run();
     }
 
     /**

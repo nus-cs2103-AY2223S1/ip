@@ -1,3 +1,12 @@
+package duke.data;
+
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.task.TodoTask;
+import duke.util.DukeException;
+import duke.util.Ui;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,7 +16,7 @@ public class TaskList {
     private static final Ui ui = new Ui();
     private ArrayList<Task> list;
 
-    TaskList(File data) {
+    public TaskList(File data) {
         this.list = new ArrayList<>();
         try {
             Scanner sc = new Scanner(data);
@@ -37,7 +46,7 @@ public class TaskList {
         }
     }
 
-    TaskList() {
+    public TaskList() {
         this.list = new ArrayList<>();
     }
 

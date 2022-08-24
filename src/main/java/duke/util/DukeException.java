@@ -1,10 +1,12 @@
+package duke.util;
+
 public class DukeException extends Exception {
 
-    DukeException() {
+    public DukeException() {
         super();
     }
 
-    DukeException(String error) {
+    public DukeException(String error) {
         super(error);
     }
 }

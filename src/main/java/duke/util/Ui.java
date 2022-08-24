@@ -1,3 +1,7 @@
+package duke.util;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class Ui {
@@ -14,7 +18,7 @@ public class Ui {
     }
 
     public void noSuchTaskError() {
-        System.out.println("OOPS!!! Error: No Such Task\n" +
+        System.out.println("OOPS!!! Error: No Such duke.Task\n" +
                 "--------------------------");
     }
 

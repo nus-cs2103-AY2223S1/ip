@@ -1,9 +1,13 @@
+package duke.task;
+
+import duke.util.DukeException;
+
 public class TodoTask extends Task {
-    TodoTask(String action, boolean isDone) throws DukeException {
+    public TodoTask(String action, boolean isDone) throws DukeException {
         super(action, isDone, "");
     }
 
-    TodoTask(String action) throws DukeException {
+    public TodoTask(String action) throws DukeException {
         this(action, false);
     }
 

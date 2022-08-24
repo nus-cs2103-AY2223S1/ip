@@ -1,3 +1,8 @@
+package duke.data;
+
+import duke.util.Ui;
+import duke.task.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -5,10 +10,9 @@ import java.util.ArrayList;
 
 public class Storage {
     private static final Ui ui = new Ui();
-//    private ArrayList<Task> list = new ArrayList<>();
     private File data;
 
-    Storage(String filePath) {
+    public Storage(String filePath) {
         try {
             data = new File(filePath);
             data.createNewFile();
@@ -32,9 +36,9 @@ public class Storage {
                 String toAdd = "";
                 String line = task.toString();
                 char type = line.charAt(1);
-                String isDone = task.isDone ? "1" : "0";
-                String action = task.action;
-                String date = task.date;
+                String isDone = task.getDone() ? "1" : "0";
+                String action = task.getAction();
+                String date = task.getDate();
                 toAdd += type + " | " + isDone + " | " + action;
                 if (type != 'T') {
                     toAdd += " | " + date;

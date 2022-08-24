@@ -34,7 +34,7 @@ Here are the tasks in your list
 2. [D][ ] return book (by: Sunday)
 3. [E][ ] project meeting (at: Mon 2-4pm)
 --------------------------
-OOPS!!! Error: No Such Task
+OOPS!!! Error: No Such duke.Task
 --------------------------
 Nice! I've marked this task as done:
 [D][X] return book (by: Sunday)
@@ -63,7 +63,7 @@ Here are the tasks in your list
 3. [E][ ] project meeting (at: Mon 2-4pm)
 4. [D][ ] do homework (by: no idea :-p)
 --------------------------
-OOPS!!! Error: No Such Task
+OOPS!!! Error: No Such duke.Task
 --------------------------
 Noted. I've removed this task:
 [D][ ] do homework (by: no idea :-p)
