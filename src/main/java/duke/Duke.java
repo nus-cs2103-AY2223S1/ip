@@ -2,14 +2,14 @@ package duke;
 
 import duke.commands.Command;
 import duke.data.TaskList;
-import duke.parser.Parser;
 import duke.data.exception.DukeException;
+import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
 public class Duke {
 
-    final private TaskList tasks;
+    private TaskList tasks;
     private Ui ui;
     private Storage storage;
 
@@ -32,6 +32,9 @@ public class Duke {
         return "\t" + message;
     }
 
+    /**
+     * Starts the chatbot
+     */
     public void run() {
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
@@ -54,6 +57,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the programme
+     * @param args
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();

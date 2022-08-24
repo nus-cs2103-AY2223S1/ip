@@ -1,11 +1,11 @@
 package duke.data;
 
-import duke.data.exception.DukeException;
-import duke.tasks.Task;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+
+import duke.data.exception.DukeException;
+import duke.tasks.Task;
 
 public class TaskList {
     private final ArrayList<Task> tasks;
@@ -44,7 +44,7 @@ public class TaskList {
         }
 
         if (count == 1) {
-             return String.format("\tNo tasks on %s", parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+            return String.format("\tNo tasks on %s", parsedDate.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
         } else {
             return stringBuilder.toString();
         }

@@ -1,10 +1,10 @@
 package duke.commands;
 
-import duke.ui.Ui;
 import duke.data.TaskList;
-import duke.tasks.Deadline;
 import duke.data.exception.DukeException;
 import duke.storage.Storage;
+import duke.tasks.Deadline;
+import duke.ui.Ui;
 
 public class DeadlineCommand extends Command {
 
