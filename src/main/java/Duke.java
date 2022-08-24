@@ -1,4 +1,8 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -26,6 +30,11 @@ public class Duke {
                 } catch (DukeWrongArgumentException e) {
                     System.out.println(e.getMessage());
                     System.out.println("Pls try again");
+                } catch (DateTimeParseException e) {
+                    System.out.println("'" + e.getParsedString() + "'" + " is not valid date/time format");
+                    System.out.println("It should be dd/MM/yy and optional 24hr time");
+                    System.out.println("Pls try again");
+
                 }
             } else if (input.equals("bye")) {
                 saveToFile();
@@ -61,7 +70,7 @@ public class Duke {
         return false;
     }
 
-    private static void parse(String input, boolean fromSave) throws DukeWrongArgumentException {
+    private static void parse(String input, boolean fromSave) throws DukeWrongArgumentException, DateTimeParseException {
         String mark = null;
         String[] arr;
         if (fromSave) {
@@ -71,7 +80,6 @@ public class Duke {
         } else {
             arr = input.split(" ", 2);
         }
-
         COMMANDS command = COMMANDS.valueOf(arr[0]);
         try {
             switch (command) {

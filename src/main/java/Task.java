@@ -1,10 +1,15 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
+    protected static DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yy");
+    protected static DateTimeFormatter INPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("HHmm");
+    protected static DateTimeFormatter OUTPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("hh.mma");
 
     public abstract String format();
 
@@ -23,12 +28,6 @@ public abstract class Task {
 
     public void markAsNotDone() {
         this.isDone = false;
-    }
-
-    public static void writeToFile(String item) throws IOException {
-        FileWriter fw = new FileWriter("data" + File.separator + "taskList.txt", true);
-        fw.write(item + "\n");
-        fw.close();
     }
 
     @Override
