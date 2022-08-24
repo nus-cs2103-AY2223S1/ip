@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.Arrays;
+
 
 public class TaskList {
     public ArrayList<Task> list;
@@ -10,6 +10,9 @@ public class TaskList {
 
     public void printList() {
         int i = 0;
+        if (list.size() == 0) {
+            System.out.println("No tasks in list, great job!");
+        }
         while (i < list.size()) {
             System.out.println(i+1 + ". " +list.get(i));
             i++;
@@ -43,7 +46,6 @@ public class TaskList {
 
                 throw new InvalidInputException(num ,"delete");
             }
-        //}
     }
 
 
