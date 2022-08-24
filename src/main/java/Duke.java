@@ -52,16 +52,17 @@ public class Duke {
     private static void loadFileContents(String filePath) throws FileNotFoundException {
         File f = new File(filePath);
         Scanner s = new Scanner(f);
-        int order = 1;
         while (s.hasNext()) {
-            commandBuilder(s.nextLine(), order);
-            order++;
+            commandBuilder(s.nextLine());
         }
     }
 
-    private static void commandBuilder(String saveLine, int order) {
+    /**
+     * Builds the command that determines which tasks to be added, according to the save file.
+     * @param saveLine the line of data from the save file.
+     */
+    private static void commandBuilder(String saveLine) {
         int divideIndex;
-        String command;
         String commandType = saveLine.substring(0, 1);
         int isDone = Integer.parseInt(saveLine.substring(4, 5));
         String commandDesc = saveLine.substring(8);
