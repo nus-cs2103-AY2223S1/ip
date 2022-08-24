@@ -12,9 +12,9 @@ public class Event extends Task{
             throw (new DukeException("OOPS!!! The description of a event cannot be empty."));
         }
         try {
-            super.correctDescrition(description.split("on")[0].split(" ", 2)[1]);
+            super.correctDescrition(description.split("on",2)[0].split(" ", 2)[1]);
             super.getFullDescription(description.split(" ",2)[1]);
-            this.at = description.split("on")[1];
+            this.at = description.split("on",2)[1];
         }catch (Exception ie){
             throw(new DukeException("OOPS!!! The description of a event is still not correct."));
         }
