@@ -1,4 +1,6 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,8 +39,17 @@ public class Storage {
                 String taskStatus = taskSegment[1];
                 String taskDescription = taskSegment[2];
                 String taskDate = null;
+                LocalDate taskLocalDate = null;
                 if(taskSegment.length >= 4) {
-                    taskDate = taskSegment[3];
+                    if(taskType.equals("D")) {
+                        try {
+                            taskLocalDate = LocalDate.parse(taskSegment[3]);
+                        } catch (Exception ex) {
+                            System.out.println(ex.getMessage());
+                        }
+                    } else {
+                         taskDate = taskSegment[3];
+                    }
                 }
 
                 Task currentSavedTask = null;
@@ -47,7 +58,7 @@ public class Storage {
                     currentSavedTask = new Todo(taskDescription);
                     break;
                 case "D":
-                    currentSavedTask = new Deadline(taskDescription, taskDate);
+                    currentSavedTask = new Deadline(taskDescription, taskLocalDate);
                     break;
                 case "E":
                     currentSavedTask = new Event(taskDescription, taskDate);

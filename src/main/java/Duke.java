@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -71,10 +73,18 @@ public class Duke {
                 } else if (input.toLowerCase().startsWith("deadline")) {
                     String description = input.substring(9, input.indexOf(" /"));
                     String by = input.substring(input.indexOf("/by") + 3);
-                    Deadline deadline = new Deadline(description, by);
-                    list.add(deadline);
-                    printMessage("+ Added this deadline:\n" + deadline + "\nNow you have " + list.size()
-                            + " tasks in the list\n");
+                    by = by.replaceAll("\\s+","");
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM-dd-yyyy");
+                    try {
+                        LocalDate date = LocalDate.parse(by);
+                        Deadline deadline = new Deadline(description, date);
+                        list.add(deadline);
+                        printMessage("+ Added this deadline:\n" + deadline + "\nNow you have " + list.size()
+                                + " tasks in the list\n");
+                    } catch (Exception ex){
+                        System.out.println(ex.getMessage());
+                    }
+
                 } else if (input.toLowerCase().startsWith("event")){
                     String description = input.substring(6, input.indexOf(" /"));
                     String at = input.substring(input.indexOf("/at") + 3);
