@@ -1,7 +1,19 @@
 package duke;
 
+/**
+ * Deals with making sense of the user command.
+ */
 public class Parser {
 
+    /**
+     * Parses a given input and performs various actions to the task list and the UI,
+     *
+     * @param input    Full command entered by the user.
+     * @param taskList Task list to perform operations on.
+     * @param ui       UI for displaying output.
+     * @return True when a termination is requested, false otherwise.
+     * @throws DukeException If the input contains errors.
+     */
     public static boolean parse(String input, TaskList taskList, Ui ui) throws DukeException {
         String[] command = input.split(" ", 2);
         if (command[0].equalsIgnoreCase("bye")) {

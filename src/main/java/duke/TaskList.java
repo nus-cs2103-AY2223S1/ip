@@ -3,6 +3,9 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Utility wrapper class that makes working with task lists easier.
+ */
 public class TaskList {
     private List<Task> tasks;
     private Storage storage;
@@ -17,23 +20,47 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks the task located at the given index.
+     *
+     * @param index Index of the task in the list.
+     * @throws DukeException If task list could not be saved.
+     */
     public void mark(int index) throws DukeException {
         Task task = tasks.get(index);
         task.mark();
         storage.saveTasks(tasks);
     }
 
+    /**
+     * Unmarks the task located at the given index.
+     *
+     * @param index Index of the task in the list.
+     * @throws DukeException If task list could not be saved.
+     */
     public void unmark(int index) throws DukeException {
         Task task = tasks.get(index);
         task.unmark();
         storage.saveTasks(tasks);
     }
 
+    /**
+     * Adds the given task to the list.
+     *
+     * @param task Task to be added.
+     * @throws DukeException If task list could not be saved.
+     */
     public void add(Task task) throws DukeException {
         tasks.add(task);
         storage.saveTasks(tasks);
     }
 
+    /**
+     * Removes the task located at the given index.
+     *
+     * @param index Index of the task in the list.
+     * @throws DukeException If task list could not be saved.
+     */
     public void remove(int index) throws DukeException {
         tasks.remove(index);
         storage.saveTasks(tasks);
