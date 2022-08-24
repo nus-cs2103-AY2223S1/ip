@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-
 public class Dukebot {
-    private ArrayList<Task> taskList;
+    private TaskList taskList;
 
     private void handleStartup() {
         System.out.println(Messages.startup);
-        taskList = new ArrayList<>();
+        this.taskList = new TaskList();
     }
 
     private void handleBye() {
@@ -14,7 +12,7 @@ public class Dukebot {
     }
 
     private void handleList() {
-        for (int i = 0; i < taskList.size(); i++) {
+        for (int i = 0; i < this.taskList.getSize(); i++) {
             System.out.println((i + 1) + "." + taskList.get(i).toString());
         }
     }
@@ -27,27 +25,28 @@ public class Dukebot {
         System.out.println(Messages.taskRemoved);
         System.out.println(taskList.get(currentPos).toString());
         taskList.remove(Integer.parseInt(inputLessAction[1]) - 1);
-        System.out.printf((Messages.taskCount) + "%n", taskList.size());
+        System.out.printf((Messages.taskCount) + "%n", taskList.getSize());
     }
 
     private void handleMark(String[] inputLessAction) throws DukeException {
         if (inputLessAction.length < 2) {
             throw new EmptyDescriptionException("mark");
         }
-        int currentPos = Integer.parseInt(inputLessAction[1]) - 1;
-        taskList.get(currentPos).markDone();
+        int index = Integer.parseInt(inputLessAction[1]) - 1;
+        this.taskList.mark(index);
         System.out.println(Messages.taskMarked);
-        System.out.println(taskList.get(currentPos).toString());
+        System.out.println(this.taskList.get(index).toString());
     }
 
     private void handleUnmark(String[] inputLessAction) throws DukeException {
         if (inputLessAction.length < 2) {
             throw new EmptyDescriptionException("unmark");
         }
-        int currentPos = Integer.parseInt(inputLessAction[1]) - 1;
-        taskList.get(currentPos).markUndone();
+
+        int index = Integer.parseInt(inputLessAction[1]) - 1;
+        taskList.get(index).markUndone();
         System.out.println(Messages.taskUnmarked);
-        System.out.println(taskList.get(currentPos).toString());
+        System.out.println(taskList.get(index).toString());
     }
 
     private void handleTodo(String[] inputLessAction) throws DukeException {
@@ -55,10 +54,10 @@ public class Dukebot {
             throw new EmptyDescriptionException("todo");
         }
         String taskDesc = inputLessAction[1];
-        taskList.add(new Todo(taskDesc));
+        this.taskList.add(new Todo(taskDesc));
         System.out.println(Messages.taskAdded);
-        System.out.println(taskList.get(taskList.size() - 1).toString());
-        System.out.printf((Messages.taskCount) + "%n", taskList.size());
+        System.out.println(this.taskList.get(this.taskList.getSize() - 1).toString());
+        System.out.printf((Messages.taskCount) + "%n", this.taskList.getSize());
     }
 
     private void handleDeadline(String[] inputLessAction) throws DukeException {
@@ -78,10 +77,10 @@ public class Dukebot {
         if (taskTime.equals("")) {
             throw new EmptyTimeException("deadline");
         }
-        taskList.add(new Deadline(taskDesc, taskTime));
+        this.taskList.add(new Deadline(taskDesc, taskTime));
         System.out.println(Messages.taskAdded);
-        System.out.println(taskList.get(taskList.size() - 1).toString());
-        System.out.printf((Messages.taskCount) + "%n", taskList.size());
+        System.out.println(this.taskList.get(this.taskList.getSize() - 1).toString());
+        System.out.printf((Messages.taskCount) + "%n", this.taskList.getSize());
     }
 
     private void handleEvent(String[] inputLessAction) throws DukeException {
@@ -101,10 +100,10 @@ public class Dukebot {
         if (taskTime.equals("")) {
             throw new EmptyTimeException("event");
         }
-        taskList.add(new Event(taskDesc, taskTime));
+        this.taskList.add(new Event(taskDesc, taskTime));
         System.out.println(Messages.taskAdded);
-        System.out.println(taskList.get(taskList.size() - 1).toString());
-        System.out.printf((Messages.taskCount) + "%n", taskList.size());
+        System.out.println(this.taskList.get(this.taskList.getSize() - 1).toString());
+        System.out.printf((Messages.taskCount) + "%n", this.taskList.getSize());
     }
 
     protected void handleInput(String input) {
