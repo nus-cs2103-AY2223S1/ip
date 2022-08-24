@@ -27,7 +27,8 @@ public class Parser {
         TODO,
         DEADLINE,
         EVENT,
-        DELETE
+        DELETE,
+        FIND
     }
 
     //formatter for date.
@@ -78,6 +79,9 @@ public class Parser {
                 case BYE:
                     return new ByeCommand();
 
+                case FIND:
+                    throw new DukeException("The keyword to find cannot be left empty");
+
                 default:
                     throw new DukeException("Invalid argument, please re enter a valid command...");
                 }
@@ -106,8 +110,12 @@ public class Parser {
                 case DELETE:
                     return new DeleteCommand(Integer.parseInt(com[1]));
 
+                case FIND:
+                    return new FindCommand(com[1]);
+
                 default:
                     throw new DukeException("No such command exist... please try again");
+
                 }
             }
         } catch (DateTimeParseException e) {
