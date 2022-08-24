@@ -1,12 +1,18 @@
 package main.java;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.util.Scanner;
 import java.util.ArrayList;
+
 
 /**
  * Duke, a Personal Assistant Chatbot that helps a person to keep track of various things.
  *
  * @author Totsuka Tomofumi
- * @version Level-6
  */
 public class Duke {
     /**
@@ -17,9 +23,57 @@ public class Duke {
      * @param args Command line arguments
      */
     public static void main(String[] args) {
-        //assume no more than 100 tasks
+        //create needed files and directories
+        //will not create if already exist
+        //depends where code is run, so for now just dump in project working directory
+        //code built and run from intellij will dump the file in project root anyways
+        File dataDir = new File("./data");
+        dataDir.mkdir();
+        File history = new File(dataDir, "history.txt");
+        try {
+            history.createNewFile();
+        } catch (IOException e) {
+            //made directory and/or made file could be deleted by user during runtime of this program
+            throw new RuntimeException(e);
+        }
+
         ArrayList<Task> tasks = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
+
+        //save state retrieval
+        Scanner retriever;
+        try {
+            retriever = new Scanner(history);
+        } catch (FileNotFoundException e) {
+            //made directory and/or made file could be deleted by user during runtime of this program
+            throw new RuntimeException(e);
+        }
+        while (retriever.hasNextLine()) {
+            String line = retriever.nextLine();
+            String strLength = "";
+            int index = 2;
+            for (; line.charAt(index) != '_'; ++index) {
+                strLength += line.charAt(index);
+            }
+            int length = Integer.parseInt(strLength);
+            index++;    //now first index of desc
+            Task toAdd = null;
+            if (line.charAt(0) == 'T') {
+                toAdd = new ToDo(line.substring(index));
+            }
+            if (line.charAt(0) == 'D') {
+                toAdd = new Deadline(line.substring(index, index + length), line.substring(index + length));
+            }
+            if (line.charAt(0) == 'E') {
+                toAdd = new Event(line.substring(index, index + length), line.substring(index + length));
+            }
+            if (toAdd != null) {
+                if (line.charAt(1) == '1') {
+                    toAdd.mark();
+                }
+                tasks.add(toAdd);
+            }
+        }
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -28,6 +82,8 @@ public class Duke {
 
         System.out.println(logo);
         System.out.println("Hello! I'm Duke.\nWhat can I do for you?");
+
+        Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
             //strip() to allow for any (unintentional) whitespaces before or after
@@ -43,6 +99,7 @@ public class Duke {
                 for (Task task : tasks) {
                     System.out.println(order++ + "." + task.toString());
                 }
+                continue;   //no change
             //mark command
             } else if (response.equals("mark") || response.startsWith("mark ")) {
                 try {
@@ -59,11 +116,14 @@ public class Duke {
                     System.out.println(tasks.get(query).toString());
                 } catch (NumberFormatException e) {
                     System.out.println(" ☹ OOPS!!! The task number you have inputted is invalid.");
+                    continue;
                 } catch (MissingTaskNumberException e) {
                     System.out.println(" ☹ OOPS!!! You did not input a task number.");
+                    continue;
                 } catch (InvalidTaskNumberException e) {
                     System.out.println(" ☹ OOPS!!! The task with the task number you have inputted does not exist" +
                             " or is invalid.");
+                    continue;
                 }
             //unmark command
             } else if (response.equals("unmark") || response.startsWith("unmark ")) {
@@ -81,11 +141,14 @@ public class Duke {
                     System.out.println(tasks.get(query).toString());
                 } catch (NumberFormatException e) {
                     System.out.println(" ☹ OOPS!!! The task number you have inputted is invalid.");
+                    continue;
                 } catch (MissingTaskNumberException e) {
                     System.out.println(" ☹ OOPS!!! You did not input a task number.");
+                    continue;
                 } catch (InvalidTaskNumberException e) {
                     System.out.println(" ☹ OOPS!!! The task with the task number you have inputted does not exist" +
                             " or is invalid.");
+                    continue;
                 }
             //delete command
             } else if (response.equals("delete") || response.startsWith("delete ")) {
@@ -104,11 +167,14 @@ public class Duke {
                     System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
                 } catch (NumberFormatException e) {
                     System.out.println(" ☹ OOPS!!! The task number you have inputted is invalid.");
+                    continue;
                 } catch (MissingTaskNumberException e) {
                     System.out.println(" ☹ OOPS!!! You did not input a task number.");
+                    continue;
                 } catch (InvalidTaskNumberException e) {
                     System.out.println(" ☹ OOPS!!! The task with the task number you have inputted does not exist" +
                             " or is invalid.");
+                    continue;
                 }
             //add task commands
             } else {
@@ -212,7 +278,29 @@ public class Duke {
                     System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
                 } else {
                     System.out.println(" ☹ OOPS!!! I'm sorry, but I don't know what that means. :-(");
+                    continue;
                 }
+            }
+            //only initialize fileWriter if changes are made
+            FileWriter fileWriter;
+            try {
+                fileWriter = new FileWriter(history);
+            } catch (IOException e) {
+                //made directory and/or made file could be deleted by user during runtime of this program
+                throw new RuntimeException(e);
+            }
+            //prepare what to overwrite
+            //TODO StringBuilder
+            String overwrite = "";
+            for (Task task : tasks) {
+                overwrite += task.toData() + "\n";
+            }
+            try {
+                fileWriter.write(overwrite);
+                fileWriter.close();
+            } catch (IOException e) {
+                //made directory and/or made file could be deleted by user during runtime of this program
+                throw new RuntimeException(e);
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
