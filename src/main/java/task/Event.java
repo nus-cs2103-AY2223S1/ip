@@ -1,15 +1,25 @@
 package task;
 
+import exception.InvalidDateFormatException;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * The Event class encapsulates a type of task to be done.
  * A Deadline task is a task that starts at a specific time and ends at a specific time.
  */
-public class Event extends Task{
-    protected String at;
+public class Event extends Task {
+    private LocalDate at;
 
-    public Event(String description, String at) {
+    public Event(String description, String at) throws InvalidDateFormatException {
         super(description, TaskType.EVENT);
-        this.at = at;
+        try {
+            this.at = LocalDate.parse(at);
+        } catch (DateTimeParseException exception){
+            throw new InvalidDateFormatException();
+        }
     }
 
     /**
@@ -19,7 +29,8 @@ public class Event extends Task{
      */
     @Override
     public String toString() {
-        return String.format("%s (at: %s)", super.toString(), this.at);
+        return String.format("%s (at: %s)", super.toString(),
+                this.at.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
     }
 
     /**

@@ -67,7 +67,7 @@ public class Blob {
     /**
      * Adds a Deadline task to the list of tasks
      */
-    private void addDeadline(String details) throws InvalidDeadlineException {
+    private void addDeadline(String details) throws InvalidDeadlineException, InvalidDateFormatException {
         String[] deconstructedDetails = details.split("\\s+(/by)\\s+", 2);
         if (deconstructedDetails.length < 2) {
             throw new InvalidDeadlineException();
@@ -81,16 +81,15 @@ public class Blob {
     /**
      * Adds an Event task to the list of tasks
      */
-    private void addEvent(String details) throws InvalidEventException {
+    private void addEvent(String details) throws InvalidEventException, InvalidDateFormatException {
         String[] deconstructedDetails = details.split("\\s+(/at)\\s+", 2);
-        System.out.println(Arrays.toString(deconstructedDetails));
         if (deconstructedDetails.length < 2) {
             throw new InvalidEventException();
         }
         Event task = new Event(deconstructedDetails[0], deconstructedDetails[1]);
         taskList.add(task);
         speak("Blob will remember task...", String.format("\n\t\t%s \n", task),
-                String.format("Blob now remembers %d task(s)...", taskList.size()));
+        String.format("Blob now remembers %d task(s)...", taskList.size()));
     }
 
     /**
