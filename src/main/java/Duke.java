@@ -4,10 +4,11 @@ import java.io.*;
 public class Duke {
     public static void main(String[] args) throws DukeException {
         File dukeFile = new File("C:/Users/HEWLETT PACKARD/ip/Duke.txt");
+        FileWriter output;
 
         try {
-            OutputStream output = new FileOutputStream(dukeFile);
-            PrintWriter pw = new PrintWriter(output);
+
+            output = new FileWriter(dukeFile);
 
             String greet = "OMG HII! I am Floren! What can I do for you?\n";
             System.out.println(greet);
@@ -26,7 +27,6 @@ public class Duke {
                         for (int i = 1; i <= list.taskList.size(); i++) {
                             task = list.taskList.get(i - 1);
                             System.out.println(i + ". " + task.toString() + "\n");
-                            pw.println(i + ". " + task.toString() + "\n");
                         }
                     }
 
@@ -116,10 +116,17 @@ public class Duke {
                 command = sc.nextLine();
             }
 
-            pw.close();
+            for (int i = 1; i <= list.taskList.size(); i++) {
+                task = list.taskList.get(i - 1);
+                output.write(i + ". " + task.toString() + "\n");
+            }
+            sc.close();
+            output.close();
             System.out.println("Hiks. I'm sad, but see you again!!");
 
         } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
