@@ -110,6 +110,13 @@ public class Parser {
                 int index = Integer.parseInt(commands[1]) - 1;
                 tasks.delete(index);
                 ui.printCorrectMessage(Ui.Commands.DELETE, tasks, index);
+            } else if (commands[0].equals("find")) {
+                if (commands.length == 1) {
+                    throw new EmptyDescriptionException("find");
+                }
+                String[] keyword = Arrays.copyOfRange(commands, 1, commands.length);
+                String keywordString = String.join(" ", keyword);
+                ui.printCorrectMessage(Ui.Commands.FIND, tasks.find(keywordString), 0);
             } else {
                 throw new UnknownCommandException();
             }

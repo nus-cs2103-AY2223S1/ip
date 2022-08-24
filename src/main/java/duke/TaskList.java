@@ -80,4 +80,21 @@ public class TaskList {
         return this.tasks.size();
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Finds all tasks in the current task list that has a description containing keyword
+     * @param keyword keyword that should be searched for in tasks
+     * @return TaskList task list of tasks that contain the keyword
+     */
+    public TaskList find(String keyword) {
+        TaskList foundTasks = new TaskList(new ArrayList<Task>());
+        for (Task task : this.tasks) {
+            if (task.getDescription().contains(keyword)) {
+                foundTasks.add(task);
+            }
+        }
+        return foundTasks;
+    }
+>>>>>>> branch-Level-9
 }
