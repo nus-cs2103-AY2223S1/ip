@@ -16,13 +16,13 @@ public class FindCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            ui.find();
+            ui.sayFind();
             for (int i = 0; i < taskList.getSize(); i++) {
                 if (taskList.getTask(i).getDescription().contains(searchString)) {
-                    ui.showTaskWithIndex(taskList.getTask(i), i);
+                    ui.sayTaskWithIndex(i, taskList.getTask(i));
                 }
             }
-            ui.finishListing();
+            ui.sayFinishListing();
         } catch (DukeException e) {
             ui.sayExceptionMessage(e);
         }

@@ -26,8 +26,10 @@ import static duke.tasks.Task.TaskType.parseTaskType;
  */
 public class Storage {
 
+    /** The path to the directory for storing Duke data. */
     private static Path directoryPath = Paths.get(System.getProperty("user.dir"), "data");
 
+    /** The path to the file storing Duke data. */
     private Path filePath;
 
     public Storage() {
@@ -38,6 +40,12 @@ public class Storage {
         this.filePath = directoryPath.resolve(fileName);
     }
 
+    /**
+     * Loads the previously stored TaskList from the file.
+     *
+     * @return The TaskList stored on the file.
+     * @throws DukeException
+     */
     public TaskList loadFromFile() throws DukeException {
         ensureDirectoryExist();
         ensureFileExist();
@@ -55,8 +63,14 @@ public class Storage {
         }
     }
 
-    public void writeToFile(TaskList tasks) throws DukeException {
-        List<Task> storedTasks = tasks.getStoredTasks();
+    /**
+     * Stores the TaskList on the file.
+     *
+     * @param taskList The TaskList to be stored on the file.
+     * @throws DukeException
+     */
+    public void writeToFile(TaskList taskList) throws DukeException {
+        List<Task> storedTasks = taskList.getStoredTasks();
         ensureDirectoryExist();
         ensureFileExist();
         try {
@@ -70,6 +84,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Appends a task at the end of the storage file.
+     *
+     * @param task The task to append in the file.
+     * @throws DukeException
+     */
     public void appendToFile(Task task) throws DukeException {
         ensureDirectoryExist();
         ensureFileExist();
@@ -82,6 +102,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Ensures that the directory for storing Duke data exists.
+     * If it does not exist, creates the directory at the path.
+     */
     private static void ensureDirectoryExist() {
         File folder = new File(directoryPath.toString());
         if (!folder.exists()) {
@@ -89,6 +113,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Ensures that the file storing Duke data exists.
+     * If it does not exist, creates the file at the path.
+     */
     private void ensureFileExist() throws DukeException {
         try {
             File data = new File(directoryPath.resolve("data.txt").toString());
@@ -100,6 +128,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts a task to a String that can be stored on the file.
+     *
+     * @param task The task to be stored on file.
+     * @return The String representing how the data is stored on the file.
+     * @throws DukeException
+     */
     private static String convertTaskToDataString(Task task) throws DukeException {
         switch (task.getTaskType()) {
         case TODO:
@@ -117,6 +152,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads a String data and converts it back to a Task object.
+     *
+     * @param str The String representing how the data is stored on the file.
+     * @return The Task object represented by the String.
+     * @throws DukeException
+     */
     private static Task convertDataStringToTask(String str) throws DukeException {
         String[] taskInfo = str.split(" ", 3);
         try {

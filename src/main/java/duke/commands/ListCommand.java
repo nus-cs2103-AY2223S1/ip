@@ -13,11 +13,11 @@ public class ListCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            ui.list();
+            ui.sayList();
             for (int i = 0; i < taskList.getSize(); i++) {
-                ui.showTaskWithIndex(taskList.getTask(i), i);
+                ui.sayTaskWithIndex(i, taskList.getTask(i));
             }
-            ui.finishListing();
+            ui.sayFinishListing();
         } catch (DukeException e) {
             ui.sayExceptionMessage(e);
         }

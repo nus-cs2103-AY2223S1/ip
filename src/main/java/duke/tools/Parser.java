@@ -5,6 +5,7 @@ import duke.commands.Command;
 import duke.commands.DeadlineCommand;
 import duke.commands.DeleteCommand;
 import duke.commands.EventCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.TodoCommand;
@@ -21,6 +22,13 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
 
+    /**
+     * Returns the Command representing the user's input.
+     *
+     * @param str The input String from the user.
+     * @return The Command representing the user's input.
+     * @throws DukeException
+     */
     public static Command parseCommand(String str) throws DukeException {
         try {
             String[] inputLine = str.split(" ", 2);
@@ -53,10 +61,23 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the index of the Task the user tries to access.
+     *
+     * @param str The input String from the user.
+     * @return The index of the Task the user tries to access.
+     */
     private static int parseTaskIndex(String str) {
         return Integer.parseInt(str) - 1;
     }
 
+    /**
+     * Makes sense of the user's input to add a task with deadline.
+     *
+     * @param str The input String from the user specifying the parameters of the task with deadline.
+     * @return The DeadLineCommand representing the user's input
+     * @throws DukeException
+     */
     private static DeadlineCommand parseDeadlineCommand(String str) throws DukeException {
         try {
             String[] descDateTime = str.split("/by", 2);
@@ -66,6 +87,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Makes sense of the user's input to add an event.
+     *
+     * @param str The input String from the user specifying the parameters of the event.
+     * @returnThe EventCommand representing the user's input
+     * @throws DukeException
+     */
     private static EventCommand parseEventCommand(String str) throws DukeException {
         try {
             String[] descDateTime = str.split("/at", 2);
@@ -75,9 +103,18 @@ public class Parser {
         }
     }
 
+    /** The user's input date and time format. */
     private static final DateTimeFormatter DT_PARSE_FORMAT = DateTimeFormatter.ofPattern("[yyyy][yy]-M-d HHmm");
+    /** The date and time format printed out by Duke. */
     private static final DateTimeFormatter DT_PRINT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy, KK:mm a");
 
+    /**
+     * Makes sense of the user's input date and time.
+     *
+     * @param str The input String from the user specifying the date and time.
+     * @return A LocalDateTime object representing the user specified date and time.
+     * @throws DukeException
+     */
     public static LocalDateTime parseDateTime(String str) throws DukeException {
         try {
             LocalDateTime dateTime = LocalDateTime.parse(str, DT_PARSE_FORMAT);
@@ -88,6 +125,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a String representation of the date and time.
+     *
+     * @param dateTime The date and time to be formatted.
+     * @return A String representation of the date and time.
+     */
     public static String formatDateTimeToPrint(LocalDateTime dateTime) {
         return dateTime.format(DT_PRINT_FORMAT);
     }
