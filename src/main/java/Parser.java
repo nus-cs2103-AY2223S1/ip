@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 public class Parser {
@@ -20,8 +23,9 @@ public class Parser {
         } else if (isDeadlineCommand(splitReply)) {
             int by = validateBy(splitReply);
             String description = validateDescription(splitReply,by);
-            String duration = validateDuration(splitReply,by);
-            return new AddDeadlineCommand(description,duration);
+            // come up with conversion for time
+            LocalDateTime dateTime = validateDateTime(splitReply,by);
+            return new AddDeadlineCommand(description,dateTime);
         } else if (isEventCommand(splitReply)) {
             int by = validateAt(splitReply);
             String description = validateDescription(splitReply,by);
@@ -123,5 +127,17 @@ public class Parser {
         String[] durationArray = Arrays.copyOfRange(splitReply, by + 1, splitReply.length );
         String duration = String.join(" ", durationArray);
         return duration;
+    }
+
+    private static LocalDateTime validateDateTime(String[] splitReply, int by) throws DukeException {
+        try {
+            String[] durationArray = Arrays.copyOfRange(splitReply, by + 1, splitReply.length);
+            String duration = String.join(" ", durationArray);
+            System.out.println(duration);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+            return LocalDateTime.parse(duration, formatter);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("error in validate date time");
+        }
     }
 }
