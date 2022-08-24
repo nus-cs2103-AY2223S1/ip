@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -89,7 +90,9 @@ public class Duke {
                     System.out.println(divider);
                     continue;
                 }
-                addTask(new Deadline(params[0], params[1]));
+
+                LocalDateTime dt = Task.decodeDateTime(params[1]);
+                addTask(new Deadline(params[0], dt));
                 continue;
             }
             if (text.startsWith("event ")) {
@@ -104,7 +107,9 @@ public class Duke {
                     failure();
                     continue;
                 }
-                addTask(new Event(params[0], params[1]));
+
+                LocalDateTime dt = Task.decodeDateTime(params[1]);
+                addTask(new Event(params[0], dt));
                 continue;
             }
             if (text.startsWith("delete ")) {
