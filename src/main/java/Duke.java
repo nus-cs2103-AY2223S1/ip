@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+
 import java.util.Scanner;
 
 /**
@@ -104,7 +107,8 @@ public class Duke {
                 if (deadlineStrings.length == 1 || deadlineStrings[1].equals("")) {
                     throw new DukeException("     ☹ OOPS!!! The date/time of a deadline cannot be empty.\n");
                 }
-                Deadline deadline = new Deadline(deadlineStrings[0], false, deadlineStrings[1]);
+                Deadline deadline = new Deadline(deadlineStrings[0], false,
+                    LocalDateTime.parse(deadlineStrings[1], Task.dateTimeParser));
 
                 sb.append(this.addTask(deadline));
                 break;
@@ -117,7 +121,7 @@ public class Duke {
                 if (eventStrings.length == 1 || eventStrings[1].equals("")) {
                     throw new DukeException("     ☹ OOPS!!! The date/time of an event cannot be empty.\n");
                 }
-                Event event = new Event(eventStrings[0], false, eventStrings[1]);
+                Event event = new Event(eventStrings[0], false, LocalDateTime.parse(eventStrings[1], Task.dateTimeParser));
 
                 sb.append(this.addTask(event));
                 break;
@@ -138,6 +142,9 @@ public class Duke {
             // Catches exceptions thrown when parsing integers in mark/unmark commands or
             // when accessing invalid taskList index
             sb.append(LONG_LINE).append("     ☹ OOPS!!! The index specified is invalid.\n").append(LONG_LINE);
+        } catch (DateTimeParseException exception) {
+            sb.append(LONG_LINE).append("     ☹ OOPS!!! The datetime specified is invalid, it should have the format "
+                    + Task.DATE_TIME_INPUT_FORMAT + "\n");
         } catch (DukeException exception) {
             // All DukeExceptions will be printed
             sb.append(LONG_LINE).append(exception).append(LONG_LINE);

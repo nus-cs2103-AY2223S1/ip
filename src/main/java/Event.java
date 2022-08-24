@@ -1,21 +1,27 @@
+import java.time.LocalDateTime;
+
 /**
  * Represents an event, a type of task
  */
 public class Event extends Task {
-    private final String at;
+    private final LocalDateTime timing;
 
     /**
-     * Constructs an event with some description and datetime string for the event's start
+     * Constructs an event with some description and datetime for the event's start
      * time
      *
      * @param description The specified description.
      * @param isDone      The boolean indicating whether the task is done.
-     * @param at          The specified datetime string for the start time.
+     * @param timing      The specified datetime string for the start time.
      */
-    Event(String description, boolean isDone, String at) {
+    Event(String description, boolean isDone, LocalDateTime timing) {
         super(description, isDone);
-        this.at = at;
+        this.timing = timing;
         this.taskType = TaskType.E;
+    }
+
+    public String getTiming() {
+        return Task.dateTimeDisplayFormatter.format(this.timing);
     }
 
     /**
@@ -25,11 +31,11 @@ public class Event extends Task {
      */
     @Override
     public String encode(String delimiter) {
-        return super.encode(delimiter) + delimiter + this.at;
+        return super.encode(delimiter) + delimiter + this.timing;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " (at: " + this.at + ")";
+        return super.toString() + " (at: " + this.getTiming() + ")";
     }
 }

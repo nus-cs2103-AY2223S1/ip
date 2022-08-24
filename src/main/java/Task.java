@@ -1,7 +1,15 @@
+import java.time.format.DateTimeFormatter;
+
 /**
- * Represents a Task, which can be marked done / not done, along with some description
+ * Represents a Task, which can be marked done / not done, along with some
+ * description
  */
 public abstract class Task {
+    public static final String DATE_TIME_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
+
+    public static final DateTimeFormatter dateTimeParser = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMAT);
+    public static final DateTimeFormatter dateTimeDisplayFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+
     protected final String description;
     protected boolean isDone;
     protected TaskType taskType;
@@ -32,7 +40,8 @@ public abstract class Task {
     }
 
     /**
-     * Returns whether the task is done / not done, tasks that are done will be marked with "X"
+     * Returns whether the task is done / not done, tasks that are done will be
+     * marked with "X"
      *
      * @return The status icon representing whether the task is done / not done.
      */
@@ -41,7 +50,8 @@ public abstract class Task {
     }
 
     /**
-     * Converts the task into a String where each field is delimited by some delimiter
+     * Converts the task into a String where each field is delimited by some
+     * delimiter
      *
      * @param delimiter The specified delimiter.
      * @return The values of the task fields delimited by delimiter.
@@ -53,7 +63,8 @@ public abstract class Task {
     /**
      * {@inheritDoc}
      * <p>
-     * Returns the string formatted display of a task, with its status icon, task type, and description
+     * Returns the string formatted display of a task, with its status icon, task
+     * type, and description
      */
     @Override
     public String toString() {
