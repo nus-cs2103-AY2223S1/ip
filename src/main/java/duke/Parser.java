@@ -22,6 +22,7 @@ import duke.response.UnmarkResponse;
 public class Parser {
     /**
      * Returns a DukeResponse based on input.
+     *
      * @param list The task list.
      * @param input The user input.
      * @return An appropriate DukeResponse.
@@ -76,6 +77,7 @@ public class Parser {
 
     /**
      * Converts a String with date and time from user input to LocalDateTime.
+     *
      * @param dateTimeStr The String with a date and time.
      * @return A LocalDateTime object.
      * @throws DukeException If the String contains an invalid date time format.
@@ -98,6 +100,7 @@ public class Parser {
 
     /**
      * Converts a String with date and time from data file to LocalDateTime.
+     *
      * @param dateTimeStr The String with a date and time.
      * @return A LocalDateTime object.
      */

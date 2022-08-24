@@ -26,6 +26,7 @@ public abstract class DukeResponse {
 
     /**
      * Prints a properly formatted message.
+     *
      * @param text The message to print.
      */
     public void message(String text) {
@@ -34,12 +35,14 @@ public abstract class DukeResponse {
 
     /**
      * The action to do when the response is run.
+     *
      * @throws DukeException If there was an error while running.
      */
     public abstract void run() throws DukeException;
 
     /**
      * Checks if the response is to tell Duke to exit.
+     *
      * @return A boolean.
      */
     public abstract boolean isExit();

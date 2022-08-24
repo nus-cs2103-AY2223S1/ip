@@ -13,6 +13,7 @@ public class TodoResponse extends DukeResponse {
 
     /**
      * Constructor for a TodoResponse.
+     *
      * @param list The task list.
      * @param data The data for a new Todo.
      */

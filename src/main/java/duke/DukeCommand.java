@@ -23,6 +23,7 @@ public enum DukeCommand {
 
     /**
      * Reads an input String and converts to DukeCommand.
+     *
      * @param inputCommand The input to read.
      * @return The appropriate DukeCommand, or UNKNOWN if invalid input.
      */

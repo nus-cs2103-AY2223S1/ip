@@ -12,6 +12,7 @@ public class FindResponse extends DukeResponse {
 
     /**
      * Constructor for a FindResponse.
+     *
      * @param list The task list.
      * @param data The data for searching.
      */

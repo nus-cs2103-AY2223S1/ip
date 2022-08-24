@@ -12,6 +12,7 @@ public class MarkResponse extends DukeResponse {
 
     /**
      * Constructor for a MarkResponse.
+     *
      * @param list The task list.
      * @param data The data for marking Task as done.
      */

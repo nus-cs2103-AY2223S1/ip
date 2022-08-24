@@ -12,6 +12,7 @@ public class UnmarkResponse extends DukeResponse {
 
     /**
      * Constructor for an UnmarkResponse.
+     *
      * @param list The task list.
      * @param data The data for marking Task as not done.
      */

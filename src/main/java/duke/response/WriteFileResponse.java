@@ -13,6 +13,7 @@ public class WriteFileResponse extends DukeResponse {
 
     /**
      * Constructor for a WriteFileResponse.
+     *
      * @param list The task list.
      * @param storage The handler for writing task list to storage.
      */

@@ -14,6 +14,7 @@ public class EventResponse extends DukeResponse {
 
     /**
      * Constructor for an EventResponse.
+     *
      * @param list The task list.
      * @param data The data for a new Event.
      */

@@ -12,6 +12,7 @@ public class DeleteResponse extends DukeResponse {
 
     /**
      * Constructor for a DeleteResponse.
+     *
      * @param list The task list.
      * @param data The data for task deletion.
      */

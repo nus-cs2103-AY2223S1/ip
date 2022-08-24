@@ -10,6 +10,7 @@ public class ExceptionResponse extends DukeResponse {
 
     /**
      * Constructor for an ExceptionResponse.
+     *
      * @param exception The exception.
      */
     public ExceptionResponse(DukeException exception) {

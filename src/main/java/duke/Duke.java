@@ -18,6 +18,7 @@ public class Duke {
 
     /**
      * Constructor for Duke.
+     *
      * @param dataPath Path to task list data file.
      */
     public Duke(Path dataPath) {
@@ -35,6 +36,7 @@ public class Duke {
 
     /**
      * Main method.
+     *
      * @param args Arguments passed to program.
      */
     public static void main(String[] args) {

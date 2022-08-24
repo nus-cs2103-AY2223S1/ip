@@ -22,6 +22,7 @@ public class DukeList {
 
     /**
      * Converts Task list to String representation for saving to file.
+     *
      * @return A list of the Tasks in String format to save to file.
      */
     public List<String> getListToDataStr() {
@@ -30,6 +31,7 @@ public class DukeList {
 
     /**
      * Converts a Task to String for storing in a file.
+     *
      * @param t The Task to convert.
      * @return A String representation of the Task for storing in a file.
      */
@@ -50,6 +52,7 @@ public class DukeList {
 
     /**
      * Adds a Task to the list.
+     *
      * @param item The task to add to the list.
      * @return A String of the message to be displayed.
      */
@@ -65,6 +68,7 @@ public class DukeList {
 
     /**
      * Marks a task in the list as done.
+     *
      * @param index The index of the task to mark as done.
      * @return A String of the message to be displayed.
      * @throws DukeException If index is invalid.
@@ -82,6 +86,7 @@ public class DukeList {
 
     /**
      * Marks a task in the list as not done.
+     *
      * @param index The index of the task to mark as not done.
      * @return A String of the message to be displayed.
      * @throws DukeException If index is invalid.
@@ -99,6 +104,7 @@ public class DukeList {
 
     /**
      * Deletes a task in the list.
+     *
      * @param index The index of the task to delete.
      * @return A String of the message to be displayed.
      * @throws DukeException If index is invalid.
@@ -121,6 +127,7 @@ public class DukeList {
 
     /**
      * Searches the task list.
+     *
      * @param searchTerm The term to search the task list with.
      * @return A String with the results of the search.
      */
@@ -147,6 +154,7 @@ public class DukeList {
 
     /**
      * Returns number of tasks in the list.
+     *
      * @return The number of tasks in the list.
      */
     public int getListSize() {

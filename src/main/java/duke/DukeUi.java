@@ -13,6 +13,7 @@ public class DukeUi {
 
     /**
      * Gets user input and returns the appropriate response.
+     *
      * @param list The task list.
      * @return An appropriate DukeResponse.
      */
@@ -27,6 +28,7 @@ public class DukeUi {
 
     /**
      * Displays an error.
+     *
      * @param e The error to display.
      */
     public void showError(DukeException e) {

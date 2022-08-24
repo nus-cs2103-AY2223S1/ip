@@ -10,6 +10,7 @@ public class ListResponse extends DukeResponse {
 
     /**
      * Constructor for a ListResponse.
+     *
      * @param list The task list.
      */
     public ListResponse(DukeList list) {

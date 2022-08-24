@@ -21,6 +21,7 @@ public class Storage {
 
     /**
      * Constructor for Storage.
+     *
      * @param dataPath The path to store the data.
      */
     public Storage(Path dataPath) {
@@ -29,6 +30,7 @@ public class Storage {
 
     /**
      * Reads the data file and gets the task list.
+     *
      * @return The task list.
      * @throws DukeException If the data file cannot be read.
      */
@@ -68,6 +70,7 @@ public class Storage {
 
     /**
      * Converts the String representation to a Task object.
+     *
      * @param taskStr The String representation of a Task.
      * @return A Task.
      * @throws DukeException If the Task cannot be read.
@@ -115,6 +118,7 @@ public class Storage {
 
     /**
      * Saves the task list to storage.
+     *
      * @param list The task list to save.
      * @throws DukeException If the data file cannot be written to.
      */

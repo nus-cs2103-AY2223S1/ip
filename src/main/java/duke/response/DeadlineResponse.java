@@ -14,6 +14,7 @@ public class DeadlineResponse extends DukeResponse {
 
     /**
      * Constructor for a DeadlineResponse.
+     *
      * @param list The task list.
      * @param data The data for a new Deadline.
      */
