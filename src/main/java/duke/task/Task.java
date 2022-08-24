@@ -32,6 +32,10 @@ public abstract class Task {
         return this.getStatusBit() + " | " + this.description;
     }
 
+    public boolean getStatus() {
+        return this.isDone;
+    }
+
     int getStatusBit() {
         return isDone ? 1 : 0;
     }

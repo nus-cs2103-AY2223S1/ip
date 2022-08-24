@@ -24,7 +24,7 @@ public class TaskList {
     }
 
     String getIndexOutOfBoundsExceptionMessage() {
-        return this.size() > 0 ? String.format("duke.task.Task index out of range. Please choose from index 1 to %d", this.size()) :
+        return this.size() > 0 ? String.format("Task index out of range. Please choose from index 1 to %d", this.size()) :
                 "Tasks index out of range. There are no tasks.";
     }
 
