@@ -27,9 +27,9 @@ public class UnmarkCommand extends Command {
      * @throws DukeException if something went wrong with the update of data file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task unmarkedTask = tasks.unmark(taskNumber);
-        ui.showUnmarkedTask(unmarkedTask);
         tasks.updateStorage(storage);
+        return ui.showUnmarkedTask(unmarkedTask);
     }
 }

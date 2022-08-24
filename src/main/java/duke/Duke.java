@@ -11,10 +11,9 @@ public class Duke {
 
     /**
      * Class constructor for Duke program.
-     *
-     * @param filePath to store data file.
      */
-    public Duke(String filePath) {
+    public Duke() {
+        String filePath = "./data";
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -25,28 +24,24 @@ public class Duke {
         }
     }
 
-    /**
-     * Handles running of Duke application.
+     /** Handles Duke response to user.
+     *
+     * @param userInput input that user types into GUI.
+     * @return response that duke gives.
      */
-    public void run() {
-        ui.showWelcome();
+    public String getResponse(String userInput) {
         boolean isExit = false;
-        while (!isExit) {
-            try {
-                ui.showLine();
-                String fullCommand = ui.readCommand();
-                Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
-                isExit = c.isExit();
-            } catch (DukeException e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.showLine();
+        String dukeResponse = "";
+        try {
+            Command c = Parser.parse(userInput);
+            dukeResponse = c.execute(tasks, ui, storage);
+            isExit = c.isExit();
+            if (isExit) {
+                System.exit(0);
             }
+        } catch (DukeException e) {
+            return e.getMessage();
         }
-    }
-
-    public static void main(String[] args) {
-        new Duke("./data").run();
+        return dukeResponse;
     }
 }

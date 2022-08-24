@@ -7,7 +7,7 @@ public abstract class Command {
 
     private boolean isExit = false;
 
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Setter for the class variable isExit.

@@ -25,8 +25,8 @@ public class FindCommand extends Command {
      * @param storage to rewrite the data file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         TaskList matchingTasks = tasks.find(taskDescription);
-        ui.showFilteredList(matchingTasks);
+        return ui.showFilteredList(matchingTasks);
     }
 }
