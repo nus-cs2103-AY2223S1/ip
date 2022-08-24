@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,11 +15,12 @@ public class Storage {
     private File checkFile() throws IOException {
         File file = new File(filePath);
         if (file.exists() && !file.isDirectory()) {
-            System.out.println("File already exists.");
+//            System.out.println("File already exists.");
+
         } else {
             file.getParentFile().mkdir();
             file.createNewFile();
-            System.out.println("File created: " + file.getName());
+//            System.out.println("File created: " + file.getName());
         }
         return file;
     };
@@ -47,7 +49,8 @@ public class Storage {
                     tasks.add(todo);
                     break;
                 case ("D"):
-                    Task deadline = new Deadline(separatedLines[2], separatedLines[3]);
+                    LocalDateTime by = LocalDateTime.parse(separatedLines[3]);
+                    Task deadline = new Deadline(separatedLines[2], by);
                     if (separatedLines[1] == "1") {
                         deadline.finished();
                     }
