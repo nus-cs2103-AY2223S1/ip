@@ -31,7 +31,7 @@ This task has already been marked done.
 [D][X] return book  (by: Sunday)
 Good job for doing this task!
 [E][X] project meeting  (at: Mon 2-4pm)
-Task shall be marked as undone.
+task.Task shall be marked as undone.
 [E][ ] project meeting  (at: Mon 2-4pm)
 Here are your list of tasks!
 1. [T][ ] borrow book
@@ -42,7 +42,7 @@ You have 4 tasks in the list.
 Noted. I've removed this task:
 [T][ ] borrow book
 Now you have 3 tasks in the list.
-Task shall be marked as undone.
+task.Task shall be marked as undone.
 [D][ ] return book  (by: Sunday)
 Here are your list of tasks!
 1. [D][ ] return book  (by: Sunday)

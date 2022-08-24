@@ -1,3 +1,10 @@
+package command;
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import task.Task;
+
 public class MarkCommand extends Command {
 
     String str;

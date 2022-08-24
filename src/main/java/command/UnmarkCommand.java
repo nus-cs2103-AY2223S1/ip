@@ -1,3 +1,10 @@
+package command;
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import task.Task;
+
 public class UnmarkCommand extends Command {
 
     String str;
@@ -14,7 +21,7 @@ public class UnmarkCommand extends Command {
             if (task.isDone()) {
                 task.toggleDoneness();
                 storage.saveLocalData(tasks.TASKS);
-                System.out.println("Task shall be marked as undone.");
+                System.out.println("task.Task shall be marked as undone.");
                 System.out.println(task);
             } else {
                 System.out.println("This task has already been marked undone.");
