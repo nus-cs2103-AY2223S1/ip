@@ -43,4 +43,8 @@ public abstract class Task {
             return new ToDo(description, isDone);
         }
     }
+
+    public boolean containsWord(String wordToFind) {
+        return this.description.contains(wordToFind);
+    }
 }

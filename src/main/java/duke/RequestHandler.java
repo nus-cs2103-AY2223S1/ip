@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 public class RequestHandler {
     private enum CommandType {
-        LIST, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, BYE
+        LIST, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, BYE, FIND
     }
 
     public static Command handleRequest(String command) throws InvalidInputException, IncompleteInputException,
@@ -37,6 +37,8 @@ public class RequestHandler {
                     throw new IncompleteInputException("Please key in valid description and date for event");
                 case DELETE:
                     throw new IncompleteInputException("Please key in valid index to delete");
+                case FIND:
+                    throw new IncompleteInputException("Please key in a valid word to find");
                 default:
                     throw new InvalidCommandException("OOPS I didn't understand the command");
                 }
@@ -74,6 +76,8 @@ public class RequestHandler {
                     int itemNumber = Integer.parseInt(furtherSplit);
                     return new DeleteCommand(itemNumber);
                 }
+                case FIND:
+                    return new FindCommand(furtherSplit);
                 default:
                     throw new InvalidCommandException("OOPS I didn't understand the command");
                 }
