@@ -76,7 +76,6 @@ public class Duke {
         String input;
         while (true) {
             input = sc.nextLine();
-            //how does the user end this//
             if (input.equals("bye")) {
                 Ui.displayMessage(Ui.ENDING_MESSAGE);
                 break;

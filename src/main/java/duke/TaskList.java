@@ -106,7 +106,7 @@ public class TaskList {
 
     /**
      * Adds a new task to the taskList
-     * @param t of type Task
+     * @param t
      */
 
     public String addTask(Task t) {

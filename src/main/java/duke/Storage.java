@@ -15,13 +15,14 @@ public class Storage {
     /**
      * Takes in a list of items
      * and saves it to a binary file
-     * @param saveItems
+     * @param saveItems is a list of savedItems
      */
-    public static void save(List<Task> saveItems) {
+        public static void save(List<Task> saveItems) {
         try {
             FileOutputStream fos = new FileOutputStream(FILE_NAME);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(saveItems);
+            fos.close();
             oos.close();
         } catch (FileNotFoundException e) {
             System.out.println("Cannot save, File not found");
@@ -59,6 +60,7 @@ public class Storage {
             ObjectInputStream ois = new ObjectInputStream(fis);
             ArrayList<Task> readItems = (ArrayList<Task>) ois.readObject();
             ois.close();
+            fis.close();
             return readItems;
 
 
