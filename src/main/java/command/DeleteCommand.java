@@ -1,13 +1,13 @@
-package commands;
+package command;
 
 import storage.Storage;
 
 // Import Tasks
-import tasks.Deadline;
-import tasks.Event;
-import tasks.Task;
-import tasks.TaskList;
-import tasks.Todo;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 
 import ui.Ui;
 

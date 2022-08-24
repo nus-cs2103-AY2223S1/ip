@@ -14,8 +14,8 @@ import ui.Ui;
 
 import parser.Parser;
 
-import tasks.Task;
-import tasks.TaskList;
+import task.Task;
+import task.TaskList;
 
 /**
  * Deals with loading tasks from the file and saving tasks in the file.

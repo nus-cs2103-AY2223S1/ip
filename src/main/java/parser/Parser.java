@@ -1,21 +1,22 @@
 package parser;
 
 // Import Commands
-import commands.AddCommand;
-import commands.Command;
-import commands.DeleteCommand;
-import commands.ExitCommand;
-import commands.ListCommand;
-import commands.UpdateCommand;
+import command.AddCommand;
+import command.Command;
+import command.DeleteCommand;
+import command.ExitCommand;
+import command.FindCommand;
+import command.ListCommand;
+import command.UpdateCommand;
 
 import exception.LunaException;
 
 // Import Tasks;
-import tasks.Deadline;
-import tasks.Event;
-import tasks.Task;
-import tasks.TaskList;
-import tasks.Todo;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 
 // Imports for dates
 import java.time.LocalDate;
@@ -74,6 +75,9 @@ public class Parser {
             break;
         case "unmark":
             c = new UpdateCommand("unmark", Integer.parseInt(cmdSplit[1]));
+            break;
+        case "find":
+            c = new FindCommand(cmdSplit[1].toLowerCase());
             break;
         default:
             throw new LunaException("I'm not sure what that means 🥀");

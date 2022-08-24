@@ -1,8 +1,8 @@
 import exception.LunaException;
 import parser.Parser;
 import storage.Storage;
-import tasks.TaskList;
-import commands.Command;
+import task.TaskList;
+import command.Command;
 import ui.Ui;
 
 /**

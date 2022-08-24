@@ -1,6 +1,6 @@
-package commands;
+package command;
 
-import tasks.TaskList;
+import task.TaskList;
 import ui.Ui;
 import storage.Storage;
 

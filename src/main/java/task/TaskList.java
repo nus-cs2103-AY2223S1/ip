@@ -1,4 +1,4 @@
-package tasks;
+package task;
 
 import exception.LunaException;
 import java.util.ArrayList;
@@ -97,11 +97,29 @@ public class TaskList {
     }
 
     /**
+     * Filters the task list for relevant tasks according to the keyword
+     * and returns the string representation of the resulting task list.
+     *
+     * @param txt Search keyword.
+     * @return String representation of the relevant task list.
+     */
+    public String find(String txt) {
+        String result = "";
+        int index = 1;
+        for(int i = 0; i < size(); i++) {
+            Task curr = tasks.get(i);
+            if ((curr.toString().substring(7).toLowerCase()).contains(txt)) {
+                result += "\n" + index++ + ". " + curr;
+            }
+        }
+        return result;
+    }
+
+    /**
      * Returns the string representation of the TaskList with indices.
      *
      * @return String representation of the TaskList.
-     */
-    @Override
+     */    @Override
     public String toString() {
         String list = "";
         for(int i = 0; i < tasks.size(); i++) {

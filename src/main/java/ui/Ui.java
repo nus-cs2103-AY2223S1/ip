@@ -1,7 +1,7 @@
 package ui;
 
-import tasks.Task;
-import tasks.TaskList;
+import task.Task;
+import task.TaskList;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -53,6 +53,7 @@ public class Ui {
                     "\n    🌹 event \"event\" /at \"yyyy-mm-dd\"   | Add an event on the specified date" +
                     "\n    🪷 mark \"num\"                       | Mark the (num)th item in your list as completed"+
                     "\n    🌻 unmark \"num\"                     | Mark the (num)th item in your list as uncompleted" +
+                    "\n    💐 find \"keyword\"                   | Find a task by searching for a keyword" +
                     "\n    🥀 bye                              | Quit Luna\n");
 
         // Print items in storage
@@ -157,6 +158,21 @@ public class Ui {
     public void showUnmark(Task task) {
         showLine();
         System.out.println("Marked as uncompleted 🌩\n" + task.toString());
+        showLine();
+    }
+
+    /**
+     * Displays the tasks found according to search keywords.
+     *
+     * @param tasks String representation of relevant tasks.
+     */
+    public void showFound(String tasks) {
+        showLine();
+        if (tasks.equals("")) {
+            System.out.println("Luna did not manage to find any relevant tasks 🍂");
+        } else {
+            System.out.println("☁️ Here are the tasks Luna has found! ☁️" + tasks);
+        }
         showLine();
     }
 

@@ -1,4 +1,4 @@
-package tasks;
+package task;
 
 /**
  * Encapsulates a responsiblity to be completed by the user.

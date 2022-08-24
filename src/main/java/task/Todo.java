@@ -1,4 +1,4 @@
-package tasks;
+package task;
 
 /**
  * Encapsulates a task without any date/time attached to it.
