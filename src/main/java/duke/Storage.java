@@ -6,9 +6,16 @@ import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Storage handles loading data from and saving data to files.
+ */
 public class Storage {
     private final File file;
 
+    /**
+     * Creates a new Storage object with the specified path.
+     * @param path The path to the file to store data in.
+     */
     public Storage(String path) {
         this.file = new File(path);
         if (!this.file.exists()) {
@@ -21,6 +28,11 @@ public class Storage {
         }
     }
 
+
+    /**
+     * Reads and return the tasks of the file.
+     * @return The String tasks of the file.
+     */
     public String read() {
         try {
             Scanner scanner = new Scanner(this.file);
@@ -41,6 +53,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the tasks into the Storage file.
+     * @param contents The String tasks to write to the Storage file.
+     */
     public void write(String contents) {
         try {
             FileWriter fileWriter = new FileWriter(this.file);

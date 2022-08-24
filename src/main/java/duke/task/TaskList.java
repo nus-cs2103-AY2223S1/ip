@@ -6,20 +6,35 @@ import duke.exception.DukeException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * TaskList represents the list of tasks.
+ */
 public class TaskList {
     private List<Task> taskList;
     private final Storage storage;
 
+    /**
+     * Creates a TaskList with the corresponding Storage file and list of saved tasks.
+     * @param path The path of the Storage file.
+     */
     public TaskList(String path) {
         this.storage = new Storage(path);
         this.taskList = this.getSavedTasks();
     }
-
+    /**
+     * Returns a List of the Tasks saved.
+     * @return List of Tasks.
+     */
     private List<Task> getSavedTasks() {
         String storageTasks= this.storage.read();
         return this.parse(storageTasks);
     }
 
+    /**
+     * Parses a String of Tasks into a List of Tasks.
+     * @param string The String of Tasks.
+     * @return List of Tasks.
+     */
     private List<Task> parse(String string) {
         if (string == null) {
             return new ArrayList<>();
@@ -36,6 +51,9 @@ public class TaskList {
         return taskList;
     }
 
+    /**
+     * Saves the list of Tasks to the storage file.
+     */
     public void saveTasks() {
         StringBuilder storageTasks = new StringBuilder();
 
@@ -49,10 +67,21 @@ public class TaskList {
         this.storage.write(storageTasks.toString());
     }
 
+    /**
+     * Adds a new task to the TaskList.
+     * @param task The task to be added.
+     */
     public void addTask(Task task) {
         this.taskList.add(task);
     }
 
+    /**
+     * Removes the Task at the given index from the TaskList.
+     *
+     * @param index The given index.
+     * @return The task removed.
+     * @throws DukeException If the index is out of range.
+     */
     public Task deleteTask(int index) throws DukeException {
         if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Invalid task number.");
@@ -63,10 +92,22 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the current size of the list.
+     *
+     * @return Current size of the list.
+     */
     public int getSize() {
         return this.taskList.size();
     }
 
+    /**
+     * Marks the Task at the given index as completed.
+     *
+     * @param index The given index.
+     * @return The Task marked.
+     * @throws DukeException If the index is out of range.
+     */
     public Task markDone(int index) throws DukeException {
         if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Invalid task number.");
@@ -77,6 +118,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks the Task at the given index as uncompleted.
+     *
+     * @param index The given index.
+     * @return The Task unmarked.
+     * @throws DukeException If the index is out of range.
+     */
     public Task unmarkDone(int index) throws DukeException {
         if (index < 0 || index >= this.getSize()) {
             throw new DukeException("Invalid task number.");
@@ -87,6 +135,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns the String representation of the TaskList.
+     *
+     * @return String representation of the TaskList.
+     */
     @Override
     public String toString() {
         String[] stringList = new String[this.taskList.size()];

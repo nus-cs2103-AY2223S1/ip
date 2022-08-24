@@ -4,15 +4,28 @@ import duke.exception.DukeException;
 import duke.task.Event;
 import duke.task.TaskList;
 
+/**
+ * EventCommand represents a command to add an Event to the TaskList.
+ */
 public class EventCommand extends Command {
     private TaskList taskList;
     private String[] inputArr;
 
+    /**
+     * Creates a EventCommand to add an Event to the TaskList.
+     * @param taskList The TaskList to add the Event to.
+     * @param inputArr The input String array.
+     */
     public EventCommand(TaskList taskList, String[] inputArr) {
         this.taskList = taskList;
         this.inputArr = inputArr;
     }
 
+    /**
+     * Adds the Event to the TaskList.
+     * @return The message to be displayed.
+     * @throws DukeException If the input array is invalid.
+     */
     @Override
     public String action() throws DukeException {
         if (this.inputArr.length < 2) {
