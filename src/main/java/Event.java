@@ -11,4 +11,13 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + "(at: " + date + ")";
     }
+
+    @Override
+    public String saveFormat() {
+        if (this.isDone) {
+            return "E | 1 | " + this.description + " | " + this.date;
+        } else {
+            return "E | 0 | " + this.description + " | " + this.date;
+        }
+    }
 } 

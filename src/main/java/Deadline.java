@@ -11,4 +11,13 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + "(by: " + by + ")";
     }
+
+    @Override
+    public String saveFormat() {
+        if (this.isDone) {
+            return "D | 1 | " + this.description + " | " + this.by;
+        } else {
+            return "D | 0 | " + this.description + " | " + this.by;
+        }
+    }
 }

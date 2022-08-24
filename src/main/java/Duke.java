@@ -1,3 +1,5 @@
+import java.io.*;
+import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -7,6 +9,8 @@ public class Duke {
     private int numTasks = tasks.size();
 
     private int removed = 0;
+
+    private static File savedTasks = new File("pukeData.txt");
 
     private Scanner receiver = new Scanner(System.in);
     private static Duke d = new Duke();
@@ -41,7 +45,7 @@ public class Duke {
     public static void puke(Scanner sc, Duke d) throws DukeException {
         String a = sc.next();
         if (a.equals("bye")) {
-            d.systemMessage(1,d, new Task(""));
+            d.systemMessage(1,d, new ToDo(""));
             d.tasks = new ArrayList<>();
             return;
         }
@@ -51,7 +55,6 @@ public class Duke {
         }
         String s = sc.nextLine();
 
-        //String action = d.doWhat(s);
         if (a.equals("mark")) {
             int pos = Character.getNumericValue(s.charAt(1));
             d.taskManager("do", pos, d);
@@ -66,6 +69,7 @@ public class Duke {
             Task newTask = new ToDo(desc);
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
+            saveTasks(Duke.d.tasks);
             puke(sc,d);
         } else if (a.equals("deadline")) {
             String desc = d.getMessage(s, "Deadline");
@@ -73,6 +77,7 @@ public class Duke {
             Task newTask = new Deadline(desc, date);
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
+            saveTasks(Duke.d.tasks);
             puke(sc,d);
         } else if (a.equals("event")) {
             String desc = d.getMessage(s, "Event");
@@ -80,11 +85,13 @@ public class Duke {
             Task newTask = new Event(desc, date);
             d.addIncrement(newTask);
             d.systemMessage(2, d, newTask);
+            saveTasks(Duke.d.tasks);
             puke(sc,d);
         } else if (a.equals("delete")) {
             int pos = Character.getNumericValue(s.charAt(1));
             Task temp = d.tasks.get(pos - 1);
             d.delete(pos - 1);
+            saveTasks(Duke.d.tasks);
             d.systemMessage(3, d, temp);
         } else {
             throw new DukeException("    ____________________________________________________________\n     " +
@@ -158,9 +165,6 @@ public class Duke {
         System.out.println("    ____________________________________________________________");
         System.out.println("     Here are the tasks in your list:");
         for(int i = 0; i < this.tasks.size() ; i++) {
-            /*if (this.tasks[i] == null) {
-                break;
-            }*/
             System.out.println("     " + (i+1) + "." + this.tasks.get(i));
         }
         System.out.println("    ____________________________________________________________");
@@ -205,8 +209,55 @@ public class Duke {
         }
     }
 
+    private static void saveTasks(List<Task> tasks) {
+        try {
+            FileWriter writer = new FileWriter(savedTasks.getPath());
+            for (Task task: tasks) {
+                writer.write(task.saveFormat() + System.lineSeparator());
+                //writer.write("task ");
+            }
+            writer.close();
+        } catch(IOException e) {
+            System.out.println("Aiya, cant save it la");
+        };
+    }
+
+    public static void loadTasks() {
+        try {
+            Scanner s = new Scanner(savedTasks);
+            while (s.hasNextLine()) {
+                String taskInString = s.nextLine();
+                Duke.d.numTasks++;
+                String[] taskInArray = taskInString.split(" \\| ");
+
+                if (taskInArray[0].equals("T")) {
+                    Task task = new ToDo(taskInArray[2]);
+                    Duke.d.tasks.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                } else if (taskInArray[0].equals("D")) {
+                    Task task = new Deadline(taskInArray[2], taskInArray[3]);
+                    Duke.d.tasks.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                } else if (taskInArray[0].equals("E")) {
+                    Task task = new Event(taskInArray[2], taskInArray[3]);
+                    Duke.d.tasks.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Aiya cant find the file la");
+        }
+    }
+
     public static void main(String[] args) {
         intro();
+        Duke.loadTasks();
         Duke.startBot();
         Duke.d.receiver.close();
     }
