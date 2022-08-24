@@ -15,6 +15,15 @@ public class Event extends Task {
     }
 
     /**
+     * Returns a string used to save the task.
+     * @return a string used to save the task
+     */
+    @Override
+    public String saveString() {
+        return String.format("E | %s | %s", super.saveString(), this.at);
+    }
+
+    /**
      * Returns a string representation of the event.
      * @return a string representing the event
      */

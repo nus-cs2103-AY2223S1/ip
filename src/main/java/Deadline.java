@@ -15,6 +15,15 @@ public class Deadline extends Task {
     }
 
     /**
+     * Returns a string used to save the task.
+     * @return a string used to save the task
+     */
+    @Override
+    public String saveString() {
+        return String.format("D | %s | %s", super.saveString(), this.dueBy);
+    }
+
+    /**
      * Returns a string representation of thew deadline.
      * @return a string representing the deadline
      */

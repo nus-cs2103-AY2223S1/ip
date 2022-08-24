@@ -1,3 +1,4 @@
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -26,6 +27,11 @@ public class Doemon {
     private static String exitStr = "I'm going to sleep now...See you again soon!";
 
     /**
+     * The file path of the file where tasks will be saved to.
+     */
+    private static final String TASK_FILE_PATH = "./data/duke.txt";
+
+    /**
      * A fixed-sized string array that stores user input.
      */
     private ArrayList<Task> tasks = new ArrayList<>();
@@ -41,6 +47,9 @@ public class Doemon {
      * Starts the Doemon chatbot.
      */
     private void start() {
+        // Load any saved tasks
+        loadTasks();
+
         // Handling inputs
         Scanner sc = new Scanner(System.in);
 
@@ -84,6 +93,55 @@ public class Doemon {
                 System.out.println(output(ite.toString()));
             } catch (MissingArgumentException mae) {
                 System.out.println(output(mae.toString()));
+            }
+        }
+    }
+
+    private void loadTasks() {
+        // Check and create directory if necessary
+        File directory = new File("./data");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+
+        BufferedReader br = null;
+        try {
+            File taskDataFile = new File(TASK_FILE_PATH);
+            if (taskDataFile.exists()) {
+                br = new BufferedReader(new FileReader(taskDataFile));
+                String taskData = br.readLine();
+                while (taskData != null) {
+                    String[] taskDataArr = taskData.split(" \\| ");
+                    String taskType = taskDataArr[0];
+                    boolean isMarked = taskDataArr[1].equals("1");
+                    String taskDescription = taskDataArr[2];
+                    if (taskType.equals("T")) {
+                        Task task = new Todo(taskDescription);
+                        if (isMarked) task.mark();
+                        tasks.add(task);
+                    } else if (taskType.equals("D")) {
+                        Task task = new Deadline(taskDescription, taskDataArr[3]);
+                        if (isMarked) task.mark();
+                        tasks.add(task);
+                    } else {
+                        Task task = new Event(taskDescription, taskDataArr[3]);
+                        if (isMarked) task.mark();
+                        tasks.add(task);
+                    }
+                    taskData = br.readLine();
+                }
+            } else {
+                taskDataFile.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }

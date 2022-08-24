@@ -32,6 +32,15 @@ public class Task {
     }
 
     /**
+     * Returns a string used to save the task.
+     * @return a string used to save the task
+     */
+    public String saveString() {
+        String isMarked = isDone ? "1" : "0";
+        return String.format("%s | %s", isMarked, this.description);
+    }
+
+    /**
      * Returns a string representation of this task.
      * @return a string representing this task
      */
