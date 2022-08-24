@@ -1,4 +1,7 @@
 public class Todo extends Task{
+
+    public static final String ENCODED_TASK_TYPE = "T";
+
     public Todo(String description) {
         super(description);
     }
@@ -6,5 +9,13 @@ public class Todo extends Task{
     @Override
     public String toString() {
         return String.format("[T] %s %s", getStatusIcon(), getDescription());
+    }
+
+    /**
+     * @return The task-representation of an event written to the file
+     */
+    @Override
+    public String encode() {
+        return String.format("%s|%d|%s\n", ENCODED_TASK_TYPE, getIsDone() ? 1 : 0, getDescription());
     }
 }
