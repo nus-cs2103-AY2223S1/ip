@@ -1,9 +1,12 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+package duke;
+
+import duke.command.Command;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Duke {
     static List<Task> list = new ArrayList<>();

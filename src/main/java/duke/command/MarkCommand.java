@@ -1,7 +1,14 @@
-public class UnmarkCommand extends Command{
+package duke.command;
+
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.DukeException;
+import duke.Ui;
+
+public class MarkCommand extends Command {
     private int index;
 
-    public UnmarkCommand(int index) {
+    public MarkCommand(int index) {
         this.index= index;
     }
 
@@ -10,8 +17,8 @@ public class UnmarkCommand extends Command{
         if(index > taskList.listSize()){
             throw new DukeException("There is no " + index + " index in the list. （ﾟДﾟ ）\n");
         } else {
-            taskList.unmarkTaskAtIndex(index-1);
-            ui.printMessage("[ ] I've marked this task as not done yet:\n" +taskList.getTaskAtIndex(index-1) + "\n");
+            taskList.markTaskAtIndex(index-1);
+            ui.printMessage("[X] You've completed a task!\n" + taskList.getTaskAtIndex(index-1) + "\n");
         }
     }
 

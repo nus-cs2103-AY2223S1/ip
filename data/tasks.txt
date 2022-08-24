@@ -1,4 +1,4 @@
-T| |readbook
+T|X|readbook
 E| |meeting | Mon 10pm
 D| |do homework |2022-08-25
-T| |pass lunchbox
+E|X|feed cat | sun 3pm

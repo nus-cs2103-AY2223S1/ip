@@ -1,5 +1,8 @@
+package duke;
+
+import duke.command.*;
+
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
@@ -39,21 +42,21 @@ public class Parser {
                 storage.saveTasksInStorage(list);
                 ui.printMessage("Gone so soon? Bye (._.)\n");
             } else if (input.toLowerCase().startsWith("unmark")) {
-                Task curr = list.get(Integer.parseInt(segments[1]) - 1);
+                duke.task.Task curr = list.get(Integer.parseInt(segments[1]) - 1);
                 curr.markAsUndone();
                 ui.printMessage("[ ] I've marked this task as not done yet:\n" +curr + "\n");
             } else if (input.toLowerCase().startsWith("mark")) {
-                Task curr = list.get(Integer.parseInt(segments[1]) - 1);
+                duke.task.Task curr = list.get(Integer.parseInt(segments[1]) - 1);
                 curr.markAsDone();
                 ui.printMessage("[X] You've completed a task!\n" + curr + "\n");
             } else if (input.toLowerCase().startsWith("delete")) {
-                Task curr = list.get(Integer.parseInt(segments[1]) - 1);
+                duke.task.Task curr = list.get(Integer.parseInt(segments[1]) - 1);
                 list.remove(Integer.parseInt(segments[1]) - 1);
                 ui.printMessage(" - Removed this task:\n" +curr + "\nNow you have " + list.size()
                         + " tasks in the list\n");
             } else if (input.toLowerCase().startsWith("todo")) {
                 String description = input.substring(5);
-                Todo todo = new Todo(description);
+                duke.task.Todo todo = new duke.task.Todo(description);
                 list.add(todo);
 //                ui.printMessage("+ Added this todo:\n" + todo + "\nNow you have " + list.size()
 //                        + " tasks in the list\n");
@@ -64,7 +67,7 @@ public class Parser {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM-dd-yyyy");
                 try {
                     LocalDate date = LocalDate.parse(by);
-                    Deadline deadline = new Deadline(description, date);
+                    duke.task.Deadline deadline = new duke.task.Deadline(description, date);
                     list.add(deadline);
                     ui.printMessage("+ Added this deadline:\n" + deadline + "\nNow you have " + list.size()
                             + " tasks in the list\n");
@@ -75,7 +78,7 @@ public class Parser {
             } else if (input.toLowerCase().startsWith("event")){
                 String description = input.substring(6, input.indexOf(" /"));
                 String at = input.substring(input.indexOf("/at") + 3);
-                Event event = new Event(description, at);
+                duke.task.Event event = new duke.task.Event(description, at);
                 list.add(event);
                 ui.printMessage("+ Added this event:\n" + event + "\nNow you have " + list.size()
                         + " tasks in the list\n");

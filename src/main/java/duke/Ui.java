@@ -1,5 +1,7 @@
+package duke;
+
+import duke.task.Task;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -25,15 +27,15 @@ public class Ui {
         return input;
     }
 
-    void showLine(){
+     public void showLine(){
         System.out.println(PARTITION);
     }
 
-     void printMessage(String message) {
+     public void printMessage(String message) {
         System.out.println(message);
     }
 
-     String listToString(List<Task> list) {
+     public String listToString(List<Task> list) {
         if (list.size() == 0) {
             return "List is empty ~\n";
         }
@@ -51,42 +53,6 @@ public class Ui {
 
     public void showError(String message) {
         System.out.println(message);
-    }
-
-     void validateD (String input) throws DukeException {
-        String[] segments = input.split(" ");
-        String[] tasks = {"todo", "deadline", "event", "mark", "unmark", "delete"};
-        String[] allCommands = {"todo", "deadline", "event", "list", "bye", "mark", "unmark", "delete"};
-        if (!Arrays.asList(allCommands).contains(segments[0])) {
-            //handles invalid commands
-            throw new DukeException("(´･_･`) I don't know what that means\n");
-        } else if (Arrays.asList(tasks).contains(segments[0])) {
-            if (segments[0].equals("mark") || segments[0].equals("unmark") || segments[0].equals("delete")) {
-                if (segments.length <= 1) {
-                    //handles empty list index
-                    throw new DukeException("The value of " + segments[0] + " cannot be empty. （ﾟДﾟ ）\n");
-                }
-                //todo: move this error to command?
-                /*else if (Integer.parseInt(segments[1]) > list.size()) {
-                    //handles invalid list index
-                    throw new DukeException("There is no " + Integer.parseInt(segments[1])
-                            + " index in the list. （ﾟДﾟ ）\n");
-                }*/
-            } else if (segments.length <= 1) {
-                //handles empty description
-                throw new DukeException("The description of a " + segments[0] + " cannot be empty. （ﾟДﾟ ）\n");
-            } else if (segments[0].equals("deadline")) {
-                if (!input.contains("/by")) {
-                    //handles empty date/time
-                    throw new DukeException("The date of " + segments[0] + " cannot be empty. （ﾟДﾟ ）\n");
-                }
-            } else if (segments[0].equals("event")) {
-                if (!input.contains("/at")) {
-                    //handles empty date/time error
-                    throw new DukeException("The date of " + segments[0] + " cannot be empty. （ﾟДﾟ ）\n");
-                }
-            }
-        }
     }
 
     void validate (String input) throws DukeException {
@@ -130,14 +96,6 @@ public class Ui {
              default:
                  throw new DukeException(mainCommand + "? (´･_･`) I don't know what that means\n");
              }
-
-
-
         }
-
-
     }
-
-
-
 }
