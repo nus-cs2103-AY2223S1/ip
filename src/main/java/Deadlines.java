@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Task with an associated deadline
  */
@@ -6,14 +9,14 @@ public class Deadlines extends Task {
     /**
      * deadline of the task
      */
-    private String deadline;
+    private LocalDateTime deadline;
 
     /**
      * Constructor to initialize class.
      *
      * @param name task name
      */
-    public Deadlines(String name, boolean init, boolean completed, String deadline) {
+    public Deadlines(String name, boolean init, boolean completed, LocalDateTime deadline) {
         super(name, init, completed);
         this.deadline = deadline;
         if (!init) {
@@ -26,7 +29,7 @@ public class Deadlines extends Task {
      */
     @Override
     public String getDate() {
-        return deadline;
+        return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /**
@@ -55,6 +58,8 @@ public class Deadlines extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + String.format(" (by: %s)", deadline);
+        String format = "EEEE, MMM dd, yyyy HH:mm ";
+        return "[D]" + super.toString() + String.format(" (by: %s)",
+                deadline.format(DateTimeFormatter.ofPattern(format)));
     }
 }

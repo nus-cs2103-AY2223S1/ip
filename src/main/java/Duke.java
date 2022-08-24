@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.io.*;
 import java.util.Objects;
 import java.util.Scanner;
@@ -7,7 +10,7 @@ import java.util.ArrayList;
  * Duke is a basic chat-bot that echoes whatever the user inputs.
  *
  * @author Chi Song Yi Amadeus
- * @version Level-7
+ * @version Level-8
  * @since 17-08-2022
  */
 public class Duke {
@@ -78,7 +81,9 @@ public class Duke {
                     taskArray.add(newToDo);
                 } else {
                     if (Objects.equals(inputs[0], "D")) {
-                        Deadlines newDeadline = new Deadlines(inputs[2], true, completed, inputs[3]);
+                        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        LocalDateTime formattedDate = LocalDateTime.parse(inputs[3], format);
+                        Deadlines newDeadline = new Deadlines(inputs[2], true, completed, formattedDate);
                         taskArray.add(newDeadline);
                     } else if (Objects.equals(inputs[0], "E")) {
                         Events newEvent = new Events(inputs[2], true, completed, inputs[3]);
@@ -270,10 +275,12 @@ public class Duke {
             if (Objects.equals(inputArr[0], "deadline") || Objects.equals(inputArr[0], "event")) {
                 try {
                     String[] date = commands[1].split(" ", 2);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                    LocalDateTime formattedDate = LocalDateTime.parse(date[1], format);
 
                     if (Objects.equals(inputArr[0], "deadline")) {
                         if (Objects.equals(date[0].toLowerCase(), "by")) {
-                            Deadlines newDeadline = new Deadlines(inputArr[1], init, false, date[1]);
+                            Deadlines newDeadline = new Deadlines(inputArr[1], init, false, formattedDate);
                             taskArray.add(newDeadline);
                             writeToFile(newDeadline);
                         } else {
@@ -290,6 +297,8 @@ public class Duke {
                     }
                 } catch (ArrayIndexOutOfBoundsException e) {
                     System.out.println("deadline/event requires date as a third parameter after /by or /at respectively!");
+                } catch (DateTimeParseException e) {
+                    System.out.println("Please input in date time format 'yyyy-MM-dd HH:mm'");
                 }
             } else {
                 throw new DukeException.UnkownCommandException("OOPS! Indicate todo/deadline/event before a task");

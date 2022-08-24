@@ -1,3 +1,2 @@
-D | 1 | finish tutorial | tomorrow
-E | 0 | birthday | friday
-T | 1 | eat 
+T | 0 | eat 
+D | 0 | asd  | 1923-12-12 14:12
