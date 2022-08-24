@@ -3,7 +3,12 @@ abstract public class Task {
     private boolean isCompleted = false;
 
     Task(String title) {
+        this(title, false);
+    }
+
+    Task(String title, boolean isCompleted) {
         this.title = title;
+        this.isCompleted = isCompleted;
     }
 
     public String getTitle() {

@@ -1,16 +1,37 @@
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class TaskManager {
     private final List<Task> tasks;
 
-    public TaskManager() {
-        this(new ArrayList<>());
-    }
-
-    public TaskManager(List<Task> tasks) {
-        this.tasks = tasks;
+    public TaskManager(String saveFile) {
+        tasks = new ArrayList<>();
+        try (Scanner sc = new Scanner(new File(saveFile))) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine().strip();
+                if (!line.equals("")) {
+                    switch (line.charAt(0)) {
+                    case 'T':
+                        tasks.add(Todo.fromSaveFormat(line.substring(3)));
+                        break;
+                    case 'E':
+                        tasks.add(Event.fromSaveFormat(line.substring(3)));
+                        break;
+                    case 'D':
+                        tasks.add(Deadline.fromSaveFormat(line.substring(3)));
+                        break;
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addTask(Task task) {

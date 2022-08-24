@@ -4,7 +4,7 @@ public class Mia {
                                        "┃ You are talking to MIA... ┃\n" +
                                        "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
 
-    private final TaskManager tasksManager = new TaskManager();
+    private final TaskManager tasksManager = new TaskManager("data/Mia.txt");
     private final ChatWindow window = new ChatWindow(50);
 
     public void respond(String message) {
