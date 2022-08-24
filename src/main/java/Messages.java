@@ -1,15 +1,12 @@
 public final class Messages {
-    static String startup = "Hello! I'm dukebot\n" +
+    static String STARTUP = "Hello! I'm dukebot\n" +
                      "What can I do for you?";
-    static String ending = "Bye. Hope to see you again soon!";
-    static String listTasks = "Here are the tasks in your list:";
-    static String taskMarked = "Nice! I've marked this task as done:";
-    static String taskUnmarked = "OK, I've marked this task as not done yet:";
-    static String taskAdded = "Got it. I've added this task:";
-    static String taskCount = "Now you have %d task(s) in the list.";
-    static String taskRemoved = "Noted. I've removed this task:";
+    static String ENDING = "Bye. Hope to see you again soon!";
+    static String LIST_TASKS = "Here are the tasks in your list:";
+    static String TASK_MARKED = "Nice! I've marked this task as done:";
+    static String TASK_UNMARKED = "OK, I've marked this task as not done yet:";
+    static String TASK_ADDED = "Got it. I've added this task:";
+    static String TASK_COUNT = "Now you have %d task(s) in the list.";
+    static String TASK_REMOVED = "Noted. I've removed this task:";
 
-    private Messages() {
-
-    }
 }
