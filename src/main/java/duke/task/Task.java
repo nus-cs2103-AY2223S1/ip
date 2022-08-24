@@ -46,30 +46,30 @@ public class Task {
         Task task;
 
         switch (taskType) {
-            case DEADLINE:
-                try {
-                    task = new Deadline(taskSubstrings[2], taskSubstrings[3]);
-                } catch (DukeException e) {
-                    throw new RuntimeException(e.getMessage());
-                }
-                break;
-            case EVENT:
-                try {
-                    task = new Event(taskSubstrings[2], taskSubstrings[3]);
-                } catch (DukeException e) {
-                    throw new RuntimeException(e.getMessage());
-                }
-                break;
-            case TODO:
-                task = new ToDo(taskSubstrings[2]);
-                break;
-            default:
-                throw new RuntimeException(String.format("Invalid task type %s.", taskType));
+        case DEADLINE:
+            try {
+                task = new Deadline(taskSubstrings[2], taskSubstrings[3]);
+            } catch (DukeException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+            break;
+        case EVENT:
+            try {
+                task = new Event(taskSubstrings[2], taskSubstrings[3]);
+            } catch (DukeException e) {
+                throw new RuntimeException(e.getMessage());
+            }
+            break;
+        case TODO:
+            task = new ToDo(taskSubstrings[2]);
+            break;
+        default:
+            throw new RuntimeException(String.format("Invalid task type %s.", taskType));
         }
+
         if (taskSubstrings[1].equals(Task.DONE_STORAGE)) {
             task.isDone = true;
         }
-
         return task;
     }
 }
