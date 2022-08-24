@@ -21,9 +21,13 @@ public class Deadline extends Task {
     this.byDate = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
   }
 
-  public Deadline(String description, String by, boolean isDone) {
+
+  /**
+   * Private constructor just to convert text in save file to deadlines.
+   */
+  private Deadline(String description, LocalDate byDate, boolean isDone) {
     super(description, isDone);
-    this.by = by;
+    this.byDate = byDate; // this is retrieved in save file, so format is MM d yyyy
   }
 
   @Override
@@ -32,12 +36,12 @@ public class Deadline extends Task {
         + "(by: " + byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
   }
 
-  // Deadline strings look like: [D][ ] return book (by: June 6th)
+  // Deadline strings look like: [D][ ] return book (by: Jun 6 2022)
+  // INPUTS look like deadline return book /by 06-06-2022
   public static Deadline stringToDeadline(String s) throws DukeException {
     if (!s.startsWith("[D][")) {
       throw new DukeException("This string is not a Deadline string!");
     }
-
     char isDoneString = s.charAt(4); //[T][X] checks if X is present
     char X = 'X';
     boolean isDone = isDoneString == X;
@@ -45,8 +49,10 @@ public class Deadline extends Task {
     int idxOfBy = s.indexOf("(by:");
 
     String description = s.substring(7, idxOfBy);
-    String byString = s.substring(idxOfBy + 5, s.length() - 1); // to avoid the brackets
-    return new Deadline(description, byString, isDone);
+    String byString = s.substring(idxOfBy + 5, s.length() - 1); // to avoid the brackets. byString looks like Aug 30 2022
+    byString = byString.replace(" ", "-"); // byString looks like Aug-30-2022
+    LocalDate byDate = LocalDate.parse(byString, DateTimeFormatter.ofPattern("MMM-d-yyyy"));
+    return new Deadline(description, byDate, isDone);
   }
 
   public static void main(String[] args) throws DukeException {
