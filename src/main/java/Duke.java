@@ -1,5 +1,10 @@
+import java.io.*;
+import java.lang.reflect.Array;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.nio.file.Path;
 
 public class Duke {
 
@@ -32,17 +37,20 @@ public class Duke {
                 System.out.println(userMsg + "\n" + "***********************************************************************\n");
             } else {
                 System.out.println("Ah! And so we part here today.\n We may yet meet again...Farewell, my friend!");
+
                 break;
             }
         }
     }
+
+
 
     /**
      * Method to add user input to existing list and display list in response to "list" command and mark items as complete
      */
     public static void makeList(){
 
-        ArrayList<ListObject> listOfItems = new ArrayList<>();
+        ArrayList<ListObject> listOfItems = readFromFile();
         String showList = "list";
         String markAsDone = "mark ";
         String markAsNotDone = "unmark ";
@@ -67,8 +75,8 @@ public class Duke {
                 int taskNoAsInt = Integer.parseInt(taskNo)-1;
                 ListObject currItem = listOfItems.get(taskNoAsInt);
                 currItem.switchStatus();
+                makeListFile(listOfItems);
                 System.out.println("Very well! One less burden to bear! I have marked this complete:\n" + currItem.toString());
-
                 System.out.println("\n***********************************************************************");
 
             }
@@ -78,6 +86,7 @@ public class Duke {
                 int taskNoAsInt = Integer.parseInt(taskNo)-1;
                 ListObject currItem = listOfItems.get(taskNoAsInt);
                 currItem.switchStatus();
+                makeListFile(listOfItems);
                 System.out.println("Hmm....I have marked this incomplete:\n" + currItem.toString());
                 System.out.println("\n***********************************************************************");
 
@@ -87,6 +96,7 @@ public class Duke {
                 int taskNoAsInt = Integer.parseInt(taskNo)-1;
                 ListObject currItem = listOfItems.get(taskNoAsInt);
                 listOfItems.remove(taskNoAsInt);
+                makeListFile(listOfItems);
                 System.out.println("And so it must be. We leave behind what we can not hold on to.\nI have removed this from your list:\n"+currItem.toString());
                 System.out.println("You have only " + listOfItems.size() + " tasks remaining");
 
@@ -100,6 +110,7 @@ public class Duke {
                     todoCount++;
                     ListObject newItem = new ToDo(todo, 0);
                     listOfItems.add(newItem);
+                    makeListFile(listOfItems);
                     System.out.println("'Tis a new sky for you to scale! Here! \n" + newItem.toString()
                             + "\nYou now have " + listOfItems.size() + " tasks to do!"
                             + "\n***********************************************************************");
@@ -115,6 +126,7 @@ public class Duke {
                     deadlinesCount++;
                     ListObject newItem = new Deadline(task, 0, deadline);
                     listOfItems.add(newItem);
+                    makeListFile(listOfItems);
                     System.out.println("Mark this on your calendar! \n" + newItem.toString()
                             + "\nYou now have " + listOfItems.size() + " tasks to do!"
                             + "\n***********************************************************************");
@@ -134,6 +146,7 @@ public class Duke {
                     eventsCount++;
                     ListObject newItem = new Event(task, 0, event);
                     listOfItems.add(newItem);
+                    makeListFile(listOfItems);
                     System.out.println("Another moment to mark... \n" + newItem.toString()
                             + "\nYou now have " + listOfItems.size() + " tasks to do!"
                             + "\n***********************************************************************");
@@ -160,8 +173,40 @@ public class Duke {
 
                 }
             }
+
         }
     }
+
+    public static void makeListFile(ArrayList<ListObject> lst){
+        try {
+            File listFile = new File("src\\main\\java\\DukeList.txt");
+            //adapted from https://stackoverflow.com/questions/10404698/saving-arrays-to-the-hard-disk
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(listFile));
+            out.writeObject(lst);
+            out.close();
+        }
+        catch(IOException e){
+            System.out.println(e.toString());
+        }
+
+    }
+
+    public static ArrayList<ListObject> readFromFile(){
+        ArrayList<ListObject> inList = new ArrayList<>();
+        try {
+            File listFile = new File("src\\main\\java\\DukeList.txt");
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(listFile));
+            inList = (ArrayList<ListObject>) in.readObject();
+            in.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        finally{
+            return inList;
+        }
+    }
+
+
 
 
     /**
