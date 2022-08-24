@@ -6,6 +6,7 @@ import task_classes.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class ConversationHandler {
 
     private Scanner in;
@@ -17,7 +18,7 @@ public class ConversationHandler {
         this.in = new Scanner(System.in);
         this.active = true;
 
-        while(this.active && this.in.hasNext()) {
+        while (this.active && this.in.hasNext()) {
             String line = this.in.nextLine();
             String output = commandHandler(line);
             IOUtils.printContentWithHR(output);
@@ -55,9 +56,25 @@ public class ConversationHandler {
             case "Event":
                 return this.addEventCommand(input);
 
+            case "delete":
+            case "Delete":
+            case "remove":
+            case "Remove":
+                return this.deleteCommand(input);
+
+
             default:
                 return input;
         }
+    }
+
+    private String deleteCommand(String input) {
+        int index = Integer.parseInt(input.split(" ")[1]);
+        Task task = this.list.get(index - 1);
+        this.list.remove(index - 1);
+        return "Noted. I've removed this task: \n" +
+                task.toString() + "\n" +
+                "Now you have " + this.list.size() + " tasks in the list.";
     }
 
     private String addEventCommand(String input) {
@@ -121,9 +138,9 @@ public class ConversationHandler {
         String returnMsg = "";
         int index = 1;
 
-        for (Task t: list) {
+        for (Task t : list) {
             returnMsg += index + ". " + t + "\n";
-            index ++;
+            index++;
         }
         return returnMsg;
     }
