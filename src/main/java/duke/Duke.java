@@ -9,15 +9,22 @@ import duke.managers.TaskManager;
 import duke.managers.UiManager;
 
 /**
+ * Initializes the Duke application and initiates a conversation with the user.
+ *
  * @author Emily Ong Hui Qi
  */
 public class Duke {
-    // Name of the chatbot
+    /** Name of the chatbot */
     private static final String NAME = "Duke";
 
-    // The greeting message used by the chatbot when the program starts
+    /** The greeting message used by the chatbot when the application starts */
     private static final String GREETING_MESSAGE = String.format("Hello! I'm %s\nWhat can I do for you?", Duke.NAME);
 
+    /**
+     * The main event loop of the application.
+     *
+     * @param args Unused arguments
+     */
     public static void main(String[] args) {
         UiManager ui = new UiManager();
         StorageManager storageManager;
