@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Set;
 
 // TODO 1: Parse the commands
