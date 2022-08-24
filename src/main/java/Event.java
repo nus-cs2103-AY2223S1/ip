@@ -10,14 +10,14 @@ import java.time.LocalDateTime;
  */
 public class Event extends Task {
 
-    protected LocalDateTime at;
+    protected String at;
 
     /**
      * Constructor
      *  @param description String describing the event task.
      * @param at          String providing the timeframe for the event task.
      */
-    public Event(String description, LocalDateTime at) {
+    public Event(String description, String at) {
         super(description);
         this.at = at;
     }

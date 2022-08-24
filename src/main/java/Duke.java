@@ -3,7 +3,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.zip.DataFormatException;
 
 /**
  * Duke IP for CS2103T AY 2022/2023
@@ -125,7 +124,9 @@ public class Duke {
                         }
                     }
                     catch(DateTimeParseException e){
+                        System.out.println(divider);
                         System.out.println("Incorrect date time format the format is dd/mm/yyyy hh:mm if time is not provided the default is 00:00");
+                        System.out.println(divider);
                     }
                 } catch (ArrayIndexOutOfBoundsException error) {
                     System.out.println(divider);
@@ -136,7 +137,7 @@ public class Duke {
             } else if (text.startsWith("event")) {
                 try {
                     String[] description = text.replace("event ", "").split("/at ");
-                    Event item = new Event(description[0], LocalDateTime.parse(description[1]));
+                    Event item = new Event(description[0], description[1]);
                     storage.add(item);
                     System.out.println(divider);
                     System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
