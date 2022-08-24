@@ -45,7 +45,7 @@ public class Parser {
                 throw new EmptyDateException();
             }
             String desc = ev[0].split("event ", 2)[1];
-            return new AddCommand(new Deadline(desc, ev[1]));
+            return new AddCommand(new Event(desc, ev[1]));
         }
         // delete keyword: remove task from list
         else if (words[0].equals("delete")) {
