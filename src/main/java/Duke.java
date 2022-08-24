@@ -12,73 +12,7 @@ public class Duke {
         System.out.println("What can I do for you ?");
         Scanner help = new Scanner(System.in);
 
-        class Task {
-            protected String description;
-            protected boolean isDone;
 
-            public Task(String description) {
-                this.description = description;
-                this.isDone = false;
-
-            }
-
-            public String toString() {
-                return this.getStatusIcon() + this.description;
-
-            }
-
-            public String getStatusIcon() {
-                return (isDone ? "[X]" : "[ ]"); // mark done task with X
-            }
-
-            public void mark() {
-                isDone = true;
-            }
-
-            public void unmark() {
-                isDone = false;
-            }
-
-        }
-        class Deadline extends Task {
-            protected String by;
-            public Deadline(String description,String by) {
-                super(description);
-                this.by = by;
-            }
-
-            @Override
-            public String toString() {
-                return "[D]" + super.toString() + " (by: " + by + ")";
-            }
-
-        }
-        class ToDos extends Task {
-
-            public ToDos(String description) {
-                super(description);
-            }
-
-            @Override
-            public String toString() {
-                return "[T]" + super.toString();
-            }
-
-        }
-
-        class Events extends Task {
-            protected String at;
-            public Events(String description,String at) {
-                super(description);
-                this.at = at;
-            }
-
-            @Override
-            public String toString() {
-                return "[E]" + super.toString() + " (at: " + at + ")";
-            }
-
-        }
 
         class DukeException extends Exception {
 
