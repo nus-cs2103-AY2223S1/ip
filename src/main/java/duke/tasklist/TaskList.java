@@ -105,4 +105,23 @@ public class TaskList {
             return "the input format is not correct " + e.getMessage();
         }
     }
+    public String find(String fullCommand) {
+        String target = fullCommand.split(" ",2)[1];
+        String res = "Here is the matching tasks in your list:\n";
+        int count = 1;
+        for (int i = 0; i < countTask(); i++) {
+            String[] temp = this.taskList.get(i).printTask().split(" ");
+            for (int j = 0; j < temp.length; j++){
+                if (temp[j].equals(target)) {
+                    res += count + "." + this.taskList.get(i).printTask() + "\n";
+                    count ++;
+                    break;
+                }
+            }
+        }
+        if (count == 1){
+            res += "There is no match for your search.";
+        }
+        return res;
+    }
 }

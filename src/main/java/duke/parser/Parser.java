@@ -35,6 +35,8 @@ public class Parser {
         } else if (fullCommand.split(" ")[0].equals("Get")||
                 fullCommand.split(" ")[0].equals("list")) {
             return new OtherCommand(fullCommand);
+        } else if (fullCommand.split(" ")[0].equals("find")) {
+            return new OtherCommand(fullCommand);
         } else {
             throw new DukeException("Sorry, I don't know your meanings.");
         }
