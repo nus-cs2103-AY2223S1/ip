@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
  * Represents a user interface that deals with interaction with users.
  */

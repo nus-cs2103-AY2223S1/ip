@@ -12,19 +12,19 @@ public class Duke {
     /**
      * Class constructor for Duke program.
      */
-    public Duke() {
+    public Duke() throws DukeException {
         String filePath = "./data";
         ui = new Ui();
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
+            throw new DukeException(ui.showLoadingError());
         }
     }
 
-     /** Handles Duke response to user.
+    /**
+     * Handles Duke response to user.
      *
      * @param userInput input that user types into GUI.
      * @return response that duke gives.
