@@ -1,11 +1,18 @@
-package Duke;
+package duke;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-public class Todo extends Task {
+public class Deadline extends Task {
 
-    public Todo(String description) {
+    protected String by;
+    protected LocalDate date;
+
+    public Deadline(String description, String by) {
         super(description);
+        this.by = by;
+        this.date = LocalDate.parse(by);
     }
 
     @Override
@@ -19,6 +26,7 @@ public class Todo extends Task {
 
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "[D]" + super.toString() + " (by: " + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 }
+

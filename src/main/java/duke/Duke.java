@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class Duke {
 
@@ -19,9 +19,9 @@ public class Duke {
             Parser p = new Parser(this.tasks);
             while(!p.isBye(p.parseCommand(command))) {
                 this.tasks = p.executeCommand(p.parseCommand(command), command);
+                storage.writeFile(this.tasks.getList());
                 command = this.ui.nextCommand();
             }
-            storage.writeFile(this.tasks.getList());
         } catch (DukeException e) {
             System.out.println(e.getMessage());
         } finally {
