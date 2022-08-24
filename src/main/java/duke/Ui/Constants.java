@@ -45,4 +45,10 @@ public class Constants {
 
     // Keyword to delete a task
     public static final String DELETE = "delete";
+
+    // Keyword to find a task
+    public static final String FIND = "find";
+
+    // Find message
+    public static final String FIND_MESSAGE = "Here are the matching tasks in your list:";
 }
