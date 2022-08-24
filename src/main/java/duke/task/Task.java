@@ -11,12 +11,11 @@ import duke.Parser;
  * @version v0.1
  */
 public class Task {
-    
     /** Description of the task. **/
-    protected String description;
+    private String description;
     
     /** Describes if the task is completed or not */
-    protected boolean isDone;
+    private boolean isDone;
 
     /**
      * Creates a <code>Task</code> object.

@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
     /** Deadline of the deadline task. */
-    protected LocalDateTime byDateTime;
+    private LocalDateTime byDateTime;
 
     /**
      * Creates a <code>Deadline</code> object.
@@ -43,6 +43,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileFormatString() {
-        return "D" + super.toFileFormatString() + description + "|" + byDateTime;
+        return "D" + super.toFileFormatString() + getDescription() + "|" + byDateTime;
     }
 }

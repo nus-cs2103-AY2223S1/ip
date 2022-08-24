@@ -10,9 +10,8 @@ import java.time.format.DateTimeFormatter;
  * @version v0.1
  */
 public class Event extends Task {
-
     /** Date and time of the event task. */
-    protected LocalDateTime atDateTime;
+    private LocalDateTime atDateTime;
 
     /**
      * Creates an Event object.
@@ -44,6 +43,6 @@ public class Event extends Task {
      */
     @Override
     public String toFileFormatString() {
-        return "E" + super.toFileFormatString() + description + "|" + atDateTime;
+        return "E" + super.toFileFormatString() + getDescription() + "|" + atDateTime;
     }
 }
