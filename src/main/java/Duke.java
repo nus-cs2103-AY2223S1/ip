@@ -1,10 +1,11 @@
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private static final ArrayList<Task> tasks = new ArrayList<>();
-
-    public static void main(String[] args) throws DukeException {
+    private static ArrayList<Task> tasks = new ArrayList<>();
+    private static final File f = new File("tasks.dat");
+    public static void main(String[] args) throws IOException {
         String logo = "\n" +
         "   ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n" +
         "  ▓██▒   ▒████▄    ▓██▒▀█▀ ██▒▒██▀ ██▌▒████▄\n" +
@@ -19,10 +20,15 @@ public class Duke {
 
         System.out.print(logo);
         System.out.println("Hi, I am LaMDA.\nHow may I assist you today?\n");
-        greeting();
-
+        if (!f.exists()) {
+            f.createNewFile();
+            update();
+        } else {
+            load();
+        }
+        greet();
     }
-    public static void greeting() {
+    public static void greet() {
         Scanner scn = new Scanner(System.in);
         boolean cont = true;
         while (cont) {
@@ -75,7 +81,7 @@ public class Duke {
                         Todo newTodo = new Todo(description);
                         tasks.add(newTodo);
                         System.out.println("\t Got it. I've added this task:");
-                        System.out.println("\t   " + newTodo.toString());
+                        System.out.println("\t   " + newTodo);
                         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
                     }
                     System.out.println("\t____________________________________________");
@@ -90,7 +96,7 @@ public class Duke {
                         Event newEvent = new Event(strArray[0], strArray[1]);
                         tasks.add(newEvent);
                         System.out.println("\t Got it. I've added this task:");
-                        System.out.println("\t   " + newEvent.toString());
+                        System.out.println("\t   " + newEvent);
                         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
                     }
                     System.out.println("\t____________________________________________");
@@ -106,7 +112,7 @@ public class Duke {
                         Deadline newDeadline = new Deadline(strArray[0], strArray[1]);
                         tasks.add(newDeadline);
                         System.out.println("\t Got it. I've added this task:");
-                        System.out.println("\t   " + newDeadline.toString());
+                        System.out.println("\t   " + newDeadline);
                         System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
                     }
                     System.out.println("\t____________________________________________");
@@ -131,7 +137,29 @@ public class Duke {
                     System.out.println("\t____________________________________________");
                     break;
             }
+            update();
         }
     }
 
+    private static void update() {
+        try (FileOutputStream fos = new FileOutputStream(f);
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+
+            oos.writeObject(Duke.tasks);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    private static void load() {
+        try (FileInputStream fis = new FileInputStream(f);
+             ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+            Duke.tasks = (ArrayList<Task>) ois.readObject();
+        }
+        catch (IOException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
