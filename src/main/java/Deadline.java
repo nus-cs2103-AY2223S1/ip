@@ -14,4 +14,9 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " +
                 by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
+
+    @Override
+    public String taskMemo() {
+        return "D" + super.taskMemo() + " | " + this.by.toString();
+    }
 }

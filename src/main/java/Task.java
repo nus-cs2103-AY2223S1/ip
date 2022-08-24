@@ -8,7 +8,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return isDone ? "X" : " ";
+        return this.isDone ? "X" : " ";
     }
 
     public String toString() {
@@ -17,5 +17,10 @@ public class Task {
 
     public void setTaskStatus(boolean status) {
         this.isDone = status;
+    }
+
+    public String taskMemo() {
+        int status = this.isDone ? 1 : 0;
+        return String.format(" | %d | %s", status, this.description);
     }
 }

@@ -3,8 +3,4 @@ public class DukeException extends IllegalArgumentException {
         super(message);
     }
 
-    @Override
-    public String toString() {
-        return super.getMessage();
-    }
 }
