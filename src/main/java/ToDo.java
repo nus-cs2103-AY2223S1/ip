@@ -8,4 +8,9 @@ public class ToDo extends Task{
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    @Override
+    public String stringFormatting() {
+        return "T" + super.stringFormatting();
+    }
 }
