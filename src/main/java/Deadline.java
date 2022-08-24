@@ -15,9 +15,14 @@ public class Deadline extends Task {
         this.by = date;
     }
 
+    public Deadline(String description, LocalDateTime date) {
+        super(description);
+        this.by = date;
+    }
+
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by.getMonth() +" " + by.getDayOfMonth()  + " " + by.getYear() 
-            + " " + String.format("%02d", by.getHour()) + " " + String.format("%02d", by.getMinute()) + ")";
+        return "[D]" + super.toString() + "(by: " + by.getMonth() +"-" + by.getDayOfMonth()  + "-" + by.getYear() 
+            + " " + String.format("%02d", by.getHour()) + ":" + String.format("%02d", by.getMinute()) + ")";
     }
 }

@@ -16,10 +16,15 @@ public class Event extends Task{
         this.at = date;
     }
 
+    public Event(String description, LocalDateTime date) {
+        super(description);
+        this.at = date;
+    }
+
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + at.getMonth() +" " + at.getDayOfMonth()  + " " + at.getYear() 
-            + " " + String.format("%02d", at.getHour()) + " " + String.format("%02d", at.getMinute()) + ")";
+        return "[E]" + super.toString() + "(at: " + at.getMonth() +"-" + at.getDayOfMonth()  + "-" + at.getYear() 
+            + " " + String.format("%02d", at.getHour()) + ":" + String.format("%02d", at.getMinute()) + ")";
     }
 
 }
