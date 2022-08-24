@@ -1,4 +1,5 @@
-T | 1 |   project
-E | 1 |   meeting   |   22 Dec 2022 18:00 PM
-D | 0 |   homework   |   25 Dec 2022 01:00 AM
-T | 0 |  bio project
+T | 1 |  cycling
+T | 0 |  project medi
+D | 0 |  return book  |  12 Dec 2022 19:00 PM
+E | 1 | meeting with client | 25 Nov 2022 01:10 AM
+T | 1 | project chemi

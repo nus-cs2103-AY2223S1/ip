@@ -28,7 +28,7 @@ public class TaskList {
      *
      * @param task Task object.
      */
-    public static void addToList(Task task) {
+    public void addToList(Task task) {
         taskArray.add(task);
     }
 
@@ -37,7 +37,7 @@ public class TaskList {
      *
      * @param taskID Task index.
      */
-    public static void deleteFromList(int taskID) {
+    public void deleteFromList(int taskID) {
         taskArray.remove(taskID - 1);
     }
 
@@ -46,7 +46,7 @@ public class TaskList {
      *
      * @return String.
      */
-    public static String enumerateList() {
+    public String enumerateList() {
         //StringBuilder over string concat for better performance
         StringBuilder s = new StringBuilder("");
         for (int i = 1; i <= taskArray.size(); i++) {
@@ -61,7 +61,7 @@ public class TaskList {
      *
      * @param taskID task index.
      */
-    public static void markTheTask(int taskID) {
+    public void markTheTask(int taskID) {
         Task t = taskArray.get(taskID - 1);
         t.toggleIsDone(true);
     }
@@ -71,8 +71,40 @@ public class TaskList {
      *
      * @param taskID task index.
      */
-    public static void unmarkTheTask(int taskID) {
+    public void unmarkTheTask(int taskID) {
         Task t = taskArray.get(taskID - 1);
         t.toggleIsDone(false);
     }
+
+    /**
+     * Returns an ArrayList of TaskIDs integer.
+     *
+     * @param wanted String.
+     * @return ArrayList with type Integer.
+     */
+    public ArrayList<Integer> findListOfTaskIDs(String wanted) {
+        ArrayList<Integer> arrOfTaskID = new ArrayList<>();
+        for (int i = 0; i < taskArray.size(); i++) {
+            if (taskArray.get(i).description.contains(wanted)) {
+                arrOfTaskID.add(i);
+            }
+        }
+        return arrOfTaskID;
+    }
+
+    /**
+     * Returns a String representation of the list containing the found tasks.
+     *
+     * @return String.
+     */
+    public String getSpecificListOfTasks(ArrayList<Integer> listOfTaskID) {
+        //StringBuilder over string concat for better performance
+        StringBuilder s = new StringBuilder("");
+        for (int i = 1; i <= listOfTaskID.size(); i++) {
+            s.append("\n " + i
+                    + "." + taskArray.get(listOfTaskID.get(i - 1)).toString());
+        }
+        return s.toString();
+    }
+
 }

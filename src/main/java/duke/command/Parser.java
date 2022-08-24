@@ -28,12 +28,14 @@ public class Parser {
             checkForNullTask(strInput.substring(5), "event");
             checkForMultipleTasks(strInput.substring(5));
             return new AddCommand(new Event(strInput.substring(6, strInput.indexOf("/") - 1), strInput.substring(strInput.indexOf("/at") + 4), false));
-        } else if (strInput.contains("delete") && strInput.substring(0,6).equals("delete")) {
+        } else if (strInput.contains("delete") && strInput.substring(0, 6).equals("delete")) {
             return new DeleteCommand(Integer.parseInt(strInput.substring(7)));
-        } else if (strInput.contains("unmark") && strInput.substring(0,6).equals("unmark")) {
+        } else if (strInput.contains("unmark") && strInput.substring(0, 6).equals("unmark")) {
             return new MarkingCommand(false, Integer.parseInt(strInput.substring(7)));
-        } else if (strInput.contains("mark") && strInput.substring(0,4).equals("mark")) {
+        } else if (strInput.contains("mark") && strInput.substring(0, 4).equals("mark")) {
             return new MarkingCommand(true, Integer.parseInt(strInput.substring(5)));
+        } else if (strInput.contains("find") && strInput.substring(0, 4).equals("find")) {
+            return new FindCommand(strInput.substring(5));
         } else {
             throw new DukeException("Cannot recognise the command.");
         }
