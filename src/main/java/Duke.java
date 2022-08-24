@@ -4,7 +4,9 @@ import java.util.Scanner;
 public class Duke {
 
     public static String breakLine = "____________________________________________________________\n";
-
+    public static String greeting = "Hello, I'm LishBot v6.9!\n" + "How may I help you today?\n";
+    public static String taskListOpening = "Finding your task list...\n" + "Found it! Here are what you have to do:\n";
+    public static String noListFound = "Congrats! You have finished all your task!\n";
     public static void printResponse(String response) {
         System.out.println(breakLine);
         System.out.println(response);
@@ -15,10 +17,16 @@ public class Duke {
 
     public static void printTaskList() {
         System.out.println(breakLine);
-        System.out.println("Here are the tasks in your list:");
-        for (int i = 1; i <= taskList.size(); ++i) {
-            System.out.println(i + ". " + taskList.get(i - 1));
+        System.out.println(taskListOpening);
+
+        if (taskList.size() <= 0) {
+            System.out.println(noListFound);
+        } else {
+            for (int i = 1; i <= taskList.size(); ++i) {
+                System.out.println(i + ". " + taskList.get(i - 1));
+            }
         }
+        
         System.out.println(breakLine);
     }
 
@@ -137,7 +145,6 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
 
         boolean stopLish = false;
-        String greeting = "Hello! I'm Lish\n" + "What can I do for you?\n";
         printResponse(greeting);
 
         while (!stopLish) {
