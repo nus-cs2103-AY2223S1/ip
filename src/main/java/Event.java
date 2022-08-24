@@ -1,17 +1,24 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Event extends Task {
 
     public static final String EVENT_REP = "E";
-
-    protected String time;
+    protected LocalDate time;
 
     public Event(String content, String time) {
         super(content);
-        this.time = time;
+        try {
+            this.time = LocalDate.parse(time);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("You need to input in yyyy-mm-dd format!");
+        }
     }
 
     @Override
     public String toString() {
-        return "[" + EVENT_REP + "]" + super.toString() + " (at: " + this.time + ")";
+        return "[" + EVENT_REP + "]" + super.toString() + " (at: " + this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     @Override

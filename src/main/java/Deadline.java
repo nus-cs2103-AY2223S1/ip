@@ -1,17 +1,24 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Deadline extends Task {
 
     private static final String DEADLINE_REP = "D";
-
-    protected String deadline;
+    protected LocalDate deadline;
 
     public Deadline(String content, String deadline) {
         super(content);
-        this.deadline = deadline;
+        try {
+            this.deadline = LocalDate.parse(deadline);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("You need to input in yyyy-mm-dd format!");
+        }
     }
 
     @Override
     public String toString() {
-        return "[" + DEADLINE_REP + "]" + super.toString() + " (by: " + this.deadline + ")";
+        return "[" + DEADLINE_REP + "]" + super.toString() + " (by: " + this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     @Override
