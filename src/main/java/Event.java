@@ -9,6 +9,11 @@ public class Event extends Task {
         this.date = date;
     }
 
+    public Event(boolean done, String description, LocalDate date) {
+        super(done, description);
+        this.date = date;
+    }
+
     @Override
     public String getTask() {
         String done = this.isDone ? "1" : "0";

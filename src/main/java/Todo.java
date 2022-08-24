@@ -3,6 +3,10 @@ public class Todo extends Task {
         super(description);
     }
 
+    public Todo(boolean done, String description) {
+        super(done, description);
+    }
+
     @Override
     public String getTask() {
         String done = this.isDone ? "1" : "0";

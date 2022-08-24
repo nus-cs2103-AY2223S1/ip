@@ -9,6 +9,11 @@ public class Deadline extends Task {
         this.endDate = endDate;
     }
 
+    public Deadline(boolean done, String description, LocalDate endDate) {
+        super(done, description);
+        this.endDate = endDate;
+    }
+
     @Override
     public String getTask() {
         String done = this.isDone ? "1" : "0";
