@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Duke {
     private static final ArrayList<Task> tasks = new ArrayList<>();
@@ -103,11 +105,24 @@ public class Duke {
                     }
                     else {
                         String[] strArray = str.split("/by");
-                        Deadline newDeadline = new Deadline(strArray[0], strArray[1]);
-                        tasks.add(newDeadline);
-                        System.out.println("\t Got it. I've added this task:");
-                        System.out.println("\t   " + newDeadline.toString());
-                        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
+                        String des = strArray[0].trim();
+                        if (des.isEmpty()) {
+                            System.out.println(new DukeException("The description of a deadline cannot be empty.").getMessage());
+                        }
+                        else {
+                            try {
+                                LocalDate date = LocalDate.parse(strArray[1].trim());
+                                Deadline newDeadline = new Deadline(" " + des, date);
+                                tasks.add(newDeadline);
+                                System.out.println("\t Got it. I've added this task:");
+                                System.out.println("\t   " + newDeadline.toString());
+                                System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
+                            } catch (DateTimeParseException e) {
+                                System.out.println(new DukeException("Invalid date format. Try yyyy-mm-dd.").getMessage());
+                            } catch (IndexOutOfBoundsException e) {
+                                System.out.println(new DukeException("The date field cannot be empty.").getMessage());
+                            }
+                        }
                     }
                     System.out.println("\t____________________________________________");
                     break;
