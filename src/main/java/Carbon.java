@@ -7,7 +7,7 @@ public class Carbon {
     // chat-bot specific displays
     // ascii art generated from patorjk.com
     // logo for Carbon
-    private static String logo = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
+    private static final String logo = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
         "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
         "                 |_|_| |___ |___ |___ |__| |  | |___ \n\n" + 
         "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n" + 
@@ -21,8 +21,8 @@ public class Carbon {
         "                           ███    ███                                   \n";
 
     // actual introduction
-    private static String intro = "Hey, Carbon here. ";
-    private static String[] initPrompts = {
+    private static final String intro = "Hey, Carbon here. ";
+    private static final String[] initPrompts = {
         "What's up?",
         "How's things going?",
         "Nice weather today, huh?",
@@ -32,7 +32,7 @@ public class Carbon {
     };
 
     // text for exits
-    private static String[] goodbyes = {
+    private static final String[] goodbyes = {
         "Bye-bye, see you again soon!",
         "Farewell. Stay safe.",
         "Nice meeting you. Let's catch up again sometime.",

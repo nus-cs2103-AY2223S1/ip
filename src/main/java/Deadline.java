@@ -1,14 +1,10 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.Temporal;
 
 class Deadline extends Task {
-    public static String FLAG = " /by";
-    private static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(
-            "yyyy-MM-dd HHmm"
-            );
-    // TODO: allow including time and also excluding time
-    private LocalDate time;
+    public static final String FLAG = " /by";
 
     private static String extractName(String input) throws CarbonException {
         int flagIndex = input.indexOf(Deadline.FLAG);
@@ -21,7 +17,7 @@ class Deadline extends Task {
         }
     }
 
-    private static LocalDate extractTime(String input) throws CarbonException {
+    private static Temporal extractTime(String input) throws CarbonException {
         int len = input.length();
         int flagIndex = input.indexOf(Deadline.FLAG);
         if (len <= flagIndex + Deadline.FLAG.length() + 1) {
@@ -30,8 +26,16 @@ class Deadline extends Task {
         } else {
             String timeString = input.substring(flagIndex + Deadline.FLAG.length() + 1);
             try {
-                LocalDate time = LocalDate.parse(timeString, Deadline.timeFormat);
-                return time;
+                if (timeString.length() < 11) {
+                    LocalDate time = LocalDate.parse(timeString, Task.dateFormat);
+                    return time;
+                } else {
+                    LocalDateTime time = LocalDateTime.parse(
+                            timeString, 
+                            Task.dateTimeFormat);
+                    System.out.println(time);
+                    return time;
+                }
             } catch (DateTimeParseException error) {
                 CarbonException invalidTime = new InvalidTimeException(timeString);
                 throw invalidTime;
@@ -39,15 +43,24 @@ class Deadline extends Task {
         }
     }
 
+    private Temporal dateTime;
+
     public Deadline(String input) {
         super(Deadline.extractName(input));
-        this.time = Deadline.extractTime(input);
+        this.dateTime = Deadline.extractTime(input);
     }
 
     @Override
     public String toString() {
         String type = "\u001B[32m(DEAD)\u001B[0m";
-        String timeFormatted = this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        String timeFormatted;
+        if (this.dateTime instanceof LocalDate) {
+            LocalDate date = (LocalDate) this.dateTime;
+            timeFormatted = date.format(Task.dateFormatPrint);
+        } else {
+            LocalDateTime time = (LocalDateTime) this.dateTime;
+            timeFormatted = time.format(Task.dateTimeFormatPrint);
+        }
         return String.format("%s %s < %s", type, super.toString(), timeFormatted);
     }
 }

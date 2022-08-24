@@ -1,13 +1,10 @@
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.Temporal;
 
 class Event extends Task {
-    public static String FLAG = " /at";
-    private static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern(
-            "yyyy-MM-dd HHmm"
-            );
-    private LocalDate time;
+    public static final String FLAG = " /at";
 
     private static String extractName(String input) {
         int flagIndex = input.indexOf(Event.FLAG);
@@ -20,7 +17,7 @@ class Event extends Task {
         }
     }
 
-    private static LocalDate extractTime(String input) throws CarbonException {
+    private static Temporal extractTime(String input) throws CarbonException {
         int len = input.length();
         int flagIndex = input.indexOf(Event.FLAG);
         if (len <= flagIndex + Event.FLAG.length() + 1) {
@@ -29,8 +26,16 @@ class Event extends Task {
         } else {
             String timeString = input.substring(flagIndex + Event.FLAG.length() + 1);
             try {
-                LocalDate time = LocalDate.parse(timeString, Event.timeFormat);
-                return time;
+                if (timeString.length() < 11) {
+                    LocalDate time = LocalDate.parse(timeString, Task.dateFormat);
+                    return time;
+                } else {
+                    LocalDateTime time = LocalDateTime.parse(
+                            timeString, 
+                            Task.dateTimeFormat);
+                    System.out.println(time);
+                    return time;
+                }
             } catch (DateTimeParseException error) {
                 CarbonException invalidTime = new InvalidTimeException(timeString);
                 throw invalidTime;
@@ -38,15 +43,24 @@ class Event extends Task {
         }
     }
 
+    private Temporal dateTime;
+
     public Event(String input) {
         super(Event.extractName(input));
-        this.time = Event.extractTime(input);
+        this.dateTime = Event.extractTime(input);
     }
 
     @Override
     public String toString() {
         String type = "\u001B[34m(EVNT)\u001B[0m";
-        String timeFormatted = this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        String timeFormatted;
+        if (this.dateTime instanceof LocalDate) {
+            LocalDate date = (LocalDate) this.dateTime;
+            timeFormatted = date.format(Task.dateFormatPrint);
+        } else {
+            LocalDateTime time = (LocalDateTime) this.dateTime;
+            timeFormatted = time.format(Task.dateTimeFormatPrint);
+        }
         return String.format("%s %s @ %s", type, super.toString(), timeFormatted);
     }
 }
