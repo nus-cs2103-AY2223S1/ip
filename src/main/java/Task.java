@@ -1,3 +1,6 @@
+/**
+ * Abstract class handling logic regarding tasks.
+ */
 public abstract class Task {
     /* Name of task */
     protected String name;
@@ -6,6 +9,7 @@ public abstract class Task {
 
     /**
      * Returns string representation of Task object.
+     *
      * @return String representation of Task object.
      */
     @Override
@@ -15,6 +19,7 @@ public abstract class Task {
 
     /**
      * Returns "X" if task is completed, " " otherwise.
+     *
      * @return String representation of completion status of Task object.
      */
     public String getStatusIcon() {
@@ -35,5 +40,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns formatted string representation of task for save processing.
+     *
+     * @return Formatted string representation of task.
+     */
     public abstract String saveFormat();
 }

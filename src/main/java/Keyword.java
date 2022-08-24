@@ -1,3 +1,6 @@
+/**
+ * Enum values corresponding to the acceptable keywords that Duke can handle.
+ */
 public enum Keyword {
     BYE("bye"),
     MARK("mark"),
@@ -13,15 +16,17 @@ public enum Keyword {
 
     /**
      * Constructor for Keyword.
+     *
      * @param key Input Key.
      */
-    Keyword(String key){
+    Keyword(String key) {
         this.inputKey = key;
     }
 
     /**
      * Retrieve Keyword enum value given input key string.
      * Throws IllegalArgumentException if corresponding value is not found.
+     *
      * @param inputKey Input key string.
      * @return Keyword enum value corresponding to input key.
      * @throws IllegalArgumentException

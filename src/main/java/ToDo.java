@@ -1,16 +1,22 @@
-public class ToDo extends Task{
+/**
+ * Class handling the todo task type.
+ */
+public class ToDo extends Task {
 
     /**
      * Constructor for ToDo Class.
+     *
      * @param name String representation of task name.
      */
     public ToDo(String name) {
         this.name = name;
-        this.isDone = false;;
+        this.isDone = false;
+        ;
     }
 
     /**
      * Returns string representation of ToDo object.
+     *
      * @return String representation of ToDo object.
      */
     @Override
@@ -18,6 +24,11 @@ public class ToDo extends Task{
         return "[T]" + super.toString();
     }
 
+    /**
+     * Returns formatted string representation of task for save processing.
+     *
+     * @return Formatted string representation of task.
+     */
     @Override
     public String saveFormat() {
         int status = isDone ? 1 : 0;

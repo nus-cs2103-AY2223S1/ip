@@ -1,10 +1,14 @@
+/**
+ * Class handling the event task type.
+ */
 public class Event extends Task {
     /* Duration of Event */
     protected String duration;
 
     /**
      * Constructor for Event Class.
-     * @param name String representation of task name.
+     *
+     * @param name     String representation of task name.
      * @param duration String representation of duration of event.
      */
     public Event(String name, String duration) {
@@ -12,8 +16,10 @@ public class Event extends Task {
         this.isDone = false;
         this.duration = duration;
     }
+
     /**
      * Returns string representation of Event object.
+     *
      * @return String representation of Event object.
      */
     @Override
@@ -21,6 +27,11 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + duration + ")";
     }
 
+    /**
+     * Returns formatted string representation of event task for save processing.
+     *
+     * @return Formatted string representation of event task.
+     */
     @Override
     public String saveFormat() {
         int status = isDone ? 1 : 0;
