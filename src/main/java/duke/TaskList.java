@@ -6,18 +6,14 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    private static ArrayList<Task> taskList;
+    private static ArrayList<Task> taskList = new ArrayList<>();;
 
-    public TaskList() {
-        this.taskList = new ArrayList<>();
-    }
-
-    public void add(Task task) {
+    public static void add(Task task) {
         taskList.add(task);
         System.out.println("added: " + task.toString());
     }
 
-    public void read() {
+    public static void read() {
         if (taskList.size() == 0) {
             System.out.println("You have no task");
             return;
@@ -32,26 +28,30 @@ public class TaskList {
         }
     }
 
-    public void mark(int index) throws DukeMissingIndexException {
+    public static void mark(int index) throws DukeMissingIndexException {
         if (index >= taskList.size() || taskList.get(index) == null) {
             throw new DukeMissingIndexException();
         }
         taskList.get(index).setDone();
     }
 
-    public void unMark(int index) throws DukeMissingIndexException {
+    public static void unMark(int index) throws DukeMissingIndexException {
         if (index >= taskList.size() || taskList.get(index) == null) {
             throw new DukeMissingIndexException();
         }
         taskList.get(index).setNotDone();
     }
 
-    public void delete(int index) throws DukeMissingIndexException {
+    public static void delete(int index) throws DukeMissingIndexException {
         if (index >= taskList.size() || taskList.get(index) == null) {
             throw new DukeMissingIndexException();
         }
         Task task = taskList.get(index);
         System.out.println("Removed the task \n" + task.toString());
         taskList.remove(index);
+    }
+
+    public static ArrayList<Task> getTaskList() {
+        return taskList;
     }
 }
