@@ -1,8 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.io.IOException;
-import java.io.FileWriter;
 
 public class Duke {
     private static final String HORIZONTAL_LINE = "  ____________________________________________________________";
