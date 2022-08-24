@@ -188,12 +188,14 @@ public class Decoder {
         }
     }
 
-    /**
-     * Returns if a string is numeric.
-     *
-     * @param num the number in string form.
-     * @return A boolean.
-     */
+    public static String parseFind(String str) throws EmptyDescException {
+        String[] split = str.split(" ");
+        if (split.length < 2) {
+            throw new EmptyDescException("empty description");
+        }
+        return split[1];
+    }
+
     public static boolean isValidNum(String num) {
         char[] charas = num.toCharArray();
         for (int i = 0; i < num.length(); i++) {

@@ -105,11 +105,17 @@ public class TasksManager {
         System.out.println(line);
     }
 
-    /**
-     * Returns the integer of the task of be marked as done.
-     *
-     * @return an integer indicating the number of tasks in total.
-     */
+    public void find(String match) {
+        System.out.println(line);
+        for (int i = 0; i < tasks.size(); i++) {
+            Task currTask = tasks.get(i);
+            if (currTask.getMatching(match)) {
+                System.out.println(currTask);
+            }
+        }
+        System.out.println(line);
+    }
+
     public int numTasks() {
         return tasks.size();
     }

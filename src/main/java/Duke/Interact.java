@@ -45,6 +45,8 @@ public class Interact {
             tasksManager.addTask(Decoder.handleTasks(word));
         } else if (word.startsWith("date") || word.startsWith("Date")) {
             tasksManager.showDate(Decoder.parseLD(word));
+        } else if (word.startsWith("find") || word.startsWith("Find")) {
+            tasksManager.find(Decoder.parseFind(word));
         } else {
             throw new DukeException("bad input");
         }
