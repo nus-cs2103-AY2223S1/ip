@@ -4,6 +4,17 @@ import java.io.IOException;
 import java.time.format.DateTimeParseException;
 
 public class Parser {
+
+    /**
+     * Parser parses the commands from user.
+     *
+     * @param command     is the response from user.
+     * @param listOfTasks is the list of tasks stored.
+     * @param ui          is the output text from Duke to console.
+     * @param storage     deals with saving and loading tasks in Duke.txt.
+     * @throws DukeException if invalid command input.
+     * @throws IOException   if file does not open.
+     */
     public static void parse(String command, TaskList listOfTasks, Ui ui, Storage storage)
             throws DukeException, IOException {
         String[] response = command.split(" ");
@@ -89,9 +100,9 @@ public class Parser {
 
         case DELETE:
             try {
-                int deleteIndex = Integer.parseInt(response[1]);
+                int deleteIndex = Integer.parseInt(response[1]) - 1;
                 Task deletedTask = listOfTasks.getTask(deleteIndex);
-                listOfTasks.remove(deleteIndex);
+                listOfTasks.remove(deleteIndex + 1);
                 ui.showDeletedTask(deletedTask, listOfTasks);
                 storage.writeToTextFile(listOfTasks);
             } catch (ArrayIndexOutOfBoundsException e) {

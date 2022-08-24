@@ -9,14 +9,29 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage object class.
+ */
 public class Storage {
 
     private File file;
 
+    /**
+     * Creates a Storage object.
+     *
+     * @param filePath The path of the file where the list of tasks is stored in a .txt file.
+     */
     public Storage(String filePath) {
         this.file = new File(filePath);
     }
 
+    /**
+     * Loads the ArrayList of Tasks from duke.txt.
+     *
+     * @return ArrayList of Tasks.
+     * @throws FileNotFoundException when file is not found.
+     * @throws DukeException         when command is invalid.
+     */
     public ArrayList<Task> load() throws FileNotFoundException, DukeException {
 
         ArrayList<Task> listOfTasks = new ArrayList<>();
@@ -54,6 +69,12 @@ public class Storage {
         return listOfTasks;
     }
 
+    /**
+     * Write taskList to duke.txt.
+     *
+     * @param taskList that is to be written to file.
+     * @throws IOException when file does not exist.
+     */
     public void writeToTextFile(TaskList taskList) throws IOException {
 
         PrintWriter toWrite = new PrintWriter(this.file);
