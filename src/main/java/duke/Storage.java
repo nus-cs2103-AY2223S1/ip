@@ -1,7 +1,10 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Storage {
@@ -30,7 +33,7 @@ public class Storage {
                 return new TaskList();
             }
 
-            // The TaskList to eventually be returned.
+            // The duke.TaskList to eventually be returned.
             TaskList taskList = new TaskList();
 
             // Parse each task one by one.
@@ -39,7 +42,7 @@ public class Storage {
                 String line = scanner.nextLine(); // e.g. "E|0|New Year's Countdown|2019-12-31T23:59"
                 // TODO: Ensure that the user never enters the | character.
                 String[] components = line.split("\\|");
-                boolean isTaskInitiallyComplete = (components[1] == "1");
+                boolean isTaskInitiallyComplete = (Objects.equals(components[1], "1"));
                 switch (components[0]) {
                     case "T":
                         taskList.add(new ToDo(components[2], isTaskInitiallyComplete));

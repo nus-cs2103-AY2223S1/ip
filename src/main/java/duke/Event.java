@@ -1,4 +1,8 @@
+package duke;
+
 import java.time.LocalDateTime;
+
+import duke.Task;
 
 public class Event extends Task {
     private final LocalDateTime startTime;

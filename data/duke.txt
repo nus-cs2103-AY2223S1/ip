@@ -1,9 +1,9 @@
 T|1|read book
 D|1|return book|2022-02-02T22:22
-E|0|project meeting|2022-02-02T22:22
+E|1|project meeting|2022-02-02T22:22
 T|1|join sports club
 T|0|scream into the void
 D|0|get some sleep|2022-02-02T22:22
 E|0|New Year's Countdown|2019-12-31T23:59
-E|0|Chinese New Year's Countdown|2022-02-02T23:29
-T|0|a homework
+E|1|Chinese New Year's Countdown|2022-02-02T23:29
+T|1|another homework
