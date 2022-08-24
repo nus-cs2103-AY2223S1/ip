@@ -3,13 +3,13 @@
 	Sorry, I don't understand...
 	You have added "[T][ ] task" into your Task List!
 	You have 1 tasks in your Task List!
-	You have added "[D][ ] task  (by: xxx)" into your Task List!
+	You have added "[D][ ] task (by: xxx)" into your Task List!
 	You have 2 tasks in your Task List!
-	You have added "[E][ ] task  (at: yyy)" into your Task List!
+	You have added "[E][ ] task (at: yyy)" into your Task List!
 	You have 3 tasks in your Task List!
 	1. [T][ ] task
-	2. [D][ ] task  (by: xxx)
-	3. [E][ ] task  (at: yyy)
+	2. [D][ ] task (by: xxx)
+	3. [E][ ] task (at: yyy)
 	Good Job! The following task has been marked as done:
 	[T][X] task
 	Sorry, that Task Number doesn't look right...

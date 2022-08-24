@@ -1,17 +1,8 @@
-public class Task {
+public abstract class Task {
     /* Name of task */
     protected String name;
     /* Flag representing if a task is completed */
     protected boolean isDone;
-
-    /**
-     * Constructor for Task Class.
-     * @param name String representation of task name.
-     */
-    public Task(String name) {
-        this.name = name;
-        this.isDone = false;
-    }
 
     /**
      * Returns string representation of Task object.
@@ -43,4 +34,6 @@ public class Task {
     public void markAsNotdone() {
         this.isDone = false;
     }
+
+    public abstract String saveFormat();
 }

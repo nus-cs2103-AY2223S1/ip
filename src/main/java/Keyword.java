@@ -26,13 +26,13 @@ public enum Keyword {
      * @return Keyword enum value corresponding to input key.
      * @throws IllegalArgumentException
      */
-    public static Keyword getKeyword(String inputKey) throws IllegalArgumentException {
+    public static Keyword getKeyword(String inputKey) throws DukeException {
         for (Keyword k : Keyword.values()) {
             if (inputKey.equals(k.inputKey)) {
                 return k;
             }
         }
-        throw new IllegalArgumentException("\tSorry, I don't understand...");
+        throw new DukeException("\tSorry, I don't understand...");
     }
 
 }

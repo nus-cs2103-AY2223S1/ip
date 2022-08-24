@@ -8,7 +8,8 @@ public class Event extends Task {
      * @param duration String representation of duration of event.
      */
     public Event(String name, String duration) {
-        super(name);
+        this.name = name;
+        this.isDone = false;
         this.duration = duration;
     }
     /**
@@ -18,5 +19,11 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + duration + ")";
+    }
+
+    @Override
+    public String saveFormat() {
+        int status = isDone ? 1 : 0;
+        return String.format("%s | %d | %s | %s", "E", status, name, duration);
     }
 }

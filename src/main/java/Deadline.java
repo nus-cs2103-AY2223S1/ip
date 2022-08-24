@@ -8,7 +8,8 @@ public class Deadline extends Task {
      * @param by String representation of task deadline.
      */
     public Deadline(String name, String by) {
-        super(name);
+        this.name = name;
+        this.isDone = false;
         this.by = by;
     }
 
@@ -19,5 +20,11 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
+    }
+
+    @Override
+    public String saveFormat() {
+        int status = isDone ? 1 : 0;
+        return String.format("%s | %d | %s | %s", "D", status, name, by);
     }
 }

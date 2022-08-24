@@ -1,6 +1,6 @@
-import java.util.HashMap;
 import java.util.Scanner;
 import java.util.ArrayList;
+
 
 public class Duke {
     public static void main(String[] args) {
@@ -12,6 +12,17 @@ public class Duke {
         // Greets User
         greetUser();
 
+        // Loads Save File
+        try {
+            SaveUtils.readTaskListFromFile(taskList);
+        }
+        catch (DukeException e) {
+            System.out.print("\n\tLooks like I can't find your old task list..." +
+                    "\n\tGuess we'll have to start a new one!\n");
+        }
+
+
+
         while (true) {
             input = sc.nextLine();
             String[] inputTokens = input.split(" ", 2); // Delimit over " " to extract first keyword
@@ -22,9 +33,9 @@ public class Duke {
             try {
                 keyword = Keyword.getKeyword(keywordInput);
             }
-            catch (IllegalArgumentException iae) {
+            catch (DukeException e) {
                 // Invalid Keyword Input
-                System.out.println(iae.getMessage());
+                System.out.println(e.getMessage());
                 continue;
             }
 
@@ -44,6 +55,7 @@ public class Duke {
                    System.out.println("\tRemember to add a Task Number!");
                }
                finally {
+                   SaveUtils.saveTaskListToFile(taskList);
                    continue;
                }
             }
@@ -58,6 +70,7 @@ public class Duke {
                     System.out.println("\tRemember to add a Task Number!");
                 }
                 finally {
+                    SaveUtils.saveTaskListToFile(taskList);
                     continue;
                 }
             }
@@ -91,7 +104,7 @@ public class Duke {
                      break;
                 }
                 case DEADLINE: {
-                    String[] taskTokens = content.split("/by "); // delimit over "/by" to retrieve deadline
+                    String[] taskTokens = content.split(" /by "); // delimit over "/by" to retrieve deadline
                     try {
                         // If delimiting regex is not found, taskTokens returns single item array with the original string
                         String taskName = taskTokens[0];
@@ -108,13 +121,14 @@ public class Duke {
                     }
                 }
                 case EVENT : {
-                    String[] taskTokens = content.split("/at "); // delimit over "/at" to retrieve deadline
+                    String[] taskTokens = content.split(" /at "); // delimit over "/at" to retrieve deadline
                     try {
                         // If delimiting regex is not found, taskTokens returns single item array with the original string
                         String taskName = taskTokens[0];
                         String eventTiming = taskTokens[1];
                         taskAdded = new Event(taskName, eventTiming);
                         taskList.add(taskAdded);
+
                     }
                     catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("\tEvent Timing not found! Please input in the following format: " +
@@ -124,10 +138,12 @@ public class Duke {
                         break;
                     }
                 }
+
             }
 
             /* Handles success message output */
             successMessage(taskAdded, taskList.size());
+            SaveUtils.saveTaskListToFile(taskList);
         }
     }
 
@@ -164,15 +180,21 @@ public class Duke {
      */
     private static void displayTaskList(ArrayList<Task> taskList) {
         int i = 1;
-        for (Task t : taskList) {
+        if (taskList.size() == 0) {
+            System.out.print("\tLooks like you don't have any tasks for now!");
+            return;
+        }
 
+        for (Task t : taskList) {
             // Reach end of list
             if (t == null) {
                 break;
             }
 
+            // Output string
             String taskListString = String.format("\t%d. %s", i, t);
             System.out.println(taskListString);
+            // Increment pointer
             i++;
         }
     }
@@ -225,6 +247,7 @@ public class Duke {
             System.out.println("\tSorry, that Task Number doesn't look right...");
         }
     }
+
 }
 
 
