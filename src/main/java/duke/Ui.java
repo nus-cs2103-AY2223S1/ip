@@ -1,11 +1,14 @@
 package duke;
 
+import java.util.Scanner;
+
 public class Ui {
     private static final String WELCOME = "Hello! I am Duke\n "
             + "What can i do for you";
     private static final String EXIT = "See you later :)";
     private static final String SEPARATOR = "------------------------------------";
     private static final String ASK_FOR_COMMAND = "What do you want me to do?";
+    private static final Scanner myScanner = new Scanner(System.in);
 
     public static void printSeparator() {
         System.out.println(SEPARATOR);
@@ -73,6 +76,13 @@ public class Ui {
         printSeparator();
     }
 
+    public static void printError(String error) {
+        System.out.println(error);
+    }
+
+    public static String getCommand() {
+        return myScanner.nextLine().trim();
+    }
 
 
 
