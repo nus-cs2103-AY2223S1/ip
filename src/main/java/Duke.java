@@ -1,4 +1,5 @@
 import java.util.*;
+import java.time.LocalDate;
 
 public class Duke {
     public static void main(String[] args) throws DukeException{
@@ -75,7 +76,8 @@ public class Duke {
                         try {
                             String deadline = command.split(" ", 2)[1].split(" /by ")[0];
                             String by = command.split(" /by ")[1];
-                            task = new Deadline(deadline, by);
+                            LocalDate date = LocalDate.parse(by);
+                            task = new Deadline(deadline, date);
                             list.addTask(task);
                             System.out.println("Got it! I've added this task: \n"
                                     + task.toString() + "\n"

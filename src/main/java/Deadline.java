@@ -1,23 +1,20 @@
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
-    private LocalDateTime dateTime;
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+    protected LocalDate date;
 
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, LocalDate date) throws DukeException {
         super(description);
-        this.dateTime = LocalDateTime.parse(by, formatter);
+        this.date = date;
         if (description.isBlank()) {
             throw new DukeException("Take me seriouslyy :( What do you want to do?\n");
-        }
-        if (by.isBlank()) {
-            throw new DukeException("When do you want to get it done??\n");
         }
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.dateTime.format(formatter) + ")";
+        return "[D]" + super.toString() + " (by: " + this.date.format(formatter) + ")";
     }
 }
