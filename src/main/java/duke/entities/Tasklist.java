@@ -40,4 +40,8 @@ public class Tasklist implements Iterable<Task> {
             return get(index++);
         }
     }
+
+    public String toString() {
+        return this.list.toString();
+    }
 }
