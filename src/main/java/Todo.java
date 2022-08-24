@@ -7,10 +7,6 @@ public class Todo extends Task {
         super(description, isDone);
     }
 
-    public static Todo fromUserInput(String userInput) {
-        return new Todo(userInput);
-    }
-
     public static Todo fromEncodedString(String encodedString) throws InvalidTaskDataException {
         String[] splitTaskData = encodedString.split("\\|");
         if (splitTaskData.length < 3) {

@@ -1,8 +1,6 @@
 import java.time.temporal.TemporalAccessor;
 
 public class Event extends Task {
-    private static final String DATE_TIME_SEPARATOR = " /at ";
-
     private final TemporalAccessor dateTime;
 
     public Event(String description, TemporalAccessor dateTime) {
@@ -12,15 +10,6 @@ public class Event extends Task {
     private Event(String description, boolean isDone, TemporalAccessor dateTime) {
         super(description, isDone);
         this.dateTime = dateTime;
-    }
-
-    public static Event fromUserInput(String userInput) throws InvalidTaskFormatException {
-        String[] splitUserInput = userInput.split(DATE_TIME_SEPARATOR, 2);
-        if (splitUserInput.length < 2) {
-            throw new InvalidTaskFormatException("No time was provided for this event.");
-        }
-        TemporalAccessor dateTime = DateTimeUtil.parseCompactDateTime(splitUserInput[1]);
-        return new Event(splitUserInput[0], dateTime);
     }
 
     public static Event fromEncodedString(String encodedString) throws InvalidTaskDataException {
