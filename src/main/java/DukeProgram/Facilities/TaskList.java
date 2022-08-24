@@ -1,21 +1,85 @@
-package DukeProgram;
+package DukeProgram.Facilities;
 
+import DukeProgram.*;
+import DukeProgram.Storage.SaveManager;
+import Exceptions.InvalidJobException;
+import Exceptions.JobNameException;
+import Utilities.SerializedNamesFormatter;
 import Utilities.StringUtilities;
 
+import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static DukeProgram.Duke.*;
+import static DukeProgram.UI.UserInterface.*;
 
-public class Checklist {
-    private static final int ALL = -1;
-    private static final ArrayList<Job> checklist = new ArrayList<>(100);
+public class TaskList implements List<Task>, Serializable {
+    private static final HashMap<String, TaskList> taskListsMapping = new HashMap<>();
+
+    private static TaskList current;
+
+    private final ArrayList<Task> checklist = new ArrayList<>(100);
+    private String name;
+
+    private TaskList(String name) {
+        this.name = name;
+
+        taskListsMapping.put(name, this);
+    }
+
+    public static TaskList current() {
+        return current;
+    }
+
+    public static TaskList getTaskList(String name) {
+        return taskListsMapping.get(name);
+    }
+
+    public static void changeTaskList(String name) {
+        if (current != null) {
+            SaveManager.save(
+                    SerializedNamesFormatter.createTaskListName(current.name),
+                    current
+            );
+        }
+
+        current = getTaskList(name);
+    }
+
+
+    public static int getNumberOfTaskLists() {
+        return taskListsMapping.size();
+    }
+
+    public static TaskList addNewTaskList(String name) {
+        TaskList taskList = new TaskList(name);
+        taskListsMapping.put(taskList.name, taskList);
+
+        return taskList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void changeName(String newName) {
+        SaveManager.delete(SerializedNamesFormatter.createTaskListName(name));
+
+        taskListsMapping.remove(name);
+        this.name = newName;
+        taskListsMapping.put(name, this);
+
+        SaveManager.save(
+                SerializedNamesFormatter.createTaskListName(name),
+                this
+        );
+    }
 
     /***
      * Provides functionality to use a checklist in Duke.
      */
-    public static void use() {
+    /*public static void use() {
         String[] input = askForInput("").split(" ");
 
         while (!input[0].toLowerCase(Locale.ROOT).equals("bye")) {
@@ -41,9 +105,10 @@ public class Checklist {
             }
             input = askForInput("").split(" ");
         }
-    }
+    }*/
 
-    private static void listChecklist(String[] input) {
+
+    /*private static void listChecklist(String[] input) {
         if (input.length == 1) {
             printInStyle(IntStream
                     .range(0, checklist.size())
@@ -61,29 +126,29 @@ public class Checklist {
             );
             break;
 
-            /**
+            *//**
         case "-on":
             printInStyle(checklist
                     .stream()
                     .filter(e -> e instanceof DatedJob && ((DatedJob) e).getDate().equals(DateTimeParser.parse())
             );
             break;
-             **/
+             **//*
 
         case "-alphabet":
             printInStyle(checklist
                     .stream()
-                    .sorted(Comparator.comparing(Job::getName))
+                    .sorted(Comparator.comparing(Task::getName))
             );
             break;
         }
     }
 
-    /***
+    *//***
      * Takes in a command in the format from System.in and mark or unmarks
      * jobs on the checklist
      * @param input the command given from System.in
-     */
+     *//*
     private static void markChecklist(String[] input) {
         if (input.length < 2) {
             printInStyle("Please specify which task you want to mark or unmark " +
@@ -93,13 +158,13 @@ public class Checklist {
 
         if (input[1].equals("all")) {
             if (input[0].equals("mark")) {
-                for (Job job : checklist) {
-                    job.MarkJobState(true);
+                for (Task task : checklist) {
+                    task.MarkJobState(true);
                 }
                 printInStyle("Ok, I've marked all items as completed!");
             } else if (input[0].equals("unmark")) {
-                for (Job job : checklist) {
-                    job.MarkJobState(false);
+                for (Task task : checklist) {
+                    task.MarkJobState(false);
                 }
                 printInStyle("Ok, I've unmarked all items as undone.");
             }
@@ -139,11 +204,11 @@ public class Checklist {
         }
     }
 
-    /**
+    *//**
      * Takes in a command in the format from System.in
      * and deletes the job with the associated index.
      * @param input command input from system
-     */
+     *//*
     private static void deleteFromChecklist(String[] input) {
         if (input.length < 1) {
             printInStyle("Please specify the index of the job you want to delete.");
@@ -175,26 +240,26 @@ public class Checklist {
             return;
         }
 
-        Job jobRemoved = checklist.get(index);
+        Task taskRemoved = checklist.get(index);
         checklist.remove(index);
         printInStyle("Noted. I've removed this task:",
-                jobRemoved.toString(),
+                taskRemoved.toString(),
                 String.format("Now you have %d tasks in the list.", checklist.size()));
     }
 
-    /***
+    *//***
      * Takes in a command in the format from System.in and add
      * jobs on the checklist based on their type
      * @param input the command given from System.in
-     */
+     *//*
     private static void addToChecklist(String[] input) throws InvalidJobException{
-        Job job;
+        Task task;
         String[][] nameAndDate;
 
         switch (input[0]) {
             case "todo":
                 try {
-                    job = new ToDo(concatName(input));
+                    task = new ToDo(concatName(input));
                 } catch (JobNameException ex) {
                     printInStyle(ex.getMessage());
                     return;
@@ -209,7 +274,7 @@ public class Checklist {
                 }
 
                 try {
-                    job = new Deadline(concatName(nameAndDate[0]), String.join(" ", nameAndDate[1]));
+                    task = new Deadline(concatName(nameAndDate[0]), String.join(" ", nameAndDate[1]));
                 } catch (JobNameException ex) {
                     printInStyle(ex.getMessage());
                     return;
@@ -224,7 +289,7 @@ public class Checklist {
                 }
 
                 try {
-                    job = new Event(concatName(nameAndDate[0]), String.join(" ", nameAndDate[1]));
+                    task = new Event(concatName(nameAndDate[0]), String.join(" ", nameAndDate[1]));
                 } catch (JobNameException ex) {
                     printInStyle(ex.getMessage());
                     return;
@@ -233,12 +298,13 @@ public class Checklist {
             default:
                 throw new InvalidJobException();
         }
-        checklist.add(job);
+        checklist.add(task);
         printInStyle(
                 "Got it. I've added this task:",
-                job.toString(),
+                task.toString(),
                 String.format("Now you have %d tasks in the list", checklist.size()));
-    }
+    }*/
+
 
     /**
      * A helper method to concat a string array given in the format from System.in
@@ -252,5 +318,120 @@ public class Checklist {
             throw new JobNameException(input[0]);
         }
         return name;
+    }
+
+    @Override
+    public int size() {
+        return checklist.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return checklist.isEmpty();
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return checklist.contains(o);
+    }
+
+    @Override
+    public Iterator<Task> iterator() {
+        return checklist.iterator();
+    }
+
+    @Override
+    public Object[] toArray() {
+        return checklist.toArray();
+    }
+
+    @Override
+    public <T> T[] toArray(T[] a) {
+        return checklist.toArray(a);
+    }
+
+    @Override
+    public boolean add(Task task) {
+        return checklist.add(task);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return checklist.remove(o);
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        return checklist.containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends Task> c) {
+        return checklist.addAll(c);
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends Task> c) {
+        return checklist.addAll(index, c);
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        return checklist.removeAll(c);
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        return checklist.retainAll(c);
+    }
+
+    @Override
+    public void clear() {
+        checklist.clear();
+    }
+
+    @Override
+    public Task get(int index) {
+        return checklist.get(index);
+    }
+
+    @Override
+    public Task set(int index, Task element) {
+        return checklist.set(index, element);
+    }
+
+    @Override
+    public void add(int index, Task element) {
+        checklist.add(index, element);
+    }
+
+    @Override
+    public Task remove(int index) {
+        return checklist.remove(index);
+    }
+
+    @Override
+    public int indexOf(Object o) {
+        return checklist.indexOf(o);
+    }
+
+    @Override
+    public int lastIndexOf(Object o) {
+        return checklist.lastIndexOf(o);
+    }
+
+    @Override
+    public ListIterator<Task> listIterator() {
+        return checklist.listIterator();
+    }
+
+    @Override
+    public ListIterator<Task> listIterator(int index) {
+        return checklist.listIterator(index);
+    }
+
+    @Override
+    public List<Task> subList(int fromIndex, int toIndex) {
+        return checklist.subList(fromIndex, toIndex);
     }
 }

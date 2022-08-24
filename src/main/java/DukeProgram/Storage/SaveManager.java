@@ -1,19 +1,18 @@
-package DukeProgram;
+package DukeProgram.Storage;
+
+import Exceptions.KeyNotFoundException;
 
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class SaveManager {
 
-    private static DataInMemory dataInMemory;
+    private static Storage dataInMemory;
 
     private static final String DATA_FOLDER = System.getProperty("user.home");
     private static final java.nio.file.Path PATH = java.nio.file.Paths.get(
             DATA_FOLDER,
             "RUIHAN",
-            "Duke",
-            "Duke_SavedData"
+            "Duke"
     );
 
     public static void save(String header, Serializable obj) {
@@ -25,14 +24,18 @@ public class SaveManager {
         return (T)dataInMemory.get(header);
     }
 
-    public static void serialize() throws IOException {
+    public static void delete(String header) {
+        dataInMemory.delete(header);
+    }
+
+    public static void serialize(String fileName) throws IOException {
         FileOutputStream fileOutputStream;
-        File saveFile = new File(PATH.toString());
+        File saveFile = new File(PATH.toString(), fileName);
 
         if (saveFile.getParentFile().mkdirs()) {
             fileOutputStream = new FileOutputStream(saveFile);
         } else {
-            fileOutputStream = new FileOutputStream(PATH.toString());
+            fileOutputStream = new FileOutputStream(saveFile);
         }
 
         ObjectOutputStream objOutputStream = new ObjectOutputStream(
@@ -45,15 +48,17 @@ public class SaveManager {
         fileOutputStream.close();
     }
 
-    public static boolean deserialize() {
+    public static boolean deserialize(String fileName) {
         try {
-            FileInputStream fileInputStream = new FileInputStream(PATH.toString());
+            File file = new File(PATH.toString(), fileName);
+
+            FileInputStream fileInputStream = new FileInputStream(file);
             ObjectInputStream objInputStream = new ObjectInputStream(
                     fileInputStream
             );
 
             try {
-                dataInMemory = (DataInMemory) objInputStream.readObject();
+                dataInMemory = (Storage) objInputStream.readObject();
             } catch (ClassNotFoundException e) {
                 System.out.println("FATAL ERROR: " + e.getMessage());
             }
@@ -61,7 +66,7 @@ public class SaveManager {
             fileInputStream.close();
             return true;
         } catch (IOException e) {
-            dataInMemory = new DataInMemory();
+            dataInMemory = new Storage();
             return false;
         }
     }

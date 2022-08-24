@@ -1,15 +1,14 @@
 package DukeProgram;
 
+import DukeProgram.UI.UserInterface;
+import Exceptions.KeyNotFoundException;
+import DukeProgram.Storage.SaveManager;
+import Utilities.SerializedNamesFormatter;
+
 import java.io.IOException;
-import java.util.*;
-import java.util.List;
-import java.util.stream.Stream;
 
 public class Duke {
-    private static final String DECORATOR = "\t" + "-".repeat(50);
-    private static final Scanner scanner = new Scanner(System.in);
-    private static final List<Job> toDoList = new ArrayList<Job>();
-    private static String userName;
+    private static User user;
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -19,154 +18,59 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        if (SaveManager.deserialize()) {
-            loadCurrentUser();
+        String userName = UserInterface.askForInput("Who are you?");
+
+        if (SaveManager.deserialize(
+                SerializedNamesFormatter.createFileNameForUser(userName)
+        )) {
+            user = loadCurrentUser();
         } else {
-            beginNewUser();
+            beginNewUser(userName);
         }
 
-        requestCommands();
+        UserInterface.advanceLocation("Home");
 
-        printInStyle("Goodbye! Hope to see you again soon!");
+        //main loop
+        UserInterface.requestCommands();
+
+        // on exit
+        UserInterface.retreatLocation();
+        UserInterface.printInStyle("Goodbye! Hope to see you again soon!");
 
         try {
-            SaveManager.serialize();
+            SaveManager.serialize(SerializedNamesFormatter.createFileNameForUser(userName));
         } catch (IOException e) {
-            printInStyle(e.getMessage());
+            UserInterface.printInStyle(e.getMessage());
         }
     }
 
-    private static void requestCommands() {
-        while (true) {
-            switch (askForInput("What would you like to do?")) {
-            case "checklist":
-                Checklist.use();
-                break;
-
-            case "factory reset":
-                factoryReset();
-                break;
-
-            case "exit":
-                return;
-            }
-        }
-    }
-
-
-    private static void factoryReset() {
-        printInStyle(
-                String.format("If you are sure you want to do this, " +
-                        "%s, please input the following numbers...", userName));
-
-        int key = new Random()
-                .nextInt((50000 - 10000) + 1) + 10000;
+    private static User loadCurrentUser() {
         try {
-            if (key == Integer.parseInt(askForInput(String.format("Type in %d", key)))) {
-                printInStyle(String.format("Goodbye %s", userName));
-                if (SaveManager.wipeData()) {
-                    System.exit(0);
-                } else {
-                    printInStyle("I couldn't delete the file.");
-                }
-            } else {
-                printInStyle("Terminating last command...");
-            }
-        } catch (NumberFormatException e) {
-            printInStyle("Terminating last command...");
-        }
-    }
-
-    private static void beginNewUser() {
-        printInStyle("This is the first time we've met!");
-        userName = askForInput("Why don't you start by introducing yourself, what is your name?");
-        printInStyle(String.format("Nice to meet you %s", userName));
-        SaveManager.save("userName", userName);
-    }
-
-    private static void loadCurrentUser() {
-        try {
-            userName = SaveManager.load("userName");
-            printInStyle(String.format("Welcome back %s", userName));
+            user = SaveManager.load("user");
+            UserInterface.printInStyle(String.format("Welcome back %s", user.getName()));
         } catch (KeyNotFoundException e) {
-            printInStyle(e.getMessage());
+            UserInterface.printInStyle(
+                    "Hmm...",
+                    "I can't seem to remember your name. Can you remind me?"
+            );
+            String userName = UserInterface.askForInput("What is your name?");
+            user.setName(userName);
+            SaveManager.save("user", user);
         }
+        return user;
     }
 
-    /**
-     * Prints the given strings in a fancy format
-     * @param stringsToPrint the strings to print
-     */
-    public static void printInStyle(String... stringsToPrint) {
-        System.out.println(DECORATOR);
-        for (String string : stringsToPrint) {
-            System.out.println("\t\t" + string);
-        }
-        System.out.println(DECORATOR);
+    private static void beginNewUser(String userName) {
+        UserInterface.printInStyle(
+                String.format("This is the first time we've met, %s!", userName),
+                "Nice to meet you!"
+        );
+        user = new User(userName);
+
+        SaveManager.save("user", user);
     }
 
-    /**
-     * Prints the given collection of items and strings in a fancy format
-     * @param itemsToPrint the collection of items to print
-     * @param others the strings to print
-     */
-    public static void printInStyle(Iterable<?> itemsToPrint, String... others) {
-        System.out.println(DECORATOR);
-        for (Object item : itemsToPrint) {
-            System.out.println("\t\t" + item.toString());
-        }
-
-        for (String string : others) {
-            System.out.println("\t\t" + string);
-        }
-        System.out.println(DECORATOR);
-    }
-
-    /**
-     * Prints the given collection of items and strings in a fancy format
-     * @param itemsToPrint the collection of items to print
-     * @param others the strings to print
-     */
-    public static void printInStyle(Stream<?> itemsToPrint, String... others) {
-        System.out.println(DECORATOR);
-        itemsToPrint.forEach(item -> System.out.println("\t\t" + item.toString()));
-
-        for (String string : others) {
-            System.out.println("\t\t" + string);
-        }
-        System.out.println(DECORATOR);
-    }
-
-
-    /**
-     * Requests user for input using the scanner
-     * @param prompt the prompt to show the user
-     * @return the given input from the user
-     */
-    public static String askForInput(String prompt) {
-        System.out.print(prompt + " ");
-        if (scanner.hasNextLine()) {
-            return scanner.nextLine();
-        } else {
-            return "bye";
-        }
-    }
-
-    /**
-     * Requests user for input using the scanner
-     * @param prompt the prompt to show the user
-     * @return the given input from the user
-     */
-    public static String askForInput(String prompt, boolean noLinebreak) {
-        if (!noLinebreak) {
-            return askForInput(prompt);
-        }
-
-        System.out.print(prompt + " ");
-        if (scanner.hasNext()) {
-            return scanner.next();
-        } else {
-            return "bye";
-        }
+    public static User getUser() {
+        return user;
     }
 }

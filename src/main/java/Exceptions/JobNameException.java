@@ -1,4 +1,4 @@
-package DukeProgram;
+package Exceptions;
 
 import java.util.Locale;
 

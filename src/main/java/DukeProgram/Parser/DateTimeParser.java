@@ -1,4 +1,4 @@
-package DukeProgram;
+package DukeProgram.Parser;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;

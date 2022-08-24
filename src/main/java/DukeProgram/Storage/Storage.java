@@ -1,18 +1,24 @@
-package DukeProgram;
+package DukeProgram.Storage;
 
-import javax.xml.crypto.Data;
+import Exceptions.KeyNotFoundException;
+
 import java.io.Serializable;
 import java.util.HashMap;
 
-public class DataInMemory implements Serializable {
+public class Storage implements Serializable {
+
     private final HashMap<String, Serializable> dataObjectsInMemory;
 
-    public DataInMemory() {
+    public Storage() {
         dataObjectsInMemory = new HashMap<>();
     }
 
     public void put(String header, Serializable obj) {
         dataObjectsInMemory.put(header, obj);
+    }
+
+    public void delete(String header) {
+        dataObjectsInMemory.remove(header);
     }
 
     public Serializable get(String header) throws KeyNotFoundException {

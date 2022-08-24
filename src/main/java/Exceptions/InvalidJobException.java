@@ -1,4 +1,4 @@
-package DukeProgram;
+package Exceptions;
 
 public class InvalidJobException extends Exception {
     public InvalidJobException() {

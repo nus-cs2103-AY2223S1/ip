@@ -1,4 +1,4 @@
-package DukeProgram;
+package Exceptions;
 
 public class KeyNotFoundException extends Exception{
     public KeyNotFoundException(String keyName, String collectionName) {
