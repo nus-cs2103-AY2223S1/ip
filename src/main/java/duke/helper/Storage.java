@@ -8,6 +8,9 @@ import java.util.Scanner;
 import duke.task.*;
 
 public class Storage {
+    /**
+     * Main class used to create/update storage of list
+     */
 
     protected File file;
 
@@ -28,6 +31,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Method to load, create and return an ArrayList of tasks from a .txt
+     *
+     * @return the ArrayList of tasks load
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> list = new ArrayList<>();
 

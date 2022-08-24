@@ -14,6 +14,9 @@ public class Duke {
         list = new TaskList(storage.load());
     }
 
+    /**
+     * This method runs the duke program
+     */
     public void run() {
         Ui.welcome();
 

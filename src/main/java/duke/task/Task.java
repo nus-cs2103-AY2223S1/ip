@@ -14,28 +14,61 @@ public class Task {
         this.symbol = symbol;
     }
 
+    /**
+     * Method to get the status icon of the task
+     *
+     * @return the status icon of the task
+     */
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 
+    /**
+     * Method to mark the task as done
+     */
     public void markAsDone() {
         isDone = true;
     }
 
+    /**
+     * Method to unmark the task as done
+     */
     public void markAsUndone() {
         isDone = false;
     }
 
+    /**
+     * Method to get the description of the task
+     *
+     * @return the description of the task
+     */
     public String getDescription() {
         return this.description;
     }
 
+    /**
+     * Method to get the symbol of the task
+     *
+     * @return the symbol of the task
+     */
     public String getSymbol() { return this.symbol; }
 
+    /**
+     * Method to get the info of the task
+     * in the format of [T]--[ ]--{task name}
+     *
+     * @return the info of the task
+     */
     public String getInfo() {
         return (getSymbol() + "--" + getStatusIcon() + "--" + getDescription());
     }
 
+    /**
+     * Method to get the string info of the task
+     * in the format of [T][ ] {task name}
+     *
+     * @return the date of the task
+     */
     @Override
     public String toString() {
         return getStatusIcon() + " " + getDescription();

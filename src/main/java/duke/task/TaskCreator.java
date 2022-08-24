@@ -15,6 +15,13 @@ public class TaskCreator {
     }
     private static int SIZEOFPREPOSITION = 4;
 
+    /**
+     * Method to create an appropriate task given an input string
+     * from the command line
+     *
+     * @param in the input command string to create the task
+     * @return the task after it has been created
+     */
     public static Task createTask(String in) {
         Task task = null;
         Type type;
@@ -94,6 +101,13 @@ public class TaskCreator {
         return task;
     }
 
+    /**
+     * Method to create an appropriate task given an input line
+     * from the .txt file
+     *
+     * @param line the line given in the .txt file
+     * @return the task after it has been created
+     */
     public static Task createFromStorage(String line) {
         String[] lineParts = line.split("--");
         String info = "";
