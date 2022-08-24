@@ -10,6 +10,9 @@ public class ExitCommand extends Command {
 
     }
 
+    /**
+     * @return 
+     */
     @Override
     boolean isExit() {
         return true;
