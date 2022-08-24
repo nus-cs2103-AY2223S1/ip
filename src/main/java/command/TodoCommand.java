@@ -13,6 +13,8 @@ public class TodoCommand extends Command {
         this.str = str;
     }
 
+    public String getStr() { return this.str; }
+
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         String sub = str.substring(5).trim();
