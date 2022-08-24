@@ -21,11 +21,15 @@ public class Parser {
 
     public Deadline createDeadline(String nextLine) {
         String[] section = nextLine.split(" /by ");
-        return new Deadline(section[0].substring(1), false, section[1]);
+        return new Deadline(section[0], false, section[1]);
     }
 
     public Event createEvent(String nextLine) {
         String[]sections =nextLine.split(" /at ");
-        return new Event(sections[0].substring(1), false, sections[1]);
+        return new Event(sections[0], false, sections[1]);
+    }
+
+    public void ignoreLine(Scanner scanner) {
+        scanner.nextLine();
     }
 }

@@ -29,7 +29,8 @@ public class Duke {
                 keyword = this.parser.getKeyword(scanner.next());
             } catch (DukeException e) {
                 this.ui.showError(e.getMessage());
-                break;
+                this.parser.ignoreLine(scanner);
+                continue;
             }
             if (keyword == Keyword.BYE) {
                 break;
@@ -56,10 +57,10 @@ public class Duke {
                         }
                         break;
                     case DEADLINE:
-                        this.tasks.add(this.parser.createDeadline(scanner.nextLine()));
+                        this.tasks.add(this.parser.createDeadline(scanner.nextLine().substring(1)));
                         break;
                     case EVENT:
-                        this.tasks.add(this.parser.createEvent(scanner.nextLine()));
+                        this.tasks.add(this.parser.createEvent(scanner.nextLine().substring(1)));
                         break;
                     case DELETE:
                         this.tasks.delete(this.parser.getIndex(scanner));
