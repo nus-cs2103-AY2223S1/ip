@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -20,11 +22,11 @@ public class TaskList {
             Ui.showLine();
             System.out.println("\tHere are the tasks in your list:");
             for (int i = 0; i < lst.size(); i++) {
-                System.out.println("\t"+ (i+1) + "." + lst.get(i));
+                System.out.println("\t" + (i + 1) + "." + lst.get(i));
             }
             Ui.showLine();
         } else { // list is empty
-            Ui.show("Task list is empty!");
+            Ui.show("duke.Task list is empty!");
         }
     }
 

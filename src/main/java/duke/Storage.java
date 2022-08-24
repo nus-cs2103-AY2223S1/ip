@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,7 +13,7 @@ public class Storage {
     }
 
     /**
-     * @return ArrayList<Task> from the save file at /data/saveFile.txt if it exists.
+     * @return ArrayList<duke.Task> from the save file at /data/saveFile.txt if it exists.
      * Otherwise, creates the data directory and a new saveFile and returns empty ArrayList
      */
     public static ArrayList<Task> load() {
@@ -56,7 +58,7 @@ public class Storage {
                 String line = s.nextLine();
                 if (line.startsWith("[T]")) { // TodoClass
                     result.add(Todo.stringToTodo(line));
-                } else if (line.startsWith("[D]")) { // Deadline Class
+                } else if (line.startsWith("[D]")) { // duke.Deadline Class
                     result.add(Deadline.stringToDeadline(line));
                 } else if (line.startsWith("[E]")) { // Evemt Class
                     result.add(Event.stringToEvent(line));
@@ -74,7 +76,7 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter("./data/saveFile.txt");
             ArrayList<Task> lst = tL.getTaskArr();
-            for (Task task: lst) {
+            for (Task task : lst) {
                 fw.write(task.toString() + "\n");
             }
             fw.close();

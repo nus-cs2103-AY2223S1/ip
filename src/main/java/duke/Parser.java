@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
@@ -25,11 +27,9 @@ public class Parser {
             scanner.close();
             Storage.save(this.taskList);
             Ui.showGoodbye();
-        }
-        else if (line.equals("list")) {
+        } else if (line.equals("list")) {
             taskList.showList();
-        }
-        else if (line.startsWith("unmark")) {
+        } else if (line.startsWith("unmark")) {
             if (taskList.isEmpty()) {
                 throw new DukeException("OOPS!!! Cannot unmark when list is empty");
             }
@@ -40,8 +40,7 @@ public class Parser {
             taskList.get(index - 1).markAsUndone();
             Ui.show("\tNice! I've marked this task as not done yet:");
             Ui.show("\t" + taskList.get(index - 1));
-        }
-        else if (line.startsWith("mark")) {
+        } else if (line.startsWith("mark")) {
             if (taskList.isEmpty()) {
                 throw new DukeException("OOPS!!! Cannot mark when list is empty");
             }
@@ -52,8 +51,7 @@ public class Parser {
             taskList.get(index - 1).markAsDone();
             Ui.show("\tNice! I've marked this task as done:");
             Ui.show("\t" + taskList.get(index - 1));
-        }
-        else if (line.startsWith("todo")) {
+        } else if (line.startsWith("todo")) {
             if (line.length() <= 5) {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
@@ -64,8 +62,7 @@ public class Parser {
             Ui.show("\t\t" + todo);
             Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
             Ui.showLine();
-        }
-        else if (line.startsWith("deadline")) {
+        } else if (line.startsWith("deadline")) {
             if (line.length() <= 9) {
                 throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
             }
@@ -85,8 +82,7 @@ public class Parser {
             Ui.show("\t\t" + deadline);
             Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
             Ui.showLine();
-        }
-        else if (line.startsWith("event")) {
+        } else if (line.startsWith("event")) {
             if (line.length() <= 6) {
                 throw new DukeException("OOPS!!! The description of a event cannot be empty.");
             }
@@ -101,8 +97,7 @@ public class Parser {
             Ui.show("\t\t" + event);
             Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
             Ui.showLine();
-        }
-        else if (line.startsWith("delete")) {
+        } else if (line.startsWith("delete")) {
             if (line.length() <= 7) {
                 throw new DukeException("OOPS!!! Please enter a number after delete");
             }
@@ -116,13 +111,11 @@ public class Parser {
             taskList.remove(index - 1);
             Ui.show("\tNow you have " + taskList.size() + " tasks in the list.");
             Ui.showLine();
-        }
-        else if (line.startsWith("save")) {
+        } else if (line.startsWith("save")) {
             Ui.show("Saving progress...");
             Storage.save(taskList);
             Ui.show("Successfully saved!");
-        }
-        else {
+        } else {
             Ui.show("OOPS!!! I'm sorry, but I don't know that that means :(");
         }
     }

@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
     final static String DIVIDER_LINE = "\t-----------------------------------------------";
 
@@ -6,7 +8,7 @@ public class Ui {
 
     public static void showWelcome() {
         showLine();
-        System.out.println("\tHello! I'm Duke Dukem\n\tWhat can I do for you?");
+        System.out.println("\tHello! I'm duke.Duke Dukem\n\tWhat can I do for you?");
         showLine();
     }
 
