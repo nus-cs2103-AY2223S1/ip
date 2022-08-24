@@ -15,6 +15,10 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public String toString() {
         StringBuilder allTasks = new StringBuilder();
@@ -25,6 +29,16 @@ public class TaskList {
             }
         }
         return allTasks.toString();
+    }
+
+    public String toStorage() {
+        StringBuilder storage = new StringBuilder();
+
+        for (Task task : this.tasks) {
+            storage.append(task.toStorage() + System.lineSeparator());
+        }
+
+        return storage.toString();
     }
 
     public String addTask(Task task) {

@@ -1,5 +1,7 @@
 public class Deadline extends Task {
 
+    private static final String DEADLINE_REP = "D";
+
     protected String deadline;
 
     public Deadline(String content, String deadline) {
@@ -9,6 +11,11 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + this.deadline + ")";
+        return "[" + DEADLINE_REP + "]" + super.toString() + " (by: " + this.deadline + ")";
+    }
+
+    @Override
+    public String toStorage() {
+        return DEADLINE_REP + super.toStorage() + Task.SEPARATOR + this.deadline;
     }
 }
