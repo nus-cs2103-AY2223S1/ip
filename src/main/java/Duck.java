@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import java.io.*;
 import java.nio.file.Path;
+=======
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+>>>>>>> branch-Level-8
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -42,6 +47,7 @@ public class Duck {
         System.out.println("Hello! Got any grapes?");
         Scanner scanner = new Scanner(System.in);
         String word = "";
+<<<<<<< HEAD
         FileWriter writer = new FileWriter(duckTxt, false);
         while (!word.equals("bye")) {
             try {
@@ -98,6 +104,65 @@ public class Duck {
 
                 }
             } catch (ArrayIndexOutOfBoundsException a) {
+=======
+        ArrayList<Todo> list = new ArrayList<>();
+        SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
+        while (!word.equals("bye")) {
+            try {
+            word = scanner.nextLine();
+            if (word.toUpperCase().equals("BYE")) break;
+            if (word.toUpperCase().equals("LIST")) {
+                if (list.size() == 0){
+                    throw new IndexOutOfBoundsException();
+                }
+                for (int i = 0; i < list.size(); i++) {
+                    System.out.println(i+1 + ". " + list.get(i));
+                }
+            }
+            else {
+                String[] arr = word.split(" ", 2);
+                String command = arr[0];
+                String arguments = arr[1];
+                switch (command.toUpperCase()) {
+                case "TODO":
+                    Todo newTodo = new Todo(arguments);
+                    list.add(newTodo);
+                    System.out.println("Added todo " + newTodo + " Quack!");
+                    break;
+                case "DEADLINE":
+                    String[] deadlineArgs = arguments.split("/by");
+                    Deadline newDeadline = new Deadline(deadlineArgs[0], dateFormatter.parse(deadlineArgs[1]));
+                    list.add(newDeadline);
+                    System.out.println("Added new Deadline " + newDeadline + " Quack!");
+                    break;
+                case "EVENT":
+                    String[] eventArgs = arguments.split("/at");
+                    Event newEvent = new Event(eventArgs[0], dateFormatter.parse(eventArgs[1]));
+                    list.add(newEvent);
+                    System.out.println("Added new Event " + newEvent + " Quack!");
+                    break;
+                case "MARK":
+                    Todo currentUnmarkedItem = list.get(Integer.parseInt(arguments) - 1);
+                    currentUnmarkedItem.completeTask();
+                    System.out.println("Quack, marked! " + currentUnmarkedItem);
+                    break;
+                case "UNMARK":
+                    Todo currentMarkedItem = list.get(Integer.parseInt(arguments) - 1);
+                    currentMarkedItem.unCompleteTask();
+                    System.out.println("Quack, unmarked! " + currentMarkedItem);
+                    break;
+                case "DELETE":
+                    Todo t = list.remove(Integer.parseInt(arguments) - 1);
+                    System.out.println(t + "\n Is gone!! Quack!");
+                    break;
+                default:
+                    System.out.println("Quack!?! What does that even mean!?!?!");
+                    break;
+                }
+            }
+        }
+            catch (ArrayIndexOutOfBoundsException a) {
+>>>>>>> branch-Level-8
                 if (word.toUpperCase().contains("TODO") ||
                         word.toUpperCase().contains("DEADLINE") ||
                         word.toUpperCase().contains("EVENT")) {
@@ -109,8 +174,13 @@ public class Duck {
                 System.out.println("Invalid Arguments! Dummy!");
             } catch (IndexOutOfBoundsException i) {
                 System.out.println("Item does not exist!! Quack!");
+<<<<<<< HEAD
             } catch (UnallowedCharacterException e) {
                 System.out.println("Character: "+ e.getMessage() + " is not allowed! Quack!!");
+=======
+            } catch (ParseException e) {
+                System.out.println("Wrong date time format!!!");
+>>>>>>> branch-Level-8
             }
         }
         for(Todo t : list){
