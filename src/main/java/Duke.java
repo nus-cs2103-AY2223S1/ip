@@ -18,8 +18,6 @@ import java.util.Scanner;
  * MakiBot
  */
 public class Duke {
-    protected ArrayList<Task> taskList = new ArrayList<>();
-    protected String saveFilePath = "data.txt";
     private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
             .appendPattern("dd/MM/yyyy ")
             .optionalStart()
@@ -30,6 +28,8 @@ public class Duke {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
+    protected ArrayList<Task> taskList = new ArrayList<>();
+    protected String saveFilePath = "data.txt";
     protected ZoneId timeZone = ZoneId.of("GMT+00:00");
 
     protected Duke() {
@@ -70,43 +70,43 @@ public class Duke {
 
                 // Handle special commands
                 switch (command) {
-                    // Exit command
-                    case "bye":
-                        this.bye();
-                        sc.close();
-                        return;
-                    // List all tasks
-                    case "list":
-                        this.listTasks();
-                        break;
-                    // Mark task as done
-                    case "mark":
-                        this.mark(fullCommand);
-                        this.updateSaveFile();
-                        break;
-                    // Mark task as undone
-                    case "unmark":
-                        this.unmark(fullCommand);
-                        this.updateSaveFile();
-                        break;
-                    case "delete":
-                        this.delete(fullCommand);
-                        this.updateSaveFile();
-                        break;
-                    case "todo":
-                        this.newTodo(fullCommand);
-                        this.updateSaveFile();
-                        break;
-                    case "deadline":
-                        this.newDeadline(fullCommand);
-                        this.updateSaveFile();
-                        break;
-                    case "event":
-                        this.newEvent(fullCommand);
-                        this.updateSaveFile();
-                        break;
-                    default:
-                        throw new DukeInvalidCommandException();
+                // Exit command
+                case "bye":
+                    this.bye();
+                    sc.close();
+                    return;
+                // List all tasks
+                case "list":
+                    this.listTasks();
+                    break;
+                // Mark task as done
+                case "mark":
+                    this.mark(fullCommand);
+                    this.updateSaveFile();
+                    break;
+                // Mark task as undone
+                case "unmark":
+                    this.unmark(fullCommand);
+                    this.updateSaveFile();
+                    break;
+                case "delete":
+                    this.delete(fullCommand);
+                    this.updateSaveFile();
+                    break;
+                case "todo":
+                    this.newTodo(fullCommand);
+                    this.updateSaveFile();
+                    break;
+                case "deadline":
+                    this.newDeadline(fullCommand);
+                    this.updateSaveFile();
+                    break;
+                case "event":
+                    this.newEvent(fullCommand);
+                    this.updateSaveFile();
+                    break;
+                default:
+                    throw new DukeInvalidCommandException();
                 }
             }
         } catch (DukeException de) {
@@ -200,7 +200,7 @@ public class Duke {
             try {
                 this.timeZone = ZoneId.of("GMT" + sc.nextLine());
                 System.out.println("Your timezone is now " + this.timeZone);
-            } catch (DateTimeException e){
+            } catch (DateTimeException e) {
                 System.out.println("☹ OOPS!!! I don't understand that timezone.");
                 this.getTimeZone();
             }
@@ -319,7 +319,7 @@ public class Duke {
             Event ev = new Event(newEvent[0], at);
             taskList.add(ev);
             printNewTaskMessage(ev);
-        } catch (ArrayIndexOutOfBoundsException | DateTimeParseException  e) {
+        } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             throw new DukeFormatCommandException("event", "/at");
         }
     }
