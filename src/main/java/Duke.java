@@ -202,11 +202,17 @@ public class Duke {
                                 throw new DukeException(INDENTATION +
                                         "☹ OOPS!!! Please use the deadline command in the correct manner, " +
                                         "usage of deadline is as shown. " +
-                                        "eg. deadline {task to be done} /by {date/time to complete}");
+                                        "eg. deadline {task to be done} /by {yyyy-mm-dd}");
                             }
                             int byIndex = Arrays.asList(userInput).indexOf("/by");
                             String[] deadlineDescription = Arrays.copyOfRange(userInput, 1, byIndex);
                             String[] by = Arrays.copyOfRange(userInput, byIndex + 1, userInput.length);
+                            if (!String.join(" ", by).matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+                                throw new DukeException(INDENTATION +
+                                        "☹ OOPS!!! Please use the deadline command in the correct manner, " +
+                                        "usage of deadline is as shown. " +
+                                        "eg. deadline {task to be done} /by {yyyy-mm-dd}");
+                            }
                             Task deadline = new Deadline(String.join(" ", deadlineDescription),
                                     String.join(" ", by));
                             taskList.addToTaskList(deadline);
@@ -220,11 +226,17 @@ public class Duke {
                                 throw new DukeException(INDENTATION +
                                         "☹ OOPS!!! Please use the event command in the correct manner, " +
                                         "usage of deadline is as shown. " +
-                                        "eg. event {event} /at {date/time}");
+                                        "eg. event {event} /at {yyyy-mm-dd}");
                             }
                             int atIndex = Arrays.asList(userInput).indexOf("/at");
                             String[] eventDescription = Arrays.copyOfRange(userInput, 1, atIndex);
                             String[] at = Arrays.copyOfRange(userInput, atIndex + 1, userInput.length);
+                            if (!String.join(" ", at).matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+                                throw new DukeException(INDENTATION +
+                                        "☹ OOPS!!! Please use the event command in the correct manner, " +
+                                        "usage of deadline is as shown. " +
+                                        "eg. event {event} /at {yyyy-mm-dd}");
+                            }
                             Task event = new Event(String.join(" ", eventDescription),
                                     String.join(" ", at));
                             taskList.addToTaskList(event);
