@@ -19,6 +19,7 @@ public class Parser {
     private String eventAt = "/at";
     private String delete = "delete";
     private String space = " ";
+    private String find = "find";
 
     /**
      * Parses an input to decode it.
@@ -147,6 +148,13 @@ public class Parser {
                 }
             } catch (NumberFormatException e) {
                 System.err.println("Invalid task.");
+            }
+        } else if (input.startsWith(this.find + this.space)) {
+            String s = input.substring((this.find + this.space).length());
+            if (s.isBlank()) {
+                System.out.println("The query is empty, what do you really mean?");
+            } else {
+                d.find(s);
             }
         } else {
             System.out.println("Sorry, I cannot understand what you exactly mean.");

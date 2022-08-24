@@ -130,4 +130,20 @@ public class TaskList {
             System.err.println("I cannot mark a task that does not exist!");
         }
     }
+
+    /**
+     * Prints a list of tasks containing the string.
+     *
+     * @param s String to find tasks with the matching string.
+     */
+    public void find(String s) {
+        int count = 0;
+        for (Task t : tasks) {
+            if (t.getDescription().contains(s)) {
+                count++;
+                System.out.println(count + "." + t);
+            }
+        }
+        System.out.println("There are " + count + " tasks that contains: " + s);
+    }
 }
