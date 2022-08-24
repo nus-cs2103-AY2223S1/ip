@@ -9,7 +9,7 @@ import duke.response.ExceptionResponse;
  * Handles user input.
  */
 public class DukeUi {
-    private final Scanner SCANNER = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     /**
      * Gets user input and returns the appropriate response.
@@ -17,7 +17,7 @@ public class DukeUi {
      * @return An appropriate DukeResponse.
      */
     public DukeResponse readInput(DukeList list) {
-        String input = SCANNER.nextLine();
+        String input = scanner.nextLine();
         try {
             return Parser.getResponse(list, input);
         } catch (DukeException e) {
@@ -37,6 +37,6 @@ public class DukeUi {
      * Closes the scanner.
      */
     public void closeScanner() {
-        this.SCANNER.close();
+        this.scanner.close();
     }
 }
