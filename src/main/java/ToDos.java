@@ -1,7 +1,7 @@
 public class ToDos extends Task{
     private String type;
-    ToDos(String name) {
-        super(name);
+    ToDos(String name, boolean isDone) {
+        super(name, isDone);
         this.type = "[T]";
     }
     @Override

@@ -7,10 +7,6 @@ import java.util.Scanner;
 
 public class TaskList {
     ArrayList<Task> list;
-    private static String DIRECTORY = "./DATA";
-    private static String FILENAME = "duke.txt";
-    private static String PATHNAME = String.valueOf(Paths.get(DIRECTORY, FILENAME));
-
 
     TaskList(ArrayList list) {
         this.list = list;
@@ -22,13 +18,12 @@ public class TaskList {
     }
 
     public void writeToFile(String status) throws IOException {
-        FileWriter fw = new FileWriter(PATHNAME, true);
+        FileWriter fw = new FileWriter(Duke.getPathname, true);
         fw.write(status + "\n");
         fw.close();
     }
 
     void addToList(Task task) {
-        // check...
         try {
             writeToFile(task.toString());
             this.list.add(task);
@@ -42,7 +37,7 @@ public class TaskList {
      void delete(String s) throws IOException {
         int i = Integer.parseInt(s.substring(7)) - 1;
         Task task = this.list.remove(i);
-         File file = new File(PATHNAME);
+         File file = new File(Duke.getPathname);
          Scanner scanner = new Scanner(file);
          String oldLine = "";
          String content = "";
@@ -53,13 +48,11 @@ public class TaskList {
              } else {
                  content = content + string + "\n";
              }
-
          }
          FileWriter writer = new FileWriter(file);
          writer.write(content);
          writer.close();
-        Ui ui = new Ui();
-        ui.deleteUi(task, this.list);
+         Ui ui = new Ui();
+         ui.deleteUi(task, this.list);
     }
-
 }

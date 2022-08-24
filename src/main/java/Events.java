@@ -1,13 +1,13 @@
 public class Events extends Task{
     String time;
     String type;
-    Events(String name, String time){
-        super(name);
+    Events(String name, boolean isDone, String time){
+        super(name, isDone);
         this.time = time;
         this.type = "[E]";
     }
     @Override
     public String toString() {
-        return this.type + super.getStatus() + " (" + this.time + ")";
+        return this.type + super.getStatus() + " (at: " + this.time + ")";
     }
 }
