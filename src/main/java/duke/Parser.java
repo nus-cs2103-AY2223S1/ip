@@ -1,6 +1,7 @@
 package duke;
 import java.text.ParseException;
-
+import java.util.ArrayList;
+import java.util.function.Consumer;
 
 /**
  * A class that encapsulates the Parser object
@@ -94,6 +95,7 @@ public class Parser {
                     String taskName = task.toString();
                     taskList.set(index, task);
                     ui.markMessage(taskName);
+
                 } else {
                     Task task = taskList.get(index);
                     taskList.remove(index);
@@ -119,6 +121,10 @@ public class Parser {
                     } else if (type.equals("deadline")) {
                         throw new DukeException("You'll probably miss it if you continue to "
                                 + "give LUNA vague requests... ");
+                    } else if (type.equals("deadline")){
+                        throw new DukeException("You'll probably miss it if you continue to give LUNA vague requests... ");
+                    } else if (type.equals("find")) {
+                        throw new DukeException("Find... What exactly? ");
                     } else {
                         throw new DukeException("LUNA has consulted the Moon Goddess and even she "
                                 + "has no idea what you're saying. ");
@@ -151,6 +157,19 @@ public class Parser {
 
                     taskList.add(deadline);
                     ui.deadlineMessage(deadline, taskList.size());
+                } else if (type.equals("find")) {
+                    TaskList findList = new TaskList();
+                    String taskName = actualTask;
+                    Consumer<? super Task> consumer = x -> {
+                        if (x.toString().contains(taskName)) {
+                            findList.add(x);
+                        }
+                    };
+
+                    taskList.forEach(consumer);
+                    ui.findMessage();
+                    findList.list();
+
 
                 } else {
                     try {

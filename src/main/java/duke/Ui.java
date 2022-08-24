@@ -20,7 +20,7 @@ public class Ui {
     private final String TODO_MESSAGE = "LUNA will write this one down on her finest crater...:\n";
     private final String EVENT_MESSAGE = "What event could possibly be more important than the Moon Festival?\n";
     private final String DEADLINE_MESSAGE = "Deadlines... LUNA isn't too good with those...\n";
-
+    private final String FIND_MESSAGE = "These are the Tasks you have been finding:";
     /**
      * Prints a greeting message
      */
@@ -80,6 +80,9 @@ public class Ui {
         lengthMessage(len);
     }
 
+    public void findMessage() {
+        System.out.println(FIND_MESSAGE + "\n" + LINE_BREAK);
+    }
 
     public void lengthMessage(int len) {
         System.out.println("You now have " + len + " tasks added\n" + "How many moons before you complete them?"
