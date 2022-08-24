@@ -3,7 +3,7 @@ public class Deadline extends Task {
 
   public Deadline(String description, Boolean isDone, String by) {
     super(description, isDone);
-    this.by = by;
+    this.dateTime = new DateTime(by);
   }
 
   public Deadline(String description, String by) {
@@ -19,6 +19,6 @@ public class Deadline extends Task {
   @Override
   public String[] getPrintRepresentation() {
     String[] strArray = super.getPrintRepresentation();
-    return new String[]{"Deadline", strArray[1], strArray[2], this.by};
+    return new String[]{"Deadline", strArray[1], strArray[2], this.dateTime.toString()};
   }
 }

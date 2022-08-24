@@ -3,7 +3,7 @@ public class Event extends Task {
 
   public Event(String description, boolean isDone, String by) {
     super(description, isDone);
-    this.by = by;
+    this.dateTime = new DateTime(by);
   }
 
   public Event(String description, String by) {
@@ -19,6 +19,6 @@ public class Event extends Task {
   @Override
   public String[] getPrintRepresentation() {
     String[] strArray = super.getPrintRepresentation();
-    return new String[]{"Event", strArray[1], strArray[2], this.by};
+    return new String[]{"Event", strArray[1], strArray[2], this.dateTime.toString()};
   }
 }
