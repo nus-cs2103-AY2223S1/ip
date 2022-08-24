@@ -62,10 +62,14 @@ public class TaskList {
             if (when.length != 2) {
                 throw new InvalidCommandException("No deadline stated.");
             } else {
-                Deadline temp = new Deadline(when[0], when[1]);
-                this.list.add(temp);
-                System.out.println("Got it. I've added this Deadline task:\n" + temp.toString());
-                System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
+                try {
+                    Deadline temp = new Deadline(when[0], when[1]);
+                    this.list.add(temp);
+                    System.out.println("Got it. I've added this Deadline task:\n" + temp.toString());
+                    System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
+                } catch (InvalidCommandException e) {
+                    System.out.println("Invalid Date/Time input into Deadline Task.\n");
+                }
             }
         }
     }
