@@ -54,7 +54,7 @@ public class Parser {
 
     }
 
-    private static int parseToTaskIndex(String[] fullCommandArray) throws EmptyIndexException {
+    protected static int parseToTaskIndex(String[] fullCommandArray) throws EmptyIndexException {
         if (fullCommandArray.length == 1) {
             throw new EmptyIndexException();
         }

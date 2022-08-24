@@ -28,7 +28,7 @@ test {
 }
 
 application {
-    sourceSets.main.java.srcDirs = ['src']
+//    sourceSets.main.java.srcDirs = ['src']
     mainClassName = "duke.Duke"
 }
 
