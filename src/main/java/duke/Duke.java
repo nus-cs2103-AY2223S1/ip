@@ -11,6 +11,7 @@ public class Duke {
     protected final Storage storage;
     protected final TaskList taskList;
     protected final Ui ui;
+
     protected static final String DUKE_NAME = "Bocil";
     protected static final String FILE_DIRECTORY_STRING = "./data/";
     protected static final String FILE_NAME = "duke.txt";
