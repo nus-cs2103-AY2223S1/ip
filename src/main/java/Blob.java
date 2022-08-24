@@ -3,6 +3,7 @@ import task.Deadline;
 import task.Event;
 import task.Task;
 import task.ToDo;
+import ui.TextUi;
 
 import java.io.File;
 import java.io.FileReader;
@@ -17,28 +18,15 @@ import java.util.Objects;
 import java.util.Scanner;
 
 public class Blob {
-    // Divider to separate message instances by the chat-bot
-    private static final String MESSAGE_DIVIDER = "=".repeat(100);
-    // Header to signify start of a message by the chat-bot
-    private static final String MESSAGE_HEADER = "\u001B[33m" + "Blob says: " + "\u001B[0m";
-
     // File path for text file which stores the data of all tasks
     private static final Path SAVED_TASKS_FILE_PATH = Paths.get("data","tasks.txt");
 
     private final ArrayList<Task> taskList = new ArrayList<>();
 
-    /**
-     * Prints a greeting message.
-     */
-    private void greet() {
-        speak("Hello... me Blob...", "How can Blob help...?");
-    }
+    TextUi ui;
 
-    /**
-     * Prints a parting message.
-     */
-    private void sayGoodbye() {
-        this.speak("Thanks for talking to Blob...", "Blob see you soon...");
+    Blob() {
+        this.ui = new TextUi();
     }
 
     /**
@@ -50,7 +38,7 @@ public class Blob {
         for (int i = 0; i < taskList.size(); i++) {
             tasksStringBuilder.append(String.format("\t\t%d. %s \n", i + 1, taskList.get(i).toString()));
         }
-        speak(String.format("Blob remembers %d task(s)...", taskList.size()),
+        ui.speakToUser(String.format("Blob remembers %d task(s)...", taskList.size()),
                 taskList.size() == 0 ? "Give Blob task to remember...?" : tasksStringBuilder.toString());
     }
 
@@ -60,7 +48,7 @@ public class Blob {
     private void addTodo(String description) {
         ToDo task = new ToDo(description);
         taskList.add(task);
-        speak("Blob will remember task...", String.format("\n\t\t%s \n", task),
+        ui.speakToUser("Blob will remember task...", String.format("\n\t\t%s \n", task),
                 String.format("Blob now remembers %d task(s)...", taskList.size()));
     }
 
@@ -74,7 +62,7 @@ public class Blob {
         }
         Deadline task = new Deadline(deconstructedDetails[0], deconstructedDetails[1]);
         taskList.add(task);
-        speak("Blob will remember task...", String.format("\n\t\t%s \n", task),
+        ui.speakToUser("Blob will remember task...", String.format("\n\t\t%s \n", task),
                 String.format("Blob now remembers %d task(s)...", taskList.size()));
     }
 
@@ -88,7 +76,7 @@ public class Blob {
         }
         Event task = new Event(deconstructedDetails[0], deconstructedDetails[1]);
         taskList.add(task);
-        speak("Blob will remember task...", String.format("\n\t\t%s \n", task),
+        ui.speakToUser("Blob will remember task...", String.format("\n\t\t%s \n", task),
         String.format("Blob now remembers %d task(s)...", taskList.size()));
     }
 
@@ -101,7 +89,7 @@ public class Blob {
         try {
             Task task = taskList.get(index - 1);
             task.markAsDone();
-            speak("Blob congratulates on task well done...", String.format("\n\t\t%s \n", task));
+            ui.speakToUser("Blob congratulates on task well done...", String.format("\n\t\t%s \n", task));
         } catch (IndexOutOfBoundsException exception) {
             throw new InvalidTaskIndexException();
         }
@@ -116,7 +104,7 @@ public class Blob {
         try {
             Task task = taskList.get(index - 1);
             task.markAsUndone();
-            speak("Blob will mark as undone...", String.format("\n\t\t%s \n", task));
+            ui.speakToUser("Blob will mark as undone...", String.format("\n\t\t%s \n", task));
         } catch (IndexOutOfBoundsException exception) {
             throw new InvalidTaskIndexException();
         }
@@ -132,30 +120,16 @@ public class Blob {
         try {
             Task task = taskList.get(index - 1);
             taskList.remove(index - 1);
-            speak("Ok... Blob forget task...", String.format("\n\t\t%s \n", task));
+            ui.speakToUser("Ok... Blob forget task...", String.format("\n\t\t%s \n", task));
         } catch (IndexOutOfBoundsException exception) {
             throw new InvalidTaskIndexException();
         }
     }
 
     /**
-     * Prints a sequence of strings, each in an indented newline encapsulated in a message instance.
-     *
-     * @param content The sequence of strings to be printed
-     */
-    private void speak(String ...content) {
-        System.out.println("\n" + MESSAGE_DIVIDER);
-        System.out.println(MESSAGE_HEADER);
-        for (int i = 0; i < content.length; i++) {
-            System.out.println("\t" + content[i]);
-        }
-        System.out.println(MESSAGE_DIVIDER + "\n");
-    }
-
-    /**
      * Loads task based on data in text file
      */
-    private void loadTasks() {
+    private void loadTasks() throws InvalidDateFormatException {
         try {
             Files.createDirectories(SAVED_TASKS_FILE_PATH.getParent());
             File taskFile = SAVED_TASKS_FILE_PATH.toFile();
@@ -209,8 +183,12 @@ public class Blob {
      * Start the interaction with an instance of Blob
      */
     public void start() {
-        this.loadTasks();
-        this.greet();
+        try {
+            this.loadTasks();
+        } catch (InvalidDateFormatException e) {
+            ui.speakToUser(e.getBlobMessages());
+        }
+        ui.speakToUser();
         Scanner sc = new Scanner(System.in);
         while (true) {
             try {
@@ -270,14 +248,14 @@ public class Blob {
                     throw new UnknownCommandException();
                 }
             } catch (BlobException exception) {
-                speak(exception.getBlobMessages());
+                ui.speakToUser(exception.getBlobMessages());
             }
         }
     }
 
     public void end() {
         saveTasks();
-        sayGoodbye();
+        ui.sayGoodbyeToUser();
         System.exit(0);
     }
 }
