@@ -1,6 +1,7 @@
 package Duke;
 
 import java.io.IOException;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -32,10 +33,12 @@ public class Duke {
         Scanner scanner = new Scanner(System.in);
         EventHandler handler = new EventHandler(this.taskList, this.userInterface);
         System.out.println("Hello my name is uncle raymond");
+
         while (!bye) {
             String input = scanner.nextLine();
             if (input.equals("bye")) {
                 bye = true;
+
                 userInterface.sayBye();
             } else if (input.equals("list")) {
                 userInterface.printList();
