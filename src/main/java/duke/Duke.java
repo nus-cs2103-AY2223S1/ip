@@ -3,6 +3,13 @@ package duke;
 import java.io.FileNotFoundException;
 import java.time.format.DateTimeParseException;
 
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
+
 /**
  * Represents a robot that takes in tasks given by user through CLI, and other requests such as
  * listing all tasks, deleting tasks, adding tasks and marking tasks.

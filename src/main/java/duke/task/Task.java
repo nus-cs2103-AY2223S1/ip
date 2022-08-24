@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 /**
  * Class Task that encapsulates details of a task.
@@ -31,6 +31,24 @@ public class Task {
     public Task(String taskName, boolean isDone) {
         this.taskName = taskName;
         this.isDone = isDone;
+    }
+
+    /**
+     * Checks whether the task is done or not.
+     *
+     * @return True if task is done, False otherwise.
+     */
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    /**
+     * Gets the task.
+     *
+     * @return The task's name.
+     */
+    public String getTaskName() {
+        return this.taskName;
     }
 
     /**

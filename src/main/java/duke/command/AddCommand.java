@@ -1,4 +1,11 @@
-package duke;
+package duke.command;
+
+import duke.storage.Storage;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.TaskList;
+import duke.task.ToDo;
+import duke.ui.Ui;
 
 /**
  * Represents an Add Command, to add a task to tasks.

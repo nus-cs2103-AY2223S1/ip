@@ -1,6 +1,8 @@
-package duke;
+package duke.ui;
 
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * Ui class that handles showing the user texts.

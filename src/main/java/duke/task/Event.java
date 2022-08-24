@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -35,6 +35,15 @@ public class Event extends Task {
     public Event(String taskName, String date, boolean isDone) throws DateTimeParseException {
         super(taskName, isDone);
         this.date = LocalDate.parse(date);
+    }
+
+    /**
+     * Gets the date of the event.
+     *
+     * @return The date of the event.
+     */
+    public LocalDate getDate() {
+        return this.date;
     }
 
     /**

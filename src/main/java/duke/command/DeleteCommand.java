@@ -1,25 +1,29 @@
-package duke;
+package duke.command;
+
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
- * Represents an Unmark Command, which unmarks a task as completed.
+ * Represents a Delete Command, to delete a task from tasks.
  *
  * @author Elgin
  */
-public class UnmarkCommand extends Command {
+public class DeleteCommand extends Command {
     /** The arguments of the command (e.g. 'sleep /at 2020-12-12'). */
     private final String arguments;
 
     /**
-     * Constructor of MarkCommand.
+     * Constructor of DeleteCommand.
      *
      * @param arguments The arguments of the command.
      */
-    public UnmarkCommand(String arguments) {
+    public DeleteCommand(String arguments) {
         this.arguments = arguments;
     }
 
     /**
-     * Executes the Unmark command, and unmarks the task as not done.
+     * Executes the delete command and remove a task from tasks.
      *
      * @param tasks All tasks present in Duke.
      * @param ui The UI controller that handles interaction between user and Duke.
@@ -27,8 +31,8 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        String taskDescription = tasks.markOrUnmark(this.arguments, false);
+        String deletedTaskDesc = tasks.deleteItem(this.arguments);
 
-        ui.showTaskUnmarked(taskDescription);
+        ui.showTaskDeleted(tasks.getTaskLen(), deletedTaskDesc);
     }
 }

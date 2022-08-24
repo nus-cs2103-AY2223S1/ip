@@ -1,13 +1,17 @@
-package duke;
+package duke.command;
+
+import duke.storage.Storage;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
- * Represents an Exit Command, which quits Duke's service to user.
+ * Represents a List Command, which lists all tasks.
  *
  * @author Elgin
  */
-public class ExitCommand extends Command {
+public class ListCommand extends Command {
     /**
-     * Executes the Exit command, and stops Duke and user interaction, ending off with a bye.
+     * Executes the command and lists all tasks to the user.
      *
      * @param tasks All tasks present in Duke.
      * @param ui The UI controller that handles interaction between user and Duke.
@@ -15,8 +19,8 @@ public class ExitCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        super.isExit = true;
+        String items = tasks.allItems();
 
-        ui.sayBye();
+        ui.showAllTasks(items);
     }
 }

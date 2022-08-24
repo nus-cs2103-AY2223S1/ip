@@ -1,7 +1,9 @@
-package duke;
+package duke.task;
 
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+
+import duke.exception.DukeException;
 
 /**
  * Represents all tasks.

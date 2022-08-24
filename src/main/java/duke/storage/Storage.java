@@ -1,4 +1,4 @@
-package duke;
+package duke.storage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,6 +9,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 /**
  * Represents storage for tasks.
@@ -55,7 +62,7 @@ public class Storage {
      *
      * @throws FileNotFoundException If file cannot be opened by Scanner.
      */
-    protected ArrayList<Task> load() throws FileNotFoundException {
+    public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> tempList = new ArrayList<>();
 
         if (this.file.exists() && !this.file.isDirectory()) {
@@ -115,16 +122,16 @@ public class Storage {
     public void save(TaskList tasks) {
         for (Task t : tasks.getTasks()) {
             // 1 denotes task is done, 0 denotes task is not done.
-            String taskDone = t.isDone ? "1" : "0";
+            String taskDone = t.isDone() ? "1" : "0";
             try {
                 if (t instanceof ToDo) {
-                    this.writeToFile("T | " + taskDone + " | " + t.taskName + "\n", false);
+                    this.writeToFile("T | " + taskDone + " | " + t.getTaskName() + "\n", false);
                 } else if (t instanceof Deadline) {
-                    this.writeToFile("D | " + taskDone + " | " + t.taskName + " | "
-                            + ((Deadline) t).date + "\n", false);
+                    this.writeToFile("D | " + taskDone + " | " + t.getTaskName() + " | "
+                            + ((Deadline) t).getDate() + "\n", false);
                 } else if (t instanceof Event) {
-                    this.writeToFile("E | " + taskDone + " | " + t.taskName + " | "
-                            + ((Event) t).date + "\n", false);
+                    this.writeToFile("E | " + taskDone + " | " + t.getTaskName() + " | "
+                            + ((Event) t).getDate() + "\n", false);
                 }
             } catch (IOException e) {
                 System.out.println(e.getMessage());

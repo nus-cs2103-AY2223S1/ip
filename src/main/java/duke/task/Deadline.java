@@ -1,4 +1,4 @@
-package duke;
+package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -35,6 +35,15 @@ public class Deadline extends Task {
     public Deadline(String taskName, String date, boolean isDone) throws DateTimeParseException {
         super(taskName, isDone);
         this.date = LocalDate.parse(date);
+    }
+
+    /**
+     * Gets the date of Deadline.
+     *
+     * @return Date of deadline.
+     */
+    public LocalDate getDate() {
+        return this.date;
     }
 
     /**
