@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Storage {
+class Storage {
     private static final Path TASKS_DATA_FILE_PATH = Paths.get("data", "tasks.txt");
 
     List<String> loadTasksData() {

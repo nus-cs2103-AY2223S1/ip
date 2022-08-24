@@ -8,10 +8,10 @@ public class TaskList implements Iterable<Task> {
     private final Storage storage;
     private final List<Task> tasks;
 
-    public TaskList(Storage storage) {
-        this.storage = storage;
+    public TaskList() {
+        this.storage = new Storage();
         this.tasks = new ArrayList<>();
-        for (String taskData : storage.loadTasksData()) {
+        for (String taskData : this.storage.loadTasksData()) {
             try {
                 this.addTask(Task.fromEncodedString(taskData));
             } catch (InvalidTaskDataException e) {
