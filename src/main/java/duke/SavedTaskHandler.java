@@ -99,7 +99,7 @@ public class SavedTaskHandler {
     public void write(TaskList taskList) {
         try {
             FileWriter writer = new FileWriter(filePath);
-            Consumer consumer = x -> {
+            Consumer<? super Task> consumer = x -> {
                 try {
                     writer.write(x + System.lineSeparator());
                 } catch (IOException e) {

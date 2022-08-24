@@ -1,4 +1,5 @@
 package duke;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.function.Consumer;
@@ -67,7 +68,7 @@ public class TaskList {
         return this.arrayList.size();
     }
 
-    public void forEach(Consumer consumer) {
+    public void forEach(Consumer<? super Task> consumer) {
         arrayList.forEach(consumer);
     }
 
