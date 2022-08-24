@@ -1,16 +1,13 @@
 public class ToDo extends Task {
 
-    protected String due;
-    private final String commandWord;
+    public final String tag = "T";
 
     public ToDo (String description, String due, String commandWord) {
-        super(description);
-        this.due = due;
-        this.commandWord = commandWord;
+        super(description, due, commandWord);
     }
 
     @Override
     public String toString() {
-        return "[T]" + super.toString() + " (" + this.commandWord + ": " + due + ")";
+        return "[" + this.tag + "]" + super.toString() + " (" + this.commandWord + ": " + this.due + ")";
     }
 }
