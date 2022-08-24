@@ -16,16 +16,30 @@ import java.util.Objects;
 import java.util.Scanner; // Import the Scanner class to read text files
 import java.util.ArrayList;
 
+/**
+ * The Storage class handles the creation of a file specified by the duke.txt file.
+ */
 public class Storage {
+    /* The filepath that the file should be created or read from. */
     String filePath;
 
+    /**
+     * Creates a Storage object.
+     *
+     * @param filePath The filePath of whether the file should be created or read from.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-    // Reused from https://www.w3schools.com/java/java_files_create.asp
-    // Reused from https://www.w3schools.com/java/java_files_read.asp
+
+    /**
+     * Returns an ArrayList<Task> after reading the contents of the file specified by the filePath variable.
+     */
     public ArrayList<Task> load() throws DukeException {
+        // Reused from https://www.w3schools.com/java/java_files_create.asp
+        // Reused from https://www.w3schools.com/java/java_files_read.asp
+
         ArrayList<Task> tasks = new ArrayList<>();
 
         try {
@@ -47,6 +61,9 @@ public class Storage {
         return null;
     }
 
+    /**
+     * Saves the data from the TaskList object into a file specified by the filePath.
+     */
     public void writeToFile(TaskList tasks) {
         try {
             FileWriter myWriter = new FileWriter(this.filePath);
@@ -62,6 +79,14 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns an ArrayList<Task> object after reading the contents of the file.
+     *
+     * @param myObj A file object.
+     * @param tasks An array with which the contents of the file read would be written to.
+     * @return An ArrayList containing the tasks read from file.
+     * @throws DukeException If there is an error found when reading the file.
+     */
     private ArrayList<Task> readFile(File myObj, ArrayList<Task> tasks) throws DukeException {
         try {
             Scanner myReader = new Scanner(myObj);

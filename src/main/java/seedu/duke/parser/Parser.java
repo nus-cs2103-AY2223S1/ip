@@ -12,7 +12,16 @@ import seedu.duke.exception.DukeException;
 
 import java.util.Objects;
 
+/**
+ * The parser class handles the parsing of a user input into a Command object that the program can handle.
+ */
 public class Parser {
+
+    /**
+     * Returns a Command object based on the argument fullCommand.
+     *
+     * @param fullCommand The user input.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String[] commands = fullCommand.split(" ", 2);
 
