@@ -8,14 +8,24 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
-
+/**
+ * puvlic class ListCommand that handles List Command/enumerate the tasklist.
+ */
 public class ListCommand extends Command{
-    private int index;
 
+    /**
+     * public constructor for ListCommand.
+     */
     public ListCommand() {
         super();
     }
 
+    /**
+     * public method execute to execute command.
+     * @param tasks
+     * @param ui
+     * @param storage
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.printMsg(tasks.enumerate());
