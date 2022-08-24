@@ -1,6 +1,6 @@
 package JennyTasks;
 
-import Exceptions.DeadlineTaskException;
+import Exceptions.DeadlineJennyTaskException;
 
 /**
  * A DeadlineJennyTask to complete.
@@ -20,9 +20,9 @@ public class DeadlineJennyTask extends JennyTask {
     public DeadlineJennyTask(String description, String dueDate) {
         super(description);
         if (description != null && description.trim().isEmpty()) {
-            throw new DeadlineTaskException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            throw new DeadlineJennyTaskException("☹ OOPS!!! The description of a deadline cannot be empty.");
         } else if (dueDate != null && dueDate.trim().isEmpty()) {
-            throw new DeadlineTaskException("☹ OOPS!!! The due date of a deadline cannot be empty.");
+            throw new DeadlineJennyTaskException("☹ OOPS!!! The due date of a deadline cannot be empty.");
         }
         this.dueDate = dueDate;
     }

@@ -1,6 +1,6 @@
 package JennyTasks;
 
-import Exceptions.EventTaskException;
+import Exceptions.EventJennyTaskException;
 
 /**
  * A EventJennyTask to complete.
@@ -20,9 +20,9 @@ public class EventJennyTask extends JennyTask {
     public EventJennyTask(String description, String dueDate) {
         super(description);
         if (description != null && description.trim().isEmpty()) {
-            throw new EventTaskException("☹ OOPS!!! The description of a event cannot be empty.");
+            throw new EventJennyTaskException("☹ OOPS!!! The description of a event cannot be empty.");
         } else if (dueDate != null && dueDate.trim().isEmpty()) {
-            throw new EventTaskException("☹ OOPS!!! The due date of a event cannot be empty.");
+            throw new EventJennyTaskException("☹ OOPS!!! The due date of a event cannot be empty.");
         }
         this.dueDate = dueDate;
     }

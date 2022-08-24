@@ -1,6 +1,6 @@
 package JennyTasks;
 
-import Exceptions.TodoTaskException;
+import Exceptions.TodoJennyTaskException;
 
 /**
  * A TodoJennyTask to complete.
@@ -18,7 +18,7 @@ public class TodoJennyTask extends JennyTask {
     public TodoJennyTask(String description) {
         super(description);
         if (description.equals("")) {
-            throw new TodoTaskException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new TodoJennyTaskException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
     }
 
