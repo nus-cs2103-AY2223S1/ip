@@ -4,7 +4,19 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A class to make sense of user inputs.
+ *
+ * @author Elbert Benedict
+ */
 public class Parser {
+    /**
+     * Converts a date string to a LocalDate instance.
+     *
+     * @param string the date string.
+     * @return The LocalDate instance representing the date string.
+     * @throws DukeException If the string is not a valid date.
+     */
     public static LocalDate convertToDateObj(String string) throws DukeException {
         try {
             return LocalDate.parse(string);
@@ -13,14 +25,34 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the string representation of a Localdate instance.
+     *
+     * @param date the Localdate instance.
+     * @return string representation of a Localdate instance.
+     */
     public static String printDate(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 
+    /**
+     * Converts a Localdate instance to save file string
+     * representation.
+     *
+     * @param date the Localdate instance.
+     * @return the date save file string representation.
+     */
     public static String printSaveFileDate(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 
+    /**
+     * Parses user input to a string array.
+     *
+     * @param input the user input.
+     * @return A string array of the parsed input.
+     * @throws DukeException If input is not valid.
+     */
     public static String[] parseUserInput(String input) throws DukeException {
         String[] parsed;
         //Split by regex to get command
