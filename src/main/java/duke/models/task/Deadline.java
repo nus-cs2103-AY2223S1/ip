@@ -6,8 +6,7 @@ import duke.utils.DukeFormatter;
 import java.time.LocalDate;
 
 /**
- * Encapsulates a task that needs to be done before a specific date/time,
- * e.g., submit report by 11/10/2019 5pm
+ * Encapsulates a {@link Task} that needs to be done before a specific date.
  *
  * @author Emily Ong Hui Qi
  */
@@ -16,11 +15,24 @@ public class Deadline extends Task {
     protected LocalDate deadline;
     private static final TaskType taskType = TaskType.DEADLINE;
 
+    /**
+     * Initializes the Deadline task with the provided description and deadline.
+     *
+     * @param description The received description
+     * @param deadline The received deadline
+     */
     public Deadline(String description, LocalDate deadline) {
         super(description);
         this.deadline = deadline;
     }
 
+    /**
+     * Initializes the Deadline task with the provided description, deadline and completion status.
+     *
+     * @param description The received description
+     * @param deadline The received deadline
+     * @param isDone The received completion status
+     */
     public Deadline(String description, LocalDate deadline, boolean isDone) {
         super(description, isDone);
         this.deadline = deadline;

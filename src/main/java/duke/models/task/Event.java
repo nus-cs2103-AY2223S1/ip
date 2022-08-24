@@ -6,24 +6,36 @@ import duke.utils.DukeFormatter;
 import java.time.LocalDate;
 
 /**
- * Encapsulates a task that starts at a specific time and ends at a specific time,
- * e.g., team project meeting on 2/10/2019 2-4pm
+ * Encapsulates a {@link Task} that starts at a specific date and ends at a specific date.
  *
  * @author Emily Ong Hui Qi
  */
 
 public class Event extends Task {
-    protected LocalDate datetime;
+    protected LocalDate date;
     private static final TaskType taskType = TaskType.EVENT;
 
-    public Event(String description, LocalDate datetime) {
+    /**
+     * Initializes the Event task with the provided description and date.
+     *
+     * @param description The received description
+     * @param date The received date
+     */
+    public Event(String description, LocalDate date) {
         super(description);
-        this.datetime = datetime;
+        this.date = date;
     }
 
-    public Event(String description, LocalDate datetime, boolean isDone) {
+    /**
+     * Initializes the Event task with the provided description, date and completion status.
+     *
+     * @param description The received description
+     * @param date The received date
+     * @param isDone The received completion status
+     */
+    public Event(String description, LocalDate date, boolean isDone) {
         super(description, isDone);
-        this.datetime = datetime;
+        this.date = date;
     }
 
     @Override
@@ -33,16 +45,16 @@ public class Event extends Task {
 
     @Override
     public TaskSerializable serialize() {
-        return new TaskSerializable(Event.taskType, super.description, super.isDone, this.datetime);
+        return new TaskSerializable(Event.taskType, super.description, super.isDone, this.date);
     }
 
     @Override
     public LocalDate getDate() {
-        return this.datetime;
+        return this.date;
     }
 
     @Override
     public String toString() {
-        return String.format("%s (at: %s)", super.toString(), DukeFormatter.formatDate(this.datetime));
+        return String.format("%s (at: %s)", super.toString(), DukeFormatter.formatDate(this.date));
     }
 }

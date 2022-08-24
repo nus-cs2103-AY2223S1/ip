@@ -12,6 +12,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+/**
+ * Encapsulates the logic for serializing and deserializing a {@link Task}.
+ *
+ * @author Emily Ong Hui Qi
+ */
 public class TaskSerializable extends Serializable<Task>{
     private final TaskType taskType;
     private final String taskDescription;
@@ -22,6 +27,14 @@ public class TaskSerializable extends Serializable<Task>{
 
     private static final String ERROR_UNKNOWN_TASK_TYPE = "Unknown task type %s!";
 
+    /**
+     * Initializes the serializable {@link Task} object from parameters for the {@link Task} model.
+     *
+     * @param taskType The type of the task
+     * @param taskDescription The description of the task
+     * @param taskIsDone The completion status of the task
+     * @param taskMetaData The meta data associated with the task
+     */
     public TaskSerializable(
             TaskType taskType,
             String taskDescription,
@@ -35,7 +48,7 @@ public class TaskSerializable extends Serializable<Task>{
         this.taskMetaData = taskMetaData;
     }
 
-    public TaskSerializable(String serializedString) throws DukeException {
+    private TaskSerializable(String serializedString) throws DukeException {
         super(serializedString, TaskSerializable.MATCH_TASK_DATA);
         String[] originalData = super.get();
         this.taskType = TaskType.fromString(originalData[0]);
@@ -64,6 +77,13 @@ public class TaskSerializable extends Serializable<Task>{
         return data.toArray(String[]::new);
     }
 
+    /**
+     * Initializes and returns the serializable {@link Task} object from a serialized string.
+     *
+     * @param serializedString The received serialized string
+     * @return The serializable task object if and only if the received serialized string is of the expected format
+     * @throws DukeException If the serialized string is not of the expected format
+     */
     public static TaskSerializable from(String serializedString) throws DukeException {
         return new TaskSerializable(serializedString);
     }
