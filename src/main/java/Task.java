@@ -31,6 +31,8 @@ public class Task {
         return (isDone ? "X" : " ");
     }
 
+    public String getTaskTypeIcon() { return "T"; }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
