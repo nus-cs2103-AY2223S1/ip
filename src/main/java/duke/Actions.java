@@ -1,11 +1,14 @@
 package duke;
 
+/**
+ *  A class which encapsulates the functionality Duke can do, current functionality is only the to-do list.
+ *  @author  Chen Guanzhou
+ *  @version v1
+ */
+
+public class Actions { //actions that Duke can perform
 import java.util.Scanner;
 
-public class Actions {
-    /**
-     * The current chatbot functionality which takes in user input and reacts accordingly to the input.
-     */
     public static void toDoList() {
         TaskList currList = new TaskList();
         Storage fileHandler = new Storage(currList);
