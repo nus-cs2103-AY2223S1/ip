@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,7 +10,7 @@ public class Storage {
     public File createSaveDirectory() throws IOException {
         try {
             String path = ".." + File.separator + ".." + File.separator + ".."
-                    + File.separator + "data";
+                    + File.separator + ".." + File.separator + "data";
             File dir = new File(path);
             if (!dir.exists()) {
                 dir.mkdirs();

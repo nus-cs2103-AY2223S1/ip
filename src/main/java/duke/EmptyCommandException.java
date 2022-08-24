@@ -1,3 +1,5 @@
+package duke;
+
 public class EmptyCommandException extends DukeException {
 
     public EmptyCommandException(String errorMessage) {

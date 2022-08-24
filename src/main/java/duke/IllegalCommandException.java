@@ -1,3 +1,5 @@
+package duke;
+
 public class IllegalCommandException extends DukeException {
 
     public IllegalCommandException(String errorMessage) {

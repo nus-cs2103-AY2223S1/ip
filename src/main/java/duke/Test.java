@@ -1,3 +1,5 @@
+package duke;
+
 public class Test {
     public enum Command {
         TODO, LIST

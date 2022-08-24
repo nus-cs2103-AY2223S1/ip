@@ -1,3 +1,5 @@
+package duke;
+
 public class IllegalDateTimeException extends DukeException {
 
     public IllegalDateTimeException(String errorMessage) {

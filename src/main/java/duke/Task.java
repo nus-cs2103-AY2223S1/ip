@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * This class encapsulates the attributes, states and capabilities
  * of a task: its name, its done status and the ability to change it.
