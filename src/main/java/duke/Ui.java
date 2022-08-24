@@ -1,5 +1,4 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
+package duke;
 
 public class Ui {
     public void printWithLineFormat(String message) {

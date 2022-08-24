@@ -1,9 +1,8 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TaskList {
     protected static ArrayList<Task> taskList = new ArrayList<Task>();
