@@ -9,23 +9,18 @@ import commands.ByeCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
 import exceptions.DukeException;
+import io.createFile;
+import io.loadFile;
+import io.saveFile;
 
-/*
- * TODO: add exceptions
- * - when input for mark or unmark does not contian a proper index 
- *   - not int
- *   - array does not contain that task in that index
- *   - index <= 0
- *
- * TODO: abstract out status updates from settleInput
- */
 public class Duke {
-  /* String ArrayList to store text entered by the user.
+
+  /** String ArrayList to store text entered by the user.
    * Won't go past 100 inputs.
    */
   private static ArrayList<Task> tasks = new ArrayList<Task>();
 
-  /*
+  /**
    * Parses a String[] for an "event", "deadline" or "todo" task.
    *
    * @param action The command. Will be ither "event", "deadline" or "todo".
@@ -88,7 +83,7 @@ public class Duke {
     return newSplitInput;
   }
 
-  /*
+  /**
    * Performs actions based on the input.
    * Commands:
    *   - 'Bye': Terminates the programme.
@@ -197,7 +192,17 @@ public class Duke {
     // Welcome message
     System.out.println("MumBot: Hi dear! You are precious <3\n");
 
-    /*
+    /**
+     * Handling of the .txt file containing the list of tasks.
+     */
+    // Location of the .txt file containing the list of tasks
+    String fileLoc = "../../../data/duke.txt";
+    // Create the .txt file if it hasn't already been created
+    createFile.makeFile(fileLoc);
+    // Load the .txt file, and getting the list of tasks as an ArrayList<Task> if the .txt file contains any data
+    tasks = loadFile.load(fileLoc);
+
+    /**
      * Take in user input.
      * All inputs are considered as Strings.
      */
@@ -226,6 +231,7 @@ public class Duke {
       }
     }
 
+    saveFile.save(tasks, fileLoc); // Saving the list of files into a .txt file
     System.exit(0);
   }
 }
