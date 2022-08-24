@@ -1,20 +1,30 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents a time-sensitive task that has a time period
  * during which it will occur.
  */
 public class EventTask extends Task{
 
-    /** The period during which the event will take place. */
-    private String period = "";
+    /** The start time for the event. */
+    private LocalDateTime startTime = null;
+
+    /** The end time for the event. */
+    private LocalDateTime endTime = null;
 
     /**
-     * Constructor for an event task.
+     * Constructs the event task given the description, starting time and
+     * ending time.
+     * 
      * @param description A description of the event
-     * @param period The time period for the event
+     * @param startTime The start time for the event
+     * @param endTime The end time for the event
      */
-    public EventTask(String description, String period) {
+    public EventTask(String description, LocalDateTime startTime, LocalDateTime endTime) {
         super(description);
-        this.period = period;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     /**
@@ -23,6 +33,8 @@ public class EventTask extends Task{
      */
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), this.period);
+        String startTimeString = this.startTime.format(DateTimeFormatter.ofPattern("d/MMM/yy HH:mm"));
+        String endTimeString = this.endTime.format(DateTimeFormatter.ofPattern("d/MMM/yy HH:mm"));
+        return String.format("[E]%s (at: %s to %s)", super.toString(), startTimeString, endTimeString);
     }
 }

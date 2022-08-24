@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
@@ -9,6 +12,9 @@ public class TaskList {
 
     /** This represents the todo-list to be populated with tasks */
     private ArrayList<Task> items = new ArrayList<>();
+
+    public static final DateTimeFormatter DATETIME_FORMATTER =
+            DateTimeFormatter.ofPattern("d.M.yyyy HH:mm");
 
     /**
      * Insert a new task into the todo-list.
@@ -36,18 +42,48 @@ public class TaskList {
             if (taskDetails.split("/by").length < 2) {
                 return "☹ Please specify the deadline!";
             }
+
+            String taskDescription = taskDetails.split("/by")[0].trim();
+            String deadlineString = taskDetails.split("/by")[1].trim();
+            LocalDateTime deadlineTime = null;
+            try {
+                deadlineTime = LocalDateTime.parse(deadlineString, DATETIME_FORMATTER);
+            } catch (DateTimeParseException e) {
+                System.out.println("Uhoh! Please use the following format for time dd.mm.yyyy hh:mm");
+                return "An error occurred, nothing was added";
+            }
+
             items.add(
                 new DeadlineTask(
-                    taskDetails.split("/by")[0].trim(), 
-                    taskDetails.split("/by")[1].trim()));
+                    taskDescription, 
+                    deadlineTime));
         } else if (taskType.equalsIgnoreCase("event")) {
-            if (taskDetails.split("/at").length < 2) {
-                return "☹ Please specify the period!";
+            if (taskDetails.split("/from").length < 2) {
+                return "☹ Please specify the start and end time!";
             }
+
+            String taskDescription = taskDetails.split("/from")[0].trim();
+            String periodString = taskDetails.split("/from")[1].trim();
+            if (periodString.split("/to").length < 2) {
+                return "☹ Please specify the start and end time!";
+            }
+            LocalDateTime startTime = null;
+            LocalDateTime endTime = null;
+            try {
+                startTime = LocalDateTime.parse(
+                        periodString.split("/to")[0].trim(), DATETIME_FORMATTER);
+                endTime = LocalDateTime.parse(
+                        periodString.split("/to")[1].trim(), DATETIME_FORMATTER);
+            } catch (DateTimeParseException e) {
+                System.out.println("Uhoh! Please use the following format for time dd.mm.yyyy hh:mm");
+                return "An error occurred, nothing was added";
+            }
+
             items.add(
                 new EventTask(
-                    taskDetails.split("/at")[0].trim(), 
-                    taskDetails.split("/at")[1].trim()));
+                    taskDescription,
+                    startTime, 
+                    endTime));
         } else if (taskType.equalsIgnoreCase("todo")) {
             items.add(new ToDoTask(taskDetails));
         } else {
