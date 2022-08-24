@@ -1,16 +1,22 @@
 package command;
 
-import java.util.ArrayList;
-
 import exception.DukeException;
-import task.Task;
+import task.TaskList;
 
+
+/**
+ * An abstract class for all Commands.
+ */
 public abstract class Command {
 
-  protected String[] commandArgs;
-  protected ArrayList<Task> tasks;
+  protected String[] commandArgs; // Stores the details of a user's input.
+  protected TaskList tasks; // Stores the TaskList of a user.
 
-  public Command(String[] commandArgs, ArrayList<Task> tasks) {
+  /**
+   * Initialises a Command to store the details of the
+   * user's input and the TaskList.
+   */
+  public Command(String[] commandArgs, TaskList tasks) {
     this.commandArgs = commandArgs;
     this.tasks = tasks;
   }

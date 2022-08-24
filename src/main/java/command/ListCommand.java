@@ -2,26 +2,30 @@ package command;
 
 import java.util.ArrayList;
 
-import task.Task;
+import task.TaskList;
 import ui.Ui;
 
+/**
+ * Handles the listing of tasks of a user.
+ */
 public class ListCommand extends Command {
 
-  public ListCommand(String[] commandArgs, ArrayList<Task> tasks) {
+  /**
+   * Initialises a ListCommand to store the details of the
+   * user's input and the TaskList.
+   */
+  public ListCommand(String[] commandArgs, TaskList tasks) {
     super(commandArgs, tasks);
   }
 
+  /**
+   * Lists all the tasks of the user's TaskList.
+   * Returns true to indicate that the programme should continue
+   * prompting for user input.
+   */
   @Override
   public boolean performAction() {
-    Ui.print("Sweetie, here is the list of tasks that you have <3");
-    for (int i = 0; i < this.tasks.size(); i++) {
-      Ui.print(
-          (i + 1)
-          + ". " 
-          + this.tasks.get(i));
-    }
-
-    System.out.println("");
+    tasks.list();
     return true;
   }
 }

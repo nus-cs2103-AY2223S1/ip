@@ -4,8 +4,12 @@ import java.util.ArrayList;
 
 import exception.DukeException;
 import task.Task;
+import task.TaskList;
 import ui.Ui;
 
+/**
+ * Handles the creating of tasks.
+ */
 public class TaskCommand extends Command {
   
   /**
@@ -16,7 +20,7 @@ public class TaskCommand extends Command {
    * @param tasks An <code>ArrayList<Task></code>, containing the
    * current existing tasks in the programme.
    */
-  public TaskCommand(String[] commandArgs, ArrayList<Task> tasks) {
+  public TaskCommand(String[] commandArgs, TaskList tasks) {
     super(commandArgs, tasks);
   }
 
@@ -30,15 +34,14 @@ public class TaskCommand extends Command {
   public boolean performAction() {
 
     if (this.commandArgs[0].equals("todo")) {
-      tasks.add(new Task(this.commandArgs[1]));
+      tasks.addTask(new Task(this.commandArgs[1]), true);
 
     } else if (this.commandArgs[0].equals("deadline")) {
-      tasks.add(new Task(this.commandArgs[1], this.commandArgs[2], Task.Type.DEADLINE));
+      tasks.addTask(new Task(this.commandArgs[1], this.commandArgs[2], Task.Type.DEADLINE), true);
 
     } else if (this.commandArgs[0].equals("event")) {
-      tasks.add(new Task(this.commandArgs[1], this.commandArgs[2], Task.Type.EVENT));
+      tasks.addTask(new Task(this.commandArgs[1], this.commandArgs[2], Task.Type.EVENT), true);
     }
-  Ui.print("Hey sweetie, I've added: '" + this.commandArgs[1] + "' to your lists of tasks~");
   return true;
   }
 }

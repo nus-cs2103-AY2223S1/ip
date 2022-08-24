@@ -3,7 +3,7 @@ package storage;
 import java.util.ArrayList;
 
 import exception.DukeException;
-import task.Task;
+import task.TaskList;
 
 /**
  * Handles the creating, loading and saving of tasks.
@@ -21,7 +21,7 @@ public class Storage {
   /**
    * Stores a user's list of tasks.
    */
-  private ArrayList<Task> tasks;
+  private TaskList tasks;
 
   /**
    * Initialises a Storage object.
@@ -36,7 +36,7 @@ public class Storage {
     createFile.makeFile(filePath);
 
     /**
-     * Load the .txt file, and get the list of tasks as an ArrayList<Task> if the .txt
+     * Load the .txt file, and get the list of tasks if the .txt
      * file contains any data.
      */
     tasks = loadFile.load(filePath);
@@ -45,7 +45,7 @@ public class Storage {
   /**
    * Gets the current tasks stored in this Storage object.
    */
-  public ArrayList<Task> getTasks() {
+  public TaskList getTasks() {
     return tasks;
   }
 

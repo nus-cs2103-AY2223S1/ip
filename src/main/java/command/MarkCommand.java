@@ -2,9 +2,12 @@ package command;
 
 import java.util.ArrayList;
 
-import task.Task;
+import task.TaskList;
 import ui.Ui;
 
+/**
+ * Handles the marking or unmarking of tasks.
+ */
 public class MarkCommand extends Command {
 
   /**
@@ -15,7 +18,7 @@ public class MarkCommand extends Command {
    * @param tasks An <code>ArrayList<Task></code>, containing the
    * current existing tasks in the programme.
    */
-  public MarkCommand(String[] commandArgs, ArrayList<Task> tasks) {
+  public MarkCommand(String[] commandArgs, TaskList tasks) {
     super(commandArgs, tasks);
   }
 
@@ -23,19 +26,14 @@ public class MarkCommand extends Command {
    * Marks or unmarks a task to denote its completion.
    *
    * @return Returns true for the main Duke class to know to
-   * continue asking for input.
+   * continue asking for user input.
    */
   @Override
   public boolean performAction() {
-    if (this.commandArgs[0].equals("mark")) {
-      Integer index = Integer.parseInt(this.commandArgs[1]) - 1;
-      Task taskToUpdate = this.tasks.get(index);
-      Ui.print(taskToUpdate.updateStatus(true) + "\n");
-
+    if (commandArgs[0].equals("mark")) {
+      tasks.mark(Integer.parseInt(commandArgs[1]) - 1);
     } else if (this.commandArgs[0].equals("unmark")) {
-      Integer index = Integer.parseInt(this.commandArgs[1]) - 1;
-      Task taskToUpdate = this.tasks.get(index);
-      Ui.print(taskToUpdate.updateStatus(false) + "\n");
+      tasks.unmark(Integer.parseInt(commandArgs[1]) - 1);
     }
 
     return true;

@@ -10,14 +10,15 @@ import command.TaskCommand;
 import exception.DukeException;
 import storage.Storage;
 import task.Task;
+import task.TaskList;
 import ui.Ui;
 
 public class Duke {
 
-  /** String ArrayList to store text entered by the user.
-   * Won't go past 100 inputs.
+  /**
+   * Stores all the tasks of the user.
    */
-  private static ArrayList<Task> tasks = new ArrayList<Task>();
+  private static TaskList tasks;
 
   /**
    * Parses a String[] for an "event", "deadline" or "todo" task.
@@ -136,7 +137,7 @@ public class Duke {
 
       // Throw an error if there isn't a task with that index
       index = Integer.parseInt(splitInput[1]);
-      if (index > tasks.size()) {
+      if (index > tasks.getSize()) {
         throw new DukeException("There isn't a task with that index !!!");
       }
 
@@ -173,7 +174,7 @@ public class Duke {
 
       // Throw an error if there isn't a task with that index
       index = Integer.parseInt(splitInput[1]);
-      if (index > tasks.size()) {
+      if (index > tasks.getSize()) {
         throw new DukeException("There isn't a task with that index !!!");
       }
 

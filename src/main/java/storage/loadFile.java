@@ -2,6 +2,7 @@ package storage;
 
 import exception.DukeException;
 import task.Task;
+import task.TaskList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -58,15 +59,15 @@ class loadFile {
   }
 
   /**
-   * Loads a .txt file of tasks, converts it to an
-   * <code>ArrayList<Task></code> and returns it.
+   * Loads a .txt file of tasks, converts it to a <code>TaskList</code>
+   * and returns it.
    *
    * @param filePath The location of the file.
-   * @return The <code>ArrayList<Task></code> converted from the .txt file.
+   * @return The <code>TaskList</code> converted from the .txt file.
    * @throws DukeException Throws an exception if an IOException is caught.
    */
-  public static ArrayList<Task> load(String filePath) throws DukeException {
-    ArrayList<Task> tasks = new ArrayList<Task>();
+  public static TaskList load(String filePath) throws DukeException {
+    TaskList tasks = new TaskList(new ArrayList<Task>());
     try {
       File file = new File(filePath);
       Scanner sc = new Scanner(file);
@@ -74,7 +75,7 @@ class loadFile {
       while (sc.hasNext()) {
         String taskString = sc.nextLine();
         Task task = parseTaskString(taskString);
-        tasks.add(task);
+        tasks.addTask(task, false);
       }
     } catch (IOException e) {
       throw new DukeException("Honnney! There was a problem with loading your list " +
