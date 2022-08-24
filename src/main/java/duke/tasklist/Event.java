@@ -1,4 +1,4 @@
-package tasklist;
+package duke.tasklist;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +21,7 @@ public class Event extends Task {
     @Override
     public String savedFileFormat() {
         return "E | " + (this.isDone ? 1 : 0) + " | " + this.description
-                + " | " + this.at;
+                + " | " + this.at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
 }

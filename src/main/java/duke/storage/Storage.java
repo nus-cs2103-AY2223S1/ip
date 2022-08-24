@@ -1,4 +1,4 @@
-package storage;
+package duke.storage;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,9 +8,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import exceptions.DukeException;
-import tasklist.Task;
-import tasklist.TaskList;
+import duke.exceptions.DukeException;
+import duke.tasklist.Task;
+import duke.tasklist.TaskList;
 
 public class Storage {
 
@@ -28,7 +28,7 @@ public class Storage {
     public void readSavedTasks(){
         try {
             DateTimeFormatter formatter = DateTimeFormatter.
-                    ofPattern("yyyy-MM-dd HHmm");
+                    ofPattern("yyyy MM dd HH:mm");
             File dir = new File("data/");
             if (!dir.exists()) {
                 boolean makeDir = dir.mkdir();

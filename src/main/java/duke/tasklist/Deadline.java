@@ -1,4 +1,4 @@
-package tasklist;
+package duke.tasklist;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +20,7 @@ public class Deadline extends Task {
     @Override
     public String savedFileFormat() {
         return "D | " + (this.isDone ? 1 : 0) + " | " + this.description
-                + " | " + this.by;
+                + " | " + this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
 }

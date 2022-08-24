@@ -1,12 +1,12 @@
-package tasklist;
+package duke.tasklist;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
-import exceptions.DukeException;
-import storage.Storage;
+import duke.exceptions.DukeException;
+import duke.storage.Storage;
 
 public class TaskList {
     private static TaskList tasklist;
@@ -135,7 +135,7 @@ public class TaskList {
         if (!s.equals("")) {
             int idx = Integer.parseInt(s);
             if (idx - 1 >= storage.size() || idx < 1) {
-                throw new DukeException("Invalid selection for marking");
+                throw new DukeException("Invalid selection for deletion");
             } else {
                 Task t = storage.get(idx - 1);
                 storage.remove(idx - 1);

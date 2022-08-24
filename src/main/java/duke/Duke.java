@@ -1,7 +1,12 @@
-import parser.Parser;
-import storage.Storage;
-import tasklist.TaskList;
+package duke;
+
+import duke.exceptions.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.tasklist.TaskList;
 import ui.Ui;
+
+import java.util.Scanner;
 
 public class Duke {
 
@@ -23,8 +28,12 @@ public class Duke {
     }
 
     private void loopInputRead() {
-        Parser parser = new Parser();
-        parser.handleInput();
+        Parser parser = new Parser(new Scanner(System.in));
+        try {
+            parser.handleInput();
+        } catch (DukeException e) {
+            e.getMessage();
+        }
 
     }
 
