@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class InputParser {
@@ -133,11 +135,13 @@ public class InputParser {
                 throw new CustomMessageException(indentedMessage(generateEmptyDescMessage(taskCommand.getString())));
             }
             String userRequirement = splitString[1].strip();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime dateTime = LocalDateTime.parse(userRequirement, formatter);
             Task newTask;
             if (taskCommand == Command.EVENT) {
-                newTask = new Event(taskDescription, Command.EVENT, userRequirement);
+                newTask = new Event(taskDescription, Command.EVENT, dateTime);
             } else {
-                newTask = new Deadline(taskDescription, Command.DEADLINE, userRequirement);
+                newTask = new Deadline(taskDescription, Command.DEADLINE, dateTime);
             }
             taskList.addToTaskList(newTask);
         }

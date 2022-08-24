@@ -12,7 +12,8 @@ public class Deadline extends Task {
 
     @Override
     public String getFileStorageString(int index) {
-        return taskCommand.getString() + " " + description + " /by " + by + "\n" + getTaskDoneString(index);
+        return taskCommand.getString() + " " + description + " /by " + dateTime.format(
+                DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")) + "\n" + getTaskDoneString(index);
     }
 
     @Override

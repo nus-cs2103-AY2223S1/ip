@@ -12,7 +12,8 @@ public class Event extends Task {
 
     @Override
     public String getFileStorageString(int index) {
-        return taskCommand.getString() + " " + description + " /at " + start + "\n" + getTaskDoneString(index);
+        return taskCommand.getString() + " " + description + " /at " + dateTime.format(
+                DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm")) + "\n" + getTaskDoneString(index);
     }
 
     @Override
