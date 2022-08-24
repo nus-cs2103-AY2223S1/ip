@@ -1,6 +1,3 @@
-import java.util.Scanner;
-import java.util.ArrayList;
-
 public class Duke {
     private Storage storage;
     private TaskList tasks;
@@ -11,6 +8,8 @@ public class Duke {
         storage = new Storage(filePath);
         if (storage.hasExisted()) {
             tasks = storage.load();
+        } else {
+            tasks = new TaskList();
         }
     }
 
@@ -29,6 +28,7 @@ public class Duke {
                     return;
                 case QUIT:
                     Ui.printGoodbyeMessage();
+                    return;
                 case LIST:
                     return;
                 case INVALID:
