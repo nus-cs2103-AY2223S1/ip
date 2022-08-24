@@ -10,9 +10,10 @@ import java.util.Scanner;
 
 public class Duke {
 
-    static List<Task> todoList = new ArrayList<>();
+    static TaskList taskList = new TaskList();
     private static String keySeparator = "//";
     private static String fileName = "data/tasks.txt";
+    private static Storage storage = new Storage(fileName);
     private static Ui ui;
 
     public static class Ui {
@@ -41,10 +42,8 @@ public class Duke {
 
         public void printTasks() {
             System.out.println("here! ur tasks:");
-            for(int i = 1; i <= todoList.size(); i++) {
-                Task task = todoList.get(i-1);
-                System.out.println(i + "." + task.toString());
-            }
+            System.out.println(taskList.toString());
+
         }
         public void showError(String message) {
             System.out.println("error! " + message);
@@ -65,20 +64,40 @@ public class Duke {
         public void save() {
             try {
                 FileWriter fw = new FileWriter(fileName, false);
-                for(int i = 0; i < todoList.size(); i++) {
-                    fw.write(todoList.get(i).formatToSave() + "\n");
-                }
-
+                fw.write(taskList.formatTasks());
                 fw.close();
             } catch (IOException e) {
                 ui.showError("file not found");
-                //System.out.println();
                 return;
             }
         }
 
-        public void load() {
+        public void load() throws FileNotFoundException {
+            File file = new File(fileName);
+            Scanner scanner = new Scanner(file);
+            while(scanner.hasNext()) {
+                String dataStr = scanner.nextLine();
+                String[] taskStr = dataStr.split(keySeparator);
+                Task task;
 
+                switch (taskStr[0]) {
+                    case "T": task = new Todo(taskStr[2]);
+                        break;
+                    case "D": task = new Deadline(taskStr[2], LocalDate.parse(taskStr[3]));
+                        break;
+                    case "E": task = new Event(taskStr[2], taskStr[3]);
+                        break;
+                    default: task = new Task(taskStr[2]);
+                        break;
+                }
+                if(Integer.parseInt(taskStr[1]) == 1) {
+                    task.markAsDone();
+                } else {
+                    task.markAsUndone();
+                }
+                taskList.addTask(task);
+            }
+            scanner.close();
         }
     }
 
@@ -87,9 +106,52 @@ public class Duke {
     }
 
     public static class TaskList {
-        private List<Task> taskList;
+        private List<Task> tasks;
 
-        
+        public TaskList() {
+            this.tasks = new ArrayList<>();
+        }
+
+        public void addTask(Task task) {
+            this.tasks.add(task);
+        }
+
+        public void removeTask(int index) {
+            this.tasks.remove(index);
+        }
+
+        public void markTask(int index) {
+            this.tasks.get(index).markAsDone();
+        }
+
+        public void unmarkTask(int index) {
+            this.tasks.get(index).markAsUndone();
+        }
+        public Task getTask(int index) {
+            return this.tasks.get(index);
+        }
+
+        public int getSize() {
+            return this.tasks.size();
+        }
+
+        public String formatTasks() {
+            String str = "";
+            for(int i = 0; i < getSize(); i++) {
+                str += getTask(i).formatToSave() + "\n";
+            }
+            return str;
+        }
+
+        @Override
+        public String toString() {
+            String str = "";
+            for(int i = 1; i <= this.getSize(); i++) {
+                Task task = this.getTask(i-1);
+                str += i + "." + task.toString() + "\n";
+            }
+            return str;
+        }
     }
 
     /**
@@ -221,7 +283,7 @@ public class Duke {
         String exit = "bye"; // the keyword to exit
 
         try {
-            loadTasks();
+            storage.load();
         } catch (FileNotFoundException e) {
             ui.showError("File not found");
             //System.out.println("File not found!");
@@ -255,15 +317,15 @@ public class Duke {
                         }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
-                            if(index < 0 || index >= todoList.size()) { // to check if index is out of range
+                            if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
                                 ui.showError("thrs nth there :<");
                                 //System.out.println("thrs nth there :<");
                                 continue;
                             }
-                            temp = todoList.get(index);
-                            temp.markAsDone();
+                            taskList.markTask(index);
+                            temp = taskList.getTask(index);
                             ui.displayTask(ui.MARKED, temp);
-                            saveTasks();
+                            storage.save();
                         } catch (NumberFormatException e) {
                             ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
                         }
@@ -275,14 +337,15 @@ public class Duke {
                         }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
-                            if(index < 0 || index >= todoList.size()) { // check if index is out of range
+                            if(index < 0 || index >= taskList.getSize()) { // check if index is out of range
                                 ui.showError("thrs nth there :<");
                                 continue;
                             }
-                            temp = todoList.get(index);
-                            temp.markAsUndone();
+                            taskList.unmarkTask(index);
+                            temp = taskList.getTask(index);
+
                             System.out.println(ui.UNMARKED + temp);
-                            saveTasks();
+                            storage.save();
                         } catch (NumberFormatException e) {
                             ui.showError("Invalid input");
                         }
@@ -295,15 +358,15 @@ public class Duke {
                         }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
-                            if(index < 0 || index >= todoList.size()) {
+                            if(index < 0 || index >= taskList.getSize()) {
                                 ui.showError("thrs nth there :<");
                                 continue;
                             }
-                            temp = todoList.get(index);
-                            todoList.remove(temp);
-                            saveTasks();
+                            taskList.removeTask(index);
+                            temp = taskList.getTask(index);
+                            storage.save();
                             ui.displayTask(ui.DELETED, temp);
-                            System.out.println("now u have " + todoList.size() + " task(s)!");
+                            System.out.println("now u have " + taskList.getSize() + " task(s)!");
                         } catch (NumberFormatException e) {
                             ui.showError("Invalid input");
                         }
@@ -366,61 +429,10 @@ public class Duke {
      * @param task task to be added
      */
     public static void addTask(Task task) {
-        todoList.add(task);
+        taskList.addTask(task);
         ui.displayTask(ui.ADDED, task);
-        System.out.println("now u have " + todoList.size() + " task(s)!");
-        saveTasks();
+        System.out.println("now u have " + taskList.getSize() + " task(s)!");
+        storage.save();
     }
 
-    public static void loadTasks () throws FileNotFoundException {
-        File file = new File(fileName);
-        Scanner scanner = new Scanner(file);
-        while(scanner.hasNext()) {
-            String dataStr = scanner.nextLine();
-            String[] taskStr = dataStr.split(keySeparator);
-            Task task;
-
-            switch (taskStr[0]) {
-                case "T": task = new Todo(taskStr[2]);
-                    break;
-                case "D": task = new Deadline(taskStr[2], LocalDate.parse(taskStr[3]));
-                    break;
-                case "E": task = new Event(taskStr[2], taskStr[3]);
-                    break;
-                default: task = new Task(taskStr[2]);
-                    break;
-            }
-            if(Integer.parseInt(taskStr[1]) == 1) {
-                task.markAsDone();
-            } else {
-                task.markAsUndone();
-            }
-            todoList.add(task);
-        }
-        scanner.close();
-    }
-
-    public static void saveTasks() {
-        try {
-            FileWriter fw = new FileWriter(fileName, false);
-            for(int i = 0; i < todoList.size(); i++) {
-                fw.write(todoList.get(i).formatToSave() + "\n");
-            }
-
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("file not found");
-            return;
-        }
-
-    }
-    /**
-     * Prints out the current list
-     */
-//    public static void printList() {
-//        for(int i = 1; i <= todoList.size(); i++) {
-//            Task task = todoList.get(i-1);
-//            System.out.println(i + "." + task.toString());
-//        }
-//    }
 }
