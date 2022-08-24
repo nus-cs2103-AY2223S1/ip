@@ -15,7 +15,7 @@ public class MarkTaskCommand extends Command {
     }
 
     /**
-     *
+     * Marks a task in the list
      * @param taskList duke.TaskList to update the task that is marked
      * @param storage duke.utils.Storage to save marked task
      * @throws DukeException Index out of bounds / Uncreated task index

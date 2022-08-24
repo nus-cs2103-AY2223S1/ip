@@ -7,7 +7,7 @@ import duke.utils.Ui;
 public class ExitCommand extends Command{
 
     /**
-     * duke.command.Command to exit the application
+     * Exits the application
      */
     @Override
     public void run(TaskList taskList, Storage storage) {
