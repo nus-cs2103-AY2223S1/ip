@@ -1,4 +1,7 @@
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -39,7 +42,8 @@ public class Duke {
                         storage.add(item);
                     } else if (next.startsWith("Deadline")) {
                         String[] temp = next.split(" / ");
-                        Deadline item = new Deadline(temp[2], temp[3]);
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm");
+                        Deadline item = new Deadline(temp[2], LocalDateTime.parse(temp[3],formatter));
                         item.setIsDone(temp[1].equalsIgnoreCase("true"));
                         storage.add(item);
                     } else if (next.startsWith("Event")) {
@@ -133,11 +137,29 @@ public class Duke {
             } else if (text.startsWith("deadline")) {
                 try {
                     String[] description = text.replace("deadline ", "").split("/by ");
-                    Deadline item = new Deadline(description[0], description[1]);
-                    storage.add(item);
-                    System.out.println(divider);
-                    System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
-                    System.out.println(divider);
+                    try {
+                        if(description[1].length()>10) {
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                            Deadline item = new Deadline(description[0], LocalDateTime.parse(description[1], formatter));
+                            storage.add(item);
+                            System.out.println(divider);
+                            System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
+                            System.out.println(divider);
+                        } else {
+                            description[1]= description[1] + " 00:00";
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+                            Deadline item = new Deadline(description[0], LocalDateTime.parse(description[1], formatter));
+                            storage.add(item);
+                            System.out.println(divider);
+                            System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.size() + " tasks in the list");
+                            System.out.println(divider);
+                        }
+                    }
+                    catch(DateTimeParseException e){
+                        System.out.println(divider);
+                        System.out.println("Incorrect date time format the format is dd/mm/yyyy hh:mm if time is not provided the default is 00:00");
+                        System.out.println(divider);
+                    }
                 } catch (ArrayIndexOutOfBoundsException error) {
                     System.out.println(divider);
                     System.out.println("Please provide a deadline and a by time e.g. deadline <description of the deadline> /by <time of the deadline>");
@@ -281,7 +303,7 @@ public class Duke {
                 dukeWriter.write("Event / " + ((Event) storage.get(i)).getIsDone() + " / " + ((Event) storage.get(i)).getDescription() + " / " + ((Event) storage.get(i)).getAt() + "\n");
             }
             if (storage.get(i).getClass() == Deadline.class) {
-                dukeWriter.write("Deadline / " + ((Deadline) storage.get(i)).getIsDone() + " / " + ((Deadline) storage.get(i)).getDescription() + " / " + ((Deadline) storage.get(i)).getBy() + "\n");
+                dukeWriter.write("Deadline / " + ((Deadline) storage.get(i)).getIsDone() + " / " + ((Deadline) storage.get(i)).getDescription() + " / " + ((Deadline) storage.get(i)).getBy().format(DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm")) + "\n");
             }
         }
         dukeWriter.close();

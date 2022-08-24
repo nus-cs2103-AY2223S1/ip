@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 /**
  * Child class Event
  *
@@ -12,8 +14,7 @@ public class Event extends Task {
 
     /**
      * Constructor
-     *
-     * @param description String describing the event task.
+     *  @param description String describing the event task.
      * @param at          String providing the timeframe for the event task.
      */
     public Event(String description, String at) {

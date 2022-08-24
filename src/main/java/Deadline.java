@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Child class Deadline
  *
@@ -8,15 +11,13 @@
  */
 public class Deadline extends Task {
 
-    protected String by;
+    protected LocalDateTime by;
 
     /**
      * Constructor
-     *
-     * @param description String describing the deadline task.
-     * @param by          String providing the timeframe for the deadline task.
-     */
-    public Deadline(String description, String by) {
+     *  @param description String describing the deadline task.
+     * @param by          String providing the timeframe for the deadline task.*/
+    public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
     }
@@ -28,7 +29,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm")) + ")";
     }
 
     /**
@@ -36,7 +37,7 @@ public class Deadline extends Task {
      *
      * @return String representation of the by attribute.
      */
-    public String getBy() {
+    public LocalDateTime getBy() {
         return this.by;
     }
 }
