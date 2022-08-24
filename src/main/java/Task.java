@@ -1,25 +1,14 @@
-<<<<<<< HEAD
 import java.util.Arrays;
 import java.util.List;
-
-// import java.util.*;
-=======
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
->>>>>>> branch-Level-8
 
 public class Task {
     protected String description;
     protected boolean isDone;
     protected char taskType;
-<<<<<<< HEAD
     protected String dateTime = null;
-=======
-    protected String dateTime;
     protected LocalDateTime date;
-
->>>>>>> branch-Level-8
     protected String dueDescription; // Stores either 'by' or 'at'
 
     public Task(String description) throws Exception{
