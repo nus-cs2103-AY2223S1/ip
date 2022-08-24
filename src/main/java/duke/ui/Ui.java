@@ -19,10 +19,9 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private static String greeting = "Hello, I'm\n" + logo + "How may I help you today?";
+    private static final String GREETING = "Hello, I'm\n" + logo + "How may I help you today?";
 
-    private static String farewell = "Goodbye! Hope to see you again!";
-
+    private static final String FAREWELL = "Goodbye! Hope to see you again!";
 
     private Scanner scanner;
 
@@ -45,7 +44,7 @@ public class Ui {
      */
     public void showWelcome() {
         showLine();
-        formatMessage(greeting);
+        formatMessage(GREETING);
         showLine();
     }
 

@@ -6,11 +6,11 @@ package duke.command;
  * @author Leong Jia Hao Daniel
  */
 public enum Commands {
-    TODO,
-    DEADLINE,
-    EVENT,
-    MARK,
-    UNMARK,
-    DELETE,
-    DATE
+    ToDo,
+    Deadline,
+    Event,
+    Mark,
+    Unmark,
+    Delete,
+    Date
 }
