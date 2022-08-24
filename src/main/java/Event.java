@@ -7,11 +7,17 @@ public class Event extends DukeTask {
   // Time of event
   private final String at;
   private final String description;
+  private String formattedAt;
 
   public Event(String description, String at) {
     super(description);
     this.description = description;
     this.at = at;
+    formatTime();
+  }
+
+  private void formatTime() {
+    this.formattedAt = DukeDateTimeFormatter.format(at);
   }
 
   public String getStorageString() {
@@ -21,6 +27,6 @@ public class Event extends DukeTask {
 
   @Override
   public String toString() {
-    return "[E]" + super.toString() + " (at: " + at + ")";
+    return "[E]" + super.toString() + " (at: " + formattedAt + ")";
   }
 }
