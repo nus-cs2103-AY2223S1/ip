@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -10,7 +12,7 @@ public class Ui {
     public void getUserInputs() {
         Scanner sc = new Scanner(System.in);
         int index;
-        System.out.print("Hello! I'm Duke \nWhat can I do for you? \n");
+        System.out.print("Hello! I'm duke.Duke \nWhat can I do for you? \n");
 
         String input = sc.nextLine();
         boolean carryOn = true;
@@ -56,9 +58,9 @@ public class Ui {
                         break;
                     case "deadline":
                         if (!Parser.isValidDescription(input)) {
-                            throw new DukeException("OOPS!!! The description of a Deadline cannot be empty.");
+                            throw new DukeException("OOPS!!! The description of a duke.Deadline cannot be empty.");
                         } else if (!Parser.isValidDateTime(input)) {
-                            throw new DukeException("OOPS!!! The time and date of the Deadline cannot be empty.");
+                            throw new DukeException("OOPS!!! The time and date of the duke.Deadline cannot be empty.");
                         } else {
                             //eg. by 2019-10-03 18:00
                             Task toAdd = new Deadline(Parser.getDescription(input),
@@ -70,9 +72,9 @@ public class Ui {
                         break;
                     case "event":
                         if (!Parser.isValidDescription(input)) {
-                            throw new DukeException("OOPS!!! The description of a Event cannot be empty.");
+                            throw new DukeException("OOPS!!! The description of a duke.Event cannot be empty.");
                         } else if (!Parser.isValidDateTime(input)) {
-                            throw new DukeException("OOPS!!! The time and date of the Event cannot be empty.");
+                            throw new DukeException("OOPS!!! The time and date of the duke.Event cannot be empty.");
                         } else {
                             Task toAdd = new Event(Parser.getDescription(input),
                                     Parser.getDate(input),

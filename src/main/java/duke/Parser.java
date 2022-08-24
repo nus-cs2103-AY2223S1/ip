@@ -1,4 +1,4 @@
-import java.util.Scanner;
+package duke;
 
 public class Parser {
     //example input to parse: deadline taskToDo /by 2022-02-03 18:00-19:00
