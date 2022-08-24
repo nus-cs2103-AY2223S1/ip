@@ -20,6 +20,15 @@ public class Task {
     private Boolean status = false;
 
     /**
+     * Returns the current status (true for marked, false for unmarked)
+     * of the task
+     * @return Marked status of the task
+     */
+    public Boolean getStatus() {
+        return this.status;
+    }
+
+    /**
      * The constructor to initialise a new Task object with a given name.
      *
      * @param taskName The name of the task to be created.
