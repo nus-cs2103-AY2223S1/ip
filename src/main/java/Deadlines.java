@@ -1,6 +1,9 @@
+import java.time.LocalDate;
+import java.time.Month;
+
 public class Deadlines extends Task {
-    String byDate;
-    Deadlines(String name, String byDate) {
+    LocalDate byDate;
+    Deadlines(String name, LocalDate byDate) {
         super(name);
         this.byDate = byDate;
     }
@@ -13,6 +16,9 @@ public class Deadlines extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + byDate + ")";
+        int year = byDate.getYear();
+        int day = byDate.getDayOfMonth();
+        Month month = byDate.getMonth();
+        return "[D]" + super.toString() + "(by: " + day + " " + month + " " + year + ")";
     }
 }
