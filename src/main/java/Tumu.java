@@ -13,7 +13,6 @@ public class Tumu {
     private UI ui;
 
     private static List<Task> userTasks = new ArrayList<>();
-    private static final String horizontalLines = "\t" + "_".repeat(60);
 
     private static final String END_CHAT_BOT_CMD = "bye";
     private static final String LIST_USER_TEXT_CMD = "list";
@@ -36,7 +35,7 @@ public class Tumu {
 
     private void run() {
         loadUserTasks();
-        greeting();
+        ui.greeting();
         response();
     }
 
@@ -55,11 +54,11 @@ public class Tumu {
         do {
             command = sc.next().toLowerCase();
 
-            printHorizontalLine();
+            ui.showLine();
             try {
                 switch (command) {
                 case END_CHAT_BOT_CMD:
-                    goodbye();
+                    ui.goodbye();
                     break;
                 case LIST_USER_TEXT_CMD:
                     listTasks();
@@ -101,41 +100,11 @@ public class Tumu {
                 System.out.println(e);
             }
 
-            printHorizontalLine();
+            ui.showLine();
 
         } while (!command.equalsIgnoreCase(END_CHAT_BOT_CMD));
 
         sc.close();
-    }
-
-    private static void greeting() {
-        /**
-         * Greeting message to the user during chat-bot startup.
-         */
-
-        String logo = "" +
-                "\t ▄▄▄▄▄▄▄ ▄▄   ▄▄ ▄▄   ▄▄ ▄▄   ▄▄ \n" +
-                "\t█       █  █ █  █  █▄█  █  █ █  █\n" +
-                "\t█▄     ▄█  █ █  █       █  █ █  █\n" +
-                "\t  █   █ █  █▄█  █       █  █▄█  █\n" +
-                "\t  █   █ █       █       █       █\n" +
-                "\t  █   █ █       █ ██▄██ █       █\n" +
-                "\t  █▄▄▄█ █▄▄▄▄▄▄▄█▄█   █▄█▄▄▄▄▄▄▄█\n\n";
-        String greetingMessage = "\tHi! I am Tumu. Nice to meet you!\n" +
-                "\tWhat is on your mind today?\n";
-
-        System.out.println(logo + greetingMessage);
-    }
-
-    private static void goodbye() {
-        /**
-         * Says goodbye to the user.
-         * User exits the chat-bot.
-         */
-
-        String goodbyeMessage = "\tGoodbye, and have a nice day ahead!\n";
-        String smileyFace = "\t٩(ˊᗜˋ )و";
-        System.out.println(goodbyeMessage + smileyFace);
     }
 
     private static void listTasks() {
@@ -247,13 +216,5 @@ public class Tumu {
         System.out.println("\tI've added a task into your list:\n\t\t" + task);
         userTasks.add(task);
         System.out.println(String.format("\tYou have %d task(s) in the list.", userTasks.size()));
-    }
-
-    private static void printHorizontalLine() {
-        /**
-         * Prints the horizontal lines for chat-bot formatting.
-         */
-
-        System.out.println(horizontalLines);
     }
 }
