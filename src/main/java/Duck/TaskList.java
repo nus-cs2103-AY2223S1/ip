@@ -1,3 +1,4 @@
+package Duck;
 import java.util.List;
 
 public class TaskList<T> {
@@ -6,6 +7,8 @@ public class TaskList<T> {
     public TaskList(List<T> list){
         this.list = list;
     }
+
+
     public void addToList(T item) {
         list.add(item);
     }

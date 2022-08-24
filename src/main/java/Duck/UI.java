@@ -1,3 +1,7 @@
+package Duck;
+import Models.Todo;
+
+
 public class UI {
     public static void printWelcomeMessage() {
         System.out.println("Hello! Got any grapes?");
