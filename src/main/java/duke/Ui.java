@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -55,5 +56,21 @@ public class Ui {
 
     public void showError(String message) {
         prettyPrint("☹ OOPS!!! " + message);
+    }
+
+    /**
+     * Shows search results.
+     *
+     * @param result Task list from search result.
+     */
+    public void showResults(List<Task> result) {
+        StringBuilder temp = new StringBuilder("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < result.size(); i++) {
+            temp.append(i + 1);
+            temp.append(".");
+            temp.append(result.get(i));
+            temp.append("\n");
+        }
+        prettyPrint(temp.toString());
     }
 }

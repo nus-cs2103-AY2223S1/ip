@@ -2,6 +2,7 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private List<Task> tasks;
@@ -37,6 +38,10 @@ public class TaskList {
     public void remove(int index) throws DukeException {
         tasks.remove(index);
         storage.saveTasks(tasks);
+    }
+
+    public List<Task> search(String keyword) {
+        return tasks.stream().filter(x -> x.getDescription().contains(keyword)).collect(Collectors.toList());
     }
 
     public int getSize() {
