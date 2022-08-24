@@ -39,4 +39,8 @@ delete 2
 list
 event NEW_TASK /at 2022-08-20 2022-09-01
 event ERROR_TASK /at 2022-09-01 2022-08-20
+find W
+find Z
+find NEW
+find
 bye

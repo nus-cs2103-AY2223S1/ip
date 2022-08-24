@@ -45,4 +45,14 @@ public abstract class Task {
         return String.format("%s / %s", this.desc, this.isDone);
     }
 
+    /**
+     * Returns true if and only if the provided keyword exists as a substring in the Task description.
+     *
+     * @param keyword the substring to search for
+     * @return true if the Task description contains keyword, false otherwise
+     */
+    public boolean hasSubstring(String keyword) {
+        return this.desc.contains(keyword);
+    }
+
 }
