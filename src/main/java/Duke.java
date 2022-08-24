@@ -1,11 +1,22 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.IOException;
 
 
 public class Duke {
     private final static String UNDERLINE = "_________________________________";
     private ArrayList<Task> taskList = new ArrayList<>();
+    private Storage storage;
     boolean inProcess = true;
+    public Duke(String filePath)  {
+
+        storage = new Storage(filePath);
+        try {
+            taskList = storage.load();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     private String greet(String res) {
         try {
@@ -97,23 +108,27 @@ public class Duke {
     private String handleMark(int num){
         Task task = this.taskList.get(num - 1);
         task.markAsDone();
+        storage.save(taskList);
         return String.format("Nice! I've marked this task as done: \n %s",task);
     }
 
     private String handleUnmark(int num){
         Task task = this.taskList.get(num - 1);
         task.unmarkAsDone();
+        storage.save(taskList);
         return String.format("Ok! I have marked this task as not done yet: \n %s",task);
     }
 
     private String handleAdd(Task task){
         this.taskList.add(task);
+        storage.save(taskList);
         return String.format("Got it. I've added this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
     }
 
     private String handleDelete(int num){
         Task task = this.taskList.get(num - 1);
         this.taskList.remove(num -1 );
+        storage.save(taskList);
         return String.format("Got it. I've removed this task: \n %s \n  Now you have %d tasks in the list.", task ,this.taskList.size());
     }
 
@@ -136,7 +151,7 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        new Duke().run();
+        new Duke("data/duke.txt").run();
         }
     }
 
