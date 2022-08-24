@@ -63,7 +63,8 @@ public class Ui {
      */
     public void showMarkedTask(int taskIndex, TaskList listOfTasks) {
         System.out.println("Nice! I've marked this task as done:\n" + "[" +
-                listOfTasks.getTask(taskIndex).getStatusIcon() + "] " + listOfTasks.getTask(taskIndex).getDescription());
+                listOfTasks.getTask(taskIndex).getStatusIcon() + "] " +
+                listOfTasks.getTask(taskIndex).getDescription());
     }
 
     /**
@@ -74,7 +75,8 @@ public class Ui {
      */
     public void showUnmarkedTask(int taskIndex, TaskList listOfTasks) {
         System.out.println("Ok, I've marked this task as not done yet:\n" + "[" +
-                listOfTasks.getTask(taskIndex).getStatusIcon() + "] " + listOfTasks.getTask(taskIndex).getDescription());
+                listOfTasks.getTask(taskIndex).getStatusIcon() + "] " +
+                listOfTasks.getTask(taskIndex).getDescription());
     }
 
     /**
