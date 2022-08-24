@@ -1,15 +1,9 @@
 package duke.managers;
 
-import duke.commands.AddEventTaskCommand;
-import duke.commands.AddToDoTaskCommand;
-import duke.commands.ByeCommand;
-import duke.commands.DeleteTaskCommand;
-import duke.commands.IncorrectCommand;
-import duke.commands.ListTasksCommand;
-import duke.commands.MarkTaskCommand;
-import duke.commands.UnmarkTaskCommand;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import duke.commands.*;
+import org.junit.jupiter.api.Test;
 
 public class ParserManagerTest {
     @Test

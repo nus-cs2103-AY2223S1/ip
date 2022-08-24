@@ -1,9 +1,5 @@
 package duke.storage;
 
-import duke.exceptions.DukeException;
-import duke.models.task.Task;
-import duke.models.serializable.TaskSerializable;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -14,6 +10,13 @@ import java.util.Scanner;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import duke.exceptions.DukeException;
+import duke.models.serializable.TaskSerializable;
+import duke.models.task.Task;
+
+/**
+ * TODO: Add JavaDocs
+ */
 public class TaskStorage extends Storage {
     private static final String TASK_FILE_NAME = "duke.txt";
 
@@ -38,6 +41,7 @@ public class TaskStorage extends Storage {
 
     /**
      * Returns the task specified by the task index
+     *
      * @param taskIndex 0-indexed specifier for the task
      * @return The corresponding task
      * @throws DukeException If the task cannot be found
@@ -71,7 +75,8 @@ public class TaskStorage extends Storage {
     /**
      * Updates the task corresponding to the task index using the updated Task object
      * provided by the caller, and returns the updated task
-     * @param taskIndex 0-based indexed specifier for the task to be updated
+     *
+     * @param taskIndex    0-based indexed specifier for the task to be updated
      * @param updatingTask The task object containing the updated task
      * @return The updated task
      * @throws DukeException If the task cannot be updated
@@ -88,6 +93,7 @@ public class TaskStorage extends Storage {
 
     /**
      * Returns the number of tasks in the task storage
+     *
      * @return Number of tasks in the task storage
      * @throws DukeException If the tasks cannot be read
      */
@@ -98,6 +104,7 @@ public class TaskStorage extends Storage {
 
     /**
      * Returns a filtered task list based on the provided predicate
+     *
      * @param condition Predicate provided for the filter operation
      * @return Filtered task list
      * @throws DukeException If the tasks cannot be read
@@ -108,6 +115,7 @@ public class TaskStorage extends Storage {
 
     /**
      * Returns the list of tasks in the task storage
+     *
      * @return List of tasks in the task storage
      * @throws DukeException If the tasks cannot be read
      */

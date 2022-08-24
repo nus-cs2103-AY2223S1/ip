@@ -1,26 +1,33 @@
 package duke.storage;
 
-import duke.exceptions.DukeException;
-
 import java.io.File;
 import java.io.IOException;
 
-abstract public class Storage {
-    private static final String FILE_DIRECTORY = "data";
+import duke.exceptions.DukeException;
 
+/**
+ * TODO: Add JavaDocs
+ */
+public abstract class Storage {
     protected static final String ERROR_STORAGE_NOT_INITIALIZED = "Storage is not initialized yet!";
-
+    private static final String FILE_DIRECTORY = "data";
     private static final String ERROR_CREATING_DATA_FOLDER = "No permission to create data folder!";
     private static final String ERROR_CREATING_DATA_FILE = "No permission to create data file!";
 
     private final File storage;
     private boolean isInitialized;
 
+    /**
+     * TODO: Add JavaDocs
+     */
     public Storage(String dataFilename) {
         this.storage = new File(String.format("%s/%s", Storage.FILE_DIRECTORY, dataFilename));
         this.isInitialized = false;
     }
 
+    /**
+     * TODO: Add JavaDocs
+     */
     protected File getStorage() throws DukeException {
         if (!this.isInitialized) {
             throw new DukeException(Storage.ERROR_STORAGE_NOT_INITIALIZED);

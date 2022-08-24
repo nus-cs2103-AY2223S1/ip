@@ -1,11 +1,11 @@
 package duke.managers;
 
-import duke.models.task.Task;
-import duke.storage.TaskStorage;
-import duke.exceptions.DukeException;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import duke.exceptions.DukeException;
+import duke.models.task.Task;
+import duke.storage.TaskStorage;
 
 /**
  * Utility class to manage the list of tasks and provides augmenting operations to
@@ -26,6 +26,26 @@ public class TaskManager {
     }
 
     /**
+     * Displays the list of tasks in numerical order by implicitly invoking the string representation
+     * of the tasks
+     *
+     * @param tasks The tasks to be displayed
+     * @return String representation of the tasks
+     */
+    public static String display(List<Task> tasks) {
+        if (tasks.size() == 0) {
+            return TaskManager.NO_TASKS_AVAILABLE;
+        }
+
+        StringBuilder taskManagerDisplay = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            // Implicitly invoke the display of the task defined in the Task class
+            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
+        }
+        return taskManagerDisplay.toString();
+    }
+
+    /**
      * Adds the received task into the task list
      *
      * @param task Task received from the caller
@@ -37,8 +57,9 @@ public class TaskManager {
 
     /**
      * Updates the specified task corresponding to the given task index
+     *
      * @param taskNumber The 1-based task number, possibly corresponding to a particular task
-     * @param task the task to be updated
+     * @param task       the task to be updated
      * @return The updated task
      * @throws DukeException If the task cannot be updated
      */
@@ -80,6 +101,7 @@ public class TaskManager {
 
     /**
      * Returns the status of the task manager on the number of tasks in the list
+     *
      * @return Status of the task manager
      */
     public String getStatus() {
@@ -92,6 +114,7 @@ public class TaskManager {
 
     /**
      * Returns the list of tasks in the storage
+     *
      * @return List of tasks
      * @throws DukeException If the tasks cannot be read
      */
@@ -101,30 +124,12 @@ public class TaskManager {
 
     /**
      * Returns the filtered list of tasks in the storage based on the predicate
+     *
      * @param condition The predicate to test if the task should be returned
      * @return List of tasks
      * @throws DukeException If the tasks cannot be read
      */
     public List<Task> list(Predicate<? super Task> condition) throws DukeException {
         return this.taskStorage.filter(condition);
-    }
-
-    /**
-     * Displays the list of tasks in numerical order by implicitly invoking the string representation
-     * of the tasks
-     * @param tasks The tasks to be displayed
-     * @return String representation of the tasks
-     */
-    public static String display(List<Task> tasks) {
-        if (tasks.size() == 0) {
-            return TaskManager.NO_TASKS_AVAILABLE;
-        }
-
-        StringBuilder taskManagerDisplay = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++) {
-            // Implicitly invoke the display of the task defined in the Task class
-            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
-        }
-        return taskManagerDisplay.toString();
     }
 }

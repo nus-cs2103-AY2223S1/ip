@@ -5,15 +5,21 @@ import duke.managers.TaskManager;
 import duke.managers.UiManager;
 import duke.models.task.Task;
 
+/**
+ * TODO: Add JavaDocs
+ */
 public class MarkTaskCommand implements Command {
     public static final String COMMAND_WORD = "mark";
     private static final String MARK_TASK_AS_DONE_MESSAGE = "Nice! I've marked this task as done:";
-    private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n" +
-            "Use the 'list' command to view the tasks and their number.";
+    private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n"
+            + "Use the 'list' command to view the tasks and their number.";
     private static final String NAN_TASK_NUMBER_ERROR = "The task number you provided is not a number!";
 
     private final String arguments;
 
+    /**
+     * TODO: Add JavaDocs
+     */
     public MarkTaskCommand(String arguments) {
         this.arguments = arguments;
     }

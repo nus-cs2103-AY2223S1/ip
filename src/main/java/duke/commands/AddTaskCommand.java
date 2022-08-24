@@ -1,10 +1,10 @@
 package duke.commands;
 
+import java.util.function.Supplier;
+
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
 import duke.models.task.Task;
-
-import java.util.function.Supplier;
 
 abstract class AddTaskCommand implements Command {
     private static final String ADD_TASK_MESSAGE = "Got it. I've added this task:";
@@ -12,7 +12,7 @@ abstract class AddTaskCommand implements Command {
     /**
      * Retrieve the task supplied by the caller and adds that task to the specified task manager.
      *
-     * @param taskManager Task manager in charge of the list of tasks
+     * @param taskManager  Task manager in charge of the list of tasks
      * @param taskSupplier Supplier function that returns a task
      * @return Status message
      */

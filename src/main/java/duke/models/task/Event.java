@@ -1,9 +1,9 @@
 package duke.models.task;
 
+import java.time.LocalDate;
+
 import duke.models.serializable.TaskSerializable;
 import duke.utils.DukeFormatter;
-
-import java.time.LocalDate;
 
 /**
  * Encapsulates a task that starts at a specific time and ends at a specific time,
@@ -13,14 +13,20 @@ import java.time.LocalDate;
  */
 
 public class Event extends Task {
-    protected LocalDate datetime;
     private static final TaskType taskType = TaskType.EVENT;
+    protected LocalDate datetime;
 
+    /**
+     * TODO: Add JavaDocs
+     */
     public Event(String description, LocalDate datetime) {
         super(description);
         this.datetime = datetime;
     }
 
+    /**
+     * TODO: Add JavaDocs
+     */
     public Event(String description, LocalDate datetime, boolean isDone) {
         super(description, isDone);
         this.datetime = datetime;

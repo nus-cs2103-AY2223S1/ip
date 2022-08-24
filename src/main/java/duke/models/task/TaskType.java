@@ -25,6 +25,9 @@ public enum TaskType {
         }
     };
 
+    /**
+     * TODO: Add JavaDocs
+     */
     public static TaskType fromString(String s) {
         if (s.equals(TODO.toString())) {
             return TODO;

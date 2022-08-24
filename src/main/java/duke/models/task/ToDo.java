@@ -1,8 +1,8 @@
 package duke.models.task;
 
-import duke.models.serializable.TaskSerializable;
-
 import java.time.LocalDate;
+
+import duke.models.serializable.TaskSerializable;
 
 /**
  * Encapsulates a task without any date/time attached to it, e.g. visit new theme park

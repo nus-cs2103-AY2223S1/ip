@@ -17,7 +17,7 @@ public interface Command {
      * not result in a modification of the task manager object
      *
      * @param taskManager Task Manager object to manage the list of tasks
-     * @param uiManager The UI Manager in charge of display operations and user interactions
+     * @param uiManager   The UI Manager in charge of display operations and user interactions
      */
     void execute(TaskManager taskManager, UiManager uiManager) throws DukeException;
 }

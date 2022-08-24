@@ -1,19 +1,22 @@
 package duke.commands;
 
+import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
 import duke.managers.UiManager;
 import duke.models.task.Event;
 import duke.utils.DukeValidator;
 
-import java.time.LocalDate;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+/**
+ * TODO: Add JavaDocs
+ */
 public class AddEventTaskCommand extends AddTaskCommand implements Command {
     public static final String COMMAND_WORD = "event";
-    private static final String INVALID_EVENT_TASK_ERROR = "Use the 'event' command together with the " +
-            "task description and date\nFor example: 'event project meeting /at 2022-12-02'";
+    private static final String INVALID_EVENT_TASK_ERROR = "Use the 'event' command together with the "
+            + "task description and date\nFor example: 'event project meeting /at 2022-12-02'";
 
     // Matches a non-empty description and a non-empty date, separated by a '/at' command
     // For example: <description> /at <date>

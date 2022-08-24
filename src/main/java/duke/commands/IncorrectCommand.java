@@ -3,6 +3,9 @@ package duke.commands;
 import duke.managers.TaskManager;
 import duke.managers.UiManager;
 
+/**
+ * TODO: Add JavaDocs
+ */
 public class IncorrectCommand implements Command {
     private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
 

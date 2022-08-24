@@ -5,17 +5,23 @@ import duke.managers.TaskManager;
 import duke.managers.UiManager;
 import duke.models.task.Task;
 
+/**
+ * TODO: Add JavaDocs
+ */
 public class DeleteTaskCommand implements Command {
     public static final String COMMAND_WORD = "delete";
     private static final String DELETE_TASK_MESSAGE = "Noted. I've removed this task:";
-    private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n" +
-            "Use the 'list' command to view the tasks and their number.";
+    private static final String MISSING_TASK_INDEX_ERROR = "You are missing a task number!\n"
+            + "Use the 'list' command to view the tasks and their number.";
     private static final String NAN_TASK_NUMBER_ERROR = "The task number you provided is not a number!";
-    private static final String TASK_NUMBER_IS_INVALID_ERROR = "The task number you provided is not valid!\n" +
-            "Use the 'list' command to view the tasks and their number.";
+    private static final String TASK_NUMBER_IS_INVALID_ERROR = "The task number you provided is not valid!\n"
+            + "Use the 'list' command to view the tasks and their number.";
 
     private final String arguments;
 
+    /**
+     * TODO: Add JavaDocs
+     */
     public DeleteTaskCommand(String arguments) {
         this.arguments = arguments;
     }

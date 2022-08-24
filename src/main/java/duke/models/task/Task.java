@@ -1,23 +1,29 @@
 package duke.models.task;
 
-import duke.models.serializable.TaskSerializable;
-
 import java.time.LocalDate;
+
+import duke.models.serializable.TaskSerializable;
 
 /**
  * Encapsulates a task containing a description and a completion status
  *
  * @author Emily Ong Hui Qi
  */
-abstract public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * TODO: Add JavaDocs
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * TODO: Add JavaDocs
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
@@ -38,20 +44,6 @@ abstract public class Task {
     }
 
     /**
-     * Return the task type icon of the current task. For example, a "Deadline" task has a
-     * task type icon of 'D'.
-     *
-     * @return Task type icon of the task
-     */
-    abstract public String getTaskTypeIcon();
-
-    /**
-     * Return the date of the current task, or null if there is no associated date
-     * @return Date of the current task, or null if there is no associated date
-     */
-    abstract public LocalDate getDate();
-
-    /**
      * Return the status icon of the current task, where a task that is done is marked with
      * a 'X' and a task that is undone is marked with an empty space
      *
@@ -62,13 +54,31 @@ abstract public class Task {
     }
 
     /**
+     * TODO: Add JavaDocs
+     */
+    public String toString() {
+        return String.format("[%s] [%s] %s", this.getTaskTypeIcon(), this.getStatusIcon(), this.description);
+    }
+
+    /**
+     * Return the task type icon of the current task. For example, a "Deadline" task has a
+     * task type icon of 'D'.
+     *
+     * @return Task type icon of the task
+     */
+    public abstract String getTaskTypeIcon();
+
+    /**
+     * Return the date of the current task, or null if there is no associated date
+     *
+     * @return Date of the current task, or null if there is no associated date
+     */
+    public abstract LocalDate getDate();
+
+    /**
      * Returns a serializable format of the task
      *
      * @return Serializable format of the task
      */
-    abstract public TaskSerializable serialize();
-
-    public String toString() {
-        return String.format("[%s] [%s] %s", this.getTaskTypeIcon(), this.getStatusIcon(), this.description);
-    }
+    public abstract TaskSerializable serialize();
 }
