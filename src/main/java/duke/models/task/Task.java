@@ -37,6 +37,10 @@ abstract public class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     /**
      * Return the task type icon of the current task. For example, a "Deadline" task has a
      * task type icon of 'D'.

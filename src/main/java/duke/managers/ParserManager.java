@@ -6,6 +6,7 @@ import duke.commands.AddToDoTaskCommand;
 import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.DeleteTaskCommand;
+import duke.commands.FindTaskCommand;
 import duke.commands.IncorrectCommand;
 import duke.commands.ListTasksCommand;
 import duke.commands.MarkTaskCommand;
@@ -25,9 +26,12 @@ public class ParserManager {
         String command = matcher.group("commandWord").strip();
         String arguments = matcher.group("arguments").strip();
         switch (command) {
-            // List all tasks in the task manager
+            // List tasks in the task manager
             case ListTasksCommand.COMMAND_WORD:
                 return new ListTasksCommand(arguments);
+            case FindTaskCommand.COMMAND_WORD:
+                return new FindTaskCommand(arguments);
+
             // Modifying operations on a task
             case MarkTaskCommand.COMMAND_WORD:
                 return new MarkTaskCommand(arguments);
