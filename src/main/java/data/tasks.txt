@@ -1,4 +1,0 @@
-T | 0 | borrow book
-T | 0 | test
-T | 0 | test1
-T | 0 | test2

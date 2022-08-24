@@ -16,6 +16,8 @@ public class Parser {
         return input;
     }
 
+    public List<Task> getTasks() { return taskList.getTasks(); }
+
     public void parseCommand(List<Task> tasks) {
         while (true) {
             try {

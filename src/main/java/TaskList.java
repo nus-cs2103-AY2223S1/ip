@@ -18,7 +18,7 @@ public class TaskList {
 
     /**
      * Creates a new objects.Todo object and adds it to the tasks list.
-     * @param inputs array of input strings
+     * @param inputs array of input strings (e.g. ["todo", "wash dishes"]
      */
     public void addTodo(String[] inputs) throws EmptyNameException {
         if (inputs.length == 1) {
