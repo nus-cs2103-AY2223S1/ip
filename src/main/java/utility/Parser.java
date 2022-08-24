@@ -49,6 +49,8 @@ public class Parser {
             return new ExitCommand();
         } else if (stringCommand.equals("help")) {
             return new HelpCommand();
+        } else if (stringCommand.equals("find")) {
+            return new FindCommand();
         }
         throw new DukeException("Command invalid. Type help for more information.");
     }
@@ -130,5 +132,9 @@ public class Parser {
                 return n;
             }
         }
+}
+
+public static String stringToFind(String userInput) {
+     return userInput.substring(userInput.indexOf("find") + 5);
 }
 }
