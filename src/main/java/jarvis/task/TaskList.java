@@ -1,5 +1,6 @@
 package jarvis.task;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -62,6 +63,22 @@ public class TaskList {
      */
     public List<Task> getTasks() {
         return this.tasks;
+    }
+
+    /**
+     * Gets list of tasks containing description.
+     *
+     * @param description description entered by user.
+     * @return list of tasks containing description.
+     */
+    public List<Task> findTasks(String description) {
+        List<Task> found = new ArrayList<>();
+        for (Task task: this.tasks) {
+            if (task.getDescription().contains(description)) {
+                found.add(task);
+            }
+        }
+        return found;
     }
 
     @Override
