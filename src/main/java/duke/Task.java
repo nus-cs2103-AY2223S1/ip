@@ -1,3 +1,4 @@
+package duke;
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -17,12 +18,10 @@ public class Task {
 
     public void mark() {
         this.isDone = true;
-        System.out.println( "Nice! I've marked this task as done: \n" + this.toString());
     }
 
     public void unmark() {
         this.isDone = false;
-        System.out.println( "Nice! I've marked this task as not done yet: \n" + this.toString());
     }
 
     @Override

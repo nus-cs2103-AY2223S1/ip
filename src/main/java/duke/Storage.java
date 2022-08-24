@@ -1,6 +1,6 @@
+package duke;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,8 +11,7 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public ArrayList<Task> readData() {
-        ArrayList<Task> taskList = new ArrayList<>();
+    public void readData() throws DukeException{
         File f = new File(this.filePath);
         try {
 //            if (!f.createNewFile()) {
@@ -36,30 +35,28 @@ public class Storage {
                 if (taskStrArray[1].contains("1")) {
                     task.mark();
                 }
-                taskList.add(task);
+                TaskList.taskList.add(task);
             }
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
-        return taskList;
     }
 
-    public void writeData(ArrayList<Task> taskList) {
-        System.out.println("Saving data...");
+    public void writeData() {
         try {
             FileWriter fileWriter = new FileWriter(filePath);
-            for (Task task : taskList) {
+            for (Task task : TaskList.taskList) {
                 String holder;
                 if (task instanceof Todo) {
                     holder = String.format("T | %s | %s", task.getStatus(),task.description);
                 } else if (task instanceof Deadline) {
                     Deadline deadlineTask = (Deadline) task;
                     holder = String.format("D | %s | %s | %s",
-                            deadlineTask.getStatus(), deadlineTask.description, deadlineTask.getDate());
+                            deadlineTask.getStatus(), deadlineTask.description, deadlineTask.getOldDate());
                 } else {
                     Event eventTask = (Event) task;
                     holder = String.format("D | %s | %s | %s",
-                            eventTask.getStatus(), eventTask.description, eventTask.getDate());
+                            eventTask.getStatus(), eventTask.description, eventTask.getOldDate());
                 }
                 fileWriter.write(holder + "\n");
             }
