@@ -7,6 +7,10 @@ public class Event extends Task {
         this.time = time;
     }
 
+    public String getOutput() {
+        return String.format("E | %d | %s | %s", isDone ? 1 : 0, description, time);
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + time + ")";
