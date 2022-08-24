@@ -1,12 +1,17 @@
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Scanner;
 import java.time.LocalDate;
+import java.io.FileWriter;
 
 public class Duke {
+
+    private static String fileDestination;
 
     /**
      * This method checks if a string typed can be a number or not
@@ -49,6 +54,8 @@ public class Duke {
         String day = currDateWords[0].length() < 2 ? "0" + currDateWords[0] : currDateWords[0];
         String currDateString = year + '-' + month + '-' + day;
         return LocalDate.parse(currDateString);
+    public static FileWriter createFileWriter() throws IOException {
+        return new FileWriter(fileDestination);
     }
 
     /**
@@ -57,9 +64,32 @@ public class Duke {
      */
     public static void main(String[] args) {
 
+        // PrintWriter variable to write and print characters from the file
+        FileWriter fileWriter = null;
+        fileDestination = "src/main/duke.txt";
+
         // Create the commands for greeting and departure
         Command greeting = new Command(CommandName.GREETINGS);
         Command departure = new Command(CommandName.DEPARTURE);
+
+        // Create the PrintWriter to write to the duke.txt file
+        try {
+            // File output only saved once close file
+            fileWriter = createFileWriter();
+        } catch (java.io.IOException exception) {
+            // This is when file is not found, create a file in this case
+            // Also handle if any exception occurs
+            try {
+                File myObj = new File(fileDestination);
+                if (myObj.createNewFile()) {
+                    System.out.println("File created: " + myObj.getName());
+                } else {
+                    System.out.println("File already exists.");
+                }
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+            }
+        }
 
         // Create an Array to store the Tasks the user has entered of size 100
         ArrayList<Task> taskArrayList = new ArrayList<>();
@@ -144,6 +174,7 @@ public class Duke {
                             Todo newTodo = new Todo(description);
                             taskArrayList.add(newTodo);
                             outputString = newTodo.toString();
+                            fileWriter.write(newTodo.saveToDisk());
                             System.out.println("Got it. I 've added this task:");
                             System.out.println(outputString);
                             System.out.println("Now you have " + String.valueOf(taskArrayList.size()) + " tasks in the list.");
@@ -171,6 +202,7 @@ public class Duke {
                             Deadline newDeadline = new Deadline(description, byDate, by);
                             taskArrayList.add(newDeadline);
                             outputString = newDeadline.toString();
+                            fileWriter.write(newDeadline.saveToDisk());
                             System.out.println("Got it. I 've added this task:");
                             System.out.println(outputString);
                             System.out.println("Now you have " + String.valueOf(taskArrayList.size()) + " tasks in the list.");
@@ -193,6 +225,7 @@ public class Duke {
                             Event newEvent = new Event(description, at);
                             taskArrayList.add(newEvent);
                             outputString = newEvent.toString();
+                            fileWriter.write(newEvent.saveToDisk());
                             System.out.println("Got it. I 've added this task:");
                             System.out.println(outputString);
                             System.out.println("Now you have " + String.valueOf(taskArrayList.size()) + " tasks in the list.");
@@ -207,13 +240,22 @@ public class Duke {
             } catch (DukeException dukeException) {
                 System.out.println(dukeException.getMessage());
                 System.out.println("----------------------");
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Error writing into file!");
             } finally {
                 userCommand = enterInput.nextLine();
             }
         }
 
-        // User operations done
-        departure.printCommand();
+        try {
+            fileWriter.close();
+        } catch (IOException exception) {
+            System.out.println("Error managing file");
+        } finally {
+            // User operations done
+            departure.printCommand();
+        }
     }
 
 

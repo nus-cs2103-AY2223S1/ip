@@ -20,4 +20,13 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
+    /**
+     * A string representation to write to the file
+     * @return a string that represents what to write to the file
+     */
+    public String saveToDisk() {
+        String alreadyDone = super.getStatusIcon();
+        return "T | " + alreadyDone + " | " + super.getDescription() + "\n";
+    }
+
 }

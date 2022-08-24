@@ -13,6 +13,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     /**
      * Set isDone parameter to be true
      */
