@@ -2,6 +2,7 @@ package duke;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList {
     List<Task> tasks;
@@ -34,6 +35,16 @@ public class TaskList {
         this.tasks.get(i).unMark();
     }
 
+    String find(String word) {
+        String filtered = tasks.stream()
+                .filter(task ->
+                        task.description
+                                .toLowerCase()
+                                .contains(word.toLowerCase()))
+                .map(task -> task.toString())
+                .collect(Collectors.joining("\n"));
+        return filtered;
+    }
 
     public String toString() {
         String out = "";
