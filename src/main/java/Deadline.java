@@ -19,8 +19,9 @@ public class Deadline extends Task  {
 
     @Override
     String writeToFile() {
-        return "D|" + super.writeToFile();
+        return "D|" + super.writeToFile() + "|by " + deadline.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (" + deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")) + ")";

@@ -20,7 +20,7 @@ public class Event extends Task{
 
     @Override
     String writeToFile() {
-        return "E|" + super.writeToFile();
+        return "E|" + super.writeToFile() + "|at " + time.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
 
     @Override
