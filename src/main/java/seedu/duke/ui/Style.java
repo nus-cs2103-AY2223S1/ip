@@ -1,4 +1,4 @@
-package ui;
+package seedu.duke.ui;
 
 public class Style {
     public static final String INDENTATION = "    ";

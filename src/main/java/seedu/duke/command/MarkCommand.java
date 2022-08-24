@@ -1,9 +1,9 @@
-package command;
+package seedu.duke.command;
 
-import storage.Storage;
-import task.Task;
-import task.TaskList;
-import ui.Ui;
+import seedu.duke.storage.Storage;
+import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
+import seedu.duke.ui.Ui;
 
 import java.util.Objects;
 

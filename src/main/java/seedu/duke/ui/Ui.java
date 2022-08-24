@@ -1,7 +1,7 @@
-package ui;
+package seedu.duke.ui;
 
-import task.Task;
-import task.TaskList;
+import seedu.duke.task.Task;
+import seedu.duke.task.TaskList;
 
 import java.util.Scanner;
 public class Ui {
@@ -17,7 +17,7 @@ public class Ui {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        System.out.println("Hello! I'm Duke\n"
+        System.out.println("Hello! I'm seedu.duke.Duke\n"
                 + "What can I do for you?\n");
     }
 
@@ -51,23 +51,23 @@ public class Ui {
     }
 
     public void showMarkStatus(Task task) {
-        System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
+        System.out.println(Style.INDENTATION + "Nice! I've marked this seedu.duke.task as done:");
         System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
     }
 
     public void showUnmarkStatus(Task task) {
-        System.out.println(Style.INDENTATION + "OK, I've marked this task as not done yet:");
+        System.out.println(Style.INDENTATION + "OK, I've marked this seedu.duke.task as not done yet:");
         System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
     }
 
     public void addTask(Task task) {
-        System.out.println(Style.INDENTATION + "Got it. I've added this task:");
+        System.out.println(Style.INDENTATION + "Got it. I've added this seedu.duke.task:");
         System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
 
     }
 
     public void deleteTask(Task task) {
-        System.out.println(Style.INDENTATION + "Noted. I've removed this task:");
+        System.out.println(Style.INDENTATION + "Noted. I've removed this seedu.duke.task:");
         System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
     }
 

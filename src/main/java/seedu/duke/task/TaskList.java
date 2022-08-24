@@ -1,6 +1,6 @@
-package task;
+package seedu.duke.task;
 
-import ui.Style;
+import seedu.duke.ui.Style;
 
 import java.util.ArrayList;
 

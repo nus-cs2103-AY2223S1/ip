@@ -1,11 +1,11 @@
-package storage;
+package seedu.duke.storage;
 
-import exception.DukeException;
-import task.Task;
-import task.Event;
-import task.Deadline;
-import task.ToDo;
-import task.TaskList;
+import seedu.duke.exception.DukeException;
+import seedu.duke.task.Task;
+import seedu.duke.task.Event;
+import seedu.duke.task.Deadline;
+import seedu.duke.task.ToDo;
+import seedu.duke.task.TaskList;
 
 
 import java.io.File;  // Import the File class

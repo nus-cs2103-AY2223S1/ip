@@ -1,8 +1,8 @@
-package command;
+package seedu.duke.command;
 
-import storage.Storage;
-import task.TaskList;
-import ui.Ui;
+import seedu.duke.storage.Storage;
+import seedu.duke.task.TaskList;
+import seedu.duke.ui.Ui;
 
 public class ListCommand extends Command {
     public ListCommand() {
