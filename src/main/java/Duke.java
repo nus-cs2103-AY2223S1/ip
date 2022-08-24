@@ -1,13 +1,20 @@
 import java.util.Scanner;
 
 public class Duke {
-    private final TaskList taskList;
+    private Storage storage;
+    private TaskList taskList;
 
-    public Duke() {
-        this.taskList = new TaskList();
+    public Duke(String filePath) {
+        this.storage = new Storage(filePath);
+        try {
+            this.taskList = new TaskList(storage.load());
+        } catch (DukeException e) {
+            this.taskList = new TaskList();
+        }
+
     }
     public static void main(String[] args) {
-        new Duke().run();
+        new Duke("data/duke.txt").run();
     }
 
     public void run() {
@@ -20,6 +27,7 @@ public class Duke {
             }
             this.receiveCommand(input);
         }
+        this.storage.overwriteFile(taskList.toFile());
         this.printMessage("Bye. Hope to see you again soon!");
         sc.close();
     }
@@ -63,7 +71,6 @@ public class Duke {
         if (task.equals("")) {
             throw new DukeException("OOPS! The description of a task cannot be empty.");
         }
-
         Task newTask = null;
 
         switch (type) {
@@ -88,6 +95,7 @@ public class Duke {
 
         if (newTask != null) {
             this.taskList.addTask(newTask);
+            //this.storage.writeToFile(newTask.toFile());
             printMessage("Got it. I've added this task:\n\t" + newTask
                     + "\nNow you have " + this.taskList.totalTask() + " tasks in the list.");
         }
