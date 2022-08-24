@@ -9,6 +9,7 @@ public class MarkCommand extends Command {
     private int number;
 
     public MarkCommand(int number) {
+
         this.number = number;
     }
     @Override

@@ -9,6 +9,7 @@ public class UnMarkedCommand extends Command {
     private int number;
 
     public UnMarkedCommand(int number) {
+
         this.number = number;
     }
     @Override

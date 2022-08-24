@@ -1,6 +1,5 @@
 package duke.task;
 
-
 public class Event extends Task {
     private String time;
     private String name;
@@ -12,11 +11,12 @@ public class Event extends Task {
 
     @Override
     public String toString() {
+
         return "[E]" + super.toString() + " (at: " + this.time + ")";
     }
 
     public String parse() {
-        if (this.getCompleted()) {
+        if (this.getHasCompleted()) {
             return "E#1#" + this.name + "#" + this.time;
         } else {
             return "E#0#" + this.name + "#" + this.time;
