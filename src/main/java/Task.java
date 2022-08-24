@@ -26,13 +26,17 @@ abstract public class Task {
     }
 
 
-    public void unMarkTaskAsDone() {done = false; }
-
+    public void unMarkTaskAsDone() {
+        done = false;
+    }
 
     public int getDone() {
         return done ? 1 : 0;
     }
 
     abstract char getType();
-    abstract String getDetail();
+
+    abstract String getOriginalDetail();
+
+    abstract String getFormattedDetail();
 }

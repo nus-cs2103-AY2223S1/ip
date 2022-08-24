@@ -4,16 +4,22 @@ public class Todo extends Task {
     }
 
     @Override
-    public String toString() { return "[T]" + super.toString(); }
+    public String toString() {
+        return "[T]" + super.toString();
+    }
 
     @Override
-    public char getType()
-    {
+    public char getType() {
         return 'T';
     }
 
     @Override
-    public String getDetail() {
+    public String getOriginalDetail() {
+        return null;
+    }
+
+    @Override
+    public String getFormattedDetail() {
         return null;
     }
 }

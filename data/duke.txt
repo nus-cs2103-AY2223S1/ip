@@ -1,1 +1,4 @@
-T|0|running
+D|0|running|2023-10-04T18:00
+E|0|drinking|2022-03-12T18:30
+T|1|running
+E|0|smoke|2022-10-03T18:10
