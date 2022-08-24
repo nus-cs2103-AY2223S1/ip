@@ -28,6 +28,10 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public boolean contains(String keyword) {
+        return this.description.contains(keyword);
+    }
+
     public String getStorageFormat() {
         return this.getStatusBit() + " | " + this.description;
     }

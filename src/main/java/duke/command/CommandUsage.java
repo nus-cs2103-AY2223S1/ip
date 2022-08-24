@@ -9,7 +9,8 @@ public enum CommandUsage {
     TODO("todo <task description>"),
     EVENT("event <event description> /at <date>"),
     DEADLINE("deadline <task description> /by <date>"),
-    DELETE("delete <task index>");
+    DELETE("delete <task index>"),
+    FIND("find <keyword>");
 
     private final String usageText;
 
