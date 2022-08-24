@@ -8,7 +8,6 @@ public class Duke {
         Parser.parseInput();
     }
 
-
     public static void main(String[] args) {
         new Duke().run();
     }

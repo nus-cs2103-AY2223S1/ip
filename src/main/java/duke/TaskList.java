@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class TaskList {
     private static ArrayList<Task> taskList;
@@ -92,10 +93,7 @@ public class TaskList {
         int numberToRemoveInt = Integer.parseInt(numberToRemove) - 1;
         Task t = taskList.get(numberToRemoveInt);
         taskList.remove(numberToRemoveInt);
-        UI.getLINE();
-        System.out.println("Noted. I've removed this task:\n " + " " + t.toString() +
-                "\nNow you have " + taskListLength() + " tasks in the list.");
-        UI.getLINE();
+        UI.deleteTaskUI(taskList, t);
     }
 
     //method to mark as done
@@ -121,5 +119,10 @@ public class TaskList {
         UI.markAsUndoneUI(tsk);
     }
 
-
+    public static void findTasks(String keyword) {
+        ArrayList<Task> filteredList = new ArrayList<>(taskList.stream()
+                .filter(task -> task.containsWord(keyword))
+                .collect(Collectors.toList()));
+        UI.findTasksUI(filteredList);
+    }
 }

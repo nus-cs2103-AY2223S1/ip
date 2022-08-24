@@ -27,6 +27,10 @@ public class Task {
         return (isDone ? 1 : 0 ) + " | " + this.description;
     }
 
+    public boolean containsWord(String str) {
+        return description.contains(str);
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
