@@ -2,16 +2,29 @@ package duke;
 
 import duke.command.Command;
 
+
+/**
+ * Represents main class for the Duke programme
+ *
+ * @author benjytan45678
+ * @version 0.1
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Creates a Duke object with its relevant filepath.
+     *
+     * @param filePath The file path to the local file responsible for storing and loading.
+     */
     public Duke(String filePath) {
         ui = new Ui();
-        storage = new Storage(filePath);
+
         try {
+            storage = new Storage(filePath);
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
             ui.showLoadingError();
@@ -19,6 +32,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

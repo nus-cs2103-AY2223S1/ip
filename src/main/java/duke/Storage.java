@@ -11,17 +11,31 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
+
+/**
+ * Represents class that stores and loads tasks
+ *
+ * @author benjytan45678
+ * @version 0.1
+ */
 public class Storage {
     private File file;
     private String filepath;
-    public Storage(String filepath) {
+
+    /**
+     * Creates a storage object of the specified file path.
+     *
+     * @param filepath Path from root directory to the file.
+     * @throws DukeException If unable to create file.
+     */
+    public Storage(String filepath) throws DukeException{
         this.filepath = filepath;
         File newFile = new File(filepath);
         if (!newFile.exists()) {
             try {
                 boolean result = newFile.createNewFile();
                 if (result) {
-                    System.out.println("New file created since no duke.txt is found");
+                    throw new DukeException("New file created since no duke.txt is found");
                 }
 
             } catch (IOException e) {
@@ -31,7 +45,13 @@ public class Storage {
         this.file = newFile;
     }
 
-    public ArrayList<Task> load() {
+    /**
+     * Returns a list of tasks from file.
+     *
+     * @return A list of tasks.
+     * @throws DukeException If file is not found.
+     */
+    public ArrayList<Task> load() throws DukeException {
          ArrayList<Task> taskList = new ArrayList<>();
         try {
             Scanner sc = new Scanner(this.file);
@@ -64,13 +84,18 @@ public class Storage {
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("File not found!");
+            throw new DukeException("File not found!");
         }
         return taskList;
 
     }
 
-    public void store(ArrayList<Task> taskList) {
+    /**
+     * Saves specified list of tasks to local file.
+     *
+     * @param taskList
+     */
+    public void store(ArrayList<Task> taskList) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filepath);
             String message = "";
@@ -82,7 +107,7 @@ public class Storage {
             fw.close();
         }
         catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DukeException(e.getMessage());
         }
     }
 }
