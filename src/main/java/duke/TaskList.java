@@ -3,6 +3,8 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+import duke.Task;
+
 public class TaskList {
     private List<Task> tasks;
 

@@ -1,7 +1,6 @@
 package duke;
 
 import duke.Task;
-import duke.ToDo;
 
 public class ToDo extends Task {
     public ToDo(String name, boolean initialComplete) {

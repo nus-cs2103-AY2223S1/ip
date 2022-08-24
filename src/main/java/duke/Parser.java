@@ -1,5 +1,11 @@
 package duke;
 
+import duke.TaskList;
+import duke.CommandType;
+import duke.Event;
+import duke.Deadline;
+import duke.ToDo;
+
 public class Parser {
 
     private TaskList taskList;
