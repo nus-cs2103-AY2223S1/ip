@@ -21,9 +21,9 @@ public class Event extends Task {
      * @param timing      Timing of Event
      * @param isDone      Whether the task is done or not
      */
-    public Event(String description, String timing, boolean isDone) {
+    public Event(String description, Date timing, boolean isDone) {
         super(description, isDone);
-        // this.timing = timing.trim();
+        this.timing = timing;
     }
 
     /**
@@ -47,13 +47,13 @@ public class Event extends Task {
             input = input.split("/completed ")[0];
             String description = input.split("/at ")[0];
             String timing = input.split("/at ")[1];
-            return new Event(description, timing, isDone);
+            return new Event(description, Task.parseDate(timing), isDone);
         }
     }
 
     @Override
     public String getFileString() {
-        return "event " + this.description + " /at " + this.timing + " /completed " + this.isDone;
+        return "event " + this.description + " /at " + Task.formatDate(this.timing) + " /completed " + this.isDone;
     }
 
     @Override

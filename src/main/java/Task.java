@@ -83,10 +83,12 @@ public abstract class Task {
 
     public static Date parseDate(String input) throws DukeException {
         SimpleDateFormat formatter;
-        if (input.indexOf("/") != 1) {
+        if (input.indexOf("/") != -1) {
             formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        } else if (input.indexOf("-") != 1) {
+        } else if (input.indexOf("-") != -1) {
             formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        } else if (input.indexOf(",") != -1) {
+            formatter = new SimpleDateFormat("EEE, MMM d, hh:mm a");
         } else {
             throw new DukeException(
                     "Please make sure your date is in `dd/MM/yyyy HH:mm` or `dd-MM-yyyy HH:mm` format.");

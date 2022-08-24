@@ -21,9 +21,9 @@ public class Deadline extends Task {
      * @param deadline    Deadline of the task
      * @param isDone      Whether the task is done or not
      */
-    public Deadline(String description, String deadline, boolean isDone) {
+    public Deadline(String description, Date deadline, boolean isDone) {
         super(description, isDone);
-        // this.deadline = deadline.trim();
+        this.deadline = deadline;
     }
 
     /**
@@ -47,13 +47,13 @@ public class Deadline extends Task {
             input = input.split("/completed ")[0];
             String description = input.split("/by ")[0];
             String deadline = input.split("/by ")[1];
-            return new Deadline(description, deadline, isDone);
+            return new Deadline(description, Task.parseDate(deadline), isDone);
         }
     }
 
     @Override
     public String getFileString() {
-        return "deadline " + this.description + " /by " + this.deadline + " /completed " + this.isDone;
+        return "deadline " + this.description + " /by " + Task.formatDate(this.deadline) + " /completed " + this.isDone;
     }
 
     @Override
