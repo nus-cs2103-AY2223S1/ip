@@ -2,11 +2,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Deadline extends Task{
+    private final String dateTime;
     protected LocalDate byDate;
     protected LocalTime byTime = null;
 
     public Deadline(String description, String by) {
         super(description);
+        this.dateTime = by;
         String[] arr = by.split(" ");
         this.byDate = LocalDate.parse(arr[0], Task.INPUT_DATE_FORMAT);
         if (arr.length != 1) {
@@ -24,7 +26,7 @@ public class Deadline extends Task{
 
     @Override
     public String format() {
-        return "deadline " + this.description + " /by " + this.by + "|" + this.getStatusIcon();
+        return "deadline " + this.description + " /by " + this.dateTime + "|" + this.getStatusIcon();
     }
 
     @Override

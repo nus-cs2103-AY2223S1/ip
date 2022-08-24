@@ -9,7 +9,7 @@ public abstract class Task {
     protected static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
     protected static DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yy");
     protected static DateTimeFormatter INPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("HHmm");
-    protected static DateTimeFormatter OUTPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("hh.mma");
+    protected static DateTimeFormatter OUTPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("h.mma");
 
     public abstract String format();
 
@@ -22,13 +22,6 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void markAsDone() {
-        this.isDone = true;
-    }
-
-    public void markAsNotDone() {
-        this.isDone = false;
-    }
 
     @Override
     public String toString() {

@@ -2,11 +2,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Event extends Task{
+    private final String dateTime;
     protected LocalDate atDate;
     protected LocalTime atTime = null;
 
     public Event(String description, String at) {
         super(description);
+        this.dateTime = at;
         String[] arr = at.split(" ");
         this.atDate = LocalDate.parse(arr[0], Task.INPUT_DATE_FORMAT);
         if (arr.length != 1) {
@@ -23,7 +25,7 @@ public class Event extends Task{
     }
 
     public String format() {
-        return "event " + this.description + " /at " + this.at + "|" + this.getStatusIcon();
+        return "event " + this.description + " /at " + this.dateTime + "|" + this.getStatusIcon();
     }
 
     @Override
