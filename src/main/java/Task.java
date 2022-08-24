@@ -21,7 +21,6 @@ public abstract class Task {
 
     @Override
     public String toString() {
-        String str = String.format("[%s] %s", this.getStatusIcon(), this.description);
-        return str;
+        return String.format("[%s] %s", this.getStatusIcon(), this.description);
     }
 }

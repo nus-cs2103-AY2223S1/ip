@@ -9,6 +9,9 @@ import java.util.Scanner;
 import java.lang.StringBuilder;
 import java.util.regex.Pattern;
 import java.lang.Character;
+import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Skyler {
     public static void saveTask(ArrayList<Task> task) throws java.io.IOException {
@@ -109,7 +112,8 @@ public class Skyler {
                 Pattern p = Pattern.compile(" [|] ");
                 String[] descriptors = p.split(taskDescription);
 
-                Deadline deadline = new Deadline(descriptors[0], descriptors[1]);
+                LocalDateTime dt = processDateTime(descriptors[1]);
+                Deadline deadline = new Deadline(descriptors[0], dt);
                 if (taskStatus == 1) {
                     deadline.markAsDone();
                 }
@@ -119,7 +123,8 @@ public class Skyler {
                 Pattern p1 = Pattern.compile(" [|] ");
                 String[] descriptors1 = p1.split(taskDescription);
 
-                Event event = new Event(descriptors1[0], descriptors1[1]);
+                LocalDateTime dt1 = processDateTime(descriptors1[1]);
+                Event event = new Event(descriptors1[0], dt1);
                 if (taskStatus == 1) {
                     event.markAsDone();
                 }
@@ -135,6 +140,19 @@ public class Skyler {
         System.out.println(str);
         String summary = String.format("Total number of tasks: %d", num);
         System.out.println(summary);
+    }
+
+    public static LocalDateTime processDateTime(String strDateTime) {
+        String[] timeInfo = strDateTime.split(" ", 2);
+
+        String unformattedTime = timeInfo[1];
+        String hour = unformattedTime.substring(0, 2);
+        String minute = unformattedTime.substring(2, 4);
+        String formattedTime = String.format("%s:%s", hour, minute);
+
+        LocalDate date = LocalDate.parse(timeInfo[0]);
+        LocalTime time = LocalTime.parse(formattedTime);
+        return LocalDateTime.of(date, time);
     }
 
     public static void main(String[] args) {
@@ -210,7 +228,10 @@ public class Skyler {
                     String item = arr[1];
                     String[] arr1 = item.split(" /by ", 2);
 
-                    Deadline newDeadline = new Deadline(arr1[0], arr1[1]);
+                    // process date and time
+                    LocalDateTime dt = processDateTime(arr1[1]);
+
+                    Deadline newDeadline = new Deadline(arr1[0], dt);
                     tasks.add(newDeadline);
 
                     // task list changes
@@ -228,7 +249,10 @@ public class Skyler {
                     String item = arr[1];
                     String[] arr1 = item.split(" /at ", 2);
 
-                    Event newEvent = new Event(arr1[0], arr1[1]);
+                    // process date and time
+                    LocalDateTime dt = processDateTime(arr1[1]);
+
+                    Event newEvent = new Event(arr1[0], dt);
                     tasks.add(newEvent);
 
                     // task list changes
