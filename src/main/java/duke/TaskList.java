@@ -1,8 +1,5 @@
 package duke;
 
-import duke.Storage;
-import duke.Task;
-
 import java.util.ArrayList;
 
 public class TaskList {
