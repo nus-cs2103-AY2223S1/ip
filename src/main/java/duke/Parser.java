@@ -8,9 +8,21 @@ import duke.exception.UnknownCommand;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * A class that deals with making sense of the user command.
+ */
 public class Parser {
+    /** All the known commands */
     private enum Commands {list, mark, unmark, todo, event, deadline, delete, bye};
 
+    /**
+     * Takes in the user input, process it and returns the
+     * associated command.
+     *
+     * @param input The string the user inputted.
+     * @return The command associated with the user input.
+     * @throws DukeException If user input is invalid.
+     */
     public Command parse(String input) throws DukeException {
         Commands command;
         try {

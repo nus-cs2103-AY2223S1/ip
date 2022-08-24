@@ -6,31 +6,56 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * A class that encapsulates the storing of all the task data.
+ */
 public class TaskList {
+    /** The ArrayList that contains all the tasks */
     private final ArrayList<Task> data;
 
+    /**
+     * The class constructor that initialises the ArrayList.
+     */
     public TaskList() {
         this.data = new ArrayList<>();
     }
 
-
+    /**
+     * Returns the number of tasks saved.
+     *
+     * @return The size of the ArrayList.
+     */
     public int size() {
         return data.size();
     }
 
+    /**
+     * Returns the tasks saved in the provided index.
+     *
+     * @param index The index of the tasks of interest.
+     * @return The task of interest.
+     */
     public Task get(int index) {
         return data.get(index);
     }
 
-    public void add(Task task) throws DukeException {
+    /**
+     * Appends a new task to the ArrayList.
+     *
+     * @param task The new task to append.
+     */
+    public void add(Task task) {
         data.add(task);
     }
 
-    public void remove(int index) throws DukeException {
-        data.remove(index);
-    }
-
-    // checks if number input is valid and returns the index of the task
+    /**
+     * Checks if the number provided is valid and returns the number in int.
+     *
+     * @param res The string to check.
+     * @return The valid index in Integer.
+     * @throws InvalidInput If the string given is not a number or the number is
+     * less than 0 or more than the size of the ArrayList.
+     */
     public int stringIndexToInt(String res) throws InvalidInput {
         if (!res.matches("[0-9]+")) throw new InvalidInput("Input is not a number");
         int target_index = Integer.parseInt(res) - 1;
@@ -38,7 +63,14 @@ public class TaskList {
         return target_index;
     }
 
-    // marks task as complete or not complete
+    /**
+     * Marks the task as complete or not complete.
+     *
+     * @param indexString The string containing the index of the task.
+     * @param isComplete Determines whether to mark as complete or incomplete.
+     * @return The marked or unmarked task.
+     * @throws DukeException If the provided string is not valid.
+     */
     public Task setTaskCompletion(String indexString, boolean isComplete) throws DukeException {
         Task task = data.get(stringIndexToInt(indexString));
         if (isComplete) task.markDone();
@@ -46,7 +78,13 @@ public class TaskList {
         return task;
     }
 
-    // delete a specified task
+    /**
+     * Deletes a specified task.
+     *
+     * @param indexString The string containing the index of the task.
+     * @return The deleted task.
+     * @throws DukeException If the provided string is not valid.
+     */
     public Task deleteTask(String indexString) throws DukeException {
         int target_index = stringIndexToInt(indexString);
         Task task = data.get(target_index);
@@ -54,6 +92,11 @@ public class TaskList {
         return task;
     }
 
+    /**
+     * Converts the TaskList object to its string representation.
+     *
+     * @return The string representing the TaskList.
+     */
     @Override
     public String toString() {
         if (data.size() == 0) return "Nothing here...";
