@@ -1,8 +1,5 @@
 package jarvis.storage;
 
-import jarvis.JarvisException;
-import jarvis.task.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -10,6 +7,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import jarvis.JarvisException;
+import jarvis.task.Deadline;
+import jarvis.task.Event;
+import jarvis.task.Task;
+import jarvis.task.TaskList;
+import jarvis.task.ToDo;
 
 public class Storage {
     private final String filePath;

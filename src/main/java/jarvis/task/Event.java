@@ -8,7 +8,8 @@ public class Event extends Task {
 
     public Event(String description, String at) {
         super(description);
-        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy HHmm]" + "[MMM dd yyyy hh:mm a]"));
+        this.at = LocalDateTime.parse(at, DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy HHmm]"
+                + "[MMM dd yyyy hh:mm a]"));
     }
 
     public String getAt() {
@@ -17,6 +18,7 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a")) + ")";
+        return "[E]" + super.toString() + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"))
+                + ")";
     }
 }

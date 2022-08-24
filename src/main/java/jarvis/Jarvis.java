@@ -1,12 +1,12 @@
 package jarvis;
 
+import java.util.Scanner;
+
 import jarvis.command.Command;
 import jarvis.parser.Parser;
 import jarvis.storage.Storage;
 import jarvis.task.TaskList;
 import jarvis.ui.Ui;
-
-import java.util.Scanner;
 
 public class Jarvis {
     private Storage storage;
