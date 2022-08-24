@@ -7,14 +7,17 @@ import yilia.task.TaskList;
 /**
  * Represents a command to show the whole list of tasks.
  */
-public class ListCommand extends Command {
-    public ListCommand(boolean isExit) {
-        super(isExit);
+public class FindCommand extends Command {
+    private String content;
+    public FindCommand(String content) {
+        this.content = content;
     }
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         for (int i = 1; i <= tasks.size(); i++) {
-            ui.showTask(i, tasks);
+            if (tasks.get(i).toString().contains(content)) {
+                ui.showTask(i, tasks);
+            }
         }
     }
 }

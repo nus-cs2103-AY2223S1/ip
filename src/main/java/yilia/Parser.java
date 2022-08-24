@@ -4,10 +4,12 @@ import yilia.command.AddCommand;
 import yilia.command.Command;
 import yilia.command.DeleteCommand;
 import yilia.command.ExitCommand;
+import yilia.command.FindCommand;
 import yilia.command.ListCommand;
 import yilia.command.MarkCommand;
 import yilia.command.UnmarkCommand;
 import yilia.exception.DescriptionEmptyException;
+import yilia.exception.KeywordMissingException;
 import yilia.exception.NoIndexException;
 import yilia.exception.TimeFormatException;
 import yilia.exception.YiliaException;
@@ -24,8 +26,8 @@ public class Parser {
      * @throws YiliaException  If the command is unknown to Yilia.
      * @throws NoIndexException  If the index is not given by users.
      */
-    public static Command parse(String text) throws YiliaException, NoIndexException,
-            DescriptionEmptyException, TimeFormatException {
+    public static Command parse(String text) throws DescriptionEmptyException, KeywordMissingException,
+            NoIndexException, TimeFormatException, YiliaException {
         String[] info = text.strip().split(" ", 2);
         if (info[0].equals("list")) {
             return new ListCommand(false);
@@ -59,6 +61,11 @@ public class Parser {
                 throw new DescriptionEmptyException(Type.TODO);
             }
             return new AddCommand(info[1], Type.TODO);
+        } else if (info[0].equals("find")) {
+            if (info.length == 1) {
+                throw new KeywordMissingException();
+            }
+            return new FindCommand(info[1]);
         } else if (info[0].equals("bye")) {
             return new ExitCommand();
         } else {

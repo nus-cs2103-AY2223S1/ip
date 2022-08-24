@@ -82,16 +82,24 @@ public class Ui {
     public void showUnmarkStatus(Task task) {
         System.out.println("Nice! I've marked this task as done:\n  " + task);
     }
-
     /**
-     * Shows the status of successfully deleting a task from the task list.
+     * Shows the status of successfully deleting a task.
      *
-     * @param task The task whose deleting status is shown.
+     * @param task The task to delete.
      * @param tasks The task list.
      */
     public void showDeleteStatus(Task task, TaskList tasks) {
         System.out.println("Noted. I've removed this task:\n  " + task + "\nNow you have "
                 + tasks.size() + " tasks in the list.");
+    }
+    /**
+     * Shows the content of a task.
+     *
+     * @param index The index of the task.
+     * @param tasks The task list.
+     */
+    public void showTask(int index, TaskList tasks) {
+        System.out.println(index + "." + tasks.get(index));
     }
 
     /**

@@ -4,10 +4,7 @@ import yilia.Parser;
 import yilia.Storage;
 import yilia.Ui;
 import yilia.command.Command;
-import yilia.exception.DescriptionEmptyException;
-import yilia.exception.NoIndexException;
-import yilia.exception.TimeFormatException;
-import yilia.exception.YiliaException;
+import yilia.exception.*;
 import yilia.task.TaskList;
 
 /**
@@ -42,13 +39,15 @@ class Yilia {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
-            } catch (TimeFormatException e) {
+            } catch (DescriptionEmptyException e) {
                 ui.showError(e.getMessage());
-            } catch (YiliaException e) {
+            } catch (KeywordMissingException e) {
                 ui.showError(e.getMessage());
             } catch (NoIndexException e) {
                 ui.showError(e.getMessage());
-            } catch (DescriptionEmptyException e) {
+            } catch (TimeFormatException e) {
+                ui.showError(e.getMessage());
+            } catch (YiliaException e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
