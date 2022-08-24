@@ -4,7 +4,7 @@ import java.time.LocalDate;
  * The Task class represents a task added to Duke.
  */
 public abstract class Task {
-    private String description;
+    private final String description;
     private boolean isDone = false;
 
     /**
@@ -14,6 +14,49 @@ public abstract class Task {
      */
     public Task(String description) {
         this.description = description;
+    }
+
+    /**
+     * Parses a string into the task it represents.
+     *
+     * @param s The string read from the Duke data file.
+     * @return The task represented by the string read from the data file.
+     * @throws DukeException when the string in the data file is invalid.
+     */
+    public static Task parseData(String s) throws DukeException {
+        String[] strings = s.split(" \\| ");
+        Task task;
+
+        switch (strings[0]) {
+        case "T":
+            if (strings.length > 3) {
+                throw new DukeException();
+            }
+            task = new Todo(strings[2]);
+            break;
+        case "D":
+            if (strings.length > 4) {
+                throw new DukeException();
+            }
+            task = new Deadline(strings[2], strings[3]);
+            break;
+        case "E":
+            if (strings.length > 4) {
+                throw new DukeException();
+            }
+            task = new Event(strings[2], strings[3]);
+            break;
+        default:
+            throw new DukeException();
+        }
+
+        if (strings[1].equals("X")) {
+            task.markAsDone();
+        } else if (!strings[1].equals(" ")) {
+            throw new DukeException();
+        }
+
+        return task;
     }
 
     /**
@@ -40,9 +83,7 @@ public abstract class Task {
     }
 
     /**
-     * Returns the string representation of a Task.
-     *
-     * @return The string representing the Task.
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

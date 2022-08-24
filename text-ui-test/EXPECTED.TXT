@@ -180,12 +180,19 @@
     ____________________________________________________________
     ____________________________________________________________
     Here are the tasks in your list:
-    1.[D][ ] return book (by: June 6th)
+    1.[D][ ] return book (by: Aug 22 2022, 6.00PM)
+    2.[D][ ] steal book (by: Aug 22 2022)
+    3.[D][ ] sell book (by: next week)
+    4.[D][ ] eat book (by: Aug 22 2022 noon)
+    5.[E][ ] sleep (at: Aug 22 2022, 7.40PM)
+    6.[E][ ] sleep (at: 3 am)
+    7.[E][ ] sleep (at: Aug 22 2022 2500)
+    8.[E][ ] sleep (at: Aug 20 2022)
     ____________________________________________________________
     ____________________________________________________________
     Got it. I've added this task:
       [D][ ] sleep (by: tonight)
-    Now you have 2 tasks in your list.
+    Now you have 9 tasks in your list.
     ____________________________________________________________
     ____________________________________________________________
     Bye. Hope to see you again soon!

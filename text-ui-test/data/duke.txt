@@ -1,2 +1,0 @@
-D |   | return book | June 6th
-D |   | sleep | tonight

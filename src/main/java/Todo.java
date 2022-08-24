@@ -15,9 +15,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns the string representation of a Todo task.
-     *
-     * @return The string representing the Todo task.
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

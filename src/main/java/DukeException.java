@@ -8,4 +8,13 @@ public class DukeException extends Exception {
      */
     public DukeException() {
     }
+
+    /**
+     * Constructs a new DukeException with an error message.
+     *
+     * @param message A string that describes the error which occurred.
+     */
+    public DukeException(String message) {
+        super(message);
+    }
 }

@@ -40,9 +40,7 @@ public class Event extends Task {
     }
 
     /**
-     * Returns the string representation of an event.
-     *
-     * @return The string representing the event.
+     * {@inheritDoc}
      */
     @Override
     public String toString() {
