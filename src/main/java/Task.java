@@ -1,10 +1,13 @@
+import java.util.Arrays;
+import java.util.List;
+
 // import java.util.*;
 
 public class Task {
     protected String description;
     protected boolean isDone;
     protected char taskType;
-    protected String dateTime;
+    protected String dateTime = null;
     protected String dueDescription; // Stores either 'by' or 'at'
 
     public Task(String description) throws Exception{
@@ -28,6 +31,20 @@ public class Task {
 
     }
 
+    public Task(char taskType, boolean isDone, String description) {
+        this.description = description;
+        this.taskType = taskType;
+        this.isDone = isDone;
+    }
+
+    public Task(char taskType, boolean isDone, String description, String dueDescription, String dateTime) {
+        this.description = description;
+        this.taskType = taskType;
+        this.isDone = isDone;
+        this.dueDescription = dueDescription;
+        this.dateTime = dateTime;
+    }
+
     private void parseDateTime(String delimiter){
         String[] splitText = this.description.split(delimiter);
         this.dateTime = splitText[1];
@@ -45,6 +62,11 @@ public class Task {
 
     public void mark() {
         this.isDone = true;
+    }
+
+    public String getTaskString() {
+        List<String> attributes = Arrays.asList(Character.toString(this.taskType), this.getStatusIcon(), this.description, this.dueDescription, this.dateTime);
+        return String.join(" | ", attributes);
     }
 
     @Override

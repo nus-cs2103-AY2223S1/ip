@@ -1,4 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 
 
 public class Duke {
@@ -62,6 +67,48 @@ public class Duke {
 
     }
 
+    private static void taskListReader(){
+        File taskFile = new File("./data/duke.txt");
+        try (Scanner input = new Scanner(taskFile)) {
+            while (input.hasNextLine()) {
+                String line = input.nextLine();
+                String[] taskAttrs = line.split(" \\| " , -1);
+                if (taskAttrs[0].equals("T")) {
+                    Task newTask = new Task(taskAttrs[0].charAt(0), taskAttrs[1].equals("X"), taskAttrs[2]);
+                    list.add(newTask);
+                } else {
+                    Task newTask = new Task(taskAttrs[0].charAt(0), taskAttrs[1].equals("X"), taskAttrs[2], taskAttrs[3], taskAttrs[4]);
+                    list.add(newTask);
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void taskListWriter() {
+        File taskFile = new File("./data/duke.txt");
+        String taskString = getTaskString();
+        try {
+            FileWriter fw = new FileWriter(taskFile.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(taskString);
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    private static String getTaskString() {
+        String tasks = "";
+        for (Task task : list){
+            tasks += task.getTaskString() + "\n";
+        }
+        return tasks;
+    }
+
     private static void deleteFromList(int number) {
         Task removed = list.remove(number);
         String rmvMsg = "Noted. I've removed this task: \n"
@@ -108,13 +155,26 @@ public class Duke {
      */
     private static void commandHandler() {
         greet();
+
+        // Read file with tasks if it exists, else create a new one.
+        File taskFile = new File("./data/duke.txt");
+        if (taskFile.exists()) {
+            taskListReader();
+        } else {
+            try {
+                taskFile.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        // Scan for commands
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
         
         while (!command.toLowerCase().equals("bye")) {
             if (command.equals("list")){
                 printList();
-
             } else if (command.split(" ")[0].toLowerCase().equals("mark")) {
                 int number = Integer.parseInt(command.split(" ")[1]);
                 markAsDone(number);
@@ -133,6 +193,10 @@ public class Duke {
         }
 
         // Loop has been exited, meaning bye has been inputted
+        // Save the tasks to duke.txt
+        taskListWriter();
+        
+        // Bye message
         exit();
         sc.close();
     }
