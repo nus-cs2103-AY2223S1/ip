@@ -6,13 +6,19 @@ public class Duke {
         String name = "Duke";
         System.out.println("Hello! I'm " + name + "\nHow can I help you?");
 
-        ArrayList<Task> tasksList = new ArrayList<>();
-
+        // Initializing the Duke chatbot
+        ArrayList<Task> tasksList = FileHandler.readData();
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
             if (command.equals("bye")) {
+                // Write tasks data to storage before terminating program
+                StringBuilder data = new StringBuilder();
+                for (Task task : tasksList) {
+                    data.append(task.toString() + "\n");
+                }
+                FileHandler.writeData(data.toString());
                 System.out.println("Bye! See you again :)");
                 return;
             } else if (command.equals("list")) {
@@ -36,26 +42,21 @@ public class Duke {
             } else {
                 try {
                     if (command.contains("todo")) {
-                        String taskName = command.length() > 5
-                                ? command.split("todo ")[1]
-                                : "";
+                        String taskName = command.length() > 5 ? command.split("todo ")[1] : "";
                         if (taskName.isBlank()) {
                             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
                         }
                         tasksList.add(new Todo(taskName));
                         System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
-                    }
-                    else if (command.contains("deadline")) {
+                    } else if (command.contains("deadline")) {
                         String[] res = command.split("deadline ")[1].split("\\\\by ");
                         tasksList.add(new Deadline(res[0], res[1]));
                         System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
-                    }
-                    else if (command.contains("event")) {
+                    } else if (command.contains("event")) {
                         String[] res = command.split("event ")[1].split("\\\\at ");
                         tasksList.add(new Event(res[0], res[1]));
                         System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
-                    }
-                    else {
+                    } else {
                         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
                 } catch (DukeException e) {
