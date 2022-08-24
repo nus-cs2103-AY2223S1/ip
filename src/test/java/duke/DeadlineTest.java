@@ -1,13 +1,13 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import org.junit.jupiter.api.Test;
+
 public class DeadlineTest {
     @Test
-    public void createEventTest() {
+    public void createDeadline_noMarkSpecified_unmarkedDeadlineReturned() {
         try {
             Deadline deadline = new Deadline("Test", "2022-02-02");
             assertEquals("[D][ ] Test (by: Feb 2 2022)", deadline.toString());
@@ -17,7 +17,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void createEventTest2() {
+    public void createDeadline_deadlineUnmarked_unmarkedDeadlineReturned() {
         try {
             Deadline deadline = new Deadline("Test", "2022-02-02", false);
             assertEquals("[D][ ] Test (by: Feb 2 2022)", deadline.toString());
@@ -27,7 +27,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void createEventTest3() {
+    public void createDeadline_deadlineMarked_markedDeadlineReturned() {
         try {
             Deadline deadline = new Deadline("Test", "2023-03-03", true);
             assertEquals("[D][X] Test (by: Mar 3 2023)", deadline.toString());
@@ -37,7 +37,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void saveFileStringTest() {
+    public void toSaveFileString_deadlineUnmarked_stringRepresentationMatch() {
         try {
             Deadline deadline = new Deadline("Test", "2022-02-02", false);
             assertEquals("[D] @ [ ] @ Test @ 2022-02-02", deadline.toSaveFileString());
@@ -47,7 +47,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void saveFileStringTest2() {
+    public void toSaveFileString_deadlineMarked_stringRepresentationMatch() {
         try {
             Deadline deadline = new Deadline("Test", "2023-03-03", true);
             assertEquals("[D] @ [X] @ Test @ 2023-03-03", deadline.toSaveFileString());
@@ -57,7 +57,7 @@ public class DeadlineTest {
     }
 
     @Test
-    public void markAsDoneTest() {
+    public void markAsDone() {
         try {
             Deadline deadline = new Deadline("Test", "2022-02-02", false);
             deadline.markAsDone();
