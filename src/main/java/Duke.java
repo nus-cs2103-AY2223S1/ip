@@ -111,13 +111,6 @@ public class Duke {
                     }
                     else {
                         String[] strArray = str.split("/by");
-<<<<<<< HEAD
-                        Deadline newDeadline = new Deadline(strArray[0], strArray[1]);
-                        tasks.add(newDeadline);
-                        System.out.println("\t Got it. I've added this task:");
-                        System.out.println("\t   " + newDeadline);
-                        System.out.println("\t Now you have " + tasks.size() + " tasks in the list.");
-=======
                         String des = strArray[0].trim();
                         if (des.isEmpty()) {
                             System.out.println(new DukeException("The description of a deadline cannot be empty.").getMessage());
@@ -136,7 +129,6 @@ public class Duke {
                                 System.out.println(new DukeException("The date field cannot be empty.").getMessage());
                             }
                         }
->>>>>>> branch-Level-8
                     }
                     System.out.println("\t____________________________________________");
                     break;
