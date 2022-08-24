@@ -1,13 +1,17 @@
-public class Event extends Task {
-    private String timing;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String description, String deadline) {
+public class Event extends Task {
+    private LocalDateTime timing;
+
+    public Event(String description, LocalDateTime timing) {
         super(description);
-        this.timing = deadline;
+        this.timing = timing;
     }
 
     public String getTiming() {
-        return timing;
+        DateTimeFormatter dTF = DateTimeFormatter.ofPattern("dd MMM uuuu HH:mm");
+        return dTF.format(timing).toString();
     }
 
     @Override

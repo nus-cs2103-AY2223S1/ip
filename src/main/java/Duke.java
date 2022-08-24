@@ -1,3 +1,6 @@
+import javax.swing.text.DateFormatter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import static java.lang.Integer.parseInt;
@@ -25,7 +28,8 @@ public class Duke {
     }
     public void run(String input) {
         try {
-                String[] inputString = input.split(" ", 2);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String[] inputString = input.split(" ", 2);
                 String command = inputString[0];
                 System.out.println("\t-------------------------------");
                 switch (command) {
@@ -58,6 +62,8 @@ public class Duke {
                                 "for your deadline");
                     }
                     if (inputString[1].contains("/by")) {
+                        // Format of date-time: YYYY-MM-DD HH:MM e.g. 2003-10-19 10:05
+
                         String[] deadlineDetails = inputString[1].split("/by");
                         if (deadlineDetails.length == 1) {
                             throw new DukeException("Please be sure to specify both description and deadline");
@@ -70,9 +76,9 @@ public class Duke {
                         }
                         if (deadline.length() == 0) {
                             throw new DukeException("Oops! You forgot to indicate the deadline");
-
                         }
-                        Task.add(new Deadline(description, deadline));
+                        LocalDateTime dateTime = LocalDateTime.parse(deadline, formatter);
+                        Task.add(new Deadline(description, dateTime));
                     } else {
                         throw new DukeException("Oops! You forgot to use /by to separate " +
                                 "the description and deadline");
@@ -99,7 +105,8 @@ public class Duke {
                             throw new DukeException("Oops! You forgot to indicate the timing " +
                                     "for your event");
                         }
-                        Task.add(new Event(description, timing));
+                        LocalDateTime dateTime = LocalDateTime.parse(timing, formatter);
+                        Task.add(new Event(description, dateTime));
                     } else {
                         throw new DukeException("Oops! You forgot to use /at to separate " +
                                 "the description and timing");
@@ -121,6 +128,9 @@ public class Duke {
             System.out.println("\t-------------------------------");
         } catch (NumberFormatException e) {
             System.out.println("\tPlease make sure you enter a task number correctly!");
+            System.out.println("\t-------------------------------");
+        } catch (java.time.format.DateTimeParseException e) {
+            System.out.println("\tPlease ensure your datetime format is in YYYY-MM-DD HH:MM");
             System.out.println("\t-------------------------------");
         }
     }
