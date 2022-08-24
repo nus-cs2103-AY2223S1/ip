@@ -1,19 +1,18 @@
-import data.FileStorage;
-import data.IStorage;
-import entities.Tasklist;
-import exceptions.DukeException;
-import handlers.HandlerFactory;
-import handlers.IHandler;
-import service.Service;
-import service.Ui;
+package duke;
+
+import duke.data.FileStorage;
+import duke.data.IStorage;
+import duke.entities.Tasklist;
+import duke.exceptions.DukeException;
+import duke.handlers.IHandler;
+import duke.service.Parser;
+import duke.service.Service;
+import duke.service.Ui;
 
 import java.io.File;
 import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Duke {
-    private static final Pattern COMMAND_REGEX = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
     private static final String LOGO = " ____        _        \n" +
             "|  _ \\ _   _| | _____ \n" +
             "| | | | | | | |/ / _ \\\n" +
@@ -53,22 +52,9 @@ public class Duke {
 
 
     private static void handleCommand(Service s, String str) throws DukeException {
-        try {
-            Matcher m = COMMAND_REGEX.matcher(str);
-            m.find();
-            String command = m.group(1);
-            String value = m.group(2);
-            String flag = m.group(3);
-            String options = m.group(4);
-
-            HandlerFactory handlerFactory = new HandlerFactory(command);
-            IHandler handler = handlerFactory.taskName(value).flag(flag).flagOption(options).build();
-            handler.handle(s);
-            s.updateStorage();
-        } catch (IllegalStateException ex) {
-            // catch when no match found
-            throw new DukeException("Unknown command. Please try again!");
-        }
+        IHandler handler = Parser.parse(str);
+        handler.handle(s);
+        s.updateStorage();
     }
 
 

@@ -1,4 +1,4 @@
-package entities;
+package duke.entities;
 
 public class Todo extends Task {
 

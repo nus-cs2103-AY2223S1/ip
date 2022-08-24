@@ -1,9 +1,9 @@
-package handlers;
+package duke.handlers;
 
-import entities.Deadline;
-import entities.Task;
-import exceptions.DukeException;
-import service.Service;
+import duke.entities.Deadline;
+import duke.entities.Task;
+import duke.exceptions.DukeException;
+import duke.service.Service;
 
 import java.time.format.DateTimeParseException;
 

@@ -1,4 +1,4 @@
-package entities;
+package duke.entities;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

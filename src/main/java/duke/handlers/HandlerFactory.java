@@ -1,8 +1,8 @@
-package handlers;
+package duke.handlers;
 
-import enums.Command;
-import exceptions.DukeException;
-import service.Service;
+import duke.enums.Command;
+import duke.exceptions.DukeException;
+import duke.service.Service;
 
 
 public class HandlerFactory {

@@ -1,4 +1,4 @@
-package entities;
+package duke.entities;
 
 import java.util.ArrayList;
 import java.util.Iterator;

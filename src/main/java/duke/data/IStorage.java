@@ -1,8 +1,6 @@
-package data;
+package duke.data;
 
-import entities.Task;
-import entities.Tasklist;
-import exceptions.DukeException;
+import duke.entities.Tasklist;
 
 public interface IStorage {
     public void write(Tasklist task);

@@ -1,4 +1,4 @@
-package entities;
+package duke.entities;
 
 public abstract class Task {
 

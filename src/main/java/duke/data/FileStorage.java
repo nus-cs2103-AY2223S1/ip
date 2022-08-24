@@ -1,8 +1,8 @@
-package data;
+package duke.data;
 
-import entities.Task;
-import entities.Tasklist;
-import entities.Todo;
+import duke.entities.Task;
+import duke.entities.Tasklist;
+import duke.entities.Todo;
 
 import java.io.*;
 import java.util.regex.Matcher;

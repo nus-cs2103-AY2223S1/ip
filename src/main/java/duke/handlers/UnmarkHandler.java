@@ -1,8 +1,8 @@
-package handlers;
+package duke.handlers;
 
-import entities.Task;
-import exceptions.DukeException;
-import service.Service;
+import duke.entities.Task;
+import duke.exceptions.DukeException;
+import duke.service.Service;
 
 public class UnmarkHandler implements IHandler{
     private String taskIndex;

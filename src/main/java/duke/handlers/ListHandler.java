@@ -1,7 +1,7 @@
-package handlers;
+package duke.handlers;
 
-import exceptions.DukeException;
-import service.Service;
+import duke.exceptions.DukeException;
+import duke.service.Service;
 
 public class ListHandler implements IHandler{
     public ListHandler() {

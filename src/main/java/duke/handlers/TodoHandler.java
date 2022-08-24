@@ -1,9 +1,9 @@
-package handlers;
+package duke.handlers;
 
-import entities.Task;
-import entities.Todo;
-import exceptions.DukeException;
-import service.Service;
+import duke.entities.Task;
+import duke.entities.Todo;
+import duke.exceptions.DukeException;
+import duke.service.Service;
 
 public class TodoHandler implements IHandler{
     private String todoName;

@@ -1,8 +1,8 @@
-package service;
+package duke.service;
 
-import data.IStorage;
-import entities.Task;
-import entities.Tasklist;
+import duke.data.IStorage;
+import duke.entities.Task;
+import duke.entities.Tasklist;
 
 public class Service {
     public Tasklist list;
@@ -20,6 +20,7 @@ public class Service {
     }
 
     public void addToList(Task t) {
+        this.list.add(t);
         int size;
         if ((size = this.list.size()) == 1) {
             this.ui.customPrint(String.format("Got it. I've added this task:\n  " +
