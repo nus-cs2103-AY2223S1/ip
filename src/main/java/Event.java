@@ -1,16 +1,13 @@
 public class Event extends Task {
 
-    protected String due;
-    private final String commandWord;
+    public final String tag = "E";
 
     public Event (String description, String due, String commandWord) {
-        super(description);
-        this.due = due;
-        this.commandWord = commandWord;
+        super(description, due, commandWord);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (" + this.commandWord + ": " + this.due + ")";
+        return "[" + this.tag + "]" + super.toString() + " (" + this.commandWord + ": " + this.due + ")";
     }
 }

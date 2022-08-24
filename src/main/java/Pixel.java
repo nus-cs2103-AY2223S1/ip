@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,8 +8,16 @@ public class Pixel {
     private static int count = 0;
     private final Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
     private final ArrayList<Task> inputTasks = new ArrayList<>(100);
+    private static final String filePath = "data/pixel.txt";
 
-    private void handleNewTask(String userInput, int indexOfSlash, String type) {
+    private static void writeToFile(Task task) throws IOException {
+        String textToAdd = task.formatTaskBeforeSave();
+        FileWriter fw = new FileWriter(filePath);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
+    private void handleNewTask(String userInput, int indexOfSlash, String type) throws IOException {
         // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
         // if there's no "/by" and "/at" string, then due should be empty
         String due = indexOfSlash == -1 ? "" : userInput.substring(indexOfSlash + 4);
@@ -42,6 +52,7 @@ public class Pixel {
         }
 
         inputTasks.add(count, newTask);
+        writeToFile(newTask); // whenever a new task is added, it is written to the file
         count += 1;
         System.out.println("Got it. I've added this task:");
         System.out.println(newTask);
@@ -157,6 +168,10 @@ public class Pixel {
             System.out.println(e);
             System.out.println("Incorrect format exception!");
 
+        } catch (IOException e) {
+            System.out.println(e);
+            System.out.println("Caught IO exception!");
+
         } finally {
             // clean up
             // System.out.println("cleaning up. Process resumes. Please enter your new input");
@@ -167,10 +182,10 @@ public class Pixel {
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
+            + "|  _ \\ _   _| | _____ \n"
+            + "| | | | | | | |/ / _ \\\n"
+            + "| |_| | |_| |   <  __/\n"
+            + "|____/ \\__,_|_|\\_\\___|\n";
         // System.out.println("Hello from\n" + logo);
         // System.out.println("Hello from\n");
         System.out.println("Hello! I'm Pixel \r\nWhat can I do for you?");
