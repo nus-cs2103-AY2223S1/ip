@@ -69,7 +69,7 @@ public class Ui {
      *
      * @param task the task that is just unmarked.
      */
-    public static void printUnmarkedTask(Task task){
+    public static void printUnmarkedTask(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(task);
     }

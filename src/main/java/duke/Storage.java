@@ -49,7 +49,8 @@ public class Storage {
                 String data = reader.nextLine();
                 String[] splitted = data.split("\\s@\\s");
                 String taskType = splitted[0];
-                String task, date;
+                String task;
+                String date;
                 boolean isDone;
 
                 switch (taskType) {

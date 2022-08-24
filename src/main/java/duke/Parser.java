@@ -116,10 +116,10 @@ public class Parser {
 
             String eventDate = splittedEvent[1];
 
-           parsed = new String[]{command, eventString, eventDate};
+            parsed = new String[]{command, eventString, eventDate};
             break;
 
-        case "mark": case  "unmark": case  "delete":
+        case "mark": case "unmark": case "delete":
             //No Index Given
             if (splitted.length < 2) {
                 throw new DukeException("No Index Given");
