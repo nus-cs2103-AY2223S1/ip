@@ -1,4 +1,4 @@
-public class Task {
+abstract class Task {
     private final String taskName;
     private boolean taskDone;
 
@@ -28,5 +28,9 @@ public class Task {
     @Override
     public String toString() {
         return String.format("[%c] %s", (taskDone ? 'X' : ' '), taskName);
+    }
+
+    String saveFileFormat() {
+        return String.format("%d###%s", taskDone ? 1 : 0, taskName);
     }
 }

@@ -9,4 +9,9 @@ public class EventTask extends Task {
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), eventTime);
     }
+
+    @Override
+    String saveFileFormat() {
+        return "E###" + super.saveFileFormat() + "/" + eventTime;
+    }
 }

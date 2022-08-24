@@ -9,4 +9,9 @@ public class DeadlineTask extends Task {
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), deadline);
     }
+
+    @Override
+    String saveFileFormat() {
+        return "D###" + super.saveFileFormat() + "/" + deadline;
+    }
 }

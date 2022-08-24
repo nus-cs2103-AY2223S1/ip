@@ -1,6 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -45,6 +43,7 @@ public class Duke {
                 System.out.println(
                         (valid ? taskMarkedMessage : alreadyMarkedMessage)
                                 + tasks.get(input - 1).toString());
+                updateSave();
                 return 0;
             }
             , "unmark"
@@ -53,6 +52,7 @@ public class Duke {
                 System.out.println(
                         (valid ? taskUnmarkedMessage : alreadyUnmarkedMessage)
                                 + tasks.get(input - 1).toString());
+                updateSave();
                 return 0;
             }
             , "delete"
@@ -61,6 +61,7 @@ public class Duke {
                 tasks.remove(input - 1);
                 System.out.println(deleteTaskMessage + removed.toString());
                 System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
+                updateSave();
                 return 0;
             }
     );
@@ -91,6 +92,7 @@ public class Duke {
                 } else if (taskMaker.containsKey(inputSplit[0])) {
                     Task newTask = taskMaker.get(inputSplit[0]).apply(inputSplit);
                     tasks.add(newTask);
+                    appendTaskToDisk(newTask);
                     System.out.println(addTaskMessage + newTask);
                     System.out.println(String.format("Now you have %d tasks in the list.", tasks.size()));
                 }  else {
@@ -152,6 +154,30 @@ public class Duke {
             }
         }
         return savedTasks;
+    }
+
+    static void appendTaskToDisk(Task task) {
+        try {
+            FileWriter writer = new FileWriter("data/duke.txt", true);
+            writer.write(task.saveFileFormat() + "\n");
+            writer.flush();
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+    }
+
+    static void updateSave() {
+        try {
+            FileWriter writer = new FileWriter("data/duke.txt");
+            StringBuilder toWrite = new StringBuilder();
+            for (Task task : tasks) {
+                toWrite.append(task.saveFileFormat() + "\n");
+            }
+            writer.write(toWrite.toString());
+            writer.flush();
+        } catch (IOException e) {
+            System.out.println("An error has occured");
+        }
     }
 
     static String[] inputSplit(String input) throws DukeException {
