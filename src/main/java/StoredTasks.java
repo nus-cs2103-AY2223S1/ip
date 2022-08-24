@@ -1,4 +1,8 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class StoredTasks {
@@ -34,7 +38,8 @@ public class StoredTasks {
                     storedTasks.add(todo);
                     break;
                 case "D":
-                    Deadlines deadline = new Deadlines(taskArr[TASKDESCRIPTION], taskArr[TASKTIME]);
+                    Deadlines deadline = new Deadlines(taskArr[TASKDESCRIPTION], taskArr[TASKTIME],
+                            DateAndTimeParser.validateAndParse(taskArr[TASKTIME]));
                     if (Boolean.parseBoolean(taskArr[ISTASKDONE])) {
                         deadline.markAsDone();
                     }

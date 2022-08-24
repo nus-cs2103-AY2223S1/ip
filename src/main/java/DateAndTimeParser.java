@@ -9,7 +9,7 @@ public abstract class DateAndTimeParser {
         return dateTime.format(formatter);
     }
 
-    public static LocalDate validateAndParse(StringBuilder dateTime) {
+    public static LocalDate validateAndParse(String dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate formattedDateTime = null;
         try {
