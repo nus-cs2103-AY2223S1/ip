@@ -8,22 +8,39 @@ import gibson.task.TaskList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ *  The Gibson program. It works as a Personal Assistant Chatbot
+ *  that helps a person to keep track of various things.
+ */
 public class Gibson {
 
     private Ui ui;
     private TaskList taskList;
     private Storage storage;
 
+    /**
+     * Constructs a new Gibson object that starts the whole program.
+     * It saves a text file with the given name to the given path.
+     * @param filePath the relative path where you want the text file to be saved
+     * @param pathName the name of the text file that will be saved
+     */
     public Gibson(String filePath, String pathName) {
         ui = new Ui();
         storage = new Storage(filePath, pathName);
         taskList = new TaskList(storage.load());
     }
 
+    /**
+     * The main method that starts the entire program
+     * @param args
+     */
     public static void main(String[] args) {
         new Gibson("data", "gibson.txt").run();
     }
 
+    /**
+     * Start running the Gibson program from an instance of Gibson.
+     */
     public void run() {
         ui.printWelcome();
         Scanner scanner = new Scanner(System.in);

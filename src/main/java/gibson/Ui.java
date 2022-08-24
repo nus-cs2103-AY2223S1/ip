@@ -10,6 +10,9 @@ public class Ui {
             "| |__| |_| |_| |_) |____) | |__| | |\\  |\n" +
             "\\______|_____|____/|_____/ \\____/|_| \\_|\n";
 
+    /**
+     * Prints welcome message.
+     */
     public void printWelcome() {
         System.out.println(LINE);
         System.out.println(LOGO);
@@ -18,18 +21,29 @@ public class Ui {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints goodbye message.
+     */
     public void printBye() {
         System.out.println(LINE);
         System.out.println("Bye. Hope to see you soon!");
         System.out.println(LINE);
     }
 
+    /**
+     * Prints message between 2 lines.
+     * @param message the String to be printed
+     */
     public void printMessage(String message) {
         System.out.println(LINE);
         System.out.println(message);
         System.out.println(LINE);
     }
 
+    /**
+     * Prints error message between 2 lines of exclamation marks.
+     * @param message the String to be printed
+     */
     public void printErrorMessage(String message) {
         System.out.println(ERROR_LINE);
         System.out.println(message);
