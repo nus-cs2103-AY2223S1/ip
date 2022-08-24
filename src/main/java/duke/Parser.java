@@ -17,7 +17,7 @@ import duke.exception.UnknownCommand;
  * A class that deals with making sense of user commands.
  */
 public class Parser {
-    private enum Commands { list, mark, unmark, todo, event, deadline, delete, bye }
+    private enum Commands { list, mark, unmark, todo, event, deadline, delete, bye, find }
 
     /**
      * Takes in the user input, process it and returns the
@@ -82,6 +82,12 @@ public class Parser {
         case delete:
             String indexString = input.substring(6).trim();
             return new DeleteCommand(indexString);
+        case find:
+            String query = input.substring(4).trim();
+            if (query.equals("")) {
+                throw new InvalidInput("Query cannot be empty");
+            }
+            return new FindCommand(query);
         case bye:
             return new ExitCommand();
         default:

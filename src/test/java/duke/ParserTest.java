@@ -174,6 +174,17 @@ public class ParserTest {
     }
 
     @Test
+    public void findTest() {
+        Parser parser = new Parser();
+        try {
+            Command command = parser.parse("find test");
+            assertEquals(new FindCommand("test").getCommand(), command.getCommand());
+        } catch (DukeException e) {
+            fail(e);
+        }
+    }
+
+    @Test
     public void invalidCommandTest() {
         Parser parser = new Parser();
         try {

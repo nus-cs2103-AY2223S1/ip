@@ -100,6 +100,17 @@ public class TaskList {
         return task;
     }
 
+    public ArrayList<? super Task> find(String query) {
+        ArrayList<? super Task> res = new ArrayList<>();
+        for (int i = 0; i < data.size(); i++) {
+            String taskDescription = data.get(i).getDescription();
+            if (taskDescription.contains(query)) {
+                res.add(data.get(i));
+            }
+        }
+        return res;
+    }
+
     /**
      * Converts the TaskList object to its string representation.
      *

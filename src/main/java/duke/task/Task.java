@@ -51,6 +51,10 @@ public abstract class Task {
      */
     public abstract String stringToSave();
 
+    public String getDescription() {
+        return this.description;
+    }
+
     /**
      * Returns the string representation of the task.
      *
