@@ -6,6 +6,8 @@ mark 2
 list
 mark 3
 list
+find book
+find
 unmark 2
 list
 todo
