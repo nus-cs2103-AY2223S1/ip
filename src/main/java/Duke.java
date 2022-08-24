@@ -33,6 +33,16 @@ public class Duke {
         }
     }
 
+    static class Todo extends Task {
+        public Todo(String item){
+            this.setItem(item);
+        }
+
+        public String getTask() {
+            return "[T] " + this.getStatusIcon() + this.getItem();
+        }
+    }
+
     static class Deadline extends Task {
         private LocalDate date;
 
@@ -44,17 +54,6 @@ public class Duke {
         public String getTask() {
             String d = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
             return "[D] " + this.getStatusIcon() + this.getItem() + " (by: " + d + ")";
-        }
-    }
-
-
-    static class Todo extends Task {
-        public Todo(String item){
-            this.setItem(item);
-        }
-
-        public String getTask() {
-            return "[T] " + this.getStatusIcon() + this.getItem();
         }
     }
 
