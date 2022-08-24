@@ -1,9 +1,7 @@
 package duke;
 import org.testng.annotations.Test;
-
 import java.io.IOException;
 import java.text.ParseException;
-
 import static org.testng.AssertJUnit.assertEquals;
 
 
@@ -32,7 +30,7 @@ public class JUnitTests {
 
     }
     @Test
-    public void removeRemovesTasks(){
+    public void removeRemovesTasks() {
         TaskList taskList = new TaskList();
         ToDos todo = new ToDos("homework");
         assertEquals(taskList.size(), 0);

@@ -1,7 +1,7 @@
 package duke;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Scanner;
-import java.io.IOException;
 
 /**
  * A class that encapsulates the Duke object.
@@ -26,7 +26,7 @@ public class Duke {
         ui.greetingMessage();
         Scanner sc = new Scanner(System.in);
 
-        while(true) {
+        while (true) {
             String input = sc.nextLine();
             Parser parser = new Parser(storage);
             parser.parse(input);
