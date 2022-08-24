@@ -1,5 +1,10 @@
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 public class Duke {
     /** Using ArrayList to store Task */
@@ -46,7 +51,7 @@ public class Duke {
         }
         String description = inputArray[0];
         String by = inputArray[1];
-        Deadline deadline = new Deadline(description, by);
+        Deadline deadline = new Deadline(description, LocalDate.parse(by));
         return deadline;
     }
 
@@ -60,7 +65,7 @@ public class Duke {
         }
         String description = inputArray[0];
         String at = inputArray[1];
-        Event event = new Event(description, at);
+        Event event = new Event(description, LocalDate.parse(at));
         return event;
     }
 
@@ -156,82 +161,105 @@ public class Duke {
         printLine();
     }
 
+    public static void listTasksOn(LocalDate date) {
+        String formattedDate = date.format(DateTimeFormatter.ofPattern("E, d MMM yyyy"));
+        ArrayList<Task> filteredTasks = tasks.stream().filter(task -> task.isOn(date))
+                .collect(Collectors.toCollection(ArrayList::new));
+        printLine();
+        if (filteredTasks.size() > 0) {
+            System.out.println(String.format("\t Here are the tasks you have on %s:", formattedDate));
+            for (int i = 0; i < filteredTasks.size(); i++) {
+                System.out.println("\t " + (i + 1) + ". " + filteredTasks.get(i));
+            }
+        } else {
+            System.out.println(String.format("\t You have no tasks on %s", formattedDate));
+        }
+        printLine();
+    }
+
     public static void startDuke() throws DukeException {
 
-            Scanner sc = new Scanner(System.in);
-            boolean isRunning = true;
-            while (isRunning) {
-                try {
-                    String input = sc.nextLine();
-                    String[] inputArray = input.split(" ", 2);
-                    String firstWord = inputArray[0];
-                    String secondWord = "";
-                    if (inputArray.length == 2) {
-                        secondWord = inputArray[1];
-                    }
-                    switch (firstWord) {
-                        case "bye":
-                            if (inputArray.length == 1) {
-                                exit();
-                                isRunning = false;
-                            } else {
-                                throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
-                            }
-                            break;
-                        case "list":
-                            if (inputArray.length == 1) {
-                                listTasks();
-                            } else {
-                                throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
-                            }
-                            break;
-                        case "mark":
-                            if (secondWord.length() == 0) {
-                                throw new DukeException("\t OOPS!!! You need to mark a number");
-                            }
-                            try {
-                                markAsDone(Integer.parseInt(inputArray[1]));
-                            } catch (NumberFormatException e) {
-                                throw new DukeException("\t OOPS!!! You need to mark a number");
-                            }
-                            break;
-                        case "unmark":
-                            if (secondWord.length() == 0) {
-                                throw new DukeException("\t OOPS!!! You need to unmark a number");
-                            }
-                            try {
-                                markAsNotDone(Integer.parseInt((inputArray[1])));
-                            } catch (NumberFormatException e) {
-                                throw new DukeException("\t OOPS!!! You need to unmark a number");
-                            }
-                            break;
-                        case "todo":
-                            addTask(secondWord, Commands.TODO);
-                            break;
-                        case "deadline":
-                            addTask(secondWord, Commands.DEADLINE);
-                            break;
-                        case "event":
-                            addTask(secondWord, Commands.EVENT);
-                            break;
-                        case "delete":
-                            if (secondWord.length() == 0) {
-                                throw new DukeException("\t OOPS!!! You need to delete a number");
-                            }
-                            try {
-                                deleteTask(Integer.parseInt(inputArray[1]));
-                            } catch (NumberFormatException e) {
-                                throw new DukeException("\t OOPS!!! You need to delete a number");
-                            }
-                            break;
-                        default:
-                            throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
-                    }
-                } catch (DukeException e) {
-                    printLine();
-                    System.out.println(e);
-                    printLine();
+        Scanner sc = new Scanner(System.in);
+        boolean isRunning = true;
+        while (isRunning) {
+            try {
+                String input = sc.nextLine();
+                String[] inputArray = input.split(" ", 2);
+                String firstWord = inputArray[0];
+                String secondWord = "";
+                if (inputArray.length == 2) {
+                    secondWord = inputArray[1];
                 }
+                switch (firstWord) {
+                    case "bye":
+                        if (inputArray.length == 1) {
+                            exit();
+                            isRunning = false;
+                        } else {
+                            throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        }
+                        break;
+                    case "list":
+                        if (inputArray.length == 1) {
+                            listTasks();
+                        } else {
+                            throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        }
+                        break;
+                    case "mark":
+                        if (secondWord.length() == 0) {
+                            throw new DukeException("\t OOPS!!! You need to mark a number");
+                        }
+                        try {
+                            markAsDone(Integer.parseInt(inputArray[1]));
+                        } catch (NumberFormatException e) {
+                            throw new DukeException("\t OOPS!!! You need to mark a number");
+                        }
+                        break;
+                    case "unmark":
+                        if (secondWord.length() == 0) {
+                            throw new DukeException("\t OOPS!!! You need to unmark a number");
+                        }
+                        try {
+                            markAsNotDone(Integer.parseInt((inputArray[1])));
+                        } catch (NumberFormatException e) {
+                            throw new DukeException("\t OOPS!!! You need to unmark a number");
+                        }
+                        break;
+                    case "todo":
+                        addTask(secondWord, Commands.TODO);
+                        break;
+                    case "deadline":
+                        addTask(secondWord, Commands.DEADLINE);
+                        break;
+                    case "event":
+                        addTask(secondWord, Commands.EVENT);
+                        break;
+                    case "delete":
+                        if (secondWord.length() == 0) {
+                            throw new DukeException("\t OOPS!!! You need to delete a number");
+                        }
+                        try {
+                            deleteTask(Integer.parseInt(inputArray[1]));
+                        } catch (NumberFormatException e) {
+                            throw new DukeException("\t OOPS!!! You need to delete a number");
+                        }
+                        break;
+                    case "on":
+                        try {
+                            listTasksOn(LocalDate.parse(secondWord));
+                        } catch (DateTimeParseException e) {
+                            throw new DukeException("\t Please enter a valid date (yyyy-mm-dd).");
+                        }
+                        break;
+                    default:
+                        throw new DukeException("\t OOPS!!! I'm sorry, but I don't know what that means :-(");
+                }
+            } catch (DukeException e) {
+                printLine();
+                System.out.println(e);
+                printLine();
+            }
         }
     }
 
