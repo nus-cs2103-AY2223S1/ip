@@ -1,11 +1,26 @@
 package jarvis.parser;
 
-import jarvis.JarvisException;
-import jarvis.command.*;
-
 import java.util.Scanner;
 
+import jarvis.JarvisException;
+import jarvis.command.AddCommand;
+import jarvis.command.ByeCommand;
+import jarvis.command.Command;
+import jarvis.command.DeleteCommand;
+import jarvis.command.ListCommand;
+import jarvis.command.MarkCommand;
+
+/**
+ * Parser --- parses commands entered by the user.
+ */
 public class Parser {
+    /**
+     * Parses user commands.
+     *
+     * @param sc scans in user command.
+     * @return command entered by user.
+     * @throws JarvisException exception for invalid commands.
+     */
     public static Command parseUserCommand(Scanner sc) throws JarvisException {
         System.out.print("<< ");
         String command = sc.nextLine();
