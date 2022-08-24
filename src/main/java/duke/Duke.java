@@ -146,6 +146,15 @@ public class Duke {
     }
 
     /**
+     * Prints a list of tasks with the matching input string.
+     *
+     * @param s String to request for tasks with the matching string.
+     */
+    public void find(String s) {
+        this.tasks.find(s);
+    }
+
+    /**
      * Main method to start the Duke bot running.
      *
      * @param args Inputs to interact with the Duke bot.

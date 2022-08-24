@@ -22,11 +22,21 @@ public class Task {
     }
 
     /**
-     * Strong representation of whether a task is marked as completed.
+     * Returns the string representation of whether a task is marked as completed.
+     *
      * @return "X" if it is marked as completed, " " if not.
      */
     public String getStatusIcon() {
         return this.isDone ? "X" : " ";
+    }
+
+    /**
+     * Returns the task description.
+     *
+     * @return Task description.
+     */
+    public String getDescription() {
+        return this.description;
     }
 
     /**
