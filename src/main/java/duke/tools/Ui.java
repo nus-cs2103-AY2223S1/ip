@@ -26,15 +26,16 @@ public class Ui {
         System.out.println("Bye! Hope to see you again soon");
     }
 
-    public void listTasks(TaskList taskList) throws DukeException {
-        try {
-            for (int i = 0; i < taskList.getSize(); i++) {
-                System.out.printf("%d. %s\n", i + 1, taskList.getTask(i));
-            }
-            System.out.println("That's all!");
-        } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Exception: Invalid task number.");
-        }
+    public void list() {
+        System.out.println("Here are the tasks in your list:");
+    }
+
+    public void showTaskWithIndex(Task task, int index) {
+        System.out.printf("%d. %s\n", index + 1, task);
+    }
+
+    public void finishListing() {
+        System.out.println("That's all!");
     }
 
     public void markTask(int index, Task task) {
@@ -58,6 +59,10 @@ public class Ui {
 
     public void showTaskListCapacity(TaskList taskList) {
         System.out.printf("Now you have %d tasks in the list.\n", taskList.getSize());
+    }
+
+    public void find() {
+        System.out.println("Here are the matching tasks in your list:");
     }
 
     public void handleException(Exception e) {
