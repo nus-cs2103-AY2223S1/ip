@@ -24,7 +24,7 @@ public class FindCommand extends Command {
 
     /**
      * Finds all the tasks that match the keyword.
-     * @return The list of matching tasks.
+     * @return String representing the list of matching tasks.
      * @throws DukeException If the input array is invalid.
      */
     @Override
