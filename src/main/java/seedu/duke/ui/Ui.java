@@ -1,11 +1,12 @@
 package seedu.duke.ui;
 
+import java.util.Scanner;
+
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
-import java.util.Scanner;
 public class Ui {
-    boolean loadingError;
+    protected boolean loadingError;
     public Ui() {
         this.loadingError = false;
     }

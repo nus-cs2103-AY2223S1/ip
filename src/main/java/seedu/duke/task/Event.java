@@ -23,6 +23,6 @@ public class Event extends Task {
     }
 
     public String toFileString() {
-        return "E , " + super.toFileString()  + " , " + dateAndTime;
+        return "E , " + super.toFileString() + " , " + dateAndTime;
     }
 }

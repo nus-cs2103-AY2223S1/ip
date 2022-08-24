@@ -1,16 +1,15 @@
 package seedu.duke.parser;
 
+import java.util.Objects;
+
+import seedu.duke.command.AddCommand;
 import seedu.duke.command.Command;
+import seedu.duke.command.DeleteCommand;
 import seedu.duke.command.ExitCommand;
+import seedu.duke.command.InvalidCommand;
 import seedu.duke.command.ListCommand;
 import seedu.duke.command.MarkCommand;
-import seedu.duke.command.AddCommand;
-import seedu.duke.command.DeleteCommand;
-import seedu.duke.command.InvalidCommand;
 import seedu.duke.exception.DukeException;
-
-
-import java.util.Objects;
 
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException {

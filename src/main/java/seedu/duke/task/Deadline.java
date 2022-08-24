@@ -22,6 +22,6 @@ public class Deadline extends Task {
     }
 
     public String toFileString() {
-        return "D , " + super.toFileString()  + " , " + dateAndTime;
+        return "D , " + super.toFileString() + " , " + dateAndTime;
     }
 }

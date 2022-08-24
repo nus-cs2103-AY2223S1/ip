@@ -1,8 +1,8 @@
 package seedu.duke.task;
 
-import seedu.duke.ui.Style;
-
 import java.util.ArrayList;
+
+import seedu.duke.ui.Style;
 
 public class TaskList {
     protected ArrayList<Task> tasks;
@@ -43,7 +43,7 @@ public class TaskList {
 
     public void listTasks() {
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(Style.INDENTATION + (i + 1)  + "." + getTask(i + 1));
+            System.out.println(Style.INDENTATION + (i + 1) + "." + getTask(i + 1));
         }
     }
 
