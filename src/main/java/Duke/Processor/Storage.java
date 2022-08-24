@@ -23,16 +23,18 @@ public class Storage {
 
     /**
      * Constructor for Duke.Processor.Storage.
-     * @param filePath
+     *
+     * @param filePath The path to the file.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
     /**
-     * The method to read data from input file path.
-     * @return ArrayList
-     * @throws IOException
+     * Returns an ArrayList of tasks according to what it reads from the file.
+     *
+     * @return ArrayList of tasks read from the file.
+     * @throws IOException If file is not found.
      */
     public ArrayList<Task> read() throws IOException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -63,8 +65,9 @@ public class Storage {
     }
 
     /**
-     * The method to write data to input file path.
-     * @param task
+     * Writes tasks with a specified format to the file.
+     *
+     * @param task An ArrayList of tasks to write.
      */
     public void write(ArrayList<Task> task) {
         try {

@@ -5,81 +5,89 @@ import Duke.Task.Task;
 import java.util.ArrayList;
 
 /**
- * Class to represent the task lists.
+ * Class to represent the tasks lists.
  */
 public class TaskList {
-    private static ArrayList<Task> task;
+    private static ArrayList<Task> tasks;
 
     /**
-     * The constructor for no input
+     * The constructor for TaskList with no parameters.
      */
     public TaskList() {
-        this.task = new ArrayList<Task>();
+        this.tasks = new ArrayList<Task>();
     }
 
     /**
-     * The constructor with input ArrayList
-     * @param task
+     * The constructor for TaskList with an input of ArrayList.
+     *
+     * @param task An ArrayList of tasks.
      */
     public TaskList(ArrayList<Task> task) {
-        this.task = task;
+        this.tasks = task;
     }
 
     /**
-     * Method to add a task.
-     * @param t
+     * Adds a specific tasks to the TaskList.
+     *
+     * @param t A specific tasks to add.
      */
     public void add(Task t) {
-        task.add(t);
+        tasks.add(t);
     }
 
     /**
-     * Method to remove a task.
-     * @param i
-     * @return Duke.Task.Task taskDeleted
+     * Deletes a specific tasks from the TaskList.
+     *
+     * @param i Specific tasks's index number.
+     * @return Duke.Task.Task taskDeleted.
      */
     public Task delete(int i) {
-        return task.remove(i);
+        return tasks.remove(i);
     }
 
     /**
-     * Method to mark a task as done.
-     * @param i
+     * Marks a specific tasks of the TaskList.
+     *
+     * @param i Specific tasks's index number.
      */
     public void markDone(int i) {
-        task.get(i).markDone();
+        tasks.get(i).markDone();
     }
 
     /**
-     * Method to mark a task as undone.
-     * @param i
+     * Marks a specific tasks of the TaskList.
+     *
+     * @param i Specific tasks's index number.
      */
     public void markUndone(int i) {
-        task.get(i).markUndone();
+        tasks.get(i).markUndone();
     }
 
     /**
-     * Method to return the number of tasks.
-     * @return int
+     * Returns the number of tasks inside the TaskList.
+     *
+     * @return int size of TaskList.
      */
     public int size() {
-        return task.size();
+        return tasks.size();
     }
 
     /**
-     * Method to get a specific task.
-     * @param i
-     * @return Duke.Task.Task object
+     * Returns a specific tasks from the TaskList.
+     *
+     * @param i Specific tasks's index number.
+     * @return Duke.Task.Task object.
      */
     public Task get(int i) {
-        return task.get(i);
+        return tasks.get(i);
     }
 
     /**
-     * Method to get the list of tasks.
-     * @return Arraylist
+     * Returns the current ArrayList.
+     *
+     * @return Arraylist.
      */
     public ArrayList<Task> getTasks() {
-        return this.task;
+        return this.tasks;
     }
 }

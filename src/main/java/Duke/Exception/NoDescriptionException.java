@@ -5,8 +5,9 @@ package Duke.Exception;
  */
 public class NoDescriptionException extends Exception {
     /**
-     * The Constructor for Duke.Exception.NoCommandException
-     * @param message
+     * The Constructor for Duke.Exception.NoCommandException.
+     *
+     * @param message Message of the exception.
      */
     public NoDescriptionException(String message) {
         super(String.format("☹ OOPS!!! The description of a " + message + " cannot be empty."));

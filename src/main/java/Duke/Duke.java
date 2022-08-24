@@ -1,5 +1,6 @@
 package Duke;
 
+import Duke.Exception.NoCommandException;
 import Duke.Processor.Parser;
 import Duke.Processor.Storage;
 import Duke.Processor.TaskList;
@@ -7,10 +8,6 @@ import Duke.Task.Task;
 
 import java.io.IOException;
 import java.util.Scanner;
-
-/**
- * @author Marciano Renzo William
- */
 
 /**
  * This is the Main Class that contains the Main method.
@@ -22,6 +19,8 @@ public class Duke {
 
     /**
      * Private constructor of Duke.Duke.
+     *
+     * @param filePath Path of the file to write/read.
      */
     private Duke(String filePath) {
         ui = new UI();
@@ -34,9 +33,11 @@ public class Duke {
     }
 
     /**
-     * Method to run the program.
+     * Runs the main logic of the program.
+     *
+     * @throws NoCommandException If there are no commands.
      */
-    public void run() {
+    public void run() throws NoCommandException {
         ui.printGreetings();
         boolean isStillRunning = true;
         Scanner sc = new Scanner(System.in);
@@ -49,6 +50,11 @@ public class Duke {
         ui.exit();
     }
 
+    /**
+     * Runs the run method.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
     }

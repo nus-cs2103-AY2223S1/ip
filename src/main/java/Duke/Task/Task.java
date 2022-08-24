@@ -5,7 +5,7 @@ import Duke.Processor.TaskList;
 import Duke.UI;
 
 /**
- * Class to represent the tasks.
+ * Abstact class to represent the tasks.
  */
 public abstract class Task {
     protected String description;
@@ -14,8 +14,9 @@ public abstract class Task {
 
     /**
      * The constructor for task.
-     * @param description
-     * @param isDone
+     *
+     * @param description Task description.
+     * @param isDone Task state.
      */
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -24,16 +25,18 @@ public abstract class Task {
     }
 
     /**
-     * The method to get the current status.
-     * @return String
+     * Returns the current status of task.
+     *
+     * @return String status.
      */
     public String getStatus() {
         return (this.isDone ? "[X] " : "[ ] ");
     }
 
     /**
-     * The method to change the current status.
-     * @return Duke.Task.Task object
+     * Marks done a task.
+     *
+     * @return Duke.Task.Task object.
      */
     public Task markDone() {
         this.isDone = true;
@@ -41,8 +44,9 @@ public abstract class Task {
     }
 
     /**
-     * The method to change the current status.
-     * @return Duke.Task.Task object
+     * Marks undone a task.
+     *
+     * @return Duke.Task.Task object.
      */
     public Task markUndone() {
         this.isDone = false;
@@ -50,16 +54,18 @@ public abstract class Task {
     }
 
     /**
-     * Getter method of description.
-     * @return String
+     * Returns the description of the current task.
+     *
+     * @return String description.
      */
     public String getDescription() {
         return this.description;
     }
 
     /**
-     * The method to change the tasklist format to write in tasks.txt
-     * @return String
+     * Changes the format of Task to write to the file.
+     *
+     * @return String format to write to file.
      */
     public String formatChange() {
         String mark = isDone ? "1" : "0";
@@ -67,8 +73,9 @@ public abstract class Task {
     }
 
     /**
-     * Overridden toString method for task details
-     * @return String
+     * Overridden toString method for task details.
+     *
+     * @return String.
      */
     @Override
     public String toString() {
@@ -76,11 +83,12 @@ public abstract class Task {
     }
 
     /**
-     * Executes input task
-     * @param task
-     * @param ui
+     * Executes process of the given task.
+     *
+     * @param tasks TaskList.
+     * @param ui Class to print the ui.
      */
-    public void execute(TaskList task, UI ui, Storage storage) {
+    public void execute(TaskList tasks, UI ui, Storage storage) {
 
     };
 }

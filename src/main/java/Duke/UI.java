@@ -4,14 +4,14 @@ import Duke.Processor.TaskList;
 import Duke.Task.Task;
 
 /**
- * Class to represent the user interfaces
+ * Class to represent the user interfaces.
  */
 public class UI {
     private final static String underline = "____________________________________________________________";
     private final static String indentation = "  ";
 
     /**
-     * Method to show Welcome message at the start.
+     * Shows welcome message at the start of the program.
      */
     public void printGreetings() {
         System.out.println(indentation + underline);
@@ -21,7 +21,7 @@ public class UI {
     }
 
     /**
-     * Method to show Exit message at finish.
+     * Shows exit message at the end of the program.
      */
     public void exit() {
         System.out.println(indentation + underline);
@@ -30,60 +30,69 @@ public class UI {
     }
 
     /**
-     * The method to show added task.
-     * @param task
+     * Shows the added task.
+     *
+     * @param tasks TaskList.
+     * @param numOfTask Number of Tasks.
      */
-    public void showAddOnTask(TaskList task, int numOfTask) {
+    public void showAddOnTask(TaskList tasks, int numOfTask) {
         System.out.println(indentation + underline);
         System.out.println(indentation + "I've added this task:");
-        System.out.println(indentation + task.get(numOfTask));
+        System.out.println(indentation + tasks.get(numOfTask));
         System.out.println(indentation + "Now you have " + (numOfTask + 1) + " tasks in the list.");
         System.out.println(indentation + underline);
     }
 
     /**
-     * The method to show added task.
-     * @param task
+     * Shows the deleted task.
+     *
+     * @param tasks Tasklist.
+     * @param taskDeleted Deleted task.
      */
-    public void showDeleteTask(TaskList task, Task taskDeleted) {
+    public void showDeleteTask(TaskList tasks, Task taskDeleted) {
         System.out.println(indentation + underline);
         System.out.println(indentation + "Noted. I've removed this task:");
         System.out.println(indentation + taskDeleted);
-        System.out.println(indentation + "Now you have " + task.size() + " tasks in the list.");
+        System.out.println(indentation + "Now you have " + tasks.size() + " tasks in the list.");
         System.out.println(indentation + underline);
     }
 
     /**
-     * The method to show task being done.
-     * @param task
+     * Shows the marked done task.
+     *
+     * @param tasks TaskList.
+     * @param num Index of the specified task.
      */
-    public void showDoneTask(TaskList task, int num) {
+    public void showDoneTask(TaskList tasks, int num) {
         System.out.println(indentation + underline);
         System.out.println(indentation + "Nice! I've marked this task as done:");
-        System.out.println(indentation + task.get(num));
+        System.out.println(indentation + tasks.get(num));
         System.out.println(indentation + underline);
     }
 
     /**
-     * The method to show task being undone.
-     * @param task
+     * Shows the marked undone task.
+     *
+     * @param tasks TaskList.
+     * @param num Index of the specified task.
      */
-    public void showUndoneTask(TaskList task, int num) {
+    public void showUndoneTask(TaskList tasks, int num) {
         System.out.println(indentation + underline);
         System.out.println(indentation + "OK, I've marked this task as not done yet:");
-        System.out.println(indentation + task.get(num));
+        System.out.println(indentation + tasks.get(num));
         System.out.println(indentation + underline);
     }
 
     /**
-     * The method to show list of added tasks.
-     * @param task
+     * Shows the list of tasks.
+     *
+     * @param tasks TaskList.
      */
-    public void showListDetails(TaskList task) {
+    public void showListDetails(TaskList tasks) {
         System.out.println(indentation + underline);
         System.out.println(indentation + "Here are the tasks in your list:");
-        for (int i = 0; i < task.size(); i ++) {
-            System.out.println(indentation + (i + 1) + "." + indentation + task.get(i));
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println(indentation + (i + 1) + "." + indentation + tasks.get(i));
         }
         System.out.println(indentation + underline);
     }
