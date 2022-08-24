@@ -6,8 +6,16 @@ public class Deadline extends Task {
         this.dateAndTime = dateAndTime;
     }
 
+    public Deadline(String deadline, String dateAndTime, boolean isDone) {
+        super(deadline, isDone);
+        this.dateAndTime = dateAndTime;
+    }
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + dateAndTime + ")";
+    }
+
+    public String toFileString() {
+        return "D , " + super.toFileString()  + " , " + dateAndTime;
     }
 }

@@ -13,6 +13,10 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
 
         greet();
+        // create file
+
+        data = FileManager.createFile();
+        // pass the file object into the handleCommands write file whenever there are changes
         try {
             handleCommands();
         } catch (DukeException e) {
@@ -50,6 +54,9 @@ public class Duke {
                     task.markAsDone();
                     System.out.println(Style.INDENTATION + "Nice! I've marked this task as done:");
                 }
+
+                FileManager.writeToFile(data);
+
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task + "\n");
             } else if (Objects.equals(commands[0], "deadline") || Objects.equals(commands[0], "event")
                         || Objects.equals(commands[0], "todo")) {
@@ -78,6 +85,8 @@ public class Duke {
                 }
 
                 data.add(task);
+                FileManager.writeToFile(data);
+
                 String taskOrTasks = data.size() == 1 ? "task" : "tasks";
                 System.out.println(Style.INDENTATION + "Got it. I've added this task:");
                 System.out.println(Style.INDENTATION + Style.HALF_INDENTATION + task);
@@ -86,7 +95,9 @@ public class Duke {
             } else if (Objects.equals(commands[0], "delete")) {
                 int taskIndex = Integer.parseInt(commands[1]) - 1;
                 Task task = data.get(taskIndex);
+
                 data.remove(taskIndex);
+                FileManager.writeToFile(data);
 
                 String taskOrTasks = data.size() == 1 ? "task" : "tasks";
                 System.out.println(Style.INDENTATION + "Noted. I've removed this task:");
