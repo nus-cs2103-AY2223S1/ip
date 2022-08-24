@@ -9,14 +9,14 @@ public class Duke {
         ArrayList<Task> arr = new ArrayList<>();
 
 
-        System.out.println("Hello I'm duke.Duke" + "\nWhat can I do for you?");
+        System.out.println("Hello I'm Duke." + "\nWhat can I do for you?");
 
         //scanner
         Scanner sc = new Scanner(System.in);
         String input = "";
 
         //duke.duke.Storage
-        Storage storage = new Storage("duke.txt");
+        Storage storage = new Storage("../../../out/duke.txt");
         String s = storage.reader();
 
         int counter_mark = 1;

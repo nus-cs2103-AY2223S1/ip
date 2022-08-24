@@ -15,6 +15,11 @@ public class Storage {
     }
 
     //methods
+    /**
+     * Writer method responsible for writing list to a txt file
+     *
+     * @param object of type ArrayList<Task> which content is written to txt
+     */
     public void writer(ArrayList<Task> arr) {
         String temp = "";
 
@@ -32,6 +37,11 @@ public class Storage {
 
     }
 
+    /**
+     * reads content inside txt file, enabling retrieval of saved state
+     *
+     * @return object of type String which is a String of saved information to be processed
+     */
     public String reader() {
         String s = "";
         int counter_mark = 1;

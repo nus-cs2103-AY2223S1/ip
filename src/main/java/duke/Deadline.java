@@ -32,6 +32,11 @@ public class Deadline extends Task {
     }
 
 
+    /**
+     * toString method that turns the input of deadline into a String type
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         date_formatter();

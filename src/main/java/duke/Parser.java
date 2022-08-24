@@ -21,6 +21,11 @@ public class Parser {
 
     }
 
+    /**
+     * Processes the input given by the user of Duke
+     *
+     * @param input what the user typed
+     */
     public void parse(String input) {
 
         if (input.equals("bye")) {
