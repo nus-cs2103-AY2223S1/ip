@@ -11,7 +11,7 @@ public class EventRequest extends Request {
 
     @Override
     public void execute() throws DukeException {
-        if (this.inputArray.length < 2) {
+        if (this.inputArray.length < 2 || this.inputArray[1].substring(0, 3).equals("at")) {
             throw new DukeException("The description of a event cannot be empty!");
         }
 
@@ -19,7 +19,7 @@ public class EventRequest extends Request {
         String[] splitArray = this.inputArray[1].split(EventRequest.DELIMITER, 2);
 
         if (splitArray.length < 2) {
-            throw new DukeException("Please enter a starting and ending time for this task!");
+            throw new DukeException("Please enter a date and time for this event!");
         }
 
         //Make a new event object
