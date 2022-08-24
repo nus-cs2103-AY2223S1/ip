@@ -16,7 +16,7 @@ public class Deadline extends Task {
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[D][✓] %s", this.description);
+            status = String.format("[D][✓] %s (by: %s)", this.description, date);
         } else {
             status = String.format("[D][ ] %s (by: %s)", this.description, date);
         }
@@ -40,8 +40,8 @@ public class Deadline extends Task {
     @Override
     public String longDescription() {
         String status;
-        String done = this.isDone? "was": "is";
-        status = String.format("Deadline %s %s at %s %d %s %d",
+        String done = this.isDone? "was completed at": "is to be completed by";
+        status = String.format("Deadline %s %s %s %d %s %d",
                 this.description, done, this.date.getDayOfWeek(),
                 this.date.getDayOfMonth() , this.date.getMonth(),
                 this.date.getYear());

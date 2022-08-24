@@ -16,7 +16,7 @@ public class Event extends Task{
     public String toString() {
         String status;
         if (this.isDone) {
-            status = String.format("[E][✓] %s", this.description);
+            status = String.format("[E][✓] %s (at: %s)", this.description, date);
         } else {
             status = String.format("[E][ ] %s (at: %s)", this.description, date);
         }
@@ -39,8 +39,8 @@ public class Event extends Task{
     @Override
     public String longDescription() {
         String status;
-        String done = this.isDone? "was": "is";
-        status = String.format("Event %s %s at %s %d %s %d",
+        String done = this.isDone? "was at": "is going to be on";
+        status = String.format("Event %s %s %s %d %s %d",
                 this.description, done, this.date.getDayOfWeek(),
                 this.date.getDayOfMonth() , this.date.getMonth(),
                 this.date.getYear());

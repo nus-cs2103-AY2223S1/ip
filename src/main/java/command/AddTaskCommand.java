@@ -15,7 +15,7 @@ public class AddTaskCommand extends Command{
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String userInput = ui.currentInput;
         Task taskToAdd = Parser.stringToTask(userInput);
-        String storableLine = StorageParser.storableTaskDescription(taskToAdd);
+        String storableLine = taskToAdd.toString()  + "\n";
         storage.appendLine(storableLine);
         taskList.addTask(taskToAdd);
         ui.showMessage("Added task");
