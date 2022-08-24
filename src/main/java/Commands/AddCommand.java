@@ -4,15 +4,31 @@ import tasks.*;
 import ui.Ui;
 import storage.Storage;
 
+/**
+ * Encapsulates a user instruction to create a new task.
+ *
+ * @author fannyjian
+ */
 public class AddCommand extends Command {
     private Task task;
 
-    public AddCommand(String des, boolean marked) {
+    /**
+     * Initialises a command to create a new Todo.
+     *
+     * @param des Description of task.
+     */
+    public AddCommand(String des) {
         this.task = new Todo(des);
-        this.task.setStatusIcon(marked);
     }
 
-    public AddCommand(String type, String des, String date, boolean marked) {
+    /**
+     * Initialises a command to create a new Deadline or Event.
+     *
+     * @param type Type of Task.
+     * @param des Description of Task.
+     * @param date Date to be completed by.
+     */
+    public AddCommand(String type, String des, String date) {
         switch (type) {
         case "deadline":
             this.task = new Deadline(des, date);
@@ -20,7 +36,6 @@ public class AddCommand extends Command {
         case "event":
             this.task = new Event(des, date);
         }
-        this.task.setStatusIcon(marked);
     }
 
     @Override

@@ -9,6 +9,11 @@ import parser.Parser;
 import tasks.Task;
 import tasks.TaskList;
 
+/**
+ * Deals with loading tasks from the file and saving tasks in the file.
+ *
+ * @author fannyjian
+ */
 public class Storage {
 
     private File storageFile;
@@ -17,6 +22,13 @@ public class Storage {
         this.storageFile = new File(filePath);
     }
 
+    /**
+     * Reads from hard disk and converts saved tasks into a list of tasks,
+     * or creates a new file and initialises task list if file has not been created yet.
+     *
+     * @param ui UI of the program.
+     * @return List of stored tasks (if any).
+     */
     public ArrayList<Task> load(Ui ui) {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -45,6 +57,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes to the hard disk every time the task list is updated.
+     *
+     * @param tasks List of tasks saved by user.
+     */
     public void updateStorage(TaskList tasks) {
         try {
             FileWriter writer = new FileWriter(storageFile);

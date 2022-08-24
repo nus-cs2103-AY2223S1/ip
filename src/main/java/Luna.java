@@ -5,12 +5,24 @@ import tasks.*;
 import commands.*;
 import ui.Ui;
 
+/**
+ * A personal assistant chatbot, Luna, that helps the user keep track of
+ * various tasks and events.
+ * Nature and celestial themed.
+ *
+ * @author fannyjian
+ */
 public class Luna {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Initialises Luna by setting up the UI, Storage and TaskList.
+     *
+     * @param filePath Path to the file containing saved tasks.
+     */
     public Luna(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -21,6 +33,9 @@ public class Luna {
         }
     }
 
+    /**
+     * Starts the chatbot by reading commands from and executing them.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

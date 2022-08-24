@@ -4,11 +4,21 @@ import storage.Storage;
 import ui.Ui;
 import tasks.TaskList;
 
+/**
+ * Encapsulates a user instruction to mark a saved task as completed or uncompleted.
+ *
+ * @author fannyjian
+ */
 public class UpdateCommand extends Command {
-
     private String type;
     private int num;
 
+    /**
+     * Initialises a command to update a saved Task.
+     *
+     * @param type Type of update to be performed.
+     * @param num Index of task in list displayed to user.
+     */
     public UpdateCommand(String type, int num) {
         this.type = type;
         this.num = num - 1;

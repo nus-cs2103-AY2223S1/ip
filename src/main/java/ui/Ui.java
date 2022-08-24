@@ -9,11 +9,19 @@ import java.io.FileReader;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+/**
+ * Deals with interactions with the user.
+ *
+ * @author fannyjian
+ */
 public class Ui {
     private static final String sep = "\n✧  ✡︎✮ ✰ ✦ ✨️ ❍  ✫   ✣❈ ✶  ✧︎ ✱✬ ✨   ❇︎ ✫❍   ❈ ✶  ❍✶  ✯❃  ✨\n";
     private static Scanner sc;
     private boolean loaded;
 
+    /**
+     * Starts the UI by initialising a scanner to take in user commands.
+     */
     public Ui() {
         this.sc = new Scanner(System.in);
         this.loaded = false;
@@ -23,6 +31,10 @@ public class Ui {
         this.loaded = true;
     }
 
+    /**
+     * Displays the welcome message upon start up of the chatbot.
+     * Shows the bot logo, lists available commands and prints out stored tasks if any.
+     */
     public void showWelcome() {
         //print Welcome message
         String logo =
@@ -66,6 +78,9 @@ public class Ui {
                     "\n️Please exit and try again ️⛈");
     }
 
+    /**
+     *  Bids the user farewell before exiting the chatbot.
+     */
     public void farewell() {
         System.out.println("\n . ❍  ❃ ☆  ✶ ❅  🌙 Goodbye from Luna 🌙  ❅ ✶  ☆ ❃  ❍  .\n");
         sc.close();
@@ -75,21 +90,43 @@ public class Ui {
         System.out.println(sep);
     }
 
+    /**
+     * Prints out error message formatted with line divider.
+     *
+     * @param message Error message.
+     */
     public void showError(String message) {
         showLine();
         System.out.println(message);
         showLine();
     }
 
+    /**
+     * Informs user that a task has been successfully added.
+     *
+     * @param tasks Updated list of tasks added by user.
+     * @param task Current task added.
+     */
     public void showAdded(TaskList tasks, Task task) {
         System.out.println(sep + "\nLuna has added:\n" + task.toString() + "\n" + tasks.size() + " task(s) left in your list 🌻\n" + sep);
     }
 
+    /**
+     * Informs user that a task has been successfully deleted.
+     *
+     * @param tasks Updated list of tasks saved by user.
+     * @param task Task deleted.
+     */
     public void showDeleted(TaskList tasks, Task task) {
         System.out.println(sep + "\nLuna has removed:\n" + task.toString() + "\n" + tasks.size() + " task(s) left in your list 🌻\n" + sep);
 
     }
 
+    /**
+     * Displays all the tasks that the user has added.
+     *
+     * @param tasks List of tasks added by user.
+     */
     public void showList(TaskList tasks) {
         showLine();
         System.out.println("\n☀️ Stuff you have to do! ☀️\n");
@@ -97,14 +134,29 @@ public class Ui {
         showLine();
     }
 
+    /**
+     * Informs user that a task has been successfully marked as completed.
+     *
+     * @param task Task marked as completed.
+     */
     public void showMark(Task task) {
         System.out.println(sep + "\nMarked as completed 🌈️\n" + task.toString() + "\n" + sep);
     }
 
+    /**
+     * Informs user that a task has been successfully marked as uncompleted.
+     *
+     * @param task Task marked as uncompleted.
+     */
     public void showUnmark(Task task) {
         System.out.println(sep + "\nMarked as uncompleted 🌩\n" + task.toString() + "\n" + sep);
     }
 
+    /**
+     * Scans the next command entered by user.
+     *
+     * @return Command entered by user.
+     */
     public String readCommand() {
         return sc.nextLine();
     }

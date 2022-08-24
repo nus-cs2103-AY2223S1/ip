@@ -6,7 +6,21 @@ import tasks.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deals with making sense of the user command.
+ *
+ * @author fannyjian
+ */
 public class Parser {
+
+    /**
+     * Takes in a string of user command and creates a new instance of Command
+     * according to the keyword.
+     *
+     * @param cmd String of command to process.
+     * @return Command corresponding to the user's instruction.
+     * @throws LunaException.
+     */
     public static Command parse(String cmd) throws LunaException {
         String[] cmdSplit = cmd.split(" ", 2);
         Command c;
@@ -15,21 +29,21 @@ public class Parser {
             if (cmd.length() <= 5) {
                 throw new LunaException("Please enter a task to do 🌷");
             }
-            c = new AddCommand(cmdSplit[1], false);
+            c = new AddCommand(cmdSplit[1]);
             break;
         case "deadline":
             if (cmd.length() <= 9) {
                 throw new exception.LunaException("Please enter a task and deadline 🌷");
             }
             String[] desSplit = cmdSplit[1].split(" /by ");
-            c = new AddCommand("deadline", desSplit[0], desSplit[1], false);
+            c = new AddCommand("deadline", desSplit[0], desSplit[1]);
             break;
         case "event":
             if (cmd.length() <= 6) {
                 throw new exception.LunaException("Please enter an event and date 🌷");
             }
             String[] split = cmdSplit[1].split(" /at ");
-            c = new AddCommand("event", split[0], split[1], false);
+            c = new AddCommand("event", split[0], split[1]);
             break;
         case "list":
             c = new ListCommand();
@@ -52,47 +66,44 @@ public class Parser {
         return c;
     }
 
+    /**
+     * Process the lines of text from the hard disk by converting strings of tasks into
+     * appropriate Task instances.
+     *
+     * @param tasks String of task to be converted to a Task instance
+     * @return A Task instance.
+     */
     public static Task parseSaved(String tasks) {
         String txt = tasks.substring(7);
         if (txt.startsWith("[T]")) {
             String[] split = txt.split("] ");
             Task tsk = new Todo(split[1]);
-
             if (split[0].substring(3).equals("[✧")) {
                 tsk.setStatusIcon(true);
             }
             return tsk;
-
-
         } else if (txt.startsWith("[D]")) {
             String[] split = txt.split("] ");
             String [] desSplit = split[1].split(" BY ");
             String des = desSplit[0];
             String by = desSplit[1].substring(0, 11);
             LocalDate date = LocalDate.parse(by, DateTimeFormatter.ofPattern("dd MMM yyyy"));
-
             Task tsk = new Deadline(des, date);
-
             if (split[0].substring(3).equals("[✧")) {
                 tsk.setStatusIcon(true);
             }
             return tsk;
-
-
         } else if (txt.startsWith("[E]")) {
             String[] split = txt.split("] ");
             String [] desSplit = split[1].split(" AT ");
             String des = desSplit[0];
             String at = desSplit[1].substring(0, 11);
             LocalDate date = LocalDate.parse(at, DateTimeFormatter.ofPattern("dd MMM yyyy"));
-
             Task tsk = new Event(des, date);
-
             if (split[0].substring(3).equals("[✧")) {
                 tsk.setStatusIcon(true);
             }
             return tsk;
-
         } else {
             return null;
         }
