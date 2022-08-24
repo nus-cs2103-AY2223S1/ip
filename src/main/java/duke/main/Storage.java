@@ -9,27 +9,15 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Storage class handles loading and saving of data of TaskList
- */
 public class Storage {
     String filePath;
     private static final String OH_MAN = "Oh man, ";
     private static final String EVIL_FILE = "Duke thinks this file is evil and corrupted.";
 
-    /**
-     * Constructor of Storage
-     * @param filePath relative path where location of data file is stored
-     */
     public Storage(String filePath) {
         this.filePath = filePath;
     };
 
-    /**
-     * Saves any changes to TaskList to data file
-     * @param tasks TaskList
-     * @throws DukeException if data is corrupted
-     */
     public void save(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath, false);
@@ -45,11 +33,6 @@ public class Storage {
 
     }
 
-    /**
-     * Loads data file to TaskList when Duke is first run
-     * @return An ArrayList of Task containing all the previous tasks
-     * @throws DukeException if unable to create directory at specified path or if data file is corrupted
-     */
     public ArrayList<Task> load() throws DukeException {
         try {
             ArrayList<Task> tasks = new ArrayList<>();
