@@ -15,10 +15,6 @@ public class TaskList {
         this.tasks = new ArrayList<>();
     }
 
-    public TaskList(ArrayList<Task> tasks) {
-        this.tasks = tasks;
-    }
-
     @Override
     public String toString() {
         StringBuilder allTasks = new StringBuilder();

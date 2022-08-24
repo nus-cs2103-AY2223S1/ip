@@ -40,36 +40,31 @@ public abstract class Task {
         return this.toString();
     }
 
-    public static Task fromStorage(String task) {
+    public static Task fromStorage(String task) throws DukeException {
         String[] taskDetails = task.split(" \\| ");
         TaskType taskType = TaskType.parse(taskDetails[0]);
         Task currTask;
-        try {
-            switch (taskType) {
-            case DEADLINE:
-                if (taskDetails.length < 4) {
-                    throw new DukeException("Invalid task description!");
-                }
-                currTask = new Deadline(taskDetails[2], taskDetails[3]);
-                break;
-            case EVENT:
-                if (taskDetails.length < 4) {
-                    throw new DukeException("Invalid task description!");
-                }
-                currTask = new Event(taskDetails[2], taskDetails[3]);
-                break;
-            case TODO:
-                if (taskDetails.length < 3) {
-                    throw new DukeException("Invalid task description!");
-                }
-                currTask = new ToDo(taskDetails[2]);
-                break;
-            default:
-                throw new DukeException("Invalid task type!");
+        switch (taskType) {
+        case DEADLINE:
+            if (taskDetails.length < 4) {
+                throw new DukeException("Invalid task description!");
             }
-        } catch (DukeException e) {
-            Reply.printMessage(e.getMessage());
-            return null;
+            currTask = new Deadline(taskDetails[2], taskDetails[3]);
+            break;
+        case EVENT:
+            if (taskDetails.length < 4) {
+                throw new DukeException("Invalid task description!");
+            }
+            currTask = new Event(taskDetails[2], taskDetails[3]);
+            break;
+        case TODO:
+            if (taskDetails.length < 3) {
+                throw new DukeException("Invalid task description!");
+            }
+            currTask = new ToDo(taskDetails[2]);
+            break;
+        default:
+            throw new DukeException("Invalid task type!");
         }
         if (taskDetails[1].equals(DONE_STORAGE)) {
             currTask.markAsDone();

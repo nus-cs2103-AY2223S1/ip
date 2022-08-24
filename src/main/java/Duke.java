@@ -4,40 +4,42 @@ import java.util.Scanner;
 
 
 public class Duke {
-    private static final String START = "Hey there! I'm Duke.\nWhat do you want to do today?";
     private static Path PATH = Paths.get(System.getProperty("user.dir" ), "data", "duke.txt");
 
 
     private boolean hasEnded;
     private TaskList tasks;
     private Storage storage;
+    private Ui ui;
+    private Parser parser;
 
 
     public Duke() {
         this.hasEnded = false;
+        this.ui = new Ui();
+        this.parser = new Parser();
         try {
             this.storage = new Storage(PATH);
-            this.tasks = new TaskList(this.storage.load());
+            this.tasks = this.storage.load();
         } catch (DukeException e) {
-            Reply.printMessage(e.getMessage());
+            ui.printMessage(e.getMessage());
             this.tasks = new TaskList();
         }
     }
 
-    public static void welcome() {
-        Reply.printMessage(START);
-    }
-
     public void start() {
         Scanner sc = new Scanner(System.in);
-        Duke.welcome();
+        this.ui.welcome();
         while(!hasEnded) {
             try {
-                Command command = Command.of(sc.nextLine(), this.tasks);
-                this.hasEnded = command.run();
+                Command command = parser.parse(sc.nextLine(), this.tasks);
+                this.ui.printMessage(command.run());
+                if (command instanceof EndCommand) {
+                    this.hasEnded = true;
+                }
                 this.storage.save(this.tasks);
             } catch (DukeException e) {
-                Reply.printMessage(e.getMessage());
+                this.ui.printMessage(e.getMessage());
             }
         }
         sc.close();

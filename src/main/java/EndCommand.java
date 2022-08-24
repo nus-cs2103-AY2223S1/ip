@@ -7,8 +7,7 @@ public class EndCommand extends Command {
     }
 
     @Override
-    public boolean run() throws DukeException {
-        Reply.printMessage(END);
-        return true;
+    public String run() throws DukeException {
+        return END;
     }
 }

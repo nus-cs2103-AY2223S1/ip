@@ -8,9 +8,8 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public boolean run() throws DukeException {
-        Reply.printMessage(LIST + this.tasks.toString());
-        return false;
+    public String run() throws DukeException {
+        return LIST + this.tasks.toString();
     }
 
 }

@@ -5,8 +5,7 @@ public class ToDoCommand extends Command {
     }
 
     @Override
-    public boolean run() throws DukeException {
-        Reply.printMessage(this.tasks.addTask(new ToDo(this.content)));
-        return false;
+    public String run() throws DukeException {
+        return this.tasks.addTask(new ToDo(this.content));
     }
 }

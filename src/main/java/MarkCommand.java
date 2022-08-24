@@ -5,12 +5,13 @@
     }
 
     @Override
-    public boolean run() throws DukeException {
+    public String run() throws DukeException {
+        String reply;
         try {
-            Reply.printMessage(this.tasks.markTask(Integer.parseInt(this.content) - 1));
+            reply = this.tasks.markTask(Integer.parseInt(this.content) - 1);
         } catch (NumberFormatException e) {
             throw new DukeException("Task number need to be an integer!");
         }
-        return false;
+        return reply;
     }
 }

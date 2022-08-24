@@ -24,14 +24,14 @@ public class Storage {
         }
     }
 
-    public ArrayList<Task> load() throws DukeException {
+    public TaskList load() throws DukeException {
         try {
             Scanner sc = new Scanner(this.file);
-            ArrayList<Task> tasks = new ArrayList<>();
+            TaskList tasks = new TaskList();
             while (sc.hasNextLine()) {
                 Task task = Task.fromStorage(sc.nextLine());
                 if (task != null) {
-                    tasks.add(task);
+                    tasks.addTask(task);
                 }
             }
             sc.close();
