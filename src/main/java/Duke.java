@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -77,9 +80,15 @@ public class Duke {
                     }
                     String task = taskWithDeadline[0];
                     String by = taskWithDeadline[1];
-                    Deadline(task, by);
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate byDateTime = LocalDate.parse(by,dtf);
+                    Deadline(task, byDateTime);
                 } catch (DukeException e) {
                     System.out.println(e.toString());
+                } catch (DateTimeParseException e) {
+                    System.out.println("##############################################");
+                    System.out.println("Sorry! Please include a valid datetime entry!");
+                    System.out.println("##############################################");
                 }
             } else if (userReply.toLowerCase().startsWith("event")) {
                 try {
@@ -96,9 +105,15 @@ public class Duke {
                     }
                     String task = taskWithPeriod[0];
                     String period = taskWithPeriod[1];
-                    Event(task, period);
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    LocalDate periodDateTime = LocalDate.parse(period,dtf);
+                    Event(task, periodDateTime);
                 } catch (DukeException e) {
                     System.out.println(e.toString());
+                } catch (DateTimeParseException e) {
+                    System.out.println("##############################################");
+                    System.out.println("Sorry! Please include a valid datetime entry!");
+                    System.out.println("##############################################");
                 }
             } else if (userReply.toLowerCase().startsWith("delete")) {
               try {
@@ -176,7 +191,7 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    private static void Deadline(String task, String by) {
+    private static void Deadline(String task, LocalDate by) {
         System.out.println("##############################################");
         System.out.println("Nice! This task has been successfully added!");
         Deadline deadline = new Deadline(task, by);
@@ -187,7 +202,7 @@ public class Duke {
         System.out.println("##############################################");
     }
 
-    private static void Event(String task, String at) {
+    private static void Event(String task, LocalDate at) {
         System.out.println("##############################################");
         System.out.println("Nice! This task has been successfully added!");
         Event event = new Event(task, at);
