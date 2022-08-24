@@ -18,7 +18,7 @@ public class Event extends Task {
      * @param at Event's at.
      * @throws DukeException if event's at is empty.
      */
-    public Event(String description, String at) throws DukeException{
+    public Event(String description, String at) throws DukeException {
         super(description);
         if (at.equals(" ")) {
             throw new DukeException("☹ OOPS!!! The event needs to have specific start time and end time");

@@ -7,15 +7,15 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    private Scanner scanner;
-
-    private final String LOGO = " ____        _        \n"
+    private static final String LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private final String LINE = "_______________________________";
+    private static final String LINE = "_______________________________";
+
+    private Scanner scanner;
 
     /**
      * Class constructor for Ui class.

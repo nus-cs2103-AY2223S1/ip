@@ -1,8 +1,9 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+
+import org.junit.jupiter.api.Test;
 
 public class TaskListTest {
 
@@ -12,7 +13,7 @@ public class TaskListTest {
         Task newTask = new ToDo("testing");
         tasks.add(newTask);
         tasks.mark(1);
-        assertEquals("[T][X] testing",newTask.toString());
+        assertEquals("[T][X] testing", newTask.toString());
     }
 
     @Test
