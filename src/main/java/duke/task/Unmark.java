@@ -1,17 +1,17 @@
 package duke.task;
 
+import duke.Ui;
 import duke.processor.Storage;
 import duke.processor.TaskList;
-import duke.Ui;
 
 /**
  * Class to represent "Unmark" tasks.
  */
 public class Unmark extends Task {
-    int num;
+    private int num;
 
     /**
-     * The constructor for Duke.Task.Mark task.
+     * The constructor for Mark task.
      *
      * @param num Index of the specified task.
      */
@@ -22,13 +22,14 @@ public class Unmark extends Task {
 
     /**
      * Executes input list task
-     * @param task
-     * @param ui
+     * @param tasks TaskList.
+     * @param ui Class to print the ui.
+     * @param storage Class to write/read commands from file.
      */
     @Override
-    public void execute(TaskList task, Ui ui, Storage storage) {
-        task.markUndone(num);
-        ui.showUndoneTask(task, num);
-        storage.write(task.getTasks());
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+        tasks.markUndone(num);
+        ui.showUndoneTask(tasks, num);
+        storage.write(tasks.getTasks());
     }
 }

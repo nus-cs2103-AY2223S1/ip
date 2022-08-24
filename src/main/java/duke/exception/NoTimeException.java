@@ -5,7 +5,7 @@ package duke.exception;
  */
 public class NoTimeException extends Exception {
     /**
-     * The Constructor for Duke.Exception.NoTimeException.
+     * The Constructor for NoTimeException.
      *
      * @param message Message of the exception.
      */

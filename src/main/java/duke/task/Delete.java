@@ -8,10 +8,10 @@ import duke.Ui;
  * Class to represent "Delete" tasks.
  */
 public class Delete extends Task {
-    int num;
+    private int num;
 
     /**
-     * The constructor for Duke.Task.Delete task
+     * The constructor for Delete task
      */
     public Delete(int num) {
         super("delete", false);
@@ -23,6 +23,7 @@ public class Delete extends Task {
      *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
+     * @param storage Class to write/read commands from file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

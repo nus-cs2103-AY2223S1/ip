@@ -5,7 +5,7 @@ package duke.exception;
  */
 public class NoCommandException extends Exception {
     /**
-     * The Constructor for Duke.Exception.NoCommandException.
+     * The Constructor for NoCommandException.
      *
      * @param message Message of the exception.
      */

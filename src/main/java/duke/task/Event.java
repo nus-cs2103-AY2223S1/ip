@@ -1,11 +1,11 @@
 package duke.task;
 
-import duke.processor.Storage;
-import duke.processor.TaskList;
-import duke.Ui;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import duke.Ui;
+import duke.processor.Storage;
+import duke.processor.TaskList;
 
 /**
  * Class to represent "Events" tasks.
@@ -14,7 +14,7 @@ public class Event extends Task {
     protected LocalDateTime time;
 
     /**
-     * The constructor for Duke.Task.Event task.
+     * The constructor for Event task.
      *
      * @param description Task description.
      * @param isDone Task state.
@@ -53,25 +53,26 @@ public class Event extends Task {
      */
     public String formatChange() {
         String mark = isDone ? "1" : "0";
-        return "E | " + mark + " | " + this.description + " | " +
-                this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        return "E | " + mark + " | " + this.description + " | "
+                + this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     /**
-     * Overridden toString method for Duke.Task.Event task details
+     * Overridden toString method for Event task details
      *
      * @return String.
      */
     @Override
     public String toString() {
-        return "[E]"  + super.toString() +
-                " (at: " + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
+        return "[E]" + super.toString()
+                + " (at: " + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
     }
 
     /**
      * Executes process of given Event task.
      * @param tasks TaskList.
      * @param ui Class to print the ui.
+     * @param storage Class to write/read commands from file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

@@ -1,13 +1,13 @@
 package duke;
 
+import java.io.IOException;
+import java.util.Scanner;
+
 import duke.exception.NoCommandException;
 import duke.processor.Parser;
 import duke.processor.Storage;
 import duke.processor.TaskList;
 import duke.task.Task;
-
-import java.io.IOException;
-import java.util.Scanner;
 
 /**
  * This is the Main Class that contains the Main method.
@@ -55,7 +55,7 @@ public class Duke {
      *
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoCommandException {
         new Duke("data/duke.txt").run();
     }
 }

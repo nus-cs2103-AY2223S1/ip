@@ -1,15 +1,15 @@
 package duke.task;
 
+import duke.Ui;
 import duke.processor.Storage;
 import duke.processor.TaskList;
-import duke.Ui;
 
 /**
  * Class to represent "Todo" tasks.
  */
 public class Todo extends Task {
     /**
-     * The constructor for Duke.Task.Todo task.
+     * The constructor for Todo task.
      *
      * @param description Task description.
      * @param isDone Task state.
@@ -51,13 +51,13 @@ public class Todo extends Task {
     }
 
     /**
-     * Overridden toString method for Duke.Task.Todo task details.
+     * Overridden toString method for Todo task details.
      *
      * @return String.
      */
     @Override
     public String toString() {
-        return "[T]"  + super.toString();
+        return "[T]" + super.toString();
     }
 
     /**
@@ -65,6 +65,7 @@ public class Todo extends Task {
      *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
+     * @param storage Class to write/read commands from file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

@@ -1,5 +1,9 @@
 package duke.processor;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import duke.Ui;
 import duke.exception.NoCommandException;
 import duke.exception.NoDescriptionException;
 import duke.exception.NoTimeException;
@@ -13,20 +17,16 @@ import duke.task.Mark;
 import duke.task.Task;
 import duke.task.Todo;
 import duke.task.Unmark;
-import duke.Ui;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
- * Class to represent a parser to read the input/file.
+ * Class to represent a parser.
  */
 public class Parser {
     // usage of Enum
     private enum Commands {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
-    private final static DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     private static Ui ui = new Ui();
 
     /**
@@ -72,54 +72,52 @@ public class Parser {
         Commands command = Parser.Commands.valueOf(chat.toUpperCase().split(" ")[0]);
         if (chat.split(" ").length != 1) {
             switch (command) {
-                case TODO:
-                    if (chat.split(" ").length == 1) {
-                        throw new NoDescriptionException(command.name());
-                    } else {
-                        return new Todo(chat.substring(5), false);
-                    }
+            case TODO:
+                if (chat.split(" ").length == 1) {
+                    throw new NoDescriptionException(command.name());
+                } else {
+                    return new Todo(chat.substring(5), false);
+                }
 
-                case DEADLINE:
-                    String subString_deadline = chat.substring(9);
-                    if (subString_deadline.split(" /by ").length == 1) {
-                        throw new NoTimeException(command.name());
-                    } else {
-                        try {
-                            return new Deadline(subString_deadline.split(" /by ")[0], false,
-                                    LocalDateTime.parse(subString_deadline.split(" /by ")[1], timeFormat));
-                        } catch (Exception e ) {
-                            throw new WrongTimeFormatException();
-                        }
+            case DEADLINE:
+                String subStringDeadline = chat.substring(9);
+                if (subStringDeadline.split(" /by ").length == 1) {
+                    throw new NoTimeException(command.name());
+                } else {
+                    try {
+                        return new Deadline(subStringDeadline.split(" /by ")[0], false,
+                                LocalDateTime.parse(subStringDeadline.split(" /by ")[1], TIME_FORMAT));
+                    } catch (Exception e) {
+                        throw new WrongTimeFormatException();
                     }
+                }
 
-                case EVENT:
-                    String subString_event = chat.substring(6);
-                    if (subString_event.split(" /at ").length == 1) {
-                        throw new NoTimeException(command.name());
-                    } else {
-                        try{
-                            return new Event(subString_event.split(" /at ")[0], false,
-                                    LocalDateTime.parse(subString_event.split(" /at ")[1], timeFormat));
-                        } catch (Exception e) {
-                            throw new WrongTimeFormatException();
-                        }
+            case EVENT:
+                String subStringEvent = chat.substring(6);
+                if (subStringEvent.split(" /at ").length == 1) {
+                    throw new NoTimeException(command.name());
+                } else {
+                    try {
+                        return new Event(subStringEvent.split(" /at ")[0], false,
+                                LocalDateTime.parse(subStringEvent.split(" /at ")[1], TIME_FORMAT));
+                    } catch (Exception e) {
+                        throw new WrongTimeFormatException();
                     }
+                }
 
-                default:
-                    throw new NoCommandException(command.name());
+            default:
+                throw new NoCommandException(command.name());
             }
-        }
-
-        else {
+        } else {
             switch (command) {
-                case TODO:
-                    throw new NoDescriptionException(command.name());
-                case DEADLINE:
-                    throw new NoDescriptionException(command.name());
-                case EVENT:
-                    throw new NoDescriptionException(command.name());
-                default:
-                    throw new NoCommandException(command.name());
+            case TODO:
+                throw new NoDescriptionException(command.name());
+            case DEADLINE:
+                throw new NoDescriptionException(command.name());
+            case EVENT:
+                throw new NoDescriptionException(command.name());
+            default:
+                throw new NoCommandException(command.name());
             }
         }
     }
@@ -136,7 +134,7 @@ public class Parser {
     public static Task delete(String chat, TaskList tasklist) throws NoDescriptionException {
 
         int order = tasklist.size();
-        if (chat.split(" ").length == 1)  {
+        if (chat.split(" ").length == 1) {
             throw new NoDescriptionException("Duke.Task.Delete");
         } else {
             int num = Integer.parseInt(chat.split(" ")[1]) - 1;
@@ -159,37 +157,36 @@ public class Parser {
         try {
             try {
                 command = Parser.Commands.valueOf(chat.toUpperCase().split(" ")[0]);
-            } catch (Exception e){
+            } catch (Exception e) {
                 throw new NoCommandException(chat);
             }
             switch (command) {
-                case BYE:
-                    return new Bye();
+            case BYE:
+                return new Bye();
 
-                case LIST:
-                    return new List();
+            case LIST:
+                return new List();
 
-                case UNMARK:
-                    return unmark(chat, tasklist);
+            case UNMARK:
+                return unmark(chat, tasklist);
 
-                case MARK:
-                    return mark(chat, tasklist);
+            case MARK:
+                return mark(chat, tasklist);
 
-                case TODO:
-                    return addTask(chat, tasklist);
+            case TODO:
+                return addTask(chat, tasklist);
 
-                case DEADLINE:
-                    return addTask(chat, tasklist);
+            case DEADLINE:
+                return addTask(chat, tasklist);
 
-                case EVENT:
-                    return addTask(chat, tasklist);
+            case EVENT:
+                return addTask(chat, tasklist);
 
-                case DELETE:
-                    return delete(chat, tasklist);
+            case DELETE:
+                return delete(chat, tasklist);
 
-                default:
-                    throw new NoCommandException(chat);
-
+            default:
+                throw new NoCommandException(chat);
             }
 
         } catch (NoDescriptionException | NoCommandException | NoTimeException | WrongTimeFormatException e) {

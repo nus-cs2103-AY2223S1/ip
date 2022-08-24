@@ -5,7 +5,7 @@ package duke.task;
  */
 public class Bye extends Task {
     /**
-     * The constructor for Exit task.
+     * The constructor for Bye task.
      */
     public Bye() {
         super("bye", false);

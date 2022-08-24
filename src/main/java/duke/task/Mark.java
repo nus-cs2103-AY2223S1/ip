@@ -1,17 +1,17 @@
 package duke.task;
 
+import duke.Ui;
 import duke.processor.Storage;
 import duke.processor.TaskList;
-import duke.Ui;
 
 /**
  * Class to represent "Mark" tasks.
  */
 public class Mark extends Task {
-    int num;
+    private int num;
 
     /**
-     * The constructor for Duke.Task.Mark task.
+     * The constructor for Mark task.
      *
      * @param num Index of the specified task.
      */
@@ -25,6 +25,7 @@ public class Mark extends Task {
      *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
+     * @param storage Class to write/read commands from file.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {

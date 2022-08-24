@@ -1,8 +1,8 @@
 package duke.processor;
 
-import duke.task.Task;
-
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 /**
  * Class to represent the tasks lists.

@@ -1,16 +1,16 @@
 package duke.task;
 
+import duke.Ui;
 import duke.processor.Storage;
 import duke.processor.TaskList;
-import duke.Ui;
 
 /**
- * Abstact class to represent the tasks.
+ * Abstract class to represent the tasks.
  */
 public abstract class Task {
+    public Boolean isBye;
     protected String description;
     protected Boolean isDone;
-    public Boolean isBye;
 
     /**
      * The constructor for task.
@@ -79,7 +79,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        return this.getStatus()  + this.description;
+        return this.getStatus() + this.description;
     }
 
     /**
@@ -87,6 +87,7 @@ public abstract class Task {
      *
      * @param tasks TaskList.
      * @param ui Class to print the ui.
+     * @param storage Class to write/read commands from file.
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
 
