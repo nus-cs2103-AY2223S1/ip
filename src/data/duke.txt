@@ -1,3 +1,3 @@
-E|true|12312312|123123123  
-E|true|123|mon 2-4pm 
-D|false|123123123|23123123123 
+D|false|do work|2022-12-01T18:00
+E|false|club|2022-08-29T19:00
+T|true|123

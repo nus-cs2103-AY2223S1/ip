@@ -1,7 +1,11 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 public class Task {
     protected String description;
     protected boolean isDone;
-    protected String time = "";
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -32,20 +36,20 @@ public class Task {
         return String.format("T|%s|%s", this.isDone, this.description);
     }
 
-    public static Task MakeTask(String[] info) {
-        String type = info[0];
-        Boolean isDone = Boolean.parseBoolean(info[1]);
+    public static Task MakeTask(String type, Boolean isDone, String description, LocalDateTime dateTime) {
+
+
 //        System.out.println(info[0]);
 //        System.out.println(info[1]);
 //        System.out.println(info[2]);
 //        System.out.println(info[3]);
 
         if (type.equals("D")) {
-            return new Deadline(isDone, info[2], info[3]);
+            return new Deadline(isDone, description, dateTime);
         } else if (type.equals("E")) {
-            return new Event(isDone, info[2], info[3]);
+            return new Event(isDone, description, dateTime);
         }
-        return new Task(info[2], isDone);
+        return new Task(description, isDone);
     }
 
 }

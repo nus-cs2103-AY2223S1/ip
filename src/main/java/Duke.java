@@ -1,7 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.*;
 
 public class Duke {
     private static FileReader fileReader = new FileReader();
@@ -47,6 +47,17 @@ public class Duke {
         }
         throw new NoSuchCommandException();
     }
+
+    public static LocalDateTime formatTime(String dateTime) {
+        String[] dateTimeArr = dateTime.split(" ");
+        LocalDate date = LocalDate.parse(dateTimeArr[0]);
+        Integer hour = Integer.parseInt(dateTimeArr[1].substring(0,2));
+        Integer minute = Integer.parseInt(dateTimeArr[1].substring(2,4));
+        LocalTime time = LocalTime.of(hour,minute,0);
+
+        return LocalDateTime.of(date, time);
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -109,7 +120,7 @@ public class Duke {
                         try {
                             description = validateDescription(String.join(" ", Arrays.copyOfRange(arr, 1, startIndex)));
                             deadline = String.join(" ", Arrays.copyOfRange(arr, startIndex + 1, arr.length));
-                            task = commandString.equals("deadline") ? new Deadline(description, deadline) : new Event(description, deadline);
+                            task = commandString.equals("deadline") ? Task.MakeTask("D", false, description, formatTime(deadline)) : Task.MakeTask("E", false, description, formatTime(deadline)) ;
                             todo.add(task);
                             System.out.println(String.format("Got it. I'hv added this task:\n   %s", task.formatTask()));
                             System.out.println(String.format("Now you have %d task in the list\n", todo.size()));

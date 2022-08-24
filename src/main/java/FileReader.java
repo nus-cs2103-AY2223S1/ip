@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class FileReader {
@@ -21,7 +22,7 @@ public class FileReader {
             Scanner reader = new Scanner(this.file);
             while (reader.hasNextLine()) {
                 String[] taskInfo = reader.nextLine().split("\\|");
-                data.add(Task.MakeTask(taskInfo));
+                data.add(Task.MakeTask(taskInfo[0], Boolean.parseBoolean(taskInfo[1]), taskInfo[2], LocalDateTime.parse(taskInfo[3])));
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);
@@ -35,7 +36,7 @@ public class FileReader {
     public void writeFile(ArrayList<Task> updatedData) {
         String dataString = "";
         for (Task task : updatedData) {
-            dataString += String.format("%s \n", task.formatTaskString());
+            dataString += String.format("%s\n", task.formatTaskString());
         }
         try {
             FileWriter fileWriter = new FileWriter(String.valueOf(this.path));
