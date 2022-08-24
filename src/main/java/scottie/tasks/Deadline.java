@@ -1,3 +1,7 @@
+package scottie.tasks;
+
+import scottie.common.DateTimeUtil;
+
 import java.time.temporal.TemporalAccessor;
 
 public class Deadline extends Task {
@@ -12,7 +16,7 @@ public class Deadline extends Task {
         this.endDateTime = endDateTime;
     }
 
-     public static Deadline fromEncodedString(String encodedString) throws InvalidTaskDataException {
+     static Deadline fromEncodedString(String encodedString) throws InvalidTaskDataException {
          String[] splitTaskData = encodedString.split("\\|");
          if (splitTaskData.length < 4) {
              throw new InvalidTaskDataException("The data for this deadline is not formatted correctly.");
@@ -24,7 +28,7 @@ public class Deadline extends Task {
      }
 
     @Override
-    public String toEncodedString() {
+    String toEncodedString() {
         return String.format("D|%s|%s", super.toEncodedString(),
                 DateTimeUtil.formatCompactDateTime(this.endDateTime));
     }

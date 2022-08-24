@@ -1,3 +1,5 @@
+package scottie.tasks;
+
 public class Todo extends Task {
     public Todo(String description) {
         this(description, false);
@@ -7,7 +9,7 @@ public class Todo extends Task {
         super(description, isDone);
     }
 
-    public static Todo fromEncodedString(String encodedString) throws InvalidTaskDataException {
+    static Todo fromEncodedString(String encodedString) throws InvalidTaskDataException {
         String[] splitTaskData = encodedString.split("\\|");
         if (splitTaskData.length < 3) {
             throw new InvalidTaskDataException("The data for this to-do is not formatted correctly.");
@@ -18,7 +20,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String toEncodedString() {
+    String toEncodedString() {
         return String.format("T|%s", super.toEncodedString());
     }
 

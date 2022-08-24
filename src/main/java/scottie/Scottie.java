@@ -1,3 +1,12 @@
+package scottie;
+
+import scottie.instructions.Instruction;
+import scottie.parser.InvalidCommandException;
+import scottie.parser.Parser;
+import scottie.tasks.Storage;
+import scottie.tasks.TaskList;
+import scottie.ui.Ui;
+
 public class Scottie {
     public static void main(String[] args) {
         TaskList taskList = new TaskList(new Storage());

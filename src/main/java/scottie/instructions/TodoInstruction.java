@@ -1,7 +1,13 @@
+package scottie.instructions;
+
+import scottie.tasks.TaskList;
+import scottie.tasks.Todo;
+import scottie.ui.Ui;
+
 import java.util.Map;
 
-public class TodoInstruction extends Instruction {
-    public TodoInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
+class TodoInstruction extends Instruction {
+    TodoInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         super(mainArgument, flagArgumentsMap);
     }
 

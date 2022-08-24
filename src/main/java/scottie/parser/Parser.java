@@ -1,3 +1,8 @@
+package scottie.parser;
+
+import scottie.instructions.Command;
+import scottie.instructions.Instruction;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;

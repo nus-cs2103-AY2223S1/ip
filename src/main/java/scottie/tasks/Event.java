@@ -1,3 +1,7 @@
+package scottie.tasks;
+
+import scottie.common.DateTimeUtil;
+
 import java.time.temporal.TemporalAccessor;
 
 public class Event extends Task {
@@ -12,7 +16,7 @@ public class Event extends Task {
         this.dateTime = dateTime;
     }
 
-    public static Event fromEncodedString(String encodedString) throws InvalidTaskDataException {
+    static Event fromEncodedString(String encodedString) throws InvalidTaskDataException {
         String[] splitTaskData = encodedString.split("\\|");
         if (splitTaskData.length < 4) {
             throw new InvalidTaskDataException("The data for this event is not formatted correctly.");

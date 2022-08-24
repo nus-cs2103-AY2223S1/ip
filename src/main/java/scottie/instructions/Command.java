@@ -1,3 +1,5 @@
+package scottie.instructions;
+
 public enum Command {
     // The name strings are the commands that the user needs to type
     LIST("list"),

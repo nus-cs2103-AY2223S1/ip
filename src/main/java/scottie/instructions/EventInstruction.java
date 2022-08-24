@@ -1,8 +1,15 @@
+package scottie.instructions;
+
+import scottie.common.DateTimeUtil;
+import scottie.tasks.Event;
+import scottie.tasks.TaskList;
+import scottie.ui.Ui;
+
 import java.time.temporal.TemporalAccessor;
 import java.util.Map;
 
-public class EventInstruction extends Instruction {
-    public EventInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
+class EventInstruction extends Instruction {
+    EventInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         super(mainArgument, flagArgumentsMap);
     }
 

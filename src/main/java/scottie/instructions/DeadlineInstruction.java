@@ -1,8 +1,15 @@
+package scottie.instructions;
+
+import scottie.common.DateTimeUtil;
+import scottie.tasks.Deadline;
+import scottie.tasks.TaskList;
+import scottie.ui.Ui;
+
 import java.time.temporal.TemporalAccessor;
 import java.util.Map;
 
-public class DeadlineInstruction extends Instruction {
-    public DeadlineInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
+class DeadlineInstruction extends Instruction {
+    DeadlineInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         super(mainArgument, flagArgumentsMap);
     }
 

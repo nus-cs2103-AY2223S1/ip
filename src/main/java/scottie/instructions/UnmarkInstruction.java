@@ -1,7 +1,12 @@
+package scottie.instructions;
+
+import scottie.tasks.TaskList;
+import scottie.ui.Ui;
+
 import java.util.Map;
 
-public class UnmarkInstruction extends Instruction {
-    public UnmarkInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
+class UnmarkInstruction extends Instruction {
+    UnmarkInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         super(mainArgument, flagArgumentsMap);
     }
 

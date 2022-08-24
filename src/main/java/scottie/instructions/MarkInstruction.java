@@ -1,7 +1,12 @@
+package scottie.instructions;
+
+import scottie.tasks.TaskList;
+import scottie.ui.Ui;
+
 import java.util.Map;
 
-public class MarkInstruction extends Instruction {
-    public MarkInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
+class MarkInstruction extends Instruction {
+    MarkInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         super(mainArgument, flagArgumentsMap);
     }
 

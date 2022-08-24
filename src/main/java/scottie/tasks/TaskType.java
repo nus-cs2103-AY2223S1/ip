@@ -1,4 +1,6 @@
-public enum TaskType {
+package scottie.tasks;
+
+enum TaskType {
     DEADLINE('D'),
     EVENT('E'),
     TODO('T');
@@ -10,7 +12,7 @@ public enum TaskType {
         this.letter = letter;
     }
 
-    public static TaskType fromLetter(char letter) {
+    static TaskType fromLetter(char letter) {
         for (TaskType t : TaskType.values()) {
             if (t.letter == letter) {
                 return t;

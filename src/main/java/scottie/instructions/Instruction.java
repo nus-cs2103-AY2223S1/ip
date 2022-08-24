@@ -1,10 +1,15 @@
+package scottie.instructions;
+
+import scottie.tasks.TaskList;
+import scottie.ui.Ui;
+
 import java.util.Map;
 
 public abstract class Instruction {
     private final String mainArgument;
     private final Map<String, String> flagArgumentsMap;
 
-    public Instruction(String mainArgument, Map<String, String> flagArgumentsMap) {
+    Instruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         this.mainArgument = mainArgument;
         this.flagArgumentsMap = flagArgumentsMap;
     }
@@ -34,15 +39,15 @@ public abstract class Instruction {
         }
     }
 
-    public boolean hasMainArgument() {
+    boolean hasMainArgument() {
         return this.mainArgument != null;
     }
 
-    public String getMainArgument() {
+    String getMainArgument() {
         return this.mainArgument;
     }
 
-    public String getFlagArgument(String flag) {
+    String getFlagArgument(String flag) {
         return this.flagArgumentsMap.get(flag);
     }
 
