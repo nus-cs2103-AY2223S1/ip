@@ -1,17 +1,11 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
-
-    enum Keywords {
-        mark,
-        unmark,
-        list,
-        delete,
-        todo,
-        deadline,
-        event
-    }
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -161,9 +155,21 @@ public class Duke {
 
                 try {
                     int indexOfSlash = input.indexOf("/");
-                    String dateStr = input.substring(indexOfSlash + 3);
+                    String dateStr = input.substring(indexOfSlash + 4, indexOfSlash + 13);
+                    String time = input.substring(indexOfSlash + 14);
+                    Parser p = new Parser();
+                    String newTime = p.parseTime(time);
+                    DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder()
+                            .parseCaseInsensitive().parseLenient()
+                            .appendPattern("[yyyy-MM-dd]")
+                            .appendPattern("[M/dd/yyyy]")
+                            .appendPattern("[M/d/yyyy]")
+                            .appendPattern("[MM/dd/yyyy]")
+                            .appendPattern("[MMM dd yyyy]");
+                    DateTimeFormatter df = builder.toFormatter(Locale.ENGLISH);
+                    LocalDate d1 = LocalDate.parse(dateStr, df);
                     String task = input.substring(9, indexOfSlash);
-                    Deadline newDeadline = new Deadline(false, task, listOfThings.size() + 1, dateStr);
+                    Deadline newDeadline = new Deadline(false, task, listOfThings.size() + 1, d1, newTime);
                     listOfThings.add(newDeadline);
 
                     newDeadline.printAdded();
@@ -184,9 +190,21 @@ public class Duke {
                 try {
 
                     int indexOfSlash = input.indexOf("/");
-                    String dateAndTime = input.substring(indexOfSlash + 3);
+                    String date = input.substring(indexOfSlash + 4, indexOfSlash + 13);
+                    String time = input.substring(indexOfSlash + 14);
+                    Parser p = new Parser();
+                    String newTime = p.parseTime(time);
+                    DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder()
+                            .parseCaseInsensitive().parseLenient()
+                            .appendPattern("[yyyy-MM-dd]")
+                            .appendPattern("[M/dd/yyyy]")
+                            .appendPattern("[M/d/yyyy]")
+                            .appendPattern("[MM/dd/yyyy]")
+                            .appendPattern("[MMM dd yyyy]");
+                    DateTimeFormatter df = builder.toFormatter(Locale.ENGLISH);
+                    LocalDate d1 = LocalDate.parse(date, df);
                     String task = input.substring(6, indexOfSlash);
-                    Event newEvent = new Event(false, task, listOfThings.size() + 1, dateAndTime);
+                    Event newEvent = new Event(false, task, listOfThings.size() + 1, d1, newTime);
                     listOfThings.add(newEvent);
 
                     newEvent.printAdded();

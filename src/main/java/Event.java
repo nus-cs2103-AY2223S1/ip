@@ -1,6 +1,10 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task{
 
-    private String dateAndTime;
+    private LocalDate date;
+    private String time;
     private String straightLine = "  ----------------------------------------------------------------------------------";
 
     /**
@@ -9,11 +13,13 @@ public class Event extends Task{
      * @param isDone A boolean to indicate if the event is done.
      * @param eventDescription A string to detail the event.
      * @param index The task number in the list of tasks to do.
-     * @param dateAndTime A string to detail date and time of event.
+     * @param date A LocalDate to detail date of event.
+     * @param time A string to detail time of event.
      */
-    public Event(boolean isDone, String eventDescription, int index, String dateAndTime) {
+    public Event(boolean isDone, String eventDescription, int index, LocalDate date, String time) {
         super(isDone, eventDescription, index);
-        this.dateAndTime = dateAndTime;
+        this.date = date;
+        this.time = time;
     }
 
     /**
@@ -49,9 +55,9 @@ public class Event extends Task{
      */
     @Override
     public void printAdded() {
-        System.out.println(straightLine + "\n  Looks like you have a new event:\n    [D][ ] " + this.getDescription()
-                            + " (at:" + dateAndTime + ")" + "\n  " + this.getIndex() + " tasks left, 頑張れ!\n" +
-                            straightLine + "\n");
+        System.out.println(straightLine + "\n  Looks like you have a new event:\n    [E][ ] " + this.getDescription()
+                            + " (at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")" +
+                            "\n  " + this.getIndex() + " tasks left, 頑張れ!\n" + straightLine + "\n");
     }
 
     /**
@@ -60,11 +66,11 @@ public class Event extends Task{
     @Override
     public void printTask() {
         if (!this.getStatus()) {
-            System.out.println("  " + this.getIndex() + ".[E][ ] " + this.getDescription() + " (at:" +
-                    dateAndTime + ")");
+            System.out.println("  " + this.getIndex() + ".[E][ ] " + this.getDescription() + " (at: " +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         } else {
-            System.out.println("  " + this.getIndex() + ".[E][X] " + this.getDescription() + " (at:" +
-                    dateAndTime + ")");
+            System.out.println("  " + this.getIndex() + ".[E][X] " + this.getDescription() + " (at: " +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         }
     }
 
@@ -76,10 +82,10 @@ public class Event extends Task{
     public void printDeleted() {
         if (!this.getStatus()) {
             System.out.println(straightLine + "\n  Task deleted!\n    [E][ ] " + this.getDescription()
-                    + "(at:" + dateAndTime + ")");
+                    + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         } else {
             System.out.println(straightLine + "\n  Task deleted!\n    [E][X] " + this.getDescription()
-                    + "(at:" + dateAndTime + ")");
+                    + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         }
     }
 

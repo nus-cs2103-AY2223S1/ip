@@ -1,6 +1,10 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task{
 
-    private String date;
+    private LocalDate date;
+    private String time;
     private String straightLine = "  ----------------------------------------------------------------------------------";
 
     /**
@@ -11,9 +15,10 @@ public class Deadline extends Task{
      * @param index An integer to indicate the position of the Deadline in list of tasks.
      * @param date A String to indicate the date to be completed by.
      */
-    public Deadline(boolean isDone, String deadlineDescription, int index, String date) {
+    public Deadline(boolean isDone, String deadlineDescription, int index, LocalDate date, String time) {
         super(isDone, deadlineDescription, index);
         this.date = date;
+        this.time = time;
     }
 
     /**
@@ -45,8 +50,9 @@ public class Deadline extends Task{
      */
     @Override
     public void printAdded() {
-        System.out.println(straightLine + "\n  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by:" + date
-                            + ")\n  " + this.getIndex() + " tasks left, 頑張れ!\n" + straightLine + "\n");
+        System.out.println(straightLine + "\n  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by: " +
+                            date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")\n  " +
+                            this.getIndex() + " tasks left, 頑張れ!\n" + straightLine + "\n");
     }
 
     /**
@@ -55,11 +61,11 @@ public class Deadline extends Task{
     @Override
     public void printTask() {
         if (!this.getStatus()) {
-            System.out.println("  " + this.getIndex() + ".[D][ ] " + this.getDescription() + " (by:" +
-                                date + ")");
+            System.out.println("  " + this.getIndex() + ".[D][ ] " + this.getDescription() + " (by: " +
+                                date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
         } else {
-            System.out.println("  " + this.getIndex() + ".[D][X] " + this.getDescription() + " (by:" +
-                    date + ")");
+            System.out.println("  " + this.getIndex() + ".[D][X] " + this.getDescription() + " (by: " +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         }
     }
 
@@ -69,10 +75,10 @@ public class Deadline extends Task{
     public void printDeleted() {
         if (!this.getStatus()) {
             System.out.println(straightLine + "\n  Task deleted!\n    [D][ ] " + this.getDescription()
-                    + "(by:" + date + ")");
+                    + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
         } else {
             System.out.println(straightLine + "\n  Task deleted!\n    [D][X] " + this.getDescription()
-                    + "(by:" + date + ")");
+                    + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
         }
     }
 }
