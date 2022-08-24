@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class Parser {
-    private enum Commands {list, mark, unmark, todo, event, deadline, delete, bye};
+    private enum Commands {list, mark, unmark, todo, event, deadline, delete, bye, find}
 
     public Command parse(String input) throws DukeException {
         Commands command;
@@ -61,6 +61,12 @@ public class Parser {
                 return new DeleteCommand(indexString);
             case bye:
                 return new ExitCommand();
+            case find:
+                String query = input.substring(4).trim();
+                if (query.equals("")) {
+                    throw new InvalidInput("Query cannot be empty");
+                }
+                return new FindCommand(query);
             default:
                 throw new UnknownCommand();
         }

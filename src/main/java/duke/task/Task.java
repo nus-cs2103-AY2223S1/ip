@@ -23,6 +23,10 @@ public abstract class Task {
 
     public abstract String stringToSave();
 
+    public String getDescription() {
+        return this.description;
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
