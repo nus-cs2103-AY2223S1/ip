@@ -3,8 +3,8 @@ public class TaskList {
     // The first index that is empty
     private int currLastIndex = 0;
 
-    public void addTask(String description) {
-        taskList[currLastIndex] = new Task(description);
+    public void addTask(String description, Task.TaskType taskType) {
+        taskList[currLastIndex] = new Task(description, taskType);
         ++currLastIndex;
         System.out.println("added: " + description);
     }

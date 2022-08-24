@@ -13,18 +13,23 @@ public class Duke {
         TaskList taskList = new TaskList();
 
         while (true) {
-            String input = myObj.nextLine();  // Read user input
+            String input = myObj.nextLine();// Read user input
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 break;
             } else if (input.equals("list")) {
                 taskList.printTasks();
-                continue;
-            } else if (input.length() >= 6 && input.substring(0,4).equals("mark")) {
+            } else if (input.length() >= 6 && input.startsWith("mark")) {
                 taskList.markTaskAsDone(Integer.valueOf(input.substring(5)) - 1);
-                continue;
+            } else if (input.length() >= 6 && input.startsWith("todo")) {
+                taskList.addTask(input.substring(5), Task.TaskType.ToDo);
+            } else if (input.length() >= 7 && input.startsWith("event")) {
+                taskList.addTask(input.substring(6), Task.TaskType.Event);
+            } else if (input.length() >= 10 && input.startsWith("deadline")) {
+                taskList.addTask(input.substring(11), Task.TaskType.Deadline);
+            } else {
+                System.out.println("Invalid input. Please enter again");
             }
-            taskList.addTask(input);
         }
 
         //Level 4
