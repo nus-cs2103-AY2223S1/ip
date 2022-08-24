@@ -1,6 +1,8 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.time.LocalDate;
 
 public class Duke {
     Scanner scanner = new Scanner(System.in);
@@ -103,9 +105,12 @@ public class Duke {
         try {
             if (input.length() > 6) {
                 int slashIndex = input.indexOf("/");
-                inputArray.add(index, new Events(input.substring(6, slashIndex), input.substring(slashIndex + 4)));
+//                System.out.println(input.substring(slashIndex + 4));
+                LocalDate date = LocalDate.parse(input.substring(slashIndex + 4));
+                inputArray.add(index, new Events(input.substring(6, slashIndex), date));
                 System.out.println("Got it. I've added this task:\n" + inputArray.get(index));
                 index++;
+
             } else {
                 System.out.println("Please fill in what you want on the Events!");
             }
@@ -123,7 +128,8 @@ public class Duke {
         try {
             if (input.length() > 9) {
                 int slashIndex = input.indexOf("/");
-                inputArray.add(index, new Deadlines(input.substring(9, slashIndex), input.substring(slashIndex + 4)));
+                LocalDate date = LocalDate.parse(input.substring(slashIndex + 4));
+                inputArray.add(index, new Deadlines(input.substring(9, slashIndex), date));
                 System.out.println("Got it. I've added this task:\n" + inputArray.get(index));
                 index++;
             } else {
