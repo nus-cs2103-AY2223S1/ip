@@ -1,10 +1,10 @@
-public class Task {
+public abstract class Task {
     String name;
     Boolean done = false;
     Task(String name) {
         this.name = name;
     }
-    /*
+    /**
      * sets a task to be done
      *
      */
@@ -12,7 +12,7 @@ public class Task {
         this.done = true;
     }
 
-    /*
+    /**
      * sets a task to be not done
      *
      * @param input
@@ -21,9 +21,11 @@ public class Task {
         this.done = false;
     }
 
+    public abstract String writeData();
+
     @Override
     public String toString() {
         String mark = done ? "X" : "";
-        return "[" + mark + "] " + name;
+        return "[" + mark + "] " + this.name;
     }
 }

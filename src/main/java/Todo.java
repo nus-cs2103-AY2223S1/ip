@@ -4,6 +4,12 @@ public class Todo extends Task {
     }
 
     @Override
+    public String writeData() {
+        int mark = done ? 1 : 0;
+        return "T#" + mark + "#" + this.name;
+    }
+
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }
