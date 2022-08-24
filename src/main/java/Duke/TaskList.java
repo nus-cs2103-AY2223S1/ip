@@ -63,6 +63,15 @@ public class TaskList {
     }
 
     /**
+     * Gets list of tasks in TaskList object.
+     *
+     * @return ArrayList of Task representing list of tasks stored.
+     */
+    public ArrayList<Task> getListOfTasks() {
+        return this.listOfTasks;
+    }
+
+    /**
      * Marks task at specified index in list of tasks as done.
      *
      * @param index position of task in list of tasks to be marked done.

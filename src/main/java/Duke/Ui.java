@@ -23,7 +23,7 @@ public class Ui {
         System.out.println("Hello! I'm Don\nHow may I help you?\n");
         System.out.println("list - lists out your tasks\nbye - quit\ntodo - todo task\n" +
                 "deadline - deadline task /by yyyy-mm-dd\nevent - event task /by yyyy-mm-dd\n" +
-                "delete - delete index\nmark - mark index\nunmark - mark index");
+                "delete - delete index\nmark - mark index\nunmark - mark index\nfind - find task");
     }
 
     /**
@@ -120,6 +120,18 @@ public class Ui {
         System.out.println("Noted. I've removed this task:\n" + deletedTask + "\nNow you have " +
                 listOfTasks.getSize() + (listOfTasks.getSize() == 1 ? " task " : " tasks ") + "in the list.");
 
+    }
+
+    /**
+     * Prints list of matching tasks to console.
+     *
+     * @param matchingTasks is a list of tasks that matches the keyword.
+     */
+    public void showFindTask(TaskList matchingTasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int index = 0; index < matchingTasks.getSize(); index++) {
+            System.out.println(index + 1 + "." + matchingTasks.getTask(index).toString());
+        }
     }
 
     /**

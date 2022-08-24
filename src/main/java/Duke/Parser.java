@@ -110,6 +110,21 @@ public class Parser {
             }
             break;
 
+        case FIND:
+            try {
+                String keyword = response[1];
+                TaskList matchingTasks = new TaskList();
+                for (Task task : listOfTasks.getListOfTasks()) {
+                    if (task.getDescription().contains(keyword)) {
+                        matchingTasks.add(task);
+                    }
+                }
+                ui.showFindTask(matchingTasks);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                throw new DukeException("☹ OOPS!!! The description of a find cannot be empty.");
+            }
+            break;
+
         default:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
