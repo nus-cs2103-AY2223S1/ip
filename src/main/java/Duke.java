@@ -4,9 +4,14 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        List<Task> tasks = new ArrayList<>();
         prettyPrint("Hello! I'm Duke\nWhat can I do for you?");
+        List<Task> tasks = new ArrayList<>();
+        try {
+            tasks = Storage.loadTasks();
+        } catch (DukeException e) {
+            prettyPrint("☹ OOPS!!! " + e.getMessage());
+        }
+        Scanner in = new Scanner(System.in);
         while (in.hasNextLine()) {
             try {
                 String input = in.nextLine();
@@ -26,10 +31,12 @@ public class Duke {
                 } else if (command[0].equalsIgnoreCase("mark")) {
                     Task task = tasks.get(Integer.parseInt(command[1]) - 1);
                     task.mark();
+                    Storage.saveTasks(tasks);
                     prettyPrint("Nice! I've marked this task as done:\n  " + task);
                 } else if (command[0].equalsIgnoreCase("unmark")) {
                     Task task = tasks.get(Integer.parseInt(command[1]) - 1);
                     task.unmark();
+                    Storage.saveTasks(tasks);
                     prettyPrint("OK, I've marked this task as not done yet:\n  " + task);
                 } else if (command[0].equalsIgnoreCase("todo")) {
                     if (command.length < 2) {
@@ -37,24 +44,28 @@ public class Duke {
                     }
                     Task newTask = new Todo(command[1]);
                     tasks.add(newTask);
+                    Storage.saveTasks(tasks);
                     prettyPrint("Got it. I've added this task:\n  " + newTask +
                             "\nNow you have " + tasks.size() + " tasks in the list.");
                 } else if (command[0].equalsIgnoreCase("deadline")) {
                     String[] arguments = command[1].split(" /by ", 2);
                     Task newTask = new Deadline(arguments[0], arguments[1]);
                     tasks.add(newTask);
+                    Storage.saveTasks(tasks);
                     prettyPrint("Got it. I've added this task:\n  " + newTask +
                             "\nNow you have " + tasks.size() + " tasks in the list.");
                 } else if (command[0].equalsIgnoreCase("event")) {
                     String[] arguments = command[1].split(" /at ", 2);
                     Task newTask = new Event(arguments[0], arguments[1]);
                     tasks.add(newTask);
+                    Storage.saveTasks(tasks);
                     prettyPrint("Got it. I've added this task:\n  " + newTask +
                             "\nNow you have " + tasks.size() + " tasks in the list.");
                 } else if (command[0].equalsIgnoreCase("delete")) {
                     int index = Integer.parseInt(command[1]) - 1;
                     Task task = tasks.get(index);
                     tasks.remove(index);
+                    Storage.saveTasks(tasks);
                     prettyPrint("Noted. I've removed this task:\n  " + task +
                             "\nNow you have " + tasks.size() + " tasks in the list.");
                 } else {
