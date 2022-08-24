@@ -16,6 +16,10 @@ application {
     mainClassName = "duke.Duke"
 }
 
+test {
+    useJUnitPlatform()
+}
+
 run {
     standardInput = System.in
 }
