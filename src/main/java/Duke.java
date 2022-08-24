@@ -1,17 +1,19 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import dukeexceptions.*;
+import tasks.*;
 
 public class Duke {
     public static void main(String[] args) {
-        entryStatement();
+        Statements.entryStatement();
         ArrayList<Task> taskList = new ArrayList<Task>();
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("What can I do for you?");
+        Statements.initStatement();
         while (true) {
             String userIn = myObj.nextLine();  // Read user input
             try {
                 if (userIn.equals("bye")) {
-                    byeStatement();
+                    Statements.byeStatement();
                     break;
                 } else if (userIn.equals("list")) {
                     if (taskList.size() == 0) {
@@ -36,7 +38,7 @@ public class Duke {
                         String[] des = userIn.split(" ", 2);
                         Task toAdd = new Todos(des[1]);
                         taskList.add(toAdd);
-                        addStatement(toAdd.toString(), taskList.size());
+                        Statements.addStatement(toAdd.toString(), taskList.size());
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new NoDescriptionException("todo");
                     }
@@ -46,7 +48,7 @@ public class Duke {
                         String[] descriptdate = overall[1].split("/by", 2);
                         Task toAdd = new Deadlines(descriptdate[0], descriptdate[1]);
                         taskList.add(toAdd);
-                        addStatement(toAdd.toString(), taskList.size());
+                        Statements.addStatement(toAdd.toString(), taskList.size());
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new NoDescriptionException("deadline");
                     }
@@ -56,7 +58,7 @@ public class Duke {
                         String[] descriptdate = overall[1].split("/at", 2);
                         Task toAdd = new Events(descriptdate[0], descriptdate[1]);
                         taskList.add(toAdd);
-                        addStatement(toAdd.toString(), taskList.size());
+                        Statements.addStatement(toAdd.toString(), taskList.size());
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new NoDescriptionException("event");
                     }
@@ -81,25 +83,12 @@ public class Duke {
                 System.err.print(e);
             }
 
-
         }
 
     }
-    public static void entryStatement() {
-        System.out.println(" /\\_/\\");
-        System.out.println("/ o o \\");
-        System.out.println("/ ^  ^\\");
-        System.out.println("Hello from Chan-bot!");
-    }
 
-    public static void byeStatement() {
-        System.out.println("Bye bye!");
-        System.out.println(" /\\_/\\");
-        System.out.println("/ o o \\");
-        System.out.println("/    ^\\");
-    }
 
-    public static void addStatement(String res, int len) {
-        System.out.println("Got it. I've added this task:\n" + "  " + res + "\nNow you have " + len + " tasks in the list.");
-    }
+
+
+
 }

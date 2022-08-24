@@ -1,3 +1,5 @@
+package tasks;
+
 public class Deadlines extends Task {
     protected String description;
     protected boolean isDone;
