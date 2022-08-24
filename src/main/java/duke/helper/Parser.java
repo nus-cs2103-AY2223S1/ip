@@ -22,6 +22,7 @@ public class Parser {
         if (in.startsWith("find")) {
             String keywords = in.split(" ", 2)[1];
             list.find(keywords);
+
         //"clear": Clears the list
         } else if (in.equals("clear")) {
             list.clear();

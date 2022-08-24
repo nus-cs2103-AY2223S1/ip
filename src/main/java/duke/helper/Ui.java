@@ -76,11 +76,17 @@ public class Ui {
     public static void clear() {
         System.out.println("The list has been successfully cleared!");
     }
-    
+
+    /**
+     * Method to print task found message
+     */
     public static void taskFound() {
         System.out.println("Woohoo here are some matches found!");
     }
 
+    /**
+     * Method to print no task found message
+     */
     public static void noTaskFound() {
         System.out.println("Ohno I could not find any tasks fitting the keywords...");
     }
