@@ -40,28 +40,28 @@ public class Parser {
             String command = next[0];
 
             switch (command) {
-                case "bye":
-                    System.out.println("Bye. Hope to see you again soon!");
-                    return true;
-                case "list":
-                    tasklist.list();
-                    break;
-                case "unmark":
-                    tasklist.unmark(next[1]);
-                    break;
-                case "mark":
-                    tasklist.mark(next[1]);
-                    break;
-                case "todo":
-                case "deadline":
-                case "event":
-                    tasklist.addTask(next);
-                    break;
-                case "delete":
-                    tasklist.delete(next[1]);
-                    break;
-                default:
-                    throw new DukeException("Invalid command");
+            case "bye":
+                System.out.println("Bye. Hope to see you again soon!");
+                return true;
+            case "list":
+                tasklist.list();
+                break;
+            case "unmark":
+                tasklist.unmark(next[1]);
+                break;
+            case "mark":
+                tasklist.mark(next[1]);
+                break;
+            case "todo":
+            case "deadline":
+            case "event":
+                tasklist.addTask(next);
+                break;
+            case "delete":
+                tasklist.delete(next[1]);
+                break;
+            default:
+                throw new DukeException("Invalid command");
 
             }
         }

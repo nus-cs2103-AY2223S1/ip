@@ -35,7 +35,7 @@ public class Task {
     /**
      * Marks tasks read from file as completed.
      */
-    public void savedTaskMarkAsDone() {
+    public void markSavedTaskAsDone() {
         if (!this.isDone) {
             this.isDone = true;
         }
@@ -64,7 +64,7 @@ public class Task {
     /**
      * Return string representation of task object for saving to file.
      */
-    public String savedFileFormat() {
+    public String getSavedFileFormat() {
         return (this.isDone ? 1 : 0) + "|" + this.description;
     }
 

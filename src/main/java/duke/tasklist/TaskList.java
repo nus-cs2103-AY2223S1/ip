@@ -58,7 +58,7 @@ public class TaskList {
             case "T": {
                 Task currTask = new Todo(curr[2]);
                 if (curr[1].equals("1")) {
-                    currTask.savedTaskMarkAsDone();
+                    currTask.markSavedTaskAsDone();
                 }
                 this.storage.add(currTask);
                 break;
@@ -67,7 +67,7 @@ public class TaskList {
                 Task currTask = new Deadline(curr[2],
                         LocalDateTime.parse(curr[3].trim(), formatter));
                 if (curr[1].equals("1")) {
-                    currTask.savedTaskMarkAsDone();
+                    currTask.markSavedTaskAsDone();
                 }
                 this.storage.add(currTask);
                 break;
@@ -76,7 +76,7 @@ public class TaskList {
                 Task currTask = new Event(curr[2],
                         LocalDateTime.parse(curr[3].trim(), formatter));
                 if (curr[1].equals("1")) {
-                    currTask.savedTaskMarkAsDone();
+                    currTask.markSavedTaskAsDone();
                 }
                 this.storage.add(currTask);
                 break;
@@ -100,7 +100,8 @@ public class TaskList {
             switch (input[0]) {
                 case "todo":
                     if (input.length <= 1) {
-                        throw new DukeException("Description of a todo cannot be empty!");
+                        throw new DukeException(
+                                "Description of a todo cannot be empty!");
                     }
                     Todo todo = new Todo(input[1].trim());
                     storage.add(todo);
@@ -118,7 +119,8 @@ public class TaskList {
                     }
                     String[] deadlineInfo = input[1].split("/by", 2);
                     Deadline deadline = new Deadline(deadlineInfo[0].trim(),
-                            LocalDateTime.parse(deadlineInfo[1].trim(), formatter));
+                            LocalDateTime.parse(deadlineInfo[1].trim(),
+                                    formatter));
                     storage.add(deadline);
                     outputFile.writeToSavedFile();
                     System.out.printf("added %s\n", deadline);
@@ -135,7 +137,8 @@ public class TaskList {
                     }
                     String[] eventInfo = input[1].split("/at", 2);
                     Event event = new Event(eventInfo[0].trim(),
-                            LocalDateTime.parse(eventInfo[1].trim(), formatter));
+                            LocalDateTime.parse(eventInfo[1].trim(),
+                                    formatter));
                     storage.add(event);
                     outputFile.writeToSavedFile();
                     System.out.printf("added %s\n", event);
@@ -256,7 +259,7 @@ public class TaskList {
      */
     public ArrayList<Task> getTaskList() {
         ArrayList<Task> newList = new ArrayList<>();
-        for (Task x: storage) {
+        for (Task x : storage) {
             newList.add(x);
         }
         return newList;

@@ -50,10 +50,9 @@ public class Duke {
      */
     private void loopInputRead() {
         Parser parser = new Parser(new Scanner(System.in));
-        while(true) {
+        while (true) {
             try {
                 boolean complete = parser.handleInput();
-
                 if (complete) {
                     break;
                 }

@@ -25,7 +25,7 @@ public class Todo extends Task {
      * Return string representation of todo object for saving to file.
      */
     @Override
-    public String savedFileFormat() {
+    public String getSavedFileFormat() {
         return "T | " + (this.isDone ? 1 : 0) + " | " + this.description;
     }
 }

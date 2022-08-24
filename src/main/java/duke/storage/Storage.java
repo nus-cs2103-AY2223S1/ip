@@ -67,7 +67,7 @@ public class Storage {
             FileWriter writer = new FileWriter("data/duke.txt");
             ArrayList<Task> storage = TaskList.getInstance().getTaskList();
             for (Task x : storage) {
-                writer.write(x.savedFileFormat() + "\n");
+                writer.write(x.getSavedFileFormat() + "\n");
             }
             writer.close();
         } catch (IOException e) {
