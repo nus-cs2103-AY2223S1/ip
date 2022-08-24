@@ -20,42 +20,45 @@ public class Ui {
         while (scanner.hasNextLine()) {
             String userInput = scanner.nextLine();
             switch(userInput.split(" ")[0]) {
-                case "bye":
-                    System.out.println("Bye. Hope to see you again soon!");
-                    break;
-                case "list":
-                    myTasks.listTasks();
-                    break;
-                case "mark":
-                    myTasks.markTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
-                    myTasks.saveTasks();
-                    break;
-                case "unmark":
-                    myTasks.unmarkTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
-                    myTasks.saveTasks();
-                    break;
-                case "todo":
-                    myTasks.addTask(new Todo(userInput.substring(5)));
-                    myTasks.saveTasks();
-                    break;
-                case "deadline":
-                    myTasks.addTask(new Deadline(
-                        userInput.substring(9).split("/by")[0], LocalDate.parse(
-                        userInput.split("/by ")[1])));
-                    myTasks.saveTasks();
-                    break;
-                case "event":
-                    myTasks.addTask(new Event(
-                        userInput.substring(6).split("/at")[0], LocalDate.parse(
-                        userInput.split("/at ")[1])));
-                    myTasks.saveTasks();
-                    break;
-                case "delete":
-                    myTasks.removeTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
-                    myTasks.saveTasks();
-                    break;
-                default:
-                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            case "bye":
+                System.out.println("Bye. Hope to see you again soon!");
+                break;
+            case "deadline":
+                myTasks.addTask(new Deadline(
+                    userInput.substring(9).split("/by")[0], LocalDate.parse(
+                    userInput.split("/by ")[1])));
+                myTasks.saveTasks();
+                break;
+            case "delete":
+                myTasks.removeTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                myTasks.saveTasks();
+                break;
+            case "event":
+                myTasks.addTask(new Event(
+                    userInput.substring(6).split("/at")[0], LocalDate.parse(
+                    userInput.split("/at ")[1])));
+                myTasks.saveTasks();
+                break;
+            case "find":
+                myTasks.findTasks(userInput.substring(5));
+                break;
+            case "list":
+                myTasks.listTasks();
+                break;
+            case "mark":
+                myTasks.markTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                myTasks.saveTasks();
+                break;
+            case "todo":
+                myTasks.addTask(new Todo(userInput.substring(5)));
+                myTasks.saveTasks();
+                break;
+            case "unmark":
+                myTasks.unmarkTask(Integer.parseInt(userInput.split(" ")[1]) - 1);
+                myTasks.saveTasks();
+                break;
+            default:
+                System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
         scanner.close();

@@ -26,6 +26,26 @@ public class TaskList {
     }
 
     /**
+     * Find matching tasks from master list
+     */
+    public void findTasks(String myString) {
+        final ArrayList<Task> findList = new ArrayList<>();
+        for (Task myTask: myList) {
+            if (myTask.description.toUpperCase().contains(myString.toUpperCase())) {
+                findList.add(myTask);
+            }
+        }
+        if (findList.size() == 0) {
+            System.out.println("You have no matching search results.");
+        } else {
+            System.out.println("Here are the matching tasks in your list: ");
+            for(int i = 0; i<findList.size(); i++) {
+                System.out.println(i+1 + "." + findList.get(i));
+            }
+        }
+    }
+
+    /**
      * List all tasks from master list
      */
     public void listTasks() {
@@ -51,7 +71,7 @@ public class TaskList {
     }
 
     /**
-     * Marks task as undone
+     * Removes task from master list
      */
     public void removeTask(Integer itemNumber) {
         System.out.println("Noted. I've removed this task:");
