@@ -31,32 +31,32 @@ public class Duke {
                 }
                 Input input = Input.formatInput(inputString.trim());
                 switch (input.getCommand()) {
-                    case BYE:
-                        Prompt.endPrompt();
-                        return;
-                    case LIST:
-                        listTasks();
-                        break;
-                    case CHECK:
-                        checkTask(input.getMainData());
-                        break;
-                    case UNCHECK:
-                        uncheckTask(input.getMainData());
-                        break;
-                    case DELETE:
-                        deleteTask(input.getMainData());
-                        break;
-                    case TODO:
-                        addTask(new TaskTodo(input.getMainData()));
-                        break;
-                    case DEADLINE:
-                        addTask(new TaskDeadline(input.getMainData(), input.getSecondaryData()));
-                        break;
-                    case EVENT:
-                        addTask(new TaskEvent(input.getMainData(), input.getSecondaryData()));
-                        break;
-                    default:
-                        break;
+                case BYE:
+                    Prompt.endPrompt();
+                    return;
+                case LIST:
+                    listTasks();
+                    break;
+                case CHECK:
+                    checkTask(input.getMainData());
+                    break;
+                case UNCHECK:
+                    uncheckTask(input.getMainData());
+                    break;
+                case DELETE:
+                    deleteTask(input.getMainData());
+                    break;
+                case TODO:
+                    addTask(new TaskTodo(input.getMainData()));
+                    break;
+                case DEADLINE:
+                    addTask(new TaskDeadline(input.getMainData(), input.getSecondaryData()));
+                    break;
+                case EVENT:
+                    addTask(new TaskEvent(input.getMainData(), input.getSecondaryData()));
+                    break;
+                default:
+                    break;
                 }
             } catch (InvalidCommandException err) {
                 System.out.printf("%s is not a valid command\n", err.getMessage());
