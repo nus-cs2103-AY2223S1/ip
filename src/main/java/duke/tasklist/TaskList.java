@@ -8,14 +8,28 @@ import java.util.ArrayList;
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 
+/**
+ *
+ * Task list that handles changes to the list of tasks.
+ *
+ */
 public class TaskList {
     private static TaskList tasklist;
     private final ArrayList<Task> storage;
 
+    /**
+     * Constructor for the TaskList object.
+     *
+     * Initializes the ArrayList for storing task objects.
+     */
     public TaskList() {
         this.storage = new ArrayList<>();
     }
 
+    /**
+     *
+     * Lists out all the tasks currently in the list
+     */
     public void list() {
         if (this.storage.size() == 0) {
             System.out.println("List is currently empty");
@@ -28,6 +42,12 @@ public class TaskList {
         }
     }
 
+    /**
+     *
+     * Handles tasks to be added from saved file.
+     *
+     * @param input String containing input from saved file.
+     */
     public void addTasksFromSave(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.
                 ofPattern("yyyy-MM-dd HH:mm");
@@ -65,6 +85,13 @@ public class TaskList {
         }
     }
 
+    /**
+     *
+     * Handles tasks to be added from user input.
+     *
+     * @param input String array containing user input.
+     * @throws DukeException If input provided is not valid.
+     */
     public void addTask(String[] input) throws DukeException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.
@@ -124,6 +151,12 @@ public class TaskList {
 
     }
 
+    /**
+     *
+     * Deletes tasks according to user input.
+     *
+     * @param input String containing input for deletion.
+     */
     public void delete(String input) throws DukeException {
         if (storage.size() == 0) {
             throw new DukeException("No tasks to delete!");
@@ -147,6 +180,12 @@ public class TaskList {
         }
     }
 
+    /**
+     *
+     * Unmarks tasks according to user input.
+     *
+     * @param input String containing input for unmarking.
+     */
     public void unmark(String input) throws DukeException {
         if (this.storage.size() == 0) {
             throw new DukeException("No tasks to unmark!");
@@ -169,6 +208,11 @@ public class TaskList {
         }
     }
 
+    /**
+     *
+     * Marks tasks according to user input.
+     * @param input String containing input for marking.
+     */
     public void mark(String input) throws DukeException {
         if (this.storage.size() == 0) {
             throw new DukeException("No tasks to mark!");
@@ -191,6 +235,13 @@ public class TaskList {
         }
     }
 
+    /**
+     *
+     * Returns TaskList instance if created, else create one.
+     * Ensures TaskList will only ever have one created object.
+     *
+     * @return TaskList object.
+     */
     public static TaskList getInstance() {
         if (tasklist == null) {
             tasklist = new TaskList();
@@ -198,6 +249,11 @@ public class TaskList {
         return tasklist;
     }
 
+    /**
+     *
+     * Getter for the list of tasks stored within the task list object.
+     *
+     */
     public ArrayList<Task> getTaskList() {
         ArrayList<Task> newList = new ArrayList<>();
         for (Task x: storage) {
