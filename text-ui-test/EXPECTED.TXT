@@ -1,3 +1,4 @@
+Good Day!
 Got it. I've added this task:
 	[T][ ] read book
 Now you have 1 tasks in the list.
@@ -11,11 +12,12 @@ Now you have 3 tasks in the list.
 	2[T][ ] join sports club
 	3[E][ ] mid autumn /at aug15
 Got it. I've added this task:
-	[D][ ] deadline return book /by friday
+	[D][ ] return book /by friday
+Now you have 4 tasks in the list.
 Nice! I've marked this task as done
 	[E][X] mid autumn /at aug15
-Now you have 4 tasks in the list.
 	1[T][ ] read book
 	2[T][ ] join sports club
-	3[E][ ] mid autumn /at aug15
-	4[D][ ] deadline return book /by friday
+	3[E][X] mid autumn /at aug15
+	4[D][ ] return book /by friday
+Bye. Hope to see you again

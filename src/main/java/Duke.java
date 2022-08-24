@@ -1,92 +1,43 @@
-import java.util.Scanner;
+import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.ArrayList;
 
 public class Duke {
 
-    public static void main(String[] args) {
-        intro();
-        processCommand();
-        outro();
-    }
+    private final Storage storage;
+    private TaskList tasks;
+    private final Ui ui;
 
-    private static void intro() {
-        System.out.println("Hello! I'm Duke");
-        System.out.println("What can I do for you?");
-    }
-
-    private static void processCommand() {
-        Scanner sc = new Scanner(System.in);
-        Command command = new Command(sc.nextLine());
-        String keyword = command.getKeyword();
-        String content = command.getContent();
-        List<Task> userList = new ArrayList<Task>();
-        int id = 0;
-        while (!keyword.equals("bye")) {
-            if (keyword.equals("list")) {
-                userList.forEach(System.out::println);
-            } else if (keyword.equals("mark")) {
-                int index = command.getContentId() - 1;
-                if (index <= id) {
-                    userList.set(index, userList.get(index).performTask());
-                }
-            } else if (keyword.equals("unmark")) {
-                int index = command.getContentId() - 1;
-                if (index <= id) {
-                    userList.set(index, userList.get(index).undoTask());
-                }
-            } else if (keyword.equals("delete")){
-                int index = command.getContentId() - 1;
-                if (index <= id) {
-                    Task deletedTask = userList.remove(index);
-                    id--;
-                    for (int i = 0; i < id; i++) {
-                        userList.set(i, userList.get(i).updateId(i + 1));
-                    }
-                    deleteTaskConfirmation(deletedTask, id);
-                }
-            } else {
-                try {
-                    command.hasValidKeyword();
-                    command.hasValidTaskDesc();
-                    id++;
-                    if (keyword.equals("todo")) {
-                        Task newTask = new Todo(content, id, 'T');
-                        userList.add(newTask);
-                        addTaskConfirmation(newTask, id);
-                    } else if (keyword.equals("deadline")) {
-                        Task newTask = new Deadline(content, id, 'D');
-                        userList.add(newTask);
-                        addTaskConfirmation(newTask, id);
-                    } else if (keyword.equals("event")) {
-                        Task newTask = new Event(content, id, 'E');
-                        userList.add(newTask);
-                        addTaskConfirmation(newTask, id);
-                    }
-                } catch (DukeException ex){
-                    System.out.println(ex);
-                }
-            }
-            command = new Command(sc.nextLine());
-            keyword = command.getKeyword();
-            content = command.getContent();
+    public Duke(String filepath) {
+        ui = new Ui();
+        storage = new Storage(filepath);
+        try {
+            tasks = storage.load();
+        } catch (FileNotFoundException err) {
+            ui.showLoadingError();
+            tasks = new TaskList();
         }
     }
 
-    private static void addTaskConfirmation(Task task, int id) {
-        System.out.println("Got it. I've added this task:");
-        System.out.println(task.taskStatus());
-        System.out.printf("Now you have %d tasks in the list.\n", id);
+    public static void main(String[] args) {
+        new Duke("data/tasks.txt").run();
     }
 
-    private static void deleteTaskConfirmation(Task task, int id) {
-        System.out.println("Noted. I've removed this task:");
-        System.out.println(task.taskStatus());
-        System.out.printf("Now you have %d tasks in the list.\n", id);
-    }
-
-    private static void outro(){
-        System.out.println("\tBye. Hope to see you again");
+    private void run() {
+        ui.intro();
+        //int id = 0;
+        boolean isBye = false;
+        while (!isBye) {
+            try {
+                String commandText = ui.readInput();
+                Command command = Parser.parse(commandText);
+                command.execute(tasks, ui, storage);
+                isBye = command.isBye();
+            } catch (DukeException err) {
+                System.out.println(err);
+            } finally {
+                ui.lineBreak();
+            }
+        }
     }
 }

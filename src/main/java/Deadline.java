@@ -1,13 +1,37 @@
-public class Deadline extends Task {
-    private final String due;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-    public Deadline(String desc, int id, char taskType) {
-        super(desc, id, taskType);
+public class Deadline extends Task {
+    private final LocalDate due;
+
+    public Deadline(String desc, char taskType) {
+        super(desc, taskType);
         this.due = getDue(desc);
     }
 
-    private String getDue(String desc) {
+    public Deadline(String desc, char completed, char taskType) {
+        super(desc,completed, taskType);
+        this.due = getDue(desc);
+    }
+
+    public Deadline(String desc) {
+        super(Parser.formatDate(desc));
+        this.due = getDue(desc);
+    }
+
+    private LocalDate getDue(String desc) {
         int index = desc.indexOf('/');
-        return desc.substring(index + 1);
+        if (index > 0) {
+            return LocalDate.parse(desc.substring(index + 1), DateTimeFormatter.ofPattern("yyyy-mm-dd"));
+        }
+        return LocalDate.now();
+    }
+
+    protected Deadline performTask() {
+        return new Deadline(this.getDesc(), 'X', this.getTaskType());
+    }
+
+    protected Deadline undoTask() {
+        return new Deadline(this.getDesc(), this.getTaskType());
     }
 }
