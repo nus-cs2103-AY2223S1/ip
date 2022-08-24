@@ -43,34 +43,31 @@ public class Anya {
 
         while (!userInput.equals("bye")) {
             try {
-                command = userInput.split(" ")[0];
+                command = Parser.parseCommand(userInput);
                 if (command.equals("list")) {
                     list(tasks);
                 } else if (command.equals("mark")) {
-                    int index = Integer.parseInt(userInput.split(" ")[1]);
+                    int index = Parser.parseCommandIndex(userInput);
                     mark(tasks, index);
                 } else if (command.equals("unmark")) {
-                    int index = Integer.parseInt(userInput.split(" ")[1]);
+                    int index = Parser.parseCommandIndex(userInput);
                     unmark(tasks, index);
                 } else if (command.equals("delete")) {
-                    int index = Integer.parseInt(userInput.split(" ")[1]);
+                    int index = Parser.parseCommandIndex(userInput);
                     delete(tasks, index);
                 } else if (command.equals("todo")) {
                     try {
-                        String inputTask = userInput.split(" ", 2)[1];
-                        Task task = new Todo(inputTask);
+                        String taskName = Parser.parseTaskName(userInput);
+                        Task task = new Todo(taskName);
                         addTask(tasks, task);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new AnyaException("The description of a todo cannot be empty.");
                     }
                 } else if (command.equals("deadline")) {
                     try {
-                        String inputTask = userInput.split(" ", 2)[1];
-                        String[] details = inputTask.split(" /by ");
-                        String dateTimeStr = details[1];
-                        LocalDateTime dateTime = LocalDateTime.parse(dateTimeStr,
-                                DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
-                        Task task = new Deadline(details[0], dateTime);
+                        String taskName = Parser.parseTaskName(userInput);
+                        LocalDateTime dateTime = Parser.parseDateTime(userInput);
+                        Task task = new Deadline(taskName, dateTime);
                         addTask(tasks, task);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new AnyaException("The description/cut-off time of a deadline cannot be empty.");
@@ -80,9 +77,9 @@ public class Anya {
                     }
                 } else if (command.equals("event")) {
                     try {
-                        String inputTask = userInput.split(" ", 2)[1];
-                        String[] details = inputTask.split(" /at ");
-                        Task task = new Event(details[0], details[1]);
+                        String taskName = Parser.parseTaskName(userInput);
+                        String eventDetails = Parser.parseEventDetails(userInput);
+                        Task task = new Event(taskName, eventDetails);
                         addTask(tasks, task);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         throw new AnyaException("The description/time of an event cannot be empty.");
@@ -115,7 +112,6 @@ public class Anya {
     }
 
     // Commands
-    // put in tasklist
     public void addTask(TaskList tasks, Task task) {
         tasks.addTask(task);
         this.ui.addTaskMessage(task, tasks.getLength());
@@ -137,7 +133,6 @@ public class Anya {
         this.ui.unmarkTaskMessage(task);
     }
 
-    // put in tasklist
     public void delete(TaskList tasks, int index) {
         Task removedTask = tasks.getTaskFromIndex(index);
         tasks.deleteTaskFromIndex(index);
