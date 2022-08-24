@@ -21,7 +21,7 @@ public class DukeParser {
     private TaskList taskList;
     private String keyword;
     private String restOfInputString;
-    private Boolean exitDuke = false;
+    private Boolean shouldExit = false;
 
     /**
      * Default constructor for the DukeParser object.
@@ -32,8 +32,12 @@ public class DukeParser {
         this.taskList = taskList;
     }
 
+    /**
+     * Checks if an exit command has been given to Duke
+     * @return whether Duke should be exited or not
+     */
     public boolean exitDuke() {
-        return this.exitDuke;
+        return this.shouldExit;
     }
 
     /**
@@ -133,7 +137,7 @@ public class DukeParser {
         System.out.println(BREAK_LINES);
         System.out.println("Bye! Hope to see you again soon!");
         System.out.println(BREAK_LINES);
-        this.exitDuke = true;
+        this.shouldExit = true;
     }
 
     /**

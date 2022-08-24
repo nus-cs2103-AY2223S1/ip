@@ -10,6 +10,8 @@ import java.util.Scanner;
 
 public class Duke {
 
+    private static final String FILE_PATH = "src/main/java/duke/data.txt";
+
     // String array used to store duke.tasks
     private static TaskList taskList = new TaskList();
 
@@ -27,7 +29,7 @@ public class Duke {
 
         // Init variables to use
         Scanner sc = new Scanner(System.in);
-        Storage st = new Storage("src/main/java/duke/data.txt");
+        Storage st = new Storage(FILE_PATH);
         try {
             taskList = st.load();
         } catch (Exception e) {
