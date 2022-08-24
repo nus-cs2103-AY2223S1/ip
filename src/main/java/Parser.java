@@ -133,7 +133,6 @@ public class Parser {
         try {
             String[] durationArray = Arrays.copyOfRange(splitReply, by + 1, splitReply.length);
             String duration = String.join(" ", durationArray);
-            System.out.println(duration);
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
             return LocalDateTime.parse(duration, formatter);
         } catch (DateTimeParseException e) {
