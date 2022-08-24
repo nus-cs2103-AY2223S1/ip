@@ -1,7 +1,7 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -131,12 +131,12 @@ public class Duke {
             case "deadline":
                 try {
                     userInput = sc.nextLine();
-                    String[] splitB = userInput.split("/by");
+                    String[] splitB = userInput.split("/by ");
 
                     if (splitB.length <= 1) {
                         throw new DukeException("You need to put in a timing using /by");
                     } else {
-                        String deadline = splitB[1];
+                        LocalDateTime deadline = LocalDateTime.parse(splitB[1]);
                         Task d = new Deadlines(splitB[0], deadline);
                         taskList.add(d);
                         numOfInputs += 1;
