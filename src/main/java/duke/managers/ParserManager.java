@@ -9,19 +9,26 @@ import duke.commands.AddToDoTaskCommand;
 import duke.commands.ByeCommand;
 import duke.commands.Command;
 import duke.commands.DeleteTaskCommand;
+import duke.commands.FindTaskCommand;
 import duke.commands.IncorrectCommand;
 import duke.commands.ListTasksCommand;
 import duke.commands.MarkTaskCommand;
 import duke.commands.UnmarkTaskCommand;
 
 /**
- * TODO: Add JavaDocs
+ * Encapsulates the logic for parsing commands and delegating the corresponding {@link Command} handler responsible for
+ * handling the command.
+ *
+ * @author Emily Ong Hui Qi
  */
 public class ParserManager {
     public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)?");
 
     /**
-     * TODO: Add JavaDocs
+     * Parses the given command string and returns a {@link Command} instance that corresponds to the command string.
+     *
+     * @param fullCommand The full command string supplied by the user from keyboard input
+     * @return The {@link Command} instance responsible for handling the corresponding command
      */
     public Command parseCommand(String fullCommand) {
         Matcher matcher = ParserManager.BASIC_COMMAND_FORMAT.matcher(fullCommand);

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import duke.models.serializable.TaskSerializable;
 
 /**
- * Encapsulates a task containing a description and a completion status
+ * Encapsulates a task containing a description and a completion status.
  *
  * @author Emily Ong Hui Qi
  */
@@ -14,7 +14,9 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * TODO: Add JavaDocs
+     * Initializes the Task object with the provided description and sets the completion status to be undone.
+     *
+     * @param description The received description
      */
     public Task(String description) {
         this.description = description;
@@ -22,7 +24,10 @@ public abstract class Task {
     }
 
     /**
-     * TODO: Add JavaDocs
+     * Initializes the Task object with the provided description and completion status.
+     *
+     * @param description The received description
+     * @param isDone The received completion status
      */
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -43,42 +48,43 @@ public abstract class Task {
         this.isDone = false;
     }
 
-    /**
-     * Return the status icon of the current task, where a task that is done is marked with
-     * a 'X' and a task that is undone is marked with an empty space
-     *
-     * @return Status icon of the task
-     */
-    private String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+    public String getDescription() {
+        return this.description;
     }
 
     /**
-     * TODO: Add JavaDocs
-     */
-    public String toString() {
-        return String.format("[%s] [%s] %s", this.getTaskTypeIcon(), this.getStatusIcon(), this.description);
-    }
-
-    /**
-     * Return the task type icon of the current task. For example, a "Deadline" task has a
-     * task type icon of 'D'.
+     * Returns the task type icon of the current task.
      *
      * @return Task type icon of the task
      */
     public abstract String getTaskTypeIcon();
 
     /**
-     * Return the date of the current task, or null if there is no associated date
+     * Returns the date of the current task, or null if there is no associated date
      *
      * @return Date of the current task, or null if there is no associated date
      */
     public abstract LocalDate getDate();
 
     /**
-     * Returns a serializable format of the task
+     * Returns the status icon of the current task, where a task that is done is marked with a 'X' and a task that is
+     * undone is marked with an empty space.
+     *
+     * @return Date of the current task, or null if there is no associated date
+     */
+    private String getStatusIcon() {
+        return (this.isDone ? "X" : " "); // mark done task with X
+    }
+
+    /**
+     * Returns a serializable format of the task.
      *
      * @return Serializable format of the task
      */
     public abstract TaskSerializable serialize();
+
+    @Override
+    public String toString() {
+        return String.format("[%s] [%s] %s", this.getTaskTypeIcon(), this.getStatusIcon(), this.description);
+    }
 }

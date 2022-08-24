@@ -1,7 +1,7 @@
 package duke.models.task;
 
 /**
- * List of valid task types
+ * List of valid task types.
  *
  * @author Emily Ong Hui Qi
  */
@@ -26,16 +26,19 @@ public enum TaskType {
     };
 
     /**
-     * TODO: Add JavaDocs
+     * Returns a corresponding TaskType from the given string.
+     *
+     * @param str The received string input
+     * @return The corresponding TaskType
      */
-    public static TaskType fromString(String s) {
-        if (s.equals(TODO.toString())) {
+    public static TaskType fromString(String str) {
+        if (str.equals(TODO.toString())) {
             return TODO;
         }
-        if (s.equals(DEADLINE.toString())) {
+        if (str.equals(DEADLINE.toString())) {
             return DEADLINE;
         }
-        if (s.equals(EVENT.toString())) {
+        if (str.equals(EVENT.toString())) {
             return EVENT;
         }
         return null;

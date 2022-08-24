@@ -4,18 +4,22 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
- * TODO: Add JavaDocs
+
+ * Encapsulates the logic for reading keyboard input and writing to screen display.
+ *
+ * @author Emily Ong Hui Qi
  */
 public class UiManager {
-    // Horizontal line separator used in beautifying print commands
-    private static final String SEPARATOR = "-";
-    // Denotes the number of separator symbols to used when printing the input
-    private static final int SEPARATOR_SIZE = 60;
     private final Scanner scanner;
     private final PrintStream printer;
 
+    /** Horizontal line separator used in beautifying print commands */
+    private static final String SEPARATOR = "-";
+    /** Denotes the number of separator symbols to used when printing the input */
+    private static final int SEPARATOR_SIZE = 60;
+
     /**
-     * TODO: Add JavaDocs
+     * Initializes the scanner and printer objects used for reading keyboard inputs and writing to screen display.
      */
     public UiManager() {
         this.scanner = new Scanner(System.in);
@@ -32,7 +36,9 @@ public class UiManager {
     }
 
     /**
-     * TODO: Add JavaDocs
+     * Returns the input on the entire line received from the keyboard.
+     *
+     * @return Input on the entire line received from the keyboard
      */
     public String readCommand() {
         if (!this.scanner.hasNextLine()) {
@@ -41,12 +47,17 @@ public class UiManager {
         return this.scanner.nextLine();
     }
 
+    /**
+     * Closes the scanner object to prevent it from reading any further inputs.
+     */
     public void close() {
         this.scanner.close();
     }
 
     /**
-     * TODO: Add JavaDocs
+     * Writes the given input to screen display.
+     *
+     * @param input The given input to be written to screen display
      */
     public void print(String input) {
         this.printer.println("\t" + UiManager.getSeparatorLine());

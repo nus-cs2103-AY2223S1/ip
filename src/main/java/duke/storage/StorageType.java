@@ -1,7 +1,9 @@
 package duke.storage;
 
 /**
- * TODO: Add JavaDocs
+ * List the types of storage.
+ *
+ * @author Emily Ong Hui Qi
  */
 public enum StorageType {
     TASK

@@ -13,7 +13,9 @@ import duke.models.task.ToDo;
 import duke.utils.DukeValidator;
 
 /**
- * TODO: Add JavaDocs
+ * Encapsulates the logic for serializing and deserializing a {@link Task}.
+ *
+ * @author Emily Ong Hui Qi
  */
 public class TaskSerializable extends Serializable<Task> {
     private static final Pattern MATCH_TASK_DATA = Pattern.compile("(?<taskType>[TDE])\\s\\|\\s"
@@ -30,7 +32,12 @@ public class TaskSerializable extends Serializable<Task> {
     private final Object taskMetaData;
 
     /**
-     * TODO: Add JavaDocs
+     * Initializes the serializable {@link Task} object from parameters for the {@link Task} model.
+     *
+     * @param taskType The type of the task
+     * @param taskDescription The description of the task
+     * @param taskIsDone The completion status of the task
+     * @param taskMetaData The meta data associated with the task
      */
     public TaskSerializable(
             TaskType taskType,
@@ -45,10 +52,7 @@ public class TaskSerializable extends Serializable<Task> {
         this.taskMetaData = taskMetaData;
     }
 
-    /**
-     * TODO: Add JavaDocs
-     */
-    public TaskSerializable(String serializedString) throws DukeException {
+    private TaskSerializable(String serializedString) throws DukeException {
         super(serializedString, TaskSerializable.MATCH_TASK_DATA);
         String[] originalData = super.get();
         this.taskType = TaskType.fromString(originalData[0]);
@@ -78,15 +82,16 @@ public class TaskSerializable extends Serializable<Task> {
     }
 
     /**
-     * TODO: Add JavaDocs
+     * Initializes and returns the serializable {@link Task} object from a serialized string.
+     *
+     * @param serializedString The received serialized string
+     * @return The serializable task object if and only if the received serialized string is of the expected format
+     * @throws DukeException If the serialized string is not of the expected format
      */
     public static TaskSerializable from(String serializedString) throws DukeException {
         return new TaskSerializable(serializedString);
     }
 
-    /**
-     * TODO: Add JavaDocs
-     */
     @Override
     public Task deserialize() throws DukeException {
         switch (this.taskType) {

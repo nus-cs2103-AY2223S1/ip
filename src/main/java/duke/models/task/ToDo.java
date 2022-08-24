@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import duke.models.serializable.TaskSerializable;
 
 /**
- * Encapsulates a task without any date/time attached to it, e.g. visit new theme park
+ * Encapsulates a {@link Task} without any date attached to it.
  *
  * @author Emily Ong Hui Qi
  */
@@ -13,10 +13,21 @@ import duke.models.serializable.TaskSerializable;
 public class ToDo extends Task {
     private static final TaskType taskType = TaskType.TODO;
 
+    /**
+     * Initializes the ToDo task with the provided description.
+     *
+     * @param description The received description
+     */
     public ToDo(String description) {
         super(description);
     }
 
+    /**
+     * Initializes the ToDo task with the provided description and completion status.
+     *
+     * @param description The received description
+     * @param isDone The received completion status
+     */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);
     }

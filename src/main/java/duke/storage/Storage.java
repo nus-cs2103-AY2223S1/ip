@@ -6,7 +6,9 @@ import java.io.IOException;
 import duke.exceptions.DukeException;
 
 /**
- * TODO: Add JavaDocs
+ * Encapsulates the logic for managing data in files.
+ *
+ * @author Emily Ong Hui Qi
  */
 public abstract class Storage {
     protected static final String ERROR_STORAGE_NOT_INITIALIZED = "Storage is not initialized yet!";
@@ -19,16 +21,15 @@ public abstract class Storage {
     private boolean isInitialized;
 
     /**
-     * TODO: Add JavaDocs
+     * Sets up the storage object for the provided file name.
+     *
+     * @param dataFilename The file name specifying where the data should be stored
      */
     public Storage(String dataFilename) {
         this.storage = new File(String.format("%s/%s", Storage.FILE_DIRECTORY, dataFilename));
         this.isInitialized = false;
     }
 
-    /**
-     * TODO: Add JavaDocs
-     */
     protected File getStorage() throws DukeException {
         if (!this.isInitialized) {
             throw new DukeException(Storage.ERROR_STORAGE_NOT_INITIALIZED);

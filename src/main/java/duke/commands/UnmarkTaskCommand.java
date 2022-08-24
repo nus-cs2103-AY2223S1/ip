@@ -6,7 +6,14 @@ import duke.managers.UiManager;
 import duke.models.task.Task;
 
 /**
- * TODO: Add JavaDocs
+ * Encapsulate a command for marking a {@link Task} as not completed. The command should be used as follows:
+ * <ul>
+ *     <li>
+ *         {@code unmark {taskNumber}}: To mark the task corresponding to the task number as not completed.
+ *     </li>
+ * </ul>
+ *
+ * @author Emily Ong Hui Qi
  */
 public class UnmarkTaskCommand implements Command {
     public static final String COMMAND_WORD = "unmark";
@@ -20,7 +27,9 @@ public class UnmarkTaskCommand implements Command {
     private final String arguments;
 
     /**
-     * TODO: Add JavaDocs
+     * Creates a new instance of a Command handler for marking a task as not completed.
+     *
+     * @param arguments The arguments following the {@code 'unmark'} prefix supplied by the user from keyboard input
      */
     public UnmarkTaskCommand(String arguments) {
         this.arguments = arguments;

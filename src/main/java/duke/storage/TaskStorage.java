@@ -15,7 +15,9 @@ import duke.models.serializable.TaskSerializable;
 import duke.models.task.Task;
 
 /**
- * TODO: Add JavaDocs
+ * Encapsulates the logic for managing and interacting with the storage for storing {@link Task} data.
+ *
+ * @author Emily Ong Hui Qi
  */
 public class TaskStorage extends Storage {
     private static final String TASK_FILE_NAME = "duke.txt";
@@ -23,12 +25,15 @@ public class TaskStorage extends Storage {
     private static final String ERROR_ADDING_TASK_TO_STORAGE = "Error adding task to storage!";
     private static final String ERROR_TASK_NOT_FOUND = "Task with id %d is not found!";
 
+    /**
+     * Initializes the task storage with the file path for where tasks information are persisted.
+     */
     public TaskStorage() {
         super(TaskStorage.TASK_FILE_NAME);
     }
 
     /**
-     * Adds a task to the task storage
+     * Adds a {@link Task} to the task storage.
      *
      * @param addingTask Task object to be added
      * @return The added task object
@@ -40,7 +45,7 @@ public class TaskStorage extends Storage {
     }
 
     /**
-     * Returns the task specified by the task index
+     * Returns the {@link Task} specified by the task index.
      *
      * @param taskIndex 0-indexed specifier for the task
      * @return The corresponding task
@@ -55,8 +60,7 @@ public class TaskStorage extends Storage {
     }
 
     /**
-     * Deletes the task corresponding to the task index from the task storage and returns
-     * the deleted task
+     * Deletes the {@link Task} corresponding to the task index from the task storage and returns the deleted task.
      *
      * @param taskIndex The task index corresponding to the task to be deleted
      * @return The deleted task
@@ -73,10 +77,10 @@ public class TaskStorage extends Storage {
     }
 
     /**
-     * Updates the task corresponding to the task index using the updated Task object
-     * provided by the caller, and returns the updated task
+     * Updates the {@link Task} corresponding to the task index using the updated Task object provided by the caller,
+     * and returns the updated task.
      *
-     * @param taskIndex    0-based indexed specifier for the task to be updated
+     * @param taskIndex 0-based indexed specifier for the task to be updated
      * @param updatingTask The task object containing the updated task
      * @return The updated task
      * @throws DukeException If the task cannot be updated
@@ -92,7 +96,7 @@ public class TaskStorage extends Storage {
     }
 
     /**
-     * Returns the number of tasks in the task storage
+     * Returns the number of {@link Task tasks} in the task storage.
      *
      * @return Number of tasks in the task storage
      * @throws DukeException If the tasks cannot be read
@@ -103,18 +107,18 @@ public class TaskStorage extends Storage {
     }
 
     /**
-     * Returns a filtered task list based on the provided predicate
+     * Returns a filtered {@link Task} list based on the provided predicate.
      *
      * @param condition Predicate provided for the filter operation
      * @return Filtered task list
-     * @throws DukeException If the tasks cannot be read
+     * @throws DukeException If the tasks cannot be read or retrieved
      */
     public List<Task> filter(Predicate<? super Task> condition) throws DukeException {
         return this.readAllTasks().stream().filter(condition).collect(Collectors.toList());
     }
 
     /**
-     * Returns the list of tasks in the task storage
+     * Returns the list of {@link Task tasks} in the task storage.
      *
      * @return List of tasks in the task storage
      * @throws DukeException If the tasks cannot be read

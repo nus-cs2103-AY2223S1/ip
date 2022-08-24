@@ -6,7 +6,14 @@ import duke.managers.UiManager;
 import duke.models.task.Task;
 
 /**
- * TODO: Add JavaDocs
+ * Encapsulate a command for marking a {@link Task} as completed. The command should be used as follows:
+ * <ul>
+ *     <li>
+ *         {@code mark {taskNumber}}: To mark the task corresponding to the task number as completed.
+ *     </li>
+ * </ul>
+ *
+ * @author Emily Ong Hui Qi
  */
 public class MarkTaskCommand implements Command {
     public static final String COMMAND_WORD = "mark";
@@ -20,7 +27,9 @@ public class MarkTaskCommand implements Command {
     private final String arguments;
 
     /**
-     * TODO: Add JavaDocs
+     * Creates a new instance of a Command handler for marking a task as completed.
+     *
+     * @param arguments The arguments following the {@code 'mark'} prefix supplied by the user from keyboard input
      */
     public MarkTaskCommand(String arguments) {
         this.arguments = arguments;

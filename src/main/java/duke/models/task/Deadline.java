@@ -6,8 +6,7 @@ import duke.models.serializable.TaskSerializable;
 import duke.utils.DukeFormatter;
 
 /**
- * Encapsulates a task that needs to be done before a specific date/time,
- * e.g., submit report by 11/10/2019 5pm
+ * Encapsulates a {@link Task} that needs to be done before a specific date.
  *
  * @author Emily Ong Hui Qi
  */
@@ -17,7 +16,10 @@ public class Deadline extends Task {
     protected LocalDate deadline;
 
     /**
-     * TODO: Add JavaDocs
+     * Initializes the Deadline task with the provided description and deadline.
+     *
+     * @param description The received description
+     * @param deadline The received deadline
      */
     public Deadline(String description, LocalDate deadline) {
         super(description);
@@ -25,40 +27,32 @@ public class Deadline extends Task {
     }
 
     /**
-     * TODO: Add JavaDocs
+     * Initializes the Deadline task with the provided description, deadline and completion status.
+     *
+     * @param description The received description
+     * @param deadline The received deadline
+     * @param isDone The received completion status
      */
     public Deadline(String description, LocalDate deadline, boolean isDone) {
         super(description, isDone);
         this.deadline = deadline;
     }
 
-    /**
-     * TODO: Add JavaDocs
-     */
     @Override
     public String getTaskTypeIcon() {
         return Deadline.taskType.toString();
     }
 
-    /**
-     * TODO: Add JavaDocs
-     */
     @Override
     public TaskSerializable serialize() {
         return new TaskSerializable(Deadline.taskType, super.description, super.isDone, this.deadline);
     }
 
-    /**
-     * TODO: Add JavaDocs
-     */
     @Override
     public LocalDate getDate() {
         return this.deadline;
     }
 
-    /**
-     * TODO: Add JavaDocs
-     */
     @Override
     public String toString() {
         return String.format("%s (by: %s)", super.toString(), DukeFormatter.formatDate(this.deadline));

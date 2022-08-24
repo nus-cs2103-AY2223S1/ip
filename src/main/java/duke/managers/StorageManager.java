@@ -8,7 +8,8 @@ import duke.storage.StorageType;
 import duke.storage.TaskStorage;
 
 /**
- * Fictional storage manager that encapsulates the storage of data in a file
+ * Encapsulates a fictional storage manager that contains the logic for managing the various {@link Storage storages}
+ * used in the application.
  *
  * @author Emily Ong Hui Qi
  */
@@ -16,7 +17,9 @@ public class StorageManager {
     private final HashMap<StorageType, ? extends Storage> storages;
 
     /**
-     * TODO: Add JavaDocs
+     * Sets up the {@link Storage storages} used in the application and initializes each of them.
+     *
+     * @throws DukeException If an error occurred when initializing a particular storage
      */
     public StorageManager() throws DukeException {
         this.storages = new HashMap<>() {
@@ -30,6 +33,11 @@ public class StorageManager {
         }
     }
 
+    /**
+     * Returns the initialized {@link TaskStorage} object used in the application.
+     *
+     * @return The initialized {@link TaskStorage} object used in the application.
+     */
     public TaskStorage getTaskStorage() {
         return (TaskStorage) this.storages.get(StorageType.TASK);
     }
