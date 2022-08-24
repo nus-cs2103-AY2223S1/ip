@@ -1,18 +1,18 @@
 package duke;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
 
 public class ParserTest {
     @Test
     public void convertToDateTest() {
         try {
-            LocalDate date =  Parser.convertToDateObj("2022-02-02");
+            LocalDate date = Parser.convertToDateObj("2022-02-02");
             assertEquals(date, LocalDate.parse("2022-02-02"));
         } catch (DukeException e) {
             fail();
