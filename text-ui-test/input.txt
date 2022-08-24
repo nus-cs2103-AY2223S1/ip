@@ -1,15 +1,15 @@
 todo Run in the Morning
 deadline homework
-deadline homework /by. tomorrow
+deadline homework /by tomorrow
 blah
-event Concert /at. Buona Vista
+event Concert /at Buona Vista
 event sleep
 todo sleep
 list
 todo test 5
 todo test 6
-deadline assignment 3 /by. 26th June
-deadline cca commitments /by. 2044
+deadline assignment 3 /by 26th June
+deadline cca commitments /by 2044
 list
 delete 4
 list

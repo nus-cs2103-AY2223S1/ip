@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 /**
@@ -64,7 +66,7 @@ public class Commands {
     public static void deadline(String command, ArrayList<Task> taskList) throws DukeException {
         try {
             String taskName = command.substring(command.indexOf(" ") + 1, command.indexOf("/") - 1);
-            String by = command.substring(command.indexOf("/") + 5);
+            String by = command.split("/by")[1].trim();
             Task newTask = new Deadline(taskName, by);
             taskList.add(newTask);
             int amountOfTasks = taskList.size();
@@ -85,7 +87,7 @@ public class Commands {
     public static void event(String command, ArrayList<Task> taskList) throws DukeException {
         try {
             String taskName = command.substring(command.indexOf(" ") + 1, command.indexOf("/") - 1);
-            String at = command.substring(command.indexOf("/") + 5);
+            String at = command.split("/at")[1].trim();
             Task newTask = new Event(taskName, at);
             taskList.add(newTask);
             int amountOfTasks = taskList.size();
