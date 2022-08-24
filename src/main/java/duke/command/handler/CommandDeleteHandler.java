@@ -1,7 +1,11 @@
-package command;
+package duke.command.handler;
 
-import data.TaskList;
-import data.tasks.Task;
+import duke.command.CommandException;
+import duke.command.response.CommandResponse;
+import duke.command.response.DeleteTaskResponse;
+
+import duke.data.TaskList;
+import duke.data.tasks.Task;
 
 import java.util.regex.Pattern;
 import java.util.regex.MatchResult;
@@ -10,7 +14,7 @@ public class CommandDeleteHandler extends CommandHandler {
 
     private static final Pattern commandRegexPattern = Pattern.compile("^delete (\\d+)");
 
-    CommandDeleteHandler(String commandStr) throws CommandException {
+    public CommandDeleteHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
             throw new CommandException(String.join("\n",

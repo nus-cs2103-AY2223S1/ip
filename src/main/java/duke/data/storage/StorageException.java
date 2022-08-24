@@ -1,4 +1,4 @@
-package data.tasks;
+package duke.data.storage;
 
 public class StorageException extends Exception {
 

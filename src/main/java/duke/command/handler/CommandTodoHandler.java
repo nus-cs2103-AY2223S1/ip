@@ -1,7 +1,11 @@
-package command;
+package duke.command.handler;
 
-import data.TaskList;
-import data.tasks.TaskTodo;
+import duke.command.CommandException;
+import duke.command.response.AddTaskResponse;
+import duke.command.response.CommandResponse;
+
+import duke.data.TaskList;
+import duke.data.tasks.TaskTodo;
 
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
@@ -10,7 +14,7 @@ public class CommandTodoHandler extends CommandHandler {
 
     private static final Pattern commandRegexPattern = Pattern.compile("^todo (.+)");
 
-    CommandTodoHandler(String commandStr) throws CommandException {
+    public CommandTodoHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
             throw new CommandException(String.join("\n",

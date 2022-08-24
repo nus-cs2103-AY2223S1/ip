@@ -1,9 +1,12 @@
-package command;
+package duke.command.handler;
 
-import command.UpdateTaskResponse.UpdateType;
+import duke.command.CommandException;
+import duke.command.response.CommandResponse;
+import duke.command.response.UpdateTaskResponse;
+import duke.command.response.UpdateTaskResponse.UpdateType;
 
-import data.TaskList;
-import data.tasks.Task;
+import duke.data.TaskList;
+import duke.data.tasks.Task;
 
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
@@ -12,7 +15,7 @@ public class CommandMarkHandler extends CommandHandler {
 
     private static final Pattern commandRegexPattern = Pattern.compile("^(u?n?mark) (\\d+)");
 
-    CommandMarkHandler(String commandStr) throws CommandException {
+    public CommandMarkHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
             throw new CommandException(String.join("\n",

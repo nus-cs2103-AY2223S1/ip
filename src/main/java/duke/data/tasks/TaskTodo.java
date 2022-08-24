@@ -1,4 +1,4 @@
-package data.tasks;
+package duke.data.tasks;
 
 public class TaskTodo extends Task {
     private static final long serialVersionUID = 21L;

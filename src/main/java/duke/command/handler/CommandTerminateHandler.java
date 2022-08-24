@@ -1,6 +1,10 @@
-package command;
+package duke.command.handler;
 
-import data.TaskList;
+import duke.command.CommandException;
+import duke.command.response.CommandResponse;
+
+import duke.data.TaskList;
+
 import java.util.regex.Pattern;
 
 public class CommandTerminateHandler extends CommandHandler {

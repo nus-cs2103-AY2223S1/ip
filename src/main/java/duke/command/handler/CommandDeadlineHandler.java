@@ -1,7 +1,11 @@
-package command;
+package duke.command.handler;
 
-import data.TaskList;
-import data.tasks.TaskDeadline;
+import duke.command.CommandException;
+import duke.command.response.AddTaskResponse;
+import duke.command.response.CommandResponse;
+
+import duke.data.TaskList;
+import duke.data.tasks.TaskDeadline;
 
 import java.util.regex.Pattern;
 import java.util.regex.MatchResult;
@@ -11,7 +15,7 @@ public class CommandDeadlineHandler extends CommandHandler {
     private static final Pattern commandRegexPattern = Pattern.compile(
         String.format("^deadline (.+) /by %s", commandDateTimeRegexStr));
 
-    CommandDeadlineHandler(String commandStr) throws CommandException {
+    public CommandDeadlineHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
             throw new CommandException(String.join("\n",

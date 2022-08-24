@@ -1,6 +1,6 @@
-package data;
+package duke.data;
 
-import data.tasks.Task;
+import duke.data.tasks.Task;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

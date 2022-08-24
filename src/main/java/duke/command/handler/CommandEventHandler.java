@@ -1,7 +1,11 @@
-package command;
+package duke.command.handler;
 
-import data.TaskList;
-import data.tasks.TaskEvent;
+import duke.command.CommandException;
+import duke.command.response.AddTaskResponse;
+import duke.command.response.CommandResponse;
+
+import duke.data.TaskList;
+import duke.data.tasks.TaskEvent;
 
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
@@ -11,7 +15,7 @@ public class CommandEventHandler extends CommandHandler {
     private static final Pattern commandRegexPattern = Pattern.compile(
         String.format("^event (.+) /at %s", commandDateTimeRegexStr));
 
-    CommandEventHandler(String commandStr) throws CommandException {
+    public CommandEventHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
         if (!isCommandValid()) {
             throw new CommandException(String.join("\n",

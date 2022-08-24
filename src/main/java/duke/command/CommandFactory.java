@@ -1,4 +1,13 @@
-package command;
+package duke.command;
+
+import duke.command.handler.CommandHandler;
+import duke.command.handler.CommandDeadlineHandler;
+import duke.command.handler.CommandDeleteHandler;
+import duke.command.handler.CommandEventHandler;
+import duke.command.handler.CommandListHandler;
+import duke.command.handler.CommandMarkHandler;
+import duke.command.handler.CommandTerminateHandler;
+import duke.command.handler.CommandTodoHandler;
 
 public class CommandFactory {
 

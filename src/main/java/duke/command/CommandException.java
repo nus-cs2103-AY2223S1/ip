@@ -1,7 +1,7 @@
-package command;
+package duke.command;
 
 public class CommandException extends Exception {
-    CommandException(String errorMsg) {
+    public CommandException(String errorMsg) {
         super(errorMsg);
     }
 }

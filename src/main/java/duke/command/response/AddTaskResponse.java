@@ -1,6 +1,6 @@
-package command;
+package duke.command.response;
 
-import data.tasks.Task;
+import duke.data.tasks.Task;
 
 public class AddTaskResponse extends CommandResponse {
 

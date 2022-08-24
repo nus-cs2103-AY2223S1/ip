@@ -1,12 +1,14 @@
-import command.Command;
-import command.CommandResponse;
-import command.CommandException;
-import command.CommandFactory;
-import command.CommandHandler;
+package duke;
 
-import data.Storage;
-import data.TaskList;
-import data.tasks.StorageException;
+import duke.command.Command;
+import duke.command.CommandException;
+import duke.command.CommandFactory;
+import duke.command.handler.CommandHandler;
+import duke.command.response.CommandResponse;
+
+import duke.data.TaskList;
+import duke.data.storage.Storage;
+import duke.data.storage.StorageException;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
