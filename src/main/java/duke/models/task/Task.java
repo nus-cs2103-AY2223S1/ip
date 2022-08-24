@@ -1,15 +1,15 @@
 package duke.models.task;
 
-import duke.models.serializable.TaskSerializable;
-
 import java.time.LocalDate;
+
+import duke.models.serializable.TaskSerializable;
 
 /**
  * Encapsulates a task containing a description and a completion status.
  *
  * @author Emily Ong Hui Qi
  */
-abstract public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -27,7 +27,7 @@ abstract public class Task {
      * Initializes the Task object with the provided description and completion status.
      *
      * @param description The received description
-     * @param isDone The received completion status
+     * @param isDone      The received completion status
      */
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -57,20 +57,20 @@ abstract public class Task {
      *
      * @return Task type icon of the task
      */
-    abstract public String getTaskTypeIcon();
+    public abstract String getTaskTypeIcon();
 
     /**
      * Returns the date of the current task, or null if there is no associated date
      *
      * @return Date of the current task, or null if there is no associated date
      */
-    abstract public LocalDate getDate();
+    public abstract LocalDate getDate();
 
     /**
      * Returns the status icon of the current task, where a task that is done is marked with a 'X' and a task that is
      * undone is marked with an empty space.
      *
-     * @return Status icon of the task
+     * @return Date of the current task, or null if there is no associated date
      */
     private String getStatusIcon() {
         return (this.isDone ? "X" : " "); // mark done task with X
@@ -81,7 +81,7 @@ abstract public class Task {
      *
      * @return Serializable format of the task
      */
-    abstract public TaskSerializable serialize();
+    public abstract TaskSerializable serialize();
 
     @Override
     public String toString() {

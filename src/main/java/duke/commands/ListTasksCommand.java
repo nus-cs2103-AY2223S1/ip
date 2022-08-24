@@ -1,15 +1,15 @@
 package duke.commands;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import duke.exceptions.DukeException;
 import duke.managers.TaskManager;
 import duke.managers.UiManager;
 import duke.models.task.Task;
 import duke.utils.DukeValidator;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Encapsulates a command for listing the {@link Task Tasks} available. The command should be used as follows:
@@ -29,9 +29,10 @@ import java.util.regex.Pattern;
  */
 public class ListTasksCommand implements Command {
     public static final String COMMAND_WORD = "list";
-    private static final String ERROR_UNKNOWN_OPTION = "Unknown option provided! Use either a '/on' or\n" +
-            "'/before' command together with a date in order to\n" +
-            "filter the tasks by their date!";
+
+    private static final String ERROR_UNKNOWN_OPTION = "Unknown option provided! Use either a '/on' or\n"
+            + "'/before' command together with a date in order to\n"
+            + "filter the tasks by their date!";
 
     /**
      * Matches a {@code '/on'} command followed by a (possibly invalid) date string. This is used to show the list of

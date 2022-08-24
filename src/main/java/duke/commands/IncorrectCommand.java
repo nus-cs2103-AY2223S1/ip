@@ -9,10 +9,10 @@ import duke.managers.UiManager;
  * @author Emily Ong Hui Qi
  */
 public class IncorrectCommand implements Command {
-    private static final String UNKNOWN_COMMAND_ERROR = "I do not understand your command!";
+    private static final String ERROR_UNKNOWN_COMMAND = "I do not understand your command!";
 
     @Override
     public void execute(TaskManager taskManager, UiManager uiManager) {
-        uiManager.print(IncorrectCommand.UNKNOWN_COMMAND_ERROR);
+        uiManager.print(IncorrectCommand.ERROR_UNKNOWN_COMMAND);
     }
 }

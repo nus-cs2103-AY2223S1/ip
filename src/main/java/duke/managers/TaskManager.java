@@ -1,22 +1,27 @@
 package duke.managers;
 
-import duke.models.task.Task;
-import duke.storage.TaskStorage;
-import duke.exceptions.DukeException;
-
 import java.util.List;
 import java.util.function.Predicate;
 
+import duke.exceptions.DukeException;
+import duke.models.task.Task;
+import duke.storage.TaskStorage;
+
 /**
+ * <<<<<<< HEAD
+ * Encapsulates the logic to manage the list of {@link Task tasks} and provides augmenting operations to support CRUD
+ * operations on the tasks.
+ * =======
  * Encapsulates the logic to manage the list of {@link Task tasks} and provides augmenting operations to support CRUD operations on
  * the tasks.
+ * >>>>>>> ece6aa47e5c01f60f8fb9a11dde15eb20e7c1194
  *
  * @author Emily Ong Hui Qi
  */
 public class TaskManager {
-    private static final String NO_TASKS_AVAILABLE = "There are currently no tasks available. Add one now!";
-    private static final String TASK_LIST_STATUS_MESSAGE = "Now you have %s task(s) in the list.";
-    private static final String TASK_LIST_CANNOT_READ_STATUS_MESSAGE = "Uh oh, I cannot read the tasks in the list!";
+    private static final String MESSAGE_NO_TASKS_AVAILABLE = "There are currently no tasks available. Add one now!";
+    private static final String MESSAGE_TASK_LIST_STATUS = "Now you have %s task(s) in the list.";
+    private static final String MESSAGE_TASK_LIST_CANNOT_READ_STATUS = "Uh oh, I cannot read the tasks in the list!";
 
     private final TaskStorage taskStorage;
 
@@ -27,6 +32,26 @@ public class TaskManager {
      */
     public TaskManager(TaskStorage taskStorage) {
         this.taskStorage = taskStorage;
+    }
+
+    /**
+     * Displays the list of tasks in numerical order by implicitly invoking the string representation
+     * of the tasks
+     *
+     * @param tasks The tasks to be displayed
+     * @return String representation of the tasks
+     */
+    public static String display(List<Task> tasks) {
+        if (tasks.size() == 0) {
+            return TaskManager.MESSAGE_NO_TASKS_AVAILABLE;
+        }
+
+        StringBuilder taskManagerDisplay = new StringBuilder();
+        for (int i = 0; i < tasks.size(); i++) {
+            // Implicitly invoke the display of the task defined in the Task class
+            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
+        }
+        return taskManagerDisplay.toString();
     }
 
     /**
@@ -44,7 +69,7 @@ public class TaskManager {
      * Updates the specified {@link Task} corresponding to the given task index.
      *
      * @param taskNumber The 1-based task number, possibly corresponding to a particular task
-     * @param task the task to be updated
+     * @param task       the task to be updated
      * @return The updated task
      * @throws DukeException If the task cannot be updated
      */
@@ -93,9 +118,9 @@ public class TaskManager {
      */
     public String getStatus() {
         try {
-            return String.format(TaskManager.TASK_LIST_STATUS_MESSAGE, this.count());
+            return String.format(TaskManager.MESSAGE_TASK_LIST_STATUS, this.count());
         } catch (DukeException e) {
-            return String.format("%s: %s", TaskManager.TASK_LIST_CANNOT_READ_STATUS_MESSAGE, e.getMessage());
+            return String.format("%s: %s", TaskManager.MESSAGE_TASK_LIST_CANNOT_READ_STATUS, e.getMessage());
         }
     }
 
@@ -119,25 +144,5 @@ public class TaskManager {
      */
     public List<Task> list(Predicate<? super Task> condition) throws DukeException {
         return this.taskStorage.filter(condition);
-    }
-
-    /**
-     * Displays the list of {@link Task tasks} in numerical order by implicitly invoking the string representation
-     * of the tasks.
-     *
-     * @param tasks The tasks to be displayed
-     * @return String representation of the tasks
-     */
-    public static String display(List<Task> tasks) {
-        if (tasks.size() == 0) {
-            return TaskManager.NO_TASKS_AVAILABLE;
-        }
-
-        StringBuilder taskManagerDisplay = new StringBuilder();
-        for (int i = 0; i < tasks.size(); i++) {
-            // Implicitly invoke the display of the task defined in the Task class
-            taskManagerDisplay.append(String.format("%d. %s\n", i + 1, tasks.get(i)));
-        }
-        return taskManagerDisplay.toString();
     }
 }

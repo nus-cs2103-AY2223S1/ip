@@ -1,9 +1,9 @@
 package duke.models.task;
 
+import java.time.LocalDate;
+
 import duke.models.serializable.TaskSerializable;
 import duke.utils.DukeFormatter;
-
-import java.time.LocalDate;
 
 /**
  * Encapsulates a {@link Task} that needs to be done before a specific date.
@@ -12,14 +12,14 @@ import java.time.LocalDate;
  */
 
 public class Deadline extends Task {
-    protected LocalDate deadline;
     private static final TaskType taskType = TaskType.DEADLINE;
+    protected LocalDate deadline;
 
     /**
      * Initializes the Deadline task with the provided description and deadline.
      *
      * @param description The received description
-     * @param deadline The received deadline
+     * @param deadline    The received deadline
      */
     public Deadline(String description, LocalDate deadline) {
         super(description);
@@ -30,8 +30,8 @@ public class Deadline extends Task {
      * Initializes the Deadline task with the provided description, deadline and completion status.
      *
      * @param description The received description
-     * @param deadline The received deadline
-     * @param isDone The received completion status
+     * @param deadline    The received deadline
+     * @param isDone      The received completion status
      */
     public Deadline(String description, LocalDate deadline, boolean isDone) {
         super(description, isDone);

@@ -1,5 +1,8 @@
 package duke.managers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import duke.commands.AddDeadlineTaskCommand;
 import duke.commands.AddEventTaskCommand;
 import duke.commands.AddToDoTaskCommand;
@@ -11,9 +14,6 @@ import duke.commands.IncorrectCommand;
 import duke.commands.ListTasksCommand;
 import duke.commands.MarkTaskCommand;
 import duke.commands.UnmarkTaskCommand;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Encapsulates the logic for parsing commands and delegating the corresponding {@link Command} handler responsible for
@@ -38,34 +38,34 @@ public class ParserManager {
         String command = matcher.group("commandWord").strip();
         String arguments = matcher.group("arguments").strip();
         switch (command) {
-            // List tasks in the task manager
-            case ListTasksCommand.COMMAND_WORD:
-                return new ListTasksCommand(arguments);
-            case FindTaskCommand.COMMAND_WORD:
-                return new FindTaskCommand(arguments);
+        // List all tasks in the task manager
+        case ListTasksCommand.COMMAND_WORD:
+            return new ListTasksCommand(arguments);
+        case FindTaskCommand.COMMAND_WORD:
+            return new FindTaskCommand(arguments);
 
-            // Modifying operations on a task
-            case MarkTaskCommand.COMMAND_WORD:
-                return new MarkTaskCommand(arguments);
-            case UnmarkTaskCommand.COMMAND_WORD:
-                return new UnmarkTaskCommand(arguments);
-            case DeleteTaskCommand.COMMAND_WORD:
-                return new DeleteTaskCommand(arguments);
+        // Modifying operations on a task
+        case MarkTaskCommand.COMMAND_WORD:
+            return new MarkTaskCommand(arguments);
+        case UnmarkTaskCommand.COMMAND_WORD:
+            return new UnmarkTaskCommand(arguments);
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommand(arguments);
 
-            // Creating operations on a task
-            case AddToDoTaskCommand.COMMAND_WORD:
-                return new AddToDoTaskCommand(arguments);
-            case AddDeadlineTaskCommand.COMMAND_WORD:
-                return new AddDeadlineTaskCommand(arguments);
-            case AddEventTaskCommand.COMMAND_WORD:
-                return new AddEventTaskCommand(arguments);
+        // Creating operations on a task
+        case AddToDoTaskCommand.COMMAND_WORD:
+            return new AddToDoTaskCommand(arguments);
+        case AddDeadlineTaskCommand.COMMAND_WORD:
+            return new AddDeadlineTaskCommand(arguments);
+        case AddEventTaskCommand.COMMAND_WORD:
+            return new AddEventTaskCommand(arguments);
 
-            // Termination of program
-            case ByeCommand.COMMAND_WORD:
-                return new ByeCommand();
+        // Termination of program
+        case ByeCommand.COMMAND_WORD:
+            return new ByeCommand();
 
-            default:
-                return new IncorrectCommand();
+        default:
+            return new IncorrectCommand();
         }
     }
 }

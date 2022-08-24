@@ -1,8 +1,8 @@
 package duke.models.task;
 
-import duke.models.serializable.TaskSerializable;
-
 import java.time.LocalDate;
+
+import duke.models.serializable.TaskSerializable;
 
 /**
  * Encapsulates a {@link Task} without any date attached to it.
@@ -26,7 +26,7 @@ public class ToDo extends Task {
      * Initializes the ToDo task with the provided description and completion status.
      *
      * @param description The received description
-     * @param isDone The received completion status
+     * @param isDone      The received completion status
      */
     public ToDo(String description, boolean isDone) {
         super(description, isDone);

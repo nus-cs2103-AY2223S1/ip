@@ -1,24 +1,27 @@
 package duke.models.serializable;
 
-import duke.exceptions.DukeException;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import duke.exceptions.DukeException;
 
 /**
  * Encapsulates the logic for serializing and deserializing a particular object of type {@code T}.
  *
  * @param <T> The type of the object that can be serialized and deserialized
- *
  * @author Emily Ong Hui Qi
  */
-abstract public class Serializable<T> {
-    /** Use the double slash to escape the pipe character */
-    private static final String formatterRead = " \\| ", formatterWrite = formatterRead.replace("\\", "");
+public abstract class Serializable<T> {
+    private static final String ERROR_MATCHING_SERIALIZABLE_REGEX = "Regex for serialized string does not match!";
+
+    /**
+     * Use the double slash to escape the pipe character
+     */
+    private static final String formatterRead = " \\| ";
+    private static final String formatterWrite = formatterRead.replace("\\", "");
+
     private final String serialized;
     private final String[] originalData;
-
-    private static final String ERROR_MATCHING_SERIALIZABLE_REGEX = "Regex for serialized string does not match!";
 
     /**
      * Stores the original data and sets up a serialized form of the data.
@@ -36,7 +39,7 @@ abstract public class Serializable<T> {
      * provided serialized string matches the expected format.
      *
      * @param serializedString The received serialized string
-     * @param regexMatch The Regex format that the serialized string should match
+     * @param regexMatch       The Regex format that the serialized string should match
      * @throws DukeException If the received serialized string does not match the provided Regex format
      */
     public Serializable(String serializedString, Pattern regexMatch) throws DukeException {
@@ -54,7 +57,7 @@ abstract public class Serializable<T> {
      * @return The deserialized object
      * @throws DukeException If the object cannot be deserialized
      */
-    abstract public T deserialize() throws DukeException;
+    public abstract T deserialize() throws DukeException;
 
     /**
      * Returns the original data passed into the {@code Serializable} constructor.
@@ -69,4 +72,6 @@ abstract public class Serializable<T> {
     public String toString() {
         return this.serialized;
     }
+
+
 }

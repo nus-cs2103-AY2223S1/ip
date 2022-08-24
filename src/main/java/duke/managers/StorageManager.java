@@ -1,11 +1,11 @@
 package duke.managers;
 
+import java.util.HashMap;
+
 import duke.exceptions.DukeException;
 import duke.storage.Storage;
 import duke.storage.StorageType;
 import duke.storage.TaskStorage;
-
-import java.util.HashMap;
 
 /**
  * Encapsulates a fictional storage manager that contains the logic for managing the various {@link Storage storages}
@@ -22,9 +22,11 @@ public class StorageManager {
      * @throws DukeException If an error occurred when initializing a particular storage
      */
     public StorageManager() throws DukeException {
-        this.storages = new HashMap<>(){{
-            put(StorageType.TASK, new TaskStorage());
-        }};
+        this.storages = new HashMap<>() {
+            {
+                put(StorageType.TASK, new TaskStorage());
+            }
+        };
 
         for (Storage storage : this.storages.values()) {
             storage.initialize();

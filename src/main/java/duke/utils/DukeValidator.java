@@ -1,10 +1,10 @@
 package duke.utils;
 
-import duke.exceptions.DukeException;
-
 import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import duke.exceptions.DukeException;
 
 /**
  * Encapsulates the logic for handling validation in various parts of the application.
@@ -12,8 +12,13 @@ import java.util.regex.Pattern;
  * @author Emily Ong Hui Qi
  */
 public class DukeValidator {
-    /** Regex pattern matcher for a date in yyyy-mm-dd format */
-    private static final Pattern MATCH_DATE = Pattern.compile("^(?<year>\\d{4})-(?<month>0[0-9]|1[0-2])-(?<day>0[0-9]|1[0-9]|2[0-9]|3[0-1])$");
+    /**
+     * Regex pattern matcher for a date in yyyy-mm-dd format
+     */
+    private static final Pattern MATCH_DATE = Pattern.compile(
+            "^(?<year>\\d{4})-(?<month>0[0-9]|1[0-2])-(?<day>0[0-9]|1[0-9]|2[0-9]|3[0-1])$"
+    );
+
     private static final String ERROR_INVALID_DATE = "Date is not in the specified yyyy-mm-dd format!";
 
     /**

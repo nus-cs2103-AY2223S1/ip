@@ -1,22 +1,21 @@
 package duke.storage;
 
-import duke.exceptions.DukeException;
-
 import java.io.File;
 import java.io.IOException;
+
+import duke.exceptions.DukeException;
 
 /**
  * Encapsulates the logic for managing data in files.
  *
  * @author Emily Ong Hui Qi
  */
-abstract public class Storage {
-    private static final String FILE_DIRECTORY = "data";
-
+public abstract class Storage {
     protected static final String ERROR_STORAGE_NOT_INITIALIZED = "Storage is not initialized yet!";
-
     private static final String ERROR_CREATING_DATA_FOLDER = "No permission to create data folder!";
     private static final String ERROR_CREATING_DATA_FILE = "No permission to create data file!";
+
+    private static final String FILE_DIRECTORY = "data";
 
     private final File storage;
     private boolean isInitialized;

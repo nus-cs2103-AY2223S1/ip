@@ -5,8 +5,8 @@ package duke.exceptions;
  *
  * @author Emily Ong Hui Qi
  */
-public class DukeException extends Exception{
-    private static final String OOPS_MESSAGE = "OOPS!!!";
+public class DukeException extends Exception {
+    private static final String MESSAGE_OOPS = "OOPS!!!";
 
     /**
      * Creates a new instance of the Exception object.
@@ -14,6 +14,6 @@ public class DukeException extends Exception{
      * @param message The error message associated with the exception
      */
     public DukeException(String message) {
-        super(String.format("%s %s", DukeException.OOPS_MESSAGE, message));
+        super(String.format("%s %s", DukeException.MESSAGE_OOPS, message));
     }
 }

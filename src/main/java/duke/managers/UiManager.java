@@ -9,13 +9,18 @@ import java.util.Scanner;
  * @author Emily Ong Hui Qi
  */
 public class UiManager {
+    /**
+     * Horizontal line separator used in beautifying print commands
+     */
+    private static final String SEPARATOR = "-";
+
+    /**
+     * Denotes the number of separator symbols to used when printing the input
+     */
+    private static final int SEPARATOR_SIZE = 60;
+
     private final Scanner scanner;
     private final PrintStream printer;
-
-    /** Horizontal line separator used in beautifying print commands */
-    private static final String SEPARATOR = "-";
-    /** Denotes the number of separator symbols to used when printing the input */
-    private static final int SEPARATOR_SIZE = 60;
 
     /**
      * Initializes the scanner and printer objects used for reading keyboard inputs and writing to screen display.
@@ -23,6 +28,15 @@ public class UiManager {
     public UiManager() {
         this.scanner = new Scanner(System.in);
         this.printer = System.out;
+    }
+
+    /**
+     * Returns a string consisting of the separator symbol repeated for a specified number of times
+     *
+     * @return Separator symbol repeated for a specified number of times
+     */
+    private static String getSeparatorLine() {
+        return UiManager.SEPARATOR.repeat(UiManager.SEPARATOR_SIZE);
     }
 
     /**
@@ -42,15 +56,6 @@ public class UiManager {
      */
     public void close() {
         this.scanner.close();
-    }
-
-    /**
-     * Returns a string consisting of the separator symbol repeated for a specified number of times.
-     *
-     * @return Separator symbol repeated for a specified number of times
-     */
-    private static String getSeparatorLine() {
-        return UiManager.SEPARATOR.repeat(UiManager.SEPARATOR_SIZE);
     }
 
     /**
