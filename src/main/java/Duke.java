@@ -80,7 +80,8 @@ public class Duke {
                         // Regex "\\s+/" matches one or more space followed by a /by,
                         // followed by one or more space
                         String[] taskArgs = splitted[1].split("\\s+/by\\s+",2);
-                        taskItem = "  " + dukelist.addDeadline(taskArgs[0], taskArgs[1]);
+                        DeadlineDateTime deadlineDateTime = DeadlineDateTime.parseDate(taskArgs[1]);
+                        taskItem = "  " + dukelist.addDeadline(taskArgs[0], deadlineDateTime);
                         startLine = "Got it. I've added this task:";
                         endLine = String.format(
                                 "Now you have %d tasks in the list.",
@@ -95,7 +96,8 @@ public class Duke {
                         // Regex "\s+/at\s+" matches one or more space followed by a /at,
                         // followed by one or more space
                         taskArgs = splitted[1].split("\\s+/at\\s+",2);
-                        taskItem = "  " + dukelist.addEvent(taskArgs[0], taskArgs[1]);
+                        EventDateTime eventDateTime = EventDateTime.parseDate(taskArgs[1]);
+                        taskItem = "  " + dukelist.addEvent(taskArgs[0], eventDateTime);
                         startLine = "Got it. I've added this task:";
                         endLine = String.format(
                                 "Now you have %d tasks in the list.",
