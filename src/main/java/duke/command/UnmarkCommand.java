@@ -1,3 +1,12 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.Ui;
+
+import duke.task.Task;
+import duke.task.TaskList;
+
 /**
  * The UnmarkCommand class represents a command
  * that marks a task in Duke as done.

@@ -1,16 +1,21 @@
+package duke;
+
+import duke.command.Command;
+import duke.task.TaskList;
+
 /**
  * The Duke class is a personal chatbot assistant.
  */
 public class Duke {
-    private Storage storage;
-    private Ui ui;
+    private final Storage storage;
+    private final Ui ui;
     private TaskList tasks;
 
     /**
      * Constructs a new Duke chatbot that loads and saves data
      * to a specified file path.
      *
-     * @param filePath The specified file path for Duke to access.
+     * @param filePath The specified file path for duke.Duke to access.
      */
     public Duke(String filePath) {
         ui = new Ui();

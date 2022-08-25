@@ -1,3 +1,12 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.Ui;
+
+import duke.task.Task;
+import duke.task.TaskList;
+
 /**
  * The DeleteCommand class represents a command
  * that will delete a task from Duke's task list.

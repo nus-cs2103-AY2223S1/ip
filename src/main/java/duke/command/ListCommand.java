@@ -1,8 +1,15 @@
+package duke.command;
+
+import duke.Storage;
+import duke.Ui;
+
+import duke.task.TaskList;
+
 /**
  * The ListCommand class represents a command
  * that will display Duke's list of tasks.
  */
-public class ListCommand extends Command{
+public class ListCommand extends Command {
     /**
      * {@inheritDoc}
      */

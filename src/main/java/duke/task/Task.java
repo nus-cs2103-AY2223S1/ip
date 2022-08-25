@@ -1,7 +1,11 @@
+package duke.task;
+
+import duke.DukeException;
+
 import java.time.LocalDate;
 
 /**
- * The Task class represents a task added to Duke.
+ * The Task class represents a task added to duke.Duke.
  */
 public abstract class Task {
     private final String description;

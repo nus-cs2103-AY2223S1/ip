@@ -1,6 +1,15 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.Ui;
+
+import duke.task.Task;
+import duke.task.TaskList;
+
 /**
  * The MarkCommand class represents a command
- * that marks a task in Duke as done.
+ * that marks a task in duke.Duke as done.
  */
 public class MarkCommand extends Command {
     /** The number of the task to be deleted. */

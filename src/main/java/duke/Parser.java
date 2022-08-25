@@ -1,3 +1,18 @@
+package duke;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.OnCommand;
+import duke.command.UnmarkCommand;
+
+import duke.task.Todo;
+import duke.task.Deadline;
+import duke.task.Event;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -108,14 +123,12 @@ public class Parser {
                 } catch (DateTimeParseException e) {
                     throw new DukeException("Specify the date to check with yyyy-MM-dd.");
                 }
-
-            default:
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
             }
         } catch (IllegalArgumentException e) {
             throw new DukeException("I'm sorry, but I don't know what that means :-(");
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new DukeException(fullCommand);
         }
+
+        // Will not reach this line.
+        return null;
     }
 }

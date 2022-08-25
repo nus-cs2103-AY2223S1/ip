@@ -1,6 +1,12 @@
+package duke;
+
+import duke.task.Task;
+import duke.task.TaskList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,7 +15,7 @@ import java.util.Scanner;
  * and saving tasks in the file.
  */
 public class Storage {
-    private String filePath;
+    private final String filePath;
 
     /**
      * Constructs a new Storage that loads tasks from a specified file path.

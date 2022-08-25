@@ -1,8 +1,15 @@
+package duke.command;
+
+import duke.Storage;
+import duke.Ui;
+
+import duke.task.TaskList;
+
 import java.time.LocalDate;
 
 /**
  * The OnCommand class represents a command
- * that will find tasks on a specified date from Duke's task list.
+ * that will find tasks on a specified date from duke.Duke's task list.
  */
 public class OnCommand extends Command {
     private final LocalDate date;

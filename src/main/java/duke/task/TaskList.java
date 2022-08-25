@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.DukeException;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -71,7 +75,7 @@ public class TaskList {
     }
 
     /**
-     * Returns an array of strings representing each Task
+     * Returns an array of strings representing each duke.task.Task
      * stored in the TaskList.
      *
      * @return An array of strings representing each task in the TaskList.
