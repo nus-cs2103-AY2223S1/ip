@@ -1,7 +1,7 @@
 package tasks;
 
 import exceptions.*;
-import parser.DeadlineParser;
+import parser.TimeParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class TaskList {
 
     private final ArrayList<Task> tasks;
-    private static final DeadlineParser DEADLINE_PARSER = new DeadlineParser();
+    private static final TimeParser TIME_PARSER = new TimeParser();
 
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -96,7 +96,7 @@ public class TaskList {
             throw new NoBeforeException();
         }
         int i = 1;
-        System.out.println("Here are the tasks before the deadline " + DEADLINE_PARSER.formatDeadline(deadline));
+        System.out.println("Here are the tasks before the deadline " + TIME_PARSER.formatDeadline(deadline));
         for (Task t : tasks) {
             if (t.isBefore(deadline)) {
                 System.out.println(i + "." + t);

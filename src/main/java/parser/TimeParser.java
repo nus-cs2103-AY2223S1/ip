@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
 
-public class DeadlineParser {
+public class TimeParser {
 
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d/MM/yyyy[ HHmm]");
     private static final DateTimeFormatter PRINT_FORMAT = DateTimeFormatter.ofPattern("d/MM/yyyy HHmm");

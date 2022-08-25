@@ -1,6 +1,6 @@
 package tasks;
 
-import parser.DeadlineParser;
+import parser.TimeParser;
 
 import java.time.LocalDateTime; // Import the LocalDateTime class
 import java.time.format.DateTimeParseException;
@@ -8,21 +8,21 @@ import java.time.format.DateTimeParseException;
 public class Event extends Task{
 
     protected LocalDateTime deadline;
-    private static final DeadlineParser DEADLINE_PARSER = new DeadlineParser();
+    private static final TimeParser TIME_PARSER = new TimeParser();
 
     public Event(String description, String deadline) {
         super(description);
-        this.deadline = DEADLINE_PARSER.createDeadline(deadline);
+        this.deadline = TIME_PARSER.createDeadline(deadline);
     }
 
     @Override
     public boolean isBefore(String deadline) throws DateTimeParseException {
-        LocalDateTime before = DEADLINE_PARSER.createDeadline(deadline);
+        LocalDateTime before = TIME_PARSER.createDeadline(deadline);
         return this.deadline.isBefore(before);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (at: " + DEADLINE_PARSER.formatDeadline(this.deadline) + ")";
+        return "[D]" + super.toString() + " (at: " + TIME_PARSER.formatDeadline(this.deadline) + ")";
     }
 }
