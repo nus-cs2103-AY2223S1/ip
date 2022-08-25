@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Duke {
@@ -14,7 +17,7 @@ public class Duke {
     /*
     Decides on what the chatbox will respond with based on user input.
      */
-    public void Response(String input) throws DukeException {
+    public void Response(String input) throws DukeException, DateTimeParseException {
         String done = "Got it. I've added this task:\n";
         if (input.equals("bye")) {
             END = true;
@@ -87,7 +90,8 @@ public class Duke {
                 throw new DukeException("☹ OOPS!!! The deadline is missing.");
             }
             int divider = input.indexOf("/");
-            Task deadline = new Deadline(input.substring(9, divider), input.substring(divider + 4));
+            LocalDateTime date = LocalDateTime.parse(input.substring(divider + 4));
+            Task deadline = new Deadline(input.substring(9, divider), date);
             memory.saveTask(deadline);
             String message = done + "  " + deadline.toString() + memory.numOfTaskToString();
             System.out.println(wrapper(message));
@@ -118,6 +122,9 @@ public class Duke {
                 duke.Response(myScanner.nextLine());
             } catch (DukeException e){
                 System.out.println(e.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("Please input the date in the ISO-8601 format\n" +
+                        "For example: 2022-08-20T12:00");
             }
         }
         myScanner.close();
