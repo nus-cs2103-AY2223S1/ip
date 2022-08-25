@@ -14,6 +14,16 @@ public class DukeException extends Exception {
             case MISSING_TODO_ITEM:
                 errorMsg = "☹ OOPS!!! The description of a todo cannot be empty.";
                 break;
+            case INVALID_DEADLINE_DATETIME_FORMAT:
+                String dateFormat = "\t Please ensure date time is of the " +
+                        "following format: yyyy-mm-dd hh:mm:ss";
+                errorMsg = "☹ OOPS!!! Unknown to parse date time.\n" + dateFormat;
+                break;
+            case INVALID_EVENT_DATETIME_FORMAT:
+                dateFormat = "\t Please ensure date time is of the " +
+                        "following format: yyyy-mm-dd hh:mm:ss hh:mm:ss hh:mm:ss";
+                errorMsg = "☹ OOPS!!! Unknown to parse date time.\n" + dateFormat;
+                break;
             default:
                 errorMsg = "☹ OOPS!!! Unknown duke error occurred. :-(";
         }
@@ -22,6 +32,8 @@ public class DukeException extends Exception {
 
     public enum ErrorCode {
         UNKNOWN_CMD,
-        MISSING_TODO_ITEM
+        MISSING_TODO_ITEM,
+        INVALID_DEADLINE_DATETIME_FORMAT,
+        INVALID_EVENT_DATETIME_FORMAT
     }
 }
