@@ -15,21 +15,41 @@ import duke.exception.DukeException;
  * @author Elgin
  */
 public class ParserTest {
+    /**
+     * Parser.parse returns AddCommand instance on passing in valid input (todo).
+     *
+     * @result Parser.parse should return an instance of AddCommand.
+     */
     @Test
     public void parse_toDoCommand_success() {
         assertTrue(Parser.parse("todo hello world") instanceof AddCommand);
     }
 
+    /**
+     * Parser.parse returns AddCommand instance on passing in valid input (deadline).
+     *
+     * @result Parser.parse should return an instance of AddCommand.
+     */
     @Test
     public void parse_deadlineCommand_success() {
         assertTrue(Parser.parse("deadline sleep /by 2020-12-12") instanceof AddCommand);
     }
 
+    /**
+     * Parser.parse returns AddCommand instance on passing in valid input (event).
+     *
+     * @result Parser.parse should return an instance of AddCommand.
+     */
     @Test
     public void parse_eventCommand_success() {
         assertTrue(Parser.parse("event eat /at 2020-01-01") instanceof AddCommand);
     }
 
+    /**
+     * Parser.parse should throw DukeException on attempt to create an empty task.
+     *
+     * @result Throws DukeException for trying to create an empty todo, event or deadline task.
+     */
     @Test
     public void parse_rejectsAddingEmptyTasks_throwsDukeException() {
         try {
@@ -54,6 +74,11 @@ public class ParserTest {
         }
     }
 
+    /**
+     * Parser.parse throws DukeException on unrecognized command.
+     *
+     * @result Parser.parse throws DukeException on unrecognized command (e.g. SomeInvalidCommand).
+     */
     @Test
     public void parse_rejectsInvalidCommand_throwsDukeException() {
         try {

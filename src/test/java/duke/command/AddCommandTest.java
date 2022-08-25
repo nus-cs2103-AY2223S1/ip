@@ -24,6 +24,11 @@ import duke.ui.Ui;
  * @author Elgin
  */
 public class AddCommandTest {
+    /**
+     * Creates a ToDo task successfully and adds to tasks.
+     *
+     * @result ToDo task created on execution, and is within the TaskList.
+     */
     @Test
     public void executes_addToDo_success() {
         AddCommand addCommand = new AddCommand("todo", "sleep eat");
@@ -43,6 +48,11 @@ public class AddCommandTest {
         assertEquals("sleep eat", task.getTaskName());
     }
 
+    /**
+     * Creates an Event task successfully and adds to tasks.
+     *
+     * @result Event task created on execution, and is within the TaskList.
+     */
     @Test
     public void executes_addEvent_success() {
         AddCommand addCommand = new AddCommand("event", "eat /at 2020-12-12");
@@ -62,6 +72,11 @@ public class AddCommandTest {
         assertEquals("eat", task.getTaskName());
     }
 
+    /**
+     * Creates a Deadline task successfully and adds to tasks.
+     *
+     * @result Deadline task created on execution, and is within the TaskList.
+     */
     @Test
     public void executes_addDeadline_success() {
         AddCommand addCommand = new AddCommand("deadline", "ip /by 2020-01-12");
@@ -81,6 +96,11 @@ public class AddCommandTest {
         assertEquals("ip", task.getTaskName());
     }
 
+    /**
+     * Fails to create a Deadline Task on invalid arguments (i.e. missing /by statement).
+     *
+     * @result Throws DukeException which gives the correct error message.
+     */
     @Test
     public void executes_addInvalidDeadlineTask_dukeExceptionThrown() {
         // Missing /by
@@ -98,6 +118,11 @@ public class AddCommandTest {
         }
     }
 
+    /**
+     * Fails to create an Event Task on invalid arguments (i.e. missing /at).
+     *
+     * @result Throws DukeException, with the correct error message.
+     */
     @Test
     public void executes_addInvalidEventTask_dukeExceptionThrown() {
         // Missing /at
