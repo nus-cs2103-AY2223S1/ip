@@ -1,13 +1,16 @@
-public class DeadlineTask extends Task {
-    protected String by;
+import java.time.LocalDate;
 
-    public DeadlineTask(String description, String by) {
+public class DeadlineTask extends Task {
+    protected LocalDate by;
+
+    public DeadlineTask(String description, LocalDate by) {
         super(description);
         this.by = by;
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        String formattedDate = by.getMonth() + " " + by.getDayOfMonth() + " " + by.getYear();
+        return "[D]" + super.toString() + " (by: " + formattedDate + ")";
     }
 }

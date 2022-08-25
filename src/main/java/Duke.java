@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Duke {
@@ -54,8 +55,9 @@ public class Duke {
                 list.addTask(task);
             } else if (command.equals("deadline")) {
                 String by = input.split(" /by ")[1];
+                LocalDate date = LocalDate.parse(by);
                 String description = suffix.split(" /by ")[0];
-                Task task = new DeadlineTask(description, by);
+                Task task = new DeadlineTask(description, date);
                 list.addTask(task);
             } else if (command.equals("event")) {
                 String at = input.split(" /at ")[1];
