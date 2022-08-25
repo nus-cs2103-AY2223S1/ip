@@ -1,3 +1,12 @@
+package BetaGo;
+
+import BetaGo.Exceptions.EmptyListException;
+import BetaGo.Exceptions.InvalidCommandException;
+import BetaGo.Exceptions.InvalidDataFileException;
+import BetaGo.Tasks.Deadline;
+import BetaGo.Tasks.Event;
+import BetaGo.Tasks.Task;
+import BetaGo.Tasks.Todo;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -57,7 +66,7 @@ public class TaskList {
         } else {
             Todo temp = new Todo(inputs[1]);
             this.list.add(temp);
-            System.out.println("Got it. I've added this Todo task:\n" + temp.toString());
+            System.out.println("Got it. I've added this BetaGo.Tasks.Todo task:\n" + temp.toString());
             System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
         }
     }
@@ -74,7 +83,7 @@ public class TaskList {
                 try {
                     Deadline temp = new Deadline(when[0], when[1]);
                     this.list.add(temp);
-                    System.out.println("Got it. I've added this Deadline task:\n" + temp.toString());
+                    System.out.println("Got it. I've added this BetaGo.Tasks.Deadline task:\n" + temp.toString());
                     System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
                 } catch (InvalidCommandException e) {
                     System.out.println(e.getMessage());
@@ -94,7 +103,7 @@ public class TaskList {
             } else {
                 Event temp = new Event(where[0], where[1]);
                 this.list.add(temp);
-                System.out.println("Got it. I've added this Event task:\n" + temp.toString());
+                System.out.println("Got it. I've added this BetaGo.Tasks.Event task:\n" + temp.toString());
                 System.out.println("Now you have " + this.list.size() + " tasks in the list.\n");
             }
         }
@@ -121,7 +130,7 @@ public class TaskList {
         }
     }
 
-    public void loadTodo(String str) throws InvalidDataFileException{
+    public void loadTodo(String str) throws InvalidDataFileException {
         String[] inputs = str.split(" , ", 3);
         if (inputs.length != 3) {
             System.out.println("Input length incorrect");
@@ -166,7 +175,7 @@ public class TaskList {
                     this.list.add(temp);
                 } catch (DateTimeParseException e) {}
             } catch (InvalidCommandException e) {
-                throw new InvalidDataFileException("Invalid Input from Data File: Invalid Deadline Task");
+                throw new InvalidDataFileException("Invalid Input from Data File: Invalid BetaGo.Tasks.Deadline BetaGo.Tasks.Task");
             }
 
         }

@@ -1,4 +1,4 @@
-
+package BetaGo.Tasks;
 
 public class Todo extends Task {
 

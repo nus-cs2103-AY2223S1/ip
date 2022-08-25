@@ -1,3 +1,5 @@
+package BetaGo;
+
 public class Ui {
 
     public static void greet() {
@@ -30,16 +32,16 @@ public class Ui {
         System.out.println("Apologies Human. I do not understand that command.\n");
     }
     public static void printInvalidTodoDescriptionError() {
-        System.out.println("Please indicate a valid description for your Todo task!\n" +
+        System.out.println("Please indicate a valid description for your BetaGo.Tasks.Todo task!\n" +
                 "Do enter the command in this format: 'todo (description)'\n");
     }
     public static void printInvalidDeadlineDescriptionError() {
-        System.out.println("Please indicate a valid description and due date for your Deadline task!\n" +
+        System.out.println("Please indicate a valid description and due date for your BetaGo.Tasks.Deadline task!\n" +
                 "Do enter the command in this format: 'deadline (description) /by (date) (time)'\n" +
                 "Please enter the date in one of the following format: yyyy-MM-dd, dd-MMM-yyyy, dd/MM/yyyy\n");
     }
     public static void printInvalidEventDescriptionError() {
-        System.out.println("Please indicate a valid description and location for your Event task!\n" +
+        System.out.println("Please indicate a valid description and location for your BetaGo.Tasks.Event task!\n" +
                 "Do enter the command in this format: 'deadline (description) /at (location)'\n");
     }
     public static void printSaveError() {

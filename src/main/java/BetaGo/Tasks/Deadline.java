@@ -1,3 +1,7 @@
+package BetaGo.Tasks;
+
+import BetaGo.Exceptions.InvalidCommandException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -6,7 +10,7 @@ public class Deadline extends Task {
 
     protected String byDateTime;
 
-    public Deadline(String description, String by) throws InvalidCommandException{
+    public Deadline(String description, String by) throws InvalidCommandException {
         super(description);
         String[] inputs = by.split(" ", 2);
         String[] formatPatterns = {"yyyy-MM-dd", "dd-MMM-yyyy", "dd/MM/yyyy"};

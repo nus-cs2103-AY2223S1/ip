@@ -3,40 +3,40 @@ How may I assist you today?
 
 You currently have no tasks in your list!
 
-Got it. I've added this Todo task:
+Got it. I've added this BetaGo.Tasks.Todo task:
 [T][ ] borrow book
 Now you have 1 tasks in the list.
 
-Got it. I've added this Todo task:
+Got it. I've added this BetaGo.Tasks.Todo task:
 [T][ ] return book
 Now you have 2 tasks in the list.
 
-Please indicate a valid description for your Todo task!
+Please indicate a valid description for your BetaGo.Tasks.Todo task!
 
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [T][ ] return book
 
-Got it. I've added this Deadline task:
+Got it. I've added this BetaGo.Tasks.Deadline task:
 [D][ ] return book (by: wednesday 10pm)
 Now you have 3 tasks in the list.
 
-Please indicate a valid description and due date for your Deadline task!
+Please indicate a valid description and due date for your BetaGo.Tasks.Deadline task!
 
-Please indicate a valid description and due date for your Deadline task!
+Please indicate a valid description and due date for your BetaGo.Tasks.Deadline task!
 
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [T][ ] return book
 3. [D][ ] return book (by: wednesday 10pm)
 
-Got it. I've added this Event task:
+Got it. I've added this BetaGo.Tasks.Event task:
 [E][ ] book fair (at: nus)
 Now you have 4 tasks in the list.
 
-Please indicate a valid description and location for your Event task!
+Please indicate a valid description and location for your BetaGo.Tasks.Event task!
 
-Please indicate a valid description and location for your Event task!
+Please indicate a valid description and location for your BetaGo.Tasks.Event task!
 
 Here are the tasks in your list:
 1. [T][ ] borrow book

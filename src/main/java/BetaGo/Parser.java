@@ -1,3 +1,8 @@
+package BetaGo;
+
+import BetaGo.Exceptions.EmptyListException;
+import BetaGo.Exceptions.InvalidCommandException;
+
 import java.util.Scanner;
 
 public class Parser {

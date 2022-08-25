@@ -1,3 +1,5 @@
+package BetaGo;
+
 public class Duke {
     private Storage storage;
     private TaskList tasks;

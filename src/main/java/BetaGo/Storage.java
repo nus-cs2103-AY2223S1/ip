@@ -1,3 +1,7 @@
+package BetaGo;
+
+import BetaGo.Exceptions.InvalidDataFileException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
