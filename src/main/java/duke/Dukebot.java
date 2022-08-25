@@ -1,6 +1,8 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Dukebot {
     private TaskList taskList;
@@ -81,6 +83,16 @@ public class Dukebot {
         ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
     }
 
+    private void handleFind(String[] inputArgs) throws DukeException {
+        String key = parser.parseFind(inputArgs);
+        ui.display(String.format(Messages.FIND_TASKS, key));
+        for (int i = 0; i < taskList.getSize(); i++) {
+            if (taskList.get(i).getDescription().contains(key)) {
+                ui.display(taskList.get(i).toString());
+            }
+        }
+    }
+
     protected void handleInput(String input) {
         String[] inputArgs = input.split("\\s+", 2);
         String keyWord = inputArgs[0];
@@ -115,6 +127,8 @@ public class Dukebot {
                 this.handleEvent(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
+            case "find":
+                handleFind(inputArgs);
             default:
                 throw new DukeException(ExceptionMessages.UNSUPPORTED_ACTION);
             }

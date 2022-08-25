@@ -61,6 +61,13 @@ public class Parser {
         return new Event(taskDesc, taskTime);
     }
 
+    public String parseFind(String[] args) throws DukeParseException {
+        if (args.length < 2) {
+            throw new DukeParseException(ExceptionMessages.INVALID_FIND_FORMAT);
+        }
+        return args[1];
+    }
+
     static class DukeParseException extends DukeException {
         public DukeParseException(String message) {
             super(message);

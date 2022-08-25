@@ -10,5 +10,6 @@ public final class Messages {
     static String TASK_ADDED = "Got it. I've added this task:";
     static String TASK_COUNT = "Now you have %d task(s) in the list.";
     static String TASK_REMOVED = "Noted. I've removed this task:";
+    static String FIND_TASKS = "Here are tasks matching '%s' in your list:";
     static String LOAD_ERROR = "Error loading data from storage";
 }

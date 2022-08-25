@@ -6,4 +6,5 @@ public final class ExceptionMessages {
     static String INVALID_FORMAT = "☹ OOPS!!! Please indicate a description and date/time separated by %s";
     static String UNSUPPORTED_ACTION = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
     static String INVALID_INDEX_FORMAT = "☹ OOPS!!! Please indicate only an index for the command";
+    static String INVALID_FIND_FORMAT = "☹ OOPS!!! Please indicate the string to scan the task list for";
 }
