@@ -6,7 +6,11 @@ import tasklist.TaskList;
 import ui.UI;
 import utility.Parser;
 
-public class UnmarkCommand extends Command{
+/**
+ * Unmarks given task, and updates
+ * status in TaskList and Storage.
+ */
+public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         int n = Parser.getTaskNumber(ui.currentInput, taskList.getSize());

@@ -6,7 +6,10 @@ import tasklist.TaskList;
 import ui.UI;
 import utility.Parser;
 
-public class DeleteTaskCommand extends Command{
+/**
+ * Deletes task.
+ */
+public class DeleteTaskCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         int n = Parser.getTaskNumber(ui.currentInput, taskList.getSize());
