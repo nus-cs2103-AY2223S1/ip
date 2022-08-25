@@ -62,6 +62,12 @@ public abstract class Task {
         return String.format("%b %s", isDone, description);
     }
 
+    /**
+     * Checks if keyword is in Task's description
+     *
+     * @param keyword String keyword to search for in Task
+     * @return boolean indicating if keyword exists in Task's description
+     */
     public boolean containsKeyword(String keyword) {
         return this.description.contains(keyword);
     }
