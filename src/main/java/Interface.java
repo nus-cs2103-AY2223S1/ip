@@ -1,6 +1,7 @@
 import DukeException.DukeException;
-
 import java.io.FileNotFoundException;
+import DukeException.DateTimeFormatException;
+
 import java.util.ArrayList;
 import java.io.File;
 
@@ -28,7 +29,7 @@ public class Interface {
      * @param str the description of ddl + by when
      * @return a newly created Deadline class for storage.
      */
-    public static Deadline addDeadline(String str) {
+    public static Deadline addDeadline(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
         String by = str.split(" /", 2)[1].split("by ", 2)[1];
 
@@ -45,7 +46,7 @@ public class Interface {
      * @param str The description of event + at what time
      * @return A newly created Event class for storage.
      */
-    public static Event addEvent(String str) {
+    public static Event addEvent(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
         String at = str.split(" /", 2)[1].split("at ", 2)[1];
 
@@ -62,7 +63,7 @@ public class Interface {
      * @param str The description of to do task.
      * @return A newly created ToDo class for storage.
      */
-    public static ToDo addToDo(String str) {
+    public static ToDo addToDo(String str) throws DateTimeFormatException {
         printLine();
         System.out.println("     Got it. I've added this task:");
         ToDo task = ToDo.addTask(str);
@@ -87,7 +88,7 @@ public class Interface {
      * Marks task with index specified as done.
      * @param task Mark task with index specified fetched from the task list.
      */
-    public static void mark(Task task) {
+    public static void mark(Task task) throws DateTimeFormatException {
         printLine();
         System.out.println("     Nice! I've marked this task as done:");
         task.changeStatus(); // flip status
@@ -99,7 +100,7 @@ public class Interface {
      * Marks task with index specified as not done.
      * @param task Mark task with index specified fetched from the task list.
      */
-    public static void unmark(Task task) {
+    public static void unmark(Task task) throws DateTimeFormatException {
         printLine();
         System.out.println("     OK, I've marked this task as not done yet:");
         task.changeStatus(); // flip status
@@ -111,7 +112,7 @@ public class Interface {
      * Deletes a task from the list and prints out the task.
      * @param task The Task object which the user wants to delete
      */
-    public static void delete(Task task) {
+    public static void delete(Task task) throws DateTimeFormatException {
         printLine();
         System.out.println("     Noted. I've removed this task:");
         Task.removeTask(task); // change total number of task.
@@ -125,7 +126,7 @@ public class Interface {
      * @param isDone A boolean indicator to show if the task is marked done.
      * @return A newly created Deadline class for storage.
      */
-    public static Deadline syncDeadline(String str, boolean isDone) {
+    public static Deadline syncDeadline(String str, boolean isDone) throws DateTimeFormatException {
         String name = str.split(" \\| ",2)[0];
         String by = str.split(" \\| ",2)[1];
 
@@ -142,7 +143,7 @@ public class Interface {
      * @param isDone A boolean indicator to show if the task is marked done.
      * @return A newly created Event class for storage.
      */
-    public static Event syncEvent(String str, boolean isDone) {
+    public static Event syncEvent(String str, boolean isDone) throws DateTimeFormatException {
         String name = str.split(" \\| ",2)[0];
         String at = str.split(" \\| ",2)[1];
 
@@ -159,7 +160,7 @@ public class Interface {
      * @param isDone A boolean indicator to show if the task is marked done.
      * @return A newly created Todo class for storage.
      */
-    public static ToDo syncToDo(String name, boolean isDone) {
+    public static ToDo syncToDo(String name, boolean isDone) throws DateTimeFormatException {
         ToDo task = ToDo.addTask(name);
         if (isDone) {
             task.changeStatus();

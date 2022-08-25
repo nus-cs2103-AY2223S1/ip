@@ -1,10 +1,12 @@
+import DukeException.DateTimeFormatException;
+
 public class ToDo extends Task {
 
     public ToDo(String description) {
         super(description);
     }
 
-    public static ToDo addTask(String name) {
+    public static ToDo addTask(String name) throws DateTimeFormatException {
         ToDo newToDo = new ToDo(name);
         System.out.println("       " + newToDo.printSelf());
         return newToDo;
@@ -12,7 +14,7 @@ public class ToDo extends Task {
 
 
     @Override
-    public String printSelf() {
+    public String printSelf() throws DateTimeFormatException {
         return "[T]" + super.printSelf();
     }
 
