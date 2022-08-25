@@ -1,9 +1,21 @@
 package seedu.duke;
+
 import java.time.LocalDateTime;
 
+/*
+ * Represents a task which has the description and the due date.
+ */
 public class Deadline extends Task {
+
+    /** The due date of the task*/
     protected LocalDateTime by;
 
+    /**
+     * A constructor for Deadline object.
+     * 
+     * @param description the name of the task.
+     * @param by the due date of the task.
+     */
     public Deadline(String description, String by) {
         super(description);
         int year = Integer.parseInt(by.substring(0,4));
@@ -16,6 +28,12 @@ public class Deadline extends Task {
         this.by = date;
     }
 
+    /**
+     * A constructor for Deadline object which takes in a description and a LocalDateTime object.
+     * 
+     * @param description the name of the task. 
+     * @param date the due date of the task.
+     */
     public Deadline(String description, LocalDateTime date) {
         super(description);
         this.by = date;

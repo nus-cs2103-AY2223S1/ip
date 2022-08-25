@@ -1,9 +1,20 @@
 package seedu.duke;
+
 import java.time.LocalDateTime;
 
+/*
+ * Represents a task with description and the date and time of the task.
+ */
 public class Event extends Task{
+    /* The date of the task */
     protected LocalDateTime at;
 
+    /**
+     * A constructor for Event.
+     * 
+     * @param description The name of the event.
+     * @param at The date and time of the event.
+     */
     public Event(String description, String at) {
         super(description);
 
@@ -17,6 +28,12 @@ public class Event extends Task{
         this.at = date;
     }
 
+    /**
+     * Constructor for Event.
+     * 
+     * @param description The name of the event.
+     * @param date The date and time of the event wrapped in a LocalDateTime object.
+     */
     public Event(String description, LocalDateTime date) {
         super(description);
         this.at = date;

@@ -1,13 +1,25 @@
 package seedu.duke;
+
 import java.io.IOException;
 
+/*
+ * Main class of the program.
+ */
 public class Duke {
-    
+    /*Storage object to handle reading and writing to hard disk */
     private Storage storage;
+    /*Tasklist containing an arraylist of tasks */
     private TaskList tasks;
+    /*Ui component to handle the user interface of the program */
     private Ui ui;
+    /*Parser object to parse user input into recognised Commands */
     private Parser parser;
 
+    /**
+     * A constructor for Duke.
+     * 
+     * @param filePath the path of the output to be stored and loaded when the program starts.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -24,6 +36,9 @@ public class Duke {
 
     }
 
+    /**
+     * Runs the Duke program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -39,6 +54,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method of the Duke class.
+     * 
+     * @param args
+     */
     public static void main(String[] args)  {
         new Duke("data/Duke.txt").run();
     

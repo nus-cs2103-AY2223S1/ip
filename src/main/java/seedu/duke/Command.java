@@ -2,6 +2,9 @@ package seedu.duke;
 
 import java.util.ArrayList;
 
+/*
+ * Represents a legal command operation that can be performed by the user.
+ */
 public enum Command {
     BYE,
     DEADLINE,
@@ -13,6 +16,15 @@ public enum Command {
     TODO,
     UNMARK;
 
+    /**
+     * Performs the respective actions with accordance to the command.
+     * 
+     * @param tasklist Tasklist containing an arraylist of tasks.
+     * @param ui Ui of the application.
+     * @param storage Storage which handles the reading and saving of tasks to hard disk.
+     * @param input The user's input in the command line
+     * @throws DukeException if command is not found or cannot be executed.
+     */
     public void execute(TaskList tasklist, Ui ui, Storage storage, String input) throws DukeException{
         ArrayList<Task> tasks = tasklist.getTasks();
         int taskNumber;
@@ -121,6 +133,11 @@ public enum Command {
         }
     }
 
+    /**
+     * Returns true if the command is BYE.
+     * 
+     * @return true whether the user wants to exit the program.
+     */
     public boolean isExit() {
         return this == BYE;
     }

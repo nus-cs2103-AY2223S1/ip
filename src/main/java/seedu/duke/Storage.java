@@ -1,22 +1,38 @@
 package seedu.duke;
-import java.util.ArrayList;
+
 import java.io.File;
-import java.nio.file.Files;
 import java.io.FileWriter;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.nio.file.Path;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
 
+/*
+ * Represents the path of the file in the hard disk where the output of the program is stored.
+ */
 public class Storage {
+    /* The path of the output file */
     private String filepath;
 
+    /**
+     * Constructor for Storage.
+     * 
+     * @param filePath the path of the output file.
+     */
     public Storage(String filePath) {
         this.filepath = filePath;
     }
 
+    /**
+     * Loads the output from the output file in hard disk to the program.
+     * 
+     * @return an arraylist of tasks stored.
+     * @throws IOException if file cannot be opened or read.
+     */
     public ArrayList<Task> load() throws IOException{
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -86,6 +102,11 @@ public class Storage {
 
     }
 
+    /**
+     * Saves the new changes to the tasks to the output file in the hard disk.
+     * 
+     * @param tasks the list of tasks currently in the program.
+     */
     public void save(ArrayList<Task> tasks) {
         try {
             FileWriter writer = new FileWriter("./data/Duke.txt");
