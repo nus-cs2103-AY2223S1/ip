@@ -54,9 +54,11 @@ public class Storage {
             if (task instanceof Todo) {
                 fw.write("T | " + isDoneSymbol + " | " + task.getName() + "\n");
             } else if (task instanceof Deadline) {
-                fw.write("D | " + isDoneSymbol + " | " + task.getName() + " | " + ((Deadline) task).getDateTime() + "\n");
+                fw.write("D | " + isDoneSymbol + " | " + task.getName()
+                        + " | " + ((Deadline) task).getDateTime() + "\n");
             } else if (task instanceof Event) {
-                fw.write("E | " + isDoneSymbol + " | " + task.getName() + " | " + ((Event) task).getDateTime() + "\n");
+                fw.write("E | " + isDoneSymbol + " | " + task.getName()
+                        + " | " + ((Event) task).getDateTime() + "\n");
             }
         }
         fw.close();

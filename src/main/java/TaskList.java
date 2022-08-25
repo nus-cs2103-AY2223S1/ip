@@ -67,7 +67,9 @@ public class TaskList {
             endDateTime.append(inputs[inputs.length - 1]);
         }
 
-        Deadline newDeadline = new Deadline(deadlineName.toString().trim(), endDateTime.toString().trim());
+        Deadline newDeadline = new Deadline(
+                deadlineName.toString().trim(),
+                endDateTime.toString().trim());
         tasks.add(newDeadline);
         System.out.println("Got it. I've added this task:");
         System.out.println("  " + newDeadline);
@@ -117,7 +119,8 @@ public class TaskList {
      * @throws NoTasksException
      * @throws InvalidTaskIndexException
      */
-    public void deleteTask(int taskIndex) throws NoTasksException, InvalidTaskIndexException {
+    public void deleteTask(int taskIndex)
+            throws NoTasksException, InvalidTaskIndexException {
         if (tasks.isEmpty()) {
             throw new NoTasksException();
         }

@@ -10,12 +10,12 @@ public class Duke {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
 
-    // IMPORTANT: Configure isTest to true if you are running ./runtest.sh
+    // IMPORTANT: Configure IS_TEST to true if you are running ./runtest.sh
     private static final String JAR_FILE_PATH = "data/tasks.txt";
-    private static final Boolean isTest = false;
+    private static final Boolean IS_TEST = false;
     // Comment out the conditional expression and add in JAR_FILE_PATH if running on JAR
     private static final String FILE_PATH = JAR_FILE_PATH;
-//            isTest
+//            IS_TEST
 //            ? "../src/main/java/data/tasksTest.txt"
 //            : "src/main/java/data/tasks.txt";
 
@@ -54,7 +54,7 @@ public class Duke {
         } catch (FileNotFoundException e1) {
             System.out.println(e1.getMessage());
         } finally {
-            if (!isTest) {
+            if (!IS_TEST) {
                 storage.saveTasks(FILE_PATH, tasks);
             }
         }
