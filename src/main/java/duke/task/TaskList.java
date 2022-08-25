@@ -73,4 +73,15 @@ public class TaskList {
     public void deleteTask(int TaskNum) {
         listOfTasks.remove(TaskNum);
     }
+
+    public ArrayList<Task> FindTasks(String keyword) {
+        ArrayList<Task> taskContainingKeyword = new ArrayList<>();
+        for (int i = 0; i < listOfTasks.size(); i++) {
+            Task currTask = listOfTasks.get(i);
+            if (currTask.containKeyword(keyword)) {
+                taskContainingKeyword.add(currTask);
+            }
+        }
+        return taskContainingKeyword;
+    }
 }

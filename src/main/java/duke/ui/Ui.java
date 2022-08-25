@@ -132,4 +132,14 @@ public class Ui {
     public void displaySeparator() {
         System.out.println("--------------------------------");
     }
+
+    public void displayMatchedTasks(ArrayList<Task> tasks) {
+        int size = tasks.size();
+        displaySeparator();
+        System.out.println("Here are the matching tasks in your list");
+        for (int i = 0; i < size; i++) {
+            System.out.println((i + 1) + ". " + tasks.get(i).TaskInfo());
+        }
+        displaySeparator();
+    }
 }
