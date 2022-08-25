@@ -28,16 +28,22 @@ public class Ui {
     System.out.println("You have " + remainingListSize + " task(s) remaining.");
   }
 
+  public void showMarkTaskAsDone(Task taskDone) {
+    System.out.println("Paw-some! Another task done!");
+    System.out.println("  " + taskDone);
+  }
+
+  public void showMarkTaskAsNotDone(Task taskNotDone) {
+    System.out.println("Okay, I've marked this task as not done yet.");
+    System.out.println("  " + taskNotDone);
+  }
+
   public void showTaskList(TaskList taskList) {
     System.out.println(taskList);
   }
 
   public void showGoodbye() {
     System.out.println("Going so soon? :') Bye");
-  }
-
-  public void showLoadingError() {
-    System.out.println("this is an error");
   }
 
   public void showError(String errorMessage) {

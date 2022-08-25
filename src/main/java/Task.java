@@ -3,7 +3,7 @@ public abstract class Task {
   private String description;
 
   /** Boolean representing whether Task is done or not */
-  private boolean isDone = false;
+  private boolean isDone;
 
   /**
    * Constructor to create a new Task
@@ -12,6 +12,7 @@ public abstract class Task {
    */
   protected Task(String description) {
     this.description = description;
+    isDone = false;
   }
 
   protected Task(boolean isDone, String description) {
@@ -46,34 +47,14 @@ public abstract class Task {
     }
   }
 
-  public static Task createTaskFromFile(String taskString) throws CheeseException {
-    String[] taskStringArray = taskString.split(" // ");
-    String command = taskStringArray[0];
-    boolean isDone = taskStringArray[1].equals("T");
-    switch (Command.valueOf(command)) {
-      case todo:
-        return new Todo(isDone, taskStringArray[2]);
-      case deadline:
-        return new Deadline(isDone, taskStringArray[2], taskStringArray[3]);
-      case event:
-        return new Event(isDone, taskStringArray[2], taskStringArray[3]);
-      default:
-        throw new CheeseException("Save file is corrupted");
-    }
-  }
-
   /** Marks this task as done */
   public void markAsDone() {
-    this.isDone = true;
-    System.out.println("Paw-some! Another task done!");
-    System.out.println("  " + this);
+    isDone = true;
   }
 
   /** Marks this task as not done */
   public void markAsNotDone() {
-    this.isDone = false;
-    System.out.println("Okay, I've marked this task as not done yet.");
-    System.out.println("  " + this);
+    isDone = false;
   }
 
   /**
