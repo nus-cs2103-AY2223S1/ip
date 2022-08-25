@@ -30,6 +30,9 @@ public class Duke {
         ui = new Ui();
         storage = new Storage();
         try {
+            // Greets User
+            ui.greetUser();
+
             tasks = new TaskList(storage.readTaskListFromFile());
         } catch (DukeException e) {
             ui.printErrorMessage(e);
@@ -45,8 +48,7 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         boolean isExit = false;
 
-        // Greets User
-        ui.greetUser();
+
 
         while (!isExit) {
 

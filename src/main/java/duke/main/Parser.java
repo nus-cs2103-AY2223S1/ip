@@ -68,7 +68,7 @@ public class Parser {
             }
             }
         } catch (ArrayIndexOutOfBoundsException aioobe) {
-            throw new DukeException("\tLooks like you're missing a timing for this task...");
+            throw new DukeException("\tLooks like you're missing a timing / task name for this task...");
         } catch (NumberFormatException nfe) {
             throw new DukeException("\tSorry, that Task Number doesn't look right...");
         } catch (DukeException de) {
