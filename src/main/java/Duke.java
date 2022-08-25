@@ -1,36 +1,42 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Duke {
 
-    private static TaskList taskList = new TaskList();
+    private static TaskList taskList;
     private static final Scanner sc = new Scanner(System.in);
+    private static File textFile;
 
     public static void printMessage(String input) throws DukeException {
         if(input.equalsIgnoreCase("bye")) {
             System.out.println("Goodbye!");
+            writeTasksIntoFile(Duke.textFile);
             System.exit(0);
         } else if(input.equalsIgnoreCase("list")) {
             taskList.list();
         } else if(input.matches("^todo.*")) {
             try {
-                ToDo todo = new ToDo(input.substring(5));
-                taskList.add(todo);
+                ToDo todo = new ToDo(input.substring(5), false);
+                taskList.add(todo,true);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
             }
         } else if(input.matches("^deadline.*")) {
             try {
                 String[] str = input.substring(9).split(" /by ");
-                Deadline deadline = new Deadline(str[0], str[1]);
-                taskList.add(deadline);
+                Deadline deadline = new Deadline(str[0], str[1], false);
+                taskList.add(deadline, true);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description and/or the time of a deadline cannot be empty.");
             }
         } else if(input.matches("^event.*")) {
             try {
                 String[] str = input.substring(6).split(" /at ");
-                Event event = new Event(str[0], str[1]);
-                taskList.add(event);
+                Event event = new Event(str[0], str[1], false);
+                taskList.add(event, true);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeException("OOPS!!! The description and/or the time of an event cannot be empty.");
             }
@@ -61,9 +67,88 @@ public class Duke {
         }
     }
 
+    public static void createDirectory(File filePath) {
+        try {
+            if(!filePath.exists()) {
+                filePath.mkdir();
+            }
+        } catch (SecurityException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void getTasksFromFile(File file) {
+        try {
+            file.createNewFile();
+            taskList = new TaskList();
+            Scanner scFile = new Scanner(file);
+            while(scFile.hasNextLine()) {
+                String taskString = scFile.nextLine();
+                if (taskString.isBlank()) {
+                    continue;
+                }
+                String[] taskElements = taskString.split(" \\| ");
+                boolean isTaskDone = taskElements[1].equals("1");
+
+                switch (taskElements[0]) {
+                case "T":
+                    taskList.add(new ToDo(taskElements[2], isTaskDone), false);
+                    break;
+                case "D":
+                    taskList.add(new Deadline(taskElements[2], taskElements[3], isTaskDone), false);
+                    break;
+                case "E":
+                    taskList.add(new Event(taskElements[2], taskElements[3], isTaskDone), false);
+                    break;
+                default:
+                    break;
+                }
+            }
+            scFile.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void writeTasksIntoFile(File file) {
+        try {
+            FileWriter writer = new FileWriter(file);
+            for (int i = 0; i < taskList.size(); i++) {
+                Task task = taskList.get(i);
+                char taskType = task instanceof ToDo
+                                ? 'T'
+                                : task instanceof Deadline ? 'D' : 'E';
+                char isTaskDone = task.getStatusIcon().equals("X") ? '1' : '0';
+                String taskDescription = task.getDescription();
+                if (taskType == 'T') {
+                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + "\n");
+                } else if (taskType == 'D') {
+                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + " | " + ((Deadline) task).getBy() + "\n");
+                } else {
+                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + " | " + ((Event) task).getTime() + "\n");
+                }
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
     public static void main(String[] args) {
         String welcomeMsg = "Hi there! Baymax at your service.";
         System.out.println(welcomeMsg);
+
+        File dir = new File("data");
+        File file = new File("data/TaskList.txt");
+
+        //Creates the data directory if it does not exist, does nothing otherwise.
+        createDirectory(dir);
+
+        //Retrieves Tasks from local file, TaskList.txt.
+        //Creates the file TaskList.txt in the data directory if it does not exist.
+        Duke.textFile = file;
+        getTasksFromFile(file);
+
         String input = sc.nextLine();
 
         while(true) {
