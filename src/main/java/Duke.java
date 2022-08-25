@@ -141,6 +141,9 @@ public class Duke {
                 } catch (StringIndexOutOfBoundsException exception) {
                     System.out.println(divider + indent + "Wait, which task are you referring to?\n"
                             + divider);
+                } catch (NumberFormatException exception) {
+                    System.out.println(divider + indent + "Wait, which task are you referring to?\n"
+                            + divider);
                 } catch (Exception exception) {
                     System.out.println(divider + indent + "Error: " + exception + "\n" + divider);
                 }
