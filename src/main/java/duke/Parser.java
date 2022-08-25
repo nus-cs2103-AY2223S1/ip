@@ -17,7 +17,7 @@ import java.time.format.DateTimeFormatter;
 public class Parser {
 
     /**
-     * Stores tasks in a text file
+     * Stores tasks in a text file.
      */
     protected static Storage storage;
 
@@ -27,7 +27,7 @@ public class Parser {
     protected static Ui ui;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param list The storage list used.
      * @param ui   The Ui interface used.
