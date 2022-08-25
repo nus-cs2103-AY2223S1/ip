@@ -28,7 +28,7 @@ public class Event extends Task {
         } else {
             isDone = "X";
         }
-        return String.format("D | %s | %s | %s\n", isDone, super.description,
+        return String.format("E | %s | %s | %s\n", isDone, super.description,
                 Parser.formatDateTimeToData(dateAndTime));
     }
 
