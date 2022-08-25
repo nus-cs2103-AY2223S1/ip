@@ -2,14 +2,7 @@ import exceptions.DukeException;
 import handlers.DukeCommand;
 import handlers.DukeCommandMap;
 import models.Storage;
-import models.Task;
 import models.TaskList;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -24,9 +17,8 @@ public class Duke {
     public static final DukeCommandMap commandMap = new DukeCommandMap();
 
     public Duke() {
-        Storage storage = new Storage();
         try {
-            taskList = new TaskList(storage.loadTasksFromDisk());
+            taskList = Storage.loadTasksFromDisk();
         } catch (DukeException e) {
             taskList = new TaskList();
         }
@@ -35,9 +27,7 @@ public class Duke {
         System.out.print(separator + content + separator);
     }
 
-    public static void save() {}
-
-    public static void chat (Scanner sc) {
+    public void chat (Scanner sc) {
         System.out.println("Hello from\n" + logo);
         System.out.print("Tell me what you need\n");
 
@@ -56,6 +46,11 @@ public class Duke {
                 printFormatedMessage("OOPS! " + e.errorMessage);
             }
             userInput = sc.nextLine();
+        }
+        try {
+            Storage.saveTaskToDisk(taskList);
+        } catch (DukeException e) {
+            printFormatedMessage("OOPS! " + e.errorMessage);
         }
         System.out.print("Goodbye!");
     }

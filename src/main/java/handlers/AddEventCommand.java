@@ -16,6 +16,6 @@ public class AddEventCommand implements DukeCommand {
         String[] detail = content.split(" /at ", 2);
         Event event = new Event(detail[0], detail[1]);
         taskList.AddTask(event);
-        return "Added a event: " + event.toString();
+        return "Added a event: " + event;
     }
 }

@@ -18,6 +18,6 @@ public class AddDeadlineCommand implements DukeCommand {
         String[] detail = content.split(" /by ", 2);
         Deadline ddl = new Deadline(detail[0], detail[1]);
         taskList.AddTask(ddl);
-        return "Added a deadline: " + ddl.toString();
+        return "Added a deadline: " + ddl;
     }
 }

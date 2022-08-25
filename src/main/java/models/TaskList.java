@@ -2,6 +2,7 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class TaskList {
     public static List<Task> taskList;
@@ -28,5 +29,11 @@ public class TaskList {
 
     public Task get(int i) {
         return taskList.get(i);
+    }
+
+    public void forEach(Consumer<Task> action) {
+        for(Task task : taskList) {
+            action.accept(task);
+        }
     }
 }

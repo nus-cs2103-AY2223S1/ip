@@ -26,6 +26,10 @@ public class Task {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 
+    public String formatForSave()  {
+        return (isDone ? "1" : "0") + " | " + this.content;
+    }
+
     @Override
     public String toString() {
         return getStatusIcon() + " " + this.content;

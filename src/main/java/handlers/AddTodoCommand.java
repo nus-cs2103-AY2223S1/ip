@@ -13,6 +13,6 @@ public class AddTodoCommand implements DukeCommand {
         }
         Todo todo = new Todo(s);
         taskList.AddTask(todo);
-        return "Added a todo: " + todo.toString();
+        return "Added a todo: " + todo;
     }
 }
