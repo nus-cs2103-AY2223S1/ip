@@ -1,11 +1,12 @@
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class Task {
     private String status;
     private String type;
     private String name;
-    public Scanner sc = new Scanner(System.in);
+
+    private LocalDateTime time;
 
     public Task() {};
 
@@ -24,59 +25,35 @@ public class Task {
     public  String getStatus() {
         return status;
     }
-    public void mark(Task t, int index) {
-        System.out.println(
-                Duke.line + "\n" +
-                        "Nice! I've marked this task as done:" + "\n" +
-                        "[X] " + Duke.list.get(index-1).getName() + "\n" + Duke.line
-        );
-        t.status = "[X]";
-    }
-    /*
-        public void mark(int index) {
-            System.out.println(
-                    Duke.line + "\n" +
-                            "Nice! I've marked this task as done:" + "\n" +
-                            "[X] " + Duke.list[index-1].getName() + "\n" + Duke.line
-            );
-            Duke.list[index - 1].status = "[X]";
-        }
-
-
-     */
     public void setStatus(String status) {
         this.status = status;
     }
 
-    public void unmark(Task t, int index) {
-        System.out.println(
-                Duke.line + "\n" +
-                        "OK, I've marked this task as not done yet:" + "\n" +
-                        "[ ] " + t.getName() + "\n" + Duke.line
-        );
-        t.status = "[ ]";
-    }
-
-
     public void print() {
+        TaskList t = new TaskList();
         System.out.println(
                 Duke.line);
 
         for (int i = 0, j = 1; i < Duke.count; i++, j++) {
 
-            System.out.println(j + ". " + Duke.list.get(i).status + Duke.list.get(i).name );
+            System.out.println(j + ". " + t.getList().get(i).status + t.getList().get(i).name );
         }
         System.out.println(
                 Duke.line + "\n"
         );
 
     }
-
-    public void delete(Task b, int index, ArrayList<Task> list) {};
-
     public void list() {};
 
     public String toString() {
         return " ";
     };
+
+    public LocalDateTime getTime() {
+        return time;
+    }
+
+    public String description() {
+        return "";
+    }
 }

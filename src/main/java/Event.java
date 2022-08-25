@@ -1,15 +1,11 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 public class Event extends Task {
 
     private String name;
-
-
     private String type;
     private String status;
-
     private LocalDateTime time;
 
     public void setStatus(String status) {
@@ -24,45 +20,12 @@ public class Event extends Task {
     }
 
     public void print() {
-        System.out.println(
-                Duke.line + "\n" +
-                        "Got it. I've added this task:" + "\n" +
-                        this.type + this.status + " " + this.name + "(at: " + formatDateString(this.time) + ")" + "\n" +
-                        " Now you have " + Duke.count + " tasks in the list." +
-                        "\n" + Duke.line + "\n"
-
-        );
+        System.out.println(Ui.ADD_TASK_HEADER + this.toString() + " Now you have " +
+                Duke.count + " tasks in the list." + "\n" + Duke.line + "\n");
     }
 
     public void list() {
         System.out.println(this.type + this.status + " " + this.name + "(at: " + formatDateString(this.time) + ")");
-    }
-
-    public void mark(Task t, int index) {
-        System.out.println(
-                Duke.line + "\n" +
-                        "Nice! I've marked this task as done:" + "\n" +
-                        "[X] " + t.getName() + "(at: " + formatDateString(this.time) + ")" + "\n" + Duke.line
-        );
-        t.setStatus("[X]");
-    }
-
-    public void delete(Task b, int index, ArrayList<Task> list) {
-        list.remove(index);
-        System.out.println(Duke.line + "\n" + "Noted. I've removed this task:" + "\n" + b.getType() + b.getStatus() + " " + b.getName()
-                + " (at: " + formatDateString(this.time) + ")");
-        System.out.println("Now you have " + Duke.count + " tasks in the list." + "\n" + Duke.line);
-    }
-
-    ;
-
-    public void unmark(Task t, int index) {
-        System.out.println(
-                Duke.line + "\n" +
-                        "OK, I've marked this task as not done yet:" + "\n" +
-                        "[ ] " + t.getName() + "(at: " + formatDateString(this.time) + ")" + "\n" + Duke.line
-        );
-        t.setStatus("[ ]");
     }
 
     public String getName() {
@@ -83,8 +46,16 @@ public class Event extends Task {
         return this.getType() + this.getStatus() + this.getName() + " (at: " + formatDateString(this.time) + ")" + "\n";
     }
 
-        private String formatDateString (LocalDateTime d){
-            return d.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
-        }
+    public LocalDateTime getTime() {
+        return this.time;
+    }
 
+    private String formatDateString (LocalDateTime d){
+        return d.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
+    }
+
+    @Override
+    public String description() {
+        return this.getName() + " (at: " + formatDateString(this.time) + ")";
+    }
 }
