@@ -1,13 +1,21 @@
 package Sakura;
 import java.time.format.DateTimeParseException;
-import java.util.List;
+import java.util.Arrays;
 import java.util.ArrayList;
 
 public class TaskList {
-    public List<Task> tasks;
+    private final ArrayList<Task> tasks = new ArrayList<>();
+    
+    public TaskList(Task... tasks) {
+        this.tasks.addAll(Arrays.asList(tasks));
+    }
 
-    public TaskList() {
-        this.tasks = new ArrayList<>();
+    public int getLength() {
+        return this.tasks.size();
+    }
+
+    public Task get(int taskIndex) {
+        return this.tasks.get(taskIndex - 1);
     }
 
     public void addTask(String input) {

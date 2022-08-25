@@ -11,74 +11,21 @@ public class Sakura {
     private static String DIR = "data";
     private static String FILENAME = "Sakura.txt";
     private static String DATAPATH = String.valueOf(Paths.get(Sakura.DIR, Sakura.FILENAME));
-    static TaskList taskList = new TaskList();
 
-    private static Ui ui;
+    private TaskList taskList;
+    private Ui ui;
+    static Storage storage;
 
-    private static void loadData() {
-        File database = new File(Sakura.DATAPATH);
-        try {
-            Scanner fileReader = new Scanner(database);
-            while (fileReader.hasNextLine()) {
-                String entry = fileReader.nextLine();
-                readEntry(entry);
-            }
-        } catch (FileNotFoundException e) {
-            createDatabase();
-        }
+    public Sakura(String filePath) {
+        storage = new Storage(filePath);
+        this.ui = new Ui();
+        this.taskList = new TaskList(storage.loadData());
     }
 
-    private static void readEntry(String entry) {
-        String[] data = entry.split("\\|");
-        Task dataTask = null;
-        if (data[0].equals("T")) {
-            dataTask = new Todo(data[2]);
-        } else if (data[0].equals("D")) {
-            dataTask = new Deadline(data[2], data[3]);
-        } else if (data[0].equals("E")) {
-            dataTask = new Event(data[2], data[3]);
-        } else {
-            SakuraException.databaseError();
-        }
-        if (Integer.parseInt(data[1]) == 1) {
-            assert dataTask != null;
-            dataTask.markDone();
-        }
-        taskList.tasks.add(dataTask);
-    }
-
-    private static void createDatabase() {
-        File database = new File(Sakura.DATAPATH);
-        File dir = new File(Sakura.DIR);
-        boolean wasSuccessful = dir.mkdir();
-        if (wasSuccessful) {
-            try {
-                boolean fileCreated = database.createNewFile();
-                if (!fileCreated) {
-                    throw new IOException("Unable to create file at specified path. It already exists");
-                }
-            } catch (IOException e) {
-                System.out.println("Error when creating the database!");
-            }
-        }
-    }
-
-    private static void saveData() throws IOException {
-        FileWriter fw = new FileWriter(Sakura.DATAPATH, false);
-        BufferedWriter bw = new BufferedWriter(fw);
-        for (Task task : taskList.tasks) {
-            bw.write(task.stringifyTask());
-            bw.newLine();
-        }
-        bw.close();
-        fw.close();
-    }
-
-
-    private static void Start(String input, TaskList taskList) {
+    private void Start(String input, TaskList taskList) {
         if (input.equals("bye")) {
             inProgress = false;
-            ui.exit();
+            this.exit();
         } else if (input.equals("list")) {
             Ui.showAllTask(taskList.tasks);
         } else if (input.toLowerCase().startsWith("mark")) {
@@ -94,7 +41,17 @@ public class Sakura {
         }
     }
 
-    private static void run() {
+    private void exit() {
+        try {
+            storage.saveData(this.taskList);
+            this.ui.showExit();
+        } catch (IOException e) {
+            SakuraException.saveError();
+        }
+    }
+
+    private void run() {
+        ui.greet();
         Scanner sc = new Scanner(System.in);
         while (inProgress) {
             String command = sc.nextLine();
@@ -105,8 +62,6 @@ public class Sakura {
     }
 
     public static void main(String[] args) throws IndexOutOfBoundsException {
-        ui.greet();
-        loadData();
-        Sakura.run();
+        new Sakura("./data/Sakura.txt").run();
     }
 }

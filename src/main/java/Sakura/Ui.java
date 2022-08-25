@@ -25,14 +25,9 @@ public class Ui {
         System.out.println("\t" + DIV2 + "\n");
     }
 
-    void exit() {
-        try {
-            saveData();
-            System.out.println("\tBye Senpai! It was a pleasure serving you, see you again soon!");
-            System.out.println("\t" + DIV2 + "\n");
-        } catch (IOException e) {
-            SakuraException.saveError();
-        }
+    void showExit() {
+        System.out.println("\tBye Senpai! It was a pleasure serving you, see you again soon!");
+        System.out.println("\t" + DIV2 + "\n");
     }
 
     public static void addDescription(List<Task> tasks, Task newTask) {
