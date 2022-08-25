@@ -36,6 +36,10 @@ public class Task {
         }
     }
 
+    public boolean isContain(String input) {
+        return title.contains(input);
+    }
+
     @Override
     public String toString() {
         String newString = String.format("[%s] %s", isDone ? "X" : " ", title);
