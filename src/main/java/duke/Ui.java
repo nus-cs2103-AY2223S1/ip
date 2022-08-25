@@ -286,7 +286,8 @@ public class Ui {
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
                 "Delete : deletes a task :-> delete <task number>\n" +
                 "Help : brings up this display :-> help\n" +
-                "Bye : closes duke.Duke :-> bye \n\n" +
+                "Bye : closes duke.Duke :-> bye\n" +
+                "Find: finds task based on description :-> find <search string>\n\n" +
                 "Please enter one of the above to continue.");
         System.out.println(divider);
     }
@@ -311,8 +312,45 @@ public class Ui {
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
                 "Delete : deletes a task :-> delete <task number>\n" +
                 "Help : brings up this display :-> help\n" +
-                "Bye : closes duke.Duke :-> bye\n\n" +
+                "Bye : closes duke.Duke :-> bye\n" +
+                "Find: finds task based on description :-> find <search string>\n\n" +
                 "Please enter one of the above to continue.");
         System.out.println(divider);
+    }
+
+    /**
+     * Handles the find keyword user input.
+     *
+     * @param search The string to search for.
+     */
+    public void find(String search){
+        int counter = 0;
+        System.out.println(divider);
+        System.out.println("Here are the matching tasks in your list :");
+        for(int i =0; i<storage.taskList.arrayList.size(); i++) {
+            if(storage.taskList.arrayList.get(i).getDescription().contains(search)){
+                System.out.println((i + 1) + ". " + storage.taskList.arrayList.get(i).toString());
+                counter++;
+            }
+        }
+        if(counter==0){
+            System.out.println("No tasks on the list match the search criteria.");
+        }
+        System.out.println(divider);
+    }
+
+    /**
+     * Handles erroneous find keyword usage.
+     */
+    public void findError() {
+        System.out.println("Please provide a space between your search " +
+                "and the find keyword. Format : find <search keyword>");
+    }
+
+    /**
+     * Handles missing search keywords.
+     */
+    public void noSearchError() {
+        System.out.println("Please provide keywords to search the list with.");
     }
 }
