@@ -20,7 +20,7 @@ public class Storage {
                 dataFile.createNewFile();
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DukeException("Unable to create data file!");
         }
     }
 

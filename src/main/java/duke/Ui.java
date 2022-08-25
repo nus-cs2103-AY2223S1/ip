@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.Task;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -21,9 +23,30 @@ public class Ui {
     public static void showWelcome() {
         System.out.println(WELCOME_GREET + LINE);
     }
+
     public static void showLine() {
         System.out.println(LINE);
     }
+
+    public static void showError(String error) {
+        System.out.println(error);
+    }
+
+    public static void printTaskList(TaskList taskList) {
+        String header = "";
+        if (taskList.isEmpty()) {
+            header = "You have no tasks in your list.";
+        } else {
+            header = "My List Of Tasks :D";
+        }
+        System.out.println(header + "\n" + taskList);
+    }
+
+    public static void printTaskCreationMessage(Task newTask,int noOfTasks) {
+        System.out.println("Got it. I've added this task:\n "
+                + newTask + "\nNow you have " + noOfTasks + " tasks in the list.");
+    }
+
     public void exit() {
         this.scanner.close();
         System.out.println(EXIT_GREET + LINE);
@@ -31,8 +54,5 @@ public class Ui {
 
     public String readUserInput() {
         return scanner.nextLine();
-    }
-    public void showError(String error) {
-        System.out.println(error);
     }
 }

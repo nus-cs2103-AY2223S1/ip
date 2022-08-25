@@ -48,14 +48,6 @@ public class TaskList {
         }
     }
 
-    public void printList() {
-        System.out.println("My List Of Tasks :D");
-        for (int i = 0; i < tasks.size(); i++) {
-            int index = i + 1;
-            System.out.println(index + ". " + tasks.get(i).toString());
-        }
-    }
-
     public void editTaskList(String taskType, String taskDescription, String date) {
         Task newTask = null;
         switch (taskType) {
@@ -70,9 +62,7 @@ public class TaskList {
             break;
         }
         tasks.add(newTask);
-        System.out.println("Got it. I've added this task:\n "
-                + newTask.toString()
-                + "\nNow you have " + tasks.size() + " tasks in the list.");
+        Ui.printTaskCreationMessage(newTask, tasks.size());
     }
 
     public void editTaskList(String cmd, int index) {
@@ -101,5 +91,19 @@ public class TaskList {
             csv += tasks.get(i).toCsv();
         }
         return csv;
+    }
+
+    public boolean isEmpty() {
+        return tasks.isEmpty();
+    }
+
+    @Override
+    public String toString() {
+        String str = "";
+        for (int i = 0; i < tasks.size(); i++) {
+            int index = i + 1;
+            str += index + ". " + tasks.get(i).toString() + "\n";
+        }
+        return str;
     }
 }

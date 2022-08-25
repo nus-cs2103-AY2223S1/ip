@@ -16,7 +16,6 @@ public class Event extends Task{
         } catch (DateTimeParseException e) {
             throw new DukeException("Date/Time format is wrong.");
         }
-
     }
 
     @Override
