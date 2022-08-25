@@ -2,6 +2,12 @@ import java.io.*;
 import java.util.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+<<<<<<< HEAD
+=======
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+>>>>>>> branch-Level-8
 
 class SkeletonDuke {
     private List<Task> list;
@@ -51,14 +57,16 @@ class SkeletonDuke {
                     list.add(pastTask);
                     this.noOfTasks++;
                 } else if (typeOfTask.equals("D")) {
-                    Task pastTask = new Deadline(taskDescription);
+                    String dateOfTask = strarr[4];
+                    Task pastTask = new Deadline(taskDescription, dateOfTask);
                     if (statusOfTask.equals("X")) {
                         pastTask.markAsDone();
                     }
                     list.add(pastTask);
                     this.noOfTasks++;
                 } else if (typeOfTask.equals("E")) {
-                    Task pastTask = new Event(taskDescription);
+                    String dateOfTask = strarr[4];
+                    Task pastTask = new Event(taskDescription, dateOfTask);
                     if (statusOfTask.equals("X")) {
                         pastTask.markAsDone();
                     }
@@ -86,14 +94,14 @@ class SkeletonDuke {
         Task newTask = new Task(s);
         try {
             if (typeOfTask.equals("todo")) {
-                description = this.processDescription(strarr);
-                newTask = new ToDo(description);
+                String[] descriptionList1 = this.processDescription(strarr);
+                newTask = new ToDo(descriptionList1[0]);
             } else if (typeOfTask.equals("deadline")) {
-                description = this.processDescription(strarr);
-                newTask = new Deadline(description);
+                String[] descriptionList2 = this.processDescription(strarr);
+                newTask = new Deadline(descriptionList2[0],descriptionList2[1]);
             } else if (typeOfTask.equals("event")) {
-                description = this.processDescription(strarr);
-                newTask = new Event(description);
+                String[] descriptionList3 = this.processDescription(strarr);
+                newTask = new Event(descriptionList3[0],descriptionList3[1]);
             }
             list.add(newTask);
             this.noOfTasks++;
@@ -137,13 +145,22 @@ class SkeletonDuke {
         System.out.println(taskToBeModify.toString());
     }
 
-    String processDescription(String[] strarr) throws TaskWithNoDescriptionException {
+    String[] processDescription(String[] strarr) throws TaskWithNoDescriptionException {
         if(strarr.length > 1) {
             String description = strarr[1];
+            String date = "";
+            String[] strarr1 = new String[2];
             for (int i = 2; i < strarr.length; i++) {
-                description = description + " " + strarr[i];
+                if (strarr[i].equals("/by") || strarr[i].equals("/at")) {
+                    date = strarr[i + 1];
+                    break;
+                } else {
+                    description = description + " " + strarr[i];
+                }
             }
-            return description;
+            strarr1[0] = description;
+            strarr1[1] = date;
+            return strarr1;
         } else {
             throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a " + strarr[0] + " cannot be empty.");
         }
