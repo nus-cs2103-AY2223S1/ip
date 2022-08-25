@@ -70,6 +70,16 @@ public class DukeOperations {
      * */
      public void randomword(String word) throws DukeException{
          throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+     }
+
+     public void findWord(String word, ArrayList<Task> array, int counter) {
+         int j = 0;
+         for (int i = 0; i < counter; i++) {
+             if (array.get(i) != null && array.get(i).toString().contains(word)) {
+                 j++;
+                 System.out.println(j + ". " + array.get(i).toString());
+             }
+         }
 
      }
 
