@@ -1,7 +1,6 @@
 package jenny.tasks;
 
 import jenny.exceptions.JennyException;
-import jenny.exceptions.TaskException;
 
 /**
  * A TodoTask to complete.

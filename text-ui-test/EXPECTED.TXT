@@ -1,7 +1,4 @@
 	____________________________________________________________
-	TaskStorage: Existing storage location found!
-	____________________________________________________________
-	____________________________________________________________
 	Hello! I'm JennyBot
 	What can I do for you?
 	____________________________________________________________
@@ -11,12 +8,10 @@
 	Now you have 1 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	JennyBot: Tried to parse [June 6th] as a date.
-	Failed Reason: Date is not in yyyy-MM-dd format.
+	Date is not in yyyy-MM-dd format.
 	____________________________________________________________
 	____________________________________________________________
-	JennyBot: Tried to parse [Aug 6th 2-4pm] as a date.
-	Failed Reason: Date is not in yyyy-MM-dd format.
+	Date is not in yyyy-MM-dd format.
 	____________________________________________________________
 	____________________________________________________________
 	Got it. I've added this task:
@@ -29,92 +24,82 @@
 	Now you have 3 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	JennyBot: Tried to parse [Sunday] as a date.
-	Failed Reason: Date is not in yyyy-MM-dd format.
+	Date is not in yyyy-MM-dd format.
 	____________________________________________________________
 	____________________________________________________________
-	JennyBot: Tried to parse [Mon 2-4pm] as a date.
-	Failed Reason: Date is not in yyyy-MM-dd format.
+	Date is not in yyyy-MM-dd format.
 	____________________________________________________________
 	____________________________________________________________
-	JennyBot: Tried to parse [no idea :-p] as a date.
-	Failed Reason: Date is not in yyyy-MM-dd format.
+	Date is not in yyyy-MM-dd format.
 	____________________________________________________________
 	____________________________________________________________
-	1.[T][ ] read book
-	2.[T][ ] join sports club
-	3.[T][ ] borrow book
+	[[T][ ] read book, [T][ ] join sports club, [T][ ] borrow book]
+	____________________________________________________________
+	____________________________________________________________
+	Nice! I've marked this task as done:
+	  [T][X] borrow book
+	____________________________________________________________
+	____________________________________________________________
+	No such record exists in your list.
+	____________________________________________________________
+	____________________________________________________________
+	[[T][ ] read book, [T][ ] join sports club, [T][X] borrow book]
+	____________________________________________________________
+	____________________________________________________________
+	The description of this task cannot be empty.
+	____________________________________________________________
+	____________________________________________________________
+	I'm sorry, but I don't know what that means.
+	____________________________________________________________
+	____________________________________________________________
+	No such record exists in your list.
+	____________________________________________________________
+	____________________________________________________________
+	[[T][ ] read book, [T][ ] join sports club, [T][X] borrow book]
+	____________________________________________________________
+	____________________________________________________________
+	[[T][ ] read book, [T][ ] join sports club, [T][X] borrow book]
+	____________________________________________________________
+	____________________________________________________________
+	You have entered a invalid number for mark <number>.
 	____________________________________________________________
 	____________________________________________________________
 	Nice! I've marked this task as done:
 	  [T][X] read book
 	____________________________________________________________
 	____________________________________________________________
-	JennyBot: No such record exists in your list.
+	You have entered a invalid number for unmark <number>.
 	____________________________________________________________
 	____________________________________________________________
-	1.[T][X] read book
-	2.[T][ ] join sports club
-	3.[T][ ] borrow book
+	OK, I've marked this task as not done yet:
+	  [T][ ] read book
 	____________________________________________________________
 	____________________________________________________________
-	TodoTask: The description of this task cannot be empty.
+	You have entered an invalid format for deadline <description> /by <dueDate>.
 	____________________________________________________________
 	____________________________________________________________
-	JennyBot: I'm sorry, but I don't know what that means.
+	You have entered an invalid format for deadline <description> /by <dueDate>.
 	____________________________________________________________
 	____________________________________________________________
-	Got it. I've added this task:
-	  [T][ ] borrow book
+	You have entered an invalid format for deadline <description> /by <dueDate>.
+	____________________________________________________________
+	____________________________________________________________
+	You have entered an invalid format for deadline <description> /by <dueDate>.
+	____________________________________________________________
+	____________________________________________________________
+	You have entered an invalid format for deadline <description> /at <dueDate>.
+	____________________________________________________________
+	____________________________________________________________
+	You have entered an invalid format for deadline <description> /at <dueDate>.
+	____________________________________________________________
+	____________________________________________________________
+	You have entered an invalid format for deadline <description> /at <dueDate>.
+	____________________________________________________________
+	____________________________________________________________
+	Got it. I've deleted this task:
+	  [T][ ] read book
 	Now you have 2 tasks in the list.
 	____________________________________________________________
 	____________________________________________________________
-	1.[T][X] read book
-	2.[T][ ] join sports club
-	____________________________________________________________
-	____________________________________________________________
-	1.[T][X] read book
-	2.[T][ ] join sports club
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered a invalid number for mark <number>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: No such record exists in your list.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered a invalid number for unmark <number>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: No such record exists in your list.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered an invalid format for deadline <description> /by <due date>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered an invalid format for deadline <description> /by <due date>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered an invalid format for deadline <description> /by <due date>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered an invalid format for deadline <description> /by <due date>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered an invalid format for event <description> /by <due date>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered an invalid format for event <description> /by <due date>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: You have entered an invalid format for event <description> /by <due date>.
-	____________________________________________________________
-	____________________________________________________________
-	JennyBot: No such record exists in your list.
-	____________________________________________________________
-	____________________________________________________________
-	TaskStorage: List saved successfully.
-	____________________________________________________________
-	____________________________________________________________
-	Bye. Hope to see you again soon!
+	Existing storage location found!
 	____________________________________________________________

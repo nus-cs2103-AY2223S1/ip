@@ -1,7 +1,5 @@
 package jenny.util;
 
-import jenny.tasks.AbstractTask;
-
 import java.io.PrintStream;
 import java.util.ArrayList;
 

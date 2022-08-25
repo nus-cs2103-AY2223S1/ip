@@ -1,7 +1,5 @@
 package jenny.exceptions;
 
-import jenny.util.Printer;
-
 /**
  * Represents runtime exceptions thrown in the JennyBot application
  * CS2103 Week 3

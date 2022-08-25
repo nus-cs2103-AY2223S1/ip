@@ -17,7 +17,7 @@ import java.util.ArrayList;
  * @author Deon
  */
 public final class JennyBot {
-    private static ArrayList<AbstractTask> tasks = new ArrayList<>();
+    private static final ArrayList<AbstractTask> tasks = new ArrayList<>();
 
     public void run() {
         UserInterface.greet();
