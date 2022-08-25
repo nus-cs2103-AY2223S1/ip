@@ -40,7 +40,7 @@ public abstract class Task {
     }
 
     //a method to mark a task not done
-    public void markNotDone() throws DokeException{
+    public void markNotDone() throws DokeException {
         if (!isDone) {
             throw new DokeException();
         }

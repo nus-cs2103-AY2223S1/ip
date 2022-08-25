@@ -12,7 +12,7 @@ public class TaskList {
     public TaskList(Ui ui, Storage storage) {
 
         try {
-            Scanner s = new Scanner(Storage.dokeFile);
+            Scanner s = new Scanner(Storage.DOKE_FILE);
             while (s.hasNext()) {
                 String line = s.nextLine();
                 String specialString = " [|] ";
@@ -38,13 +38,14 @@ public class TaskList {
                         addTask.markNotDone();
                     }
                 } catch (DokeException e) {
+                    ui.printOut("Sorry, something went wrong");
                 }
             }
         } catch (FileNotFoundException e) {
             try {
-                storage.dokeFile.createNewFile();
-                ui.printOut("a new Doke.txt file has been created" +
-                        "it is in the path mentioned above");
+                storage.DOKE_FILE.createNewFile();
+                ui.printOut("a new Doke.txt file has been created"
+                        + "it is in the path mentioned above");
             } catch (IOException a) {
                 ui.printOut("An error occurred. Try again at another time.");
             }
@@ -54,13 +55,13 @@ public class TaskList {
     public void listOut(Ui ui) {
         String message;
         if (this.taskList.isEmpty()) {
-            message = "_________________________ \n" + "You have no task! \n" +
-            "_________________________";
-             ui.printOut(message);
-             return;
+            message = "_________________________ \n" + "You have no task! \n"
+                    + "________________________";
+            ui.printOut(message);
+            return;
         }
         int len = this.taskList.size();
-        int i=0;
+        int i = 0;
         message = "_________________________ \n";
         while (i < len) {
             message += (i + 1) + "." + this.taskList.get(i).toString() + "\n";
@@ -79,11 +80,11 @@ public class TaskList {
     }
 
     public Task get(int i) {
-        return taskList.get(i-1);
+        return taskList.get(i - 1);
     }
 
     public ArrayList<Task> getList() {
-        ArrayList<Task> temp =  this.taskList;
+        ArrayList<Task> temp = this.taskList;
         return temp;
     }
 

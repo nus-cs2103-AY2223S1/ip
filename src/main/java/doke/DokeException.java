@@ -1,7 +1,7 @@
 package doke;
 
-public class DokeException extends RuntimeException{
-    String text = null;
+public class DokeException extends RuntimeException {
+    private String text = null;
 
     public DokeException(String text) {
         this.text = text;

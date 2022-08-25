@@ -1,10 +1,12 @@
 package doke;
 
-import java.util.*;
+//import java.util.*;
+
+import java.util.Scanner;
 
 public class Doke {
 
-    public static final String dokeFilePath = "src/main/java/data/doke.txt";
+    protected static final String DOKE_FILE_PATH = "src/main/java/data/doke.txt";
 
     public static void main(String[] args) {
 
@@ -14,7 +16,7 @@ public class Doke {
         Parser parser = new Parser();
         TaskList taskList;
 
-        ui.printOut("full path: " + Storage.dokeFile.getAbsolutePath());
+        ui.printOut("full path: " + Storage.DOKE_FILE.getAbsolutePath());
 
         ui.printOut("hello");
 
