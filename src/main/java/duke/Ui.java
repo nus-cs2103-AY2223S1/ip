@@ -17,7 +17,7 @@ public class Ui {
     public void initialize() {
         System.out.println("Hello from\n" + logo);
 
-        printText("Hello I'm duke.Duke\nWhat can I do for you");
+        printText("Hello I'm Duke\nWhat can I do for you");
     }
 
     public void exit() {
