@@ -66,7 +66,7 @@ public class TaskList extends ArrayList<Task> {
         return this.get(index);
     }
 
-    private void retrieve() throws IOException {
+    public void retrieve() throws IOException {
         //initialize scanner with task history file
         Scanner retriever;
         try {
