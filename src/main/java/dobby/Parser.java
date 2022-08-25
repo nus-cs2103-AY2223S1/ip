@@ -14,6 +14,7 @@ public class Parser {
         int endIndex = rest.indexOf("/") - 1;
         return rest.substring(0, endIndex);
     }
+
     public static String getDate(String rest) {
         String dateFormatted = "";
         try {
@@ -29,9 +30,11 @@ public class Parser {
         }
         return "wrongDateFormat";
     }
+
     public static String getCmd(String task) {
         return task.split(" ")[0];
     }
+
     public static String getRest(String task) {
         int firstSpace = task.indexOf(" ");
         String rest = task.substring(firstSpace + 1);
@@ -43,19 +46,23 @@ public class Parser {
         boolean isDone = input.charAt(5) == 'X';
         return isDone;
     }
+
     public static String getTaskTypeTxt(String input) {
         String task = Character.toString(input.charAt(0));
         return task;
     }
+
     public static String getRestTxt(String input) {
         String rest = input.substring(10);
         return rest;
     }
+
     public static String getDescTxt(String rest) {
         int endIndex = rest.indexOf("|") - 1;
         String desc = rest.substring(0, endIndex);
         return desc;
     }
+
     public static String getDateTxt(String rest) {
         int startIndex = rest.indexOf("|") + 2;
         String date = rest.substring(startIndex);
@@ -74,8 +81,8 @@ public class Parser {
 
     //method to create new Command object
     public static Command parse(String cmd) {
-        switch(cmd) {
-        case "bye" :
+        switch (cmd) {
+        case "bye":
         case "quit":
             return new ByeCommand();
         case "list":
