@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+package duke;
+
+import duke.task.Task;
+import duke.task.TaskList;
+
 import java.util.stream.IntStream;
 
 class Duke {
@@ -18,7 +22,6 @@ class Duke {
     }
     parser = new Parser(taskList, ui);
   }
-
 
   public void run() {
     ui.greet();

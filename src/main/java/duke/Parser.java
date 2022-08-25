@@ -1,4 +1,11 @@
-import java.util.ArrayList;
+package duke;
+
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
+import duke.task.Deadline;
+import duke.task.Event;
+
 import java.util.stream.IntStream;
 
 public class Parser {

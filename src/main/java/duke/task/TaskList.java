@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -7,23 +9,23 @@ public class TaskList {
         taskList = new ArrayList<>();
     }
 
-    protected void add(Task task) {
+    public void add(Task task) {
         taskList.add(task);
     }
 
-    protected Task get(int index) {
+    public Task get(int index) {
         return taskList.get(index);
     }
 
-    protected void remove(int index) {
+    public void remove(int index) {
         taskList.remove(index);
     }
 
-    protected boolean isEmpty() {
+    public boolean isEmpty() {
         return taskList.isEmpty();
     }
 
-    protected int size() {
+    public int size() {
         return taskList.size();
     }
 }

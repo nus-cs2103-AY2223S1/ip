@@ -1,3 +1,11 @@
+package duke;
+
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Storage {
-  private static final String FILEPATH = "./data/duke.txt";
   private static final String SEPARATOR = ",";
 
   private File file;
@@ -32,7 +39,7 @@ public class Storage {
     }
   }
 
-  public void saveFile(ArrayList<Task> tasks) throws DukeException {
+  public void saveFile(TaskList taskList) throws DukeException {
     createFile();
     PrintWriter writer;
     try {
@@ -42,7 +49,8 @@ public class Storage {
     } catch (Exception e) {
       throw new DukeException("Exception. Don't know the specific type");
     }
-    for (Task task : tasks) {
+    for (int i = 0; i < taskList.size(); ++i) {
+      Task task = taskList.get(i);
       String[] data = task.getPrintRepresentation();
       writer.println(Arrays.stream(data).reduce("", (x, y) -> x + SEPARATOR + y).substring(1));
     }

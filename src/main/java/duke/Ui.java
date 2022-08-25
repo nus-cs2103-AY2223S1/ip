@@ -1,8 +1,11 @@
+package duke;
+
+import duke.task.TaskList;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 /**
  * UI of the application
