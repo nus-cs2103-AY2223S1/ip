@@ -108,6 +108,7 @@ public class Storage {
                 }
             }
             return tasks;
+
         } catch (IOException e) {
             throw new DukeException("OOPS!! Failed to read file.");
         }

@@ -1,6 +1,7 @@
 package duke.command;
 
 import duke.Ui;
+import duke.exception.DukeException;
 import duke.processor.TaskList;
 
 /**
@@ -15,7 +16,7 @@ public class ByeCommand extends Command {
      * @param tasks The list of tasks that the user has inputted.
      */
     @Override
-    public void execute(TaskList tasks) {
+    public void execute(TaskList tasks) throws DukeException {
         Ui ui = new Ui();
         ui.exit();
     }

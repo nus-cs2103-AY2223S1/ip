@@ -137,6 +137,7 @@ public class Parser {
             } catch (Exception e) {
                 throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
             }
+
         default:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
