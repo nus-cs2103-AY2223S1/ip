@@ -7,12 +7,25 @@ import duke.exceptions.DukeArrayOutOfBoundException;
 import duke.exceptions.DukeEmptyCommandException;
 import duke.exceptions.DukeException;
 
+/**
+ * Represents a <code>Command</code> to delete <code>Task</code>
+ */
 public class DeleteCommand extends Command {
 
+    /**
+     * Constructs a <code>DeleteCommand</code>.
+     *
+     * @param description description of command.
+     */
     public DeleteCommand(String description) {
         super(description);
     }
 
+    /**
+     * Deletes a task base on command.
+     *
+     * @param storage Storage object that communicate with local storage.
+     */
     public void execute(Storage storage) {
 
         try {

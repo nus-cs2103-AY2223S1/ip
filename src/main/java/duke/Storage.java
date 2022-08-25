@@ -7,14 +7,26 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Represents a <code>Storage</code> class that read and save.
+ * into local storage.
+ */
 public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructs a <code>Storage</code> object.
+     *
+     * @param filePath path of file for task to be read and saved into.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Save session tasks into a .txt file.
+     */
     public void save() {
         String filePath = "data/tasks.txt";
         try {
@@ -31,6 +43,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Generate tasks from previous session.
+     *
+     * @throws IOException
+     */
     public void load() throws IOException {
         String directoryPath = "data";
         String filePath =  "data/tasks.txt";

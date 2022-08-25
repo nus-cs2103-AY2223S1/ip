@@ -4,10 +4,18 @@ import duke.commands.Command;
 
 import java.io.IOException;
 
+/**
+ * Chatbot that read user input to modify a tasklist
+ */
 public class Duke {
 
     private Storage storage;
 
+    /**
+     * Construct a <code>Duke</code> instance that acts on file.
+     *
+     * @param filePath path of file.
+     */
     public Duke(String filePath) {
         storage = new Storage(filePath);
         try {
@@ -18,6 +26,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Run <code>Duke</code> to start taking input
+     */
     public void run() {
         Ui.printWelcome();
 

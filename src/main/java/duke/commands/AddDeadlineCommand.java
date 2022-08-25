@@ -11,12 +11,25 @@ import duke.exceptions.DukeInvalidDescriptionException;
 
 import java.time.DateTimeException;
 
+/**
+ * Represents a <code>Command</code> to add <code>Deadline</code>.
+ */
 public class AddDeadlineCommand extends Command {
 
+    /**
+     * Constructs a <code>AddDeadline</code> command.
+     *
+     * @param description description of command.
+     */
     public AddDeadlineCommand(String description) {
         super(description);
     }
 
+    /**
+     * Add new deadline based on input to TaskList.
+     *
+     * @param storage Storage object that communicate with local storage.
+     */
     public void execute(Storage storage) {
 
         try {

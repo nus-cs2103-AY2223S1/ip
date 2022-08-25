@@ -1,6 +1,5 @@
 package duke;
 
-
 import duke.commands.AddDeadlineCommand;
 import duke.commands.AddEventCommand;
 import duke.commands.AddToDoCommand;
@@ -10,11 +9,21 @@ import duke.commands.ExitCommand;
 import duke.commands.MarkCommand;
 import duke.commands.ReadCommand;
 import duke.commands.UnMarkCommand;
-import duke.exceptions.DukeEmptyCommandException;
 import duke.exceptions.DukeUnknownCommandException;
 
+
+/**
+ * Represents a <code>Parser</code> that parse input into command to
+ * be executed.
+ */
 public class Parser {
 
+    /**
+     * Parse input to return command for to be executed.
+     *
+     * @param fullCommand input taken from Ui.
+     * @return command to be executed.
+     */
     public static Command parse(String fullCommand)  {
         try {
             if (fullCommand.equals("bye")) {
