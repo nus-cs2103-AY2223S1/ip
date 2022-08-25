@@ -8,7 +8,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (this.isDone ? "[X]" : "[ ]");
+        return (this.isDone ? "X" : "O");
     }
 
     public String getDescription() {
@@ -30,6 +30,6 @@ public class Task {
     }
 
     public String toString() {
-        return (this.getStatusIcon() + " " + this.description);
+        return (this.getStatusIcon() + " | " + this.description);
     }
 }

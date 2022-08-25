@@ -12,6 +12,13 @@ public class Deadline extends Task {
         this.by = by;
         dateTimeConverter(by);
     }
+
+    public Deadline(String description, LocalDate byDate, LocalTime byTime) {
+        super(description);
+        this.byDate = byDate;
+        this.byTime = byTime;
+    }
+
     private void dateTimeConverter(String by) {
         if (by.length() > 10) {
             int spacePos = by.indexOf(" ");
@@ -24,14 +31,15 @@ public class Deadline extends Task {
         }
     }
 
+
+
     @Override
     public String toString() {
-        return ("[D]"
+        return ("D | "
                 + super.toString()
-                + " (by: "
+                + " | "
                 + this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
-                + " "
-                + this.byTime.toString()
-                + ")");
+                + " | "
+                + this.byTime.toString());
     }
 }

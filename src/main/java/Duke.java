@@ -8,7 +8,22 @@ public class Duke {
     static String workingDir = System.getProperty("user.dir");
     static Path pathToDuke = Paths.get(workingDir, "data", "duke.txt");
 
-    public static void fileRead() {
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
+
+    /*public static void fileRead() {
         boolean directoryExists = Files.exists(pathToDuke);
         if (directoryExists) {
             try {
@@ -31,17 +46,9 @@ public class Duke {
             }
         } else {
             try {
-                Path path = Paths.get(workingDir, "data");
-                Files.createDirectories(path);
-            } catch (IOException e) {
-                System.err.println(e.getMessage());
-            }
-
-            try {
                 File duke = new File(String.valueOf(pathToDuke));
-                if (duke.createNewFile()) {
-                    //System.out.println("New file duke created");
-                }
+                duke.getParentFile().mkdirs();
+                FileWriter writer = new FileWriter(duke);
             } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
@@ -64,8 +71,6 @@ public class Duke {
 
     public static void responseRepeater() {
         String response = input.nextLine();
-
-        //FileWriter fw = new FileWriter(String.valueOf(path));
 
         ArrayList<Task> taskStore = new ArrayList<>();
 
@@ -94,7 +99,6 @@ public class Duke {
                     Task newTodo = new Todo(response.substring(5));
                     taskStore.add(newTodo);
                     saveTask(newTodo.toString());
-                    //counter += 1;
                     System.out.println("     Ok! I have added this Todo task:\n"
                             + "       " + newTodo.toString() + "\n"
                             + "     You now have a total of " + taskStore.size() + " tasks!");
@@ -109,7 +113,6 @@ public class Duke {
                             response.substring(separatorPosition + 4));
                     taskStore.add(newEvent);
                     saveTask(newEvent.toString());
-                    //counter += 1;
                     System.out.println("     Ok! I have added this Event task:\n"
                             + "       " + newEvent.toString() + "\n"
                             + "     You now have a total of " + taskStore.size() + " tasks!");
@@ -124,7 +127,6 @@ public class Duke {
                             response.substring(separatorPosition + 4));
                     taskStore.add(newDeadline);
                     saveTask(newDeadline.toString());
-                    //counter += 1;
                     System.out.println("     Ok! I have added this Deadline task:\n"
                             + "       " + newDeadline.toString() + "\n"
                             + "     You now have a total of " + taskStore.size() + " tasks!");
@@ -151,11 +153,26 @@ public class Duke {
         String greetings = "Good day to you! I'm Jake!\n"
                     + "I will help you to keep track of your tasks!\n"
                     + "The following are your saved tasks:";
-        /*String home = System.getProperty("user.dir");
-        System.out.println(home);*/
-        //fileRead();
         System.out.println(greetings);
         fileRead();
         responseRepeater();
+    }*/
+
+    public void run() {
+        Parser parser = new Parser();
+        this.ui.start();
+        for (Task t : this.tasks.getTasks()) {
+            System.out.println("     " + t.toString());
+        }
+        while (!(ui.getResponse().equals("bye"))) {
+            ui.askForInput();
+            parser.parse(ui.getResponse(), this.tasks);
+        }
+        storage.save(tasks);
+        System.out.println("     Sad to see you go! Visit me again soon!");
+    }
+
+    public static void main(String[] args) {
+        new Duke(String.valueOf(pathToDuke)).run();
     }
 }
