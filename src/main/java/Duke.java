@@ -1,6 +1,9 @@
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Duke {
     private ArrayList<Task> list;
@@ -17,7 +20,6 @@ public class Duke {
         duke.greet();
         while (true) {
             String input = sc.nextLine();
-
             if (input.equals("list")) {
                 duke.listTask();
             } else if (input.startsWith("mark")) {
@@ -57,10 +59,31 @@ public class Duke {
             } else if (input.equals("bye")) {
                 duke.bye();
                 break;
+            } else {
+                duke.search(input);
             }
 
         }
+        try {
+            duke.write();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         sc.close();
+    }
+
+    private void write() throws IOException{
+        File file = new File("/Users/yiye/Desktop/cs2103Projects/ip/duke.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileWriter fileWriter = new FileWriter(file.getAbsoluteFile());
+        PrintWriter printWriter = new PrintWriter(fileWriter);
+        for (Task task: list) {
+            printWriter.println(task);
+        };
+        printWriter.close();
+
     }
 
     private void greet() {
@@ -108,8 +131,10 @@ public class Duke {
 
     private void deadline(String input) {
         System.out.println("Got it, this task is added in your list:");
-        String by = input.substring(input.indexOf("/") + 4);
-        Task dl = new Deadline(input.substring(9, input.indexOf("/") - 1), by);
+        String[] parts = input.split(" ");
+        String date = parts[parts.length-2];
+        String time = parts[parts.length-1];
+        Task dl = new Deadline(input.substring(9, input.indexOf("/") - 1), date, time);
         list.add(dl);
         System.out.println(dl.toString());
         if (list.size()>1) {
@@ -121,8 +146,11 @@ public class Duke {
 
     private void event(String input) {
         System.out.println("Got it, this task is added in your list:");
-        String at = input.substring(input.indexOf("/") + 4);
-        Task event = new Event(input.substring(6, input.indexOf("/") - 1), at);
+        String[] parts = input.split(" ");
+        String at = parts[parts.length-3];
+        String date = parts[parts.length-2];
+        String time = parts[parts.length-1];
+        Task event = new Event(input.substring(6, input.indexOf("/") - 1), at, date, time);
         list.add(event);
         System.out.println(event.toString());
         if (list.size()>1) {
@@ -145,6 +173,23 @@ public class Duke {
         }
     }
 
+    private void search(String input) {
+        ArrayList<Task> matched = new ArrayList<>();
+        for(Task t: list) {
+            String str = t.toString();
+            if(str.contains(input)) {
+                matched.add(t);
+            }
+        }
+        if (matched.isEmpty()) {
+            System.out.println("No tasks on this date, check you format! --> MMM(eg. Apr) dd yyy");
+        } else {
+            System.out.println("Here are the matching tasks:");
+            for (int i = 0; i < matched.size(); i++) {
+                System.out.printf("%d.%s\n", i + 1, matched.get(i).toString());
+            }
+        }
 
+    }
 
 }
