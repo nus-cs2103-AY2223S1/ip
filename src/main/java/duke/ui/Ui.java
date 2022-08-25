@@ -39,7 +39,6 @@ public class Ui {
 
     public static void list(TaskList taskList) {
         System.out.println(taskList);
-        System.out.println("\tYou now have " + Task.getNumOfTasks() + " tasks in the list!");
     }
 
     public static void delete(Task task) {

@@ -87,16 +87,5 @@ public class Storage {
             }
         }
 
-//        FileWriter fw = new FileWriter(filePath, true);
-//        if (taskType.equals(TODO)) {
-//            fw.write("T | 0 | " + userInput + "\n");
-//        } else if (taskType.equals(DEADLINE)) {
-//            String str = userInput.replace("/by", "|");
-//            fw.write("D | 0 | " + str + "\n");
-//        } else {
-//            String str = userInput.replace("/at", "|");
-//            fw.write("E | 0 | " + str + "\n");
-//        }
-//        fw.close();
     }
 }
