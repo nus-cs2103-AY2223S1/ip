@@ -36,13 +36,16 @@ public class Duke {
         }
     }
 
-    /** Runs the program until termination.  */
+    /** Runs the program until termination. */
     public static void main(String[] args) {
 
         new Duke("Duke/Duke.txt").run();
     }
 
-     /** Reads the user command and executes it, until the user issues the exit command.  */
+    /**
+     * Reads the user command and executes it, until the user issues the exit
+     * command.
+     */
     public void run() {
         ui.showWelcomeMessage();
         boolean isExit = false;
