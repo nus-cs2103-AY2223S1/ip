@@ -1,5 +1,7 @@
 package tasks;
 
+import util.ParsedData;
+
 public class Todo extends Task {
 
     public Todo(ParsedData parsedData) {

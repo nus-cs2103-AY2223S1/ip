@@ -1,5 +1,7 @@
 package tasks;
 
+import util.ParsedData;
+
 public abstract class Task {
     protected String description;
     protected Boolean isDone;

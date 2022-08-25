@@ -23,7 +23,7 @@ public class ParsedData {
             this.timeText = time.toString().replaceAll("-", "/").
                     replace('T', ' ');
         } catch (DateTimeParseException e) {
-            System.out.println("You could enter the time in this format: dd/MM/yyyy HH:mm");
+            //System.out.println("You could enter the time in this format: dd/MM/yyyy HH:mm");
             this.timeText = time;
         }
 
