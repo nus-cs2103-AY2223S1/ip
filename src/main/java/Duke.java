@@ -1,5 +1,3 @@
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.nio.file.Paths;
 
 public class Duke {

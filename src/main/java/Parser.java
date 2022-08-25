@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Parser {
     private static final String LINE = "\n----------------------------------------------------------------\n";
 
