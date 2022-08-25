@@ -24,10 +24,8 @@ public class Chacha {
                 System.out.println("OK, I've marked this task as not done yet:\n" + task.toString());
 
             } else if (s.contains("mark")) {
-                System.out.println(s.substring(0, 3));
                 String[] split = s.split("\\s+");
                 Task task = taskList.get(Integer.valueOf(split[1]) - 1);
-                System.out.println("here");
                 task.markAsDone();
                 System.out.println("Nice! I've marked this task as done:\n" + task.toString());
 
@@ -38,6 +36,7 @@ public class Chacha {
                 description = description.substring(s.indexOf("deadline ") + 9);
                 description.trim();
                 Deadline deadline = new Deadline(description, date);
+                
                 taskList.add(deadline);  
                 System.out.println("Got it. I've added this task:");
                 System.out.println(deadline.toString()); 
