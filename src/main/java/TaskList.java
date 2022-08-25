@@ -12,6 +12,9 @@ public class TaskList {
     }
 
     public void remove(int index) {
+        if (index > taskList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
         this.taskList.remove(index);
     }
 
@@ -20,16 +23,23 @@ public class TaskList {
     }
 
     public Task get(int index) {
+        if (index > taskList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
         return this.taskList.get(index);
     }
 
-    public void mark(int index) throws DukeException {
-        // To add out-of bounds checking
+    public void mark(int index) {
+        if (index > taskList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
         this.taskList.get(index).markDone();
     }
 
-    public void unmark(int index) throws DukeException {
-        // To add out-of bounds checking
+    public void unmark(int index) {
+        if (index > taskList.size()) {
+            throw new IndexOutOfBoundsException();
+        }
         this.taskList.get(index).markUndone();
     }
 

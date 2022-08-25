@@ -1,9 +1,19 @@
+import java.io.IOException;
+
 public class Dukebot {
     private TaskList taskList;
+    private Storage storage;
 
     private void handleStartup() {
         System.out.println(Messages.STARTUP);
-        this.taskList = new TaskList();
+        try {
+            this.storage = new Storage();
+            storage.createStorage();
+            this.taskList = storage.loadFromStorage();
+        } catch (IOException e) {
+            System.out.println(Messages.LOAD_ERROR);
+            this.taskList = new TaskList();
+        }
     }
 
     private void handleBye() {
@@ -66,7 +76,7 @@ public class Dukebot {
             throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "deadline"));
         }
         String temp = inputLessAction[1];
-        String[] tempStrArr = temp.split("/by\s+", 2);
+        String[] tempStrArr = temp.split("/by\\s+", 2);
         if (tempStrArr.length < 2) {;
             throw new DukeException(String.format(ExceptionMessages.INVALID_FORMAT, "/by"));
         }
@@ -89,7 +99,7 @@ public class Dukebot {
             throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "event"));
         }
         String temp = inputLessAction[1];
-        String[] tempStrArr = temp.split("/at\s+", 2);
+        String[] tempStrArr = temp.split("/at\\s+", 2);
         if (tempStrArr.length < 2) {
             throw new DukeException(String.format(ExceptionMessages.INVALID_FORMAT, "/at"));
         }
@@ -108,7 +118,7 @@ public class Dukebot {
     }
 
     protected void handleInput(String input) {
-        String[] inputLessAction = input.split("\s+", 2);
+        String[] inputLessAction = input.split("\\s+", 2);
 
         try {
             switch (inputLessAction[0]) {
@@ -119,27 +129,35 @@ public class Dukebot {
                 break;
             case "remove":
                 this.handleRemove(inputLessAction);
+                storage.writeToStorage(taskList);
                 break;
             case "mark":
                 this.handleMark(inputLessAction);
+                storage.writeToStorage(taskList);
                 break;
             case "unmark":
                 this.handleUnmark(inputLessAction);
+                storage.writeToStorage(taskList);
                 break;
             case "todo":
                 this.handleTodo(inputLessAction);
+                storage.writeToStorage(taskList);
                 break;
             case "deadline":
                 this.handleDeadline(inputLessAction);
+                storage.writeToStorage(taskList);
                 break;
             case "event":
                 this.handleEvent(inputLessAction);
+                storage.writeToStorage(taskList);
                 break;
             default:
                 throw new DukeException(ExceptionMessages.UNSUPPORTED_ACTION);
             }
         } catch (DukeException e) {
             System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Error writing to storage");
         }
 
     }
