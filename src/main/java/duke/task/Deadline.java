@@ -40,6 +40,6 @@ public class Deadline extends Task {
     @Override
     public String[] getAsStringArray() {
         String[] data = super.getAsStringArray();
-        return new String[]{ "duke.tasks.Deadline", data[1], data[2], datetime.toString() };
+        return new String[]{ "Deadline", data[1], data[2], datetime.toString() };
     }
 }

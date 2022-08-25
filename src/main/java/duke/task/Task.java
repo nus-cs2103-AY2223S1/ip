@@ -17,9 +17,16 @@ public class Task {
         this.done = done;
     }
 
+    /**
+     * Marks the task as done.
+     */
     public void markAsDone() {
         this.done = true;
     }
+
+    /**
+     * Marks the task as not done.
+     */
     public void markAsNotDone() {
         this.done = false;
     }
@@ -28,16 +35,20 @@ public class Task {
         return this.done ? MARKER_DONE : MARKER_NOT_DONE;
     }
 
+    /**
+     * Creates a string representation suitable for printing to screen.
+     * @return String representation of task.
+     */
     @Override
     public String toString() {
         return String.format("[%c] %s", getDoneMarker(), name);
     }
 
     /**
-     * Get a string array representation suitable for printing to files.
+     * Creates a string array representation suitable for printing to files.
      * @return String array representation.
      */
     public String[] getAsStringArray() {
-        return new String[]{ "duke.tasks.Task", name, String.valueOf(done) };
+        return new String[]{ "Task", name, String.valueOf(done) };
     }
 }

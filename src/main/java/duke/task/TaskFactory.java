@@ -11,7 +11,7 @@ public class TaskFactory {
     /**
      * Constructs the task.
      * @param taskData Data for the task.
-     * @return duke.tasks.Task according to taskData.
+     * @return Task according to taskData.
      * @throws IllegalArgumentException If taskData does not conform to the format.
      */
     public static Task constructTask(String[] taskData) throws IllegalArgumentException {
@@ -36,7 +36,7 @@ public class TaskFactory {
     /**
      * Constructs the task.
      * @param taskData Data for the task.
-     * @return Optional of duke.tasks.Task according to taskData, Optional.empty() if cannot construct.
+     * @return Optional of Task according to taskData, Optional.empty() if cannot construct.
      */
     public static Optional<Task> constructOptionalTask(String[] taskData) {
         try {
