@@ -11,4 +11,10 @@ public class Deadline extends Task{
         String color = (isDone ? ANSI_GREEN : ANSI_RED);
         return color + "[D]" + super.toString() + " (by: " + by + ")" + ANSI_RESET;
     }
+
+    @Override
+    public String toFile() {
+        int done = (isDone ? 1 : 0);
+        return String.format("D | %d | %s | %s", done, description, by);
+    }
 }

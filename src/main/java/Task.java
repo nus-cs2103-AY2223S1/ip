@@ -31,4 +31,6 @@ public abstract class Task {
         System.out.println("\tOK, I've marked this task as not done yet:");
         System.out.println("\t" + this.toString());
     }
+
+    public abstract String toFile();
 }
