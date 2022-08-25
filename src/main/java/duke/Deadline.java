@@ -5,6 +5,13 @@ import java.lang.NumberFormatException;
 
 public class Deadline extends Task {
     private LocalDate deadline;
+
+    /**
+     * Creates a Deadline object with the provided description and deadline.
+     * @param description A description of the task related to this deadline.
+     * @param deadline A date which represents the deadline for this task.
+     * @throws DukeException
+     */
     public Deadline(String description, String deadline) throws DukeException {
         super(description);
         String[] dateInfo = deadline.split("-");
@@ -18,6 +25,10 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Returns a String representation of this deadline, with details such as its description and date.
+     * @return A String representation of this Deadline.
+     */
     @Override
     public String toString() {
         return "  [D] [" + this.getStatusIcon() + "] " + this.description + " (by: " + this.deadline + ")";

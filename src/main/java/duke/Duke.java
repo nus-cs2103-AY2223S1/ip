@@ -8,6 +8,10 @@ public class Duke {
     private TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Creates a Duke object with the specified file path.
+     * @param filePath The file path of the Duke.txt file where the last saved task list will be retrieved from.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -19,6 +23,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs Duke, which starts the Duke chatbot.
+     */
     public void run() {
         this.ui.greet();
         Scanner scanner = new Scanner(System.in);
@@ -93,6 +100,10 @@ public class Duke {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
+    /**
+     * Saves the current task list in Duke.txt.
+     * @param tasks List of tasks to be saved.
+     */
     public void saveFile(TaskList tasks) {
         try {
             this.storage.save(tasks);

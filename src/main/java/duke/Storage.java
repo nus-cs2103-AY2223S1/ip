@@ -10,16 +10,30 @@ import java.io.FileNotFoundException;
 public class Storage {
     private final File file;
 
+    /**
+     * Creates a new Storage item with the specified file path.
+     * @param filePath The file path of the .txt file to be stored in Storage.
+     */
     public Storage(String filePath) {
         System.out.println("Retrieving files...");
         File file = new File(filePath);
         this.file = file;
     }
 
+    /**
+     * Checks a String representation of a Task to see if it has been marked as done.
+     * @param toProcess String representation of the Task to be checked.
+     * @return A boolean value describing whether or not the specified Task has been marked.
+     */
     private static boolean isMarked(String toProcess) {
         return !toProcess.startsWith("[ ");
     }
 
+    /**
+     * Reads the .txt file stored in this Storage, and converts the data into a List of Tasks.
+     * @return A List of Tasks as defined by the .txt file stored in this Storage.
+     * @throws DukeException if file is incorrectly saved previously.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> ls = new ArrayList<>();
         System.out.println("Retrieving files...");
@@ -62,6 +76,12 @@ public class Storage {
         return ls;
     }
 
+
+    /**
+     * Save a list of tasks into Duke.txt file.
+     * @param tasks List of tasks to be saved.
+     * @throws IOException if an error occurs during saving.
+     */
     public void save(TaskList tasks) throws IOException {
         try {
             File createFile = new File("Duke.txt");
