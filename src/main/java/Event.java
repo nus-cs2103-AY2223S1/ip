@@ -1,13 +1,21 @@
-public class Event extends Task {
-    protected String dateTime;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-    public Event(String dateTime, String description) {
+public class Event extends Task {
+    protected LocalDateTime dateTime;
+
+    public Event(LocalDateTime dateTime, String description) {
         super(description, "E");
         this.dateTime = dateTime;
     }
 
     public String getDateTime() {
-        return " (at: " + this.dateTime + ")";
+        return " (at: " +
+                this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
+    }
+
+    public LocalDateTime getRawDateTime() {
+        return this.dateTime;
     }
 
     public String printText() {
