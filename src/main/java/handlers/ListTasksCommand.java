@@ -1,13 +1,10 @@
 package handlers;
 
-import exceptions.DukeException;
-import models.Task;
-
-import java.util.List;
+import models.TaskList;
 
 public class ListTasksCommand implements DukeCommand {
 
-    public String run (List<Task> taskList, String content) {
+    public String run (TaskList taskList, String content) {
         if (taskList.size() == 0) {
              return "No tasks added yet!\n";
         }

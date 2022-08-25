@@ -1,10 +1,8 @@
 package handlers;
 
 import exceptions.DukeException;
-import models.Task;
-
-import java.util.List;
+import models.TaskList;
 
 public interface DukeCommand {
-    public String run(List<Task> taskList, String s) throws DukeException;
+    String run(TaskList taskList, String s) throws DukeException;
 }
