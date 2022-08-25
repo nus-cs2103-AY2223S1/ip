@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 public class DeadlineCommand extends Command {
 
-    private final String description;
-    private final LocalDate date;
+    private String description;
+    private LocalDate date;
 
     public DeadlineCommand(String description, LocalDate date) {
         this.description = description;

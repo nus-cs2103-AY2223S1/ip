@@ -7,8 +7,8 @@ import duke.Ui;
 
 public class EventCommand extends Command {
 
-    private final String description;
-    private final String remark;
+    private String description;
+    private String remark;
 
     public EventCommand(String description, String remark) {
         this.description = description;

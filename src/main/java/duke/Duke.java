@@ -2,7 +2,7 @@ package duke;
 
 import duke.command.Command;
 
-import java.io.*;
+import java.io.IOException;
 
 public class Duke {
 

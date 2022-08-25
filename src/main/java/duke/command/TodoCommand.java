@@ -7,7 +7,7 @@ import duke.Ui;
 
 public class TodoCommand extends Command {
 
-    private final String description;
+    private String description;
 
     public TodoCommand(String description) {
         this.description = description;

@@ -7,7 +7,7 @@ import duke.Ui;
 
 public class MarkCommand extends Command {
 
-    private final Task task;
+    private Task task;
 
     public MarkCommand(Task task) {
         this.task = task;
