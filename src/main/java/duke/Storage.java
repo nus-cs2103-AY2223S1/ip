@@ -10,12 +10,15 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 /**
- * Represents a storage object to handle I/O related operations.
- * Reads and writes to a file as defined by the filePath string.
+ * Represents a storage class for I/O operations.
  */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Returns a storage instance.
+     * @param filePath Path to the file duke.txt.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -37,7 +40,7 @@ public class Storage {
 
     /**
      * Writes content to file at filePath.
-     * @param it Iterator of the ArrayList from TaskList.
+     * @param it Iterator of the arrayList from TaskList.
      */
     public void save(Iterator<Task> it) {
         try {

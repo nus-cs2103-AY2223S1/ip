@@ -1,6 +1,9 @@
 package duke;
 
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,10 +15,17 @@ import java.util.Scanner;
 public class TaskList {
     private ArrayList<Task> list;
 
+    /**
+     * Returns an instance of a task list.
+     */
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
+    /**
+     * Returns an instance of a task list with saved tasks.
+     * @param sc Scanner object to read the text file.
+     */
     public TaskList(Scanner sc) {
         this.list = new ArrayList<>();
         try {
