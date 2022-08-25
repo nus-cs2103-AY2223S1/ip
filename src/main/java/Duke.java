@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -61,6 +62,8 @@ public class Duke {
             } catch (IOException ex) {
                 throw new DukeException(ex.getMessage());
             }
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Unable to parse dates in file.");
         }
     }
 
@@ -126,8 +129,9 @@ public class Duke {
                         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
 //                    echo(taskArr.get(taskArr.size() - 1).toString());
-                    saveFileData();
+
                 }
+                saveFileData();
 
             } catch (DukeException e) {
                 System.out.println(e.getMessage());

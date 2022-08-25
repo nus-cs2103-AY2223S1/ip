@@ -11,17 +11,20 @@ public abstract class Task {
         return isDone ? "X" : " ";
     }
 
-    public void mark() {
-        this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(this);
-    }
+
 
     public void toggleDone() {
         isDone = !isDone;
     }
+
     public String stringify() {
         return isDone ? "Y##" + this.description : "N##" + this.description;
+    }
+
+    public void mark() {
+        this.isDone = true;
+        System.out.println("Nice! I've marked this task as done:");
+        System.out.println(this);
     }
 
     public void unmark() {
