@@ -12,7 +12,7 @@ import duke.task.ToDos;
 import duke.ui.BotUI;
 
 /**
- * Represents a adding command of task. A <code>AddCommand</code> object stores
+ * Represents an adding command of task. A <code>AddCommand</code> object stores
  * the details of the task BEFORE filtering/extracting the date e.g. (someEvent /at 2022-01-05 1900)
  */
 

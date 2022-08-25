@@ -18,6 +18,11 @@ public class Duke {
     private final BotUI ui;
     private final TaskRecords taskList;
 
+    /**
+     * Constructor of Duke class.
+     * The taskList is assigned to the previous duke chatBot data if the file is found.
+     * TaskList will be initialised to an empty list if file is not found.
+     */
     Duke() {
         this.ui = new BotUI();
         TaskRecords temp;
@@ -29,6 +34,9 @@ public class Duke {
         this.taskList = temp;
     }
 
+    /**
+     * Runs the duke chatBot program.
+     */
     void runBot() {
         System.out.print(ui.sayHello());
         boolean exitDuke = false;
