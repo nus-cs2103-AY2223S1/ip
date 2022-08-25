@@ -159,7 +159,6 @@ public class Parser {
         };
     }
 
-
     private static LocalDate parseTime(String str) throws IllegalTimeException {
         String sDay;
         String sMonth;
@@ -219,7 +218,6 @@ public class Parser {
         }
     }
 
-    //helper that just splits string by specified char separator into array of size 3
     private static String[] parseTimeHelper(char c, String str) {
         String[] arr = new String[3];
         int count = 0;
