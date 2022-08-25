@@ -3,6 +3,13 @@ package main.java.duke;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Deals with interactions with the user
+ *
+ * @author eugeneleong
+ * @version 1.0
+ */
+
 public class Ui {
 
     private static final String line = "-----------------------------";
@@ -11,7 +18,9 @@ public class Ui {
     public Ui() {
     }
 
-    // Duke's self-intro
+    /**
+     * Our lovely Duke gives a sweet intro
+     */
     public void saysHi() {
         System.out.println(line + "\n" +
                 "Hello! I'm Duke\n" +
@@ -19,17 +28,27 @@ public class Ui {
                 line + "\n");
     }
 
-    // Duke's parting words
+    /**
+     * Our lovely Duke gives its parting words
+     */
     public void saysBye() {
         System.out.println(line + "\n" +
                 "Bye. Hope to see you again soon!\n" +
                 line + "\n");
     }
 
+    /**
+     * Our lovely Duke takes in the commands of the user
+     * @return the command, as it is
+     */
     public String readCommand() {
         return sc.nextLine();
     }
 
+    /**
+     * Just in case someone keys in the wrong filename...
+     * @exception FileNotFoundException if the file cannot be found
+     */
     public void showLoadingError() throws FileNotFoundException {
         throw new FileNotFoundException("File cannot be found!");
     }

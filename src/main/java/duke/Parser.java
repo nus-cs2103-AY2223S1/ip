@@ -4,8 +4,19 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * deals with making sense of the user command
+ *
+ * @author eugeneleong
+ * @version 1.0
+ */
 public class Parser {
 
+    /**
+     * Returns the type of command that the user has inputted
+     * @param input by the user
+     * @return type of command
+     */
     public static String getCommandType(String input) {
         if (input.equals("list")) {
             return "LIST";
@@ -28,6 +39,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Formats the event date and timing nicely as a LocalDateTime type
+     * @param input time in String
+     * @return LocalDateTime
+     */
     public static LocalDateTime formatEventTime(String input) {
         try {
             String time = input.substring(input.indexOf("/") + 4); // Format: dd/MM/yyyy HHmm

@@ -3,12 +3,24 @@ package main.java.duke;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * The self-named main class that controls our lovely chatbot, Duke
+ *
+ * @author eugeneleong
+ * @version 1.0
+ */
+
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Loads Duke up with the appropriate list of tasks
+     * @param filePath denoting the source of the file
+     * @throws FileNotFoundException if the filePath is typed incorrectly
+     */
     public Duke(String filePath) throws FileNotFoundException {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -20,6 +32,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method to drive the program
+     * @param args empty
+     */
     public static void main(String[] args) {
         try {
             new Duke("./src/duke.txt").run();
@@ -28,6 +44,9 @@ public class Duke {
         }
     }
 
+    /**
+     * The crux of the pain our dear chatbot, Duke, has to go through
+     */
     public void run() {
         ui.saysHi();
         tasks.listAll(); // prints out contents of pre-existing file

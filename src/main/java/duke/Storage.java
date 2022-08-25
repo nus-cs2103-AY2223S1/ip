@@ -9,6 +9,13 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * deals with loading tasks from the file and saving tasks in the file
+ *
+ * @author eugeneleong
+ * @version 1.0
+ */
+
 public class Storage {
 
     public final String filePath;
@@ -17,7 +24,11 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    // responsible for loading all the tasks from file
+    /**
+     * Responsible for loading all the pre-existing tasks from file
+     * @return ArrayList<Task></Task>
+     * @throws FileNotFoundException if file cannot be found
+     */
     public ArrayList<Task> load() throws FileNotFoundException {
         try {
             ArrayList<Task> ls = new ArrayList<>();
@@ -51,7 +62,12 @@ public class Storage {
         }
     }
 
-    public void save(String text) throws IOException { // my old AppendToFile
+    /**
+     * Responsible for saving the user's input into the file
+     * @param text to save
+     * @throws IOException if the user's input cannot be saved
+     */
+    public void save(String text) throws IOException {
         try {
             Files.write(Paths.get(filePath), ("\n" + text).getBytes(), StandardOpenOption.APPEND);
         } catch (IOException e) {
