@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 public class Todo extends Task {
     /**
@@ -16,7 +16,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String fileFormat() {
+    public String toFileFormat() {
         return String.format("T|%d|%s", this.isDone ? 1 : 0, this.title);
     }
 }

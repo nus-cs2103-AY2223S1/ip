@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 public abstract class Task {
     /**
@@ -42,5 +42,5 @@ public abstract class Task {
         return String.format("[%s] %s", this.isDone ? "X" : " ", this.title);
     }
 
-    public abstract String fileFormat();
+    public abstract String toFileFormat();
 }

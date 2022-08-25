@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 public class Event extends Task {
     /**
@@ -23,7 +23,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String fileFormat() {
+    public String toFileFormat() {
         return String.format("E|%d|%s|%s", this.isDone ? 1 : 0, this.title, this.time);
     }
 }
