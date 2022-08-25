@@ -1,6 +1,8 @@
+import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
-import java.io.*;
-import java.util.*;
 
 public class Duke {
 
@@ -61,13 +63,20 @@ public class Duke {
                 break;
 
             case "deadline": //a deadline with given ddl time is entered
-                if (arr.length == 1) {
-                    throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.(-`д´-)");
+                LocalDate date;
+                String dDescription;
+                try {
+                    if (command.equals("")) {
+                        throw new DukeException("OOPS! The description of a todo cannot be empty.");
+                    }
+                    dDescription = command.substring(0, command.indexOf('/') - 1);
+                    String dBy = command.substring(command.indexOf('/') + 4);
+                    date = LocalDate.parse(dBy);
                 }
-                String[] deadline = arr[1].split("/");
-                String deadlineContent = deadline[0];
-                String deadlineBy = deadline[1];
-                Task ddl = new Deadline(deadlineContent, deadlineBy);
+                catch (DateTimeException e) {
+                        throw new DukeException("OOPS! Date must be in proper format!");
+                    }
+                Task ddl = new Deadline(dDescription, date);
                 taskList.add(ddl);
                 break;
 
