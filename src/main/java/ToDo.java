@@ -8,4 +8,9 @@ public class ToDo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    public String toStorageFormat() {
+        char done = isDone ? '1' : '0';
+        return "T" + " | " + done + " | " + this.description + "\n";
+    }
 }

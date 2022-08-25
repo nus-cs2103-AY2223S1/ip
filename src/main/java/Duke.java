@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Duke {
@@ -114,19 +113,7 @@ public class Duke {
         try {
             FileWriter writer = new FileWriter(file);
             for (int i = 0; i < taskList.size(); i++) {
-                Task task = taskList.get(i);
-                char taskType = task instanceof ToDo
-                                ? 'T'
-                                : task instanceof Deadline ? 'D' : 'E';
-                char isTaskDone = task.getStatusIcon().equals("X") ? '1' : '0';
-                String taskDescription = task.getDescription();
-                if (taskType == 'T') {
-                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + "\n");
-                } else if (taskType == 'D') {
-                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + " | " + ((Deadline) task).getBy() + "\n");
-                } else {
-                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + " | " + ((Event) task).getTime() + "\n");
-                }
+                writer.write(taskList.get(i).toStorageFormat());
             }
             writer.close();
         } catch (IOException e) {
