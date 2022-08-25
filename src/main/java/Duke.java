@@ -1,12 +1,5 @@
-import java.io.FileReader;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.BufferedReader;
-import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
