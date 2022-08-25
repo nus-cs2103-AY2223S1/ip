@@ -28,9 +28,7 @@ public abstract class Task {
         return "[" + getStatusIcon() + "] " + description;
     }
 
-    public String save() {
-        return (isDone ? "1" : "0") + " | " + this.description;
-    }
+    public abstract String save();
 
     public static Task load(String task) {
         String[] split = task.split(" \\| ", 4);
