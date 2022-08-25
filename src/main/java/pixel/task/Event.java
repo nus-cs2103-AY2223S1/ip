@@ -1,5 +1,7 @@
 package pixel.task;
 
+import java.util.Objects;
+
 public class Event extends Task {
 
     public final String tag = "E";
@@ -10,6 +12,9 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + this.tag + "]" + super.toString() + " (" + this.commandWord + ": " + this.due + ")";
+        String end = Objects.equals(this.commandWord, "")
+            ? this.commandWord
+            : " (" + this.commandWord + ": " + this.due + ")";
+        return "[" + this.tag + "]" + super.toString() + end;
     }
 }
