@@ -14,11 +14,11 @@ abstract class TimedTask extends Task {
     }
 
     public static void setFormat(String format) throws DukeException {
-        if (format.isEmpty()) throw new DukeException("Format cannot be blank.");
+        if (format.isEmpty()) throw new DukeException("\u2639 OOPS!!! Format cannot be blank.");
         try {
             DateTimeFormatter.ofPattern(format);
         } catch (IllegalArgumentException e) {
-            throw new DukeException("Invalid format %s.", format);
+            throw new DukeException("\u2639 OOPS!!! Invalid format %s.", format);
         }
         TimedTask.format = format;
     }
@@ -29,6 +29,8 @@ abstract class TimedTask extends Task {
 
     public LocalDateTime convertRawTime(String rawDateTime) throws DukeException {
         LocalDateTime time;
+        System.out.println("stuff");
+        System.out.println("a" + rawDateTime + "b");
         try {
             time = LocalDateTime.parse(rawDateTime, DateTimeFormatter.ofPattern(format));
         } catch (DateTimeParseException e1) {
@@ -38,7 +40,7 @@ abstract class TimedTask extends Task {
                 try {
                     time = LocalDateTime.of(LocalDate.now(), LocalTime.parse(rawDateTime, DateTimeFormatter.ofPattern(format.split(" ")[1])));
                 } catch (DateTimeParseException e3) {
-                    throw new DukeException("Wrong datetime format. Please input datetime in the format dd/MM/yyyy HH:mm");
+                    throw new DukeException("\u2639 OOPS!!! Wrong datetime format. Please input datetime in the format %s", TimedTask.format);
                 }
             }
         }

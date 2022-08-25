@@ -5,7 +5,7 @@ public class Deadline extends TimedTask {
 
     @Override
     public String toString() {
-        return String.format("[D]%s (at: %s)", super.toString(), getFormattedTime());
+        return String.format("[D]%s (by: %s)", super.toString(), getFormattedTime());
     }
 
     @Override
