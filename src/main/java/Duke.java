@@ -1,3 +1,8 @@
+import models.Deadline;
+import models.Event;
+import models.Task;
+import models.Todo;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 
