@@ -12,7 +12,6 @@ public class Duke {
     public static void saveData(ArrayList<Task> list) {
         String home = System.getProperty("user.home");
         Path path = Paths.get(home, "data", "duke");
-        String fileSeparator = System.getProperty("file.separator");
         ArrayList<String> textArray = new ArrayList<>();
         for (Task task : list) {
             String entry = task.printText();
