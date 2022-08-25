@@ -1,6 +1,3 @@
-import java.time.LocalDateTime;
-import java.util.Optional;
-
 class Deadline extends Task {
     private static final String PREFIX = "by ";
     private static final String SPLIT = "/by ";
