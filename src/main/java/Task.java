@@ -1,7 +1,7 @@
 /**
  * An general task object.
  */
-public class Task {
+public abstract class Task {
 
     /** The description of the task. */
     protected String description;
@@ -11,6 +11,12 @@ public class Task {
 
     /** A total count of how many tasks are done. */
     public static int totalDone = 0;
+
+    /**
+     * Returns the string representation of the Task object to be stored in the file.
+     * @return The string representation of the Task object to be stored in the file.
+     */
+    public abstract String toFile();
 
     /**
      * Constructor for a Task.

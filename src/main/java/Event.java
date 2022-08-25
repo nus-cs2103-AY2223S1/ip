@@ -24,4 +24,13 @@ public class Event extends Task{
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
+
+    /**
+     * Returns the string representation of the Event object to be stored in the file.
+     * @return The string representation of the Event object to be stored in the file.
+     */
+    @Override
+    public String toFile() {
+        return "E | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + this.at + "\n";
+    }
 }
