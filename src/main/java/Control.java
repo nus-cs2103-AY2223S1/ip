@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -104,7 +106,8 @@ public class Control {
                 throw new EmptyDescriptionException();
             } else {
                 String[] tempSplit = tmp.split(" /by ");
-                Deadline tmpTask = new Deadline(tempSplit[0], tempSplit[1]);
+                LocalDate tempDate = LocalDate.parse(tempSplit[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                Deadline tmpTask = new Deadline(tempSplit[0], tempDate);
 
                 this.addDir(tmpTask);
                 System.out.println(String.format(
@@ -120,7 +123,8 @@ public class Control {
                 throw new EmptyDescriptionException();
             } else {
                 String[] tempSplit = tmp.split(" /at ");
-                Event tmpTask = new Event(tempSplit[0], tempSplit[1]);
+
+                Event tmpTask = new Event(tempSplit[0],tempSplit[1]);
 
                 this.addDir(tmpTask);
                 System.out.println(String.format(
