@@ -48,6 +48,10 @@ public class Parser {
                 return new DeleteCommand(parseIndex(args[0].getBody()));
             }
 
+            case FindCommand.COMMAND_NAME: {
+                return new FindCommand(args[0].getBody());
+            }
+
             default: {
                 return new UnknownCommand();
             }
