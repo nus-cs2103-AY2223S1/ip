@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Duke {
@@ -69,7 +70,8 @@ public class Duke {
                     if (taskDetailsArr.length < 2) {
                         throw new DukeException("\tOOPS!!! The date/time of a deadline cannot be empty.");
                     }
-                    addToTasks(new Deadline(taskDetailsArr[0], taskDetailsArr[1]));
+                    LocalDate date = LocalDate.parse(taskDetailsArr[1]);
+                    addToTasks(new Deadline(taskDetailsArr[0], date));
                     break;
                 case "event":
                     if (userInputArr.length < 2) {
@@ -79,7 +81,8 @@ public class Duke {
                     if (taskDetailsArr.length < 2) {
                         throw new DukeException("\tOOPS!!! The date/time of a event cannot be empty.");
                     }
-                    addToTasks(new Event(taskDetailsArr[0], taskDetailsArr[1]));
+                    date = LocalDate.parse(taskDetailsArr[1]);
+                    addToTasks(new Event(taskDetailsArr[0], date));
                     break;
                 default:
                     throw new DukeException("\tOOPS!!! I'm sorry, but I don't know what that means :-(");
