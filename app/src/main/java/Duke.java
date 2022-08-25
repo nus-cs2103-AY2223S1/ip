@@ -26,15 +26,15 @@ public class Duke {
     private static String handle(String command, String params) {
         switch (command) {
         case "list":
-            String out = "";
+            StringBuilder out = new StringBuilder();
             for (int i = 0; i < tasks.size(); ++i) {
-                if (i != 0) out += "\n";
-                out += (i + 1) + ". " + tasks.get(i);
+                if (i != 0) out.append("\n");
+                out.append(i + 1).append(". ").append(tasks.get(i));
             }
-            if (out.equals("")) {
-                out = "No tasks left!";
+            if (out.toString().equals("")) {
+                return "No tasks left!";
             }
-            return out;
+            return out.toString();
         case "mark":
             int markedTask = checkTask(params);
             if (markedTask < 0) return "Invalid task number!";
