@@ -1,4 +1,7 @@
 todo // T // read book
 deadline // T // return book // June 6th
-event // T // project meeting // Aug 6th 2-4pm
+event // F // project meeting // Aug 6th 2-4pm
 todo // T // join sports club
+todo // T // alskdf
+deadline // F // laksdf // asdklf
+event // F // laskdjf // asdklfj

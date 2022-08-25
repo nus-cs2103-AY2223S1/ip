@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -10,6 +12,22 @@ public class TaskList {
   public void loadTask(String taskString) throws CheeseException {
     Task task = Task.createTaskFromFile(taskString);
     taskList.add(task);
+  }
+
+  public void saveTaskList() {
+    String fileString = "";
+    for (int i = 0; i < taskList.size(); i++) {
+      Task task = taskList.get(i);
+      fileString += task.toFileString();
+      fileString += System.lineSeparator();
+    }
+    try {
+      FileWriter fw = new FileWriter("data/cheese.txt");
+      fw.write(fileString);
+      fw.close();
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
   }
 
   public Task getTask(int taskIndex) throws CheeseException {

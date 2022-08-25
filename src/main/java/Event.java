@@ -21,6 +21,11 @@ public class Event extends Task {
     return new Event(isDone, description, timeInterval);
   }
 
+  @Override
+  public String toFileString() {
+    return "event // " + super.toFileString() + " // " + timeInterval;
+  }
+
   /**
    * Returns string representation of Event
    * 

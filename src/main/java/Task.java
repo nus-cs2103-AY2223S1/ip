@@ -116,6 +116,11 @@ public abstract class Task {
     }
   }
 
+  public String toFileString() {
+    String isDoneString = isDone ? "T" : "F";
+    return isDoneString + " // " + description;
+  }
+
   /**
    * Returns string representation of Task
    * 

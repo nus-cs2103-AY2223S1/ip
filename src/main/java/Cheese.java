@@ -41,10 +41,6 @@ public class Cheese {
     }
   }
 
-  private static void writeData() {
-
-  }
-
   /** Chats with user */
   private static void chat() {
     Scanner scanner = new Scanner(System.in);
@@ -73,16 +69,20 @@ public class Cheese {
             break;
           case mark:
             taskList.markTaskAsDone(Integer.parseInt(inputArray[1]) - 1);
+            taskList.saveTaskList();
             break;
           case unmark:
             taskList.markTaskAsNotDone(Integer.parseInt(inputArray[1]) - 1);
+            taskList.saveTaskList();
             break;
           case delete:
             taskList.deleteTask(Integer.parseInt(inputArray[1]) - 1);
+            taskList.saveTaskList();
             break;
           default:
             Task task = Task.createTask(inputArray);
             taskList.addTask(task);
+            taskList.saveTaskList();
         }
       } catch (NumberFormatException e) {
         System.out.println("Cannot convert non-integer to integer.");

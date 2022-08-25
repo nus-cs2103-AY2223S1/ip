@@ -18,6 +18,11 @@ public class Deadline extends Task {
     this.deadline = deadline;
   }
 
+  @Override
+  public String toFileString() {
+    return "deadline // " + super.toFileString() + " // " + deadline;
+  }
+
   /**
    * Returns string representation of Deadline
    * 

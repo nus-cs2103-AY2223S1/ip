@@ -12,6 +12,11 @@ public class Todo extends Task {
     super(isDone, description);
   }
 
+  @Override
+  public String toFileString() {
+    return "todo // " + super.toFileString();
+  }
+
   /**
    * Returns string representation of Todo
    * 
