@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ParserTest {
 
     @Test
-    public void test_generateToDoFromInput(){
+    public void generateToDoFromInput_parsingSentenceInput_sameOutputAsVariablesInput(){
         String description = "eat dinner";
         String input = "todo eat dinner";
         Parser parser = new Parser();
@@ -15,7 +15,7 @@ public class ParserTest {
     }
 
     @Test
-    public void test_generateDeadlineFromInput(){
+    public void generateDeadlineFromInput_parsingSentenceInput_sameOutputAsVariablesInput(){
         String description = "eat dinner";
         String timeQualifier = "by";
         String timeDescription = "2019-12-27";
@@ -25,7 +25,7 @@ public class ParserTest {
     }
 
     @Test
-    public void test_generateEventFromInput(){
+    public void generateEventFromInput_parsingSentenceInput_sameOutputAsVariablesInput(){
         String description = "eat dinner";
         String timeQualifier = "by";
         String timeDescription = "2019-12-27";

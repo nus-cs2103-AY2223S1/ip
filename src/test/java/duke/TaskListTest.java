@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TaskListTest {
 
     @Test
-    public void test_add(){
+    public void addTask_addNewTaskViaTaskList_addNewTaskDirectlyToArrayList(){
         String description = "do homework";
         Task newTask = new ToDo(description);
 
