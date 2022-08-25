@@ -13,6 +13,9 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+/**
+ * The main class of the Duke program.
+ */
 public class Duke {
     private TaskList tasklist;
     private Storage storage;
@@ -26,6 +29,11 @@ public class Duke {
         duke.run();
     }
 
+    /**
+     * Constructs a new {@code Duke} using a String path.
+     *
+     * @param path The path to the file.
+     */
     public Duke(String path) {
         storage = new Storage(path);
         ui = new Ui();
@@ -37,6 +45,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke object after instantiation.
+     */
     private void run() {
         ui.printGreeting();
 

@@ -13,6 +13,9 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Parse the commands that have been inputted into Duke.
+ */
 public class Parser {
     List<String> inputArray;
 
@@ -20,6 +23,12 @@ public class Parser {
         this.inputArray = Arrays.asList(command.split(" "));
     }
 
+    /**
+     * Returns the first word in the input command.
+     *
+     * @return the keyword as a Command.
+     * @throws DukeException if the keyword is not recognised.
+     */
     public Command getKeyword() throws DukeException {
         try {
             Command keyword = Command.valueOf(inputArray.get(0).toUpperCase());
@@ -29,6 +38,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns everything except the first keyword of the input command.
+     *
+     * @return the main content of the input.
+     * @throws DukeException if the input is incomplete.
+     */
     public String getContent() throws DukeException {
         try {
             String content = String.join(" ", inputArray.subList(1, inputArray.size()));

@@ -9,6 +9,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Stores and loads the tasks inputted into Duke to local storage.
+ */
 public class Storage {
     String path;
     File file;

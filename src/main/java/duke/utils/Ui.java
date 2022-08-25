@@ -2,6 +2,9 @@ package duke.utils;
 
 import java.util.Scanner;
 
+/**
+ * Handles the inputs and outputs shown to the user.
+ */
 public class Ui {
     public String takeInput() {
         Scanner input = new Scanner(System.in);
