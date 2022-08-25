@@ -15,4 +15,9 @@ public class Deadline extends Task {
     public String getDetails() {
         return details + " (by: " + deadline + ")";
     }
+
+    @Override
+    public String getEncodedDetails() {
+        return details + "|" + deadline;
+    }
 }

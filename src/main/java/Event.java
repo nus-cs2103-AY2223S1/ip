@@ -15,4 +15,9 @@ public class Event extends Task {
     public String getDetails() {
         return details + " (at: " + time + ")";
     }
+
+    @Override
+    public String getEncodedDetails() {
+        return details + "|" + time;
+    }
 }
