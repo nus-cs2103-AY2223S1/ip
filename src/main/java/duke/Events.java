@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Represents the Event command.
+ */
 public class Events extends Task {
     public String command;
     public int num;
@@ -12,6 +15,11 @@ public class Events extends Task {
         this.time = time;
     }
 
+    /**
+     * Returns a String representation of the command.
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "Got it. I've added this task:\n" + "[E][ ] " + this.command + "(at: " + time + ")\n"

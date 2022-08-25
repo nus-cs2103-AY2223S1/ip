@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a robot which can react to different commands.
+ */
 public class Duke {
     private TaskList tasks;
     int num = 1;
@@ -57,11 +60,11 @@ public class Duke {
         }
     }
 
-    /*
-    * PrintCommand function to print out the current command.
-    *
-    * @param command.
-    */
+    /**
+     * PrintCommand function to print out the current command.
+     *
+     * @param command
+     */
     public void printCommand(String command) {
         if (command.split(" ")[0].equals("delete")) {
             int number = Integer.parseInt(command.split(" ")[1]) - 1;

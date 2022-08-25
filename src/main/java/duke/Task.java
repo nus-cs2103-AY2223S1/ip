@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Deals with different commands. Adds different commands to an arrayList.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -14,6 +17,15 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns a String representing the command Delete.
+     *
+     * @param command String command.
+     * @param arrayList arrayList.
+     * @param number integer.
+     * @return Task
+     * @throws DukeException if duke cannot identify the command.
+     */
     public static Task of (String command, ArrayList<String> arrayList, int number) throws DukeException {
         if (command.split(" ")[0].equals("mark")) {
             int num = Integer.parseInt(command.substring(5)) - 1;
@@ -62,10 +74,20 @@ public class Task {
         return task;
     }
 
+    /**
+     * Checks if the command should be added to the list.
+     *
+     * @return boolean
+     */
     public boolean AddToList() {
         return true;
     }
 
+    /**
+     * Returns a String representation of the command.
+     *
+     * @return String
+     */
     public String toString() {
         return " " + description + "\n";
     }

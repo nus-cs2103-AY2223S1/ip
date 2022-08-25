@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Represents the Deadlines command.
+ */
 public class Deadlines extends Task {
     public String command;
     public int num;
@@ -12,6 +15,11 @@ public class Deadlines extends Task {
         this.time = time;
     }
 
+    /**
+     * Returns a String representing the command Deadlines.
+     *
+     * @return String
+     */
     @Override
     public String toString() {
         return "Got it. I've added this task:\n" + "[D][ ] " + this.command + "(by: " + time + ")\n"
