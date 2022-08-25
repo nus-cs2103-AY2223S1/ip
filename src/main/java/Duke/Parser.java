@@ -12,7 +12,6 @@ import Command.DeadlineCommand;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 import static java.lang.Integer.parseInt;
 
@@ -24,7 +23,7 @@ public class Parser {
     public static Command parse(String command) throws DukeException {
         String[] input = command.split(" ", 2);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
-        switch (input[0].toLowerCase(Locale.ROOT)) {
+        switch (input[0]) {
             case "bye":
                 return new ExitCommand();
             case "list":
