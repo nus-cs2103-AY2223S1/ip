@@ -1,8 +1,7 @@
-import java.text.SimpleDateFormat;
+package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.TextStyle;
-import java.util.Locale;
 
 public class Event extends Task{
     protected LocalDateTime at;

@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
 
     static String divider = "____________________________________________________________";
