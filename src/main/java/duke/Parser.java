@@ -147,19 +147,17 @@ public class Parser {
             } else if (text.startsWith("help")) {
                 ui.help();
 
-            } else if (text.startsWith("find")){
-                if(text.startsWith("find ")) {
+            } else if (text.startsWith("find")) {
+                if (text.startsWith("find ")) {
                     String search = text.replace("find ", "");
                     ui.find(search);
-                } else if(text.equalsIgnoreCase("find")){
+                } else if (text.equalsIgnoreCase("find")) {
                     ui.noSearchError();
                 } else {
                     ui.findError();
                 }
 
-            }
-
-            else {
+            } else {
                 try {
                     throw new DukeException.DukeCommandException("Invalid command");
                 } catch (DukeException.DukeCommandException error) {

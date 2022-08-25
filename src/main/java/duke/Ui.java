@@ -323,17 +323,17 @@ public class Ui {
      *
      * @param search The string to search for.
      */
-    public void find(String search){
+    public void find(String search) {
         int counter = 0;
         System.out.println(divider);
         System.out.println("Here are the matching tasks in your list :");
-        for(int i =0; i<storage.taskList.arrayList.size(); i++) {
-            if(storage.taskList.arrayList.get(i).getDescription().contains(search)){
+        for (int i = 0; i < storage.taskList.arrayList.size(); i++) {
+            if (storage.taskList.arrayList.get(i).getDescription().contains(search)) {
                 System.out.println((i + 1) + ". " + storage.taskList.arrayList.get(i).toString());
                 counter++;
             }
         }
-        if(counter==0){
+        if (counter == 0) {
             System.out.println("No tasks on the list match the search criteria.");
         }
         System.out.println(divider);
