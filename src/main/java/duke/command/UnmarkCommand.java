@@ -24,4 +24,14 @@ public class UnmarkCommand implements ICommand {
     public boolean isExit() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof UnmarkCommand) {
+            UnmarkCommand otherCmd = (UnmarkCommand) obj;
+            return this.index == otherCmd.index;
+        } else {
+            return false;
+        }
+    }
 }

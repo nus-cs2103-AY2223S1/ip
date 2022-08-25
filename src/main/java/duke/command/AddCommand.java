@@ -39,4 +39,16 @@ public class AddCommand implements ICommand {
     public boolean isExit() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof AddCommand) {
+            AddCommand otherCmd = (AddCommand) obj;
+            return this.type == otherCmd.type
+                    && this.description.equals(otherCmd.description)
+                    && this.dateString.equals(otherCmd.dateString);
+        } else {
+            return false;
+        }
+    }
 }

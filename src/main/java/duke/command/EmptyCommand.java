@@ -14,4 +14,9 @@ public class EmptyCommand implements ICommand {
     public boolean isExit() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof EmptyCommand;
+    }
 }
