@@ -15,8 +15,20 @@ public class Task {
         this.done = false;
     }
 
+    public String getContent() {
+        return this.content;
+    }
+
+    public String isDoneString() {
+        return this.done == true ? "1" : "0";
+    }
+
     @Override
     public String toString() {
         return "[" + (this.done ? "X" : " ") + "] " + this.content;
+    }
+
+    public String toMemoryString() {
+        return isDoneString() + " | " + content;
     }
 }

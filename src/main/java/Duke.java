@@ -1,9 +1,13 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
     private boolean inNeed = true;
-    private final ArrayList<Task> list = new ArrayList<>();
+    private final ArrayList<Task> list = readFile();
 
     private final static String DEADLINE_SPLIT = " /by ";
     private final static String EVENT_SPLIT = " /at ";
@@ -31,6 +35,52 @@ public class Duke {
         }
     }
 
+    private static ArrayList<Task> readFile() {
+        File file = new File("./duke.txt");
+        try {
+            Scanner sc = new Scanner(file);
+            ArrayList<Task> tasks = new ArrayList<>();
+            while (sc.hasNext()) {
+                String storedTask = sc.nextLine();
+                String[] splitTask = storedTask.split(" \\| ");
+                Task task;
+                if (splitTask[0].equals("T")) {
+                    task = new Todo(splitTask[2]);
+                } else if (splitTask[0].equals("D")) {
+                    task = new Deadline(splitTask[2], splitTask[3]);
+                } else {
+                    task = new Event(splitTask[2], splitTask[3]);
+                }
+                if(splitTask[1].equals("1")) {
+                    task.markDone();
+                }
+                tasks.add(task);
+            }
+            return tasks;
+        } catch(FileNotFoundException e) {
+            return new ArrayList<>();
+        }
+    }
+
+    private static void writeStorageFile(ArrayList<Task> tasks) {
+        try {
+            File file = new File("./duke.txt");
+            FileWriter fw = new FileWriter(file);
+            String storageString = "";
+            for (int i = 0; i < tasks.size(); i++) {
+                if (i < tasks.size() - 1) {
+                    storageString += tasks.get(i).toMemoryString() + "\n";
+                } else {
+                    storageString += tasks.get(i).toMemoryString();
+                }
+            }
+            fw.write(storageString);
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Cannot store the tasks");
+        }
+    }
+
     private void parseMessage(String message) {
 
         String[] command = splitString(message, " ");
@@ -44,11 +94,11 @@ public class Duke {
                 this.printList();
                 break;
             case "mark":
-                int index1 = Integer.parseInt(command[1]);
+                int index1 = Integer.parseInt(command[1].trim());
                 this.markDone(index1);
                 break;
             case "unmark":
-                int index2 = Integer.parseInt(command[1]);
+                int index2 = Integer.parseInt(command[1].trim());
                 this.unmarkDone(index2);
                 break;
             case "todo":
@@ -163,5 +213,6 @@ public class Duke {
             String message = scanner.nextLine();
             duke.parseMessage(message);
         }
+        writeStorageFile(duke.list);
     }
 }
