@@ -1,5 +1,8 @@
 package commands;
-import byu.*;
+
+import byu.ToDoList;
+import byu.Ui;
+
 import exceptions.InvalidIndex;
 
 public class ListCommand extends Command {
@@ -11,4 +14,5 @@ public class ListCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
 }

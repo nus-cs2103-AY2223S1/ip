@@ -1,9 +1,16 @@
 package byu;
 
-import java.util.Locale;
 import commands.*;
-import exceptions.*;
-import task.*;
+
+import exceptions.DukeException;
+import exceptions.EmptyDescription;
+import exceptions.InvalidInstruction;
+
+import java.util.Locale;
+
+import task.Deadlines;
+import task.ToDos;
+import task.Events;
 
 public class Parser {
 
@@ -12,31 +19,31 @@ public class Parser {
         try {
             Instruction i = getInstruction(fullCommand);
             String description = getDescription(i, fullCommand);
-            switch(i) {
-                case MARK:
-                    c = prepareMark(description);
-                    break;
-                case UNMARK:
-                    c = prepareUnmark(description);
-                    break;
-                case DEADLINE:
-                    c = prepareDeadline(description);
-                    break;
-                case EVENT:
-                    c = prepareEvent(description);
-                    break;
-                case TODO:
-                    c = prepareToDo(description);
-                    break;
-                case DELETE:
-                    c = prepareDelete(description);
-                    break;
-                case BYE:
-                    c = new ByeCommand();
-                    break;
-                case LIST:
-                    c = new ListCommand();
-                    break;
+            switch (i) {
+            case MARK:
+                c = prepareMark(description);
+                break;
+            case UNMARK:
+                c = prepareUnmark(description);
+                break;
+            case DEADLINE:
+                c = prepareDeadline(description);
+                break;
+            case EVENT:
+                c = prepareEvent(description);
+                break;
+            case TODO:
+                c = prepareToDo(description);
+                break;
+            case DELETE:
+                c = prepareDelete(description);
+                break;
+            case BYE:
+                c = new ByeCommand();
+                break;
+            case LIST:
+                c = new ListCommand();
+                break;
             }
         } catch (DukeException e) {
             System.out.print(e.getMessage());
@@ -57,20 +64,20 @@ public class Parser {
 
     private static String getDescription(Instruction i, String fullCommand) throws EmptyDescription {
         switch (i) {
-            case MARK:
-            case UNMARK:
-            case DEADLINE:
-            case TODO:
-            case EVENT:
-            case DELETE:
-                String[] str = fullCommand.split(" ");
-                if (str.length == 1) {
-                    throw new EmptyDescription(i.name());
-                } else {
-                    return fullCommand.substring(str[0].length() + 1);
-                }
-            default:
-                return "";
+        case MARK:
+        case UNMARK:
+        case DEADLINE:
+        case TODO:
+        case EVENT:
+        case DELETE:
+            String[] str = fullCommand.split(" ");
+            if (str.length == 1) {
+                throw new EmptyDescription(i.name());
+            } else {
+                return fullCommand.substring(str[0].length() + 1);
+            }
+        default:
+            return "";
         }
     }
 
@@ -125,27 +132,4 @@ public class Parser {
         //}
     }
 
-
-/*
-
-
-} catch (DukeException e) {
-            System.out.println(e.getMessage());
-        while (!.equals("bye")) {
-            String[] arr = response.split(" ");
-            try {
-                Instruction instruct = Instruction.valueOf(instruction.toUpperCase(Locale.ROOT));
-                list.execute(instruct, response);
-            } catch (IllegalArgumentException e) {
-                DukeException de = new InvalidInstruction();
-                System.out.println(de.getMessage());
-            } catch (DukeException e) {
-                System.out.println(e.getMessage());
-            } finally {
-                response = sc.nextLine();
-            }
-        }
-    }
-
- */
 }

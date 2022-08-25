@@ -1,15 +1,16 @@
 package byu;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.io.FileWriter;
-import task.*;
 import exceptions.InvalidIndex;
-import java.io.File;
-import java.io.PrintWriter;
 
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.util.ArrayList;
+
+import task.Task;
 
 public class ToDoList {
+
     private final ArrayList<Task> list;
     private int numOfTasks = 0;
 
@@ -40,16 +41,16 @@ public class ToDoList {
             throw new InvalidIndex();
         }
         Task t = list.get(i - 1);
-        t.markDone();
+        t.setDone(true);
         System.out.println("Nice! I've marked this task as done:\n" + t);
     }
 
-    public void unMark(int i) throws InvalidIndex {
+    public void unmark(int i) throws InvalidIndex {
         if (i > numOfTasks) {
             throw new InvalidIndex();
         }
         Task t = list.get(i - 1);
-        t.markUndone();
+        t.setDone(false);
         System.out.println("OK, I've marked this task as not done yet:\n" + t);
     }
 
@@ -66,16 +67,12 @@ public class ToDoList {
 
     public void save() {
         try {
-
             FileWriter fw = new FileWriter("./Duke.txt");
-
             for (int i = 0; i < numOfTasks; i++) {
                 Task t = list.get(i);
                 t.write(fw);
             }
             fw.close();
-
-
         } catch (IOException e) {
             System.out.print(e.getMessage());
         }
@@ -84,4 +81,5 @@ public class ToDoList {
     public int getNumOfTasks() {
         return this.numOfTasks;
     }
+
 }

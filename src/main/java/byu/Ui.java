@@ -1,11 +1,10 @@
 package byu;
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.Scanner;
 
 public class Ui {
 
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     public void showWelcome() {
         String logo = "*\\(^o^)/*";
@@ -25,4 +24,5 @@ public class Ui {
         System.out.print("Awww see you soon!!");
         sc.close();
     }
+
 }

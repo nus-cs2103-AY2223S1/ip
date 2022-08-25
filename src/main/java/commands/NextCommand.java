@@ -1,5 +1,7 @@
 package commands;
-import byu.*;
+
+import byu.ToDoList;
+import byu.Ui;
 
 public class NextCommand extends Command {
 
@@ -9,4 +11,5 @@ public class NextCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
 }

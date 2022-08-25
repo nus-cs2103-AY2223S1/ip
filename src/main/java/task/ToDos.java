@@ -2,7 +2,6 @@ package task;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class ToDos extends Task {
 
@@ -12,7 +11,7 @@ public class ToDos extends Task {
 
     @Override
     public void write(FileWriter fw) throws IOException {
-        String str = String.format("T | %d | %s\n", this.getDone(), this.getName());
+        String str = String.format("T | %d | %s\n", this.getDoneInt(), this.getName());
         fw.write(str);
     }
 

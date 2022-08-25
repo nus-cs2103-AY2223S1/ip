@@ -1,7 +1,6 @@
 package task;
 
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
 
 public class Task {
@@ -15,18 +14,15 @@ public class Task {
         this.done = false;
     }
 
-    public void markDone() {
-        this.done = true;
-    }
-
-    public void markUndone() {
-        this.done = false;
+    public void setDone(boolean b) {
+        this.done = b;
     }
 
     public String getName() {
         return this.name;
     }
-    public int getDone() {
+
+    public int getDoneInt() {
         if (this.done) {
             return 1;
         } else {
@@ -35,7 +31,7 @@ public class Task {
     }
 
     public void write(FileWriter writer) throws IOException {
-    };
+    }
 
     @Override
     public String toString() {

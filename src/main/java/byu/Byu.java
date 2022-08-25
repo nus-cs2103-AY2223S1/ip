@@ -1,7 +1,7 @@
 package byu;
+
 import commands.Command;
 import exceptions.DukeException;
-
 import java.io.IOException;
 
 public class Byu {
@@ -16,7 +16,6 @@ public class Byu {
             storage = new FileReader(filePath);
             tasks = storage.load();
         } catch (IOException e) {
-
         }
     }
 

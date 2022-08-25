@@ -6,5 +6,4 @@ public class EmptyDescription extends DukeException {
         super("description of a " + task + " cannot be empty!");
     }
 
-
 }

@@ -1,10 +1,11 @@
 package commands;
+
 import byu.*;
 import exceptions.InvalidIndex;
 
 public class MarkCommand extends Command {
 
-    int index;
+    private int index;
 
     public MarkCommand(int index) {
         this.index = index;
@@ -17,4 +18,5 @@ public class MarkCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
 }
