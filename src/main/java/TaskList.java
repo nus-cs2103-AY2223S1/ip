@@ -33,7 +33,7 @@ public class TaskList {
             try{
                 int marker = Integer.valueOf(inputs[1]);
                 if (marker < 1 || marker > this.list.size()) {
-                    System.out.println("Please indicate a valid task number!\n");
+                    Ui.printInvalidMarkerError();
                 } else if (inputs[0].equalsIgnoreCase("mark")){
                     this.list.get(marker - 1).markAsDone();
                     System.out.println("Nice! I've marked this task as done:");
@@ -198,7 +198,7 @@ public class TaskList {
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println("Unable to save list to data file.");
+            Ui.printSaveError();
         }
     }
 }
