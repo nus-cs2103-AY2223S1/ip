@@ -3,13 +3,12 @@ package duke;
 public class Parser {
     static final String LIST_WORD = "list";
     static final String END_WORD = "bye";
-    static final String ERROR_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
 
     private static void endProgram(Storage storage,  TaskList taskList) {
         Ui.bye();
         int exitCode = storage.writeResult(taskList);
         if (exitCode == -1) {
-            Ui.output(ERROR_MESSAGE);
+            Ui.processExceptionOutput("Unable to write the record");
         }
     }
 
@@ -26,14 +25,7 @@ public class Parser {
             try {
                 taskList.parseInstructions(command);
             } catch (DukeException de) {
-                // Todo: move output logic into Ui and modify it accordingly
-                if (de.msg.equals("Unable to parse query")) {
-                    Ui.FormatPrint(ERROR_MESSAGE);
-                } else if (de.msg.equals("Unable to process query")) {
-                    Ui.FormatPrint(ERROR_MESSAGE);
-                } else {
-                    Ui.FormatPrint(ERROR_MESSAGE);
-                }
+                Ui.processExceptionOutput(de.msg);
             }
         }
         return 1;

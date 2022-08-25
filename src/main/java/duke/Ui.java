@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Ui {
-    static final String SEPARATING_LINE = "    ____________________________________________________________";
-    static final String logo = " ____        _        \n"
+    private static final String SEPARATING_LINE = "    ____________________________________________________________";
+    private static final String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
             + "| | | | | | | |/ / _ \\\n"
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
-    static final String OPENING = "    Hello! I'm Duke\n    What can I do for you?\n    Type help for detailed useful guide.";
-    static final String ENDING = "    Bye. Hope to see you again soon!";
+    private static final String OPENING = "    Hello! I'm Duke\n    What can I do for you?\n    Type help for detailed useful guide.";
+    private static final String ENDING = "    Bye. Hope to see you again soon!";
+    private static final String ERROR_DEFAULT_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+    private static final String ERROR_PROCESS_MESSAGE = "OOPS!!! The command cannot be processed :( Type 'help' for more guides";
+    private static final String ERROR_WRITE_MESSAGE = "OOPS!!! I fail to write in the file, possibly due to no permission. Please help me out :(";
 
     protected static void FormatPrint(String s) {
         System.out.println(SEPARATING_LINE);
@@ -50,5 +53,20 @@ class Ui {
 
     protected static void output(String arg) {
         System.out.println(arg);
+    }
+
+    protected static void processExceptionOutput(String msg) {
+        switch (msg) {
+        case "Unable to parse query":
+            // flow through
+        case "Unable to process query":
+            Ui.FormatPrint(ERROR_PROCESS_MESSAGE);
+            break;
+        case "Unable to write the record":
+            Ui.FormatPrint(ERROR_WRITE_MESSAGE);
+            break;
+        default:
+            Ui.FormatPrint(ERROR_DEFAULT_MESSAGE);
+        }
     }
 }
