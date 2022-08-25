@@ -1,4 +1,3 @@
-import java.io.File;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -8,7 +7,7 @@ public class TaskList {
         tasks = new ArrayList<>();
     }
 
-    public void delete(int taskNumber, FileOperations fo) {
+    public void delete(int taskNumber, Storage fo) {
         if (taskNumber < 0 || taskNumber >= count()) {
             System.out.println("\tInvalid Task Number!");
         } else {
@@ -27,7 +26,7 @@ public class TaskList {
         return tasks.get(taskNumber);
     }
 
-    public void markAsDone(int taskNumber, FileOperations fo) {
+    public void markAsDone(int taskNumber, Storage fo) {
         if (taskNumber < 0 || taskNumber >= count()) {
             System.out.println("\tInvalid Task Number!");
         } else {
@@ -38,7 +37,7 @@ public class TaskList {
         }
     }
 
-    public void markAsNotDone(int taskNumber, FileOperations fo) {
+    public void markAsNotDone(int taskNumber, Storage fo) {
         if (taskNumber < 0 || taskNumber >= count()) {
             System.out.println("\tInvalid Task Number!");
         } else {
@@ -48,7 +47,7 @@ public class TaskList {
             System.out.println("\t\t" + get(taskNumber));
         }
     }
-    public void add(Task task, FileOperations fo) {
+    public void add(Task task, Storage fo) {
         tasks.add(task);
         System.out.println(String.format("\tGotcha. I have added this task:"));
 

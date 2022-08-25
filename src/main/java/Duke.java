@@ -9,7 +9,7 @@ import static java.lang.Integer.parseInt;
 public class Duke {
 
     public final String FILE_NAME;
-    private FileOperations fo;
+    private Storage fo;
     private TaskList taskList;
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
@@ -20,14 +20,14 @@ public class Duke {
     private static final String BYE_MESSAGE = "\t-------------------------------\n" +
             "\tBye! Hope to see you again\n" + "\t-------------------------------\n";
 
-    public Duke(String fileName, FileOperations fo, TaskList taskList) {
+    public Duke(String fileName, Storage fo, TaskList taskList) {
         FILE_NAME = fileName;
         this.fo = fo;
         this.taskList = taskList;
     }
 
     public static void main(String[] args) {
-        Duke duke = new Duke("data.txt", new FileOperations("data.txt"), new TaskList());
+        Duke duke = new Duke("data.txt", new Storage("data.txt"), new TaskList());
 
         System.out.println(WELCOME_MESSAGE);
 

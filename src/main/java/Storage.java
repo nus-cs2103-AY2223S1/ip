@@ -6,10 +6,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileOperations {
+public class Storage {
     private final String fileName;
 
-    public FileOperations(String fileName) {
+    public Storage(String fileName) {
         this.fileName = fileName;
     }
 
@@ -25,11 +25,10 @@ public class FileOperations {
                 Task task = taskList.get(i);
                 String encodedTask = task.encode();
                 fw.write(encodedTask);
-//                fw.write(System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {
-            System.out.println(String.format("\tError writing to %s in FileOperations.addAllTasksToFile()",
+            System.out.println(String.format("\tError writing to %s in Storage.addAllTasksToFile()",
                     fileName));
         }
     }
@@ -63,6 +62,7 @@ public class FileOperations {
 
     /**
      * Appends the encoded representation of the task into the file.
+     *
      * @param task The task to be stored in the file
      */
     public void addTaskToFile(Task task) {
@@ -74,13 +74,13 @@ public class FileOperations {
             fw.write(encodedTask);
             fw.write("\n");
             fw.close();
-        } catch ( IOException e) {
-            System.out.println(String.format("\tError writing to %s in FileOperations.addAllTasksToFile()",
+        } catch (IOException e) {
+            System.out.println(String.format("\tError writing to %s in Storage.addAllTasksToFile()",
                     fileName));
         }
     }
 
-        /**
+    /**
      * Takes a given encodedTask and returns the corresponding Task object.
      *
      * @param encodedTask the text-representation of a task
