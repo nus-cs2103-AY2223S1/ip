@@ -22,7 +22,7 @@ public class Storage {
     }
 
     /**
-     * A method that does the loading of tasks from a file to an ArrayList
+     * Loads tasks from a file to an ArrayList
      * @return An ArrayList of tasks loaded from previously saved file (if there is saved file) or a new ArrayList of
      * tasks (if there is no saved file)
      * @throws IOException
@@ -82,7 +82,7 @@ public class Storage {
     }
 
     /**
-     * A method that does the saving of tasks from an ArrayList to a file
+     * Saves tasks from an ArrayList to a file
      * @param tasklist A TaskList object that consists of the lists of tasks inputted by user
      */
     public void save(TaskList tasklist) {

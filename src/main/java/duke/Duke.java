@@ -41,7 +41,7 @@ public class Duke {
     }
 
     /**
-     * A method that calls TaskList and Ui objects to handle aTodo task inputted by user
+     * Handles a Todo task inputted by user by calling on TaskList and Ui objects
      * @param tDescription A String of the description for the task
      * @throws DukeException
      */
@@ -58,7 +58,7 @@ public class Duke {
     }
 
     /**
-     * A method that calls TaskList and Ui objects to handle a Deadline task inputted by user
+     * Handles a Deadline task inputted by user by calling on TaskList and Ui objects
      * @param dDescription A String of the description for the task
      * @param dBy A String representing the deadline for the task
      */
@@ -71,7 +71,7 @@ public class Duke {
     }
 
     /**
-     * A method that calls TaskList and Ui objects to handle an Event task inputted by user
+     * Handles an Event task inputted by user by calling on TaskList and Ui objects
      * @param eDescription A String of the description for the task
      * @param eAt A String representing the day for the task
      */
@@ -84,14 +84,14 @@ public class Duke {
     }
 
     /**
-     * A method that calls Ui object to print the list of tasks
+     * Calls Ui object to print the list of tasks
      */
     public void printList() {
         ui.listTasks(tasks);
     }
 
     /**
-     * A method that calls TaskList and Ui objects to handle the marking of a task
+     * Calls TaskList and Ui objects to handle the marking of a task
      * @param index The index of the task to be marked
      * @throws DukeException
      */
@@ -103,7 +103,7 @@ public class Duke {
     }
 
     /**
-     * A method that calls TaskList and Ui objects to handle the unmarking of a task
+     * Calls TaskList and Ui objects to handle the unmarking of a task
      * @param index The index of the task to be unmarked
      * @throws DukeException
      */
@@ -115,7 +115,7 @@ public class Duke {
     }
 
     /**
-     * A method that calls TaskList and Ui objects to handle the deleting of a task
+     * Calls TaskList and Ui objects to handle the deleting of a task
      * @param index The index of the task to be deleted
      * @throws DukeException
      */
@@ -126,6 +126,10 @@ public class Duke {
         storage.save(tasks);
     }
 
+    /**
+     * Filters the list based on keyword specified and calls Ui object to display the list of filtered tasks
+     * @param string The keyword inputted by user in the format of String
+     */
     public void find(String string) {
         ArrayList<Task> lst = tasks.getTasks();
         ArrayList<Task> filtered = new ArrayList<>();

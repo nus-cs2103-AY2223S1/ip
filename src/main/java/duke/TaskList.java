@@ -24,7 +24,7 @@ public class TaskList {
     }
 
     /**
-     * A method that returns the list of tasks inputted by user in the form of an ArrayList
+     * Returns the list of tasks inputted by user in the form of an ArrayList
      * @return An ArrayList of Task
      */
     public ArrayList<Task> getTasks() {
@@ -32,7 +32,7 @@ public class TaskList {
     }
 
     /**
-     * A method that returns a specific task corresponding to the index specified
+     * Returns a specific task corresponding to the index specified
      * @param i index of task in the ArrayList
      * @return A Task object
      */
@@ -41,7 +41,7 @@ public class TaskList {
     }
 
     /**
-     * A method that returns the number of tasks in the ArrayList (size of ArrayList)
+     * Returns the number of tasks in the ArrayList (size of ArrayList)
      * @return An integer representing the size of ArrayList
      */
     public int getSize() {
@@ -49,7 +49,7 @@ public class TaskList {
     }
 
     /**
-     * A method that adds the specified task into the ArrayList
+     * Adds the specified task into the ArrayList
      * @param task Task object to be added to the ArrayList
      */
     public void addTask(Task task) {
@@ -57,7 +57,7 @@ public class TaskList {
     }
 
     /**
-     * A method that marks the task specified by the index
+     * Marks the task specified by the index
      * @param index An int representing the index of task to be marked
      * @throws DukeException
      */
@@ -72,7 +72,7 @@ public class TaskList {
     }
 
     /**
-     * A method that unmarks the task specified by the index
+     * Unmarks the task specified by the index
      * @param index An int representing the index of task to be unmarked
      * @throws DukeException
      */
@@ -87,7 +87,7 @@ public class TaskList {
     }
 
     /**
-     * A method that deletes the task specified by the index
+     * Deletes the task specified by the index
      * @param index An int representing the index of task to be deleted
      * @throws DukeException
      */

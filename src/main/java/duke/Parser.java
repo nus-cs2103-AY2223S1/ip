@@ -16,7 +16,7 @@ public class Parser {
     }
 
     /**
-     * A method that parses the various inputs inputted by user
+     * Parses the various inputs inputted by user
      */
     public void start() {
         Scanner input = new Scanner(System.in);

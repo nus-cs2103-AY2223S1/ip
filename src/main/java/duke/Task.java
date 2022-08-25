@@ -17,7 +17,7 @@ public abstract class Task {
     }
 
     /**
-     * A method that checks if a task is done, returns "X" if done and " " if undone
+     * Checks if a task is done, returns "X" if done and " " if undone
      * @return A String that corresponds to the status of the task
      */
     public String getStatusIcon() {
@@ -25,14 +25,14 @@ public abstract class Task {
     }
 
     /**
-     * A method that marks a task as done
+     * Marks a task as done
      */
     public void markAsDone() {
         this.isDone = true;
     }
 
     /**
-     * A method that marks a task as undone
+     * Marks a task as undone
      */
     public void markAsUndone() {
         this.isDone = false;
