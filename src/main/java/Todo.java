@@ -19,4 +19,13 @@ public class Todo extends Task{
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    /**
+     * Returns the string representation of the Todo object to be stored in the file.
+     * @return The string representation of the Todo object to be stored in the file.
+     */
+    @Override
+    public String toFile() {
+        return "T | " + (this.isDone ? "1 | " : "0 | ") + this.description + "\n";
+    }
 }

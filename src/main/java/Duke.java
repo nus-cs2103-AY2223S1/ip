@@ -50,6 +50,9 @@ public class Duke {
         this.lst = new LinkedList<>();
         String input = null, cmd = null, postCmd = null;
         String postSplit[];
+        FileReader file = new FileReader();
+        file.readFrom("./tasks.txt");
+        file.updateList(lst);
 
         do {
             input = sc.nextLine();
@@ -104,6 +107,8 @@ public class Duke {
             }
 
         } while (!input.equals("bye"));
+
+        file.writeFrom(this.lst);
     }
 
     /**

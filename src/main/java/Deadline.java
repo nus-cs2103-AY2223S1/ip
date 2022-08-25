@@ -17,6 +17,15 @@ public class Deadline extends Task{
     }
 
     /**
+     * Returns the string representation of the Deadline object to be stored in the file.
+     * @return The string representation of the Deadline object to be stored in the file.
+     */
+    @Override
+    public String toFile() {
+        return "D | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + this.by + "\n";
+    }
+
+    /**
      * Returns the string representation of the Deadline object.
      * @return The string representation of the Deadline object.
      */
