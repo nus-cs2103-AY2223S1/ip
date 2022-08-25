@@ -10,6 +10,7 @@ import java.util.ArrayList;
  * @author Yuvaraj Kumaresan
  */
 public class Duke {
+
     private static TaskList taskList = new TaskList(new ArrayList<Task>());
     private static Storage storage = new Storage(taskList);
     private static Ui ui = new Ui(storage);

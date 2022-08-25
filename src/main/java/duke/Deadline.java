@@ -10,6 +10,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
+    /**
+     * Time at which the deadline is due.
+     */
     protected LocalDateTime by;
 
     /**

@@ -7,7 +7,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Tests the task class and associated methods.
  */
 public class TaskTest {
+
+    /**
+     * First test task.
+     */
     Task testTaskOne = new Task("This is a test task");
+
+    /**
+     * Second test task.
+     */
     Task testTaskTwo = new Task("This is also a test task");
 
     /**

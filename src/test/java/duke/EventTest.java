@@ -8,6 +8,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class EventTest {
 
+    /**
+     * Test event.
+     */
     Event testEventOne = new Event("A test","test time");
 
     /**

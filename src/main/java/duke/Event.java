@@ -8,6 +8,9 @@ package duke;
  */
 public class Event extends Task {
 
+    /**
+     * Time at which the event is at.
+     */
     protected String at;
 
     /**

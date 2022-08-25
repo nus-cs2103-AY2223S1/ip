@@ -7,8 +7,16 @@ import java.io.IOException;
  */
 public class Ui {
 
+    /**
+     * The storage used to interact with the user.
+     */
     protected Storage storage;
 
+    /**
+     * Constructor.
+     *
+     * @param storage The storage used to get item to interact with user.
+     */
     public Ui(Storage storage) {
         this.storage = storage;
     }

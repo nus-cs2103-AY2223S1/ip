@@ -1,19 +1,36 @@
 package duke;
 
+import java.util.Scanner;
+
 import java.io.IOException;
+import java.time.format.DateTimeParseException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Scanner;
+
+
 
 /**
  * Handles user input.
  */
 public class Parser {
 
+    /**
+     * Stores tasks in a text file
+     */
     protected static Storage storage;
+
+    /**
+     * Handles User interaction.
+     */
     protected static Ui ui;
 
+    /**
+     * Constructor
+     *
+     * @param list The storage list used.
+     * @param ui The Ui interface used.
+     */
     public Parser(Storage list, Ui ui) {
         this.storage = list;
         this.ui = ui;

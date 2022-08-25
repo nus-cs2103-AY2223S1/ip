@@ -1,20 +1,32 @@
 package duke;
 
+import java.util.Scanner;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+
 import java.io.IOException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
+
 
 /**
  * Handles storage, writing and editing of output text file.
  */
 public class Storage {
 
+    /**
+     * Handles adding and modifying the task list.
+     */
     protected static TaskList taskList;
 
+    /**
+     * Constructor.
+     *
+     * @param list The tasklist used to update the list in storage.
+     */
     public Storage(TaskList list) {
         taskList = list;
     }

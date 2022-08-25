@@ -12,9 +12,25 @@ import java.util.ArrayList;
  */
 public class TaskListTest {
 
+    /**
+     * Tasklist to test.
+     */
     TaskList testList = new TaskList(new ArrayList<Task>());
+
+    /**
+     * Test Todo.
+     */
     ToDo testTaskOne = new ToDo("This is also a test task");
+
+
+    /**
+     * Test Deadline.
+     */
     Deadline testTaskTwo = new Deadline("This is a deadline", LocalDateTime.now());
+
+    /**
+     * Test Event.
+     */
     Event testTaskThree = new Event("This is an event", "12-11-2020");
 
     /**

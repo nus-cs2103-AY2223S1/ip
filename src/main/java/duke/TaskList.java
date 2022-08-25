@@ -7,9 +7,16 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
+    /**
+     * The array used to store the tasks.
+     */
     protected ArrayList<Task> arrayList;
 
-
+    /**
+     * Constructor.
+     *
+     * @param list The arraylist to modify.
+     */
     public TaskList(ArrayList<Task> list) {
         this.arrayList = list;
     }

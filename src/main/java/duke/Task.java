@@ -6,11 +6,19 @@ package duke;
  * @author Yuvaraj Kumaresan
  */
 public class Task {
+
+    /**
+     * Describes the task.
+     */
     protected String description;
+
+    /**
+     * States if the task is done or not.
+     */
     protected boolean isDone;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param description The string describing the task.
      */
