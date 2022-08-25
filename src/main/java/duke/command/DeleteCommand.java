@@ -8,6 +8,7 @@ import duke.task.Task;
 
 public class DeleteCommand extends Command {
     private int num;
+
     public DeleteCommand(int i) {
         this.num = i;
     }

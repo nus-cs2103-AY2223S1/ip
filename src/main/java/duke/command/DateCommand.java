@@ -39,6 +39,7 @@ public class DateCommand extends Command {
         ui.sayList(filter(tasks.getArr(), x -> x instanceof DatedTask
                 && ((DatedTask) x).getDate().equals(this.date)));
     }
+
     public boolean isExit() {
         return false;
     }

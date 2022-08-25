@@ -5,6 +5,7 @@ import duke.main.TaskList;
 import duke.main.Ui;
 
 public class ExitCommand extends Command {
+
     /**
      * Exits.
      *

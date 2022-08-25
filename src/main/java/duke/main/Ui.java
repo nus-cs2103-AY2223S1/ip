@@ -6,12 +6,19 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Ui {
     Scanner sc = new Scanner(System.in);
+
     public void showWelcome() {
-        System.out.println("Hey Dude here\n" + "What can I do for you?");
+        System.out.println("Dude:\n" + "Hey Dude here\n" + "What can I do for you?");
+        this.showLine();
+    }
+
+    public void showDude() {
+        System.out.println("Dude: ");
     }
     public void showLine() {
         System.out.println("________________");
     }
+
     public void showLoadingError() {
         System.out.println("LOADING ERROR ... I died..XOX");
     }
@@ -55,9 +62,8 @@ public class Ui {
                 + "\nNow you have " + size + " tasks in the list.");
     }
 
-
     public String readCommand() {
+        System.out.println("Me: \t");
         return sc.nextLine();
     }
-
 }

@@ -7,6 +7,7 @@ import duke.main.Ui;
 
 public class MarkCommand extends Command {
     private int num;
+
     public MarkCommand(int num) {
         this.num = num;
     }
@@ -28,6 +29,7 @@ public class MarkCommand extends Command {
         ui.sayMarked(this.num, tasks.getArr());
         storage.overwrite();
     }
+
     @Override
     public boolean isExit() {
         return false;

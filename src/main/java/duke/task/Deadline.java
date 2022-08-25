@@ -3,10 +3,13 @@ package duke.task;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 public class Deadline extends DatedTask {
+
     public Deadline(String description, LocalDate by) throws DateTimeException {
         super(description, by);
     }
+
     /**
      * Returns the string of deadline.
      *

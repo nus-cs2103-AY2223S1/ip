@@ -3,6 +3,7 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.function.Function;
 public class Formatting implements Function<ArrayList<Task>, String> {
+
     /**
      * Returns a representation of tasks in the array list.
      *
@@ -29,5 +30,4 @@ public class Formatting implements Function<ArrayList<Task>, String> {
     private String checkMark(Task t) {
         return t.isDone ? "1" : "0";
     }
-
 }

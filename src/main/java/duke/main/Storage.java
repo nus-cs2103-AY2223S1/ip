@@ -10,6 +10,7 @@ public class Storage {
     protected String filePath;
 
     private Formatting f = new Formatting();
+
     public Storage(String filePath) {
         this.filePath = filePath;
     }

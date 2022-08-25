@@ -7,6 +7,7 @@ import duke.main.Ui;
 
 public class UnmarkCommand extends Command {
     private int num;
+
     public UnmarkCommand(int num) {
         this.num = num;
     }
@@ -28,6 +29,7 @@ public class UnmarkCommand extends Command {
         ui.sayUnmarked(this.num, tasks.getTask(this.num - 1));
         storage.overwrite();
     }
+
     @Override
     public boolean isExit() {
         return false;

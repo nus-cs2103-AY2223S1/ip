@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 public class TaskList {
     private ArrayList<Task> arr;
+
     public TaskList(Storage storage){
         this.arr = new ArrayList<Task>();
         storage.arr = this.arr;
     }
+
     public TaskList(ArrayList<Task> arr) {
         this.arr = arr;
     }
@@ -50,6 +52,7 @@ public class TaskList {
     public Task getTask(int i) {
         return this.arr.get(i);
     }
+
     public ArrayList<Task> getArr() {
         return this.arr;
     }
