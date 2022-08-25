@@ -1,19 +1,35 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.Scanner;
 
+/**
+ * Represents the file used to store list of tasks
+ */
 public class Storage {
-
     private final String folderPath;
     private final String filePath;
 
+    /**
+     * Constructor for Storage class.
+     *
+     * @param folderPath The filepath to the data folder.
+     * @param filePath The filepath to the text file containing the task list.
+     */
     public Storage(String folderPath, String filePath) {
         this.folderPath = folderPath;
         this.filePath = filePath;
     }
 
+    /**
+     * Saves tasks in task list file.
+     *
+     * @param taskList list of tasks.
+     */
     public void saveTaskList(TaskList taskList) {
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -26,16 +42,25 @@ public class Storage {
         }
     }
 
-    public void startUpPullStorage(UI ui, TaskList taskList) {
+    /**
+     * Takes tasks from task list file, creates folder
+     * and file if it does not exist.
+     * Inputs the tasks into application's task list.
+     *
+     * @param ui user interface of application.
+     * @param taskList list of tasks.
+     */
+    public void startUpPullStorage(Ui ui, TaskList taskList) {
         createFolder();
         createFile();
         pullSavedTaskList(ui, taskList);
     }
-    public void createFolder() {
+
+    private void createFolder() {
         new File(folderPath).mkdir();
     }
 
-    public void createFile() {
+    private void createFile() {
         try {
             new File(filePath).createNewFile();
         } catch (IOException e) {
@@ -43,7 +68,14 @@ public class Storage {
         }
     }
 
-    public void pullSavedTaskList(UI ui, TaskList taskList) {
+    /**
+     * Pulls from task list file and inputs
+     * the tasks into application's task list.
+     *
+     * @param ui user interface of application.
+     * @param taskList list of tasks.
+     */
+    private void pullSavedTaskList(Ui ui, TaskList taskList) {
         File save = new File(filePath);
         try {
             Scanner s = new Scanner(save);
