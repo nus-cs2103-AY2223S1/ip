@@ -1,4 +1,4 @@
-package duke;
+package seedu.duke;
 import java.util.ArrayList;
 import java.io.File;
 import java.nio.file.Files;
@@ -29,9 +29,12 @@ public class Storage {
             while (reader.hasNextLine()) {
                 String data = reader.nextLine();
                 char action = data.charAt(1);
+                Task task;
+
                 if (action == 'T') {
-                    Task task = new Todo(data.substring(7));
-                    tasks.add(task);
+                    task = new Todo(data.substring(7));
+                    
+                    
                 } else if(action =='E') {
                     int symbol = data.indexOf("(");
                     int dash = data.indexOf("-");
@@ -44,8 +47,9 @@ public class Storage {
                     int minute = Integer.parseInt(data.substring(colon + 1, colon + 3));
                     LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
 
-                    Task task = new Event(data.substring(7, symbol), date);
-                    tasks.add(task);
+                    task = new Event(data.substring(7, symbol), date);
+                    
+
                 } else {
                     int symbol = data.indexOf("(");
                     int dash = data.indexOf("-");
@@ -58,11 +62,17 @@ public class Storage {
                     int minute = Integer.parseInt(data.substring(colon + 1, colon + 3));
                     LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
 
-                    Task task = new Deadline(data.substring(7, symbol), date);
-                    tasks.add(task);
+                    task = new Deadline(data.substring(7, symbol), date);
+                    
                 }
 
-                
+                char isDone = data.charAt(4);
+                tasks.add(task);
+                if (isDone == 'X') {
+                    task.setDone();
+                    
+                }
+         
 
             }
             reader.close();
