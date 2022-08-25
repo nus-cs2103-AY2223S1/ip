@@ -97,7 +97,7 @@ public class Ui {
      * @return Formatted text.
      */
     public String addSeparator(String reply) {
-        String separator = "_______________________________________";
+        String separator = "_________________________________________";
         return separator + "\n" + reply + "\n" + separator;
     }
 }
