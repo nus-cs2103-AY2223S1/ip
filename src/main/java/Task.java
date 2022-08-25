@@ -1,17 +1,15 @@
+/**
+ * An general task object.
+ */
 public class Task {
-    /**
-     * The description of the task.
-     */
+
+    /** The description of the task. */
     protected String description;
 
-    /**
-     * A boolean to indicate if the task is done.
-     */
+    /** A boolean to indicate if the task is done. */
     protected boolean isDone;
 
-    /**
-     * A total count of how many tasks are done.
-     */
+    /** A total count of how many tasks are done. */
     public static int totalDone = 0;
 
     /**
@@ -57,6 +55,10 @@ public class Task {
         return false;
     }
 
+    /**
+     * Returns the string representation of the Task object.
+     * @return The string representation of the Task object.
+     */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;

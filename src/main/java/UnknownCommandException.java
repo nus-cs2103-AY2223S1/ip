@@ -1,8 +1,9 @@
+/**
+ * An unkown command exception for the Duke chatbot which extends from DukeException.
+ */
 public class UnknownCommandException extends DukeException{
 
-    /**
-     * A string of all the recognized commands.
-     */
+    /** A string of all the recognized commands. */
     private String commands = "\ttodo - adds the task to the list\n" +
             "\tdeadline - adds the task with a deadline, e.g. deadline x /by Sunday\n" +
             "\tevent - adds the task that happens at a specific time, e.g. event x /at Mon 2-4pm\n" +
@@ -12,9 +13,7 @@ public class UnknownCommandException extends DukeException{
             "\tlist - lists out all your current tasks\n" +
             "\tbye - exits the program:(\n";
 
-    /**
-     * The command that threw the exception.
-     */
+    /** The command that threw the exception. */
     private String cmd;
 
     /**
@@ -25,6 +24,10 @@ public class UnknownCommandException extends DukeException{
         this.cmd = cmd;
     }
 
+    /**
+     * Returns the string representation of the UnknownCommandException object.
+     * @return The string representation of the UnknownCommandException object.
+     */
     @Override
     public String toString() {
         return super.toString() + " \"" + this.cmd + "\" is not a valid command. Here are the list of commands:\n\n" +

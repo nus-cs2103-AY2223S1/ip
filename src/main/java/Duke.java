@@ -1,4 +1,10 @@
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Set;
+import java.util.Scanner;
+
+/**
+ * Creates a chatbot named Duke.
+ */
 public class Duke {
 
     public static void main(String[] args) {
@@ -6,14 +12,10 @@ public class Duke {
         program.init();
     }
 
-    /**
-     * List to store all tasks entered by the user.
-     */
+    /** List to store all tasks entered by the user. */
     private LinkedList<Task> lst;
 
-    /**
-     * Set to store all known commands.
-     */
+    /** Set to store all known commands. */
     private Set<String> commandList = Set.of("bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete");
 
     /**
@@ -66,26 +68,26 @@ public class Duke {
             }
 
             try {
-                switch(cmd) {
-                    case "bye":
-                        break;
-                    case "list":
-                        printList();
-                        break;
-                    case "todo":
-                        handleTodo(postCmd);
-                        break;
-                    case "deadline":
-                        handleDeadline(postCmd);
-                        break;
-                    case "event":
-                        handleEvent(postCmd);
-                        break;
-                    case "mark":
-                    case "unmark":
-                    case "delete":
-                        handleMarkUnmarkDelete(cmd, postCmd);
-                        break;
+                switch (cmd) {
+                case "bye":
+                    break;
+                case "list":
+                    printList();
+                    break;
+                case "todo":
+                    handleTodo(postCmd);
+                    break;
+                case "deadline":
+                    handleDeadline(postCmd);
+                    break;
+                case "event":
+                    handleEvent(postCmd);
+                    break;
+                case "mark":
+                case "unmark":
+                case "delete":
+                    handleMarkUnmarkDelete(cmd, postCmd);
+                    break;
                 }
             } catch (EmptyTaskException ete) {
                 System.out.println(ete);
@@ -106,7 +108,8 @@ public class Duke {
 
     /**
      * Handles the marking of a Task to be done or undone.
-     * @param cmd The command entered by the user.
+     *
+     * @param cmd     The command entered by the user.
      * @param postCmd The rest of the input string after the command.
      * @throws InvalidTaskNumberException if the followup text after the command is not a valid integer.
      */
@@ -144,6 +147,7 @@ public class Duke {
 
     /**
      * Checks if the text after mark/unmark/delete is an integer.
+     *
      * @param input The text to be checked.
      * @return The boolean representing if the text is an integer.
      */
@@ -158,6 +162,7 @@ public class Duke {
 
     /**
      * Handles what to do with a "Todo" task.
+     *
      * @param desc The description of the task.
      * @throws EmptyTaskException if the followup text after the command is empty.
      */
@@ -173,10 +178,11 @@ public class Duke {
 
     /**
      * Handles what to do with a "Deadline" task.
+     *
      * @param desc The description of the task.
-     * @throws EmptyTaskException if the followup text after the command is empty.
+     * @throws EmptyTaskException       if the followup text after the command is empty.
      * @throws InvalidArgumentException if the followup text after the command and description is not "/by".
-     * @throws EmptyDurationException if the followup text after "/by" is empty.
+     * @throws EmptyDurationException   if the followup text after "/by" is empty.
      */
     private void handleDeadline(String desc) throws EmptyTaskException, InvalidArgumentException,
             EmptyDurationException {
@@ -198,10 +204,11 @@ public class Duke {
 
     /**
      * Handles what to do with a "Event" task.
+     *
      * @param desc The description of the task.
-     * @throws EmptyTaskException if the followup text after the command is empty.
+     * @throws EmptyTaskException       if the followup text after the command is empty.
      * @throws InvalidArgumentException if the followup text after the command and description is not "/at".
-     * @throws EmptyDurationException if the followup text after "/at" is empty.
+     * @throws EmptyDurationException   if the followup text after "/at" is empty.
      */
     private void handleEvent(String desc) throws EmptyTaskException, InvalidArgumentException,
             EmptyDurationException {
@@ -224,7 +231,7 @@ public class Duke {
     /**
      * Prints the number of current tasks, as well as how many are completed.
      */
-    private  void printListCount() {
+    private void printListCount() {
         System.out.println("  You have " + this.lst.size() + " tasks currently, " + Task.totalDone + " are completed");
     }
 

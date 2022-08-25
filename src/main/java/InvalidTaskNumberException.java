@@ -1,12 +1,12 @@
+/**
+ * An invalid task number exception for the Duke chatbot which extends from DukeException.
+ */
 public class InvalidTaskNumberException extends DukeException{
-    /**
-     * The command that threw the exception.
-     */
+
+    /** The command that threw the exception. */
     private String cmd;
 
-    /**
-     * The invalid task number entered.
-     */
+    /** The invalid task number entered. */
     private String number;
 
     /**
@@ -19,6 +19,10 @@ public class InvalidTaskNumberException extends DukeException{
         this.number = number;
     }
 
+    /**
+     * Returns the string representation of the InvalidTaskNumberException object.
+     * @return The string representation of the InvalidTaskNumberException object.
+     */
     @Override
     public String toString() {
         return super.toString() + (number.equals("") ? "The command " + this.cmd + " requires a task number after!" :
