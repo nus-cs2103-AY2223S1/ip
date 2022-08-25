@@ -2,21 +2,22 @@ package duke;
 import java.util.Scanner;
 
 /**
- * Parse class that handles the string inputted by user
+ * Parse class that handles the string inputted by user.
  */
 public class Parser {
     private Duke duke;
 
     /**
-     * Constructor for Parser Class
-     * @param duke The duke object the user is operating on
+     * Constructor for Parser Class.
+     *
+     * @param duke The duke object the user is operating on.
      */
     public Parser(Duke duke) {
         this.duke = duke;
     }
 
     /**
-     * Parses the various inputs inputted by user
+     * Parses the various inputs inputted by user.
      */
     public void start() {
         Scanner input = new Scanner(System.in);

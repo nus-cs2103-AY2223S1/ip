@@ -3,16 +3,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * A Deadline class which is a subclass of Task
+ * A Deadline class which is a subclass of Task.
  */
 public class Deadline extends Task {
 
     protected LocalDate by;
 
     /**
-     * Constructor for Deadline class
-     * @param description Description of the deadline
-     * @param by Date of the deadline in String format
+     * Constructor for Deadline class.
+     *
+     * @param description Description of the deadline.
+     * @param by Date of the deadline in String format.
      */
     public Deadline(String description, LocalDate by) {
         super(description);
@@ -20,8 +21,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Creates a String to represent the deadline task during listing
-     * @return String to be displayed when list
+     * @inheritDoc
      */
     @Override
     public String toString() {
@@ -29,8 +29,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Creates a String to be saved in the file
-     * @return String to be displayed in the file
+     * @inheritDoc
      */
     @Override
     public String savedString() {

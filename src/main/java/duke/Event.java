@@ -1,15 +1,16 @@
 package duke;
 
 /**
- * An Event class which is a subclass of Task
+ * An Event class which is a subclass of Task.
  */
 public class Event extends Task {
     protected String at;
 
     /**
-     * Constructor for Event class
-     * @param description Description of the event
-     * @param at Date of the event in String format
+     * Constructor for Event class.
+     *
+     * @param description Description of the event.
+     * @param at Date of the event in String format.
      */
     public Event(String description, String at) {
         super(description);
@@ -17,8 +18,7 @@ public class Event extends Task {
     }
 
     /**
-     * Creates a String to represent the event task during listing
-     * @return String to be displayed when list
+     * @inheritDoc
      */
     @Override
     public String toString() {
@@ -26,8 +26,7 @@ public class Event extends Task {
     }
 
     /**
-     * Creates a String to be saved in the file
-     * @return String to be displayed in the file
+     * @inheritDoc
      */
     @Override
     public String savedString() {

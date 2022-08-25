@@ -8,24 +8,26 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Storage class that handle the saving and loading of tasks into/from a file respectively
+ * Storage class that handle the saving and loading of tasks into/from a file respectively.
  */
 public class Storage {
     //File to store the list of tasks inputted by user
     private File listOfTasks;
 
     /**
-     * Constructor for Storage class
-     * @param listOfTasks The file path to a file in String format
+     * Constructor for Storage class.
+     *
+     * @param listOfTasks The file path to a file in String format.
      */
     public Storage(String listOfTasks) {
         this.listOfTasks = new File(listOfTasks);
     }
 
     /**
-     * Loads tasks from a file to an ArrayList
+     * Loads tasks from a file to an ArrayList.
+     *
      * @return An ArrayList of tasks loaded from previously saved file (if there is saved file) or a new ArrayList of
-     * tasks (if there is no saved file)
+     * tasks (if there is no saved file).
      * @throws IOException
      * @throws DukeException
      */
@@ -84,8 +86,9 @@ public class Storage {
     }
 
     /**
-     * Saves tasks from an ArrayList to a file
-     * @param tasklist A TaskList object that consists of the lists of tasks inputted by user
+     * Saves tasks from an ArrayList to a file.
+     *
+     * @param tasklist A TaskList object that consists of the lists of tasks inputted by user.
      */
     public void save(TaskList tasklist) {
         try {

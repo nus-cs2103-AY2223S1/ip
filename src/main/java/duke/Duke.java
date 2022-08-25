@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
- * Duke is an interactive chatbot that keeps track of tasks inputted by user
+ * Duke is an interactive chatbot that keeps track of tasks inputted by user.
  */
 public class Duke {
     private Storage storage;
@@ -13,8 +13,9 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor of the Duke class
-     * @param filePath
+     * Constructor of the Duke class.
+     *
+     * @param filePath Filepath to the file in String format.
      */
     public Duke(String filePath) {
         this.ui = new Ui();
@@ -43,8 +44,9 @@ public class Duke {
     }
 
     /**
-     * Handles a Todo task inputted by user by calling on TaskList and Ui objects
-     * @param tDescription A String of the description for the task
+     * Handles a Todo task inputted by user by calling on TaskList and Ui objects.
+     *
+     * @param tDescription A String of the description for the task.
      * @throws DukeException
      */
     public void addTodo(String tDescription) throws DukeException {
@@ -60,8 +62,9 @@ public class Duke {
     }
 
     /**
-     * Handles a Deadline task inputted by user by calling on TaskList and Ui objects
-     * @param str A string representing the entire input user keyed in after "deadline"
+     * Handles a Deadline task inputted by user by calling on TaskList and Ui objects.
+     *
+     * @param str A string representing the entire input user keyed in after "deadline".
      */
     public void addDeadline(String str) throws DukeException {
         LocalDate date;
@@ -84,8 +87,9 @@ public class Duke {
     }
 
     /**
-     * Handles an Event task inputted by user by calling on TaskList and Ui objects
-     * @param str A string representing the entire input user keyed in after "event"
+     * Handles an Event task inputted by user by calling on TaskList and Ui objects.
+     *
+     * @param str A string representing the entire input user keyed in after "event".
      */
     public void addEvent(String str) throws DukeException {
         String eDescription;
@@ -104,15 +108,16 @@ public class Duke {
     }
 
     /**
-     * Calls Ui object to print the list of tasks
+     * Calls Ui object to print the list of tasks.
      */
     public void printList() {
         ui.listTasks(tasks);
     }
 
     /**
-     * Calls TaskList and Ui objects to handle the marking of a task
-     * @param index The index of the task to be marked
+     * Calls TaskList and Ui objects to handle the marking of a task.
+     *
+     * @param index The index of the task to be marked.
      * @throws DukeException
      */
     public void handleMark(int index) throws DukeException {
@@ -123,8 +128,9 @@ public class Duke {
     }
 
     /**
-     * Calls TaskList and Ui objects to handle the unmarking of a task
-     * @param index The index of the task to be unmarked
+     * Calls TaskList and Ui objects to handle the unmarking of a task.
+     *
+     * @param index The index of the task to be unmarked.
      * @throws DukeException
      */
     public void handleUnmark(int index) throws DukeException {
@@ -135,8 +141,9 @@ public class Duke {
     }
 
     /**
-     * Calls TaskList and Ui objects to handle the deleting of a task
-     * @param index The index of the task to be deleted
+     * Calls TaskList and Ui objects to handle the deleting of a task.
+     *
+     * @param index The index of the task to be deleted.
      * @throws DukeException
      */
     public void handleDelete(int index) throws DukeException {
@@ -147,8 +154,9 @@ public class Duke {
     }
 
     /**
-     * Filters the list based on keyword specified and calls Ui object to display the list of filtered tasks
-     * @param string The keyword inputted by user in the format of String
+     * Filters the list based on keyword specified and calls Ui object to display the list of filtered tasks.
+     *
+     * @param string The keyword inputted by user in the format of String.
      */
     public void find(String string) {
         ArrayList<Task> lst = tasks.getTasks();
