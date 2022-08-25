@@ -4,13 +4,26 @@ import exceptions.EmptyNameException;
 
 import java.util.ArrayList;
 
+/**
+ * Represents the state of the tasklist in the program.
+ * Contains methods that handles the logic for adding, deleting and modifying tasks.
+ */
 public class TaskList {
     private final ArrayList<Task> taskList;
 
+    /**
+     * Constructor for TaskList class
+     * Initializes an empty arrayList
+     */
     public TaskList() {
         taskList = new ArrayList<>();
     }
 
+    /**
+     * Takes in a command and handle the logic regarding the command
+     *
+     * @param command User input
+     */
     public void addTask(String command) {
         try {
 
@@ -51,6 +64,12 @@ public class TaskList {
 
     }
 
+
+    /**
+     * Takes in the index of the tasks and removes it from the array list.
+     *
+     * @param index position of the task in the array list
+     */
     public void deleteTask(int index) {
         Task task = taskList.get(index);
         System.out.println("Noted. I've removed this task: \n" + task);
@@ -58,7 +77,11 @@ public class TaskList {
         displayNumberOfItemsInList();
     }
 
-
+    /**
+     * Takes in the index of the tasks and mark the task as done.
+     *
+     * @param index position of the task in the array list
+     */
     public void setTaskAsDone(int index) {
         Task task = taskList.get(index);
         task.markTaskAsDone();
@@ -66,6 +89,11 @@ public class TaskList {
         System.out.println(task);
     }
 
+    /**
+     * Takes in the index of the tasks and mark the task as undone.
+     *
+     * @param index position of the task in the array list
+     */
     public void setTaskAsUndone(int index) {
         Task task = taskList.get(index);
         task.markTaskAsUndone();
@@ -73,6 +101,9 @@ public class TaskList {
         System.out.println(task);
     }
 
+    /**
+     * Displays all tasks in the command line
+     */
     public void displayAllTask(){
         System.out.println("----");
         System.out.println("Here are the tasks in your list:");
@@ -83,10 +114,18 @@ public class TaskList {
         System.out.println("-----");
     }
 
+    /**
+     * Display number of items in currently in the array list
+     */
     public void displayNumberOfItemsInList() {
         System.out.println("Now you have " + taskList.size() +  " tasks in the list.");
     }
 
+    /**
+     * Read the tasks from the saved file and prepopulate the arraylist.
+     *
+     * @param command Line from the saved file
+     */
     public void readTaskFromLoader(String command) {
         try {
             Task task = null;
