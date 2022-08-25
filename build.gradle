@@ -39,3 +39,7 @@ shadowJar {
 run{
     standardInput = System.in
 }
+
+apply plugin: 'application'
+
+mainClassName = 'puke.Duke'
