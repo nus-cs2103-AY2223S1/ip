@@ -68,7 +68,8 @@ public enum Command {
                 task = new Todo(input.substring(5));
                 tasks.add(task);
                 ui.add(task);
-                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") + " in the list.");
+                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") 
+                    + " in the list.");
                 break;
                 
             case EVENT:
@@ -84,7 +85,8 @@ public enum Command {
                 task = new Event(split[0], split[1].substring(3));
                 tasks.add(task);
                 ui.add(task);
-                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") + " in the list.");
+                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") 
+                    + " in the list.");
                 break;
 
             case DEADLINE:
@@ -101,7 +103,8 @@ public enum Command {
                 task = new Deadline(split[0], split[1].substring(3));
                 tasks.add(task);
                 ui.add(task);
-                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") + " in the list.");
+                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") 
+                    + " in the list.");
                 break;
 
             case DELETE:
@@ -112,7 +115,8 @@ public enum Command {
                 task = tasks.get(taskNumber);
                 tasks.remove(taskNumber);
                 ui.remove(task);
-                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") + " in the list.");
+                System.out.println("Now you have " + tasks.size() + (tasks.size() == 1 ?" task" : " tasks") 
+                    + " in the list.");
                 break;
 
             case BYE:

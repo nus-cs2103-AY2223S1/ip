@@ -51,21 +51,6 @@ public class Storage {
                     task = new Todo(data.substring(7));
                     
                     
-                } else if(action =='E') {
-                    int symbol = data.indexOf("(");
-                    int dash = data.indexOf("-");
-                    int secondDash = data.indexOf("-", dash + 1);
-                    int colon = data.indexOf(":", secondDash + 1);
-                    Month month = Month.valueOf(data.substring(symbol + 5, dash));
-                    int dayOfMonth = Integer.parseInt(data.substring(dash + 1, secondDash));
-                    int year = Integer.parseInt(data.substring(secondDash + 1, secondDash + 5));
-                    int hour = Integer.parseInt(data.substring(colon - 2, colon));
-                    int minute = Integer.parseInt(data.substring(colon + 1, colon + 3));
-                    LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
-
-                    task = new Event(data.substring(7, symbol), date);
-                    
-
                 } else {
                     int symbol = data.indexOf("(");
                     int dash = data.indexOf("-");
@@ -78,10 +63,15 @@ public class Storage {
                     int minute = Integer.parseInt(data.substring(colon + 1, colon + 3));
                     LocalDateTime date = LocalDateTime.of(year, month, dayOfMonth, hour, minute);
 
-                    task = new Deadline(data.substring(7, symbol), date);
+                    if (action == 'E') {
+                        task = new Event(data.substring(7, symbol), date);
+                    } else {
+                        task = new Deadline(data.substring(7, symbol), date);
+                    }
                     
-                }
 
+                } 
+                    
                 char isDone = data.charAt(4);
                 tasks.add(task);
                 if (isDone == 'X') {
