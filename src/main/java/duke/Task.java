@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Encapsulates a task to be completed.
  *

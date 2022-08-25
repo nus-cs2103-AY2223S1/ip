@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Encapsulates specific errors unique to Duke.
  *

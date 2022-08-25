@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Encapsulates a todo, a task which has to be completed without any time constraints.
  *

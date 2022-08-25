@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Basic enum containing the list of commands accepted
  * by Duke.

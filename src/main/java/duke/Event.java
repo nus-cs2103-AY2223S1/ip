@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * Encapsulates an Event task which occurs at a
  * specified time.
