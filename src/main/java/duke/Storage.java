@@ -13,12 +13,19 @@ public class Storage {
 
     String filePath;
 
+    /**
+     * Constructs a Storage object
+     *
+     * @param filePath The assigned file path to the txt file that stores tasks.
+     */
     public Storage(String filePath){
         this.filePath = filePath;
     }
 
     /**
      * Writes an array of tasks to a file
+     *
+     * @param taskList The taskList to write from.
      */
     public void writeToFile(TaskList taskList){
         File data = new File(this.filePath);
@@ -31,6 +38,13 @@ public class Storage {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Reads from the given storage file (.txt).
+     *
+     * @return The TaskList read from the storage file
+     * @throws DukeException
+     */
     public TaskList readFromFile() throws DukeException{
         TaskList taskList = new TaskList();
         int numTasks = 0;

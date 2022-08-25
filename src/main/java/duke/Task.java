@@ -6,6 +6,13 @@ public class Task {
     private types type;
     private enum types{TODO, DEADLINE, EVENT}
 
+    /**
+     * Constructs a task object, given its title, type and completion status.
+     *
+     * @param title The title of the task.
+     * @param type The type of the task - todo, deadline, event.
+     * @param done The completion status of the task.
+     */
     public Task(String title, String type, boolean done) {
         switch(type) {
         case "todo":
@@ -30,7 +37,7 @@ public class Task {
     }
 
     /**
-     * This marks the task as being done.
+     * Marks the task as being done.
      * Changing the boolean done to true.
      */
     public void mark() {
@@ -38,7 +45,7 @@ public class Task {
     }
 
     /**
-     * This marks the task as not done.
+     * Marks the task as not done.
      * Changing the boolean done to false.
      */
     public void unmark() {
@@ -46,7 +53,8 @@ public class Task {
     }
 
     /**
-     * This method returns whether the task has been completed.
+     * Returns whether the task has been completed.
+     *
      * @return boolean If the task has been completed
      */
     public boolean isDone() {
@@ -54,7 +62,8 @@ public class Task {
     }
 
     /**
-     * This method retrieves the type of the task.
+     * Retrieves the type of the task.
+     *
      * @return String Type of the task.
      */
     public String getType() {
@@ -73,6 +82,7 @@ public class Task {
 
     /**
      * Returns the title of the task.
+     *
      * @return The title of the task.
      */
     public String getTitle() {

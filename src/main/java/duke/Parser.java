@@ -3,8 +3,20 @@ package duke;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The parser for the duke program.
+ * Processes user string input.
+ */
 public class Parser {
 
+    /**
+     * Parses a user's input, and calls the necessary functions.
+     *
+     * @param input The user's input.
+     * @param tasks The TaskList being used.
+     * @param storage The storage object being used.
+     * @param ui The Ui instance that has been initialised.
+     */
     public static void parse(String input, TaskList tasks, Storage storage, Ui ui) {
         ArrayList<String> split = new ArrayList<String>(Arrays.asList(input.split(" ")));
         String first = split.remove(0);
@@ -51,6 +63,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the given input is the exit command, "bye".
+     *
+     * @param input The user's input.
+     * @return Whether the input is equals to "bye".
+     */
     public static boolean checkExit(String input) {
         return input.equals("bye");
     }
