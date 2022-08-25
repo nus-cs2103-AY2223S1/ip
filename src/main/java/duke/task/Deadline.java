@@ -1,8 +1,8 @@
 package duke.task;
 import java.time.LocalDateTime;
 
-public class Deadline  extends Task{
-    public LocalDateTime deadline;
+public class Deadline extends Task {
+    private LocalDateTime deadline;
 
     public Deadline(String desc, LocalDateTime date) {
         super(desc);
@@ -28,4 +28,5 @@ public class Deadline  extends Task{
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.getDeadlineString() + ")";
     }
+
 }

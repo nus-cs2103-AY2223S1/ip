@@ -2,7 +2,11 @@ package duke;
 import java.util.Scanner;
 
 public class Ui {
-    public Scanner sc;
+    private Scanner sc;
+
+    public Ui() {
+        sc = new Scanner(System.in);
+    }
 
     public String readCommand() {
         return this.sc.nextLine();
@@ -19,10 +23,5 @@ public class Ui {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
     }
-
-    public Ui() {
-        sc = new Scanner(System.in);
-    }
-
 
 }

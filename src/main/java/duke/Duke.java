@@ -4,10 +4,10 @@ import duke.exception.DukeException;
 
 
 public class Duke {
+    private static String filePath = "data/list.txt";
     private Ui ui;
     private TaskList tasks;
     private Storage storage;
-    public static String filePath = "data/list.txt";
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -19,7 +19,6 @@ public class Duke {
 
     public static void main(String[] args) {
         new Duke(Duke.filePath).run();
-
     }
 
     private void run() {
