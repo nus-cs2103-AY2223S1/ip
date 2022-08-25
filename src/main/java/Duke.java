@@ -3,6 +3,8 @@ import java.util.ArrayList;
 
 public class Duke {
     private static final String LINE = "____________________________________________________________\n";
+    private static ArrayList<Task> taskList = new ArrayList<>();
+    private static int count = 0;
 
     public static void greeting() {
         String initMessage = "Hello! I'm Duke\n" + "What can I do for you?\n";
@@ -16,42 +18,124 @@ public class Duke {
 
     public static void listTasks(ArrayList<Task> tasklist) {
         int counter = 1;
+        System.out.println(LINE + "Here are the tasks in your list:");
         for (Task t : tasklist) {
             System.out.println(counter + "." + t.toString());
             counter++;
         }
+        System.out.println(LINE);
     }
-    public static void unmarkTask(ArrayList<Task> taskList, int index) {
-        System.out.println(LINE + "OK, I've marked this task as not done yet:");
-        Task task = taskList.get(index);
+    public static void unmarkTask(String input) throws DukeException {
+        String taskNumber = input.substring(7);
+        int number = Integer.parseInt(taskNumber);
+
+        if (number <= 0 || number > taskList.size()) {
+            throw new DukeException(LINE + "☹ OOPS!!! Sorry, I can't mark this as" +
+                    " undone if it does not exist\n" + LINE);
+        }
+        Task task = taskList.get(number - 1);
         task.markAsUndone();
+        System.out.println(LINE + "OK, I've marked this task as not done yet:");
         System.out.println(task.toString() + "\n" + LINE);
     }
 
-    public static void markTask(ArrayList<Task> taskList, int index) {
-        System.out.println(LINE + "Nice! I've marked this task as done:");
-        Task task = taskList.get(index);
+    public static void markTask(String input) throws DukeException {
+        String taskNumber = input.substring(5);
+        int number = Integer.parseInt(taskNumber);
+
+        if (number <= 0 || number > taskList.size()) {
+            throw new DukeException(LINE + "☹ OOPS!!! Sorry," +
+                    " I can't mark this as done if it does not exist :(\n" + LINE);
+        }
+        Task task = taskList.get(number - 1);
         task.markAsDone();
+        System.out.println(LINE + "Nice! I've marked this task as done:");
         System.out.println(task.toString() + "\n" + LINE);
     }
+    public static void addTask(String input) throws DukeException {
+        String[] taskArray = input.split(" ", 2);
+        String task = taskArray[0];
+        switch (task) {
+        case "todo":
+            if (taskArray.length < 2 || taskArray[1].isEmpty()) {
+                throw new DukeException(LINE + "☹ OOPS!!! The description of a todo cannot be empty.\n"
+                        + LINE);
+            } else {
+                Task todo = new ToDo(taskArray[1]);
+                int index = taskList.size() + 1;
+                taskList.add(todo);
+                count++;
+                System.out.println(LINE + "Got it. I've added this task:\n" + todo.toString());
+                System.out.println("Now you have " + index + " tasks in this list.\n" + LINE);
+                break;
+            }
+        case "deadline":
+            String[] deadlineArray = input.split("deadline", 2);
+            String taskBy = deadlineArray[1];
+            String[] taskDeadline = taskBy.split("/by", 2);
 
-    public static void addTask(ArrayList<Task> taskList, Task task) {
-        int count = taskList.size() + 1;
-        taskList.add(task);
-        System.out.println(LINE + "Got it. I've added this task:\n" + task.toString());
-        System.out.println("Now you have " + count + " tasks in this list.\n" + LINE);
+            if (deadlineArray.length < 2 || deadlineArray[1].isEmpty()) {
+                throw new DukeException(LINE + "☹ OOPS!!! The description of a deadline cannot be empty.\n"
+                        + LINE);
+            }
+
+            if (taskDeadline.length < 2 || taskDeadline[1].isEmpty()) {
+                throw new DukeException(LINE + "☹ OOPS!!! Please include a /by for your deadline. " +
+                        "E.g /by Aug 6th.\n"
+                        + LINE);
+            } else {
+                Deadline d = new Deadline(taskDeadline[0].substring(1), taskDeadline[1]);
+                int index = taskList.size() + 1;
+                taskList.add(d);
+                count++;
+                System.out.println(LINE + "Got it. I've added this task:\n" + d.toString());
+                System.out.println("Now you have " + index + " tasks in this list.\n" + LINE);
+                break;
+            }
+        case "event":
+            String[] eventArray = input.split("event", 2);
+            String taskAt = eventArray[1];
+            String[] taskEvent = taskAt.split("/at", 2);
+
+            if (eventArray.length < 2 || eventArray[1].isEmpty()) {
+                throw new DukeException(LINE + "☹ OOPS!!! The description of a event cannot be empty.\n"
+                        + LINE);
+            }
+
+            if (taskEvent.length < 2 || taskEvent[1].isEmpty()) {
+                throw new DukeException(LINE + "☹ OOPS!!! Please include a /at for your deadline. " +
+                        "E.g /at 2-4pm.\n"
+                        + LINE);
+            } else {
+                Event e = new Event(taskEvent[0].substring(1), taskEvent[1]);
+                int index = taskList.size() + 1;
+                taskList.add(e);
+                count++;
+                System.out.println(LINE + "Got it. I've added this task:\n" + e.toString());
+                System.out.println("Now you have " + index + " tasks in this list.\n" + LINE);
+                break;
+            }
+        default:
+            System.out.println("I can't add this task. Sorry :(");
+        }
     }
 
-    public static void deleteTask(ArrayList<Task> taskList, int index) {
+    public static void deleteTask(String input) throws DukeException {
+        String deletionIndex = input.substring(7);
+        int index = Integer.parseInt(deletionIndex);
+
+        if (index <= 0 || index > taskList.size()) {
+            throw new DukeException(LINE + "☹ OOPS!!! I can't remove this if it does not exist\n"
+                    + LINE);
+        }
+        Task task = taskList.remove(index - 1);
+        count--;
         System.out.println(LINE + "Noted. I've removed this task:");
-        Task task = taskList.remove(index);
         System.out.println(task.toString() + "\n" + "Now you have " + taskList.size() + " tasks in the list.\n" + LINE);
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int count = 0;
-        ArrayList<Task> list = new ArrayList<>();
         String logo = " ____        _\n"
                 + "|  _ \\ _   _| | _____\n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -64,95 +148,24 @@ public class Duke {
             String input = sc.nextLine();
             String[] inputArray = input.split(" ");
             String first = inputArray[0];
-
             try {
                 if (input.equals("bye")) {
                     exit();
                     break;
                 } else if (input.equals("list")) {
-                    System.out.println(LINE + "Here are the tasks in your list:");
-                    listTasks(list);
-                    System.out.println(LINE);
+                    listTasks(taskList);
                 } else if (first.equals("unmark")) {
-                    String taskNumber = input.substring(7);
-                    int number = Integer.parseInt(taskNumber);
-
-                    if (number <= 0 || number > count) {
-                        throw new DukeException(LINE + "☹ OOPS!!! Sorry, I can't mark this as" +
-                                " undone if it does not exist\n" + LINE);
-                    } else {
-                        unmarkTask(list, number - 1);
-                    }
+                    unmarkTask(input);
                 } else if (first.equals("mark")) {
-                    String taskNumber = input.substring(5);
-                    int number = Integer.parseInt(taskNumber);
-
-                    if (number <= 0 || number > count) {
-                        throw new DukeException(LINE + "☹ OOPS!!! Sorry," +
-                                " I can't mark this as done if it does not exist :(\n" + LINE);
-                    } else {
-                        markTask(list, number - 1);
-                    }
+                    markTask(input);
                 } else if (first.equals("todo")) {
-                    String[] taskArray = input.split(" ", 2);
-
-                    if (taskArray.length < 2 || taskArray[1].isEmpty()) {
-                        throw new DukeException(LINE + "☹ OOPS!!! The description of a todo cannot be empty.\n"
-                                + LINE);
-                    } else {
-                        Task todo = new ToDo(taskArray[1]);
-                        addTask(list, todo);
-                        count++;
-                    }
+                    addTask(input);
                 } else if (first.equals("deadline")) {
-                        String[] deadline = input.split("deadline", 2);
-                        String taskBy = deadline[1];
-                        String[] task = taskBy.split("/by", 2);
-
-                    if (deadline.length < 2 || deadline[1].isEmpty()) {
-                        throw new DukeException(LINE + "☹ OOPS!!! The description of a deadline cannot be empty.\n"
-                                + LINE);
-                    }
-
-                    if (task.length < 2 || task[1].isEmpty()) {
-                        throw new DukeException(LINE + "☹ OOPS!!! Please include a /by for your deadline. " +
-                                "E.g /by Aug 6th.\n"
-                                + LINE);
-                    } else {
-                        Deadline d = new Deadline(task[0].substring(1), task[1]);
-                        addTask(list, d);
-                        count++;
-                    }
+                    addTask(input);
                 } else if (first.equals("event")) {
-                    String[] event = input.split("event", 2);
-                    String taskAt = event[1];
-                    String[] task = taskAt.split("/at", 2);
-
-                    if (event.length < 2 || event[1].isEmpty()) {
-                        throw new DukeException(LINE + "☹ OOPS!!! The description of a event cannot be empty.\n"
-                                + LINE);
-                    }
-
-                    if (task.length < 2 || task[1].isEmpty()) {
-                        throw new DukeException(LINE + "☹ OOPS!!! Please include a /at for your deadline. " +
-                                "E.g /at 2-4pm.\n"
-                                + LINE);
-                    } else {
-                        Event e = new Event(task[0].substring(1), task[1]);
-                        addTask(list, e);
-                        count++;
-                    }
+                    addTask(input);
                 } else if (first.equals("delete")) {
-                    String deletionIndex = input.substring(7);
-                    int index = Integer.parseInt(deletionIndex);
-
-                    if (index <= 0 || index > count) {
-                        throw new DukeException(LINE + "☹ OOPS!!! I can't remove this if it does not exist\n"
-                                + LINE);
-                    } else {
-                        deleteTask(list, index - 1);
-                        count--;
-                    }
+                        deleteTask(input);
                 } else {
                     throw new DukeException(LINE + "☹ OOPS!!! I'm sorry, but I don't know what that means :(\n"
                             + LINE);
