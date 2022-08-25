@@ -1,5 +1,1 @@
-[T][X] read book 
-[T][X] return book
-[D][ ] borrow book (by: Sunday 2pm )
-[E][X] book session (at: Monday)
-[T][ ] book review 
+

@@ -1,7 +1,11 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class List {
@@ -21,7 +25,15 @@ public class List {
                     break;
                 case 'D':
                     String[] parts = s.substring(7).split(" \\(by: ");
-                    task = new DeadlineTask(parts[0], parts[1]);
+                    DateTimeFormatter pattern = new DateTimeFormatterBuilder()
+                            // case-insensitive to parse JAN and FEB
+                            .parseCaseInsensitive()
+                            // add pattern
+                            .appendPattern("MMM dd yyyy")
+                            // create formatter (use English Locale to parse month names)
+                            .toFormatter(Locale.ENGLISH);
+                    LocalDate date = LocalDate.parse(parts[1].substring(0, parts[1].length() - 1), pattern);
+                    task = new DeadlineTask(parts[0], date);
                     break;
                 case 'E':
                     String[] sections = s.substring(7).split(" \\(at: ");
@@ -107,3 +119,4 @@ public class List {
     }
 }
 // must wait for data to be saved before entering another command
+// do not open duke.txt before running as opening it will create the first empty line 
