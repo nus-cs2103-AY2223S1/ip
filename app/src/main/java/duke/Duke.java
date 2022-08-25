@@ -1,17 +1,13 @@
 package duke;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Duke {
     private static boolean isAlive;
-    private static List<Task> tasks;
+    private static Ui ui;
+    private static Storage storage;
+    private static Parser parser;
+    private static TaskList tasks;
 
     private static int checkTask(String id) {
         try {
@@ -31,7 +27,7 @@ public class Duke {
             StringBuilder out = new StringBuilder();
             for (int i = 0; i < tasks.size(); ++i) {
                 if (i != 0) out.append("\n");
-                out.append(i + 1).append(". ").append(tasks.get(i));
+                out.append(i + 1).append(". ").append(tasks.getTask(i));
             }
             if (out.toString().equals("")) {
                 return "No tasks left!";
@@ -40,112 +36,69 @@ public class Duke {
         case "mark":
             int markedTask = checkTask(params);
             if (markedTask < 0) return "Invalid task number!";
-            tasks.get(markedTask - 1).isDone = true;
-            saveToFile();
-            return "OK, this task is done:\n" + tasks.get(markedTask - 1);
+            tasks.getTask(markedTask - 1).isDone = true;
+            storage.save(tasks);
+            return "OK, this task is done:\n" + tasks.getTask(markedTask - 1);
         case "unmark":
             int unmarkedTask = checkTask(params);
             if (unmarkedTask < 0) return "Invalid task number!";
-            tasks.get(unmarkedTask - 1).isDone = false;
-            saveToFile();
-            return "OK, this task is undone:\n" + tasks.get(unmarkedTask - 1);
+            tasks.getTask(unmarkedTask - 1).isDone = false;
+            storage.save(tasks);
+            return "OK, this task is undone:\n" + tasks.getTask(unmarkedTask - 1);
         case "delete":
             int deleteTask = checkTask(params);
             if (deleteTask < 0) return "Invalid task number!";
-            tasks.remove(deleteTask - 1);
-            saveToFile();
-            return "OK, that task has been deleted.";
+            Task removedTask = tasks.deleteTask(deleteTask - 1);
+            storage.save(tasks);
+            return "OK, this task has been deleted:\n" + removedTask;
         case "bye":
             isAlive = false;
             return "Goodbye!";
         case "todo":
             if (params.equals("")) return "Todo description can't be empty.";
             tasks.add(new Todo(params));
-            saveToFile();
-            return "Added new todo: " + tasks.get(tasks.size() - 1);
+            storage.save(tasks);
+            return "Added new todo: " + tasks.getTask(tasks.size() - 1);
         case "deadline":
             if (params.equals("")) return "Deadline description can't be empty.";
-            String[] splitDeadline = splitOnFirst(params, " /by ");
+            String[] splitDeadline = parser.splitOnFirst(params, " /by ");
             try {
                 tasks.add(new Deadline(splitDeadline[0], splitDeadline[1]));
             } catch (DateTimeParseException e) {
                 return "Invalid date! (yyyy-mm-dd)";
             }
-            saveToFile();
-            return "Added new deadline: " + tasks.get(tasks.size() - 1);
+            storage.save(tasks);
+            return "Added new deadline: " + tasks.getTask(tasks.size() - 1);
         case "event":
             if (params.equals("")) return "Event description can't be empty.";
-            String[] splitEvent = splitOnFirst(params, " /at ");
+            String[] splitEvent = parser.splitOnFirst(params, " /at ");
             try {
                 tasks.add(new Event(splitEvent[0], splitEvent[1]));
             } catch (DateTimeParseException e) {
                 return "Invalid date! (yyyy-mm-dd)";
             }
-            saveToFile();
-            return "Added new event: " + tasks.get(tasks.size() - 1);
+            storage.save(tasks);
+            return "Added new event: " + tasks.getTask(tasks.size() - 1);
         default:
             return "I don't know what '" + command + "' is!";
         }
     }
 
-    private static void printResponse(String response) {
-        System.out.println("    __________________________________________________");
-        System.out.println("    " + response.replace("\n", "\n    "));
-        System.out.println("    __________________________________________________");
-    }
-
-    private static String[] splitOnFirst(String str, String target) {
-        int split = str.indexOf(target);
-        if (split < 0) {
-            return new String[] {str, ""};
-        } else {
-            String[] out = new String[2];
-            out[0] = str.substring(0, split);
-            out[1] = str.substring(split + target.length());
-            return out;
-        }
-    }
-
-    private static void saveToFile() {
-        try {
-            PrintWriter saveFile = new PrintWriter("tasks.txt");
-            for (Task task : tasks) {
-                saveFile.println(task.getEncoded());
-            }
-            saveFile.close();
-        } catch (IOException e) {
-            System.out.println("<couldn't save to file!>");
-        }
-    }
-
     public static void main(String[] args) {
 
-        tasks = new ArrayList<>();
+        ui = new Ui();
+        storage = new Storage("tasks.txt");
+        parser = new Parser();
+        tasks = storage.load();
 
-        try {
-            Scanner saved = new Scanner(new File("tasks.txt"));
-            while (saved.hasNextLine()) {
-                try {
-                    tasks.add(Task.fromEncoded(saved.nextLine()));
-                } catch (DateTimeParseException e) {
-                    System.out.println("<failed to load a task from file>");
-                }
-            }
-            System.out.println("<loaded " + tasks.size() + " tasks from file>");
-            saved.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("<loaded 0 tasks from file>");
-        }
-
-        printResponse("Hello! What can I do for you today?");
-        Scanner sc = new Scanner(System.in);
+        ui.respond("Hello! You have " + tasks.size() + " tasks. What can I do for you today?");
 
         isAlive = true;
         while (isAlive) {
             String in;
-            in = sc.nextLine();
-            String[] splits = splitOnFirst(in, " ");
-            printResponse(handle(splits[0], splits[1]));
+            in = ui.getLine();
+            String[] splits = parser.splitOnFirst(in, " ");
+            ui.respond(handle(splits[0], splits[1]));
         }
     }
 }
