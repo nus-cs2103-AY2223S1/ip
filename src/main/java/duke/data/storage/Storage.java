@@ -10,14 +10,30 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+/**
+ * A generic storage class to serialize and deserialize objects
+ *
+ * @param <T> a serializable object type
+ */
 public class Storage<T extends Serializable> {
 
     private final Path storagePath;
 
+    /**
+     * Constructor for Storage class
+     *
+     * @param storagePath path to storage file
+     */
     public Storage(Path storagePath) {
         this.storagePath = storagePath;
     }
 
+    /**
+     * Serialize object to specified storage file
+     *
+     * @param object object to serialize
+     * @throws StorageException if serialization fails due to IO error
+     */
     public void save(T object) throws StorageException {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(storagePath.toString());
@@ -32,6 +48,13 @@ public class Storage<T extends Serializable> {
         }
     }
 
+    /**
+     * Deserialize object from specified storage file
+     *
+     * @param fallback object to return if storage has not been initialized
+     * @return deserialized object of type T
+     * @throws StorageException if deserialization fails due to IO error
+     */
     @SuppressWarnings("unchecked")
     public T load(T fallback) throws StorageException {
         if (!Files.exists(storagePath)) {
