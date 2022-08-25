@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EventTest {
     @Test
-    public void getType_DReturned() {
+    public void getType_EReturned() {
         Event test = new Event("test", "Jan 1st, 2000");
         assertEquals("E", test.getType());
     }
