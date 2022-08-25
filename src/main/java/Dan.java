@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -53,10 +54,13 @@ public class Dan {
                     default:
                         throw new DanException("I don't really understand what do you mean by that...");
                     }
+
                 } catch (DanException e) {
                     printBlock(e.getMessage());
                 } catch (NumberFormatException nfe) {
                     printBlock("Please use an integer instead");
+                } catch (DateTimeParseException dte) {
+                    printBlock("Please use the format dd/MM/yyyy HHmm for dates");
                 }
 
                 try {

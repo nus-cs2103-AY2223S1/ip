@@ -1,19 +1,25 @@
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.LocalDateTime;
+
 public class Deadline extends Task {
     private static final String ICON = "D";
-    protected String dateString;
+    protected LocalDateTime dateString;
 
-    Deadline(String description, String dateString) {
+    Deadline(String description, String dateString) throws DateTimeParseException {
         super(description);
-        this.dateString = dateString;
+        this.dateString = LocalDateTime.parse(dateString, DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm"));
     }
 
     @Override
     public String toDataString(String separator) {
-        return String.format("%s%s%s%s", ICON, super.toDataString(separator), separator, this.dateString);
+        return String.format("%s%s%s%s", ICON, super.toDataString(separator), separator,
+                this.dateString.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm")));
     }
 
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: %s)", ICON, super.toString(), this.dateString);
+        return String.format("[%s]%s (by: %s)", ICON, super.toString(),
+                this.dateString.format(DateTimeFormatter.ofPattern("MMM dd h:mma")));
     }
 }
