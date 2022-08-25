@@ -1,19 +1,22 @@
-public class ExitCommand extends Command{
-    public ExitCommand() {
-    }
+package duke.command;
 
-    //Do nothing for exit command, simply exits the UI
+import duke.util.Storage;
+import duke.util.Ui;
+import duke.task.TaskList;
+
+public class WrongCommand extends Command {
+
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         System.out.println(this);
     }
 
     public boolean isExit() {
-        return true;
+        return false;
     }
 
     @Override
     public String toString() {
         return "__________________________________________________\n"
-                + "Adios Amigo! See you soon!" ;
+                + "OOPS! I'm sorry, but I don't know what that means :(" ;
     }
 }

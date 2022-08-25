@@ -1,17 +1,16 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+package duke.task;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TaskList {
     private ArrayList<Task> taskList;
 
 
-    TaskList(ArrayList<Task> taskInStorage) {
+    public TaskList(ArrayList<Task> taskInStorage) {
         this.taskList = taskInStorage;
     }
 
-    TaskList() {
+    public TaskList() {
         this.taskList = new ArrayList<>();
     }
 

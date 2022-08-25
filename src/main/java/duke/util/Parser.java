@@ -1,3 +1,15 @@
+package duke.util;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.command.WrongCommand;
+import duke.exception.DukeException;
+
 public class Parser {
     //The important keywords to check against with the user-input
     public static final String EXITCOMMAND = "bye";

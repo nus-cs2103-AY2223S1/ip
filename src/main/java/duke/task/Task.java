@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * This class is used to simulate the individual task entered by the
  * user and encapsulates the task description as well as task status

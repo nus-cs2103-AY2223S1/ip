@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * The Deadline class extends from Task as it is a more specific/well-defined
  * task, it is differentiated with the "deadline" keyword in user-input.

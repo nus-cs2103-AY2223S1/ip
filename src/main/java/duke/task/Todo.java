@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * The Todo class extends from Task as it is a more specific/well-defined
  * task, it is differentiated by having no deadline/due dates in user-input.

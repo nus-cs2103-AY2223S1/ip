@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.util.Storage;
+import duke.util.Ui;
+import duke.exception.DukeException;
+import duke.task.TaskList;
+
 import java.io.IOException;
 
 public class UnmarkCommand extends Command {
