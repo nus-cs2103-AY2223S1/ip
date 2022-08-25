@@ -37,4 +37,12 @@ public class Task implements Serializable {
             return "[] " + taskDescription;
         }
     }
+
+    /**
+     * Accessor for the taskDescription field.
+     * @return the taskDescription
+     */
+    public String getTaskDescription() {
+        return taskDescription;
+    }
 }

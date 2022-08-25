@@ -98,6 +98,22 @@ public class TasksController {
     }
 
     /**
+     * Finds relevant tasks by keyword
+     * @param keyword user's input
+     * @return a list of relevant tasks
+     */
+    public ArrayList<Task> findByKeyword(String keyword) {
+        ArrayList<Task> result = new ArrayList<>();
+        for (Task task: tasks) {
+            String content = task.getTaskDescription();
+            if (content.contains(keyword)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
+
+    /**
      * Stringify task list
      * @return the string
      */

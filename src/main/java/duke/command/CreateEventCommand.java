@@ -27,7 +27,7 @@ public class CreateEventCommand extends Command {
             controller.checkTimeFormat(eventTime);
             Event eventTask = new Event(event, eventTime);
             controller.addToList(eventTask);
-            ui.display(eventTask.toString(), false, false, false, false);
+            ui.display(eventTask.toString(), false, false, false, false, false);
         } catch (EmptyContentException ece) {
             ui.reportError("No empty task is allowed! Please try again...");
             ui.showSplitLine();

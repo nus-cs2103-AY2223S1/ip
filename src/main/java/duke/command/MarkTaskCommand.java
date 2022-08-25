@@ -20,7 +20,7 @@ public class MarkTaskCommand extends Command {
         try {
             controller.changeTaskStatus(taskIndexToMark, true);
             String reply = controller.getTask(taskIndexToMark).toString();
-            ui.display(reply, false, true, false, false);
+            ui.display(reply, false, true, false, false, false);
         } catch (NoSuchTaskException e) {
             ui.reportError("The task you choose does not exist! Please try again...");
             ui.showSplitLine();
