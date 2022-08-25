@@ -2,6 +2,11 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Main object to be created to initialise the chatbot program.
+ * 
+ * @author Siau Wee
+ */
 public class Duke {
 
     private Ui ui;
@@ -9,12 +14,23 @@ public class Duke {
     private Storage storage;
     private TaskList taskList;
 
+    /**
+     * Constructor to initialise a new Duke object with a new instance of
+     * Parser, Storage and Ui, and a new taskList with the required instances
+     */
     public Duke() {
         this.ui = new Ui();
         this.parser = new Parser();
         this.storage = new Storage();
         this.taskList = new TaskList(this.parser, this.storage, this.ui);
     }
+
+    /**
+     * Calls the relevant method based on the Command passed as argument.
+     * 
+     * @param command The Command to be executed.
+     * @throws DukeException If there is an invalid command keyword or arguments.
+     */
     public void executeCommand(Command command) throws DukeException {
         switch (command.getKeyword()) {
             case BYE:
@@ -51,6 +67,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Main driver method of the program. To be called at the start
+     * of the life cycle of the program.
+     */
     public void run() {
         this.ui.greet();
         Scanner scanner = new Scanner(System.in);
