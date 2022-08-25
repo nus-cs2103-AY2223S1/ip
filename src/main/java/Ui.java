@@ -30,25 +30,4 @@ public class Ui {
     public void showError(String errorMessage) {
         System.out.println(errorMessage);
     }
-
-//    public static void main(String[] args) {
-//        Storage storage = new Storage("data/duke.txt");
-//        TaskList tasks = new TaskList();
-//        Ui ui = new Ui();
-//        ui.showWelcome();
-//        boolean isExit = false;
-//        while (!isExit) {
-//            try {
-//                String fullCommand = ui.readCommand();
-//                ui.showLine(); // show the divider line ("_______")
-//                Command c = Parser.parse(fullCommand);
-//                c.execute(tasks, ui, storage);
-//                isExit = c.isExit();
-//            } catch (DukeException e) {
-//                ui.showError(e.getMessage());
-//            } finally {
-//                ui.showLine();
-//            }
-//        }
-//    }
 }

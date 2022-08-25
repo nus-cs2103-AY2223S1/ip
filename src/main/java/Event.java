@@ -14,8 +14,8 @@ public class Event extends Task {
      * @param description String that contains the details about the task
      * @param at String that contains the information of the specific time of event
      */
-    public Event(String description, String at) {
-        super(description);
+    public Event(String description, String at, boolean isDone) {
+        super(description, isDone);
         this.at = at;
     }
 

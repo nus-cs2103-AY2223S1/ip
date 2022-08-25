@@ -18,9 +18,9 @@ public class Task {
      * @param description This is a String describing the task to be done.
      * @return an instance of Task
      */
-    public Task(String description) {
+    public Task(String description, boolean isDone) {
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
     }
 
     /**

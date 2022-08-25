@@ -13,13 +13,13 @@ public class AddCommand extends Command {
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         if (this.taskType == 0) {
-            tasks.add(new Todo(this.taskDetails));
+            tasks.add(new Todo(this.taskDetails, false));
         } else if (this.taskType == 1) {
             String[] infoArray = this.taskDetails.split(" /by ", 2);
-            tasks.add(new Deadline(infoArray[0], infoArray[1]));
+            tasks.add(new Deadline(infoArray[0], infoArray[1], false));
         } else {
             String[] infoArray = this.taskDetails.split(" /at ", 2);
-            tasks.add(new Event(infoArray[0], infoArray[1]));
+            tasks.add(new Event(infoArray[0], infoArray[1], false));
         }
         String taskDescription = "  " + tasks.getTask(tasks.size() - 1).toString();
         System.out.println(this);

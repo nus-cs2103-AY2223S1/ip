@@ -40,16 +40,16 @@ public class Storage {
         // To isolate the string containing the task status
         String s2 = stringStored.substring(0, 6);
 
+        boolean isCompleted = s2.contains("[X]");
+
         if (s2.contains("[T]")) {
-            return new Todo(s1);
+            return new Todo(s1, isCompleted);
         } else if (s2.contains("[D]")) {
             String[] separateBy = s1.split(" \\(by: ", 2);
-            System.out.println(separateBy[0]);
-            System.out.println(separateBy[1]);
-            return new Deadline(separateBy[0], separateBy[1].substring(0, separateBy[1].length() - 1));
+            return new Deadline(separateBy[0], separateBy[1].substring(0, separateBy[1].length() - 1), isCompleted);
         } else {
             String[] separateAt = s1.split(" \\(at: ", 2);
-            return new Event(separateAt[0], separateAt[1].substring(0, separateAt[1].length() - 1));
+            return new Event(separateAt[0], separateAt[1].substring(0, separateAt[1].length() - 1), isCompleted);
         }
 
     }
