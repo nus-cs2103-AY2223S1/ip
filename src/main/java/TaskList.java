@@ -19,22 +19,6 @@ public class TaskList {
     }
 
     /**
-     * Mark Task as done.
-     * @param taskToMarkIndex Index of Task to be marked as done.
-     */
-    public void markAsDone(int taskToMarkIndex) {
-        taskArray.get(taskToMarkIndex).markAsDone();
-    }
-
-    /**
-     * Mark Task as not done.
-     * @param taskToUnmarkIndex Index of Task to be marked as not done.
-     */
-    public void markAsNotDone(int taskToUnmarkIndex) {
-        taskArray.get(taskToUnmarkIndex).markAsNotDone();
-    }
-
-    /**
      * Add a task to TaskList.
      * @param task Task to add.
      */
