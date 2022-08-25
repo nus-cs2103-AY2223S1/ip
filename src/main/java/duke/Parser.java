@@ -11,11 +11,20 @@ import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 
+/**
+ * Parser to parse user input and interpret which commands user are inputting.
+ */
 public class Parser {
 
     private static int cnt = 0;
     private static Scanner sc = new Scanner(System.in);
 
+    /**
+     * Parse input of users and analysing which command is used
+     * @param input User input
+     * @return Command referred to the user input
+     * @throws DukeException If invalid commands or arguments
+     */
     public static Command parse(String input) throws DukeException {
         String[] cmd = input.split(" ", 2);
         int num;
