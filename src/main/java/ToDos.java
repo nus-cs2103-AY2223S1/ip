@@ -6,10 +6,6 @@ public class ToDos extends Task{
 
     @Override
     public String toString() {
-        if (this.isDone()) {
-            return "[T][X] " + getName();
-        } else {
-            return "[T][ ] " + getName();
-        }
+        return "[T]" + super.toString();
     }
 }

@@ -8,10 +8,6 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        if(isDone()) {
-            return "[E][X] " + getName()+ " (by: " + this.dateAndTime + ")";
-        } else {
-            return "[E][ ] " + getName() + " (by: " + this.dateAndTime + ")";
-        }
+        return "[E]" + super.toString() + " (by: " + this.dateAndTime + ")";
     }
 }

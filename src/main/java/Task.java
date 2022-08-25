@@ -21,10 +21,6 @@ public class Task {
 
     @Override
     public String toString() {
-        if(done) {
-            return "[ ][X] " + this.name;
-        } else {
-            return "[ ][ ] " + this.name;
-        }
+        return (this.isDone() ? "[X] " : "[ ] ") + this.name;
     }
 }
