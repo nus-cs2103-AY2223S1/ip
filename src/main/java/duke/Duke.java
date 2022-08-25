@@ -6,6 +6,11 @@ public class Duke {
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Creates a Duke program.
+     *
+     * @param filePath directory to store task data
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -13,6 +18,9 @@ public class Duke {
         parser = new Parser();
     }
 
+    /**
+     * Runs the Duke program until user exits.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

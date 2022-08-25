@@ -24,6 +24,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Stores the list of tasks to a file.
+     *
+     * @param tasks list of stored tasks
+     */
     public void saveData(TaskList tasks) {
         String csv = tasks.toCsv();
         try {
@@ -35,6 +40,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns the file with stored tasks.
+     *
+     * @return file with stored tasks
+     */
     public File load() {
         return dataFile;
     }

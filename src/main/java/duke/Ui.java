@@ -20,18 +20,34 @@ public class Ui {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Prints a welcome message.
+     */
     public static void showWelcome() {
         System.out.println(WELCOME_GREET + LINE);
     }
 
+    /**
+     * Prints a line.
+     */
     public static void showLine() {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints out error message.
+     *
+     * @param error error message
+     */
     public static void showError(String error) {
         System.out.println(error);
     }
 
+    /**
+     * Prints list of stored tasks.
+     *
+     * @param taskList list of stored tasks
+     */
     public static void printTaskList(TaskList taskList) {
         String header = "";
         if (taskList.isEmpty()) {
@@ -42,17 +58,31 @@ public class Ui {
         System.out.println(header + "\n" + taskList);
     }
 
+    /**
+     * Prints task creation message.
+     *
+     * @param newTask new task added to TaskList
+     * @param noOfTasks number of tasks in this TaskList
+     */
     public static void printTaskCreationMessage(Task newTask,int noOfTasks) {
         System.out.println("Got it. I've added this task:\n "
                 + newTask + "\nNow you have " + noOfTasks + " tasks in the list.");
     }
 
+    /**
+     * Returns the next line of user input.
+     *
+     * @return next line of user input
+     */
+    public String readUserInput() {
+        return scanner.nextLine();
+    }
+
+    /**
+     * Closes scanner and prints exit message.
+     */
     public void exit() {
         this.scanner.close();
         System.out.println(EXIT_GREET + LINE);
-    }
-
-    public String readUserInput() {
-        return scanner.nextLine();
     }
 }

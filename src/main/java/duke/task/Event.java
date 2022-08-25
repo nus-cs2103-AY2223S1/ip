@@ -6,7 +6,7 @@ import java.time.format.DateTimeParseException;
 
 import duke.DukeException;
 
-public class Event extends Task{
+public class Event extends Task {
     private LocalDate at;
 
     public Event(String description, String at) {
@@ -18,11 +18,21 @@ public class Event extends Task{
         }
     }
 
+    /**
+     * Returns this Event Task in CSV format.
+     *
+     * @return CSV representation of this Event Task
+     */
     @Override
     public String toCsv() {
         return "E," + super.toCsv() + "," + this.at + "\n";
     }
 
+    /**
+     * Returns a string representation of this Event Task.
+     *
+     * @return a string representation of this Event Task
+     */
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
