@@ -44,12 +44,10 @@ public class Ui {
         return scanner.nextLine();
     }
 
-    public static int readNextInt() {
-        int taskNumber = scanner.nextInt();
-        scanner.nextLine();
-        return taskNumber;
-    }
-
+    /**
+     * Shows the list of messages
+     * @param messages the list of messages to be shown
+     */
     public void showMessages(String... messages) {
         for (String m : messages) {
             System.out.println(m);
