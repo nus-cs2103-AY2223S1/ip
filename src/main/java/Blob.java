@@ -1,4 +1,6 @@
+import commands.Command;
 import exception.*;
+import parser.Parser;
 import task.Deadline;
 import task.Event;
 import task.Task;
@@ -24,9 +26,11 @@ public class Blob {
     private final ArrayList<Task> taskList = new ArrayList<>();
 
     TextUi ui;
+    Parser parser;
 
     Blob() {
         this.ui = new TextUi();
+        this.parser = new Parser();
     }
 
     /**
@@ -188,65 +192,65 @@ public class Blob {
         } catch (InvalidDateFormatException e) {
             ui.speakToUser(e.getBlobMessages());
         }
-        ui.speakToUser();
+        ui.greetUser();
         Scanner sc = new Scanner(System.in);
         while (true) {
+            ui.promptUserInput();
             try {
-                System.out.print(">> ");
-                String input = sc.nextLine().trim();
-                String[] deconstructedInput = input.split("\\s+", 2);
-                String command = deconstructedInput[0];
-                switch (command) {
-                case "bye":
-                    end();
-                case "list":
-                    listTasks();
-                    break;
-                case "mark":
-                    try {
-                        int index = Integer.parseInt(deconstructedInput[1]);
-                        markTaskAtIndexDone(index);
-                    } catch (NumberFormatException exception) {
-                        throw new InvalidTaskIndexException();
-                    }
-                    break;
-                case "unmark":
-                    try {
-                        int index = Integer.parseInt(deconstructedInput[1]);
-                        markTaskAtIndexUndone(index);
-                    } catch (NumberFormatException exception) {
-                        throw new InvalidTaskIndexException();
-                    }
-                    break;
-                case "todo":
-                    if (deconstructedInput.length < 2) {
-                        throw new MissingTaskDescriptionException();
-                    }
-                    addTodo(deconstructedInput[1]);
-                    break;
-                case "deadline":
-                    if (deconstructedInput.length < 2) {
-                        throw new MissingTaskDescriptionException();
-                    }
-                    addDeadline(deconstructedInput[1]);
-                    break;
-                case "event":
-                    if (deconstructedInput.length < 2) {
-                        throw new MissingTaskDescriptionException();
-                    }
-                    addEvent(deconstructedInput[1]);
-                    break;
-                case "delete":
-                    try {
-                        int index = Integer.parseInt(deconstructedInput[1]);
-                        deleteTaskAtIndex(index);
-                    } catch (NumberFormatException exception) {
-                        throw new InvalidTaskIndexException();
-                    }
-                    break;
-                default:
-                    throw new UnknownCommandException();
-                }
+                Command command = parser.parseUserInput(sc.nextLine());
+                command.execute();
+//                switch (command) {
+//                case "bye":
+//                    end();
+//                case "list":
+//                    listTasks();
+//                    break;
+//                case "mark":
+//                    try {
+//                        int index = Integer.parseInt(deconstructedInput[1]);
+//                        markTaskAtIndexDone(index);
+//                    } catch (NumberFormatException exception) {
+//                        throw new InvalidTaskIndexException();
+//                    }
+//                    break;
+//                case "unmark":
+//                    try {
+//                        int index = Integer.parseInt(deconstructedInput[1]);
+//                        markTaskAtIndexUndone(index);
+//                    } catch (NumberFormatException exception) {
+//                        throw new InvalidTaskIndexException();
+//                    }
+//                    break;
+//                case "todo":
+//                    if (deconstructedInput.length < 2) {
+//                        throw new MissingTaskDescriptionException();
+//                    }
+//                    addTodo(deconstructedInput[1]);
+//                    break;
+//                case "deadline":
+//                    if (deconstructedInput.length < 2) {
+//                        throw new MissingTaskDescriptionException();
+//                    }
+//                    addDeadline(deconstructedInput[1]);
+//                    break;
+//                case "event":
+//                    if (deconstructedInput.length < 2) {
+//                        throw new MissingTaskDescriptionException();
+//                    }
+//                    addEvent(deconstructedInput[1]);
+//                    break;
+//                case "delete":
+//                    try {
+//                        int index = Integer.parseInt(deconstructedInput[1]);
+//                        deleteTaskAtIndex(index);
+//                    } catch (NumberFormatException exception) {
+//                        throw new InvalidTaskIndexException();
+//                    }
+//                    break;
+//                default:
+//                    throw new UnknownCommandException();
+//                }
+
             } catch (BlobException exception) {
                 ui.speakToUser(exception.getBlobMessages());
             }

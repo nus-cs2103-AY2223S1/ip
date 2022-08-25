@@ -43,6 +43,13 @@ public class TextUi {
     }
 
     /**
+     * Prints the user prompt to prompt user for input
+     */
+    public void promptUserInput() {
+        speakToUser(USER_PROMPT);
+    }
+
+    /**
      * Prints the greeting message to the user.
      */
     public void greetUser() {
@@ -56,10 +63,11 @@ public class TextUi {
         speakToUser(Messages.MESSAGE_GOODBYE_1, Messages.MESSAGE_GOODBYE_2);
     }
 
+
     /**
      * Prints a sequence of strings to the user, encapsulated in a message instance.
      *
-     * @params content The sequence of strings to print to the user
+     * @param content the sequence of strings to be printed
      */
     public void speakToUser(String ...content) {
         System.out.println("\n" + MESSAGE_DIVIDER);
