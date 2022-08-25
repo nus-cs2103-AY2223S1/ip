@@ -2,7 +2,7 @@ public class Event extends Task {
     protected String dateTime;
 
     public Event(String dateTime, String description) {
-        super(description);
+        super(description, "E");
         this.dateTime = dateTime;
     }
 
@@ -10,8 +10,11 @@ public class Event extends Task {
         return " (at: " + this.dateTime + ")";
     }
 
+    public String printText() {
+        return super.printText() + " | " + this.dateTime;
+    }
     @Override
     public String toString() {
-        return "[E]" + super.toString() + this.getDateTime();
+        return "[" + this.getCode() + "]" + super.toString() + this.getDateTime();
     }
 }
