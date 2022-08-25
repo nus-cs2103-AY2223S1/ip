@@ -15,7 +15,10 @@ import duke.command.MarkCommand;
 import duke.common.InputChecker;
 import duke.ui.BotUI;
 
-
+/**
+ * Deals with making sense of the user input.
+ * Contains methods that return Command for execution in Duke class and extracting information from user's raw input.
+ */
 
 public class Parser {
 
@@ -25,6 +28,13 @@ public class Parser {
         return input.split(regex, 2);
     }
 
+    /**
+     * Returns different type of Command according to the user raw input.
+     *
+     * @param rawInput user's raw input.
+     * @return Command to be executed in Duke class.
+     * @throws DukeException - thrown if user command is invalid.
+     */
     public static Command parse(String rawInput) throws DukeException {
         try {
             String[] commandAndDetail = rawInput.split(" ", 2);
@@ -52,9 +62,17 @@ public class Parser {
         }
     }
 
-    public static LocalDateTime extractDateTime(String rawInput, String timeIdentifier) throws DukeException {
+    /**
+     * Returns LocalDateTime for Events and Deadlines tasks.
+     *
+     * @param filteredInput user's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800)
+     * @return LocalDateTime of the filtered input.
+     * @throws DukeException - thrown if the date/time format is invalid (e.g. 2022-08-251800) which
+     *                       cause DateTimeException and IndexOutOfBoundsException during the process.
+     */
+    public static LocalDateTime extractDateTime(String filteredInput, String timeIdentifier) throws DukeException {
         try {
-            String filterDate = splitInput(rawInput, timeIdentifier)[1];
+            String filterDate = splitInput(filteredInput, timeIdentifier)[1];
             String[] dateAndTime = filterDate.split(" ");
             int time = Integer.parseInt(dateAndTime[1]);
             int hours = time / 100;
@@ -68,14 +86,28 @@ public class Parser {
                     hours, minutes);
         } catch (DateTimeException ex) {
             throw new DukeException(UI.invalidDateFormat());
+        } catch (IndexOutOfBoundsException ex) {
+            throw new DukeException(UI.invalidDateFormat());
         }
-
     }
 
+    /**
+     * Returns detail for Events and Deadlines tasks.
+     *
+     * @param filteredInput user's filtered input which command is extracted (e.g. someDetails /by 2022-08-25 1800)
+     * @return String of task's detail
+     */
     public static String extractDetail(String filteredInput, String timeIdentifier) {
         return splitInput(filteredInput, timeIdentifier)[0];
     }
 
+    /**
+     * Returns LocalDateTime converted from the tasks wrote in previous running of duke.
+     *
+     * @param timeString date/time String stored in the .txt file.
+     * @return LocalDateTime of the stored String in the .txt file.
+     * @see duke.storage.FileManager for the usage of this method.
+     */
     public static LocalDateTime convertTime(String timeString) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
         return LocalDateTime.parse(timeString, formatter);

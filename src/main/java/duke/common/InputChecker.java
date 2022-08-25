@@ -3,6 +3,11 @@ package duke.common;
 import duke.DukeException;
 import duke.ui.BotUI;
 
+/**
+ * Responsible in the initial checks of Adding tasks' input
+ * is in the correct format.
+ *
+ */
 public class InputChecker {
 
     private static final BotUI UI = new BotUI();
@@ -14,7 +19,17 @@ public class InputChecker {
             throw new DukeException(UI.invalidFormat());
         }
     }
+
+    /**
+     * Checks the input of command with adding common as follow:
+     * ToDo tasks: Checks the details of tasks is exists in the raw user input.
+     * Event/Deadline tasks: Checks the details and date are exists in the raw user input with correct format.
+     *
+     * @param input command of the user input.
+     * @throws DukeException - thrown when the format is invalid.
+     */
     public static void checkInput(String input) throws DukeException {
+        input = input.trim();
         if (input.startsWith("todo")) {
             if (input.split(" ").length < 2) {
                 throw new DukeException(UI.invalidFormat());

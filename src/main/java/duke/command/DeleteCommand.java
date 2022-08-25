@@ -4,14 +4,34 @@ import duke.DukeException;
 import duke.storage.TaskRecords;
 import duke.ui.BotUI;
 
+/**
+ * Represents a deleting command of task. A <code>DeleteCommand</code> object stores
+ * the details of the task as a String type Integer. eg. "1"
+ *
+ */
 public class DeleteCommand extends Command {
     private final String details;
 
+    /**
+     * Constructor of DeleteCommand
+     *
+     * @param command command of the user input
+     * @param details details of the user input as String type Integer
+     */
     public DeleteCommand(String command, String details) {
         super(command);
         this.details = details;
     }
 
+    /**
+     * Deletes Tasks from the TaskRecords
+     *
+     * @param taskList stores the list of tasks
+     * @param ui Object that responsible in returning necessary formatted String
+     *           to print on the user interface
+     * @throws DukeException - thrown when NumberFormatException or IndexOutOfBoundsException is
+     *     catch cause by invalid user input. e.g. delete1 or delete someNonIntegerText.
+     */
     @Override
     public void execute(TaskRecords taskList, BotUI ui) throws DukeException {
         try {
@@ -25,6 +45,12 @@ public class DeleteCommand extends Command {
 
     }
 
+    /**
+     * Returns the true/false of the command exit status that
+     * will cause duke stop running
+     *
+     * @return the true/false of the command exit status
+     */
     @Override
     public boolean isExit() {
         return false;

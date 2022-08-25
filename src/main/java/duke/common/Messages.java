@@ -1,5 +1,8 @@
 package duke.common;
-
+/**
+ * Stores the general messages to show the users.
+ * The messages are utilise in BotUI class.
+ */
 public class Messages {
 
     public static final String MESSAGE_BYE = "Goodbye, Hope to see you soon!\n"
