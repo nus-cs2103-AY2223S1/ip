@@ -1,32 +1,23 @@
+package tasklist;
+
+import task.Task;
+import util.Ui;
 import java.util.ArrayList;
 
 public class TaskList {
     private final ArrayList<Task> list = new ArrayList<>();
 
-    public Task addTodo(String taskItem) {
-        Task task = new Todo(taskItem);
-        this.list.add(task);
-        return task;
-    }
-
-    public Task addDeadline(String taskItem, String deadline) {
-        Task task = new Deadline(taskItem, deadline);
-        this.list.add(task);
-        return task;
-    }
-
-    public Task addEvent(String taskItem, String eventTiming) {
-        Task task = new Event(taskItem, eventTiming);
-        this.list.add(task);
-        return task;
+    public Task addTask(Task taskItem) {
+        this.list.add(taskItem);
+        return taskItem;
     }
 
     @Override
     public String toString() {
-        String res = TextFormatter.formatLine("Here are the tasks in your list:");
+        String res = Ui.formatLine("Here are the tasks in your list:");
         for (int i = 0; i < this.list.size(); i++) {
             String nextListItem = String.format("%d.%s", i + 1, this.list.get(i));
-            res += TextFormatter.formatLine(nextListItem);
+            res += Ui.formatLine(nextListItem);
         }
         return res;
     }
@@ -47,6 +38,10 @@ public class TaskList {
         Task taskItem = this.list.get(index - 1);
         this.list.remove(index - 1);
         return taskItem;
+    }
+
+    public Task getItem(int index) {
+        return this.list.get(index - 1);
     }
 
     public int getTaskCount() {
