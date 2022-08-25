@@ -6,72 +6,80 @@ public class Duke {
     public static String taskDataPath = "data";
     public static String taskDataFileName = "duke.txt";
 
-    public static void main(String[] args) throws DukeException {
-        Scanner sc = new Scanner(System.in);
-        UI UI = new UI();
-        Parser parser = new Parser();
-        TaskList taskList = new TaskList();
-        Storage storage = new Storage(taskDataPath, taskDataFileName);
+    public static void execute() {
+        try {
+            Scanner sc = new Scanner(System.in);
+            UI UI = new UI();
+            Parser parser = new Parser();
+            TaskList taskList = new TaskList();
+            Storage storage = new Storage(taskDataPath, taskDataFileName);
 
-        boolean stopLish = false;
-        UI.printResponse(UI.greeting);
-        storage.readTaskData(taskList);
+            boolean stopLish = false;
+            UI.printResponse(UI.greeting);
 
-        while (!stopLish) {
-            String input = sc.nextLine();
+            storage.readTaskData(taskList);
 
-            switch (input) {
-            case "":
-                break;
-            case "bye":
-                UI.printResponse("See you next time!");
-                stopLish = true;
-                break;
-            case "list":
-                taskList.printTaskList();
-                break;
-            default:
-                try {
-                    String[] commands = input.split(" ");
+            while (!stopLish) {
+                String input = sc.nextLine();
 
-                    if (commands.length < 2) {
-                        throw new DukeException("Please elaborate more hehehe...\n");
-                    }
+                switch (input) {
+                    case "":
+                        break;
+                    case "bye":
+                        UI.printResponse(UI.goodBye);
+                        stopLish = true;
+                        break;
+                    case "list":
+                        taskList.printTaskList();
+                        break;
+                    default:
+                        try {
+                            String[] commands = input.split(" ");
 
-                    if (commands[0].equals("mark") || commands[0].equals("unmark") || commands[0].equals("delete")) {
-                        int index = Integer.parseInt(commands[1]) - 1;
+                            if (commands.length < 2) {
+                                throw new DukeException("I do not understand that command. Please elaborate more!\n");
+                            }
 
-                        if (commands[0].equals("mark")) {
-                            taskList.markTaskAsDone(index);
-                        } else if (commands[0].equals("unmark")) {
-                            taskList.markTaskAsNotDone(index);
-                        } else if (commands[0].equals("delete")) {
-                            taskList.deleteTask(index);
-                        } else {
-                            throw new DukeException("I do not understand that command :(\n");
+                            if (commands[0].equals("mark") || commands[0].equals("unmark") || commands[0].equals("delete")) {
+                                int index = Integer.parseInt(commands[1]) - 1;
+
+                                if (commands[0].equals("mark")) {
+                                    taskList.markTaskAsDone(index);
+                                } else if (commands[0].equals("unmark")) {
+                                    taskList.markTaskAsNotDone(index);
+                                } else if (commands[0].equals("delete")) {
+                                    taskList.deleteTask(index);
+                                } else {
+                                    throw new DukeException("I do not understand that command :(\n");
+                                }
+                            } else if (commands[0].equals("find")) {
+                                String description = commands[1];
+                                taskList.find(description);
+                            } else {
+                                Task newTask;
+                                if (commands[0].equals("todo")) {
+                                    newTask = parser.generateToDoFromInput(input);
+                                } else if (commands[0].equals("deadline")) {
+                                    newTask = parser.generateDeadlineFromInput(input);
+                                } else if (commands[0].equals("event")) {
+                                    newTask = parser.generateEventFromInput(input);
+                                } else {
+                                    throw new DukeException("I do not understand that command :(\n");
+                                }
+                                taskList.add(newTask);
+                            }
+                        } catch (DukeException e) {
+                            UI.printResponse(e.toString());
                         }
-                    } else if (commands[0].equals("find")) {
-                        String description = commands[1];
-                        taskList.find(description);
-                    } else {
-                        Task newTask;
-                        if (commands[0].equals("todo")) {
-                            newTask = parser.generateToDoFromInput(input);
-                        } else if (commands[0].equals("deadline")) {
-                            newTask = parser.generateDeadlineFromInput(input);
-                        } else if (commands[0].equals("event")) {
-                            newTask = parser.generateEventFromInput(input);
-                        } else {
-                            throw new DukeException("I do not understand that command :(\n");
-                        }
-                        taskList.add(newTask);
-                    }
-                } catch (DukeException e) {
-                    UI.printResponse(e.toString());
                 }
             }
+            storage.updateTaskData(taskList);
+        } catch (DukeException e) {
+            UI.printResponse(e.toString());
         }
+    }
 
-        storage.updateTaskData(taskList);
+    public static void main(String[] args) throws DukeException {
+        execute();
     }
 }

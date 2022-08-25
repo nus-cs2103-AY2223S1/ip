@@ -23,7 +23,7 @@ public class Storage {
      *
      * @param taskList
      */
-    public void readTaskData(TaskList taskList) {
+    public void readTaskData(TaskList taskList) throws DukeException {
         try {
             File path = new File(taskDataPath);
             File file = new File(taskDataPath + "/" + taskDataFileName);
@@ -53,17 +53,17 @@ public class Storage {
                     }
                 } else {
                     file.createNewFile();
-                    UI.printResponse("I cannot find the data file\n" + "But don't worry I will create one for you :)\n");
+                    UI.printResponse(UI.fileNotFound + UI.createFile);
                 }
             } else {
                 path.mkdirs();
                 file.createNewFile();
-                UI.printResponse("I cannot find the data file\n" + "But don't worry I will create one for you :)\n");
+                UI.printResponse(UI.fileNotFound + UI.createFile);
             }
         } catch (FileNotFoundException e) {
-            UI.printResponse("FileNotFoundException error has occurred :(\n");
+            throw new DukeException("FileNotFoundException error has occurred :(\n");
         } catch (IOException e) {
-            UI.printResponse("IOException error has occurred :(\n");
+            throw new DukeException("IOException error has occurred :(\n");
         }
     }
 

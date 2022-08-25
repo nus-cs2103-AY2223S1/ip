@@ -50,7 +50,7 @@ public class TaskList {
      */
     public void add(Task task) {
         taskList.add(task);
-        UI.printResponse("Got it. I've added this task:\n" + task.toString() + "\n" + "Now you have " + taskList.size() + " tasks in the list.\n");
+        UI.printResponse(UI.addTask + task.toString() + "\n" + UI.numberOfTaskLeft + taskList.size() + "\n");
     }
 
     /**
@@ -63,7 +63,7 @@ public class TaskList {
             response += UI.noListFound;
         } else {
             for (int i = 1; i <= taskList.size(); ++i) {
-                response += (i + ". " + taskList.get(i - 1).toString()) + "\n";
+                response += (i + ". " + taskList.get(i - 1).toString());
             }
         }
         UI.printResponse(response);
@@ -83,7 +83,7 @@ public class TaskList {
         }
 
         taskList.get(index).markAsDone();
-        UI.printResponse("Nice! I've marked this task as done:\n" + taskList.get(index).toString() +"\n");
+        UI.printResponse(UI.markAsDone + taskList.get(index).toString() +"\n");
     }
 
     /**
@@ -100,7 +100,7 @@ public class TaskList {
         }
 
         taskList.get(index).markAsNotDone();
-        UI.printResponse("OK, I've marked this task as not done yet: \n" + taskList.get(index).toString() + "\n");
+        UI.printResponse(UI.markAsNotDone + taskList.get(index).toString() + "\n");
     }
 
     /**
@@ -115,9 +115,7 @@ public class TaskList {
             throw new DukeException("I cannot delete this task because task does not exist");
         }
 
-        UI.printResponse("Noted. I've removed this task:\n"
-                        + taskList.get(index).toString()
-                        + "Now you have " + (taskList.size() - 1)+ " tasks in the list.\n");
+        UI.printResponse(UI.removeTask + taskList.get(index).toString() + UI.numberOfTaskLeft + (taskList.size() - 1) + "\n");
 
         taskList.remove(index);
     }
