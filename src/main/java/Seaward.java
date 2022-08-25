@@ -181,7 +181,7 @@ public class Seaward {
         }
         case "D ": {
             String[] splitBy = description.split("\\| ", 2);
-            taskList.addDeadline(splitBy[0] + "/by" + splitBy[1]);
+            taskList.addDeadline(splitBy[0] + "/by " + splitBy[1]);
             int numOfTasks = taskList.getNumOfTasks();
             if (isMarked) {
                 taskList.setCompleted(numOfTasks - 1);
@@ -192,7 +192,7 @@ public class Seaward {
         }
         case "E ": {
             String[] splitAt = description.split("\\| ", 2);
-            taskList.addEvent(splitAt[0] + "/at" + splitAt[1]);
+            taskList.addEvent(splitAt[0] + "/at " + splitAt[1]);
             int numOfTasks = taskList.getNumOfTasks();
             if (isMarked) {
                 taskList.setCompleted(numOfTasks - 1);

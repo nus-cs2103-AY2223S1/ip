@@ -1,6 +1,5 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 public class Deadline extends Task {
     protected LocalDate by;
@@ -9,13 +8,13 @@ public class Deadline extends Task {
         super(name);
         this.by = by;
     }
+
     public String getBy() {
         return this.by.toString();
     }
 
     public void changeDateFormat() {
         this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
-
     }
 
     @Override

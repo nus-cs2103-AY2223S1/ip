@@ -1,3 +1,3 @@
-E | 0 | go watch football | Saturday 9pm
-D | 1 | finish IP | Saturday 10pm
+E | 0 | go watch football | 2022-08-31
+D | 1 | finish IP | 2022-08-26
 T | 0 | watch lecture 1
