@@ -4,8 +4,17 @@ import duke.command.*;
 import duke.exception.DukeException;
 import duke.task.TasksList;
 
+/**
+ * Deals with making sense of the user command.
+ */
 public class Parser {
 
+    /**
+     * @param userInput The input string by the user.
+     * @param tasksList The taskslist to pass into the Command.
+     * @return The corresponding command to the user input.
+     * @throws DukeException if there is no command corresponding to the user input.
+     */
     public Command handleCommand(String userInput, TasksList tasksList) throws DukeException {
             String[] inputArray = userInput.trim().split("\\s+", 2);
             CommandType commandType = CommandType.parseToCommand(inputArray[0].toLowerCase());
@@ -20,7 +29,7 @@ public class Parser {
                 case UNMARK:
                     return new UnmarkCommand(tasksList, inputArray);
                 case TODO:
-                    return new TodoCommand(tasksList, inputArray);
+                    return new ToDoCommand(tasksList, inputArray);
                 case DEADLINE:
                     return new DeadlineCommand(tasksList, inputArray);
                 case EVENT:

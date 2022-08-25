@@ -4,17 +4,30 @@ import duke.exception.DukeException;
 import duke.task.TasksList;
 import duke.task.Todo;
 
-public class TodoCommand extends Command {
+/**
+ * Represents a command to add a Todo to the tasksList.
+ */
+public class ToDoCommand extends Command {
     private String[] inputArray;
     private TasksList tasksList;
 
     private static final String TO_DO_MSG = "Got it. I've added this task:\n";
 
-    public TodoCommand(TasksList tasksList, String[] inputArray) {
+    /**
+     * Creates a new ToDo instance.
+     * @param tasksList The TasksList to add the ToDo to.
+     * @param inputArray The array that represents the user input.
+     */
+    public ToDoCommand(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;
         this.inputArray = inputArray;
     }
 
+    /**
+     * Adds the ToDo to the TasksList.
+     * @return The message to be displayed upon the execution of the command.
+     * @throws DukeException If the ToDo cannot be added to the TasksList.
+     */
     @Override
     public String execute() throws DukeException {
         if (this.inputArray.length < 2) {
@@ -22,12 +35,12 @@ public class TodoCommand extends Command {
         }
 
         String description = this.inputArray[1];
-        //create a todo object
+        /** create a ToDo object */
         Todo todo = new Todo(description);
 
         this.tasksList.addToList(todo);
         StringBuilder sb = new StringBuilder();
-        sb.append(TodoCommand.TO_DO_MSG + todo + "\n" + "Now you have ");
+        sb.append(ToDoCommand.TO_DO_MSG + todo + "\n" + "Now you have ");
         if (this.tasksList.getLength() <= 1) {
             sb.append(this.tasksList.getLength() + " task in the list.\n");
         } else {

@@ -6,12 +6,18 @@ import duke.exception.DukeException;
 import duke.task.TasksList;
 import java.util.Scanner;
 
+/**
+ * Represents the chat-bot.
+ */
 public class Duke {
     private TasksList tasksList;
     private boolean hasEnded = false;
     private Ui ui;
     private static String TASKS_STORAGE_PATH = "./data/duke.txt";
 
+    /**
+     * Creates a new Duke instance.
+     */
     public Duke() {
         this.tasksList = new TasksList(Duke.TASKS_STORAGE_PATH);
         this.ui = new Ui();
@@ -22,7 +28,7 @@ public class Duke {
         duke.run();
     }
 
-    public void run() {
+    private void run() {
         Scanner sc = new Scanner(System.in);
         this.ui.greet();
         while (!hasEnded) {
@@ -43,7 +49,7 @@ public class Duke {
         }
     }
 
-    public String getInput(Scanner sc) {
+    private String getInput(Scanner sc) {
         System.out.println();
         return sc.nextLine();
     }

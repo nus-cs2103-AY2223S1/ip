@@ -2,6 +2,11 @@ package duke.task;
 
 import duke.exception.DukeException;
 
+import java.time.Year;
+
+/**
+ * Encapsulates a task with a given description and completion status.
+ */
 public class Task {
     private static final String DONE_STATUS = "X";
     private static final String NOT_DONE_STATUS = " ";
@@ -12,25 +17,40 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Creates a Task instance.
+     * @param description Description of the Task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Returns the string representation of the completion status of the task.
+     * @return String representation of th completion status of the task.
+     */
     public String getStatusIcon() {
         return (isDone ? Task.DONE_STATUS: Task.NOT_DONE_STATUS);
     }
 
+    /**
+     * Mark the Task as done.
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Mark the Task as undone.
+     */
     public void markAsUndone() {
         this.isDone = false;
     }
 
     /**
-     * Convert to storage string format
+     * Returns the string representation of Task to be stored.
+     * @return A String representation of Task to be stored in Storage.
      */
     public String toStorageString() {
         String statusInStorage = this.isDone ? Task.STORAGE_DONE_STATUS : Task.STORAGE_NOT_DONE_STATUS;
@@ -38,7 +58,9 @@ public class Task {
     }
 
     /**
-     * Convert from storage string format
+     * Create and returns a Task object from a storage string.
+     * @param storageString A storage string representing the Task.
+     * @return Task represented by the storage string.
      */
     public static Task fromStorageString(String storageString) {
         String[] storageStringArray = storageString.split(" \\| ");
@@ -74,8 +96,10 @@ public class Task {
     }
 
 
-
-
+    /**
+     * Returns the string representation of Task to be displayed.
+     * @return A String representation of Task to be displayed.
+     */
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
