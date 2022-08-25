@@ -9,16 +9,17 @@ import java.util.List;
 
 public class TaskList {
 
-    public static final String TAB = Duke.TAB;
-
-    private static final String MARK_DONE_OUTPUT_STRING = Duke.MARK_DONE_OUTPUT_STRING;
-    private static final String MARK_DONE_ERROR_STRING = Duke.MARK_DONE_ERROR_STRING;
-    private static final String MARK_UNDONE_OUTPUT_STRING = Duke.MARK_UNDONE_OUTPUT_STRING;
-    private static final String MARK_UNDONE_ERROR_STRING = Duke.MARK_UNDONE_ERROR_STRING;
+    private static final String TAB = Duke.TAB;
+    private static final String EMPTY_LIST_MESSAGE ="The list is empty.";
     private static final String GENERAL_ERROR_STRING = Duke.GENERAL_ERROR_STRING;
-    private static final String DELETE_ERROR_STRING = Duke.DELETE_ERROR_STRING;
-    private static final String DELETE_OUTPUT_STRING = Duke.DELETE_OUTPUT_STRING;
-    private static final String FIND_COMMAND_OUTPUT_STRING = Duke.FIND_COMMAND_OUTPUT_STRING;
+    private static final String MARK_DONE_OUTPUT_STRING = "Good to hear that! I have marked this as done: ";
+    private static final String MARK_DONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"mark <index>\"";
+    private static final String MARK_UNDONE_OUTPUT_STRING = "Sure, I have marked this as not done yet";
+    private static final String MARK_UNDONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"unmark <index>\"";
+    private static final String DELETE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"delete <index>\"";
+    private static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
+    private static final String FIND_COMMAND_OUTPUT_STRING = "Here are what I found: ";
+
 
     private List<Task> tasks;
 
@@ -29,7 +30,7 @@ public class TaskList {
     public String getListInfo() {
         int len = tasks.size();
         if (len == 0) {
-            return "The list is empty.";
+            return EMPTY_LIST_MESSAGE;
         }
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < len; i++) {
