@@ -28,7 +28,7 @@ public class DokeException extends RuntimeException{
     @Override
     public String toString() {
         String temp = text == null
-                ? "What language are you talking?"
+                ? "What language are you talking? JK. Something went wrong."
                 : "I'm sorry, your " + text + "'s description can't be empty";
         return "_________________________" + "\n" + temp
                 + "\n" + "_________________________";

@@ -62,10 +62,18 @@ public class Parser {
             return true;
         }
 
+        //handle a find command
+        if (action.equals("find") && temp.length > 1) {
+            String search = string.substring(5);
+            taskList.searchString(search, ui);
+            return true;
+        }
+
         //handle if delete, mark, and unmark action is valid
-        if (length == 2 && Miscellaneous.isInt(temp[1])) {
+        if (length == 2 && Miscellaneous.isInt(temp[1])
+                && (action.equals("mark") || action.equals("unmark") || action.equals("delete"))) {
             int num = Miscellaneous.toInt(temp[1]);
-            Task current = taskList.get(num);
+            Task current = taskList.getTask(num);
             String message;
             if (action.equals("mark")) {
                 try {
@@ -92,11 +100,12 @@ public class Parser {
                     ui.printOut(message);
                 }
             } else if (action.equals("delete")) {
-                taskList.delete(num);
+                taskList.deleteTask(num);
                 storage.updateFile(taskList.getList(), ui);
                 message = "_________________________ \n" + "This task has been removed \n"
                         + current.toString() + "\n" + "Now you have " + taskList.getSize()
                         + " tasks!! " + "\n _________________________ \n";
+
                 ui.printOut(message);
             }
 
@@ -134,13 +143,13 @@ public class Parser {
 
             if (action.equals("todo")) {
                 addition = new ToDo(word);
-                taskList.add(addition);
+                taskList.addTask(addition);
             } else if (action.equals("deadline")) {
                 addition = new Deadline(word, time);
-                taskList.add(addition);
+                taskList.addTask(addition);
             } else {
                 addition = new Events(word, time);
-                taskList.add(addition);
+                taskList.addTask(addition);
             }
             ui.printOut("_________________________ \n" + "added: " + addition.toString() + "\n"
                     + "Nice, now you have " + taskList.getSize() + " tasks!! \n"

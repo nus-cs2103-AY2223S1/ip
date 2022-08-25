@@ -2,6 +2,9 @@ package doke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -63,6 +66,40 @@ public class TaskList {
         }
     }
 
+    public void searchString(String str, Ui ui) {
+        int len = taskList.size();
+        int num = 0;
+        String message = "_________________________ \n";
+        int i = 0;
+        message = "_________________________ \n";
+        while (i < len) {
+            Task task = taskList.get(i);
+            String desc = task.getDesc();
+            String taskType = task.getType();
+            if (desc.indexOf(str) != -1) {
+                if (num == 0) {
+                    message += "Here's what we found: \n";
+                }
+                message += (i + 1) + "." + taskList.get(i).toString() + "\n";
+                num += 1;
+            } else if ((taskType.equals("E") || taskType.equals("D"))
+                    && task.getTime().format(
+                            DateTimeFormatter.ofPattern("dd-MMM-yyyy")).indexOf(str) != -1) {
+                if (num == 0) {
+                    message += "Here's what we found: \n";
+                }
+                message += (i + 1) + "." + taskList.get(i).toString() + "\n";
+                num += 1;
+            }
+            i++;
+        }
+        if (num == 0) {
+            message += "Sorry, we found nothing. \n";
+        }
+        message += "_________________________ \n";
+        ui.printOut(message);
+    }
+
     /**
      * Sends order to ui to print out the whole content of the ArrayList.
      *
@@ -92,7 +129,7 @@ public class TaskList {
      *
      * @param i the position + 1 of the task to delete
      */
-    public void delete(int i) {
+    public void deleteTask(int i) {
         this.taskList.remove(i - 1);
     }
 
@@ -101,7 +138,7 @@ public class TaskList {
      *
      * @param task the task to be added.
      */
-    public void add(Task task) {
+    public void addTask(Task task) {
         this.taskList.add(task);
     }
 
@@ -111,7 +148,7 @@ public class TaskList {
      * @param i the position + 1 of the task wanted.
      * @return the task desired.
      */
-    public Task get(int i) {
+    public Task getTask(int i) {
         return taskList.get(i - 1);
     }
 
