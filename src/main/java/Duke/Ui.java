@@ -43,4 +43,18 @@ public class Ui {
     public void printMsg(String s) {
         System.out.println(s);
     }
+
+    /**
+     * Prints  List message.
+     */
+    public void printList() {
+        System.out.println("Here are the tasks in your list:");
+    }
+
+    /**
+     * Prints Result List message.
+     */
+    public void printResultList() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
 }
