@@ -1,6 +1,6 @@
-package tasks;
+package duke.tasks;
 
-import parser.TimeParser;
+import duke.parser.TimeParser;
 
 import java.time.LocalDateTime; // Import the LocalDateTime class
 import java.time.format.DateTimeParseException;

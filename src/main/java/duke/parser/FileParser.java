@@ -1,8 +1,8 @@
-package parser;
+package duke.parser;
 
-import exceptions.DukeException;
-import exceptions.InvalidCommandException;
-import tasks.*;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidCommandException;
+import duke.tasks.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

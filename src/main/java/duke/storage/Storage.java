@@ -1,11 +1,9 @@
-package storage;
+package duke.storage;
 
-import parser.FileParser;
-import tasks.*;
+import duke.parser.FileParser;
+import duke.tasks.*;
 
 import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Storage {
 

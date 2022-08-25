@@ -1,8 +1,8 @@
-package parser;
+package duke.parser;
 
-import exceptions.DukeException;
-import exceptions.InvalidCommandException;
-import tasks.TaskList;
+import duke.exceptions.DukeException;
+import duke.exceptions.InvalidCommandException;
+import duke.tasks.TaskList;
 
 import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
