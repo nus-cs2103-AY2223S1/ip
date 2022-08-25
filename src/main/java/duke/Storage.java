@@ -50,32 +50,32 @@ public class Storage {
             String[] taskInArray = taskInString.split(" \\| ");
             String taskType = taskInArray[0];
             switch (taskType) {
-                case "T" : {
-                    Task task= new Todo(taskInArray[2]);
-                    lst.add(task);
-                    if (taskInArray[1].equals("1")) {
-                        task.markAsDone();
-                    }
-                    break;
+            case "T" : {
+                Task task= new Todo(taskInArray[2]);
+                lst.add(task);
+                if (taskInArray[1].equals("1")) {
+                    task.markAsDone();
                 }
-                case "D" : {
-                    Task task = new Deadline(taskInArray[2], taskInArray[3]);
-                    lst.add(task);
-                    if (taskInArray[1].equals("1")) {
-                        task.markAsDone();
-                    }
-                    break;
+                break;
+            }
+            case "D" : {
+                Task task = new Deadline(taskInArray[2], taskInArray[3]);
+                lst.add(task);
+                if (taskInArray[1].equals("1")) {
+                    task.markAsDone();
                 }
-                case "E" : {
-                    Task task = new Event(taskInArray[2], taskInArray[3]);
-                    lst.add(task);
-                    if (taskInArray[1].equals("1")) {
-                        task.markAsDone();
-                    }
-                    break;
+                break;
+            }
+            case "E" : {
+                Task task = new Event(taskInArray[2], taskInArray[3]);
+                lst.add(task);
+                if (taskInArray[1].equals("1")) {
+                    task.markAsDone();
                 }
-                default:
-                    throw new DukeException("OOPS!I cannot find a valid task type!");
+                break;
+            }
+            default:
+                throw new DukeException("OOPS!I cannot find a valid task type!");
             }
         }
         return lst;
@@ -94,6 +94,6 @@ public class Storage {
             fw.close();
         } catch (IOException e) {
             System.out.println("OOPS! I cant seem to save your tasks in the file!");
-        };
+        }
     }
 }
