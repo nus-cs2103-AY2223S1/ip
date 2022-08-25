@@ -132,6 +132,17 @@ public class Ui {
     }
 
     /**
+     * Shows all tasks to the user in the search result.
+     *
+     * @param searchResults String representation of all string results.
+     */
+    public static void showSearchResults(String searchResults) {
+        String message = "Here are the matching tasks in your list:\n" + searchResults;
+        System.out.println(Ui.formatText(message));
+    }
+
+
+    /**
      * Styles a given text with indentation and wraps the text around horizontal lines.
      *
      * @param text String that needs to be styled.
