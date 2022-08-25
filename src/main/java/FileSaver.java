@@ -7,12 +7,7 @@ public class FileSaver {
     public static void newFile(String fileName) {
         File file = new File(fileName);
         try {
-            boolean value = file.createNewFile();
-            if (value) {
-                System.out.println("File created");
-            } else {
-                System.out.println("File already exists");
-            }
+            file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -21,12 +16,7 @@ public class FileSaver {
     public static void newDir(String dirName) {
         File file = new File(dirName);
         try {
-            boolean value = file.mkdir();
-            if (value) {
-                System.out.println("Directory created");
-            } else {
-                System.out.println("Directory already exists");
-            }
+            file.mkdir();
         } catch (Exception e) {
             e.printStackTrace();
         }
