@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Duke {
@@ -80,6 +81,7 @@ public class Duke {
         }
 
         public abstract void execute(Ui ui, Storage storage);
+        public abstract boolean isExit();
     }
 
     public class AddCommand extends Command {
@@ -88,12 +90,18 @@ public class Duke {
         public AddCommand(Task task) {
             this.task = task;
         }
+
         @Override
         public void execute(Ui ui, Storage storage) {
             taskList.addTask(task);
             ui.displayTask(ui.ADDED, task);
             ui.showTotalTasks();
             storage.save();
+        }
+
+        @Override
+        public boolean isExit() {
+            return false;
         }
     }
 
@@ -111,6 +119,10 @@ public class Duke {
             ui.displayTask(ui.DELETED, temp);
             ui.showTotalTasks();
         }
+        @Override
+        public boolean isExit() {
+            return false;
+        }
     }
 
     public class ExitCommand extends Command {
@@ -127,8 +139,25 @@ public class Duke {
             ui.showExit();
         }
 
+        @Override
         public boolean isExit() {
             return this.isExit;
+        }
+    }
+
+    public class ListCommand extends Command {
+        public ListCommand() {
+
+        }
+
+        @Override
+        public void execute(Ui ui, Storage storage) {
+            ui.printTasks();
+        }
+
+        @Override
+        public boolean isExit() {
+            return false;
         }
     }
 
@@ -138,11 +167,17 @@ public class Duke {
             this.index = index;
         }
 
+        @Override
         public void execute(Ui ui, Storage storage) {
             taskList.markTask(index);
             Task temp = taskList.getTask(index);
             ui.displayTask(ui.MARKED, temp);
             storage.save();
+        }
+
+        @Override
+        public boolean isExit() {
+            return false;
         }
     }
 
@@ -152,6 +187,7 @@ public class Duke {
             this.index = index;
         }
 
+        @Override
         public void execute(Ui ui, Storage storage) {
 
             taskList.unmarkTask(index);
@@ -159,6 +195,11 @@ public class Duke {
 
             System.out.println(ui.UNMARKED + temp);
             storage.save();
+        }
+
+        @Override
+        public boolean isExit() {
+            return false;
         }
     }
     public class Storage {
@@ -217,130 +258,117 @@ public class Duke {
 
         }
 
-        public String parse(String string) {
-//            if(string.equals(exit)) {
-//                ui.showExit();
-//                return "exit";
-//            } else if (string.equals("list")) {
-//                ui.printTasks();
-//                return "";
-//            } else {
-//                String[] substr = reply.split(" ", 2); // to identify the keyword used
-//                Integer index;
-//                Task temp;
-//                switch (substr[0]) {
-//                    case "mark":
-//                        if(substr.length == 1) { // no number was given
-//                            ui.showError("enter an index!");
-//                            //System.out.println();
-//                            break;
-//                        }
-//                        try {
-//                            index = Integer.parseInt(substr[1]) - 1;
-//                            if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
-//                                ui.showError("thrs nth there :<");
-//                                //System.out.println("thrs nth there :<");
-//                                continue;
-//                            }
-//                            taskList.markTask(index);
-//                            temp = taskList.getTask(index);
-//                            ui.displayTask(ui.MARKED, temp);
-//                            storage.save();
-//                        } catch (NumberFormatException e) {
-//                            ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
-//                        }
-//                        break;
-//                    case "unmark":
-//                        if(substr.length == 1) {
-//                            ui.showError("enter an index!");
-//                            break;
-//                        }
-//                        try {
-//                            index = Integer.parseInt(substr[1]) - 1;
-//                            if(index < 0 || index >= taskList.getSize()) { // check if index is out of range
-//                                ui.showError("thrs nth there :<");
-//                                continue;
-//                            }
-//                            taskList.unmarkTask(index);
-//                            temp = taskList.getTask(index);
-//
-//                            System.out.println(ui.UNMARKED + temp);
-//                            storage.save();
-//                        } catch (NumberFormatException e) {
-//                            ui.showError("Invalid input");
-//                        }
-//
-//                        break;
-//                    case "delete":
-//                        if(substr.length == 1) {
-//                            ui.showError("enter an index!");
-//                            break;
-//                        }
-//                        try {
-//                            index = Integer.parseInt(substr[1]) - 1;
-//                            if(index < 0 || index >= taskList.getSize()) {
-//                                ui.showError("thrs nth there :<");
-//                                continue;
-//                            }
-//                            taskList.removeTask(index);
-//                            temp = taskList.getTask(index);
-//                            storage.save();
-//                            ui.displayTask(ui.DELETED, temp);
-//                            System.out.println("now u have " + taskList.getSize() + " task(s)!");
-//                        } catch (NumberFormatException e) {
-//                            ui.showError("Invalid input");
-//                        }
-//                        break;
-//                    case "todo":
-//                        if(substr.length == 1) {
-//                            ui.showError("The description cannot be empty!");
-//                            break;
-//                        }
-//                        temp = new Todo(substr[1]);
-//                        addTask(temp);
-//                        break;
-//                    case "deadline":
-//                        if(substr.length == 1) {
-//                            ui.showError("The description cannot be empty!");
-//                            break;
-//                        }
-//                        String[] dlDesc = substr[1].split(" /by ", 2);
-//                        if(dlDesc.length < 2) {
-//                            ui.showError("The deadline cannot be empty");
-//                            break;
-//                        }
-//                        try {
-//                            LocalDate date = LocalDate.parse(dlDesc[1]);
-//                            temp = new Deadline(dlDesc[0], date);
-//                            addTask(temp);
-//                            break;
-//                        } catch (DateTimeParseException e) {
-//                            ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
-//                            break;
-//                        }
-//
-//
-//                    case "event":
-//                        if(substr.length == 1) {
-//                            ui.showError("The description cannot be empty!");
-//                            break;
-//                        }
-//                        String[] eventDesc = substr[1].split(" /at ", 2);
-//                        if(eventDesc.length < 2) {
-//                            ui.showError("The date cannot be empty");
-//                            break;
-//                        }
-//
-//                        temp = new Event(eventDesc[0], eventDesc[1]);
-//                        addTask(temp);
-//                        break;
-//                    default:
-//                        ui.showError("idk what that means :(");
-//                        break;
-//                }
-//
-//            }
-            return "";
+        public Command parse(String input) {
+            input = input.toLowerCase();
+            if(input.equals(exit)) {
+                return new ExitCommand();
+            } else if (input.equals("list")) {
+                return new ListCommand();
+            } else {
+                String[] substr = input.split(" ", 2); // to identify the keyword used
+                Integer index;
+                Task temp;
+                switch (substr[0]) {
+                    case "mark":
+                        if(substr.length == 1) { // no number was given
+                            ui.showError("enter an index!");
+                            break;
+                        }
+                        try {
+                            index = Integer.parseInt(substr[1]) - 1;
+                            if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
+                                ui.showError("thrs nth there :<");
+                                //System.out.println("thrs nth there :<");
+                            }
+
+                            return new MarkCommand(index);
+                        } catch (NumberFormatException e) {
+                            ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
+                        }
+                        break;
+                    case "unmark":
+                        if(substr.length == 1) {
+                            ui.showError("enter an index!");
+                            break;
+                        }
+                        try {
+                            index = Integer.parseInt(substr[1]) - 1;
+                            if(index < 0 || index >= taskList.getSize()) { // check if index is out of range
+                                ui.showError("thrs nth there :<");
+                            }
+                            return new UnmarkCommand(index);
+
+                        } catch (NumberFormatException e) {
+                            ui.showError("Invalid input");
+                        }
+
+                        break;
+                    case "delete":
+                        if(substr.length == 1) {
+                            ui.showError("enter an index!");
+                            break;
+                        }
+                        try {
+                            index = Integer.parseInt(substr[1]) - 1;
+                            if(index < 0 || index >= taskList.getSize()) {
+                                ui.showError("thrs nth there :<");
+
+                            }
+                            return new DeleteCommand(index);
+                        } catch (NumberFormatException e) {
+                            ui.showError("Invalid input");
+                        }
+                        break;
+                    case "todo":
+                        if(substr.length == 1) {
+                            ui.showError("The description cannot be empty!");
+                            break;
+                        }
+                        temp = new Todo(substr[1]);
+                        return new AddCommand(temp);
+
+                    case "deadline":
+                        if(substr.length == 1) {
+                            ui.showError("The description cannot be empty!");
+                            break;
+                        }
+                        String[] dlDesc = substr[1].split(" /by ", 2);
+                        if(dlDesc.length < 2) {
+                            ui.showError("The deadline cannot be empty");
+                            break;
+                        }
+                        try {
+                            LocalDate date = LocalDate.parse(dlDesc[1]);
+                            temp = new Deadline(dlDesc[0], date);
+                            return new AddCommand(temp);
+                            //break;
+                        } catch (DateTimeParseException e) {
+                            ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
+                            break;
+                        }
+
+
+                    case "event":
+                        if(substr.length == 1) {
+                            ui.showError("The description cannot be empty!");
+                            break;
+                        }
+                        String[] eventDesc = substr[1].split(" /at ", 2);
+                        if(eventDesc.length < 2) {
+                            ui.showError("The date cannot be empty");
+                            break;
+                        }
+
+                        temp = new Event(eventDesc[0], eventDesc[1]);
+                        return new AddCommand(temp);
+                        //break;
+                    default:
+                        ui.showError("idk what that means :(");
+                        break;
+                }
+
+            }
+            return new ExitCommand();
         }
     }
 
@@ -528,7 +556,8 @@ public class Duke {
     public void run() {
         String reply = "";
         String exit = "bye"; // the keyword to exit
-       // boolean isExit = false;
+        Parser parser = new Parser();
+        boolean isExit = false;
 
         try {
             storage.load();
@@ -539,150 +568,145 @@ public class Duke {
         ui = new Ui();
         ui.showWelcome();
 
-        while(true) {
+        while(!isExit) {
 //            Scanner scanIn = new Scanner(System.in);
 //            reply = scanIn.nextLine(); // read from input
             reply = ui.readCommand();
+            Command c = parser.parse(reply);
+            c.execute(ui, storage);
+            isExit = c.isExit();
 
-            if(reply.equals(exit)) {
-                Command c = new ExitCommand();
-                c.execute(ui, storage);
-                break;
-            } else if (reply.equals("list")) {
-                ui.printTasks();
-            } else {
-                String[] substr = reply.split(" ", 2); // to identify the keyword used
-                Integer index;
-                Task temp;
-                switch (substr[0]) {
-                    case "mark":
-                        if(substr.length == 1) { // no number was given
-                            ui.showError("enter an index!");
-                            //System.out.println();
-                            break;
-                        }
-                        try {
-                            index = Integer.parseInt(substr[1]) - 1;
-                            if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
-                                ui.showError("thrs nth there :<");
-                                //System.out.println("thrs nth there :<");
-                                continue;
-                            }
-
-                            Command c = new MarkCommand(index);
-                            c.execute(ui, storage);
-//                            taskList.markTask(index);
-//                            temp = taskList.getTask(index);
-//                            ui.displayTask(ui.MARKED, temp);
-//                            storage.save();
-                        } catch (NumberFormatException e) {
-                            ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
-                        }
-                        break;
-                    case "unmark":
-                        if(substr.length == 1) {
-                            ui.showError("enter an index!");
-                            break;
-                        }
-                        try {
-                            index = Integer.parseInt(substr[1]) - 1;
-                            if(index < 0 || index >= taskList.getSize()) { // check if index is out of range
-                                ui.showError("thrs nth there :<");
-                                continue;
-                            }
-                            Command c = new UnmarkCommand(index);
-                            c.execute(ui, storage);
-//                            taskList.unmarkTask(index);
-//                            temp = taskList.getTask(index);
+//            if(reply.equals(exit)) {
+//                Command c = new ExitCommand();
+//                c.execute(ui, storage);
+//                break;
+//            } else if (reply.equals("list")) {
+//                ui.printTasks();
+//            } else {
+//                String[] substr = reply.split(" ", 2); // to identify the keyword used
+//                Integer index;
+//                Task temp;
+//                switch (substr[0]) {
+//                    case "mark":
+//                        if(substr.length == 1) { // no number was given
+//                            ui.showError("enter an index!");
+//                            //System.out.println();
+//                            break;
+//                        }
+//                        try {
+//                            index = Integer.parseInt(substr[1]) - 1;
+//                            if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
+//                                ui.showError("thrs nth there :<");
+//                                //System.out.println("thrs nth there :<");
+//                                continue;
+//                            }
 //
-//                            System.out.println(ui.UNMARKED + temp);
-//                            storage.save();
-                        } catch (NumberFormatException e) {
-                            ui.showError("Invalid input");
-                        }
-
-                        break;
-                    case "delete":
-                        if(substr.length == 1) {
-                            ui.showError("enter an index!");
-                            break;
-                        }
-                        try {
-                            index = Integer.parseInt(substr[1]) - 1;
-                            if(index < 0 || index >= taskList.getSize()) {
-                                ui.showError("thrs nth there :<");
-                                continue;
-                            }
-                            Command c = new DeleteCommand(index);
-                            c.execute(ui, storage);
-//                            taskList.removeTask(index);
-//                            temp = taskList.getTask(index);
-//                            storage.save();
-//                            ui.displayTask(ui.DELETED, temp);
-                        } catch (NumberFormatException e) {
-                            ui.showError("Invalid input");
-                        }
-                        break;
-                    case "todo":
-                        if(substr.length == 1) {
-                            ui.showError("The description cannot be empty!");
-                            break;
-                        }
-                        temp = new Todo(substr[1]);
-                        addTask(temp);
-                        break;
-                    case "deadline":
-                        if(substr.length == 1) {
-                            ui.showError("The description cannot be empty!");
-                            break;
-                        }
-                        String[] dlDesc = substr[1].split(" /by ", 2);
-                        if(dlDesc.length < 2) {
-                            ui.showError("The deadline cannot be empty");
-                            break;
-                        }
-                        try {
-                            LocalDate date = LocalDate.parse(dlDesc[1]);
-                            temp = new Deadline(dlDesc[0], date);
-                            addTask(temp);
-                            break;
-                        } catch (DateTimeParseException e) {
-                            ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
-                            break;
-                        }
-
-
-                    case "event":
-                        if(substr.length == 1) {
-                            ui.showError("The description cannot be empty!");
-                            break;
-                        }
-                        String[] eventDesc = substr[1].split(" /at ", 2);
-                        if(eventDesc.length < 2) {
-                            ui.showError("The date cannot be empty");
-                            break;
-                        }
-
-                        temp = new Event(eventDesc[0], eventDesc[1]);
-                        addTask(temp);
-                        break;
-                    default:
-                        ui.showError("idk what that means :(");
-                        break;
-                }
-
-            }
+//                            Command c = new MarkCommand(index);
+//                            c.execute(ui, storage);
+////                            taskList.markTask(index);
+////                            temp = taskList.getTask(index);
+////                            ui.displayTask(ui.MARKED, temp);
+////                            storage.save();
+//                        } catch (NumberFormatException e) {
+//                            ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
+//                        }
+//                        break;
+//                    case "unmark":
+//                        if(substr.length == 1) {
+//                            ui.showError("enter an index!");
+//                            break;
+//                        }
+//                        try {
+//                            index = Integer.parseInt(substr[1]) - 1;
+//                            if(index < 0 || index >= taskList.getSize()) { // check if index is out of range
+//                                ui.showError("thrs nth there :<");
+//                                continue;
+//                            }
+//                            Command c = new UnmarkCommand(index);
+//                            c.execute(ui, storage);
+////                            taskList.unmarkTask(index);
+////                            temp = taskList.getTask(index);
+////
+////                            System.out.println(ui.UNMARKED + temp);
+////                            storage.save();
+//                        } catch (NumberFormatException e) {
+//                            ui.showError("Invalid input");
+//                        }
+//
+//                        break;
+//                    case "delete":
+//                        if(substr.length == 1) {
+//                            ui.showError("enter an index!");
+//                            break;
+//                        }
+//                        try {
+//                            index = Integer.parseInt(substr[1]) - 1;
+//                            if(index < 0 || index >= taskList.getSize()) {
+//                                ui.showError("thrs nth there :<");
+//                                continue;
+//                            }
+//                            Command c = new DeleteCommand(index);
+//                            c.execute(ui, storage);
+////                            taskList.removeTask(index);
+////                            temp = taskList.getTask(index);
+////                            storage.save();
+////                            ui.displayTask(ui.DELETED, temp);
+//                        } catch (NumberFormatException e) {
+//                            ui.showError("Invalid input");
+//                        }
+//                        break;
+//                    case "todo":
+//                        if(substr.length == 1) {
+//                            ui.showError("The description cannot be empty!");
+//                            break;
+//                        }
+//                        temp = new Todo(substr[1]);
+//                        addTask(temp);
+//                        break;
+//                    case "deadline":
+//                        if(substr.length == 1) {
+//                            ui.showError("The description cannot be empty!");
+//                            break;
+//                        }
+//                        String[] dlDesc = substr[1].split(" /by ", 2);
+//                        if(dlDesc.length < 2) {
+//                            ui.showError("The deadline cannot be empty");
+//                            break;
+//                        }
+//                        try {
+//                            LocalDate date = LocalDate.parse(dlDesc[1]);
+//                            temp = new Deadline(dlDesc[0], date);
+//                            addTask(temp);
+//                            break;
+//                        } catch (DateTimeParseException e) {
+//                            ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
+//                            break;
+//                        }
+//
+//
+//                    case "event":
+//                        if(substr.length == 1) {
+//                            ui.showError("The description cannot be empty!");
+//                            break;
+//                        }
+//                        String[] eventDesc = substr[1].split(" /at ", 2);
+//                        if(eventDesc.length < 2) {
+//                            ui.showError("The date cannot be empty");
+//                            break;
+//                        }
+//
+//                        temp = new Event(eventDesc[0], eventDesc[1]);
+//                        addTask(temp);
+//                        break;
+//                    default:
+//                        ui.showError("idk what that means :(");
+//                        break;
+//                }
+//
+//            }
 
         }
     }
 
-    /**
-     * Adds the task to the list
-     * @param task task to be added
-     */
-    public void addTask(Task task) {
-        Command c = new AddCommand(task);
-        c.execute(ui, storage);
-    }
 
 }
