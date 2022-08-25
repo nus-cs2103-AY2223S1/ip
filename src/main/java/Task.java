@@ -25,6 +25,14 @@ public class Task {
         numTask--;
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
+    public void setIsDone(boolean status) {
+        this.isDone = status;
+    }
+
     public String toString() {
         return "["+ this.getStatusIcon() +"] " + this.description;
     }

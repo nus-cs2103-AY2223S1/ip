@@ -1,7 +1,97 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
+    private static void setUpFile (String filePath) throws IOException {
+        String[] segments = filePath.split("/");
+
+        File folder = new File(segments[0]);
+        if (!folder.exists()) {
+            folder.mkdir();
+        }
+
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+    }
+
+    private static void writeToStorage (ArrayList<Task> items, String filePath) throws IOException{
+        setUpFile(filePath);
+        FileWriter fileWriter = new FileWriter(filePath);
+
+        for (Task task : items) {
+            String taskCode = task.toString().substring(0,3);
+            if (taskCode.equals("[T]")) {
+                String output = "T | " + task.getStatusIcon() + " |" + task.getDescription();
+                fileWriter.write(output);
+            } else if (taskCode.equals("[E]")) {
+                Event e = (Event) task;
+                String output = "E | " + e.getStatusIcon() + " |" + e.getDescription() + "| " + e.getBy();
+                fileWriter.write(output);
+            } else if (taskCode.equals("[D]")) {
+                Deadline d = (Deadline) task;
+                String output = "D | " + d.getStatusIcon() + " |" + d.getDescription() + "| " + d.getBy();
+                fileWriter.write(output);
+            }
+
+            fileWriter.write(System.lineSeparator());
+        }
+
+        fileWriter.close();
+
+    }
+
+    public static ArrayList<Task> readFromStorage( String filePath) throws FileNotFoundException, DukeException {
+        File f = new File(filePath);
+        Scanner s = new Scanner(f);
+        ArrayList<Task> tasks = new ArrayList<>();
+
+        while (s.hasNext()) {
+            String line = s.nextLine();
+            String[] lineComponents = line.split("\\|");
+
+            String type = lineComponents[0];
+            boolean doneStatus = lineComponents[1].equals("X");
+            //DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+            switch (type) {
+                case "T ":
+                    Todo t = new Todo(lineComponents[2]);
+                    t.setIsDone(doneStatus);
+                    tasks.add(t);
+                    break;
+                case "D ":
+                    Deadline d = new Deadline(
+                            lineComponents[2],
+                            lineComponents[3].trim()
+                    );
+                    d.setIsDone(doneStatus);
+                    tasks.add(d);
+                    break;
+                case "E ":
+                    Event e = new Event(
+                            lineComponents[2],
+                            lineComponents[3].trim()
+                    );
+                    e.setIsDone(doneStatus);
+                    tasks.add(e);
+                    break;
+                default:
+                    throw new DukeException("No tasks to read from storage!");
+            }
+        }
+
+        s.close();
+
+        return tasks;
+    }
+
     public static void main(String[] args) {
 
         String logo = "Turtle";
@@ -10,7 +100,16 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         boolean run = true;
         String input;
-        ArrayList<Task> items = new ArrayList<Task>();
+        ArrayList<Task> items = new ArrayList<>();
+        String filePath = "data/tasks.txt";
+        try {
+            items = readFromStorage("data/inputTasks.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
+
 
         while (run) {
             System.out.println("\n--------------------");
@@ -85,6 +184,7 @@ public class Duke {
                 } else {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
+                writeToStorage(items, filePath);
             } catch (Exception e) {
                 System.out.println(e);
             }
