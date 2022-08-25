@@ -16,6 +16,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
 
+    /** Date patterns accepted by the parser. */
     protected static final String[] DATE_PATTERNS = {
             "yyyy-M-d HH:mm", "yyyy/M/d HH:mm", "yyyy M d HH:mm",
             "d-M-yyyy HH:mm", "d/M/yyyy HH:mm", "d M yyyy HH:mm",
@@ -124,6 +125,20 @@ public class Parser {
                     throw DukeException.DukeInvalidIndexException();
                 }
                 break;
+            case "find":
+                try {
+                    String keyword = split[1];
+                    TaskList matchedTasks = taskList.match(keyword);
+                    if (matchedTasks.getSize() > 0) {
+                        header = "Here are the matching tasks in your list";
+                        response = String.format("%s\n%s", header, matchedTasks);
+                    } else {
+                        response = "There are no matching tasks in your list";
+                    }
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw DukeException.DukeUnknownCommandException();
+                }
+                break;
             case "bye":
                 if (input.equals("bye")) {
                     response = "Bye. Hope to see you again soon!";
@@ -153,12 +168,11 @@ public class Parser {
     }
 
     /**
-     * Reads user input and executes task on the {@code taskList}.
+     * Converts date from user input into a {@code LocalDateTime} object.
      *
-     * @param input String line that the user inputs.
-     * @param taskList TaskList object at the moment when the method is called.
-     * @return Response line of the UI.
-     * @throws DukeException
+     * @param date Date string that the user inputs.
+     * @return Date in the form of {@code LocalDateTime}.
+     * @throws DukeException If inputted date is not of the accepted format.
      */
     public LocalDateTime parseTime(String date) throws DukeException {
         for (String pattern : DATE_PATTERNS) {

@@ -51,7 +51,7 @@ public class Storage {
      *
      * @param inputLine String line that the user inputs.
      * @return One of the 3 {@code Task} object subclass.
-     * @throws DukeException
+     * @throws DukeException If inputted date is not of the accepted format.
      */
     public Task createTask(String inputLine) throws DukeException {
         String[] split = inputLine.split("\\|\\|");
@@ -76,7 +76,7 @@ public class Storage {
      * Reads the stored {@code Tasklist}.
      *
      * @return The last saved {@code tasklist}.
-     * @throws DukeException
+     * @throws DukeException If inputted date is not of the accepted format.
      */
     public TaskList readFile() throws DukeException {
         TaskList taskList = new TaskList();
@@ -95,6 +95,8 @@ public class Storage {
 
     /**
      * Saves the latest version of the {@code tasklist}.
+     *
+     * @param taskList List of {@code Task} objects to be saved to the file.
      */
     public void writeFile(TaskList taskList) {
         String text = "";
