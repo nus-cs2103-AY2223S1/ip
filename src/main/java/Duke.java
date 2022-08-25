@@ -171,8 +171,11 @@ public class Duke {
             if (checkCommandArgsLength(commands, 2)) {
                 String[] argsDeadline = splitString(commands[1], DEADLINE_SPLIT);
                 if (checkCommandArgsLength(argsDeadline, 2)) {
-                    task = new Deadline(argsDeadline[0], argsDeadline[1]);
-                    this.addTask(task);
+                    if (DateParser.isDateValid(argsDeadline[1])) {
+                        this.addTask(new Deadline(argsDeadline[0], DateParser.convertToLocalDate(argsDeadline[1])));
+                    } else {
+                        generateReply("OOPS!!! Look like your date format is incorrect");
+                    }
                 }
                 else {
                     generateReply("OOPS!!! Invalid deadline command.");
