@@ -8,9 +8,10 @@ public class Parser {
     private static TaskList tasklist;
     private Storage storage;
 
-    public Parser(Ui ui, TaskList tasklist) {
+    public Parser(Ui ui, TaskList tasklist, Storage storage) {
         this.ui = ui;
         this.tasklist = tasklist;
+        this.storage = storage;
     }
 
     public void parse(String userInput) throws DukeException {
@@ -18,29 +19,28 @@ public class Parser {
             showList();
         } else if (userInput.length() > 4 && (userInput.substring(0, 4)).equals("mark")) {
             markDone(userInput);
-            //storage.save(tasklist);
+            storage.save(tasklist);
         } else if (userInput.length() > 6 && (userInput.substring(0, 6)).equals("unmark")) {
             markUndone(userInput);
-            //storage.save(tasklist);
+            storage.save(tasklist);
         } else if (userInput.length() > 4 && (userInput.substring(0, 4)).equals("todo")) {
             addToDo(userInput);
-            //storage.save(tasklist);
+            storage.save(tasklist);
         } else if (userInput.equals("todo")) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-
         } else if (userInput.equals("deadline")) {
             throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         } else if (userInput.equals("event")) {
             throw new DukeException("OOPS!!! The description of a event cannot be empty.");
         } else if (userInput.length() > 8 && (userInput.substring(0, 8)).equals("deadline")) {
             addDeadline(userInput);
-            //storage.save(tasklist);
+            storage.save(tasklist);
         } else if (userInput.length() > 5 && (userInput.substring(0, 5)).equals("event")) {
             addEvent(userInput);
-            //storage.save(tasklist);
+            storage.save(tasklist);
         } else if (userInput.length() > 7 && (userInput.substring(0, 6)).equals("delete")) {
             deleteTask(userInput);
-            //storage.save(tasklist);
+            storage.save(tasklist);
         } else {
             System.out.println("I'm sorry, but I don't know what that means! Try typing something else!");
         }

@@ -19,9 +19,10 @@ public class Duke {
 
         ui = new Ui();
         ui.printWelcomeMessage();
-        //storage = new Storage("src/main/text-ui-test/duke.txt");
+        //storage = new Storage("src/main/java/duke/duke.txt");
+        storage = new Storage("out/duke.txt");
 
-        /**try {
+        try {
             tasklist = storage.load();
             toDo();
             //tasklist = storage.load();
@@ -29,9 +30,10 @@ public class Duke {
             //System.out.println(de);
             ui.printLoadingError();
             tasklist = new TaskList();
-        }*/
-        tasklist = new TaskList();
-        toDo();
+        }
+
+        /**tasklist = new TaskList();
+        toDo();*/
     }
 
     /**public Duke(String filePath) throws DukeException {
@@ -48,20 +50,17 @@ public class Duke {
 
     public static void toDo() throws DukeException {
         //storage = new Storage(filePath);
-        //ArrayList<Task> tasks = new ArrayList<>();
-        Parser parser = new Parser(ui, tasklist);
+        Parser parser = new Parser(ui, tasklist, storage);
 
         Scanner sc = new Scanner(System.in);
         String str2 = sc.nextLine();
 
-        //while (!str2.equals("bye")) {
         while (!str2.equals("bye")) {
             parser.parse(str2);
             if (sc.hasNextLine()) { str2 = sc.nextLine();}
         }
         ui.printGoodbyeMessage();
         //storage.save(tasklist);
-        //System.out.println("Bye! See you soon!");
     }
 
 }

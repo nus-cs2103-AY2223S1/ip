@@ -18,7 +18,7 @@ public class Events extends Task {
     }
 
     public String savedData() {
-        return "E |" + super.savedData() + dateStr();
+        return "E | " + super.savedData() + dateStr() + "\n";
     }
 
     @Override

@@ -19,7 +19,7 @@ public class Deadlines extends Task {
     }
 
     public String savedData() {
-        return "D |" + super.savedData() + dateStr();
+        return "D | " + super.savedData() + dateStr() + "\n";
     }
 
     @Override

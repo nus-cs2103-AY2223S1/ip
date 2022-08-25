@@ -13,8 +13,12 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getStatusIconSave() {
+        return isDone ? "Done" : "NotDone";
+    }
+
     public String savedData() {
-        return getStatusIcon() + "| " + description + " | ";
+        return getStatusIconSave() + " | " + description + " | ";
     }
 
     @Override

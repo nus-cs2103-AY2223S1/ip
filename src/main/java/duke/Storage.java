@@ -5,9 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -55,7 +52,7 @@ public class Storage {
             while (sc.hasNext()) {
                 //taskArr.add(sc.next());
 
-                String[] strArr = sc.next().split("|");
+                /**String[] strArr = sc.next().split("|");
                 if (strArr[0].equals("T")) {
                     taskArr.add(new ToDos(strArr[2]));
                 }
@@ -64,9 +61,24 @@ public class Storage {
                 }
                 if (strArr[0].equals("D")) {
                     taskArr.add(new Deadlines(strArr[2], LocalDateTime.parse(strArr[3])));
+                }*/
+                if (sc.next().startsWith("D")) {
+                    String desc = descStr(sc.next());
+                    String date = dateStr(sc.next());
+                    taskArr.add(new Deadlines(desc, LocalDateTime.parse(date)));
                 }
+                if (sc.next().startsWith("T")) {
+                    taskArr.add(new ToDos(sc.next().substring(6)));
+                }
+                if (sc.next().startsWith("E")) {
+                    String desc = descStr(sc.next());
+                    String date = dateStr(sc.next());
+                    taskArr.add(new Events(desc, LocalDateTime.parse(date)));
+                }
+
                 //System.out.println(sc.nextLine());
             }
+            sc.close();
             return new TaskList(taskArr);
         } catch (FileNotFoundException fe) {
             throw new FileNotFoundException("No File Found.");
