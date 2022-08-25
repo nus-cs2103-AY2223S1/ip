@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-
+/**
+ * It is a class extending Task class
+ */
 public class Deadline extends Task{
     protected String timing;
     protected String date;
@@ -14,6 +16,13 @@ public class Deadline extends Task{
         this.timing = timing;
         this.date = date;
     }
+
+/**
+ * Returns string representation of the task
+ *
+ * @return String representation of this task
+ *
+ */
 
     @Override
     public String toString() {
