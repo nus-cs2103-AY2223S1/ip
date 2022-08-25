@@ -6,6 +6,11 @@ public class Deadlines extends Task {
     }
 
     @Override
+    public String getDescription() {
+        return "[D]" + super.getDescription() + "(" + this.date + ")";
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + "(" + this.date + ")";
     }

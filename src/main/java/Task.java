@@ -1,6 +1,6 @@
 public class Task {
-    protected String description;
-    protected boolean isDone;
+    private String description;
+    private boolean isDone;
 
     public Task(String description) {
         this.description = description;
@@ -13,6 +13,15 @@ public class Task {
 
     public void unMark() {
         this.isDone = false;
+    }
+
+
+    public String getDescription() {
+        if (isDone) {
+            return "[X] " + description;
+        } else {
+            return "[ ] " + description;
+        }
     }
 
     @Override

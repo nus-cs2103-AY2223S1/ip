@@ -5,7 +5,13 @@ public class ChatBot {
         String greetingMessage = "Hello! I'm " + NAME + "\n"
                 + "What can I do for you?\n";
         System.out.println(greetingMessage);
-        this.taskList = new TaskList();
+//        this.taskList = new TaskList();
+        try {
+            this.taskList = FileDataHandler.load();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
     }
 
     public void echo (String input) {
@@ -32,15 +38,26 @@ public class ChatBot {
                     throw new EmptyDescriptionException();
                 }
             } else if (input.toLowerCase().contains("deadline")) {
-                String[] arguments = input.split("/");
-                String description = arguments[0];
-                String date = arguments[1];
-                this.taskList.addTask(new Deadlines(description, date));
+                //Remove the first 9 string which is deadline + space
+                String deadlineInput = input.substring(9);
+                String[] arguments = deadlineInput.split("/");
+                if (arguments.length > 1) {
+                    String description = arguments[0];
+                    String date = arguments[1];
+                    this.taskList.addTask(new Deadlines(description, date));
+                } else {
+                    throw new EmptyDescriptionException();
+                }
             } else if (input.toLowerCase().contains("event")) {
-                String[] arguments = input.split("/");
-                String description = arguments[0];
-                String date = arguments[1];
-                this.taskList.addTask(new Events(description, date));
+                String eventInput = input.substring(6);
+                String[] arguments = eventInput.split("/");
+                if (arguments.length > 1) {
+                    String description = arguments[0];
+                    String date = arguments[1];
+                    this.taskList.addTask(new Events(description, date));
+                } else  {
+                    throw new EmptyDescriptionException();
+                }
             } else if (input.toLowerCase().contains("delete")) {
                 String[] arguments = input.split(" ");
                 int taskNo = Integer.parseInt(arguments[1]);
