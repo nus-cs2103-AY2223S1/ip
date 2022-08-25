@@ -6,6 +6,7 @@ import jenny.tasks.AbstractTask;
 import jenny.tasks.DeadlineTask;
 import jenny.tasks.EventTask;
 import jenny.tasks.TodoTask;
+import jenny.util.DateTimeParser;
 import jenny.util.Printer;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public final class JennyBot {
     private static final String MESSAGE_SCOPE = JennyBot.class.getSimpleName();
     private static final TaskStorage<ArrayList<AbstractTask>> TASK_STORAGE = new TaskStorage<>("tasks.txt");
     private static ArrayList<AbstractTask> tasks = new ArrayList<>();
+    private final DateTimeParser dateTimeParser = new DateTimeParser("2019-12-01");
 
     /**
      * Starting point of the application.
