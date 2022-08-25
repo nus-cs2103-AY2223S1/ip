@@ -59,45 +59,45 @@ public class Duke {
                 Command keyword = parser.getKeyword();
                 String content = parser.getContent();
                 switch (keyword) {
-                    case BYE:
-                        ui.printBye();
-                        return;
-                    case LIST:
-                        tasklist.printTasks();
-                        break;
-                    case MARK: {
-                        tasklist.markTask(content);
-                        break;
-                    }
-                    case UNMARK: {
-                        tasklist.unmarkTask(content);
-                        break;
-                    }
-                    case DELETE: {
-                        tasklist.deleteTask(content);
-                        break;
-                    }
-                    case TODO: {
-                        ToDo newTask = new ToDo(content);
-                        tasklist.addTask(newTask);
-                        break;
-                    }
-                    case EVENT: {
-                        String[] contentArray = parser.getContentForEvent();
-                        LocalDateTime dateTime = Parser.stringToDateTime(contentArray[1]);
+                case BYE:
+                    ui.printBye();
+                    return;
+                case LIST:
+                    tasklist.printTasks();
+                    break;
+                case MARK: {
+                    tasklist.markTask(content);
+                    break;
+                }
+                case UNMARK: {
+                    tasklist.unmarkTask(content);
+                    break;
+                }
+                case DELETE: {
+                    tasklist.deleteTask(content);
+                    break;
+                }
+                case TODO: {
+                    ToDo newTask = new ToDo(content);
+                    tasklist.addTask(newTask);
+                    break;
+                }
+                case EVENT: {
+                    String[] contentArray = parser.getContentForEvent();
+                    LocalDateTime dateTime = Parser.stringToDateTime(contentArray[1]);
 
-                        Event newTask = new Event(contentArray[0], dateTime);
-                        tasklist.addTask(newTask);
-                        break;
-                    }
-                    case DEADLINE: {
-                        String[] contentArray = parser.getContentForDeadline();
-                        LocalDateTime dateTime = Parser.stringToDateTime(contentArray[1]);
+                    Event newTask = new Event(contentArray[0], dateTime);
+                    tasklist.addTask(newTask);
+                    break;
+                }
+                case DEADLINE: {
+                    String[] contentArray = parser.getContentForDeadline();
+                    LocalDateTime dateTime = Parser.stringToDateTime(contentArray[1]);
 
-                        Deadline newTask = new Deadline(contentArray[0], dateTime);
-                        tasklist.addTask(newTask);
-                        break;
-                    }
+                    Deadline newTask = new Deadline(contentArray[0], dateTime);
+                    tasklist.addTask(newTask);
+                    break;
+                }
                 }
                 storage.save(tasklist.getTasks());
             } catch (Exception e) {
