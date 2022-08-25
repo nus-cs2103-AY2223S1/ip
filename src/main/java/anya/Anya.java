@@ -1,11 +1,15 @@
-import java.util.Scanner;
+package anya;
 
-import java.io.File;
-import java.io.FileWriter;
+import anya.task.Deadline;
+import anya.task.Event;
+import anya.task.Task;
+import anya.task.TaskList;
+import anya.task.Todo;
+
+import java.util.Scanner;
 import java.io.IOException;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Anya {
@@ -136,6 +140,6 @@ public class Anya {
     public void delete(TaskList tasks, int index) {
         Task removedTask = tasks.getTaskFromIndex(index);
         tasks.deleteTaskFromIndex(index);
-        this.ui.deleteTaskMessage(removedTask, index);
+        this.ui.deleteTaskMessage(removedTask);
     }
 }

@@ -1,3 +1,8 @@
+package anya;
+
+import anya.task.Task;
+import anya.task.TaskList;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -38,7 +43,7 @@ public class Ui {
         breakLine();
     }
 
-    public void deleteTaskMessage(Task task, int taskListLength) {
+    public void deleteTaskMessage(Task task) {
         System.out.println("Anya has removed this task : \n" + task.toString());
         breakLine();
     }

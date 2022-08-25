@@ -1,4 +1,6 @@
-public class Event extends Task{
+package anya.task;
+
+public class Event extends Task {
     String eventAt;
 
     public Event(String name, String eventAt) {
