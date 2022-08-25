@@ -36,7 +36,6 @@ public class Ui {
         System.out.println(message);
     }
 
-    //todo: add javaDoc
     public String listToString(List<Task> list) {
         if (list.size() == 0) {
             return "List is empty ~\n";

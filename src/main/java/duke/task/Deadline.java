@@ -25,8 +25,6 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by:" + formattedDate + ")";
     }
 
-
-    //when saved and loaded again it will return a null date
     @Override
     public String toStringForStorage() {
         return "D|" + super.toStringForStorage() + "|" + date.toString();
