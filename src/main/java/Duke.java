@@ -1,40 +1,47 @@
+import data.LocalStorage;
+import models.Deadline;
+import models.Event;
+import models.Task;
+import models.Todo;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Scanner;
 import java.util.ArrayList;
+import static utils.DukePrint.dukePrint;
 
 public class Duke {
-    protected static ArrayList<Task> list = new ArrayList<>();
+    protected static ArrayList<Task> list;
 
     public static void main(String[] args) {
+        Scanner dukeSc = new Scanner(System.in);
+        LocalStorage storage = new LocalStorage();
+        list = storage.load();
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
 
-        String startLine = "---->".repeat(10);
-        String endLine = "<----".repeat(10);
         String greeting = "Hello! Imma Duke!\n What can I do for you?";
         String farewell = "Bye. Duke misses you.";
 
-        System.out.println(startLine);
-        System.out.println(greeting);
-        System.out.println(endLine);
-
-        Scanner dukeSc = new Scanner(System.in);
+        dukePrint("Hello from\n" + logo);
+        dukePrint(greeting);
 
         while (true) {
             String input = dukeSc.nextLine();
-            System.out.println(startLine);
 
             try {
                 if (input.equalsIgnoreCase("bye")) {
-                    System.out.println(farewell);
+                    dukePrint(farewell);
                     return;
                 } else if (input.equalsIgnoreCase("list")) {
-                    System.out.println("Here are the tasks in your list:");
+                    dukePrint("Here are the tasks in your list:");
                     for (int i = 0; i < list.size(); i++) {
-                        System.out.println(i + 1 + ". " + list.get(i));
+                        dukePrint(i + 1 + ". " + list.get(i));
                     }
                 }  else if (input.startsWith("mark ") || input.startsWith("unmark ") || input.startsWith("delete ")) {
                     try {
@@ -43,26 +50,27 @@ public class Duke {
                             int taskNum = Integer.parseInt(input.substring(5)) - 1;
                             Task t = list.get(taskNum);
                             t.markAsDone();
-                            System.out.println("Nice! I've marked this tasks as done:");
-                            System.out.println(t);
+                            dukePrint("Nice! I've marked this tasks as done:\n" + t);
                         } else if (input.startsWith("unmark ")) {
                             // Parse substring starting from index 7
                             int taskNum = Integer.parseInt(input.substring(7)) - 1;
                             Task t = list.get(taskNum);
                             t.unmarkAsDone();
-                            System.out.println("OK, I've marked this task as not done yet:");
-                            System.out.println(t);
+                            dukePrint("OK, I've marked this task as not done yet:\n" + t);
                         } else if (input.startsWith("delete ")) {
                             // Parse substring starting from index 7
                             int taskNum = Integer.parseInt(input.substring(7)) - 1;
                             Task t = list.remove(taskNum);
-                            System.out.println("Noted. I've removed this task:");
-                            System.out.println(t);
-                            System.out.printf("Now you have %d task(s) in the list.%n", list.size());
+                            String tasksLeft = String.format("Now you have %d task(s) in the list.", list.size());
+                            String printStr = String.join("\n",
+                                    "Got it. I've added this task:",
+                                    t.toString(),
+                                    tasksLeft);
+                            dukePrint(printStr);
                         }
                     } catch (NumberFormatException | IndexOutOfBoundsException e) {
                         int listSize = list.size();
-                        System.out.printf("Please enter a valid number from 1 to %d.%n", listSize);
+                        dukePrint(String.format("Please enter a valid number from 1 to %d.%n", listSize));
                     }
                 } else if (input.startsWith("todo ") || input.startsWith("deadline ") || input.startsWith("event ")) {
                     try {
@@ -87,19 +95,21 @@ public class Duke {
                             newTask = new Event(eventInputs[0], eventInputs[1]);
                         }
                         list.add(newTask);
-                        System.out.println("Got it. I've added this task:");
-                        System.out.println(newTask);
-                        System.out.printf("Now you have %d task(s) in the list.%n", list.size());
+                        storage.write(list);
+                        String tasksLeft = String.format("Now you have %d task(s) in the list.", list.size());
+                        String printStr = String.join("\n",
+                                "Got it. I've added this task:",
+                                newTask.toString(),
+                                tasksLeft);
+                        dukePrint(printStr);
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        dukePrint(e.getMessage());
                     }
                 } else {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException dukeException) {
-                System.out.println(dukeException.getMessage());
-            } finally {
-                System.out.println(endLine);
+                dukePrint(dukeException.getMessage());
             }
         }
     }
