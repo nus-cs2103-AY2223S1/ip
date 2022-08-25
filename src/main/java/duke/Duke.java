@@ -1,3 +1,5 @@
+package duke;
+
 import java.nio.file.Paths;
 
 public class Duke {

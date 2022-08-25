@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
     private static final String LINE = "\n----------------------------------------------------------------\n";
 
