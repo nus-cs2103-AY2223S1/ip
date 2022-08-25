@@ -1,5 +1,7 @@
 package task;
 
+import date.DeadlineDateTime;
+
 public class Deadline extends Task {
     private final DeadlineDateTime deadline;
 
@@ -17,6 +19,6 @@ public class Deadline extends Task {
     @Override
     public String encode() {
         int markedStatus = getIsMarked() ? 1 : 0;
-        return String.format("D,%d,%s,%s\n", markedStatus, getTaskItem(), deadline);
+        return String.format("D,%d,%s,%s\n", markedStatus, getTaskItem(), deadline.encode());
     }
 }

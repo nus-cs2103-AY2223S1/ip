@@ -1,5 +1,7 @@
 package task;
 
+import date.EventDateTime;
+
 public class Event extends Task{
     private final EventDateTime eventTiming;
     
@@ -17,6 +19,6 @@ public class Event extends Task{
     @Override
     public String encode() {
         int markedStatus = getIsMarked() ? 1 : 0;
-        return String.format("E,%d,%s,%s\n", markedStatus, getTaskItem(), eventTiming);
+        return String.format("E,%d,%s,%s\n", markedStatus, getTaskItem(), eventTiming.encode());
     }
 }
