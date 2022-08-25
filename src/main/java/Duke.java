@@ -3,6 +3,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -11,6 +15,7 @@ public class Duke {
     public static class Task {
         protected String description;
         protected boolean isDone;
+        protected LocalDate date;
 
         public Task(String description) {
             this.description = description;
@@ -43,6 +48,7 @@ public class Duke {
             super(description);
         }
 
+
         @Override
         public String toString() {
             return "[T]" + super.toString();
@@ -53,30 +59,55 @@ public class Duke {
     public static class Deadline extends Task {
 
         protected String by;
+        protected LocalDate by2;
+        protected String time;
 
         public Deadline(String description, String by) {
             super(description);
             this.by = by;
         }
+        public Deadline(String description, LocalDate by2) {
+            super(description);
+            this.by2 = by2;
 
+        }
         @Override
         public String toString() {
-            return "[D]" + super.toString() + " (by: " + by + ")";
+            if (this.by != null) {
+                return "[D]" + super.toString() + " (by: " + by + ")";
+            } else {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+                return "[D]" + super.toString() + " (by: " + by2.format(formatter) + ")";
+            }
         }
     }
 
     public static class Event extends Task {
 
         protected String at;
+        protected LocalDate at2;
+
+
 
         public Event(String description, String at) {
             super(description);
             this.at = at;
         }
 
+        public Event(String description, LocalDate at2) {
+            super(description);
+            this.at2 = at2;
+        }
+
         @Override
         public String toString() {
-            return "[E]" + super.toString() + " (at: " + at + ")";
+
+            if (this.at != null) {
+                return "[E]" + super.toString() + " (at: " + at + ")";
+            } else {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+                return "[E]" + super.toString() + " (at: " + at2.format(formatter) + ")";
+            }
         }
     }
 
@@ -141,8 +172,8 @@ public class Duke {
                     if (line.equals("todo")) {
                         throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     } else {
-
-                        Todo test = new Todo(line.substring(5));
+                        String d1 = line.substring(5);
+                        Todo test = new Todo(d1);
                         ls.add(test);
                         System.out.println("Got it. I've added this task:");
                         System.out.println(test.toString());
@@ -153,25 +184,42 @@ public class Duke {
                             System.out.println("Something went wrong: " + e.getMessage());
                         }
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
-
                     }
                 } else if (line.contains("deadline")) {
                     if (line.equals("deadline")) {
                         throw new DukeException("☹ OOPS!!! The description of a unmark cannot be empty.");
                     } else {
-                        String description = line.substring(9, line.indexOf("/")-1);
-                        String by = line.substring(line.indexOf("/")+4,line.length());
-                        Deadline test = new Deadline(description, by);
-                        ls.add(test);
-                        System.out.println("Got it. I've added this task:");
-                        System.out.println(test.toString());
-                        String file2 = "duke.txt";
                         try {
-                            writeToFile(file2, test.toString() + System.lineSeparator());
-                        } catch (IOException e) {
-                            System.out.println("Something went wrong: " + e.getMessage());
+                            String description = line.substring(9, line.indexOf("/")-1);
+                            String var = line.substring(line.indexOf("/")+4,line.length());
+                            LocalDate d1 = LocalDate.parse(var);
+                            Deadline test = new Deadline(description, d1);
+                            ls.add(test);
+                            System.out.println("Got it. I've added this task:");
+                            System.out.println(test.toString());
+                            String file2 = "duke.txt";
+                            try {
+                                writeToFile(file2, test.toString() + System.lineSeparator());
+                            } catch (IOException e) {
+                                System.out.println("Something went wrong: " + e.getMessage());
+                            }
+                            System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+                        } catch (DateTimeParseException e) {
+                            String description = line.substring(9, line.indexOf("/") - 1);
+                            String by = line.substring(line.indexOf("/") + 4, line.length());
+                            String time = line.substring(line.length()-4, line.length());
+                            Deadline test = new Deadline(description, by);
+                            ls.add(test);
+                            System.out.println("Got it. I've added this task:");
+                            System.out.println(test.toString());
+                            String file2 = "duke.txt";
+                            try {
+                                writeToFile(file2, test.toString() + System.lineSeparator());
+                            } catch (IOException f) {
+                                System.out.println("Something went wrong: " + f.getMessage());
+                            }
+                            System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
                         }
-                        System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
 
                     }
                 } else if (line.contains("event")) {
@@ -179,20 +227,35 @@ public class Duke {
                         throw new DukeException("☹ OOPS!!! The description of a unmark cannot be empty.");
 
                     } else {
-                        String description = line.substring(6, line.indexOf("/")-1);
-                        String at = line.substring(line.indexOf("/")+4);
-                        Event test = new Event(description, at);
-                        ls.add(test);
-                        System.out.println("Got it. I've added this task:");
-                        System.out.println(test.toString());
-                        String file2 = "duke.txt";
                         try {
-                            writeToFile(file2, test.toString() + System.lineSeparator());
-                        } catch (IOException e) {
-                            System.out.println("Something went wrong: " + e.getMessage());
+                            String description = line.substring(6, line.indexOf("/")-1);
+                            LocalDate d1 = LocalDate.parse(line.substring(line.indexOf("/")+4));
+                            Event test = new Event(description, d1);
+                            ls.add(test);
+                            System.out.println("Got it. I've added this task:");
+                            System.out.println(test.toString());
+                            String file2 = "duke.txt";
+                            try {
+                                writeToFile(file2, test.toString() + System.lineSeparator());
+                            } catch (IOException e) {
+                                System.out.println("Something went wrong: " + e.getMessage());
+                            }
+                            System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
+                        } catch (DateTimeParseException e) {
+                            String description = line.substring(6, line.indexOf("/") - 1);
+                            String at = line.substring(line.indexOf("/") + 4);
+                            Event test = new Event(description, at);
+                            ls.add(test);
+                            System.out.println("Got it. I've added this task:");
+                            System.out.println(test.toString());
+                            String file2 = "duke.txt";
+                            try {
+                                writeToFile(file2, test.toString() + System.lineSeparator());
+                            } catch (IOException f) {
+                                System.out.println("Something went wrong: " + f.getMessage());
+                            }
+                            System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
                         }
-                        System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
-
                     }
                 } else if (line.contains("delete")) {
                     if (line.equals("delete")) {
