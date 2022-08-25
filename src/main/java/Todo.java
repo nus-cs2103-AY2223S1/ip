@@ -12,4 +12,9 @@ public class Todo extends Task{
     public String toString() {
         return "[T][" + this.getStatusIcon() + "] " + super.toString();
     }
+
+    @Override
+    public String toFileString() {
+        return "T | " +  this.getFileStatus() + " | " + super.toString();
+    }
 }
