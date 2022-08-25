@@ -41,6 +41,11 @@ public class ToDoCommand extends Command {
         return command.equals(commandOther.command) && tasks.equals(commandOther.tasks) && ui.equals(commandOther.ui);
     }
 
+    /**
+     * {@inheritDoc}
+     * @param storage Duke's storage system for tasks
+     * @throws DukeException
+     */
     @Override
     public void execute(Storage storage) throws DukeException {
         String[] returnedArray = command.split(" ");
@@ -53,7 +58,11 @@ public class ToDoCommand extends Command {
         ui.addTask(toDo, tasks.size());
         storage.saveDuke(tasks);
     }
-
+    /**
+     * {@inheritDoc}
+     * @return true if the command ends the current session. Otherwise, false.
+     * @since 0.1
+     */
     @Override
     public boolean isExit() {
         return false;

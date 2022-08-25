@@ -54,6 +54,10 @@ public abstract class Task {
         return false;
     }
 
+    /**
+     * Returns a String representation of a Task
+     * @return String representation of a Task
+     */
     @Override
     public String toString() {
         String box = isDone ? "[X] " : "[ ] ";

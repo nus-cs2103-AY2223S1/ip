@@ -29,11 +29,16 @@ public class Storage {
     public Storage() {
         this.saveFilePath = locateHomeDir();
     }
+
+    /**
+     * Retrieves the file path used by Duke to store previously saved tasks
+     * @return String representation of the file path
+     */
     public String locateHomeDir() {
         return System.getProperty("user.dir") + "\\data\\saves\\tasks.txt";
     }
     /**
-     * Method to save a TaskList object in a file with the path saveFilePath
+     * Saves a TaskList object in a file with the path saveFilePath
      * @param tasks TaskList object Duke is using
      * @throws IOException
      * @since 0.1
@@ -56,15 +61,15 @@ public class Storage {
     }
 
     /**
-     * Method to load a ToDo object.
-     * @param taskWasDone was the task done
+     * Loads a ToDo object.
+     * @param isTaskDone was the task done
      * @param taskDesc the descriptor of the ToDo object
      * @returna a ToDo object with the correct status
      * @since 0.1
      */
-    private ToDo loadToDo(boolean taskWasDone, String taskDesc) {
+    private ToDo loadToDo(boolean isTaskDone, String taskDesc) {
         ToDo todo = new ToDo("todo " + taskDesc);
-        if (taskWasDone) {
+        if (isTaskDone) {
             todo.setDone();
         } else {
             todo.setUndone();
@@ -73,17 +78,17 @@ public class Storage {
     }
 
     /**
-     * Method to load a Deadline object.
-     * @param taskWasDone was the task done
+     * Loads a Deadline object.
+     * @param isTaskDone was the task done
      * @param taskDesc the descriptor of the Deadline object
      * @return a Deadline object with the correct status
      * @since 0.1
      */
-    private Deadline loadDeadline(boolean taskWasDone, String taskDesc) {
+    private Deadline loadDeadline(boolean isTaskDone, String taskDesc) {
         String[] deadlineSpecifics = taskDesc.split(" \\(by: ");
         Deadline deadline = new Deadline(deadlineSpecifics[0],
                 deadlineSpecifics[1].substring(0, deadlineSpecifics[1].length() - 1));
-        if (taskWasDone) {
+        if (isTaskDone) {
             deadline.setDone();
         } else {
             deadline.setUndone();
@@ -92,16 +97,16 @@ public class Storage {
     }
 
     /**
-     * Method to load an Event object.
-     * @param taskWasDone was the task done
+     * Loads an Event object.
+     * @param isTaskDone was the task done
      * @param taskDesc the descriptor of the Event object
      * @return an Event object with the correct status
      * @since 0.1
      */
-    private Event loadEvent(boolean taskWasDone, String taskDesc) {
+    private Event loadEvent(boolean isTaskDone, String taskDesc) {
         String[] eventSpecifics = taskDesc.split(" \\(at: ");
         Event event = new Event(eventSpecifics[0], eventSpecifics[1].substring(0, eventSpecifics[1].length() - 1));
-        if (taskWasDone) {
+        if (isTaskDone) {
             event.setDone();
         } else {
             event.setUndone();

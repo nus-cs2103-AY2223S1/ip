@@ -11,7 +11,7 @@ import duke.task.Task;
  */
 public class TaskList {
     /**
-     * The ArrayList of Tasks that Duke uses to track the user's input tasks
+     * ArrayList of Tasks that Duke uses to track the user's input tasks
      */
     private ArrayList<Task> tasks;
 
@@ -33,7 +33,7 @@ public class TaskList {
     }
 
     /**
-     * Method to obtain the size of tasks
+     * Retrieves the size of tasks
      * @return the size of taskList
      * @since 0.1
      */
@@ -42,7 +42,7 @@ public class TaskList {
     }
 
     /**
-     * Method to retrieve the task of an index from tasks
+     * Retrieves the task of an index from tasks
      * @param taskId index of the desired task
      * @return the task at index in taskList
      * @since 0.1
@@ -52,7 +52,7 @@ public class TaskList {
     }
 
     /**
-     * Method to remove the task of an index from tasks
+     * Removes the task of an index from tasks
      * @param taskId index of the desired task
      * @since 0.1
      */
@@ -77,7 +77,7 @@ public class TaskList {
     }
 
     /**
-     * Method to add a task to tasks
+     * Adds a task to tasks
      * @param task Task to add
      * @since 0.1
      */
@@ -86,7 +86,7 @@ public class TaskList {
     }
 
     /**
-     * Method to print out the string representations of all tasks in tasks,
+     * Prints the string representations of all tasks in tasks,
      * with a 1-indexed numbering system.
      * @since 0.1
      */

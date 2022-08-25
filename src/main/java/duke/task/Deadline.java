@@ -29,6 +29,10 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Returns a String representation of a Deadline
+     * @return String representation of a Deadline
+     */
     @Override
     public String toString() {
         return "[D] " + super.toString() + " (by: "

@@ -27,11 +27,20 @@ public class FindCommand extends Command {
         this.ui = ui;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param storage Duke's storage system for tasks
+     * @throws DukeException
+     */
     @Override
     public void execute(Storage storage) throws DukeException {
         ui.readList(tasks.find(word));
     }
-
+    /**
+     * {@inheritDoc}
+     * @return true if the command ends the current session. Otherwise, false.
+     * @since 0.1
+     */
     @Override
     public boolean isExit() {
         return false;

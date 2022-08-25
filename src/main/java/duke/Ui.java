@@ -24,7 +24,7 @@ public class Ui {
             "______________________________________________________"
             + "______________________________________________________";
     /**
-     * Duke's logo
+     * Duke logo
      */
     private static final String LOGO =
             " ____        _\n"
@@ -35,7 +35,7 @@ public class Ui {
     /**
      * First line of Duke's greeting
      */
-    private static final String GREETING_ONE = "Hello! I'm duke.Duke.";
+    private static final String GREETING_ONE = "Hello! I'm Duke.";
     /**
      * Second line of Duke's greeting
      */

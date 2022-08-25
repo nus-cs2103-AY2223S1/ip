@@ -11,15 +11,15 @@ import duke.command.Command;
  */
 public class Duke {
     /**
-     * The Storage object used to load any previous tasks Duke was tracking in a previous session.
+     * Storage object used to load any previous tasks Duke was tracking in a previous session.
      */
     private final Storage storage;
     /**
-     * The TaskList object that Duke uses to track all tasks the user inputs as commands.
+     * TaskList object that Duke uses to track all tasks the user inputs as commands.
      */
     private TaskList tasks;
     /**
-     * The Ui object that allows Duke to communicate with the user.
+     * Ui object that allows Duke to communicate with the user.
      */
     private final Ui ui;
 
@@ -41,7 +41,7 @@ public class Duke {
     }
 
     /**
-     * The method to start Duke's services.
+     * Starts Duke's services.
      * @since 0.1
      */
     public void run() {

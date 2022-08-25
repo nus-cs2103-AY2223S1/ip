@@ -44,6 +44,11 @@ public class UnmarkCommand extends Command {
         return true;
     }
 
+    /**
+     * {@inheritDoc}
+     * @param storage Duke's storage system for tasks
+     * @throws DukeException
+     */
     @Override
     public void execute(Storage storage) throws DukeException {
         if (splitCommands.length == 1) {
@@ -67,7 +72,11 @@ public class UnmarkCommand extends Command {
                     + "\nPlease use the [help] duke.command to check the proper usage of [unmark].");
         }
     }
-
+    /**
+     * {@inheritDoc}
+     * @return true if the command ends the current session. Otherwise, false.
+     * @since 0.1
+     */
     @Override
     public boolean isExit() {
         return false;

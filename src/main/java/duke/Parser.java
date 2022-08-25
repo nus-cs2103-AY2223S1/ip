@@ -19,7 +19,7 @@ import duke.command.UnmarkCommand;
  */
 public class Parser {
     /**
-     * Static method to read a String command and return the corresponding Command object
+     * Reads a String command and return the corresponding Command object
      * @param command in String form
      * @param tasks the TaskList Duke is using
      * @param ui the Ui Duke is using
