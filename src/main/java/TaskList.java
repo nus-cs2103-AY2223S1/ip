@@ -4,8 +4,12 @@ import java.util.ArrayList;
  * @author Nam Minh Quan
  */
 public class TaskList {
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks;
+    protected int length;
 
+    TaskList(ArrayList<Task> taskList) {
+        this.tasks = taskList;
+    }
     /** List out all tasks in the list
      */
     public void listTasks() {
@@ -14,6 +18,14 @@ public class TaskList {
             int index = tasks.indexOf(task) + 1;
             System.out.println(index + ". " + task.toString());
         }
+    }
+
+    public Task getTask(int index) {
+        return this.tasks.get(index);
+    }
+
+    public int getLength() {
+        return this.tasks.size();
     }
 
     /** Adds a new task into the list
@@ -45,6 +57,10 @@ public class TaskList {
         System.out.println("OK, I've marked this task as not done yet: \n" + temp.toString());
     }
 
+    /**
+     * Delete a task from the task list
+     * @param index index of the task to be deleted
+     */
     public void delete(int index) {
         Task temp = tasks.get(index-1);
         tasks.remove(index-1);

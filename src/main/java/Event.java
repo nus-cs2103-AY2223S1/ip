@@ -7,8 +7,8 @@
 public class Event extends Task {
     protected String time;
 
-    public Event(String description, String time) throws DukeException{
-        super(description);
+    public Event(String description, String time, boolean done) throws DukeException{
+        super(description, done);
         if (description.equals("")) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
         }
@@ -18,13 +18,26 @@ public class Event extends Task {
         this.time = time;
     }
 
-    /**
-     * Sets a new start and end time
-     * @param time new time for Event
-     */
+    public String getTime() {
+        return this.time;
+    }
+
     public void setTime(String time) {
         this.time = time;
     }
+
+    @Override
+    public boolean isTodo() {
+        return false;
+    };
+    @Override
+    public boolean isDeadline() {
+        return false;
+    };
+    @Override
+    public boolean isEvent() {
+        return true;
+    };
 
     @Override
     public String toString() {

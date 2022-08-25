@@ -7,8 +7,8 @@
 public class Deadline extends Task {
     protected String deadline;
 
-    public Deadline(String description, String deadline) throws DukeException{
-        super(description);
+    public Deadline(String description, String deadline, boolean done) throws DukeException{
+        super(description, done);
         if (description.equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }
@@ -17,14 +17,27 @@ public class Deadline extends Task {
         }
         this.deadline = deadline;
     }
-    /**
-     * Sets a new deadline for the task
-     * @param deadline new deadline for Event
-     */
+
     public void setDeadline(String deadline) {
         this.deadline = deadline;
     }
 
+    public String getDeadline() {
+        return this.deadline;
+    }
+
+    @Override
+    public boolean isTodo() {
+        return false;
+    };
+    @Override
+    public boolean isDeadline() {
+        return true;
+    };
+    @Override
+    public boolean isEvent() {
+        return false;
+    };
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by:" + this.deadline + ")";

@@ -1,9 +1,10 @@
-public class Task {
+public abstract class Task {
     protected String description;
-    protected boolean done = false;
+    protected boolean done;
 
-    protected Task(String task) {
+    protected Task(String task, boolean done) {
         this.description = task;
+        this.done = done;
     }
     public void mark() {
         this.done = true;
@@ -15,9 +16,18 @@ public class Task {
         return this.description;
     }
     public String getDone() {
-        return (done==true? "[X] " : "[ ] ");
+        return ( done ? "1" : "0");
     }
+    public String printDone() {
+        return (done ? "[X] " : "[ ] ");
+    }
+    @Override
     public String toString() {
-        return (this.getDone() + this.getDescription());
+        return (this.printDone() + this.getDescription());
     }
+
+    public abstract boolean isTodo();
+    public abstract boolean isDeadline();
+    public abstract boolean isEvent();
+
 }
