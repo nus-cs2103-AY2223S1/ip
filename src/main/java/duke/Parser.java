@@ -1,5 +1,5 @@
 
-package Duke;
+package duke;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,7 +16,6 @@ public class Parser {
         DukeOperations ops = new DukeOperations();
         TaskList tl = new TaskList();
         Storage storage = new Storage();
-
 
         while (!flag) {
             String output = in.nextLine();

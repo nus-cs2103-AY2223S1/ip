@@ -1,5 +1,5 @@
 
-import Duke.Todo;
+import duke.Todo;
 
 import org.junit.jupiter.api.Test;
 
