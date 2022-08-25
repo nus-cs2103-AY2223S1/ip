@@ -8,7 +8,8 @@ import java.util.stream.Stream;
 public class Ui {
     private void print(String s) {
         String seperator = "    ____________________________________________________________\n";
-        System.out.println(seperator + Stream.of(s.split("\n")).map(x -> "     " + x + "\n").reduce("", (x,y) -> x + y) + seperator);
+        System.out.println(seperator + Stream.of(s.split("\n")).map(x -> "     " + x + "\n")
+                .reduce("", (x,y) -> x + y) + seperator);
     }
 
     /**

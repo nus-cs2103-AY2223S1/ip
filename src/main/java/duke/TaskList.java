@@ -58,7 +58,8 @@ public class TaskList {
         try {
             return tasks.get(index - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", index, tasks.size());
+            throw new DukeException("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.",
+                    index, tasks.size());
         }
     }
 
@@ -73,7 +74,8 @@ public class TaskList {
         try {
             convertedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern(TimedTask.format));
         } catch (DateTimeParseException e) {
-            throw new DukeException("\u2639 OOPS!!! Wrong date format. Please input date in the format %s.", TimedTask.format);
+            throw new DukeException("\u2639 OOPS!!! Wrong date format. Please input date in the format %s.",
+                    TimedTask.format);
         }
         return new TaskList(
             tasks.stream()
@@ -122,7 +124,8 @@ public class TaskList {
         try {
             return tasks.remove(index - 1);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", index, tasks.size());
+            throw new DukeException("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.",
+                    index, tasks.size());
         }
     }
 
