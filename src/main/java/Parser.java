@@ -8,10 +8,13 @@ public class Parser {
             return Command.UNMARK;
         } else if (command.startsWith("mark")) {
             return Command.MARK;
-        } else if (command.startsWith("deadline") || command.startsWith("todo")
-                || command.startsWith("event")) {
-            return Command.ADD;
-        } else if (command.startsWith("delete")) {
+        } else if (command.startsWith("deadline")) {
+            return Command.DEADLINE;
+        } else if (command.startsWith("todo")) {
+            return Command.TODO;
+        } else if (command.startsWith("event")) {
+            return Command.EVENT;
+        }else if (command.startsWith("delete")) {
             return Command.DELETE;
         } else {
             return Command.INVALID;

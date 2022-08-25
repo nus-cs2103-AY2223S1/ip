@@ -1,5 +1,7 @@
 public enum Command {
-    ADD,
+    EVENT,
+    DEADLINE,
+    TODO,
     DELETE,
     MARK,
     UNMARK,

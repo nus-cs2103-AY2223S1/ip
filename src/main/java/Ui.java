@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Ui {
 
-    private String DIVIDER = "__________________________________________________\n";
+    private static String DIVIDER = "__________________________________________________________\n";
     private Scanner in;
 
     public Ui() {
@@ -26,14 +26,33 @@ public class Ui {
         System.out.println("Bye. Hope to see you again soon!\n");
     }
 
-    public void printErrorMessage(DukeException e) {
-        String errorMessage = DIVIDER + e.getMessage() + "\n" + DIVIDER;
+    public static void printAddedMessage(Task newTask, int size) {
+        String message = DIVIDER
+                + String.format("\tGot it. I've added this task:\n\t  %s\n", newTask)
+                + String.format("\tNow you have %s tasks in the list\n", size)
+                + DIVIDER;
+        System.out.print(message);
     }
 
-    public void printDeletedMessage(Task deletedTask) {
-        String message = DIVIDER + "Noted. I've removed this task:\n  "
+    public static void printErrorMessage(DukeException e) {
+        String errorMessage = DIVIDER + e.getMessage() + "\n" + DIVIDER;
+        System.out.println(errorMessage);
+    }
+
+    public static void printDeletedMessage(Task deletedTask, int size) {
+        String message = DIVIDER + "Noted. I've removed this task:\n"
                 + deletedTask
-                + String.format("\nNow you have  tasks in the list.") + DIVIDER;
+                + String.format("\nNow you have %s tasks in the list.\n", size) + DIVIDER;
         System.out.println(message);
+    }
+
+    public static void printTasks(TaskList tasks) {
+        for (String task : tasks.convertToStringList()) {
+            System.out.println(task);
+        }
+    }
+
+    public static void printMarkMessage() {
+
     }
 }

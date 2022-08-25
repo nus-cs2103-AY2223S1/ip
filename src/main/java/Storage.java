@@ -29,7 +29,7 @@ public class Storage {
                 } else if (sc.nextLine().startsWith("[D]")) {
                     tasks.add(Deadline.parse(sc.nextLine()));
                 } else if (sc.nextLine().startsWith("[E]")) {
-                    tasks.add(Deadline.parse(sc.nextLine()));
+                    tasks.add(Event.parse(sc.nextLine()));
                 }
             }
             sc.close();

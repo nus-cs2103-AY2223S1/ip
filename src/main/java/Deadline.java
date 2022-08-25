@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
@@ -20,13 +21,15 @@ public class Deadline extends Task {
 
     public static Deadline parse(String task) {
         boolean isDone = task.substring(4, 5).equals(" ") ? false : true;
-        Pattern taskPattern = Pattern.compile("] (.*?) \(by");
+        Pattern taskPattern = Pattern.compile("] (.*?) \\(by");
         Matcher taskMatcher = taskPattern.matcher(task);
         Pattern timePattern = Pattern.compile("by: (.*?)\\)");
-        Matcher timeMatcher = taskPattern.matcher(task);
-        //todo
+        Matcher timeMatcher = timePattern.matcher(task);
+        System.out.print(task);
+        String time = LocalDateTime.parse(timeMatcher.group(1), DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"))
+                .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
-        return new Deadline(taskMatcher.group(1), isDone, by);
+        return new Deadline(taskMatcher.group(1), isDone, time);
     }
 
     @Override

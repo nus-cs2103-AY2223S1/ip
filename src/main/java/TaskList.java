@@ -18,4 +18,20 @@ public class TaskList {
         return tasks.stream().map(task -> Objects.toString(task)).collect(Collectors.toList());
     }
 
+    public Task remove(int taskNum) {
+        return tasks.remove(taskNum);
+    }
+
+    public int getSize() {
+        return tasks.size();
+    }
+
+    public void markDone(int index) {
+        tasks.get(index).markAsDone();
+    }
+
+    public void unmark(int index) {
+        tasks.get(index).unmark();
+    }
+
 }

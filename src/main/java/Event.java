@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
@@ -19,13 +20,22 @@ public class Event extends Task {
     }
 
     public static Event parse(String task) {
-        //todo
+        boolean isDone = task.substring(4, 5).equals(" ") ? false : true;
+        Pattern taskPattern = Pattern.compile("] (.*?) \\(by");
+        Matcher taskMatcher = taskPattern.matcher(task);
+        Pattern timePattern = Pattern.compile("by: (.*?)\\)");
+        Matcher timeMatcher = timePattern.matcher(task);
+        String time = LocalDateTime.parse(timeMatcher.group(1), DateTimeFormatter.ofPattern("dd MMM yyyy HHmm"))
+                .format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+
+        return new Event(taskMatcher.group(1), isDone, time);
     }
 
     @Override
     public String toString() {
         String formattedDate = this.date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
         String formattedTime = this.time.format(DateTimeFormatter.ofPattern("HHmm"));
+        //[D][ ] task (by: dd MMM yyyy HHmm)
         return "[E]" + super.toString() + " (at: " + formattedDate + " " + formattedTime + ")";
     }
 }
