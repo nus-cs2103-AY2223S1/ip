@@ -1,6 +1,9 @@
+package duke.model;
+
 public class Task {
     protected String description;
     protected boolean isDone;
+    private static int numOfTasks;
 
     public Task(String description) {
         this.description = description;
@@ -11,12 +14,28 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public void markAsDone() {
+    public void mark() {
         this.isDone = true;
     }
 
-    public void markAsNotDone() {
+    public void unmark() {
         this.isDone = false;
+    }
+
+    public static int getNumOfTasks() {
+        return numOfTasks;
+    }
+
+    public static void incrementNumOfTasks() {
+        numOfTasks += 1;
+    }
+
+    public static void decrementNumOfTasks() {
+        numOfTasks -= 1;
+    }
+
+    public String toStorage() {
+        return "";
     }
 
     @Override
