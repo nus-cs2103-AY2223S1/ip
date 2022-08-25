@@ -24,8 +24,9 @@ public class Storage {
     public Storage() throws StorageException {
         try {
             Files.createDirectories(PATH.getParent());
+            Files.createFile(PATH);
         } catch (FileAlreadyExistsException e) {
-            OutputLogger.output("Initialising existing task list...");
+            System.out.println("Initialising existing task list...");
         } catch (IOException e) {
             throw new StorageException("There was an unrecognised error when initialising storage");
         }

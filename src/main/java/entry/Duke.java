@@ -19,7 +19,6 @@ public class Duke {
      * @param args CLI args
      */
     public static void main(String[] args) {
-        OutputLogger.printIntroduction();
         Scanner sc = new Scanner(System.in);
         CommandRunner cmdRunner = null;
         boolean canRun = true;
@@ -28,6 +27,10 @@ public class Duke {
         } catch (StorageException e) {
             OutputLogger.output("There was an issue loading tasks. Shutting down...");
             canRun = false;
+        }
+
+        if (canRun) {
+            OutputLogger.printIntroduction();
         }
 
         while (canRun) {
