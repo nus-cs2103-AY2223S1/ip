@@ -18,6 +18,7 @@ jar {
     archiveBaseName = 'gs-gradle'
     archiveVersion = '0.1.0'
 }
+
 run{
     standardInput = System.in
 }
