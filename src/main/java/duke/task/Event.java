@@ -1,6 +1,10 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.exception.DukeException;
 
 public class Event extends Task {
     protected LocalDate at;
@@ -10,7 +14,7 @@ public class Event extends Task {
         this.at = at;
     }
 
-    public static Event parseFile(String data) throws DukeException{
+    public static Event parseFile(String data) throws DukeException {
         String[] details = data.split(" \\| ");
         try {
             Event event = new Event(details[2], LocalDate.parse(details[3]));

@@ -1,5 +1,13 @@
+package duke.parser;
+import duke.command.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import duke.command.Command;
+import duke.exception.DukeException;
 
 public abstract class Parser {
 
@@ -50,7 +58,7 @@ public abstract class Parser {
                 if (input.length() == 0) {
                     throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
                 }
-                command = new AddCommand(new ToDo(input));
+                command = new AddCommand(new ToDo(secondWord));
                 return command;
             case "deadline":
                 try {

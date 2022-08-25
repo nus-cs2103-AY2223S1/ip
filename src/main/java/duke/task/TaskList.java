@@ -1,4 +1,6 @@
+package duke.task;
 import java.util.ArrayList;
+import duke.exception.DukeException;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -24,7 +26,7 @@ public class TaskList {
         if (numTasks == 0) {
             throw new DukeException("\t You do not have any tasks.");
         } else if (index < 1) {
-            throw new DukeException("\t Task number starts from one.");
+            throw new DukeException("\t duke.task.Task number starts from one.");
         } else if (index > numTasks){
             if (numTasks == 1) {
                 throw new DukeException(String.format("You only have %d task.", numTasks));
