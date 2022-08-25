@@ -27,10 +27,17 @@ public class Mia {
             System.out.print("\u001B[1A\u001B[K");
             window.printCommand(new Span(line));
 
-            if (line.equals("bye")) {
+            try {
+                final Command command = Command.from(this, line);
+                if (command.shouldExitContext()) {
                 respond("See you!");
-                break;
-            } else if (line.equals("list")) {
+                    break;
+                }
+            } catch (IllegalArgumentException e) {
+                respond(e.getMessage());
+            }
+
+            if (line.equals("list")) {
                 respond(tasksManager.toString());
             } else if (line.startsWith("delete ")) {
                 final int number = Integer.parseInt(line.substring(7));
@@ -81,8 +88,6 @@ public class Mia {
                 } else {
                     respond("Incorrect format of event command!");
                 }
-            } else {
-                respond("Sorry boss, I don't know what you are trying to say 😟");
             }
         }
         window.dispose();
