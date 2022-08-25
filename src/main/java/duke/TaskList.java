@@ -1,10 +1,14 @@
+package duke;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
     private ArrayList<Task> taskList;
 
     /**
-     * Constructor for TaskList, which stores task entered by user in Duke
+     * Constructor for duke.TaskList, which stores task entered by user in duke.Duke
      */
     public TaskList() {
         this.taskList = new ArrayList<Task>();

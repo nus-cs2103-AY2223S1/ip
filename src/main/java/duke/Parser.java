@@ -1,3 +1,7 @@
+package duke;
+
+import duke.command.*;
+
 import java.util.Arrays;
 
 public class Parser {

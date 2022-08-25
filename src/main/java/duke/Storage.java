@@ -1,5 +1,9 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.ToDo;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
