@@ -2,13 +2,25 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Parser class that parses input string and dispatches relevant responses.
+ */
 public class Parser {
     private Duke duke;
 
+    /**
+     * Constructor for Parser Class.
+     *
+     * @param duke The duke object being used.
+     */
     public Parser(Duke duke) {
         this.duke = duke;
     }
 
+    /**
+     * Parses input string from user and dispatches an action accordingly.
+     * Prints exception to the console if input is of invalid form.
+     */
     public void parse() {
         Scanner sc = new Scanner(System.in);
         String input = sc.next();

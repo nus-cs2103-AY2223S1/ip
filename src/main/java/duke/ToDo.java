@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Deadline class which is a subclass of Event.
+ */
 public class ToDo extends Task {
 
     public ToDo(String description) {
