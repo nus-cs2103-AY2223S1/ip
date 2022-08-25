@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Duke {
 
     public final String FILE_NAME;
-    private Storage fo;
-    private TaskList taskList;
+    private final Storage FO;
+    private final TaskList TASK_LIST;
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
@@ -17,8 +17,8 @@ public class Duke {
 
     public Duke(String fileName, Storage fo, TaskList taskList) {
         FILE_NAME = fileName;
-        this.fo = fo;
-        this.taskList = taskList;
+        this.FO = fo;
+        this.TASK_LIST = taskList;
     }
 
     public static void main(String[] args) {
@@ -34,7 +34,7 @@ public class Duke {
             if (file.createNewFile()) {
                 ui.printCreateNewFile();
             } else {
-                duke.fo.loadAllTasksFromFile(duke.taskList);
+                duke.FO.loadAllTasksFromFile(duke.TASK_LIST);
                 ui.printLoadTasksFromFile();
                 ui.printLineBreak();
             }
@@ -63,31 +63,31 @@ public class Duke {
             ui.printLineBreak();
             switch (command) {
             case Commands.LIST:
-                taskList.listTasks();
+                TASK_LIST.listTasks();
                 break;
             case Commands.MARK:
                 int taskNumber = parser.parseMark();
-                taskList.markAsDone(taskNumber - 1, fo); // since display is 1-indexed
+                TASK_LIST.markAsDone(taskNumber - 1, FO); // since display is 1-indexed
                 break;
             case Commands.UNMARK:
                 taskNumber = parser.parseUnmark();
-                taskList.markAsNotDone(taskNumber - 1, fo); // since display is 1-indexed
+                TASK_LIST.markAsNotDone(taskNumber - 1, FO); // since display is 1-indexed
                 break;
             case Commands.TODO:
                 Todo task = parser.parseTodo();
-                taskList.add(task, fo);
+                TASK_LIST.add(task, FO);
                 break;
             case Commands.DEADLINE:
                 Deadline deadline = parser.parseDeadline();
-                taskList.add(deadline, fo);
+                TASK_LIST.add(deadline, FO);
                 break;
             case Commands.EVENT:
                 Event event = parser.parseEvent();
-                taskList.add(event, fo);
+                TASK_LIST.add(event, FO);
                 break;
             case Commands.DELETE:
                 taskNumber = parser.parseDelete();
-                taskList.delete(taskNumber - 1, fo); // since we store tasks 0-indexed in ArrayList
+                TASK_LIST.delete(taskNumber - 1, FO); // since we store tasks 0-indexed in ArrayList
                 break;
             default:
                 ui.printCommandNotRecognized();
