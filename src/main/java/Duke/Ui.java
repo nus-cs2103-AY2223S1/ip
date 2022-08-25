@@ -57,6 +57,21 @@ public class Ui {
         System.out.println("Hope to see you again soon!");
     }
 
+    public void printMatches(List<String> matchlist){
+        if(matchlist.isEmpty()){
+            System.out.println("Sorry! We are unable to find any matching tasks in your list!");
+        } else{
+            System.out.println("Here are the matching tasks in your list:");
+            for(int i=0;i<matchlist.size();i++){
+                System.out.println(i+1 + "." + matchlist.get(i));
+            }
+
+        }
+
+
+
+    }
+
 
 
 

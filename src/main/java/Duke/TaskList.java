@@ -33,4 +33,21 @@ public class TaskList {
         return oldTasks.size();
     }
 
+    public List<String> findMatches(String str){
+        List<String> lst = new ArrayList<>();
+        for(int i=0;i<oldTasks.size();i++){
+            String task = oldTasks.get(i);
+            if(task.contains(str)){
+                lst.add(task);
+            }
+        }
+        for(int i=0;i<newTasks.size();i++){
+            String task = newTasks.get(i);
+            if(task.contains(str)){
+                lst.add(task);
+            }
+        }
+        return lst;
+    }
+
 }

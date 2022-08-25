@@ -2,6 +2,7 @@ package Duke;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class Parser {
@@ -24,7 +25,13 @@ public class Parser {
             str = scanner.next(); //This will check for the action word
             if(str.equals("bye")){
                 break;
-            }else if(str.equals("delete")) {
+            } else if(str.equals("find")){
+                System.out.println("code comes here");
+                String match = scanner.nextLine();
+                List<String> matchlist = tasklist.findMatches(match);
+                bot.printMatches(matchlist);
+            }
+            else if(str.equals("delete")) {
                 int index = scanner.nextInt();
                 scanner.nextLine();
                 String deleted = tasklist.removeTask(index);
@@ -107,8 +114,8 @@ public class Parser {
                 storage.replaceTasks("data/Duke2.txt",tasklist.oldTasks,tasklist.newTasks);
             } else{
                 storage.addTasks("data/Duke2.txt",tasklist.newTasks);
-                bot.displayError();
             }
+            bot.goodBye();
         }
    }
 
