@@ -40,16 +40,16 @@ public class Deadline extends Task {
      * @return The constructed Deadline.
      * @throws InvalidTaskDataException If the string is not formatted correctly.
      */
-     static Deadline fromEncodedString(String encodedString) throws InvalidTaskDataException {
-         String[] splitTaskData = encodedString.split("\\|");
-         if (splitTaskData.length < 4) {
-             throw new InvalidTaskDataException("The data for this deadline is not formatted correctly.");
-         }
-         String description = splitTaskData[2];
-         boolean isDone = splitTaskData[1].equals("1");
-         TemporalAccessor endDateTime = DateTimeUtil.parseCompactDateTime(splitTaskData[3]);
-         return new Deadline(description, isDone, endDateTime);
-     }
+    static Deadline fromEncodedString(String encodedString) throws InvalidTaskDataException {
+        String[] splitTaskData = encodedString.split("\\|");
+        if (splitTaskData.length < 4) {
+            throw new InvalidTaskDataException("The data for this deadline is not formatted correctly.");
+        }
+        String description = splitTaskData[2];
+        boolean isDone = splitTaskData[1].equals("1");
+        TemporalAccessor endDateTime = DateTimeUtil.parseCompactDateTime(splitTaskData[3]);
+        return new Deadline(description, isDone, endDateTime);
+    }
 
     /**
      * {@inheritDoc}
