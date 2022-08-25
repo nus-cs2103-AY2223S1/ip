@@ -74,7 +74,7 @@ public class Parser {
      * @param commandArgs Array of Strings representing command arguments
      * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
      */
-    public void parseMark(String[] commandArgs) throws InvalidArgumentException {
+    public void parseMark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
         } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
@@ -90,7 +90,7 @@ public class Parser {
      * @param commandArgs Array of Strings representing command arguments
      * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
      */
-    public void parseUnmark(String[] commandArgs) throws InvalidArgumentException {
+    public void parseUnmark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
         } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
@@ -106,7 +106,7 @@ public class Parser {
      * @param commandArgs Array of Strings representing command arguments
      * @throws EmptyTitleException If input title is empty
      */
-    public void parseTodo(String[] commandArgs) throws EmptyTitleException {
+    public void parseTodo(String[] commandArgs) throws DukeException {
         String title = String.join(" ", commandArgs);
 
         if (title == "") {
@@ -140,7 +140,7 @@ public class Parser {
                     this.taskList.addTask(new Deadline(title, false, ldt));
                     this.storage.save(this.taskList);
                 } catch (DateTimeParseException e) {
-                    System.out.println(deadline + " cannot be parsed: must be in the format dd/mm/yyyy");
+                    throw new DukeException("Date format should be dd/mm/yyyy");
                 }
             }
         }
@@ -175,7 +175,7 @@ public class Parser {
      * @param commandArgs Array of Strings representing command arguments
      * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
      */
-    public void parseDelete(String[] commandArgs) throws InvalidArgumentException {
+    public void parseDelete(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
         } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {

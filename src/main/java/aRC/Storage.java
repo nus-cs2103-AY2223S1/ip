@@ -41,8 +41,9 @@ public class Storage {
                 }
             }
 
+            sc.close();
+
         } catch (FileNotFoundException e) {
-            System.out.println(e);
             createFile();
         }
 
@@ -56,12 +57,11 @@ public class Storage {
                 System.out.println("File created: " + this.dataFile.getPath());
             }
         } catch (IOException e) {
-            System.out.println(e);
             System.out.println("File not successfully created");
         }
     }
 
-    public void save(TaskList taskList) {
+    public void save(TaskList taskList) throws DukeException {
         ArrayList<String> newData = new ArrayList<>();
 
         for (int i = 0; i < taskList.numTasks(); i++) {
@@ -73,7 +73,7 @@ public class Storage {
             fw.write(String.join("\n", newData));
             fw.close();
         } catch (IOException e) {
-            System.out.println(e);
+            throw new DukeException("File not saved properly");
         }
     }
 }
