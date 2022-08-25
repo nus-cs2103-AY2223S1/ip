@@ -21,8 +21,6 @@ public class TaskList {
      * This method adds a task to the given task-list.
      * @param noType The input String with type removed.
      * @param type The type of the task
-     * @param tasks The task-list.
-     * @param numTasks The number of tasks currently.
      */
     public String addTask(String noType, String type, boolean done, boolean load)
             throws DukeException {
@@ -82,7 +80,6 @@ public class TaskList {
     /**
      * Mark a task as done
      * @param index The index of the task.
-     * @param tasks The task-list.
      */
     public String markTask(String index)
             throws DukeException {
@@ -99,7 +96,6 @@ public class TaskList {
     /**
      * Mark a task as not done
      * @param index The index of the task.
-     * @param tasks The task-list.
      */
     public String unmarkTask(String index)
             throws DukeException {
@@ -116,8 +112,6 @@ public class TaskList {
 
     /**
      * This method lists out the current tasks.
-     * @param tasks The task-list.
-     * @param numTasks The number of tasks currently.
      */
     public String listTasks() {
         String list = "Here are the tasks in your list:\n";
@@ -127,7 +121,7 @@ public class TaskList {
             //Add task
             list += tasks.get(i);
             //Add nextline
-            if(i!=numTasks -1) {
+            if(i != numTasks -1) {
                 list += "\n";
             }
         }
@@ -171,4 +165,31 @@ public class TaskList {
         return  false;
     }
 
+    /**
+     * Finds tasks that match the given search input.
+     *
+     * @param input Search input.
+     * @return The list of matching tasks.
+     */
+    public String find(String input) throws DukeException {
+        String list = "Here are the matching tasks in your list:\n";
+        int found = 0;
+        for (int i = 0; i < tasks.size(); i++) {
+            if(tasks.get(i).getTitle().contains(input)){
+                found += 1;
+                //Add index
+                list +=  (found) + ".";
+                //Add task
+                list += tasks.get(i);
+                //Add nextline
+                list += "\n";
+            }
+        }
+        if (found > 0) {
+            list = list.substring(0, list.length() - 1);
+        } else {
+            throw new DukeException("No matching tasks found! Please try something else.");
+        }
+        return list;
+    }
 }

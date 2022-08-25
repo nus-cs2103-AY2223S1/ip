@@ -46,6 +46,12 @@ public class Parser {
             } catch (DukeException ex) {
                 ui.say(ex.toString());
             }
+        } else if (first.equals("find")){
+            try {
+                ui.say(tasks.find(rest));
+            } catch (DukeException ex) {
+                ui.say(ex.toString());
+            }
         } else {
             ui.say("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }

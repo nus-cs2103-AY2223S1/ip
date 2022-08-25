@@ -78,5 +78,4 @@ public class Task {
     public String getTitle() {
         return title;
     }
-
 }
