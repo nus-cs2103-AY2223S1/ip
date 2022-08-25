@@ -9,6 +9,11 @@ public class Deadline extends Task {
         this.datetime = datetime;
     }
 
+    public Deadline(String isDone, String description, LocalDate datetime) {
+        super(isDone, description);
+        this.datetime = datetime;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + datetime.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
@@ -16,6 +21,6 @@ public class Deadline extends Task {
 
     @Override
     public String toTxt() {
-        return String.format("D || %s || %s", super.toTxt(), datetime);
+        return String.format("D @@ %s @@ %s", super.toTxt(), datetime);
     }
 }

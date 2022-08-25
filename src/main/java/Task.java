@@ -7,6 +7,11 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task(String isDone, String description) {
+        this.isDone = isDone.equals("X");
+        this.description = description;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
@@ -24,6 +29,6 @@ public class Task {
     }
 
     public String toTxt() {
-        return String.format("%s || %s", getStatusIcon(), description);
+        return String.format("%s @@ %s", getStatusIcon(), description);
     }
 }

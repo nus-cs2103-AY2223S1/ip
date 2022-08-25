@@ -1,6 +1,12 @@
+import java.time.LocalDate;
+
 public class Todo extends Task {
     public Todo(String description) {
         super(description);
+    }
+
+    public Todo(String isDone, String description) {
+        super(isDone, description);;
     }
 
     @Override
@@ -10,6 +16,6 @@ public class Todo extends Task {
 
     @Override
     public String toTxt() {
-        return String.format("T || %s", super.toTxt());
+        return String.format("T @@ %s", super.toTxt());
     }
 }
