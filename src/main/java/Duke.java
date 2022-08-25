@@ -1,9 +1,12 @@
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
-
+import java.time.format.DateTimeFormatter;
 
 
 public class Duke {
@@ -56,8 +59,10 @@ public class Duke {
                     lst.add(todo);
                     break;
                 case "D ": {
-                    String by = stringDetails[3];
-                    Deadline deadline = new Deadline(description.substring(1), by.substring(1));
+                    String by = stringDetails[3].substring(1);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
+                    LocalDate date = LocalDate.parse(by, formatter);
+                    Deadline deadline = new Deadline(description.substring(1), date);
                     if (isMark.equals(" 1 ")) {
                         deadline.mark();
                     }
@@ -154,7 +159,14 @@ public class Duke {
             if (sepPos != -1) {
                 String description = str.substring(9, sepPos);
                 String by = str.substring(sepPos + 4);
-                Deadline l = new Deadline(description, by);
+                DateTimeFormatter fromFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                try {
+                    LocalDate.parse(by, fromFormat);
+                } catch (DateTimeParseException e) {
+                    System.out.println("Deadline format has to be in yyyy-MM-dd");
+                    return;
+                }
+                Deadline l = new Deadline(description, LocalDate.parse(by));
                 lst.add(counter, l);
                 counter++;
                 System.out.println("Got it. I've added this task:\n " + l +
