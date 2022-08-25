@@ -5,7 +5,7 @@ import exceptions.TumuException;
 import exceptions.UnrecognisedCommandException;
 
 /**
- * Deals with making sense of the user command
+ * Deals with making sense of the user command.
  */
 public class Parser {
     private static final String END_CHAT_BOT_CMD = "bye";
@@ -17,6 +17,16 @@ public class Parser {
     private static final String EVENT_CMD = "event";
     private static final String DELETE_CMD = "delete";
 
+    /**
+     * Parse the command and calls the correct classes
+     * to give the appropriate output.
+     * @param fullCommand Full command given by the user.
+     * @param ui Specifies how the program interacts with the user.
+     * @return The command class to be executed.
+     * @throws TumuException Parent exception for the program.
+     * @throws NumberFormatException Exception is thrown when the String cannot be parsed
+     *                               into an integer.
+     */
     public static Command parse(String fullCommand, UI ui) throws TumuException, NumberFormatException {
         String[] input = fullCommand.split(" ", 2);
         String command = input[0].trim().toLowerCase();
@@ -45,6 +55,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Gets the keyword command eg "deadline", "event" from the full command
+     * given by the user.
+     * @param fullCommand Full command given by the user.
+     * @return String containing the keyword command issued by the user.
+     */
     public static String getCommand(String fullCommand) {
         String[] input = fullCommand.split(" ", 2);
         return input[0].trim().toLowerCase();

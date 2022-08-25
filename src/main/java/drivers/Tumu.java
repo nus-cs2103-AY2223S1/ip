@@ -12,21 +12,35 @@ public class Tumu {
     private TaskList tasks;
     private UI ui;
 
+    /**
+     * Constructor for the Tumu class.
+     */
     public Tumu() {
         ui = new UI();
         storage = new Storage("data/Tumu.txt");
         tasks = new TaskList(storage.loadData());
     }
 
+    /**
+     * Main function to start execution of the program.
+     * @param args Arguments during java command line execution.
+     */
     public static void main(String[] args) {
         new Tumu().run();
     }
 
+    /**
+     * Run all the driver code to run the program.
+     */
     private void run() {
         ui.greeting();
         response();
     }
 
+    /**
+     * Program comes up with a response to the command given
+     * by the user.
+     */
     private void response() {
         String command = "";
         do {

@@ -6,9 +6,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Manager class for deadline tasks. Handles the
+ * parsing and formatting of the task itself.
+ */
 public class Deadline extends Task {
     private LocalDateTime timing;
 
+    /**
+     * Constructor for the Deadline class.
+     * @param taskDescription Description of the task.
+     * @param timing Timing of the deadline to be parsed and read.
+     * @throws UnrecognisedDateTimeException When the timing given by user does not follow a certain
+     * format.
+     */
     public Deadline(String taskDescription, String timing) throws UnrecognisedDateTimeException {
         super(taskDescription);
         try {
@@ -30,6 +41,10 @@ public class Deadline extends Task {
         return String.format("D # %s # %s # %s", super.getStatusIcon(), super.getTaskDescription(), timing);
     }
 
+    /**
+     * Returns a formatted deadline task to the user.
+     * @return Formatted deadline task to the user.
+     */
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(),

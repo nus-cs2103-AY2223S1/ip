@@ -9,13 +9,29 @@ import exceptions.DETimingOverflowException;
 import exceptions.TumuException;
 import tasks.Event;
 
+/**
+ * Class to be executed when an event command is issued
+ * by the user.
+ */
 public class EventCmd extends Command {
     private String body;
 
+    /**
+     * Constructor for the EventCmd class.
+     * @param body The rest of the instruction issued by the user after command.
+     */
     public EventCmd(String body) {
         this.body = body;
     }
 
+    /**
+     * Executes the command and gives the appropriate
+     * feedback to the user.
+     * @param tasks TaskList containing all the tasks currently available.
+     * @param ui Specifies how the program interacts with the user.
+     * @param storage Stores and retrieves data from a local .txt file.
+     * @throws TumuException Parent exception for the program.
+     */
     @Override
     public void execute(TaskList tasks, UI ui, Storage storage) throws TumuException {
         //Check for "/at", if not available then prompt user to add timing.

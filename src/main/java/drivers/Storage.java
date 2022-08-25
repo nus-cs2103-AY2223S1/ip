@@ -11,17 +11,26 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Deals with loading tasks from the file
+ * Deal with loading tasks from the file
  * and saving tasks in the file.
  */
 public class Storage {
     private static final String FOLDER_PATH = "data";
     private String filePath;
 
+    /**
+     * Constructor for the Storage class.
+     * @param filePath Indicate file path to local txt file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the data from the local txt file into the program
+     * TaskList.
+     * @return A list of the tasks stored within the local txt file.
+     */
     public List<Task> loadData() {
         File file = getFile();
         List<Task> userTasks = new ArrayList<>();
@@ -42,6 +51,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the data from the program TaskList into the local
+     * txt file.
+     *
+     * @param userTasks A list of the tasks stored within the local txt file.
+     */
     public void saveData(List<Task> userTasks) {
         try {
             getFile();
@@ -58,13 +73,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Checks for the file and return it.
+     * If the file or folder it is contained in does not exist,
+     * then make the folder and the file.
+     * @return Local txt file to store and load task information.
+     */
     private File getFile() {
-        /**
-         * Checks for the file and return it.
-         * If the file or folder it is contained in does not exist,
-         * then make the folder and the file.
-         */
-
         File folder = new File(FOLDER_PATH);
         if (!folder.exists()) {
             folder.mkdir();

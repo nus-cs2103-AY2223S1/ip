@@ -9,7 +9,9 @@ import tasks.Todo;
 
 /**
  * Extracts the information from the file into
- * the tasks.Task class.
+ * the TaskList class, and format each task stored
+ * within the local txt file into a Task
+ * class.
  */
 public class TaskFormatter {
     private static final String DELIMITER = " # ";
@@ -19,6 +21,10 @@ public class TaskFormatter {
     private String description;
     private String timing;
 
+    /**
+     * Constructor for the TaskFormatter class.
+     * @param task Task format given from the local txt file.
+     */
     public TaskFormatter(String task) {
         //Parse the task from the text format.
         String[] parsedInfo = task.split(DELIMITER);
@@ -35,6 +41,12 @@ public class TaskFormatter {
         }
     }
 
+    /**
+     * Formats the task such that it is converted back into
+     * its appropriate task to be stored in TaskList.
+     * @return A task that can be stored in TaskList.
+     * @throws TumuException Parent exception for the program.
+     */
     public Task getTask() throws TumuException {
         //taskType can only be E, D, T
         switch (taskType) {
@@ -55,11 +67,11 @@ public class TaskFormatter {
         }
     }
 
+    /**
+     * Marks task if there is an appropriate status icon.
+     * @param task Task to be marked.
+     */
     private void markTask(Task task) {
-        /**
-         * Marks task if there is an appropriate status icon.
-         */
-
         if (statusIcon == "X") {
             task.markDone();
         } else {
