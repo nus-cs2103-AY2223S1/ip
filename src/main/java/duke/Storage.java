@@ -7,10 +7,24 @@ import java.util.ArrayList;
 
 public class Storage {
 
+    private File saveFile;
+
+    public Storage() {
+        try {
+            this.saveFile = createSaveDirectory();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public String getPresentWorkingDirectory() {
+        return new File("").getAbsolutePath();
+    }
+
     public File createSaveDirectory() throws IOException {
         try {
-            String path = ".." + File.separator + ".." + File.separator + ".."
-                    + File.separator + ".." + File.separator + "data";
+            String path = this.getPresentWorkingDirectory() +
+                    File.separator + "data";
             File dir = new File(path);
             if (!dir.exists()) {
                 dir.mkdirs();
@@ -25,7 +39,6 @@ public class Storage {
     
     public void saveToDirectory(ArrayList<Task> tasks) {
         try {
-            File saveFile = createSaveDirectory(); 
             PrintWriter printWriter = new PrintWriter(saveFile);
             tasks.forEach(task -> printWriter.write(task.toString() + "\n"));
             printWriter.close();
