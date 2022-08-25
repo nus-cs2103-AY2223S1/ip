@@ -6,10 +6,18 @@ import duke.task.TaskList;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A StorageEncoder class that encapsulates the action of encoding the TaskList object into the storage file.
+ */
 public class StorageEncoder {
 
-    public static final String DIVIDER = " | ";
+    static final String DIVIDER = " | ";
 
+    /**
+     * Encodes the given TaskList Object into a List of String.
+     * @param taskList the TaskList object.
+     * @return the list of String.
+     */
     public static List<String> encode(TaskList taskList) {
         List<Task> tasks = taskList.getTasks();
         List<String> res = new ArrayList<>();

@@ -13,6 +13,9 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A StorageDecoder class that encapsulates that action of decoding storage file
+ */
 public class StorageDecoder {
 
     public static final String DIVIDER = " | ";
@@ -22,6 +25,12 @@ public class StorageDecoder {
     public static final int TASK_DESCRIPTION = 2;
     public static final int TASK_DATE = 3;
 
+    /**
+     * Decodes the storage file into a TaskList object
+     * @param path the place where the storage file is at
+     * @return the TaskList object
+     * @throws DukeException throws an Exception when encountering unexpected behaviour.
+     */
     public static TaskList decode(Path path) throws DukeException {
         List<Task> taskList = new ArrayList<>();
         try {
@@ -38,6 +47,12 @@ public class StorageDecoder {
         return new TaskList(taskList);
     }
 
+    /**
+     * Decodes a String into a Task object
+     * @param decodedStringArr decoded string array from the storage file
+     * @return a Task object
+     * @throws DukeException throws an Exception when encountering unexpected behaviour.
+     */
     public static Task decodeToTask(String[] decodedStringArr) throws DukeException {
         String taskType = decodedStringArr[TASK_TYPE];
         if (taskType.equals("Todo")) {
