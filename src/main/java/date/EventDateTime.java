@@ -1,3 +1,7 @@
+package date;
+
+import exception.DukeException;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -28,11 +32,28 @@ public class EventDateTime extends Date {
         }
     }
 
+    public static EventDateTime parseDateFromStorage(String storedDateTime) throws DukeException {
+        String[] dateTime = storedDateTime.split("\\|", 3);
+        try {
+            return new EventDateTime(dateTime[0], dateTime[1], dateTime[2]);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(DukeException.ErrorCode.INVALID_EVENT_DATETIME_FORMAT);
+        }
+    }
+
     @Override
     public String toString() {
         String timeColonPattern = "HH:mm:ss";
         String formattedStartTime = startTime.format(DateTimeFormatter.ofPattern(timeColonPattern));
         String formattedEndTime = endTime.format(DateTimeFormatter.ofPattern(timeColonPattern));
         return super.toString() + ' ' + formattedStartTime + " - " + formattedEndTime;
+    }
+
+    @Override
+    public String encode() {
+        String timeColonPattern = "HH:mm:ss";
+        String formattedStartTime = startTime.format(DateTimeFormatter.ofPattern(timeColonPattern));
+        String formattedEndTime = endTime.format(DateTimeFormatter.ofPattern(timeColonPattern));
+        return super.encode() + '|' + formattedStartTime + '|' + formattedEndTime;
     }
 }

@@ -1,3 +1,8 @@
+package date;
+
+import exception.DukeException;
+import util.Ui;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -22,10 +27,26 @@ public class DeadlineDateTime extends Date {
         }
     }
 
+    public static DeadlineDateTime parseDateFromStorage(String storedDateTime) throws DukeException {
+        String[] dateTime = storedDateTime.split("\\|", 2);
+        try {
+            return new DeadlineDateTime(dateTime[0], dateTime[1]);
+        } catch (DateTimeParseException e) {
+            throw new DukeException(DukeException.ErrorCode.INVALID_DEADLINE_DATETIME_FORMAT);
+        }
+    }
+
     @Override
     public String toString() {
         String timeColonPattern = "HH:mm:ss";
         String formattedTime = time.format(DateTimeFormatter.ofPattern(timeColonPattern));
         return super.toString() + ' ' + formattedTime;
+    }
+
+    @Override
+    public String encode() {
+        String timeColonPattern = "HH:mm:ss";
+        String formattedTime = time.format(DateTimeFormatter.ofPattern(timeColonPattern));
+        return super.encode() + '|' + formattedTime;
     }
 }
