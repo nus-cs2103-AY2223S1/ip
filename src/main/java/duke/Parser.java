@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class Parser {
     private enum Commands {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     private final static String INDENTATION = "   ";
@@ -46,6 +46,10 @@ public class Parser {
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! The delete command should be used as shown. " +
                             "eg. delete {num of task in list to be deleted.}");
+                case FIND:
+                    throw new DukeException(INDENTATION +
+                            "☹ OOPS!!! The find command should be used as shown. " +
+                            "eg. find {keyword to search}");
                 default:
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
@@ -130,6 +134,9 @@ public class Parser {
                     }
                     int indexToDelete = Integer.parseInt(userInput[1]);
                     return new DeleteCommand(indexToDelete);
+                case FIND:
+                    String[] searchKeywords = Arrays.copyOfRange(userInput, 1, userInput.length);
+                    return new FindCommand(String.join(" ", searchKeywords));
                 default:
                     throw new DukeException(INDENTATION +
                             "☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
