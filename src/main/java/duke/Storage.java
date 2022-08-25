@@ -1,6 +1,7 @@
 package duke;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ public class Storage {
 
     public void save(TaskList tasks) {
         try {
-            File file = new File("src/main/duke.txt");
             FileWriter fw = new FileWriter(file);
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
@@ -30,9 +30,14 @@ public class Storage {
     public ArrayList<Task> loadSaveData() throws DukeException, IOException {
 
         ArrayList<Task> loadedTasks = new ArrayList<>();
-        this.file = new File("src/main/duke.txt");
-        if (!file.exists()) {
-            file.createNewFile();
+        if (!this.file.exists()) {
+            System.out.println("No existing save file found. Creating 'duke.txt' for you!");
+            try {
+                this.file.getParentFile().mkdirs();
+                this.file.createNewFile();
+            } catch (IOException err) {
+                System.out.println("Problem trying to create directory!");
+            }
         } else {
             Scanner scan = new Scanner(file);
             while (scan.hasNextLine()) {
@@ -69,7 +74,7 @@ public class Storage {
                 loadedTasks.add(task);
             }
         }
-        return loadedTasks;
+            return loadedTasks;
     }
 
 }

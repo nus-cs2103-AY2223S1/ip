@@ -22,7 +22,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        Duke duke = new Duke("src/main/duke.txt");
+        Duke duke = new Duke("src/data/duke.txt");
         duke.start();
         Parser parser = new Parser(duke);
         parser.parse();
