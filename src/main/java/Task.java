@@ -15,26 +15,48 @@ public class Task {
         this.isDone = status;
     }
 
+    /**
+     * Returns a string representation of the status of the task.
+     * @return status representation in the form [X] or [ ]
+     */
     public String getStatusIcon() {
         return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 
+    /**
+     * String representation of the task.
+     * @return a string
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * String representation of the task.
+     * @return a string
+     */
     public String toString() {
         return description;
     }
 
+    /**
+     * Returns the status of the task.
+     * @return a boolean
+     */
     public boolean getStatus() {
         return this.isDone;
     };
 
+    /**
+     * Marks the current task as completed.
+     */
     public void markasDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks the current task as incomplete.
+     */
     public void markasNotDone() {
         this.isDone = false;
     }

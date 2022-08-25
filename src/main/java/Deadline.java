@@ -18,12 +18,20 @@ public class Deadline extends Task {
         this.date = date;
     }
 
+    /**
+     * Converts the deadline to string representation to be stored in text file
+     * @return a string
+     */
     @Override
     public String getDescription() {
         String status = super.getStatus() ? "T" : "F";
         return "D | " + status + " | " + super.toString() + " | " + date.toString() + "\n";
     }
 
+    /**
+     * Converts the deadline to string representation for user
+     * @return a string
+     */
     @Override
     public String toString() {
         return "[D]" + super.getStatusIcon() + " " + super.toString() +
