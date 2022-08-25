@@ -1,4 +1,5 @@
 list
+find task
 mark 0
 unmark 0
 mark 100
@@ -41,5 +42,14 @@ todo todo task-2
 deadline dl task-3 /by 2022-08-23 20:00
 event event task-3 /at 2022-08-23
 list
+todo todo-task-2
+todo todo-task-3
+mark 1
+mark 3
+find
+find task
+find 3
+find 2
+find todo
 bye abc
 bye

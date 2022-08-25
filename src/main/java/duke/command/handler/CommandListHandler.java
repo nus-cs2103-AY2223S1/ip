@@ -1,7 +1,5 @@
 package duke.command.handler;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 import duke.command.CommandException;
@@ -40,10 +38,6 @@ public class CommandListHandler extends CommandHandler {
             return new CommandResponse("There are no items in the task list!", false, false);
         }
 
-        List<String> responseList = new ArrayList<>();
-        for (int taskIdx = 0; taskIdx < taskList.size(); taskIdx++) {
-            responseList.add(String.format("%d. %s", taskIdx + 1, taskList.getTask(taskIdx)));
-        }
-        return new CommandResponse(String.join("\n", responseList), false, false);
+        return new CommandResponse(taskList.toString(), false, false);
     }
 }
