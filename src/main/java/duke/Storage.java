@@ -1,14 +1,15 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Task;
-import duke.task.ToDo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.ToDo;
 
 public class Storage {
     protected File file;
@@ -24,7 +25,7 @@ public class Storage {
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
-                Task task =  Parser.toTask(scanner.nextLine());
+                Task task = Parser.toTask(scanner.nextLine());
                 taskList.add(task);
             }
             scanner.close();
@@ -61,8 +62,7 @@ public class Storage {
                 Task task = list.get(i);
                 if (task instanceof ToDo) {
                     writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.getDescription() + "\n");
-                }
-                else if (task instanceof Deadline) {
+                } else if (task instanceof Deadline) {
                     Deadline deadline = (Deadline) task;
                     writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.getDescription()
                             + " | " + deadline.getBy().format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\n");

@@ -22,7 +22,9 @@ public abstract class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
-    public String getStatusInt() { return (isDone ? "1" : "0"); }
+    public String getStatusInt() {
+        return (isDone ? "1" : "0");
+    }
 
     public void setStatus(boolean status) {
         isDone = status;

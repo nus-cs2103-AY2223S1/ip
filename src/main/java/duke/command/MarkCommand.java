@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.Ui;
 
 public class MarkCommand extends Command {
-    int index;
+    protected int index;
 
     public MarkCommand(int index) {
         this.index = index;

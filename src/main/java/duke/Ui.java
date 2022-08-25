@@ -1,20 +1,11 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
 import java.util.Scanner;
 
+import duke.task.Task;
+
 public class Ui {
-    String logo = "     _   _    ______     _____ ____\n"
+    protected String logo = "     _   _    ______     _____ ____\n"
             + "    | | / \\  |  _ \\ \\   / /_ _/ ___|\n"
             + " _  | |/ _ \\ | |_) \\ \\ / / | |\\___ \\\n"
             + "| |_| / ___ \\|  _ < \\ V /  | | ___) |\n"
@@ -27,7 +18,6 @@ public class Ui {
     }
 
     public String readCommand() {
-//        System.out.println("waiting command");
         Scanner scanner = new Scanner(System.in);
         String command;
         command = scanner.nextLine();
@@ -44,8 +34,7 @@ public class Ui {
         if (!isDone) {
             say("Noted. I've removed this task:", true, false);
             say(tasks.get(index).toString(), false, false);
-        }
-        else {
+        } else {
             say("Now you have " + tasks.size() + " tasks in the list.", false, true);
         }
     }

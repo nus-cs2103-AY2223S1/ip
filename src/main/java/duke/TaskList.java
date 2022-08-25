@@ -1,21 +1,11 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.util.ArrayList;
 
+import duke.task.Task;
+
 public class TaskList {
-    ArrayList<Task> list;
+    protected ArrayList<Task> list;
 
     public TaskList(ArrayList<Task> list) {
         this.list = list;
