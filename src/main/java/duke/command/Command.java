@@ -5,6 +5,7 @@ import duke.Ui;
 import duke.exception.DukeException;
 
 public abstract class Command {
+
     private String info;
 
     public Command(String info) {
@@ -14,5 +15,6 @@ public abstract class Command {
     public String getInfo() {
         return this.info;
     }
+
     public abstract void execute(Ui ui, TaskList taskList) throws DukeException;
 }

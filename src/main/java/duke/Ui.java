@@ -6,45 +6,45 @@ import duke.command.Command;
 import duke.exception.DukeException;
 import duke.task.Task;
 
-
 public class Ui {
-
     private static Scanner sc = new Scanner(System.in);
+    private static final String LINE = "-----------------------------------------"
+            + "---------------------------------------------";
 
     public Command run(String input) throws DukeException {
-        Parser parser = new Parser();
-        return parser.parse(input);
+        return Parser.parse(input);
     }
 
     public String readCommand() {
         return sc.nextLine();
     }
+
     public void showLine() {
-        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.println(LINE);
     }
 
-    public void showGreetMsg() {
+    public void showGreetMessage() {
         String out = "Hello! I'm Duke\n"
                 + "What can I do for you?\n";
         System.out.println(out);
     }
 
-    public void showUnknownMsg() {
-        System.out.println("I'm sorry, but I don't know what that means :-(");
+    public void showUnknownMessage() {
+        System.out.println("I'm sorry, "
+                + "but I don't know what that means :-(");
     }
 
-    public void showAddMsg(Task task, int cnt) {
-        String plural = cnt == 1
+    public void showAddMessage(Task task, int size) {
+        String plural = size == 1
                 ? "task"
                 : "tasks";
-
         String out = "Got it. I've added this task:\n "
                 + task + "\nNow you have "
-                + cnt + " " + plural + " in the list.";
+                + size + " " + plural + " in the list.";
         System.out.println(out);
     }
 
-    public void showDeleteMsg(Task task, int size) {
+    public void showDeleteMessage(Task task, int size) {
         String info = task.toString();
         String plural = size - 1 <= 1
                 ? "task"
@@ -55,9 +55,8 @@ public class Ui {
         System.out.println(out);
     }
 
-    public void showExitMsg() {
-        String out = "Bye. Hope to see you again soon!";
-        System.out.println(out);
+    public void showExitMessage() {
+        System.out.println("Bye. Hope to see you again soon!");
     }
 
     public void showList() {
@@ -68,21 +67,27 @@ public class Ui {
         System.out.println(index + "." + task.toString());
     }
 
-    public void showMarkMsg(Task task) {
-        String out = "Nice! I've marked this task as done:\n  " + task.toString();
+    public void showMarkMessage(Task task) {
+        String out = "Nice! I've marked this task as done:\n  "
+                + task.toString();
         System.out.println(out);
     }
 
-    public void showUnmarkMsg(Task task) {
-        String out = "OK, I've marked this task as not done yet:\n  " + task.toString();
+    public void showUnmarkMessage(Task task) {
+        String out = "OK, I've marked this task as not done yet:\n  "
+                + task.toString();
         System.out.println(out);
     }
 
-    public void showLoadingError(String msg) {
-        System.out.println(msg);
+    public void showLoadingError(String message) {
+        System.out.println(message);
     }
 
-    public void showFileNotFound(String msg) {
-        System.out.println(msg);
+    public void showFileNotFound(String message) {
+        System.out.println(message);
+    }
+
+    public void showReadMessage() {
+        System.out.println("Reading files and loading tasks");
     }
 }

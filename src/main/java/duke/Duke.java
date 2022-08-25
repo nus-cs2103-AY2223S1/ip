@@ -1,6 +1,5 @@
 package duke;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import duke.command.Command;
@@ -13,7 +12,7 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
-    public Duke(String filePath) throws FileNotFoundException {
+    public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(ui, filePath);
         try {
@@ -25,7 +24,7 @@ public class Duke {
     }
 
     public void run() throws DukeException, IOException {
-        ui.showGreetMsg();
+        ui.showGreetMessage();
         while (true) {
             ui.showLine();
             String input = ui.readCommand();

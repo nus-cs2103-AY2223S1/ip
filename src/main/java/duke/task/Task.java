@@ -1,18 +1,18 @@
 package duke.task;
 
 public class Task {
-    private TaskType type;
+    private TaskType taskType;
     private String name;
     private boolean isMarked;
 
-    public Task(TaskType type, String name, boolean isMarked) {
-        this.type = type;
+    public Task(TaskType taskType, String name, boolean isMarked) {
+        this.taskType = taskType;
         this.name = name;
         this.isMarked = isMarked;
     }
 
     public TaskType getTaskType() {
-        return type;
+        return taskType;
     }
 
     public String getName() {
@@ -23,11 +23,11 @@ public class Task {
         return isMarked;
     }
 
-    public void markT() {
+    public void setMarked() {
         isMarked = true;
     }
 
-    public void unmarkT() {
+    public void setUnmarked() {
         isMarked = false;
     }
 
@@ -35,9 +35,9 @@ public class Task {
     public String toString() {
         if (isMarked) {
             return "[X] " + name;
+        } else {
+            return "[ ] " + name;
         }
-
-        return "[ ] " + name;
     }
 }
 
