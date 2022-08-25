@@ -28,7 +28,8 @@ public class Event extends Task {
      */
     @Override
     public String getTextRepresentation() {
-        return "E|" + (this.isCompleted() ? "1|" : "0|") + this.getTaskDescription() + "|" + this.eventTime + "\n";
+        return "E|" + (this.isCompleted() ? "1|" : "0|")
+                + this.getTaskDescription() + "|" + this.eventTime + "\n";
     }
 
     /**

@@ -45,10 +45,10 @@ public class Ui {
      * Prints the tasks currently in the task list.
      *
      */
-    public void showTasks(TaskList taskList) {
-        if (taskList.length() != 0) {
+    public void showTasks(TaskList tasks) {
+        if (tasks.length() != 0) {
             System.out.println("    " + "Here are the tasks in your list:\n");
-            System.out.println(taskList.toString());
+            System.out.println(tasks.toString());
         } else {
             System.out.println("    " + "There are no tasks in your list.\n");
         }
@@ -61,7 +61,8 @@ public class Ui {
      * @param taskNumber Index of the task as in the task list.
      */
     public void showMarkSuccess(int taskNumber) {
-        System.out.println( "    " + "Nice! I've marked task " + (taskNumber + 1) + " as done.\n");
+        System.out.println( "    " + "Nice! I've marked task "
+                + (taskNumber + 1) + " as done.\n");
     }
 
     /**
@@ -70,26 +71,28 @@ public class Ui {
      * @param taskNumber Index of the task as in the task list.
      */
     public void showUnmarkSuccess(int taskNumber) {
-        System.out.println("    " + "OK, I've marked task " + (taskNumber + 1) + " as not done yet.\n");
+        System.out.println("    " + "OK, I've marked task "
+                + (taskNumber + 1) + " as not done yet.\n");
     }
 
     /**
      * Prints a success message for removing a task.
      *
      * @param taskNumber Index of the task as in the task list.
-     * @param taskList Current list of tasks stored by the bot.
+     * @param tasks Current list of tasks stored by the bot.
      */
-    public void showRemoveTaskSuccess(int taskNumber, TaskList taskList) {
+    public void showRemoveTaskSuccess(int taskNumber, TaskList tasks) {
         System.out.println("    " + "Noted. I've removed task " + (taskNumber + 1) + ".\n" +
-                "    " + "Now you have " + taskList.length() +  " tasks in the list.\n");
+                "    " + "Now you have " + tasks.length() +  " tasks in the list.\n");
     }
 
     /**
      * Prints a success message for adding a task.
      *
-     * @param taskList Current list of tasks stored by the bot.
+     * @param tasks Current list of tasks stored by the bot.
      */
-    public void showAddTaskSuccess(TaskList taskList) {
-        System.out.println("    " + "Task added. You now have " + taskList.length() + " tasks in the list.\n");
+    public void showAddTaskSuccess(TaskList tasks) {
+        System.out.println("    " + "Task added. You now have "
+                + tasks.length() + " tasks in the list.\n");
     }
 }

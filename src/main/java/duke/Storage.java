@@ -16,6 +16,7 @@ import java.util.Scanner;
 public class Storage {
 
     private String filePath;
+
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -25,7 +26,7 @@ public class Storage {
      *
      * @return An <code>ArrayList</code> of tasks read from the input file.
      * @throws FileNotFoundException If the file does not exist.
-     * @throws DukeException If the file does not have the correct format.
+     * @throws DukeException         If the file does not have the correct format.
      */
     public ArrayList<Task> loadTasks() throws FileNotFoundException, DukeException {
         ArrayList<Task> userTasks = new ArrayList<>();
@@ -71,13 +72,13 @@ public class Storage {
     /**
      * Saves the tasks locally from the current session.
      *
-     * @param taskList A list of tasks to be saved.
+     * @param tasks A list of tasks to be saved.
      * @throws DukeException If there is an error while accessing the file information.
      */
-    public void saveTasks(TaskList taskList) throws DukeException {
+    public void saveTasks(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.filePath);
-            fw.write(taskList.getStorageRepresentation());
+            fw.write(tasks.getStorageRepresentation());
             fw.close();
         } catch (IOException e) {
             throw new DukeException(e.getMessage());

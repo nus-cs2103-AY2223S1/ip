@@ -72,7 +72,8 @@ public class TaskList {
         try {
             Task userTask = this.userTasks.get(taskNumber);
             if (!userTask.isCompleted()) {
-                throw new DukeException("    " + "This task is already marked as not done yet.\n");
+                throw new DukeException("    "
+                        + "This task is already marked as not done yet.\n");
             } else {
                 userTask.setUncompleted();
             }
