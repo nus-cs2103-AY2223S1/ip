@@ -3,48 +3,52 @@ Hello! I'm Duke
 I'm ready to serve you!
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
-New task is registered as you wish, you can come back to check if you wish!:
- [T][ ] read book
-Now you have 1 tasks on your list.
-~~~~~-----YOU-----~~~~~~
-~~~~~-----DUKE-----~~~~~
-New task is registered as you wish, you can come back to check if you wish!:
- [D][ ] individual project (by: Thursday)
-Now you have 2 tasks on your list.
-~~~~~-----YOU-----~~~~~~
-~~~~~-----DUKE-----~~~~~
-New task is registered as you wish, you can come back to check if you wish!:
- [E][ ] attend lecture (at: Friday)
-Now you have 3 tasks on your list.
-~~~~~-----YOU-----~~~~~~
-~~~~~-----DUKE-----~~~~~
-1. [T][ ] read book
-2. [D][ ] individual project (by: Thursday)
-3. [E][ ] attend lecture (at: Friday)
+1. [E][X] dummyEvent (at: Jan 01 2011 19:00)
+2. [D][ ] dummyDeadline (at: Jan 20 2012 00:00)
+3. [T][ ] dummyToDo
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
 Nice! this task is marked as done. Good Job!
-[D][X] individual project (by: Thursday)
+[E][X] dummyEvent (at: Jan 01 2011 19:00)
+~~~~~-----YOU-----~~~~~~
+~~~~~-----DUKE-----~~~~~
+Opps! we only have 3 tasks in the list :(
+~~~~~-----YOU-----~~~~~~
+~~~~~-----DUKE-----~~~~~
+Opps! we only have 3 tasks in the list :(
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
 This task is marked as not done. Keep it up!
-[D][ ] individual project (by: Thursday)
+[E][ ] dummyEvent (at: Jan 01 2011 19:00)
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
-Ching Ching Poof~~ This task is removed:
- [D][ ] individual project (by: Thursday)
-Now you have 2 tasks on your list.
+Date and time format should be [YYYY-MM-DD HHmm]!
+(eg. 2022-08-21 1300)
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
 New task is registered as you wish, you can come back to check if you wish!:
- [E][ ] attend lecture (at: :P Skip lecture)
-Now you have 2 tasks on your list.
+ [E][ ] addEvent (at: Jan 05 2011 19:00)
+Now you have 4 tasks on your list.
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
-1. [T][ ] read book
-2. [E][ ] attend lecture (at: :P Skip lecture)
+Based on my understanding, your instruction didn't follow the format
+todo : todo [task description]
+deadline: deadline [task description] /by [YYYY-MM-DD HHmm]
+event: event [task description] /at [YYYY-MM-DD HHmm]
+individual command: bye | list |
+mark/unmark/delete: [command] [number of task in list you wish to modify])
+
+~~~~~-----YOU-----~~~~~~
+~~~~~-----DUKE-----~~~~~
+New task is registered as you wish, you can come back to check if you wish!:
+ [T][ ] addTodo
+Now you have 5 tasks on your list.
+~~~~~-----YOU-----~~~~~~
+~~~~~-----DUKE-----~~~~~
+Ching Ching Poof~~ This task is removed:
+ [T][ ] addTodo
+Now you have 4 tasks on your list.
 ~~~~~-----YOU-----~~~~~~
 ~~~~~-----DUKE-----~~~~~
 Goodbye, Hope to see you soon!
 ----------------------------------------------
-

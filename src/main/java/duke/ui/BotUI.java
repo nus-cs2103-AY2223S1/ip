@@ -22,7 +22,7 @@ import duke.task.Task;
 
 public class BotUI {
 
-    private String botSpeak(String phrase) {
+    public String botSpeak(String phrase) {
         return this.botDivider() + phrase + "\n"
                 + this.userDivider();
     }
