@@ -1,10 +1,5 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Todo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,12 +8,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 /**
  * Storage deals with loading tasks from the file and saving tasks in the file.
  */
 public class Storage {
 
-    private final String DIR = System.getProperty("user.dir");
+    private static final String DIR = System.getProperty("user.dir");
     private String filePath;
 
     /**
@@ -69,6 +69,8 @@ public class Storage {
                     Event event = new Event(desc, time);
                     tasks.add(event);
                     break;
+                default:
+                    break;
                 }
                 if (isDone) {
                     tasks.get(tasks.size() - 1).markAsDone();
@@ -96,11 +98,11 @@ public class Storage {
             if (curr instanceof Todo) {
                 writer.write("T | " + status + " | " + curr.getDescription() + "\n");
             } else if (curr instanceof Deadline) {
-                writer.write("D | " + status + " | " + curr.getDescription() + " | " +
-                        ((Deadline) curr).getBy().toString() + "\n");
+                writer.write("D | " + status + " | " + curr.getDescription() + " | "
+                        + ((Deadline) curr).getBy().toString() + "\n");
             } else if (curr instanceof Event) {
-                writer.write("E | " + status + " | " + curr.getDescription() + " | " +
-                        ((Event) curr).getAt().toString() + "\n");
+                writer.write("E | " + status + " | " + curr.getDescription() + " | "
+                        + ((Event) curr).getAt().toString() + "\n");
             }
         }
         writer.close();

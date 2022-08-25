@@ -7,9 +7,9 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    Scanner sc = new Scanner(System.in);
-    private final String BORDER = "    ============================================================";
-    private final String INDENT = "     ";
+    private static final String BORDER = "    ============================================================";
+    private static final String INDENT = "     ";
+    private Scanner sc = new Scanner(System.in);
 
     /**
      * Shows the borders/outlines for Duke's messages.
@@ -60,7 +60,7 @@ public class Ui {
         String plural = size > 1 ? "s" : "";
         showMessage("Got it. I've added this task:");
         showMessage("  " + desc);
-        showMessage("Now you have " + size + " task" + plural  + " in the list.");
+        showMessage("Now you have " + size + " task" + plural + " in the list.");
     }
 
     /**

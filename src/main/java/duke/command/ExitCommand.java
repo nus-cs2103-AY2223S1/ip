@@ -29,8 +29,8 @@ public class ExitCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
             storage.store(tasks);
-        } catch (Exception ignored) {
-
+        } catch (Exception e) {
+            System.out.print("");
         } finally {
             ui.showBye();
         }
