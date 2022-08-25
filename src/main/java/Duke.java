@@ -73,6 +73,94 @@ public class Duke {
         }
     }
 
+    public abstract class Command {
+
+        public Command() {
+
+        }
+
+        public abstract void execute(Ui ui, Storage storage);
+    }
+
+    public class AddCommand extends Command {
+        Task task;
+
+        public AddCommand(Task task) {
+            this.task = task;
+        }
+        @Override
+        public void execute(Ui ui, Storage storage) {
+            taskList.addTask(task);
+            ui.displayTask(ui.ADDED, task);
+            ui.showTotalTasks();
+            storage.save();
+        }
+    }
+
+    public class DeleteCommand extends Command {
+
+        private int index;
+        public DeleteCommand(int index) {
+            this.index = index;
+        }
+        @Override
+        public void execute(Ui ui, Storage storage) {
+            Task temp = taskList.getTask(index);
+            taskList.removeTask(index);
+            storage.save();
+            ui.displayTask(ui.DELETED, temp);
+            ui.showTotalTasks();
+        }
+    }
+
+    public class ExitCommand extends Command {
+
+        private boolean isExit;
+
+        public ExitCommand() {
+            this.isExit = false;
+        }
+
+        @Override
+        public void execute(Ui ui, Storage storage) {
+            this.isExit = true;
+            ui.showExit();
+        }
+
+        public boolean isExit() {
+            return this.isExit;
+        }
+    }
+
+    public class MarkCommand extends Command {
+        int index;
+        public MarkCommand(int index) {
+            this.index = index;
+        }
+
+        public void execute(Ui ui, Storage storage) {
+            taskList.markTask(index);
+            Task temp = taskList.getTask(index);
+            ui.displayTask(ui.MARKED, temp);
+            storage.save();
+        }
+    }
+
+    public class UnmarkCommand extends Command {
+        int index;
+        public UnmarkCommand(int index) {
+            this.index = index;
+        }
+
+        public void execute(Ui ui, Storage storage) {
+
+            taskList.unmarkTask(index);
+            Task temp = taskList.getTask(index);
+
+            System.out.println(ui.UNMARKED + temp);
+            storage.save();
+        }
+    }
     public class Storage {
         private String filePath;
 
@@ -252,7 +340,7 @@ public class Duke {
 //                }
 //
 //            }
-//            return "";
+            return "";
         }
     }
 
@@ -440,6 +528,7 @@ public class Duke {
     public void run() {
         String reply = "";
         String exit = "bye"; // the keyword to exit
+       // boolean isExit = false;
 
         try {
             storage.load();
@@ -456,8 +545,8 @@ public class Duke {
             reply = ui.readCommand();
 
             if(reply.equals(exit)) {
-                ui.showExit();
-                //scanIn.close();
+                Command c = new ExitCommand();
+                c.execute(ui, storage);
                 break;
             } else if (reply.equals("list")) {
                 ui.printTasks();
@@ -479,10 +568,13 @@ public class Duke {
                                 //System.out.println("thrs nth there :<");
                                 continue;
                             }
-                            taskList.markTask(index);
-                            temp = taskList.getTask(index);
-                            ui.displayTask(ui.MARKED, temp);
-                            storage.save();
+
+                            Command c = new MarkCommand(index);
+                            c.execute(ui, storage);
+//                            taskList.markTask(index);
+//                            temp = taskList.getTask(index);
+//                            ui.displayTask(ui.MARKED, temp);
+//                            storage.save();
                         } catch (NumberFormatException e) {
                             ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
                         }
@@ -498,11 +590,13 @@ public class Duke {
                                 ui.showError("thrs nth there :<");
                                 continue;
                             }
-                            taskList.unmarkTask(index);
-                            temp = taskList.getTask(index);
-
-                            System.out.println(ui.UNMARKED + temp);
-                            storage.save();
+                            Command c = new UnmarkCommand(index);
+                            c.execute(ui, storage);
+//                            taskList.unmarkTask(index);
+//                            temp = taskList.getTask(index);
+//
+//                            System.out.println(ui.UNMARKED + temp);
+//                            storage.save();
                         } catch (NumberFormatException e) {
                             ui.showError("Invalid input");
                         }
@@ -519,11 +613,12 @@ public class Duke {
                                 ui.showError("thrs nth there :<");
                                 continue;
                             }
-                            taskList.removeTask(index);
-                            temp = taskList.getTask(index);
-                            storage.save();
-                            ui.displayTask(ui.DELETED, temp);
-                            System.out.println("now u have " + taskList.getSize() + " task(s)!");
+                            Command c = new DeleteCommand(index);
+                            c.execute(ui, storage);
+//                            taskList.removeTask(index);
+//                            temp = taskList.getTask(index);
+//                            storage.save();
+//                            ui.displayTask(ui.DELETED, temp);
                         } catch (NumberFormatException e) {
                             ui.showError("Invalid input");
                         }
@@ -586,10 +681,8 @@ public class Duke {
      * @param task task to be added
      */
     public void addTask(Task task) {
-        taskList.addTask(task);
-        ui.displayTask(ui.ADDED, task);
-        ui.showTotalTasks();
-        storage.save();
+        Command c = new AddCommand(task);
+        c.execute(ui, storage);
     }
 
 }
