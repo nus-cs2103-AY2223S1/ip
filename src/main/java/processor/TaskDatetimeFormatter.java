@@ -1,11 +1,11 @@
 package processor;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
+
+import duke.DukeException;
 
 public class TaskDatetimeFormatter {
     public static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-M-d").withResolverStyle(ResolverStyle.STRICT);

@@ -1,12 +1,5 @@
 package belly;
 
-import duke.DukeException;
-import processor.TaskDatetimeFormatter;
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,14 +9,21 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.DukeException;
+import processor.TaskDatetimeFormatter;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
+
 public class Belly {
-    public static final String fileDirectory = "../data/";
-    public static final String fileName = "duke.txt";
-    public static final String filePath = fileDirectory + fileName;
+    public static final String FILE_DIRECTORY = "../data/";
+    public static final String FILE_NAME = "duke.txt";
+    public static final String FILE_PATH = FILE_DIRECTORY + FILE_NAME;
 
     public ArrayList<Task> puke() throws DukeException {
         try {
-            File file = new File(filePath);
+            File file = new File(FILE_PATH);
             Scanner sc = new Scanner(file);
             ArrayList<Task> taskList = new ArrayList<>();
 
@@ -56,17 +56,17 @@ public class Belly {
 
             return taskList;
         } catch (FileNotFoundException e) {
-            throw DukeException.fileNotFoundError(filePath);
+            throw DukeException.fileNotFoundError(FILE_PATH);
         }
     }
 
     public void saveToHardDisk(String txt) {
         try {
-            Files.createDirectories(Paths.get(fileDirectory));
-            File file = new File(filePath);
+            Files.createDirectories(Paths.get(FILE_DIRECTORY));
+            File file = new File(FILE_PATH);
             file.createNewFile();
 
-            PrintWriter out = new PrintWriter(filePath);
+            PrintWriter out = new PrintWriter(FILE_PATH);
             out.println(txt);
             out.close();
         } catch (IOException e) {

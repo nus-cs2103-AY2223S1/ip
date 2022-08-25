@@ -1,13 +1,11 @@
 package brain;
 
-import task.Task;
-
 import java.util.ArrayList;
 
+import task.Task;
+
 public class Brain {
-    String outputFileDirectory = "..\\data";
-    String outputFileName = "duke.txt";
-    public ArrayList<Task> taskList;
+    private ArrayList<Task> taskList;
 
     public Brain(ArrayList<Task> taskList) {
         this.taskList = taskList;
