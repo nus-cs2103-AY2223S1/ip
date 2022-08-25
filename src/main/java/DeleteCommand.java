@@ -1,12 +1,13 @@
-public class DeleteCommand extends Command {
 
+public class DeleteCommand extends Command {
     public static final String DELETE_COMMAND = "delete";
 
     public static final String MESSAGE_SUCCESS = "Yay, successfully removed this unwanted task :P \n" 
                                                     + "%1$s" + "\n"
                                                     + "Remaining " + "%2$s" + " tasks in the list.\n";
 
-    private final int taskNumber;
+    private int taskNumber;
+    private Task toDelete;
 
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
@@ -17,6 +18,7 @@ public class DeleteCommand extends Command {
         try {
             tasks.deleteTask(taskNumber);
             storage.save();
+            toDelete = tasks.getTask(taskNumber);
             ui.showToUser(String.format(MESSAGE_SUCCESS, toDelete, tasks.numberOfTasks()));
         } catch (DukeException e) {
             ui.showErrorMessage(e.getMessage());
@@ -27,5 +29,4 @@ public class DeleteCommand extends Command {
     public boolean isExit() {
         return false;
     }
-    
 }

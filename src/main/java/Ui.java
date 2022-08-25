@@ -9,6 +9,7 @@ public class Ui {
     private static final String MESSAGE_GOODBYE = "Hiks. I'm sad, but see you again!!";
     public static final String MESSAGE_INIT_FAILED = "Failed to initialise Duke application. Exiting...";
     private static final String MESSAGE_INDEXED_LIST_ITEM = "\t%1$d. %2$s";
+    private static final String MESSAGE_EMPTY_LIST = "Your list is empty. Try adding what you wanna do!\n";
     private static final String COMMENT_LINE_FORMAT_REGEX = "#.*";
     private static final String DIVIDER = "===================================================";
     private static final String LS = System.lineSeparator();
@@ -69,6 +70,9 @@ public class Ui {
     }
 
     public static String getIndexedListForViewing(ArrayList<Task> taskItems) {
+        if (taskItems.isEmpty()) {
+            return MESSAGE_EMPTY_LIST;
+        }
         final StringBuilder formatted = new StringBuilder();
         int displayIndex = 0 + DISPLAYED_INDEX_OFFSET;
         for (Task taskItem : taskItems) {

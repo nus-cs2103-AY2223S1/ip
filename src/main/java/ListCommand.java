@@ -10,17 +10,13 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(List tasks, Ui ui, Storage storage) {
-        try {
-            ui.showToUser(MESSAGE_SUCCESS);
-            ui.showToUserAsIndexedList(tasks.getTaskList());
-        } catch (DukeException e) {
-            ui.showErrorMessage(e.getMessage());
-        }
+        ui.showToUser(MESSAGE_SUCCESS);
+        ui.showToUserAsIndexedList(tasks.getTaskList());
     }
 
     @Override
     public boolean isExit() {
         return false;
     }
-    
+
 }

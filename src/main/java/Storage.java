@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Storage {
@@ -53,10 +54,11 @@ public class Storage {
                     case "D":
                         String[] deadlineDescription = taskDescription.split("by:");
                         String deadlineName = deadlineDescription[0]
-                                .substring(0, deadlineDescription[0].length() - 2)
+                                .substring(0, deadlineDescription[0].length() - 1)
                                 .trim();
-                        String by = deadlineDescription[1].substring(1, deadlineDescription[1].length() - 2).trim();
-                        LocalDate date = LocalDate.parse(by);
+                        String by = deadlineDescription[1].substring(1, deadlineDescription[1].length() - 1).trim();
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+                        LocalDate date = LocalDate.parse(by, formatter);
                         Task deadline = new Deadline(deadlineName, date);
                         if (taskStatus == "X") {
                             deadline.markTaskAsDone();
@@ -66,9 +68,9 @@ public class Storage {
                     case "E":
                         String[] eventDescription = taskDescription.split("at:");
                         String eventName = eventDescription[0]
-                                .substring(0, eventDescription[0].length() - 2)
+                                .substring(0, eventDescription[0].length() - 1)
                                 .trim();
-                        String at = eventDescription[1].substring(0, eventDescription[1].length() - 2).trim();
+                        String at = eventDescription[1].substring(0, eventDescription[1].length() - 1).trim();
                         Task event = new Event(eventName, at);
                         if (taskStatus == "X") {
                             event.markTaskAsDone();

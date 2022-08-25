@@ -1,14 +1,15 @@
 public class UnmarkCommand extends Command {
 
-    public static final String MARK_COMMAND = "unmark";
+    public static final String UNMARK_COMMAND = "unmark";
 
-    public static final String MESSAGE_SUCCESS = "Got it. I've unmarked this task for you ;)" 
+    public static final String MESSAGE_SUCCESS = "Got it. I've unmarked this task for you ;)\n" 
                                                     + "%1$s" + "\n" 
                                                     + "You have " + "%2$s" + " tasks in the list.\n";
 
-    private final int taskToMark;
+    private int taskToMark;
+    private Task task;
 
-    public MarkCommand(int taskToMark) {
+    public UnmarkCommand(int taskToMark) {
         this.taskToMark = taskToMark;
     }
 
@@ -18,7 +19,7 @@ public class UnmarkCommand extends Command {
             task = tasks.getTask(taskToMark);
             task.markTaskAsNotDone();
             storage.save();
-            ui.showToUser(String.format(MESSAGE_SUCCESS, toAdd, tasks.numberOfTasks()));
+            ui.showToUser(String.format(MESSAGE_SUCCESS, task, tasks.numberOfTasks()));
         } catch (DukeException e) {
             ui.showErrorMessage(e.getMessage());
         }

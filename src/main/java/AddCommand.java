@@ -8,7 +8,7 @@ public class AddCommand extends Command {
                                                     + "%1$s" + "\n" 
                                                     + "You have " + "%2$s" + " tasks in the list.\n";
 
-    private final Task toAdd;
+    private Task toAdd;
 
     public AddCommand(Task toAdd) {
         this.toAdd = toAdd;
