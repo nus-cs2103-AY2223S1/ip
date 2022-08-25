@@ -4,7 +4,7 @@ public class Task {
 
     public Task(String name) {
         this.isDone = false;
-        this.taskName = name;
+        this.taskName = name.trim();
     }
 
     // method to mark a task as done
@@ -19,7 +19,7 @@ public class Task {
 
     // method to get the status icon
     public String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        return (isDone ? "✔" : " ");
     }
 
     // method to put the task in a format for storage

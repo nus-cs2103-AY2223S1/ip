@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-
 public class Storage {
     private String filePath;
     private String dirPath;
@@ -39,29 +38,35 @@ public class Storage {
 
             while (sc.hasNextLine()) {
                 String input = sc.nextLine();
+                System.out.println(input);
                 String[] parsedInput = input.split(" \\| ");
                 Task task;
 
                 switch (parsedInput[0]) {
-                case "T":
-                    task = new Todo(parsedInput[2]);
-                    break;
-                case "D":
-                    task = new Deadline(parsedInput[2], parsedInput[3]);
-                    break;
-                case "E":
-                    task = new Event(parsedInput[2], parsedInput[3]);
-                    break;
-                default:
-                    task = null;
-                    System.err.println("Error occurred during file loading. I do not process this task type.");
+                    case "T":
+                        task = new Todo(parsedInput[2]);
+                        break;
+                    case "D":
+                        task = new Deadline(parsedInput[2], parsedInput[3]);
+                        break;
+                    case "E":
+                        task = new Event(parsedInput[2], parsedInput[3]);
+                        break;
+                    default:
+                        task = null;
+                        System.err.println("Error occurred during file loading. I do not process this task type.");
+                        break;
                 }
 
-                // checkign if the task is done
-                if (Integer.parseInt(parsedInput[1]) == 1) task.markDone();
+                // checking if the task is done
+                if (Integer.parseInt(parsedInput[1]) == 1) {
+                    task.markDone();
+                }
 
                 list.add(task);
             }
+
+            sc.close();
 
         } catch (FileNotFoundException e) {
             System.err.println(e);
@@ -98,14 +103,3 @@ public class Storage {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
