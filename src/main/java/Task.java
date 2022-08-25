@@ -1,14 +1,14 @@
 public class Task {
     public String details;
-    public boolean done;
+    public boolean isDone;
 
     public Task(String details) {
         this.details = details;
-        this.done = false;
+        this.isDone = false;
     }
 
     public String getStatusIcon() {
-        return done ? "X" : " ";
+        return isDone ? "X" : " ";
     }
 
     public String getTaskIcon() {
