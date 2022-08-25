@@ -1,6 +1,11 @@
 package DukeBot;
 
-import DukeBot.command.*;
+import DukeBot.command.Command;
+import DukeBot.command.DeleteCommand;
+import DukeBot.command.ExitCommand;
+import DukeBot.command.ListCommand;
+import DukeBot.command.MarkCommand;
+import DukeBot.command.NewTaskCommand;
 
 /**
  * Encapsulates the class that parses the commands from user.
@@ -27,12 +32,15 @@ public class Parser {
         case "list":
             return new ListCommand(str, tasks);
         case "mark":
+            // Fallthrough
         case "unmark":
             return new MarkCommand(str, tasks);
         case "delete":
             return new DeleteCommand(str, tasks);
         case "todo":
+            // Fallthrough
         case "deadline":
+            // Fallthrough
         case "event":
             return new NewTaskCommand(str, tasks);
         case "bye":

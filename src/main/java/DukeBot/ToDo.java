@@ -1,8 +1,11 @@
 package DukeBot;
 
+<<<<<<< HEAD
 /**
  * Encapsulates the ToDo subclass of Task.
  */
+=======
+>>>>>>> A-CodingStandard
 public class ToDo extends Task {
 
     public ToDo(String description) {

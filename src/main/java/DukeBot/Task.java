@@ -1,8 +1,11 @@
 package DukeBot;
 
+<<<<<<< HEAD
 /**
  * Encapsulates a particular task by the user.
  */
+=======
+>>>>>>> A-CodingStandard
 public abstract class Task {
 
     private static int taskCount = 0;
@@ -26,7 +29,8 @@ public abstract class Task {
      * @return Status icon of Task.
      */
     public String getStatusIcon() {
-        return (isComplete ? "X" : " "); // mark completed task with X
+        // mark completed task with X
+        return (isComplete ? "X" : " ");
     }
 
     /**

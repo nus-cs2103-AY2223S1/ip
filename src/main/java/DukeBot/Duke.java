@@ -1,9 +1,10 @@
 package DukeBot;
-import DukeBot.command.Command;
 
 /**
  * Encapsulates the Duke class.
  */
+import DukeBot.command.Command;
+
 public class Duke {
 
     private static Storage storage;
