@@ -25,7 +25,7 @@ public class DeadlineTask extends Task {
     }
 
     @Override
-    protected String getFileRepresentation() {
-        return super.getFileRepresentation(LABEL, deadline);
+    public String getFileRepresentation() {
+        return super.getFileRepresentation(LABEL, deadline.format(Task.OUTPUT_FORMATTER));
     }
 }

@@ -22,7 +22,7 @@ public class EventTask extends Task {
     }
 
     @Override
-    protected String getFileRepresentation() {
-        return super.getFileRepresentation(LABEL, dateTime);
+    public String getFileRepresentation() {
+        return super.getFileRepresentation(LABEL, dateTime.format(Task.OUTPUT_FORMATTER));
     }
 }

@@ -14,7 +14,7 @@ public class ToDoTask extends Task {
     }
 
     @Override
-    protected String getFileRepresentation() {
+    public String getFileRepresentation() {
         return super.getFileRepresentation(LABEL);
     }
 }
