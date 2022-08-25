@@ -1,58 +1,22 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.FileWriter;
-
 public class Duke {
 
-    private static ArrayList<Task> tasks = new ArrayList<>();
-    private static File dataFile = new File("data/duke.txt");
+    private ArrayList<Task> tasks;
+    private Ui ui;
+    private Storage storage;
 
-    /**
-     * Reads existing tasks from dataFile and adds them to tasks
-     */
-    public static void readFile() {
-        try {
-            File dataFolder = new File("data/");
-            if (dataFolder.exists() && !dataFolder.isDirectory()) {
-                dataFolder.delete();
-            }
-            dataFolder.mkdir();
-            dataFile.createNewFile();
-            Scanner scanner = new Scanner(dataFile);
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                tasks.add(Task.createTask(line));
-            }
-            scanner.close();
-        } catch (IOException | DukeException e) {
-            System.out.println("Something when wrong when reading your file :( \nError: " + e.getMessage());
-        }
-    }
-
-    /**
-     * Writes tasks to dataFile
-     */
-    public static void writeFile() {
-        try {
-            FileWriter writer = new FileWriter(dataFile);
-            String fileString = "";
-            for (Task task : tasks) {
-                fileString += task.getFileString() + "\n";
-            }
-            writer.write(fileString);
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("Something when wrong when writing your file :( \nError: " + e.getMessage());
-        }
+    public Duke() {
+        tasks = new ArrayList<>();
+        storage = new Storage("data/duke.txt");
+        ui = new Ui();
     }
 
     /**
      * Display all stored tasks
      */
-    public static void displayList() {
+    public void displayList() {
         System.out.println("Here are the tasks in your list.");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println("\t" + (i + 1) + ". " + tasks.get(i).toString());
@@ -64,7 +28,7 @@ public class Duke {
      * 
      * @param task Task to be stored in tasks list
      */
-    public static void addTask(Task task) {
+    public void addTask(Task task) {
         tasks.add(task);
         System.out.println("Gotcha! I've added this task:");
         System.out.println("\t" + task);
@@ -77,7 +41,7 @@ public class Duke {
      * @param taskIndex Index of task to be removed
      * @throws DukeException if given index is out of bounds
      */
-    public static void removeTask(int taskIndex) throws DukeException {
+    public void removeTask(int taskIndex) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new DukeException("Please enter a valid task number!");
         }
@@ -93,7 +57,7 @@ public class Duke {
      * @param isDone    true if task is completed, false otherwise
      * @throws DukeException if given index is out of bounds
      */
-    public static void changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
+    public void changeTaskStatus(int taskIndex, boolean isDone) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new DukeException("Please enter a valid task number!");
         }
@@ -104,13 +68,12 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
+    public void run() {
         Scanner scanner = new Scanner(System.in);
         boolean hasNextInput = true;
-        readFile();
 
-        Ui ui = new Ui();
         ui.greet();
+        storage.loadTasks(tasks);
 
         while (hasNextInput) {
             System.out.print("--> ");
@@ -122,7 +85,7 @@ public class Duke {
                 case bye:
                     hasNextInput = false;
                     scanner.close();
-                    writeFile();
+                    storage.saveTasks(tasks);
                     break;
                 case list:
                     displayList();
@@ -152,5 +115,10 @@ public class Duke {
             }
         }
         ui.bye();
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        duke.run();
     }
 }
