@@ -204,11 +204,7 @@ public class DobbyChat {
         printChat("Master, please write dates using the YYYY-MM-DD HHMM format");
     }
 
-    /**
-     * Method used to debug
-     * @param i int to print out
-     */
-    public static void error(int i) {
-        System.out.println("Error " + i);
+    public static void noFileToLoadFrom() {
+        printChat("Dobby can't find any previous tasks to load from");
     }
 }

@@ -2,10 +2,7 @@ package dobby.commands;
 
 import java.io.IOException;
 
-import dobby.DobbyChat;
-import dobby.DobbyIO;
-import dobby.DobbyList;
-import dobby.UserInput;
+import dobby.*;
 
 /**
  * Class that saves the list and marks the bye flag.
@@ -21,7 +18,7 @@ public class ByeCommand extends Command {
     @Override
     public void execute(DobbyList dl, UserInput ui) throws IOException {
         isBye();
-        DobbyIO.save(dl);
+        DobbyStorage.save(dl, Dobby.getFilePath());
         DobbyChat.sayBye();
         isBye = true;
     }
