@@ -18,7 +18,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        // Implemented DateTimeFormatter for Level-8
         return "[D]" + super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
