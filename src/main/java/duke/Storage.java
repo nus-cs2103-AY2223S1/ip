@@ -1,7 +1,6 @@
 package duke;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -25,12 +24,15 @@ public class Storage {
      * Loads the tasks locally from the previous session.
      *
      * @return An <code>ArrayList</code> of tasks read from the input file.
-     * @throws FileNotFoundException If the file does not exist.
+     * @throws IOException If the file does not exist.
      * @throws DukeException         If the file does not have the correct format.
      */
-    public ArrayList<Task> loadTasks() throws FileNotFoundException, DukeException {
+    public ArrayList<Task> loadTasks() throws IOException, DukeException {
         ArrayList<Task> userTasks = new ArrayList<>();
         File f = new File(this.filePath);
+        if (!f.exists()) {
+            f.createNewFile();
+        }
         Scanner s = new Scanner(f);
         while (s.hasNext()) {
             String taskTextRepresentation = s.nextLine();

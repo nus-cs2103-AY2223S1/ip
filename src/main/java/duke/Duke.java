@@ -1,6 +1,6 @@
 package duke;
 
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -29,7 +29,7 @@ public class Duke {
         } catch (DukeException e) {
             ui.showError(e);
             tasks = new TaskList();
-        } catch (FileNotFoundException e) {
+        } catch (IOException e) {
             ui.showLoadingError(e);
         }
     }
