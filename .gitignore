@@ -18,4 +18,4 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 
 # Data files
-src/main/data/
+src/main/data/*.txt
