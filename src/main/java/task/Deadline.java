@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    protected final LocalDateTime time;
+    private final LocalDateTime time;
 
     /**
      * Constructs an unmarked {@code Deadline} object.

@@ -2,8 +2,8 @@ package task;
 
 public abstract class Task {
 
-    protected final String name;
-    protected boolean isDone;
+    private final String name;
+    private boolean isDone;
 
     /**
      * Constructs an unmarked {@code Task} object.

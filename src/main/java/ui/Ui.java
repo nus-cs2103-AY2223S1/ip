@@ -7,9 +7,9 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    protected final String name;
-    protected final Scanner sc;
-    protected static final String BORDER = "____________________________________________________________";
+    private final String name;
+    private final Scanner sc;
+    private static final String BORDER = "____________________________________________________________";
 
     /**
      * Constructs a {@code Ui} object.

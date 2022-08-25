@@ -10,14 +10,14 @@ import ui.Ui;
  */
 public class Duke {
 
-    protected final Parser parser;
-    protected final Storage storage;
-    protected final TaskList taskList;
-    protected final Ui ui;
+    private final Parser parser;
+    private final Storage storage;
+    private final TaskList taskList;
+    private final Ui ui;
 
-    protected static final String DUKE_NAME = "Bocil";
-    protected static final String FILE_DIRECTORY_STRING = "./data/";
-    protected static final String FILE_NAME = "duke.txt";
+    private static final String DUKE_NAME = "Bocil";
+    private static final String FILE_DIRECTORY_STRING = "./data/";
+    private static final String FILE_NAME = "duke.txt";
 
     /**
      * Constructs a {@code} Duke object using pre-defined name and storage directory.

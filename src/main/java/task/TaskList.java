@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class TaskList {
 
-    protected final ArrayList<Task> taskList;
+    private final ArrayList<Task> taskList;
 
     /**
      * Constructs an empty {@code TaskList} object.

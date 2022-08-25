@@ -2,12 +2,12 @@ package duke;
 
 public class DukeException extends Exception{
 
-    protected static final String EMPTY_INPUT = "Please enter something!";
-    protected static final String FILE_NOT_FOUND = "I cannot find your file";
-    protected static final String INVALID_INDEX = "The task number is invalid";
-    protected static final String INVALID_FORMAT = "The task format is invalid";
-    protected static final String INVALID_DATE_FORMAT = "The date format is invalid";
-    protected static final String UNKNOWN_COMMAND = "I don't know what that means";
+    private static final String EMPTY_INPUT = "Please enter something!";
+    private static final String FILE_NOT_FOUND = "I cannot find your file";
+    private static final String INVALID_INDEX = "The task number is invalid";
+    private static final String INVALID_FORMAT = "The task format is invalid";
+    private static final String INVALID_DATE_FORMAT = "The date format is invalid";
+    private static final String UNKNOWN_COMMAND = "I don't know what that means";
 
     public DukeException(String message) {
         super(message);

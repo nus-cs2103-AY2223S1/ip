@@ -17,7 +17,7 @@ import java.time.format.DateTimeParseException;
 public class Parser {
 
     /** Date patterns accepted by the parser. */
-    protected static final String[] DATE_PATTERNS = {
+    private static final String[] DATE_PATTERNS = {
             "yyyy-M-d HH:mm", "yyyy/M/d HH:mm", "yyyy M d HH:mm",
             "d-M-yyyy HH:mm", "d/M/yyyy HH:mm", "d M yyyy HH:mm",
             "yyyy-MM-d HH:mm", "yyyy/MM/d HH:mm", "yyyy MM d HH:mm",
@@ -173,7 +173,7 @@ public class Parser {
      * @throws DukeException If inputted date is not of the accepted format.
      */
     public LocalDateTime parseTime(String date) throws DukeException {
-        for (String pattern : DATE_PATTERNS) {
+        for (String pattern: DATE_PATTERNS) {
             try {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
                 return LocalDateTime.parse(date, formatter);

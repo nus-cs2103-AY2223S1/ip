@@ -20,8 +20,8 @@ import java.util.Scanner;
  */
 public class Storage {
 
-    protected final String filePath;
-    protected final Parser parser;
+    private final String filePath;
+    private final Parser parser;
 
     /**
      * Constructs a {@code Storage} object.
