@@ -24,7 +24,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
 
-        ArrayList<Task> tasks = new ArrayList<>();
+        TaskList taskList = new TaskList();
         Scanner in = new Scanner(System.in);
         outer:
         while (true) {
@@ -42,45 +42,21 @@ public class Duke {
                     break outer;
                 case MARK: {
                     int selectedTask = in.nextInt();
-                    if (selectedTask > tasks.size()) {
-                        System.out.println("No such task");
-                    } else {
-                        Task t = tasks.get(selectedTask - 1);
-                        t.markAsDone();
-                        System.out.println("Nice! I've marked this task as done:\n" + t);
-                    }
+                    taskList.mark(selectedTask);
                     break;
                 }
                 case UNMARK: {
                     int selectedTask = in.nextInt();
-                    if (selectedTask > tasks.size()) {
-                        System.out.println("No such task");
-                    } else {
-                        Task t = tasks.get(selectedTask - 1);
-                        t.markAsNotDone();
-                        System.out.println("OK, I've marked this task as not done yet:\n" + t);
-                    }
+                    taskList.unmark(selectedTask);
                     break;
                 }
                 case DELETE: {
                     int selectedTask = in.nextInt();
-                    if (selectedTask > tasks.size()) {
-                        System.out.println("No such task");
-                    } else {
-                        Task t = tasks.remove(selectedTask - 1);
-                        int length = tasks.size();
-                        String output = length == 1 ? " task in the list." : " tasks in the list.";
-                        System.out.println("Noted. I've removed this task:\n" + t +
-                                "\nNow you have " + length + output);
-                    }
+                    taskList.delete(selectedTask);
                     break;
                 }
                 case LIST: {
-                    int length = tasks.size();
-                    System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < length; i++) {
-                        System.out.println(i + 1 + ". " + tasks.get(i));
-                    }
+                    System.out.println(taskList);
                     break;
                 }
                 case TODO: {
@@ -90,11 +66,7 @@ public class Duke {
                     }
                     s = s.substring(1);
                     Task t = new Todo(s);
-                    tasks.add(t);
-                    int length = tasks.size();
-                    String output = length == 1 ? " task in the list." : " tasks in the list.";
-                    System.out.println("Got it. I've added this task:\n" + t +
-                            "\nNow you have " + length + output);
+                    taskList.add(t);
                     break;
                 }
                 case DEADLINE: {
@@ -107,11 +79,7 @@ public class Duke {
                     s = s.substring(1);
                     try {
                         Task t = new Deadline(desc.substring(1), s);
-                        tasks.add(t);
-                        int length = tasks.size();
-                        String output = length == 1 ? " task in the list." : " tasks in the list.";
-                        System.out.println("Got it. I've added this task:\n" + t +
-                                "\nNow you have " + length + output);
+                        taskList.add(t);
                     } catch (DukeException e) {
                         System.out.println(e.getMessage());
                     }
@@ -127,11 +95,7 @@ public class Duke {
                     s = s.substring(1);
                     try {
                         Task t = new Event(desc.substring(1), s);
-                        tasks.add(t);
-                        int length = tasks.size();
-                        String output = length == 1 ? " task in the list." : " tasks in the list.";
-                        System.out.println("Got it. I've added this task:\n" + t +
-                                "\nNow you have " + length + output);
+                        taskList.add(t);
                     } catch (DukeException e) {
                         System.out.println(e.getMessage());
                     }
@@ -145,7 +109,7 @@ public class Duke {
             FileSaver.newDir("./data");
             FileSaver.newFile(dataFileName);
             try {
-                FileSaver.save(tasks, dataFileName);
+                FileSaver.save(taskList.getTasks(), dataFileName);
             } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
