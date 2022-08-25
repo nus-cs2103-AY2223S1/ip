@@ -1,3 +1,11 @@
+package duke.util;
+
+import duke.exception.DukeException;
+import duke.exception.FileParseException;
+import duke.exception.NoArgumentException;
+import duke.exception.WrongArgumentException;
+import duke.task.Task;
+
 public class Ui {
     public static final String[] COMMAND_HELP = new String[] { "todo [description]",
                                                                 "deadline [description] /by [dd/MM/yy] <24hr time>",

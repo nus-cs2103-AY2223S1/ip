@@ -1,11 +1,10 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+package duke.task;
+
 import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
     protected String description;
-    protected boolean isDone;
+    public boolean isDone;
     protected static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yy");
     protected static DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd MMM yy");
     protected static DateTimeFormatter INPUT_TIME_FORMAT = DateTimeFormatter.ofPattern("HHmm");
