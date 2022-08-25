@@ -1,11 +1,35 @@
-import java.util.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.file.Files;
 
 public class Duke {
-    private static List<Task> list = new ArrayList<>(100);
-    public static void main(String[] args) {
-        System.out.println(Duke.start());
-        Scanner sc = new Scanner(System.in);
+    private static List<Task> taskList = new ArrayList<>(100);
 
+    public static void main(String[] args) {
+        try {
+            File f = new File("./data/duke.txt");
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                taskList.add(Task.fileLineToTask(s.nextLine()));
+            }
+            s.close();
+        } catch (FileNotFoundException e) {
+            try {
+                Files.createDirectories(Paths.get("./data"));
+                File f = new File("./data/duke.txt");
+            } catch (IOException ex) {
+                System.out.println("Something went wrong: " + e.getMessage());
+            }
+        }
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println(Duke.start());
         while (sc.hasNext()) {
             String input = sc.nextLine();
             if (input.equals("list")) {
@@ -27,25 +51,34 @@ public class Duke {
     }
 
     private static String list() {
-        String[] lines = new String[list.size() + 1];
+        String[] lines = new String[taskList.size() + 1];
         lines[0] = "Here are the tasks in your list: ";
-        for (int i = 1; i < list.size() + 1; i++) {
-            lines[i] = list.get(i - 1).toStringWithIndex(i);
+        for (int i = 1; i < taskList.size() + 1; i++) {
+            lines[i] = taskList.get(i - 1).toStringWithIndex(i);
         }
         return Duke.replyFormat(lines);
     }
 
     private static String bye() {
+        try {
+            FileWriter fw = new FileWriter("./data/duke.txt");
+            for (Task task : taskList) {
+                fw.write(task.getSaveFormat() + System.lineSeparator());
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
         return Duke.replyFormat("Bye.", ">:)");
     }
 
     private static String start() {
-        return Duke.replyFormat("Oi! I'm Dook", "What's up?");
+        return Duke.replyFormat("Oi! I'm Dook", "What's up?", "Please type dates in the format: yyyy-mm-dd");
     }
 
     private static String mark(String input) {
         int toMark = Character.getNumericValue(input.charAt(5));
-        Task task = list.get(toMark - 1);
+        Task task = taskList.get(toMark - 1);
         task.mark();
         return Duke.replyFormat("Nice! I've marked this task as done:",
                 "  " + task.toString());
@@ -53,7 +86,7 @@ public class Duke {
 
     private static String unmark(String input) {
         int toMark = Character.getNumericValue(input.charAt(7));
-        Task task = list.get(toMark - 1);
+        Task task = taskList.get(toMark - 1);
         task.unmark();
         return Duke.replyFormat("OK, I've marked this task as not done yet:",
                 "  " + task.toString());
@@ -66,19 +99,19 @@ public class Duke {
         } catch (DukeException e) {
             return Duke.replyFormat(e.toString());
         }
-        list.add(task);
+        taskList.add(task);
         return Duke.replyFormat("Got it. I've added this task:",
                 "   " + task.toString(),
-                String.format("Now you have %d tasks in the list.", list.size()));
+                String.format("Now you have %d tasks in the list.", taskList.size()));
     }
 
     public static String deleteTask(String input) {
         int toDelete = Character.getNumericValue(input.charAt(7)) - 1;
-        Task task = list.get(toDelete);
-        list.remove(toDelete);
+        Task task = taskList.get(toDelete);
+        taskList.remove(toDelete);
         return Duke.replyFormat("Noted. I've removed this task:",
                 "  " + task.toString(),
-                String.format("Now you have %d tasks in the list.", list.size()));
+                String.format("Now you have %d tasks in the list.", taskList.size()));
     }
 
     public static String replyFormat(String... lines) {
