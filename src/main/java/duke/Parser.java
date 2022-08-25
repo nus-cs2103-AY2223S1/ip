@@ -1,8 +1,12 @@
 package duke;
 
-import duke.command.*;
-
-import java.util.Scanner;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
 
 public class Parser {
 
