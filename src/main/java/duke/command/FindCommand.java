@@ -8,6 +8,9 @@ import duke.task.TasksController;
 
 import java.util.ArrayList;
 
+/**
+ * FindCommand class will execute the find command.
+ */
 public class FindCommand extends Command {
 
     /**
