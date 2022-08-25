@@ -1,0 +1,2 @@
+todo Gym /completed false
+event CS2103T Lecture /at Wed, Sep 28, 09:00 AM /completed false
