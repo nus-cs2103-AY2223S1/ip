@@ -1,10 +1,20 @@
 package duke;
 
+/**
+ *
+ */
 public class Duke {
     private final Ui ui;
     private final TaskList taskList;
+    /**
+     * The file path at where the tasks are stored
+     */
     public static String filePath = "tasks.txt";
 
+    /**
+     * Constructs an instance with the file path
+     * @param filePath The path to the file
+     */
     public Duke(String filePath) {
         ui = new Ui();
         Storage storage = new Storage(filePath);
@@ -15,6 +25,9 @@ public class Duke {
 //        }
     }
 
+    /**
+     * The initialisation code that starts the chatbot
+     */
     public void run() {
         ui.showWelcome();
         Parser parser = new Parser(taskList);
@@ -37,6 +50,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Tne driver method
+     * @param args The command-line arguments
+     */
     public static void main(String[] args) {
         new Duke(Duke.filePath).run();
     }

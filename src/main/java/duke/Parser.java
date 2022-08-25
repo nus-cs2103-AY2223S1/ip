@@ -8,10 +8,20 @@ import duke.task.ToDo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * A class to parse user input
+ */
 public class Parser {
+    /**
+     * An instance of the {@code BreakLoopIndicator}
+     */
     final BreakLoopIndicator breakLoopIndicator = new BreakLoopIndicator();
     private final TaskList taskList;
 
+    /**
+     * Takes in a list of the tasks where the parsed tasks will be stored.
+     * @param taskList A list of the tasks
+     */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
     }
@@ -29,6 +39,13 @@ public class Parser {
                 + " in the list.";
     }
 
+    /**
+     * Returns a {@code String} representing the parsed input
+     * @param command The user input
+     * @param breakLoopIndicator The {@code BreakLoopIndicator} instance
+     * @return A {@code String} representing the input
+     * @throws CustomMessageException if invalid input is given
+     */
     public String parseUserCommand(String command, BreakLoopIndicator breakLoopIndicator) throws CustomMessageException {
         String[] commands = command.split("\\s+");
         Command taskType;
@@ -125,6 +142,9 @@ public class Parser {
                 + taskList.getTaskString(taskList.sizeOfList() - 1) + "\n     " + generateTasksNumberMessage()));
     }
 
+    /**
+     * A class to track whether it is time to break the loop.
+     */
     public static class BreakLoopIndicator {
         private boolean isExitCommand = false;
 
