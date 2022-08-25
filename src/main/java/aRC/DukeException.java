@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 public class DukeException extends Exception {
     /**
@@ -14,6 +14,7 @@ public class DukeException extends Exception {
                 "\tevent [title] /at [time]\n" +
                 "\tmark [index]\n" +
                 "\tunmark [index]\n" +
-                "\tdelete [index]");
+                "\tdelete [index]" +
+                "\tfind [keyword]");
     }
 }

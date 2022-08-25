@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 import java.io.File;
 import java.io.FileNotFoundException;

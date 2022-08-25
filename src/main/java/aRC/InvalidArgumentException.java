@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 public class InvalidArgumentException extends DukeException {
     /**
