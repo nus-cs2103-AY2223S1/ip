@@ -124,6 +124,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Main method of Duke class.
+     *
+     * @param args User command line arguments.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }

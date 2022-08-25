@@ -6,7 +6,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Test class for DateTimeFormatUtils class.
+ */
 public class DateTimeFormatUtilsTest {
+
+    /**
+     * Tests parseDate method with invalid input.
+     * Exception should be thrown with error message equal to the expected output.
+     */
     @Test
     public void parseDate_invalidDateFormat_exceptionThrown() {
         try {

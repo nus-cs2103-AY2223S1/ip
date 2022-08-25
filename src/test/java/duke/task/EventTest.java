@@ -6,7 +6,15 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Test class for Event class.
+ */
 public class EventTest {
+
+    /**
+     * Tests save format conversion method in Event class with 2 valid inputs.
+     * Test should return successfully if the converted string matches the expected output.
+     */
     @Test
     public void convertToSaveFormat_saveFormatConversion_success() {
         Event t1 = new Event("task1", LocalDateTime.of(2012, 3, 4, 5, 6),
