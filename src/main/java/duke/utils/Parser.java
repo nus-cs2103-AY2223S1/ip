@@ -87,27 +87,27 @@ public class Parser {
         try {
             boolean isDone = taskElements[1].equals("0");
             switch (taskElements[0]) {
-                case "T": {
-                    newTask = new ToDo(taskElements[2], isDone);
-                    break;
-                }
-                case "D": {
-                    String dateString = taskElements[3];
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
-                    newTask = new Deadline(taskElements[2], dateTime);
-                    break;
-                }
-                case "E": {
-                    String dateString = taskElements[3];
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-                    LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
-                    newTask = new Event(taskElements[2], dateTime);
-                    break;
-                }
-                default: {
-                    throw new DukeException("Task type cannot be parsed");
-                }
+            case "T": {
+                newTask = new ToDo(taskElements[2], isDone);
+                break;
+            }
+            case "D": {
+                String dateString = taskElements[3];
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
+                newTask = new Deadline(taskElements[2], dateTime);
+                break;
+            }
+            case "E": {
+                String dateString = taskElements[3];
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
+                newTask = new Event(taskElements[2], dateTime);
+                break;
+            }
+            default: {
+                throw new DukeException("Task type cannot be parsed");
+            }
             }
         } catch (Exception e) {
             throw e;
