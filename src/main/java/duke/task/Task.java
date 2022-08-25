@@ -13,6 +13,10 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    public boolean containKeyword(String keyword) {
+        return this.taskDescription.contains(keyword);
+    }
+
     protected abstract String getTypeIcon();
 
     public String getStatusIcon() {

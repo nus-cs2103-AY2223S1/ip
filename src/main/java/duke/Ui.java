@@ -31,7 +31,12 @@ public class Ui {
     }
 
     public void printTaskList(String taskList) {
+
         printMessage("Here are the tasks in your list:\n" + taskList);
+    }
+
+    public void printMatchingTaskList(String taskList) {
+        printMessage("Here are the matching tasks in your list:\n" + taskList);
     }
 
     public void printAddTaskReply(String taskDesc, int totalTask) {

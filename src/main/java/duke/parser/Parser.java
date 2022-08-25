@@ -28,6 +28,8 @@ public class Parser {
                     return new UnmarkCommand(parseIntArg(commandArg));
                 case "delete":
                     return new DeleteCommand(parseIntArg(commandArg));
+                case "find":
+                    return new FindCommand(commandArg);
                 case "todo":
                     if (commandArg.equals("")) {
                         throw new DukeException("A todo must contain a description.");
