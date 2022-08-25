@@ -3,12 +3,18 @@ package duke.util;
 import java.util.Scanner;
 
 //Deals with interactions with the user
+/**
+ * Insert Javadocs
+ */
 public class Ui {
     private Scanner scanner;
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
+    /**
+     * Insert Javadocs
+     */
     public void showWelcome() {
         String logo = " _           _        \n"
                 + "| |    _   _| | _____ \n"

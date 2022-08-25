@@ -10,6 +10,9 @@ import duke.command.UnmarkCommand;
 import duke.command.WrongCommand;
 import duke.exception.DukeException;
 
+/**
+ * Insert Javadocs
+ */
 public class Parser {
     //The important keywords to check against with the user-input
     public static final String EXITCOMMAND = "bye";
@@ -26,12 +29,15 @@ public class Parser {
     public Parser() {
     }
 
+    /**
+     * Insert Javadocs
+     */
     public static Command parse(String fullCommand) throws DukeException {
 
         if (fullCommand.isEmpty() || fullCommand.isBlank()) {
-            String error_msg = "__________________________________________________\n" +
-                    "Please enter valid inputs, empty strings or blanks are not valid!";
-            throw new DukeException(error_msg);
+            String errorMessage = "__________________________________________________\n"
+                    + "Please enter valid inputs, empty strings or blanks are not valid!";
+            throw new DukeException(errorMessage);
         }
 
         //To obtain the first word in the user-input, used to check for keyword/command
@@ -44,44 +50,44 @@ public class Parser {
             return new ListCommand();
         } else if (firstText.equals(DELETECOMMAND)) {
             if (array.length == 1) {
-                String error_msg = "__________________________________________________\n" +
-                        "OOPS!!! The task number for deleting must be specified!";
-                throw new DukeException(error_msg);
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! The task number for deleting must be specified!";
+                throw new DukeException(errorMessage);
             }
             return new DeleteCommand(array[1]);
         } else if (firstText.equals(MARKCOMMAND)) {
             if (array.length == 1) {
-                String error_msg = "__________________________________________________\n" +
-                        "OOPS!!! The task number for marking must be specified!";
-                throw new DukeException(error_msg);
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! The task number for marking must be specified!";
+                throw new DukeException(errorMessage);
             }
             return new MarkCommand(array[1]);
         } else if (firstText.equals(UNMARKCOMMAND)) {
             if (array.length == 1) {
-                String error_msg = "__________________________________________________\n" +
-                        "OOPS!!! The task number for unmarking must be specified!";
-                throw new DukeException(error_msg);
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! The task number for unmarking must be specified!";
+                throw new DukeException(errorMessage);
             }
             return new UnmarkCommand(array[1]);
         } else if (firstText.equals(TODO)) {
             if (array.length == 1) {
-                String error_msg = "__________________________________________________\n" +
-                        "OOPS!!! The description of a todo cannot be empty.";
-                throw new DukeException(error_msg);
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! The description of a todo cannot be empty.";
+                throw new DukeException(errorMessage);
             }
             return new AddCommand(0, array[1]);
         } else if (firstText.equals(DEADLINE)) {
             if (array.length == 1) {
-                String error_msg = "__________________________________________________\n" +
-                        "OOPS!!! The description of a deadline cannot be empty.";
-                throw new DukeException(error_msg);
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! The description of a deadline cannot be empty.";
+                throw new DukeException(errorMessage);
             }
             return new AddCommand(1, array[1]);
         } else if (firstText.equals(EVENT)) {
             if (array.length == 1) {
-                String error_msg = "__________________________________________________\n" +
-                        "OOPS!!! The description of a event cannot be empty.";
-                throw new DukeException(error_msg);
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! The description of a event cannot be empty.";
+                throw new DukeException(errorMessage);
             }
             return new AddCommand(2, array[1]);
         } else {

@@ -29,8 +29,7 @@ public class Task {
      * This method is used to check the status of the task (done/undone)
      * and mark it with an X if it is done.
      *
-     * @return a String representation of "X" for tasks that are done and
-     * an empty space " " for tasks that are undone.
+     * @return a String representation of "X" for tasks that are done and an empty space " " for tasks that are undone.
     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
@@ -58,6 +57,6 @@ public class Task {
      */
     @Override
     public String toString() {
-            return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + this.getStatusIcon() + "] " + this.description;
     }
 }

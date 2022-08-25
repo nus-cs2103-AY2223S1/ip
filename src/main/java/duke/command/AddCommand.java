@@ -1,20 +1,27 @@
 package duke.command;
 
-import duke.util.Storage;
-import duke.util.Ui;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.TaskList;
-import duke.task.Todo;
-
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.TaskList;
+import duke.task.Todo;
+import duke.util.Storage;
+import duke.util.Ui;
+
+/**
+ * Insert Javadocs
+ */
 public class AddCommand extends Command {
     private int taskType;
     private String taskDetails;
+
+    /**
+     * Insert Javadocs
+     */
     public AddCommand(int taskType, String taskDetails) {
         // 0: TODO Task
         // 1: DEADLINE Task
@@ -23,6 +30,9 @@ public class AddCommand extends Command {
         this.taskDetails = taskDetails;
     }
 
+    /**
+     * Insert Javadocs
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {
         if (this.taskType == 0) {
             tasks.add(new Todo(this.taskDetails, false));
@@ -40,6 +50,9 @@ public class AddCommand extends Command {
     }
 
     // Format the dates from YYYY-MM_DD to MMM d yyyy
+    /**
+     * Insert Javadocs
+     */
     public String formatDate(String dateInput) {
         try {
             LocalDate d1 = LocalDate.parse(dateInput);
@@ -56,6 +69,6 @@ public class AddCommand extends Command {
     @Override
     public String toString() {
         return "__________________________________________________\n"
-                + "Got it. I have added this task:" ;
+                + "Got it. I have added this task:";
     }
 }

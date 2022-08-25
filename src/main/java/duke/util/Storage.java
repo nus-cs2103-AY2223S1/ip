@@ -1,17 +1,20 @@
 package duke.util;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.TaskList;
-import duke.task.Todo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.Todo;
+
+/**
+ * Insert Javadocs
+ */
 public class Storage {
     private String filePath;
 
@@ -19,6 +22,9 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Insert Javadocs
+     */
     public ArrayList<Task> load() throws IOException {
         ArrayList<Task> taskStored = new ArrayList<>();
         File fileToLoad = new File(filePath);
@@ -41,6 +47,9 @@ public class Storage {
         return taskStored;
     }
 
+    /**
+     * Insert Javadocs
+     */
     public Task formatString(String stringStored) {
         // To isolate the string containing the task description
         String s1 = stringStored.substring(7);
@@ -60,6 +69,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Insert Javadocs
+     */
     public void writeToFile(TaskList tasks) throws IOException {
         FileWriter fileWriter = new FileWriter(filePath);
         String dataToStore = "";

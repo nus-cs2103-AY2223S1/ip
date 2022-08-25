@@ -1,18 +1,25 @@
 package duke.command;
-
+import duke.task.TaskList;
 import duke.util.Storage;
 import duke.util.Ui;
-import duke.task.TaskList;
 
-public class ExitCommand extends Command{
+/**
+ * Insert Javadocs
+ */
+public class ExitCommand extends Command {
     public ExitCommand() {
     }
 
-    //Do nothing for exit command, simply exits the UI
+    /**
+     * Insert Javadocs
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         System.out.println(this);
     }
 
+    /**
+     * Insert Javadocs
+     */
     public boolean isExit() {
         return true;
     }
@@ -20,6 +27,6 @@ public class ExitCommand extends Command{
     @Override
     public String toString() {
         return "__________________________________________________\n"
-                + "Adios Amigo! See you soon!" ;
+                + "Adios Amigo! See you soon!";
     }
 }

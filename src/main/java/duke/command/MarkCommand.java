@@ -1,11 +1,16 @@
 package duke.command;
 
-import duke.util.Storage;
-import duke.util.Ui;
+import java.io.IOException;
+
 import duke.exception.DukeException;
 import duke.task.TaskList;
+import duke.util.Storage;
+import duke.util.Ui;
 
-import java.io.IOException;
+
+/**
+ * Insert Javadocs
+ */
 public class MarkCommand extends Command {
     private int taskNumber;
 
@@ -13,11 +18,14 @@ public class MarkCommand extends Command {
         this.taskNumber = Integer.parseInt(taskDetails);
     }
 
+    /**
+     * Insert Javadocs
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.taskNumber > tasks.size() || this.taskNumber < 1) {
-            String error_msg = "__________________________________________________\n" +
-                    "OOPS!!! There is no such task number!";
-            throw new DukeException(error_msg);
+            String errorMessage = "__________________________________________________\n"
+                    + "OOPS!!! There is no such task number!";
+            throw new DukeException(errorMessage);
         }
 
         tasks.getTask(this.taskNumber - 1).markTaskDone();
@@ -33,6 +41,6 @@ public class MarkCommand extends Command {
     @Override
     public String toString() {
         return "__________________________________________________\n"
-                + "Good Job! I have marked this task as done:" ;
+                + "Good Job! I have marked this task as done:";
     }
 }
