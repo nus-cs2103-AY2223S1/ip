@@ -2,12 +2,20 @@ package duke.commands;
 
 import duke.data.TaskList;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.Deadline;
 import duke.ui.Ui;
 
-public class DeadlineCommand extends Command{
+/**
+ * Command to create a deadline.
+ */
+public class DeadlineCommand extends Command {
 
+    /**
+     * Executes the deadline-creating command.
+     * @param taskList
+     * @param ui User Interface of the to-do-list.
+     * @param storage Storage option.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         String[] splitInput = ui.userString().split(" ");

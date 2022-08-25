@@ -1,6 +1,9 @@
 package duke.data.exception;
 
-public class DukeException extends Exception{
+/**
+ * Exception class representing exceptions that happen when Duke runs.
+ */
+public class DukeException extends Exception {
     public DukeException(String message) {
         super(message);
     }

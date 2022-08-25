@@ -11,16 +11,25 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
 
+/**
+ * Represents a storage file for saving/loading from storage.
+ */
 public class Storage {
 
     public static final String PATH = "./data/";
     protected File file;
 
+    /**
+     * Constructor for a storage file.
+     */
     public Storage() {
         this.file = new File(PATH + "duke.txt");
         setup();
     }
 
+    /**
+     * Sets up the file to save the task list in.
+     */
     public void setup() {
         File directory = new File(PATH);
         try {
@@ -28,15 +37,18 @@ public class Storage {
                 directory.mkdir();
             }
 
-            file = new File(PATH, "duke.txt");
-            if (!file.exists()) {
-                file.createNewFile();
+            if (!this.file.exists()) {
+                this.file.createNewFile();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
 
+    /**
+     * Saves the task list onto the hard disk.
+     * @param taskList
+     */
     public void save(TaskList taskList) {
         try {
             FileWriter fileWriter = new FileWriter(file);
@@ -50,6 +62,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the task list from the hard disk.
+     * @return TaskList
+     */
     public TaskList load() {
         TaskList taskList = new TaskList();
 
@@ -61,18 +77,18 @@ public class Storage {
                 String taskType = taskString[0];
 
                 switch (taskType) {
-                    case "T":
-                        Task todo = new ToDo(taskString[2], taskString[1].equals("Y"));
-                        taskList.add(todo);
-                        break;
-                    case "E":
-                        Task event = new Event(taskString[2], taskString[3], taskString[1].equals("Y"));
-                        taskList.add(event);
-                        break;
-                    case "D":
-                        Task deadline = new Deadline(taskString[2], taskString[3], taskString[1].equals("Y"));
-                        taskList.add(deadline);
-                        break;
+                case "T":
+                    Task todo = new ToDo(taskString[2], taskString[1].equals("Y"));
+                    taskList.add(todo);
+                    break;
+                case "E":
+                    Task event = new Event(taskString[2], taskString[3], taskString[1].equals("Y"));
+                    taskList.add(event);
+                    break;
+                case "D":
+                    Task deadline = new Deadline(taskString[2], taskString[3], taskString[1].equals("Y"));
+                    taskList.add(deadline);
+                    break;
                 }
             }
             fileScanner.close();

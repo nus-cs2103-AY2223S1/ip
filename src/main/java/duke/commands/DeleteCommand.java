@@ -4,9 +4,17 @@ import duke.data.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
+/**
+ * Command to delete the task at a particular index.
+ */
+public class DeleteCommand extends Command {
 
-public class DeleteCommand extends Command{
-
+    /**
+     * Command that executes the task deletion.
+     * @param taskList
+     * @param ui User Interface of the to-do-list.
+     * @param storage Storage option.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         System.out.println("Noted. I've removed this task:");
