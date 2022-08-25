@@ -1,10 +1,12 @@
+package tasks;
+
 /**
  * Tasks with a deadline
  */
 public class Deadline extends Task {
 
     /** The deadline */
-    protected String by;
+    private String by;
 
     /**
      * Constructs a new Deadline with the given description and deadline 
@@ -13,13 +15,8 @@ public class Deadline extends Task {
      * @param by The task deadline
      */
     public Deadline(String description, String by) {
-        super(description);
+        super(description, 'D');
         this.by = by;
-    }
-
-    @Override
-    protected String getTypeSymbol() {
-        return "D";
     }
 
     @Override

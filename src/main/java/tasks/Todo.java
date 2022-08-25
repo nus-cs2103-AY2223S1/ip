@@ -1,5 +1,7 @@
+package tasks;
+
 /**
- * Tasks without date/time info
+ * Tasks with only a description
  */
 public class Todo extends Task {
 
@@ -9,11 +11,6 @@ public class Todo extends Task {
      * @param description The task description
      */
     public Todo(String description) {
-        super(description);
-    }
-
-    @Override
-    protected String getTypeSymbol() {
-        return "T";
+        super(description, 'T');
     }
 }

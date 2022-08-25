@@ -2,15 +2,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import tasks.*;
 
 /**
- * Personal Assistant that helps you keep track of your tasks/
- * Task descriptions given are autocorrected to have only 1 white space
+ * Personal Assistant that helps you keep track of your tasks
  */
 public class Duke {
 
     /** The tasks stored */
     private static final List<Task> tasks = new ArrayList<>();
+
+    /** Points to the current word being read in the current command */
+    private static int currWordIndex = 0;
 
     /**
      * Prints Duke's greeting on opening the app
@@ -23,7 +26,7 @@ public class Duke {
     }
 
     /**
-     * Displays the given lines using a format
+     * Displays the lines using a format
      */
     private static void sayLines(String[] lines) {
         System.out.println("____________________________________________________________");
@@ -34,7 +37,7 @@ public class Duke {
     }
 
     /**
-     * Stores the given task and notifies user of outcome
+     * Stores the task and displays outcome
      */
     private static void addTask(Task task) {
         tasks.add(task);
@@ -46,115 +49,91 @@ public class Duke {
     }
 
     /**
-     * Tries to store a Todo with the given specifications and notifies user of outcome
+     * Stores a Todo outlined in the command and displays outcome
      * @param words The words of the command entered, first is always "todo"
+     * @throws IllegalArgumentException If words specifies an empty description
      */
-    private static void addTodo(String[] words) throws IllegalArgumentException {
-        if (words.length == 1) {
-            throw new IllegalArgumentException("☹ OOPS!!! Description can't be empty");
-        }
-        StringBuilder descBuilder = new StringBuilder();
-        int currIndex = 1;
-        while (currIndex < words.length) {
-            descBuilder.append(words[currIndex++]).append(" ");
-        }
-        descBuilder.deleteCharAt(descBuilder.length()-1);
-        addTask(new Todo(descBuilder.toString()));
+    private static void addTodo(String[] words) {
+        addTask(new Todo(getDescription(words, null)));
     }
 
     /**
-     * Tries to store a Deadline with the given specifications and notifies user of outcome
+     * Stores a Deadline outlined in the command and displays outcome
      * @param words The words of the command entered, first is always "deadline"
+     * @throws IllegalArgumentException if words specifies an empty description or empty date or is missing /by
      */
-    private static void addDeadline(String[] words) throws IllegalArgumentException {
-        StringBuilder descBuilder = new StringBuilder();
-        int currIndex = 1;
-        boolean emptyDesc = true;
-        while (currIndex < words.length && !words[currIndex].equals("/by")) {
-            if (words[currIndex].isEmpty()) {
-                descBuilder.append(" ");
-            } else {
-                descBuilder.append(words[currIndex]).append(" ");
-                emptyDesc = false;
-            }
-            ++currIndex;
-        }
-        if (currIndex == words.length) {
-            throw new IllegalArgumentException("☹ OOPS!!! /by flag not found");
-        } else if (emptyDesc) {
-            throw new IllegalArgumentException("☹ OOPS!!! Description can't be empty");
-        } else if (currIndex == words.length - 1) {
-            throw new IllegalArgumentException("☹ OOPS!!! Date/time for /by flag can't be empty");
-        }
-        descBuilder.deleteCharAt(descBuilder.length()-1);
-
-        ++currIndex;
-        StringBuilder byBuilder = new StringBuilder();
-        while (currIndex < words.length) {
-            byBuilder.append(words[currIndex++]).append(" ");
-        }
-        byBuilder.deleteCharAt(byBuilder.length()-1);
-
-        addTask(new Deadline(descBuilder.toString(), byBuilder.toString()));
+    private static void addDeadline(String[] words) {
+        addTask(new Deadline(getDescription(words, "/by"), getTiming(words, "/by")));
     }
 
     /**
-     * Tries to store an Event with the given specifications and notifies user of outcome
+     * Stores an Event outlined in the command and displays outcome
      * @param words The words of the command entered, first is always "event"
+     * @throws IllegalArgumentException If words specifies an empty description or empty date or is missing /at
      */
-    private static void addEvent(String[] words) throws IllegalArgumentException {
-        StringBuilder descBuilder = new StringBuilder();
-        int currIndex = 1;
-        boolean emptyDesc = true;
-        while (currIndex < words.length && !words[currIndex].equals("/at")) {
-            if (words[currIndex].isEmpty()) {
-                descBuilder.append(" ");
-            } else {
-                descBuilder.append(words[currIndex]).append(" ");
-                emptyDesc = false;
-            }
-            ++currIndex;
-        }
-        if (currIndex == words.length) {
-            throw new IllegalArgumentException("☹ OOPS!!! /at flag not found");
-        } else if (emptyDesc) {
-            throw new IllegalArgumentException("☹ OOPS!!! Description can't be empty");
-        } else if (currIndex == words.length - 1) {
-            throw new IllegalArgumentException("☹ OOPS!!! Date/time for /at flag can't be empty");
-        }
-        descBuilder.deleteCharAt(descBuilder.length()-1);
-
-        ++currIndex;
-        StringBuilder atBuilder = new StringBuilder();
-        while (currIndex < words.length) {
-            atBuilder.append(words[currIndex++]).append(" ");
-        }
-        atBuilder.deleteCharAt(atBuilder.length()-1);
-
-        addTask(new Event(descBuilder.toString(), atBuilder.toString()));
+    private static void addEvent(String[] words) {
+        addTask(new Event(getDescription(words, "/at"), getTiming(words, "/at")));
     }
 
     /**
-     * Tries to mark the specified task as done and notifies user of outcome
-     * @param words The words of the command entered, first is always "mark"
+     * Retrieves the description argument in the command
+     * @param words The words of the command entered, first is some valid command name
+     * @param stop The word before which the description ends
+     * @return The description specified in words
+     * @throws IllegalArgumentException If words specifies an empty description
      */
-    private static void markTaskAsDone(String[] words) throws IllegalArgumentException {
-        if (tasks.size() == 0) {
-            throw new IllegalArgumentException("☹ OOPS!!! No tasks stored for me to do that");
-        }
+    private static String getDescription(String[] words, String stop) {
+        StringBuilder descBuilder = new StringBuilder();
+        boolean emptyDesc = true;
 
-        Task task;
-        try {
-            int taskNumber = (words.length == 1) ? 0 : Integer.parseInt(words[1]);
-            if (taskNumber <= 0 || taskNumber > tasks.size()) {
-                throw new IllegalArgumentException();
+        while (currWordIndex < words.length && !words[currWordIndex].equals(stop)) {
+            if (words[currWordIndex].isEmpty()) {
+                descBuilder.append(" ");
+            } else {
+                descBuilder.append(words[currWordIndex]).append(" ");
+                emptyDesc = false;
             }
-            task = tasks.get(taskNumber - 1);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("☹ OOPS!!! The task number must be from 1 to " + tasks.size());
+            ++currWordIndex;
         }
 
-        task.markAsDone();
+        if (emptyDesc) {
+            throw new IllegalArgumentException("☹ OOPS!!! Description can't be empty");
+        }
+
+        return descBuilder.deleteCharAt(descBuilder.length()-1).toString();
+    }
+
+    /**
+     * Retrieves the timing argument in the command
+     * @param words The words of the command entered, first is some valid command name
+     * @param flag The flag that the timing belongs to
+     * @return The timing specified in words
+     * @throws IllegalArgumentException If words specifies an empty timing or is missing flag
+     */
+    private static String getTiming(String[] words, String flag) {
+        if (currWordIndex >= words.length) {
+            throw new IllegalArgumentException("☹ OOPS!!! " + flag + " not found");
+        } else if (currWordIndex == words.length - 1) {
+            throw new IllegalArgumentException("☹ OOPS!!! Timing for " + flag + " can't be empty");
+        }
+
+        ++currWordIndex;
+        StringBuilder dateBuilder = new StringBuilder();
+
+        while (currWordIndex < words.length) {
+            dateBuilder.append(words[currWordIndex++]).append(" ");
+        }
+
+        return dateBuilder.deleteCharAt(dateBuilder.length()-1).toString();
+    }
+
+    /**
+     * Marks the specified task as done and displays outcome
+     * @param words The words of the command entered, first is always "mark"
+     * @throws IllegalArgumentException If the argument(s) supplied in words isn't an integer from 1 to the number of stored tasks
+     */
+    private static void markTaskAsDone(String[] words) {
+        Task task = tasks.get(getTaskNumber(words) - 1).markAsDone();
         sayLines(new String[]{
                 "Nice! I've marked this task as done:",
                 "  " + task
@@ -162,26 +141,12 @@ public class Duke {
     }
 
     /**
-     * Tries to mark the specified task as not done and notifies user of outcome
+     * Marks the specified task as not done and displays outcome
      * @param words The words of the command entered, first is always "unmark"
+     * @throws IllegalArgumentException If the argument(s) supplied in words isn't an integer from 1 to the number of stored tasks
      */
     private static void markTaskAsNotDone(String[] words) {
-        if (tasks.size() == 0) {
-            throw new IllegalArgumentException("☹ OOPS!!! No tasks stored for me to do that");
-        }
-
-        Task task;
-        try {
-            int taskNumber = (words.length == 1) ? 0 : Integer.parseInt(words[1]);
-            if (taskNumber <= 0 || taskNumber > tasks.size()) {
-                throw new IllegalArgumentException();
-            }
-            task = tasks.get(taskNumber - 1);
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("☹ OOPS!!! The task number must be from 1 to " + tasks.size());
-        }
-
-        task.markAsNotDone();
+        Task task = tasks.get(getTaskNumber(words) - 1).markAsNotDone();
         sayLines(new String[]{
                 "OK, I've marked this task as not done yet:",
                 "  " + task
@@ -189,31 +154,43 @@ public class Duke {
     }
 
     /**
-     * Tries to delete the specified task and notifies user of outcome
+     * Deletes the specified task and displays outcome
      * @param words The words of the command entered, first is always "delete"
+     * @throws IllegalArgumentException If the argument(s) supplied in words isn't an integer from 1 to the number of stored tasks
      */
     private static void deleteTask(String[] words) {
+        Task removedTask = tasks.remove(getTaskNumber(words) - 1);
+        sayLines(new String[]{
+                "Noted. I've removed this task:",
+                "  " + removedTask,
+                "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
+        });
+    }
+
+    /**
+     * Gets the task number (integer pointing to a task) specified in the command
+     *
+     * @param words The words of the command entered, first is always some valid command name
+     * @return The task number specified
+     * @throws IllegalArgumentException If the argument(s) supplied in words isn't an integer from 1 to the number of stored tasks
+     */
+    private static int getTaskNumber(String[] words) {
         if (tasks.size() == 0) {
             throw new IllegalArgumentException("☹ OOPS!!! No tasks stored for me to do that");
         }
 
-        Task task;
+        int taskNumber = 0;
+
         try {
-            int taskNumber = (words.length == 1) ? 0 : Integer.parseInt(words[1]);
+            taskNumber = (words.length == 2) ? Integer.parseInt(words[currWordIndex]) : 0;
             if (taskNumber <= 0 || taskNumber > tasks.size()) {
                 throw new IllegalArgumentException();
             }
-            task = tasks.get(taskNumber - 1);
-            tasks.remove(taskNumber - 1);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("☹ OOPS!!! The task number must be from 1 to " + tasks.size());
         }
 
-        sayLines(new String[]{
-                "Noted. I've removed this task:",
-                "  " + task,
-                "Now you have " + tasks.size() + " task" + (tasks.size() == 1 ? "" : "s") + " in the list."
-        });
+        return taskNumber;
     }
 
     /**
@@ -244,6 +221,7 @@ public class Duke {
         String[] words = Arrays.stream(inputScanner.nextLine().strip().split(" ")).toArray(String[]::new);
         while (!(words.length == 1 && words[0].equals("bye"))) {
             if (words.length > 0) {
+                currWordIndex = 1;
                 try {
                     if (words.length == 1 && words[0].equals("list")) {
                         listTasks(); //could put words.length == 1 cases all here
@@ -260,7 +238,7 @@ public class Duke {
                     } else if (words[0].equals("delete")) {
                         deleteTask(words);
                     } else {
-                        sayLines(new String[]{"I'm sorry but I don't know what that means"});
+                        sayLines(new String[]{"I'm sorry, I don't know what that means"});
                     }
                 } catch (IllegalArgumentException e) {
                     sayLines(new String[]{e.getMessage()});
