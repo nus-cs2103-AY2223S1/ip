@@ -12,27 +12,34 @@ import duke.storage.Storage;
 import duke.task.Task;
 
 /**
- * The main class that executes the duke.Duke chatbot.
+ * The main class that executes the Duke chatbot.
  *
  * @author Melissa Anastasia Harijanto
  */
 public class Duke {
     /** List of tasks. */
     protected TaskList tasks;
-
-    protected Storage storage;
-
     /**
-     * duke.Ui that prints statements for the bot.
+     * The location where the bot will write into.
+     */
+    protected Storage storage;
+    /**
+     * Ui that prints statements for the bot.
      */
     protected Ui ui;
 
+    /**
+     * Constructs an instance of the Duke chatbot.
+     */
     public Duke() {
         this.tasks = new TaskList();
         this.storage = new Storage();
         this.ui = new Ui();
     }
 
+    /**
+     * Runs the Duke chatbot.
+     */
     public void run() {
         ui.greet();
 

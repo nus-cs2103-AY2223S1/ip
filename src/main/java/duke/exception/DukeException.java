@@ -7,10 +7,10 @@ package duke.exception;
  */
 public class DukeException extends Exception {
     /** The error message. */
-    String errorMessage;
+    private String errorMessage;
 
     /**
-     * Constructor for duke.exception.DukeException.
+     * Constructs an instance of DukeException.
      *
      * @param errorMessage The error message that will be printed out.
      */

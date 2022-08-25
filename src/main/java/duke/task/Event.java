@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * Class to represent tasks of the type duke.task.Event.
+ * Class to represent tasks of the type Event.
  *
  * @author Melissa Anastasia Harijanto
  */
@@ -9,16 +9,16 @@ public class Event extends Task {
     /** String that represents the venue of the task. */
     protected String at;
 
-    /** Constructor for the duke.task.Event class. */
+    /** Constructor for the Event class. */
     public Event(String taskName, String at) {
         super(taskName);
         this.at = at;
     }
 
     /**
-     * Returns the String representation of the duke.task.Event task.
+     * Returns the String representation of the Event task.
      *
-     * @return the String representation of the duke.task.Event task.
+     * @return the String representation of the Event task.
      */
     @Override
     public String toString() {

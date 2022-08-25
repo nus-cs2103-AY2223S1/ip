@@ -1,5 +1,8 @@
 package duke.processor;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
@@ -12,10 +15,13 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-
+/**
+ * Class that represents a parser to parse the user input.
+ *
+ * @author Melissa Anastasia Harijanto
+ */
 public class Parser {
+    /** Enum class for the available command lines. */
     enum CommandLine {
         BYE,
         MARK,
@@ -24,56 +30,79 @@ public class Parser {
         LIST,
     }
 
+    /** Enum class for the available types of tasks. */
     enum TypeOfTask {
         DEADLINE,
         TODO,
         EVENT,
     }
 
-    public static boolean isTask(String task) {
-        return task.equals("deadline") || task.equals("todo")
-                || task.equals("event");
+    /**
+     * Determines whether the user input is a task.
+     *
+     * @param input The String that the user has inputted.
+     * @return A boolean value; returns true if the input is a task, false otherwise.
+     */
+    public static boolean isTask(String input) {
+        return input.equals("deadline") || input.equals("todo")
+                || input.equals("event");
     }
 
     /**
      * Determines whether a command line inputted by
      * the user is a valid command.
      *
-     * @param command duke.command.Command line that is inputted by the user.
+     * @param input duke.command.Command line that is inputted by the user.
      * @return A boolean value that states whether the command exists or not.
      */
-    public static boolean isCommand(String command) {
-        return command.equals("bye") || command.equals("mark")
-                || command.equals("unmark") || command.equals("delete")
-                || command.equals("list");
+    public static boolean isCommand(String input) {
+        return input.equals("bye") || input.equals("mark")
+                || input.equals("unmark") || input.equals("delete")
+                || input.equals("list");
     }
 
+    /**
+     * Parses the user input if it is categorized as a command.
+     *
+     * @param input The user input.
+     * @return An instance of Command.
+     * @throws DukeException An exception will be thrown if the command is
+     *     not one of the available commands.
+     */
     public static Command parseCommand(String input) throws DukeException {
-            String command = input.split(" ")[0].trim();
-            CommandLine commandLine = CommandLine.valueOf(command.toUpperCase());
+        String command = input.split(" ")[0].trim();
+        CommandLine commandLine = CommandLine.valueOf(command.toUpperCase());
 
-            switch(commandLine) {
-                case BYE:
-                    return new ByeCommand();
-                case MARK:
-                    String taskToBeMarked = input.split(" ")[1];
-                    int taskIndexToBeMarked = Integer.parseInt(taskToBeMarked) - 1;
-                    return new MarkCommand(taskIndexToBeMarked);
-                case DELETE:
-                    String taskToBeDeleted = input.split(" ")[1];
-                    int taskIndexToBeDeleted = Integer.parseInt(taskToBeDeleted) - 1;
-                    return new DeleteCommand(taskIndexToBeDeleted);
-                case UNMARK:
-                    String taskToBeUnmarked = input.split(" ")[1];
-                    int taskIndexToBeUnmarked = Integer.parseInt(taskToBeUnmarked) - 1;
-                    return new UnmarkCommand(taskIndexToBeUnmarked);
-                case LIST:
-                    return new ListCommand();
-                default:
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-            }
+        switch(commandLine) {
+        case BYE:
+            return new ByeCommand();
+        case MARK:
+            String taskToBeMarked = input.split(" ")[1];
+            int taskIndexToBeMarked = Integer.parseInt(taskToBeMarked) - 1;
+            return new MarkCommand(taskIndexToBeMarked);
+        case DELETE:
+            String taskToBeDeleted = input.split(" ")[1];
+            int taskIndexToBeDeleted = Integer.parseInt(taskToBeDeleted) - 1;
+            return new DeleteCommand(taskIndexToBeDeleted);
+        case UNMARK:
+            String taskToBeUnmarked = input.split(" ")[1];
+            int taskIndexToBeUnmarked = Integer.parseInt(taskToBeUnmarked) - 1;
+            return new UnmarkCommand(taskIndexToBeUnmarked);
+        case LIST:
+            return new ListCommand();
+        default:
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        }
     }
 
+    /**
+     * Parses the user input if it is categorized as a task.
+     *
+     * @param input The user input.
+     * @return An instance of Task.
+     * @throws DukeException An exception will be thrown if the task type is
+     *     not one of the available tasks.
+     */
     public static Task parseTask(String input) throws DukeException {
         String type = input.split(" ")[0].trim();
         TypeOfTask typeOfTask = TypeOfTask.valueOf(type.toUpperCase());
@@ -88,6 +117,7 @@ public class Parser {
             } catch (Exception e) {
                 throw new DukeException("☹ OOPS!!! Please specify what you want to do!");
             }
+            break;
         case EVENT:
             try {
                 String taskName = input.substring(input.indexOf(" ") + 1, input.indexOf("/") - 1);
@@ -107,10 +137,9 @@ public class Parser {
             } catch (Exception e) {
                 throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
             }
-
         default:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-
+        return null;
     }
 }

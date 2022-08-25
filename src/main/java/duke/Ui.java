@@ -12,14 +12,14 @@ import duke.task.Task;
  */
 public class Ui {
     /** String that represents a line. */
-    protected final String LINE = "____________________________________________________________";
+    protected final String line = "____________________________________________________________";
 
     /**
      * Greets the user.
      */
     public void greet() {
         String greetings = "\nHello! I'm Duke\n" + "What can I do for you?\n";
-        System.out.println(LINE + greetings + LINE);
+        System.out.println(line + greetings + line);
     }
 
     /**
@@ -29,11 +29,11 @@ public class Ui {
      * @param amountOfTasks The total amount of tasks that has been added by the user.
      */
     public void addTask(Task task, int amountOfTasks) {
-        System.out.println(LINE);
+        System.out.println(line);
         System.out.println("Got it. I've added this task:");
         System.out.println(task.toString());
         System.out.println("Now you have " + amountOfTasks + " tasks in the list.");
-        System.out.println(LINE);
+        System.out.println(line);
 
     }
 
@@ -43,7 +43,7 @@ public class Ui {
      * @param tasks The list of tasks to be printed.
      */
     public void list(TaskList tasks) {
-        System.out.println(LINE);
+        System.out.println(line);
         System.out.println("Here are the tasks in your list:");
         int count = 1;
 
@@ -54,7 +54,7 @@ public class Ui {
             count++;
         }
 
-        System.out.println(LINE);
+        System.out.println(line);
     }
 
     /**
@@ -62,13 +62,13 @@ public class Ui {
      *
      * @param task The task that is marked as undone.
      */
-    public void mark(Task task){
+    public void mark(Task task) {
         String taskName = task.toString();
 
-        System.out.println(LINE);
+        System.out.println(line);
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskName);
-        System.out.println(LINE);
+        System.out.println(line);
     }
 
     /**
@@ -76,30 +76,30 @@ public class Ui {
      *
      * @param task The task that is marked as undone.
      */
-    public void unmark(Task task){
+    public void unmark(Task task) {
         String taskName = task.toString();
 
-        System.out.println(LINE);
+        System.out.println(line);
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(taskName);
-        System.out.println(LINE);
+        System.out.println(line);
     }
 
     /**
      * Prints a message when the bot exits.
      */
-    public void exit(){
+    public void exit() {
         String exitLine = "Bye. Hope to see you again soon!";
-        System.out.println(LINE + "\n" + exitLine + "\n" + LINE);
+        System.out.println(line + "\n" + exitLine + "\n" + line);
     }
 
     /**
      * Prints a message when a user inputs a command that does not exist.
      */
-    public void commandDoesNotExist(){
-        System.out.println(LINE);
+    public void commandDoesNotExist() {
+        System.out.println(line);
         System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-        System.out.println(LINE);
+        System.out.println(line);
     }
 
     /**
@@ -109,11 +109,11 @@ public class Ui {
      * @param amountOfTasks The total amount of tasks that the user has left.
      */
     public void delete(Task task, int amountOfTasks) {
-        System.out.println(LINE);
+        System.out.println(line);
         System.out.println("Noted. I've removed this task:");
         System.out.println(task.toString());
         System.out.println("Now you have " + amountOfTasks + " tasks in the list.");
-        System.out.println(LINE);
+        System.out.println(line);
     }
 
     /**
@@ -122,8 +122,8 @@ public class Ui {
      * @param e The exception that is to be printed.
      */
     public void errorMessage(DukeException e) {
-        System.out.println(LINE);
+        System.out.println(line);
         System.out.println(e.toString());
-        System.out.println(LINE);
+        System.out.println(line);
     }
 }

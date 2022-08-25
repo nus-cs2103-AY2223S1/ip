@@ -1,7 +1,7 @@
 package duke.task;
 
 /**
- * Class to represent duke.task.Task (not to be instantiated, hence abstract).
+ * Class to represent Task (not to be instantiated, hence abstract).
  *
  * @author Melissa Anastasia Harijanto
  */
@@ -13,7 +13,7 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for the duke.task.Task class.
+     * Constructor for the Task class.
      *
      * @param taskName The name of the task.
      */
