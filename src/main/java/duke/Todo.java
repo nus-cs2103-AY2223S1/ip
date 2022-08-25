@@ -7,7 +7,7 @@ public class Todo extends Task {
     }
 
     public String getStorageString() {
-        return "T" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription();
+        return "T" + "|" + (isDone ? "1" : "0") + "|" + this.getDescription();
     }
 
     @Override

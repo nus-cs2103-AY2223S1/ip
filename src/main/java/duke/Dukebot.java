@@ -8,8 +8,12 @@ public class Dukebot {
     private Parser parser;
     private Ui ui;
 
+    public Dukebot(Ui ui) {
+        this.ui = ui;
+        this.handleStartup();
+    }
+
     private void handleStartup() {
-        this.ui = new Ui();
         this.parser = new Parser();
         ui.display(Messages.STARTUP);
         try {
@@ -20,7 +24,6 @@ public class Dukebot {
             ui.display(Messages.LOAD_ERROR);
             this.taskList = new TaskList();
         }
-
     }
 
     private void handleBye() {
@@ -61,58 +64,58 @@ public class Dukebot {
         Todo t = parser.parseTodo(inputArgs);
         taskList.add(t);
         ui.display(Messages.TASK_ADDED);
-        ui.display(this.taskList.get(this.taskList.getSize() - 1).toString());
-        ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
+        ui.display(taskList.get(taskList.getSize() - 1).toString());
+        ui.display(String.format(Messages.TASK_COUNT, taskList.getSize()));
     }
 
     private void handleDeadline(String[] inputArgs) throws DukeException {
         Deadline d = parser.parseDeadline(inputArgs);
         taskList.add(d);
         ui.display(Messages.TASK_ADDED);
-        ui.display(this.taskList.get(this.taskList.getSize() - 1).toString());
-        ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
+        ui.display(taskList.get(taskList.getSize() - 1).toString());
+        ui.display(String.format(Messages.TASK_COUNT, taskList.getSize()));
     }
 
     private void handleEvent(String[] inputArgs) throws DukeException {
         Event e = parser.parseEvent(inputArgs);
         taskList.add(e);
         ui.display(Messages.TASK_ADDED);
-        ui.display(this.taskList.get(this.taskList.getSize() - 1).toString());
-        ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
+        ui.display(taskList.get(taskList.getSize() - 1).toString());
+        ui.display(String.format(Messages.TASK_COUNT, taskList.getSize()));
     }
 
-    protected void handleInput(String input) {
+    public void handleInput(String input) {
         String[] inputArgs = input.split("\\s+", 2);
         String keyWord = inputArgs[0];
         try {
             switch (keyWord) {
             case "bye":
-                this.handleBye();
+                handleBye();
             case "list":
-                this.handleList();
+                handleList();
                 break;
             case "remove":
-                this.handleRemove(inputArgs);
+                handleRemove(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "mark":
-                this.handleMark(inputArgs);
+                handleMark(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "unmark":
-                this.handleUnmark(inputArgs);
+                handleUnmark(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "todo":
-                this.handleTodo(inputArgs);
+                handleTodo(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "deadline":
-                this.handleDeadline(inputArgs);
+                handleDeadline(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "event":
-                this.handleEvent(inputArgs);
+                handleEvent(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             default:
@@ -126,9 +129,5 @@ public class Dukebot {
 
     }
 
-
-    public Dukebot() {
-        this.handleStartup();
-    }
 
 }

@@ -1,7 +1,7 @@
 package duke;
 
 public class Task {
-    protected String description;
+    private String description;
     protected boolean isDone;
 
     public Task(String description) {
@@ -14,11 +14,11 @@ public class Task {
     }
 
     public void markDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public void markUndone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     public String getStatusIcon() {
@@ -26,11 +26,11 @@ public class Task {
     }
 
     public String getStorageString() {
-        return " " + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription();
+        return " " + "|" + (isDone ? "1" : "0") + "|" + getDescription();
     }
 
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+        return "[" + getStatusIcon() + "] " + getDescription();
     }
 }

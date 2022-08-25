@@ -1,7 +1,7 @@
 package duke;
 
 public class Event extends Task {
-    protected String at;
+    private String at;
 
     public Event(String description, String at) {
         super(description);
@@ -13,7 +13,7 @@ public class Event extends Task {
     }
 
     public String getStorageString() {
-        return "E" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.at;
+        return "E" + "|" + (isDone ? "1" : "0") + "|" + getDescription() + "|" + at;
     }
 
     @Override

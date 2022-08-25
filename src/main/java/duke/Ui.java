@@ -5,7 +5,6 @@ import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Ui {
-    private static final String LS = System.lineSeparator();
 
     private final Scanner in;
     private final PrintStream out;
@@ -20,7 +19,6 @@ public class Ui {
     }
 
     public String getInput() {
-        out.print("Enter command: ");
         return in.nextLine();
     }
 

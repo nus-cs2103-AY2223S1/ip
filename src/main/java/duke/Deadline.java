@@ -13,7 +13,7 @@ public class Deadline extends Task {
         try {
             this.localDateTime = LocalDateTime.parse(by);
         } catch (DateTimeParseException ignored) {
-
+            // Ignore usage of localDateTime if input is not formatted as one
         }
         this.by = by;
     }
@@ -23,7 +23,7 @@ public class Deadline extends Task {
     }
 
     public String getStorageString() {
-        return "D" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.by;
+        return "D" + "|" + (isDone ? "1" : "0") + "|" + getDescription() + "|" + by;
     }
 
     @Override

@@ -10,39 +10,39 @@ public class TaskList {
     }
 
     public void add(Task t) {
-        this.taskList.add(t);
+        taskList.add(t);
     }
 
     public void remove(int index) {
         if (index > taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        this.taskList.remove(index);
+        taskList.remove(index);
     }
 
     public int getSize() {
-        return this.taskList.size();
+        return taskList.size();
     }
 
     public Task get(int index) {
         if (index > taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        return this.taskList.get(index);
+        return taskList.get(index);
     }
 
     public void mark(int index) {
         if (index > taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        this.taskList.get(index).markDone();
+        taskList.get(index).markDone();
     }
 
     public void unmark(int index) {
         if (index > taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        this.taskList.get(index).markUndone();
+        taskList.get(index).markUndone();
     }
 
     @Override
