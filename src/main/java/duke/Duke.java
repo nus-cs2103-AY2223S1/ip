@@ -26,6 +26,9 @@ public class Duke {
     private Parser parser;
 
 
+    /**
+     * Constructs a new Duke.
+     */
     public Duke() {
         this.hasEnded = false;
         this.ui = new Ui();
@@ -39,6 +42,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the Duke task manager.
+     */
     public void start() {
         Scanner sc = new Scanner(System.in);
         this.ui.welcome();

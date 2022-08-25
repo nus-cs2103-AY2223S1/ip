@@ -3,9 +3,19 @@ package duke.component;
 import duke.command.*;
 import duke.exception.DukeException;
 
-
+/**
+ * Represents a parser that deals with the user command.
+ */
 public class Parser {
 
+    /**
+     * Returns a Command based on the user command.
+     *
+     * @param message User command.
+     * @param tasks List of all tasks.
+     * @return Corresponding Command based on the user command.
+     * @throws DukeException If there is no matching Command based on the user command.
+     */
     public Command parse(String message, TaskList tasks) throws DukeException {
         String[] splitMessage = message.split("\\s+", 2);
         CommandType commandType = CommandType.parse(splitMessage[0]);
