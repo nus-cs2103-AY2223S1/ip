@@ -1,5 +1,8 @@
 package aRC;
 
+/**
+ * Encapsulates an exception that is thrown in the Duke program
+ */
 public class DukeException extends Exception {
     /**
      * Constructor for aRC.DukeException

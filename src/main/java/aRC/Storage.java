@@ -9,13 +9,24 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Encapsulates a Storage that saves tasks
+ */
 public class Storage {
     private File dataFile;
 
+    /**
+     * Constructor for Storage
+     * @param relativePath Relative path of txt datafile
+     */
     public Storage(String relativePath) {
         this.dataFile = new File(relativePath);
     }
 
+    /**
+     * Loads tasks from the datafile to TaskList
+     * @return An ArrayList containing tasks read from the datafile
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> arrayList = new ArrayList<>();
 
@@ -61,6 +72,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the tasks in TaskList on the datafile
+     * @param taskList The TaskList whose data is to be saved
+     * @throws DukeException Throws a aRC.DukeException specific to this program
+     */
     public void save(TaskList taskList) throws DukeException {
         ArrayList<String> newData = new ArrayList<>();
 
