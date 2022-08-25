@@ -1,6 +1,6 @@
-package Storage;
+package duke.Storage;
 
-import Tasks.Task;
+import duke.Tasks.Task;
 
 import java.util.ArrayList;
 
@@ -40,8 +40,8 @@ public class TaskList {
     }
 
     /**
-     * Returns a ArrayList of Tasks.Task for iteration.
-     * @return A ArrayList of Tasks.Task
+     * Returns a ArrayList of duke.Tasks.Task for iteration.
+     * @return A ArrayList of duke.Tasks.Task
      */
     public ArrayList<Task> getList() {
         return this.taskList;

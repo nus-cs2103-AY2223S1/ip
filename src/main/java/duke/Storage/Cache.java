@@ -1,4 +1,4 @@
-package Storage;
+package duke.Storage;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,21 +10,21 @@ import java.nio.file.Paths;
 
 import java.io.IOException;
 import java.io.FileNotFoundException;
-import DukeException.DukeException;
-import DukeException.TypeNotExistException;
-import Tasks.Task;
+import duke.DukeException.DukeException;
+import duke.DukeException.TypeNotExistException;
+import duke.Tasks.Task;
 
-import Ui;
+import duke.Ui;
 
 /**
- * A class represents a Storage.
+ * A class represents a duke.Storage.
  */
 public class Cache {
     private final String filePath;
 
     /**
-     * Constructs a Storage.
-     * @param path The file path specified by the Duke bot.
+     * Constructs a duke.Storage.
+     * @param path The file path specified by the duke.Duke bot.
      */
     public Cache(String path) {
         filePath = path;
@@ -80,7 +80,7 @@ public class Cache {
                 isDone = commands[1].trim().equals("1") ? true : false;
                 description = commands[2].trim();
 
-                // sync task using Ui functions
+                // sync task using duke.Ui functions
                 if (type.equals("T")) {
                     taskList.add(Ui.syncToDo(description, isDone));
                 } else if (type.equals("D")) {
@@ -100,8 +100,8 @@ public class Cache {
     }
 
     /**
-     * Updates the records in cache file once for all before closing Duke.
-     * @param taskList A Tasks.Task list to be recorded.
+     * Updates the records in cache file once for all before closing duke.Duke.
+     * @param taskList A duke.Tasks.Task list to be recorded.
      */
     public void update(TaskList taskList) throws DukeException {
         try {

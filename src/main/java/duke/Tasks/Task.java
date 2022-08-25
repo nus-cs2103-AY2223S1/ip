@@ -1,6 +1,6 @@
-package Tasks;
+package duke.Tasks;
 
-import DukeException.DateTimeFormatException;
+import duke.DukeException.DateTimeFormatException;
 
 import java.lang.StringBuilder;
 
@@ -20,7 +20,7 @@ public class Task {
     /**
      * Helper function to call while adding a new task.
      * @param name the new task description.
-     * @return the Tasks.Task class being created.
+     * @return the duke.Tasks.Task class being created.
      */
     public static Task addTask(String name) throws DateTimeFormatException {
         Task newTask = new Task(name);

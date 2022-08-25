@@ -1,4 +1,4 @@
-package DukeException;
+package duke.DukeException;
 
 public class NoSuchCommandException extends DukeException{
     /**

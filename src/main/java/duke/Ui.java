@@ -1,12 +1,14 @@
-import DukeException.DukeException;
+package duke;
+
+import duke.DukeException.DukeException;
 import java.io.FileNotFoundException;
-import DukeException.DateTimeFormatException;
-import Storage.Cache;
-import Storage.TaskList;
-import Tasks.Deadline;
-import Tasks.Event;
-import Tasks.Task;
-import Tasks.ToDo;
+import duke.DukeException.DateTimeFormatException;
+import duke.Storage.Cache;
+import duke.Storage.TaskList;
+import duke.Tasks.Deadline;
+import duke.Tasks.Event;
+import duke.Tasks.Task;
+import duke.Tasks.ToDo;
 
 import java.io.File;
 
@@ -16,7 +18,7 @@ public class Ui {
      */
     public static void greet() {
         printLine();
-        System.out.println("     Hello! I'm Duke");
+        System.out.println("     Hello! I'm Duke.");
         System.out.println("     What can I do for you?");
         printLine();
     }
@@ -30,9 +32,9 @@ public class Ui {
     }
 
     /**
-     * Add a new Tasks.Deadline.
+     * Add a new duke.Tasks.Deadline.
      * @param str the description of ddl + by when
-     * @return a newly created Tasks.Deadline class for storage.
+     * @return a newly created duke.Tasks.Deadline class for storage.
      */
     public static Deadline addDeadline(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
@@ -47,9 +49,9 @@ public class Ui {
     }
 
     /**
-     * Adds a new Tasks.Event.
+     * Adds a new duke.Tasks.Event.
      * @param str The description of event + at what time
-     * @return A newly created Tasks.Event class for storage.
+     * @return A newly created duke.Tasks.Event class for storage.
      */
     public static Event addEvent(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
@@ -64,9 +66,9 @@ public class Ui {
     }
 
     /**
-     * Adds a new Tasks.ToDo task.
+     * Adds a new duke.Tasks.ToDo task.
      * @param str The description of to do task.
-     * @return A newly created Tasks.ToDo class for storage.
+     * @return A newly created duke.Tasks.ToDo class for storage.
      */
     public static ToDo addToDo(String str) throws DateTimeFormatException {
         printLine();
@@ -115,7 +117,7 @@ public class Ui {
 
     /**
      * Deletes a task from the list and prints out the task.
-     * @param task The Tasks.Task object which the user wants to delete
+     * @param task The duke.Tasks.Task object which the user wants to delete
      */
     public static void delete(Task task) throws DateTimeFormatException {
         printLine();
@@ -126,10 +128,10 @@ public class Ui {
     }
 
     /**
-     * Syncs a Tasks.Deadline from cache file.
+     * Syncs a duke.Tasks.Deadline from cache file.
      * @param str The description of ddl + by when.
      * @param isDone A boolean indicator to show if the task is marked done.
-     * @return A newly created Tasks.Deadline class for storage.
+     * @return A newly created duke.Tasks.Deadline class for storage.
      */
     public static Deadline syncDeadline(String str, boolean isDone) throws DateTimeFormatException {
         String name = str.split(" \\| ",2)[0];
@@ -143,10 +145,10 @@ public class Ui {
     }
 
     /**
-     * Syncs a Tasks.Event from cache file.
-     * @param str The description of Tasks.Event + at what time.
+     * Syncs a duke.Tasks.Event from cache file.
+     * @param str The description of duke.Tasks.Event + at what time.
      * @param isDone A boolean indicator to show if the task is marked done.
-     * @return A newly created Tasks.Event class for storage.
+     * @return A newly created duke.Tasks.Event class for storage.
      */
     public static Event syncEvent(String str, boolean isDone) throws DateTimeFormatException {
         String name = str.split(" \\| ",2)[0];

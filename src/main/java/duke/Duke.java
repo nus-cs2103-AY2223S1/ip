@@ -1,12 +1,14 @@
+package duke;
+
 import java.io.IOException;
 import java.util.Scanner;
 
-import DukeException.*;
-import Parser.CommandType;
-import Parser.Parser;
-import Storage.Cache;
-import Storage.TaskList;
-import Tasks.Task;
+import duke.DukeException.*;
+import duke.Parser.CommandType;
+import duke.Parser.Parser;
+import duke.Storage.Cache;
+import duke.Storage.TaskList;
+import duke.Tasks.Task;
 
 public class Duke {
     public static TaskList taskList;
@@ -29,7 +31,7 @@ public class Duke {
     }
 
     /**
-     * Main Ui function:
+     * Main duke.Ui function:
      * 1. Greetings on opening.
      * 2. bye: to exit.
      * 3. list: to print task list.

@@ -1,6 +1,6 @@
-package Parser;
+package duke.Parser;
 
-import DukeException.DateTimeFormatException;
+import duke.DukeException.DateTimeFormatException;
 
 import java.lang.NumberFormatException;
 import java.time.DateTimeException;

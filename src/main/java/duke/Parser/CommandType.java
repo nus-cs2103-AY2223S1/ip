@@ -1,4 +1,4 @@
-package Parser;
+package duke.Parser;
 
 import java.util.HashMap;
 

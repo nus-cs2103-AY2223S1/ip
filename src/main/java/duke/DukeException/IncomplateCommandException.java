@@ -1,4 +1,4 @@
-package DukeException;
+package duke.DukeException;
 
 public class IncomplateCommandException extends DukeException{
     /**

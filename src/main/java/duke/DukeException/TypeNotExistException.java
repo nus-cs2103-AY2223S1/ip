@@ -1,4 +1,4 @@
-package DukeException;
+package duke.DukeException;
 
 public class TypeNotExistException extends DukeException{
     /**
