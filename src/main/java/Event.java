@@ -1,14 +1,17 @@
-public class Event extends Task {
-    protected String at;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+class Event extends Task {
+    protected formatDate date;
 
     public Event(String description, String at) {
         super(description);
-        this.at = at;
+        this.date = new formatDate(at);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: "+ at + ")";
+        return "[E]" + super.toString() + "(at: "+ this.date + ")";
     }
 
     @Override
