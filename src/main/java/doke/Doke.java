@@ -2,10 +2,18 @@ package doke;
 
 import java.util.*;
 
+/**
+ * A class to represent the Doke program
+ */
 public class Doke {
 
     public static final String dokeFilePath = "src/main/java/data/doke.txt";
 
+    /**
+     * A main method which runs the Doke program.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
 
         Ui ui = new Ui();

@@ -2,36 +2,70 @@ package doke;
 
 import java.time.LocalDate;
 
+/**
+ * Represent the abstract class Task
+ */
 public abstract class Task {
 
     private String desc;
     private boolean isDone;
 
-    //constructor for Task
-    public Task(String desc) {
+    /**
+     * a constructor for Task class.
+     *
+     * @param desc description for the task
+     */
+    Task(String desc) {
         this.desc = desc;
         isDone = false;
     }
 
+    /**
+     * Returns a String representing the type of the task.
+     *
+     * @return Task type
+     */
     public abstract String getType();
 
-    //a method to get Status Icon of the task
+    /**
+     * Returns a String representation of the done status of the task.
+     *
+     * @return either "X" if the task is marked done or " " otherwise.
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    /**
+     * Returns an int to signify if the task is done or not.
+     *
+     * @return 1 if the task is marked done or 0 otherwise.
+     */
     public int getStatus() {
         return isDone ? 1 : 0;
     }
 
-    //a method to get the description of the task
+    /**
+     * Returns a String of the description of the task.
+     *
+     * @return a description of the task.
+     */
     public String getDesc() {
         return desc;
     }
 
+    /**
+     * Returns a LocalDate object related to the task.
+     *
+     * @return a LocalDate related to the task.
+     */
     public abstract LocalDate getTime();
 
-    //a method to mark a task done
+    /**
+     * Marks the task as done(isDone = true).
+     *
+     * @throws DokeException
+     */
     public void markDone() throws DokeException {
         if (isDone) {
             throw new DokeException();
@@ -39,7 +73,11 @@ public abstract class Task {
         isDone = true;
     }
 
-    //a method to mark a task not done
+    /**
+     * Marks the task as done(isDone = false).
+     *
+     * @throws DokeException
+     */
     public void markNotDone() throws DokeException{
         if (!isDone) {
             throw new DokeException();
@@ -47,6 +85,11 @@ public abstract class Task {
         isDone = false;
     }
 
+    /**
+     * Returns a string representation of the Task object.
+     *
+     * @return a string representation of the Task object.
+     */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "]   " + desc;

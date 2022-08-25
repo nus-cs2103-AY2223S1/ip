@@ -1,5 +1,8 @@
 package doke;
 
+/**
+ * Represent an Ui to interact with user.
+ */
 public class Ui {
 
     private static String MESSAGE_HELLO = "_________________________ \n" + "    Hi, my name is Doke" +
@@ -9,6 +12,11 @@ public class Ui {
     private static String MESSAGE_BYE ="_________________________ \n" + "    Bye bye! \n" +
             "_________________________ \n";
 
+    /**
+     * A method to print out the message to the terminal
+     *
+     * @param message
+     */
     public void printOut(String message){
         if (message.equals("hello")) {
             System.out.println(MESSAGE_HELLO);

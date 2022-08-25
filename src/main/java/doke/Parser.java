@@ -2,8 +2,22 @@ package doke;
 
 import java.io.IOException;
 
+/**
+ * A class to represent the making sense of the inputted text.
+ */
 public class Parser {
 
+    /**
+     * Return a boolean to signify whether the doke program should end or not.
+     * It processes the string to see if it is a valid create and add(todo, event, and deadline),
+     * delete, mark, unmark, bye, list or otherwise, invalid command.
+     *
+     * @param taskList the taskList to be modified when needed.
+     * @param storage the storage to be modified when needed.
+     * @param string the text to be processed.
+     * @param ui to print out messages
+     * @return boolean to signify whether the doke program should end or not.
+     */
     public boolean processString(TaskList taskList, Storage storage, String string, Ui ui) {
 
         //handle bye and list action
