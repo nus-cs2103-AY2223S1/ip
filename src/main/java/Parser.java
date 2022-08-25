@@ -3,6 +3,90 @@ import java.time.format.DateTimeFormatter;
 
 public class Parser {
 
+    public static Command parse(String fullCommand) {
+        if (fullCommand.equals("bye")) {
+            // when user enters bye
+            // exit programme
+            return new ExitCommand();
+        }
+
+        else if (fullCommand.equals("list")) {
+            // when user enters list
+            // display the current list
+            return new ListCommand();
+        }
+
+        else if (fullCommand.startsWith("mark")) {
+            // when user enters mark and a number
+            // mark the corresponding task as done
+            if (fullCommand.split(" ", 2).length == 1) {
+                throw new DukeException("Please specify which task to mark.");
+            }
+            int index = Integer.parseInt(fullCommand.split(" ", 2)[1]) - 1;
+            return new MarkCommand(index);
+        }
+
+        else if (fullCommand.startsWith("unmark")) {
+            // when user enters unmark and a number
+            // mark the corresponding task as not done
+            if (fullCommand.split(" ", 2).length == 1) {
+                throw new DukeException("Please specify which task to unmark.");
+            }
+            int index = Integer.parseInt(fullCommand.split(" ", 2)[1]) - 1;
+            return new UnmarkCommand(index);
+        }
+
+        else if (fullCommand.startsWith("delete")) {
+            // when user enters delete and a number
+            // delete the corresponding task from the list
+            if (fullCommand.split(" ", 2).length == 1) {
+                throw new DukeException("Please specify which task to delete.");
+            }
+            int index = Integer.parseInt(fullCommand.split(" ", 2)[1]) - 1;
+            return new DeleteCommand(index);
+        }
+
+        else {
+            // add user input to the list
+            // check what type of task it is
+            if (fullCommand.startsWith("todo")) {
+                // the task is a todo
+                if (fullCommand.split(" ", 2).length == 1) {
+                    throw new DukeException("The description of a todo cannot be empty.");
+                }
+                String description = fullCommand.split(" ", 2)[1].split("/")[0].trim();
+                ToDo todo = new ToDo(description);
+                return new AddCommand(todo);
+            }
+
+            else if (fullCommand.startsWith("deadline")) {
+                // the task is a deadline
+                if (fullCommand.split(" ", 2).length == 1) {
+                    throw new DukeException("The description of a deadline cannot be empty.");
+                }
+                String description = fullCommand.split(" ", 2)[1].split("/")[0].trim();
+                String by = fullCommand.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+                Deadline deadline = new Deadline(description, by);
+                return new AddCommand(deadline);
+            }
+
+            else if (fullCommand.startsWith("event")) {
+                // the task is an event
+                if (fullCommand.split(" ", 2).length == 1) {
+                    throw new DukeException("The description of an event cannot be empty.");
+                }
+                String description = fullCommand.split(" ", 2)[1].split("/")[0].trim();
+                String at = fullCommand.split(" ", 2)[1].split("/")[1].split(" ", 2)[1];
+                Event event = new Event(description, at);
+                return new AddCommand(event);
+            }
+
+            else {
+                throw new DukeException("I'm sorry, but I don't quite understand what that means.");
+            }
+        }
+    }
+
     public static Task toTask(String taskRecord) {
         if (taskRecord.startsWith("T")) {
             // the task is a todo
@@ -10,6 +94,7 @@ public class Parser {
             int status = Integer.parseInt(taskRecord.split("\\|", 3)[1].trim());
             return new ToDo(description, checkStatus(status));
         }
+
         else if (taskRecord.startsWith("D")) {
             // the task is a deadline
             String description = taskRecord.split("\\|", 4)[2].trim();
@@ -17,6 +102,7 @@ public class Parser {
             String by = taskRecord.split("\\|", 4)[3].trim();
             return new Deadline(description, checkStatus(status), parseDate(by));
         }
+
         else {
             // the task is an event
             String description = taskRecord.split("\\|", 4)[2].trim();

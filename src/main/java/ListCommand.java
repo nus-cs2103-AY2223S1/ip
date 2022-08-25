@@ -1,12 +1,11 @@
-public class ExitCommand extends Command {
-
+public class ListCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.exitMessage();
+        ui.listMessage(tasks);
     }
 
     @Override
     public boolean isExit() {
-        return true;
+        return false;
     }
 }
