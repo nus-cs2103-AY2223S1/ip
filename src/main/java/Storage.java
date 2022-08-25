@@ -16,12 +16,17 @@ public class Storage {
    Once the buffer is filled or the writer is closed, the whole characters in the buffer are
    written to the disk.
 
-    Hence, the number of communication to the disk is reduced.
-*/
-    public void writeToFile(Task task) throws IOException {
+   Hence, the number of communication to the disk is reduced.
+   */
+
+    public void deleteFileContent() throws IOException {
+        new FileWriter(this.filePath, false).close();
+    }
+
+    public void appendToFile(Task task) throws IOException {
         String textToAdd = task.formatTaskBeforeSave();
         Writer bufferedFileWriter = new BufferedWriter(new FileWriter(this.filePath, true)); // FileWriter(String fileName, boolean append)
-        bufferedFileWriter.append(textToAdd + "\n");
+        bufferedFileWriter.append(textToAdd).append("\n");
         bufferedFileWriter.close();
     }
 

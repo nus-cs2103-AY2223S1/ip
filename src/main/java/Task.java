@@ -95,7 +95,7 @@ public class Task {
             tag = ((ToDo) this).tag;
         }
 
-        String taskToString = tag + " | " + isTaskDone + " | " + this.description + " | " + this.due;
+        String taskToString = tag + " | " + isTaskDone + " | " + this.description + "| " + this.due;
         return taskToString;
     }
 

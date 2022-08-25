@@ -54,6 +54,12 @@ public class Pixel {
                     if ((indexToChange > 0) && (indexToChange < 100)) {
                         inputTasks.get(indexToChange - 1).markAsDone();
                     }
+
+                    storage.deleteFileContent();
+                    for (Task task : inputTasks) {
+                        storage.appendToFile(task);
+                    }
+
                     System.out.println(" Nice! I've marked this task as done:");
                     System.out.println(inputTasks.get(indexToChange - 1));
                     // run();
@@ -67,6 +73,12 @@ public class Pixel {
                     if ((indexToChange > 0) && (indexToChange < 100)) {
                         inputTasks.get(indexToChange - 1).markAsNotDone();
                     }
+
+                    storage.deleteFileContent();
+                    for (Task task : inputTasks) {
+                        storage.appendToFile(task);
+                    }
+
                     System.out.println("OK, I've marked this task as not done yet:");
                     System.out.println(inputTasks.get(indexToChange - 1));
                     // run();
@@ -106,6 +118,12 @@ public class Pixel {
                                 inputTasks.set(i, inputTasks.get(i + 1));
                             }
                         }
+
+                        storage.deleteFileContent();
+                        for (Task task : inputTasks) {
+                            storage.appendToFile(task);
+                        }
+
                         count -= 1;
                         System.out.println("Now you have " + count + " tasks in the list.");
                     }
@@ -133,7 +151,7 @@ public class Pixel {
 
             } catch (IOException e) {
                 System.out.println(e);
-                System.out.println("Caught IO exception!");
+                System.out.println("Caught IO exception! Please ensure that the file address provided is valid");
 
             } finally {
                 // clean up
@@ -191,7 +209,16 @@ public class Pixel {
             }
 
             inputTasks.add(count, newTask);
-            storage.writeToFile(newTask); // whenever a new task is added, it is written to the file
+
+            // Not so efficient method
+            // first delete existing content in old file
+            storage.deleteFileContent();
+
+            // run through all the files in the list and update pixel.txt accordingly
+            for (Task task : inputTasks) {
+                storage.appendToFile(task);
+            }
+
             count += 1;
             System.out.println("Got it. I've added this task:");
             System.out.println(newTask);
