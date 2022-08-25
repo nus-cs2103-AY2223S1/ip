@@ -45,19 +45,26 @@ public class DukeHandler {
                 storage.saveTask(tasks);
             }
             else if (inputParts.get(0).equals("deadline")) {
-                String[] deadlineParts = inputParts.get(1).split("/by", 2);
+                String[] deadlineParts = inputParts.get(1).split(" /by ", 2);
                 if (deadlineParts.length < 2) {
                     new Deadline(deadlineParts[0], deadlineParts[0], false);
                 }
-                Deadline deadlineTask = new Deadline(deadlineParts[0], deadlineParts[1], false);
+
+                String[] timeParts = deadlineParts[1].split(" ", 2);
+                String deadlineDate =(timeParts.length) < 2 ? deadlineParts[1]
+                        + " 00:00" : deadlineParts[1];
+                Deadline deadlineTask = new Deadline(deadlineParts[0], deadlineDate, false);
                 tasks.addTask(deadlineTask);
                 storage.saveTask(tasks);
             } else if (inputParts.get(0).equals("event")) {
-                String[] eventParts = inputParts.get(1).split("/at", 2);
+                String[] eventParts = inputParts.get(1).split(" /at ", 2);
                 if (eventParts.length < 2) {
                     new Event(eventParts[0], eventParts[0], false);
                 }
-                Event newEvent = new Event(eventParts[0], eventParts[1], false);
+                String[] timeParts = eventParts[1].split(" ", 2);
+                String eventDate =(timeParts.length) < 2 ? eventParts[1]
+                        + " 00:00" : eventParts[1];
+                Event newEvent = new Event(eventParts[0], eventDate, false);
                 tasks.addTask(newEvent);
                 storage.saveTask(tasks);
             } else {

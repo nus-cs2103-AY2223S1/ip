@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Deadline class inherits from Task
  * Deadline objects are tasks with deadlines
@@ -5,7 +8,7 @@
  */
 
 public class Deadline extends Task {
-    protected String deadline;
+    protected LocalDateTime deadline;
 
     public Deadline(String description, String deadline, boolean done) throws DukeException{
         super(description, done);
@@ -15,15 +18,19 @@ public class Deadline extends Task {
         if (deadline.equals("")) {
             throw new DukeException("☹ OOPS!!! The deadline of a deadline cannot be empty.");
         }
-        this.deadline = deadline;
+        this.deadline = new DukeDate().convertToDate(deadline);
     }
 
-    public void setDeadline(String deadline) {
-        this.deadline = deadline;
+    /**
+     * Sets a new deadline for the task
+     * @param newDeadline new deadline for Event
+     */
+    public void setDeadline(String newDeadline) {
+        this.deadline = new DukeDate().convertToDate(newDeadline);
     }
 
     public String getDeadline() {
-        return this.deadline;
+        return this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
     }
 
     @Override
@@ -40,6 +47,7 @@ public class Deadline extends Task {
     };
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by:" + this.deadline + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return "[D]" + super.toString() + " (by:" + this.deadline.format(formatter) + ")";
     }
 }
