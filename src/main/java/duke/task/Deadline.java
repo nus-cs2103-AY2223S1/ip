@@ -11,7 +11,7 @@ public class Deadline extends Task {
     private static final String DEADLINE_REP = "D";
     protected LocalDate deadline;
 
-    public Deadline(String content, String deadline) {
+    public Deadline(String content, String deadline) throws DukeException {
         super(content);
         try {
             this.deadline = LocalDate.parse(deadline);

@@ -11,7 +11,7 @@ public class Event extends Task {
     public static final String EVENT_REP = "E";
     protected LocalDate time;
 
-    public Event(String content, String time) {
+    public Event(String content, String time) throws DukeException {
         super(content);
         try {
             this.time = LocalDate.parse(time);
