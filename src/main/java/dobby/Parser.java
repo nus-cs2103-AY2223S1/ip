@@ -1,20 +1,33 @@
 package dobby;
 
 import dobby.commands.*;
-import dobby.tasks.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Class that deals with understanding user commands.
+ */
 public class Parser {
 
-    //method for interpreting User Input
+    /**
+     * Parses the user input and returns the task description of input
+     *
+     * @param rest The user input
+     * @return String of task description
+     */
     public static String getDesc(String rest) {
         int endIndex = rest.indexOf("/") - 1;
         return rest.substring(0, endIndex);
     }
 
+    /**
+     * Parses the user input and returns the task date of input.
+     *
+     * @param rest The user input
+     * @return String of task date
+     */
     public static String getDate(String rest) {
         String dateFormatted = "";
         try {
@@ -31,10 +44,22 @@ public class Parser {
         return "wrongDateFormat";
     }
 
+    /**
+     * Parses the user input and returns the user's command.
+     *
+     * @param task The user input
+     * @return String of command of user's input
+     */
     public static String getCmd(String task) {
         return task.split(" ")[0];
     }
 
+    /**
+     * Parses the user input and returns the input without the command.
+     *
+     * @param task The user input.
+     * @return String of user's input without the command
+     */
     public static String getRest(String task) {
         int firstSpace = task.indexOf(" ");
         String rest = task.substring(firstSpace + 1);
@@ -42,35 +67,71 @@ public class Parser {
     }
 
     //methods for interpreting .txt file
+
+    /**
+     * Parses the task in the saved file and returns the status of the task
+     *
+     * @param input String of task
+     * @return Status of task
+     */
     public static boolean getStatusTxt(String input) {
         boolean isDone = input.charAt(5) == 'X';
         return isDone;
     }
 
+    /**
+     * Parses the task in the saved file and returns the task type
+     *
+     * @param input String of task
+     * @return Status of task
+     */
     public static String getTaskTypeTxt(String input) {
         String task = Character.toString(input.charAt(0));
         return task;
     }
 
+    /**
+     * Parses the task in the saved file and returns the string of the task without the task type
+     *
+     * @param input String of task
+     * @return String of task without task type
+     */
     public static String getRestTxt(String input) {
         String rest = input.substring(10);
         return rest;
     }
 
+    /**
+     * Parses the input string and returns the task description
+     *
+     * @param rest The input string
+     * @return Task description
+     */
     public static String getDescTxt(String rest) {
         int endIndex = rest.indexOf("|") - 1;
         String desc = rest.substring(0, endIndex);
         return desc;
     }
 
+    /**
+     * Parses the input string and returns the task date.
+     *
+     * @param rest The input string
+     * @return Task date
+     */
     public static String getDateTxt(String rest) {
         int startIndex = rest.indexOf("|") + 2;
         String date = rest.substring(startIndex);
         return date;
     }
 
-
-    //method for interpreting time
+    /**
+     * Converts the input string of date and returns in a specified date format.
+     *
+     * @param dateString Input string of date
+     * @param datePattern Specified date format
+     * @return
+     */
     public static String dateFormat(String dateString, String datePattern) {
         //date format for intended input
         DateTimeFormatter form = DateTimeFormatter.ofPattern(datePattern);
@@ -79,7 +140,12 @@ public class Parser {
         return dateFormatted;
     }
 
-    //method to create new Command object
+    /**
+     * Method that parses the users command and returns the corresponding command object.
+     *
+     * @param cmd User's command
+     * @return Corresponding command object.
+     */
     public static Command parse(String cmd) {
         switch (cmd) {
         case "bye":

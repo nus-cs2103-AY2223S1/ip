@@ -1,26 +1,36 @@
 package dobby.commands;
 
-import dobby.tasks.*;
-import dobby.*;
+import dobby.DobbyChat;
+import dobby.DobbyList;
+import dobby.UserInput;
 
-public class DeleteCommand extends Command{
+/**
+ * Class that deletes tasks in the list.
+ */
+public class DeleteCommand extends Command {
+    /**
+     * Executes the delete command.
+     *
+     * @param dl list of tasks to execute from
+     * @param ui user interface
+     */
     @Override
     public void execute(DobbyList dl, UserInput ui) {
         try {
             int toDelete = ui.getInd();
-            if(dl.getLength() == 0) {
+            if (dl.getLength() == 0) {
                 DobbyChat.noTaskToDelete();
-            } else if(toDelete > dl.getLength()) {
+            } else if (toDelete > dl.getLength()) {
                 DobbyChat.tooLittleTasks();
-            } else if(toDelete <= 0) {
+            } else if (toDelete <= 0) {
                 DobbyChat.wrongTaskNumber();
             } else {
                 DobbyChat.deleted(dl.getTask(toDelete), dl);
                 dl.delete(toDelete);
             }
-        } catch(StringIndexOutOfBoundsException e) {
+        } catch (StringIndexOutOfBoundsException e) {
             DobbyChat.noTaskNumber();
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             DobbyChat.noNumber();
         }
     }
