@@ -13,14 +13,14 @@ public class Storage {
 
     String filePath;
 
-    public Storage(String filePath){
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 
     /**
      * Writes an array of tasks to a file
      */
-    public void writeToFile(TaskList taskList){
+    public void writeToFile(TaskList taskList) {
         File data = new File(this.filePath);
         try {
             data.createNewFile();
@@ -31,7 +31,7 @@ public class Storage {
             e.printStackTrace();
         }
     }
-    public TaskList readFromFile() throws DukeException{
+    public TaskList readFromFile() throws DukeException {
         TaskList taskList = new TaskList();
         int numTasks = 0;
         try{

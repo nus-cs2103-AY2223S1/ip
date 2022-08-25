@@ -47,6 +47,7 @@ public class Task {
 
     /**
      * This method returns whether the task has been completed.
+     *
      * @return boolean If the task has been completed
      */
     public boolean isDone() {
@@ -55,6 +56,7 @@ public class Task {
 
     /**
      * This method retrieves the type of the task.
+     *
      * @return String Type of the task.
      */
     public String getType() {
@@ -73,6 +75,7 @@ public class Task {
 
     /**
      * Returns the title of the task.
+     *
      * @return The title of the task.
      */
     public String getTitle() {
