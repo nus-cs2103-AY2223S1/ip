@@ -40,7 +40,9 @@ public class Duke {
     }
 
     private static String start() {
-        return Duke.replyFormat("Oi! I'm Dook", "What's up?");
+        return Duke.replyFormat("Oi! I'm Dook",
+                "What's up?",
+                "Please type your date and time in this format: yyyy-mm-dd");
     }
 
     private static String mark(String input) {

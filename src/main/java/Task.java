@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public abstract class Task {
     protected final String description;
     protected boolean isDone;
@@ -45,7 +47,8 @@ public abstract class Task {
         } else if (slash == -1) {
             throw new DukeException("Please type the at in this format: /at dateTime");
         }
-        return new Event(input.substring(6, slash - 1), input.substring(slash + 4));
+        return new Event(input.substring(6, slash - 1),
+                LocalDate.parse(input.substring(slash + 4)));
     }
 
     public static Task createDeadline(String input) throws DukeException {
@@ -59,7 +62,8 @@ public abstract class Task {
         } else if (slash == -1) {
             throw new DukeException("Please type the at in this format: /by dateTime");
         }
-        return new Deadline(input.substring(9, slash - 1), input.substring(slash + 4));
+        return new Deadline(input.substring(9, slash - 1),
+                LocalDate.parse(input.substring(slash + 4)));
     }
 
     public static Task createTask(String input) throws DukeException {
