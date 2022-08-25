@@ -16,7 +16,7 @@ public class DeadlineTest {
     public void toDoDeadline() {
         Deadline testDeadline = new Deadline("Return book",
                 LocalDate.parse("2022-08-25", DateTimeFormatter.ofPattern("yyyy-MM-dd")), null);
-        assertEquals(testDeadline.TaskInfo(), "[D] [ ] Return book (by:Aug 25 2022)");
+        assertEquals(testDeadline.taskInfo(), "[D] [ ] Return book (by:Aug 25 2022)");
     }
 
 

@@ -1,8 +1,9 @@
 package duke.task;
 
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
 
 
 public class Deadline extends Task{
@@ -17,7 +18,7 @@ public class Deadline extends Task{
     }
 
     @Override
-    public String TaskInfo() {
+    public String taskInfo() {
         if (deadlineTime == null) {
             return "[D] [" + getStatusIcon() + "] " + description + " (by:" +
                     deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) +")";
@@ -29,7 +30,7 @@ public class Deadline extends Task{
     }
 
     @Override
-    public String TaskSaveInfo() {
+    public String taskSaveInfo() {
         if (deadlineTime == null) {
             return "D," + getSavedStatusIcon() + "," + description
                     + "," + deadlineDate;

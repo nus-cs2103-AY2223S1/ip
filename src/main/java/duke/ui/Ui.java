@@ -40,32 +40,32 @@ public class Ui {
         displaySeparator();
         System.out.println("Here are the tasks in your list");
         for (int i = 0; i < size; i++) {
-            System.out.println((i + 1) + ". " + tasks.get(i).TaskInfo());
+            System.out.println((i + 1) + ". " + tasks.get(i).taskInfo());
         }
         displaySeparator();
     }
 
     public void displayMarkTask(Task task) {
         displaySeparator();
-        System.out.println("Nice! I've marked this task as done:\n " + task.TaskInfo());
+        System.out.println("Nice! I've marked this task as done:\n " + task.taskInfo());
         displaySeparator();
     }
 
     public void displayUnmarkTask(Task task) {
         displaySeparator();
-        System.out.println("Ok, I've marked this task as not done yet:\n " + task.TaskInfo());
+        System.out.println("Ok, I've marked this task as not done yet:\n " + task.taskInfo());
         displaySeparator();
     }
 
     public void displayAddTask(Task task) {
         displaySeparator();
-        System.out.println("Got it. I've added this task:\n " + task.TaskInfo());
+        System.out.println("Got it. I've added this task:\n " + task.taskInfo());
 
     }
 
     public void displayDeleteTask(Task task) {
         displaySeparator();
-        System.out.println("Noted. I've removed this task:\n " + task.TaskInfo());
+        System.out.println("Noted. I've removed this task:\n " + task.taskInfo());
     }
 
     public void displayBye() {
