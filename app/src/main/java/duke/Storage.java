@@ -10,6 +10,10 @@ import java.util.Scanner;
 public class Storage {
     private final String fileName;
 
+    public Storage(String fileName) {
+        this.fileName = fileName;
+    }
+
     public void save(TaskList taskList) {
         try {
             PrintWriter saveFile = new PrintWriter(fileName);
@@ -37,9 +41,5 @@ public class Storage {
         }
 
         return tasks;
-    }
-
-    public Storage(String fileName) {
-        this.fileName = fileName;
     }
 }

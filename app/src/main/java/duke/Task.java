@@ -48,8 +48,6 @@ public class Task {
         return task;
     }
 
-
-
     public String getStatusIcon() {
         return isDone ? ICON_DONE : ICON_UNDONE;
     }

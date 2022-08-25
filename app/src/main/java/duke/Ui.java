@@ -5,6 +5,10 @@ import java.util.Scanner;
 public class Ui {
     private Scanner sc;
 
+    public Ui() {
+        sc = new Scanner(System.in);
+    }
+
     public String getLine() {
         return sc.nextLine();
     }
@@ -17,9 +21,5 @@ public class Ui {
         showDivider();
         System.out.println("    " + response.replace("\n", "\n    "));
         showDivider();
-    }
-
-    public Ui() {
-        sc = new Scanner(System.in);
     }
 }
