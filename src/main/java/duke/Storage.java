@@ -23,6 +23,10 @@ public class Storage {
         checkFile();
     }
 
+    public Path getPath() {
+        return path;
+    }
+
     public void write(String content) {
         initialize();
         try {
@@ -64,5 +68,23 @@ public class Storage {
         } catch (IOException ioException) {
             throw new ReadFileException(this.path, "Unable to create new files.");
         }
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof Storage) {
+            Storage s = (Storage) obj;
+            if (this.path == s.getPath()) {
+                return true;
+            }
+            if (this.path == null || s.getPath() == null) {
+                return false;
+            }
+            return this.path.equals(s.path);
+        }
+        return false;
     }
 }

@@ -13,6 +13,10 @@ public class TaskList implements Savable<TaskList> {
         return tasks.add(task);
     }
 
+    protected ArrayList<Task> getTaskList() {
+        return this.tasks;
+    }
+
     public Task get(int i) throws TaskNotFoundException {
         throwIfNotValidIndex(i);
         return this.tasks.get(i);
@@ -60,5 +64,23 @@ public class TaskList implements Savable<TaskList> {
     @Override
     public TaskList parse(String formattedString) {
         return Parser.parseTaskList(formattedString);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof TaskList) {
+            TaskList tl = (TaskList) obj;
+            if (this.tasks == tl.tasks) {
+                return true;
+            }
+            if (this.tasks == null || tl.getTaskList() == null) {
+                return false;
+            }
+            return this.tasks.equals(tl.getTaskList());
+        }
+        return false;
     }
 }
