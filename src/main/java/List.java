@@ -106,5 +106,4 @@ public class List {
         return result.toString();
     }
 }
-
-// must wait for data to be saved before entering another command 
+// must wait for data to be saved before entering another command
