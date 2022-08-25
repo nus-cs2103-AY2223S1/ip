@@ -58,8 +58,10 @@ public class Parser {
                     command = new ExitCommand();
                     break;
             }
-        } catch (InvalidCommandException | NumberFormatException ice) {
-            ui.reportError("Your command is invalid! Please try again...");
+        } catch (InvalidCommandException ice) {
+            ui.reportError("Oops! I can't recognise the command you choose. Please try again...");
+        } catch (NumberFormatException nfe) {
+            ui.reportError("Your input is not a number! Please try again...");
         }
         return command;
     }

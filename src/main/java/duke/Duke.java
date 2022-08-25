@@ -1,6 +1,6 @@
 package duke;
 
-import duke.task.*;
+import duke.task.TasksController;
 import duke.command.Command;
 
 public class Duke {

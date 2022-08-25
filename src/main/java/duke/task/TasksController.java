@@ -41,7 +41,7 @@ public class TasksController {
         Pattern pattern2 = Pattern.compile("[0-9]{2}:[0-9]{2}");
         Matcher matcher1 = pattern1.matcher(s);
         Matcher matcher2 = pattern2.matcher(s);
-        if(!(matcher1.find() && matcher2.find())) {
+        if (!(matcher1.find() && matcher2.find())) {
             throw new InvalidTimeException("ERROR");
         }
         return true;
@@ -104,7 +104,8 @@ public class TasksController {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (int i = 0; i < tasks.size(); ++i) {
+        int i;
+        for (i = 0; i < tasks.size(); ++i) {
             s.append(i + 1).append(". ").append(tasks.get(i).toString()).append("\n");
         }
         return s.toString();

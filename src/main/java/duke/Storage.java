@@ -1,6 +1,12 @@
 package duke;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+import java.io.EOFException;
 import java.util.ArrayList;
 import duke.task.Task;
 /**
@@ -57,7 +63,7 @@ public class Storage {
             fos.close();
             writer.close();
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
             System.out.println("Oops! Something wrong with your personal file...");
         }
     }
@@ -77,7 +83,7 @@ public class Storage {
         } catch (EOFException eof) {
             taskList = null;
         } catch (IOException | ClassNotFoundException e) {
-            System.out.println(e);
+            System.out.println(e.toString());
             System.out.println("Oops! Something wrong with your personal file...");
         }
         return taskList == null ? new ArrayList<>() : taskList;

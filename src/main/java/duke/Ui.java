@@ -6,23 +6,20 @@ import java.util.Scanner;
  * Ui class deals with interactions with users
  */
 public class Ui {
-
-    private final String listString = "list";
-    private final String commandList = "1. Add a ToDo\n" + "2. Add an Event\n" + "3. Add a Deadline\n" +
+    private final String COMMAND_LIST = "1. Add a ToDo\n" + "2. Add an Event\n" + "3. Add a Deadline\n" +
             "4. List all Tasks\n" + "5. Mark\n" + "6. Unmark\n" + "7. Delete a Task\n" + "8. Exit";
-    private final String splitLine = "*".repeat(80);
-
+    private final String SPLIT_LINE = "*".repeat(80);
     private final Scanner sc = new Scanner(System.in);
 
     /**
      * Say hi to the user.
      */
     public void startGreeting() {
-        System.out.println(splitLine);
-        String initialGreeting = "Hello, I'm Duke. What can I do for you?";
-        System.out.println(initialGreeting);
-        System.out.println(commandList);
-        System.out.println(splitLine);
+        System.out.println(SPLIT_LINE);
+        String INITIAL_GREETING = "Hello, I'm Duke. What can I do for you?";
+        System.out.println(INITIAL_GREETING);
+        System.out.println(COMMAND_LIST);
+        System.out.println(SPLIT_LINE);
     }
 
     /**
@@ -79,29 +76,29 @@ public class Ui {
      */
     public void display(String info, boolean isList, boolean isMark, boolean isUnmark, boolean isDelete) {
         if (isList) {
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
             System.out.println("Here are all your tasks:");
             System.out.println(info);
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
         } else if (isMark) {
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
             System.out.println("Successfully marked! You can see it in your task list as follows:");
             System.out.println(info);
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
         } else if (isUnmark) {
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
             System.out.println( "Successfully unmarked! You can see it in your task list as follows:");
             System.out.println(info);
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
         } else if (isDelete) {
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
             System.out.println("Successfully deleted! You can use list command to check your tasks.");
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
         } else {
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
             System.out.println("Successfully added! You can see it in your task list as follows:");
             System.out.println(info);
-            System.out.println(splitLine);
+            System.out.println(SPLIT_LINE);
         }
     }
 
@@ -109,7 +106,7 @@ public class Ui {
      * Prints the split line
      */
     public void showSplitLine() {
-        System.out.println(splitLine);
+        System.out.println(SPLIT_LINE);
     }
 
     /**
@@ -117,17 +114,17 @@ public class Ui {
      */
     public void showCommandList() {
         System.out.println("Anything else? I'm always here for you!");
-        System.out.println(commandList);
-        System.out.println(splitLine);
+        System.out.println(COMMAND_LIST);
+        System.out.println(SPLIT_LINE);
     }
 
     /**
      * Say goodbye to the user.
      */
     public void sayBye() {
-        System.out.println(splitLine);
-        String goodbyeGreeting = "Bye. Hope to see you soon!";
-        System.out.println(goodbyeGreeting);
-        System.out.println(splitLine);
+        System.out.println(SPLIT_LINE);
+        String GOODBYE_GREETING = "Bye. Hope to see you soon!";
+        System.out.println(GOODBYE_GREETING);
+        System.out.println(SPLIT_LINE);
     }
 }
