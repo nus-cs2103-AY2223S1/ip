@@ -4,10 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Child class duke.Deadline
- *
- * duke.Deadline a child class of duke.Task has the same functionality
- * but adds on with a by field which allows users to set a deadline.
+ * Adds on with a by field which allows users to set a deadline.
  *
  * @author Yuvaraj Kumaresan
  */
@@ -17,15 +14,17 @@ public class Deadline extends Task {
 
     /**
      * Constructor
-     *  @param description String describing the deadline task.
-     * @param by          String providing the timeframe for the deadline task.*/
+     *
+     * @param description String describing the deadline task.
+     * @param by          String providing the timeframe for the deadline task.
+     */
     public Deadline(String description, LocalDateTime by) {
         super(description);
         this.by = by;
     }
 
     /**
-     * Method toString()
+     * Converts deadline object to its string representation.
      *
      * @return String representation of the deadline object.
      */
@@ -35,7 +34,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Method getBy()
+     * Gets the by attribute from the deadline object.
      *
      * @return String representation of the by attribute.
      */

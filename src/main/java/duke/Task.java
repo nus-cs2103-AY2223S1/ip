@@ -1,9 +1,6 @@
 package duke;
 
 /**
- * Class duke.Task
- *
- * Description: An encapsulation of what a completable task is in the context of duke.Duke.
  * Has description and isDone field to describe and mark completion status of a task.
  *
  * @author Yuvaraj Kumaresan
@@ -23,7 +20,7 @@ public class Task {
     }
 
     /**
-     * Method getStatusIcon
+     * Gets the string representation of the marked status of the task.
      *
      * @return String representation of the isDone field.
      */
@@ -32,7 +29,7 @@ public class Task {
     }
 
     /**
-     * Method setIsDone
+     * Sets the isDone field to the boolean value specified.
      *
      * @param done Boolean value depicting if the task is done or not done.
      */
@@ -41,7 +38,7 @@ public class Task {
     }
 
     /**
-     * Method getIsDone
+     * Gets the isDone field.
      *
      * @return Boolean representing if the task is done.
      */
@@ -50,7 +47,7 @@ public class Task {
     }
 
     /**
-     * Method getDescription
+     * Gets the description of the task
      *
      * @return String with the description of the task.
      */
@@ -59,7 +56,7 @@ public class Task {
     }
 
     /**
-     * Method toString()
+     * Converts task object to its string representation.
      *
      * @return String representation of the task object.
      */
