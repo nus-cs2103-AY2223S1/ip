@@ -29,7 +29,8 @@ public class Parser {
                 + " in the list.";
     }
 
-    public String parseUserCommand(String command, BreakLoopIndicator breakLoopIndicator) throws CustomMessageException {
+    public String parseUserCommand(String command, BreakLoopIndicator breakLoopIndicator)
+            throws CustomMessageException {
         String[] commands = command.split("\\s+");
         Command taskType;
         try {
@@ -44,7 +45,7 @@ public class Parser {
         switch (taskType) {
             case BYE:
                 toPrint = "";
-                breakLoopIndicator.setIsByeCommand();
+                breakLoopIndicator.setIsExitCommand();
                 break;
             case LIST:
                 toPrint = (Ui.indentedMessage("Here are the tasks in your list:"
@@ -132,7 +133,7 @@ public class Parser {
             return isExitCommand;
         }
 
-        private void setIsByeCommand() {
+        private void setIsExitCommand() {
             isExitCommand = true;
         }
     }
