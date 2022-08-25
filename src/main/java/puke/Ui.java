@@ -2,6 +2,9 @@ package puke;
 
 import java.util.Scanner;
 
+/**
+ * Handles the user interface for the User interactions
+ */
 public class Ui {
 
     /**

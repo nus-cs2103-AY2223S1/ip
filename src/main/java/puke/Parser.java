@@ -1,5 +1,8 @@
 package puke;
 
+/**
+ * Handles Parsing of input of the user
+ */
 public class Parser {
 
     /**

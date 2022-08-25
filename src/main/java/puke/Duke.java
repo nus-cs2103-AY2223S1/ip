@@ -28,6 +28,9 @@ public class Duke {
     private Scanner receiver = new Scanner(System.in);
     protected static Duke d = new Duke();
 
+    /**
+     * Creates the chatbot
+     */
     public Duke() {
         this.ui = new Ui();
         this.storage = new Storage();
