@@ -28,7 +28,10 @@ public class Parser {
             Storage.save(this.taskList);
             Ui.showGoodbye();
         } else if (line.equals("list")) {
+            Ui.showLine();
+            System.out.println("\tHere are the tasks in your list:");
             taskList.showList();
+            Ui.showLine();
         } else if (line.startsWith("unmark")) {
             if (taskList.isEmpty()) {
                 throw new DukeException("OOPS!!! Cannot unmark when list is empty");
@@ -115,6 +118,27 @@ public class Parser {
             Ui.show("Saving progress...");
             Storage.save(taskList);
             Ui.show("Successfully saved!");
+        } else if (line.startsWith("find")) {
+            if (line.length() < 5) {
+                throw new DukeException("Please enter a term to find!");
+            }
+            String term = line.substring(5);
+            TaskList res = taskList.find(term);
+            if (res.isEmpty()) {
+                Ui.showLine();
+                Ui.show("\tSorry! No tasks match your term. Make sure your term is the exact capitalization" +
+                    "as in your task list!");
+                Ui.showLine();
+            } else {
+                Ui.showLine();
+                Ui.show("\tHere are the matching tasks in your list:");
+                res.showList();
+                Ui.showLine();
+            }
+
+
+
+
         } else {
             Ui.show("OOPS!!! I'm sorry, but I don't know that that means :(");
         }

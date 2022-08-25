@@ -17,14 +17,12 @@ public class TaskList {
         return this.lst;
     }
 
+
     public void showList() {
         if (!lst.isEmpty()) {
-            Ui.showLine();
-            System.out.println("\tHere are the tasks in your list:");
             for (int i = 0; i < lst.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + lst.get(i));
             }
-            Ui.showLine();
         } else { // list is empty
             Ui.show("duke.Task list is empty!");
         }
@@ -50,4 +48,13 @@ public class TaskList {
         lst.remove(index);
     }
 
+    public TaskList find(String s) {
+        ArrayList<Task> res = new ArrayList<>();
+        for (Task t : lst) {
+            if (t.toString().contains(s)) {
+                res.add(t);
+            }
+        }
+        return new TaskList(res);
+    }
 }
