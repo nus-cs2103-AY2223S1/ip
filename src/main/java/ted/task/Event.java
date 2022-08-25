@@ -1,3 +1,5 @@
+package ted.task;
+
 public class Event extends Task {
     private String eventTimePeriod;
 

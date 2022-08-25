@@ -1,6 +1,9 @@
+package ted.task;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import ted.exception.TedException;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -32,18 +35,18 @@ public class TaskList {
         }
     }
 
-    public String markTask(int i) throws DukeException{
+    public String markTask(int i) throws TedException{
         if (i - 1 < 0 || i > tasks.size()) {
-            throw new DukeException("Oh no, there's no such task T_T\n");
+            throw new TedException("Oh no, there's no such task T_T\n");
         }
 
         tasks.get(i - 1).markDone();
         return tasks.get(i - 1).toString();
     }
 
-    public String unmarkTask(int i) throws DukeException{
+    public String unmarkTask(int i) throws TedException{
         if (i - 1 < 0 || i > tasks.size()) {
-            throw new DukeException("Oh no, there's no such task T_T\n");
+            throw new TedException("Oh no, there's no such task T_T\n");
         }
 
         tasks.get(i - 1).unmarkDone();
@@ -55,9 +58,9 @@ public class TaskList {
         return t.toString();
     }
 
-    public String deleteTask(int i) throws DukeException{
+    public String deleteTask(int i) throws TedException{
         if (i - 1 < 0 || i > tasks.size()) {
-            throw new DukeException("Oh no, there's no such task T_T\n");
+            throw new TedException("Oh no, there's no such task T_T\n");
         }
 
         String task = tasks.get(i - 1).toString();

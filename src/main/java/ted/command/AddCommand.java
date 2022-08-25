@@ -1,4 +1,10 @@
-public class AddCommand extends Command{
+package ted.command;
+
+import ted.storage.Storage;
+import ted.task.*;
+import ted.ui.Ui;
+
+public class AddCommand extends Command {
     private Task task;
 
     public AddCommand(Task task) {

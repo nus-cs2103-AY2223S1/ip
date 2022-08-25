@@ -1,3 +1,10 @@
+import ted.command.*;
+import ted.exception.TedException;
+import ted.parser.Parser;
+import ted.storage.Storage;
+import ted.task.*;
+import ted.ui.Ui;
+
 public class Ted {
     private Storage storage;
     private TaskList tasks;
@@ -18,7 +25,7 @@ public class Ted {
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
-            } catch (DukeException e) {
+            } catch (TedException e) {
                 ui.tedResponse(e.getMessage());
             }
         }

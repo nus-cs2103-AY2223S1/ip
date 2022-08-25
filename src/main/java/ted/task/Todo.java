@@ -1,3 +1,5 @@
+package ted.task;
+
 public class Todo extends Task {
     public Todo(String taskDescription) {
         super(taskDescription);

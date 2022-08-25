@@ -1,4 +1,10 @@
-public class ByeCommand extends Command{
+package ted.command;
+
+import ted.storage.Storage;
+import ted.task.*;
+import ted.ui.Ui;
+
+public class ByeCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage st) {
         ui.showExit();

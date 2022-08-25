@@ -1,3 +1,5 @@
+package ted.ui;
+
 import java.util.Scanner;
 
 public class Ui {
