@@ -33,7 +33,7 @@ public abstract class Task {
 
     public abstract String getDuring();
 
-    public abstract String getTime();
+    public abstract String getTimeText();
 
     public String getDescription() {
         return this.description;

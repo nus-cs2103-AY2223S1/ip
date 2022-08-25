@@ -7,7 +7,7 @@ public class FileFormatter {
                 task.getStatusLetter(),
                 task.getDescription(),
                 task.getDuring(),
-                task.getTime());
+                task.getTimeText());
     }
 
     public String formatTaskList(List<Task> taskList) {

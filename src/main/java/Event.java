@@ -1,11 +1,19 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Event extends Task {
     private String during;
-    private String time;
+    private LocalDateTime dateTime;
+    private String timeText;
 
     public Event(ParsedData parsedData) {
         super(parsedData);
         this.during = parsedData.getDuring();
-        this.time = parsedData.getTime();
+        if (parsedData.hasDateTime()) {
+            this.dateTime = parsedData.getDateTime();
+        }
+        this.timeText = parsedData.getTimeText();
     }
 
     @Override
@@ -24,8 +32,8 @@ public class Event extends Task {
     }
 
     @Override
-    public String getTime() {
-        return this.time;
+    public String getTimeText() {
+        return this.timeText;
     }
 
     @Override
@@ -35,6 +43,6 @@ public class Event extends Task {
                 this.getStatusIcon(),
                 this.description,
                 this.during,
-                this.time);
+                this.getTimeText());
     }
 }

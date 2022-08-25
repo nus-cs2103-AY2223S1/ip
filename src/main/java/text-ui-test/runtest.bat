@@ -7,7 +7,7 @@ REM delete output from previous run
 del ACTUAL.TXT
 
 REM copy alanTest.txt to alan.txt
-copy data/alanTest.txt data/alan.txt
+copy data\alanTest.txt data\alan.txt
 
 REM compile the code into the bin folder
 javac  -cp ..\ -Xlint:none -d ..\bin ..\*.java

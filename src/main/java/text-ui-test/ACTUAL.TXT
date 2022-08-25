@@ -1,3 +1,9 @@
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
+You could enter the time in this format: dd/MM/yyyy HH:mm
 
 Good Morning!
 My name is
@@ -14,138 +20,12 @@ $$ |  $$ |$$$$$$$$\ $$ |  $$ |$$ | \$$ |
 How may I be of service?
 _______________________________________
 Here are the tasks you have added:
-  1. [E][ ] project meeting (at: Mon 2-4pm)
-  2. [D][ ] do homework (by: no idea :-p)
-  3. [T][ ] borrow book
-  4. [D][ ] return book (by: Sunday)
-  5. [E][ ] project meeting (at: Mon 2-4pm)
-  6. [D][ ] do homework (by: no idea :-p)
-_______________________________________
-_______________________________________
-Alright, I have added the following task to the list!
-  [T][ ] borrow book
-You currently have 7 tasks.
-_______________________________________
-_______________________________________
-Here are the tasks you have added:
-  1. [E][ ] project meeting (at: Mon 2-4pm)
-  2. [D][ ] do homework (by: no idea :-p)
-  3. [T][ ] borrow book
-  4. [D][ ] return book (by: Sunday)
-  5. [E][ ] project meeting (at: Mon 2-4pm)
-  6. [D][ ] do homework (by: no idea :-p)
-  7. [T][ ] borrow book
-_______________________________________
-_______________________________________
-Alright, I have added the following task to the list!
-  [D][ ] return book (by: Sunday)
-You currently have 8 tasks.
-_______________________________________
-_______________________________________
-Alright, I have added the following task to the list!
-  [E][ ] project meeting (at: Mon 2-4pm)
-You currently have 9 tasks.
-_______________________________________
-_______________________________________
-Alright, I have added the following task to the list!
-  [D][ ] do homework (by: no idea :-p)
-You currently have 10 tasks.
-_______________________________________
-_______________________________________
-Here are the tasks you have added:
-  1. [E][ ] project meeting (at: Mon 2-4pm)
-  2. [D][ ] do homework (by: no idea :-p)
-  3. [T][ ] borrow book
-  4. [D][ ] return book (by: Sunday)
-  5. [E][ ] project meeting (at: Mon 2-4pm)
-  6. [D][ ] do homework (by: no idea :-p)
-  7. [T][ ] borrow book
-  8. [D][ ] return book (by: Sunday)
-  9. [E][ ] project meeting (at: Mon 2-4pm)
-  10. [D][ ] do homework (by: no idea :-p)
-_______________________________________
-_______________________________________
-Yay! I have marked this task as done!
-  [E][X] project meeting (at: Mon 2-4pm)
-_______________________________________
-_______________________________________
-Yay! I have marked this task as done!
-  [D][X] do homework (by: no idea :-p)
-_______________________________________
-_______________________________________
-Yay! I have marked this task as done!
-  [T][X] borrow book
-_______________________________________
-_______________________________________
-Yay! I have marked this task as done!
-  [D][X] return book (by: Sunday)
-_______________________________________
-_______________________________________
-Here are the tasks you have added:
-  1. [E][X] project meeting (at: Mon 2-4pm)
-  2. [D][X] do homework (by: no idea :-p)
-  3. [T][X] borrow book
-  4. [D][X] return book (by: Sunday)
-  5. [E][ ] project meeting (at: Mon 2-4pm)
-  6. [D][ ] do homework (by: no idea :-p)
-  7. [T][ ] borrow book
-  8. [D][ ] return book (by: Sunday)
-  9. [E][ ] project meeting (at: Mon 2-4pm)
-  10. [D][ ] do homework (by: no idea :-p)
-_______________________________________
-_______________________________________
-Got it, I have marked this task as undone.
-  [E][ ] project meeting (at: Mon 2-4pm)
-_______________________________________
-_______________________________________
-Got it, I have marked this task as undone.
-  [D][ ] do homework (by: no idea :-p)
-_______________________________________
-_______________________________________
-Got it, I have marked this task as undone.
-  [T][ ] borrow book
-_______________________________________
-_______________________________________
-Got it, I have marked this task as undone.
-  [D][ ] return book (by: Sunday)
-_______________________________________
-_______________________________________
-Here are the tasks you have added:
-  1. [E][ ] project meeting (at: Mon 2-4pm)
-  2. [D][ ] do homework (by: no idea :-p)
-  3. [T][ ] borrow book
-  4. [D][ ] return book (by: Sunday)
-  5. [E][ ] project meeting (at: Mon 2-4pm)
-  6. [D][ ] do homework (by: no idea :-p)
-  7. [T][ ] borrow book
-  8. [D][ ] return book (by: Sunday)
-  9. [E][ ] project meeting (at: Mon 2-4pm)
-  10. [D][ ] do homework (by: no idea :-p)
-_______________________________________
-_______________________________________
-Alright, I have removed the following task from the list!
-  [E][ ] project meeting (at: Mon 2-4pm)
-You currently have 9 tasks.
-_______________________________________
-_______________________________________
-Alright, I have removed the following task from the list!
-  [T][ ] borrow book
-You currently have 8 tasks.
-_______________________________________
-_______________________________________
-Alright, I have removed the following task from the list!
-  [D][ ] do homework (by: no idea :-p)
-You currently have 7 tasks.
-_______________________________________
-_______________________________________
-Here are the tasks you have added:
-  1. [D][ ] return book (by: Sunday)
-  2. [E][ ] project meeting (at: Mon 2-4pm)
-  3. [D][ ] do homework (by: no idea :-p)
-  4. [T][ ] borrow book
-  5. [D][ ] return book (by: Sunday)
-  6. [E][ ] project meeting (at: Mon 2-4pm)
-  7. [D][ ] do homework (by: no idea :-p)
+  1. [D][ ] buy things (by: tonight)
+  2. [E][X] throw stuff (by: 11/11/2023 12:13)
+  3. [D][ ] throw stuff (by: tomorrow)
+  4. [D][X] throw stuff (by: 12/08/2024 13:14)
+  5. [E][X] throw stuff (by: 01/21/2025 14:15)
+  6. [T][ ] throw stuff
 _______________________________________
 _______________________________________
 Goodbye! See you soon!

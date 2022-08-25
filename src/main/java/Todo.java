@@ -20,13 +20,12 @@ public class Todo extends Task {
     }
 
     @Override
-    public String getTime() {
+    public String getTimeText() {
         return "";
     }
 
     @Override
     public String toString() {
-        String result = this.getTypeIcon() + this.getStatusIcon() + this.description;
-        return result;
+        return this.getTypeIcon() + this.getStatusIcon() + this.description;
     }
 }

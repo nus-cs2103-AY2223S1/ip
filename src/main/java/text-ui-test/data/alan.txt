@@ -1,7 +1,6 @@
-D| |return book|by|Sunday
-E| |project meeting|at|Mon 2-4pm
-D| |do homework|by|no idea :-p
-T| |borrow book||
-D| |return book|by|Sunday
-E| |project meeting|at|Mon 2-4pm
-D| |do homework|by|no idea :-p
+D| |buy things|by|tonight
+E|X|throw stuff|by|11/11/2023 12:13
+D| |throw stuff|by|tomorrow
+D|X|throw stuff|by|12/08/2024 13:14
+E|X|throw stuff|by|01/21/2025 14:15
+T| |throw stuff||

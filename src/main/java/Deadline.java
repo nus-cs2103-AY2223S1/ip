@@ -1,11 +1,17 @@
+import java.time.LocalDateTime;
+
 public class Deadline extends Task{
     private String during;
-    private String time;
+    private LocalDateTime dateTime;
+    private String timeText;
 
     public Deadline(ParsedData parsedData) {
         super(parsedData);
         this.during = parsedData.getDuring();
-        this.time = parsedData.getTime();
+        if (parsedData.hasDateTime()) {
+            this.dateTime = parsedData.getDateTime();
+        }
+        this.timeText = parsedData.getTimeText();
     }
 
     @Override
@@ -24,8 +30,8 @@ public class Deadline extends Task{
     }
 
     @Override
-    public String getTime() {
-        return this.time;
+    public String getTimeText() {
+        return this.timeText;
     }
 
     @Override
@@ -35,6 +41,6 @@ public class Deadline extends Task{
                 this.getStatusIcon(),
                 this.description,
                 this.during,
-                this.time);
+                this.getTimeText());
     }
 }
