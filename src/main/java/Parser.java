@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Parser {
     private static final String HORIZONTAL_LINE = "  ____________________________________________________________";
 
-    public static void handleCommand(String command, ArrayList<Task> storedTasks) throws DukeException {
+    public static void handleCommand(String command, TaskList storedTasks) throws DukeException {
         if (command.equals("bye")) {
             System.out.println(HORIZONTAL_LINE + "\n  Bye. Hope to see you again soon!\n" + HORIZONTAL_LINE);
         } else if (command.equals("list")) {

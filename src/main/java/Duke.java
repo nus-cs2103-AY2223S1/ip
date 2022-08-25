@@ -1,21 +1,20 @@
 import java.io.File;
-import java.util.ArrayList;
 
 public class Duke {
     private static final String FILEDIR = "data";
     private static final String FILEPATH = FILEDIR + File.separator + "duke.txt";
 
     private StoredTasks storedTasks;
-    private ArrayList<Task> tasks;
+    private TaskList tasks;
     private Ui ui;
 
     public Duke(String fileDir, String filePath) {
         this.storedTasks = new StoredTasks(fileDir, filePath);
         this.ui = new Ui();
         try {
-            this.tasks = storedTasks.load();
+            this.tasks = new TaskList(this.storedTasks.load());
         } catch (DukeException e) {
-            this.tasks = new ArrayList<>(100);
+            this.tasks = new TaskList();
         }
     }
 
