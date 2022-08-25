@@ -18,11 +18,21 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Returns this Deadline Task in CSV format.
+     *
+     * @return CSV representation of this Deadline Task
+     */
     @Override
     public String toCsv() {
         return "D," + super.toCsv() + "," + this.by + "\n";
     }
 
+    /**
+     * Returns a string representation of this Deadline Task.
+     *
+     * @return a string representation of this Deadline Task
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";

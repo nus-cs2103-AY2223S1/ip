@@ -22,7 +22,7 @@ public class DeadlineTest {
     @Test
     public void setStatus_notDone_markDone() {
         Deadline deadline = new Deadline("homework", "2009-09-09");
-        deadline.isDone(true);
+        deadline.setIsDone(true);
         assertEquals("[D][X] homework (by: Sep 09 2009)", deadline.toString());
     }
 }

@@ -57,6 +57,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Interprets and executes the input command from the user.
+     *
+     * @param userInput input from user
+     * @param tasks list of stored tasks
+     */
     public void parse(String userInput, TaskList tasks) {
         String[] splitInput = userInput.split(" ");
         int len = splitInput.length;

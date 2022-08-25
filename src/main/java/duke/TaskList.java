@@ -28,17 +28,17 @@ public class TaskList {
                 switch (taskType) {
                     case "T":
                         Task todo = new Todo(taskDescription);
-                        todo.isDone(isDone);
+                        todo.setIsDone(isDone);
                         tasks.add(todo);
                         break;
                     case "D":
                         Task deadline = new Deadline(taskDescription, splitInput[3]);
-                        deadline.isDone(isDone);
+                        deadline.setIsDone(isDone);
                         tasks.add(deadline);
                         break;
                     case "E":
                         Task event = new Event(taskDescription, splitInput[3]);
-                        event.isDone(isDone);
+                        event.setIsDone(isDone);
                         tasks.add(event);
                         break;
                 }
@@ -48,6 +48,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds new tasks to the end of this TaskList.
+     *
+     * @param taskType type of task to be added
+     * @param taskDescription description of task to be added
+     * @param date date property of task of to be added
+     */
     public void editTaskList(String taskType, String taskDescription, String date) {
         Task newTask = null;
         switch (taskType) {
@@ -65,6 +72,12 @@ public class TaskList {
         Ui.printTaskCreationMessage(newTask, tasks.size());
     }
 
+    /**
+     * Modifies this Tasklist by editing the task at the specified position.
+     *
+     * @param cmd command to be executed
+     * @param index index of the task to be edited
+     */
     public void editTaskList(String cmd, int index) {
         if (index >= tasks.size() || index < 0) {
             throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
@@ -85,6 +98,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns this TaskList in a CSV format.
+     *
+     * @return CSV representation of this TaskList
+     */
     public String toCsv() {
         String csv = "";
         for (int i = 0; i < tasks.size(); i++) {
@@ -93,10 +111,20 @@ public class TaskList {
         return csv;
     }
 
+    /**
+     * Returns true if, and only if, this TaskList has zero tasks.
+     *
+     * @return true if number of tasks in TaskList is 0, otherwise false
+     */
     public boolean isEmpty() {
         return tasks.isEmpty();
     }
 
+    /**
+     * Returns a string representation of this TaskList.
+     *
+     * @return a string representation of this TaskList
+     */
     @Override
     public String toString() {
         String str = "";
