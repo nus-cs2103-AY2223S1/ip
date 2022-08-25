@@ -1,3 +1,5 @@
+package exception;
+
 public class DukeException extends Exception {
     private final ErrorCode errorCode;
 
@@ -14,6 +16,9 @@ public class DukeException extends Exception {
             case MISSING_TODO_ITEM:
                 errorMsg = "☹ OOPS!!! The description of a todo cannot be empty.";
                 break;
+            case UNKNOWN_TASK_ENCODING:
+                errorMsg = "☹ OOPS!!! Unable to parse one of the saved tasks. This task will be skipped.";
+                break;
             default:
                 errorMsg = "☹ OOPS!!! Unknown duke error occurred. :-(";
         }
@@ -22,6 +27,7 @@ public class DukeException extends Exception {
 
     public enum ErrorCode {
         UNKNOWN_CMD,
-        MISSING_TODO_ITEM
+        MISSING_TODO_ITEM,
+        UNKNOWN_TASK_ENCODING
     }
 }
