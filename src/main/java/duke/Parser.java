@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
     public static Command parse(String command) {
         if (command.startsWith("bye")) {
