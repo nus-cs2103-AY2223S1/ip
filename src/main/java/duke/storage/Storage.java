@@ -27,22 +27,16 @@ public class Storage {
      */
     public Storage() throws FileDoesNotExistException {
         String currentDir = System.getProperty(CURRENT_DIRECTORY);
-<<<<<<< HEAD
         this.path = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
     }
 
-    public void save(TaskList taskList) throws StorageOperationException {
-=======
-        this.path = Paths.get(currentDir, DEFAULT_STORAGE_SOURCE_FOLDER, DEFAULT_STORAGE_FILE);
-    }
 
     /**
      * Saves the tasks in the current task list of Duke into the storage file
      * @param taskList the current task list in Duke
      * @throws FileDoesNotExistException Throws an exception when the storage file does not exist.
      */
-    public void save(TaskList taskList) throws FileDoesNotExistException {
->>>>>>> branch-A-JavaDoc
+    public void save(TaskList taskList) throws FileDoesNotExistException, StorageOperationException {
         List<String> encodedTasks = StorageEncoder.encode(taskList);
 
         try {
