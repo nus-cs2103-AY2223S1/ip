@@ -17,7 +17,7 @@ public class Todo extends Task {
 
 
     public static Todo readTask(String[] values) {
-        boolean isDone = values[1].equals("0") ? true : false;
+        boolean isDone = values[1].equals("0");
         String description = values[2];
         return new Todo(isDone, description);
     }

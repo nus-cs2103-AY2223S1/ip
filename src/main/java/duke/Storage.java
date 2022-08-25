@@ -3,14 +3,10 @@ package duke;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -40,13 +36,6 @@ public class Storage {
             csvWriter.close();
 
 
-
-
-/*            FileOutputStream fos = new FileOutputStream(FILE_NAME);
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-            oos.writeObject(saveItems);
-            fos.close();
-            oos.close();*/
         } catch (FileNotFoundException e) {
             System.out.println("Cannot save, File not found");
         } catch (IOException e) {
@@ -106,23 +95,11 @@ public class Storage {
 
 
 
-/*            FileInputStream fis = new FileInputStream(FILE_NAME);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            ArrayList<Task> readItems = (ArrayList<Task>) ois.readObject();
-            ois.close();
-            fis.close();
-            return readItems;*/
-
-
         } catch (FileNotFoundException e) {
             return new ArrayList<>(); //empty Task list for initial initialization
         } catch (IOException e) {
             return new ArrayList<>();
-        } /**catch (ClassNotFoundException e) {
-            System.out.println("Class not found");
-            e.printStackTrace();
         }
-        return null; */
     }
 
 

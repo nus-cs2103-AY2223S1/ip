@@ -47,7 +47,7 @@ public class DialogueBox extends HBox {
         displayPicture.setClip(circle);
         dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 10;");
         dialog.setPadding(new Insets(8));
-        dialog.setFont(Font.font("Courier New", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 10);
+        dialog.setFont(Font.font("Courier New", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
 
 
         dialog.setText(text);

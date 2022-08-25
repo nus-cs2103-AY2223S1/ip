@@ -28,7 +28,7 @@ public class Deadline extends Task {
 
 
     public static Deadline readTask(String[] values) {
-        boolean isDone = values[1].equals("0") ? true : false;
+        boolean isDone = values[1].equals("0");
         String description = values[2];
         String unformattedDate = values[3];
         return new Deadline(isDone, description, unformattedDate);
