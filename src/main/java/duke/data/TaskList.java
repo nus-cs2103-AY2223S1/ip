@@ -12,10 +12,17 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Stores the current list of tasks.
+ */
 public class TaskList {
     private static final Ui ui = new Ui();
     private ArrayList<Task> list;
 
+    /**
+     * Creates the TaskList object.
+     * @param data file data to update the list.
+     */
     public TaskList(File data) {
         this.list = new ArrayList<>();
         try {
@@ -70,6 +77,11 @@ public class TaskList {
         return this.list.size();
     }
 
+    /**
+     * Edits the status of the task in index position.
+     * @param index position of the task.
+     * @param mark check if mark or unmark.
+     */
     public void markTaskStatus(int index, boolean mark) {
         if (mark) {
             list.get(index).markDone();

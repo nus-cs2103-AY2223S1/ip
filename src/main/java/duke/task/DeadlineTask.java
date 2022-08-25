@@ -6,9 +6,19 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+/**
+ * Task to be done by a deadline.
+ */
 public class DeadlineTask extends Task {
     protected LocalDate by;
 
+    /**
+     * Creates a new deadline task.
+     * @param action input action.
+     * @param isDone check if completed.
+     * @param by deadline.
+     * @throws DukeException exception if no deadline is given.
+     */
     public DeadlineTask(String action, boolean isDone, String by) throws DukeException {
         super(action, isDone, by);
         if (Objects.equals(by, "")) {

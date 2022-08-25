@@ -1,5 +1,8 @@
 package duke.util;
 
+/**
+ * Custom exception for Duke.
+ */
 public class DukeException extends Exception {
 
     public DukeException() {

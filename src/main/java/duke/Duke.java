@@ -11,12 +11,19 @@ import duke.util.Ui;
 
 import java.util.Scanner;
 
+/**
+ * Takes in input and chats with user.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
     private Parser parser;
 
+    /**
+     * Constructor for Duke Class.
+     * @param filePath file path of data.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -75,8 +82,7 @@ public class Duke {
             String removedTask = tasks.getTask(index);
             tasks.removeTask(index);
             ui.removeTask(removedTask, tasks.getSize());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             ui.noSuchTaskError();
         }
     }
@@ -105,8 +111,7 @@ public class Duke {
                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
             ui.addedTask(tasks.getTask(tasks.getSize() - 1), tasks.getSize());
-        }
-        catch (DukeException e) {
+        } catch (DukeException e) {
             ui.cannotUnderstandError();
         }
     }
@@ -123,8 +128,7 @@ public class Duke {
             int index = Integer.parseInt(i) - 1;
             tasks.markTaskStatus(index, mark);
             ui.markedTask(mark, tasks.getTask(index));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             ui.noSuchTaskError();
         }
     }

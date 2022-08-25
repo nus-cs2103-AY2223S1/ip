@@ -2,8 +2,16 @@ package duke.util;
 
 import java.util.Objects;
 
+/**
+ * Parses commands and checks it.
+ */
 public class Parser {
 
+    /**
+     * Checks the input command.
+     * @param action user input.
+     * @return returns the string action.
+     */
     public String parseCommand(String action) {
         if (Objects.equals(action.strip(), "bye")) {
             return "bye";
@@ -23,11 +31,16 @@ public class Parser {
     }
 
     private boolean isValidTask(String taskType) {
-        return taskType.equals("todoTask") ||
-                taskType.equals("eventTask") ||
-                taskType.equals("deadlineTask");
+        return taskType.equals("todoTask")
+                || taskType.equals("eventTask")
+                || taskType.equals("deadlineTask");
     }
 
+    /**
+     * Gets the task type of the input.
+     * @param action user input.
+     * @return returns the type of task.
+     */
     public String parseTaskType(String action) {
         if (action.length() >= 4 && Objects.equals(action.substring(0, 4), "todo")) {
             return "todoTask";

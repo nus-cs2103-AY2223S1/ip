@@ -8,10 +8,17 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Stores the data in the hard disk.
+ */
 public class Storage {
     private static final Ui ui = new Ui();
     private File data;
 
+    /**
+     * Creates Storage object.
+     * @param filePath file path of data.
+     */
     public Storage(String filePath) {
         try {
             data = new File(filePath);
@@ -26,7 +33,8 @@ public class Storage {
     }
 
     /**
-     * Updates the data from the array list to the file
+     * Updates the data from the array list to the file.
+     * @param taskList task list to be stored in.
      */
     public void saveData(TaskList taskList) {
         try {
