@@ -14,7 +14,7 @@ import java.util.function.Function;
 public class TaskList extends ArrayList<Task> {
     private Storage storage;
     private static final HashMap<Character,
-            BiFunction<Integer, Integer, Function<String, Task>>> taskMap = new HashMap();
+            BiFunction<Integer, Integer, Function<String, Task>>> taskMap = new HashMap<>();
     static {
         TaskList.taskMap.put('T', (index, length) -> line -> new ToDo(line.substring(index)));
         TaskList.taskMap.put('D', (index, length) -> line -> new Deadline(line.substring(index, index + length),
