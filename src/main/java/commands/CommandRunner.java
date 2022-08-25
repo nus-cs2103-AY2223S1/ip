@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import exceptions.DukeException;
+import exceptions.StorageException;
 import input.Input;
 import task.TaskModel;
 
@@ -20,8 +21,13 @@ public class CommandRunner {
     /**
      * Creates new CommandRunner
      */
-    public CommandRunner() {
-        TaskModel taskModel = new TaskModel();
+    public CommandRunner() throws StorageException {
+        TaskModel taskModel = null;
+        try {
+            taskModel = new TaskModel();
+        } catch (StorageException e) {
+            throw e;
+        }
 
         // Add new commands here
         Command list = new ListCommand(taskModel);

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import exceptions.DukeException;
-
+import exceptions.StorageException;
+import storage.Storage;
 
 
 /**
@@ -12,8 +13,19 @@ import exceptions.DukeException;
  */
 public class TaskModel {
     private List<Task> tasks;
-    public TaskModel() {
+    private Storage storage;
+
+    /**
+     * Initialise TaskModel
+     * @throws StorageException - if there was an issue initialising storage related dependencies
+     */
+    public TaskModel() throws StorageException {
         this.tasks = new ArrayList<>();
+        try {
+            this.storage = new Storage();
+        } catch (StorageException e) {
+            throw e;
+        }
     }
 
     /**
@@ -24,6 +36,7 @@ public class TaskModel {
     public TaskResponse addTodo(String description) {
         Task newTask = new Todo(description);
         tasks.add(newTask);
+        System.out.println(tasks);
         return new TaskResponse(newTask, tasks.size());
     }
 
@@ -100,6 +113,6 @@ public class TaskModel {
      * @return a List of all the Tasks at the current time
      */
     public List<Task> getAllTasks() {
-        return tasks;
+        System.out.println(tasks); return tasks;
     }
 }

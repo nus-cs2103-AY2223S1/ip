@@ -5,6 +5,7 @@ import java.util.Scanner;
 import commands.CommandResponse;
 import commands.CommandRunner;
 import exceptions.DukeException;
+import exceptions.StorageException;
 import input.Input;
 import output.OutputLogger;
 
@@ -21,10 +22,9 @@ public class Duke {
         OutputLogger.printIntroduction();
         Scanner sc = new Scanner(System.in);
 
-        CommandRunner cmdRunner = new CommandRunner();
-
         while (true) {
             try {
+                CommandRunner cmdRunner = new CommandRunner();
                 System.out.print(">> ");
                 String input = sc.nextLine().trim();
 
@@ -35,6 +35,9 @@ public class Duke {
                 if (res.isExit()) {
                     break;
                 }
+            } catch (StorageException e) {
+                OutputLogger.output("There was an issue with storage of tasks. Shutting down...");
+                break;
             } catch (DukeException err) {
                 OutputLogger.output(err.getMessage());
             } catch (Exception err) {
