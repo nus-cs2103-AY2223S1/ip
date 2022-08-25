@@ -1,19 +1,30 @@
 package duke.util;
 
+import duke.DukeException;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 import duke.command.UnknownCommand;
 import duke.command.UnmarkCommand;
-import duke.DukeException;
 
+/**
+ * Class that deals with making sense of the user command.
+ */
 public class Parser {
 
+    /**
+     * Parse the user input.
+     *
+     * @param input the input
+     * @return the command to be executed
+     * @throws DukeException the duke exception
+     */
     public static Command parseCommand(String input) throws DukeException {
         String[] segments = input.split(" ", 2);
         try {

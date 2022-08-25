@@ -9,8 +9,17 @@ import duke.util.Ui;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Class containing initialisation of Duke chatbot.
+ */
 public class Duke {
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws DukeException the duke exception
+     */
     public static void main(String[] args) throws DukeException {
         Ui.greet();
         Scanner sc = new Scanner(System.in);

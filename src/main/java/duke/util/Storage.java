@@ -18,9 +18,17 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Class that deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage{
     private TaskList taskList = new TaskList(new ArrayList<>());
 
+    /**
+     * Reads in saved information from the saved file.
+     *
+     * @throws IOException the io exception
+     */
     public void storageRead() throws IOException {
             try {
                 FileReader fr = new FileReader("./data/duke.txt");
@@ -69,6 +77,11 @@ public class Storage{
             }
     }
 
+    /**
+     * Writes the current information to a save file.
+     *
+     * @param taskList the task list
+     */
     public void storageWrite(ArrayList<Task> taskList) {
         try {
             File myFile = new File("./data/duke.txt");
@@ -100,6 +113,11 @@ public class Storage{
         }
     }
 
+    /**
+     * Gets task list.
+     *
+     * @return the task list
+     */
     public TaskList getTaskList() {
         return this.taskList;
     }

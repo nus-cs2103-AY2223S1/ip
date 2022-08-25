@@ -6,13 +6,27 @@ import duke.util.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Handles the command 'event'.
+ */
 public class FindCommand extends Command{
     private String findWord;
 
+    /**
+     * Constructor for a new Find command.
+     *
+     * @param findWord The word to find.
+     */
     public FindCommand(String findWord) {
         this.findWord = findWord;
     }
 
+    /**
+     * Runs the command 'find'.
+     * @inheritDoc
+     * @param taskList List of current tasks.
+     * @throws DukeException Duke Exception for finding more than one word.
+     */
     @Override
     public void run(TaskList taskList) throws DukeException {
         String[] segments = findWord.split(" ");
@@ -31,7 +45,7 @@ public class FindCommand extends Command{
                 Ui.formatMessage("Could not find anything with the word '" + findWord + "' inside of the list");
             } else {
                 for (Integer index : indexList) {
-                    message += index + ": " + taskList.getTask(index).toString() + "\n";
+                    message += (index + 1) + ": " + taskList.getTask(index).toString() + "\n";
                 }
                 Ui.formatMessage(message);
             }
