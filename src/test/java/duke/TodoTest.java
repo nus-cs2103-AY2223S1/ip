@@ -7,7 +7,7 @@ public class TodoTest {
 
     @Test
     public void test_toString() throws Exception {
-        Todo todo = new Todo("testTask");
-        assertEquals("[T] [ ] task", todo.toString());
+        Todo todo = new Todo("test");
+        assertEquals("[T] [ ] test", todo.toString());
     }
 }
