@@ -28,17 +28,17 @@ public class TaskList {
                 switch (taskType) {
                     case "T":
                         Task todo = new Todo(taskDescription);
-                        todo.setStatus(isDone);
+                        todo.isDone(isDone);
                         tasks.add(todo);
                         break;
                     case "D":
                         Task deadline = new Deadline(taskDescription, splitInput[3]);
-                        deadline.setStatus(isDone);
+                        deadline.isDone(isDone);
                         tasks.add(deadline);
                         break;
                     case "E":
                         Task event = new Event(taskDescription, splitInput[3]);
-                        event.setStatus(isDone);
+                        event.isDone(isDone);
                         tasks.add(event);
                         break;
                 }

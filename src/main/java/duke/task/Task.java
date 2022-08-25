@@ -19,7 +19,7 @@ public abstract class Task {
         System.out.println("OK, I've marked this task as not done yet:\n " + this.toString());
     }
 
-    public void setStatus(boolean status) {
+    public void isDone(boolean status) {
         this.isDone = status;
     }
 
