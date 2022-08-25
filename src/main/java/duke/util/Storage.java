@@ -16,6 +16,19 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     *
+     *
+     *
+     *
+     * @param
+     * @param
+     * @param
+     * @param
+     * @param
+     * @return
+     * @throws
+     */
     public void saveFile(String fileStream) throws DukeIoException {
         try {
             File file = new File(filePath);

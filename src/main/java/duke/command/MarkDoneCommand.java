@@ -1,0 +1,36 @@
+package duke.command;
+
+import duke.exception.DukeIndexOutOfBoundException;
+import duke.exception.DukeIoException;
+import duke.util.Storage;
+import duke.util.TaskList;
+import duke.util.Ui;
+
+public class MarkDoneCommand extends Command {
+
+    int taskIndex;
+
+    MarkDoneCommand(int taskIndex) {
+        super(CommandType.MARK_DONE);
+        this.taskIndex = taskIndex;
+    }
+
+    @Override
+    public void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
+        String output;
+
+        try {
+            output = taskList.markTaskDone(taskIndex);
+        } catch (DukeIndexOutOfBoundException exception) {
+            output = exception.getMessage();
+        }
+
+        ui.printOutput(output);
+
+        try {
+            storage.saveFile(taskList.getFileStream());
+        } catch (DukeIoException exception) {
+            ui.printOutput(exception.getMessage());
+        }
+    }
+}
