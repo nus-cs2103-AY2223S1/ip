@@ -4,6 +4,9 @@ import exceptions.DukeException;
 import models.Deadline;
 import models.Task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -17,8 +20,14 @@ public class AddDeadlineCommand implements DukeCommand {
         }
 
         String[] detail = content.split(" /by ", 2);
-        Deadline ddl = new Deadline(detail[0], detail[1]);
-        taskList.add(ddl);
-        return "Added a deadline: " + ddl.toString();
+        try {
+            LocalDate date = LocalDate.parse(detail[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            Deadline ddl = new Deadline(detail[0], date);
+            taskList.add(ddl);
+            return "Added a deadline: " + ddl.toString();
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Your date must be a valid date in dd/MM/yyyy format\n");
+        }
+
     }
 }

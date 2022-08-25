@@ -4,6 +4,9 @@ import exceptions.DukeException;
 import models.Event;
 import models.Task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -15,8 +18,14 @@ public class AddEventCommand implements DukeCommand {
             throw new DukeException("Event must be in this format: <Description> /at <DateTime>\n");
         }
         String[] detail = content.split(" /at ", 2);
-        Event event = new Event(detail[0], detail[1]);
-        taskList.add(event);
-        return "Added a event: " + event.toString();
+        try{
+            LocalDate date = LocalDate.parse(detail[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            Event event = new Event(detail[0], date);
+            taskList.add(event);
+            return "Added a event: " + event.toString();
+        } catch (
+        DateTimeParseException e) {
+            throw new DukeException("Your date must be a valid date in dd/MM/yyyy format\n");
+        }
     }
 }
