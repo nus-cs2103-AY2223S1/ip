@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 
 public class Event extends Task {
     private String at;
@@ -11,6 +10,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(at: " + this.at + ")";
+
     }
 
     @Override
