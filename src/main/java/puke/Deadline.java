@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
-    //protected String by;
     protected LocalDate by;
 
     public Deadline(String description, LocalDate by) {
