@@ -1,6 +1,5 @@
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileWriter;
 
@@ -31,12 +30,12 @@ public class Storage {
     /**
      * Reads existing tasks from dataFile and adds them to tasks
      */
-    public void loadTasks(ArrayList<Task> tasks) {
+    public void loadTasks(TaskList taskList) {
         try {
             Scanner scanner = new Scanner(dataFile);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                tasks.add(Task.createTask(line));
+                taskList.pushTask(Task.createTask(line));
             }
             scanner.close();
         } catch (IOException | DukeException e) {
@@ -47,14 +46,10 @@ public class Storage {
     /**
      * Saves tasks to dataFile
      */
-    public void saveTasks(ArrayList<Task> tasks) {
+    public void saveTasks(TaskList taskList) {
         try {
             FileWriter writer = new FileWriter(dataFile);
-            String fileString = "";
-            for (Task task : tasks) {
-                fileString += task.getFileString() + "\n";
-            }
-            writer.write(fileString);
+            writer.write(taskList.getFileText());
             writer.close();
         } catch (IOException e) {
             System.out.println("Something when wrong when writing your file :( \nError: " + e.getMessage());
