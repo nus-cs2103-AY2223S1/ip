@@ -14,7 +14,7 @@ public class ToDo extends Task {
      * @param listSize  current size of list containing all tasks
      */
     public ToDo(String name, boolean init, boolean completed, int listSize) {
-        super(name, init, completed, listSize);
+        super(name, completed);
         if (!init) {
             addMessage(listSize);
         }

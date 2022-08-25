@@ -12,22 +12,22 @@ public class ParserTest {
     /**
      * Bye Command Object.
      */
-    private Duke.Commands byeCommand = Duke.Commands.BYE;
+    private final Duke.Commands byeCommand = Duke.Commands.BYE;
 
     /**
      * List Command Object.
      */
-    private Duke.Commands listCommand = Duke.Commands.LIST;
+    private final Duke.Commands listCommand = Duke.Commands.LIST;
 
     /**
      * Mark Command Object.
      */
-    private Duke.Commands markCommand = Duke.Commands.MARK;
+    private final Duke.Commands markCommand = Duke.Commands.MARK;
 
     /**
      * Parser object.
      */
-    private Parser parser = new Parser();
+    private final Parser parser = new Parser();
 
     /**
      * To test parseCommand().

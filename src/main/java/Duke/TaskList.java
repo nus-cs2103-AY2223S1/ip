@@ -18,7 +18,7 @@ public class TaskList {
     /**
      * Array to store Tasks.
      */
-    private static ArrayList<Task> taskArray = new ArrayList<>();
+    private static final ArrayList<Task> taskArray = new ArrayList<>();
 
     /**
      * Constructor for class.

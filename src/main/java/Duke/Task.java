@@ -20,7 +20,7 @@ public class Task {
      *
      * @param name task name
      */
-    public Task(String name, boolean init, boolean completed, int listSize) {
+    public Task(String name, boolean completed) {
         taskName = name;
         this.completed = completed;
     }

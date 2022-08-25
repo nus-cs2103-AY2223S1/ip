@@ -1,7 +1,6 @@
 package Duke;
 
 import java.io.InputStream;
-import java.io.PrintStream;
 import java.util.Scanner;
 
 /**
@@ -38,16 +37,15 @@ public class Ui {
      * Constructor for class.
      */
     public Ui() {
-        this(System.in, System.out);
+        this(System.in);
     }
 
     /**
      * Constructor for class.
      *
      * @param in  input stream
-     * @param out output stream
      */
-    public Ui(InputStream in, PrintStream out) {
+    public Ui(InputStream in) {
         this.in = new Scanner(in);
         System.out.println("Hello from\n" + logo);
         System.out.println(initMessage);

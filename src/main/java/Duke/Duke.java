@@ -14,7 +14,7 @@ public class Duke {
     /**
      * storage object deals with read/write interactions with file
      */
-    private Storage storage;
+    private final Storage storage;
 
     /**
      * tasks manages a list of Task objects
@@ -24,12 +24,12 @@ public class Duke {
     /**
      * ui handles user inputs and outputs
      */
-    private Ui ui;
+    private final Ui ui;
 
     /**
      * parser interpretes user commands
      */
-    private Parser parser;
+    private final Parser parser;
 
     /**
      * possible user commands.

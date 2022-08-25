@@ -20,7 +20,7 @@ public class Events extends Task {
      * @param listSize  current size of list containing all tasks
      */
     public Events(String name, boolean init, boolean completed, String timing, int listSize) {
-        super(name, init, completed, listSize);
+        super(name, completed);
         this.timing = timing;
         if (!init) {
             addMessage(listSize);

@@ -23,7 +23,7 @@ public class Deadlines extends Task {
      * @param listSize  current size of list containing all tasks
      */
     public Deadlines(String name, boolean init, boolean completed, LocalDateTime deadline, int listSize) {
-        super(name, init, completed, listSize);
+        super(name, completed);
         this.deadline = deadline;
         if (!init) {
             addMessage(listSize);
