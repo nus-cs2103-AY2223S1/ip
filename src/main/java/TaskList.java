@@ -1,0 +1,112 @@
+package main.java;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+import java.util.function.BiFunction;
+import java.util.function.Function;
+
+public class TaskList extends ArrayList<Task> {
+    private Storage storage;
+    private static final HashMap<Character,
+            BiFunction<Integer, Integer, Function<String, Task>>> taskMap = new HashMap();
+    static {
+        TaskList.taskMap.put('T', (index, length) -> line -> new ToDo(line.substring(index)));
+        TaskList.taskMap.put('D', (index, length) -> line -> new Deadline(line.substring(index, index + length),
+                        LocalDate.parse(line.substring(index + length))));
+        TaskList.taskMap.put('E', (index, length) -> line -> new Event(line.substring(index, index + length),
+                LocalDate.parse(line.substring(index + length))));
+    }
+
+    public TaskList(Storage storage) {
+        super();
+        this.storage = storage;
+        //retrieve or else clear the file
+        try {
+            this.retrieve();
+        } catch (IOException e) {   //thrown
+            //make sure file is not deleted, else make again
+            this.storage.createRequiredFiles();
+            this.storage.clear();
+        }
+    }
+
+    public boolean exists(int query) {
+        return query < super.size() && query >= 0;
+    }
+
+    @Override
+    public Task remove(int index) {
+        storage.update(this);
+        return super.remove(index);
+    }
+
+    @Override
+    public boolean add(Task task) {
+        storage.update(this);
+        return super.add(task);
+    }
+
+    public Task markTask(int index) {
+        this.get(index).mark();
+        storage.update(this);
+        return this.get(index);
+    }
+
+    public Task unmarkTask(int index) {
+        this.get(index).unmark();
+        storage.update(this);
+        return this.get(index);
+    }
+
+    private void retrieve() throws IOException {
+        //initialize scanner with task history file
+        Scanner retriever;
+        try {
+            retriever = new Scanner(this.storage.getHistory());
+        } catch (FileNotFoundException e) {
+            //file or directory was modified during runtime of this program
+            throw new RuntimeException(e);
+        }
+        //iterate through each line
+        while (retriever.hasNextLine()) {
+            String line = retriever.nextLine();
+            StringBuilder strLength = new StringBuilder();
+            //starting at first digit of length of task description
+            int index = 2;
+            while (index < line.length() && line.charAt(index) != '_') {
+                strLength.append(line.charAt(index));
+                ++index;
+            }
+            //throw bad file exception
+            if (index == line.length()) {   //no '_' encountered
+                retriever.close();
+                throw new IOException("Text file containing history has invalid formatting for parsing.");
+            }
+            //now index is index of first '_' encountered
+            int length;
+            try {
+                length = Integer.parseInt(strLength.toString());
+            } catch (NumberFormatException e) { //formatting is all messed up
+                retriever.close();
+                throw new IOException("Text file containing history has invalid formatting for parsing.");
+            }
+            index++;    //increment to first index of task description
+            //retrieve task according to char
+            Task toAdd = taskMap.get(line.charAt(0)).apply(index, length).apply(line);
+            if (toAdd != null) {
+                if (line.charAt(1) == '1') {
+                    toAdd.mark();
+                }
+                super.add(toAdd);
+            } else {    //if null means no task category was identified
+                retriever.close();
+                throw new IOException("Unable to identify task type as type found in file was invalid.");
+            }
+        }
+        retriever.close();
+    }
+}
