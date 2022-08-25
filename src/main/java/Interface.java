@@ -1,8 +1,12 @@
+import DukeException.DukeException;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.io.File;
 
 public class Interface {
     /**
-     *  Greet
+     *  Greets.
      */
     public static void greet() {
         printLine();
@@ -11,19 +15,13 @@ public class Interface {
         printLine();
     }
     /**
-     *  Goodbye
+     *  Says goodbye.
      */
     public static void bye() {
         printLine();
         System.out.println("     Bye. Hope to see you again soon!");
         printLine();
     }
-
-/*    public static void echo(String str) {
-        printLine();
-        System.out.println("     " + str);
-        printLine();
-    }*/
 
     /**
      * Add a new Deadline.
@@ -43,9 +41,9 @@ public class Interface {
     }
 
     /**
-     * Add a new Event.
-     * @param str the description of event + at what time
-     * @return a newly created Event class for storage.
+     * Adds a new Event.
+     * @param str The description of event + at what time
+     * @return A newly created Event class for storage.
      */
     public static Event addEvent(String str) {
         String name = str.split(" /", 2)[0];
@@ -60,9 +58,9 @@ public class Interface {
     }
 
     /**
-     * Add a new ToDo task.
-     * @param str the description of to do task.
-     * @return a newly created ToDo class for storage.
+     * Adds a new ToDo task.
+     * @param str The description of to do task.
+     * @return A newly created ToDo class for storage.
      */
     public static ToDo addToDo(String str) {
         printLine();
@@ -74,8 +72,8 @@ public class Interface {
     }
 
     /**
-     * Print current task list.
-     * @param taskList task list retrieved directly from the storage.
+     * Prints current task list.
+     * @param taskList The task list retrieved directly from the storage.
      */
     public static void list(ArrayList<Task> taskList) {
         printLine();
@@ -86,7 +84,7 @@ public class Interface {
     }
 
     /**
-     * Mark task with index specified as done.
+     * Marks task with index specified as done.
      * @param task Mark task with index specified fetched from the task list.
      */
     public static void mark(Task task) {
@@ -98,7 +96,7 @@ public class Interface {
     }
 
     /**
-     * Mark task with index specified as not done.
+     * Marks task with index specified as not done.
      * @param task Mark task with index specified fetched from the task list.
      */
     public static void unmark(Task task) {
@@ -110,10 +108,8 @@ public class Interface {
     }
 
     /**
-     *      Noted. I've removed this task:
-     *        [E][ ] project meeting (at: Aug 6th 2-4pm)
-     *      Now you have 4 tasks in the list.
-     * @param task
+     * Deletes a task from the list and prints out the task.
+     * @param task The Task object which the user wants to delete
      */
     public static void delete(Task task) {
         printLine();
@@ -124,7 +120,64 @@ public class Interface {
     }
 
     /**
-     * Helper func to: print a horizontal line.
+     * Syncs a Deadline from cache file.
+     * @param str The description of ddl + by when.
+     * @param isDone A boolean indicator to show if the task is marked done.
+     * @return A newly created Deadline class for storage.
+     */
+    public static Deadline syncDeadline(String str, boolean isDone) {
+        String name = str.split(" \\| ",2)[0];
+        String by = str.split(" \\| ",2)[1];
+
+        Deadline task = Deadline.addTask(name, by);
+        if (isDone) {
+            task.changeStatus();
+        }
+        return task;
+    }
+
+    /**
+     * Syncs a Event from cache file.
+     * @param str The description of Event + at what time.
+     * @param isDone A boolean indicator to show if the task is marked done.
+     * @return A newly created Event class for storage.
+     */
+    public static Event syncEvent(String str, boolean isDone) {
+        String name = str.split(" \\| ",2)[0];
+        String at = str.split(" \\| ",2)[1];
+
+        Event task = Event.addTask(name, at);
+        if (isDone) {
+            task.changeStatus();
+        }
+        return task;
+    }
+
+    /**
+     * Syncs a Todo from cache file.
+     * @param name The description of Todo
+     * @param isDone A boolean indicator to show if the task is marked done.
+     * @return A newly created Todo class for storage.
+     */
+    public static ToDo syncToDo(String name, boolean isDone) {
+        ToDo task = ToDo.addTask(name);
+        if (isDone) {
+            task.changeStatus();
+        }
+        return task;
+    }
+
+    public static ArrayList<Task> loading(File file) throws DukeException, FileNotFoundException {
+        printLine();
+        System.out.println("     \uD83D\uDE0A Heyyo!!! Some saved work found in: " + file.getAbsolutePath() + "\n     Loading...");
+        ArrayList<Task> taskList = Cache.recovery(file);
+        System.out.println("     \uD83D\uDE0A Done loading~ Thanks for waiting!!!");
+        printLine();
+        return taskList;
+    }
+
+    /**
+     * Helper func to print a horizontal line.
      */
     private static void printLine() {
         System.out.println("    --------------------------------------------------------------------------------------");

@@ -24,7 +24,7 @@ public enum CommandType {
         for (i = 0; i < inputList.length; i++) {
             mapping.put(inputList[i], commandList[i]);
         }
-        System.out.println(str.toLowerCase());
+
         return mapping.get(str.toLowerCase());
     }
 }
