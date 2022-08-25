@@ -13,8 +13,8 @@ public class Deadline extends Task {
      * @param description Description for the deadline
      * @param by When to finish the task by
      */
-    public Deadline(String description, String by) {
-        super(description, TaskType.DEADLINE);
+    public Deadline(String description, String by, boolean isDone) {
+        super(description, TaskType.DEADLINE, isDone);
         this.by = by;
     }
     @Override

@@ -11,14 +11,15 @@ public class TaskDeserializer {
 
         String taskType = taskObj.getString("taskType");
         String description = taskObj.getString("description");
+        boolean isDone = taskObj.getBoolean("isDone");
 
         switch (TaskType.getTypeByString(taskType)) {
         case TODO:
-            return new Todo(description);
+            return new Todo(description, isDone);
         case EVENT:
-            return new Event(description, taskObj.getString("at"));
+            return new Event(description, taskObj.getString("at"), isDone);
         case DEADLINE:
-            return new Deadline(description, taskObj.getString("by"));
+            return new Deadline(description, taskObj.getString("by"), isDone);
         default:
             return null;
         }

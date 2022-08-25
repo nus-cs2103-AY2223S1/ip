@@ -14,11 +14,20 @@ public abstract class Task {
      * Superclass constructor for Task
      * @param description Description of the task
      */
-    public Task(String description, TaskType taskType) {
+    public Task(String description, TaskType taskType, boolean isDone) {
         this.taskType = taskType;
         this.description = description;
-        this.isDone = false;
+        this.isDone = isDone;
     }
+
+    /**
+     * Superclass constructor for Task
+     * @param description Description of the task
+     */
+    public Task(String description, TaskType taskType) {
+        this(description, taskType, false);
+    }
+
 
     public String getDescription() {
         return description;

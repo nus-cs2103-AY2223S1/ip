@@ -39,7 +39,7 @@ public class TaskModel {
      * @return The task created
      */
     public TaskResponse addTodo(String description) throws DukeException {
-        Task newTask = new Todo(description);
+        Task newTask = new Todo(description, false);
         tasks.add(newTask);
         return new TaskResponse(newTask, tasks.size());
     }
@@ -51,7 +51,7 @@ public class TaskModel {
      * @return TaskResponse object with newly added deadline task
      */
     public TaskResponse addDeadline(String description, String by) {
-        Task deadline = new Deadline(description, by);
+        Task deadline = new Deadline(description, by, false);
         tasks.add(deadline);
         return new TaskResponse(deadline, tasks.size());
     }
@@ -63,7 +63,7 @@ public class TaskModel {
      * @return TaskResponse with newly added event task
      */
     public TaskResponse addEvent(String description, String at) {
-        Task event = new Event(description, at);
+        Task event = new Event(description, at, false);
         tasks.add(event);
         return new TaskResponse(event, tasks.size());
     }
