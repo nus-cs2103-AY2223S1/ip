@@ -2,7 +2,9 @@ package duke;
 
 import java.util.Scanner;
 
-
+/**
+ * The Duke program.
+ */
 public class Duke {
 
     private Storage storage;
@@ -20,6 +22,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the duke program and parses user's input.
+     */
     public void run() {
         Scanner scn = new Scanner(System.in);
         int numTasks = this.tasks.getLength();

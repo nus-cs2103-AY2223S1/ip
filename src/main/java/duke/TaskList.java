@@ -7,11 +7,19 @@ public class TaskList {
     private ArrayList<Task> tasks;
     int numTasks;
 
+    /**
+     * Constructs a TaskList object given a set of tasks
+     *
+     * @param tasks The given ArrayList of tasks.
+     */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
         this.numTasks = tasks.size();
     }
 
+    /**
+     * Constructs an empty TaskList object.
+     */
     public TaskList() {
         this.tasks = new ArrayList<>();
         this.numTasks = 0;
@@ -19,6 +27,7 @@ public class TaskList {
 
     /**
      * This method adds a task to the given task-list.
+     *
      * @param noType The input String with type removed.
      * @param type The type of the task
      */
@@ -63,6 +72,13 @@ public class TaskList {
         return "";
     }
 
+    /**
+     * Deletes a task from the task list
+     *
+     * @param index The index of the task being deleted.
+     * @return A string that specifies information on the deletion attempt.
+     * @throws DukeException
+     */
     public String deleteTask(String index) throws  DukeException{
         if(!index.matches("\\d+")) {
             throw new DukeException("☹ OOPS!!! Please specify an integer index.");
@@ -78,7 +94,8 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as done
+     * Marks a task as done
+     *
      * @param index The index of the task.
      */
     public String markTask(String index)
@@ -94,7 +111,8 @@ public class TaskList {
     }
 
     /**
-     * Mark a task as not done
+     * Marks a task as not done
+     *
      * @param index The index of the task.
      */
     public String unmarkTask(String index)
@@ -111,7 +129,7 @@ public class TaskList {
     }
 
     /**
-     * This method lists out the current tasks.
+     * Lists out the current tasks.
      */
     public String listTasks() {
         String list = "Here are the tasks in your list:\n";
@@ -128,10 +146,20 @@ public class TaskList {
         return list;
     }
 
+    /**
+     * Retrieves the length of the task list.
+     *
+     * @return The length of the task list.
+     */
     public int getLength() {
         return this.tasks.size();
     }
 
+    /**
+     * Converts the TaskList to a string for writing into a file.
+     *
+     * @return The TaskList as a string.
+     */
     public String getWrite() {
         String s = "";
         for(int i = 0; i < numTasks; i++) {
