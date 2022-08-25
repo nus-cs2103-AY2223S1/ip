@@ -78,6 +78,14 @@ public class Ui {
         System.out.println(out);
     }
 
+    public void showFindMsg() {
+        System.out.println("Here are the matching tasks in your list:\n");
+    }
+
+    public void showFindEmptyMsg() {
+        System.out.println("There are no matching task in your list\n");
+    }
+
     public void showLoadingError(String msg) {
         System.out.println(msg);
     }
@@ -85,4 +93,6 @@ public class Ui {
     public void showFileNotFound(String msg) {
         System.out.println(msg);
     }
+
+
 }

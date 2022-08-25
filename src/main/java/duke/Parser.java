@@ -6,6 +6,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -26,24 +27,29 @@ public class Parser {
         case "list":
             return new ListCommand(cmd[0]);
         case "mark":
-            if (cmd.length < 2 || cmd[1].length() < 1) {
+            if (cmd.length != 2 || cmd[1].length() < 1) {
                 throw new DukeException("The index of a task cannot be empty.");
             }
             num = Integer.parseInt(cmd[1]);
             return new MarkCommand(cmd[0], num - 1);
         case "unmark":
-            if (cmd.length < 2 || cmd[1].length() < 1) {
+            if (cmd.length != 2 || cmd[1].length() < 1) {
                 throw new DukeException("The index of a task cannot be empty.");
             }
             num = Integer.parseInt(cmd[1]);
             return new UnmarkCommand(cmd[0], num - 1);
         case "delete":
-            if (cmd.length < 2 || cmd[1].length() < 1) {
+            if (cmd.length != 2 || cmd[1].length() < 1) {
                 throw new DukeException("The index of a task cannot be empty.");
             }
 
             num = Integer.parseInt(cmd[1]);
             return new DeleteCommand(cmd[0], num - 1);
+        case "find":
+            if (cmd.length != 2 || cmd[1].length() < 1) {
+                throw new DukeException("The keyword of a task cannot be empty.");
+            }
+            return new FindCommand(cmd[0], cmd[1]);
         default:
             cnt++;
             return new AddCommand(input);
