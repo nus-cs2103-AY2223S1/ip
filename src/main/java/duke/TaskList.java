@@ -95,7 +95,6 @@ public class TaskList {
         }
     }
 
-
     public String toCsv() {
         String csv = "";
         for (int i = 0; i < tasks.size(); i++) {

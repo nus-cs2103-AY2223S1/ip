@@ -29,7 +29,6 @@ public class Duke {
             }
         }
         ui.exit();
-
     }
 
     public static void main(String[] args) {

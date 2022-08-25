@@ -27,7 +27,7 @@ public class Parser {
         throw new DukeException("Duke: OOPS!!! The task is missing a date property.");
     }
 
-    private String getTaskField(String[] splitInput, int start, int end) {
+    public String getTaskField(String[] splitInput, int start, int end) {
         String field = String.join(" ", Arrays.copyOfRange(splitInput, start, end));
         if (field.equals("")) {
             throw new DukeException("Duke: OOPS!!! The task description cannot be empty.");
