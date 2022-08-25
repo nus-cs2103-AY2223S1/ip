@@ -1,13 +1,11 @@
-public class Event extends Task {
-    protected String at;
+public class Event extends ScheduleTask {
 
     public Event(String description, String at) {
-        super(description);
-        this.at = at;
+        super(description, at);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + showDateTime() + ")";
     }
 }
