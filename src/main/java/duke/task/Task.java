@@ -1,9 +1,16 @@
 package duke.task;
 
+/**
+ * Defines general characteristics of a task.
+ */
 public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Creates a task object.
+     * @param description details of task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;

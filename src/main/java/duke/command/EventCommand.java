@@ -6,10 +6,18 @@ import duke.storage.Storage;
 import duke.task.Event;
 import duke.task.TaskList;
 
+/**
+ * Adds Event task in duke's tasklist.
+ */
 public class EventCommand extends Command {
     private String description;
     private String at;
 
+    /**
+     * Creates an Event command object for execution in Duke class.
+     * @param description details of task.
+     * @param at date/time of when task occurs.
+     */
     public EventCommand(String description, String at) {
         this.description = description;
         this.at = at;

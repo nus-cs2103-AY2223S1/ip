@@ -7,6 +7,9 @@ import java.util.Scanner;
 
 import duke.task.Task;
 
+/**
+ * Handles the interactions with the user.
+ */
 public class Ui {
     static final String CHATBOX_NAME = "Ado";
     static final String PARTITION = "<><><><><><><><><><><><><><><><><><><><><><><><><><><><>";
@@ -36,6 +39,11 @@ public class Ui {
         System.out.println(message);
     }
 
+    /**
+     * Converts list containing tasks to string for printing.
+     * @param list list of user's saved tasks.
+     * @return current saved tasks in string form.
+     */
     public String listToString(List<Task> list) {
         if (list.size() == 0) {
             return "List is empty ~\n";

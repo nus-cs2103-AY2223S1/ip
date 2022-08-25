@@ -8,6 +8,9 @@ import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 
+/**
+ * Represents the main functions of Duke chatbot and initializes require variables.
+ */
 public class Duke {
     private List<Task> list = new ArrayList<>();
 
@@ -15,6 +18,10 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Initialises Duke chatbot.
+     * @param filePath directory of where tasks are saved.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -31,6 +38,9 @@ public class Duke {
         new Duke("data/tasks.txt").run();
     }
 
+    /**
+     * Runs the interaction between user and Duke chatbot.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
