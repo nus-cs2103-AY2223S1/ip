@@ -5,7 +5,7 @@ public class MarkCommand extends Command {
         super("mark");
     }
 
-    public void execute() {
-
+    public CommandResult execute() {
+        return null;
     }
 }

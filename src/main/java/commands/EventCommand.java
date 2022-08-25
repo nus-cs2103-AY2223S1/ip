@@ -5,7 +5,7 @@ public class EventCommand extends Command {
         super("event");
     }
 
-    public void execute() {
-
+    public CommandResult execute() {
+        return null;
     }
 }

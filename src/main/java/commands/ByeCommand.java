@@ -5,7 +5,7 @@ public class ByeCommand extends Command {
         super("bye");
     }
 
-    public void execute() {
-
+    public CommandResult execute() {
+        return null;
     }
 }

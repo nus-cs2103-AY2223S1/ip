@@ -1,11 +1,13 @@
 package commands;
 
-public class DeleteCommand extends Command {
+import tasks.TaskList;
+
+public class DeleteCommand extends TaskCommand {
     public DeleteCommand() {
         super("delete");
     }
 
-    public void execute() {
-
+    public CommandResult execute() {
+        return null;
     }
 }

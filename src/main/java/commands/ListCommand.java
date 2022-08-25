@@ -5,7 +5,7 @@ public class ListCommand extends Command {
         super("list");
     }
 
-    public void execute() {
-
+    public CommandResult execute() {
+        return null;
     }
 }

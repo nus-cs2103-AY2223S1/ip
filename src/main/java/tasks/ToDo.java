@@ -1,4 +1,4 @@
-package task;
+package tasks;
 
 /**
  * The ToDo class encapsulates a type of task to be done.

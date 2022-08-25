@@ -1,11 +1,13 @@
 package commands;
 
-public class DeadlineCommand extends Command {
+import tasks.TaskList;
+
+public class DeadlineCommand extends TaskCommand {
     public DeadlineCommand() {
         super("deadline");
     }
 
-    public void execute() {
-
+    public CommandResult execute() {
+        return null;
     }
 }

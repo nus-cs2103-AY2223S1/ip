@@ -1,4 +1,4 @@
-package task;
+package tasks;
 
 import exception.InvalidDateFormatException;
 
@@ -7,30 +7,30 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * The Deadline class encapsulates a type of task to be done.
- * A Deadline task is a task that needs to be done before a specific time/date.
+ * The Event class encapsulates a type of task to be done.
+ * A Deadline task is a task that starts at a specific time and ends at a specific time.
  */
-public class Deadline extends Task {
-    protected LocalDate by;
+public class Event extends Task {
+    private LocalDate at;
 
-    public Deadline(String description, String by) throws InvalidDateFormatException {
-        super(description, TaskType.DEADLINE);
+    public Event(String description, String at) throws InvalidDateFormatException {
+        super(description, TaskType.EVENT);
         try {
-            this.by = LocalDate.parse(by);
+            this.at = LocalDate.parse(at);
         } catch (DateTimeParseException exception){
             throw new InvalidDateFormatException();
         }
     }
 
     /**
-     * Returns a string representation of the Deadline task.
+     * Returns a string representation of the Event task.
      *
      * @return A string representation of the task.
      */
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(),
-                this.by.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
+        return String.format("%s (at: %s)", super.toString(),
+                this.at.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
     }
 
     /**
@@ -40,6 +40,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileString() {
-        return super.toFileString() + " | " + this.by ;
+        return super.toFileString() + " | " + this.at ;
     }
 }

@@ -1,4 +1,4 @@
-package task;
+package tasks;
 
 /**
  * The Task class encapsulates a task.

@@ -1,10 +1,11 @@
 import commands.Command;
+import commands.CommandResult;
 import exception.*;
 import parser.Parser;
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.ToDo;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.ToDo;
 import ui.TextUi;
 
 import java.io.File;
@@ -15,7 +16,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -198,7 +198,7 @@ public class Blob {
             ui.promptUserInput();
             try {
                 Command command = parser.parseUserInput(sc.nextLine());
-                command.execute();
+                CommandResult result = command.execute();
 //                switch (command) {
 //                case "bye":
 //                    end();

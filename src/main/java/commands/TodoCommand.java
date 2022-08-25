@@ -5,7 +5,7 @@ public class TodoCommand extends Command {
         super("todo");
     }
 
-    public void execute() {
-
+    public CommandResult execute() {
+        return null;
     }
 }

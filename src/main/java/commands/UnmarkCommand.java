@@ -5,7 +5,7 @@ public class UnmarkCommand extends Command {
         super("unmark");
     }
 
-    public void execute() {
-
+    public CommandResult execute() {
+        return null;
     }
 }

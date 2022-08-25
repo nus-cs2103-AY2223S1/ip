@@ -1,6 +1,4 @@
-package task;
-
-import java.util.Arrays;
+package tasks;
 
 public enum TaskType {
     TODO ("todo", "T"),
