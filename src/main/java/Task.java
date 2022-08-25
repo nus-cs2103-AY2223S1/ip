@@ -21,6 +21,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getStatus() { return (isDone ? "1" : "0"); }
+
+    public String getDescription() { return description; }
+
     public static int lsSize() { return num; }
 
     public void remove() {
