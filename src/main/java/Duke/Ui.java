@@ -63,7 +63,8 @@ public class Ui {
      * @param size of tasks left in the tasklist
      */
     public void printAddTask(Task t, int size) {
-        System.out.printf("Got it. I've added this task: \n %s \nNow you have %d tasks in the list.\n", t.toString(), size);
+        System.out.printf("Got it. I've added this task: \n %s \nNow you have %d tasks in the list.\n",
+                t.toString(), size);
     }
 
     /**

@@ -34,37 +34,37 @@ public class Parser {
         String[] input = command.split(" ", 2);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
         switch (input[0]) {
-            case "bye":
-                return new ExitCommand();
-            case "list":
-                return new ListCommand();
-            case "mark":
-                checkInputError(input);
-                checkIntInputError(input);
-                return new MarkCommand(parseInt(input[1]));
-            case "unmark":
-                checkInputError(input);
-                checkIntInputError(input);
-                return new UnmarkCommand(parseInt(input[1]));
-            case "delete":
-                checkInputError(input);
-                checkIntInputError(input);
-                return new DeleteCommand(parseInt(input[1]));
-            case "todo":
-                checkInputError(input);
-                return new TodoCommand(input[1]);
-            case "event":
-                checkInputError(input);
-                String[] input2 = input[1].split(" /at ");
-                checkInputError(input2);
-                return new EventCommand(input2[0], LocalDate.parse(input2[1], formatter));
-            case "deadline":
-                checkInputError(input);
-                String[] input3 = input[1].split(" /by ");
-                checkInputError(input3);
-                return new DeadlineCommand(input3[0], LocalDate.parse(input3[1], formatter));
-            default:
-                throw new DukeException(Constants.INVALID_COMMAND);
+        case "bye":
+            return new ExitCommand();
+        case "list":
+            return new ListCommand();
+        case "mark":
+            checkInputError(input);
+            checkIntInputError(input);
+            return new MarkCommand(parseInt(input[1]));
+        case "unmark":
+            checkInputError(input);
+            checkIntInputError(input);
+            return new UnmarkCommand(parseInt(input[1]));
+        case "delete":
+            checkInputError(input);
+            checkIntInputError(input);
+            return new DeleteCommand(parseInt(input[1]));
+        case "todo":
+            checkInputError(input);
+            return new TodoCommand(input[1]);
+        case "event":
+            checkInputError(input);
+            String[] input2 = input[1].split(" /at ");
+            checkInputError(input2);
+            return new EventCommand(input2[0], LocalDate.parse(input2[1], formatter));
+        case "deadline":
+            checkInputError(input);
+            String[] input3 = input[1].split(" /by ");
+            checkInputError(input3);
+            return new DeadlineCommand(input3[0], LocalDate.parse(input3[1], formatter));
+        default:
+            throw new DukeException(Constants.INVALID_COMMAND);
         }
     }
 
@@ -82,7 +82,7 @@ public class Parser {
     private static boolean isNumber(String str) {
         if (str == null) return false;
         try {
-            int x = Integer.parseInt(str);
+            Integer.parseInt(str);
         } catch (NumberFormatException e) {
             return false;
         }

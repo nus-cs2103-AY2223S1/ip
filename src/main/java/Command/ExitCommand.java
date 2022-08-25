@@ -8,6 +8,7 @@ import Duke.TaskList;
 import Duke.Ui;
 
 public class ExitCommand extends Command {
+
     public ExitCommand() {
         super();
     }
