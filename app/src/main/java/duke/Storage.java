@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Storage {
-    private String fileName;
+    private final String fileName;
 
     public void save(TaskList taskList) {
         try {
@@ -25,7 +25,7 @@ public class Storage {
     public TaskList load() {
         TaskList tasks = new TaskList();
         try {
-            Scanner saved = new Scanner(new File("tasks.txt"));
+            Scanner saved = new Scanner(new File(fileName));
             while (saved.hasNextLine()) {
                 try {
                     tasks.add(Task.fromEncoded(saved.nextLine()));
