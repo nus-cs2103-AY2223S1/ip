@@ -27,6 +27,7 @@ public class Duke {
                 Task currTask = tasksList.get(tasksList.size() - 1);
                 System.out.printf("\t    %s\n", currTask);
                 System.out.printf("\tNow you have %d tasks in the list.\n", tasksList.size());
+                FileWriting.save(currTask);
                 break;
 
             case LIST:
@@ -57,6 +58,7 @@ public class Duke {
             currentTask.mark();
             System.out.printf("\tNice! I've marked this task as done:\n");
             System.out.printf("\t    %s\n", currentTask);
+            
 
         } else if (keyword.equals("unmark")) {
             currentTask.unMark();
@@ -69,6 +71,7 @@ public class Duke {
             System.out.printf("\tNow you have %d tasks in the list.\n", tasksList.size());
         }
         System.out.println(DIVIDER);
+        FileWriting.update(tasksList);
     }
 
     public static void mainProcess() {
@@ -85,6 +88,7 @@ public class Duke {
         System.out.println("\tHello! I'm Duke");
         System.out.println("\tWhat can I do for you?");
         System.out.println(DIVIDER);
+        tasksList = FileReading.load();
         Scanner sc = new Scanner(System.in);
 
         while (sc.hasNext()) {
