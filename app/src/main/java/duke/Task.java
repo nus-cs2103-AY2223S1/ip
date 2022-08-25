@@ -4,12 +4,24 @@ public class Task {
     public static final String ICON_DONE = "X";
     public static final String ICON_UNDONE = " ";
 
-    public String details;
-    public boolean isDone;
+    protected String details;
+    private boolean isDone;
 
     public Task(String details) {
         this.details = details;
         this.isDone = false;
+    }
+
+    public void markDone() {
+        isDone = true;
+    }
+
+    public void markUndone() {
+        isDone = false;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
 
     public static Task fromEncoded(String s) {
@@ -35,6 +47,8 @@ public class Task {
 
         return task;
     }
+
+
 
     public String getStatusIcon() {
         return isDone ? ICON_DONE : ICON_UNDONE;

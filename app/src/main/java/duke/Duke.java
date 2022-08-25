@@ -36,13 +36,13 @@ public class Duke {
         case "mark":
             int markedTask = checkTask(params);
             if (markedTask < 0) return "Invalid task number!";
-            tasks.getTask(markedTask - 1).isDone = true;
+            tasks.getTask(markedTask - 1).markDone();
             storage.save(tasks);
             return "OK, this task is done:\n" + tasks.getTask(markedTask - 1);
         case "unmark":
             int unmarkedTask = checkTask(params);
             if (unmarkedTask < 0) return "Invalid task number!";
-            tasks.getTask(unmarkedTask - 1).isDone = false;
+            tasks.getTask(unmarkedTask - 1).markUndone();
             storage.save(tasks);
             return "OK, this task is undone:\n" + tasks.getTask(unmarkedTask - 1);
         case "delete":
