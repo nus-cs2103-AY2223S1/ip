@@ -1,13 +1,11 @@
-public class Task {
+public class Todo extends Task {
     private String description;
     private boolean isDone;
+    private String type;
 
-    public Task(String description) {
+    public Todo(String description) {
         this.description = description;
-        this.isDone = false;
-    }
-
-    public Task() {
+        this.type = "T";
     }
 
     public void markAsDone() {
@@ -24,6 +22,15 @@ public class Task {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    public String toString() {
+        return "[" + type + "]" + "[" + getStatusIcon() + "] " + description;
     }
      
 }
