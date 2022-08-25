@@ -1,23 +1,38 @@
 package ted;
 
+import java.util.Scanner;
+
 import ted.exception.TedException;
 import ted.task.Task;
 import ted.task.TaskList;
 
-import java.util.Scanner;
-
+/**
+ * Ui is use for terminal interaction with user
+ */
 public class Ui {
 
-    private static final String GREETING = "##################################################\n" + "||                                              ||\n" + "||                Hello! I'm Ted                ||\n" + "||            What can I do for you?            ||\n" + "||                                              ||\n" + "##################################################\n";
+    private static final String GREETING = "##################################################\n"
+            + "||                                              ||\n"
+            + "||                Hello! I'm Ted                ||\n"
+            + "||            What can I do for you?            ||\n"
+            + "||                                              ||\n"
+            + "##################################################\n";
 
     private static final String INPUT_PREFIX = "> ";
+
+    /**
+     * Scanner to scan user input
+     */
+    private Scanner scanner = new Scanner(System.in);
 
     public void showGreeting() {
         output(GREETING);
     }
 
-    private Scanner scanner = new Scanner(System.in);
-
+    /**
+     * Prompt input from user
+     * @return user input
+     */
     public String promptInput() {
         output(INPUT_PREFIX);
         scanner.hasNextLine();
@@ -32,12 +47,21 @@ public class Ui {
         output(message + "\n");
     }
 
+    /**
+     * Show success message when task is added
+     * @param tasks all tasks in task list
+     */
     public void showAddedTaskSuccess(TaskList tasks) {
         output(String.format("Got it. I've added this task:\n"
                 + "%s\n"
                 + "Now you have %d tasks in the list.\n", tasks.last().toString(), tasks.size()));
     }
 
+    /**
+     * Show success message when task is deleted
+     * @param tasks all task in task list
+     * @param deletedTask task that has been deleted
+     */
     public void showDeletedTaskSuccess(TaskList tasks, Task deletedTask) {
         output(String.format("Noted. I've removed this task:\n"
                 + "%s\n"
@@ -64,6 +88,9 @@ public class Ui {
         outputLine("I'm sorry. I don't understand what that means.");
     }
 
+    /**
+     * Exit the ui
+     */
     public void exit() {
         this.scanner.close();
         outputLine("Bye. Hope to see you again!");
