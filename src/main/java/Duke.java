@@ -21,6 +21,7 @@ public class Duke {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         //System.out.println("Hello from\n" + logo);
         cutOff();
+        cutOff();
         System.out.println("Hola! I'm Ashy (//●⁰౪⁰●)//\n" +
                 "What can I do for you?");
         cutOff();
