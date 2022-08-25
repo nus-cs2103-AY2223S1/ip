@@ -17,9 +17,9 @@ public abstract class Task {
         case "T":
             return new Todo(strings[2], strings[1].equals("X"));
         case "D":
-            return new Deadline(strings[2], strings[3], strings[1].equals("X"));
+            return new Deadline(strings[2], LocalDateTime.parse(strings[3]), strings[1].equals("X"));
         case "E":
-            return new Event(strings[2], strings[3], strings[1].equals("X"));
+            return new Event(strings[2], LocalDateTime.parse(strings[3]), strings[1].equals("X"));
         default:
             return null;
         }

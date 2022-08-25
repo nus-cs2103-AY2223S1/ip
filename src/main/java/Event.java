@@ -17,8 +17,6 @@ public class Event extends Task{
         this.at = at;
         this.isDone = isDone;
     }
-
-
     @Override
     public String encodeToString() {
         return "E|" + this.getStatusIcon() + "|" + this.description + "|" + this.at;
