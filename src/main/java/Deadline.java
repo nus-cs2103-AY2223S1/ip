@@ -1,18 +1,20 @@
-// This class inherits from the abstract Task class
-// and encapsulates the logic of a Deadline task.
+import java.time.LocalDateTime;
+
+/**
+ * This class inherits from the abstract Task class
+ * and encapsulates the logic of a Deadline task.
+ */
 public class Deadline extends Task {
     /* Due Date field */
-    private String dueDate;
+    private LocalDateTime dueDate;
 
     /**
      * Constructor for the Deadline Task.
      * @param description description of the task.
      */
-    public Deadline (String description) {
+    public Deadline(String description, LocalDateTime dueDate) {
         super(description);
-        String[] temp = description.split("/by ");
-        this.description = temp[0];
-        dueDate = temp.length < 2 ? "No due date given" : temp[1];
+        this.dueDate = dueDate;
     }
 
     /**
@@ -21,6 +23,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + dueDate + ")";
+        return "[D]" + super.toString() + " (by: " + dueDate.format(OUTPUT_DATE_FORMAT) + ")";
     }
 }
