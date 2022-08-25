@@ -3,10 +3,10 @@ package models;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class DateFormatter {
+public class FormattedDate {
     LocalDate formatDate;
 
-    public DateFormatter(String str) {
+    public FormattedDate(String str) {
         this.formatDate = LocalDate.parse(str);
     }
 
