@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import duke.exception.DukeException;
 
 /**
- * Represents all tasks.
+ * Represents all tasks in TaskList.
  *
  * @author Elgin
  */
