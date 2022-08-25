@@ -13,6 +13,16 @@ public class Deadline extends Task {
     this.deadline = deadline;
   }
 
+  public Deadline(boolean isDone, String description, String deadline) {
+    super(isDone, description);
+    this.deadline = deadline;
+  }
+
+  @Override
+  public String toFileString() {
+    return "deadline // " + super.toFileString() + " // " + deadline;
+  }
+
   /**
    * Returns string representation of Deadline
    * 

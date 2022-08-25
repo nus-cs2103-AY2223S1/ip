@@ -14,6 +14,11 @@ public abstract class Task {
     this.description = description;
   }
 
+  protected Task(boolean isDone, String description) {
+    this.isDone = isDone;
+    this.description = description;
+  }
+
   /**
    * Factory method to create a Task
    * 
@@ -35,9 +40,25 @@ public abstract class Task {
       case event:
         Task.validateCreateTask(inputArray);
         String[] eventInputArray = inputArray[1].split("/at", 2);
-        return new Event(eventInputArray[0].trim(), eventInputArray[1].trim());
+        return Event.createEvent(eventInputArray[0].trim(), eventInputArray[1].trim());
       default:
         throw new CheeseException();
+    }
+  }
+
+  public static Task createTaskFromFile(String taskString) throws CheeseException {
+    String[] taskStringArray = taskString.split(" // ");
+    String command = taskStringArray[0];
+    boolean isDone = taskStringArray[1].equals("T");
+    switch (Command.valueOf(command)) {
+      case todo:
+        return new Todo(isDone, taskStringArray[2]);
+      case deadline:
+        return new Deadline(isDone, taskStringArray[2], taskStringArray[3]);
+      case event:
+        return new Event(isDone, taskStringArray[2], taskStringArray[3]);
+      default:
+        throw new CheeseException("Save file is corrupted");
     }
   }
 
@@ -93,6 +114,11 @@ public abstract class Task {
         }
         break;
     }
+  }
+
+  public String toFileString() {
+    String isDoneString = isDone ? "T" : "F";
+    return isDoneString + " // " + description;
   }
 
   /**

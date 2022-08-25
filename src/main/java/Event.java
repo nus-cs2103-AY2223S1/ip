@@ -8,9 +8,22 @@ public class Event extends Task {
    * @param description  description of Event
    * @param timeInterval time interval of Event
    */
-  public Event(String description, String timeInterval) {
-    super(description);
+  public Event(boolean isDone, String description, String timeInterval) {
+    super(isDone, description);
     this.timeInterval = timeInterval;
+  }
+
+  public static Event createEvent(String description, String timeInterval) {
+    return new Event(false, description, timeInterval);
+  }
+
+  public static Event loadEvent(boolean isDone, String description, String timeInterval) {
+    return new Event(isDone, description, timeInterval);
+  }
+
+  @Override
+  public String toFileString() {
+    return "event // " + super.toFileString() + " // " + timeInterval;
   }
 
   /**

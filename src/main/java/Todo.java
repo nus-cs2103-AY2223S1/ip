@@ -8,6 +8,15 @@ public class Todo extends Task {
     super(description);
   }
 
+  public Todo(boolean isDone, String description) {
+    super(isDone, description);
+  }
+
+  @Override
+  public String toFileString() {
+    return "todo // " + super.toFileString();
+  }
+
   /**
    * Returns string representation of Todo
    * 
