@@ -1,5 +1,7 @@
 package duke.task;
 
+import duke.DukeException;
+
 public class Task {
     private String title;
     private Boolean isDone;
@@ -14,23 +16,23 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public void markIsDone() {
+    public void markIsDone() throws DukeException {
         if (isDone) {
-            System.out.println("Error: TaskTypes.Task is already done");
+            throw new DukeException("Task is already done");
         } else {
-            System.out.println("OK, I've marked this duke.task as done: ");
+            System.out.println("OK, I've marked this task as done: ");
             this.isDone = true;
             System.out.println(this);
         }
     }
 
-    public void unmarkIsDone() {
+    public void unmarkIsDone() throws DukeException {
         if (isDone) {
-            System.out.println("OK, I've marked this duke.task as not done yet: ");
+            System.out.println("OK, I've marked this task as not done yet: ");
             this.isDone = false;
             System.out.println(this);
         } else {
-            System.out.println("Error: TaskTypes.Task is not done");
+            throw new DukeException("Task is not done");
         }
     }
 
