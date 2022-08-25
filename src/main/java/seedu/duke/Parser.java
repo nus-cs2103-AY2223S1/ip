@@ -36,8 +36,6 @@ public class Parser {
         } else if (command.startsWith("delete")) {
             int index = Character.getNumericValue(command.charAt(command.length() - 1));
             taskList.delete(index - 1);
-        } else if (command.startsWith("find")) {
-            taskList.find(command);
         } else if (command.equals("bye")) {
             Ui.bye();
         } else {

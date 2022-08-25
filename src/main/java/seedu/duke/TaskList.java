@@ -32,7 +32,6 @@ public class TaskList {
 
             Task newTask = new Todo(command.substring(5));
             storage.add(newTask);
-            saveFile.addTask(newTask.toStore());
         } else if (command.startsWith("deadline")) {
             try {
                 if (command.length() <= 9) {
@@ -120,36 +119,6 @@ public class TaskList {
         } catch (IndexOutOfBoundsException e) {
             Ui.taskNotFoundText();
         }
-    }
-
-    /**
-     * returns a list of Tasks that contain the word to be found.
-     * @param command the user's input.
-     */
-    public void find(String command) {
-        ArrayList<Task> result = new ArrayList<>();
-        String toFind = command.substring(5);
-
-        Iterator<Task> iterator = storage.iterator();
-        while (iterator.hasNext()) {
-            Task curr = iterator.next();
-            if (curr.checkMatching(toFind)) {
-                result.add(curr);
-            }
-        }
-
-        System.out.println("____________________________________________________________ \n"
-                + "Here are the matching tasks in your list:");
-
-        int index = 1;
-        Iterator<Task> resultIterator = result.iterator();
-        while (resultIterator.hasNext()) {
-            System.out.printf("%d. ", index);
-            System.out.println(resultIterator.next().toString());
-            index++;
-        }
-
-        System.out.println("____________________________________________________________");
     }
 
 
