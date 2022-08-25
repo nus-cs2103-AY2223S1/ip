@@ -48,8 +48,6 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         boolean isExit = false;
 
-
-
         while (!isExit) {
 
             // Retrieve Input and Parse
@@ -65,7 +63,7 @@ public class Duke {
             Keyword command = Parser.getCommand();
             String argument = Parser.getArgument();
             try {
-                switch(command) {
+                switch (command) {
                 case TODO: {
                     Task task = new ToDo(argument);
                     tasks.addTask(task);
@@ -73,24 +71,24 @@ public class Duke {
                     break;
                 }
                 case DEADLINE: {
-                        String[] taskTokens = argument.split(" /by ");
-                        String taskName = taskTokens[0];
-                        String deadline = taskTokens[1];
-                        LocalDateTime deadlineDate = DateTimeFormatUtils.parseDate(deadline);
-                        Task task = new Deadline(taskName, deadlineDate);
-                        tasks.addTask(task);
-                        ui.displayTaskAddedMessage(task, tasks.size());
-                        break;
+                    String[] taskTokens = argument.split(" /by ");
+                    String taskName = taskTokens[0];
+                    String deadline = taskTokens[1];
+                    LocalDateTime deadlineDate = DateTimeFormatUtils.parseDate(deadline);
+                    Task task = new Deadline(taskName, deadlineDate);
+                    tasks.addTask(task);
+                    ui.displayTaskAddedMessage(task, tasks.size());
+                    break;
                 }
                 case EVENT: {
-                        String[] taskTokens = argument.split(" /at ");
-                        String taskName = taskTokens[0];
-                        String duration = taskTokens[1];
-                        LocalDateTime[] eventDuration = DateTimeFormatUtils.parseDuration(duration);
-                        Task task = new Event(taskName, eventDuration[0], eventDuration[1]);
-                        tasks.addTask(task);
-                        ui.displayTaskAddedMessage(task, tasks.size());
-                        break;
+                    String[] taskTokens = argument.split(" /at ");
+                    String taskName = taskTokens[0];
+                    String duration = taskTokens[1];
+                    LocalDateTime[] eventDuration = DateTimeFormatUtils.parseDuration(duration);
+                    Task task = new Event(taskName, eventDuration[0], eventDuration[1]);
+                    tasks.addTask(task);
+                    ui.displayTaskAddedMessage(task, tasks.size());
+                    break;
                 }
                 case LIST: {
                     tasks.displayTaskList();
@@ -118,7 +116,7 @@ public class Duke {
                 // Update Save File
                 storage.saveTaskListToFile(tasks);
 
-            } catch(DukeException de) {
+            } catch (DukeException de) {
                 ui.printErrorMessage(de);
             }
         }

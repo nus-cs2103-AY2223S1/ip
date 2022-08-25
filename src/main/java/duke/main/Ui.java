@@ -12,7 +12,7 @@ public class Ui {
     /**
      * Constructor for the Ui class.
      */
-    public Ui () {
+    public Ui() {
 
     }
 
@@ -59,11 +59,11 @@ public class Ui {
     /**
      * Outputs success message to user when a task is marked or unmarked successfully.
      *
-     * @param task Task to be marked or unmarked.
+     * @param task    Task to be marked or unmarked.
      * @param command Keyword corresponding to mark or unmark.
      */
     public void displayTaskMarkUnmarkMessage(Task task, Keyword command) {
-        switch(command) {
+        switch (command) {
         case MARK: {
             String taskListString = String.format("\tGood Job! The following task " +
                     "has been marked as done:\n\t%s", task);

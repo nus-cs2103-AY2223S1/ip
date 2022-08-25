@@ -15,7 +15,6 @@ public class ToDo extends Task {
     public ToDo(String name) {
         this.name = name;
         this.isDone = false;
-        ;
     }
 
     /**

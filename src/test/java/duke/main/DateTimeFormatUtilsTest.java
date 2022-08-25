@@ -13,8 +13,8 @@ public class DateTimeFormatUtilsTest {
             DateTimeFormatUtils.parseDate("This is an invalid Input");
             fail();
         } catch (DukeException de) {
-            assertEquals("\tDate Format Police here!!" +
-                    "\n\tYour deadline has to be in YYYY-MM-DD HHmm format!!",
+            assertEquals("\tDate Format Police here!!"
+                            + "\n\tYour deadline has to be in YYYY-MM-DD HHmm format!!",
                     de.getMessage());
         }
     }

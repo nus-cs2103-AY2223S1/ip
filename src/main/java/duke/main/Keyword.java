@@ -29,11 +29,11 @@ public enum Keyword {
 
     /**
      * Retrieve Keyword enum value given input key string.
-     * Throws IllegalArgumentException if corresponding value is not found.
+     * Throws DukeException if corresponding value is not found.
      *
      * @param inputKey Input key string.
      * @return Keyword enum value corresponding to input key.
-     * @throws IllegalArgumentException
+     * @throws DukeException If corresponding keyword value is not found.
      */
     public static Keyword getKeyword(String inputKey) throws DukeException {
         for (Keyword k : Keyword.values()) {
@@ -43,5 +43,4 @@ public enum Keyword {
         }
         throw new DukeException("\tSorry, I don't understand...");
     }
-
 }
