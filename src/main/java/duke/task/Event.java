@@ -1,4 +1,4 @@
-package ted.task;
+package duke.task;
 
 public class Event extends Task {
     private String eventTimePeriod;

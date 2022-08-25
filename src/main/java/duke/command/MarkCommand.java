@@ -1,9 +1,9 @@
-package ted.command;
+package duke.command;
 
-import ted.exception.TedException;
-import ted.storage.Storage;
-import ted.task.*;
-import ted.ui.Ui;
+import duke.exception.TedException;
+import duke.storage.Storage;
+import duke.task.*;
+import duke.ui.Ui;
 
 public class MarkCommand extends Command {
     private int taskIndex;

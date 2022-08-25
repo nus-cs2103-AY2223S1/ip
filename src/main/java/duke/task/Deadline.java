@@ -1,4 +1,4 @@
-package ted.task;
+package duke.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

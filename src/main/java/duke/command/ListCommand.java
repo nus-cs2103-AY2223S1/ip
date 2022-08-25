@@ -1,8 +1,8 @@
-package ted.command;
+package duke.command;
 
-import ted.storage.Storage;
-import ted.task.*;
-import ted.ui.Ui;
+import duke.storage.Storage;
+import duke.task.*;
+import duke.ui.Ui;
 
 public class ListCommand extends Command {
     @Override

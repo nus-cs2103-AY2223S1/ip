@@ -1,9 +1,9 @@
-package ted.task;
+package duke.task;
 
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import ted.exception.TedException;
+import duke.exception.TedException;
 
 public class TaskList {
     private ArrayList<Task> tasks;
