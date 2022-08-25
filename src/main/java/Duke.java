@@ -7,6 +7,11 @@ import models.Todo;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import models.Deadline;
+import models.Event;
+import models.Task;
+import models.Todo;
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import static utils.DukePrint.dukePrint;
