@@ -5,6 +5,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class Duke {
 
     public static void read() {
@@ -31,9 +36,12 @@ public class Duke {
             BufferedWriter writer = new BufferedWriter(new FileWriter("list.txt"));
             for (int i = 0; i < tasklist.size(); i ++) {
                 DukeTask t = tasklist.get(i);
-                System.out.println(t.task);
-                System.out.println(t.time);
-                writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + t.time +"\n");
+                if (t.taskType == 'D') {
+                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + "(" + t.ldt.toString() + ")" +"\n");
+                } else {
+                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + t.time +"\n");
+                }
+                
             }
             writer.close();
 
@@ -60,6 +68,7 @@ public class Duke {
                 } else if (str.startsWith("bye")) {
                     System.out.println("Bye. Hope to see you again");
                     pred = false;
+                    input.close();
 
                 } else if (str.startsWith("mark")) {
                     try {
@@ -101,14 +110,21 @@ public class Duke {
 
 
                 } else if (str.startsWith("deadline")) {
-                    str = str.substring(9);
-                    String s1 = str.substring(0, str.indexOf('/') - 1);
-                    String s2 = "(" + str.substring(str.indexOf('/') + 1) + ')';
-                    DukeTask t = new DukeTask(s1, false, 'D', s2);
-                    tasklist.add(t);
-                    System.out.println("Got it. I've added this task:");
-                    System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
-                    save();
+                    try{
+                        str = str.substring(9);
+                        String s1 = str.substring(0, str.indexOf('/') - 1);
+                        LocalDateTime ldt1 = LocalDateTime.parse(str.substring(str.indexOf('/') + 1), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                        DukeTask t = new DukeTask(s1, false, 'D', ldt1);
+                        tasklist.add(t);
+                        System.out.println("Got it. I've added this task:");
+                        System.out.println(String.format("List %d: ", tasklist.size() - 1) + t.toString());
+                        save();
+                    } catch (DateTimeParseException e) {
+                        System.out.println("Looks like your date time formatting is wrong, please format it like so: \"yyyy-mm-dd hh:mm\"");
+                    } catch (StringIndexOutOfBoundsException e) {
+                        System.out.println("Please format your Deadline request with a /{deadline}");
+                    }
+                    
 
                 } else if (str.startsWith("event")) {
                     str = str.substring(6);
