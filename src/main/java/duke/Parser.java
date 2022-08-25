@@ -70,19 +70,21 @@ public class Parser {
 
     /**
      * Takes in a string which is in a date format and convert it to a date
+     *
      * @param stringDate date in string form
      * @return LocalDate object
      */
-    public static LocalDate convertStringToDate(String stringDate){
+    public static LocalDate convertStringToDate(String stringDate) {
         return LocalDate.parse(stringDate);
     }
 
     /**
      * Takes in a LocalDate object and convert it into a string based on the format
+     *
      * @param date LocalDate object
      * @return string converted to the formatted "MMM dd yyyy" from the date object
      */
-    public static String convertDateToString(LocalDate date){
+    public static String convertDateToString(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 }

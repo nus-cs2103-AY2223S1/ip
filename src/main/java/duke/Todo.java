@@ -1,11 +1,10 @@
 package duke;
 
-
 /**
  * Represents the Todo task which is a type of task
  * It has the tag [T]
  */
-public class Todo extends Task{
+public class Todo extends Task {
     private final String tag = "[T]";
 
     /**
@@ -25,6 +24,6 @@ public class Todo extends Task{
      */
     @Override
     public String toString() {
-        return tag + "[" + this.getStatusIcon()  + "] " + this.getTaskName();
+        return tag + "[" + this.getStatusIcon() + "] " + this.getTaskName();
     }
 }

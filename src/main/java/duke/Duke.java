@@ -13,7 +13,6 @@ public class Duke {
     /**
      * Constructor for Duke.
      * Load tasks into tasks list if there is storage
-     *
      */
     public Duke() {
         TaskList taskList = new TaskList();
@@ -33,9 +32,9 @@ public class Duke {
      * Initialise TaskList if there are tasks saved previously in storage.
      */
     public void start() {
-        try{
+        try {
             storage.loadFile();
-        } catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
         scan.run();

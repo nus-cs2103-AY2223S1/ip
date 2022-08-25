@@ -19,7 +19,7 @@ public class Storage {
     /**
      * Constructor for the Storage class
      *
-     * @param path path of the file
+     * @param path     path of the file
      * @param taskList current Tasklist state
      */
     public Storage(String path, TaskList taskList) {
@@ -28,10 +28,23 @@ public class Storage {
     }
 
     /**
+     * Adds text to the file
+     *
+     * @param filePath  path of the file
+     * @param textToAdd text to be added to the file
+     * @throws IOException If file is not found
+     */
+    private static void writeToFile(String filePath, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(textToAdd + "\n");
+        fw.close();
+    }
+
+    /**
      * Loads the file into the app so that a saved state can be retrieved
      * Creates file and folder if it doesn't exist
      *
-     * @throws IOException
+     * @throws IOException Throws exception when file is missing
      */
     public void loadFile() throws IOException {
         File file = new File(this.path);
@@ -43,7 +56,7 @@ public class Storage {
         file.createNewFile();
 
         Scanner scanner = new Scanner(file);
-        while(scanner.hasNextLine()){
+        while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
             taskList.readTaskFromLoader(line);
         }
@@ -51,21 +64,6 @@ public class Storage {
         scanner.close();
 
     }
-
-
-    /**
-     * Adds text to the file
-     *
-     * @param filePath path of the file
-     * @param textToAdd text to be added to the file
-     * @throws IOException If file is not found
-     */
-    private static void writeToFile(String filePath, String textToAdd) throws IOException {
-        FileWriter fw = new FileWriter(filePath,true);
-        fw.write(textToAdd + "\n");
-        fw.close();
-    }
-
 
     /**
      * Takes in command from User and handle the logic on what to save onto the file
@@ -76,28 +74,28 @@ public class Storage {
         try {
             String[] combiStr;
             String[] split = command.split(" ", 2);
-            if(split.length < 2) {
+            if (split.length < 2) {
                 throw new EmptyNameException();
             }
             String type = split[0];
-            if(type.equals(TaskTypeEnum.todo.toString())){
+            if (type.equals(TaskTypeEnum.todo.toString())) {
                 String name = split[1];
                 combiStr = new String[]{type, "0", name};
             } else {
                 String[] split1 = split[1].split("/", 2);
                 String name = split1[0];
                 String info = split1[1];
-                if(type.equals(TaskTypeEnum.deadline.toString()) || type.equals("D")){
+                if (type.equals(TaskTypeEnum.deadline.toString()) || type.equals("D")) {
                     combiStr = new String[]{type, "0", name, info};
                 } else {
                     combiStr = new String[]{type, "0", name, info};
                 }
             }
             StringBuilder ret = new StringBuilder();
-            for(int i = 0 ; i <combiStr.length; i++){
-                if(i != 0){
+            for (int i = 0; i < combiStr.length; i++) {
+                if (i != 0) {
                     ret.append("|").append(combiStr[i].trim());
-                }  else {
+                } else {
                     ret.append(combiStr[i].trim());
                 }
             }
@@ -113,22 +111,20 @@ public class Storage {
     /**
      * Changes the state of the task in the saved file
      *
-     * @param index line number of that task in the file
-     * @param toDone decides whether to set the task to be done or undone
+     * @param index     line number of that task in the file
+     * @param isSetDone decides whether to set the task to be done or undone
      */
-    public void toggleDone(int index, boolean toDone) {
+    public void toggleDone(int index, boolean isSetDone) {
         File file = new File(this.path);
-        try{
+        try {
             Scanner scanner = new Scanner(file);
             StringBuilder builder = new StringBuilder();
             int currentIndex = 0;
-            while(scanner.hasNextLine()){
-                if(currentIndex == index){
+            while (scanner.hasNextLine()) {
+                if (currentIndex == index) {
                     String oldString = scanner.nextLine();
 
-                    String newString = toDone
-                            ? oldString.replaceFirst("0", "1")
-                            : oldString.replaceFirst("1", "0") ;
+                    String newString = isSetDone ? oldString.replaceFirst("0", "1") : oldString.replaceFirst("1", "0");
                     builder.append(newString).append(System.lineSeparator());
                 } else {
                     builder.append(scanner.nextLine()).append(System.lineSeparator());
@@ -142,7 +138,7 @@ public class Storage {
             writer.flush();
 
 
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
@@ -155,14 +151,14 @@ public class Storage {
      *
      * @param index line number of the task
      */
-    public void deleteLine(int index){
+    public void deleteLine(int index) {
         File file = new File(this.path);
-        try{
+        try {
             Scanner scanner = new Scanner(file);
             StringBuilder builder = new StringBuilder();
             int currentIndex = 0;
-            while(scanner.hasNextLine()){
-                if(currentIndex != index){
+            while (scanner.hasNextLine()) {
+                if (currentIndex != index) {
                     builder.append(scanner.nextLine()).append(System.lineSeparator());
                 } else {
                     scanner.nextLine();
@@ -176,15 +172,12 @@ public class Storage {
             writer.flush();
 
 
-        }catch(FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-
-
 
 
 }
