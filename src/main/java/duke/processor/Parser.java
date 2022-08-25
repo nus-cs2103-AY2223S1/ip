@@ -3,6 +3,7 @@ package duke.processor;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -22,6 +23,7 @@ public class Parser {
         UNMARK,
         DELETE,
         LIST,
+        FIND,
     }
 
     enum TypeOfTask {
@@ -45,7 +47,7 @@ public class Parser {
     public static boolean isCommand(String command) {
         return command.equals("bye") || command.equals("mark")
                 || command.equals("unmark") || command.equals("delete")
-                || command.equals("list");
+                || command.equals("list") || command.equals("find");
     }
 
     public static Command parseCommand(String input) throws DukeException {
@@ -69,6 +71,9 @@ public class Parser {
                     return new UnmarkCommand(taskIndexToBeUnmarked);
                 case LIST:
                     return new ListCommand();
+                case FIND:
+                    String keyword = input.split(" ")[1];
+                    return new FindCommand(keyword);
                 default:
                     throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
