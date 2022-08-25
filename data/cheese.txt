@@ -1,0 +1,4 @@
+todo // T // read book
+deadline // T // return book // June 6th
+event // T // project meeting // Aug 6th 2-4pm
+todo // T // join sports club

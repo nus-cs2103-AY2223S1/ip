@@ -1,15 +1,21 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Cheese {
   /** Constant to represent border during conversation */
   public static final String BORDER = "-----";
 
   /** Array list to store list of tasks */
-  public static ArrayList<Task> list = new ArrayList<Task>();
+  private static TaskList taskList = new TaskList();
 
   public static void main(String[] args) {
     Cheese.greet();
+    try {
+      Cheese.loadData();
+    } catch (IOException e) {
+      System.out.println(e.getMessage());
+    }
     Cheese.chat();
   }
 
@@ -18,6 +24,25 @@ public class Cheese {
     String greeting = new String("Woof! I'm Cheese, your puppy assistant.\n"
         + "What can I do for you?");
     System.out.println(greeting);
+  }
+
+  private static void loadData() throws IOException {
+    try {
+      File cheeseFile = new File("data/cheese.txt");
+      cheeseFile.createNewFile();
+
+      Scanner cheeseScanner = new Scanner(cheeseFile);
+      while (cheeseScanner.hasNext()) {
+        taskList.loadTask(cheeseScanner.nextLine());
+      }
+      cheeseScanner.close();
+    } catch (CheeseException e) {
+      System.out.println(e.getMessage());
+    }
+  }
+
+  private static void writeData() {
+
   }
 
   /** Chats with user */
@@ -44,23 +69,20 @@ public class Cheese {
             return;
           case list:
             Cheese.validateOneWordCommand(inputArray);
-            Cheese.printList();
+            taskList.printTaskList();
             break;
           case mark:
-            Task taskToMark = Cheese.getTaskFromList(inputArray);
-            taskToMark.markAsDone();
+            taskList.markTaskAsDone(Integer.parseInt(inputArray[1]) - 1);
             break;
           case unmark:
-            Task taskToUnmark = Cheese.getTaskFromList(inputArray);
-            taskToUnmark.markAsNotDone();
+            taskList.markTaskAsNotDone(Integer.parseInt(inputArray[1]) - 1);
             break;
           case delete:
-            Task taskToDelete = Cheese.getTaskFromList(inputArray);
-            Cheese.deleteTask(taskToDelete);
+            taskList.deleteTask(Integer.parseInt(inputArray[1]) - 1);
             break;
           default:
             Task task = Task.createTask(inputArray);
-            Cheese.addTask(task);
+            taskList.addTask(task);
         }
       } catch (NumberFormatException e) {
         System.out.println("Cannot convert non-integer to integer.");
@@ -106,45 +128,15 @@ public class Cheese {
    *                               not in range
    * @throws NumberFormatException if given item number is not in integer format
    */
-  private static Task getTaskFromList(String[] inputArray) throws CheeseException, NumberFormatException {
-    if (inputArray.length == 1 || inputArray[1].length() == 0) {
-      throw new CheeseException("Sowwy, the item number cannot be empty.");
-    }
-    int itemIdx = Integer.parseInt(inputArray[1]) - 1;
-    if (itemIdx < 0 || itemIdx >= Cheese.list.size()) {
-      throw new CheeseException("Item number is not in list range.");
-    }
-    return Cheese.list.get(itemIdx);
-  }
-
-  /**
-   * Deletes given task from list
-   * 
-   * @param taskToDelete given task to delete
-   */
-  private static void deleteTask(Task taskToDelete) {
-    Cheese.list.remove(taskToDelete);
-    System.out.println("Gotcha! I'll forget about this task!");
-    System.out.println("  " + taskToDelete);
-    System.out.println("You have " + Cheese.list.size() + " task(s) remaining.");
-  }
-
-  /**
-   * Adds given task to list
-   * 
-   * @param task given task to add
-   */
-  private static void addTask(Task task) {
-    Cheese.list.add(task);
-    System.out.println("Gotcha! I have a paw-fect memory!");
-    System.out.println("  " + task);
-    System.out.println("You have " + Cheese.list.size() + " task(s) in the list.");
-  }
-
-  /** Prints list */
-  private static void printList() {
-    for (int i = 1; i <= Cheese.list.size(); i++) {
-      System.out.println(i + ". " + Cheese.list.get(i - 1));
-    }
-  }
+  // private static Task getTaskFromList(String[] inputArray) throws
+  // CheeseException, NumberFormatException {
+  // if (inputArray.length == 1 || inputArray[1].length() == 0) {
+  // throw new CheeseException("Sowwy, the item number cannot be empty.");
+  // }
+  // int itemIdx = Integer.parseInt(inputArray[1]) - 1;
+  // if (itemIdx < 0 || itemIdx >= Cheese.list.size()) {
+  // throw new CheeseException("Item number is not in list range.");
+  // }
+  // return Cheese.list.get(itemIdx);
+  // }
 }
