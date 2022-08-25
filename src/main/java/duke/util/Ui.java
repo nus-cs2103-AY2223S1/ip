@@ -7,19 +7,19 @@ import java.util.ArrayList;
 public class Ui {
 
     public void showWelcome() {
-        System.out.println("Hello! I'm Botson\n" +
-                "What can I help you with? :-)\n" +
-                "--------------------------");
+        System.out.println("Hello! I'm Botson\n"
+                + "What can I help you with? :-)\n"
+                + "--------------------------");
     }
 
     public void exit() {
-        System.out.println("Goodbye! Hope to see you again soon!\n" +
-                "--------------------------");
+        System.out.println("Goodbye! Hope to see you again soon!\n"
+                + "--------------------------");
     }
 
     public void noSuchTaskError() {
-        System.out.println("OOPS!!! Error: No Such duke.Task\n" +
-                "--------------------------");
+        System.out.println("OOPS!!! Error: No Such Task :-(\n"
+                + "--------------------------");
     }
 
     public void showError() {
@@ -27,22 +27,22 @@ public class Ui {
     }
 
     public void cannotUnderstandError() {
-        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n" +
-                "--------------------------");
+        System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(\n"
+                + "--------------------------");
     }
 
     public void removeTask(String removedTask, int size) {
-        System.out.println("Noted. I've removed this task:\n" +
-                removedTask);
-        System.out.println("Now you have " + size + " tasks in the list.\n" +
-                "--------------------------");
+        System.out.println("Noted. I've removed this task:\n"
+                + removedTask);
+        System.out.println("Now you have " + size + " tasks in the list.\n"
+                + "--------------------------");
     }
 
     public void addedTask(String task, int size) {
-        System.out.println("--------------------------\n" +
-                "I've added to the list:\n" + task);
-        System.out.println("Now you have " + size + " tasks in the list.\n" +
-                "--------------------------");
+        System.out.println("--------------------------\n"
+                + "I've added to the list:\n" + task);
+        System.out.println("Now you have " + size + " tasks in the list.\n"
+                + "--------------------------");
     }
 
     /**
@@ -61,6 +61,12 @@ public class Ui {
         String output = mark ? "Nice! I've marked this task as done:" : "OK, I've marked this task as not done yet:";
         System.out.println(output);
         System.out.println(task);
+        System.out.println("--------------------------");
+    }
+
+    public void showFoundTasks(ArrayList<Task> list) {
+        System.out.println("I found some matching tasks!");
+        this.getList(list);
         System.out.println("--------------------------");
     }
 }

@@ -17,15 +17,17 @@ public class Parser {
             return "deleteTask";
         } else if (isValidTask(parseTaskType(action))) {
             return "addToList";
+        } else if (action.length() >= 4 && Objects.equals(action.substring(0, 4), "find")) {
+            return "find";
         } else {
             return "";
         }
     }
 
     private boolean isValidTask(String taskType) {
-        return taskType.equals("todoTask") ||
-                taskType.equals("eventTask") ||
-                taskType.equals("deadlineTask");
+        return taskType.equals("todoTask")
+                || taskType.equals("eventTask")
+                || taskType.equals("deadlineTask");
     }
 
     public String parseTaskType(String action) {
