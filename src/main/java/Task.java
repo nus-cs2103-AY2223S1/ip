@@ -41,7 +41,7 @@ public abstract class Task {
 
     public String toStorageString() {
         String status = hasCompleted ? "1" : "0";
-        return status + " | " + taskName;
+        return status + "|" + taskName;
     }
 
     @Override

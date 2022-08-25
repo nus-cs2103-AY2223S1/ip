@@ -19,6 +19,6 @@ public class Event extends Task {
 
     @Override
     public String toStorageString() {
-        return TASK_TYPE + " | " + super.toStorageString() + " | " + date;
+        return TASK_TYPE + "|" + super.toStorageString() + "|" + date;
     }
 }

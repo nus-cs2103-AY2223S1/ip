@@ -20,6 +20,6 @@ public class Deadline extends Task{
 
     @Override
     public String toStorageString() {
-        return TASK_TYPE + " | " + super.toStorageString() + " | " + dueDate;
+        return TASK_TYPE + "|" + super.toStorageString() + "|" + dueDate;
     }
 }

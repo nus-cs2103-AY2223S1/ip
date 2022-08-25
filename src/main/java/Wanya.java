@@ -85,6 +85,7 @@ public class Wanya {
             for (int i = 0; i < count; i++) {
                 Task task = taskList.get(i);
                 fw.write(task.toStorageString());
+                fw.write("\n");
             }
             fw.close();
         } catch (IOException e) {
@@ -99,26 +100,25 @@ public class Wanya {
 
             while (sc.hasNextLine()) {
                 String currLine = sc.nextLine();
-                String[] inputs = currLine.split(" \\|");
+                String[] inputs = currLine.split("\\|");
                 String taskType = inputs[0];
                 boolean completed = inputs[1].equals("1");
                 String description = inputs[2];
                 switch(taskType) {
-                    case "T":
-                        ToDo toDo = new ToDo(description, completed);
-                        taskList.add(toDo);
-                        System.out.println("added task");
-                        break;
-                    case "D":
-                        String dueDate = inputs[3];
-                        Deadline deadline = new Deadline(description, completed, dueDate);
-                        taskList.add(deadline);
-                        break;
-                    case "E":
-                        String date = inputs[3];
-                        Event event = new Event(description, completed, date);
-                        taskList.add(event);
-                        break;
+                case "T":
+                    ToDo toDo = new ToDo(description, completed);
+                    taskList.add(toDo);
+                    break;
+                case "D":
+                    String dueDate = inputs[3];
+                    Deadline deadline = new Deadline(description, completed, dueDate);
+                    taskList.add(deadline);
+                    break;
+                case "E":
+                    String date = inputs[3];
+                    Event event = new Event(description, completed, date);
+                    taskList.add(event);
+                    break;
                 }
                 count++;
             }
