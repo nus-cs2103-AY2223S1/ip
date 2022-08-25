@@ -6,7 +6,7 @@ public class Duke {
     public static ArrayList<Task> taskList = new ArrayList<>();
 
     public static void main(String[] args) throws IncomplateCommandException, TaskOutOfBoundException,
-            NoSuchCommandException, TaskCompletionException {
+            NoSuchCommandException, TaskCompletionException, DateTimeFormatException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -25,7 +25,7 @@ public class Duke {
      * 4. Else: to add task.
      */
     public static void run() throws IncomplateCommandException, TaskOutOfBoundException,
-            NoSuchCommandException, TaskCompletionException {
+            NoSuchCommandException, TaskCompletionException, DateTimeFormatException {
         Scanner in = new Scanner(System.in);
         boolean lastCommandOrNot = false;
         Task task;

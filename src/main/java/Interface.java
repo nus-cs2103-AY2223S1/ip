@@ -1,3 +1,5 @@
+import DukeException.DateTimeFormatException;
+
 import java.util.ArrayList;
 
 public class Interface {
@@ -30,7 +32,7 @@ public class Interface {
      * @param str the description of ddl + by when
      * @return a newly created Deadline class for storage.
      */
-    public static Deadline addDeadline(String str) {
+    public static Deadline addDeadline(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
         String by = str.split(" /", 2)[1].split("by ", 2)[1];
 
@@ -47,7 +49,7 @@ public class Interface {
      * @param str the description of event + at what time
      * @return a newly created Event class for storage.
      */
-    public static Event addEvent(String str) {
+    public static Event addEvent(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
         String at = str.split(" /", 2)[1].split("at ", 2)[1];
 
@@ -64,7 +66,7 @@ public class Interface {
      * @param str the description of to do task.
      * @return a newly created ToDo class for storage.
      */
-    public static ToDo addToDo(String str) {
+    public static ToDo addToDo(String str) throws DateTimeFormatException {
         printLine();
         System.out.println("     Got it. I've added this task:");
         ToDo task = ToDo.addTask(str);
@@ -89,7 +91,7 @@ public class Interface {
      * Mark task with index specified as done.
      * @param task Mark task with index specified fetched from the task list.
      */
-    public static void mark(Task task) {
+    public static void mark(Task task) throws DateTimeFormatException {
         printLine();
         System.out.println("     Nice! I've marked this task as done:");
         task.changeStatus(); // flip status
@@ -101,7 +103,7 @@ public class Interface {
      * Mark task with index specified as not done.
      * @param task Mark task with index specified fetched from the task list.
      */
-    public static void unmark(Task task) {
+    public static void unmark(Task task) throws DateTimeFormatException {
         printLine();
         System.out.println("     OK, I've marked this task as not done yet:");
         task.changeStatus(); // flip status
@@ -115,7 +117,7 @@ public class Interface {
      *      Now you have 4 tasks in the list.
      * @param task
      */
-    public static void delete(Task task) {
+    public static void delete(Task task) throws DateTimeFormatException {
         printLine();
         System.out.println("     Noted. I've removed this task:");
         Task.removeTask(task); // change total number of task.

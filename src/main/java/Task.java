@@ -1,3 +1,5 @@
+import DukeException.DateTimeFormatException;
+
 import java.lang.StringBuilder;
 import java.util.ArrayList;
 
@@ -19,7 +21,7 @@ public class Task {
      * @param name the new task description.
      * @return the Task class being created.
      */
-    public static Task addTask(String name) {
+    public static Task addTask(String name) throws DateTimeFormatException {
         Task newTask = new Task(name);
         System.out.println("       " + newTask.printSelf());
         return newTask;
@@ -29,7 +31,7 @@ public class Task {
      * Helper function to call while deleting a task, to keep track of the total number of tasks.
      * @param task The task being deleted.
      */
-    public static void removeTask(Task task) {
+    public static void removeTask(Task task) throws DateTimeFormatException {
         totalNumber--;
         System.out.println("       " + task.printSelf());
     }
@@ -75,7 +77,7 @@ public class Task {
      * helper func for toString method
      * @return string like: [icon] task name
      */
-    public String printSelf() {
+    public String printSelf() throws DateTimeFormatException {
         StringBuilder output = new StringBuilder();
         output.append(this.getStatusIcon() + " " + this.name);
         return output.toString();
@@ -83,7 +85,11 @@ public class Task {
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder("     ");
-        output.append(this.index + "." + this.printSelf());
+        try {
+            output.append(this.index + "." + this.printSelf());
+        } catch (DateTimeFormatException e) {
+            throw new RuntimeException(e);
+        }
         return output.toString();
     }
 }
