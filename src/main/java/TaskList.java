@@ -50,7 +50,7 @@ public class TaskList {
             System.out.println(String.format("  Now you have %d tasks in the list", tasks.size()));
             System.out.println("  _______________\n");
         } catch (Exception e) {
-            throw new DukeException(String.format("TaskTypes.Task number %d not found", taskNum));
+            throw new DukeException(String.format("Task number %d not found", taskNum));
         }
     }
 
@@ -60,7 +60,7 @@ public class TaskList {
         try {
             task = tasks.get(taskNum);
         } catch (Exception e) {
-            throw new DukeException("TaskTypes.Task number is incorrectly provided");
+            throw new DukeException("Task number is incorrectly provided");
         }
 
         return task;

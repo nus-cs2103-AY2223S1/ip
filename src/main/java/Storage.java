@@ -27,20 +27,17 @@ public class Storage {
         fileWriter.close();
     }
 
-    public ArrayList<Task> load() throws Exception {
+    public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
-        Parser parser = new Parser();
-
-        file.createNewFile();
-
-        Scanner scanner = new Scanner(file);
-        while (scanner.hasNext()) {
-            try {
-                Task parsedTask = parser.parseSave(scanner.nextLine());
+        try {
+            file.createNewFile();
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNext()) {
+                Task parsedTask = Parser.parseSave(scanner.nextLine());
                 tasks.add(parsedTask);
-            } catch (RuntimeException e) {
-                throw e;
             }
+        } catch (Exception e) {
+            throw new DukeException(e.getMessage());
         }
 
         return tasks;
