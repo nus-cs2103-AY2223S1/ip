@@ -17,6 +17,10 @@ public class Task {
      * Returns a String representation of whether this Task is completed.
      * @return "X" or " " depending on whether the task is completed.
      */
+    public String getDescription() {
+        return this.description;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }

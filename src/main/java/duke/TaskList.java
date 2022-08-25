@@ -53,4 +53,17 @@ public class TaskList {
         return this.tasks.size();
     }
 
+    public boolean isTarget(int index, String toFind) {
+        return this.get(index).getDescription().indexOf(toFind) != -1;
+    }
+
+    public TaskList find(String s) {
+        ArrayList<Task> temp = new ArrayList<>();
+        for (int i = 0; i < this.size(); i++) {
+            if (isTarget(i, s)) {
+                temp.add(tasks.get(i));
+            }
+        }
+        return new TaskList(temp);
+    }
 }

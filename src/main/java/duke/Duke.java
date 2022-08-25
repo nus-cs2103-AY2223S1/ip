@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.IOException;
 
@@ -84,6 +85,12 @@ public class Duke {
                     Task toRemove = tasks.get(target);
                     tasks.remove(target);
                     ui.showRemoved(toRemove);
+                } else if (input.startsWith("find")) {
+                    String[] info = input.split("find ");
+                    if (info.length <= 1) {
+                        throw new DukeException("Please specify what you would like to find.");
+                    }
+                    ui.showFound(tasks.find(info[1]));
                 } else {
                     throw new DukeException("OOPS!! I'm sorry, but I don't know what that means :-(");
                 }
