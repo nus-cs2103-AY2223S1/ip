@@ -83,11 +83,9 @@ public class Parser {
     public void parseMark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0
-                || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
-            throw new InvalidArgumentException();
         } else {
-            this.taskList.getTask(Integer.parseInt(commandArgs[0]) - 1).mark();
+            int index = validateIndex(commandArgs[0]) - 1;
+            this.taskList.getTask(index).mark();
             this.storage.save(this.taskList);
         }
     }
@@ -100,11 +98,9 @@ public class Parser {
     public void parseUnmark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0
-                || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
-            throw new InvalidArgumentException();
         } else {
-            this.taskList.getTask(Integer.parseInt(commandArgs[0]) - 1).unmark();
+            int index = this.validateIndex(commandArgs[0]) - 1;
+            this.taskList.getTask(index).unmark();
             this.storage.save(this.taskList);
         }
     }
@@ -144,13 +140,9 @@ public class Parser {
             } else if (deadline == "") {
                 throw new InvalidArgumentException();
             } else {
-                try {
-                    LocalDate ldt = LocalDate.parse(deadline, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                    this.taskList.addTask(new Deadline(title, false, ldt));
-                    this.storage.save(this.taskList);
-                } catch (DateTimeParseException e) {
-                    throw new DukeException("Date format should be dd/mm/yyyy");
-                }
+                LocalDate ld = this.validateDateTime(deadline);
+                this.taskList.addTask(new Deadline(title, false, ld));
+                this.storage.save(this.taskList);
             }
         }
     }
@@ -188,11 +180,9 @@ public class Parser {
     public void parseDelete(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0
-                || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
-            throw new InvalidArgumentException();
         } else {
-            this.taskList.deleteTask(Integer.parseInt(commandArgs[0]) - 1);
+            int index = this.validateIndex(commandArgs[0]) - 1;
+            this.taskList.deleteTask(index);
             this.storage.save(this.taskList);
         }
     }
@@ -209,5 +199,45 @@ public class Parser {
             String keyword = String.join(" ", commandArgs);
             this.taskList.listTasks(keyword);
         }
+    }
+
+    /**
+     * Validates a given index String
+     * @param index The index String
+     * @return The integer index if it is valid
+     * @throws InvalidArgumentException If the index String is invalid
+     */
+    public int validateIndex(String index) throws InvalidArgumentException {
+        int intIndex;
+
+        try {
+            intIndex = Integer.parseInt(index);
+        } catch (NumberFormatException e) {
+            throw new InvalidArgumentException();
+        }
+
+        if (intIndex <= 0 || intIndex > this.taskList.numTasks()) {
+            throw new InvalidArgumentException();
+        }
+
+        return intIndex;
+    }
+
+    /**
+     * Validates a given datetime String
+     * @param dateTimeString The datetime String
+     * @return The dateTime as a LocalDate object
+     * @throws DukeException If the datetime String is invalid
+     */
+    public LocalDate validateDateTime(String dateTimeString) throws DukeException {
+        LocalDate dateTime;
+
+        try {
+            dateTime = LocalDate.parse(dateTimeString, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Date format should be dd/mm/yyyy");
+        }
+
+        return dateTime;
     }
 }
