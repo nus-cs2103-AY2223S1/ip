@@ -31,10 +31,16 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Sets isDone to true
+     */
     public void setDone() {
         isDone = true;
     }
 
+    /**
+     * Sets isDone to false
+     */
     public void setUndone() {
         isDone = false;
     }

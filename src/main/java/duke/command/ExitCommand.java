@@ -1,6 +1,5 @@
 package duke.command;
 
-import duke.DukeException;
 import duke.Storage;
 
 /**
@@ -12,10 +11,9 @@ public class ExitCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
-     * @throws DukeException
      */
     @Override
-    public void execute(Storage storage) throws DukeException {
+    public void execute(Storage storage) {
         System.out.println("Will that be all? Alright then.");
     }
     /**

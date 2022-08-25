@@ -142,7 +142,7 @@ public class Ui {
 
     /**
      * Reads a given list
-     * @param tasks
+     * @param tasks ArrayList contained within TaskList
      */
     public void readList(ArrayList<Task> tasks) {
         list();

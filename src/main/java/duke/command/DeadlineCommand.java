@@ -32,18 +32,18 @@ public class DeadlineCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
-     * @throws DukeException
+     * @throws DukeException if the input command is invalid
      */
     @Override
     public void execute(Storage storage) throws DukeException {
         String[] returnedArray = command.split(" /by ");
         if (returnedArray.length <= 0) {
-            throw new DukeException("your duke.command is incomplete."
-                    + "\nPlease use the [help] duke.command to check the proper usage of [deadline].");
+            throw new DukeException("your command is incomplete."
+                    + "\nPlease use the [help] command to check the proper usage of [deadline].");
         } else if (returnedArray.length == 1) {
-            throw new DukeException("your duke.command is missing the [/by] component, or the "
-                    + "second half of the duke.command."
-                    + "\nPlease use the [help] duke.command to check the proper usage of [deadline].");
+            throw new DukeException("your command is missing the [/by] component, or the "
+                    + "second half of the command."
+                    + "\nPlease use the [help] command to check the proper usage of [deadline].");
         } else if (returnedArray.length > 2) {
             String secondHalf = "";
             for (int i = 1; i < returnedArray.length; i++) {

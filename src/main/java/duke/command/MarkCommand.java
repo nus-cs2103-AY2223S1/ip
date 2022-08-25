@@ -30,7 +30,7 @@ public class MarkCommand extends Command {
 
     /**
      * Checks if a String is a number
-     * @param string
+     * @param string input
      * @return true if string is a number. Otherwise, false
      * @since 0.1
      */
@@ -47,29 +47,29 @@ public class MarkCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
-     * @throws DukeException
+     * @throws DukeException if the input command is invalid
      */
     @Override
     public void execute(Storage storage) throws DukeException {
         if (splitCommands.length <= 1) {
-            throw new DukeException("your duke.command is incomplete."
-                    + "\nPlease use the [help] duke.command to check the proper usage of [mark].");
+            throw new DukeException("your command is incomplete."
+                    + "\nPlease use the [help] command to check the proper usage of [mark].");
         } else if (splitCommands.length > 2) {
-            throw new DukeException("your duke.command has too many arguments."
-                    + "\nPlease use the [help] duke.command to check the proper usage of [mark].");
+            throw new DukeException("your command has too many arguments."
+                    + "\nPlease use the [help] command to check the proper usage of [mark].");
         } else if (isNumber(splitCommands[1])) {
             int taskId = Integer.parseInt(splitCommands[1]) - 1;
             if (tasks.size() <= taskId || taskId < 0) {
-                throw new DukeException("that duke.task you want to mark does not exist. "
-                        + "Use the [list] duke.command to check what tasks are available.");
+                throw new DukeException("that task you want to mark does not exist. "
+                        + "Use the [list] command to check what tasks are available.");
             } else {
                 tasks.getTask(taskId).setDone();
                 ui.mark(tasks.getTask(taskId));
                 storage.saveDuke(tasks);
             }
         } else {
-            throw new DukeException("your duke.command is incorrect."
-                    + "\nPlease use the [help] duke.command to check the proper usage of [mark].");
+            throw new DukeException("your command is incorrect."
+                    + "\nPlease use the [help] command to check the proper usage of [mark].");
         }
     }
     /**

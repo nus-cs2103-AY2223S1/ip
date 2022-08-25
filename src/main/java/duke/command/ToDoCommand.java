@@ -29,6 +29,12 @@ public class ToDoCommand extends Command {
         this.ui = ui;
     }
 
+    /**
+     * Checks if the input ToDoCommand is identical to this ToDoCommand (to only be used for JUnit testing)
+     * @param obj input ToDoCommand
+     * @return false if obj is null, not from the ToDoClass, or command, tasks and ui do not match those of this.
+     *     Otherwise, return true.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -44,14 +50,14 @@ public class ToDoCommand extends Command {
     /**
      * {@inheritDoc}
      * @param storage Duke's storage system for tasks
-     * @throws DukeException
+     * @throws DukeException if the input command is invalid
      */
     @Override
     public void execute(Storage storage) throws DukeException {
         String[] returnedArray = command.split(" ");
         if (returnedArray.length == 1) {
-            throw new DukeException("your [todo] duke.command is empty."
-                    + "\nPlease use the [help] duke.command to check the proper usage of [todo].");
+            throw new DukeException("your [todo] command is empty."
+                    + "\nPlease use the [help] command to check the proper usage of [todo].");
         }
         ToDo toDo = new ToDo(command);
         tasks.add(toDo);

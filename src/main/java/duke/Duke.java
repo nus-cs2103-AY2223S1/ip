@@ -62,7 +62,7 @@ public class Duke {
 
     /**
      * Creates a Duke instance and runs it.
-     * @param args
+     * @param args command line arguments
      * @since 0.1
      */
     public static void main(String[] args) {

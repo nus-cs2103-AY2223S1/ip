@@ -24,7 +24,7 @@ public class Parser {
      * @param tasks the TaskList Duke is using
      * @param ui the Ui Duke is using
      * @return a Command that corresponds to the input String command
-     * @throws DukeException
+     * @throws DukeException if the input command is not recognised as valid
      * @since 0.1
      */
     public static Command inputCommand(String command, TaskList tasks, Ui ui) throws DukeException {
@@ -60,7 +60,7 @@ public class Parser {
                 }
                 return new FindCommand(returnedArray[1], tasks, ui);
             case INVALID: //Notice the control flow still reaches here even if [invalid] is input
-                throw new DukeException("I don't understand your duke.command.\nCould you please repeat yourself?"
+                throw new DukeException("I don't understand your command.\nCould you please repeat yourself?"
                         + "\nIf unsure, please use command [help] for the list of commands that I understand.");
             default:
                 throw new DukeException("please do not mess with my software. This message should never"

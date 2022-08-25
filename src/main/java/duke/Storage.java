@@ -40,7 +40,6 @@ public class Storage {
     /**
      * Saves a TaskList object in a file with the path saveFilePath
      * @param tasks TaskList object Duke is using
-     * @throws IOException
      * @since 0.1
      */
     public void saveDuke(TaskList tasks) {
@@ -64,7 +63,7 @@ public class Storage {
      * Loads a ToDo object.
      * @param isTaskDone was the task done
      * @param taskDesc the descriptor of the ToDo object
-     * @returna a ToDo object with the correct status
+     * @return a ToDo object with the correct status
      * @since 0.1
      */
     private ToDo loadToDo(boolean isTaskDone, String taskDesc) {
@@ -118,7 +117,7 @@ public class Storage {
      * Determines what task the input data is trying to reference, and calls the appropriate task loader method
      * @param data String to parse for the appropriate method
      * @return a Task corresponding to the input data
-     * @throws DukeException
+     * @throws DukeException thrown if the task is not a recognised type
      * @since 0.1
      */
     private Task loadTaskDifferentiator(String data) throws DukeException {
@@ -142,8 +141,8 @@ public class Storage {
      * Loads an ArrayList of tasks that Duke recorded in the previous session.
      * If there was no previous session, return an empty ArrayList of tasks.
      * @return the ArrayList of tasks that Duke recorded in the previous session
-     * @throws DukeException
-     * @throws IOException
+     * @throws DukeException thrown by loadTaskDifferentiator
+     * @throws IOException thrown if Scanner throws an IOException
      * @since 0.1
      */
     public ArrayList<Task> load() throws DukeException, IOException {
@@ -161,12 +160,8 @@ public class Storage {
             Scanner sc = new Scanner(save);
             ArrayList<Task> res = new ArrayList<>();
             while (sc.hasNextLine()) {
-                try {
-                    String command = sc.nextLine();
-                    res.add(loadTaskDifferentiator(command));
-                } catch (DukeException e) {
-                    System.out.println(e.getMessage());
-                }
+                String command = sc.nextLine();
+                res.add(loadTaskDifferentiator(command));
             }
             sc.close();
             return res;

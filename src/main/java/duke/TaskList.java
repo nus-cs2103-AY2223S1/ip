@@ -17,7 +17,7 @@ public class TaskList {
 
     /**
      * Constructor for a TaskList object, if there was a prior saved ArrayList
-     * @param taskList
+     * @param taskList ArrayList of tasks to construct a TaskList from
      * @since 0.1
      */
     public TaskList(ArrayList<Task> taskList) {
