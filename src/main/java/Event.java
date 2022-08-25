@@ -15,6 +15,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String toStringUnformatted() {
+        String unformatted = at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return String.format("[D]%s (by: %s)", super.toString(), unformatted);
+    }
+
+    @Override
     public String toString() {
         String formatted = formatDateTime(at);
         return String.format("[E]%s (at: %s)", super.toString(), formatted);

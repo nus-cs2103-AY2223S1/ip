@@ -1,101 +1,101 @@
-Good day, mate! I'm Skyler
+Hello! I'm Skyler
 How can I help you?
 
 I've added the following task:
   [T][ ] read book
 Total number of tasks: 1
 I've added the following task:
-  [D][ ] return book (by: June 6th)
+  [D][ ] return book (by: Aug 25 2022 11:59PM)
 Total number of tasks: 2
 Tasks:
 1.[T][ ] read book
-2.[D][ ] return book (by: June 6th)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
 I've added the following task:
-  [E][ ] project meeting (at: Aug 6th 2-4pm)
+  [E][ ] project meeting (at: Nov 11 2022 11:00AM)
 Total number of tasks: 3
 I've added the following task:
   [T][ ] join sports club
 Total number of tasks: 4
 Tasks:
 1.[T][ ] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][ ] join sports club
 You have completed this task:
   [T][X] read book
 Tasks:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][ ] join sports club
 You have completed this task:
   [T][X] join sports club
 Tasks:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][X] join sports club
 I've added the following task:
   [T][ ] borrow book
 Total number of tasks: 5
 Tasks:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][X] join sports club
 5.[T][ ] borrow book
 I've added the following task:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Dec 25 2022 11:30AM)
 Total number of tasks: 6
 I've added the following task:
-  [E][ ] project meeting (at: Mon 2-4pm)
+  [E][ ] project meeting (at: Sep 09 2022 12:00PM)
 Total number of tasks: 7
 Tasks:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][X] join sports club
 5.[T][ ] borrow book
-6.[D][ ] return book (by: Sunday)
-7.[E][ ] project meeting (at: Mon 2-4pm)
+6.[D][ ] return book (by: Dec 25 2022 11:30AM)
+7.[E][ ] project meeting (at: Sep 09 2022 12:00PM)
 You have completed this task:
-  [E][X] project meeting (at: Mon 2-4pm)
+  [E][X] project meeting (at: Sep 09 2022 12:00PM)
 Tasks:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][X] join sports club
 5.[T][ ] borrow book
-6.[D][ ] return book (by: Sunday)
-7.[E][X] project meeting (at: Mon 2-4pm)
+6.[D][ ] return book (by: Dec 25 2022 11:30AM)
+7.[E][X] project meeting (at: Sep 09 2022 12:00PM)
 OK, I've marked this task as not done yet:
-  [E][ ] project meeting (at: Mon 2-4pm)
+  [E][ ] project meeting (at: Sep 09 2022 12:00PM)
 Tasks:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][X] join sports club
 5.[T][ ] borrow book
-6.[D][ ] return book (by: Sunday)
-7.[E][ ] project meeting (at: Mon 2-4pm)
+6.[D][ ] return book (by: Dec 25 2022 11:30AM)
+7.[E][ ] project meeting (at: Sep 09 2022 12:00PM)
 OK, I've marked this task as not done yet:
-  [D][ ] return book (by: Sunday)
+  [D][ ] return book (by: Dec 25 2022 11:30AM)
 Tasks:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][X] join sports club
 5.[T][ ] borrow book
-6.[D][ ] return book (by: Sunday)
-7.[E][ ] project meeting (at: Mon 2-4pm)
+6.[D][ ] return book (by: Dec 25 2022 11:30AM)
+7.[E][ ] project meeting (at: Sep 09 2022 12:00PM)
 The following task will be removed:
   [T][X] join sports club
 Total number of tasks: 6
 Tasks:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Aug 25 2022 11:59PM)
+3.[E][ ] project meeting (at: Nov 11 2022 11:00AM)
 4.[T][ ] borrow book
-5.[D][ ] return book (by: Sunday)
-6.[E][ ] project meeting (at: Mon 2-4pm)
+5.[D][ ] return book (by: Dec 25 2022 11:30AM)
+6.[E][ ] project meeting (at: Sep 09 2022 12:00PM)
 Bye! See you again soon!

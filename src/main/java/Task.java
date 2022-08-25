@@ -19,6 +19,8 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public abstract String toStringUnformatted();
+
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), this.description);

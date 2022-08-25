@@ -15,6 +15,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String toStringUnformatted() {
+        String unformatted = by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return String.format("[D]%s (by: %s)", super.toString(), unformatted);
+    }
+
+    @Override
     public String toString() {
         String formatted = formatDateTime(by);
         return String.format("[D]%s (by: %s)", super.toString(), formatted);
