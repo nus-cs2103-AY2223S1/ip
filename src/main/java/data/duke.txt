@@ -1,3 +1,0 @@
-[E] __ true __ dummyEvent  __ Jan 01 2011 19:00 __ 
-[D] __ false __ dummyDeadline  __ Jan 20 2012 00:00 __ 
-[T] __ false __ dummyToDo __ 
