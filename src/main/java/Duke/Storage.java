@@ -16,16 +16,15 @@ public class Storage {
         this.filePath = filepath;
     }
 
-    public void saveFile(ArrayList<String> arr) {
-        String fileName = "tasks.txt";
+    public void saveFile(ArrayList<String> items) {
         FileWriter fileWriter = null;
 
         try {
             File file = new File(filePath);
             fileWriter = new FileWriter(file);
 
-            for (int i = 0; i < arr.size(); i++) {
-                fileWriter.write(arr.get(i));
+            for (int i = 0; i < items.size(); i++) {
+                fileWriter.write(items.get(i));
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -43,7 +42,7 @@ public class Storage {
 
     public TaskList loadFile() throws DukeException {
         BufferedReader reader = null;
-        TaskList arr = new TaskList(new ArrayList<>());
+        TaskList items = new TaskList(new ArrayList<>());
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm:ss");
 
         try {
@@ -64,7 +63,7 @@ public class Storage {
                 if (parse[1].equals("X")) {
                     tsk.markAsDone();
                 }
-                arr.addTask(tsk);
+                items.addTask(tsk);
                 line = reader.readLine();
             }
         } catch (Exception e) {
@@ -76,10 +75,10 @@ public class Storage {
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 } finally {
-                    return arr;
+                    return items;
                 }
             } else {
-                return arr;
+                return items;
             }
         }
     }
