@@ -1,4 +1,4 @@
-public class Task {
+abstract public class Task {
 
     private String task;
     private boolean isDone;
@@ -8,8 +8,12 @@ public class Task {
         isDone = false;
     }
 
-    protected String getStatus() {
-        return isDone ? "[X]" : "[ ]";
+    protected String getTask() {
+        return task;
+    }
+
+    protected boolean getStatus() {
+        return isDone;
     }
 
     protected void mark() {
@@ -20,9 +24,12 @@ public class Task {
         isDone = false;
     }
 
+    abstract protected String getBy();
+
+    abstract protected char getType();
+
     @Override
     public String toString() {
-        return getStatus() + " " + task;
+        return (isDone ? "[X]" : "[ ]") + " " + task;
     }
-
 }

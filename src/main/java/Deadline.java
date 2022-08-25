@@ -7,6 +7,14 @@ public class Deadline extends Task{
         this.by = by;
     }
 
+    protected String getBy() {
+        return by;
+    }
+
+    protected char getType() {
+        return 'D';
+    }
+
     public String toString() {
         return "[D]" + super.toString() + "(by: " + by.trim() + ")";
     }

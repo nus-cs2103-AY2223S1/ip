@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,8 +15,11 @@ public class Bloop {
 
     private static ArrayList<Task> list = new ArrayList<>();
 
+    private static final String FILE_NAME = "bloopData.txt";
+
     private static void chat() {
         print(HI_MESSAGE);
+        makeFile();
         Scanner sc = new Scanner(System.in);
         String text = sc.nextLine();
 
@@ -30,12 +37,14 @@ public class Bloop {
                     Task task1 = list.get(Integer.parseInt(textArr[1]) - 1);
                     task1.unmark();
                     print("This task has been marked as not done -\n\t\t" + task1);
+                    rewriteFile();
                     break;
 
                 case "mark":
                     Task task2 = list.get(Integer.parseInt(textArr[1]) -1 );
                     task2.mark();
                     print("This task has been marked as done -\n\t\t" + task2);
+                    rewriteFile();
                     break;
 
                 case "todo":
@@ -53,11 +62,13 @@ public class Bloop {
                 case "delete":
                     Task task3 = list.get(Integer.parseInt(textArr[1]) - 1);
                     list.remove(task3);
+                    rewriteFile();
                     print("This task has been removed -\n\t\t" + task3 + "\n\tNow you have " + list.size() + " tasks in the list");
-
                 }
-            } catch (BloopException be) {
+            } catch(BloopException be) {
                 print(be.getMessage());
+            } catch(IOException e) {
+                print(e.getMessage());
             }
             text = sc.nextLine();
         }
@@ -86,6 +97,11 @@ public class Bloop {
             }
         }
         list.add(task);
+        try {
+            writeToFile(task);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
         print("I've added this task -\n\t\t" + task + "\n\tNow you have " + list.size() + " tasks in the list");
     }
 
@@ -102,6 +118,57 @@ public class Bloop {
         System.out.println(SEPARATOR);
         System.out.println("\t" + message);
         System.out.println(SEPARATOR);
+    }
+
+    private static void makeFile() {
+       try {
+           File file = new File(FILE_NAME);
+           boolean isCreated = file.createNewFile();
+           if(!isCreated) {
+               addPrevTasks();
+           }
+       }
+       catch (IOException e){
+           print("Couldn't create file. Sorry.");
+           System.exit(0);
+        }
+    }
+
+    private static void addPrevTasks() throws FileNotFoundException {
+        File file = new File(FILE_NAME);
+        Scanner sc = new Scanner(file);
+        while(sc.hasNext()) {
+            String[] taskArr = sc.nextLine().split("-");
+            String type = taskArr[0];
+            Task task;
+            if(type.equals("T")) {
+                task = new ToDo(taskArr[2]);
+            } else if(type.equals("E")) {
+                task = new Event(taskArr[2], taskArr[3]);
+            } else {
+                task = new Deadline(taskArr[2], taskArr[3]);
+            }
+            if(Integer.parseInt(taskArr[1]) == 1) {
+                task.mark();
+            }
+            list.add(task);
+        }
+    }
+
+    private static void writeToFile(Task task) throws IOException {
+        FileWriter fw = new FileWriter(FILE_NAME, true);
+        fw.write(task.getType() + "-"
+                + (task.getStatus() ? "1" : "0") + "-" + task.getTask() + "-" + task.getBy() + "\n");
+        fw.close();
+    }
+
+    private static void rewriteFile() throws IOException {
+        FileWriter fw = new FileWriter(FILE_NAME);
+        fw.write("");
+        for(Task task : list) {
+            writeToFile(task);
+        }
+        fw.close();
     }
 
     public static void main(String[] args) {

@@ -4,6 +4,14 @@ public class ToDo extends Task {
         super(task);
     }
 
+    protected String getBy() {
+        return "";
+    }
+
+    protected char getType() {
+        return 'T';
+    }
+
     @Override
     public String toString() {
         return "[T]" + super.toString();
