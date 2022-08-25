@@ -41,6 +41,10 @@ public class Parser {
             int position = parseDelete(command, taskList);
             return new DeleteCommand(position);
         }
+        if (command.toLowerCase().startsWith("find")) {
+            String keyword = parseFind(command);
+            return new FindCommand(keyword);
+        }
         return new WrongCommand();
     }
 
@@ -122,6 +126,14 @@ public class Parser {
             throw new DukeException("Sorry! Please select a valid item number in the list");
         }
         return number;
+    }
+
+    private static String parseFind(String command) throws DukeException {
+        String[] commandWithKeyword = command.split(" ",2);
+        if (commandWithKeyword.length < 2) {
+            throw new DukeException("Sorry! Please include a keyword after find");
+        }
+        return commandWithKeyword[1];
     }
 
 }
