@@ -7,13 +7,30 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Encapsulates a command to print all the relevant events and deadlines on a day.
+ */
 public class DateCommand extends Command {
     LocalDate date;
 
+
+    /**
+     * A constructor to create a DateCommand class
+     *
+     * @param date Date of the class if it has and event
+     */
     public DateCommand(LocalDate date) {
         this.date = date;
     }
 
+
+    /**
+     * A function that executes the effect of printing all the relevant events and deadlines on a day
+     *
+     * @param taskList stores the tasks of the program
+     * @param storage reads and writes from the text file which stores the tasks in memory
+     * @param ui interfaces with the user using the commandline
+     */
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) throws DukeException {
         LocalDate date = this.date;

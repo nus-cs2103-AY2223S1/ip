@@ -10,8 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Encapsulates a class extracted from the main logic to read and write data in to the storage.
+ */
 public class Storage {
 
+    /**
+     * Reads the text file and returns the stored list of tasks
+     * @param input The location of the text file
+     * @return The stored List of Tasks
+     */
     public List<Task> readFile(String input) {
         List<Task> returnList = new ArrayList<>();
         try {
@@ -24,14 +32,19 @@ public class Storage {
             myReader.close();
             return returnList;
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             createFile(input);
+            return new ArrayList<>();
         } catch (DukeException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    /**
+     * Takes the stored string and returns a single task that it represents
+     * @param data The parsed task
+     * @return The Task stored
+     */
     private Task stringToTask(String data) throws DukeException {
         if(data.length() == 0){
             return null;
@@ -61,6 +74,11 @@ public class Storage {
         return task;
 
     }
+
+    /**
+     * Creates a textfile to store the data if one does not exist.
+     * @param input
+     */
     private static void createFile(String input) {
         try {
             File myObj = new File(input);
@@ -72,9 +90,14 @@ public class Storage {
             e.printStackTrace();
         }
     }
-    public void writeFile(List<Task> input){
+
+    /**
+     * Writes the tasks in the list to the specified location.
+     * @param input
+     */
+    public void writeFile(List<Task> input, String location){
         try {
-            FileWriter myWriter = new FileWriter("duke.txt");
+            FileWriter myWriter = new FileWriter(location);
             for(Task cur: input) {
                 myWriter.write(cur.parseTask() + '\n');
             }
@@ -84,7 +107,6 @@ public class Storage {
             e.printStackTrace();
         }
     }
-
     private static LocalDate getDate(String input) throws DukeException {
         try {
             return LocalDate.parse(input);
