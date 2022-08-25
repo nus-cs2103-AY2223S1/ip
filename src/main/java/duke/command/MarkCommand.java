@@ -1,4 +1,11 @@
-public class MarkCommand extends Command{
+package duke.command;
+
+import duke.Storage;
+import duke.task.Task;
+import duke.TaskList;
+import duke.Ui;
+
+public class MarkCommand extends Command {
     private final int position;
 
     public MarkCommand(int position) {

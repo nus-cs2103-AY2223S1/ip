@@ -1,6 +1,13 @@
+package duke.command;
+
+import duke.task.Event;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 import java.time.LocalDate;
 
-public class EventCommand extends Command{
+public class EventCommand extends Command {
     private final String description;
     private final LocalDate period;
 

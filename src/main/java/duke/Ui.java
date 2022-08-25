@@ -1,7 +1,9 @@
+package duke;
+
+import duke.task.Task;
 import java.util.Scanner;
 
 public class Ui {
-
     public void Greet() {
         System.out.println("Hello, this is Siri! It is a pleasure to meet you!");
         System.out.println("How may I assist you?");

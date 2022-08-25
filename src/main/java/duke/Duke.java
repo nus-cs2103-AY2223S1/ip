@@ -1,3 +1,7 @@
+package duke;
+
+import duke.command.Command;
+import duke.task.Task;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.format.DateTimeParseException;
