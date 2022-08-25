@@ -39,18 +39,24 @@ public class DukeHandler {
                 tasks.addTask(new Todo(inputParts.get(1)));
             }
             else if (inputParts.get(0).equals("deadline")) {
-                String[] deadlineParts = inputParts.get(1).split("/by", 2);
+                String[] deadlineParts = inputParts.get(1).split(" /by ", 2);
                 if (deadlineParts.length < 2) {
                     new Deadline(deadlineParts[0], deadlineParts[0]);
                 }
-                Deadline deadlineTask = new Deadline(deadlineParts[0], deadlineParts[1]);
+                String[] timeParts = deadlineParts[1].split(" ", 2);
+                String deadlineDate =(timeParts.length) < 2 ? deadlineParts[1]
+                        + " 00:00" : deadlineParts[1];
+                Deadline deadlineTask = new Deadline(deadlineParts[0], deadlineDate);
                 tasks.addTask(deadlineTask);
             } else if (inputParts.get(0).equals("event")) {
-                String[] eventParts = inputParts.get(1).split("/at", 2);
+                String[] eventParts = inputParts.get(1).split(" /at ", 2);
                 if (eventParts.length < 2) {
                     new Event(eventParts[0], eventParts[0]);
                 }
-                Event newEvent = new Event(eventParts[0], eventParts[1]);
+                String[] timeParts = eventParts[1].split(" ", 2);
+                String eventDate =(timeParts.length) < 2 ? eventParts[1]
+                        + " 00:00" : eventParts[1];
+                Event newEvent = new Event(eventParts[0], eventDate);
                 tasks.addTask(newEvent);
             } else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
