@@ -6,6 +6,13 @@ public class Ui {
     private Scanner sc;
 
     /**
+     * Creates a new UI handler.
+     */
+    public Ui() {
+        sc = new Scanner(System.in);
+    }
+
+    /**
      * Gets a line of user input.
      * @return The user input.
      */
@@ -28,12 +35,5 @@ public class Ui {
         showDivider();
         System.out.println("    " + response.replace("\n", "\n    "));
         showDivider();
-    }
-
-    /**
-     * Creates a new UI handler.
-     */
-    public Ui() {
-        sc = new Scanner(System.in);
     }
 }

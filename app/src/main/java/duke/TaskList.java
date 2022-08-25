@@ -7,6 +7,13 @@ public class TaskList {
     private List<Task> tasks;
 
     /**
+     * Creates a new task list handler.
+     */
+    public TaskList() {
+        tasks = new ArrayList<>();
+    }
+
+    /**
      * Adds a task to the task list.
      * @param task The task to be added.
      */
@@ -38,12 +45,5 @@ public class TaskList {
      */
     public Task deleteTask(int id) {
         return tasks.remove(id);
-    }
-
-    /**
-     * Creates a new task list handler.
-     */
-    public TaskList() {
-        tasks = new ArrayList<>();
     }
 }

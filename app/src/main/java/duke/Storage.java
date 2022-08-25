@@ -11,6 +11,14 @@ public class Storage {
     private final String fileName;
 
     /**
+     * Creates a new storage handler.
+     * @param fileName Where the file is located.
+     */
+    public Storage(String fileName) {
+        this.fileName = fileName;
+    }
+
+    /**
      * Saves a task list to the file.
      * @param taskList The task list to be saved.
      */
@@ -45,13 +53,5 @@ public class Storage {
         }
 
         return tasks;
-    }
-
-    /**
-     * Creates a new storage handler.
-     * @param fileName Where the file is located.
-     */
-    public Storage(String fileName) {
-        this.fileName = fileName;
     }
 }
