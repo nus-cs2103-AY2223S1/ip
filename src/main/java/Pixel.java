@@ -1,6 +1,4 @@
-import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -53,7 +51,7 @@ public class Pixel {
                     // System.out.println(temp);
                     int indexToChange = Character.getNumericValue(temp.charAt(0));
                     // System.out.println(indexToChange);
-                    if ((indexToChange > 0) || (indexToChange < 100)) {
+                    if ((indexToChange > 0) && (indexToChange < 100)) {
                         inputTasks.get(indexToChange - 1).markAsDone();
                     }
                     System.out.println(" Nice! I've marked this task as done:");
@@ -66,7 +64,7 @@ public class Pixel {
                     // System.out.println(temp);
                     int indexToChange = Character.getNumericValue(temp.charAt(0));
                     // System.out.println(indexToChange);
-                    if ((indexToChange > 0) || (indexToChange < 100)) {
+                    if ((indexToChange > 0) && (indexToChange < 100)) {
                         inputTasks.get(indexToChange - 1).markAsNotDone();
                     }
                     System.out.println("OK, I've marked this task as not done yet:");
@@ -89,7 +87,7 @@ public class Pixel {
                     // System.out.println(temp);
                     int indexToDelete = Character.getNumericValue(temp.charAt(0));
                     // System.out.println(indexToChange);
-                    if ((indexToDelete > 0) || (indexToDelete < 100)) {
+                    if ((indexToDelete > 0) && (indexToDelete < 100)) {
                         tempRecord = inputTasks.get(indexToDelete - 1);
                         int originalInputListSize = inputTasks.size();
 
