@@ -16,7 +16,7 @@ public class Parser {
      */
     public static Command parse(String fullCommand) throws DukeException {
 
-        String[] split = fullCommand.split(" ");
+        String[] split = fullCommand.split(" " , 2);
         String command = split[0];
 
         if (split.length < 2) {
@@ -35,6 +35,9 @@ public class Parser {
 
             case "delete":
                 throw new DukeException("OOPS!!! This delete command is invalid.");
+
+            case "find":
+                throw new DukeException("OOPS!!! This find command is invalid.");
 
             default:
                 if (command.equals("todo") || command.equals("deadline") || command.equals("event")) {
@@ -55,6 +58,9 @@ public class Parser {
 
                 case "delete":
                     return new DeleteCommand(Integer.parseInt(details) - 1);
+
+                case "find":
+                    return new FindCommand(details);
 
                 default:
                     return new AddCommand(fullCommand);
