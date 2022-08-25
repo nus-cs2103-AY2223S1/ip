@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Duke {
@@ -33,7 +35,7 @@ public class Duke {
                         break;
                     case "deadline":
                         String[] str = input[1].split(" /by ", 2);
-                        new Deadline(str[0], str[1]);
+                        new Deadline(str[0], LocalDate.parse(str[1]));
                         break;
                     case "event":
                         String[] str2 = input[1].split(" /at ", 2);
@@ -47,6 +49,8 @@ public class Duke {
                 System.out.println("Task Index must be an integer...");
             } catch (IndexOutOfBoundsException e) {
                 System.out.println("The description of a " + command + " command cannot be empty...");
+            } catch (DateTimeParseException e) {
+                System.out.println("Deadline format is incorrect");
             }
         }
         scanner.close();
