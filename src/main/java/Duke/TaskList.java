@@ -72,6 +72,22 @@ public class TaskList {
     }
 
     /**
+     * Returns a list of tasks with the given task name
+     *
+     * @param taskName string of task
+     * @return arraylist of current tasks
+     */
+    public ArrayList<Task> findTask(String taskName) {
+        ArrayList<Task> foundTasks = new ArrayList<Task>();
+        for (Task t : tasks) {
+            if (t.getTaskName().contains(taskName)) {
+                foundTasks.add(t);
+            }
+        }
+        return foundTasks;
+    }
+
+    /**
      * Gets the number of tasks in the taskList
      *
      * @return size of taskList
@@ -92,6 +108,26 @@ public class TaskList {
                 System.out.println(Constants.LIST);
                 for (int i = 0; i < tasks.size(); i++) {
                     System.out.println(String.format("%d.%s", i + 1, tasks.get(i).toString()));
+                }
+            }
+        }
+        catch (DukeException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    /**
+     * Prints the tasks in the given taskList
+     */
+    public void printList(ArrayList<Task> givenTasks) {
+        try {
+            if (givenTasks.size() == 0) {
+                throw new DukeException(Constants.EMPTY_LIST);
+            }
+            else {
+                System.out.println(Constants.LIST);
+                for (int i = 0; i < givenTasks.size(); i++) {
+                    System.out.println(String.format("%d.%s", i + 1, givenTasks.get(i).toString()));
                 }
             }
         }

@@ -12,6 +12,7 @@ import Command.DeleteCommand;
 import Command.TodoCommand;
 import Command.EventCommand;
 import Command.DeadlineCommand;
+import Command.FindCommand;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -63,6 +64,9 @@ public class Parser {
             String[] input3 = input[1].split(" /by ");
             checkInputError(input3);
             return new DeadlineCommand(input3[0], LocalDate.parse(input3[1], formatter));
+        case "find":
+            checkInputError(input);
+            return new FindCommand(input[1]);
         default:
             throw new DukeException(Constants.INVALID_COMMAND);
         }
