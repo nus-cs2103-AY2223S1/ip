@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'checkstyle'
+}
+
+mainClassName = 'Duke'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "junit:junit:4.12"
+}
+
+jar {
+    archiveBaseName = 'gs-gradle'
+    archiveVersion = '0.1.0'
+}
+run{
+    standardInput = System.in
+}
+
+checkstyle {
+    toolVersion = '10.2'
+}
