@@ -4,7 +4,7 @@ package duke;
  * Represents an Event at a specified time
  */
 public class Event extends Task {
-    protected String at;
+    private String at;
 
     public Event(String description, String at) {
         super(description);
@@ -20,7 +20,7 @@ public class Event extends Task {
      * @return encoded string following the storage format
      */
     public String getStorageString() {
-        return "E" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.at;
+        return "E" + "|" + (isDone ? "1" : "0") + "|" + getDescription() + "|" + at;
     }
 
     @Override

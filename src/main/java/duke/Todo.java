@@ -14,7 +14,7 @@ public class Todo extends Task {
      * @return encoded string following the storage format
      */
     public String getStorageString() {
-        return "T" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription();
+        return "T" + "|" + (isDone ? "1" : "0") + "|" + this.getDescription();
     }
 
     @Override

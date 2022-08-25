@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 /**
  * Entry point of the Duke chatbot.
  * Starts the application and by initializing the driver class Dukebot
@@ -9,12 +7,11 @@ import java.util.Scanner;
  */
 public class Duke {
 
-    public static void main(String[] args) throws DukeException {
-        Dukebot driver = new Dukebot();
-
-        Scanner sc = new Scanner(System.in);
-        while (sc.hasNextLine()) {
-            String input = sc.nextLine();
+    public static void main(String[] args) {
+        Ui ui = new Ui();
+        Dukebot driver = new Dukebot(ui);
+        while (true) {
+            String input = ui.getInput();
             driver.handleInput(input);
         }
     }

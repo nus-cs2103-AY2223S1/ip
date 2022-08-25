@@ -8,7 +8,6 @@ import java.util.Scanner;
  * The user interface of the chatbot
  */
 public class Ui {
-    private static final String LS = System.lineSeparator();
 
     private final Scanner in;
     private final PrintStream out;
@@ -22,6 +21,7 @@ public class Ui {
         this.out = out;
     }
 
+
     /**
      * Outputs a string using the chosen output stream
      * @param s string to output
@@ -29,5 +29,15 @@ public class Ui {
     public void display(String s) {
         out.println(s);
     }
+
+    /**
+     * Obtains user input form input stream
+     * @return a line of user input
+     */
+    public String getInput() {
+        return in.nextLine();
+    }
+
+
 
 }
