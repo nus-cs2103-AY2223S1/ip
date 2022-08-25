@@ -119,4 +119,16 @@ public class TaskList {
         return output;
     }
 
+    public String getMatchingTasksRepresentation(String searchInput) {
+        String output = "";
+        for (int i = 0; i < this.userTasks.size(); i++) {
+            Task userTask = this.userTasks.get(i);
+            if (userTask.matchesString(searchInput)) {
+                output += "        " + (i + 1) + ". " + userTask + "\n";
+            }
+
+        }
+        return output;
+    }
+
 }

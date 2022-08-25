@@ -70,4 +70,8 @@ public class Task {
         String taskStatusIndicator = this.completed ? " [X] " : " [ ] ";
         return taskStatusIndicator + this.taskDescription;
     }
+
+    public boolean matchesString(String searchInput) {
+        return this.taskDescription.contains(searchInput);
+    }
 }

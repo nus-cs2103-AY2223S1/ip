@@ -95,4 +95,9 @@ public class Ui {
         System.out.println("    " + "Task added. You now have "
                 + tasks.length() + " tasks in the list.\n");
     }
+
+    public void showMatchingTasks(String searchInput, TaskList tasks) {
+        System.out.println("    " + "Here are the matching tasks in your list:\n");
+        System.out.println(tasks.getMatchingTasksRepresentation(searchInput));
+    }
 }
