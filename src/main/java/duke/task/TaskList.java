@@ -65,7 +65,9 @@ public class TaskList {
      */
     public boolean isValidTask(int i) throws DukeException {
         boolean isValid = i > 0 && i <= tasks.size();
-        if (!isValid) throw new DukeException("Hm... Duke can't find this task.");
+        if (!isValid) {
+            throw new DukeException("Hm... Duke can't find this task.");
+        }
         return true;
     }
 

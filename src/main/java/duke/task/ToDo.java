@@ -12,7 +12,9 @@ public class ToDo extends Task {
     public ToDo(String description) {
         super(description);
     }
-    public ToDo(String description, boolean completion) { super(description, completion); }
+    public ToDo(String description, boolean completion) {
+        super(description, completion);
+    }
 
     /**
      * Parses the to-do into a savable string format, ready to be written to the hard disk.
