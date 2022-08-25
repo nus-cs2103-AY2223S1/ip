@@ -17,6 +17,7 @@ public class ListLoader {
     private File listText = new File("data/duke.txt");
     private TaskList taskList;
 
+
     /**
      * Constructor for ListLoader object which ensures the necessary files are in place.
      * Updates TaskList with saved data in file.
@@ -24,6 +25,10 @@ public class ListLoader {
      * @param taskList The TaskList to be updated with the saved data.
      */
     public ListLoader(TaskList taskList) {
+        this.taskList = taskList;
+    }
+
+    public void load() {
         BufferedReader reader = null;
         try {
             if (!new File("data").exists()) {
@@ -48,29 +53,29 @@ public class ListLoader {
 
                 switch (Command.valueOf(command)) {
                 case T:
-                    taskList.addTodo(description, isCompleted, false);
-                    break;
-                case D:
-                    taskList.addDeadline(description, inputArray[3], isCompleted, false);
+                    taskList.addTask(new Todo(description, isCompleted));
                     break;
                 case E:
-                    taskList.addEvent(description, inputArray[3], isCompleted, false);
+                    taskList.addTask(new Event(description, inputArray[3], isCompleted));
+                    break;
+                case D:
+                    taskList.addTask(new Deadline(description, inputArray[3], isCompleted));
                     break;
                 }
             }
 
         } catch (IOException e) {
-            System.err.println(e);
-            System.exit(1);
+            System.out.println("listloader error");
+            //throw new DukeException();
         } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
-            System.out.println("The saved tasklist is corrupted. Please inspect taskList.");
-            System.exit(1);
-            //listText.delete();
+            //throw new DukeException();
+            System.out.println("listloader error");
         } finally {
             try {
                 reader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                //throw new DukeException();
+                System.out.println("listloader error");
             }
         }
     }

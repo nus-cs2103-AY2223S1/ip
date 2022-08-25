@@ -8,115 +8,59 @@ import static java.lang.System.exit;
  * @author WR3nd3
  */
 public class Duke {
-    public enum Command {
+    public enum CommandList {
         BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE
     }
-    public static void main(String[] args) {
-        String cat = "     /\\_____/\\\n"
-                + "    /  o   o  \\\n"
-                + "   ( ==  ^  == )\n"
-                + "    )         (\n"
-                + "   (           )\n"
-                + "  ( (  )   (  ) )\n"
-                + " (__(__)___(__)__)\n"
-                + "           _\n"
-                + "  ___ __ _| |_ ___\n"
-                + " / __/ _` | __/ __|\n"
-                + "| (_| (_| | |_\\__ \\\n"
-                + " \\___\\__,_|\\__|___/\n";
-        String border = "____________________________________________________________\n";
-        String service = "\nWhat can I do for mew?\n";
-        String goodbye = "Bye! See nya later!\n";
-
-        System.out.println(border + "Meow from\n" + cat + service + border);
-
-        TaskList list = new TaskList();
-        //ListLoader updater = new ListLoader((list));
 
 
+    private ListLoader storage;
+    private TaskList tasks;
+    private Ui ui;
 
-        Scanner sc= new Scanner(System.in);
+    public Duke() {
+        ui = new Ui();
+        tasks = new TaskList();
+        storage = new ListLoader(tasks);
+        try {
+            storage.load();
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
 
-        while (sc.hasNextLine()) {
-            String input = sc.nextLine().trim();
-            String[] inputArray = input.split(" ", 2);
-            String cmd = inputArray[0];
-            String target = null;
-
-            if (inputArray.length == 2) {
-                target = inputArray[1];
-            }
-
+    public void run() {
+        //int count = 0;
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                System.out.println(border);
-                Command c = Command.valueOf(cmd.toUpperCase());
-                switch (c) {
-                case BYE:
-                    System.out.println(goodbye + border);
-                    exit(0);
-                    break;
-                case LIST:
-                    list.printList();
-                    break;
-                case TODO:
-                    if (target == null) {
-                        throw new IllegalArgumentException();
-                    }
-                    System.out.println(list.addTodo(target, false, true));
-                    //updater.AppendToDo(target, false);
-                    break;
-                case EVENT:
-                    if (target == null || target.split(" /at ").length != 2) {
-                        throw new IllegalArgumentException();
-                    }
-                    String[] inputE = target.split(" /at ");
-                    System.out.println(list.addEvent(inputE[0], inputE[1], false, true));
-                    //updater.AppendEvent(inputE[0], inputE[1], false);
-                    break;
-                case DEADLINE:
-                    if (target == null || target.split(" /by ").length != 2) {
-                        throw new IllegalArgumentException();
-                    }
-                    String[] inputD = target.split(" /by ");
-                    System.out.println(list.addDeadline(inputD[0], inputD[1], false, true));
-                    //updater.AppendDeadline(inputD[0], inputD[1], false);
-                    break;
-                case MARK:
-                    if (target == null) {
-                        throw new IllegalArgumentException();
-                    }
-                    int position = Integer.parseInt(target);
-                    list.mark(position);
-                    break;
-                case UNMARK:
-                    if (target == null) {
-                        throw new IllegalArgumentException();
-                    }
-                    position = Integer.parseInt(target);
-                    list.unMark(position);
-                    break;
-                case DELETE:
-                    if (target == null) {
-                        throw new IllegalArgumentException();
-                    }
-                    position = Integer.parseInt(target);
-                    list.delete(position);
-                    break;
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println("Nyat a valid instruction! Rub my belly instead!\n"
-                        + "    'bye' to exit.\n"
-                        + "    'list' for overview\n"
-                        + "    'todo ABC' to add task ABC\n"
-                        + "    'event ABC /at DATE' to add event ABC on DATE\n"
-                        + "    'deadline ABC /by DATE' to add deadline ABC due by DATE\n"
-                        + "    'mark x' to mark task x as complete\n"
-                        + "    'unmark x' to mark task x as incomplete\n"
-                        + "    'delete x' to delete task x from the list\n"
-                        + "    NYAAAAAA!\n");
+                //System.out.println(count++);
+                String fullCommand = ui.readCommand();
+                //System.out.println(count++);
+                System.out.println("cmd: " + fullCommand);
+                ui.showLine();
+                //System.out.println(count++);
+                Command c = Parser.parse(fullCommand);
+                //System.out.println("past parsing");
+                c.execute(tasks, ui, storage);
+                //System.out.println(count++);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError("HIHIHIHIHIHIHI");
+                //ui.showError(e.getMessage());
+                //System.exit(0);
             } finally {
-                System.out.println(border);
+                ui.showLine();
             }
         }
     }
+
+    public static void main(String[] args) {
+        new Duke().run();
+    }
+
+
 }
+
+
