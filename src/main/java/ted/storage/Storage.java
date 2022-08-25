@@ -8,17 +8,31 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import ted.task.*;
 
+/**
+ * Represents storage of task list. A <code>Storage</code> object corresponds
+ * to a saved file with the specific filePath.
+ */
 public class Storage {
     private String filePath;
     private String folderPath;
     private File dukeFile;
 
+    /**
+     * Creates Storage object with filePath of file with saved tasks.
+     * @param filePath filePath of file.
+     * @param fileName fileName of file.
+     */
     public Storage(String filePath, String fileName) {
         this.filePath = filePath;
         this.folderPath = filePath.replace("/" + fileName, "");
         this.dukeFile = new File(filePath);
     }
 
+    /**
+     * Returns TaskList after loading task data from file.
+     *
+     * @return TaskList with tasks saved in file.
+     */
     public TaskList loadFile() {
         ArrayList<Task> temp = new ArrayList<>();
         Scanner sc;
@@ -70,6 +84,11 @@ public class Storage {
         return new TaskList(temp);
     }
 
+    /**
+     * Updates file when changes occur to tasks in the file.
+     *
+     * @param tasks updated TaskList.
+     */
     public void updateFile(TaskList tasks) {
         try {
             FileWriter fw = new FileWriter(filePath);
