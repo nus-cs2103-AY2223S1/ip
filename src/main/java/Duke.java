@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * A Personal Assistant Chatbot that helps a person keep track of several things like tasks.
@@ -14,6 +16,7 @@ import java.util.Scanner;
 public class Duke {
 
     /**
+<<<<<<< HEAD
      * Reads from specified duke.txt file to get previously stored Tasks.
      *
      * @param taskList
@@ -117,6 +120,16 @@ public class Duke {
         }
     }
 
+     * Returns String date in a nicer format.
+     *
+     * @param date
+     * @return String date in nicer format
+     */
+    public static String getDate(String date) {
+        LocalDate localDate = LocalDate.parse(date);
+        return localDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -172,14 +185,16 @@ public class Duke {
                     break;
                 case "deadline":
                     String[] deadlineSplit = command.split(" /by ");
-                    Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), deadlineSplit[1]);
+                    String formattedDate = Duke.getDate(deadlineSplit[1]);
+                    Deadline deadline = new Deadline(deadlineSplit[0].substring(9, deadlineSplit[0].length()), formattedDate);
                     taskList.add(deadline);
                     System.out.println("added: " + deadline.toString());
                     System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
                     break;
                 case "event":
                     String[] eventSplit = command.split(" /at ");
-                    Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), eventSplit[1]);
+                    formattedDate = Duke.getDate(eventSplit[1]);
+                    Event event = new Event(eventSplit[0].substring(6, eventSplit[0].length()), formattedDate);
                     taskList.add(event);
                     System.out.println("added: " + event.toString());
                     System.out.println(String.format("Now you have %d tasks in the list", taskList.size()));
