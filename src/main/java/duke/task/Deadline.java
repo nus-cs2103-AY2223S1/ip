@@ -8,12 +8,13 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
 
-    private LocalDate by;
+    private final LocalDate by;
 
     /**
      * Constructs a Deadline object.
+     *
      * @param description task description.
-     * @param by the deadline of the task.
+     * @param by          the deadline of the task.
      */
     public Deadline(String description, LocalDate by) {
         super(description);
@@ -22,9 +23,10 @@ public class Deadline extends Task {
 
     /**
      * Constructs a Deadline object.
+     *
      * @param description task description
-     * @param by the deadline of the task
-     * @param status indicate whether the task has been done.
+     * @param by          the deadline of the task
+     * @param status      indicate whether the task has been done.
      */
     public Deadline(String description, LocalDate by, String status) {
         this(description, by);

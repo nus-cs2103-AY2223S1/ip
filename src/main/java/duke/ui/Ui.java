@@ -6,19 +6,19 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * A Ui class that encapsulates the ui of Duke.
+ * An Ui class that encapsulates the ui of Duke.
  */
 public class Ui {
 
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
     /**
      * To start reading the command
+     *
      * @return the command entered by the user
      */
     public String readCommand() {
-        String fullCommand = sc.nextLine();
-        return fullCommand;
+        return sc.nextLine();
     }
 
     /**
@@ -38,6 +38,7 @@ public class Ui {
 
     /**
      * Shows the error message
+     *
      * @param errorMessage the error message
      */
     public void showError(String errorMessage) {
@@ -46,6 +47,7 @@ public class Ui {
 
     /**
      * Shows the task that is being marked or unmarked
+     *
      * @param task the task
      */
     public void showTask(Task task) {
@@ -58,7 +60,8 @@ public class Ui {
 
     /**
      * Shows the task that is being deleted
-     * @param task the task
+     *
+     * @param task                the task
      * @param numOfRemainingTasks the number of remaining tasks in the list
      */
     public void showDeletedTask(Task task, Integer numOfRemainingTasks) {
@@ -68,7 +71,8 @@ public class Ui {
 
     /**
      * Shows the task that is being added.
-     * @param task the task
+     *
+     * @param task                the task
      * @param numOfRemainingTasks the number if tasks in the list
      */
     public void showAddTask(Task task, Integer numOfRemainingTasks) {
@@ -81,16 +85,16 @@ public class Ui {
      */
     public void showHelpMenu() {
         System.out.println(dialog("The following is the list of commands:",
-                    "BYE    To terminate the programme.",
-                    "LIST   To see the list of current tasks.",
-                    "Mark {any number}    To mark a task as done.",
-                    "Unmark {any number}    To unmark a task.",
-                    "Delete {any number}    To delete a task.",
-                    "Todo {Task description}    To add a TODO task.",
-                    "Deadline {Task description}/{YYYY-MM-DD}    To add a DEADLINE task.",
-                    "Event {Task description}/{YYYY-MM-DD}    To add an EVENT task.",
-                    "Find {keyword} To find the task with keyword.",
-                    "Help    To see the list of commands."));
+                "BYE    To terminate the programme.",
+                "LIST   To see the list of current tasks.",
+                "Mark {any number}    To mark a task as done.",
+                "Unmark {any number}    To unmark a task.",
+                "Delete {any number}    To delete a task.",
+                "Todo {Task description}    To add a TODO task.",
+                "Deadline {Task description}/{YYYY-MM-DD}    To add a DEADLINE task.",
+                "Event {Task description}/{YYYY-MM-DD}    To add an EVENT task.",
+                "Find {keyword} To find the task with keyword.",
+                "Help    To see the list of commands."));
     }
 
     public void showList(List<Task> taskList) {
@@ -113,6 +117,7 @@ public class Ui {
 
     /**
      * To wrap the response from Duke in a frame
+     *
      * @param strings the response from Duke
      * @return the wrapped response that is ready to be shown to the user
      */
@@ -120,7 +125,7 @@ public class Ui {
         StringBuilder sb = new StringBuilder();
         sb.append("  ____________________________________________________________\n");
         for (String message : strings) {
-            sb.append("   " + message + "\n");
+            sb.append("   ").append(message).append("\n");
         }
         sb.append("  ____________________________________________________________");
         return sb.toString();

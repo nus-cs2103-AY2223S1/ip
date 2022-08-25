@@ -12,10 +12,11 @@ import duke.ui.Ui;
  */
 public class DeleteCommand extends Command {
 
-    private int indexOfTaskToDelete;
+    private final int indexOfTaskToDelete;
 
     /**
      * Constructs a DeleteCommand instance
+     *
      * @param indexOfTaskToDelete index that specifies the position of the task that needs to be deleted.
      */
     public DeleteCommand(int indexOfTaskToDelete) {

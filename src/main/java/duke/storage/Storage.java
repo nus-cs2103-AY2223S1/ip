@@ -1,6 +1,9 @@
 package duke.storage;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -8,7 +11,7 @@ import java.util.List;
 
 import duke.exception.DukeException;
 import duke.exception.FileDoesNotExistException;
-import duke.exception.StorageOperationException;
+import duke.exception.FileIOException;
 import duke.task.TaskList;
 
 /**
@@ -23,9 +26,8 @@ public class Storage {
 
     /**
      * Constructs a Storage Object with specifying the current directory as the directory to put the storage file.
-     * @throws FileDoesNotExistException
      */
-    public Storage() throws FileDoesNotExistException {
+    public Storage() {
         String currentDir = System.getProperty(CURRENT_DIRECTORY);
         this.path = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
     }
@@ -33,16 +35,17 @@ public class Storage {
 
     /**
      * Saves the tasks in the current task list of Duke into the storage file
+     *
      * @param taskList the current task list in Duke
      * @throws FileDoesNotExistException Throws an exception when the storage file does not exist.
      */
-    public void save(TaskList taskList) throws FileDoesNotExistException, StorageOperationException {
+    public void save(TaskList taskList) throws FileIOException {
         List<String> encodedTasks = StorageEncoder.encode(taskList);
 
         try {
             PrintWriter printWriter = new PrintWriter(path.toFile());
-            for (int i =0 ;i < encodedTasks.size(); i++) {
-                printWriter.println(encodedTasks.get(i));
+            for (String encodedTask : encodedTasks) {
+                printWriter.println(encodedTask);
             }
             printWriter.close();
         } catch (FileNotFoundException e) {
@@ -53,6 +56,7 @@ public class Storage {
 
     /**
      * Loads the task list from the storage file when Duke initialised.
+     *
      * @return the TaskList object
      * @throws DukeException throws an exception when encountering unexpected behaviours.
      */
@@ -63,15 +67,15 @@ public class Storage {
         return StorageDecoder.decode(path);
     }
 
-    public void create() throws StorageOperationException {
+    public void create() throws FileIOException {
         String currentDir = System.getProperty(CURRENT_DIRECTORY);
-        Path newPath = Paths.get(currentDir,DEFAULT_STORAGE_FILE);
+        Path newPath = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
         File newFile = newPath.toFile();
         try {
             newFile.createNewFile();
             this.path = newPath;
         } catch (IOException e) {
-            throw new StorageOperationException("Error creating file: " + path);
+            throw new FileIOException("Error creating file: " + path);
         }
     }
 

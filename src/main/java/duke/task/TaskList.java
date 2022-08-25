@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class TaskList {
 
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     /**
      * Constructs a TaskList Object.
@@ -19,6 +19,7 @@ public class TaskList {
 
     /**
      * Constructs a TaskList Object from another TaskList.
+     *
      * @param taskList the other TaskList
      */
     public TaskList(List<Task> taskList) {
@@ -27,7 +28,8 @@ public class TaskList {
 
     /**
      * Gets the current list of all the tasks.
-     * @return
+     *
+     * @return the list of all the tasks
      */
     public List<Task> getTasks() {
         return tasks;
@@ -35,17 +37,20 @@ public class TaskList {
 
     /**
      * Gets the number of tasks in the list.
+     *
      * @return the number of tasks.
      */
     public Integer getNumOfRemainingTasks() {
         return tasks.size();
     }
+
     public boolean isEmpty() {
         return tasks.size() == 0;
     }
 
     /**
      * Marks a task in the task list as done.
+     *
      * @param index the position of the task in the list
      * @return the selected Task object
      */
@@ -55,8 +60,10 @@ public class TaskList {
         task.markAsDone();
         return task;
     }
+
     /**
      * Marks a task in the task list as not done
+     *
      * @param index the position of the task in the list
      * @return the selected Task object
      */
@@ -69,6 +76,7 @@ public class TaskList {
 
     /**
      * Deletes a task in the task list
+     *
      * @param index the position of the task that needs to be deleted
      * @return the deleted task
      */
@@ -81,6 +89,7 @@ public class TaskList {
 
     /**
      * Adds a task to the current task list
+     *
      * @param task the task that needs to be added.
      */
     public void addTask(Task task) {
@@ -89,8 +98,7 @@ public class TaskList {
 
     public TaskList find(String stringToFind) {
         TaskList res = new TaskList();
-        for (int i = 0; i < tasks.size(); i++) {
-            Task curr = tasks.get(i);
+        for (Task curr : tasks) {
             if (curr.toString().toUpperCase().contains(stringToFind.toUpperCase())) {
                 res.addTask(curr);
             }

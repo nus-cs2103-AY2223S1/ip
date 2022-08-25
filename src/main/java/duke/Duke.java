@@ -2,8 +2,6 @@ package duke;
 
 import duke.command.Command;
 import duke.exception.DukeException;
-import duke.exception.FileDoesNotExistException;
-import duke.exception.StorageOperationException;
 import duke.parser.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
@@ -53,6 +51,7 @@ public class Duke {
 
     /**
      * The entry of the Duke application
+     *
      * @param args user input.
      */
     public static void main(String[] args) {

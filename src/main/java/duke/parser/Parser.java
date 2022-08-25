@@ -1,7 +1,24 @@
 package duke.parser;
 
-import duke.command.*;
-import duke.exception.*;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.HelpCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+
+
+import duke.exception.DukeException;
+import duke.exception.EmptyDateException;
+import duke.exception.EmptyIndexException;
+import duke.exception.EmptyDescriptionException;
+import duke.exception.IllegalDateFormatException;
+import duke.exception.IllegalInputException;
+import duke.exception.InvalidCommandException;
+import duke.exception.InvalidIndexException;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -27,50 +44,51 @@ public class Parser {
         String[] arr = fullCommand.trim().split(" ", 2);
         String taskType = arr[TASK_TYPE];
         switch (taskType.toUpperCase()) {
-            case "BYE":
-                return new ExitCommand();
+        case "BYE":
+            return new ExitCommand();
 
-            case "LIST":
-                return new ListCommand();
+        case "LIST":
+            return new ListCommand();
 
-            case "MARK":
-                int indexOfTaskToMark = parseToTaskIndex(arr);
-                return new MarkCommand(true, indexOfTaskToMark);
+        case "MARK":
+            int indexOfTaskToMark = parseToTaskIndex(arr);
+            return new MarkCommand(true, indexOfTaskToMark);
 
-            case "UNMARK":
-                int indexOfTaskToUnmark = parseToTaskIndex(arr);
-                return new MarkCommand(false, indexOfTaskToUnmark);
+        case "UNMARK":
+            int indexOfTaskToUnmark = parseToTaskIndex(arr);
+            return new MarkCommand(false, indexOfTaskToUnmark);
 
-            case "DELETE":
-                int indexOfTaskToDelete = parseToTaskIndex(arr);
-                return new DeleteCommand(indexOfTaskToDelete);
+        case "DELETE":
+            int indexOfTaskToDelete = parseToTaskIndex(arr);
+            return new DeleteCommand(indexOfTaskToDelete);
 
-            case "TODO":
-                return parseToAddTodoCommand(arr);
+        case "TODO":
+            return parseToAddTodoCommand(arr);
 
-            case "DEADLINE":
-                return parseToAddDeadlineCommand(arr);
+        case "DEADLINE":
+            return parseToAddDeadlineCommand(arr);
 
-            case "EVENT":
-                return parseToAddEventCommand(arr);
+        case "EVENT":
+            return parseToAddEventCommand(arr);
 
-            case "FIND":
-                return parseToFindCommand(arr);
+        case "FIND":
+            return parseToFindCommand(arr);
 
-            case "HELP":
-                return new HelpCommand();
+        case "HELP":
+            return new HelpCommand();
 
-            default:
-                throw new InvalidCommandException();
+        default:
+            throw new InvalidCommandException();
         }
 
     }
 
     /**
      * Parses the string command into index if possible.
+     *
      * @param fullCommandArray user input
      * @return the index of a task
-     * @throws EmptyIndexException When user did not include an index.
+     * @throws IllegalInputException When user did not include an index.
      */
     public static int parseToTaskIndex(String[] fullCommandArray) throws IllegalInputException {
         if (fullCommandArray.length == 1) {
@@ -85,6 +103,7 @@ public class Parser {
 
     /**
      * Parses the string command into AddCommand that adds a Todo_task
+     *
      * @param fullCommandArray user input
      * @return AddCommand instance
      * @throws EmptyDescriptionException throws exception when the description of Todo_task is not given.
@@ -131,13 +150,14 @@ public class Parser {
 
     /**
      * Parses the input String into LocalDate instance
+     *
      * @param date the date that the user has entered.
      * @return a local date object
      * @throws IllegalDateFormatException throws an exception when the input date is not of correct format.
      */
     public static LocalDate parseToLocalDateTime(String date) throws IllegalDateFormatException {
         date = date.trim();
-        LocalDate res = null;
+        LocalDate res;
         try {
             res = LocalDate.parse(date);
         } catch (DateTimeParseException e) {

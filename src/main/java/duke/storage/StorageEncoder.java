@@ -11,19 +11,19 @@ import java.util.List;
  */
 public class StorageEncoder {
 
-    static final String DIVIDER = " | ";
+    private static final String DIVIDER = " | ";
 
     /**
      * Encodes the given TaskList Object into a List of String.
+     *
      * @param taskList the TaskList object.
      * @return the list of String.
      */
     public static List<String> encode(TaskList taskList) {
         List<Task> tasks = taskList.getTasks();
         List<String> res = new ArrayList<>();
-        for (int i = 0; i < tasks.size(); i++) {
-            Task task = tasks.get(i);
-            Integer status = task.isDone() ? 1 : 0;
+        for (Task task : tasks) {
+            int status = task.isDone() ? 1 : 0;
             String str = (task.getTaskType() + DIVIDER + status + DIVIDER + task.getDescription() + DIVIDER + task.getDate());
             res.add(str);
         }

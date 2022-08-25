@@ -7,11 +7,12 @@ import java.time.LocalDate;
  */
 public abstract class Task {
 
-    private String description;
+    private final String description;
     private boolean isDone;
 
     /**
      * Constructor for the child class to construct a Task Object.
+     *
      * @param description the description of the task.
      */
     public Task(String description) {
@@ -21,18 +22,21 @@ public abstract class Task {
 
     /**
      * Gets the type of the task.
+     *
      * @return the type of the task.
      */
     public abstract String getTaskType();
 
     /**
      * Gets the date of the task.
+     *
      * @return the date of the task.
      */
     public abstract LocalDate getDate();
 
     /**
      * Gets the status icon of the task.
+     *
      * @return "X" if the task is being done, " " otherwise.
      */
     public String getStatusIcon() {
@@ -55,6 +59,7 @@ public abstract class Task {
 
     /**
      * Checks if the task is done.
+     *
      * @return true if the task has been done.
      */
     public boolean isDone() {
@@ -63,6 +68,7 @@ public abstract class Task {
 
     /**
      * Gets the description of the task.
+     *
      * @return the description of the task.
      */
     public String getDescription() {
