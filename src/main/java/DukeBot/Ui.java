@@ -59,9 +59,13 @@ public class Ui {
      *
      * @param tasks
      */
-    public void showList(TaskList tasks) {
-        System.out.println("    Here are the tasks in your list:");
-        for (int i = 0; i < Task.getTaskCount(); i++) {
+    public void showList(TaskList tasks, boolean isFind) {
+        if (isFind) {
+            System.out.println("Here are the matching tasks in your list:");
+        } else {
+            System.out.println("    Here are the tasks in your list:");
+        }
+        for (int i = 0; i < tasks.size(); i++) {
             System.out.println(String.format("      %d. %s", i + 1, tasks.get(i)));
         }
     }

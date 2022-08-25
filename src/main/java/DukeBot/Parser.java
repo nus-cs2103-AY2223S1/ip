@@ -1,6 +1,7 @@
 package DukeBot;
 
 import DukeBot.command.*;
+import DukeBot.command.FindCommand;
 
 public class Parser {
 
@@ -27,6 +28,8 @@ public class Parser {
             return new NewTaskCommand(str, tasks);
         case "bye":
             return new ExitCommand(str, tasks);
+        case "find":
+            return new FindCommand(str, tasks);
         default:
             throw new DukeException("Not sure what you mean.");
         }

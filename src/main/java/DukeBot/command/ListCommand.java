@@ -21,6 +21,6 @@ public class ListCommand extends Command {
         if (!command.equals("list")) {
             throw new DukeException("Sorry, I'm not sure what that means");
         }
-        ui.showList(tasks);
+        ui.showList(tasks, false);
     }
 }
