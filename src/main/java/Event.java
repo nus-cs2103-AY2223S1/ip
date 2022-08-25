@@ -14,6 +14,10 @@ public class Event extends Task {
                 this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
     }
 
+    public LocalDateTime getRawDateTime() {
+        return this.dateTime;
+    }
+
     public String printText() {
         return super.printText() + " | " + this.dateTime;
     }

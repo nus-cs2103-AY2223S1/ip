@@ -19,8 +19,8 @@ public class Duke {
         String date = "None";
         String time = "None";
         if (stringDateTime.length() > 9) {
-            date = stringDateTime.substring(0, stringDateTime.indexOf(" ") - 1);
-            time = stringDateTime.substring(stringDateTime.indexOf(" "));;
+            date = stringDateTime.substring(0, stringDateTime.indexOf(" "));
+            time = stringDateTime.substring(stringDateTime.indexOf(" ") + 1);
         } else if (stringDateTime.length() == 8) {
             date = stringDateTime;
         } else {
@@ -39,7 +39,7 @@ public class Duke {
                 DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
                 DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
                 LocalDate localDate = LocalDate.parse(date, formatDate);
-                LocalTime localTime = LocalTime.parse("00:00", formatTime);
+                LocalTime localTime = LocalTime.parse("0000", formatTime);
                 return LocalDateTime.of(localDate, localTime);
             } else {
                 DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
@@ -91,16 +91,38 @@ public class Duke {
             String input = scanner.nextLine();
             if (input.equals("bye")) {
                 break;
-            } else if (input.equals("list")) {
+            } else if (input.contains("list")) {
+                ArrayList<Task> processedTaskList = new ArrayList<>();
+                String command = "Here are the tasks in your list";
+                if (input.length() > 5) {
+                    String stringDateTime = input.substring(5);
+                    LocalDate date = processDateTime(stringDateTime).toLocalDate();
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("MMM dd yyyy");
+                    command += " for " + date.format(format);
+                    for (Task task : new ArrayList<>(taskList)) {
+                        String taskCode = task.getCode();
+                        if (taskCode == "E") {
+                            if (((Event) task).getRawDateTime().toLocalDate().equals(date)) {
+                                processedTaskList.add(task);
+                            }
+                        } else if (taskCode == "D") {
+                            if (((Deadline) task).getRawDateTime().toLocalDate().equals(date)) {
+                                processedTaskList.add(task);
+                            }
+                        }
+                    }
+                } else {
+                    processedTaskList = taskList;
+                }
                 System.out.print(divider);
-                System.out.print(indent + "Here are the tasks in your list:\n");
-                if (taskList.size() == 0) {
+                System.out.print(indent + command + ":\n");
+                if (processedTaskList.size() == 0) {
                     System.out.println(indent + "[No tasks available]");
                 }
-                for (int index = 0; index < taskList.size(); ++index) {
+                for (int index = 0; index < processedTaskList.size(); ++index) {
                     System.out.print(indent);
                     System.out.print(index + 1);
-                    System.out.println(". " + taskList.get(index));
+                    System.out.println(". " + processedTaskList.get(index));
                 }
                 System.out.println(divider);
             } else if (input.contains("mark")) {
