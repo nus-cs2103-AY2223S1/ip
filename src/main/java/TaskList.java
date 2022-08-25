@@ -1,4 +1,7 @@
+import java.time.DateTimeException;
 import java.util.ArrayList;
+import java.time.LocalDate;
+
 
 public class TaskList {
     private static ArrayList<Task> taskList;
@@ -12,16 +15,18 @@ public class TaskList {
     }
 
     public void addDeadline(String s) {
-        String[] splitWord = s.split("/by", 2);
+        String[] splitWord = s.split("/by ", 2);
         String description = splitWord[0];
         String by = splitWord[1];
-        taskList.add(new Deadline(description, by));
+        LocalDate byDate = LocalDate.parse(by);
+        taskList.add(new Deadline(description, byDate));
     }
     public void addEvent(String s) {
-        String[] splitWord = s.split("/at", 2);
+        String[] splitWord = s.split("/at ", 2);
         String description = splitWord[0];
         String at = splitWord[1];
-        taskList.add(new Event(description, at));
+        LocalDate atDate = LocalDate.parse(at);
+        taskList.add(new Event(description, atDate));
     }
 
     public String readTask(int index) {
@@ -44,6 +49,16 @@ public class TaskList {
         return taskList.size();
     }
 
-    public void deleteTask(int index) { taskList.remove(index); }
+    public void deleteTask(int index) {
+        taskList.remove(index);
+    }
+
+    public void changeDateFormat(int index) {
+        if (taskList.get(index) instanceof Deadline) {
+            ((Deadline) taskList.get(index)).changeDateFormat();
+        } else if (taskList.get(index) instanceof Event) {
+            ((Event) taskList.get(index)).changeDateFormat();
+        }
+    }
 
 }
