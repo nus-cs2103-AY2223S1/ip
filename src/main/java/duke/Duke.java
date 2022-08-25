@@ -7,11 +7,19 @@ import duke.storage.Storage;
 import duke.task.List;
 import duke.ui.Ui;
 
+/**
+ * Entry point of the Duke application.
+ * Initializes the application and starts the interaction with the user.
+ */
 public class Duke {
     private Storage storage;
     private List tasks;
     private Ui ui;
 
+    /**
+     * Sets up the required objects and loads up the data from the storage file.
+     *
+     */
     public Duke(String filePath) {
         ui = new Ui();
         try {
@@ -28,10 +36,13 @@ public class Duke {
         }
     }
 
+    /** Runs the program until termination.  */
     public static void main(String[] args) {
+
         new Duke("Duke/Duke.txt").run();
     }
 
+     /** Reads the user command and executes it, until the user issues the exit command.  */
     public void run() {
         ui.showWelcomeMessage();
         boolean isExit = false;
