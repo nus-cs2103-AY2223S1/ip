@@ -1,3 +1,6 @@
+/**
+ * Contains most of the constants used in this program for easier use and access
+ */
 package Duke;
 
 public class Constants {

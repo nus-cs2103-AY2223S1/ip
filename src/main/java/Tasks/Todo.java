@@ -1,3 +1,6 @@
+/**
+ * Creates a new todo task from the todo command
+ */
 package Tasks;
 
 public class Todo extends Task {

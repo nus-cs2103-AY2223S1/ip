@@ -1,3 +1,6 @@
+/**
+ * Creates a new todo task
+ */
 package Command;
 
 import Duke.Storage;
@@ -13,6 +16,14 @@ public class TodoCommand extends Command{
         this.desc = desc;
     }
 
+    /**
+     * Creates a new todo task and adds it into the tasklist,
+     * and save it into the file.
+     *
+     * @param t which contains the current tasklist
+     * @param ui which handles the user interface
+     * @param storage which handles the saving and loading of file
+     */
     @Override
     public void execute(TaskList t, Ui ui, Storage storage) {
         Todo todo = new Todo(this.desc);

@@ -1,27 +1,35 @@
+/**
+ * This class contains the task list and the operations to add / delete tasks in the list
+ */
 package Duke;
 
 import Tasks.Task;
 
 import java.util.ArrayList;
 
-/**
- * This class contains the task list and the operations to add / delete tasks in the list
- */
 public class TaskList {
     private ArrayList<Task> tasks;
 
+    /**
+     * Constructor that creates a new task list
+     */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
     }
 
+    /**
+     * Constructor that get the updated task list from the loaded file
+     *
+     * @param load the current tasklist
+     */
     public TaskList(ArrayList<Task> load) {
         this.tasks = load;
     }
 
     /**
-     * Adds the task to taskList
+     * Adds the task ino the taskList
      *
-     * @param t
+     * @param t current task that is added into the tasklist
      */
     public void addTask(Task t) {
         tasks.add(t);
@@ -30,7 +38,7 @@ public class TaskList {
     /**
      * Deletes the specified tasks from the taskList
      *
-     * @param i
+     * @param i index of the current task in the tasklist
      * @return Deleted Tasks.Task
      */
     public Task deleteTask(int i) {
@@ -42,7 +50,7 @@ public class TaskList {
     /**
      * Marks the specified task
      *
-     * @param i
+     * @param i index of the current task in the tasklist
      * @return Marked Tasks.Task
      */
     public Task markTask(int i) {
@@ -73,7 +81,7 @@ public class TaskList {
     }
 
     /**
-     * Prints the tasks in the taskList
+     * Prints the tasks into the taskList
      */
     public void printList() {
         try {
@@ -92,10 +100,8 @@ public class TaskList {
         }
     }
 
-
-
     /**
-     * Puts all the tasks in taskList into a string
+     * Puts all the tasks in taskList into a string for storing into a file
      *
      * @return ArrayList containing all the tasks in Strings
      */

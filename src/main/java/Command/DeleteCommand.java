@@ -1,3 +1,6 @@
+/**
+ * Deletes a specific tasks in the list
+ */
 package Command;
 
 import Duke.DukeException;
@@ -14,8 +17,16 @@ public class DeleteCommand extends Command {
         this.index = idx;
     }
 
+    /**
+     * Deletes a task from the tasklist and save the new
+     * tasklist into the file.
+     *
+     * @param t which contains the current tasklist
+     * @param ui which handles the user interface
+     * @param storage which handles the saving and loading of file
+     */
     @Override
-    public void execute(TaskList t, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList t, Ui ui, Storage storage) {
         Task deleted = t.deleteTask(index);
         storage.writeFile(t.tasksToString());
         ui.printDeleteTask(deleted, t.getSize());

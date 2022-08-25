@@ -1,3 +1,6 @@
+/**
+ * Marks a specific task as not done
+ */
 package Command;
 
 import Duke.TaskList;
@@ -15,6 +18,17 @@ public class UnmarkCommand extends Command {
         this.index = idx;
     }
 
+    /**
+     * Marks the specific tasks as not done.
+     * If the tasks is not in the tasklist, it will throw an error to warn the user to
+     * input the commands correctly.
+     * It then saves the new tasklist into the file.
+     *
+     * @param t which contains the current tasklist
+     * @param ui which handles the user interface
+     * @param storage which handles the saving and loading of file
+     * @throws DukeException which handles the error of invalid index input by the user
+     */
     @Override
     public void execute(TaskList t, Ui ui, Storage storage) throws DukeException {
         if (index < 0 || index > t.getSize()) {

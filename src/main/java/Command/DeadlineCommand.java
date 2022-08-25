@@ -1,3 +1,6 @@
+/**
+ * Creates a new deadline task
+ */
 package Command;
 
 import Duke.Storage;
@@ -17,6 +20,15 @@ public class DeadlineCommand extends Command {
         this.date = date;
     }
 
+    /**
+     * Creates a new deadline task and adds it into the tasklist,
+     * followed by saving it into the filepath given and
+     * finally prints the necessary lines for the user interface.
+     *
+     * @param t which contains the current tasklist
+     * @param ui which handles the user interface
+     * @param storage which handles the saving and loading of file
+     */
     @Override
     public void execute(TaskList t, Ui ui, Storage storage) {
         Deadline d = new Deadline(this.desc, this.date);

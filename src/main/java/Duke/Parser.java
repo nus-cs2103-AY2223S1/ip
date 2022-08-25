@@ -1,3 +1,6 @@
+/**
+ * This class deals with making sense of the user command
+ */
 package Duke;
 
 import Command.Command;
@@ -15,11 +18,18 @@ import java.time.format.DateTimeFormatter;
 
 import static java.lang.Integer.parseInt;
 
-/**
- * This class deals with making sense of the user command
- */
 public class Parser {
 
+    /**
+     * Returns the specific command that will execute the specific task according to
+     * the user input
+     *
+     * @param command
+     * @return Command that program should execute according to
+     *         the user input
+     * @throws DukeException to show the error of an invalid input or command
+     *         given by the user input
+     */
     public static Command parse(String command) throws DukeException {
         String[] input = command.split(" ", 2);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");

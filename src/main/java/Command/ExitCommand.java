@@ -1,3 +1,6 @@
+/**
+ * Exits the program
+ */
 package Command;
 
 import Duke.Storage;
@@ -9,6 +12,13 @@ public class ExitCommand extends Command {
         super();
     }
 
+    /**
+     * Exits the program by printing the goodbye message
+     *
+     * @param t which contains the current tasklist
+     * @param ui which handles the user interface
+     * @param storage which handles the saving and loading of file
+     */
     @Override
     public void execute(TaskList t, Ui ui, Storage storage) {
         super.setExit();

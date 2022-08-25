@@ -1,3 +1,6 @@
+/**
+ * Creates a new deadline task from the deadline command
+ */
 package Tasks;
 
 import java.time.LocalDate;
