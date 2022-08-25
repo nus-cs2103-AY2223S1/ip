@@ -10,6 +10,8 @@ public class TaskList {
      * field to store the tasks
      */
     protected ArrayList<Task> tasks = new ArrayList<>();
+    protected int numTasks = tasks.size();
+    protected int removed = 0;
 
     /**
      * how many tasks in the list
