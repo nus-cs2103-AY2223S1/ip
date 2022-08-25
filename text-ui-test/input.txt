@@ -6,9 +6,9 @@ unmark
 delete
 todo borrow book
 list
-deadline return book /by Sunday
+deadline return book /by 2022-04-22
 list
-event project meeting /at Mon 2-4pm
+event project meeting /at 2022-04-23 1230
 list
 mark 1
 list
