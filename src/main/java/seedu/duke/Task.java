@@ -61,4 +61,13 @@ public class Task {
             return " : 0 : " + description;
         }
     }
+
+    /**
+     * Checks whether this Task's description contains the String to be found.
+     * @param toMatch The String to be found.
+     * @return true if the description contains the String to be found, false otherwise.
+     */
+    public boolean checkMatching(String toMatch) {
+        return description.contains(toMatch);
+    }
 }
