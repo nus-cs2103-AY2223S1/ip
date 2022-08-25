@@ -4,8 +4,17 @@ import duke.command.*;
 
 import java.util.Scanner;
 
+/**
+ * Represents a parser to parse string inputs from user
+ * and output appropriate commands to be executed.
+ */
 public class Parser {
 
+    /**
+     * Returns appropriate command from parsing the string input.
+     * @param input String input from user.
+     * @return ICommand type as defined in CommandType enum class.
+     */
     public static ICommand parse(String input) {
         Scanner sc = new Scanner(input);
         try {

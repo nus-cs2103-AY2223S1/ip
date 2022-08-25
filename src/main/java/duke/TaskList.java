@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Represents a list of tasks.
+ */
 public class TaskList {
     private ArrayList<Task> list;
 
@@ -40,6 +43,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds new task to the list.
+     * @param task New task.
+     * @return String response after adding the new task.
+     */
     public String add(Task task) {
         this.list.add(task);
         StringBuilder stringBuilder = new StringBuilder("Got it. I've added this task:\n");
@@ -48,6 +56,12 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
+    /**
+     * Deletes task at specified index in the list.
+     * @param index Index of which task to be deleted in the list.
+     * @return String response after deleting the task.
+     * @throws DukeException If specified index is out of range of the list.
+     */
     public String delete(int index) throws DukeException {
         if (index < 0 || index >= this.list.size()) {
             throw new DukeException("Something went wrong!\nPlease select at task to be removed within the list.");
@@ -59,6 +73,12 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
+    /**
+     * Marks task as completed.
+     * @param index Index of which task to be marked in the list.
+     * @return String response after marking the task.
+     * @throws DukeException If specified index is out of range of the list.
+     */
     public String markDone(int index) throws DukeException {
         if (index < 0 || index >= this.list.size()) {
             throw new DukeException("Something went wrong!\nPlease select at task to be marked within the list.");
@@ -67,6 +87,12 @@ public class TaskList {
         return this.list.get(index).toString();
     }
 
+    /**
+     * Marks task as not completed.
+     * @param index Index of which task to be unmarked in the list.
+     * @return String response after unmarking the task.
+     * @throws DukeException If specified index is out of range of the list.
+     */
     public String unmarkDone(int index) throws DukeException {
         if (index < 0 || index >= this.list.size()) {
             throw new DukeException("Something went wrong!\nPlease select at task to be unmarked within the list.");
@@ -75,6 +101,11 @@ public class TaskList {
         return this.list.get(index).toString();
     }
 
+    /**
+     * Finds all tasks in the list based on a keyword.
+     * @param searchStr Specified search keyword.
+     * @return String response after finding all the tasks.
+     */
     public String find(String searchStr) {
         StringBuilder stringBuilder = new StringBuilder("Here are the matching tasks in your list:\n");
         int index = 1;
@@ -88,10 +119,19 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
+    /**
+     * Returns iterator of the list of tasks.
+     * Used in writing tasks to file in Storage class.
+     * @return Iterator of the list of tasks.
+     */
     public Iterator<Task> toSave() {
         return this.list.iterator();
     }
 
+    /**
+     * Returns the string representation of all the tasks in the list.
+     * @return String representation of all the tasks in the list.
+     */
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");

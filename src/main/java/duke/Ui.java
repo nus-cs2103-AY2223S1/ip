@@ -2,6 +2,10 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Represents a user interface class to read in inputs from the command line
+ * and display messages to the command line.
+ */
 public class Ui {
     private static final String HORIZONTAL_LINE = "____________________________________________________________";
     private static final String LOGO =
@@ -16,23 +20,37 @@ public class Ui {
         this.sc = new Scanner(System.in);
     }
 
+    /**
+     * Reads in user input from the command line.
+     * @return String response of the input.
+     */
     public String readCommand() {
         return sc.nextLine();
     }
 
-
+    /**
+     * Print given message in a nice format.
+     * @param msg Message to be printed.
+     */
     public static void showMsg(String msg) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(msg);
         System.out.println(HORIZONTAL_LINE);
     }
 
+    /**
+     * Print given error message in a nice format.
+     * @param error Error message to be printed.
+     */
     public static void showError(String error) {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(error);
         System.out.println(HORIZONTAL_LINE);
     }
 
+    /**
+     * Print welcome message at the start of the program.
+     */
     public static void showWelcomeMsg() {
         System.out.println(HORIZONTAL_LINE);
         System.out.println(LOGO);

@@ -9,6 +9,10 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Represents a storage object to handle I/O related operations.
+ * Reads and writes to a file as defined by the filePath string.
+ */
 public class Storage {
     private final String filePath;
 
@@ -16,6 +20,10 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Reads file at filePath.
+     * @return Scanner sc
+     */
     public Scanner load() {
         try {
             File f = new File(filePath);
@@ -27,6 +35,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes content to file at filePath.
+     * @param it Iterator of the ArrayList from TaskList.
+     */
     public void save(Iterator<Task> it) {
         try {
             FileWriter fw = new FileWriter(filePath, false);
