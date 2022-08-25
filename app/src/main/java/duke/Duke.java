@@ -100,7 +100,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-
         ui = new Ui();
         storage = new Storage("tasks.txt");
         parser = new Parser();
