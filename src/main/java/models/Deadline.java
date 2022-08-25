@@ -1,3 +1,5 @@
+package models;
+
 public class Deadline extends Task {
 
     protected String by;
@@ -7,8 +9,13 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    public Deadline(String description, boolean isDone, String by) {
+        super(description, isDone);
+        this.by = by;
+    }
+
     @Override
     public String toString() {
-        return String.format("[D] %s (by: %s)", super.toString(), this.by);
+        return String.format("[D]%s (by: %s)", super.toString(), this.by);
     }
 }
