@@ -8,11 +8,22 @@ import duke.chatbot.parser.Parser;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A command that adds an instance of Event to the list of tasks
+ * stored in the Duke application instance.
+ */
 public class AddEventCommand extends Command {
     public AddEventCommand(List<String> arguments) {
         this.arguments = arguments;
     }
 
+    /**
+     * Adds an instance of Event to the list of tasks stored in
+     * the Duke application instance and returns an instance of
+     * CommandResult which contains the Event added.
+     * @return The result after executing the command.
+     * @throws InvalidInputException If arguments passed to Command is invalid.
+     */
     @Override
     public CommandResult execute() throws InvalidInputException {
         List<String> message = new ArrayList<>();
