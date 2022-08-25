@@ -80,11 +80,11 @@ public class Event extends Task {
     }
 
     public String toString() {
-        return this.getType() + this.getStatus() + this.getName() + " (at: " + this.time + ")" + "\n";
+        return this.getType() + this.getStatus() + this.getName() + " (at: " + formatDateString(this.time) + ")" + "\n";
     }
 
         private String formatDateString (LocalDateTime d){
-            return d.format(DateTimeFormatter.ofPattern("MMM dd yyyy h:mm a"));
+            return d.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
         }
 
 }

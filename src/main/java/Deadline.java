@@ -80,12 +80,12 @@ public class Deadline extends Task {
 
 
     public String toString() {
-        return this.getType() + this.getStatus() + this.getName() + " (by: " + this.deadline + ")" + "\n";
+        return this.getType() + this.getStatus() + this.getName() + " (by: " + formatDateString(this.deadline) + ")" + "\n";
     }
 
 
     private String formatDateString (LocalDateTime d) {
-            return d.format(DateTimeFormatter.ofPattern("MMM dd yyyy h:mm a"));
+            return d.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a"));
     }
 
 

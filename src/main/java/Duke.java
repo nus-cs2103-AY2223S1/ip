@@ -153,13 +153,13 @@ public class Duke {
             int indexofdates = s.indexOf(')');
             String name = s.substring(6,indexofdate);
             String date = s.substring(indexofdate + 5, indexofdates);
-            task = new Event(name,parseString(date));
+            task = new Event(name,parseFileString(date));
         } else if (task_type == 'D') {
             int indexofdate = s.indexOf('(');
             int indexofdates = s.indexOf(')');
             String name = s.substring(6,indexofdate);
             String date = s.substring(indexofdate + 5, indexofdates);
-            task = new Deadline(name,parseString(date));
+            task = new Deadline(name,parseFileString(date));
         }
         if (done == 'X') {
             task.setStatus("[X]");
@@ -218,7 +218,7 @@ public class Duke {
                     respond();
                 }
                 else if (command.equals("event")) {
-                    String[] deets = arr[1].split("/at", 2);
+                    String[] deets = arr[1].split("/at ", 2);
                     Event e = new Event(deets[0], parseString(deets[1]));
                     list.add(e);
                     list.get(count++).print();
@@ -226,7 +226,7 @@ public class Duke {
                     respond();
                 }
                 else if (command.equals("deadline")) {
-                    String[] deets = arr[1].split("/by", 2);
+                    String[] deets = arr[1].split("/by ", 2);
                     Deadline d = new Deadline(deets[0], parseString(deets[1]));
                     list.add(d);
                     list.get(count++).print();
@@ -291,7 +291,21 @@ public class Duke {
         } catch (DateTimeParseException e) {
             System.out.println("Please use time in dd/MM/yyyy HH:mm format");
             respond();
-        }   return date;
+        }
+        return date;
+    }
+
+    private static LocalDateTime parseFileString(String s) {
+        DateTimeFormatter formatter = null;
+        LocalDateTime date = null;
+        try {
+        formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm a");
+        date = LocalDateTime.parse(s,formatter);
+        } catch (DateTimeParseException e) {
+        System.out.println("Please use time in dd/MM/yyyy HH:mm format");
+        respond();
+        }
+        return date;
     }
 
     public static void bye() {
@@ -305,8 +319,8 @@ public class Duke {
     public static void main (String[] args) {
         Duke duke = new Duke();
         duke.greet();
-        duke.loadTask();
-        duke.respond();
+       duke.loadTask();
+       duke.respond();
     }
 
 }
