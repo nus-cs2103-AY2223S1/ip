@@ -8,12 +8,10 @@ import java.util.Scanner;
 
 public class Storage {
     private static final String DEFAULT_SAVE_PATH = "data/SavedData.duke";
-    private String filePath;
     private File file;
 
     Storage(File file) {
         this.file = file;
-        filePath = file.getAbsolutePath();
     }
 
     static Storage createStorage(String path) throws IOException {
@@ -34,14 +32,12 @@ public class Storage {
         Scanner sc = new Scanner(file);
         String line;
         int lineNum = 0;
-        ParsedData tmpData;
         while (sc.hasNextLine()) {
             line = sc.nextLine();
             lineNum++;
             try {
-                tmpData = Parser.parseDataFromLine(line);
-                ret.add(Parser.makeTaskFromParsed(tmpData));
-            } catch (DukeException e) {
+                ret.add(Parser.parseDataFromLine(line));
+            } catch (CorruptedLineException e) {
                 corruptedLines.add(lineNum);
             }
         }
@@ -60,9 +56,13 @@ public class Storage {
         fw.close();
     }    
 
+    void saveTasks(TaskList tl) throws IOException {
+        saveData(tl.getParsedData());
+    }
+
     void saveTask(Task task) throws IOException {
-        FileWriter fw = new FileWriter(file);
-        fw.append(String.format("%s%n", task.convertToParseData().getSavedString()));
+        FileWriter fw = new FileWriter(file, true);
+        fw.write(String.format("%s%n", task.convertToParseData().getSavedString()));
         fw.close();
     }
 }
