@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Parser {
     private static final String LINE = "\n----------------------------------------------------------------\n";
 
-    public static void parseCommand(String command, ArrayList<Task> taskList) throws DukeException {
+    public static void parseCommand(String command, TaskList taskList) throws DukeException {
         String input = command.split(" ")[0];
 
         if (input.equals("list")) {

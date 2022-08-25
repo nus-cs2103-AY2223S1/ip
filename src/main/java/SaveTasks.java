@@ -8,19 +8,22 @@ public class SaveTasks {
     private static final int ISTASKDONE = 1;
     private static final int TASKDESCRIPTION = 2;
     private static final int TASKDATETIME = 3;
-    private static final String DIR = "data";
-    private static final String FILENAME = "duke.txt";
-    private static final String FILEPATH = String.valueOf(Paths.get(DIR, FILENAME));
     private ArrayList<Task> savedTasks = new ArrayList<>(100);
 
+    private String fileDir;
+    private String filePath;
 
-    public ArrayList<Task> load() {
+    public SaveTasks(String fileDir, String filePath) {
+        this.fileDir = fileDir;
+        this.filePath = filePath;
+    }
+    public ArrayList<Task> load() throws DukeException{
         try {
-            File dir = new File(DIR);
+            File dir = new File(this.fileDir);
             if (!dir.exists()) {
                 dir.mkdir();
             }
-            File fileName = new File(FILEPATH);
+            File fileName = new File(this.filePath);
             if (!fileName.exists()) {
                 fileName.createNewFile();
             }
@@ -57,7 +60,8 @@ public class SaveTasks {
                 savedTasks.add(taskToAdd);
                 break;
             case "D":
-                taskToAdd = new Deadlines(fields[TASKDESCRIPTION], fields[TASKDATETIME]);
+                taskToAdd = new Deadlines(fields[TASKDESCRIPTION], fields[TASKDATETIME],
+                        DateAndTimeFormatter.validateAndParse(fields[TASKDATETIME]));
                 if (Boolean.parseBoolean(fields[ISTASKDONE])) {
                     taskToAdd.markAsDone();
                 }
@@ -66,12 +70,10 @@ public class SaveTasks {
         }
     }
 
-    public static void save(ArrayList<Task> savedTasks) {
+    public void save(TaskList savedTasks) {
         try {
-            FileWriter fw = new FileWriter(FILEPATH);
-            for (Task task : savedTasks) {
-                fw.write(task.savedTaskString() + "\n");
-            }
+            FileWriter fw = new FileWriter(this.filePath);
+            fw.write(savedTasks.taskListToSaveString());
             fw.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());

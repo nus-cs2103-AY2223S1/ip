@@ -1,12 +1,17 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+
 public class TaskList {
 
     private ArrayList<Task> tasks;
 
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     public TaskList() {
         this.tasks = new ArrayList<>(100);
     }
-
     public Task get(int i) {
         return this.tasks.get(i);
     }
