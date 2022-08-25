@@ -3,7 +3,7 @@ public class Task {
     private boolean isCompleted = false;
 
     public Task(String taskDescription) {
-        this.taskDescription = taskDescription;
+        this.taskDescription = taskDescription.strip();
     }
 
     public Task(String taskDescription, boolean isCompleted) {

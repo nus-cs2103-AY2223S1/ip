@@ -19,11 +19,11 @@ public class Event extends Task{
     @Override
     protected String returnDescription() {
         String formattedDate = this.dateTimeProper.format(DateTimeFormatter.ofPattern("MMM dd yyyy @ HH:mm"));
-        return "[E]" + super.returnDescription() + "(at: " + formattedDate + ")";
+        return "[E]" + super.returnDescription() + " (at: " + formattedDate + ")";
     }
 
     @Override
     protected String toWriteFile() {
-        return "E , " + super.toWriteFile() + ", " + this.dateTime;
+        return "E , " + super.toWriteFile() + " , " + this.dateTime;
     }
 }

@@ -7,7 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.File;
 public class Duke {
-    private static final String saveFilePath = "..\\duke.txt";
+
+    private static final String saveDirectoryPath = "../data";
+    private static final String saveFilePath = "../data/duke.txt";
     private static final String greetMessage = "Hello! I'm Duke \nWhat can I do for you?";
     private static final String byeMessage = "Bye. Hope to see you again soon!";
     private static final String listMessage = "Here are the tasks in your list: \n";
@@ -105,6 +107,8 @@ public class Duke {
         if (f.exists()) {
             readFile(f);
         } else {
+            File dir = new File(saveDirectoryPath);
+            dir.mkdir();
             f.createNewFile();
         }
     }
@@ -116,8 +120,6 @@ public class Duke {
             tempLine = s.nextLine();
             String[] tempWords = tempLine.split(" , ");
             boolean isCompleted = tempWords[1].contains("true");
-//            System.out.println(Arrays.toString(tempWords));
-//            System.out.println(tempLine);
             if (tempWords[0].equals("T")) {
                 userTasks.add(new ToDo(tempWords[2], isCompleted));
             } else if (tempWords[0].equals("E")) {
