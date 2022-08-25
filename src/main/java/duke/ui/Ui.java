@@ -1,8 +1,8 @@
 package duke.ui;
 
-import duke.DukeException;
-
 import java.util.Scanner;
+
+import duke.DukeException;
 
 public class Ui {
 
@@ -24,7 +24,9 @@ public class Ui {
         System.out.print(header + " ");
         System.out.println(splitOut[0]);
         for (int i = 1; i < splitOut.length; i++) {
-            for (int j = 0; j < header.length() + 1; j++) System.out.print(" ");
+            for (int j = 0; j < header.length() + 1; j++) {
+                System.out.print(" ");
+            }
             System.out.println(splitOut[i]);
         }
     }
@@ -47,8 +49,8 @@ public class Ui {
 
     public void showException(Exception e) {
         outputString(String.format("Woah 😲! Undocumented exception encountered:\n"
-                + "%s\n"
-                + "Please let us know on our GitHub Issues along with the steps to recreate this exception.",
+                        + "%s\n"
+                        + "Please let us know on our GitHub Issues along with the steps to recreate this exception.",
                 e.toString()), EXCEPTION_HEADER);
     }
 

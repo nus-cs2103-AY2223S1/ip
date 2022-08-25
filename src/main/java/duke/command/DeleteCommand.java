@@ -21,7 +21,8 @@ public class DeleteCommand extends Command {
         try {
             Task delTask = tasks.getTask(this.delIndex);
             tasks.deleteTask(this.delIndex);
-            ui.showReply(String.format("Understood, I've deleted the following task:\n  %s\nYou now have %d tasks remaining.\n", delTask, tasks.getLength()));
+            ui.showReply(String.format("Understood, I've deleted the following task:\n"
+                    + "  %s\nYou now have %d tasks remaining.\n", delTask, tasks.getLength()));
             storage.save(tasks);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeException("I do not have a task with that number in my list.", e);
