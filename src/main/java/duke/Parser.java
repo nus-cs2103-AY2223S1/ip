@@ -2,10 +2,13 @@ package duke;
 
 import duke.command.AddCommand;
 import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.InvalidCommand;
 import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
 import duke.models.Todo;
+import duke.ui.Ui;
 
 import java.time.LocalDate;
 
@@ -52,12 +55,20 @@ public class Parser {
                 Task deadline = new Deadline(deadlineDescription, parsedDate);
                 this.ui.newItemAdded(deadline, this.taskList.getSize());
                 return new AddCommand(deadline);
+            case Constants.DELETE_STRING:
+                System.out.println("Im here");
+                int index = Integer.parseInt(command.split(Constants.EMPTY_SPACE)[1]);
+                this.ui.showTaskDeletedMessage(this.taskList.getTask(index), this.taskList.getSize());
+                return new DeleteCommand(index);
             case Constants.LIST_STRING:
-                ui.listAllTasks(this.taskList);
+                this.ui.listAllTasks(this.taskList);
+                break;
             case Constants.BYE_STRING:
                 this.ui.showByeMessage();
+                break;
             default:
-                System.out.println("INVALID");
+                return new InvalidCommand();
         }
+        return new InvalidCommand();
     }
 }

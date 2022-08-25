@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.Storage;
+import duke.storage.Storage;
 import duke.TaskList;
 import duke.models.Task;
 
@@ -8,12 +8,13 @@ import duke.models.Task;
  * Removes Task from the task list
  */
 public class DeleteCommand extends Command {
-    private final Task toDelete;
+    private final int index;
 
-    public DeleteCommand(Task task) { this.toDelete = task; }
+    public DeleteCommand(int index) { this.index = index; }
 
     @Override
     public void execute(TaskList tasks, Storage storage) {
-
+        tasks.deleteTask(index);
+        storage.rewrite(tasks);
     }
 }
