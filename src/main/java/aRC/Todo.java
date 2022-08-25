@@ -1,8 +1,10 @@
+package aRC;
+
 public class Todo extends Task {
     /**
-     * Constructor for Todo
-     * @param title The title of Todo
-     * @param isDone The isDone status of the Task
+     * Constructor for aRC.Todo
+     * @param title The title of aRC.Todo
+     * @param isDone The isDone status of the aRC.Task
      */
     public Todo(String title, boolean isDone) {
         super(title, isDone);

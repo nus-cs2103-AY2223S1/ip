@@ -1,3 +1,5 @@
+package aRC;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -20,7 +22,7 @@ public class Parser {
     /**
      * Evaluates user's input according to a set of fixed commands
      * @param input User input represented by a String
-     * @throws DukeException Throws a DukeException specific to this program
+     * @throws DukeException Throws a aRC.DukeException specific to this program
      */
     public void parse(String input) throws DukeException {
         String[] command = input.split(" ");

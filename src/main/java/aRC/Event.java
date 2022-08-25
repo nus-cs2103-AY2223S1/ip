@@ -1,14 +1,16 @@
+package aRC;
+
 public class Event extends Task {
     /**
-     * The time of Event
+     * The time of aRC.Event
      */
     private String time;
 
     /**
-     * Constructor for Event
-     * @param title The title of Event
-     * @param isDone The isDone status of the Task
-     * @param time The time of Event
+     * Constructor for aRC.Event
+     * @param title The title of aRC.Event
+     * @param isDone The isDone status of the aRC.Task
+     * @param time The time of aRC.Event
      */
     public Event(String title, boolean isDone, String time) {
         super(title, isDone);

@@ -1,17 +1,19 @@
+package aRC;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     /**
-     * The deadline of Deadline
+     * The deadline of aRC.Deadline
      */
     private LocalDate deadline;
 
     /**
-     * Constructor for Deadline
-     * @param title The title of Deadline
-     * @param isDone The isDone status of the Task
-     * @param deadline The deadline of Deadline
+     * Constructor for aRC.Deadline
+     * @param title The title of aRC.Deadline
+     * @param isDone The isDone status of the aRC.Task
+     * @param deadline The deadline of aRC.Deadline
      */
     public Deadline(String title, boolean isDone, LocalDate deadline) {
         super(title, isDone);

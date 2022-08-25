@@ -1,18 +1,20 @@
+package aRC;
+
 public abstract class Task {
     /**
-     * The title of the Task
+     * The title of the aRC.Task
      */
     protected String title;
 
     /**
-     * The completion status of the Task
+     * The completion status of the aRC.Task
      */
     protected boolean isDone;
 
     /**
-     * Constructor for Task
-     * @param title The title of the Task
-     * @param isDone The isDone status of the Task
+     * Constructor for aRC.Task
+     * @param title The title of the aRC.Task
+     * @param isDone The isDone status of the aRC.Task
      */
     public Task(String title, boolean isDone) {
         this.title = title;

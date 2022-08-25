@@ -1,6 +1,8 @@
+package aRC;
+
 public class DukeException extends Exception {
     /**
-     * Constructor for DukeException
+     * Constructor for aRC.DukeException
      * @param message Message to be included when exception is thrown
      */
     public DukeException(String message) {

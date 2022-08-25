@@ -1,3 +1,5 @@
+package aRC;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -31,8 +33,8 @@ public class TaskList {
     }
 
     /**
-     * Adds a new Task to arraylist
-     * @param newTask The new Task to be added
+     * Adds a new aRC.Task to arraylist
+     * @param newTask The new aRC.Task to be added
      */
     public void addTask(Task newTask) {
         this.arrayList.add(newTask);
@@ -42,8 +44,8 @@ public class TaskList {
     }
 
     /**
-     * Deletes a Task from arraylist
-     * @param index The index of the Task to be deleted
+     * Deletes a aRC.Task from arraylist
+     * @param index The index of the aRC.Task to be deleted
      */
     public void deleteTask(int index) {
         Task deletedTask = this.arrayList.remove(index);

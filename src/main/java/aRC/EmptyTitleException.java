@@ -1,6 +1,8 @@
+package aRC;
+
 public class EmptyTitleException extends DukeException {
     /**
-     * Constructor for EmptyTitleException
+     * Constructor for aRC.EmptyTitleException
      */
     public EmptyTitleException() {
         super("Title cannot be empty :-(");
