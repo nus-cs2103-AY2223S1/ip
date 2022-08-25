@@ -8,6 +8,7 @@ public class Todo extends Task {
      */
     public Todo(String description) {
         super(description);
+        this.type = "[T]";
     }
 
     /**
@@ -16,7 +17,7 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        String completionString = this.isDone ? "[T][x]" : "[T][ ]";
+        String completionString = this.type + (this.isDone ? "[x]" : "[ ]");
         return completionString + " " + this.description;
     }
 }
