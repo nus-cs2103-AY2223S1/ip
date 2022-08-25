@@ -1,3 +1,5 @@
+package Duke;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -65,6 +67,10 @@ public class TaskList {
                         + "Now you have " + (taskList.size() - 1)+ " tasks in the list.\n");
 
         taskList.remove(index);
+    }
 
+    @Override
+    public String toString() {
+        return taskList.toString();
     }
 }

@@ -1,3 +1,5 @@
+package Duke;
+
 public class Deadline extends Event {
 
     Deadline(String description, String timeQualifier, String timeDescription) {

@@ -1,3 +1,5 @@
+package Duke;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -32,7 +34,7 @@ public class Duke {
                     String[] commands = input.split(" ");
 
                     if (commands.length < 2) {
-                        throw new DukeException("Task description cannot be empty!");
+                        throw new DukeException("Duke.Task description cannot be empty!");
                     }
 
                     if (commands[0].equals("mark") || commands[0].equals("unmark") || commands[0].equals("delete")) {

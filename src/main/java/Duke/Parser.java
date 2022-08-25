@@ -1,3 +1,5 @@
+package Duke;
+
 public class Parser {
     public static ToDo generateToDoFromInput(String input) {
         String[] commands = input.split(" ");

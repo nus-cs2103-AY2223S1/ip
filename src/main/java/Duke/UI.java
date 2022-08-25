@@ -1,3 +1,5 @@
+package Duke;
+
 public class UI {
     public static String breakLine = "____________________________________________________________\n";
     public static String greeting = "Hello, I'm LishBot v6.9!\n" + "How may I help you today?\n";
