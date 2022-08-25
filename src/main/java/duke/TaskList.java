@@ -2,6 +2,9 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a list of tasks
+ */
 public class TaskList {
     private ArrayList<Task> taskList;
 
@@ -9,10 +12,18 @@ public class TaskList {
         this.taskList = new ArrayList<>();
     }
 
+    /**
+     * Adds a task to the list
+     * @param t the task to add
+     */
     public void add(Task t) {
         this.taskList.add(t);
     }
 
+    /**
+     * Deletes a task from the list
+     * @param index of task to remove
+     */
     public void remove(int index) {
         if (index > taskList.size()) {
             throw new IndexOutOfBoundsException();

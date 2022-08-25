@@ -4,6 +4,9 @@ import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
 
+/**
+ * The user interface of the chatbot
+ */
 public class Ui {
     private static final String LS = System.lineSeparator();
 
@@ -19,11 +22,10 @@ public class Ui {
         this.out = out;
     }
 
-    public String getInput() {
-        out.print("Enter command: ");
-        return in.nextLine();
-    }
-
+    /**
+     * Outputs a string using the chosen output stream
+     * @param s
+     */
     public void display(String s) {
         out.println(s);
     }

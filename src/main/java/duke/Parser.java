@@ -1,7 +1,17 @@
 package duke;
 
+/**
+ * Processes the entered command.
+ * Checks for formatting errors.
+ */
 public class Parser {
 
+    /**
+     * Gets the index for commands of type (command) (index)
+     * @param args String[] of format [commandName, restOfCommand]
+     * @return the desired index
+     * @throws DukeParseException if length of input array is wrong or a number is not provided
+     */
     public int parseIndex(String[] args) throws DukeParseException {
         if (args.length !=  2) {
             throw new DukeParseException(String.format(ExceptionMessages.INVALID_INDEX_FORMAT, "remove"));
@@ -13,6 +23,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Handles the creation of a "Todo" task from user input
+     * @param args String[] of format ["todo", restOfInput]
+     * @return the created Todo
+     * @throws DukeParseException if the format is incorrect
+     */
     public Todo parseTodo(String[] args) throws DukeParseException {
         if (args.length < 2) {
             throw new DukeParseException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "todo"));
@@ -21,6 +37,12 @@ public class Parser {
         return new Todo(taskDesc);
     }
 
+    /**
+     * Handles the creation of a "Deadline" task from user input
+     * @param args String[] of format ["deadline", restOfInput]
+     * @return the created Deadline
+     * @throws DukeParseException if the format is incorrect
+     */
     public Deadline parseDeadline(String[] args) throws DukeParseException {
         if (args.length < 2) {
             throw new DukeParseException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "deadline"));
@@ -41,6 +63,12 @@ public class Parser {
        return new Deadline(taskDesc, taskTime);
     }
 
+    /**
+     * Handles the creation of a "Event" task from user input
+     * @param args String[] of format ["event", restOfInput]
+     * @return the created Event
+     * @throws DukeParseException if the format is incorrect
+     */
     public Event parseEvent(String[] args) throws DukeParseException {
         if (args.length < 2) {
             throw new DukeParseException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "event"));
@@ -61,6 +89,9 @@ public class Parser {
         return new Event(taskDesc, taskTime);
     }
 
+    /**
+     * Represents exceptions specific to this parser
+     */
     static class DukeParseException extends DukeException {
         public DukeParseException(String message) {
             super(message);

@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Represents an Event at a specified time
+ */
 public class Event extends Task {
     protected String at;
 
@@ -12,6 +15,10 @@ public class Event extends Task {
         return at;
     }
 
+    /**
+     * Generates an encoding of the Task for use in storage
+     * @return encoded string following the storage format
+     */
     public String getStorageString() {
         return "E" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.at;
     }

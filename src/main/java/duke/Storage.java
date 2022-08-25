@@ -6,9 +6,22 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Handles writing the task list to a file, and encoding and decoding.
+ * Storage format of a Task is type|marked|description(|time) where
+ * type is the type of Task (T: Todo; D: Deadline; E: Event)
+ * marked is 1 if the task is marked as completed and 0 otherwise
+ * description is the task description
+ * time is the time for deadlines and events
+ * Tasks are separated by newlines in the written file
+ */
 public class Storage {
     public final String DEFAULT_STORAGE_FILEPATH = "./data/duke.txt";
 
+    /**
+     * Creates the storage file at /data/duke.txt if it does not already exist
+     * @throws IOException if there is a problem creating the directory and/or file
+     */
     public void createStorage() throws IOException {
         if (!Files.exists(Path.of("./data/")) || !Files.isDirectory(Path.of("./data"))) {
             Files.createDirectory(Path.of("./data"));
@@ -18,13 +31,21 @@ public class Storage {
         }
     }
 
-    // Storage format of TaskList
-    // <T/D/E>|<0/1>|<TaskDescription>(|<TaskTime>)
+    /**
+     * Loads a TaskList from storage
+     * @return the loaded TaskList
+     * @throws IOException if there is an error reading the storage file
+     */
     public TaskList loadFromStorage() throws IOException {
         List<String> contents = Files.readAllLines(Path.of(DEFAULT_STORAGE_FILEPATH));
         return decode(contents);
     }
 
+    /**
+     * Writes a TaskList to storage
+     * @param t the TaskList to write
+     * @throws IOException if there is an error writing to the storage file
+     */
     public void writeToStorage(TaskList t) throws IOException {
         Files.write(Path.of(DEFAULT_STORAGE_FILEPATH), encode(t));
     }

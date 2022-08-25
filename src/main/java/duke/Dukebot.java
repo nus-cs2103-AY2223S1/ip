@@ -2,12 +2,18 @@ package duke;
 
 import java.io.IOException;
 
+/**
+ * Main driver class for the chatbot
+ */
 public class Dukebot {
     private TaskList taskList;
     private Storage storage;
     private Parser parser;
     private Ui ui;
 
+    /**
+     * Initializes necessary components of the chatbot
+     */
     private void handleStartup() {
         this.ui = new Ui();
         this.parser = new Parser();
@@ -17,7 +23,7 @@ public class Dukebot {
             storage.createStorage();
             this.taskList = storage.loadFromStorage();
         } catch (IOException e) {
-            ui.display(Messages.LOAD_ERROR);
+            ui.display(ExceptionMessages.LOAD_ERROR);
             this.taskList = new TaskList();
         }
 
@@ -81,6 +87,10 @@ public class Dukebot {
         ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
     }
 
+    /**
+     * Overarching handler for commands entered by the user
+     * @param input a full command entered by the user
+     */
     protected void handleInput(String input) {
         String[] inputArgs = input.split("\\s+", 2);
         String keyWord = inputArgs[0];

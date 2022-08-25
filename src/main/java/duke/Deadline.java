@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Representing a deadline, i.e. a task with a specified due date
+ */
 public class Deadline extends Task {
     protected String by;
     protected LocalDateTime localDateTime;
@@ -22,6 +25,10 @@ public class Deadline extends Task {
         return by;
     }
 
+    /**
+     * Generates an encoding of the Task for use in storage
+     * @return encoded string following the storage format
+     */
     public String getStorageString() {
         return "D" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.by;
     }
