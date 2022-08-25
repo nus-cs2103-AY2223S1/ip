@@ -11,6 +11,13 @@ import duke.command.handler.CommandTodoHandler;
 
 public class CommandFactory {
 
+    /**
+     * Parse command given by user to a predefined command enum
+     *
+     * @param commandStr input command string
+     * @return enum representing a supported command
+     * @throws CommandException if command is unknown/unsupported
+     */
     public Command parseCommand(String commandStr) throws CommandException {
         String commandToken = commandStr.split(" ")[0];
         try {
@@ -20,6 +27,15 @@ public class CommandFactory {
         }
     }
 
+    /**
+     * Returns a CommandHandler based on given command enum
+     *
+     * @param command    enum representing a supported command
+     * @param commandStr input command string
+     * @return command handler to execute input command string
+     * @throws CommandException if input command string does not pass validation checks in a command
+     *                          handler
+     */
     public CommandHandler getCommandHandler(Command command, String commandStr)
         throws CommandException {
         switch (command) {

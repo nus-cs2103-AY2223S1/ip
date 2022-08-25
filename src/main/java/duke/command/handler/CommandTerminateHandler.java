@@ -24,6 +24,12 @@ public class CommandTerminateHandler extends CommandHandler {
         return INVALID_FORMAT_MSG;
     }
 
+    /**
+     * Returns a command response that terminates the program
+     *
+     * @param taskList task list
+     * @return command response with a termination flag
+     */
     @Override
     public CommandResponse run(TaskList taskList) {
         return new CommandResponse("Bye. Hope to see you again soon!", false, true);

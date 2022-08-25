@@ -25,6 +25,12 @@ public class Duke {
 
     private final TaskList taskList;
 
+    /**
+     * Constructor for Duke class
+     *
+     * @param chatBotName name of the chat-bot
+     * @param cachePath path to cache file
+     */
     public Duke(String chatBotName, Path cachePath) {
         this.ui = new Ui(chatBotName);
         this.taskListStorage = new Storage<>(cachePath);
