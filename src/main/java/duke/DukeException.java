@@ -9,7 +9,7 @@ package duke;
 public class DukeException extends Exception {
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param errorMessage The error message string.
      */
@@ -23,7 +23,7 @@ public class DukeException extends Exception {
     public static class DukeToDoException extends DukeException {
 
         /**
-         * Constructor
+         * Constructor.
          *
          * @param errorMessage The error message string.
          */
@@ -38,7 +38,7 @@ public class DukeException extends Exception {
     public static class DukeCommandException extends DukeException {
 
         /**
-         * Constructor
+         * Constructor.
          *
          * @param errorMessage The error message string.
          */

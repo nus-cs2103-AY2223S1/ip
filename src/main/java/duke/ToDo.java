@@ -9,7 +9,7 @@ package duke;
 public class ToDo extends Task {
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param description String describing the todo task.
      */
@@ -18,7 +18,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Method toString()
+     * Converts a todo object into its string representation.
      *
      * @return String representation of the todo object.
      */
