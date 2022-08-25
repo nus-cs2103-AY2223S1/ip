@@ -12,48 +12,45 @@ import java.time.LocalDate;
  */
 public class TaskDeadline extends Task {
 
-    /**
-     * The deadline for the task.
-     */
-    private final LocalDate taskBy;
+    private final LocalDate taskBy; // The date the task is supposed to be completed by.
 
     /**
      * Constructor for a task deadline.
      *
      * @param taskName a string representing the name of the task.
-     * @param taskBy   a string representing the deadline for the task.
+     * @param by       a string representing the deadline for the task.
      */
-    public TaskDeadline(String taskName, String taskBy) throws InvalidDateException {
+    public TaskDeadline(String taskName, String by) throws InvalidDateException {
         super(taskName);
-        this.taskBy = Utils.formatStringToDate(taskBy);
+        taskBy = Utils.formatStringToDate(by);
     }
 
     /**
      * Constructor for a task deadline.
      *
      * @param taskName a string representing the name of the task.
-     * @param taskBy   a string representing the deadline for the task.
+     * @param by       a string representing the deadline for the task.
      * @param done     a boolean representing if the task is done.
      */
-    public TaskDeadline(String taskName, String taskBy, boolean done) throws InvalidDateException {
+    public TaskDeadline(String taskName, String by, boolean done) throws InvalidDateException {
         super(taskName, done);
-        this.taskBy = Utils.formatStringToDate(taskBy);
+        taskBy = Utils.formatStringToDate(by);
     }
 
     /**
-     * Returns string representation of a taskDeadline.
+     * Returns a string representing the taskDeadline.
      *
      * @return a string representing the taskDeadline.
      */
     @Override
     public String toString() {
-        return String.format("[D] %s (by: %s)", super.toString(), Utils.formatDateToString(this.taskBy));
+        return String.format("[D] %s (by: %s)", super.toString(), Utils.formatDateToString(taskBy));
     }
 
     /**
-     * Returns a string representation to store task deadline in a file.
+     * Returns a string representing of a task deadline for storage.
      *
-     * @return The string representation of a task deadline for storage.
+     * @return a string representing a task deadline for storage.
      */
     @Override
     public String toStorageString() {

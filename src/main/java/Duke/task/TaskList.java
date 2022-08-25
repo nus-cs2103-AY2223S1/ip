@@ -14,20 +14,20 @@ import java.util.Scanner;
  */
 public class TaskList {
 
-    private final ArrayList<? super Task> tasks;
+    private final ArrayList<? super Task> tasks; // Stores the task created by the user.
 
     /**
      * Constructor for a task list with no task.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
      * Constructor for a task list with task loaded from storage.
      */
     public TaskList(Scanner scanner) throws DukeException {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
         while (scanner.hasNext()) {
             String inputString = scanner.nextLine();
             Parser input = Parser.formatInput(inputString);
@@ -47,26 +47,47 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns an arraylist of all tasks created by the user.
+     *
+     * @return an arraylist of all tasks created by the user.
+     */
     public ArrayList<? super Task> getTasks() {
         return tasks;
     }
 
+    /**
+     * Returns a task created by the user given the index of it in the taskList.
+     *
+     * @param index an integer representing the index of task in the task list.
+     * @return the task having the index provided.
+     */
     public Task getTask(int index) {
         return (Task) tasks.get(index);
     }
 
+    /**
+     * Returns an integer representing the number of tasks in the task list.
+     *
+     * @return an integer representing the number of tasks in the task list.
+     */
     public int getNumberOfTask() {
         return tasks.size();
     }
 
+    /**
+     * Adds a task into the task list.
+     *
+     * @param task a task that will be added into the task list.
+     */
     public void addTask(Task task) {
-        this.tasks.add(task);
+        tasks.add(task);
     }
 
     /**
-     * Given an index, delete a task.
+     * Delete a task given the index of it in the taskList.
      *
-     * @param index index of the task we would like to delete.
+     * @param index an integer representing the index of task in the task list.
      */
     public Task deleteTask(int index) throws InvalidIndexException {
         validateIndex(index - 1);
@@ -74,34 +95,34 @@ public class TaskList {
     }
 
     /**
-     * Given an index, mark a task as done.
+     * Check a task as done given the index of it in the taskList.
      *
-     * @param index index of the task we would like to mark as done.
+     * @param index an integer representing the index of task in the task list.
      */
     public Task checkTask(int index) throws InvalidIndexException {
         validateIndex(index - 1);
-        Task task = (Task) this.tasks.get(index - 1);
+        Task task = (Task) tasks.get(index - 1);
         task.markDone();
         return task;
     }
 
     /**
-     * Given an index, mark a task as undone.
+     * Uncheck a task as not done given the index of it in the taskList.
      *
-     * @param index index of the task we would like to mark as undone.
+     * @param index an integer representing the index of task in the task list.
      */
     public Task uncheckTask(int index) throws InvalidIndexException {
         validateIndex(index - 1);
-        Task task = (Task) this.tasks.get(index - 1);
+        Task task = (Task) tasks.get(index - 1);
         task.markUndone();
         return task;
     }
 
     /**
-     * Given an index, check if the index is valid.
+     * Validate if the index is valid.
      *
-     * @param index index of the task we would like to check.
-     * @throws InvalidIndexException error thrown when the index is invalid.
+     * @param index an integer representing the index of task in the task list.
+     * @throws InvalidIndexException the error thrown when the index is invalid.
      */
     private void validateIndex(int index) throws InvalidIndexException {
         if (index < 0 || index >= tasks.size()) {

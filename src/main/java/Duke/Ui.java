@@ -62,7 +62,7 @@ public class Ui {
     }
 
     /**
-     * A function that list all the tasks in the list.
+     * List all the tasks in the list.
      *
      * @param taskList task list that contains tasks to be displayed.
      */
@@ -79,7 +79,7 @@ public class Ui {
     /**
      * Prints a message after marking adding a task.
      *
-     * @param task Task that was added.
+     * @param task the task that was added.
      */
     public void addTask(Task task) {
         System.out.printf("Successfully added: %s", task.getTaskName());
@@ -88,7 +88,7 @@ public class Ui {
     /**
      * Prints a message after marking deleting a task.
      *
-     * @param task Task that was deleted.
+     * @param task the task that was deleted.
      */
     public void deleteTask(Task task) {
         System.out.printf("Successfully deleted: %s", task.getTaskName());
@@ -118,7 +118,7 @@ public class Ui {
     /**
      * Prints an error message with its message.
      *
-     * @param message Message to be displayed
+     * @param message a string representing the message to be displayed.
      */
     public void showError(String message) {
         System.out.println(message);

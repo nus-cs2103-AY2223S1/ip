@@ -1,8 +1,17 @@
 package Duke;
 
-import Duke.exceptions.*;
+import Duke.exceptions.DukeException;
+import Duke.exceptions.InvalidCommandException;
+import Duke.exceptions.InvalidDateException;
+import Duke.exceptions.InvalidIndexException;
+import Duke.exceptions.InvalidSecondaryCommandException;
+import Duke.exceptions.InvalidTaskNameException;
 import Duke.store.Storage;
-import Duke.task.*;
+import Duke.task.Task;
+import Duke.task.TaskDeadline;
+import Duke.task.TaskEvent;
+import Duke.task.TaskList;
+import Duke.task.TaskTodo;
 import Duke.utils.Utils;
 
 import java.io.File;
@@ -41,7 +50,7 @@ public class Duke {
     }
 
     /**
-     * Starts the duke to allow usage.
+     * Start the duke application.
      */
     public void run() {
         ui.startPrompt();
@@ -118,9 +127,9 @@ public class Duke {
     }
 
     /**
-     * Given an index, mark a task as done.
+     * Mark a task as done given the index of it in the taskList.
      *
-     * @param index index of the task we would like to mark as done.
+     * @param index an integer representing the index of task in the task list.
      */
     private void checkTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
@@ -132,9 +141,9 @@ public class Duke {
     }
 
     /**
-     * Given an index, mark a task as undone.
+     * Mark a task as undone given the index of it in the taskList.
      *
-     * @param index index of the task we would like to mark as undone.
+     * @param index an integer representing the index of task in the task list.
      */
     private void uncheckTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
@@ -146,9 +155,9 @@ public class Duke {
     }
 
     /**
-     * Given an index, delete a task.
+     * Delete a task given the index of it in the taskList.
      *
-     * @param index index of the task we would like to delete.
+     * @param index an integer representing the index of task in the task list.
      */
     private void deleteTask(String index) throws InvalidIndexException {
         if (Utils.isNotParsable(index)) {
@@ -160,9 +169,9 @@ public class Duke {
     }
 
     /**
-     * Given a task, add it to the task list.
+     * Add the task given into the taskList.
      *
-     * @param <T>  type of the task we would like to add to the task list.
+     * @param <T>  the type of the task we would like to add to the task list.
      * @param task the task we would like to add to the task list.
      */
     private <T extends Task> void addTask(T task) {

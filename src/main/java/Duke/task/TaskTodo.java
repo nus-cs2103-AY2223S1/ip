@@ -27,7 +27,7 @@ public class TaskTodo extends Task {
     }
 
     /**
-     * Returns string representation of a taskTodo.
+     * Returns a string representing the taskTodo.
      *
      * @return a string representing the taskTodo.
      */
@@ -37,9 +37,9 @@ public class TaskTodo extends Task {
     }
 
     /**
-     * Returns a string representation to store taskTodo in a file.
+     * Returns a string representing of a taskTodo for storage.
      *
-     * @return The string representation of a taskTodo for storage.
+     * @return a string representing of a taskTodo for storage.
      */
     @Override
     public String toStorageString() {

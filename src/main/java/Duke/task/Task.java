@@ -33,6 +33,11 @@ public abstract class Task {
         this.done = done;
     }
 
+    /**
+     * Returns a string representing the task name.
+     *
+     * @return a string representing the task name.
+     */
     public String getTaskName() {
         return taskName;
     }
@@ -41,18 +46,18 @@ public abstract class Task {
      * Marks a task as done.
      */
     public void markDone() {
-        this.done = true;
+        done = true;
     }
 
     /**
      * Marks a task as undone.
      */
     public void markUndone() {
-        this.done = false;
+        done = false;
     }
 
     /**
-     * Returns string representation of a task.
+     * Returns a string representing the task.
      *
      * @return a string representing the task.
      */
@@ -63,7 +68,7 @@ public abstract class Task {
     }
 
     /**
-     * Returns string representation of a task for storage.
+     * Returns a string representing the task for storage.
      *
      * @return a string representing the task for storage.
      */

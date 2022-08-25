@@ -12,48 +12,45 @@ import java.time.LocalDate;
  */
 public class TaskEvent extends Task {
 
-    /**
-     * The time the task is supposed to occur.
-     */
-    private final LocalDate taskAt;
+    private final LocalDate taskAt; // The date the task is supposed to occur at.
 
     /**
-     * Constructor for a task event.
+     * Constructor for a task event object.
      *
      * @param taskName a string representing the name of the task.
-     * @param taskAt   a string representing the time of the task.
+     * @param at       a string representing the time of the task.
      */
-    public TaskEvent(String taskName, String taskAt) throws InvalidDateException {
+    public TaskEvent(String taskName, String at) throws InvalidDateException {
         super(taskName);
-        this.taskAt = Utils.formatStringToDate(taskAt);
+        taskAt = Utils.formatStringToDate(at);
     }
 
     /**
      * Constructor for a task event.
      *
      * @param taskName a string representing the name of the task.
-     * @param taskAt   a string representing the time of the task.
+     * @param at       a string representing the time of the task.
      * @param done     a boolean representing if the task is done.
      */
-    public TaskEvent(String taskName, String taskAt, boolean done) throws InvalidDateException {
+    public TaskEvent(String taskName, String at, boolean done) throws InvalidDateException {
         super(taskName, done);
-        this.taskAt = Utils.formatStringToDate(taskAt);
+        taskAt = Utils.formatStringToDate(at);
     }
 
     /**
-     * Returns string representation of a taskEvent.
+     * Returns a string representing the taskEvent.
      *
-     * @return The string representing the taskEvent.
+     * @return a string representing the taskEvent.
      */
     @Override
     public String toString() {
-        return String.format("[E] %s (at: %s)", super.toString(), Utils.formatDateToString(this.taskAt));
+        return String.format("[E] %s (at: %s)", super.toString(), Utils.formatDateToString(taskAt));
     }
 
     /**
-     * Returns a string representation to store task event in a file.
+     * Returns a string representing of a task event for storage.
      *
-     * @return The string representation of a task event for storage.
+     * @return a string representing of a task event for storage.
      */
     @Override
     public String toStorageString() {

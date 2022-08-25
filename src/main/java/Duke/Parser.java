@@ -21,23 +21,38 @@ public class Parser {
         secondaryData = "";
     }
 
+    /**
+     * Returns the command of the parser.
+     *
+     * @return the command of the parser.
+     */
     public Command getCommand() {
         return command;
     }
 
+    /**
+     * Returns the string representing the main data of the parser.
+     *
+     * @return the string representing the main data of the parser.
+     */
     public String getMainData() {
         return mainData;
     }
 
+    /**
+     * Returns the string representing the secondary data of the parser.
+     *
+     * @return the string representing the secondary data of the parser.
+     */
     public String getSecondaryData() {
         return secondaryData;
     }
 
     /**
-     * A method that formats a string input into an input object
+     * Returns a parser object that contains the input from the user.
      *
-     * @param input A string containing text provided by the user.
-     * @return An input object containing important information from the user.
+     * @param input a string containing text provided by the user.
+     * @return an input object containing important information from the user.
      */
     public static Parser formatInput(String input) throws DukeException {
         Parser result = new Parser();

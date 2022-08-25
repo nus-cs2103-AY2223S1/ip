@@ -38,14 +38,14 @@ public class Storage {
     }
 
     /**
-     * Provide method for taskList to obtain information from text file.
+     * Return a scanner that outputs content in the saved file.
      */
     public Scanner load() {
         return scanner;
     }
 
     /**
-     * A function that stores a text file into the task list
+     * Stores all tasks in the taskList into a text file.
      */
     public void storeTask(TaskList taskList) throws IOException {
         FileWriter fileWriter = new FileWriter(filepath);

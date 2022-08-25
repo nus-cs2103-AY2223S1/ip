@@ -28,10 +28,11 @@ public class Utils {
     }
 
     /**
-     * Convert a string from the formats listed below into a date format
+     * Returns a localDate object representing the provided date.
+     * The format of the date provided is of yyyy-mm-dd.
      *
-     * @param dateString String that we want to convert to a date.
-     * @return a date object representing the dateString.
+     * @param dateString a string that we want to convert to a localDate.
+     * @return a localDate object representing the dateString.
      */
     public static LocalDate formatStringToDate(String dateString) throws InvalidDateException {
         LocalDate date;
@@ -44,10 +45,10 @@ public class Utils {
     }
 
     /**
-     * Convert a date into a string format
+     * Returns a string representing the provided localDate.
      *
-     * @param date Date that we want to convert to a string.
-     * @return a string representing the date.
+     * @param date the localDate that we want to convert to a string.
+     * @return a string representing the date provided.
      */
     public static String formatDateToString(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"));
