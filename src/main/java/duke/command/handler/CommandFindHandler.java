@@ -26,6 +26,10 @@ public class CommandFindHandler extends CommandHandler {
 
     @Override
     public CommandResponse run(TaskList taskList) throws CommandException {
+        if (taskList.isEmpty()) {
+            return new CommandResponse("There are no items in the task list!", false, false);
+        }
+
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
         String keyword = regexMatchResult.group(1);
 
