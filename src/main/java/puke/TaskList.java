@@ -3,9 +3,9 @@ package puke;
 import java.util.ArrayList;
 
 public class TaskList {
-    public ArrayList<Task> tasks = new ArrayList<>();
-    public int numTasks = tasks.size();
-    public int removed = 0;
+    protected ArrayList<Task> tasks = new ArrayList<>();
+    protected int numTasks = tasks.size();
+    protected int removed = 0;
 
     public TaskList(ArrayList<Task> s) {
         this.tasks = s;
