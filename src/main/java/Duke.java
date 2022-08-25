@@ -1,20 +1,30 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.lang.Boolean;
+
+import static java.lang.Boolean.parseBoolean;
 
 public class Duke {
     private Scanner sc;
     private List<Task> taskList;
     private static String NAME = "DoiMoiBot: ";
     private static String COLON = "added task: ";
+    private static String DATA_DIRECTORY = "./data";
+    private static String DATA_FILE = "duke.txt";
+
 
     public Duke() {
-        sc = new Scanner(System.in);
-        taskList = new ArrayList<>(100);
+        this.sc = new Scanner(System.in);
+        this.taskList = new ArrayList<>(100);
     }
 
     public static void main(String[] args) {
         Duke duke = new Duke();
+        duke.readData(DATA_DIRECTORY, DATA_FILE);
         String input;
 
         duke.greet();
@@ -59,6 +69,7 @@ public class Duke {
                     int taskIndex = Integer.parseInt(substring) - 1;
                     Task task = taskList.get(taskIndex);
                     task.markAsDone();
+                    this.overwriteData(DATA_DIRECTORY,DATA_FILE);
                     System.out.println("Okay! marked as done!\n" + task);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("Please indicate which task to mark!");
@@ -77,6 +88,7 @@ public class Duke {
                     int taskIndex = Integer.parseInt(substring) - 1;
                     Task task = taskList.get(taskIndex);
                     task.markAsNotDone();
+                    this.overwriteData(DATA_DIRECTORY,DATA_FILE);
                     System.out.println("Okay! marked as not done!\n" + task);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("Please indicate which task to mark!");
@@ -91,8 +103,9 @@ public class Duke {
             if (input.indexOf("todo") == 0) {
                 try {
                     ToDos todo = new ToDos(input);
-                    System.out.println("Okay! created ToDo!\n" + todo);
+                    this.writeData(DATA_DIRECTORY, DATA_FILE, todo);
                     this.taskList.add(todo);
+                    System.out.println("Okay! created ToDo!\n" + todo);
                 } catch (MissingDescriptionException e) {
                     System.out.println("Please indicate what the task is!");
                 }
@@ -104,6 +117,7 @@ public class Duke {
                     Deadlines deadline = new Deadlines(input);
                     System.out.println("Okay! created ToDo!\n" + deadline);
                     this.taskList.add(deadline);
+                    this.writeData(DATA_DIRECTORY, DATA_FILE, deadline);
                 } catch (MissingDescriptionException e) {
                     System.out.println("Please indicate what the task is!");
                 } catch (MissingDeadlineException e) {
@@ -116,6 +130,7 @@ public class Duke {
                 try {
                     Events event = new Events(input);
                     System.out.println("Okay! created ToDo!\n" + event);
+                    this.writeData(DATA_DIRECTORY, DATA_FILE, event);
                     this.taskList.add(event);
                 } catch (MissingDescriptionException e) {
                     System.out.println("Please indicate what the task is!");
@@ -130,6 +145,7 @@ public class Duke {
                     //Since first task is of index 0 in ArrayList
                     int taskIndex = Integer.parseInt(substring) - 1;
                     Task task = taskList.remove(taskIndex);
+                    this.overwriteData(DATA_DIRECTORY,DATA_FILE);
                     System.out.println("Okay! Deleted the specified task!\n" + task);
                 } catch (StringIndexOutOfBoundsException e) {
                     System.out.println("Please indicate which task to mark!");
@@ -144,6 +160,98 @@ public class Duke {
         }
 
     }
+
+    private void readData(String directory, String fileName) {
+        try {
+            File dir = new File(directory);
+            File actualFile = new File(dir, fileName);
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+            if (actualFile.createNewFile()) {
+                System.out.println("file created!");
+            } else {
+                System.out.println("file exists!");
+            }
+
+            Scanner reader = new Scanner(actualFile);
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
+                this.writeToTaskList(data);
+            }
+            reader.close();
+        } catch (Exception e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+
+    private void writeToTaskList(String data) {
+        String currData = data;
+        String[] info = new String[4];
+
+        //store string data between "|" characters in an array
+        for (int i = 0; i < 4; i++) {
+            int index = currData.indexOf('|');
+            info[i] = currData.substring(0, index);
+            currData = currData.substring(index + 1);
+        }
+
+        String task = info[0];
+        boolean isDone = parseBoolean(info[1]);
+        String description = info[2];
+        String timing = info[3];
+
+        Task toAdd;
+        if (task.equals("T")) {
+            toAdd = new ToDos(description, isDone);
+        } else if (task.equals("D")) {
+            toAdd = new Deadlines(description, timing, isDone);
+        } else { //task.equals("E")
+            toAdd = new Events(description, timing, isDone);
+        }
+        this.taskList.add(toAdd);
+    }
+
+    private void writeData(String directory, String fileName, Task toWrite) {
+        System.out.println("writeData called");
+        try {
+            File dir = new File(directory);
+            File actualFile = new File(dir, fileName);
+            if (!dir.exists()) {
+                dir.mkdir();
+            }
+            if (actualFile.createNewFile()) {
+                System.out.println("file created!");
+            } else {
+                System.out.println("file exists!");
+            }
+            FileWriter writer = new FileWriter(actualFile, true);
+            writer.write(toWrite.processData() + "\n");
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("ioexception");
+        }
+      }
+
+      private void overwriteData(String directory, String fileName) {
+          try {
+              File dir = new File(directory);
+              File actualFile = new File(dir, fileName);
+              if (!dir.exists()) {
+                  dir.mkdir();
+              }
+              actualFile.createNewFile();
+              FileWriter writer = new FileWriter(actualFile, false);
+              writer.write("");
+              writer.close();
+              for (int i = 0; i < this.taskList.size(); i++) {
+                  this.writeData(directory, fileName, this.taskList.get(i));
+              }
+          } catch (IOException e) {
+              System.out.println("ioexception");
+          }
+      }
 
     private void printList() {
         for (int i = 1; i < taskList.size() + 1; i++) {
