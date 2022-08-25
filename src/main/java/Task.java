@@ -2,56 +2,24 @@ public abstract class Task {
     protected String name;
     protected boolean done;
     protected String type;
+    protected String date;
 
-    private Task(String name) {
+    protected Task(String name, String date) {
         this.name = name;
         this.done = false;
-    }
-
-    private static class ToDo extends Task {
-        private ToDo(String name) {
-            super(name);
-            this.type = "[T]";
-        }
-    }
-
-    private static class Deadline extends Task {
-        private final String dueDate;
-        private Deadline(String name, String dueDate) {
-            super(name);
-            this.dueDate = "(" + dueDate + ")";
-            this.type = "[D]";
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + this.dueDate;
-        }
-    }
-    private static class Event extends Task {
-        private final String date;
-        private Event(String name, String date) {
-            super(name);
-            this.date = "(" + date +")";
-            this.type = "[E]";
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + this.date;
-        }
+        this.date = date;
     }
 
     @Override
     public String toString() {
-        return type + getStatus() + " " + name;
+        return "[" + type + "]" + getStatus() + " " + stringType() + " " + name + " " + date;
     }
 
-    public static Task createTask(String name, String date, String task) {
-        switch (task) {
-            case "todo":
-                return new ToDo(name);
-            case "deadline":
+    public static Task createTask(String type, String name, String date) {
+        switch (type) {
+            case "T":
+                return new ToDo(name, "");
+            case "D":
                 return new Deadline(name, date);
             default:
                 return new Event(name, date);
@@ -70,4 +38,21 @@ public abstract class Task {
         return done ? "[✓]" : "[ ]";
     }
 
+    protected String getType() {
+        return type;
+    }
+
+    protected boolean isDone() {
+        return done;
+    }
+
+    protected String getName() {
+        return name;
+    }
+
+    protected String getDate() {
+        return date;
+    }
+
+    protected abstract String stringType();
 }
