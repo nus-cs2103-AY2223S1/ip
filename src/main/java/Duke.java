@@ -3,7 +3,7 @@ import java.util.stream.IntStream;
 
 class Duke {
   private static final String FILEPATH = "./data/duke.txt";
-  private ArrayList<Task> taskList;
+  private TaskList taskList;
   private Storage storage;
   private Ui ui;
   private Parser parser;

@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.stream.IntStream;
 
 public class Parser {
-    private ArrayList<Task> taskList;
+    private TaskList taskList;
     private Ui ui;
 
-    public Parser(ArrayList<Task> taskList, Ui ui) {
+    public Parser(TaskList taskList, Ui ui) {
         this.taskList = taskList;
         this.ui = ui;
     }

@@ -49,9 +49,9 @@ public class Storage {
     writer.close();
   }
 
-  public ArrayList<Task> readFile() throws DukeException {
+  public TaskList readFile() throws DukeException {
     createFile();
-    ArrayList<Task> tasks = new ArrayList<>();
+    TaskList taskList = new TaskList();
     BufferedReader reader;
 
     try {
@@ -64,17 +64,17 @@ public class Storage {
         switch (strArray[0]) {
         case "Todo": {
           Task task = new Todo(strArray[1], Boolean.parseBoolean(strArray[2]));
-          tasks.add(task);
+          taskList.add(task);
           break;
         }
         case "Event": {
           Task task = new Event(strArray[1], Boolean.parseBoolean(strArray[2]), strArray[3]);
-          tasks.add(task);
+          taskList.add(task);
           break;
         }
         case "Deadline": {
           Task task = new Deadline(strArray[1], Boolean.parseBoolean(strArray[2]), strArray[3]);
-          tasks.add(task);
+          taskList.add(task);
           break;
         }
         default:
@@ -84,6 +84,6 @@ public class Storage {
     } catch (Exception e) {
       throw new DukeException("Error");
     }
-    return tasks;
+    return taskList;
   }
 }
