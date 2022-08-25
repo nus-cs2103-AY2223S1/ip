@@ -17,10 +17,13 @@ public class AddEventCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (!details.contains("/at")) {
-            throw new DukeException("☹ OOPS!!! Time of event required. (/at)");
+            throw new DukeException("OOPS!!! Time of event required. (/at)");
         }
         String[] split = details.split("/");
         String desc = split[0];
+        if (desc.equals("") || desc.equals(" ")) {
+            throw new DukeException("OOPS!!! Description of event is required.");
+        }
         String at = split[1].split(" ", 2)[1];
         Event event = new Event(desc, at);
         tasks.add(event);

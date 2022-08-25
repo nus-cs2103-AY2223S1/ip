@@ -1,9 +1,5 @@
 package duke;
 
-import duke.command.AddDeadlineCommand;
-import duke.command.AddEventCommand;
-import duke.command.AddTodoCommand;
-import duke.command.MarkCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
@@ -14,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -49,7 +44,6 @@ public class Storage {
 
                 // DEADLINE
                 case "D":
-                    System.out.println(Arrays.toString(components));
                     String dl = components[3];
                     Deadline deadline = new Deadline(desc, dl);
                     tasks.add(deadline);
@@ -62,8 +56,9 @@ public class Storage {
                     tasks.add(event);
                     break;
                 }
-                if (isDone)
+                if (isDone) {
                     tasks.get(tasks.size() - 1).markAsDone();
+                }
             }
         } else {
             File parent = new File(DIR + "/data");

@@ -7,7 +7,7 @@ import duke.task.Event;
 public class EventTest {
     @Test
     public void addTest() {
-        assertEquals(new Event("project meeting ", "2022-10-29").toString(),
+        assertEquals(new Event("project meeting", "2022-10-29").toString(),
                 "[E][ ] project meeting (at: Oct 29 2022)");
     }
 

@@ -7,7 +7,7 @@ import duke.task.Deadline;
 public class DeadlineTest {
     @Test
     public void addTest() {
-        assertEquals(new Deadline("return book ", "2022-10-29").toString(),
+        assertEquals(new Deadline("return book", "2022-10-29").toString(),
                 "[D][ ] return book (by: Oct 29 2022)");
     }
 

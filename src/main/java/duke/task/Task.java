@@ -34,7 +34,7 @@ public class Task {
         try {
             return LocalDate.parse(dt);
         } catch (DateTimeParseException dtpe) {
-            throw new DukeException("☹ OOPS!!! This date format is invalid. (YYYY-MM-DD)");
+            throw new DukeException("OOPS!!! This date format is invalid. (YYYY-MM-DD)");
         }
     }
 

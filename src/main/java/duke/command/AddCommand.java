@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             break;
 
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
         ui.showAddTask(tasks.getSize(), tasks.get(tasks.getSize() - 1).toString());
     }
