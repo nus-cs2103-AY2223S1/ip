@@ -1,10 +1,12 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * The Event class represents a task
+ * The duke.task.Event class represents a task
  * with a specific date or time.
  */
 public class Event extends Task{
@@ -12,7 +14,7 @@ public class Event extends Task{
     private LocalDate eventDate;
 
     /**
-     * Constructs a Event object
+     * Constructs a duke.task.Event object
      * @param description description for the event.
      * @param eventDate string that represents time of event.
      */
@@ -57,8 +59,8 @@ public class Event extends Task{
 
 
     /**
-     * Overriding method of toString() for Event.
-     * @return the string representing Event task.
+     * Overriding method of toString() for duke.task.Event.
+     * @return the string representing duke.task.Event task.
      */
     @Override
     public String toString() {

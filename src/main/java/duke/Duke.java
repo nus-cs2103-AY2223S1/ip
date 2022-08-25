@@ -1,10 +1,14 @@
+package duke;
+
+import duke.commands.Command;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
 /**
- * The Duke is a personalized chatbot.
+ * The duke.Duke is a personalized chatbot.
  */
 public class Duke {
 
@@ -54,7 +58,7 @@ public class Duke {
     }
 
     /**
-     * The main program for Duke.
+     * The main program for duke.Duke.
      * @param args command line arguments.
      */
     public static void main(String[] args) {

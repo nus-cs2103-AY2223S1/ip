@@ -1,3 +1,11 @@
+package duke.commands;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.task.Task;
+
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 

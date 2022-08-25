@@ -1,8 +1,13 @@
-public class DeadlineCommand extends Command {
+package duke.commands;
 
-    public static final String COMMAND_WORD = "deadline";
+import duke.*;
+import duke.task.Event;
+import duke.task.Task;
+
+public class EventCommand extends Command {
+    public static final String COMMAND_WORD = "event";
     private String[] userDescription;
-    public DeadlineCommand(String[] userDescription) {
+    public EventCommand(String[] userDescription) {
         this.userDescription = userDescription;
     }
 
@@ -14,12 +19,13 @@ public class DeadlineCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
-            Task deadline = new Deadline(userDescription[0], userDescription[1]);
-            tasks.addTask(deadline);
+            Task event = new Event(userDescription[0], userDescription[1]);
+            tasks.addTask(event);
             storage.save(tasks.getTaskList());
-            ui.showAddTask(deadline, tasks);
+            ui.showAddTask(event, tasks);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new DukeException("Please use /at to specify event time.");
         }
+
     }
 }

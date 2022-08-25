@@ -1,3 +1,8 @@
+package duke.commands;
+
+import duke.*;
+import duke.task.Task;
+import duke.task.ToDo;
 
 public class TodoCommand extends Command {
     public static final String COMMAND_WORD = "todo";

@@ -1,7 +1,12 @@
-public class MarkCommand extends Command{
-    public static final String COMMAND_WORD = "mark";
+package duke.commands;
+
+import duke.*;
+import duke.task.Task;
+
+public class UnmarkCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
     private int index;
-    public MarkCommand(int i) {
+    public UnmarkCommand(int i) {
         this.index = i;
     }
 
@@ -12,8 +17,8 @@ public class MarkCommand extends Command{
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task t = tasks.markDone(index);
+        Task t = tasks.unmarkDone(index);
         storage.save(tasks.getTaskList());
-        ui.showMark(t);
+        ui.showUnmark(t);
     }
 }

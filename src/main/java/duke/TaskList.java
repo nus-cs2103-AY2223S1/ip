@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.Task;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -22,8 +26,8 @@ public class TaskList {
     }
 
     /**
-     * Adds the Task into the storage.
-     * @param t Specified Task.
+     * Adds the duke.task.Task into the storage.
+     * @param t Specified duke.task.Task.
      */
     public void addTask(Task t) {
         this.taskList.add(t);

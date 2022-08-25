@@ -1,10 +1,12 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
- * The Deadline class represents a task
+ * The duke.task.Deadline class represents a task
  * with a specific deadline.
  */
 public class Deadline extends Task {
@@ -12,7 +14,7 @@ public class Deadline extends Task {
     private LocalDate deadline;
 
     /**
-     * Constructs a Deadline object.
+     * Constructs a duke.task.Deadline object.
      * @param description description for the deadline.
      * @param deadline string that represents deadline of task.
      */
@@ -56,8 +58,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Overriding method of toString() for Deadline.
-     * @return the string representing Deadline task.
+     * Overriding method of toString() for duke.task.Deadline.
+     * @return the string representing duke.task.Deadline task.
      */
     @Override
     public String toString() {

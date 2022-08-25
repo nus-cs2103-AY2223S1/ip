@@ -5,7 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Hello! I'm Duke
+Hello! I'm duke.Duke
 What can I do for you?
 Got it. I've added this task:
 [T][ ] read book
@@ -26,7 +26,7 @@ Nice! I've marked this task as done:
 Ok, I've marked this task as not done yet:
 [T][ ] read book
 ☹ OOPS!!!Please enter a valid index to unmark.
-☹ OOPS!!!Sorry. Task does not exist.
+☹ OOPS!!!Sorry. duke.task.Task does not exist.
 Noted. I've removed this task:
 [T][ ] read book
 Now you have 2 tasks in the list.

@@ -1,7 +1,9 @@
+package duke.task;
+
 import java.time.LocalDate;
 
 /**
- * The Task class represents a task
+ * The duke.task.Task class represents a task
  * added to the storage.
  */
 public abstract class Task {
@@ -11,8 +13,8 @@ public abstract class Task {
 
 
     /**
-     * Construct a Task object.
-     * @param description description for Task.
+     * Construct a duke.task.Task object.
+     * @param description description for duke.task.Task.
      */
     public Task(String description) {
         this.isDone = false;
@@ -50,8 +52,8 @@ public abstract class Task {
 
 
     /**
-     * Overriding method of toString() for Task.
-     * @return the string representing Task.
+     * Overriding method of toString() for duke.task.Task.
+     * @return the string representing duke.task.Task.
      */
     @Override
     public String toString() {

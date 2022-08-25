@@ -1,14 +1,16 @@
+package duke.task;
+
 import java.time.LocalDate;
 
 /**
- * The ToDo class represents a task
+ * The duke.task.ToDo class represents a task
  * the user specified that needs to be done.
  */
 public class ToDo extends Task {
     /**
-     * Constructs a ToDo object.
+     * Constructs a duke.task.ToDo object.
      *
-     * @param description description for the ToDo task.
+     * @param description description for the duke.task.ToDo task.
      */
     public ToDo(String description) {
         super(description);
@@ -33,8 +35,8 @@ public class ToDo extends Task {
     }
 
     /**
-     * Overriding method of toString() for ToDo.
-     * @return the string representing ToDo task.
+     * Overriding method of toString() for duke.task.ToDo.
+     * @return the string representing duke.task.ToDo task.
      */
     @Override
     public String toString () {
