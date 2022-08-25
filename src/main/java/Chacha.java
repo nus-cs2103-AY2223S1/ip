@@ -30,40 +30,52 @@ public class Chacha {
                 System.out.println("Nice! I've marked this task as done:\n" + task.toString());
 
             } else if (s.contains("deadline")) {
-                String date = s.substring(s.indexOf("/by ") + 4);
-                date.trim();
-                String description = s.substring(0,s.indexOf("/"));
-                description = description.substring(s.indexOf("deadline ") + 9);
-                description.trim();
-                Deadline deadline = new Deadline(description, date);
-                
-                taskList.add(deadline);  
-                System.out.println("Got it. I've added this task:");
-                System.out.println(deadline.toString()); 
-                System.out.println("Now you have " + taskList.size() + " tasks in the list."); 
-
+                try {
+                    String date = s.substring(s.indexOf("/by ") + 4);
+                    date.trim();
+                    String description = s.substring(0,s.indexOf("/"));
+                    description = description.substring(s.indexOf("deadline ") + 9);
+                    description.trim();
+                    Deadline deadline = new Deadline(description, date);
+                    taskList.add(deadline);  
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(deadline.toString()); 
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                } catch(Exception e) {
+                    System.out.println("OOPS!!! The description of a deadline cannot be empty."); 
+                }
             } else if (s.contains("todo")) {
-                String description = s.substring(s.indexOf("todo ") + 5);
-                description.trim();
-                Todo todo = new Todo(description);
-                taskList.add(todo);  
-                System.out.println("Got it. I've added this task:");
-                System.out.println(todo.toString()); 
-                System.out.println("Now you have " + taskList.size() + " tasks in the list."); 
+                try {
+                    String description = s.substring(s.indexOf("todo ") + 5);
+                    description.charAt(6);
+                    description.trim();
+                    Todo todo = new Todo(description);
+                    taskList.add(todo);  
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(todo.toString()); 
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                } catch(Exception e) {
+                    System.out.println("OOPS!!! The description of a todo cannot be empty.");  
+                }
 
             } else if (s.contains("event")) {
-                String range = s.substring(s.indexOf("/at ") + 4);
-                range.trim();
-                String description = s.substring(0,s.indexOf("/"));
-                description = description.substring(s.indexOf("event ") + 6);
-                description.trim();
-                Event event = new Event(description, range);
-                taskList.add(event);  
-                System.out.println("Got it. I've added this task:");
-                System.out.println(event.toString()); 
-                System.out.println("Now you have " + taskList.size() + " tasks in the list."); 
-
-            } 
+                try {
+                    String range = s.substring(s.indexOf("/at ") + 4);
+                    range.trim();
+                    String description = s.substring(0,s.indexOf("/"));
+                    description = description.substring(s.indexOf("event ") + 6);
+                    description.trim();
+                    Event event = new Event(description, range);
+                    taskList.add(event);  
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println(event.toString()); 
+                    System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                } catch(Exception e) {
+                    System.out.println("OOPS!!! The description of a event cannot be empty."); 
+                }
+            } else {
+                System.out.println("OOPS!!! I'm sorry, but I don't know what that means :-(");
+            }
             s = input.nextLine();    
         }
         System.out.println("Bye. Hope to see you again soon!");
