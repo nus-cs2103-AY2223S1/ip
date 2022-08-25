@@ -1,4 +1,7 @@
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -9,6 +12,7 @@ public class Duke {
     private static boolean isDone = false;
 
     public static void main(String[] args) {
+        saveTask();
         greet();
         Scanner sc = new Scanner(System.in);
 
@@ -31,6 +35,7 @@ public class Duke {
                         String markItem = splitCommand[1];
                         int itemNumber = Integer.parseInt(markItem);
                         mark(itemNumber);
+                        saveTask();
                     } catch (NumberFormatException nfe) {
                         throw new DukeNumberFormatException();
                     }
@@ -46,6 +51,7 @@ public class Duke {
                         String unmarkItem = splitCommand[1];
                         int itemNumber = Integer.parseInt(unmarkItem);
                         unmark(itemNumber);
+                        saveTask();
                     } catch (NumberFormatException nfe) {
                         throw new DukeNumberFormatException();
                     }
@@ -61,6 +67,7 @@ public class Duke {
                         String deleteItem = splitCommand[1];
                         int itemNumber = Integer.parseInt(deleteItem);
                         delete(itemNumber);
+                        saveTask();
                     } catch (NumberFormatException nfe) {
                         throw new DukeNumberFormatException();
                     }
@@ -74,6 +81,7 @@ public class Duke {
                     }
                     String desc = splitCommand[1];
                     addTodo(desc);
+                    saveTask();
                 } else if (command.startsWith("deadline")) {
                     String[] splitCommand = command.split("\\s+",2);
                     if (!splitCommand[0].equals("deadline")) {
@@ -84,6 +92,7 @@ public class Duke {
                     }
                     String desc = splitCommand[1];
                     addDeadline(desc);
+                    saveTask();
                 } else if (command.startsWith("event")) {
                     String[] splitCommand = command.split("\\s+",2);
                     if (!splitCommand[0].equals("event")) {
@@ -94,6 +103,7 @@ public class Duke {
                     }
                     String desc = splitCommand[1];
                     addEvent(desc);
+                    saveTask();
                 } else {
                     throw new DukeInvalidCommandException(command);
                 }
@@ -234,5 +244,28 @@ public class Duke {
         Event event = new Event(instruction, at);
         addList(event);
         displayAddTask(event);
+    }
+
+    private static void saveTask() {
+        try {
+            File fileObj = new File("C:\\Users\\John Russell Himawan\\Desktop\\ip\\data\\duke.txt");
+            FileWriter writeFile = new FileWriter(fileObj);
+            if (fileObj.createNewFile()) {
+                System.out.println("File " + fileObj.getName() + " has been created!");
+            } else {
+                System.out.println("Writing content to file");
+                String msg = "";
+                int len = taskList.size();
+                for (int i = 0; i < len; i++) {
+                    msg = msg + taskList.get(i);
+                    String message = makeIndent(taskList.get(i).toString());
+                    writeFile.write(message);
+                }
+                writeFile.close();
+            }
+        } catch (IOException e) {
+            System.out.println("An error has occurred in the file.");
+            e.printStackTrace();
+        }
     }
 }
