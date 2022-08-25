@@ -27,16 +27,15 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) throws DukeException {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         DukeMessage.startMessage();
         Tasks tasks = new Tasks(100);
-        tasks.loadTasks();
+
         while (scanner.hasNextLine()) {
             String userCommand = scanner.next();
             String userAction = scanner.nextLine().stripLeading();
             if (userCommand.equals("bye")) {
-                tasks.saveFile();
                 DukeMessage.endMessage();
                 scanner.close();
                 System.exit(0);
