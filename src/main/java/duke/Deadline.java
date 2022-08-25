@@ -1,25 +1,28 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-public class Event extends Task{
-    protected String at;
+
+public class Deadline extends Task {
+    protected String by;
     protected LocalDate date;
     protected LocalTime time;
 
-    public Event(String description, String at) {
+    public Deadline(String description, String by) {
         super(description);
-        this.at = at;
+        this.by = by;
 
-        if (at.contains("/") || at.contains("-")) {
+        if (by.contains("/") || by.contains("-")) {
             setDateAndTime();
         }
     }
 
     public void setDateAndTime() {
-        int space = this.at.indexOf(' ');
-        String date = this.at.substring(0, space);
-        String time = this.at.substring(space + 1);
+        int space = this.by.indexOf(' ');
+        String date = this.by.substring(0, space);
+        String time = this.by.substring(space + 1);
 
         if (date.contains("/")) {
             int firstSlash = date.indexOf('/', 0);
@@ -46,15 +49,16 @@ public class Event extends Task{
         this.date = LocalDate.parse(date);
         this.time = LocalTime.parse(time);
     }
+
     @Override
     public String toString() {
-        if (this.at.contains("/") || at.contains("-")) {
+        if (by.contains("/") || by.contains("-")) {
             String date = this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
             String time = this.time.toString();
 
-            return "[E]" + super.toString() + " (at: " + date + " " + time + ")";
+            return "[D]" + super.toString() + " (by: " + date + " " + time + ")";
         } else {
-            return "[E]" + super.toString() + " (at: " + at + ")";
+            return "[D]" + super.toString() + " (by: " + by + ")";
         }
     }
 }
