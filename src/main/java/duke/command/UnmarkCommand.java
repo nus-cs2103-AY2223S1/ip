@@ -36,8 +36,7 @@ public class UnmarkCommand extends Command {
              int taskNumber = Integer.parseInt(this.inputArray[1]);
              Task deletedTask = this.tasksList.markAsUndone(taskNumber);
              return UnmarkCommand.UNMARK_MSG + deletedTask;
-             //exception due to parsing
-
+             /** exception due to parsing */
          } catch (NumberFormatException exception) {
              throw new DukeException("Please enter a integer for task number!");
          }
