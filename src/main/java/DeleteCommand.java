@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class DeleteCommand extends Command {
     int index;
 
@@ -9,11 +7,13 @@ public class DeleteCommand extends Command {
 
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.say("Noted. I've removed this task:", true, false);
-        ui.say(tasks.get(index).toString(), false, false);
+        if (index >= tasks.size()) {
+            throw new DukeException("It seems that there is no corresponding task.");
+        }
+        ui.deleteMessage(tasks, index, false);
         tasks.remove(index);
         storage.writeFile(tasks, ui);
-        ui.say("Now you have " + tasks.size() + " tasks in the list.", false, true);
+        ui.deleteMessage(tasks, index, true);
     }
 
     @Override
