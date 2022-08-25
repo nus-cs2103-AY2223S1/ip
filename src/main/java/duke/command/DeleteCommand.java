@@ -11,15 +11,15 @@ import duke.task.Task;
  */
 public class DeleteCommand extends Command {
 
-    private int i;
+    private int index;
 
     /**
      * Constructor for DeleteCommand.
      *
-     * @param i The index of the task to be deleted.
+     * @param index The index of the task to be deleted.
      */
-    public DeleteCommand(int i) {
-        this.i = i;
+    public DeleteCommand(int index) {
+        this.index = index;
     }
 
     /**
@@ -31,10 +31,10 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        if (i < 0 || i >= tasks.getSize()) {
+        if (index < 0 || index >= tasks.getSize()) {
             throw new DukeException("OOPS!!! The index is invalid.");
         }
-        Task deleted = tasks.delete(i);
+        Task deleted = tasks.delete(index);
         ui.showMessage("Noted. I've removed this duke.task:");
         ui.showMessage(" " + deleted);
         ui.showMessage("Now you have " + tasks.getSize() + " tasks in the list.");

@@ -3,7 +3,6 @@ package duke;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
@@ -47,8 +46,6 @@ public class Storage {
                 String taskType = components[0];
                 boolean isDone = components[1].equals("1");
                 String desc = components[2];
-                String cmd;
-                LocalDate d;
                 switch (taskType) {
                 // TODO
                 case "T":
@@ -73,7 +70,7 @@ public class Storage {
                     break;
                 }
                 if (isDone) {
-                    tasks.get(tasks.size() - 1).markAsDone();
+                    tasks.get(tasks.size() - 1).markTask();
                 }
             }
         } else {

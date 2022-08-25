@@ -11,15 +11,15 @@ import duke.task.Task;
  */
 public class MarkCommand extends Command {
 
-    private int i;
+    private int index;
 
     /**
      * Constructor for MarkCommand.
      *
-     * @param i The index of the task to be marked as done.
+     * @param index The index of the task to be marked as done.
      */
-    public MarkCommand(int i) {
-        this.i = i;
+    public MarkCommand(int index) {
+        this.index = index;
     }
 
     /**
@@ -31,12 +31,12 @@ public class MarkCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        if (i < 0 || i >= tasks.getSize()) {
+        if (index < 0 || index >= tasks.getSize()) {
             throw new DukeException("OOPS!!! The index is invalid.");
         }
-        Task curr = tasks.get(i);
+        Task curr = tasks.get(index);
         if (curr.getStatusIcon().equals(" ")) {
-            curr.markAsDone();
+            curr.markTask();
             ui.showMessage("Nice! I've marked this task as done:");
             ui.showMessage("  " + curr);
         } else {
