@@ -1,10 +1,12 @@
-package carbon;
+package carbon.task;
 
+import carbon.error.CarbonException;
+import carbon.error.CorruptedSavefileException;
 import java.util.Arrays;
 import java.util.List;
 import java.time.format.DateTimeFormatter;
 
-abstract class Task {
+public abstract class Task {
     public static enum Type {
         TODO,
         DEADLINE,

@@ -1,6 +1,6 @@
-package carbon;
+package carbon.error;
 
-class CorruptedSavefileException extends CarbonException {
+public class CorruptedSavefileException extends CarbonException {
     String data;
 
     public CorruptedSavefileException(String data) {

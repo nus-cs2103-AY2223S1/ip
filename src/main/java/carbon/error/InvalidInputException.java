@@ -1,6 +1,6 @@
-package carbon;
+package carbon.error;
 
-class InvalidInputException extends CarbonException {
+public class InvalidInputException extends CarbonException {
     public InvalidInputException(String input) {
         super(input);
     }

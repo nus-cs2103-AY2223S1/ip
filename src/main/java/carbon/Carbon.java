@@ -1,5 +1,13 @@
 package carbon;
 
+import carbon.task.Deadline;
+import carbon.task.Event;
+import carbon.task.Task;
+import carbon.task.Todo;
+import carbon.error.CarbonException;
+import carbon.error.InvalidInputException;
+import carbon.error.InvalidParamException;
+import carbon.error.OutOfBoundsException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;

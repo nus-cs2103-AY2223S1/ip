@@ -1,6 +1,6 @@
-package carbon;
+package carbon.error;
 
-class InvalidTimeException extends CarbonException {
+public class InvalidTimeException extends CarbonException {
     public InvalidTimeException(String input) {
         super(input);
     }

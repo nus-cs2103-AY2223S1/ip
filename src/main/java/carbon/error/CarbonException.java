@@ -1,6 +1,6 @@
-package carbon;
+package carbon.error;
 
-abstract class CarbonException extends RuntimeException {
+public abstract class CarbonException extends RuntimeException {
     public CarbonException(String message) {
         super(message);
     }

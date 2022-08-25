@@ -1,6 +1,9 @@
-package carbon;
+package carbon.task;
 
-class Todo extends Task {
+import carbon.error.CarbonException;
+import carbon.error.InvalidParamException;
+
+public class Todo extends Task {
     private static int TYPEKEY = Task.getTypeKey(Task.Type.TODO);
 
     private static String extractName(String input) throws CarbonException {

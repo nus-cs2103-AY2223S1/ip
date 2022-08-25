@@ -1,6 +1,6 @@
-package carbon;
+package carbon.error;
 
-class InvalidFlagException extends CarbonException {
+public class InvalidFlagException extends CarbonException {
     private String type;
     private String flag;
 

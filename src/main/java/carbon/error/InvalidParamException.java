@@ -1,6 +1,6 @@
-package carbon;
+package carbon.error;
 
-class InvalidParamException extends CarbonException {
+public class InvalidParamException extends CarbonException {
     public InvalidParamException(String input) {
         super(input);
     }

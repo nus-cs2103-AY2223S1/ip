@@ -1,6 +1,6 @@
-package carbon;
+package carbon.error;
 
-class OutOfBoundsException extends CarbonException {
+public class OutOfBoundsException extends CarbonException {
     public OutOfBoundsException(int taskNumber, int length) {
         super(String.format(
                 "%d is a little awkward. We have %d tasks.", 
