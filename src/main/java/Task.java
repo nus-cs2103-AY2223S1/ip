@@ -12,6 +12,16 @@ abstract public class Task {
         this.isDone = false;
     }
 
+    public Task(boolean isDone){
+        this.description = null;
+        this.isDone = isDone;
+    };
+
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
     public void markAsDone() {
         this.isDone = true;
     }
@@ -27,6 +37,8 @@ abstract public class Task {
     public boolean getIsDone() {
         return this.isDone;
     }
+
+    abstract String processData();
 
     @Override
     public String toString() {
