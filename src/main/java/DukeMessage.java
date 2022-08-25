@@ -1,19 +1,19 @@
 public class DukeMessage {
-    private static final String line = "____________________________________________________________";
-    private static final String startMessage = " Hello! I'm Duke\n" + " What can I do for you?";
-    private static final String endMessage = " Bye. Hope to see you again soon!";
+    private static final String LINE = "____________________________________________________________";
+    private static final String START_MESSAGE = " Hello! I'm Duke\n" + " What can I do for you?";
+    private static final String END_MESSAGE = " Bye. Hope to see you again soon!";
 
     public static void sendMessage(String message) {
-        System.out.println(line);
+        System.out.println(LINE);
         System.out.println(message);
-        System.out.println(line);
+        System.out.println(LINE);
     }
 
     public static void startMessage() {
-        sendMessage(startMessage);
+        sendMessage(START_MESSAGE);
     }
 
     public static void endMessage() {
-        sendMessage(endMessage);
+        sendMessage(END_MESSAGE);
     }
 }

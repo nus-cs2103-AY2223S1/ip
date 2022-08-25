@@ -1,9 +1,12 @@
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 
 public class Tasks {
 
@@ -114,23 +117,6 @@ public class Tasks {
         }
     }
 
-    public LocalDateTime formatDeadline(String s) throws DukeException {
-        LocalDateTime dateToFormat = null;
-        boolean isFormatted = false;
-        try {
-            dateToFormat = LocalDateTime.parse(s, DateTimeFormatter.ofPattern("yyyy-mm-dd"));
-            isFormatted = true;
-        } catch (DateTimeParseException e) {;
-            System.out.println(s);
-            System.out.println("for deadlines, it has to be in the format dd-mm-yyyy");
-        }
-        if (isFormatted) {
-            return dateToFormat;
-        } else {
-            throw new DukeException("for deadlines, it has to be in the format dd-mm-yyyy HH:mm:ss");
-        }
-    }
-
     public void deleteMessage(String userAction) throws DukeException {
         try {
             if (!isNumeric(userAction)) {
@@ -148,6 +134,102 @@ public class Tasks {
             }
         } catch (DukeException e) {
             System.out.println(e.getMessage());
+        }
+    }
+    public void loadTasks() {
+        try {
+            FileReader file = new FileReader("tasks.txt");
+            BufferedReader br = new BufferedReader(file);
+            String nextLine;
+            // break while loop is no more lines to read
+            while ((nextLine = br.readLine()) != null) {
+                // split string
+                String[] nextTask = nextLine.split(",", 5);
+                // case 1 : To-Do Task
+                switch (nextTask[0]) {
+                    case "T":
+                        Task newTodo = new Todo(nextTask[2]);
+                        if (nextTask[1].equals("1")) {
+                            newTodo.markAsDone();
+                        }
+                        this.taskList.add(newTodo);
+                        // case 2 : Event Task
+                        break;
+                    case "E":
+                        Task newEvent = new Event(nextTask[2], nextTask[3]);
+                        if (nextTask[1].equals("1")) {
+                            newEvent.markAsDone();
+                        }
+                        this.taskList.add(newEvent);
+                        // case 3 : Deadline Task
+                        break;
+                    case "D":
+                        Task newDeadline = new Deadline(nextTask[2], nextTask[3]);
+                        if (nextTask[1].equals("1")) {
+                            newDeadline.markAsDone();
+                        }
+                        this.taskList.add(newDeadline);
+                        break;
+                }
+            }
+            br.close();
+        // cannot open file, make a new file in project root directory
+        } catch (FileNotFoundException e) {
+            createFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (DukeException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createFile() {
+        try {
+            System.out.println("creating file");
+            File file = new File("tasks.txt");
+            if (file.createNewFile()) {
+                System.out.println("File successfully created !");
+            } else {
+                System.out.println("File is already present!");
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void saveFile() {
+        try {
+            FileWriter fw = new FileWriter("tasks.txt");
+            // loop through ArrayList<Task>
+            for (Task task : this.taskList) {
+                if (task instanceof Todo) {
+                    Todo todo = (Todo) task;
+                    if (todo.isDone) {
+                        fw.write("T,1," + todo.description + "\n");
+                    } else {
+                        fw.write("T,0," + todo.description + "\n");
+                    }
+                } else if (task instanceof Event) {
+                    Event event = (Event) task;
+                    if (event.isDone) {
+                        fw.write("E,1," + event.description + "," + event.event + "\n");
+                    } else {
+                        fw.write("E,0," + event.description + "," + event.event + "\n");
+                    }
+                } else if (task instanceof Deadline) {
+                    Deadline deadline = (Deadline) task;
+                    if (deadline.isDone) {
+                        fw.write("D,1," + deadline.description + "," + deadline.deadline + "\n");
+                    } else {
+                        fw.write("D,0," + deadline.description + "," + deadline.deadline + "\n");
+                    }
+                }
+            }
+            fw.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
