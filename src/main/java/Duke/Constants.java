@@ -9,11 +9,11 @@ public class Constants {
 
     public static final String INVALID_COMMAND = "I'm sorry, but I don't know what that means :-(";
 
-    public static final String INVALID_INDEX = "There is no such task available.";
+    public static final String INVALID_INDEX = "There is no such task available";
 
-    public static final String INVALID_INPUT = "Please input your description correctly.";
+    public static final String INVALID_INPUT = "Please input your description correctly";
 
-    public static final String INVALID_DATE = "Please format your date as (dd MMM YYYY)";
+    public static final String INVALID_DATE = "Please format your date as (MMM dd YYYY)";
 
     public static final String INVALID_FILE = "Invalid string file input";
 
