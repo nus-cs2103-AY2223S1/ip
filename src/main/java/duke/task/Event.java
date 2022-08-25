@@ -13,7 +13,10 @@ public class Event extends Task {
         + "i.e. 29th February 2000 to 2nd March 2000 is 2000-02-29 2000-03-02. You can provide only one date if you choose.";
     private static final String INVALID_DATERANGE_MESSAGE = "The second date is prior to the first date.";
 
+    /** The starting date of this task. */
     protected LocalDate startTime;
+
+    /** The ending date of this task. */
     protected LocalDate endTime;
 
     private void parseTimeRange(String timeRange) throws DukeException {
@@ -36,6 +39,12 @@ public class Event extends Task {
         }
     }
 
+    /**
+     * Constructs a not completed Event with the specified description and time range parameter.
+     * @param desc the description of this Event.
+     * @param timeRange the time range of this Event.
+     * @throws DukeException if desc is null or empty, or if the time range was unable to be parsed into a date.
+     */
     public Event(String desc, String timeRange) throws DukeException {
         super(desc);
         if (timeRange == null || timeRange.equals("")) {
@@ -44,6 +53,13 @@ public class Event extends Task {
         parseTimeRange(timeRange);
     }
 
+    /**
+     * Constructs an Event with the specified description, time range, and state of completion parameter.
+     * @param desc the description of this Event.
+     * @param timeRange the time range of this Event.
+     * @param isDone the state of completion of this Event.
+     * @throws DukeException if desc is null or empty, or if the time range was unable to be parsed into a date.
+     */
     public Event(String desc, String timeRange, boolean isDone) throws DukeException {
         super(desc, isDone);
         if (timeRange == null || timeRange.equals("")) {

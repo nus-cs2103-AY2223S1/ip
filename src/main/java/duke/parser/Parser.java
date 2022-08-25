@@ -8,8 +8,17 @@ import duke.task.Todo;
 
 import java.util.stream.Stream;
 
+/**
+ * This class handles parsing of user commands to Command objects.
+ */
 public class Parser {
 
+    /**
+     * Parses the specified String parameter into a Command object.
+     * @param command the String to be parsed.
+     * @return Command.
+     * @throws DukeException if command is malformed.
+     */
     public static Command parse(String command) throws DukeException {
 
         Argument[] args = processArgs(command);
@@ -54,10 +63,16 @@ public class Parser {
         }
     }
 
-    /* Parses a command into an array of Arguments, where n is the number of
-       parameters passed by the user. Parameters are seperated by a "/".
-       Each parameter consists of two values, its name, which is the first
-       word, and its body which contains the rest of the parameter.
+    /**
+     * Parses a command into an array of Arguments.
+     * <p>
+     * A command is seperated into Arguments by "{@literal <whitespace>}/".
+     * <p>
+     * Each Argument is then seperated into two Strings, the name and its body,
+     * using whitespace.
+     *
+     * @param command The command to be parsed
+     * @return an array of Arguments.
      */
     private static Argument[] processArgs(String command) {
         return Stream.of(command.trim().split("\\s+/"))
@@ -69,6 +84,13 @@ public class Parser {
                 .toArray(Argument[]::new);
     }
 
+    /**
+     * Parses the specified String parameter as an index value.
+     *
+     * @param idx the specified String parameter.
+     * @return an int value.
+     * @throws DukeException if idx is not a positive integer.
+     */
     private static int parseIndex(String idx) throws DukeException {
         try {
             int indexValue = Integer.parseInt(idx) - 1;
