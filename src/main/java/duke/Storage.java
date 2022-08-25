@@ -9,16 +9,15 @@ import java.util.Scanner;
 
 public class Storage {
 
-    private String filePath;
+    private final String FILEPATH;
 
     public Storage(String filePath) {
-        this.filePath = filePath;
+        this.FILEPATH = filePath;
     }
 
     public void save() {
-        String filePath = "data/tasks.txt";
         try {
-            FileWriter fw = new FileWriter(filePath);
+            FileWriter fw = new FileWriter(FILEPATH);
             for (Task task : TaskList.getTaskList()) {
                 System.out.println(task.toString());
                 fw.write(task.toStorageFormat());
@@ -33,9 +32,8 @@ public class Storage {
 
     public void load() throws IOException {
         String directoryPath = "data";
-        String filePath =  "data/tasks.txt";
         File directory = new File(directoryPath);
-        File file = new File(filePath);
+        File file = new File(FILEPATH);
         if (!directory.exists()) {
             directory.mkdirs();
             file.createNewFile();

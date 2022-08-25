@@ -1,6 +1,5 @@
 package duke;
 
-
 import duke.commands.AddDeadlineCommand;
 import duke.commands.AddEventCommand;
 import duke.commands.AddToDoCommand;
@@ -10,7 +9,6 @@ import duke.commands.ExitCommand;
 import duke.commands.MarkCommand;
 import duke.commands.ReadCommand;
 import duke.commands.UnMarkCommand;
-import duke.exceptions.DukeEmptyCommandException;
 import duke.exceptions.DukeUnknownCommandException;
 
 public class Parser {
