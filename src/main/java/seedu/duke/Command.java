@@ -11,6 +11,7 @@ public enum Command {
     DEFAULT,
     DELETE,
     EVENT,
+    FIND,
     LIST,
     MARK,
     TODO,
@@ -123,7 +124,21 @@ public enum Command {
                 ui.showGoodbye();
                 break;
 
+            case FIND:
                 
+                System.out.println("Here are the matching tasks in your list: ");
+                
+                String keyword = input.substring(5);
+                int listValue = 1;
+
+                for (int i = 0; i < tasks.size(); i++) {
+                    task = tasks.get(i);
+                    if (task.toString().indexOf(keyword) != -1){
+                        System.out.println(String.valueOf(listValue) + "." + task);
+                        listValue++;
+                    }
+                }
+                break;
 
             default:    
                 throw new DukeException("I'm sorry, but I dont know what you mean :(");

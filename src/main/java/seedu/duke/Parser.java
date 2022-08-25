@@ -14,7 +14,7 @@ public class Parser {
      */
     public Parser() {
         this.stringOfCommands = new ArrayList<>(Arrays.asList("BYE",
-        "DEADLINE", "DELETE", "EVENT", "LIST", "MARK", "TODO", "UNMARK"));
+        "DEADLINE", "DELETE", "EVENT", "FIND", "LIST", "MARK", "TODO", "UNMARK"));
     }
 
     /**
