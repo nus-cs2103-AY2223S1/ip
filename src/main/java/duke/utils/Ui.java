@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 /**
  * This class handles all the UI-related tasks e.g., read input from user, print to System.out, etc.
- * System.in is the InputStream, System.out is the PrintStream.
  *
  * @author sikai00
  */
@@ -34,16 +33,14 @@ public class Ui {
     public void prettyPrint(String msg) {
         // Horizontal lines have 4 spaces as indentation
         System.out.println(
-                "    _____________________________________________________"
-                        + "_______");
+                "    ____________________________________________________________");
         String[] msgTokens = msg.split("\n");
         for (String token : msgTokens) {
             // Message has 5 spaces as indentation
             System.out.println("     " + token);
         }
         System.out.println(
-                "    _____________________________________________________"
-                        + "_______\n");
+                "    ____________________________________________________________\n");
     }
 
     /**

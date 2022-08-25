@@ -24,7 +24,7 @@ import java.time.format.DateTimeParseException;
  */
 
 public class Parser {
-    private static final InvalidCommand NUMBER_FORMAT = new InvalidCommand("duke.tasks.Task index should be integers!");
+    private static final InvalidCommand NUMBER_FORMAT = new InvalidCommand("Task index should be integers!");
 
     public Command parseCommand(String userInput) {
         String[] tokens = userInput.split(" ", 2);
