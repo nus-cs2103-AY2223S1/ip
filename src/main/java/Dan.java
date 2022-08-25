@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Duke {
+public class Dan {
     private static final int MAX_TASK_SIZE = 100;
 
     public static void main(String[] args) {
