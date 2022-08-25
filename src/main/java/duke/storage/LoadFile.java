@@ -1,8 +1,8 @@
-package storage;
+package duke.storage;
 
-import exception.DukeException;
-import task.Task;
-import task.TaskList;
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,7 +16,7 @@ import java.io.IOException;
  *
  * @author Kang Wei
  */
-class loadFile {
+class LoadFile {
 
   /**
    * Parses a task in String format into a <code>Task</code>

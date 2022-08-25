@@ -1,7 +1,7 @@
-package command;
+package duke.command;
 
-import exception.DukeException;
-import task.TaskList;
+import duke.exception.DukeException;
+import duke.task.TaskList;
 
 
 /**

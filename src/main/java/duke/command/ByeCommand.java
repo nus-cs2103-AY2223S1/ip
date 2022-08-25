@@ -1,7 +1,7 @@
-package command;
+package duke.command;
 
-import task.TaskList;
-import ui.Ui;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Handles the actions of the Duke programme before

@@ -1,18 +1,20 @@
+package duke;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import command.ByeCommand;
-import command.Command;
-import command.DeleteCommand;
-import command.ListCommand;
-import command.MarkCommand;
-import command.TaskCommand;
-import exception.DukeException;
-import parse.Parser;
-import storage.Storage;
-import task.Task;
-import task.TaskList;
-import ui.Ui;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TaskCommand;
+import duke.exception.DukeException;
+import duke.parse.Parser;
+import duke.storage.Storage;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 public class Duke {
 

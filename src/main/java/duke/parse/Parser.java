@@ -1,13 +1,13 @@
-package parse;
+package duke.parse;
 
-import command.ByeCommand;
-import command.Command;
-import command.DeleteCommand;
-import command.ListCommand;
-import command.MarkCommand;
-import command.TaskCommand;
-import exception.DukeException;
-import task.TaskList; 
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TaskCommand;
+import duke.exception.DukeException;
+import duke.task.TaskList; 
 
 /**
  * Handles the parsing of a user's inputs and the

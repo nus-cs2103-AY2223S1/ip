@@ -1,8 +1,8 @@
-package task;
+package duke.task;
 
 import java.util.ArrayList;
 
-import ui.Ui;
+import duke.ui.Ui;
 
 /**
  * Stores an <code>ArrayList<Task></code> and handles the direct operations 

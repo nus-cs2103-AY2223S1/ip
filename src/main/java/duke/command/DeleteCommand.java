@@ -1,9 +1,9 @@
-package command;
+package duke.command;
 
 import java.util.ArrayList;
 
-import task.TaskList;
-import ui.Ui;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Handles the deletion of a task from

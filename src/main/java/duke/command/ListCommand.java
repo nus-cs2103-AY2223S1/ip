@@ -1,9 +1,9 @@
-package command;
+package duke.command;
 
 import java.util.ArrayList;
 
-import task.TaskList;
-import ui.Ui;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Handles the listing of tasks of a user.

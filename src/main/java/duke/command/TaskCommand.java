@@ -1,11 +1,11 @@
-package command;
+package duke.command;
 
 import java.util.ArrayList;
 
-import exception.DukeException;
-import task.Task;
-import task.TaskList;
-import ui.Ui;
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.ui.Ui;
 
 /**
  * Handles the creating of tasks.

@@ -1,9 +1,9 @@
-package storage;
+package duke.storage;
 
-import task.Task;
-import task.TaskList;
-import exception.DukeException;
-import ui.Ui;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.exception.DukeException;
+import duke.ui.Ui;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,7 +14,7 @@ import java.io.IOException;
  *
  * @author Kang Wei
  */
-class saveFile {
+class SaveFile {
 
   /**
    * Writes a <code>Task[]</code> to a txt file.

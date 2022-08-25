@@ -1,10 +1,10 @@
-package storage;
+package duke.storage;
 
 import java.io.File;
 import java.io.IOException;
 
-import exception.DukeException;
-import ui.Ui;
+import duke.exception.DukeException;
+import duke.ui.Ui;
 
 /**
  * Creates a txt file that should eventually be used for
@@ -13,7 +13,7 @@ import ui.Ui;
  *
  * @author Kang Wei
  */
-class createFile {
+class CreateFile {
 
   /**
    * Creates a file in the specified location.

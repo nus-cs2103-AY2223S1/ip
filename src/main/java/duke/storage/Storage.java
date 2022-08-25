@@ -1,9 +1,9 @@
-package storage;
+package duke.storage;
 
 import java.util.ArrayList;
 
-import exception.DukeException;
-import task.TaskList;
+import duke.exception.DukeException;
+import duke.task.TaskList;
 
 /**
  * Handles the creating, loading and saving of tasks.
@@ -33,13 +33,13 @@ public class Storage {
     this.filePath = filePath;
 
     // Create the .txt file if it hasn't already been created.
-    createFile.makeFile(filePath);
+    CreateFile.makeFile(filePath);
 
     /**
      * Load the .txt file, and get the list of tasks if the .txt
      * file contains any data.
      */
-    tasks = loadFile.load(filePath);
+    tasks = LoadFile.load(filePath);
   }
 
   /**
@@ -54,6 +54,6 @@ public class Storage {
    * in filePath.
    */
   public void save() throws DukeException {
-    saveFile.save(tasks, filePath);
+    SaveFile.save(tasks, filePath);
   }
 }
