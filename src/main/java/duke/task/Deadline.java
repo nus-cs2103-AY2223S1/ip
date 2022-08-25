@@ -1,9 +1,9 @@
-package TaskTypes;
+package duke.task;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
+public class Deadline extends duke.task.Task {
     LocalDateTime by;
 
     public Deadline(String title, LocalDateTime by) {
@@ -18,6 +18,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
+        // can abstract these constants out into a constants file
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
 
         return "[D] " + super.toString() + " (by: " + by.format(formatter) + ")";

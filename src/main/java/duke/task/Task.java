@@ -1,4 +1,4 @@
-package TaskTypes;
+package duke.task;
 
 public class Task {
     private String title;
@@ -18,7 +18,7 @@ public class Task {
         if (isDone) {
             System.out.println("Error: TaskTypes.Task is already done");
         } else {
-            System.out.println("OK, I've marked this task as done: ");
+            System.out.println("OK, I've marked this duke.task as done: ");
             this.isDone = true;
             System.out.println(this);
         }
@@ -26,7 +26,7 @@ public class Task {
 
     public void unmarkIsDone() {
         if (isDone) {
-            System.out.println("OK, I've marked this task as not done yet: ");
+            System.out.println("OK, I've marked this duke.task as not done yet: ");
             this.isDone = false;
             System.out.println(this);
         } else {

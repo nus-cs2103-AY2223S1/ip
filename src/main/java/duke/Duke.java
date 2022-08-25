@@ -1,6 +1,12 @@
-import TaskTypes.Deadline;
-import TaskTypes.Event;
-import TaskTypes.ToDo;
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
+import duke.utils.Parser;
+import duke.utils.Storage;
+import duke.utils.TaskList;
+import duke.utils.Ui;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

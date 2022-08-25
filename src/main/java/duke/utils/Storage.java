@@ -1,4 +1,7 @@
-import TaskTypes.Task;
+package duke.utils;
+
+import duke.DukeException;
+import duke.task.Task;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +20,6 @@ public class Storage {
     }
 
     public void save(ArrayList<Task> tasks) throws IOException {
-
         file.createNewFile();
 
         FileWriter fileWriter = new FileWriter(this.path);

@@ -1,6 +1,10 @@
 todo make bed
-event concert /at tomorrow
-deadline cs2103t submission /by friday 2pm
+event concert /at 2022-12-22 17:00
+deadline cs2103t submission /by 2022-02-22 08:30
 list
 BAD_COMMAND
+mark 1
+delete 1
+mark 2
+unmark 2
 bye

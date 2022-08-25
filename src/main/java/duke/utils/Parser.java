@@ -1,7 +1,11 @@
-import TaskTypes.Deadline;
-import TaskTypes.Event;
-import TaskTypes.Task;
-import TaskTypes.ToDo;
+package duke.utils;
+
+import duke.Command;
+import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -52,7 +56,7 @@ public class Parser {
         return commandArray;
     }
 
-    static LocalDateTime stringToDateTime(String str) throws DukeException {
+    static public LocalDateTime stringToDateTime(String str) throws DukeException {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
@@ -62,7 +66,7 @@ public class Parser {
         }
     }
 
-    static Task parseSave(String save) throws Exception {
+    static public Task parseSave(String save) throws Exception {
         String[] taskElements = save.split("\\|");
         Task newTask;
         try {
