@@ -4,6 +4,10 @@ public class Todo extends Task {
         super(description);
     }
 
+    public String getStorageString() {
+        return "T" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription();
+    }
+
     @Override
     public String toString() {
         return "[T]" + super.toString();

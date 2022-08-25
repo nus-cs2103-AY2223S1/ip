@@ -17,5 +17,8 @@ bin/
 /text-ui-test/ACTUAL.txt
 text-ui-test/EXPECTED-UNIX.TXT
 
-# Dev files
+# Generated save data
+/data/duke.txt
+
+# Misc Dev files
 /messages.txt

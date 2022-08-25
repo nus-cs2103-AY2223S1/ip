@@ -7,6 +7,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void markDone() {
         this.isDone = true;
     }
@@ -17,6 +21,10 @@ public class Task {
 
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
+    }
+
+    public String getStorageString() {
+        return " " + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription();
     }
 
     @Override

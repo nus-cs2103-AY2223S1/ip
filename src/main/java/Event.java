@@ -6,6 +6,14 @@ public class Event extends Task {
         this.at = at;
     }
 
+    public String getTime() {
+        return at;
+    }
+
+    public String getStorageString() {
+        return "E" + "|" + (this.isDone ? "1" : "0") + "|" + this.getDescription() + "|" + this.at;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(at: " + at + ")";
