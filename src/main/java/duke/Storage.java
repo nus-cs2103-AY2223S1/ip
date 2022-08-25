@@ -8,14 +8,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * The Storage class deals with loading tasks from the data file and
+ * saving tasks in the file.
+ *
+ * @author Edric Yeo
+ */
 public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructor for a Storage instance based on a given data file.
+     *
+     * @param filePath The filePath of the data file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Method that loads the saved data file.
+     *
+     * @return A List of Tasks that have been stored in the data file.
+     */
     public List<Task> load() throws FileNotFoundException {
         List<Task> tasks = new ArrayList<>();
         File file = new File(filePath);
@@ -56,8 +72,13 @@ public class Storage {
         return tasks;
     }
 
-    public void save(TaskList tasklist) throws IOException {
-        tasklist.saveTasks(this.filePath);
+    /**
+     * Method that saves the current tasks in the data file.
+     *
+     * @param tasks The current List of Tasks.
+     */
+    public void save(TaskList tasks) throws IOException {
+        tasks.saveTasks(this.filePath);
     }
 
 

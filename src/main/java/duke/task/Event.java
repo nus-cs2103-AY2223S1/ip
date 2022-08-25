@@ -5,10 +5,21 @@ import java.time.format.DateTimeFormatter;
 
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task{
+/**
+ * The Event class represents a Task that occurs a given date.
+ *
+ * @author Edric Yeo
+ */
+public class Event extends Task {
     protected String at;
     protected LocalDate date;
 
+    /**
+     * Constructor for a Event instance with a given date.
+     *
+     * @param description The description of the Event.
+     * @param at          The date that the Event occurs.
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;

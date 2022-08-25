@@ -1,7 +1,17 @@
 package duke.task;
 
+/**
+ * The Todo class represents a general Task to be done.
+ *
+ * @author Edric Yeo
+ */
 public class Todo extends Task {
 
+    /**
+     * Constructor for a Todo instance.
+     *
+     * @param description The description of the Todo.
+     */
     public Todo(String description) {
         super(description);
     }

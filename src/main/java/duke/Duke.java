@@ -6,12 +6,22 @@ import java.io.IOException;
 import duke.command.Command;
 import duke.exception.DukeException;
 
+/**
+ * The Duke class is the main class that handles the operation of the task manager.
+ *
+ * @author Edric Yeo
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for a Duke instance based on a given data file.
+     *
+     * @param filePath The filePath of the data file.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -23,13 +33,16 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the Duke task manager. Takes in user input and performs tasks accordingly.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String fullCommand = ui.readCommand();
-                ui.showLine(); // show the divider line ("_______")
+                ui.showLine();
                 Command c = Parser.parse(fullCommand);
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
@@ -41,6 +54,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Creates a new task manager based on a given filePath, and runs the task manager.
+     */
     public static void main(String[] args) throws DukeException, IOException {
         String filePath = "data/duke.txt";
         new Duke(filePath).run();

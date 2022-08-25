@@ -15,8 +15,20 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
 
+/**
+ * The Parser class helps to make sense of user commands.
+ *
+ * @author Edric Yeo
+ */
 public class Parser {
 
+    /**
+     * Method that takes in a String of user input and returns a specific
+     * type of command to achieve the task specified.
+     *
+     * @param input The line of text inputted by the user.
+     * @return A Command that performs the task specified by the user.
+     */
     public static Command parse(String input) throws DukeException {
         if (input.equals("bye")) {
             return new ExitCommand();
