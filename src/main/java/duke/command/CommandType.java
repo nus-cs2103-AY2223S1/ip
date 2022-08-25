@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum CommandType {
-    TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK, DELETE, SAVE;
+    TODO, DEADLINE, EVENT, LIST, BYE, MARK, UNMARK, DELETE, SAVE, FIND;
 
     public static final HashMap<String, CommandType> commandMap = new HashMap<>(Map.of(
             "todo", TODO,
@@ -15,6 +15,7 @@ public enum CommandType {
             "mark", MARK,
             "unmark", UNMARK,
             "delete", DELETE,
-            "save", SAVE
+            "save", SAVE,
+            "find", FIND
     ));
 }

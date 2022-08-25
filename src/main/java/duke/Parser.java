@@ -57,6 +57,13 @@ public class Parser {
                 case SAVE:
                     cmd = new SaveCommand();
                     break;
+                case FIND:
+                    if (!sc.hasNext()) {
+                        throw new DukeException("Something went wrong! Could not read FIND.");
+                    } else {
+                        cmd = new FindCommand(sc.next());
+                    }
+                    break;
                 case BYE:
                     cmd = new ExitCommand();
                     break;

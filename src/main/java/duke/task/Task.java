@@ -17,9 +17,13 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public boolean matchKeyword(CharSequence keyword) {
+        return this.description.contains(keyword);
+    }
+
     public abstract String toStringSaveFormat();
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.isDone ? "X" : " ", this.description);
+        return String.format("[%s] %s\n", this.isDone ? "X" : " ", this.description);
     }
 }

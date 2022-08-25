@@ -1,9 +1,6 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
+import duke.task.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -78,6 +75,19 @@ public class TaskList {
         return this.list.get(index).toString();
     }
 
+    public String find(String searchStr) {
+        StringBuilder stringBuilder = new StringBuilder("Here are the matching tasks in your list:\n");
+        int index = 1;
+        for (int i = 0; i < this.list.size(); i++) {
+            Task task = this.list.get(i);
+            if (task.matchKeyword(searchStr.subSequence(0, searchStr.length()))) {
+                stringBuilder.append(String.format("%d.%s", index++, task));
+            }
+        }
+        stringBuilder.append("Search completed.");
+        return stringBuilder.toString();
+    }
+
     public Iterator<Task> toSave() {
         return this.list.iterator();
     }
@@ -87,10 +97,8 @@ public class TaskList {
         StringBuilder stringBuilder = new StringBuilder("Here are the tasks in your list:\n");
         for (int i = 0; i < this.list.size(); i++) {
             stringBuilder.append(String.format("%d.%s", i + 1, this.list.get(i).toString()));
-            if (i < this.list.size() - 1) {
-                stringBuilder.append("\n");
-            }
         }
+        stringBuilder.append("When you're ready, you may mark them as complete.");
         return stringBuilder.toString();
     }
 }
