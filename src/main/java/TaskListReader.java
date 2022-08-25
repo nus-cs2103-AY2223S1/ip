@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Queue;
+import java.util.stream.Collectors;
 
 public class TaskListReader {
     /* Stores data separated by <SEPARATOR> in the format with no whitespace:
@@ -57,8 +57,11 @@ public class TaskListReader {
         return taskList;
     }
 
-    public void writeTaskListToFile(List<Task> taskList) {
-        
+    public void writeTaskListToFile(List<Task> taskList) throws IOException {
+        Files.write(filePath, taskList.stream()
+                .map(x -> x.toDataString(SEPARATOR))
+                .collect(Collectors.toList())
+        );
     }
 
 }
