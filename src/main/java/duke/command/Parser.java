@@ -3,7 +3,6 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.task.*;
 
-
 public class Parser {
 
     /**
@@ -56,7 +55,7 @@ public class Parser {
         if (typeOfTask.equals("deadline")) {
             if (!description.contains("/by")) {
                 throw new DukeException("There must be a deadline date for " + typeOfTask
-                        + ". Format must be event <description> /at dd/mm/yyyy <time> with time being 24h.");
+                        + ". Format must be event <description> /by dd/mm/yyyy <time> with time being 24h.");
             }
         } else if (typeOfTask.equals("event")) {
             if (!description.contains("/at")) {

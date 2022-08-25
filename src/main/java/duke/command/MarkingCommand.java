@@ -35,4 +35,3 @@ public class MarkingCommand extends Command {
         }
     }
 }
-

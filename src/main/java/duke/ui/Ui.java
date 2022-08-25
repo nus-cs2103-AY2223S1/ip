@@ -1,8 +1,9 @@
 package duke.ui;
 
-import duke.exception.DukeException;
 import duke.task.*;
+import duke.exception.DukeException;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -74,6 +75,4 @@ public class Ui {
     public void showFoundTask(String s) {
         showToUser(" Here are the matching tasks in your list:" + s);
     }
-
-
 }
