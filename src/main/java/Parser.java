@@ -14,6 +14,8 @@ enum InputType {
 }
 
 public class Parser {
+    private String DEFAULT_TIME_FORMAT = "dd/MM/yyyy HH:mm";
+    private DateTimeFormatter formatter;
 
     public ParsedData parse(InputType type, String input) throws AlanException {
         ParsedData result;
@@ -68,6 +70,13 @@ public class Parser {
         try {
             third = second[1].split(" ", 2);
             during = third[0];
+
+            try {
+                LocalDateTime dateTime = LocalDateTime.parse(third[1]);
+                return new ParsedData(task, during, dateTime);
+            } catch (DateTimeParseException e) {
+                System.out.println("You could entire the time in this format: dd/MM/yyyy HH:mm");
+            }
             time = third[1];
         } catch (IndexOutOfBoundsException exception) {
             throw new NoTimeException(command);

@@ -2,13 +2,14 @@ public class ParsedData {
     private boolean isDone;
     private String task;
     private String during;
-    private String time;
+    private String timeText;
+    private LocalDateTime dateTime;
     private int listIndex;
 
     public ParsedData(String task, String during, String time) {
         this.task = task;
         this.during = during;
-        this.time = time;
+        this.timeText = time;
     }
 
     public ParsedData(String status, String task, String during, String time) {
