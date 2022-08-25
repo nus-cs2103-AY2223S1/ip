@@ -1,14 +1,9 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Storage {
@@ -82,6 +77,7 @@ public class Storage {
                         break;
                 }
             }
+            sc.close();
         } catch (IOException e) {
             throw new DukeException("Sorry! I think I cannot read your file.");
         }
