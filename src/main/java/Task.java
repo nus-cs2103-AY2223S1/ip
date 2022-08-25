@@ -32,6 +32,7 @@ public class Task {
             } catch (DateTimeParseException e) {
                 System.out.println(e.getMessage().substring(e.getMessage().indexOf(": ") + 2));
             }
+            // for localtime 
             /* if (taskName.substring(taskName.indexOf("/") + 4).trim().length() != 0) {
                 String hhmm = taskName.substring(taskName.indexOf("/" + 16)).trim();
                 int hour = Integer.parseInt(hhmm.substring(0, 1));

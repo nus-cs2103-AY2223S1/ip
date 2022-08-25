@@ -1,6 +1,4 @@
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -35,12 +33,12 @@ public class Duke {
                     System.out.println(line + makeList(list) + line);
                 }
             } else if (userInput.startsWith("mark")) {
-                String task = userInput.substring(5);
+                String task = userInput.substring(4).trim();
                 String s = markDone(task, list);
                 System.out.println(line + s + line);
                 writeItems(list);
             } else if (userInput.startsWith("unmark")) {
-                String task = userInput.substring(7);
+                String task = userInput.substring(6).trim();
                 String s = unmarkDone(task, list);
                 System.out.println(line + s + line);
                 writeItems(list);
