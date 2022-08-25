@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.TaskList;
+import duke.Ui;
+
 /**
  * A class for the commands with just output.
  */

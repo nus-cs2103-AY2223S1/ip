@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * An empty duration exception for the Duke chatbot which extends from DukeException.
  */

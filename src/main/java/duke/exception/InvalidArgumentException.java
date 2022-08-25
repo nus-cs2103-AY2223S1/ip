@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * An invalid argument exception for the Duke chatbot which extends from DukeException.
  */

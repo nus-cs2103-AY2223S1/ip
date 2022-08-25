@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -34,6 +36,17 @@ public class Event extends Task {
     }
 
     /**
+     * Returns the string representation of the Event object to be stored in the file.
+     *
+     * @return The string representation of the Event object to be stored in the file.
+     */
+    @Override
+    public String toFile() {
+        String event = atDateTime != null ? atDateTime.format(DateTimeFormatter.ofPattern("d-MM-yyyy HH:mm")) : at;
+        return "E | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + event + "\n";
+    }
+
+    /**
      * Returns the string representation of the Event object.
      *
      * @return The string representation of the Event object.
@@ -42,15 +55,5 @@ public class Event extends Task {
     public String toString() {
         String event = atDateTime != null ? atDateTime.format(DateTimeFormatter.ofPattern("d-MM-yyyy HH:mm")) : at;
         return "[E]" + super.toString() + " (at: " + event + ")";
-    }
-
-    /**
-     * Returns the string representation of the Event object to be stored in the file.
-     *
-     * @return The string representation of the Event object to be stored in the file.
-     */
-    @Override
-    public String toFile() {
-        return "E | " + (this.isDone ? "1 | " : "0 | ") + this.description + " | " + this.at + "\n";
     }
 }

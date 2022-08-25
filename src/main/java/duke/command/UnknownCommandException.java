@@ -1,3 +1,7 @@
+package duke.command;
+
+import duke.exception.DukeException;
+
 /**
  * An unknown command exception for the Duke chatbot which extends from DukeException.
  */

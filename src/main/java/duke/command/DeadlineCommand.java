@@ -1,3 +1,12 @@
+package duke.command;
+
+import duke.TaskList;
+import duke.Ui;
+import duke.exception.EmptyDurationException;
+import duke.exception.EmptyTaskException;
+import duke.exception.InvalidArgumentException;
+import duke.task.Deadline;
+
 /**
  * A class for the deadline command.
  */

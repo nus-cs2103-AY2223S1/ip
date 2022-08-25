@@ -1,3 +1,10 @@
+package duke.command;
+
+import duke.TaskList;
+import duke.Ui;
+import duke.exception.InvalidTaskNumberException;
+import duke.task.Task;
+
 /**
  * A class for the delete command.
  */

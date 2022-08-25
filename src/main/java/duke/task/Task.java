@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * An general task object.
  */

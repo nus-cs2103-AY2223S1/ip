@@ -1,3 +1,9 @@
+package duke;
+
+import duke.command.Command;
+import duke.command.Parser;
+import duke.exception.DukeException;
+
 /**
  * Creates a chatbot named Duke.
  */
