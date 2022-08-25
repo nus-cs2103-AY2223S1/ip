@@ -17,6 +17,7 @@ public class ParserTest {
         try {
             Parser.getByDate(input);
         } catch (DukeTaskDateTimeMissingException exception) {
+            String temp = exception.getMessage();
             assertEquals(exception.getMessage(), Parser.TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
         } catch (Exception exception) {
             fail();

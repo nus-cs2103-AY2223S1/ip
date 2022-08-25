@@ -10,20 +10,20 @@ import java.time.format.DateTimeParseException;
 public class Parser {
 
     public static final String INPUT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    private static final String DELIMITER = Duke.DELIMITER;
-    private static final String BY_DATE_DELIMITER = Duke.BY_DATE_DELIMITER;
-    private static final String AT_DATE_DELIMITER = Duke.AT_DATE_DELIMITER;
-    private static final String EVENT_WITHOUT_AT_ERROR_MESSAGE =
+    public static final String DELIMITER = Duke.DELIMITER;
+    public static final String BY_DATE_DELIMITER = Duke.BY_DATE_DELIMITER;
+    public static final String AT_DATE_DELIMITER = Duke.AT_DATE_DELIMITER;
+    public static final String EVENT_WITHOUT_AT_ERROR_MESSAGE =
             "Oops! You didn't specify the date and time with the delimiter " + AT_DATE_DELIMITER;
-    private static final String DEADLINE_WITHOUT_BY_ERROR_MESSAGE =
+    public static final String DEADLINE_WITHOUT_BY_ERROR_MESSAGE =
             "Oops! You didn't specify the date and time with the delimiter " + BY_DATE_DELIMITER;
-    private static final String INDEX_MISSING_ERROR_MESSAGE =
+    public static final String INDEX_MISSING_ERROR_MESSAGE =
             "Oops! You didn't specify the index, starting from 1.";
-    private static final String TASK_TITLE_MISSING_ERROR_MESSAGE =
+    public static final String TASK_TITLE_MISSING_ERROR_MESSAGE =
             "Oops! You didn't specify the title of the task.";
-    private static final String TASK_DATE_TIME_MISSING_ERROR_MESSAGE =
-            "Oops! You didn't specify the title of the task.";
-    private static final String DATE_TIME_FORMAT_ERROR_MESSAGE =
+    public static final String TASK_DATE_TIME_MISSING_ERROR_MESSAGE =
+            "Oops! You didn't specify the date and time of the task.";
+    public static final String DATE_TIME_FORMAT_ERROR_MESSAGE =
             "Oops! The date and time should follow the format: " + INPUT_DATE_TIME_FORMAT;
 
     public static int getIndexOfFirstOccurrence(String input, String pattern) {
