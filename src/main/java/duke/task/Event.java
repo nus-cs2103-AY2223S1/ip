@@ -5,6 +5,13 @@ import java.time.format.DateTimeFormatter;
 
 public class Event extends Task{
     private LocalDateTime time;
+
+    /**
+     * Creates a task that has an associated description and the time it happens.
+     * @param task {@inheritDoc}
+     * @param time The time of the task, in LocalDateTime format.
+     * @see java.time.LocalDateTime
+     */
     public Event(String task, LocalDateTime time) {
         super(task);
         this.time = time;

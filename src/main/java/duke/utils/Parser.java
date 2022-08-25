@@ -22,6 +22,14 @@ import java.time.format.DateTimeParseException;
 
 public class Parser {
 
+    /**
+     * Takes in the input from the user and generates the associated Command accordingly.
+     * @param input String input from the user.
+     * @return Command task
+     * @throws DukeException If input is not of the specified formats.
+     * @see duke.command.Command
+     * @see duke.exception.DukeException
+     */
     public Command parse(String input) throws DukeException {
         String[] strings = input.split(" ", 2);
         if (strings.length == 1) { //input is guaranteed to not be empty

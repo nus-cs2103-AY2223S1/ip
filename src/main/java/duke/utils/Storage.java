@@ -18,6 +18,10 @@ import java.util.List;
 
 public class Storage {
 
+    /**
+     * Saves the current task list of the user into the duke/duke.txt file in the project root folder.
+     * @param tasks Task list of the user.
+     */
     public void save(List<Task> tasks)  {
         try {
             //duke.txt will always exist since we have already created it upon loading up the duke program
@@ -47,6 +51,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads the duke/duke.txt file in the project root folder and generates the task list accordingly.
+     * @return The task list for the Duke program.
+     */
     public List<Task> read() {
         ArrayList<Task> tasks = new ArrayList<>();
         String path = System.getProperty("user.dir") + System.getProperty("file.separator") + "duke";

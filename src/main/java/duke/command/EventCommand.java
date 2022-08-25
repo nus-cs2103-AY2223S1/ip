@@ -17,6 +17,13 @@ public class EventCommand extends Command{
         this.time = time;
     }
 
+    /**
+     * Generates and saves an Event task in the task list.
+     *
+     * @param storage {@inheritDoc}
+     * @param ui {@inheritDoc}
+     * @param taskList {@inheritDoc}
+     */
     @Override
     public void execute(Storage storage, UI ui, TaskList taskList) {
         Task task = new Event(taskDetails, time);

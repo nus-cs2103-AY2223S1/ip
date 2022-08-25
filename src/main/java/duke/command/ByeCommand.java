@@ -6,6 +6,13 @@ import duke.utils.UI;
 
 public class ByeCommand extends Command{
 
+    /**
+     * Exits the program.
+     *
+     * @param storage {@inheritDoc}
+     * @param ui {@inheritDoc}
+     * @param taskList {@inheritDoc}
+     */
     @Override
     public void execute(Storage storage, UI ui, TaskList taskList) {
         System.out.println("Bye. Hope to see you again soon!");

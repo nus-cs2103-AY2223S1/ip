@@ -16,6 +16,13 @@ public class DeadlineCommand extends Command{
         this.time = time;
     }
 
+    /**
+     * Generates and saves a Deadline task in the task list.
+     *
+     * @param storage {@inheritDoc}
+     * @param ui {@inheritDoc}
+     * @param taskList {@inheritDoc}
+     */
     @Override
     public void execute(Storage storage, UI ui, TaskList taskList) {
         Task task = new Deadline(taskDetails, time);
