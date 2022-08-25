@@ -5,6 +5,9 @@ import java.time.format.DateTimeFormatter;
 
 import duke.exception.DukeException;
 
+/**
+ * Represents a task of type Deadline.
+ */
 public class Deadline extends Task {
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
     protected LocalDate date;

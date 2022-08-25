@@ -2,6 +2,9 @@ package duke.task;
 
 import duke.exception.DukeException;
 
+/**
+ * Represents a task of type ToDo.
+ */
 public class ToDo extends Task {
 
     public ToDo(String description) throws DukeException {

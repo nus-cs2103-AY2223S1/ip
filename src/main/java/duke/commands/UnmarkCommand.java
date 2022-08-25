@@ -6,6 +6,9 @@ import duke.task.List;
 import duke.task.Task;
 import duke.ui.Ui;
 
+/**
+ * Marks a task as not done.
+ */
 public class UnmarkCommand extends Command {
 
     public static final String UNMARK_COMMAND = "unmark";

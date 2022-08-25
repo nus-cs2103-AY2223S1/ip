@@ -14,8 +14,17 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
+/**
+ * Parses user input.
+ */
 public class Parser {
 
+    /**
+     * Parses user input into command for execution.
+     *
+     * @param userInput full user input string
+     * @return the command based on the user input
+     */
     public static Command parse(String userInput) throws DukeException {
         String commandWord = userInput.trim().split(" ", 2)[0];
         String arguments;

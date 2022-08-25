@@ -4,6 +4,9 @@ import java.util.ArrayList;
 
 import duke.exception.DukeException;
 
+/**
+ * Represents a list used to store tasks.
+ */
 public class List {
 
     private ArrayList<Task> taskList = new ArrayList<>();
