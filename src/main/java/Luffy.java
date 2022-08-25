@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -82,7 +84,8 @@ public class Luffy {
                 } else if (s.length() >= 8 && s.substring(0, 8).equals("deadline")){
                     try {
                         String[] splitString = s.split(" /by ");
-                        newTask = new Deadline(splitString[0].substring(9), splitString[1]);
+                        LocalDate deadlineDate = LocalDate.parse(splitString[1]);
+                        newTask = new Deadline(splitString[0].substring(9), deadlineDate.toString());
                     } catch (StringIndexOutOfBoundsException e) {
                         System.out.println("☹ OOPS!!! The description of a deadline cannot be empty.");
                         System.out.println("------------------------------------------------------");
@@ -91,17 +94,26 @@ public class Luffy {
                         System.out.println("☹ OOPS!!! The date of a deadline cannot be empty.");
                         System.out.println("------------------------------------------------------");
                         continue;
+                    } catch (DateTimeParseException e) {
+                        System.out.println("☹ OOPS!!! The date of a deadline must be in format yyyy-mm-dd.");
+                        System.out.println("------------------------------------------------------");
+                        continue;
                     }
                 } else if (s.length() >= 5 && s.substring(0, 5).equals("event")) {
                     try {
                         String[] splitString = s.split(" /at ");
-                        newTask = new Event(splitString[0].substring(6), splitString[1]);
+                        LocalDate eventDate = LocalDate.parse(splitString[1]);
+                        newTask = new Event(splitString[0].substring(6), eventDate.toString());
                     } catch (StringIndexOutOfBoundsException e) {
                         System.out.println("☹ OOPS!!! The description of a event cannot be empty.");
                         System.out.println("------------------------------------------------------");
                         continue;
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("☹ OOPS!!! The period of an event cannot be empty.");
+                        System.out.println("------------------------------------------------------");
+                        continue;
+                    } catch (DateTimeParseException e) {
+                        System.out.println("☹ OOPS!!! The date of a deadline must be in format yyyy-mm-dd.");
                         System.out.println("------------------------------------------------------");
                         continue;
                     }
