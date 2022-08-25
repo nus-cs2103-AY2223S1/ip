@@ -15,6 +15,28 @@ public class TaskList {
         return taskList;
     }
 
+    public void find(String description) {
+        ArrayList<Task> relatedTaskList = new ArrayList<Task>();
+
+        for (int i = 0; i < taskList.size(); ++i) {
+            Task task = taskList.get(i);
+            if (task.getDescription().toLowerCase().matches(("(.*)" + description + "(.*)").toLowerCase())) {
+                relatedTaskList.add(task);
+            }
+        }
+
+        String response = UI.findingRelatedTask;
+
+        if (relatedTaskList.size() <= 0) {
+            response += UI.noRelatedTaskFound;
+        } else {
+            for (int i = 1; i <= relatedTaskList.size(); ++i) {
+                response += (i + ". " + relatedTaskList.get(i - 1).toString()) + "\n";
+            }
+        }
+        UI.printResponse(response);
+    }
+
     public void add(Task task) {
         taskList.add(task);
         UI.printResponse("Got it. I've added this task:\n" + task.toString() + "\n" + "Now you have " + taskList.size() + " tasks in the list.\n");

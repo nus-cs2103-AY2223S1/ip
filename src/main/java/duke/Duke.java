@@ -35,7 +35,7 @@ public class Duke {
                     String[] commands = input.split(" ");
 
                     if (commands.length < 2) {
-                        throw new DukeException("Duke.Task description cannot be empty!");
+                        throw new DukeException("Please elaborate more hehehe...\n");
                     }
 
                     if (commands[0].equals("mark") || commands[0].equals("unmark") || commands[0].equals("delete")) {
@@ -48,8 +48,11 @@ public class Duke {
                         } else if (commands[0].equals("delete")) {
                             taskList.deleteTask(index);
                         } else {
-                            throw new DukeException("I do not understand that command :(");
+                            throw new DukeException("I do not understand that command :(\n");
                         }
+                    } else if (commands[0].equals("find")) {
+                        String description = commands[1];
+                        taskList.find(description);
                     } else {
                         Task newTask;
                         if (commands[0].equals("todo")) {
@@ -59,9 +62,8 @@ public class Duke {
                         } else if (commands[0].equals("event")) {
                             newTask = parser.generateEventFromInput(input);
                         } else {
-                            throw new DukeException("I do not understand that command :(");
+                            throw new DukeException("I do not understand that command :(\n");
                         }
-
                         taskList.add(newTask);
                     }
                 } catch (DukeException e) {

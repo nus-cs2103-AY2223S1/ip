@@ -6,6 +6,8 @@ public class UI {
     public static String taskListOpening = "Finding your task list...\n" + "Found it! Here are what you have to do:\n";
     public static String noListFound = "Congrats! You have finished all your task!\n";
 
+    public static String findingRelatedTask = "Let me find tasks that match your description...\n";
+    public static String noRelatedTaskFound = "I cannot find any tasks that match that description :(\n";
     public static void printResponse(String response) {
         System.out.println(breakLine);
         System.out.println(response);
