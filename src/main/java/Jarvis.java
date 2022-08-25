@@ -7,9 +7,9 @@ public class Jarvis {
         Scanner inputScanner = new Scanner(System.in);
 
         String userInput;
-        String introduction = "Hello! I'm Jarvis \n"
-                + "What can I do for you?";
-        String farewell = "Bye. Hope to see you again soon!";
+        String introduction = "Hello. I am Jarvis \n"
+                + "What can I do for you today?";
+        String farewell = "Goodbye, have a good day.";
 
         List<Task> taskList = new ArrayList<>();
 
@@ -37,7 +37,7 @@ public class Jarvis {
                 if (userInput.length() > 4 && userInput.substring(0, 4).equals("mark")) {
                     int toMark = Integer.parseInt(userInput.substring(5)) - 1;
                     taskList.get(toMark).mark();
-                    String markResponse = "Nice! I've marked this task as done:\n ";
+                    String markResponse = "Great. I have marked this task as done:\n ";
                     System.out.println(markResponse + taskList.get(toMark).toString());
                     continue;
                 }
@@ -45,7 +45,7 @@ public class Jarvis {
                 if (userInput.length() > 6 && userInput.substring(0, 6).equals("unmark")) {
                     int toMark = Integer.parseInt(userInput.substring(7)) - 1;
                     taskList.get(toMark).unmark();
-                    String markResponse = "Ok, I've marked this task as not done yet:\n ";
+                    String markResponse = "Ok, I have marked this task as not done yet:\n ";
                     System.out.println(markResponse + taskList.get(toMark).toString());
                     continue;
                 }
@@ -54,7 +54,7 @@ public class Jarvis {
                     int toDelete = Integer.parseInt(userInput.substring(7)) - 1;
                     Task deleteTask = taskList.get(toDelete);
                     taskList.remove(toDelete);
-                    String deleteResponse = "Noted. I've removed this task:\n ";
+                    String deleteResponse = "Noted. I have removed this task:\n ";
                     System.out.println(deleteResponse + deleteTask.toString());
                     continue;
                 }
@@ -68,6 +68,7 @@ public class Jarvis {
                     taskList.add(new ToDo(description));
                     System.out.println("Got it. I've added this task:\n " + taskList.get(Task.count - 1)
                             + "\nNow you have " + (Task.count) + " tasks in the list.");
+                    continue;
                 }
 
                 //if userinput equals deadline add new deadline task to list
@@ -78,6 +79,7 @@ public class Jarvis {
                     taskList.add(new Deadline(description, date));
                     System.out.println("Got it. I've added this task:\n " + taskList.get(Task.count - 1)
                             + "\nNow you have " + (Task.count) + " tasks in the list.");
+                    continue;
                 }
                 //if userinput equals event add new event task to list
                 if (userInput.length() > 7 && userInput.substring(0, 5).equals("event")) {
@@ -87,11 +89,12 @@ public class Jarvis {
                     taskList.add(new Event(description, date));
                     System.out.println("Got it. I've added this task:\n " + taskList.get(Task.count - 1)
                             + "\nNow you have " + (Task.count) + " tasks in the list.");
+                    continue;
                 }
                 throw new JarvisException("I'm sorry, but I don't know what that means");
             }
 
-            System.out.println(farewell);
+            System.out.print(farewell);
         }
         catch (JarvisException e) {
             System.out.println((e.toString()));
