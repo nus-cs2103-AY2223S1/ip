@@ -1,6 +1,6 @@
 import java.util.List;
 
-public class Formatter {
+public class Ui {
     public String basic(String reply) {
         return addSeparator(reply);
     }

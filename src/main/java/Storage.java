@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-public class AlanIO {
+public class Storage {
     private Path dirPath = Paths.get("data");
     private Path fileNamePath = Paths.get("alan.txt");
     private Path filePath = dirPath.resolve(fileNamePath);
@@ -19,7 +19,7 @@ public class AlanIO {
     private final File SAVE_FILE;
     private BufferedWriter writer;
 
-    public AlanIO() throws AlanException {
+    public Storage() throws AlanException {
         this.SAVE_DIR = new File(dirPath.toString());
         this.SAVE_FILE = new File(filePath.toString());
         try {
@@ -30,7 +30,7 @@ public class AlanIO {
         }
     }
 
-    public AlanIO(Path directory, Path file) throws AlanException {
+    public Storage(Path directory, Path file) throws AlanException {
         this.dirPath = directory;
         this.fileNamePath = file;
         this.filePath = dirPath.resolve(fileNamePath);

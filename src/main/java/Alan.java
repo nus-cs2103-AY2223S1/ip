@@ -6,22 +6,22 @@ import java.util.Scanner;
 
 public class Alan {
     public static Alan instance;
-    private AlanIO alanIO;
+    private Storage alanIO;
     private final Scanner input;
-    private final Formatter formatter;
+    private final Ui ui;
     private final FileParser fileParser;
     private final Executor executor;
-    private List<Task> taskList;
+    private TaskList taskList;
 
     private Alan() {
         this.input = new Scanner(System.in);
-        this.formatter = new Formatter();
+        this.ui = new Ui();
         this.executor = new Executor();
-        this.taskList = new ArrayList<>();
+        this.taskList = new TaskList();
         this.fileParser = new FileParser();
 
         try {
-            this.alanIO = new AlanIO();
+            this.alanIO = new Storage();
         } catch(AlanException e) {
             executor.excException(e.getMessage());
         }
@@ -36,7 +36,7 @@ public class Alan {
 
     private void start() {
         try {
-            this.taskList = fileParser.parseFile(alanIO.read());
+            this.taskList = new TaskList(fileParser.parseFile(alanIO.read()));
         } catch (AlanException e) {
             executor.excException(e.getMessage());
         }
@@ -81,7 +81,7 @@ public class Alan {
                         // TODO: 18/8/22
                         break;
                     default:
-                        System.out.println(formatter.invalid());
+                        System.out.println(ui.invalid());
                         break;
                 }
             } catch (AlanException exception) {
@@ -89,7 +89,7 @@ public class Alan {
             }
         }
 
-        System.out.println(formatter.basic("Goodbye! See you soon!") );
+        System.out.println(ui.basic("Goodbye! See you soon!") );
     }
 
     // Prints a greeting
