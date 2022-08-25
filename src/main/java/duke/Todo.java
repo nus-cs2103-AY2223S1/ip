@@ -1,3 +1,4 @@
+package duke;
 public class Todo extends Task {
 
     /**
@@ -8,11 +9,8 @@ public class Todo extends Task {
      * @param description The description of the task.
      * @throws DukeException
      */
-    public Todo(String description) throws DukeException {
+    public Todo(String description) {
         super(description);
-        if (description.length() == 0) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-        }
     }
 
     @Override

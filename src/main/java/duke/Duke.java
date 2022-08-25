@@ -1,3 +1,5 @@
+package duke;
+
 public class Duke {
     private static Storage save;
     private static Ui ui;

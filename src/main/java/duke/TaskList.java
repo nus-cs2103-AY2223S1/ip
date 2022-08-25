@@ -1,3 +1,4 @@
+package duke;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,22 +25,18 @@ public class TaskList {
     public void addTask(String command) {
 
         if (command.startsWith("todo")) {
-            try {
-                if (command.length() <= 5) {
-                    throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-                }
-
-                Task newTask = new Todo(command.substring(5));
-                storage.add(newTask);
-                saveFile.addTask(newTask.toStore());
-            } catch (DukeException e) {
+            if (command.length() <= 5) {
                 Ui.emptyDescription("Todo");
                 return;
             }
+
+            Task newTask = new Todo(command.substring(5));
+            storage.add(newTask);
         } else if (command.startsWith("deadline")) {
             try {
                 if (command.length() <= 9) {
-                    throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                    Ui.emptyDescription("Deadline");
+                    return;
                 }
 
                 String[] temp = command.substring(9).split("/by ");
@@ -47,27 +44,20 @@ public class TaskList {
                 Task newTask = new Deadline(temp[0], temp[1]);
                 storage.add(newTask);
                 saveFile.addTask(newTask.toStore());
-            } catch (IndexOutOfBoundsException | DukeException e) {
-                Ui.emptyDescription("Deadline");
-                return;
             } catch (DateTimeParseException e) {
                 Ui.wrongDateFormat();
             }
         } else if (command.startsWith("event")) {
-            try {
-                if (command.length() <= 6) {
-                    throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
-                }
-
-                String[] temp = command.substring(6).split("/at ");
-
-                Task newTask = new Event(temp[0], temp[1]);
-                storage.add(newTask);
-                saveFile.addTask(newTask.toStore());
-            } catch (IndexOutOfBoundsException | DukeException e) {
+            if (command.length() <= 6) {
                 Ui.emptyDescription("Event");
                 return;
             }
+
+            String[] temp = command.substring(6).split("/at ");
+
+            Task newTask = new Event(temp[0], temp[1]);
+            storage.add(newTask);
+            saveFile.addTask(newTask.toStore());
         } else {
             Ui.unknownCommand();
         }
