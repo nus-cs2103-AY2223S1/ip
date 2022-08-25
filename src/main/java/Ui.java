@@ -32,7 +32,8 @@ public class Ui {
      * Marks the task at the taskIndex in the list as done.
      * @param taskIndex position of the task in the list (1-indexed)
      */
-    public void markTaskAsDone(int taskIndex, List<Task> tasks) throws NoTasksException, InvalidTaskIndexException {
+    public void markTaskAsDone(int taskIndex, List<Task> tasks)
+            throws NoTasksException, InvalidTaskIndexException {
         if (tasks.isEmpty()) {
             throw new NoTasksException();
         }
@@ -49,7 +50,8 @@ public class Ui {
      * Marks the task at the taskIndex in the list as not done.
      * @param taskIndex position of the task in the list (1-indexed)
      */
-    public void markTaskAsNotDone(int taskIndex, List<Task> tasks) throws NoTasksException, InvalidTaskIndexException {
+    public void markTaskAsNotDone(int taskIndex, List<Task> tasks)
+            throws NoTasksException, InvalidTaskIndexException {
         if (tasks.isEmpty()) {
             throw new NoTasksException();
         }

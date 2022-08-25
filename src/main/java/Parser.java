@@ -70,7 +70,8 @@ public class Parser {
                     // when none of the commands match
                     throw new UnknownCommandException();
                 }
-            } catch (EmptyNameException | UnknownCommandException | NoTasksException | InvalidTaskIndexException e) {
+            } catch (EmptyNameException | UnknownCommandException
+                    | NoTasksException | InvalidTaskIndexException e) {
                 System.out.println(e.getMessage());
             }
         }
