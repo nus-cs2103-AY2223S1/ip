@@ -6,10 +6,12 @@ import duke.parse.Parser;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * The main class of chatbot Duke.
+ */
 
 public class Duke {
 
@@ -18,6 +20,10 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructor for the Duke object.
+     * @param filePath The string for the file that has the previously saved tasks.
+     */
     public Duke(String filePath) {
         parser = new Parser();
         storage = new Storage();
@@ -33,6 +39,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the chatbot until the user decide to exit.
+     */
     public void run() {
         ui.displayHello();
         boolean isExit = false;

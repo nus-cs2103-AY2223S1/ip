@@ -8,8 +8,18 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Part of the chatbot that deals with user commands.
+ */
 public class Parser {
 
+    /**
+     * Return the appropriate command after parsing the user input if its valid.
+     * @param input The user input.
+     * @return The command that the user input.
+     * @throws InvalidInputException When the user inputs an invalid command.
+     * @throws MissingDescriptionException When the user did not input the description after the command.
+     */
     public Command parse(String input) throws InvalidInputException, MissingDescriptionException {
         Command commandToReturn = null;
         String[] inputSpilt = input.split(" ", 2);
