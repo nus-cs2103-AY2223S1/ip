@@ -1,6 +1,7 @@
 package duke;
 
 import java.time.format.DateTimeParseException;
+import java.util.NoSuchElementException;
 
 public class Duke {
     private static boolean isAlive;
@@ -95,10 +96,15 @@ public class Duke {
 
         isAlive = true;
         while (isAlive) {
-            String in;
-            in = ui.getLine();
-            String[] splits = parser.splitOnFirst(in, " ");
-            ui.respond(handle(splits[0], splits[1]));
+            try {
+                String in;
+                in = ui.getLine();
+                String[] splits = parser.splitOnFirst(in, " ");
+                ui.respond(handle(splits[0], splits[1]));
+            } catch (NoSuchElementException e) {
+                isAlive = false;
+                ui.respond(handle("bye",""));
+            }
         }
     }
 }
