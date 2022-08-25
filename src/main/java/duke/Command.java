@@ -1,3 +1,5 @@
+package duke;
+
 public enum Command {
     TODO("todo"),
     DEADLINE("deadline"),

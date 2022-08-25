@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package duke;
+
+import duke.exception.DukeException;
+import duke.task.Task;
 
 /**
  * This class handles the interactions with the user.

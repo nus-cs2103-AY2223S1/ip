@@ -1,3 +1,5 @@
+package duke;
+
 /**
  * This class handles the logic of extrapolating the keywords from the whole command.
  */

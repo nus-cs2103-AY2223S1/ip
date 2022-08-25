@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.format.DateTimeFormatter;
 
 // This class encapsulates the logic of a task
@@ -5,8 +7,8 @@ public abstract class Task {
     /* Task Information */
     protected String description;
     protected boolean isDone;
-    protected final static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-    protected final static DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy HHmm");
+    public final static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public final static DateTimeFormatter OUTPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("MMM d yyyy HHmm");
 
     /**
      * Constructor for a Task.
