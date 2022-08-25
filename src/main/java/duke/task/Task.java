@@ -15,7 +15,8 @@ public abstract class Task {
     // TODO: Try to combine the string literals in line with duke.task.TaskType
 
     public static Task createFromCommand(String input)
-            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException {
+            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
+            DukeDateTimeFormatException {
         String firstWord = CommandParser.getFirstWord(input);
 
         String taskTitle = "";

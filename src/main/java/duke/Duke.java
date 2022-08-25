@@ -72,7 +72,8 @@ public class Duke {
     }
 
     private String addNewTask(String input)
-            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException {
+            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
+            DukeDateTimeFormatException {
         Task newTask = Task.createFromCommand(input);
         if (newTask == null) {
             return GENERAL_ERROR_STRING;
