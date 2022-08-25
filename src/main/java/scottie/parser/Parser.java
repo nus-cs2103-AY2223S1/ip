@@ -8,9 +8,19 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * A utility class for parsing user input into Instructions.
+ */
 public class Parser {
     private static final String FLAG_REGEX = " /(\\w+) ";
 
+    /**
+     * Parses a string into an Instruction.
+     *
+     * @param userInput The string to parse.
+     * @return The resulting Instruction.
+     * @throws InvalidCommandException If the command name in the string is not a valid command.
+     */
     public static Instruction parse(String userInput) throws InvalidCommandException {
         String[] splitUserInput = userInput.split(" ", 2);
         String commandName = splitUserInput[0];
