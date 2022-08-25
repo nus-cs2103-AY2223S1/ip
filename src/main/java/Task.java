@@ -26,7 +26,12 @@ public class Task {
     }
 
     public LocalDateTime getDateTime() {
-        return LocalDateTime.of(0,1,1,0,0);
+        return LocalDateTime.of(0, 1, 1, 0, 0);
+    }
+
+    public String getWriteString() {
+        String marked = this.isDone() ? "1" : "0";
+        return String.format("%s | %s", marked, this.description);
     }
 
     @Override
