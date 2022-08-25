@@ -6,7 +6,7 @@ import java.util.Scanner;
  * UserInput is a class that deals with interactions with the user.
  */
 public class UserInput {
-    Scanner scanner = new Scanner(System.in);
+    private Scanner scanner = new Scanner(System.in);
 
     private String taskType;
     private String rest;

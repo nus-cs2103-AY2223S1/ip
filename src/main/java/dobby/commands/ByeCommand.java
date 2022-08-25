@@ -1,11 +1,11 @@
 package dobby.commands;
 
+import java.io.IOException;
+
 import dobby.DobbyChat;
+import dobby.DobbyIO;
 import dobby.DobbyList;
 import dobby.UserInput;
-import dobby.DobbyIO;
-
-import java.io.IOException;
 
 /**
  * Class that saves the list and marks the bye flag.

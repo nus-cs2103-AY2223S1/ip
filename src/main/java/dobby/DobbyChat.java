@@ -1,13 +1,13 @@
 package dobby;
 
-import dobby.tasks.*;
+import dobby.tasks.Task;
 
 /**
  * DobbyChat is a class that handles various outputs Dobby will give.
  */
 public class DobbyChat {
-    private static final String hello = "Hello! I'm Dobby\n" +
-            "\t" + "How can I help you?";
+    private static final String hello = "Hello! I'm Dobby\n"
+            + "\t" + "How can I help you?";
     private static final String bye = "Byebye. Dobby will miss you!";
     private static final String line = "\t----------------------------------------------";
 
