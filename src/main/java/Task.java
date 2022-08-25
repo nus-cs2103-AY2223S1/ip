@@ -16,7 +16,7 @@ public class Task {
     }
 
     public String toDataString(String separator) {
-        return String.format("%s%d%s", separator, isDone, description);
+        return String.format("%s%d%s", separator, (this.isDone) ? 1 : 0, this.description);
     }
 
     @Override

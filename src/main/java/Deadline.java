@@ -9,11 +9,11 @@ public class Deadline extends Task {
 
     @Override
     public String toDataString(String separator) {
-        return String.format("%s%s%s%s", ICON, super.toDataString(separator), separator, dateString);
+        return String.format("%s%s%s%s", ICON, super.toDataString(separator), separator, this.dateString);
     }
 
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: %s)", ICON, super.toString(), dateString);
+        return String.format("[%s]%s (by: %s)", ICON, super.toString(), this.dateString);
     }
 }
