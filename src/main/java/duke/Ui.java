@@ -34,4 +34,9 @@ public class Ui {
     public void showInvalidTaskIndexError() {
         printOut("This task number is invalid!");
     }
+
+    public void showTaskAddedMessage(Task task, TaskList tasks) {
+        printOut("Okay, I've added this task:\n" + task.toString() +
+                "\nYou now have " + tasks.size() + " tasks.");
+    }
 }
