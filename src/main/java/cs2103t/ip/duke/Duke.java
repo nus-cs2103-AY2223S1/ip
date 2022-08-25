@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 public class Duke {
 
-    public static final String folderPath = "../data";
-    public static final String filePath = "../data/duke.txt";
+    public static final String FOLDER_PATH = "../data";
+    public static final String FILE_PATH = "../data/duke.txt";
 
     private Storage storage;
     private Tasklist tasks;
@@ -17,7 +17,7 @@ public class Duke {
     private Parser parser;
 
     public Duke() {
-        storage = new Storage(folderPath, filePath);
+        storage = new Storage(FOLDER_PATH, FILE_PATH);
         ui = new Ui();
         parser = new Parser();
         try {
@@ -41,9 +41,9 @@ public class Duke {
                     Task task = tasks.getTasks().get(i);
                     String toSave = task.saveString();
                     if (i == 0) {
-                        storage.writeToFile(filePath, toSave);
+                        storage.writeToFile(FILE_PATH, toSave);
                     } else {
-                        storage.appendToFile(filePath, toSave);
+                        storage.appendToFile(FILE_PATH, toSave);
                     }
                 }
                 ui.showBye();
@@ -99,24 +99,34 @@ public class Duke {
                     int taskNum = Integer.parseInt(input.substring(7));
                     Task toDelete = tasks.getTasks().get(taskNum - 1);
                     tasks.deleteTasks(taskNum - 1);
-                    index --;
+                    index--;
                     ui.showDelete(toDelete, index);
                 } else {
                     throw new DukeException("☹ OOPS!!! Please include the index of the task you'd like to delete!");
                 }
-            }
-            else {
+            } else if (parser.isFind(input)) {
+                if (input.length() > 5) {
+                    ArrayList<Task> arr = new ArrayList<>();
+                    Tasklist filteredTasks = new Tasklist(arr);
+                    for (Task t : tasks.getTasks()) {
+                        if (t.toString().contains(input.substring(5))) {
+                            filteredTasks.addTasks(t);
+                        }
+                    }
+                    ui.showFilteredList(filteredTasks, filteredTasks.size());
+                }
+            } else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
     }
 
     public static void main(String[] args) {
-       Duke duke = new Duke();
-       try {
-           duke.dukeRun();
-       } catch (Exception e) {
-           System.out.println(e.getMessage());
-       }
+        Duke duke = new Duke();
+        try {
+            duke.dukeRun();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
