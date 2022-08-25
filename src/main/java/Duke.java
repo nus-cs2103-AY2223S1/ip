@@ -13,6 +13,7 @@ public class Duke {
         DEADLINE,
         EVENT
     }
+
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -36,100 +37,99 @@ public class Duke {
                     continue;
                 }
                 switch (type) {
-                    case BYE:
-                        break outer;
-                    case MARK: {
-                        int selectedTask = in.nextInt();
-                        if (selectedTask > tasks.size()) {
-                            System.out.println("No such task");
-                        } else {
-                            Task t = tasks.get(selectedTask - 1);
-                            t.markAsDone();
-                            System.out.println("Nice! I've marked this task as done:\n" + t);
-                        }
-                        break;
+                case BYE:
+                    break outer;
+                case MARK: {
+                    int selectedTask = in.nextInt();
+                    if (selectedTask > tasks.size()) {
+                        System.out.println("No such task");
+                    } else {
+                        Task t = tasks.get(selectedTask - 1);
+                        t.markAsDone();
+                        System.out.println("Nice! I've marked this task as done:\n" + t);
                     }
-                    case UNMARK: {
-                        int selectedTask = in.nextInt();
-                        if (selectedTask > tasks.size()) {
-                            System.out.println("No such task");
-                        } else {
-                            Task t = tasks.get(selectedTask - 1);
-                            t.markAsNotDone();
-                            System.out.println("OK, I've marked this task as not done yet:\n" + t);
-                        }
-                        break;
+                    break;
+                }
+                case UNMARK: {
+                    int selectedTask = in.nextInt();
+                    if (selectedTask > tasks.size()) {
+                        System.out.println("No such task");
+                    } else {
+                        Task t = tasks.get(selectedTask - 1);
+                        t.markAsNotDone();
+                        System.out.println("OK, I've marked this task as not done yet:\n" + t);
                     }
-                    case DELETE: {
-                        int selectedTask = in.nextInt();
-                        if (selectedTask > tasks.size()) {
-                            System.out.println("No such task");
-                        } else {
-                            Task t = tasks.remove(selectedTask - 1);
-                            int length = tasks.size();
-                            String output = length == 1 ? " task in the list." : " tasks in the list.";
-                            System.out.println("Noted. I've removed this task:\n" + t +
-                                    "\nNow you have " + length + output);
-                        }
-                        break;
-                    }
-                    case LIST: {
-                        int length = tasks.size();
-                        System.out.println("Here are the tasks in your list:");
-                        for (int i = 0; i < length; i++) {
-                            System.out.println(i + 1 + ". " + tasks.get(i));
-                        }
-                        break;
-                    }
-                    case TODO: {
-                        s = in.nextLine();
-                        if (s.length() < 2) {
-                            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-                        }
-                        s = s.substring(1);
-                        Task t = new Todo(s);
-                        tasks.add(t);
+                    break;
+                }
+                case DELETE: {
+                    int selectedTask = in.nextInt();
+                    if (selectedTask > tasks.size()) {
+                        System.out.println("No such task");
+                    } else {
+                        Task t = tasks.remove(selectedTask - 1);
                         int length = tasks.size();
                         String output = length == 1 ? " task in the list." : " tasks in the list.";
-                        System.out.println("Got it. I've added this task:\n" + t +
+                        System.out.println("Noted. I've removed this task:\n" + t +
                                 "\nNow you have " + length + output);
-                        break;
                     }
-                    case DEADLINE: {
-                        StringBuilder desc = new StringBuilder();
-                        String token;
-                        while (!(token = in.next()).equals("/by")) {
-                            desc.append(" " + token);
-                        }
-                        s = in.nextLine();
-                        s = s.substring(1);
-                        Task t = new Deadline(desc.toString().substring(1), s);
-                        tasks.add(t);
-                        int length = tasks.size();
-                        String output = length == 1 ? " task in the list." : " tasks in the list.";
-                        System.out.println("Got it. I've added this task:\n" + t +
-                                "\nNow you have " + length + output);
-                        break;
+                    break;
+                }
+                case LIST: {
+                    int length = tasks.size();
+                    System.out.println("Here are the tasks in your list:");
+                    for (int i = 0; i < length; i++) {
+                        System.out.println(i + 1 + ". " + tasks.get(i));
                     }
-                    case EVENT: {
-                        StringBuilder desc = new StringBuilder();
-                        String token;
-                        while (!(token = in.next()).equals("/at")) {
-                            desc.append(" " + token);
-                        }
-                        s = in.nextLine();
-                        s = s.substring(1);
-                        Task t = new Event(desc.toString().substring(1), s);
-                        tasks.add(t);
-                        int length = tasks.size();
-                        String output = length == 1 ? " task in the list." : " tasks in the list.";
-                        System.out.println("Got it. I've added this task:\n" + t +
-                                "\nNow you have " + length + output);
-                        break;
+                    break;
+                }
+                case TODO: {
+                    s = in.nextLine();
+                    if (s.length() < 2) {
+                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     }
+                    s = s.substring(1);
+                    Task t = new Todo(s);
+                    tasks.add(t);
+                    int length = tasks.size();
+                    String output = length == 1 ? " task in the list." : " tasks in the list.";
+                    System.out.println("Got it. I've added this task:\n" + t +
+                            "\nNow you have " + length + output);
+                    break;
+                }
+                case DEADLINE: {
+                    StringBuilder desc = new StringBuilder();
+                    String token;
+                    while (!(token = in.next()).equals("/by")) {
+                        desc.append(" " + token);
+                    }
+                    s = in.nextLine();
+                    s = s.substring(1);
+                    Task t = new Deadline(desc.toString().substring(1), s);
+                    tasks.add(t);
+                    int length = tasks.size();
+                    String output = length == 1 ? " task in the list." : " tasks in the list.";
+                    System.out.println("Got it. I've added this task:\n" + t +
+                            "\nNow you have " + length + output);
+                    break;
+                }
+                case EVENT: {
+                    StringBuilder desc = new StringBuilder();
+                    String token;
+                    while (!(token = in.next()).equals("/at")) {
+                        desc.append(" " + token);
+                    }
+                    s = in.nextLine();
+                    s = s.substring(1);
+                    Task t = new Event(desc.toString().substring(1), s);
+                    tasks.add(t);
+                    int length = tasks.size();
+                    String output = length == 1 ? " task in the list." : " tasks in the list.";
+                    System.out.println("Got it. I've added this task:\n" + t +
+                            "\nNow you have " + length + output);
+                    break;
                 }
                 }
-             catch (DukeException e) {
+            } catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
         }
