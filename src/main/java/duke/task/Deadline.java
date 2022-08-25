@@ -1,30 +1,32 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Deadline class creates deadlines
+ * duke.task.Deadline class creates deadlines
  * @author Shaune Ang
  */
 public class Deadline extends Task{
     LocalDate deadline;
 
     /**
-     * Deadline constructor for task creation by user
+     * duke.task.Deadline constructor for task creation by user
      * @param name name of task
      * @param deadline deadline of task
      */
-    Deadline(String name, String deadline) {
+    public Deadline(String name, String deadline) {
         super(name);
         this.deadline = LocalDate.parse(deadline);
     }
 
     /**
-     * Deadline constructor for task loaded from saved file
+     * duke.task.Deadline constructor for task loaded from saved file
      * @param name name of task
      * @param deadline deadline of task
      * @param status completed status of task
      */
-    Deadline(String name, String deadline, boolean status) {
+    public Deadline(String name, String deadline, boolean status) {
         super(name, status);
         this.deadline = LocalDate.parse(deadline);
     }
@@ -39,7 +41,7 @@ public class Deadline extends Task{
     }
 
     /**
-     * Returns deadline of the Deadline object
+     * Returns deadline of the duke.task.Deadline object
      * @return deadline to string in YYYY-MM-DD format
      */
     public String getDeadline() {

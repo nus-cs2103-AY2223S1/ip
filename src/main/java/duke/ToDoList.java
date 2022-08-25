@@ -1,22 +1,29 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDos;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ToDoList class manages all the tasks created by user
+ * duke.ToDoList class manages all the tasks created by user
  * @author Shaune Ang
  */
 public class ToDoList {
     ArrayList<Task> toDoList;
 
     /**
-     * Creates empty ToDoList
+     * Creates empty duke.ToDoList
      */
     ToDoList() {
         toDoList = new ArrayList<>();
     }
 
     /**
-     * Creates ToDoList based on saved file
+     * Creates duke.ToDoList based on saved file
      * @param txtFile List of Strings representing the tasks saved
      */
     ToDoList(List<String> txtFile) {
@@ -75,7 +82,7 @@ public class ToDoList {
     }
 
     /**
-     * Deletes a Task
+     * Deletes a duke.task.Task
      * @param index index to delete
      * @Throws IndexOutOfBoundsException
      */
@@ -127,7 +134,7 @@ public class ToDoList {
     }
 
     
-    /** Returns todolist formatted for saving in Duke.txt file in hard disk
+    /** Returns todolist formatted for saving in duke.Duke.txt file in hard disk
      * @return String of tasks in todolist
      */
     public String createTxtFile() {

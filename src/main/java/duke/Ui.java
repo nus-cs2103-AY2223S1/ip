@@ -1,7 +1,9 @@
+package duke;
+
 import java.util.Scanner;
 
 /**
- * Manages the user interaction of Duke
+ * Manages the user interaction of duke.Duke
  * @author Shaune Ang
  */
 public class Ui {
@@ -9,7 +11,7 @@ public class Ui {
     private Scanner myScanner;
 
     /**
-     * Ui constructor initiates scanner object
+     * duke.Ui constructor initiates scanner object
      */
     public Ui() {
         myScanner = new Scanner(System.in);

@@ -1,30 +1,32 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Event class creates event
+ * duke.task.Event class creates event
  * @author Shaune Ang
  */
 public class Event extends Task{
     LocalDate time;
 
     /**
-     * Event constructor for task creation by user
+     * duke.task.Event constructor for task creation by user
      * @param name name of task
      * @param time deadline of task
      */
-    Event(String name, String time) {
+    public Event(String name, String time) {
         super(name);
         this.time = LocalDate.parse(time);
     }
 
     /**
-     * Event constructor for task loaded from saved file
+     * duke.task.Event constructor for task loaded from saved file
      * @param name name of task
      * @param time deadline of task
      * @param status completed status of task
      */
-    Event(String name, String time, boolean status) {
+    public Event(String name, String time, boolean status) {
         super(name, status);
         this.time = LocalDate.parse(time);
     }
@@ -39,7 +41,7 @@ public class Event extends Task{
     }
 
     /**
-     * Returns deadline of the Deadline object
+     * Returns deadline of the duke.task.Deadline object
      * @return deadline to string in YYYY-MM-DD format
      */
     public String getTime() {

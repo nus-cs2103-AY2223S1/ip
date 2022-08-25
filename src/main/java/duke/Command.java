@@ -1,3 +1,8 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDos;
 import java.io.IOException;
 
 /**
@@ -48,7 +53,7 @@ public class Command {
      * Executes tasks based on the command type of the command
      * @param toDoList list containing all the current tasks
      * @param ui user interaction object for output
-     * @param storage FileLoaderSaver object for saving tasks after creating, deletion or manipulation
+     * @param storage duke.FileLoaderSaver object for saving tasks after creating, deletion or manipulation
      * @throws IOException
      * @throws Exception
      */
@@ -122,7 +127,7 @@ public class Command {
     }
 
     /**
-     * Creates a ToDos instance and adds it to ToDoList
+     * Creates a duke.task.ToDos instance and adds it to duke.ToDoList
      *
      * @param command todo command from user
      * @throws Exception
@@ -137,7 +142,7 @@ public class Command {
     }
 
     /**
-     * Creates a Deadline instance and adds it to ToDoList
+     * Creates a duke.task.Deadline instance and adds it to duke.ToDoList
      *
      * @param command deadline command from user
      * @throws Exception
@@ -157,7 +162,7 @@ public class Command {
     }
 
     /**
-     * Creates an Event instance and adds it to ToDoList
+     * Creates an duke.task.Event instance and adds it to duke.ToDoList
      *
      * @param command event command from user
      * @throws Exception

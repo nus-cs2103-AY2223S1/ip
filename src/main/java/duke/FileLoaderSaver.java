@@ -1,3 +1,5 @@
+package duke;
+
 import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -5,14 +7,14 @@ import java.util.List;
 import java.io.FileWriter;
 
 /**
- * FileLoaderSaver class loads and saves a given String of code into a txt file in path
+ * duke.FileLoaderSaver class loads and saves a given String of code into a txt file in path
  * @author Shaune Ang
  */
 public class FileLoaderSaver {
     private Path filePath;
 
     /**
-     * Constructs FileLoaderSaver object
+     * Constructs duke.FileLoaderSaver object
      * @param filePath path to saving and loading location
      */
     FileLoaderSaver(String filePath) {

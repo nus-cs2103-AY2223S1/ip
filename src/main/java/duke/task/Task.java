@@ -1,13 +1,15 @@
+package duke.task;
+
 /**
- * Abstract Task class encapsulates all the different types of tasks
+ * Abstract duke.task.Task class encapsulates all the different types of tasks
  * @author Shaune Ang
  */
-abstract class Task {
+abstract public class Task {
     private String name;
     private Boolean status = false;
 
     /**
-     * Task constructor for tasks created by user
+     * duke.task.Task constructor for tasks created by user
      * @param name name of task
      */
     public Task(String name) {
@@ -15,7 +17,7 @@ abstract class Task {
     }
 
     /**
-     * Task constructor for tasks loaded from saved file
+     * duke.task.Task constructor for tasks loaded from saved file
      * @param name name of task
      * @param status Completion status of task
      */

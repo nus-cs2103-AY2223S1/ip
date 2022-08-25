@@ -1,22 +1,24 @@
+package duke.task;
+
 /**
- * ToDos class creates todos
+ * duke.task.ToDos class creates todos
  * @author Shaune Ang
  */
 public class ToDos extends Task{
     /**
-     * Creates ToDos from user input
+     * Creates duke.task.ToDos from user input
      * @param name name of task
      */
-    ToDos(String name) {
+    public ToDos(String name) {
         super(name);
     }
 
     /**
-     * ToDos constructor for task loaded from saved file
+     * duke.task.ToDos constructor for task loaded from saved file
      * @param name name of task
      * @param status completed status of task
      */
-    ToDos(String name, boolean status) {
+    public ToDos(String name, boolean status) {
         super(name, status);
     }
 

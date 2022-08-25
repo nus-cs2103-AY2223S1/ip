@@ -1,12 +1,14 @@
+package duke;
+
 /**
- * Parser class helps to interpret command Strings and returns a Command object with type of command user wants
+ * duke.Parser class helps to interpret command Strings and returns a duke.Command object with type of command user wants
  * @author Shaune Ang
  */
 public class Parser {
     /**
-     * Returns a Command object based on the command given by user input
+     * Returns a duke.Command object based on the command given by user input
      * @param command User Input
-     * @return Command object with type of command user wants
+     * @return duke.Command object with type of command user wants
      * @throws Exception
      */
     public static Command parse(String command) throws Exception {
