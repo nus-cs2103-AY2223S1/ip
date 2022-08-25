@@ -114,8 +114,9 @@ public class TaskList {
      * Deletes a task at a specific index.
      *
      * @param taskIndex index of the task to be removed (1-indexed)
-     * @throws NoTasksException
-     * @throws InvalidTaskIndexException
+     * @throws NoTasksException an exception thrown when the list of Task objects is empty
+     * @throws InvalidTaskIndexException an exception thrown when there is no Task object
+     * at that particular index (1-indexed)
      */
     public void deleteTask(int taskIndex) throws NoTasksException, InvalidTaskIndexException {
         if (tasks.isEmpty()) {

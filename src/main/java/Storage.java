@@ -11,6 +11,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
+
+    /**
+     * This function reads the text file at the specified file path and parses the tasks,
+     * adding them into list of tasks in the app. It allows for persistent storage of tasks.
+     *
+     * @param FILE_PATH path of the txt file that contains data of tasks
+     * @param tasks list of Task objects of the app
+     * @throws FileNotFoundException exception thrown when the txt file is not found
+     */
     public void loadTasks(String FILE_PATH, List<Task> tasks) throws FileNotFoundException {
         File dataFile = new File(FILE_PATH);
         Scanner sc = new Scanner(dataFile);
@@ -47,6 +56,15 @@ public class Storage {
         }
     }
 
+    /**
+     * This function will write the tasks from the list of Task objects into
+     * a txt file, ensuring persistent storage of the tasks. When the app is opened
+     * again after being terminated, the tasks saved will be available again.
+     *
+     * @param FILE_PATH path of the txt file that contains the tasks data
+     * @param tasks list of Task objects in the app
+     * @throws IOException an exception thrown when there is a problem with the input/output (IO)
+     */
     public void saveTasks(String FILE_PATH, List<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(FILE_PATH);
         for (Task task : tasks) {

@@ -78,7 +78,10 @@ public class Ui {
     }
 
     /**
-     * Exits the app.
+     * Exits the app. This will terminate the current session of the app, and the
+     * tasks in the list of Task objects will be cleared (after being written into
+     * a txt file to ensure persistent storage).
+     * 
      * @param input scanner object
      */
     public static void endSession(Scanner input) {
