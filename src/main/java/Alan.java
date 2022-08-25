@@ -1,17 +1,19 @@
+import AlanExceptions.AlanException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Alan {
-    private Scanner input;
-    private Parser parser;
-    private Formatter formatter;
-    private List<Task> taskList;
+    private final Scanner input;
+    private final Formatter formatter;
+    private final Executor executor;
+    private final List<Task> taskList;
 
     public Alan() {
         this.input = new Scanner(System.in);
-        this.parser = new Parser();
         this.formatter = new Formatter();
+        this.executor = new Executor();
         this.taskList = new ArrayList<>();
     }
 
@@ -27,56 +29,47 @@ public class Alan {
     }
 
     private void run() {
-        System.out.println("How may i be of service?");
+        System.out.println("How may I be of service?");
 
         label:
         while (true) {
             String userInput = input.nextLine();
             String command = userInput.split(" ", 2)[0];
-            switch (command) {
-                case "bye":
-                    break label;
-                case "list":
-                    System.out.println(formatter.list(taskList));
-                    break;
-                case "event":
-                    ParsedInput eventInput = parser.parse(InputType.event, userInput);
-                    Task eventTask = new Event(eventInput);
-                    taskList.add(eventTask);
-                    System.out.println(formatter.addTask(eventTask, taskList.size()));
-                    break;
-                case "deadline":
-                    ParsedInput deadlineInput = parser.parse(InputType.deadline, userInput);
-                    Task deadlineTask = new Deadline(deadlineInput);
-                    taskList.add(deadlineTask);
-                    System.out.println(formatter.addTask(deadlineTask, taskList.size()));
-                    break;
-                case "todo":
-                    ParsedInput todoInput = parser.parse(InputType.todo, userInput);
-                    Task todoTask = new Todo(todoInput);
-                    taskList.add(todoTask);
-                    System.out.println(formatter.addTask(todoTask, taskList.size()));
-                    break;
-                case "mark": {
-                    ParsedInput markInput = parser.parse(InputType.mark, userInput);
-                    Task selectedTask = taskList.get(markInput.getListIndex());
-                    selectedTask.markDone();
-                    System.out.println(formatter.markDone(selectedTask));
-                    break;
+
+            try {
+                switch (command) {
+                    case "bye":
+                        break label;
+                    case "list":
+                        executor.excList(taskList);
+                        break;
+                    case "event":
+                        executor.excEvent(taskList, userInput);
+                        break;
+                    case "deadline":
+                        executor.excDeadline(taskList, userInput);
+                        break;
+                    case "todo":
+                        executor.excTodo(taskList, userInput);
+                        break;
+                    case "mark":
+                        executor.excMark(taskList, userInput);
+                        break;
+                    case "unmark":
+                        executor.excUnmark(taskList, userInput);
+                        break;
+                    case "delete":
+                        executor.excDelete(taskList, userInput);
+                        break;
+                    case "help":
+                        // TODO: 18/8/22
+                        break;
+                    default:
+                        System.out.println(formatter.invalid());
+                        break;
                 }
-                case "unmark": {
-                    ParsedInput unmarkInput = parser.parse(InputType.unmark, userInput);
-                    Task selectedTask = taskList.get(unmarkInput.getListIndex());
-                    selectedTask.markUndone();
-                    System.out.println(formatter.markUndone(selectedTask));
-                    break;
-                }
-                case "help":
-                    // TODO: 18/8/22
-                    break;
-                default:
-                    System.out.println(formatter.invalid());
-                    break;
+            } catch (AlanException exception) {
+                executor.excException(exception.getMessage());
             }
         }
 

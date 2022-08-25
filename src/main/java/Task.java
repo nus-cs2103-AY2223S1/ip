@@ -2,8 +2,8 @@ public abstract class Task {
     protected String taskName;
     protected Boolean isDone;
 
-    public Task(ParsedInput parsedInput) {
-        this.taskName = parsedInput.getTaskName();
+    public Task(ParsedData parsedData) {
+        this.taskName = parsedData.getTaskName();
         this.isDone = false;
     }
 

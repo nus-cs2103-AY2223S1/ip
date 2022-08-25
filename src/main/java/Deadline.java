@@ -2,10 +2,10 @@ public class Deadline extends Task{
     private String during;
     private String time;
 
-    public Deadline(ParsedInput parsedInput) {
-        super(parsedInput);
-        this.during = parsedInput.getDuring();
-        this.time = parsedInput.getTime();
+    public Deadline(ParsedData parsedData) {
+        super(parsedData);
+        this.during = parsedData.getDuring();
+        this.time = parsedData.getTime();
     }
 
     @Override

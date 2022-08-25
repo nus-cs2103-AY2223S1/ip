@@ -1,7 +1,7 @@
 public class Todo extends Task {
 
-    public Todo(ParsedInput parsedInput) {
-        super(parsedInput);
+    public Todo(ParsedData parsedData) {
+        super(parsedData);
     }
 
     @Override

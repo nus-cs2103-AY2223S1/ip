@@ -1,23 +1,23 @@
-public class ParsedInput {
+public class ParsedData {
     private String command;
     private String task;
     private String during;
     private String time;
     private int listIndex;
 
-    public ParsedInput(String command, String task, String during, String time) {
+    public ParsedData(String command, String task, String during, String time) {
         this.command = command;
         this.task = task;
         this.during = during;
         this.time = time;
     }
 
-    public ParsedInput(String command, String task) {
+    public ParsedData(String command, String task) {
         this.command = command;
         this.task = task;
     }
 
-    public ParsedInput(String command, int listIndex) {
+    public ParsedData(String command, int listIndex) {
         this.command = command;
         this.listIndex = listIndex;
     }
