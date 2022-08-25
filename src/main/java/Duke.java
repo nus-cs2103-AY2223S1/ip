@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Duke {
-
     public static String taskDataPath = "data/duke.txt";
 
     public static void main(String[] args) throws DukeException {
