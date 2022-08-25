@@ -1,5 +1,6 @@
 package duke;
 
+import java.io.File;
 import java.time.DateTimeException;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -9,11 +10,11 @@ public class Ui {
     private final Scanner scanner;
 
     protected Ui() {
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     protected String getInput() {
-        return this.scanner.nextLine();
+        return scanner.nextLine();
     }
 
     protected ZoneId getTimeZone(ZoneId timeZone) {
@@ -22,11 +23,11 @@ public class Ui {
         System.out.println("You are currently in timezone: " + timeZone +
                 "\nWould you like to change your timezone? Y/N");
 
-        if (this.scanner.hasNextLine() && this.scanner.nextLine().equalsIgnoreCase("Y")) {
+        if (scanner.hasNextLine() && scanner.nextLine().equalsIgnoreCase("Y")) {
             while (!isValidAnswer) {
                 System.out.println("What is your timezone relative to GMT? (+/-HH:mm)");
                 try {
-                    timeZone = ZoneId.of("GMT" + this.scanner.nextLine());
+                    timeZone = ZoneId.of("GMT" + scanner.nextLine());
                     System.out.println("Your timezone is now " + timeZone);
                     isValidAnswer = true;
                 } catch (DateTimeException e) {
@@ -36,6 +37,29 @@ public class Ui {
         }
 
         return timeZone;
+    }
+
+    protected String getSaveFile(String saveFilePath) {
+        boolean isValidAnswer = false;
+
+        System.out.println("Your current save file is " + saveFilePath +
+                "\nWould you like to change your save file? Y/N");
+
+        if (scanner.hasNextLine() && scanner.nextLine().equalsIgnoreCase("Y")) {
+            while (!isValidAnswer) {
+                System.out.println("What is the path of your save file?");
+                try {
+                    saveFilePath = scanner.nextLine();
+                    File saveFile = new File(saveFilePath);
+                    System.out.println("Your timezone is now " + saveFilePath);
+                    isValidAnswer = true;
+                } catch (DateTimeException e) {
+                    System.out.println("☹ OOPS!!! Please enter a valid filepath.");
+                }
+            }
+        }
+
+        return saveFilePath;
     }
 
     protected void printNewTaskMessage(Task task, int size) {
@@ -58,5 +82,9 @@ public class Ui {
                 System.out.println(i + 1 + ". " + taskList.get(i));
             }
         }
+    }
+
+    protected void shutdown() {
+        scanner.close();
     }
 }

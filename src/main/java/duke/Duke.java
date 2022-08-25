@@ -1,9 +1,5 @@
 package duke;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -12,8 +8,6 @@ import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
 
 /**
  * MakiBot
@@ -30,35 +24,29 @@ public class Duke {
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
     private enum COMMAND {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE
     }
-    private final ArrayList<Task> taskList = new ArrayList<>();
-    private String saveFilePath = "data.txt";
+    private final Storage storage;
+    private TaskList tasks;
+    private final Ui ui;
     private ZoneId timeZone = ZoneId.of("GMT+00:00");
-    private final Ui ui = new Ui();
 
     protected Duke() {
-    }
-
-    protected Duke(String saveFilePath) {
-        this.saveFilePath = saveFilePath;
+        ui = new Ui();
+        storage = new Storage();
     }
 
     public static void main(String[] args) {
         System.out.println("Hello from\n" + "MAKIBOT");
-        if (args.length > 0) {
-            new Duke(args[0]).start();
-        } else {
-            new Duke().start();
-        }
+        new Duke().start();
     }
 
     protected void start() {
         System.out.println("Hello! I'm MAKIBOT");
-        this.timeZone = this.ui.getTimeZone(this.timeZone);
-        this.loadTasks();
+        timeZone = ui.getTimeZone(timeZone);
+        tasks = new TaskList(storage.loadTasks(timeZone));
         System.out.println("Welcome! What can I do for you?");
-        this.eventLoop();
+        eventLoop();
     }
 
     /**
@@ -69,7 +57,7 @@ public class Duke {
         while (!isDone) {
             try {
                 // Event loop
-                String input = this.ui.getInput();
+                String input = ui.getInput();
                 String[] fullCommand = input.split(" ", 2);
                 COMMAND command = COMMAND.valueOf(fullCommand[0].toUpperCase());
 
@@ -77,38 +65,36 @@ public class Duke {
                 switch (command) {
                 // Exit command
                 case BYE:
-                    this.ui.printByeMessage();
+                    storage.updateSaveFile(tasks.getAll());
+                    ui.printByeMessage();
                     isDone = true;
+                    break;
+                case SAVE:
+                    storage.updateSaveFile(tasks.getAll());
                     break;
                 // List all tasks
                 case LIST:
-                    this.ui.printAllTasks(this.taskList);
+                    ui.printAllTasks(tasks.getAll());
                     break;
                 // Mark task as done
                 case MARK:
-                    this.mark(fullCommand);
-                    this.updateSaveFile();
+                    mark(fullCommand);
                     break;
                 // Mark task as undone
                 case UNMARK:
-                    this.unmark(fullCommand);
-                    this.updateSaveFile();
+                    unmark(fullCommand);
                     break;
                 case DELETE:
-                    this.delete(fullCommand);
-                    this.updateSaveFile();
+                    delete(fullCommand);
                     break;
                 case TODO:
-                    this.newTodo(fullCommand);
-                    this.updateSaveFile();
+                    newTodo(fullCommand);
                     break;
                 case DEADLINE:
-                    this.newDeadline(fullCommand);
-                    this.updateSaveFile();
+                    newDeadline(fullCommand);
                     break;
                 case EVENT:
-                    this.newEvent(fullCommand);
-                    this.updateSaveFile();
+                    newEvent(fullCommand);
                     break;
                 default:
                     throw new DukeInvalidCommandException();
@@ -119,88 +105,18 @@ public class Duke {
         }
     }
 
-    protected void loadTasks() {
-        try {
-            File saveFile = new File(this.saveFilePath);
-            saveFile.createNewFile();
-            Scanner saveSc = new Scanner(saveFile);
-
-            while (saveSc.hasNextLine()) {
-                String[] dataArr = saveSc.nextLine().split(" \\| ");
-                char taskType = dataArr[0].charAt(0);
-                boolean isDone = Boolean.parseBoolean(dataArr[1]);
-                String taskDescription = dataArr[2];
-                Task newTask;
-
-                if (taskType == 'D') {
-                    newTask = new Deadline(taskDescription,
-                            ZonedDateTime.parse(dataArr[3]).withZoneSameInstant(this.timeZone));
-                } else if (taskType == 'E') {
-                    newTask = new Event(taskDescription,
-                            ZonedDateTime.parse(dataArr[3]).withZoneSameInstant(this.timeZone));
-                } else if (taskType == 'T') {
-                    newTask = new Todo(taskDescription);
-                } else {
-                    System.out.println("The following task could not be loaded from memory:\n"
-                            + Arrays.toString(dataArr));
-                    continue;
-                }
-
-                if (isDone) {
-                    newTask.markAsDone();
-                }
-
-                taskList.add(newTask);
-            }
-
-            System.out.println("Tasks successfully loaded!");
-        } catch (FileNotFoundException e) {
-            System.out.println("ERROR: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("An error occurred: " + e + "\nAborting...");
-        }
-    }
-
-    protected void updateSaveFile() {
-        try {
-            FileWriter saveFileWriter = new FileWriter("data.txt");
-            taskList.forEach(task -> {
-                String saveMsg = String.format("%c | %s | %s", task.getType(), task.isDone, task.description);
-                if (task instanceof Deadline) {
-                    saveMsg += " | " + ((Deadline) task).by;
-                } else if (task instanceof Event) {
-                    saveMsg += " | " + ((Event) task).at;
-                }
-                try {
-                    saveFileWriter.write(saveMsg + "\n");
-                } catch (IOException e) {
-                    System.out.println("An error occurred while saving your tasks.");
-                    e.printStackTrace();
-                }
-            });
-            saveFileWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred while saving your tasks.");
-            e.printStackTrace();
-        }
-    }
-
     protected void mark(String[] fullCommand) throws DukeException {
         if (fullCommand.length < 2 || fullCommand[1].equals("")) {
             throw new DukeFormatCommandException("mark");
         }
 
-        if (taskList.isEmpty()) {
-            throw new DukeIndexErrorException();
-        }
-
         try {
             int taskNum = Integer.parseInt(fullCommand[1]) - 1;
-            Task t = taskList.get(taskNum);
+            Task t = tasks.get(taskNum);
             t.markAsDone();
             System.out.println("Nice! I've marked this task as done:\n" + t);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeIndexErrorException(taskList.size());
+        } catch (NumberFormatException e) {
+            throw new DukeIndexErrorException(tasks.size());
         }
     }
 
@@ -209,17 +125,13 @@ public class Duke {
             throw new DukeFormatCommandException("unmark");
         }
 
-        if (taskList.isEmpty()) {
-            throw new DukeIndexErrorException();
-        }
-
         try {
             int taskNum = Integer.parseInt(fullCommand[1]) - 1;
-            Task t = taskList.get(taskNum);
+            Task t = tasks.get(taskNum);
             t.markAsUndone();
             System.out.println("OK, I've marked this task as not done yet:\n" + t);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeIndexErrorException(taskList.size());
+        } catch (NumberFormatException e) {
+            throw new DukeIndexErrorException(tasks.size());
         }
     }
 
@@ -228,19 +140,15 @@ public class Duke {
             throw new DukeFormatCommandException("delete");
         }
 
-        if (taskList.isEmpty()) {
-            throw new DukeIndexErrorException();
-        }
-
         try {
             int taskNum = Integer.parseInt(fullCommand[1]) - 1;
-            Task t = taskList.remove(taskNum);
+            Task t = tasks.remove(taskNum);
             System.out.printf("Noted. I've removed this task:\n" +
                             "\t%s\n" +
                             "Now you have %d tasks in the list.%n",
-                    t, taskList.size());
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeIndexErrorException(taskList.size());
+                    t, tasks.size());
+        } catch (NumberFormatException e) {
+            throw new DukeIndexErrorException(tasks.size());
         }
     }
 
@@ -250,8 +158,8 @@ public class Duke {
         }
 
         Todo td = new Todo(fullCommand[1]);
-        taskList.add(td);
-        this.ui.printNewTaskMessage(td, taskList.size());
+        tasks.add(td);
+        ui.printNewTaskMessage(td, tasks.size());
     }
 
     protected void newDeadline(String[] fullCommand) throws DukeException {
@@ -262,10 +170,10 @@ public class Duke {
         try {
             String[] newDeadline = fullCommand[1].split(" /by ", 2);
             System.out.println(newDeadline[1]);
-            ZonedDateTime by = ZonedDateTime.parse(newDeadline[1] + " " + this.timeZone, DATE_TIME_FORMATTER);
+            ZonedDateTime by = ZonedDateTime.parse(newDeadline[1] + " " + timeZone, DATE_TIME_FORMATTER);
             Deadline dl = new Deadline(newDeadline[0], by);
-            taskList.add(dl);
-            this.ui.printNewTaskMessage(dl, taskList.size());
+            tasks.add(dl);
+            ui.printNewTaskMessage(dl, tasks.size());
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             throw new DukeFormatCommandException("deadline", "/by");
         }
@@ -278,10 +186,10 @@ public class Duke {
 
         try {
             String[] newEvent = fullCommand[1].split(" /at ", 2);
-            ZonedDateTime at = ZonedDateTime.parse(newEvent[1] + " " + this.timeZone, DATE_TIME_FORMATTER);
+            ZonedDateTime at = ZonedDateTime.parse(newEvent[1] + " " + timeZone, DATE_TIME_FORMATTER);
             Event ev = new Event(newEvent[0], at);
-            taskList.add(ev);
-            this.ui.printNewTaskMessage(ev, taskList.size());
+            tasks.add(ev);
+            ui.printNewTaskMessage(ev, tasks.size());
         } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
             throw new DukeFormatCommandException("event", "/at");
         }
