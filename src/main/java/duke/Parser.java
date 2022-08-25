@@ -1,3 +1,4 @@
+package duke;
 public class Parser {
     protected void commandParser(String command, TaskList taskList, UI ui) throws Exception {
         if (command.split(" ")[0].toLowerCase().equals("mark")) {

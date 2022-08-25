@@ -1,3 +1,4 @@
+package duke;
 public class UI {
 
     private static final String indentation = "    ";

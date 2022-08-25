@@ -1,3 +1,4 @@
-T |   | breakfast | null | null
-E |   | smth  | at |  9
-T | X | lunch |  | null
+T |   | do something | null | null
+D |   | finish something  | by | 3 FEBRUARY 2022 6:00 PM
+T | X | do something |  | null
+D | X | do something  | by | 7 MAY 2022 7:00 AM
