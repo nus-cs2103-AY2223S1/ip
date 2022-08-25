@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class UI {
     public static String breakLine = "____________________________________________________________\n";

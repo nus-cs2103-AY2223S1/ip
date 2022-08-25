@@ -1,16 +1,17 @@
-package Duke;
+package duke;
 
 import java.util.Scanner;
 
 public class Duke {
-    public static String taskDataPath = "data/duke.txt";
+    public static String taskDataPath = "data";
+    public static String taskDataFileName = "duke.txt";
 
     public static void main(String[] args) throws DukeException {
         Scanner sc = new Scanner(System.in);
         UI UI = new UI();
         Parser parser = new Parser();
         TaskList taskList = new TaskList();
-        Storage storage = new Storage(taskDataPath);
+        Storage storage = new Storage(taskDataPath, taskDataFileName);
 
         boolean stopLish = false;
         UI.printResponse(UI.greeting);
