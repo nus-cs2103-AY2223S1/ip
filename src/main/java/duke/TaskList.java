@@ -2,92 +2,92 @@ package duke;
 
 import java.util.ArrayList;
 public class TaskList {
-    protected ArrayList<Task> storeList;
+    protected ArrayList<Task> storeLists;
     protected Storage storage;
 
     public TaskList(Storage storage) {
         this.storage = storage;
     }
     public TaskList(ArrayList<Task> storeList, Storage storage) {
-        this.storeList = storeList;
+        this.storeLists = storeList;
         this.storage = storage;
     }
 
     public void addTask(String userInput) {
         Task t = new Task(userInput);
-        storeList.add(t);
+        storeLists.add(t);
         System.out.println("added: " + t.description);
         storage.appendToFile(t.description);
     }
 
     public void deleteTask(int taskIndex) {
         System.out.println("Noted. I've removed this task:");
-        System.out.println("\t" + storeList.get(taskIndex).toString());
-        storage.removeLineInText(storeList.get(taskIndex).toString());
-        storeList.remove(taskIndex);
-        System.out.println("Now you have " + storeList.size() + " tasks in the list.");
+        System.out.println("\t" + storeLists.get(taskIndex).toString());
+        storage.removeLineInText(storeLists.get(taskIndex).toString());
+        storeLists.remove(taskIndex);
+        System.out.println("Now you have " + storeLists.size() + " tasks in the list.");
     }
 
     public void list() {
         System.out.println("Here are the tasks in your list:");
-        for(int i=0; i < storeList.size(); i++){
+        for (int i=0; i < storeLists.size(); i++) {
 //            System.out.printf("%i. [%c] %s", i + 1, storeList.get(i).getStatusIcon(), storeList.get(i).description);
-            System.out.println(i + 1 + ". " + storeList.get(i).toString());
+            System.out.println(i + 1 + ". " + storeLists.get(i).toString());
         }
     }
 
     public void mark(int taskIndex) {
-        String oldText = storeList.get(taskIndex).toString();
-        storeList.get(taskIndex).markAsDone();
-        String newText = storeList.get(taskIndex).toString();
+        String oldText = storeLists.get(taskIndex).toString();
+        storeLists.get(taskIndex).markAsDone();
+        String newText = storeLists.get(taskIndex).toString();
         storage.editTextInFile(newText, oldText);
     }
 
     public void unmark(int taskIndex) {
-        String oldText = storeList.get(taskIndex).toString();
-        storeList.get(taskIndex).markAsNotDone();
-        String newText = storeList.get(taskIndex).toString();
+        String oldText = storeLists.get(taskIndex).toString();
+        storeLists.get(taskIndex).markAsNotDone();
+        String newText = storeLists.get(taskIndex).toString();
         storage.editTextInFile(newText, oldText);
     }
 
     public void todo(String userInput) throws DukeException {
-        Todo t = new Todo(userInput);
+        Todo todo = new Todo(userInput);
         if (userInput.isEmpty()) {
             throw new DukeException("\t☹ OOPS!!! The description of a todo cannot be empty.");
         }
-        storeList.add(t);
+        storeLists.add(todo);
         System.out.println("Got it. I've added this task:");
-        System.out.println("\t" + t.toString());
-        System.out.println("Now you have " + storeList.size() + " tasks in the list.");
-        storage.appendToFile(t.toString());
+        System.out.println("\t" + todo.toString());
+        System.out.println("Now you have " + storeLists.size() + " tasks in the list.");
+        storage.appendToFile(todo.toString());
 
     }
 
     public void deadline(String userInput, String by) {
-        Deadline d = new Deadline(userInput, by);
-        dateProcessor(d);
-        storeList.add(d);
+        Deadline deadline = new Deadline(userInput, by);
+        dateProcessor(deadline);
+        storeLists.add(deadline);
         System.out.println("Got it. I've added this task:");
-        System.out.println("\t" + d.toString());
-        System.out.println("Now you have " + storeList.size() + " tasks in the list.");
-        storage.appendToFile(d.toString());
+        System.out.println("\t" + deadline.toString());
+        System.out.println("Now you have " + storeLists.size() + " tasks in the list.");
+        storage.appendToFile(deadline.toString());
     }
 
     public void event(String userInput, String duration) {
-        Event e = new Event(userInput, duration);
-        storeList.add(e);
+        Event event = new Event(userInput, duration);
+        storeLists.add(event);
         System.out.println("Got it. I've added this task:");
-        System.out.println("\t" + e.toString());
-        System.out.println("Now you have " + storeList.size() + " tasks in the list.");
-        storage.appendToFile(e.toString());
+        System.out.println("\t" + event.toString());
+        System.out.println("Now you have " + storeLists.size() + " tasks in the list.");
+        storage.appendToFile(event.toString());
     }
 
     public void userInputCheck(String userInput) throws DukeException {
         String firstCommand = userInput.split(" ", 2)[0];
-        if(!firstCommand.equals("todo") && !firstCommand.equals("deadline") && !firstCommand.equals("event")) {
+        if (!firstCommand.equals("todo") && !firstCommand.equals("deadline") && !firstCommand.equals("event")) {
             throw new DukeException("\t ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-        if(userInput.split(" ", 2).length == 1) {
+        if (userInput.split(" ", 2).length == 1) {
             throw new DukeException("\t ☹ OOPS!!! The description of a " + firstCommand + " cannot be empty.");
         }
         if((firstCommand.equals("deadline") || firstCommand.equals("event")) && userInput.split("/", 2).length == 1) {
