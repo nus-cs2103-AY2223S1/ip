@@ -48,11 +48,11 @@ public class TaskList {
     public String toString() {
         String str = "";
         if (tasks.size() == 0) {
-            str = "\tYou do not have any tasks!\n";
+            str = "\tYou do not have any tasks!";
         } else {
-            str = "\tHere are the tasks in your list:\n";
+            str = "\tHere are the tasks in your list:";
             for (int i = 0; i < tasks.size(); i++) {
-                str += "\t" + (i + 1) + ". " + tasks.get(i) + "\n";
+                str += "\n\t" + (i + 1) + ". " + tasks.get(i);
             }
         }
         return str;

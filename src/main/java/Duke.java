@@ -32,9 +32,12 @@ public class Duke {
             Command c = Parser.parse(fullCommand);
             c.execute(tasks, storage, ui);
             isExit = c.getIsExit();
-            ui.showDivider();
+            if (!isExit) {
+                ui.showDivider();
+            }
         }
         ui.close();
         Ui.sayBye();
+        ui.showDivider();
     }
 }

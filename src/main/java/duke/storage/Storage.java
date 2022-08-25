@@ -54,7 +54,7 @@ public class Storage {
                             t = new Deadline(str[2], str[3]);
                             break;
                         case "E":
-                            t = new Event(str[2], str[3]);
+                            t = new Event(str[2], str[3], str[4]);
                             break;
                     }
                     tasks.add(t);

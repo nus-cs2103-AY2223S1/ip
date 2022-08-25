@@ -14,8 +14,7 @@ public class Deadline extends Task {
 
     @Override
     public String toStorage() {
-        return "D | " + (this.isDone ? 1 : 0) + " | " + description + " | "
-                + this.date.format(DateTimeFormatter.ofPattern("d MMM YYYY")) + "\n";
+        return "D | " + (this.isDone ? 1 : 0) + " | " + description + " | " + this.date + "\n";
     }
 
     @Override

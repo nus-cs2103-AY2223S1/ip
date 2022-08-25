@@ -8,18 +8,16 @@ public class Event extends Task {
     protected LocalDate startDate;
     protected LocalDate endDate;
 
-    public Event(String description, String timePeriod) {
+    public Event(String description, String startDate, String endDate) {
         super(description);
-        String[] str = timePeriod.split(" ");
-        this.startDate = LocalDate.parse(str[0]);
-        this.endDate = LocalDate.parse(str[1]);
+        this.startDate = LocalDate.parse(startDate);
+        this.endDate = LocalDate.parse(endDate);
     }
 
     @Override
     public String toStorage() {
         return "E | " + (this.isDone ? 1 : 0) + " | " + description + " | "
-                + this.startDate.format(DateTimeFormatter.ofPattern("d MMM YYYY")) + " | "
-                + this.endDate.format(DateTimeFormatter.ofPattern("d MMM YYYY")) + "\n";
+                + this.startDate + " | " + this.endDate + "\n";
     }
 
     @Override

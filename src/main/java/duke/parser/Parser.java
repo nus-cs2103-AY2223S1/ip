@@ -60,7 +60,8 @@ public class Parser {
                 return new AddCommand(new Deadline(description[0], description[1]));
             case EVENT:
                 description = input[1].split(" /at ", 2);
-                return new AddCommand(new Event(description[0], description[1]));
+                String[] dates = description[1].split(" ");
+                return new AddCommand(new Event(description[0], dates[0], dates[1]));
             case DELETE:
                 return new DeleteCommand(parseInt(input[1]));
             default:
