@@ -11,18 +11,15 @@ import java.util.Arrays;
 public class Parser {
     private Storage storage;
     private TaskList taskList;
-    private UI ui;
 
     /**
      * Constructor for Parser
      * @param storage Storage object that handles loading and saving of data
      * @param taskList TaskList object that stores all user tasks
-     * @param ui UI object that handles user interface
      */
-    public Parser(Storage storage, TaskList taskList, UI ui) {
+    public Parser(Storage storage, TaskList taskList) {
         this.storage = storage;
         this.taskList = taskList;
-        this.ui = ui;
     }
 
     /**
@@ -200,6 +197,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the find command
+     * @param commandArgs Array of Strings representing command arguments
+     * @throws InvalidArgumentException If no arguments are entered
+     */
     public void parseFind(String[] commandArgs) throws InvalidArgumentException {
         if (commandArgs.length == 0) {
             throw new InvalidArgumentException();

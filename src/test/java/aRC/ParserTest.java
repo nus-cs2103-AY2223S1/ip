@@ -11,7 +11,7 @@ public class ParserTest {
 
     @Test
     public void parseDeadline_invalidDateFormat_dateTimeParseException() {
-        Parser parser = new Parser(new Storage(""), new TaskList(new ArrayList<>()), new UI());
+        Parser parser = new Parser(new Storage(""), new TaskList(new ArrayList<>()));
         String testInput = "deadline testTask /by 11 Aug 2022";
 
         try {
