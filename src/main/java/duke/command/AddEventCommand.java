@@ -1,14 +1,22 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.main.Storage;
+import duke.main.TaskList;
+import duke.main.Ui;
+import duke.task.Event;
+
 public class AddEventCommand extends Command {
     private String description;
     private String time;
 
-    AddEventCommand(String description, String time) {
+    public AddEventCommand(String description, String time) {
         this.description = description;
         this.time = time;
     }
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Event event;
         event = new Event(description, time);
         tasks.add(event);

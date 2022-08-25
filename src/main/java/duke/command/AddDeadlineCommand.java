@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.main.Storage;
+import duke.main.TaskList;
+import duke.main.Ui;
+import duke.task.Deadline;
+
 import java.time.LocalDateTime;
 
 public class AddDeadlineCommand extends Command {
@@ -5,18 +13,18 @@ public class AddDeadlineCommand extends Command {
     private String by;
     private LocalDateTime byDate;
 
-    AddDeadlineCommand(String description, String by) {
+    public AddDeadlineCommand(String description, String by) {
         this.description = description;
         this.by = by;
     }
 
-    AddDeadlineCommand(String description, LocalDateTime byDate) {
+    public AddDeadlineCommand(String description, LocalDateTime byDate) {
         this.description = description;
         this.byDate = byDate;
     }
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Deadline deadline;
         if (byDate == null) {
             deadline = new Deadline(description, by);

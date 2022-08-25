@@ -1,12 +1,20 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.main.Storage;
+import duke.main.TaskList;
+import duke.main.Ui;
+import duke.task.Task;
+
 public class DeleteCommand extends Command {
     private int taskNum;
 
-    DeleteCommand(int oneBasedIndex) {
+    public DeleteCommand(int oneBasedIndex) {
         this.taskNum = taskNum;
     }
 
     @Override
-    void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (taskNum < 0 || taskNum >= tasks.size() + 1) {
             throw new DukeException("OOPS!!! The index of the task is not in the list.");
         }

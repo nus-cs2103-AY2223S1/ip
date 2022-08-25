@@ -1,3 +1,7 @@
+package duke.main;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,34 +18,34 @@ public class Ui {
         printMessage(greeting);
     }
 
-    void exitMessage() {
+    public void exitMessage() {
         String exit = "Bye. Hope to see you again soon!";
         printMessage(exit);
     }
 
-    void printMessage(String input) {
+    public void printMessage(String input) {
         linePrint();
         System.out.println('\t' + input);
         linePrint();
     }
 
-    void linePrint() {
+    public void linePrint() {
         System.out.println("\t____________________________________________________________");
     }
 
-    void showLoadingError() {
+    public void showLoadingError() {
         printMessage("An error occurred when loading the file :(");
     }
 
-    void showError(String message) {
+    public void showError(String message) {
         printMessage(message);
     }
 
-    String readCommand() {
+    public String readCommand() {
         return sc.nextLine();
     }
 
-    void listTasks(ArrayList<Task> tasks) {
+    public void listTasks(ArrayList<Task> tasks) {
         linePrint();
         System.out.println("\tHere are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {

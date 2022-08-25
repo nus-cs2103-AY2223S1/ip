@@ -1,9 +1,9 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;import java.io.FileNotFoundException;
-import java.io.FileWriter;
+package duke.main;
+
+import duke.command.Command;
+import duke.exception.DukeException;
+
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.io.File;
 
 public class Duke {
