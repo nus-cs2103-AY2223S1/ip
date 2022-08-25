@@ -1,10 +1,11 @@
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 public class Event extends Task {
     private LocalDateTime date;
     private final static DateTimeParser PARSER = new DateTimeParser();
 
-    public Event(String taskName, String date) {
+    public Event(String taskName, String date) throws DateTimeException {
         super(taskName);
         this.date = PARSER.getDateTime(date);
     }

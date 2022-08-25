@@ -2,11 +2,12 @@ delete 1
 list
 todo borrow book
 todo
-deadline return book /by Sunday
+deadline return book /by 2022-09-13
 deadline
 deadline project
 deadline project /by
-event project meeting /at Mon 2-4pm
+deadline project /by tuesday
+event project meeting /at 2022-08-28 21:00
 event 
 event cca /at
 event cca /at Tues 7-9pm

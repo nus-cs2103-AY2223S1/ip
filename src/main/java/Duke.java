@@ -1,3 +1,4 @@
+import java.time.DateTimeException;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +12,13 @@ public class Duke {
         addTask(newTask);
     }
 
-    public void addDeadline(String commandInput) throws DukeException {
+    public void addDeadline(String commandInput) throws DukeException, DateTimeException {
         String[] inputs = commandInput.split("/by");
         //no deadline provided
         if (inputs.length == 1) {
             throw new DukeException("Deadline must have a due date\n" +
-                    "Include '/by' and date at the back");
+                    "Include '/by' and date with format " +
+                    "\"yyyy-mm-dd\" at the back");
         }
         String taskName = inputs[0];
         String dueDate = inputs[1].trim();
@@ -24,12 +26,13 @@ public class Duke {
         addTask(newTask);
     }
 
-    public void addEvent(String commandInput) throws DukeException {
+    public void addEvent(String commandInput) throws DukeException, DateTimeException {
         String[] inputs = commandInput.split("/at");
         //no date provided
         if (inputs.length == 1) {
             throw new DukeException("Event must have a date\n" +
-                    "Include '/at' and date at the back");
+                    "Include '/at' and date with format " +
+                    "\"yyyy-mm-dd\" at the back");
         }
         String taskName = inputs[0];
         String date = inputs[1].trim();
@@ -116,10 +119,22 @@ public class Duke {
                     duke.addToDo(inputs[1]);
                 } else if (command.equals("deadline")) {
                     duke.checkTask(inputs, command);
-                    duke.addDeadline(inputs[1]);
+                    try {
+                        duke.addDeadline(inputs[1]);
+                    } catch (DateTimeException e) {
+                        System.out.println("Please enter a valid date behind /by with the format " +
+                                "\"yyyy-mm-dd HH:mm\" where time is optional. If time is " +
+                                "provided, leave it in 24 hours format.\n");
+                    }
                 } else if (command.equals("event")) {
                     duke.checkTask(inputs, command);
-                    duke.addEvent(inputs[1]);
+                    try {
+                        duke.addEvent(inputs[1]);
+                    } catch (DateTimeException e) {
+                        System.out.println("Please enter a valid date behind /at with the format " +
+                                "\"yyyy-mm-dd HH:mm\" where time is optional. If time is " +
+                                "provided, leave it in 24 hours format.\n");
+                    }
                 } else if (command.equals("delete")) {
                     int index = duke.checkTaskNumber(inputs);
                     duke.deleteTask(index);

@@ -13,66 +13,63 @@ Now you have 1 tasks in your list.
 Whoopsie!!! The description of a todo cannot be empty
 
 You have added: 
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: Sep 13 2022 12:00 am)
 Now you have 2 tasks in your list. 
 
 Whoopsie!!! The description of a deadline cannot be empty
 
 Whoopsie!!! Deadline must have a due date
-Include '/by' and date at the back
+Include '/by' and date with format "yyyy-mm-dd" at the back
 
 Whoopsie!!! Deadline must have a due date
-Include '/by' and date at the back
+Include '/by' and date with format "yyyy-mm-dd" at the back
+
+Please enter a valid date behind /by with the format "yyyy-mm-dd HH:mm" where time is optional. If time is provided, leave it in 24 hours format.
 
 You have added: 
-[E][ ] project meeting (at: Mon 2-4pm)
+[E][ ] project meeting (at: Aug 28 2022 09:00 pm)
 Now you have 3 tasks in your list. 
 
 Whoopsie!!! Event must have a date
-Include '/at' and date at the back
+Include '/at' and date with format "yyyy-mm-dd" at the back
 
 Whoopsie!!! Event must have a date
-Include '/at' and date at the back
+Include '/at' and date with format "yyyy-mm-dd" at the back
 
-You have added: 
-[E][ ] cca (at: Tues 7-9pm)
-Now you have 4 tasks in your list. 
+Please enter a valid date behind /at with the format "yyyy-mm-dd HH:mm" where time is optional. If time is provided, leave it in 24 hours format.
 
 Hehe well done! One task down, one step closer to play time!
 This task has been completed:
-[D][X] return book (by: Sunday)
+[D][X] return book (by: Sep 13 2022 12:00 am)
 
 Whoopsie!!! Invalid task number!
 
 1.[T][ ] borrow book
-2.[D][X] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
-4.[E][ ] cca (at: Tues 7-9pm)
+2.[D][X] return book (by: Sep 13 2022 12:00 am)
+3.[E][ ] project meeting (at: Aug 28 2022 09:00 pm)
 
 Whoopsie!!! You didn't put the task number at the back :(.
 Wanya isn't Anya. I can't read your mind!
 
 Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.
 This task has not been completed:
-[D][ ] return book (by: Sunday)
+[D][ ] return book (by: Sep 13 2022 12:00 am)
 
 Whoopsie!!! Invalid task number!
 
 1.[T][ ] borrow book
-2.[D][ ] return book (by: Sunday)
-3.[E][ ] project meeting (at: Mon 2-4pm)
-4.[E][ ] cca (at: Tues 7-9pm)
+2.[D][ ] return book (by: Sep 13 2022 12:00 am)
+3.[E][ ] project meeting (at: Aug 28 2022 09:00 pm)
 
 Whoopsie!!! You didn't put the task number at the back :(.
 Wanya isn't Anya. I can't read your mind!
 
 WWaku WWaku!!! Wanya has used her magic powers to remove this task:
-[D][ ] return book (by: Sunday)
-Now you have 3 tasks in your list. 
+[D][ ] return book (by: Sep 13 2022 12:00 am)
+Now you have 2 tasks in your list. 
 
 1.[T][ ] borrow book
-2.[E][ ] project meeting (at: Mon 2-4pm)
-3.[E][ ] cca (at: Tues 7-9pm)
+2.[E][ ] project meeting (at: Aug 28 2022 09:00 pm)
 
 Whoopsie!!! I am sorry. Wanya doesn't like to study so Wanya don't know what that means.
 

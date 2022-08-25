@@ -1,3 +1,4 @@
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
@@ -18,7 +19,7 @@ public class DateTimeParser {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .toFormatter();
 
-    public LocalDateTime getDateTime(String dateStr) {
+    public LocalDateTime getDateTime(String dateStr) throws DateTimeException {
         LocalDateTime dateTime = LocalDateTime.parse(dateStr, FORMATTER);
         return dateTime;
     }
