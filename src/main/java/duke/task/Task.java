@@ -8,6 +8,15 @@ public class Task {
         isDone = false;
     }
 
+    /**
+     * Returns the description of this task.
+     * 
+     * @return Description of task.
+     */
+    public String getDesc() {
+        return this.desc;
+    }
+
     private String getStatusIcon() {
         return this.isDone ? "X" : " ";
     }

@@ -1,16 +1,9 @@
 package duke;
+import duke.command.*;
 import duke.exception.DukeException;
 import duke.exception.InvalidInputException;
 import duke.exception.MissingInputException;
 import duke.exception.InvalidDateException;
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnknownCommand;
-import duke.command.UnmarkCommand;
 import duke.task.Task;
 import duke.task.Todo;
 import duke.task.Deadline;
@@ -56,6 +49,11 @@ public class Parser {
                 return new ExitCommand();
             } else if (command.equals("list")) {
                 return new ListCommand();
+            } else if (command.equals("find")){
+                if (splitInput.length == 1) {
+                    throw new MissingInputException("keyword", "find");
+                }
+                return new FindCommand(String.join(" ", arguments));
             } else {
                 throw new UnknownCommand();
             }
