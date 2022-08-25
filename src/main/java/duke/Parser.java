@@ -1,6 +1,12 @@
 package duke;
 
 public class Parser {
+    /**
+     * Returns a ToDo object based on parsed input
+     *
+     * @param input
+     * @return
+     */
     public static ToDo generateToDoFromInput(String input) {
         String[] commands = input.split(" ");
         String description = "";
@@ -11,6 +17,12 @@ public class Parser {
         return new ToDo(description);
     }
 
+    /**
+     * Returns a Deadline object based on parsed input
+     *
+     * @param input
+     * @return
+     */
     public static Deadline generateDeadlineFromInput(String input) {
         String[] commands = input.split(" ");
         String description = "";
@@ -39,6 +51,12 @@ public class Parser {
         return  new Deadline(description, timeQualifier, timeDescription);
     }
 
+    /**
+     * Returns an Event object based on parsed input
+     *
+     * @param input
+     * @return
+     */
     public static Event generateEventFromInput(String input) {
         String[] commands = input.split(" ");
         String description = "";

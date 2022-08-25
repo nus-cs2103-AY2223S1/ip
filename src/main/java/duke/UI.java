@@ -6,6 +6,12 @@ public class UI {
     public static String taskListOpening = "Finding your task list...\n" + "Found it! Here are what you have to do:\n";
     public static String noListFound = "Congrats! You have finished all your task!\n";
 
+    /**
+     * Prints LishBot's response
+     * this function specifies the format of LishBot's response
+     *
+     * @param response
+     */
     public static void printResponse(String response) {
         System.out.println(breakLine);
         System.out.println(response);

@@ -15,11 +15,19 @@ public class TaskList {
         return taskList;
     }
 
+    /**
+     * Adds task to an array list of task
+     *
+     * @param task
+     */
     public void add(Task task) {
         taskList.add(task);
         UI.printResponse("Got it. I've added this task:\n" + task.toString() + "\n" + "Now you have " + taskList.size() + " tasks in the list.\n");
     }
 
+    /**
+     * Prints each task in the array list of tasks
+     */
     public void printTaskList() {
         String response = UI.taskListOpening;
 
@@ -33,6 +41,12 @@ public class TaskList {
         UI.printResponse(response);
     }
 
+    /**
+     * Sets a task in the array list of tasks as done
+     *
+     * @param index
+     * @throws DukeException
+     */
     public void markTaskAsDone(int index) throws DukeException {
         if (index < 0) {
             throw new DukeException("I cannot mark this task because your index is invalid");
@@ -44,6 +58,12 @@ public class TaskList {
         UI.printResponse("Nice! I've marked this task as done:\n" + taskList.get(index).toString() +"\n");
     }
 
+    /**
+     * Sets a task in the array list of tasks as !done
+     *
+     * @param index
+     * @throws DukeException
+     */
     public void markTaskAsNotDone(int index) throws DukeException{
         if (index < 0) {
             throw new DukeException("I cannot unmark this task because your index is invalid");
@@ -55,6 +75,11 @@ public class TaskList {
         UI.printResponse("OK, I've marked this task as not done yet: \n" + taskList.get(index).toString() + "\n");
     }
 
+    /**
+     * Removes a task in the array list of tasks
+     * @param index
+     * @throws DukeException
+     */
     public void deleteTask(int index) throws DukeException {
         if (index < 0) {
             throw new DukeException("I cannot delete this task because your index is invalid");
