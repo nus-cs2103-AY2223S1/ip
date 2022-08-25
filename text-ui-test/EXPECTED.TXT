@@ -5,7 +5,7 @@
      | |_| | |_| |   <  __/
      |____/ \__,_|_|\_\___|
 
-     Hello! I'm Duke
+     Hello! I'm duke.Duke
      What can I do for you?
     ____________________________________________________________
 
@@ -18,40 +18,40 @@
     ____________________________________________________________
 
     ____________________________________________________________
-     Got it. I've added this task:
+     Got it. I've added this duke.task:
        [T][ ] borrow book
      Now you have 1 tasks in the list.
     ____________________________________________________________
 
     ____________________________________________________________
-     Got it. I've added this task:
+     Got it. I've added this duke.task:
        [E][ ] project meeting (at: Tomorrow)
      Now you have 2 tasks in the list.
     ____________________________________________________________
 
     ____________________________________________________________
-     Got it. I've added this task:
+     Got it. I've added this duke.task:
        [D][ ] submit project (by: August 18)
      Now you have 3 tasks in the list.
     ____________________________________________________________
 
     ____________________________________________________________
-     Nice! I've marked this task as done:
+     Nice! I've marked this duke.task as done:
        [T][X] borrow book
     ____________________________________________________________
 
     ____________________________________________________________
-     Nice! I've marked this task as done:
+     Nice! I've marked this duke.task as done:
        [D][X] submit project (by: August 18)
     ____________________________________________________________
 
     ____________________________________________________________
-     OK, I've marked this task as not done yet:
+     OK, I've marked this duke.task as not done yet:
        [D][ ] submit project (by: August 18)
     ____________________________________________________________
 
     ____________________________________________________________
-     Noted. I've removed this task:
+     Noted. I've removed this duke.task:
        [D][ ] submit project (by: August 18)
      Now you have 2 tasks in the list.
     ____________________________________________________________

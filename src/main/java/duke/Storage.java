@@ -1,21 +1,35 @@
+package duke;
+
+import duke.command.AddDeadlineCommand;
+import duke.command.AddEventCommand;
+import duke.command.AddTodoCommand;
+import duke.command.MarkCommand;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Storage {
 
+    private final String DIR = System.getProperty("user.dir");
     private String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-    public ArrayList<Task> load() {
+    public ArrayList<Task> load() throws IOException {
         File target = new File(filePath);
+        ArrayList<Task> tasks = new ArrayList<>();
         if (target.exists()) {
             Scanner sc = new Scanner(target);
             while (sc.hasNext()) {
@@ -27,27 +41,26 @@ public class Storage {
                 String cmd;
                 LocalDate d;
                 switch (taskType) {
-                    // TODO
-                    case "T":
-                        cmd = "todo " + desc;
-                        addTodo(cmd);
-                        break;
+                // TODO
+                case "T":
+                    Todo todo = new Todo(desc);
+                    tasks.add(todo);
+                    break;
 
-                    // DEADLINE
-                    case "D":
-                        String deadline = components[3];
-                        d = LocalDate.parse(deadline);
-                        cmd = "deadline " + desc + " /by " + d;
-                        addDeadline(cmd);
-                        break;
+                // DEADLINE
+                case "D":
+                    System.out.println(Arrays.toString(components));
+                    String dl = components[3];
+                    Deadline deadline = new Deadline(desc, dl);
+                    tasks.add(deadline);
+                    break;
 
-                    // EVENT
-                    case "E":
-                        String time = components[3];
-                        d = LocalDate.parse(time);
-                        cmd = "event " + desc + " /at " + d;
-                        addEvent(cmd);
-                        break;
+                // EVENT
+                case "E":
+                    String time = components[3];
+                    Event event = new Event(desc, time);
+                    tasks.add(event);
+                    break;
                 }
                 if (isDone)
                     tasks.get(tasks.size() - 1).markAsDone();
@@ -57,19 +70,21 @@ public class Storage {
             boolean isFolderCreated = parent.mkdir();
             boolean isFileCreated = target.createNewFile();
         }
+        return tasks;
     }
 
-    public void store() throws IOException {
+    public void store(TaskList tasks) throws IOException {
         FileWriter writer = new FileWriter(filePath);
-        for (Task curr : tasks) {
+        for (int i = 0; i < tasks.getSize(); i++) {
+            Task curr = tasks.get(i);
             String status = curr.getStatusIcon().equals("X") ? "1" : "0";
             if (curr instanceof Todo) {
                 writer.write("T | " + status + " | " + curr.getDescription() + "\n");
             } else if (curr instanceof Deadline) {
-                writer.write("D | " + status + " | " + curr.getDescription() + "| " +
+                writer.write("D | " + status + " | " + curr.getDescription() + " | " +
                         ((Deadline) curr).getBy().toString() + "\n");
             } else if (curr instanceof Event) {
-                writer.write("E | " + status + " | " + curr.getDescription() + "| " +
+                writer.write("E | " + status + " | " + curr.getDescription() + " | " +
                         ((Event) curr).getAt().toString() + "\n");
             }
         }

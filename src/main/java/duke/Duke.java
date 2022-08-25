@@ -1,10 +1,6 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.regex.Pattern;
+package duke;
+
+import duke.command.Command;
 
 public class Duke {
 
@@ -17,7 +13,8 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
-        } catch (DukeException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
             ui.showLoadingError();
             tasks = new TaskList();
         }
@@ -41,29 +38,7 @@ public class Duke {
         }
     }
 
-    public void list() throws DukeException {
-        try {
-            if (tasks.size() == 0) {
-                throw new DukeException("☹ OOPS!!! You have no tasks in the list.\n");
-            }
-            String content;
-            content = INDENT + "Here are the tasks in your list:\n";
-            for (int i = 0; i < tasks.size(); i++) {
-                Task task = tasks.get(i);
-                content += INDENT + (i + 1) + "." + task + "\n";
-            }
-            msg(content);
-        } catch (DukeException e) {
-            msg(INDENT + e.getMessage());
-        }
-    }
-
-    public void bye() throws IOException {
-        storeTasks();
-        msg(INDENT + "Bye. Hope to see you again soon!\n");
-    }
-
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         new Duke(System.getProperty("user.dir") + "/data/tasks.txt").run();
     }
 }
