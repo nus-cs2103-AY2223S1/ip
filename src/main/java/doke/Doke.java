@@ -19,6 +19,7 @@ public class Doke {
         ui.printOut("hello");
 
         taskList = new TaskList(ui, storage);
+        ui.printOut("The following is your stored task: \n");
         taskList.listOut(ui);
 
         String str = sc.nextLine();
