@@ -1,9 +1,10 @@
 package duke.command;
 
-import duke.*;
-import duke.exception.*;
-
 import java.io.IOException;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 public class ExitCommand extends Command {
 
