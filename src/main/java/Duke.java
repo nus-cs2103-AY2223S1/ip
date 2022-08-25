@@ -1,4 +1,7 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -6,6 +9,7 @@ import java.util.Scanner;
 // This class is the main logic unit for Duke
 public class Duke {
 
+    private final static DateTimeFormatter INPUT_DATE_FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     /**
@@ -36,6 +40,40 @@ public class Duke {
         }
     }
 
+    private static Deadline createDeadline(String in) throws DukeException {
+        String[] temp = in.split(" */by* ");
+        if (temp.length != 2) {
+            throw new DukeException("-Deadline- Please follow the format of ~description~ /by dd-MM-yyyy HHmm!");
+        }
+        String description = temp[0];
+        String dueDate = temp[1];
+        LocalDateTime deadline;
+        try {
+            deadline = LocalDateTime.parse(dueDate, INPUT_DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("-Deadline- Your date needs to be in dd-MM-yyyy HHmm format!");
+        }
+
+        return new Deadline(description, deadline);
+    }
+
+    private static Event createEvent(String in) throws DukeException {
+        String[] temp = in.split(" */at* ");
+        if (temp.length != 2) {
+            throw new DukeException("-Event- Please follow the format of ~description~ /at dd-MM-yyyy HHmm!");
+        }
+        String description = temp[0];
+        String duration = temp[1];
+        LocalDateTime event;
+        try {
+            event = LocalDateTime.parse(duration, INPUT_DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("-Event- Your date needs to be in dd-MM-yyyy HHmm format!");
+        }
+
+        return new Event(description, event);
+    }
+
     /**
      * Handles the addition of tasks.
      *
@@ -48,9 +86,9 @@ public class Duke {
         if (type == Command.TODO) {
             task = new ToDo(description);
         } else if (type == Command.DEADLINE) {
-            task = new Deadline(description);
+            task = createDeadline(description);
         } else {
-            task = new Event(description);
+            task = createEvent(description);
         }
         System.out.println("Added: " + task.toString() + "\n");
         tasks.add(task);
