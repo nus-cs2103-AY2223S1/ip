@@ -180,7 +180,7 @@ public class ParserTest {
     }
 
     @Test
-    public void parseCommand_empty_success () {
+    public void parseCommand_empty_success() {
         try {
             assertEquals("", Parser.parseCommand("empty", stub));
         } catch (RenException e) {
