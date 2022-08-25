@@ -1,4 +1,4 @@
-import main.java.*;
+package duke;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class Duke {
         tasks.listAll(); // prints out contents of pre-existing file
         while (true) {
             try {
-                String fullCommand = ui.readCommand(); // SCAN SCAN SCAN
+                String fullCommand = ui.readCommand(); 
                 String commandType = Parser.getCommandType(fullCommand);
                 storage.save(fullCommand);
 

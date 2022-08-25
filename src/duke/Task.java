@@ -1,4 +1,4 @@
-package main.java;
+package duke;
 
 public class Task {
     protected String action;
