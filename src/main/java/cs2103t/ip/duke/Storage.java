@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class Storage {
 
-    protected final String filePath;
-    protected final String folderPath;
+    protected String filePath;
+    protected String folderPath;
 
     public Storage(String folderPath, String filePath) {
         this.folderPath = folderPath;
