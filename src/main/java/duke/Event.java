@@ -22,4 +22,17 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof Event) {
+            Event temp = (Event) obj;
+            return temp.description.equals(this.description) && temp.at.equals(this.at)
+                    && temp.isDone == this.isDone;
+        }
+        return false;
+    }
 }

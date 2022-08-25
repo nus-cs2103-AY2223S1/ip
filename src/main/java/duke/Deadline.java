@@ -22,4 +22,17 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof Deadline) {
+            Deadline temp = (Deadline) obj;
+            return temp.description.equals(this.description) && temp.by.equals(this.by)
+                    && temp.isDone == this.isDone;
+        }
+        return false;
+    }
 }

@@ -15,6 +15,7 @@ class Ui {
     private static final String ERROR_DEFAULT_MESSAGE = "OOPS!!! I'm sorry, but I don't know what that means :-(";
     private static final String ERROR_PROCESS_MESSAGE = "OOPS!!! The command cannot be processed :( Type 'help' for more guides";
     private static final String ERROR_WRITE_MESSAGE = "OOPS!!! I fail to write in the file, possibly due to no permission. Please help me out :(";
+    private static final String ERROR_UNFOUND_MESSAGE = "OOPS!!! There is no record matching your keyword :(";
 
     protected static void FormatPrint(String s) {
         System.out.println(SEPARATING_LINE);
@@ -53,6 +54,10 @@ class Ui {
 
     protected static void output(String arg) {
         System.out.println(arg);
+    }
+
+    protected static void processUnfoundResult() {
+        Ui.FormatPrint(ERROR_UNFOUND_MESSAGE);
     }
 
     protected static void processExceptionOutput(String msg) {

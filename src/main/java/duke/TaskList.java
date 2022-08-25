@@ -165,6 +165,16 @@ public class TaskList {
         }
     }
 
+    private TaskList findSimilarItems(String arg) {
+        TaskList res = new TaskList();
+        for (Task t : this.taskArrayList) {
+            if (t.description.contains(arg)) {
+                res.addTask(t);
+            }
+        }
+        return res;
+    }
+
     void parseInstructions(String args) throws DukeException{
         String arguments[] = args.split(" ", 2);
         try {
@@ -188,6 +198,16 @@ public class TaskList {
 
             case "event":
                 this.createEvent(TaskEnum.Event, arguments[1]);
+                break;
+
+            case "find":
+                TaskList res = this.findSimilarItems(arguments[1]);
+                if (res.taskArrayList.size() >= 1) {
+                    Ui.ListPrint(res);
+                } else {
+                    Ui.processUnfoundResult();
+                }
+
                 break;
 
             default:
