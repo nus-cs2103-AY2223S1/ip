@@ -1,9 +1,11 @@
+package duke.task;
+
 /**
- * Class to represent Task (not to be instantiated, hence abstract).
+ * Class to represent duke.task.Task (not to be instantiated, hence abstract).
  *
  * @author Melissa Anastasia Harijanto
  */
-abstract class Task {
+public abstract class Task {
     /** String representation of the task name. */
     protected String taskName;
 
@@ -11,7 +13,7 @@ abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for the Task class.
+     * Constructor for the duke.task.Task class.
      *
      * @param taskName The name of the task.
      */

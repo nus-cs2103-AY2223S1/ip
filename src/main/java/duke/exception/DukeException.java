@@ -1,5 +1,7 @@
+package duke.exception;
+
 /**
- * Class that represents errors exclusive to the Duke chat bot.
+ * Class that represents errors exclusive to the duke.Duke chat bot.
  *
  * @author Melissa Anastasia Harijanto
  */
@@ -8,7 +10,7 @@ public class DukeException extends Exception {
     String errorMessage;
 
     /**
-     * Constructor for DukeException.
+     * Constructor for duke.exception.DukeException.
      *
      * @param errorMessage The error message that will be printed out.
      */
