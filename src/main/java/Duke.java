@@ -28,8 +28,9 @@ public class Duke {
         while (!input.equalsIgnoreCase(EXITCOMMAND)) { // Stops loop if command is 'bye'
             try {
                 inputArray = input.split(" ");
-                // Check if user input is 'list'
-                if (input.equalsIgnoreCase("list")) { // List all inputs typed so far
+
+                switch (inputArray[0].toUpperCase()) {
+                case "LIST":
                     if (listOfInputs.size() == 0) { // List is empty
                         System.out.println(LINE + "\nYour list is empty! Why not add a task to it first?" + LINE);
                         input = sc.nextLine();
@@ -44,8 +45,7 @@ public class Duke {
                     }
                     input = sc.nextLine();
                     continue;
-                    // Check if user input is to mark a task
-                } else if (inputArray.length == 2 & inputArray[0].equalsIgnoreCase("mark")) {
+                case "MARK":
                     int taskNum = Integer.parseInt(inputArray[1]) - 1;
                     Task taskChosen = listOfInputs.get(taskNum);
                     taskChosen.markAsDone();
@@ -53,54 +53,50 @@ public class Duke {
                             + taskChosen + LINE);
                     input = sc.nextLine();
                     continue;
-                    // Check if user input is to unmark a task
-                } else if (inputArray.length == 2 & inputArray[0].equalsIgnoreCase("unmark")) {
-                    int taskNum = Integer.parseInt(inputArray[1]) - 1;
-                    Task taskChosen = listOfInputs.get(taskNum);
+                case "UNMARK":
+                    taskNum = Integer.parseInt(inputArray[1]) - 1;
+                    taskChosen = listOfInputs.get(taskNum);
                     taskChosen.markAsUndone();
                     System.out.println(LINE + "\nOkay, I have marked this task as not done: \n"
                             + taskChosen + LINE);
                     input = sc.nextLine();
                     continue;
-                }
-
-                switch (inputArray[0].toUpperCase()) {
-                    case "TODO":
-                        if (inputArray.length < 2) {
-                            throw new DukeException("The description of a todo cannot be empty" + LINE);
-                        }
-                        String[] taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
-                        Todo newToDo = new Todo(String.join(" ", taskDesc));
-                        listOfInputs.add(newToDo);
-                        System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newToDo
-                                + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
-                        input = sc.nextLine();
-                        continue;
-                    case "DEADLINE":
-                        taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
-                        taskDesc = String.join(" ", taskDesc).split("/by");
-                        Deadline newDeadline = new Deadline(taskDesc[0], taskDesc[1]);
-                        listOfInputs.add(newDeadline);
-                        System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newDeadline
-                                + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
-                        input = sc.nextLine();
-                        continue;
-                    case "EVENT":
-                        taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
-                        taskDesc = String.join(" ", taskDesc).split("/at");
-                        Event newEvent = new Event(taskDesc[0], taskDesc[1]);
-                        listOfInputs.add(newEvent);
-                        System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newEvent
-                                + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
-                        input = sc.nextLine();
-                        continue;
-                    case "DELETE":
-                        Task removedTask = listOfInputs.get(Integer.parseInt(inputArray[1]) - 1);
-                        listOfInputs.remove(Integer.parseInt(inputArray[1]) - 1);
-                        System.out.println(LINE + "\nOkay, I have removed this task from the list:\n  " + removedTask
-                                + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
-                        input = sc.nextLine();
-                        continue;
+                case "TODO":
+                    if (inputArray.length < 2) {
+                        throw new DukeException("The description of a todo cannot be empty" + LINE);
+                    }
+                    String[] taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
+                    Todo newToDo = new Todo(String.join(" ", taskDesc));
+                    listOfInputs.add(newToDo);
+                    System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newToDo
+                            + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
+                    input = sc.nextLine();
+                    continue;
+                case "DEADLINE":
+                    taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
+                    taskDesc = String.join(" ", taskDesc).split("/by");
+                    Deadline newDeadline = new Deadline(taskDesc[0], taskDesc[1]);
+                    listOfInputs.add(newDeadline);
+                    System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newDeadline
+                            + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
+                    input = sc.nextLine();
+                    continue;
+                case "EVENT":
+                    taskDesc = Arrays.copyOfRange(inputArray, 1, inputArray.length);
+                    taskDesc = String.join(" ", taskDesc).split("/at");
+                    Event newEvent = new Event(taskDesc[0], taskDesc[1]);
+                    listOfInputs.add(newEvent);
+                    System.out.println(LINE + "\nGot it! I have added this task to your list:\n  " + newEvent
+                            + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
+                    input = sc.nextLine();
+                    continue;
+                case "DELETE":
+                    Task removedTask = listOfInputs.get(Integer.parseInt(inputArray[1]) - 1);
+                    listOfInputs.remove(Integer.parseInt(inputArray[1]) - 1);
+                    System.out.println(LINE + "\nOkay, I have removed this task from the list:\n  " + removedTask
+                            + "\nNow you have " + listOfInputs.size() + " tasks in the list." + LINE);
+                    input = sc.nextLine();
+                    continue;
                 }
                 throw new DukeException("I'm sorry, but I don't know what that means" + LINE);
             } catch (DukeException err) {
