@@ -12,4 +12,8 @@ public class deadline extends Task {
     public String toString() {
         return "[D][" + super.getStatusIcon() + "] " + super.description + " (by: " + date + ")";
     }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
