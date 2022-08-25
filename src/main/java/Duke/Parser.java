@@ -25,6 +25,8 @@ public class Parser {
             return Duke.Commands.UNMARK;
         } else if (input.startsWith("delete")) {
             return Duke.Commands.DELETE;
+        } else if (input.startsWith("find")) {
+            return Duke.Commands.FIND;
         } else {
             return Duke.Commands.CREATETASK;
         }

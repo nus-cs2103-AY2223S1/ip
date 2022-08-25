@@ -40,7 +40,8 @@ public class Duke {
         MARK,
         UNMARK,
         DELETE,
-        CREATETASK
+        CREATETASK,
+        FIND
     }
 
     /**
@@ -98,7 +99,9 @@ public class Duke {
             System.out.println("    ____________________________________________________________\n");
             for (int i = 1; i <= tasks.getSize(); i++) {
                 String index = String.format("%d.", i);
-                ui.showEntry(index + tasks.getItem(i - 1).toString());
+                String entry = index + tasks.getItem(i).toString();
+                ui.showEntry(entry);
+
             }
             System.out.println("    ____________________________________________________________\n");
 
@@ -150,6 +153,22 @@ public class Duke {
             } catch (IOException e) {
                 ui.showErrorWritingMessage();
             }
+        } else if (command == Commands.FIND) {
+            try {
+                String word = input.split(" ", 2)[1];
+                System.out.println("    ____________________________________________________________\n");
+                for (int i = 1; i <= tasks.getSize(); i++) {
+                    String index = String.format("%d.", i);
+                    String entry = index + tasks.getItem(i).toString();
+                    if (entry.contains(word)) {
+                        ui.showEntry(entry);
+                    }
+                }
+                System.out.println("    ____________________________________________________________\n");
+            } catch (ArrayIndexOutOfBoundsException e) {
+                ui.showInvalidFindFiledMessage();
+            }
+
         }
     }
 }
