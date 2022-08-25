@@ -20,7 +20,8 @@ public class Storage {
     public static Storage initialize(String storagePathName) {
         File saveFile = new File(storagePathName);
         try {
-            if (saveFile.getParentFile().mkdirs() && saveFile.createNewFile()) {
+            saveFile.getParentFile().mkdirs();
+            if (saveFile.createNewFile()) {
                 Ui.formatLinesIntoParagraph("Successfully created save file for storage!");
             }
         } catch (IOException e) {
