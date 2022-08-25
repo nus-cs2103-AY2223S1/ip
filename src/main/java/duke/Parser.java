@@ -57,6 +57,15 @@ public class Parser {
         }
     }
 
+    private void parseFind(String[] splitInput, TaskList tasks) throws DukeException {
+        int len = splitInput.length;
+        if (len == 1) {
+            throw new DukeException("Duke: To search for tasks, enter a keyword");
+        }
+        String keyword = String.join(" ", Arrays.copyOfRange(splitInput, 1, len));
+        tasks.find(keyword);
+    }
+
     public void parse(String userInput, TaskList tasks) {
         String[] splitInput = userInput.split(" ");
         int len = splitInput.length;
@@ -64,6 +73,8 @@ public class Parser {
             isExit = true;
         } else if (userInput.equals("list")) {
             Ui.printTaskList(tasks);
+        } else if(splitInput[0].equals("find")) {
+            parseFind(splitInput, tasks);
         } else if (len == 2 && splitInput[0].equals("mark") && isInteger(splitInput[1])) {
             tasks.editTaskList("mark", parseInt(splitInput[1]) - 1);
         } else if (len == 2 && splitInput[0].equals("unmark") && isInteger(splitInput[1])) {

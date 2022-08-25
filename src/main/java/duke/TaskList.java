@@ -97,6 +97,22 @@ public class TaskList {
         return tasks.isEmpty();
     }
 
+    public void find(String keyword) {
+        String match = "";
+        for (int i = 0, j = 0; j < tasks.size(); j++) {
+            Task curr = tasks.get(j);
+            if (curr.contains(keyword)) {
+                i++;
+                match += i + ". " + curr + "\n";
+            }
+        }
+        if (match == "") {
+            System.out.println("Duke: Sorry! Cannot find any matching tasks in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:\n" + match);
+        }
+    }
+
     @Override
     public String toString() {
         String str = "";

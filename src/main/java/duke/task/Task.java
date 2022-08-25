@@ -27,6 +27,10 @@ public abstract class Task {
         return (isDone ? "X" : " ");
     }
 
+    public boolean contains(String keyword) {
+        return taskDescription.contains(keyword);
+    }
+
     public String toCsv() {
         int status = this.isDone ? 1 : 0;
         return status + "," + this.taskDescription;
