@@ -18,7 +18,7 @@ public class ToDoList {
     /**
      * Creates empty duke.ToDoList
      */
-    ToDoList() {
+    public ToDoList() {
         toDoList = new ArrayList<>();
     }
 

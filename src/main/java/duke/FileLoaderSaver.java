@@ -17,7 +17,7 @@ public class FileLoaderSaver {
      * Constructs duke.FileLoaderSaver object
      * @param filePath path to saving and loading location
      */
-    FileLoaderSaver(String filePath) {
+    public FileLoaderSaver(String filePath) {
         this.filePath = Path.of(filePath);
     }
 
