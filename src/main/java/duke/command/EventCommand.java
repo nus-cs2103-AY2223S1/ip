@@ -6,13 +6,26 @@ import duke.util.TaskList;
 
 import java.time.LocalDate;
 
+/**
+ * Handles the command 'event'.
+ */
 public class EventCommand extends Command {
     private String input;
 
+    /**
+     * Constructor for a new Event command.
+     *
+     * @param input the input
+     */
     public EventCommand(String input) {
         this.input = input;
     }
 
+    /**
+     * Runs the command 'event'.
+     * @param taskList List of current tasks.
+     * @throws DukeException Duke Exception for event.
+     */
     @Override
     public void run(TaskList taskList) throws DukeException {
         String[] segments = input.split("/at");
