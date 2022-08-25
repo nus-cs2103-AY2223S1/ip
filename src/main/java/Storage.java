@@ -20,15 +20,15 @@ public class Storage {
     protected String load() throws DukeException {
         try {
             Scanner s = new Scanner(this.f);
-            String data = "";
+            StringBuilder data = new StringBuilder();
             while (s.hasNext()) {
-                if (!data.equals("")) {
-                    data = data + "\n";
+                if (!data.toString().equals("")) {
+                    data.append("\n");
                 }
                 String input = s.nextLine();
-                data = data + input;
+                data.append(input);
             }
-            return data;
+            return data.toString();
         } catch (FileNotFoundException e) {
             throw new DukeException("File could not be found");
         }
