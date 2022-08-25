@@ -4,13 +4,13 @@ import java.time.LocalDate;
 import java.lang.NumberFormatException;
 
 public class Deadline extends Task {
-    private LocalDate deadline;
+    private final LocalDate deadline;
 
     /**
      * Creates a Deadline object with the provided description and deadline.
      * @param description A description of the task related to this deadline.
      * @param deadline A date which represents the deadline for this task.
-     * @throws DukeException
+     * @throws DukeException Displays an error message to the user if the wrong date format is used.
      */
     public Deadline(String description, String deadline) throws DukeException {
         super(description);

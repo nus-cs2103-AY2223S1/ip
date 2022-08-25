@@ -29,9 +29,8 @@ public class Duke {
     public void run() {
         this.ui.greet();
         Scanner scanner = new Scanner(System.in);
-        String input = "";
         while (true) {
-            input = scanner.nextLine();
+            String input = scanner.nextLine();
             try {
                 if (input.equals("bye")) {
                     break;
@@ -45,7 +44,7 @@ public class Duke {
                 } else if (input.startsWith("unmark")) {
                     int target = Integer.valueOf(input.split(" ")[1]) - 1;
                     Task toUnmark = tasks.get(target);
-                    toUnmark.mark();
+                    toUnmark.unmark();
                     this.ui.showUnmarked(toUnmark);
                 } else if (input.startsWith("todo")) {
                     String[] info = input.split("todo ");

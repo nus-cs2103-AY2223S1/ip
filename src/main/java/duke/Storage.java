@@ -16,8 +16,7 @@ public class Storage {
      */
     public Storage(String filePath) {
         System.out.println("Retrieving files...");
-        File file = new File(filePath);
-        this.file = file;
+        this.file = new File(filePath);
     }
 
     /**
