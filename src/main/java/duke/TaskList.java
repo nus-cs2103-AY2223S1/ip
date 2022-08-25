@@ -61,6 +61,28 @@ public class TaskList {
     }
 
     /**
+     * Returns a list of tasks which contain the given input in their descriptions.
+     *
+     * @param input The String to search for.
+     * @return String containing a numbered list of the results.
+     */
+    public String find(String input) {
+        StringBuilder str = new StringBuilder();
+        ArrayList<Task> results = new ArrayList<>();
+
+        for (Task task : tasks) {
+            if (task.contains(input)) {
+                results.add(task);
+            }
+        }
+
+        for (int i = 0; i < results.size(); i++) {
+            str.append("\n" + (i + 1) + ". " + results.get(i).toString());
+        }
+        return str.toString();
+    }
+
+    /**
      * Returns the details of the task at the given index.
      *
      * @param index Index of the task.

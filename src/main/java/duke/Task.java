@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Locale;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -16,6 +18,16 @@ public class Task {
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    /**
+     * Returns true if task description contains the given input.
+     *
+     * @param input The String to search for.
+     * @return Boolean if the input is found.
+     */
+    public boolean contains(String input) {
+        return this.description.toLowerCase().contains(input.toLowerCase());
     }
 
     /**

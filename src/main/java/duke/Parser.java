@@ -63,6 +63,14 @@ public class Parser {
         case "event":
             processTask(next, nextWords[0]);
             break;
+        case "find":
+            try {
+                String found = tasks.find(next.split(" ")[1]);
+                ui.printOut("Here's what I found:" + found);
+            } catch (ArrayIndexOutOfBoundsException e) {
+                ui.printOut("Please enter a word after 'find'!");
+            }
+            break;
         default:
             ui.printOut("I don't know this command. Try another one!");
         }
