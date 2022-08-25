@@ -19,6 +19,11 @@ public class Event extends Task {
         this.eventTime = eventTime;
     }
 
+    @Override
+    public String getTextRepresentation() {
+        return "E|" + (this.isCompleted() ? "1|" : "0|") + this.getTaskDescription() + "|" + this.eventTime + "\n";
+    }
+
     /**
      * Return a string representation of an event task.
      *

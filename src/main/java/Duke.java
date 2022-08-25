@@ -1,4 +1,7 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
+import java.io.File;
 
 /**
  * A task-keeping chatbot with a command line interface.
@@ -7,7 +10,7 @@ import java.util.*;
  */
 
 public class Duke {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, DukeException {
 
         String dukeGreeting = "Hello! I'm Duke\nWhat can I do for you?";
         System.out.println(dukeGreeting);
@@ -15,6 +18,44 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String userResponse = null;
         ArrayList<Task> userTasks = new ArrayList<>();
+        String taskUrl = "src/main/java/tasks.txt";
+        File f = new File(taskUrl);
+        Scanner s = new Scanner(f);
+        while (s.hasNext()) {
+            String taskTextRepresentation = s.nextLine();
+            String[] parsedTaskTextRepresentation = taskTextRepresentation.split("\\|");
+            String taskType = parsedTaskTextRepresentation[0];
+            boolean isTaskDone = Integer.parseInt(parsedTaskTextRepresentation[1]) == 1;
+            String taskDescription = parsedTaskTextRepresentation[2];
+            switch (taskType) {
+                case "T":
+                    Task savedTodo = new Todo(taskDescription);
+                    if (isTaskDone) {
+                        savedTodo.setCompleted();
+                    }
+                    userTasks.add(savedTodo);
+                    break;
+                case "D":
+                    String taskDeadline = parsedTaskTextRepresentation[3];
+                    Task savedDeadline = new Deadline(taskDescription, taskDeadline);
+                    if (isTaskDone) {
+                        savedDeadline.setCompleted();
+                    }
+                    userTasks.add(savedDeadline);
+                    break;
+                case "E":
+                    String taskEventTime = parsedTaskTextRepresentation[3];
+                    Task savedEvent = new Event(taskDescription, taskEventTime);
+                    if (isTaskDone) {
+                        savedEvent.setCompleted();
+                    }
+                    userTasks.add(savedEvent);
+                    break;
+                default:
+                    throw new DukeException("Corrupted task file");
+            }
+        }
+
         while (userResponse == null || !userResponse.equals("bye")) {
             userResponse = sc.nextLine();
             String dukeOutput = "";
@@ -27,6 +68,11 @@ public class Duke {
                     if (parsedUserResponse.length > 1) {
                         dukeOutput = ("    " + "Invalid number of arguments, only one required\n");
                     } else {
+                        FileWriter fw = new FileWriter(taskUrl);
+                        for (Task userTask : userTasks) {
+                            fw.write(userTask.getTextRepresentation());
+                        }
+                        fw.close();
                         dukeOutput = "    " + "Bye. Hope to see you again soon!";
                     }
                     break;
@@ -45,7 +91,7 @@ public class Duke {
                     if (parsedUserResponse.length != 2) {
                         dukeOutput = ("    " + "Invalid number of arguments, two required\n");
                     } else {
-                        Integer taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
+                        int taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
                         try {
                             Task userTask = userTasks.get(taskNumber);
                             if (userTask.isCompleted()) {
@@ -65,7 +111,7 @@ public class Duke {
                     if (parsedUserResponse.length != 2) {
                         dukeOutput = ("    " + "Invalid number of arguments, two required\n");
                     } else {
-                        Integer taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
+                        int taskNumber = Integer.parseInt(userResponse.replaceAll("[^0-9]", "")) - 1;
                         try {
                             Task userTask = userTasks.get(taskNumber);
                             if (!userTask.isCompleted()) {

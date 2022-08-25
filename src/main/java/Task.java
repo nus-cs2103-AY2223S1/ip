@@ -44,6 +44,10 @@ public class Task {
         return this.completed;
     }
 
+    public String getTextRepresentation() {
+        return "Invalid Type";
+    }
+
     /**
      * Get the description of the task.
      *

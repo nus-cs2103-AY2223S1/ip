@@ -17,6 +17,11 @@ public class Deadline extends Task {
         this.deadline = taskDeadline;
     }
 
+    @Override
+    public String getTextRepresentation() {
+        return "D|" + (this.isCompleted() ? "1|" : "0|") + this.getTaskDescription() + "|" + this.deadline + "\n";
+    }
+
     /**
      * Return a string representation of a task with a deadline.
      *
