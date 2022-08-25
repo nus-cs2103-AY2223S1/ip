@@ -24,6 +24,10 @@ public class TaskModel {
         this.tasks = new ArrayList<>();
         try {
             this.storage = new Storage();
+            tasks = storage.load()
+                    .stream()
+                    .map(TaskDeserializer::deserializeTaskString)
+                    .collect(Collectors.toList());
         } catch (StorageException e) {
             throw e;
         }

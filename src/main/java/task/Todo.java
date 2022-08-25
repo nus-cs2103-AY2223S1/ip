@@ -1,7 +1,5 @@
 package task;
 
-import org.json.JSONObject;
-
 /**
  * Class representing a Todo task
  */

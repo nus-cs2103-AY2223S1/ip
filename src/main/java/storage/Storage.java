@@ -8,8 +8,6 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.json.JSONObject;
-
 import exceptions.DukeException;
 import exceptions.StorageException;
 
@@ -51,12 +49,12 @@ public class Storage {
      * Return the list of strings persistently stored - empty if nothing has been stored
      * @return List of strings stored
      */
-    public List<String> load() throws DukeException {
+    public List<String> load() throws StorageException {
         try {
             return Files.lines(PATH)
                     .collect(Collectors.toList());
         } catch (IOException e) {
-            throw new DukeException("There was an unrecognised error when loading tasks");
+            throw new StorageException("There was an unrecognised error when loading tasks");
         }
     }
 }
