@@ -1,5 +1,6 @@
 package jenny.storage;
 
+import jenny.exceptions.JennyException;
 import jenny.util.Printer;
 
 import java.io.IOException;
@@ -34,10 +35,10 @@ public abstract class AbstractStorage<T> {
             try {
                 Files.createDirectories(storagePath);
             } catch (IOException e) {
-                Printer.echo(this.getClass().getSimpleName(), ERROR_CREATING_DIRECTORY);
+                throw new JennyException(this.getClass().getSimpleName(), ERROR_CREATING_DIRECTORY);
             }
         } else {
-            Printer.echo(this.getClass().getSimpleName(), DIRECTORY_ALREADY_EXISTS);
+            throw new JennyException(this.getClass().getSimpleName(), DIRECTORY_ALREADY_EXISTS);
         }
     }
 
@@ -46,14 +47,14 @@ public abstract class AbstractStorage<T> {
      *
      * @param t the type of item to process.
      */
-    public abstract void save(T t);
+    public abstract void save(T t) throws JennyException;
 
     /**
      * Loads the item from storage.
      *
      * @return the item from storage.
      */
-    public abstract T load();
+    public abstract T load() throws JennyException ;
 
     /**
      * {@inheritDoc}

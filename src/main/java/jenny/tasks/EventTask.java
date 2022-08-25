@@ -1,6 +1,9 @@
 package jenny.tasks;
 
+import jenny.exceptions.JennyException;
 import jenny.exceptions.TaskException;
+
+import java.time.LocalDate;
 
 /**
  * A EventTask to complete.
@@ -11,19 +14,19 @@ import jenny.exceptions.TaskException;
  */
 public class EventTask extends AbstractTask {
     private static final String MESSAGE_SCOPE = EventTask.class.getSimpleName();
-    private final String dueDate;
+    private final LocalDate dueDate;
 
     /**
      * {@inheritDoc}
      *
      * @param dueDate due date of the task.
      */
-    public EventTask(String description, String dueDate) {
+    public EventTask(String description, LocalDate dueDate) {
         super(description);
-        if (description != null && description.trim().isEmpty()) {
-            throw new TaskException(String.format("%s: The description of this task cannot be empty.", MESSAGE_SCOPE));
-        } else if (dueDate != null && dueDate.trim().isEmpty()) {
-            throw new TaskException(String.format("%s: The due date of this task cannot be empty.", MESSAGE_SCOPE));
+        if (description.trim().isEmpty()) {
+            throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_DESCRIPTION);
+        } else if (dueDate == null) {
+            throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_DUE_DATE);
         }
         this.dueDate = dueDate;
     }

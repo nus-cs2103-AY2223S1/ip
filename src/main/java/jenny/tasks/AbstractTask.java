@@ -9,6 +9,8 @@ package jenny.tasks;
  */
 public abstract class AbstractTask {
     private static final String MESSAGE_SCOPE = AbstractTask.class.getSimpleName();
+    protected static final String ERROR_INVALID_DESCRIPTION = "The description of this task cannot be empty.";
+    protected static final String ERROR_INVALID_DUE_DATE = "The due date of this task cannot be empty.";
     protected String description;
     protected boolean isDone;
 

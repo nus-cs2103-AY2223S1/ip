@@ -10,13 +10,22 @@ import jenny.util.Printer;
  * @author Deon
  */
 public class JennyException extends RuntimeException {
+    private final String messageScope;
     /**
      * Creates an instance of the exception.
      *
      * @param errorMessage error message of the exception.
      */
-    public JennyException(String scope, String errorMessage) {
+    public JennyException(String messageScope, String errorMessage) {
         super(errorMessage);
-        Printer.echo(scope, errorMessage);
+        this.messageScope = messageScope;
+    }
+
+    /**
+     * Returns the scope of where the exception was thrown.
+     * @return the scope of where the exception was thrown.
+     */
+    public String getThrownFrom() {
+        return this.messageScope;
     }
 }

@@ -1,10 +1,13 @@
 package jenny.storage;
 
+import jenny.exceptions.JennyException;
 import jenny.tasks.AbstractTask;
 import jenny.tasks.DeadlineTask;
 import jenny.tasks.EventTask;
 import jenny.tasks.TodoTask;
 import jenny.util.Printer;
+import jenny.util.UserInterface;
+import jenny.util.Validator;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,7 +15,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 
 /**
@@ -48,21 +53,18 @@ public class TaskStorage<T> extends AbstractStorage<T> {
      * {@inheritDoc}
      */
     @Override
-    public void save(T t) {
+    public void save(T t) throws JennyException {
         if (!(t instanceof ArrayList)) {
-            Printer.echo(MESSAGE_SCOPE, ERROR_INVALID_TYPE);
-            return;
+            throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_TYPE);
         }
 
         ArrayList<?> tArrayList = (ArrayList<?>) t;
         if (tArrayList.isEmpty()) {
-            Printer.echo(MESSAGE_SCOPE, ERROR_NOTHING_TO_SAVE);
-            return;
+            throw new JennyException(MESSAGE_SCOPE, ERROR_NOTHING_TO_SAVE);
         }
 
         if (!(tArrayList.get(0) instanceof AbstractTask)) {
-            Printer.echo(MESSAGE_SCOPE, ERROR_INVALID_TYPE);
-            return;
+            throw new JennyException(MESSAGE_SCOPE, ERROR_INVALID_TYPE);
         }
 
         @SuppressWarnings("unchecked")
@@ -74,9 +76,9 @@ public class TaskStorage<T> extends AbstractStorage<T> {
                 fileWriter.write(String.format("%s\n", task.save()));
             }
             fileWriter.close();
-            Printer.echo(MESSAGE_SCOPE, SUCCESS_WRITING_FILE);
+            UserInterface.print(SUCCESS_WRITING_FILE);
         } catch (IOException e) {
-            Printer.echo(MESSAGE_SCOPE, ERROR_WRITING_FILE);
+            throw new JennyException(MESSAGE_SCOPE, ERROR_WRITING_FILE);
         }
 
     }
@@ -85,11 +87,13 @@ public class TaskStorage<T> extends AbstractStorage<T> {
      * {@inheritDoc}
      */
     @Override
-    public T load() {
+    public T load() throws JennyException {
         try {
             FileReader fileReader = new FileReader(filePath.toFile());
             Scanner scanner = new Scanner(fileReader);
             ArrayList<AbstractTask> tasks = new ArrayList<>();
+            AbstractTask task;
+            LocalDate dueDate;
 
             while (scanner.hasNextLine()) {
                 String jennyTask = scanner.nextLine();
@@ -97,19 +101,37 @@ public class TaskStorage<T> extends AbstractStorage<T> {
 
                 switch (data[0]) {
                 case "DeadlineTask":
-                    tasks.add(new DeadlineTask(data[1], data[2]));
+                    try {
+                        dueDate = Validator.parseDate(data[3]);
+                        task = new DeadlineTask(data[2], dueDate);
+                        tasks.add(task);
+                        task.markAsDone((Objects.equals(data[1], "true")));
+                    } catch (JennyException e) {
+                        throw new JennyException(MESSAGE_SCOPE, String.format("Tried to parse [%s] as a date. Failed Reason: %s",
+                                data[2], e.getMessage()));
+                    }
                     break;
 
                 case "EventTask":
-                    tasks.add(new EventTask(data[1], data[2]));
+                    try {
+                        dueDate = Validator.parseDate(data[3]);
+                        task = new EventTask(data[2], dueDate);
+                        tasks.add(task);
+                        task.markAsDone((Objects.equals(data[1], "true")));
+                    } catch (JennyException e) {
+                        throw new JennyException(MESSAGE_SCOPE, String.format("Tried to parse [%s] as a date. Failed Reason: %s",
+                                data[2], e.getMessage()));
+                    }
                     break;
 
                 case "TodoTask":
-                    tasks.add(new TodoTask(data[1]));
+                    task = new TodoTask(data[2]);
+                    tasks.add(task);
+                    task.markAsDone((Objects.equals(data[1], "true")));
                     break;
 
                 default:
-                    Printer.echo(MESSAGE_SCOPE, ERROR_CORRUPTED_SAVE);
+                    throw new JennyException(MESSAGE_SCOPE, ERROR_CORRUPTED_SAVE);
                 }
             }
 
@@ -117,8 +139,7 @@ public class TaskStorage<T> extends AbstractStorage<T> {
             T t = (T) tasks;
             return t;
         } catch (FileNotFoundException e) {
-            Printer.echo(MESSAGE_SCOPE, ERROR_NO_SAVE_FOUND);
-            return null;
+            throw new JennyException(MESSAGE_SCOPE, ERROR_NO_SAVE_FOUND);
         }
     }
 

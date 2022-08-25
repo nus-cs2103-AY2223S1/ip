@@ -1,5 +1,6 @@
 package jenny.tasks;
 
+import jenny.exceptions.JennyException;
 import jenny.exceptions.TaskException;
 
 /**
@@ -11,16 +12,17 @@ import jenny.exceptions.TaskException;
  */
 public class TodoTask extends AbstractTask {
     private static final String MESSAGE_SCOPE = TodoTask.class.getSimpleName();
+    private static final String ERROR_MISSING_DESCRIPTION = "The description of this task cannot be empty.";
 
     /**
      * Constructor of a TodoTask.
      *
      * @param description description of the task.
      */
-    public TodoTask(String description) {
+    public TodoTask(String description) throws JennyException {
         super(description);
         if (description.equals("")) {
-            throw new TaskException(String.format("%s: The description of this task cannot be empty.", MESSAGE_SCOPE));
+            throw new JennyException(MESSAGE_SCOPE, ERROR_MISSING_DESCRIPTION);
         }
     }
 
