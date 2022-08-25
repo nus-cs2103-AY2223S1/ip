@@ -31,6 +31,16 @@ public class Task {
         return false;
     }
 
+    /**
+     * Checks if the description contains this keyword.
+     *
+     * @param string The keyword.
+     * @return a boolean value.
+     */
+    public boolean contains(String string) {
+        return description.contains(string);
+    }
+
     @Override
     public String toString() {
         /** Determines if there is an X icon to show completed */

@@ -3,6 +3,7 @@ import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
+import duke.command.FindCommand;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -109,6 +110,9 @@ public abstract class Parser {
                 } catch (DateTimeParseException e) {
                     throw new DukeException("Please enter a valid date (yyyy-mm-dd).");
                 }
+            case "find":
+                command = new FindCommand(secondWord);
+                return command;
             default:
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
