@@ -1,3 +1,6 @@
+import exceptions.GeneralException;
+import exceptions.TumuException;
+
 /**
  * Extracts the information from the file into
  * the Task class.

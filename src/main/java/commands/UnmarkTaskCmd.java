@@ -1,3 +1,7 @@
+package command;
+
+import commands.Command;
+
 public class UnmarkTaskCmd extends Command {
     private int taskIndex;
 

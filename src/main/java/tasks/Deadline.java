@@ -1,11 +1,13 @@
+import exceptions.UnrecognisedDateTimeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-public class Event extends Task {
+public class Deadline extends Task {
     private LocalDateTime timing;
 
-    public Event(String taskDescription, String timing) throws UnrecognisedDateTimeException {
+    public Deadline(String taskDescription, String timing) throws UnrecognisedDateTimeException {
         super(taskDescription);
         try {
             //Alter the timing so that it can be properly added in.
@@ -23,12 +25,12 @@ public class Event extends Task {
      */
     @Override
     public String parseToFile() {
-        return String.format("E # %s # %s # %s", super.getStatusIcon(), super.getTaskDescription(), timing);
+        return String.format("D # %s # %s # %s", super.getStatusIcon(), super.getTaskDescription(), timing);
     }
 
     @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(),
+        return String.format("[D]%s (by: %s)", super.toString(),
                 timing.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm")));
     }
 }

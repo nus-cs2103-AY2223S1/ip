@@ -1,3 +1,5 @@
+package commands;
+
 public class DeleteCmd extends Command {
     private int taskIndex;
 
