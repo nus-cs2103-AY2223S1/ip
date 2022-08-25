@@ -43,6 +43,14 @@ abstract class Task implements Comparable<Task> {
         return dateTime.get().compareTo(o.dateTime.get());
     }
 
+    public int compareTo(LocalDateTime o) {
+        if (!dateTime.isPresent()) {
+            return 1;
+        }
+
+        return dateTime.get().compareTo(o);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", (completed) ? "X" : " ", description);
