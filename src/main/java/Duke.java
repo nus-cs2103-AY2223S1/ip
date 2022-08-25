@@ -105,12 +105,16 @@ public class Duke {
                     }
                     s = in.nextLine();
                     s = s.substring(1);
-                    Task t = new Deadline(desc.toString().substring(1), s);
-                    tasks.add(t);
-                    int length = tasks.size();
-                    String output = length == 1 ? " task in the list." : " tasks in the list.";
-                    System.out.println("Got it. I've added this task:\n" + t +
-                            "\nNow you have " + length + output);
+                    try {
+                        Task t = new Deadline(desc.substring(1), s);
+                        tasks.add(t);
+                        int length = tasks.size();
+                        String output = length == 1 ? " task in the list." : " tasks in the list.";
+                        System.out.println("Got it. I've added this task:\n" + t +
+                                "\nNow you have " + length + output);
+                    } catch (DukeException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 }
                 case EVENT: {
@@ -121,12 +125,16 @@ public class Duke {
                     }
                     s = in.nextLine();
                     s = s.substring(1);
-                    Task t = new Event(desc.toString().substring(1), s);
-                    tasks.add(t);
-                    int length = tasks.size();
-                    String output = length == 1 ? " task in the list." : " tasks in the list.";
-                    System.out.println("Got it. I've added this task:\n" + t +
-                            "\nNow you have " + length + output);
+                    try {
+                        Task t = new Event(desc.substring(1), s);
+                        tasks.add(t);
+                        int length = tasks.size();
+                        String output = length == 1 ? " task in the list." : " tasks in the list.";
+                        System.out.println("Got it. I've added this task:\n" + t +
+                                "\nNow you have " + length + output);
+                    } catch (DukeException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 }
                 }
@@ -145,13 +153,5 @@ public class Duke {
         System.out.println("Bye. Hope to see you again soon!");
 
         in.close();
-    }
-
-    public static String scanNextLine(Scanner sc) throws DukeException {
-        String s = sc.nextLine();
-        if (s.length() < 2) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
-        }
-        return s;
     }
 }
