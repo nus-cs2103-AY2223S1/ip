@@ -1,3 +1,4 @@
+
 class Task {
     private final String taskDescription;
     private boolean isDone;
@@ -29,5 +30,9 @@ class Task {
 
     public String toString() {
         return "[" + this.getStatus() + "] " + this.getTaskDescription();
+    }
+
+    public String write() {
+        return ":" + this.getStatus() + ":" + this.getTaskDescription();
     }
 }
