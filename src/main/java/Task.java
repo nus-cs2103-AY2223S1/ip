@@ -1,4 +1,7 @@
 public class Task {
+    public static final String ICON_DONE = "X";
+    public static final String ICON_UNDONE = " ";
+
     public String details;
     public boolean isDone;
 
@@ -9,20 +12,30 @@ public class Task {
 
     public static Task fromEncoded(String s) {
         String[] pieces = s.split("\\|");
+        Task task;
         switch (pieces[0]) {
         case "T":
-            return new Todo(pieces[1]);
+            task = new Todo(pieces[2]);
+            break;
         case "D":
-            return new Deadline(pieces[1], pieces[2]);
+            task = new Deadline(pieces[2], pieces[3]);
+            break;
         case "E":
-            return new Event(pieces[1], pieces[2]);
+            task = new Event(pieces[2], pieces[3]);
+            break;
         default:
-            return new Task(pieces[1]);
+            task = new Task(pieces[2]);
+            break;
         }
+        if (pieces[1].equals(ICON_DONE)) {
+            task.isDone = true;
+        }
+
+        return task;
     }
 
     public String getStatusIcon() {
-        return isDone ? "X" : " ";
+        return isDone ? ICON_DONE : ICON_UNDONE;
     }
 
     public String getTaskIcon() {

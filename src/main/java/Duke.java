@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -26,21 +30,27 @@ public class Duke {
                 if (i != 0) out += "\n";
                 out += (i + 1) + ". " + tasks.get(i);
             }
+            if (out.equals("")) {
+                out = "No tasks left!";
+            }
             return out;
         case "mark":
             int markedTask = checkTask(params);
             if (markedTask < 0) return "Invalid task number!";
             tasks.get(markedTask - 1).isDone = true;
+            saveToFile();
             return "OK, this task is done:\n" + tasks.get(markedTask - 1);
         case "unmark":
             int unmarkedTask = checkTask(params);
             if (unmarkedTask < 0) return "Invalid task number!";
             tasks.get(unmarkedTask - 1).isDone = false;
+            saveToFile();
             return "OK, this task is undone:\n" + tasks.get(unmarkedTask - 1);
         case "delete":
             int deleteTask = checkTask(params);
             if (deleteTask < 0) return "Invalid task number!";
             tasks.remove(deleteTask - 1);
+            saveToFile();
             return "OK, that task has been deleted.";
         case "bye":
             isAlive = false;
@@ -48,16 +58,19 @@ public class Duke {
         case "todo":
             if (params.equals("")) return "Todo description can't be empty.";
             tasks.add(new Todo(params));
+            saveToFile();
             return "Added new todo: " + tasks.get(tasks.size() - 1);
         case "deadline":
             if (params.equals("")) return "Deadline description can't be empty.";
             String[] splitDeadline = splitOnFirst(params, " /by ");
             tasks.add(new Deadline(splitDeadline[0], splitDeadline[1]));
+            saveToFile();
             return "Added new deadline: " + tasks.get(tasks.size() - 1);
         case "event":
             if (params.equals("")) return "Event description can't be empty.";
             String[] splitEvent = splitOnFirst(params, " /at ");
             tasks.add(new Event(splitEvent[0], splitEvent[1]));
+            saveToFile();
             return "Added new event: " + tasks.get(tasks.size() - 1);
         default:
             return "I don't know what '" + command + "' is!";
@@ -82,9 +95,32 @@ public class Duke {
         }
     }
 
+    private static void saveToFile() {
+        try {
+            PrintWriter saveFile = new PrintWriter("tasks.txt");
+            for (Task task : tasks) {
+                saveFile.println(task.getEncoded());
+            }
+            saveFile.close();
+        } catch (IOException e) {
+            System.out.println("<couldn't save to file!>");
+        }
+    }
+
     public static void main(String[] args) {
 
         tasks = new ArrayList<>();
+
+        try {
+            Scanner saved = new Scanner(new File("tasks.txt"));
+            while (saved.hasNextLine()) {
+                tasks.add(Task.fromEncoded(saved.nextLine()));
+            }
+            System.out.println("<loaded " + tasks.size() + " tasks from file>");
+            saved.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("<loaded 0 tasks from file>");
+        }
 
         printResponse("Hello! What can I do for you today?");
         Scanner sc = new Scanner(System.in);
