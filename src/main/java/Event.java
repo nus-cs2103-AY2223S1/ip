@@ -8,8 +8,8 @@ public class Event extends Task {
         this.date = date;
     }
 
-    Event(String task_description, boolean done, LocalDate date) {
-        super(task_description, done);
+    Event(String task_description, boolean isDone, LocalDate date) {
+        super(task_description, isDone);
         this.date = date;
     }
 

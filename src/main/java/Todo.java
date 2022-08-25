@@ -4,8 +4,8 @@ public class Todo extends Task {
         super(task_description);
     }
 
-    Todo(String task_description, boolean done) {
-        super(task_description, done);
+    Todo(String task_description, boolean isDone) {
+        super(task_description, isDone);
     }
     @Override
     public String toString() {

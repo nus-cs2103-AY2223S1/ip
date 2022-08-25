@@ -46,15 +46,22 @@ public class TaskList {
 
     protected void add(Task task) {
         this.tasks.add(task);
-
     }
-    protected Task del(int ind) {
-        Task deleting_task = this.tasks.get(ind);
-        this.tasks.remove(ind);
-        return deleting_task;
+    protected Task del(int ind) throws DukeException {
+        try {
+            Task deleting_task = this.tasks.get(ind);
+            this.tasks.remove(ind);
+            return deleting_task;
+        } catch(IndexOutOfBoundsException e) {
+            throw new DukeException("Index given is out of range");
+        }
     }
-    protected Task get(int i) {
-       return this.tasks.get(i);
+    protected Task get(int i) throws DukeException {
+        try {
+            return this.tasks.get(i);
+        } catch(IndexOutOfBoundsException e) {
+            throw new DukeException("Index given is out of range");
+        }
     }
     protected int size() {
         return this.tasks.size();
