@@ -7,9 +7,9 @@ public class Deadline extends Task {
 
     protected LocalDate date;
 
-    public Deadline(String description, String dateTime) {
+    public Deadline(String description, String date) {
         super(description);
-        this.date = LocalDate.parse(dateTime);
+        this.date = LocalDate.parse(date);
     }
 
     @Override
