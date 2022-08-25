@@ -5,12 +5,19 @@ import duke.command.Command;
 import java.io.IOException;
 
 
+/**
+ * Represents the Duke chatbot that stores users tasks.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
 
+    /**
+     * Constructor for the Duke chatbot.
+     * @param filePath filepath to save the tasks on.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -305,6 +312,10 @@ public class Duke {
 //    }
 
 
+    /**
+     * Starts the chatbot function of Duke for users to enter their tasks.
+     * @throws IOException if unable to load or save to file.
+     */
     public void run() throws IOException {
         ui.showWelcome();
         boolean isExit = false;
@@ -329,6 +340,12 @@ public class Duke {
         }
     }
 
+
+    /**
+     * Checks if the filepath to save the tasks on already exists.
+     * If it does not exist, directory and file is created.
+     * @throws IOException
+     */
     public void createSaveFile() throws IOException {
         if (!storage.isDirectoryPresent()) {
             storage.createDirectory();
