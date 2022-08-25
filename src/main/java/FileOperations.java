@@ -16,13 +16,13 @@ public class FileOperations {
     /**
      * Overwrites the contents of fileName (if exists) with the current tasks
      */
-    public void writeAllTasksToFile() {
+    public void writeAllTasksToFile(TaskList taskList) {
         File file = new File(this.fileName);
         FileWriter fw = null;
         try {
             fw = new FileWriter(file, false);
-            for (int i = 0; i < Task.count(); i++) {
-                Task task = Task.get(i);
+            for (int i = 0; i < taskList.count(); i++) {
+                Task task = taskList.get(i);
                 String encodedTask = task.encode();
                 fw.write(encodedTask);
 //                fw.write(System.lineSeparator());
@@ -39,7 +39,7 @@ public class FileOperations {
      * It inserts all the tasks that were stored in data.txt, decodes them into Task objects and stores them
      * in the Task.tasks array
      */
-    public void loadAllTasksFromFile() {
+    public void loadAllTasksFromFile(TaskList taskList) {
         // Get all tasks from file and store in ArrayList
         File file = new File(fileName);
         try (Scanner sc = new Scanner(file)) {
@@ -52,7 +52,7 @@ public class FileOperations {
                 }
                 tasksInFile.add(task);
             }
-            Task.addTasks(tasksInFile);
+            taskList.addTasks(tasksInFile);
 
         } catch (FileNotFoundException e) {
             System.out.println(String.format("\tFile %s not found!!!", fileName));
