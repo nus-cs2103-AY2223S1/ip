@@ -103,7 +103,8 @@ public class Parser {
                 throw new NoArgumentException(Action.EVENT);
             } else if (!isValidString(arg1)) {
                 throw new InvalidArgumentException(Action.EVENT,
-                        "Event [Name] is not found.");
+                        "Event [Name] is not found. Name is not allowed to include attribute separator '"
+                                + ATTRIBUTE_SEPARATOR + "'.");
             } else if (!isValidDate(arg2)) {
                 throw new InvalidArgumentException(Action.EVENT,
                         "Event [Time] is not found.");
@@ -127,7 +128,8 @@ public class Parser {
                 throw new NoArgumentException(Action.DEADLINE);
             } else if (!isValidString(arg1)) {
                 throw new InvalidArgumentException(Action.DEADLINE,
-                        "Deadline [Name] is not found.");
+                        "Deadline [Name] is not found. Name is not allowed to include attribute separator '"
+                                + ATTRIBUTE_SEPARATOR + "'.");
             } else if (!isValidDate(arg2)) {
                 throw new InvalidArgumentException(Action.DEADLINE,
                         "Deadline [Time] is not found.");
@@ -146,6 +148,16 @@ public class Parser {
             return Command.save();
         case READ:
             return Command.read();
+        case FIND:
+            arg1 = s.substring(Action.getString(Action.FIND).length()).trim();
+            if (arg1.equals("")) {
+                throw new NoArgumentException(Action.FIND);
+            } else if (!isValidString(arg1)) {
+                throw new InvalidArgumentException(Action.FIND, "The argument should be a String."
+                        + "Name is not allowed to include attribute separator '"
+                        + ATTRIBUTE_SEPARATOR + "'.");
+            }
+            return Command.find(arg1);
         default:
             return Command.doNothing();
         }

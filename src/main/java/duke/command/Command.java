@@ -61,6 +61,10 @@ public abstract class Command {
         return new ReadCommand();
     }
 
+    public static FindCommand find(String target) {
+        return new FindCommand(target);
+    }
+
     public abstract void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage);
 
     public abstract boolean isTerminated();

@@ -21,7 +21,11 @@ public enum Action {
 //    Level_6
     DELETE,
     //    Level_7
-    SAVE, READ;
+    SAVE, READ,
+//    Level_8
+    //    No new actions is added
+//    Level-9
+    FIND;
 
     private static HashMap<Action, String> actionFormatMap = new HashMap<>();
     private static HashMap<String, Action> stringActionMap = new HashMap<>();
@@ -52,6 +56,8 @@ public enum Action {
         map.put(Action.READ, "read");
 //        Level_8
 //        No action added.
+//        Level_9
+        map.put(Action.FIND, "find [keyword]");
     }
 
     static {
@@ -78,6 +84,8 @@ public enum Action {
 //        Level_7
         map.put("save", Action.SAVE);
         map.put("read", Action.READ);
+//        Level_9
+        map.put("find", Action.FIND);
     }
 
 
