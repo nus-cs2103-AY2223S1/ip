@@ -68,26 +68,25 @@ public class Task {
         Task task;
 
         switch (taskType) {
-            case TODO:
-                task = new Todo(storageStringArray[2]);
-                break;
-            case EVENT:
-                try {
-                    task = new Event(storageStringArray[2], storageStringArray[3]);
-                } catch (DukeException exception) {
-                    throw new RuntimeException(exception.getMessage());
-                }
-                break;
-            case DEADLINE:
-                try {
-                    task = new Deadline(storageStringArray[2], storageStringArray[3]);
-                } catch (DukeException exception) {
-                    throw new RuntimeException(exception.getMessage());
-                }
-
-                break;
-            default:
-                throw new RuntimeException(String.format("Invalid task type %s.", taskType));
+        case TODO:
+            task = new Todo(storageStringArray[2]);
+            break;
+        case EVENT:
+            try {
+                task = new Event(storageStringArray[2], storageStringArray[3]);
+            } catch (DukeException exception) {
+                throw new RuntimeException(exception.getMessage());
+            }
+            break;
+        case DEADLINE:
+            try {
+                task = new Deadline(storageStringArray[2], storageStringArray[3]);
+            } catch (DukeException exception) {
+                throw new RuntimeException(exception.getMessage());
+            }
+            break;
+        default:
+            throw new RuntimeException(String.format("Invalid task type %s.", taskType));
         }
         if (storageStringArray[1].equals(Task.STORAGE_DONE_STATUS)) {
             task.markAsDone();
@@ -95,6 +94,14 @@ public class Task {
         return task;
     }
 
+    /**
+     * Checks if the description of the Task contains the keyword.
+     * @param keyword The word to be matched with.
+     * @return a boolean that indicates if the description of the Task contains the keyword.
+     */
+    public boolean hasKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
 
     /**
      * Returns the string representation of Task to be displayed.

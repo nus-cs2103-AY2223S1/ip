@@ -9,6 +9,10 @@ event meeting with Tom /at Tuesday 2-3pm
 event
 event meeting with Tom
 event meeting with Tom /at 2020-02-17
+find meeting
+event CS2100 meeting /at 2020-02-17
+find meeting
+find basketball
 mark 1
 list
 mark 2
@@ -23,13 +27,13 @@ unmark 3
 list
 mark
 mark a
-mark 4
+mark 5
 unmark
 unmark a
-unmark 4
+unmark 5
 delete
 delete a
-delete 4
+delete 5
 delete 1
 list
 invalidcommand

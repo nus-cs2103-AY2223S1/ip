@@ -123,15 +123,32 @@ public class TasksList {
     }
 
     /**
+     * Filters the TasksList for Tasks that matches the keyword.
+     * @param keyword The word to be matched with.
+     * @return A List containing the matching Tasks.
+     */
+    public List<Task> findMatchingTasks(String keyword) {
+        List<Task> matchedTasks = new ArrayList<>();
+        for (Task task: this.listOfTasks) {
+            if (task.hasKeyword(keyword)) {
+                matchedTasks.add(task);
+            }
+        }
+        return matchedTasks;
+    }
+
+
+
+    /**
      * Returns the string representation of TasksList to be displayed.
      * @return A String representation of TasksList to be displayed.
      */
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Here are the tasks in your list:\n");
+        sb.append("Here are the tasks in your list:\n\n");
         for (int i = 1; i <= this.listOfTasks.size(); i++) {
-            sb.append("\n");
-            sb.append(i + ". " + this.listOfTasks.get(i - 1));
+            sb.append(String.format("%d. %s\n", i, this.listOfTasks.get(i - 1)));
         }
         return sb.toString();
     }
