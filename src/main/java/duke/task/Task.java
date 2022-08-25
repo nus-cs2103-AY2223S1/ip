@@ -14,26 +14,26 @@ public abstract class Task {
 
     // TODO: Try to combine the string literals in line with duke.task.TaskType
 
-    public static Task createFromCommand(String input)
+    public static Task createFromCommand(String command)
             throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
             DukeDateTimeFormatException {
-        String firstWord = CommandParser.getFirstWord(input);
+        String firstWord = CommandParser.getFirstWord(command);
 
         String taskTitle = "";
         String dateTime = "";
         switch (firstWord) {
         case (TODO_TASK_COMMAND_STRING):
-            taskTitle = CommandParser.getTaskTitle(input);
+            taskTitle = CommandParser.getTaskTitle(command);
             return new ToDoTask(taskTitle);
 
         case (EVENT_TASK_COMMAND_STRING):
-            taskTitle = CommandParser.getTaskTitle(input);
-            dateTime = CommandParser.getAtDate(input);
+            taskTitle = CommandParser.getTaskTitle(command);
+            dateTime = CommandParser.getAtDate(command);
             return new EventTask(taskTitle, dateTime);
 
         case (DEADLINE_TASK_COMMAND_STRING):
-            taskTitle = CommandParser.getTaskTitle(input);
-            dateTime = CommandParser.getByDate(input);
+            taskTitle = CommandParser.getTaskTitle(command);
+            dateTime = CommandParser.getByDate(command);
             return new DeadlineTask(taskTitle, dateTime);
 
         default:
