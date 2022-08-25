@@ -8,11 +8,18 @@ import duke.task.Todo;
 
 import java.util.Scanner;
 
+/**
+ * Duke is an interactive chatbot, which functions as a todo manager to help users keep track of their tasks.
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Creates a new Duke with a given file path to the savefile.
+     * @param filePath Path to the savefile.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         try {

@@ -1,6 +1,13 @@
 package duke;
 
 public class Parser {
+
+    /**
+     * Parses the command into a simpler form.
+     * @param command A String given by the user.
+     * @return An array of strings to be handled by Duke.
+     * @throws DukeException
+     */
     public static String[] parse(String command) throws DukeException {
         String[] splitCommands = command.split(" ", 2);
         switch (splitCommands[0]) {
