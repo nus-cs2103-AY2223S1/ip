@@ -4,7 +4,7 @@ public class Task {
     protected boolean isDone;
 
     public Task(String name, boolean isDone) throws DukeException {
-        if (name == "") {
+        if (name.equals("") || name.equals(" ")) {
             throw new DukeException("the name of a task can't be empty");
         }
         this.name = name;

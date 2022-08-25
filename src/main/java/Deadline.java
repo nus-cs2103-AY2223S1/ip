@@ -4,6 +4,9 @@ public class Deadline extends Task {
 
     public Deadline(String name, boolean isDone, String by) throws DukeException {
         super(name, isDone);
+        if (by.equals("") || by.equals(" ")) {
+            throw new DukeException("time can't be empty");
+        }
         this.by = by;
     }
 

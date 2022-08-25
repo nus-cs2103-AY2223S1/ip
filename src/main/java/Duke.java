@@ -18,7 +18,6 @@ public class Duke {
         ArrayList<Task> log = new ArrayList<>();
 
         System.out.println("--------------------------------------");
-
         /*
         int indexOfSpace;
         String s;
@@ -27,6 +26,7 @@ public class Duke {
         String restWord = "";
 
         boolean isMultipleWords = false;
+
 
         while(true) {
             try {
@@ -40,7 +40,6 @@ public class Duke {
                     restWord = s.substring(indexOfSpace).trim();
                 }
 
-                System.out.println("--------------------------------------");
                 if (s.equals("bye")) {
                     scan.close();
                     System.out.println("Bye. Hope to see you again soon!");
@@ -80,12 +79,18 @@ public class Duke {
                         if (s.equals("todo") || firstWord.equals("todo")) {
                             log.add(new Todo(restWord, false));
                             System.out.println("added todo: " + restWord);
-                        } else if (firstWord.equals("deadline") && restWord.contains("/by")) {
+                        } else if (firstWord.equals("deadline")) {
+                            if (!restWord.contains("/by")) {
+                                throw new DukeException("Deadlines require command '/by' to signify time");
+                            }
                             String by = dateFinder(restWord, "/by");
                             String name = nameFinder(restWord, "/by");
                             log.add(new Deadline(name, false, by));
                             System.out.println("added deadline: " + name);
                         } else if (firstWord.equals("event") && restWord.contains("/at")) {
+                            if (!restWord.contains("/by")) {
+                                throw new DukeException("Events require command '/at' to signify time");
+                            }
                             String at = dateFinder(restWord, "/at");
                             String name = nameFinder(restWord, "/at");
                             log.add(new Event(name, false, at));

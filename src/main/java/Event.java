@@ -4,6 +4,9 @@ public class Event extends Task {
 
     public Event(String name, boolean isDone, String at) throws DukeException {
         super(name, isDone);
+        if (at.equals("") || at.equals(" ")) {
+            throw new DukeException("time can't be empty");
+        }
         this.at = at;
     }
 
