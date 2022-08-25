@@ -1,6 +1,7 @@
-T | 1 |   cycling
-T | 0 |   project medi
-D | 0 |   return book   |   12 Dec 2022 19:00 PM
-E | 1 |  meeting with client  |  25 Nov 2022 01:10 AM
-T | 1 |  project chemi
+T | 1 |    cycling
+T | 0 |    project medi
+D | 0 |    return book    |    12 Dec 2022 19:00 PM
+E | 1 |   meeting with client   |   25 Nov 2022 01:10 AM
+T | 1 |   project chemi
+T | 0 |  proj
 T | 0 | proj
