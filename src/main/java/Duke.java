@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
 
-import java.util.*;
 public class Duke {
     public static void main(String[] args) {
         Scanner sc= new Scanner(System.in);
@@ -209,11 +211,13 @@ public class Duke {
     public static void deadLine(String userInput, ArrayList<Task> listOfActions, int currentAction) throws DukeException{
         try {
             //get action
-            int index = userInput.indexOf("/");
-            String action = userInput.substring(9, index);
+            String[] split_Description = userInput.split(" ");
+            String string_Date = split_Description[4];
+            String string_Time = split_Description[5];
+            String action = split_Description[1];
             //get deadline
-            String dedline = userInput.substring(index + 3);
-            Deadline ded = new Deadline(action.strip(), dedline.strip());
+            String dedline = string_Date + " " + string_Time;
+            Deadline ded = new Deadline(action, dedline);
             listOfActions.add(ded);
             System.out.println("----------------------\n" + "Ok Solid you got this work to do:\n" +
                     listOfActions.get(currentAction) + String.format("\nYou have a total of %d work to do", currentAction + 1)
