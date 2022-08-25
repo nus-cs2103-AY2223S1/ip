@@ -74,8 +74,20 @@ public class Parser {
             } else {
                 return new DeleteCommand(number);
             }
+<<<<<<< HEAD
         } else if (fullCommand.equals("todo")
                 || (fullCommand.startsWith("todo") && fullCommand.substring(5).isBlank())) {
+=======
+        } else if (fullCommand.length() >= 5 && (fullCommand.startsWith("find")
+                && (Character.isWhitespace(fullCommand.charAt(4))))) {
+            String string = fullCommand.substring(5);
+            if (string.isBlank()) {
+                throw new DukeException("OOPS!!! Enter keyword to find.");
+            } else {
+                return new FindCommand(string);
+            }
+        } else if (fullCommand.equals("todo") || (fullCommand.startsWith("todo") && fullCommand.substring(5).isBlank())) {
+>>>>>>> branch-Level-9
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         } else if (fullCommand.startsWith("todo") && Character.isWhitespace(fullCommand.charAt(4))) {
             return new AddCommand(new ToDo(fullCommand));
@@ -92,8 +104,12 @@ public class Parser {
                     throw new DukeException("OOPS!!! Please use the correct date format!");
                 }
             }
+<<<<<<< HEAD
         } else if (fullCommand.equals("event")
                 || (fullCommand.startsWith("event") && fullCommand.substring(6).isBlank())) {
+=======
+        } else if (fullCommand.equals("event") || (fullCommand.startsWith("event") && fullCommand.substring(6).isBlank())) {
+>>>>>>> branch-Level-9
             throw new DukeException("OOPS!!! The description of an event cannot be empty.");
         } else if (fullCommand.startsWith("event") && Character.isWhitespace(fullCommand.charAt(5))) {
             if (!fullCommand.contains("/at")) {

@@ -1,4 +1,9 @@
 [T][ ] bye tile
 [T][X] ms
+<<<<<<< HEAD
 [T][ ] explode tomorrow
 [D][ ] die (by: Aug 06 2018)
+=======
+[T][ ] die tile
+[D][X] tile yo (by: Aug 09 2018)
+>>>>>>> branch-Level-9

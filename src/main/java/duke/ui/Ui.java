@@ -133,4 +133,14 @@ public class Ui {
                 + taskList.getTask(integer - 1).toString());
     }
 
+    /**
+     * Displays Ui when task is found
+     * @param taskList the tasklist to be displayed
+     */
+    public void showTaskFound(TaskList taskList) {
+        System.out.println("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < taskList.taskListSize(); i++) {
+            System.out.println(i + 1 + ". " + taskList.getTask(i).toString());
+        }
+    }
 }
