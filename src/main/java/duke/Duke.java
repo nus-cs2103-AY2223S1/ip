@@ -5,6 +5,9 @@ import duke.task.Task;
 import duke.util.CommandParser;
 import duke.util.OutputFormatter;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +18,9 @@ public class Duke {
     public static final String BY_DATE_DELIMITER = "/by";
     public static final String AT_DATE_DELIMITER = "/at";
     public static final String TAB = "    ";
+    public static final String FILE_WRITING_DELIMITER = "|";
 
+    private static final String FILE_PATH = "../saved_list.txt";
     private static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
             + "\nWhat can I help you?";
     private static final String EXIT_OUTPUT_STRING = "Bye! See you next time!";
@@ -68,11 +73,12 @@ public class Duke {
 
     private String addNewTask(String input)
             throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException {
-        Task newTask = Task.valueOf(input);
+        Task newTask = Task.createFromCommand(input);
         if (newTask == null) {
             return GENERAL_ERROR_STRING;
         }
         taskList.add(newTask);
+        saveFile();
         return "added: " + newTask.toString();
     }
 
@@ -82,6 +88,7 @@ public class Duke {
         } else {
             Task targetTask = taskList.get(index);
             targetTask.markDone();
+            saveFile();
             return MARK_DONE_OUTPUT_STRING
                     + "\n"
                     + TAB
@@ -95,6 +102,7 @@ public class Duke {
         } else {
             Task targetTask = taskList.get(index);
             targetTask.markUndone();
+            saveFile();
             return MARK_UNDONE_OUTPUT_STRING
                     + "\n"
                     + TAB
@@ -108,6 +116,7 @@ public class Duke {
         } else {
             Task removedTask = taskList.remove(index);
             boolean onlyOneTask = taskList.size() == 1;
+            saveFile();
             return DELETE_OUTPUT_STRING
                     + "\n"
                     + TAB
@@ -196,6 +205,28 @@ public class Duke {
             }
 
             System.out.println(OutputFormatter.formatOutput(output));
+        }
+    }
+
+    private void saveFile() {
+        File file = new File(FILE_PATH);
+        if (!file.exists()) {
+            //TODO Handle non-existence
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < taskList.size(); i++) {
+            stringBuilder
+                    .append(taskList.get(i).getFileRepresentation())
+                    .append('\n');
+        }
+
+        try {
+            String toBeWritten = stringBuilder.toString();
+            FileWriter fileWriter = new FileWriter(FILE_PATH);
+            fileWriter.write(toBeWritten, 0, toBeWritten.length());
+        } catch (IOException exception) {
+            System.out.println(exception.getMessage());
         }
     }
 }

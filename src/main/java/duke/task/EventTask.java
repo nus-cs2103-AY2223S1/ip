@@ -17,4 +17,9 @@ public class EventTask extends Task {
     public String toString() {
         return super.getStringRepresentation(LABEL, super.taskTitle + " at " + dateTime);
     }
+
+    @Override
+    protected String getFileRepresentation() {
+        return super.getFileRepresentation(LABEL, dateTime);
+    }
 }

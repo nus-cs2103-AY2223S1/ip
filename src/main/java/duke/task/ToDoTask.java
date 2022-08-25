@@ -12,4 +12,9 @@ public class ToDoTask extends Task {
     public String toString() {
         return super.getStringRepresentation(LABEL, super.taskTitle);
     }
+
+    @Override
+    protected String getFileRepresentation() {
+        return super.getFileRepresentation(LABEL);
+    }
 }

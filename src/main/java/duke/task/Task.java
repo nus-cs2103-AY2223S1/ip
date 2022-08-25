@@ -1,5 +1,6 @@
 package duke.task;
 
+import duke.Duke;
 import duke.exception.DukeCommandFormatException;
 import duke.exception.DukeTaskDateTimeMissingException;
 import duke.exception.DukeTaskTitleMissingException;
@@ -13,7 +14,7 @@ public abstract class Task {
 
     // TODO: Try to combine the string literals in line with duke.task.TaskType
 
-    public static Task valueOf(String input)
+    public static Task createFromCommand(String input)
             throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException {
         String firstWord = CommandParser.getFirstWord(input);
 
@@ -69,5 +70,30 @@ public abstract class Task {
                 + label
                 + "] "
                 + displayedText;
+    }
+
+    public abstract String getFileRepresentation();
+
+    protected String getFileRepresentation(String label) {
+        return getFileRepresentation(label, null);
+    }
+
+    protected String getFileRepresentation(String label, String dateTime) {
+        String output = label
+                + " "
+                + Duke.FILE_WRITING_DELIMITER
+                + " "
+                + (done ? "1" : "0")
+                + " "
+                + Duke.FILE_WRITING_DELIMITER
+                + " "
+                + taskTitle;
+        if (dateTime != null) {
+            output += " "
+                    + Duke.FILE_WRITING_DELIMITER
+                    + " "
+                    + dateTime;
+        }
+        return output;
     }
 }
