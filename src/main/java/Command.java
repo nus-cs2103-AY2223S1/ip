@@ -1,3 +1,13 @@
-public enum Command {
-    BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+public abstract class Command {
+    boolean isExit;
+
+    public Command() {
+        this.isExit = false;
+    }
+
+    public boolean isExit() {
+        return this.isExit;
+    }
+
+    public abstract void execute(TaskList taskList, Ui ui, Storage storage);
 }

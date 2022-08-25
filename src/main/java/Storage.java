@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -9,38 +11,28 @@ import java.util.List;
 public class Storage {
     private Path relativeDirectoryPath;
     private Path relativeFilePath;
+    private Path filepath;
 
     public Storage(String projectRoot) {
         this.relativeDirectoryPath = Paths.get(projectRoot, "data");
         this.relativeFilePath = Paths.get(projectRoot, "data", "duke.txt");
+        this.filepath = Paths.get(projectRoot);
     }
 
-
-    public boolean isDirectoryCreated() {
+    public boolean isDirectoryPresent() {
         return Files.exists(relativeDirectoryPath);
     }
-
 
     public boolean isFilePresent() {
         return Files.exists(relativeFilePath);
     }
 
-
-    public void createDirectory() {
-        try {
-            Files.createDirectory(relativeDirectoryPath);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+    public void createDirectory() throws IOException {
+        Files.createDirectory(relativeDirectoryPath);
     }
 
-
-    public void createFile() {
-        try {
-            Files.createFile(relativeFilePath);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+    public void createFile() throws IOException {
+        Files.createFile(relativeFilePath);
     }
 
 
@@ -71,48 +63,44 @@ public class Storage {
     }
 
 
-    public ArrayList<Task> load() {
+    public ArrayList<Task> load() throws IOException {
         ArrayList<Task> taskList = new ArrayList<>();
-        try {
-            List<String> loadData = Files.readAllLines(relativeFilePath);
-            for (String taskString : loadData) {
-                String[] taskDetails = taskString.split(" \\| ", 2);
-                Task task = null;
-                String taskType = taskDetails[0];
-                switch (taskType) {
-                    case "T": {
-                        task = parseStringToTask(taskDetails[1], "T");
-                        break;
-                    }
-                    case "D": {
-                        task = parseStringToTask(taskDetails[1], "D");
-                        break;
-                    }
-                    case "E": {
-                        task = parseStringToTask(taskDetails[1], "E");
-                        break;
-                    }
-                    default:
-                        break;
+
+        List<String> loadData = Files.readAllLines(relativeFilePath);
+        for (String taskString : loadData) {
+            String[] taskDetails = taskString.split(" \\| ", 2);
+            Task task = null;
+            String taskType = taskDetails[0];
+            switch (taskType) {
+                case "T": {
+                    task = parseStringToTask(taskDetails[1], "T");
+                    break;
                 }
-                if (task != null) {
-                    taskList.add(task);
+                case "D": {
+                    task = parseStringToTask(taskDetails[1], "D");
+                    break;
                 }
+                case "E": {
+                    task = parseStringToTask(taskDetails[1], "E");
+                    break;
+                }
+                default:
+                    break;
             }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+            if (task != null) {
+                taskList.add(task);
+            }
         }
         return taskList;
     }
 
 
-    public void save(ArrayList<Task> taskList) {
-        try {
-            String data;
-            String[] stringDataArr = new String[taskList.size()];
-            int i = 0;
-            for (Task task : taskList) {
-                switch (task.getTaskType()) {
+    public void save(ArrayList<Task> taskList) throws IOException {
+        String data;
+        String[] stringDataArr = new String[taskList.size()];
+        int i = 0;
+        for (Task task : taskList) {
+            switch (task.getTaskType()) {
                 case "T": {
                     data = "T" + " | " + task.getStatus() + " | " + task.getDescription();
                     stringDataArr[i] = data;
@@ -130,12 +118,9 @@ public class Storage {
                 }
                 default:
                     break;
-                }
-                i++;
             }
-            Files.write(relativeFilePath, Arrays.asList(stringDataArr));
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+            i++;
         }
+        Files.write(relativeFilePath, Arrays.asList(stringDataArr));
     }
 }

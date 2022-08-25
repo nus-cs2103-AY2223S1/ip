@@ -33,7 +33,7 @@ public class TaskList {
      * @param taskIndex index of task to be removed
      */
     public void removeFromTaskList(int taskIndex) {
-        this.taskList.remove(taskIndex);
+        this.taskList.remove(taskIndex - 1);
     }
 
     /**
@@ -50,7 +50,7 @@ public class TaskList {
      * @return text in taskList at specified index
      */
     public Task getTask(int index) {
-        return this.taskList.get(index);
+        return this.taskList.get(index - 1);
     }
 
 }
