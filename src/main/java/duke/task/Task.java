@@ -14,7 +14,7 @@ public abstract class Task {
      */
     public void markAsDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:\n " + this.toString());
+        System.out.println("Nice! I've marked this task as done:\n " + this);
     }
 
     /**
@@ -22,7 +22,7 @@ public abstract class Task {
      */
     public void markAsNotDone() {
         this.isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:\n " + this.toString());
+        System.out.println("OK, I've marked this task as not done yet:\n " + this);
     }
 
     /**
@@ -30,7 +30,7 @@ public abstract class Task {
      *
      * @param isDone a boolean of whether the Task is done
      */
-    public void setIsDone(boolean isDone) {
+    public void setDone(boolean isDone) {
         this.isDone = isDone;
     }
 
@@ -39,8 +39,9 @@ public abstract class Task {
      *
      * @return 'X' if Task is done, else ' '
      */
-    private String getStatusIcon() {
-        return (isDone ? "X" : " ");
+
+    public String getStatusIcon() {
+        return isDone ? "X" : " ";
     }
 
     /**

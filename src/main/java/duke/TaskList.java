@@ -18,29 +18,25 @@ public class TaskList {
             Scanner scanner = new Scanner(dataFile);
             while (scanner.hasNextLine()) {
                 String[] splitInput = scanner.nextLine().split(",");
-                int len = splitInput.length;
-                if (len == 0) {
-                    break;
-                }
                 String taskType = splitInput[0];
                 String taskDescription = splitInput[2];
                 boolean isDone = splitInput[1].equals("1");
                 switch (taskType) {
-                    case "T":
-                        Task todo = new Todo(taskDescription);
-                        todo.setIsDone(isDone);
-                        tasks.add(todo);
-                        break;
-                    case "D":
-                        Task deadline = new Deadline(taskDescription, splitInput[3]);
-                        deadline.setIsDone(isDone);
-                        tasks.add(deadline);
-                        break;
-                    case "E":
-                        Task event = new Event(taskDescription, splitInput[3]);
-                        event.setIsDone(isDone);
-                        tasks.add(event);
-                        break;
+                case "T":
+                    Task todo = new Todo(taskDescription);
+                    todo.setDone(isDone);
+                    tasks.add(todo);
+                    break;
+                case "D":
+                    Task deadline = new Deadline(taskDescription, splitInput[3]);
+                    deadline.setDone(isDone);
+                    tasks.add(deadline);
+                    break;
+                case "E":
+                    Task event = new Event(taskDescription, splitInput[3]);
+                    event.setDone(isDone);
+                    tasks.add(event);
+                    break;
                 }
             }
         } catch (FileNotFoundException e) {
@@ -77,8 +73,9 @@ public class TaskList {
      *
      * @param cmd command to be executed
      * @param index index of the task to be edited
+     * @throws DukeException if index is not an integer in the range of the list length
      */
-    public void editTaskList(String cmd, int index) {
+    public void editTaskList(String cmd, int index) throws DukeException {
         if (index >= tasks.size() || index < 0) {
             throw new DukeException("Duke: Looks like your task list currently does not have a task at this index.");
         }

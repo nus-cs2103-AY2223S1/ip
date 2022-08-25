@@ -19,16 +19,16 @@ public class Parser {
         return str.chars().allMatch(Character::isDigit);
     }
 
-    private static int getDateIndex(String[] splitInput) {
-        for (int j = 0; j < splitInput.length; j++) {
-            if (splitInput[j].equals("/by") || splitInput[j].equals("/at")) {
-                return j;
+    private static int getDateIndex(String[] splitInput) throws DukeException {
+        for (int i = 0; i < splitInput.length; i++) {
+            if (splitInput[i].equals("/by") || splitInput[i].equals("/at")) {
+                return i;
             }
         }
         throw new DukeException("Duke: OOPS!!! The task is missing a date property.");
     }
 
-    private String getTaskField(String[] splitInput, int start, int end) {
+    private String getTaskField(String[] splitInput, int start, int end) throws DukeException {
         String field = String.join(" ", Arrays.copyOfRange(splitInput, start, end));
         if (field.equals("")) {
             throw new DukeException("Duke: OOPS!!! The task description cannot be empty.");
@@ -36,7 +36,7 @@ public class Parser {
         return field;
     }
 
-    private void parseNewTask(String[] splitInput, TaskList tasks) {
+    private void parseNewTask(String[] splitInput, TaskList tasks) throws DukeException {
         int len = splitInput.length;
         if (len == 0) {
             throw new DukeException("No input!");
@@ -62,8 +62,9 @@ public class Parser {
      *
      * @param userInput input from user
      * @param tasks list of stored tasks
+     * @throws DukeException if command does not follow the format
      */
-    public void parse(String userInput, TaskList tasks) {
+    public void parse(String userInput, TaskList tasks) throws DukeException {
         String[] splitInput = userInput.split(" ");
         int len = splitInput.length;
         if (userInput.equals("bye")) {
