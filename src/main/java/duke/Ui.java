@@ -77,6 +77,9 @@ public class Ui {
      * Prints task marked message.
      */
     public static void printTaskIsDone(int index) {
+        if (index >= TaskList.getTaskList().size()) {
+            return;
+        }
         Task task = TaskList.getTaskList().get(index);
         printSeparator();
         System.out.println("Task is marked as Done \n" + task.toString());
@@ -87,6 +90,9 @@ public class Ui {
      * Prints task unmarked message.
      */
     public static void printTaskIsUndone(int index) {
+        if (index >= TaskList.getTaskList().size()) {
+            return;
+        }
         Task task = TaskList.getTaskList().get(index);
         printSeparator();
         System.out.println("Task is marked as Undone \n" + task.toString());
@@ -99,6 +105,7 @@ public class Ui {
      * @param task <code>Task</code> to be added.
      */
     public static void printAddTask(Task task) {
+
         printSeparator();
         System.out.println("added: " + task.toString());
         printSeparator();
@@ -110,6 +117,10 @@ public class Ui {
      * @param index index of task to be deleted.
      */
     public static void printDeleteTask(int index) {
+
+        if (index >= TaskList.getTaskList().size()) {
+            return;
+        }
         Task task = TaskList.getTaskList().get(index);
         printSeparator();
         System.out.println("Removed the task \n" + task.toString());
