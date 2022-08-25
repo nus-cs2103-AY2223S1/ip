@@ -8,11 +8,13 @@ public final class Constants {
     public Constants() {
 
     }
+    public static final String EMPTY_SPACE = " ";
     public static final String indent = "     ";
     public static final String WELCOME_MESSAGE = indent + "Hello! I'm duke.Duke\n" + indent + "What can I do for you?";
     public static final String INDENTED_DOTTED_LINE = indent + "____________________________________________________________";
     public static final String EVENT_STRING = "event";
     public static final String DEADLINE_STRING = "deadline";
     public static final String TODO_STRING = "todo";
+    public static final String BYE_STRING = "todo";
 }
 

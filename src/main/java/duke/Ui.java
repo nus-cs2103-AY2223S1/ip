@@ -12,9 +12,7 @@ public class Ui {
 
     public void showWelcome() {
         this.showIndentedDottedLines();
-        System.out.println(Constants.INDENTED_DOTTED_LINE);
         System.out.println(Constants.WELCOME_MESSAGE);
-        System.out.println(Constants.INDENTED_DOTTED_LINE);
         this.showIndentedDottedLines();
     }
 
@@ -24,7 +22,6 @@ public class Ui {
 
     public void showByeMessage() {
         this.showIndentedDottedLines();
-        System.out.println(Constants.INDENTED_DOTTED_LINE);
         System.out.println(Constants.indent + "Bye! Hope to see you again soon!");
         this.showIndentedDottedLines();
     }

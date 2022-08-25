@@ -1,28 +1,44 @@
 package duke;
 
+import duke.command.AddCommand;
 import duke.command.Command;
+import duke.models.Event;
+import duke.models.Task;
 
 import java.time.LocalDate;
 
 /**
- * Parses the user input and returns the specified command
+ * This class returns a command based on the user input
  */
 public class Parser {
+    private Ui ui;
+
+    public Parser(Ui ui) {
+        this.ui = ui;
+    }
 
     /**
-     * Takes the command given by the user, extracts the verb in the
-     * input and translates it into a command
+     * Requirement: deals with making sense of the user command
+     *
+     * Takes the input given by the user, extracts the verb
+     * and translates it into a command
      *
      * @param command
      * @return
      */
-    public static void parse(String command) {
+    public Command parse(String command) {
         // Idea from : https://stackoverflow.com/questions/70683058/using-startswith-in-switch-case-in-java
-        String verb = command.split(" ")[0];
+        String verb = command.split(Constants.EMPTY_SPACE)[0];
         switch (verb) {
             case Constants.EVENT_STRING:
-                String eventDescription = command.split(" ")[1];
-                LocalDate eventDate = LocalDate.parse(command.split(" ")[3]);
+                String eventDescription = command.split(Constants.EMPTY_SPACE)[1];
+                LocalDate eventDate = LocalDate.parse(command.split(Constants.EMPTY_SPACE)[3]);
+                Task t = new Event(eventDescription, eventDate);
+                return new AddCommand(t);
+            case Constants.BYE_STRING:
+                this.ui.showByeMessage();
+            default:
+                return null;
         }
     }
 }

@@ -14,6 +14,7 @@ public class AddCommand extends Command {
 
     @Override
     public void execute(List<Task> list, Storage storage) {
-
+        list.add(toAdd);
+        storage.write(toAdd.stringToWrite());
     }
 }
