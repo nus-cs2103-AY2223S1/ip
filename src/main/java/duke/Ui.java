@@ -11,9 +11,9 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
     private static final String LINE = "```````````````````````````````````````````````````````````````````";
-    private static final String WELCOME_GREET = "Hello there! I am\n" + LOGO
+    private static final String GREET_WELCOME= "Hello there! I am\n" + LOGO
             + "\nyour personal task tracking assistant!\nWhat can I do for you today?\n";
-    private static final String EXIT_GREET = "Bye. Hope to see you again soon!\n";
+    private static final String GREET_EXIT = "Bye. Hope to see you again soon!\n";
     private Scanner scanner;
 
     public Ui() {
@@ -21,7 +21,7 @@ public class Ui {
     }
 
     public static void showWelcome() {
-        System.out.println(WELCOME_GREET + LINE);
+        System.out.println(GREET_WELCOME + LINE);
     }
 
     public static void showLine() {
@@ -49,7 +49,7 @@ public class Ui {
 
     public void exit() {
         this.scanner.close();
-        System.out.println(EXIT_GREET + LINE);
+        System.out.println(GREET_EXIT + LINE);
     }
 
     public String readUserInput() {

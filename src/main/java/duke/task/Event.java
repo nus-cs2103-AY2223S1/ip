@@ -9,7 +9,7 @@ import duke.DukeException;
 public class Event extends Task{
     private LocalDate at;
 
-    public Event(String description, String at) {
+    public Event(String description, String at) throws DukeException {
         super(description);
         try {
             this.at = LocalDate.parse(at);
@@ -25,6 +25,7 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        return "[E]" + super.toString()
+                + " (at: " + this.at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 }
