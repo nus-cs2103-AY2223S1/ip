@@ -1,7 +1,32 @@
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.File;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.time.LocalDate;
 
 public class Duke {
+
+    private static void writeToFile(String filePath, ArrayList<Task> Tasks) throws IOException {
+        File f = new File(filePath);
+        if (!f.exists()) {
+            throw new IOException("File does not exist");
+        }
+        FileWriter fw = new FileWriter(filePath);
+
+      
+        String textToAdd = "";
+        for (Task item : Tasks) {
+            if (item != null)
+               textToAdd += Tasks.indexOf(item) + 1 + "." + item.toString() + "\n";
+        }
+        fw.write(textToAdd);
+        fw.close();
+    }
+
     public static void main(String[] args) throws Exception {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -11,6 +36,7 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you ?");
         Scanner help = new Scanner(System.in);
+        String filepath  = "./././data/duke.txt";
 
 
         ArrayList<Task> lst = new ArrayList<>();
@@ -42,6 +68,7 @@ public class Duke {
                System.out.println("Nice I have marked this as done:");
                current.mark();
                System.out.println( " " + current);
+               writeToFile(filepath,lst);
 
            }
            else if (first.equals("unmark") ) {
@@ -49,6 +76,8 @@ public class Duke {
                System.out.println("Ok I have marked this as still to be done:");
                current.unmark();
                System.out.println(" " + current);
+               writeToFile(filepath,lst);
+
 
            }
            else if (first.equals("delete")) {
@@ -58,6 +87,8 @@ public class Duke {
                System.out.println("Noted I have removed this task");
                System.out.println(current);
                System.out.println("Now you have" + " " + i + " " + "tasks in list");
+               writeToFile(filepath,lst);
+
 
 
 
@@ -73,6 +104,8 @@ public class Duke {
                    System.out.println(lst.get(i));
                    i++;
                    System.out.println("Now you have" + " " + i + " " + "tasks in list");
+                   writeToFile(filepath,lst);
+
                } else if (first.equals("event")) {
                    if (str.endsWith("event")) {
                        throw new DukeException("Oops The description of event cannot be empty !");
@@ -83,6 +116,8 @@ public class Duke {
                    System.out.println(lst.get(i));
                    i++;
                    System.out.println("Now you have" + " " + i + " " + "tasks in list");
+                   writeToFile(filepath,lst);
+
                }
                else if (first.equals("todo")) {
                    if (str.endsWith("todo")) {
@@ -94,8 +129,10 @@ public class Duke {
                    System.out.println(lst.get(i));
                    i++;
                    System.out.println("Now you have" + " " + i + " " + "tasks in list");
+                   writeToFile(filepath,lst);
                } else {
                  throw new DukeException("Oops Sorry I dont know what you are talking about :( ");
+
                }
            }
 
