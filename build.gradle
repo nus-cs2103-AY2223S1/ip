@@ -36,6 +36,7 @@ shadowJar {
     archiveClassifier = null
 }
 
+
 run {
     standardInput = System.in
 }
