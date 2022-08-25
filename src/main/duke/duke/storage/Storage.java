@@ -55,7 +55,7 @@ public class Storage {
                 switch (taskType) {
                     case "T":
                         Task toDo = new ToDo(taskDescription);
-                        if (taskStatus == "X") {
+                        if (taskStatus.equals("X")) {
                             toDo.markTaskAsDone();
                         }
                         tasks.addTask(toDo);
@@ -69,7 +69,7 @@ public class Storage {
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
                         LocalDate date = LocalDate.parse(by, formatter);
                         Task deadline = new Deadline(deadlineName, date);
-                        if (taskStatus == "X") {
+                        if (taskStatus.equals("X")) {
                             deadline.markTaskAsDone();
                         }
                         tasks.addTask(deadline);
@@ -81,7 +81,7 @@ public class Storage {
                                 .trim();
                         String at = eventDescription[1].substring(0, eventDescription[1].length() - 1).trim();
                         Task event = new Event(eventName, at);
-                        if (taskStatus == "X") {
+                        if (taskStatus.equals("X")) {
                             event.markTaskAsDone();
                         }
                         tasks.addTask(event);
