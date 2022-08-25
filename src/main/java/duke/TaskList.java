@@ -3,9 +3,9 @@ package duke;
 import java.util.List;
 
 public class TaskList {
+    private static int count = 0;
     private List<Task> list;
     private Ui ui;
-    private static int count = 0;
 
     public TaskList(List<Task> list) {
         this.list = list;

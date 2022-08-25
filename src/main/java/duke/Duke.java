@@ -32,39 +32,42 @@ public class Duke {
                 this.parser.ignoreLine(scanner);
                 continue;
             }
+
             if (keyword == Keyword.BYE) {
                 break;
             } else if (keyword != null) {
                 switch (keyword) {
-                    case LIST:
-                        this.ui.showTasks(this.tasks);
-                        break;
-                    case MARK:
-                        this.tasks.mark(this.parser.getIndex(scanner));
-                        break;
-                    case UNMARK:
-                        this.tasks.unmark(this.parser.getIndex(scanner));
-                        break;
-                    case TODO:
-                        String description = scanner.nextLine();
-                        if (description.length() > 0) {
-                            description = description.substring(1);
-                        }
-                        try {
-                            this.tasks.add(new Todo(description, false));
-                        } catch (DukeException e) {
-                            this.ui.showError(e.getMessage());
-                        }
-                        break;
-                    case DEADLINE:
-                        this.tasks.add(this.parser.createDeadline(scanner.nextLine().substring(1)));
-                        break;
-                    case EVENT:
-                        this.tasks.add(this.parser.createEvent(scanner.nextLine().substring(1)));
-                        break;
-                    case DELETE:
-                        this.tasks.delete(this.parser.getIndex(scanner));
-                        break;
+                case LIST:
+                    this.ui.showTasks(this.tasks);
+                    break;
+                case MARK:
+                    this.tasks.mark(this.parser.getIndex(scanner));
+                    break;
+                case UNMARK:
+                    this.tasks.unmark(this.parser.getIndex(scanner));
+                    break;
+                case TODO:
+                    String description = scanner.nextLine();
+                    if (description.length() > 0) {
+                        description = description.substring(1);
+                    }
+                    try {
+                        this.tasks.add(new Todo(description, false));
+                    } catch (DukeException e) {
+                        this.ui.showError(e.getMessage());
+                    }
+                    break;
+                case DEADLINE:
+                    this.tasks.add(this.parser.createDeadline(scanner.nextLine().substring(1)));
+                    break;
+                case EVENT:
+                    this.tasks.add(this.parser.createEvent(scanner.nextLine().substring(1)));
+                    break;
+                case DELETE:
+                    this.tasks.delete(this.parser.getIndex(scanner));
+                    break;
+                default:
+                    break;
                 }
             } else {
                 break;

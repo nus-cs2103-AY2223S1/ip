@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Parser {
-    public static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete"};
+    private static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete"};
     public Parser() {};
 
     public Duke.Keyword getKeyword(String keyword) throws DukeException {
@@ -25,7 +25,7 @@ public class Parser {
     }
 
     public Event createEvent(String nextLine) {
-        String[]sections =nextLine.split(" /at ");
+        String[]sections = nextLine.split(" /at ");
         return new Event(sections[0], false, sections[1]);
     }
 

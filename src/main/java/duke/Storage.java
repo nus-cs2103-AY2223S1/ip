@@ -1,6 +1,11 @@
 package duke;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +36,7 @@ public class Storage {
                 boolean isDone = section[1].equals("1");
                 String type = section[0];
 
-                if(type.equals("T")) {
+                if (type.equals("T")) {
                     try {
                         Todo todo = new Todo(section[2], isDone);
                         tasks.add(todo);
