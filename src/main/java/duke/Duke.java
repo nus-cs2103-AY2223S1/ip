@@ -16,7 +16,7 @@ public class Duke {
     }
 
     public enum Keyword {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     public void run() {
@@ -64,6 +64,9 @@ public class Duke {
                         break;
                     case DELETE:
                         this.tasks.delete(this.parser.getIndex(scanner));
+                        break;
+                    case FIND:
+                        this.ui.showFoundTasks(this.tasks.findTasks(scanner.nextLine().substring(1)));
                         break;
                 }
             } else {

@@ -52,4 +52,15 @@ public class Ui {
             System.out.println("\tNow you have " + (count) + " tasks in the list.");
         }
     }
+
+    public void showFoundTasks(TaskList tasks) {
+        if (tasks.getCount() == 0) {
+            System.out.println("\tNo results found!");
+        } else {
+            System.out.println("\tMatching results:");
+            for (int i = 0; i < tasks.getCount(); i++) {
+                System.out.println("\t\t" + (i + 1) + "." + tasks.get(i));
+            }
+        }
+    }
 }

@@ -21,6 +21,11 @@ public abstract class Task {
         return this.description;
     }
 
+    public boolean containsKeyword(String keyword) {
+        keyword = keyword.toLowerCase();
+        return this.description.contains(keyword);
+    }
+
     public abstract String getStorageString();
 
     @Override
