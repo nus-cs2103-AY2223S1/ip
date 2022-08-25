@@ -1,5 +1,9 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import java.util.Scanner;
+
 import java.io.File;
 import java.nio.file.Files;
 import java.io.FileWriter;
@@ -8,17 +12,49 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-
-
-// look for file. if it does not exist, make it
-// from tasks in file, get the var of each line and update the duke list
-// 
-// at the end of every update, clear the whole file and rewrite with current list of tasks
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.text.ParseException;
 
 
 public class Duke {
 
     private static ArrayList<Task> list = new ArrayList<>();
+
+    // parse out date
+    // see if there is time included then will add datetime
+
+//    static String getTimeString(String time) {
+//        try {
+//            final SimpleDateFormat sdf = new SimpleDateFormat("H:mm");
+//            final Date dateObj = sdf.parse(time);
+//            SimpleDateFormat output = new SimpleDateFormat("K:mm").format(dateObj);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
+
+    static LocalDate getLocalDate(String date) {
+        String[] dateDetails = date.split("-");
+        String day = dateDetails[0];
+        String month = dateDetails[1];
+        String year = dateDetails[2];
+        if (day.length() == 1) {
+            day = "0" + day;
+        }
+        if (month.length() == 1) {
+            month = "0" + month;
+        }
+        List<String> list = Arrays.asList(year, month, day);
+
+        String dateToParse = String.join("-", list);
+        System.out.println(dateToParse);
+        return LocalDate.parse(dateToParse);
+    }
 
     private static void addTask(String taskType, String input) throws DukeException {
 
@@ -39,11 +75,25 @@ public class Duke {
                 String desAndBy = String.join("", removeTaskType2);
                 String[] sliceByDesAndBy = desAndBy.split(" /by ");
                 String description2 = sliceByDesAndBy[0];
-                String dueTime = sliceByDesAndBy[1];
-                Task deadline = new Deadline(description2, dueTime);
-                list.add(deadline);
-                System.out.println("Got it. I've added this task:");
-                System.out.println("  " + deadline);
+                String dueDateAndTime = sliceByDesAndBy[1];
+                String[] dateAndTime = dueDateAndTime.split(" ");
+                System.out.println(dateAndTime.length);
+                if (dateAndTime.length == 2) {
+                    String dueDate = dateAndTime[0];
+                    String dueTime = dateAndTime[1];
+                    LocalDate localDate = getLocalDate(dueDate);
+                    Task deadline = new Deadline(description2, localDate, dueTime);
+                    list.add(deadline);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println("  " + deadline);
+                } else {
+                    String dueDate = dateAndTime[0];
+                    LocalDate localDate = getLocalDate(dueDate);
+                    Task deadline = new Deadline(description2, localDate);
+                    list.add(deadline);
+                    System.out.println("Got it. I've added this task:");
+                    System.out.println("  " + deadline);
+                }
                 break;
             case "event":
                 String[] removeTaskType3 = input.split("event ");
@@ -113,11 +163,26 @@ public class Duke {
 //        System.out.println("type:" + s);
         if (s.equals("D")){
 //            System.out.println("added D");
-            Deadline deadline = new Deadline(description, datetime);
-            if (isMarked.equals("1")) {
-                deadline.mark();
+            String[] dateAndTime = datetime.split(" ");
+            System.out.println(dateAndTime.length);
+            if (dateAndTime.length == 2) {
+                String dueDate = dateAndTime[0];
+                String dueTime = dateAndTime[1];
+                LocalDate localDate = getLocalDate(dueDate);
+                Task deadline = new Deadline(description, localDate, dueTime);
+                if (isMarked.equals("1")) {
+                    deadline.mark();
+                }
+                list.add(deadline);
+            } else {
+                String dueDate = dateAndTime[0];
+                LocalDate localDate = getLocalDate(dueDate);
+                Task deadline = new Deadline(description, localDate);
+                if (isMarked.equals("1")) {
+                    deadline.mark();
+                }
+                list.add(deadline);
             }
-            list.add(deadline);
         } else {
 //            System.out.println("added E");
             Event event = new Event(description, datetime);
@@ -156,7 +221,7 @@ public class Duke {
         return event.getDueTime();
     }
     static String getDeadlineDueDate(Deadline deadline) {
-        return deadline.getDueTime();
+        return deadline.dueDateToString();
     }
 
 
