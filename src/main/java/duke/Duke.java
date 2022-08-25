@@ -3,6 +3,9 @@ package duke;
 import duke.task.TasksController;
 import duke.command.Command;
 
+/**
+ * Duke App main class
+ */
 public class Duke {
     private static final Storage storage = new Storage("data/Duke.dat");
     private static final TasksController controller = new TasksController(storage.load());

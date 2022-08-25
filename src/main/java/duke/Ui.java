@@ -12,7 +12,7 @@ public class Ui {
     private final Scanner sc = new Scanner(System.in);
 
     /**
-     * Say hi to the user.
+     * Says hi to the user.
      */
     public void startGreeting() {
         System.out.println(SPLIT_LINE);
@@ -23,22 +23,22 @@ public class Ui {
     }
 
     /**
-     * Prints the given text
-     * @param s
+     * Prints the given text.
+     * @param s message to be prompted
      */
     public void prompt(String s) {
         System.out.println(s);
     }
 
     /**
-     * Report a checked Duke exception
+     * Reports a checked Duke exception
      * @param error exception message
      */
     public void reportError(String error) {
         System.out.println(error);
     }
     /**
-     * Retrieve input from the user
+     * Retrieves input from the user.
      * @return user's input string
      */
     public String inputText() {
@@ -46,7 +46,7 @@ public class Ui {
     }
 
     /**
-     * Get user's choice for command
+     * Gets user's choice for command.
      * @return user's input command
      */
     public String inputCommand() {
@@ -54,7 +54,7 @@ public class Ui {
     }
 
     /**
-     * Get user's choice for task
+     * Get user's choice for task.
      * @return user's input task
      */
     public int inputTask() {
@@ -68,11 +68,11 @@ public class Ui {
     }
 
     /**
-     * Display chatbot info with list command
-     * @param info chatbot info
-     * @param isList boolean value to show if the user asked for a list command
-     * @param isMark boolean value to show if the user asked for a mark command
-     * @param isUnmark boolean value to show if the user asked for an unmark command
+     * Displays chatbot info with list command.
+     * @param info message to be displayed
+     * @param isList true if it is a list command
+     * @param isMark true if it is a mark command
+     * @param isUnmark true if it is an unmark command
      */
     public void display(String info, boolean isList, boolean isMark, boolean isUnmark, boolean isDelete) {
         if (isList) {
@@ -103,14 +103,14 @@ public class Ui {
     }
 
     /**
-     * Prints the split line
+     * Prints the split line.
      */
     public void showSplitLine() {
         System.out.println(SPLIT_LINE);
     }
 
     /**
-     * Display the command list.
+     * Displays the command list.
      */
     public void showCommandList() {
         System.out.println("Anything else? I'm always here for you!");
@@ -119,7 +119,7 @@ public class Ui {
     }
 
     /**
-     * Say goodbye to the user.
+     * Says goodbye to the user.
      */
     public void sayBye() {
         System.out.println(SPLIT_LINE);

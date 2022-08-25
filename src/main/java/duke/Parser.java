@@ -10,7 +10,7 @@ import duke.command.Command;
 public class Parser {
 
     /**
-     * Check the legitimacy of user's input for command
+     * Checks the legitimacy of user's input for command
      *
      * @param command input command
      * @throws InvalidCommandException if command < 1 or command > 8

@@ -14,7 +14,7 @@ public class ToDo extends Task {
     }
 
     /**
-     * Stringify a ToDo task
+     * Returns the string representation of a ToDo.
      * @return a string
      */
     @Override

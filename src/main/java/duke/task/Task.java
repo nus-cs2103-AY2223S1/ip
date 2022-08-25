@@ -26,7 +26,7 @@ public class Task implements Serializable {
     }
 
     /**
-     * Stringify a task
+     * Returns the string representation of a Task.
      * @return a string
      */
     @Override

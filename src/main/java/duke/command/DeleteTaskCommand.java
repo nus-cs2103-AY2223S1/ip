@@ -9,6 +9,12 @@ import duke.exception.NoSuchTaskException;
  */
 public class DeleteTaskCommand extends Command {
 
+    /**
+     * Deletes a task
+     * @param controller Duke task controller
+     * @param ui Duke UI
+     * @param storage Duke IO processor
+     */
     public void execute(TasksController controller, Ui ui, Storage storage) {
         ui.prompt("Please type in the task index that you want to delete:");
         int taskIndexToMark = ui.inputTask() - 1;
