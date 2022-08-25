@@ -1,6 +1,17 @@
+package chatbot.main;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import chatbot.tasks.Task;
+import chatbot.tasks.Event;
+import chatbot.tasks.Deadline;
+import chatbot.tasks.Todo;
 
 /**
  * The Duke chatbot named Zlimez functions as a todo list
@@ -10,9 +21,11 @@ import java.util.Scanner;
  * @author James Chiu
  */
 public class Duke {
+    private static final String root = System.getProperty("user.dir");
+    private static final Path dataPath = Paths.get(root, "data", "data.txt");
     private boolean isActive = true;
-    private String emoji = "<_>";
-    private Scanner reader = new Scanner(System.in);
+    private final String emoji = "<_>";
+    private final Scanner reader = new Scanner(System.in);
     private List<Task> todos = new ArrayList<>();
 
     /**
@@ -25,7 +38,7 @@ public class Duke {
         UNMARK (7),
         DELETE (7);
 
-        private int parseIndex;
+        private final int parseIndex;
 
         Action(int parseIndex) {
             this.parseIndex = parseIndex;
@@ -62,11 +75,55 @@ public class Duke {
         }
     }
 
+    public void saveData() throws IOException {
+        File targetFile = dataPath.toFile();
+        if (targetFile.getParentFile().mkdirs()) {
+            targetFile.createNewFile();
+        }
+
+        FileWriter out = new FileWriter(targetFile);
+        for (Task task : todos) {
+            out.write(task.save() + "\n");
+        }
+
+        out.close();
+    }
+
+    public void initData() throws IOException, DukeException {
+        Scanner in = new Scanner(dataPath);
+        while (in.hasNextLine()) {
+            String[] nextTaskInfo = in.nextLine().split(" \\| ");
+            switch (nextTaskInfo[0]) {
+                case "T":
+                    todos.add(new Todo(nextTaskInfo[2], nextTaskInfo[1].equals("1")));
+                    break;
+                case "D":
+                    todos.add(new Deadline(nextTaskInfo[2], nextTaskInfo[1].equals("1"), nextTaskInfo[3]));
+                    break;
+                case "E":
+                    todos.add(new Event(nextTaskInfo[2], nextTaskInfo[1].equals("1"), nextTaskInfo[3]));
+                    break;
+                default:
+                    throw new DukeException("You have corrupted the data I saved");
+            }
+        }
+
+        in.close();
+    }
+
     /**
      * The method allows the chatbot to greet the user upon initialization.
      */
     public void greet() {
         System.out.print("Yes? I'm Zlimez~~ \nWhat can I possibly do for you?\n >>>^<<<\n\n");
+
+        try {
+            this.initData();
+        } catch (DukeException e) {
+            System.out.println("\t" + e.getMessage());
+        } catch (IOException e) {
+            // Do nothing data might not exist when app first used
+        }
     }
 
     /**
@@ -181,9 +238,15 @@ public class Duke {
         }
     }
 
-    private void bye() {
+    private void bye() throws DukeException {
         this.isActive = false;
         System.out.println("\tBye. zzz FINALLY~~" + " " + emoji);
+        try {
+            this.saveData();
+        } catch (IOException e) {
+            throw new DukeException("For some stupid reasons I cannot save the data, too bad");
+        }
+
         reader.close();
     }
 }

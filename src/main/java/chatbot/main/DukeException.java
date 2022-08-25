@@ -1,3 +1,5 @@
+package chatbot.main;
+
 /**
  * The DukeException class represents all possible exceptions
  * that can occur during user's interaction with chatbot.
