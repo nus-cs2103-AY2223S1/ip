@@ -1,3 +1,5 @@
+package luffy;
+
 /** Deadline class to represent a deadline.
  * @author Silas Tay A0233425M
  */

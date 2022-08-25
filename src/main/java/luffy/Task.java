@@ -1,3 +1,5 @@
+package luffy;
+
 /** Task abstract class to represent a task. Tasks consist of Deadlines, Events and Todos.
  * @author Silas Tay A0233425M
  */

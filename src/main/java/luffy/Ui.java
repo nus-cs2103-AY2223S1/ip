@@ -1,3 +1,5 @@
+package luffy;
+
 public class Ui {
     public void printDivider() {
         System.out.println("------------------------------------------------------");

@@ -1,3 +1,5 @@
+package luffy;
+
 /** Event class to represent an event.
  * @author Silas Tay A0233425M
  */
