@@ -32,7 +32,7 @@ public class Task {
 
         try {
             String dueDate = tempStringArray[0];
-            String dueTime = tempStringArray[1];
+            String dueTime = tempStringArray.length < 2 ? "" : tempStringArray[1];
 
             if (validator.isValid(dueDate)) {
                 LocalDate inputDue = LocalDate.parse(dueDate);
