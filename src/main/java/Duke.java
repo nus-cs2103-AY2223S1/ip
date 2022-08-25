@@ -1,5 +1,6 @@
 import objects.Task;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -10,11 +11,13 @@ public class Duke {
     }
 
     // IMPORTANT: Configure isTest to true if you are running ./runtest.sh
+    private static final String JAR_FILE_PATH = "data/tasks.txt";
     private static final Boolean isTest = false;
-    private static final String FILE_PATH =
-            isTest
-            ? "../src/main/java/data/tasksTest.txt"
-            : "src/main/java/data/tasks.txt";
+    // Comment out the conditional expression and add in JAR_FILE_PATH if running on JAR
+    private static final String FILE_PATH = JAR_FILE_PATH;
+//            isTest
+//            ? "../src/main/java/data/tasksTest.txt"
+//            : "src/main/java/data/tasks.txt";
 
     private static Ui ui = new Ui();
     private static TaskList taskList = new TaskList();
@@ -36,13 +39,20 @@ public class Duke {
      */
     public static void main(String[] args) throws IOException {
         try {
+            // Assume that user has duke.jar in an empty folder
+            File dir = new File("data");
+            File f = new File("data/tasks.txt");
+            // Create a new folder called data in the empty folder
+            // Create a new file called tasks.txt in that folder to store data
+            if (dir.mkdir()) {
+                f.createNewFile();
+            }
             Ui.printIntroduction();
             // Load the tasks from the file tasks.txt
             storage.loadTasks(FILE_PATH, tasks);
             parser.parseCommand(tasks);
         } catch (FileNotFoundException e1) {
-            Ui.printExceptionMessage(e1);
-            Ui.endSession(Parser.getScanner());
+            System.out.println(e1.getMessage());
         } finally {
             if (!isTest) {
                 storage.saveTasks(FILE_PATH, tasks);
