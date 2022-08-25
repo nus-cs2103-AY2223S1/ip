@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.lang.NumberFormatException;
 
 public class Deadline extends Task {
-    private LocalDate deadline;
+    private final LocalDate deadline;
     public Deadline(String description, String deadline) throws DukeException {
         super(description);
         String[] dateInfo = deadline.split("-");
