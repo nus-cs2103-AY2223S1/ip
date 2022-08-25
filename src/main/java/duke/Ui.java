@@ -4,13 +4,25 @@ import java.util.Scanner;
 public class Ui {
     public Scanner sc;
 
+    /**
+     * Reads next input from user
+     *
+     * @return The input from the user in String format.
+     */
     public String readCommand() {
         return this.sc.nextLine();
     }
+
+    /**
+     * Prints a line to separate commands
+     */
     public void printBlankLine() {
         System.out.println("---------------------------------------------");
     }
 
+    /**
+     * Prints welcome image to user
+     */
     public void showWelcome() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -20,6 +32,9 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
     }
 
+    /**
+     * Constructor for Ui
+     */
     public Ui() {
         sc = new Scanner(System.in);
     }

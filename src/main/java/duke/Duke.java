@@ -9,6 +9,11 @@ public class Duke {
     private Storage storage;
     public static String filePath = "data/list.txt";
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filePath The file path where file to read from /write to is stored.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage();

@@ -22,10 +22,21 @@ import java.util.Arrays;
 
 public class Parser {
 
+    /**
+     * Constructor for Parser.
+     *
+     */
     public Parser() {
 
     }
 
+    /**
+     * Parse input to give corresponding command.
+     *
+     * @param input The exact user input to be parsed
+     * @return The mapped Command if all input is valid.
+     * @throws DukeException if input formats not met or missing/invalid input.
+     */
     public Command parse(String input) throws DukeException{
         String[] splitInput = input.split(" ");
         String command = splitInput[0];
@@ -63,6 +74,13 @@ public class Parser {
 
     }
 
+    /**
+     * Parse the lines of tasks and populate temporary TaskList.
+     * Parse line by line, create new Task object for each line.
+     *
+     * @parap input The line being read from the file.
+     *
+     */
     public Task fileLoadParser(String input) {
         String[] splitInput = input.split("\\|");
         String type = splitInput[0];

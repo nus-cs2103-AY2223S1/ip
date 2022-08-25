@@ -4,6 +4,12 @@ import java.time.LocalDateTime;
 public class Deadline  extends Task{
     public LocalDateTime deadline;
 
+    /**
+     * Constructor for Deadline.
+     *
+     * @param desc The String description of the deadline task.
+     * @param date The due date for the deadline task.
+     */
     public Deadline(String desc, LocalDateTime date) {
         super(desc);
         deadline = date;
@@ -19,11 +25,22 @@ public class Deadline  extends Task{
                 : String.format("%d/%d/%d %d", day, month, year, time);
     }
 
+    /**
+     * Converts task to String in format for output file.
+     *
+     * @return The task description for output text file.
+     */
     @Override
     public String tofileString() {
         return "D|" + super.tofileString() + "|" + this.getDeadlineString();
     }
 
+    /**
+     * Returns String representation of task.
+     * Format is for output during program runtime.
+     *
+     * @return String representation of task.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + this.getDeadlineString() + ")";

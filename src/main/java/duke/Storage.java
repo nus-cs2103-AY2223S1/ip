@@ -10,6 +10,11 @@ import java.util.List;
 
 public class Storage {
 
+    /**
+     * Loads the file containing task list.
+     * If file not found, create new file.
+     *
+     */
     public void loadStorage(String filePath, TaskList taskList) {
         File f = new File(filePath);
         Parser p = new Parser();
@@ -23,6 +28,14 @@ public class Storage {
             System.out.println("file not found, we will create one for you");
         }
     }
+
+    /**
+     * Writes the list of tasks to the output file.
+     * Checks if directory to file exists, create it if directory does not exist.
+     *
+     * @param filePath The path to the file to write to.
+     * @param taskList The task list temporarily storing all tasks.
+     */
     public void writeToTaskList(String filePath, TaskList taskList) {
         try {
             FileWriter writer = new FileWriter(filePath);
