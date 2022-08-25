@@ -65,7 +65,7 @@ public class Duke {
                         currTask.markAsDone();
                     }
                 } else if ("D ".equals(firstLetter)) {
-                    taskList.add(new Deadline(description, currStrArr[3]));
+                    taskList.add(new Deadline(description, LocalDate.parse(currStrArr[3])));
                     Task currTask = taskList.get(taskList.size() - 1);
                     if (markedDone.equals("X")) {
                         currTask.markAsDone();
@@ -101,11 +101,11 @@ public class Duke {
             } else if (currTask instanceof Deadline) {
                 Deadline currDeadline = (Deadline) currTask;
                 newTextLine.append("D | ").append(currDeadline.getStatusIcon()).append(" |")
-                        .append(currDeadline.description).append(" |").append(currDeadline.by).append("\n");
+                        .append(currDeadline.description).append("|").append(currDeadline.date.toString()).append("\n");
             } else if (currTask instanceof Event) {
                 Event currEvent = (Event) currTask;
-                newTextLine.append("D | ").append(currEvent.getStatusIcon()).append(" |")
-                        .append(currEvent.description).append(" |").append(currEvent.at).append("\n");
+                newTextLine.append("E | ").append(currEvent.getStatusIcon()).append(" |")
+                        .append(currEvent.description).append("|").append(currEvent.at).append("\n");
             }
         }
         newTextLine.close();
@@ -207,17 +207,9 @@ public class Duke {
                     throw new DukeException("This description needs a timing! Add again with /by followed by the deadline timing.");
                 }
 
-                // create deadline string and deadline
+                // create deadline description and deadline date
                 StringBuilder deadlineStr = new StringBuilder();
                 String deadline = "";
-                for (int i = 1; i < strArray.length; i++) {
-                    if (strArray[i].equals("/by")) {
-                        break;
-                    } else {
-                        deadlineStr.append(" ");
-                        deadlineStr.append(strArray[i]);
-                    }
-                }
                 for (int i = 1; i < strArray.length; i++) {
                     if (strArray[i].equals("/by")) {
                         if (i + 1 > strArray.length - 1) {
@@ -226,12 +218,12 @@ public class Duke {
                             deadline = strArray[i + 1];
                         }
                         break;
+                    } else {
+                        deadlineStr.append(" ");
+                        deadlineStr.append(strArray[i]);
                     }
                 }
                 String deadlineDescription = deadlineStr.toString();
-                String deadlineDate = deadline.toString();
-                taskList.add(new Deadline(deadlineDescription, deadlineDate));
-                Task currTask = taskList.get(taskList.size() - 1);
 
                 // make sure deadline is in correct format to accept input
                 String deadlinePattern = "yyyy-MM-dd";
@@ -242,9 +234,10 @@ public class Duke {
                     System.out.println("Invalid deadline format! Please type in deadline format as yyyy-MM-dd");
                     break;
                 }
-                tasks.add(new Deadline(deadlineStr.toString(), LocalDate.parse(deadline)));
-                System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
-                        "\nNow you have " + tasks.size() + " tasks in the list.");
+
+                // add deadline tasks to ArrayList once conditions are satisfied
+                taskList.add(new Deadline(deadlineDescription, LocalDate.parse(deadline)));
+                Task currTask = taskList.get(taskList.size() - 1);
 
                 // print message when deadline is added
                 System.out.println("Got it. I've added this task:\n  " + currTask +

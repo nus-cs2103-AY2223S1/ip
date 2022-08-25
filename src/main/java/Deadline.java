@@ -15,13 +15,22 @@ public class Deadline extends Task {
     }
 
     /**
+     * Show the date of the deadline in a string.
+     *
+     * @return the string representation of the date of the deadline
+     */
+    public String deadlineDateStr() {
+        return date.getMonth() + " " + date.getDayOfMonth() + " " + date.getYear();
+    }
+
+
+    /**
      * toString method of a deadline task.
      *
      * @return the string representation of a deadline task
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + date.getMonth() + " "
-                + date.getDayOfMonth() + " " + date.getYear() + ")";
+        return "[D]" + super.toString() + " (by: " + deadlineDateStr() + ")";
     }
 }
