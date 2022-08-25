@@ -1,18 +1,15 @@
-public class Deadline extends Task {
-    protected String time;
-
-    public Deadline(String description, String time) {
-        super(description);
-        this.time = time;
+public class Deadline extends TimedTask {
+    public Deadline(String description, String rawDateTime) throws DukeException {
+        super(description, rawDateTime);
     }
 
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), time);
+        return String.format("[D]%s (at: %s)", super.toString(), getFormattedTime());
     }
 
     @Override
     public String getSaveFormat() {
-        return String.format("D | %s | %s", super.getSaveFormat(), time);
+        return String.format("D | %s | %s", super.getSaveFormat(), getFormattedTime());
     }
 }

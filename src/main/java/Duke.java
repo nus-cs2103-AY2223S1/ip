@@ -2,7 +2,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -78,35 +82,48 @@ public class Duke {
             String input = sc.next();
             try {
                 switch (input) {
-                    case "list":
+                case "list":
+                    String date = sc.nextLine().trim();
+                    if (date.isEmpty()) {
                         list();
-                        break;
-                    
-                    case "todo":
-                    case "deadline":
-                    case "event":
-                        add(input, sc.nextLine().trim());
-                        break;
+                    } else {
+                        list(date);
+                    }
+                    break;
+                
+                case "todo":
+                case "deadline":
+                case "event":
+                    add(input, sc.nextLine().trim());
+                    break;
+                
+                case "sort":
+                    sort();
+                    break;
+                
+                case "format":
+                    format(sc.nextLine().trim());
+                    break;
 
-                    case "mark":
-                        mark(sc.nextLine().trim());
-                        break;
+                case "mark":
+                    mark(sc.nextLine().trim());
+                    break;
 
-                    case "unmark":
-                        unmark(sc.nextLine().trim());
-                        break;
-                    
-                    case "delete":
-                        delete(sc.nextLine().trim());
-                        break;
+                case "unmark":
+                    unmark(sc.nextLine().trim());
+                    break;
+                
+                case "delete":
+                    delete(sc.nextLine().trim());
+                    break;
+    
+                case "bye":
+                    bye();
+                    break scanner;
         
-                    case "bye":
-                        bye();
-                        break scanner;
-                    
-                    default:
-                        sc.nextLine();
-                        throw new DukeException("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
+                default:
+                    sc.nextLine();
+                    throw new DukeException("\u2639 OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e) {
                 print(e.getMessage());
@@ -127,6 +144,20 @@ public class Duke {
 
     private void list() {
         print(IntStream.range(0, tasks.size()).mapToObj(x -> String.format("%d.%s\n", x + 1, tasks.get(x))).reduce("Here are the tasks in your list:\n", (x,y) -> x + y));
+    }
+
+    private void list(String date) throws DukeException {
+        LocalDate convertedDate;
+        try {
+            convertedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Wrong date format. Please input date in the format dd/MM/yyyy.");
+        }
+        String content = IntStream.range(0, tasks.size())
+            .filter(x -> tasks.get(x) instanceof TimedTask && ((TimedTask) tasks.get(x)).time.toLocalDate().equals(convertedDate))
+            .mapToObj(x -> String.format("%d.%s\n", x + 1, tasks.get(x)))
+            .reduce("", (x,y) -> x + y);
+        print(String.format("Here are the tasks in your list at %s:\n%s", date, content));
     }
 
     private String[] getTaskDetails(String rawDetails, String delimiter) throws DukeException {
@@ -151,6 +182,16 @@ public class Duke {
         }
         tasks.add(task);
         print("Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.", tasks.get(tasks.size() - 1), tasks.size());
+    }
+
+    private void sort() {
+        Collections.sort(tasks);
+        list();
+    }
+
+    private void format(String format) throws DukeException {
+        TimedTask.setFormat(format);
+        list();
     }
 
     private void mark(String input) throws DukeException {

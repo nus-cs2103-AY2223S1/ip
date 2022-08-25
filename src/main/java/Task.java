@@ -1,4 +1,4 @@
-abstract class Task {
+abstract class Task implements Comparable<Task> {
     protected String description;
     protected boolean isDone;
 
@@ -22,5 +22,13 @@ abstract class Task {
 
     public String getSaveFormat() {
         return String.format("%d | %s", isDone ? 1 : 0, description);
+    }
+
+    @Override
+    public int compareTo(Task other) {
+        if (isDone != other.isDone) {
+            return Boolean.compare(isDone, other.isDone);
+        }
+        return description.compareTo(other.description);
     }
 }
