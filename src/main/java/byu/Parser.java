@@ -37,6 +37,8 @@ public class Parser {
                 case LIST:
                     c = new ListCommand();
                     break;
+            case FIND:
+                c = new FindCommand(description);
             }
         } catch (DukeException e) {
             System.out.print(e.getMessage());
@@ -63,6 +65,7 @@ public class Parser {
             case TODO:
             case EVENT:
             case DELETE:
+        case FIND:
                 String[] str = fullCommand.split(" ");
                 if (str.length == 1) {
                     throw new EmptyDescription(i.name());
@@ -124,7 +127,6 @@ public class Parser {
             // throw
         //}
     }
-
 
 /*
 

@@ -81,6 +81,15 @@ public class ToDoList {
         }
     }
 
+    public void find(String s) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getName().contains(s)) {
+                System.out.format("%d. %s\n", i + 1, list.get(i).toString());
+            }
+        }
+    }
+
     public int getNumOfTasks() {
         return this.numOfTasks;
     }
