@@ -1,0 +1,6 @@
+1:D: :assignment 1 /by 6 june
+2:D:X:assignment 2 /by 7 june
+3:E:X:birthday party /at 6 june
+4:E:X:birthday party /at 8 aug
+5:T: :go korea
+6:T: :go japan

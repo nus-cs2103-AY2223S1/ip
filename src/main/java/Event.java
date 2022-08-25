@@ -8,4 +8,8 @@ class Event extends Task {
         return "[E]" + super.toString();
     }
 
+    public String write() {
+        return "E" + super.write();
+    }
+
 }

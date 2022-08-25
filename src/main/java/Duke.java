@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class Duke {
-    public static void main(String[] args) throws MismatchInputException {
+    public static void main(String[] args) throws MismatchInputException, Exception {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -11,12 +11,14 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         SkeletonDuke duke = new SkeletonDuke();
         duke.greet();
+        duke.readFiles();
         while(sc.hasNextLine()) {
             String str = sc.nextLine();
             String[] strarr = str.split(" ");
             String command = strarr[0];
             if(command.equals("bye")) {
                 duke.exit();
+                duke.saveNewChanges();
                 break;
             } else if(command.equals("list")) {
                 duke.getList();
@@ -32,9 +34,9 @@ public class Duke {
                 int taskNo = Integer.parseInt(strarr[1]);
                 duke.delete(taskNo);
             } else {
+                duke.saveNewChanges();
                 throw new MismatchInputException(":( OOPS!!! I'm sorry, but I don't know what that means" );
             }
         }
-
     }
 }
