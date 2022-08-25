@@ -1,4 +1,5 @@
 public class Event extends Task {
+    private static final String ICON = "E";
     protected String dateString;
 
     Event(String description, String dateString) {
@@ -7,7 +8,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String toDataString(String separator) {
+        return String.format("%s%s%s%s", ICON, super.toDataString(separator), separator, dateString);
+    }
+
+    @Override
     public String toString() {
-        return String.format("[E]%s (at: %s)", super.toString(), dateString);
+        return String.format("[%S]%s (at: %s)", ICON, super.toString(), dateString);
     }
 }
