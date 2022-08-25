@@ -1,4 +1,9 @@
+package ip.task;
+
 import java.util.Scanner;
+
+import ip.exception.NoDescription;
+import ip.exception.NoPeriod;
 
 public class Event extends Task {
     

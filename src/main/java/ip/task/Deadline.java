@@ -1,4 +1,9 @@
+package ip.task;
+
 import java.util.Scanner;
+
+import ip.exception.NoDeadline;
+import ip.exception.NoDescription;
 
 public class Deadline extends Task {
     private String deadline;
