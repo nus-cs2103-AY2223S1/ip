@@ -23,4 +23,12 @@ abstract public class Task {
         return (this.done ? "X" : " ");
     }
 
+    public boolean isDone() {
+        return this.done;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
 }
