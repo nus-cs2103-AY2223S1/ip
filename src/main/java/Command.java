@@ -1,3 +1,3 @@
-public enum Command {
-  bye, list, mark, unmark, delete, todo, deadline, event
+public abstract class Command {
+  public abstract void execute(TaskList taskList, Storage storage, Ui ui);
 }

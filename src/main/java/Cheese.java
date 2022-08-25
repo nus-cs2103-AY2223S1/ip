@@ -1,16 +1,6 @@
-import java.io.File;
-import java.io.IOException;
-import java.util.Scanner;
-
 public class Cheese {
-  /** Constant to represent border during conversation */
-  public static final String BORDER = "-----";
-
-  /** Array list to store list of tasks */
-  private TaskList taskList = new TaskList();
-
+  private TaskList taskList;
   private Storage storage;
-
   private Ui ui;
 
   public Cheese(String filePath) {
@@ -24,16 +14,23 @@ public class Cheese {
     }
   }
 
-  public static void main(String[] args) {
-    new Cheese("data/cheese.txt").run();
-  }
-
   public void run() {
     ui.showWelcome();
     boolean isExit = false;
     while (!isExit) {
-      String fullCommand = ui.readCommand();
+      try {
+        String fullCommand = ui.readCommand();
+        Command command = Parser.parse(fullCommand);
+        command.execute(taskList, storage, ui);
+        isExit = ByeCommand.isBye(command);
+      } catch (CheeseException e) {
+        ui.showError(e.getMessage());
+      }
     }
+  }
+
+  public static void main(String[] args) {
+    new Cheese("data/cheese.txt").run();
   }
 
   /**
