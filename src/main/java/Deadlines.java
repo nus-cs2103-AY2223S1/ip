@@ -9,18 +9,18 @@ public class Deadlines extends Task {
     /**
      * deadline of the task
      */
-    private LocalDateTime deadline;
+    private final LocalDateTime deadline;
 
     /**
      * Constructor to initialize class.
      *
      * @param name task name
      */
-    public Deadlines(String name, boolean init, boolean completed, LocalDateTime deadline) {
-        super(name, init, completed);
+    public Deadlines(String name, boolean init, boolean completed, LocalDateTime deadline, int listSize) {
+        super(name, init, completed, listSize);
         this.deadline = deadline;
         if (!init) {
-            addMessage();
+            addMessage(listSize);
         }
     }
 
@@ -44,13 +44,13 @@ public class Deadlines extends Task {
      * {@inheritDoc}
      */
     @Override
-    public void addMessage() {
+    public void addMessage(int listSize) {
         System.out.printf(
                 "    ____________________________________________________________\n" +
                         "     Got it. I've added this task:\n" +
                         "     %s\n" +
                         "     Now you have %d tasks in the list.\n" +
-                        "    ____________________________________________________________\n", this, Duke.taskArray.size() + 1);
+                        "    ____________________________________________________________\n", this, listSize + 1);
     }
 
     /**

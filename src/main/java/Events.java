@@ -13,11 +13,11 @@ public class Events extends Task {
      *
      * @param name task name
      */
-    public Events(String name, boolean init, boolean completed, String timing) {
-        super(name, init, completed);
+    public Events(String name, boolean init, boolean completed, String timing, int listSize) {
+        super(name, init, completed,listSize);
         this.timing = timing;
         if (!init) {
-            addMessage();
+            addMessage(listSize);
         }
     }
 
@@ -41,13 +41,13 @@ public class Events extends Task {
      * {@inheritDoc}
      */
     @Override
-    public void addMessage() {
+    public void addMessage(int listSize) {
         System.out.printf(
                 "    ____________________________________________________________\n" +
                         "     Got it. I've added this task:\n" +
                         "     %s\n" +
                         "     Now you have %d tasks in the list.\n" +
-                        "    ____________________________________________________________\n", this, Duke.taskArray.size() + 1);
+                        "    ____________________________________________________________\n", this, listSize + 1);
     }
 
     /**

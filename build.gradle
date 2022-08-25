@@ -1,4 +1,8 @@
-plugin: 'java'
+plugins {
+    id 'java'
+    id 'checkstyle'
+}
+
 
 test {
     useJUnitPlatform()

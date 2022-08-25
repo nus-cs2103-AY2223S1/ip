@@ -8,10 +8,10 @@ public class ToDo extends Task {
      *
      * @param name task name
      */
-    public ToDo(String name, boolean init, boolean completed) {
-        super(name, init, completed);
+    public ToDo(String name, boolean init, boolean completed, int listSize) {
+        super(name, init, completed, listSize);
         if (!init) {
-            addMessage();
+            addMessage(listSize);
         }
     }
 
@@ -27,13 +27,13 @@ public class ToDo extends Task {
      * {@inheritDoc}
      */
     @Override
-    public void addMessage() {
+    public void addMessage(int listSize) {
         System.out.printf(
                 "    ____________________________________________________________\n" +
                         "     Got it. I've added this task:\n" +
                         "     %s\n" +
                         "     Now you have %d tasks in the list.\n" +
-                        "    ____________________________________________________________\n", this, Duke.taskArray.size() + 1);
+                        "    ____________________________________________________________\n", this, listSize + 1);
     }
 
     /**

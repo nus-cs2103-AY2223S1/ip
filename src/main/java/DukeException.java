@@ -23,4 +23,10 @@ public class DukeException extends Exception{
         }
     }
 
+    public static class InvalidParameterException extends DukeException {
+        public InvalidParameterException(String errorMessage) {
+            super (errorMessage);
+        }
+    }
+
 }
