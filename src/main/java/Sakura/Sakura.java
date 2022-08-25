@@ -2,7 +2,6 @@ package Sakura;
 
 import java.io.*;
 import java.nio.file.Paths;
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Sakura {
@@ -12,7 +11,9 @@ public class Sakura {
     private static String DIR = "data";
     private static String FILENAME = "Sakura.txt";
     private static String DATAPATH = String.valueOf(Paths.get(Sakura.DIR, Sakura.FILENAME));
-    static TaskManager taskManager = new TaskManager();
+    static TaskList taskList = new TaskList();
+
+    private static Ui ui;
 
     private static void loadData() {
         File database = new File(Sakura.DATAPATH);
@@ -43,7 +44,7 @@ public class Sakura {
             assert dataTask != null;
             dataTask.markDone();
         }
-        taskManager.tasks.add(dataTask);
+        taskList.tasks.add(dataTask);
     }
 
     private static void createDatabase() {
@@ -65,7 +66,7 @@ public class Sakura {
     private static void saveData() throws IOException {
         FileWriter fw = new FileWriter(Sakura.DATAPATH, false);
         BufferedWriter bw = new BufferedWriter(fw);
-        for (Task task : taskManager.tasks) {
+        for (Task task : taskList.tasks) {
             bw.write(task.stringifyTask());
             bw.newLine();
         }
@@ -73,36 +74,21 @@ public class Sakura {
         fw.close();
     }
 
-    private static void greet() {
-        System.out.println(DIV);
-        System.out.println("How may I serve you today, Senpai?");
-        System.out.println("\t" + DIV2 + "\n");
-    }
 
-    private static void exit() {
-        try {
-            saveData();
-            System.out.println("\tBye Senpai! It was a pleasure serving you, see you again soon!");
-            System.out.println("\t" + DIV2 + "\n");
-        } catch (IOException e) {
-            SakuraException.saveError();
-        }
-    }
-
-    private static void Start(String input, TaskManager taskManager) {
+    private static void Start(String input, TaskList taskList) {
         if (input.equals("bye")) {
             inProgress = false;
-            exit();
+            ui.exit();
         } else if (input.equals("list")) {
-            taskManager.showAllTask();
+            Ui.showAllTask(taskList.tasks);
         } else if (input.toLowerCase().startsWith("mark")) {
-            taskManager.markTask(input);
+            taskList.markTask(input);
         } else if (input.toLowerCase().startsWith("unmark")) {
-            taskManager.unmarkTask(input);
+            taskList.unmarkTask(input);
         } else if (input.toLowerCase().startsWith("todo") || input.toLowerCase().startsWith("deadline") || input.toLowerCase().startsWith("event")) {
-            taskManager.addTask(input);
+            taskList.addTask(input);
         } else if (input.toLowerCase().startsWith("delete")) {
-            taskManager.deleteTask(input);
+            taskList.deleteTask(input);
         } else {
             SakuraException.genericTask();
         }
@@ -113,26 +99,13 @@ public class Sakura {
         while (inProgress) {
             String command = sc.nextLine();
             System.out.println("\t" + DIV);
-            Start(command, taskManager);
+            Start(command, taskList);
             System.out.println("\t" + DIV + "\n");
         }
     }
 
     public static void main(String[] args) throws IndexOutOfBoundsException {
-        String logo =
-                  "   ▄████████    ▄████████    ▄█   ▄█▄ ███    █▄     ▄████████    ▄████████             ▄■▄          \n"
-                + "  ███    ███   ███    ███   ███ ▄███▀ ███    ███   ███    ███   ███    ███       ▄■██■█   █■██■▄    \n"
-                + "  ███    █▀    ███    ███   ███▐██▀   ███    ███   ███    ███   ███    ███      ██  ▄  ▀▄▀  ▄  ██   \n"
-                + "  ███          ███    ███  ▄█████▀    ███    ███  ▄███▄▄▄▄██▀   ███    ███      ▀█▄  ▀▄ █ ▄▀  ▄█▀   \n"
-                + "▀███████████ ▀███████████ ▀▀█████▄    ███    ███ ▀▀███▀▀▀▀▀   ▀███████████         █■■((■))■■█      \n"
-                + "         ███   ███    ███   ███▐██▄   ███    ███ ▀███████████   ███    ███      ▄█▀  ▄▀ █ ▀▄  ▀█▄   \n"
-                + "   ▄█    ███   ███    ███   ███ ▀███▄ ███    ███   ███    ███   ███    ███      ██  ▀  ▄▀▄  ▀  ██   \n"
-                + " ▄████████▀    ███    █▀    ███   ▀█▀ ████████▀    ███    ███   ███    █▀        ▀■██■█   █■██■▀    \n"
-                + "                            ▀                      ███    ███                          ▀■▀          \n";
-
-
-        System.out.println("Hello! This is \n" + logo + "\nat your service!!");
-        Sakura.greet();
+        ui.greet();
         loadData();
         Sakura.run();
     }

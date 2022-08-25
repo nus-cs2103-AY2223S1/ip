@@ -3,28 +3,11 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.ArrayList;
 
-public class TaskManager {
+public class TaskList {
     public List<Task> tasks;
 
-    public TaskManager() {
+    public TaskList() {
         this.tasks = new ArrayList<>();
-    }
-
-    public void addDescription(Task newTask) {
-        tasks.add(newTask);
-        System.out.println("\tYes Sir! I've added this task: \n\t  "
-                + newTask
-                + " \n\tNow you have "
-                + tasks.size()
-                + " tasks in the list.");
-    }
-
-    public void deleteDescription(Task deletedTask) {
-        System.out.println("\tRight away Sir! I've SHREDDED this task: \n\t  "
-                + deletedTask
-                + " \n\tNow you have "
-                + tasks.size()
-                + " tasks in the list.");
     }
 
     public void addTask(String input) {
@@ -34,13 +17,13 @@ public class TaskManager {
                     SakuraException.invalidTodo();
                 } else {
                     Todo todo = new Todo(input.substring("todo ".length()));
-                    this.addDescription(todo);
+                    Ui.addDescription(this.tasks, todo);
                 }
             } else if (input.toLowerCase().startsWith("deadline")) {
                 try {
                     String[] strArr = input.split(" /by ", 2);
                     Deadline deadline = new Deadline(strArr[0].substring("deadline ".length()), strArr[1]);
-                    this.addDescription(deadline);
+                    Ui.addDescription(this.tasks, deadline);
                 } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
                     SakuraException.invalidDeadline();
                 }
@@ -48,7 +31,7 @@ public class TaskManager {
                 try {
                     String[] strArr = input.split(" /at ", 2);
                     Event event  = new Event(strArr[0].substring("event ".length()), strArr[1]);
-                    this.addDescription(event);
+                    Ui.addDescription(this.tasks, event);
                 } catch (ArrayIndexOutOfBoundsException  | StringIndexOutOfBoundsException e) {
                     SakuraException.invalidEvent();
                 }
@@ -57,15 +40,6 @@ public class TaskManager {
             SakuraException.dateError();
         }
 
-    }
-
-    public void showAllTask() {
-        String list = "\tSir, these are the tasks in your list:";
-        for (int i = 0; i < tasks.size(); i++) {
-            int index = i + 1;
-            list += "\n\t" + index + ". " + tasks.get(i);
-        }
-        System.out.println(list);
     }
 
     public void markTask(String input) {
@@ -106,7 +80,7 @@ public class TaskManager {
                 int taskIndex = Integer.parseInt(input.substring("delete ".length()));
                 Task task = tasks.get(taskIndex - 1);
                 tasks.remove(task);
-                deleteDescription(task);
+                Ui.deleteDescription(this.tasks, task);
             }
         } catch (IndexOutOfBoundsException e) {
             SakuraException.noSuchTask();
