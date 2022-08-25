@@ -1,4 +1,8 @@
 package duke;
+
+/**
+ * Class to handle Ui interactions
+ */
 public class Ui {
     protected String logo = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
@@ -6,6 +10,9 @@ public class Ui {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
+    /**
+     * Method to run at the start of running program
+     */
     public void greeting() {
         String greet = "Hello! I'm Duke \n"
                 + "What can I do for you? \n";
@@ -14,6 +21,9 @@ public class Ui {
         System.out.println(greet);
     }
 
+    /**
+     * Method to run at the end of running program
+     */
     public void farewell() {
         String bye = "Bye. Hope to see you again soon!";
         System.out.println(bye);
