@@ -1,10 +1,21 @@
-/*
-This class encapsulates the idea of a to do
+/**
+ * This class encapsulates the idea of a todo.
  */
 public class ToDo extends Task {
 
-    public ToDo(String description) {
-        super(description);
+    /**
+     * Constructor for ToDo.
+     * @param description what the todo is
+     * @param status whether it has been completed
+     */
+    public ToDo(String description, boolean status) {
+        super(description, status);
+    }
+
+    @Override
+    public String getDescription() {
+        String status = super.getStatus() ? "T" : "F";
+        return "T | " + status + " | " + super.toString() +  "\n";
     }
 
     @Override
