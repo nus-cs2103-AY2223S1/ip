@@ -150,6 +150,32 @@ public class TaskList {
     }
 
     /**
+     * Finds and returns String representation of
+     * all tasks that matches the search descriptor.
+     *
+     * @param searchInput The search input the user submitted.
+     * @return All search results in listed format, else returns String that states failure to find
+     *         relevant search results.
+     */
+    public String findMatches(String searchInput) {
+        StringBuilder sb = new StringBuilder();
+
+        int foundCount = 0;
+        for (Task task : this.tasks) {
+            String taskName = task.getTaskName();
+            if (taskName.contains(searchInput)) {
+                sb.append(++foundCount).append(".").append(task).append("\n");
+            }
+        }
+
+        String searchResults = sb.toString();
+
+        return searchResults.isEmpty()
+                ? "Sorry, there are no search results. Try a different term"
+                : searchResults;
+    }
+
+    /**
      * Returns all tasks in a list format that is stored.
      *
      * @return String representation of all tasks
