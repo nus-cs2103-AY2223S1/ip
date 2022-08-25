@@ -74,4 +74,8 @@ public class ToDoList {
             System.out.print(e.getMessage());
         }
     }
+
+    public int getNumOfTasks() {
+        return this.numOfTasks;
+    }
 }

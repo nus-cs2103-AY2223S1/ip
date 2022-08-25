@@ -11,7 +11,7 @@ public class FileReader {
     Scanner sc;
     ToDoList list;
 
-    FileReader(String filePath) {
+    public FileReader(String filePath) {
         try {
             this.file = new File("./data/duke.txt");
             this.sc = new Scanner(file);

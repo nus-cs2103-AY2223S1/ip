@@ -44,4 +44,8 @@ public class Task {
             return "[ ] " + this.name;
         }
     }
+
+    public boolean isDone() {
+        return done;
+    }
 }
