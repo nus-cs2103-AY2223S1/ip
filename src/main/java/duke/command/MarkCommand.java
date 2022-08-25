@@ -25,6 +25,9 @@ public class MarkCommand extends Command {
         this.command = command;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() throws DukeException {
         this.tasksList.markTask(command, storage);

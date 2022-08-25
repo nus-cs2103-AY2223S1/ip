@@ -8,11 +8,11 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.TemporalAccessor;
 
 /**
- * Represents an parser that translates between strings of date/time and LocalDateTime objects.
+ * Represents a parser that translates between strings of date/time and LocalDateTime objects.
  */
 public class DateParser {
     // DateTimeFormatter for the formats of date/time
-    private static final DateTimeFormatter format = new DateTimeFormatterBuilder()
+    private static final DateTimeFormatter FORMAT = new DateTimeFormatterBuilder()
             .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"))
             .appendOptional(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
             .appendOptional(DateTimeFormatter.ofPattern("dd-MM-yyyy"))
@@ -31,7 +31,7 @@ public class DateParser {
     public static LocalDateTime parseToDate(String date) throws DateTimeException {
         // https://stackoverflow.com/questions/48280447/java-8-datetimeformatter-with-optional-part
         LocalDateTime dateTime;
-        TemporalAccessor temporalAccessor = DateParser.format.parseBest(date, LocalDateTime::from, LocalDate::from);
+        TemporalAccessor temporalAccessor = DateParser.FORMAT.parseBest(date, LocalDateTime::from, LocalDate::from);
         if (temporalAccessor instanceof LocalDateTime) {
             dateTime = (LocalDateTime) temporalAccessor;
         } else {

@@ -23,11 +23,21 @@ public class Event extends Task {
         this.date = DateParser.parseToDate(date);
     }
 
+    /**
+     * Returns the String representation of this Event task.
+     *
+     * @return The String representation of this Event task.
+     */
     @Override
     public String toString() {
         return "[" + TaskType.E + "]" + super.toString() + " (at: " + DateParser.dateToString(this.date) + ")";
     }
 
+    /**
+     * Returns the String representation of the command to initialise this Event task.
+     *
+     * @return The String representation of the command for this Event task.
+     */
     @Override
     public String toCommand() {
         return TaskType.E + " | " + super.toCommand() + " /at " + DateParser.dateToCommand(this.date);

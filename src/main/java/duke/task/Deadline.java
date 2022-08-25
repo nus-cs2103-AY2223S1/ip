@@ -23,11 +23,21 @@ public class Deadline extends Task {
         this.date = DateParser.parseToDate(date);
     }
 
+    /**
+     * Returns the String representation of this Deadline task.
+     *
+     * @return The String representation of this Deadline task.
+     */
     @Override
     public String toString() {
         return "[" + TaskType.D + "]" + super.toString() + " (by: " + DateParser.dateToString(this.date) + ")";
     }
 
+    /**
+     * Returns the String representation of the command to initialise this Deadline task.
+     *
+     * @return The String representation of the command for this Deadline task.
+     */
     @Override
     public String toCommand() {
         return TaskType.D + " | " + super.toCommand() + " /by " + DateParser.dateToCommand(this.date);

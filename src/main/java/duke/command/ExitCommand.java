@@ -26,6 +26,9 @@ public class ExitCommand extends Command {
         this.tasksList = tasksList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() throws DukeException {
         this.ui.endSession(this.storage, this.tasksList);

@@ -25,6 +25,9 @@ public class AddCommand extends Command {
         this.command = command;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() throws DukeException {
         tasksList.addTask(this.command, this.storage);

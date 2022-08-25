@@ -46,6 +46,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Returns the String representation of Duke.
+     *
+     * @return The String representation of Duke.
+     */
     @Override
     public String toString() {
         return "Duke";

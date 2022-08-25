@@ -25,6 +25,9 @@ public class DeleteCommand extends Command {
         this.command = command;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() throws DukeException {
         tasksList.deleteTask(command, storage);

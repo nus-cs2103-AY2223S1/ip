@@ -87,7 +87,7 @@ public class Storage {
     }
 
     /**
-     * Add task to save file.
+     * Adds task to save file.
      *
      * @param task The task to be added to the save file.
      * @throws DukeException if error occurs while reading from or writing to save file.
@@ -107,7 +107,7 @@ public class Storage {
     }
 
     /**
-     * Remove task from save file.
+     * Removes task from save file.
      *
      * @param id The id of the task to be removed.
      * @throws DukeException if error occurs while reading from or writing to save file.

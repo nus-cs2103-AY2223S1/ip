@@ -30,7 +30,7 @@ public class TasksList {
     }
 
     /**
-     * Add Task (ToDo, Deadline, Event) to the list of tasks.
+     * Adds Task (ToDo, Deadline, Event) to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
@@ -54,7 +54,7 @@ public class TasksList {
     }
 
     /**
-     * Add To-do task to the list of tasks.
+     * Adds To-do task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
@@ -78,7 +78,7 @@ public class TasksList {
     }
 
     /**
-     * Add Deadline task to the list of tasks.
+     * Adds Deadline task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
@@ -111,7 +111,7 @@ public class TasksList {
     }
 
     /**
-     * Add Event task to the list of tasks.
+     * Adds Event task to the list of tasks.
      *
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
@@ -159,7 +159,7 @@ public class TasksList {
     }
 
     /**
-     * Mark the task of the given id as done.
+     * Marks the task of the given id as done.
      *
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
@@ -187,7 +187,7 @@ public class TasksList {
     }
 
     /**
-     * Mark the task of the given id as not done.
+     * Marks the task of the given id as not done.
      *
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
@@ -213,7 +213,7 @@ public class TasksList {
     }
 
     /**
-     * Delete the task of the given id from the list.
+     * Deletes the task of the given id from the list.
      *
      * @param command The command represented by an array of Strings.
      * @param storage The storage associated with this command.
@@ -257,7 +257,7 @@ public class TasksList {
     }
 
     /**
-     * Load the given task into the task list.
+     * Loads the given task into the task list.
      *
      * @param line The String representing the task from the save file.
      */

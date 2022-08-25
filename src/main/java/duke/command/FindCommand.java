@@ -21,6 +21,9 @@ public class FindCommand extends Command {
         this.command = command;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute() throws DukeException {
         tasksList.findTask(command);

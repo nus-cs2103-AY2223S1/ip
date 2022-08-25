@@ -13,11 +13,21 @@ public class ToDo extends Task {
         super(description);
     }
 
+    /**
+     * Returns the String representation of this ToDo task.
+     *
+     * @return The String representation of this ToDo task.
+     */
     @Override
     public String toString() {
         return "[" + TaskType.T + "]" + super.toString();
     }
 
+    /**
+     * Returns the String representation of the command to initialise this ToDo task.
+     *
+     * @return The String representation of the command for this ToDo task.
+     */
     @Override
     public String toCommand() {
         return TaskType.T + " | " + super.toCommand();
