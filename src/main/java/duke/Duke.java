@@ -1,4 +1,5 @@
 package duke;
+// Todo: better organize package
 
 public class Duke {
 
