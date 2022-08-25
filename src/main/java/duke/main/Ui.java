@@ -1,3 +1,9 @@
+package duke.main;
+
+import duke.exception.DukeException;
+import duke.main.Keyword;
+import duke.task.Task;
+
 /**
  * Class encapsulating user interaction output.
  */

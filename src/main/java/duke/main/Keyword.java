@@ -1,3 +1,7 @@
+package duke.main;
+
+import duke.exception.DukeException;
+
 /**
  * Enum values corresponding to the acceptable keywords that Duke can handle.
  */

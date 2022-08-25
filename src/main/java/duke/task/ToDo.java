@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.task.Task;
+
 /**
  * Class handling the todo task type.
  */

@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * Abstract class handling logic regarding tasks.
  */

@@ -1,3 +1,8 @@
+package duke.main;
+
+import duke.exception.DukeException;
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -48,7 +53,7 @@ public class TaskList {
      */
     public void displayTaskList() {
         if (this.tasks.size() == 0) {
-            System.out.print("\tLooks like you don't have any tasks for now!");
+            System.out.println("\tLooks like you don't have any tasks for now!");
             return;
         }
 

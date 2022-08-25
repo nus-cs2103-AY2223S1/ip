@@ -1,3 +1,7 @@
+package duke.main;
+
+import duke.exception.DukeException;
+
 /**
  * Class handling input parsing and validation.
  */

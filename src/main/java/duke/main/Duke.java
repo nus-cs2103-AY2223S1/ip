@@ -1,6 +1,15 @@
+package duke.main;
+
+import duke.exception.DukeException;
+import duke.task.Task;
+import duke.task.Event;
+import duke.task.ToDo;
+import duke.task.Deadline;
+
 import java.time.LocalDateTime;
 import java.util.Scanner;
 import java.util.ArrayList;
+
 
 /**
  * Main class of Duke.
