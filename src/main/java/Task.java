@@ -27,6 +27,9 @@ public class Task {
         }
     }
 
+    /**
+     * Marks this task as done.
+     */
     public void markDone() {
         this.isDone = true;
     }
@@ -45,6 +48,11 @@ public class Task {
         return "[" + this.getStatusIcon()  + "] " + description;
     }
 
+    /**
+     * Returns a String that is written to a file to be stored.
+     *
+     * @return A String formatted to be stored.
+     */
     public String toStore() {
         if (isDone) {
             return " : 1 : " + description;

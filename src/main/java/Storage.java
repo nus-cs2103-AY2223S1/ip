@@ -1,32 +1,40 @@
 import java.io.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class SaveFile {
-    File save;
-    String FILE_PATH = "data/duke.txt";
+public class Storage {
+    private File save;
+    private String filePath;
 
-    public SaveFile() {
-        // Make save file if it does not exist in data directory.
-        new File("data").mkdir();
-        File saveFile = new File(FILE_PATH);
+    public Storage(String filePath) {
+        this.filePath = filePath;
+
+        // Make save file and parent directories if it does not exist.
+        File saveFile = new File(filePath);
+        saveFile.getParentFile().mkdirs();
 
         try {
             saveFile.createNewFile();
         }
         catch(IOException e) {
             e.getStackTrace();
-            System.out.println(
-                    "____________________________________________________________ \n"
-                            + "☹ OOPS!!! Unable to find/create save file. \n"
-                            + "____________________________________________________________");
+            Ui.saveError();
         }
 
         this.save = saveFile;
     }
 
+    /**
+     * Initialises the TaskList storage with save data from the hard disk.
+     *
+     * @param storage Where tasks are stored in the TaskList.
+     */
     public void initialise(ArrayList<Task> storage) {
+        storage.clear();
+
         try {
             Scanner s = new Scanner(save);
             while (s.hasNext()) {
@@ -38,7 +46,11 @@ public class SaveFile {
                     newTask = new Todo(temp[2]);
 
                 } else if (temp[0].equals("D")) {
-                    newTask = new Deadline(temp[2], temp[3]);
+                    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
+                    DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+
+                    LocalDateTime dateTime = LocalDateTime.parse(temp[3], inputFormatter);
+                    newTask = new Deadline(temp[2], dateTime.format(outputFormatter));
 
                 } else if (temp[0].equals("E")) {
                     newTask = new Event(temp[2], temp[3]);
@@ -57,31 +69,25 @@ public class SaveFile {
             e.printStackTrace();
         } catch (DukeException e) {
             e.printStackTrace();
-            System.out.println(
-                    "____________________________________________________________ \n"
-                            + "☹ OOPS!!! Unknown element in save file. \n"
-                            + "____________________________________________________________");
+            Ui.unknownElement();
         }
 
     }
 
     public void addTask(String taskToAdd) {
         try {
-            PrintWriter fw = new PrintWriter(new FileWriter(FILE_PATH, true)); // create a FileWriter in append mode
+            PrintWriter fw = new PrintWriter(new FileWriter(filePath, true)); // create a FileWriter in append mode
             fw.println(taskToAdd);
             fw.close();
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println(
-                    "____________________________________________________________ \n"
-                            + "☹ OOPS!!! Unable to add task. \n"
-                            + "____________________________________________________________");
+            Ui.unableToAdd();
         }
     }
 
     public void reload(ArrayList<Task> storage) {
         try {
-            PrintWriter writer = new PrintWriter(FILE_PATH);
+            PrintWriter writer = new PrintWriter(filePath);
             writer.print("");
             writer.close();
 
@@ -100,7 +106,7 @@ public class SaveFile {
         storage.clear();
 
         try {
-            PrintWriter writer = new PrintWriter(FILE_PATH);
+            PrintWriter writer = new PrintWriter(filePath);
             writer.print("");
             writer.close();
         } catch (FileNotFoundException e) {
