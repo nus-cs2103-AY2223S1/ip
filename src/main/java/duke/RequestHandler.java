@@ -81,8 +81,8 @@ public class RequestHandler {
         } catch (NumberFormatException e) {
             throw new InvalidInputException("Please key in a valid positive index");
         } catch (IllegalArgumentException e) {
-            throw new InvalidCommandException("OOPS. I didn't understand the command. " +
-                    "Please key in a valid command");
+            throw new InvalidCommandException("OOPS. I didn't understand the command. "
+                    + "Please key in a valid command");
         }
     }
 }

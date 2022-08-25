@@ -14,9 +14,8 @@ public class RequestHandlerTest {
         try {
             RequestHandler.handleRequest("unknown");
         } catch (InvalidCommandException e) {
-            assertEquals("OOPS. I didn't understand the command. " +
-                    "Please key in a valid command", e.getMessage());
+            assertEquals("OOPS. I didn't understand the command. "
+                    + "Please key in a valid command", e.getMessage());
         }
     }
-
 }

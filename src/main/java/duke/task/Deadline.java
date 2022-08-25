@@ -18,6 +18,7 @@ public class Deadline extends Task {
         this.isDone = isDone;
         this.returnBy = returnBy;
     }
+
     @Override
     public String saveStringFormat() {
         return String.format("D | %d | %s | %s", this.isDone? 1 : 0, this.description,

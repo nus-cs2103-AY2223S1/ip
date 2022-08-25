@@ -14,7 +14,7 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    public ArrayList<String> load() throws FileNotFoundException{
+    public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> loadedData = new ArrayList<>();
         File file = new File(filePath);
         Scanner sc = new Scanner(file);

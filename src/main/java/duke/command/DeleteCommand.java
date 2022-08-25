@@ -5,7 +5,7 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exception.InvalidInputException;
 
-public class DeleteCommand extends Command{
+public class DeleteCommand extends Command {
     int deleteIndex;
 
     public DeleteCommand(int deleteIndex) {

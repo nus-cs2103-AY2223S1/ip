@@ -1,6 +1,5 @@
 package duke.task;
 
-import jdk.jshell.execution.LoaderDelegate;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -8,7 +7,6 @@ import java.time.format.DateTimeFormatter;
 public abstract class Task {
     protected String description;
     protected boolean isDone;
-
 
     public String getStatusIcon() {
         return (this.isDone ? "X" : " "); // mark done bob task with X

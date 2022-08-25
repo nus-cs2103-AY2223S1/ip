@@ -17,7 +17,7 @@ public class TaskList {
 
     public TaskList(ArrayList<String> tasks) {
         this.taskList = new ArrayList<>();
-        for (int i =0; i < tasks.size(); i ++) {
+        for (int i = 0; i < tasks.size(); i ++) {
             taskList.add(Task.loadStringToTask(tasks.get(i)));
         }
     }
@@ -73,8 +73,8 @@ public class TaskList {
         if (this.taskList.size() == 0) {
             return "There are no tasks in your list";
         } else {
-            StringBuilder str = new StringBuilder(String.format("There %s %d duke task(s) in your list:",
-                    this.taskList.size() > 1 ? "are" : "is", this.taskList.size()));
+            StringBuilder str = new StringBuilder(String.format("There %s %d duke task(s) in your list:"
+                    ,this.taskList.size() > 1 ? "are" : "is", this.taskList.size()));
             for (int i = 1; i <= this.taskList.size(); i++) {
                 str.append(String.format("%n%d. %s", i, taskList.get(i - 1)));
             }

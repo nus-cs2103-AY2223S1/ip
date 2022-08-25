@@ -41,12 +41,12 @@ public class Duke {
                 ui.printAnyOtherMessage(e.getMessage());
             } catch (DateTimeParseException e) {
                 ui.printAnyOtherMessage("Please key in a valid date (yyyy-mm-dd)");
-            }
-            finally {
+            } finally {
                 ui.printHorizontalLine();
             }
         }
     }
+
     public static void main(String[] args) {
         String home = System.getProperty("user.home");
         new Duke(home + "/data/duke.txt").run();

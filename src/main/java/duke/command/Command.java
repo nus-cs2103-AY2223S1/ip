@@ -5,10 +5,9 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exception.InvalidInputException;
 
-import java.nio.file.attribute.FileAttribute;
-
 public abstract class Command {
     private boolean isExit;
+
     public Command() {
         this.isExit = false;
     }
@@ -17,7 +16,7 @@ public abstract class Command {
         this.isExit = true;
     }
 
-    public boolean isExit(){
+    public boolean isExit() {
         return this.isExit;
     }
     public abstract void run(TaskList tasks, Ui ui, Storage storage) throws InvalidInputException;

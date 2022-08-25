@@ -6,7 +6,7 @@ import duke.Ui;
 
 import java.time.LocalDate;
 
-public class EventCommand extends Command{
+public class EventCommand extends Command {
     String description;
     LocalDate at;
 

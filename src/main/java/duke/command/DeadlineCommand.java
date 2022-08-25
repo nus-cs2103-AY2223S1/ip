@@ -6,7 +6,7 @@ import duke.Ui;
 
 import java.time.LocalDate;
 
-public class DeadlineCommand extends Command{
+public class DeadlineCommand extends Command {
     String description;
     LocalDate doBy;
 
@@ -22,5 +22,4 @@ public class DeadlineCommand extends Command{
         ui.printAdd(task, tasks.getSize());
         storage.save(tasks.getTaskList());
     }
-
 }

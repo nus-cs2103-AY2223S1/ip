@@ -5,7 +5,7 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exception.InvalidInputException;
 
-public class MarkCommand extends Command{
+public class MarkCommand extends Command {
     int indexToMark;
 
     public MarkCommand(int indexToMark) {
