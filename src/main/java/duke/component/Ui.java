@@ -5,8 +5,8 @@ package duke.component;
  */
 public class Ui {
 
-    private static final String LINES = "_________________________\n";
-    private static final String START = "Hey there! I'm Duke.\nWhat do you want to do today?";
+    public static final String MSG_LINES = "_________________________\n";
+    public static final String MSG_START = "Hey there! I'm Duke.\nWhat do you want to do today?";
 
 
     /**
@@ -15,14 +15,14 @@ public class Ui {
      * @param message Message to be printed.
      */
     public void printMessage(String message) {
-        System.out.print(LINES + message + "\n" + LINES);
+        System.out.print(MSG_LINES + message + "\n" + MSG_LINES);
     }
 
     /**
      * Welcomes the user.
      */
     public void welcome() {
-        this.printMessage(START);
+        this.printMessage(MSG_START);
     }
 
 }

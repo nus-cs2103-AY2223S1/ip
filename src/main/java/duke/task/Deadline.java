@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  */
 public class Deadline extends Task {
 
-    private static final String DEADLINE_REP = "D";
+    public static final String DEADLINE_REP = "D";
     protected LocalDate deadline;
 
     /**
@@ -37,8 +37,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[" + DEADLINE_REP + "]" + super.toString() + " (by: " +
-                this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        return "[" + DEADLINE_REP + "]" + super.toString()
+                + " (by: " + this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     /**

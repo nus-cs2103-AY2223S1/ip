@@ -7,7 +7,7 @@ import duke.exception.DukeException;
  */
 public class EndCommand extends Command {
 
-    public static final String END = "Bye! Hope you had fun!";
+    public static final String MSG_END = "Bye! Hope you had fun!";
 
     /**
      * Constructs a new EndCommand.
@@ -23,6 +23,6 @@ public class EndCommand extends Command {
      */
     @Override
     public String run() {
-        return END;
+        return MSG_END;
     }
 }

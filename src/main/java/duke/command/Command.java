@@ -14,7 +14,8 @@ public abstract class Command {
     /**
      * Constructs a new Command.
      */
-    public Command() {}
+    public Command() {
+    }
 
     /**
      * Constructs a new Command.
