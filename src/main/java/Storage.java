@@ -10,16 +10,16 @@ import java.util.ArrayList;
 /**
  * Class encapsulating save and load logic.
  */
-public class SaveUtils {
+public class Storage {
 
     /**
      * Saves given task list into save file.
-     * Returns true if task list is saved successfully, false otherwise.
+     * Throws DukeException if any error occurred while saving file.
      *
-     * @param taskList List of tasks to be saved.
-     * @return True if completed successfully, false otherwise.
+     * @param tasks TaskList containing tasks to be saved.
+     * @Throws DukeException If any error occurred while saving file.
      */
-    public static boolean saveTaskListToFile(ArrayList<Task> taskList) {
+    public void saveTaskListToFile(TaskList tasks) throws DukeException {
         String projectRoot = System.getProperty("user.dir");
         Path directoryPath = Path.of(projectRoot, "data");
         boolean directoryExists = Files.exists(directoryPath);
@@ -29,55 +29,52 @@ public class SaveUtils {
             try {
                 Files.createDirectory(directoryPath);
             } catch (IOException e) {
-                // Print Error Stack
-                e.printStackTrace();
+                throw new DukeException("\tError finding your save directory!");
             }
         }
 
-        // Add file
+        // Write to save file
         try {
             Path filePath = directoryPath.resolve("duke.txt");
 
             // Attempts to save tasks to save file
-            int currentTaskIndex = 0;
-            for (Task t : taskList) {
+            for (int i = 1; i <= tasks.size(); i++) {
                 // Format each task to its save format
-                String formattedTask = t.saveFormat();
-                if (currentTaskIndex == 0) { // First Task
+                Task task = tasks.getTask(Integer.toString(i));
+                String formattedTask = task.saveFormat();
+                if (i == 1) { // First Task
                     Files.write(filePath, formattedTask.getBytes());
                 } else {
                     formattedTask = System.lineSeparator() + formattedTask;
                     Files.write(filePath, formattedTask.getBytes(), StandardOpenOption.APPEND);
                 }
-
-                currentTaskIndex++;
             }
-
-            return true;
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new DukeException("\tError finding your save directory!");
         }
-        return false;
     }
 
     /**
      * Loads saved tasks from save file into given task list.
      *
-     * @param taskList List to load tasks into.
      * @throws DukeException If unable to load tasks successfully.
      */
-    public static void readTaskListFromFile(ArrayList<Task> taskList) throws DukeException {
+    public ArrayList<Task> readTaskListFromFile() throws DukeException {
+        ArrayList<Task> taskList = new ArrayList<>();
+
         try {
             String projectRoot = System.getProperty("user.dir");
             Path directoryPath = Path.of(projectRoot, "data");
             Path filePath = directoryPath.resolve("duke.txt");
             String[] lines = Files.lines(filePath).toArray(String[]::new);
             for (String l : lines) {
-                taskList.add(parseText(l));
+                taskList.add(parseSaveText(l));
             }
+            return taskList;
         } catch (InvalidPathException | IOException | DukeException e) {
             taskList.clear();
-            throw new DukeException(e.getMessage());
+            throw new DukeException("\n\tLooks like I can't find your old task list..." +
+                    "\n\tGuess we'll have to start a new one!\n");
         }
     }
 
@@ -89,7 +86,7 @@ public class SaveUtils {
      * @return Task object corresponding to given input.
      * @throws DukeException If unable to parse task from input.
      */
-    private static Task parseText(String input) throws DukeException {
+    private Task parseSaveText(String input) throws DukeException {
         String[] taskProperties = input.split(" \\| ", 4);
         try {
             String taskType = taskProperties[0];
@@ -115,16 +112,12 @@ public class SaveUtils {
                 break;
             }
             }
-
             // Set task status
             if (taskStatus.equals("1")) {
                 task.markAsDone();
             }
-
             return task;
-
         } catch (ArrayIndexOutOfBoundsException | NullPointerException | DukeException e) {
-
             throw new DukeException("Error reading file");
         }
     }

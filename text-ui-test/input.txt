@@ -1,7 +1,9 @@
 thisisawronginput
 todo task
-deadline task /by xxx
-event task /at yyy
+deadline task /by invalidDate
+deadline task /by 2022-02-22 2222
+event task /at invalidDate
+event task /at 2022-02-22 2222 to 2033-03-23 2233
 list
 mark 1
 mark invalidindex

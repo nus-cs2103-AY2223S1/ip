@@ -3,26 +3,30 @@
 	Sorry, I don't understand...
 	You have added "[T][ ] task" into your Task List!
 	You have 1 tasks in your Task List!
-	You have added "[D][ ] task (by: xxx)" into your Task List!
+	Date Format Police here!!
+	Your deadline has to be in YYYY-MM-DD HHmm format!!
+	You have added "[D][ ] task (by: Feb 22 2022 2222)" into your Task List!
 	You have 2 tasks in your Task List!
-	You have added "[E][ ] task (at: yyy)" into your Task List!
+	Date Format Police here!!
+	Your deadline has to be in <YYYY-MM-DD HHmm to YYYY-MM-DD HHmm> format!!
+	You have added "[E][ ] task (at: Feb 22 2022 2222 to Mar 23 2033 2233)" into your Task List!
 	You have 3 tasks in your Task List!
 	1. [T][ ] task
-	2. [D][ ] task (by: xxx)
-	3. [E][ ] task (at: yyy)
+	2. [D][ ] task (by: Feb 22 2022 2222)
+	3. [E][ ] task (at: Feb 22 2022 2222 to Mar 23 2033 2233)
 	Good Job! The following task has been marked as done:
 	[T][X] task
 	Sorry, that Task Number doesn't look right...
-	Remember to add a Task Number!
+	Hey! Did you forget to add a task name / number?
 	Okay! The following task has been marked as not done:
 	[T][ ] task
 	Sorry, that Task Number doesn't look right...
-	Remember to add a Task Number!
-	Hey! Did you forget to add a task name?
-	Hey! Did you forget to add a task name?
-	Hey! Did you forget to add a task name?
+	Hey! Did you forget to add a task name / number?
+	Hey! Did you forget to add a task name / number?
+	Hey! Did you forget to add a task name / number?
+	Hey! Did you forget to add a task name / number?
 	Sorry, that Task Number doesn't look right...
 	You have deleted "[T][ ] task" into your Task List!
 	You have 2 tasks in your Task List!
-	Remember to add a Task Number!
+	Hey! Did you forget to add a task name / number?
 	Goodbye!

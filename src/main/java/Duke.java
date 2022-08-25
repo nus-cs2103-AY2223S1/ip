@@ -6,255 +6,115 @@ import java.util.ArrayList;
  * Main class of Duke.
  */
 public class Duke {
-    public static void main(String[] args) {
+
+    /* Storage object handling saving and reading from save file */
+    private Storage storage;
+    /* List of tasks */
+    private TaskList tasks;
+    /* Ui object handling output to user */
+    private Ui ui;
+
+    /**
+     * Constructor for Duke class.
+     */
+    public Duke() {
+        ui = new Ui();
+        storage = new Storage();
+        try {
+            tasks = new TaskList(storage.readTaskListFromFile());
+        } catch (DukeException e) {
+            ui.printErrorMessage(e);
+            tasks = new TaskList(new ArrayList<Task>());
+        }
+    }
+
+    /**
+     * Executes the Duke chatbot logic.
+     */
+    public void run() {
         // Helper Fields
         Scanner sc = new Scanner(System.in);
-        String input = "";
-        ArrayList<Task> taskList = new ArrayList<>();
+        boolean isExit = false;
 
         // Greets User
-        greetUser();
+        ui.greetUser();
 
-        // Loads Save File
-        loadSaveFile(taskList);
+        while (!isExit) {
 
-        while (true) {
-            input = sc.nextLine();
-            String[] inputTokens = input.split(" ", 2); // Delimit over " " to extract first keyword
-
-            /* Handles Keyword Mapping */
-            String keywordInput = inputTokens[0];
-            Keyword keyword;
+            // Retrieve Input and Parse
+            String input = sc.nextLine();
             try {
-                keyword = Keyword.getKeyword(keywordInput);
-            } catch (DukeException e) {
-                // Invalid Keyword Input
-                System.out.println(e.getMessage());
+                Parser.parse(input);
+            } catch (DukeException de) {
+                ui.printErrorMessage(de);
                 continue;
             }
 
-            /* Exits Loop */
-            if (keyword == Keyword.BYE) {
-                sayGoodbye();
-                break;
-            }
-
-            /* Handles marking tasks as done or not done */
-            if (keyword == keyword.MARK || keyword == Keyword.UNMARK) {
-                try {
-                    String indexString = inputTokens[1]; // Throws AIOOBE
-                    markUnmarkTask(taskList, indexString, keyword);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("\tRemember to add a Task Number!");
-                } finally {
-                    SaveUtils.saveTaskListToFile(taskList);
-                    continue;
-                }
-            }
-
-            /* Handle deletion of tasks */
-            if (keyword == Keyword.DELETE) {
-                try {
-                    String indexString = inputTokens[1]; // Throws AIOOBE
-                    deleteTask(taskList, indexString);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("\tRemember to add a Task Number!");
-                } finally {
-                    SaveUtils.saveTaskListToFile(taskList);
-                    continue;
-                }
-            }
-
-            /* Handles outputting of Task List */
-            if (keyword == Keyword.LIST) {
-                displayTaskList(taskList);
-                continue;
-            }
-
-            /* Handles creation of new tasks */
-            String content;
-
-            // invalid content check
+            // Valid Input
+            Keyword command = Parser.getCommand();
+            String argument = Parser.getArgument();
             try {
-                // Retrieve input excluding keyword
-                content = inputTokens[1]; // Throws AIOOBE
-            } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("\tHey! Did you forget to add a task name?");
-                continue;
-            }
-
-            // Add Task based on taskType
-            Task taskAdded = null;
-
-            switch (keyword) {
-            case TODO: {
-                taskAdded = new ToDo(content);
-                taskList.add(taskAdded);
-                break;
-            }
-            case DEADLINE: {
-                String[] taskTokens = content.split(" /by "); // delimit over "/by" to retrieve deadline
-
-                try {
-                    // If delimiting regex is not found, taskTokens returns single item array with the original string
-                    String taskName = taskTokens[0];
-                    String deadline = taskTokens[1]; // Throws AIOOBE
-                    LocalDateTime date = DateTimeFormatUtils.parseDate(deadline); // Throws DukeException
-                    taskAdded = new Deadline(taskName, date);
-                    taskList.add(taskAdded);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("\tDeadline not found! Please input in the following format: " +
-                            "deadline <Task Name> /by <Deadline> ");
-                } catch (DukeException e) {
-                    System.out.println(e.getMessage());
-                } finally {
+                switch(command) {
+                case TODO: {
+                    Task task = new ToDo(argument);
+                    tasks.addTask(task);
+                    ui.displayTaskAddedMessage(task, tasks.size());
                     break;
                 }
-            }
-            case EVENT: {
-                String[] taskTokens = content.split(" /at "); // delimit over "/at" to retrieve deadline
-
-                try {
-                    // If delimiting regex is not found, taskTokens returns single item array with the original string
-                    String taskName = taskTokens[0];
-                    String eventTiming = taskTokens[1]; // Throws AIOOBE
-                    LocalDateTime[] dates = DateTimeFormatUtils.parseDuration(eventTiming); // Throws DukeException
-                    taskAdded = new Event(taskName, dates[0], dates[1]);
-                    taskList.add(taskAdded);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("\tEvent Timing not found! Please input in the following format: " +
-                            "event <Task Name> /at <Event Timing> ");
-                } catch (DukeException e) {
-                    System.out.println(e.getMessage());
-                } finally {
+                case DEADLINE: {
+                        String[] taskTokens = argument.split(" /by ");
+                        String taskName = taskTokens[0];
+                        String deadline = taskTokens[1];
+                        LocalDateTime deadlineDate = DateTimeFormatUtils.parseDate(deadline);
+                        Task task = new Deadline(taskName, deadlineDate);
+                        tasks.addTask(task);
+                        ui.displayTaskAddedMessage(task, tasks.size());
+                        break;
+                }
+                case EVENT: {
+                        String[] taskTokens = argument.split(" /at ");
+                        String taskName = taskTokens[0];
+                        String duration = taskTokens[1];
+                        LocalDateTime[] eventDuration = DateTimeFormatUtils.parseDuration(duration);
+                        Task task = new Event(taskName, eventDuration[0], eventDuration[1]);
+                        tasks.addTask(task);
+                        ui.displayTaskAddedMessage(task, tasks.size());
+                        break;
+                }
+                case LIST: {
+                    tasks.displayTaskList();
                     break;
                 }
+                case DELETE: {
+                    Task deletedTask = tasks.getTask(argument);
+                    tasks.deleteTask(argument);
+                    ui.displayTaskDeletedMessage(deletedTask, tasks.size());
+                    break;
+                }
+                case MARK:
+                case UNMARK: {
+                    tasks.markUnmarkTask(argument, command);
+                    Task task = tasks.getTask(argument);
+                    ui.displayTaskMarkUnmarkMessage(task, command);
+                    break;
+                }
+                case BYE: {
+                    ui.sayGoodbye();
+                    isExit = true;
+                    break;
+                }
+                }
+                // Update Save File
+                storage.saveTaskListToFile(tasks);
+
+            } catch(DukeException de) {
+                ui.printErrorMessage(de);
             }
-            }
-
-
-
-            /* Handles success message output */
-            successMessage(taskAdded, taskList.size());
-            SaveUtils.saveTaskListToFile(taskList);
         }
     }
 
-    /**
-     * Outputs greeting message to user.
-     */
-    private static void greetUser() {
-        System.out.println("\tHey there! I'm Tutter! \n\tHow can I help?");
-    }
-
-    /**
-     * Outputs goodbye message to user.
-     */
-    private static void sayGoodbye() {
-        System.out.println("\tGoodbye!");
-    }
-
-    /**
-     * Outputs success message to user when task is added successfully.
-     *
-     * @param task Task object that was added to the task list.
-     * @param size Number of tasks in the task list.
-     */
-    private static void successMessage(Task task, int size) {
-        if (task != null) {
-            String output = String.format("\tYou have added \"%s\" into your Task List!\n" +
-                    "\tYou have %d tasks in your Task List!", task, size);
-            System.out.println(output);
-        }
-    }
-
-    /**
-     * Outputs all tasks in task list.
-     *
-     * @param taskList Task list containing tasks to be outputted.
-     */
-    private static void displayTaskList(ArrayList<Task> taskList) {
-        int i = 1;
-        if (taskList.size() == 0) {
-            System.out.print("\tLooks like you don't have any tasks for now!");
-            return;
-        }
-
-        for (Task t : taskList) {
-            // Reach end of list
-            if (t == null) {
-                break;
-            }
-
-            // Output string
-            String taskListString = String.format("\t%d. %s", i, t);
-            System.out.println(taskListString);
-            // Increment pointer
-            i++;
-        }
-    }
-
-    /**
-     * Set task status of task at given index of task list as completed or not completed.
-     *
-     * @param taskList    Task list containing task to be marked.
-     * @param indexString String input containing index of task to be marked.
-     * @param keyword     Keyword value to determine whether to mark or unmark the task.
-     */
-    private static void markUnmarkTask(ArrayList<Task> taskList, String indexString, Keyword keyword) {
-        try {
-            int index = Integer.parseInt(indexString); // Throw NFE if invalid int
-            Task task = taskList.get(index - 1); // Throws IOOBE if invalid index
-
-            // Mark as done or not done
-            if (keyword == Keyword.MARK) {
-                task.markAsDone();
-                String taskListString = String.format("\tGood Job! The following task " +
-                        "has been marked as done:\n\t%s", task);
-                System.out.println(taskListString);
-            } else {
-                task.markAsNotdone();
-                String taskListString = String.format("\tOkay! The following task " +
-                        "has been marked as not done:\n\t%s", task);
-                System.out.println(taskListString);
-            }
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println("\tSorry, that Task Number doesn't look right...");
-        }
-    }
-
-    /**
-     * Deletes task at given index from task list.
-     *
-     * @param taskList    Task list containing task to be deleted.
-     * @param indexString String input containing index of task to be deleted.
-     */
-    private static void deleteTask(ArrayList<Task> taskList, String indexString) {
-        try {
-            int index = Integer.parseInt(indexString); // Throw NFE if invalid int
-            Task task = taskList.get(index - 1); // Throws IOOBE if invalid index
-            taskList.remove(index - 1);
-
-            String output = String.format("\tYou have deleted \"%s\" into your Task List!\n" +
-                    "\tYou have %d tasks in your Task List!", task, taskList.size());
-            System.out.println(output);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            System.out.println("\tSorry, that Task Number doesn't look right...");
-        }
-    }
-
-    /**
-     * Loads tasks from save file into given task list.
-     *
-     * @param taskList List to load tasks into.
-     */
-    private static void loadSaveFile(ArrayList<Task> taskList) {
-        try {
-            SaveUtils.readTaskListFromFile(taskList);
-        } catch (DukeException e) {
-            System.out.print("\n\tLooks like I can't find your old task list..." +
-                    "\n\tGuess we'll have to start a new one!\n");
-        }
+    public static void main(String[] args) {
+        new Duke().run();
     }
 
 }
