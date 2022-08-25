@@ -10,16 +10,28 @@ public class Parser {
             return splitCommands;
 
         case "todo":
-            if (splitCommands.length == 1) throw new DukeException("\u2639 OOPS!!! Description cannot be empty.");
+            if (splitCommands.length == 1) {
+                throw new DukeException("\u2639 OOPS!!! Description cannot be empty.");
+            }
             return splitCommands;
 
         case "format":
-            if (splitCommands.length == 1) throw new DukeException("\u2639 OOPS!!! Format cannot be blank.");
+            if (splitCommands.length == 1) {
+                throw new DukeException("\u2639 OOPS!!! Format cannot be blank.");
+            }
             return splitCommands;
         
+        case "find":
+            if (splitCommands.length == 1) {
+                throw new DukeException("\u2639 OOPS!!! Keyword cannot be blank.");
+            }
+            return splitCommands;
+
         case "deadline":
         case "event":
-            if (splitCommands.length == 1) throw new DukeException("\u2639 OOPS!!! Description cannot be empty.");
+            if (splitCommands.length == 1) {
+                throw new DukeException("\u2639 OOPS!!! Description cannot be empty.");
+            }
             String regex = splitCommands[0].equals("deadline") ? " /by " : " /at ";
             String[] details = splitCommands[1].split(regex);
             if (details.length != 2 || details[0].isEmpty() || details[1].isEmpty()) {

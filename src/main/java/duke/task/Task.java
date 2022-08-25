@@ -13,6 +13,10 @@ public abstract class Task implements Comparable<Task> {
         this.isDone = true;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void markAsNotDone() {
         this.isDone = false;
     }

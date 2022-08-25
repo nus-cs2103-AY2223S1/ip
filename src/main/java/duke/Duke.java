@@ -75,6 +75,10 @@ public class Duke {
                     ui.showTasks(tasks);
                     break;
                 
+                case "find":
+                    ui.showTasks(tasks.filter(parsedCommand[1]));
+                    break;
+
                 case "format":
                     TimedTask.setFormat(parsedCommand[1]);
                     ui.showTasks(tasks);

@@ -45,13 +45,17 @@ public class TaskList {
         } catch (DateTimeParseException e) {
             throw new DukeException("\u2639 OOPS!!! Wrong date format. Please input date in the format %s.", TimedTask.format);
         }
-        return new TaskList(
-            tasks.stream()
+        return new TaskList(tasks.stream()
                 .filter(x -> x instanceof TimedTask && ((TimedTask) x).getTime().toLocalDate().equals(convertedDate))
+                .collect(Collectors.toList()));
+    }
+
+    public TaskList filter(String keyword) {
+        return new TaskList(tasks.stream()
+                .filter(x -> x.getDescription().contains(keyword))
                 .collect(Collectors.toList())
         );
     }
-
     public void add(Task task) {
         tasks.add(task);
     }
