@@ -24,9 +24,9 @@ public class DeleteCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        Task taskToDelete = taskList.getTask(indexToDelete);
-        taskList.removeFromTaskList(indexToDelete);
-        ui.showDeleteMessage(taskList, taskToDelete);
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+        Task taskToDelete = tasks.getTask(indexToDelete);
+        tasks.removeFromTaskList(indexToDelete);
+        ui.showDeleteMessage(tasks, taskToDelete);
     }
 }

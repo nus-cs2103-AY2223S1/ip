@@ -28,7 +28,6 @@ public class Duke {
         }
     }
 
-
     /**
      * Starts the chatbot function of Duke for users to enter their tasks.
      * @throws IOException if unable to load or save to file.

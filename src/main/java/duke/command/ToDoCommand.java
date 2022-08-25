@@ -24,9 +24,9 @@ public class ToDoCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         ToDo toDo = new ToDo(toDoDescription);
-        taskList.addToTaskList(toDo);
-        ui.showAddTaskMessage(taskList, toDo);
+        tasks.addToTaskList(toDo);
+        ui.showAddTaskMessage(tasks, toDo);
     }
 }

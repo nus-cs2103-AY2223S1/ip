@@ -60,12 +60,31 @@ public class Ui {
         int numOfTasks = tasks.getSize();
         if (numOfTasks == 0) {
             System.out.println(INDENTATION + "You do not have any tasks in your list right now.");
+        } else {
+            System.out.printf(INDENTATION + "Here %s the task%s in your list:\n",
+                    numOfTasks > 1 ? "are" : "is", numOfTasks > 1 ? "s" : "");
+            for (int i = 1; i <= numOfTasks; i++) {
+                System.out.println(INDENTATION + String.valueOf(i) + ". " +
+                        tasks.getTask(i).toString());
+            }
         }
-        System.out.printf(INDENTATION + "Here %s the task%s in your list:\n",
-                numOfTasks > 1 ? "are" : "is", numOfTasks > 1 ? "s" : "");
-        for (int i = 1; i <= numOfTasks; i++) {
-            System.out.println(INDENTATION + String.valueOf(i) + ". " +
-                    tasks.getTask(i).toString());
+    }
+
+    /**
+     * Prints out tasks that contain search keyword.
+     * @param tasks TaskList with tasks containing search keyword.
+     */
+    public void showFindMessage(TaskList tasks) {
+        int numOfTasks = tasks.getSize();
+        if (numOfTasks == 0) {
+            System.out.println(INDENTATION + "There are no matching tasks in your list.");
+        } else {
+            System.out.printf(INDENTATION + "Here %s the task%s in your list:\n",
+                    numOfTasks > 1 ? "are" : "is", numOfTasks > 1 ? "s" : "");
+            for (int i = 1; i <= numOfTasks; i++) {
+                System.out.println(INDENTATION + String.valueOf(i) + ". " +
+                        tasks.getTask(i).toString());
+            }
         }
     }
 

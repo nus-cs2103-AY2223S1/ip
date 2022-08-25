@@ -14,7 +14,7 @@ public class EventCommand extends Command {
 
     /**
      * Constructor for EventCommand.
-     * @param eventDescription event description
+     * @param eventDescription event description.
      * @param at when the event is occurring.
      */
     public EventCommand(String eventDescription, String at) {
@@ -27,9 +27,9 @@ public class EventCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         Event event = new Event(eventDescription, at);
-        taskList.addToTaskList(event);
-        ui.showAddTaskMessage(taskList, event);
+        tasks.addToTaskList(event);
+        ui.showAddTaskMessage(tasks, event);
     }
 }

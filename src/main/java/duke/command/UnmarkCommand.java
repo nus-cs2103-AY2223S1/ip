@@ -23,8 +23,8 @@ public class UnmarkCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.getTask(indexToUnmark).markAsUndone();
-        ui.showUnmarkMessage(taskList.getTask(indexToUnmark));
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+        tasks.getTask(indexToUnmark).markAsUndone();
+        ui.showUnmarkMessage(tasks.getTask(indexToUnmark));
     }
 }

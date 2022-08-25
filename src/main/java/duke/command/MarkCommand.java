@@ -11,7 +11,7 @@ public class MarkCommand extends Command {
     private int indexToMark;
 
     /**
-     * Constructor for MarkCommand
+     * Constructor for MarkCommand.
      * @param indexToMark index of task to mark as done.
      */
     public MarkCommand(int indexToMark) {
@@ -23,8 +23,8 @@ public class MarkCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
-        taskList.getTask(indexToMark).markAsDone();
-        ui.showMarkMessage(taskList.getTask(indexToMark));
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+        tasks.getTask(indexToMark).markAsDone();
+        ui.showMarkMessage(tasks.getTask(indexToMark));
     }
 }

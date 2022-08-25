@@ -27,9 +27,9 @@ public abstract class Command {
 
     /**
      * Executes command.
-     * @param taskList TaskList containing tasks list.
+     * @param tasks TaskList containing tasks list.
      * @param ui Ui dealing with user interaction.
      * @param storage storage loading and saving tasks.
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage);
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
 }

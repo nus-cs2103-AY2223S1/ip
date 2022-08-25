@@ -10,7 +10,7 @@ import duke.Ui;
 public class ExitCommand extends Command {
 
     /**
-     * Constructor for ExitCOmmand.
+     * Constructor for ExitCommand.
      */
     public ExitCommand() {
         super();
@@ -21,7 +21,7 @@ public class ExitCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showGoodByeMessage();
     }
 }

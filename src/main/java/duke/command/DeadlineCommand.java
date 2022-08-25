@@ -27,9 +27,9 @@ public class DeadlineCommand extends Command {
      * @inheritDoc
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         Deadline deadline = new Deadline(deadlineDescription, by);
-        taskList.addToTaskList(deadline);
-        ui.showAddTaskMessage(taskList, deadline);
+        tasks.addToTaskList(deadline);
+        ui.showAddTaskMessage(tasks, deadline);
     }
 }
