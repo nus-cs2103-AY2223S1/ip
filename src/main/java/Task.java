@@ -1,4 +1,4 @@
-public class Task {
+public abstract class Task {
     private String taskName;
     private boolean completed;
     private static int taskCounter = 0;
@@ -32,6 +32,10 @@ public class Task {
     public boolean isCompleted() {
         return this.completed;
     }
+
+    public abstract String getTaskType();
+
+    public abstract String getTime();
 
     @Override
     public String toString() {

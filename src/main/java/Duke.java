@@ -1,4 +1,10 @@
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,7 +13,93 @@ import java.util.Scanner;
 public class Duke {
 
     private static ArrayList<Task> tasks = new ArrayList<>();
+    private static String ROUTE = "./data/dukeInfo.txt";
 
+
+    private static void write(){
+        try {
+            FileWriter toLoad = new FileWriter(ROUTE);
+            for (Task t: tasks) {
+                String taskInfo = t.getTaskType() + ",";
+
+                if (t.isCompleted()) {
+                    taskInfo += "1,";
+                } else {
+                    taskInfo += "0,";
+                }
+                taskInfo += t.getTaskName() + ",";
+
+                if (t.getTaskType().equals("D") || t.getTaskType().equals("E")) {
+                    taskInfo += t.getTime();
+                }
+
+                toLoad.write(taskInfo + "\n");
+            }
+
+            toLoad.close();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private static void read() {
+        File toRead = new File(ROUTE);
+
+        if (!toRead.exists()) {
+            try {
+                File directory = toRead.getParentFile();
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+                toRead.createNewFile();
+            } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+
+        try {
+            Scanner fileReader = new Scanner(toRead);
+            while (fileReader.hasNextLine()) {
+                String line = fileReader.nextLine();
+                String[] info = line.split(",");
+                String taskType = info[0];
+                Task toAdd;
+            switch (taskType) {
+            case "T":
+                toAdd = new Todo(info[2]);
+                if (Integer.parseInt(info[1]) == 1) {
+                    toAdd.complete();
+                }
+                tasks.add(toAdd);
+                break;
+            case "D":
+                toAdd = new Deadline(info[2], info[3]);
+                if (Integer.parseInt(info[1]) == 1) {
+                    toAdd.complete();
+                }
+                tasks.add(toAdd);
+                break;
+            case "E":
+                toAdd = new Event(info[2], info[3]);
+                if (Integer.parseInt(info[1]) == 1) {
+                    toAdd.complete();
+                }
+                tasks.add(toAdd);
+                break;
+            default:
+
+            }
+
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Oops file cannot be found!");
+        }
+
+
+
+    }
     private static boolean inputChecker(String[] arr) {
         if (arr.length  < 2) {
             return false;
@@ -91,6 +183,7 @@ public class Duke {
         System.out.println("Now you have " + Task.getCount() + " tasks in the list.");
     }
     public static void main(String[] args) {
+        read();
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
         Scanner in = new Scanner(System.in);
@@ -101,6 +194,7 @@ public class Duke {
 
             if (input.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
+                write();
                 break;
             }
             else if (input.equals("list")) {

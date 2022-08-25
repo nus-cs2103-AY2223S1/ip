@@ -8,6 +8,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String getTaskType() {
+        return "E";
+    }
+
+
+    @Override
     public String toString() {
         return "[E] " + (super.isCompleted() ? "[X] " : "[ ] ") + super.getTaskName() + "(at:" + this.time + ")";
     }
