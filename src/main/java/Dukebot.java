@@ -78,7 +78,7 @@ public class Dukebot {
             throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "deadline"));
         }
         String temp = inputLessAction[1];
-        String[] tempStrArr = temp.split("/by\\s+", 2);
+        String[] tempStrArr = temp.split("\\s+/by\\s+", 2);
         if (tempStrArr.length < 2) {;
             throw new DukeException(String.format(ExceptionMessages.INVALID_FORMAT, "/by"));
         }
@@ -101,7 +101,7 @@ public class Dukebot {
             throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "event"));
         }
         String temp = inputLessAction[1];
-        String[] tempStrArr = temp.split("/at\\s+", 2);
+        String[] tempStrArr = temp.split("\\s+/at\\s+", 2);
         if (tempStrArr.length < 2) {
             throw new DukeException(String.format(ExceptionMessages.INVALID_FORMAT, "/at"));
         }
