@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -131,6 +132,14 @@ public class Duke {
                 }
             } catch (DukeException e) {
                 System.out.println(e.getMessage());
+            }
+            String dataFileName = "./data/duke.txt";
+            FileSaver.newDir("./data");
+            FileSaver.newFile(dataFileName);
+            try {
+                FileSaver.save(tasks, dataFileName);
+            } catch (IOException e) {
+                System.err.println(e.getMessage());
             }
         }
         System.out.println("Bye. Hope to see you again soon!");
