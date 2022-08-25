@@ -134,4 +134,21 @@ public class TaskList {
         System.out.println("  " + t);
         Ui.printNumberOfTasks(tasks);
     }
+
+    public void findTasks(String keyword) {
+        System.out.println("Here are the matching tasks in your list:");
+        boolean isNotFound = true;
+        int index = 1;
+        for (Task task : tasks) {
+            String taskName = task.getName();
+            if (taskName.contains(keyword)) {
+                System.out.println(index + "." + task);
+                isNotFound = false;
+                index += 1;
+            }
+        }
+        if (isNotFound) {
+            System.out.println("There are no matching tasks...");
+        }
+    }
 }
