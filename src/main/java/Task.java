@@ -1,6 +1,6 @@
 public class Task {
     protected String description;
-    protected boolean isDone;
+    protected boolean isDone = false;
 
     public Task(String description) {
         this.description = description;
@@ -13,6 +13,10 @@ public class Task {
 
     public void setDone(boolean done) {
         isDone = done;
+    }
+
+    public String toDataString(String separator) {
+        return String.format("%s%d%s%s", separator, (this.isDone) ? 1 : 0, separator, this.description);
     }
 
     @Override

@@ -1,4 +1,5 @@
 public class Deadline extends Task {
+    private static final String ICON = "D";
     protected String dateString;
 
     Deadline(String description, String dateString) {
@@ -7,7 +8,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String toDataString(String separator) {
+        return String.format("%s%s%s%s", ICON, super.toDataString(separator), separator, this.dateString);
+    }
+
+    @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), dateString);
+        return String.format("[%s]%s (by: %s)", ICON, super.toString(), this.dateString);
     }
 }
