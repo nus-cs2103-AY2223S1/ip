@@ -1,16 +1,16 @@
-package aRC;
+package arc;
 
-import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
 
 public class StorageTest {
 
@@ -33,14 +33,16 @@ public class StorageTest {
     @Test
     public void loadTasks_testDataFile_tasksLoaded() {
         String fileRelativePath = "dataTest1/aRC.txt";
+
         File testDataFile = new File(fileRelativePath);
         Storage storageTest = new Storage(fileRelativePath);
         storageTest.load();
+
         int numberOfTestTests = 5;
         ArrayList<String> testData = new ArrayList<>();
 
         for (int i = 0; i < numberOfTestTests; i++) {
-            testData.add(new Todo(Integer.toString(i), false).fileFormat());
+            testData.add(new Todo(Integer.toString(i), false).toFileFormat());
         }
 
         try {

@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 /**
  * Encapsulates a Todo task
@@ -27,7 +27,7 @@ public class Todo extends Task {
      * @return String representation of Todo
      */
     @Override
-    public String fileFormat() {
+    public String toFileFormat() {
         return String.format("T|%d|%s", this.isDone ? 1 : 0, this.title);
     }
 }

@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +27,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("[D]%s (by: %s)", super.toString(), this.deadline.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
+        return String.format("[D]%s (by: %s)", super.toString(),
+                this.deadline.format(DateTimeFormatter.ofPattern("dd MMM yyyy")));
     }
 
     /**
@@ -35,7 +36,8 @@ public class Deadline extends Task {
      * @return String representation of Deadline
      */
     @Override
-    public String fileFormat() {
-        return String.format("D|%d|%s|%s", this.isDone ? 1 : 0, this.title, this.deadline.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+    public String toFileFormat() {
+        return String.format("D|%d|%s|%s", this.isDone ? 1 : 0, this.title,
+                this.deadline.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
     }
 }

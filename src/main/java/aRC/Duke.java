@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 /**
  * Encapsulates the main Duke program
@@ -32,12 +32,13 @@ public class Duke {
         String input = this.ui.readInput();
 
         // Keeps reading user input until the user types "bye"
-        while(!input.equals("bye")) {
+        while (!input.equals("bye")) {
             try {
                 this.parser.parse(input);
             } catch (DukeException e) {
                 this.ui.printException(e);
             }
+
             input = this.ui.readInput();
         }
 

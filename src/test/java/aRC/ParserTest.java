@@ -1,12 +1,11 @@
-package aRC;
-
-import org.junit.jupiter.api.Test;
+package arc;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 
+import org.junit.jupiter.api.Test;
 
 public class ParserTest {
 
@@ -19,15 +18,15 @@ public class ParserTest {
             parser.parse(testInput);
             fail();
         } catch (DukeException e) {
-            assertEquals("Date format should be dd/mm/yyyy" +
-                    "\naRCommands:\n" +
-                    "\tlist\n" +
-                    "\ttodo [title]\n" +
-                    "\tdeadline [title] /by [deadline]\n" +
-                    "\tevent [title] /at [time]\n" +
-                    "\tmark [index]\n" +
-                    "\tunmark [index]\n" +
-                    "\tdelete [index]", e.getMessage());
+            assertEquals("Date format should be dd/mm/yyyy"
+                    + "\naRCommands:\n"
+                    + "\tlist\n"
+                    + "\ttodo [title]\n"
+                    + "\tdeadline [title] /by [deadline]\n"
+                    + "\tevent [title] /at [time]\n"
+                    + "\tmark [index]\n"
+                    + "\tunmark [index]\n"
+                    + "\tdelete [index]", e.getMessage());
         }
     }
 }

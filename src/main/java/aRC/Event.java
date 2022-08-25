@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 /**
  * Encapsulates an Event task
@@ -32,7 +32,7 @@ public class Event extends Task {
      * @return String representation of Event
      */
     @Override
-    public String fileFormat() {
+    public String toFileFormat() {
         return String.format("E|%d|%s|%s", this.isDone ? 1 : 0, this.title, this.time);
     }
 }

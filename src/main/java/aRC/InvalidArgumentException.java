@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 /**
  * Encapsulates a DukeException that handles invalid arguments

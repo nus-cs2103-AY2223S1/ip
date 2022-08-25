@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 import java.util.ArrayList;
 

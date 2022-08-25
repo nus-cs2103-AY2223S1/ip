@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -36,29 +36,29 @@ public class Parser {
         String[] commandArgs = Arrays.copyOfRange(command, 1, command.length);
 
         switch (mainCommand) {
-            case "list":
-                this.parseList(commandArgs);
-                break;
-            case "mark":
-                this.parseMark(commandArgs);
-                break;
-            case "unmark":
-                this.parseUnmark(commandArgs);
-                break;
-            case "todo":
-                this.parseTodo(commandArgs);
-                break;
-            case "deadline":
-                this.parseDeadline(commandArgs);
-                break;
-            case "event":
-                this.parseEvent(commandArgs);
-                break;
-            case "delete":
-                this.parseDelete(commandArgs);
-                break;
-            default:
-                throw new InvalidCommandException();
+        case "list":
+            this.parseList(commandArgs);
+            break;
+        case "mark":
+            this.parseMark(commandArgs);
+            break;
+        case "unmark":
+            this.parseUnmark(commandArgs);
+            break;
+        case "todo":
+            this.parseTodo(commandArgs);
+            break;
+        case "deadline":
+            this.parseDeadline(commandArgs);
+            break;
+        case "event":
+            this.parseEvent(commandArgs);
+            break;
+        case "delete":
+            this.parseDelete(commandArgs);
+            break;
+        default:
+            throw new InvalidCommandException();
         }
     }
 
@@ -83,7 +83,8 @@ public class Parser {
     public void parseMark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0
+                || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
             throw new InvalidArgumentException();
         } else {
             this.taskList.getTask(Integer.parseInt(commandArgs[0]) - 1).mark();
@@ -99,7 +100,8 @@ public class Parser {
     public void parseUnmark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0
+                || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
             throw new InvalidArgumentException();
         } else {
             this.taskList.getTask(Integer.parseInt(commandArgs[0]) - 1).unmark();
@@ -134,7 +136,8 @@ public class Parser {
         } else {
             int indexOfBy = Arrays.asList(commandArgs).indexOf("/by");
             String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
-            String deadline = String.join(" ", Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
+            String deadline = String.join(" ",
+                    Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
 
             if (title == "") {
                 throw new EmptyTitleException();
@@ -163,7 +166,8 @@ public class Parser {
         } else {
             int indexOfBy = Arrays.asList(commandArgs).indexOf("/at");
             String title = String.join(" ", Arrays.copyOfRange(commandArgs, 0, indexOfBy));
-            String time = String.join(" ", Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
+            String time = String.join(" ",
+                    Arrays.copyOfRange(commandArgs, indexOfBy + 1, commandArgs.length));
 
             if (title == "") {
                 throw new EmptyTitleException();
@@ -184,7 +188,8 @@ public class Parser {
     public void parseDelete(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
             throw new InvalidArgumentException();
-        } else if (Integer.parseInt(commandArgs[0]) <= 0 || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
+        } else if (Integer.parseInt(commandArgs[0]) <= 0
+                || Integer.parseInt(commandArgs[0]) > this.taskList.numTasks()) {
             throw new InvalidArgumentException();
         } else {
             this.taskList.deleteTask(Integer.parseInt(commandArgs[0]) - 1);

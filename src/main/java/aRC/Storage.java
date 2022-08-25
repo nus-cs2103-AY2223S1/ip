@@ -1,11 +1,13 @@
-package aRC;
+package arc;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,18 +39,18 @@ public class Storage {
                 String[] currTask = sc.nextLine().split("\\|");
 
                 switch (currTask[0]) {
-                    case "T":
-                        arrayList.add(new Todo(currTask[2], currTask[1].equals("1")));
-                        break;
-                    case "D":
-                        LocalDate ldt = LocalDate.parse(currTask[3], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                        arrayList.add(new Deadline(currTask[2], currTask[1].equals("1"), ldt));
-                        break;
-                    case "E":
-                        arrayList.add(new Event(currTask[2], currTask[1].equals("1"), currTask[3]));
-                        break;
-                    default:
-                        System.out.println("Undefined task type: " + currTask[0]);
+                case "T":
+                    arrayList.add(new Todo(currTask[2], currTask[1].equals("1")));
+                    break;
+                case "D":
+                    LocalDate ldt = LocalDate.parse(currTask[3], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                    arrayList.add(new Deadline(currTask[2], currTask[1].equals("1"), ldt));
+                    break;
+                case "E":
+                    arrayList.add(new Event(currTask[2], currTask[1].equals("1"), currTask[3]));
+                    break;
+                default:
+                    System.out.println("Undefined task type: " + currTask[0]);
                 }
             }
 
@@ -81,12 +83,13 @@ public class Storage {
         ArrayList<String> newData = new ArrayList<>();
 
         for (int i = 0; i < taskList.numTasks(); i++) {
-            newData.add(taskList.getTask(i).fileFormat());
+            newData.add(taskList.getTask(i).toFileFormat());
         }
 
         try {
             FileWriter fw = new FileWriter(this.dataFile);
             fw.write(String.join("\n", newData));
+
             fw.close();
         } catch (IOException e) {
             throw new DukeException("File not saved properly");

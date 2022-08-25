@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 import java.util.Scanner;
 
@@ -34,8 +34,8 @@ public class UI {
      */
     public String readInput() {
         Scanner sc = new Scanner(System.in);
-
         System.out.print("\n");
+
         return sc.nextLine();
     }
 }

@@ -1,4 +1,4 @@
-package aRC;
+package arc;
 
 /**
  * Encapsulates a Task object
@@ -47,5 +47,5 @@ public abstract class Task {
      * Returns how a Task should be stored in a txt file
      * @return String representation of Task
      */
-    public abstract String fileFormat();
+    public abstract String toFileFormat();
 }
