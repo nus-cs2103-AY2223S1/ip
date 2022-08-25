@@ -12,18 +12,28 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * Represents an encapsulation that deals with loading tasks from the save file and saving tasks in the file
+ */
 public class Storage {
   private static final String SEPARATOR = ",";
 
   private File file;
 
+  /**
+   * Initialises the storage object.
+   *
+   * @param filePath Path to the save file
+   */
   public Storage(String filePath) {
     this.file = new File(filePath);
   }
 
+  /**
+   * A method to create file that also handles the errors.
+   */
   public void createFile() throws DukeException {
     if (!file.exists()) {
       try {
@@ -39,6 +49,11 @@ public class Storage {
     }
   }
 
+  /**
+   * A method to save TaskList to a file while handling errors occured during the process.
+   *
+   * @param taskList TaskList
+   */
   public void saveFile(TaskList taskList) throws DukeException {
     createFile();
     PrintWriter writer;
@@ -57,6 +72,11 @@ public class Storage {
     writer.close();
   }
 
+  /**
+   * A method to read the save file and returns TaskList.
+   *
+   * @return TaskList where its tasks are those in the save file
+   */
   public TaskList readFile() throws DukeException {
     createFile();
     TaskList taskList = new TaskList();

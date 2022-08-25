@@ -6,6 +6,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 
+/**
+ * Represents a date and time.
+ */
 public class DateTime {
     private static final DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd")
             .optionalStart().appendPattern(" HHmm").optionalEnd().parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
@@ -14,6 +17,11 @@ public class DateTime {
     private String input;
     private LocalDateTime dateTime;
 
+    /**
+     * Initialises and interpret the input string into LocalDateTime.
+     *
+     * @param input
+     */
     public DateTime(String input) {
         this.input = input;
         for (DateTimeFormatter formatter : formatters) {
@@ -24,6 +32,7 @@ public class DateTime {
         }
     }
 
+    @Override
     public String toString() {
         return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy HHmm"));
     }

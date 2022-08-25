@@ -1,10 +1,10 @@
 package duke;
 
-import duke.task.Task;
 import duke.task.TaskList;
 
-import java.util.stream.IntStream;
-
+/**
+ * Represents Duke that converses with a user.
+ */
 class Duke {
   private static final String FILEPATH = "./data/duke.txt";
   private TaskList taskList;
@@ -12,6 +12,11 @@ class Duke {
   private Ui ui;
   private Parser parser;
 
+  /**
+   * Initialises the Duke object.
+   *
+   * @param filePath Path to the save file.
+   */
   public Duke(String filePath) {
     storage = new Storage(filePath);
     ui = new Ui();
@@ -23,7 +28,7 @@ class Duke {
     parser = new Parser(taskList, ui);
   }
 
-  public void run() {
+  private void run() {
     ui.greet();
 
     String input = "";
@@ -46,6 +51,9 @@ class Duke {
     ui.exitMessage();
   }
 
+  /**
+   * Main function of the application.
+   */
   public static void main(String[] args) {
     new Duke(FILEPATH).run();
   }
