@@ -1,13 +1,12 @@
 public class Event extends Task {
-    protected String at;
-
-    public Event(String description, String at) {
-        super(description);
-        this.at = at;
+    String moreInfo;
+    public Event(String description, String moreInfo, boolean saveTask) {
+        super(description, moreInfo, saveTask);
+        this.moreInfo = moreInfo;
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "[E]" + super.toString() + " (at: " + this.moreInfo + ")";
     }
 }

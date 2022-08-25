@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,14 +14,119 @@ public class Sally {
         System.out.println("Hello! I'm Sally");
         System.out.println("What can I do for you?");
         printBorder();
+
+        try {
+            readsFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found");
+        }
         sc = new Scanner(System.in);
         messaging();
+    }
+
+    public static void readsFile(String filePath) throws FileNotFoundException {
+        File file = new File(filePath);
+        Scanner sc = new Scanner(file);
+        int taskNum = 1;
+
+        while (sc.hasNext()) {
+            String input = sc.nextLine(); //scans the first input of file
+            String[] arrOfInput = input.split("\\|");
+
+            //Variables to create new Task
+            String taskTypeString = arrOfInput[0].trim();
+            String isDoneString = arrOfInput[1].trim();
+            String description = arrOfInput[2].trim();
+            String moreInfo = "";
+            if (taskTypeString.equals("E") || taskTypeString.equals("D")) {
+                moreInfo = moreInfo + arrOfInput[3].trim();
+            }
+
+            //Convert String to each variable type
+            Task.Type taskType = toTaskType(taskTypeString);
+            boolean isDone = toIsDone(isDoneString);
+
+            Task.makeTask(description, moreInfo, taskType, false);
+            Task task = list.get(taskNum - 1);
+
+            if (isDone) {
+                task.markAsDone();
+            } else {
+                task.markAsUndone();
+            }
+        }
+    }
+
+    public static boolean toIsDone(String s) {
+        if (s.contains("1")) {
+            return true;
+        } else if (s.contains("0")) {
+            return false;
+        }
+        return false;
+    }
+
+    public static Task.Type toTaskType(String s) {
+        try {
+            if (s.contains("T")) {
+                return Task.Type.TODO;
+            } else if (s.contains("D")) {
+                return Task.Type.DEADLINE;
+            } else if (s.contains("E")) {
+                return Task.Type.EVENT;
+            } else {
+                throw new SallyException.SallyInvalidInputException();
+            }
+        } catch (SallyException e) {
+            System.out.println(e);
+        }
+        return Task.Type.TODO;
+    }
+
+    public static void savesFile(String filePath) throws IOException {
+//        printBorder();
+//        System.out.println("Saving file");
+//        printBorder();
+        FileWriter writer = new FileWriter("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+
+        for (Task task : list) {
+            int indexDone = task.isDone ? 1 : 0;
+            String typeSymbol;
+            String description = task.description;
+            String moreInfo = task.getMoreInfo();
+            String separator = " | ";
+            String newFile = "";
+
+            switch (task.taskType) {
+                case TODO:
+                    typeSymbol = "T";
+                    newFile = newFile + typeSymbol + separator + indexDone + separator + description + "\n";
+                    break;
+                case DEADLINE:
+                    typeSymbol = "D";
+                    newFile = newFile + typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n";
+                    break;
+                case EVENT:
+                    typeSymbol = "E";
+                    newFile = newFile + typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n";
+            }
+
+            writer.write((newFile));
+            writer.close();
+        }
+
     }
 
     public static void messaging() {
         String message = sc.nextLine();
 
         if (message.equals("bye")) {
+//            try {
+//                savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+//            } catch (IOException e) {
+//                System.out.println("File Not Found");
+//            }
+
             printBorder();
             System.out.println("Until next time!");
             printBorder();
@@ -51,6 +160,11 @@ public class Sally {
                 } else {
                     throw new SallyException.SallyTaskNotFoundException();
                 }
+                try {
+                    Sally.savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+                } catch (IOException e) {
+                    System.out.println("File Not Found");
+                }
             }
             // Unmark
             else if (message.contains("unmark")) {
@@ -70,6 +184,11 @@ public class Sally {
                 } else {
                     throw new SallyException.SallyTaskNotFoundException();
                 }
+                try {
+                    Sally.savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+                } catch (IOException e) {
+                    System.out.println("File Not Found");
+                }
             } else if (!message.contains("unmark") && message.contains("mark")) {
                 int taskNum = Integer.parseInt(message.substring(5)) - 1; // -1 so that index is constant
                 if (taskNum >= 0 && taskNum < list.size()) {
@@ -87,12 +206,17 @@ public class Sally {
                 } else {
                     throw new SallyException.SallyTaskNotFoundException();
                 }
+                try {
+                    Sally.savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+                } catch (IOException e) {
+                    System.out.println("File Not Found");
+                }
             } else {
                 //ToDos
                 if (message.startsWith("todo")) {
                     if (message.length() > 4) {
                         String description = message.substring(5);
-                        Task.makeTask(description, "", Task.Type.TODO);
+                        Task.makeTask(description, "", Task.Type.TODO, true);
                     } else {
                         throw new SallyException.SallyNoDescriptionException();
                     }
@@ -105,7 +229,7 @@ public class Sally {
                     } else if (message.contains("/by ")) {
                         description = message.substring(9, message.indexOf("/by") - 1);
                         by = message.substring(message.indexOf("/by") + 4);
-                        Task.makeTask(description, by, Task.Type.DEADLINE);
+                        Task.makeTask(description, by, Task.Type.DEADLINE, true);
                     } else {
                         throw new SallyException.SallyNoDeadlineException();
                     }
@@ -118,7 +242,7 @@ public class Sally {
                     } else if (message.contains("/at ")) {
                         description = message.substring(6, message.indexOf("/at") - 1);
                         at = message.substring(message.indexOf("/at") + 4);
-                        Task.makeTask(description, at, Task.Type.EVENT);
+                        Task.makeTask(description, at, Task.Type.EVENT, true);
                     } else {
                         throw new SallyException.SallyNoPlaceException();
                     }
