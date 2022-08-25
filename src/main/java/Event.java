@@ -1,15 +1,16 @@
-public class Event extends Task {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-    protected String at;
+public class Event extends TimeTask {
+
     private final static String ICON = "E";
 
-    public Event(String description, String at) {
-        super(description, ICON);
-        this.at = at;
+    public Event(String description, LocalDateTime time) {
+        super(description, ICON, time);
     }
 
     @Override
     public String toString() {
-        return String.format("[E]" + "[%s] " + super.toString() + " (at: " + at + ")", super.getStatusIcon());
+        return String.format("[E]" + "[%s] " + super.toString() + " (at: " + super.getDate() + ")", super.getStatusIcon());
     }
 }

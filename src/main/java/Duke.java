@@ -1,5 +1,8 @@
 import java.util.Scanner;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Duke {
@@ -161,8 +164,9 @@ public class Duke {
                         if (index > -1) {
                             String by = input.substring(index + 4, input.length());
                             input = input.substring(1, index - 1);
-
-                            Task newTask = new Deadline(input, by);
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                            LocalDateTime date = LocalDateTime.parse(by, formatter);
+                            Task newTask = new Deadline(input, date);
                             tasksList.add(newTask);
                             print(input, Keyword.ADD);
                         } else {
@@ -180,9 +184,11 @@ public class Duke {
 
                         if (index > -1) {
                             String at = input.substring(index + 4, input.length());
+                            
                             input = input.substring(1, index - 1);
-
-                            Task newTask = new Event(input, at);
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                            LocalDateTime date = LocalDateTime.parse(at, formatter);
+                            Task newTask = new Event(input, date);
                             tasksList.add(newTask);
                             print(input, Keyword.ADD);
                         } else {

@@ -1,15 +1,16 @@
-public class Deadline extends Task {
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-    protected String by;
+public class Deadline extends TimeTask {
+
     private final static String ICON = "D";
 
-    public Deadline(String description, String by) {
-        super(description, ICON);
-        this.by = by;
+    public Deadline(String description, LocalDateTime time) {
+        super(description, ICON, time);
     }
 
     @Override
     public String toString() {
-        return String.format("[D]" + "[%s] " + super.toString() + " (by: " + by + ")", super.getStatusIcon());
+        return String.format("[D]" + "[%s] " + super.toString() + " (by: " + super.getDate() + ")", super.getStatusIcon());
     }
 }
