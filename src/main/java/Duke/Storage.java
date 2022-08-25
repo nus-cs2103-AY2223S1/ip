@@ -12,12 +12,19 @@ public class Storage {
 
     private String filePath;
 
+    /**
+     * Creates Storage instance.
+     * @param filepath the file name.
+     */
     public Storage(String filepath) {
         this.filePath = filepath;
     }
 
+    /**
+     * Saves the tasklist.
+     * @param arr the stringified tasklist.
+     */
     public void saveFile(ArrayList<String> arr) {
-        String fileName = "tasks.txt";
         FileWriter fileWriter = null;
 
         try {
@@ -41,6 +48,11 @@ public class Storage {
 
     }
 
+    /**
+     * Loads the file.
+     * @return the tasklist.
+     * @throws DukeException
+     */
     public TaskList loadFile() throws DukeException {
         BufferedReader reader = null;
         TaskList arr = new TaskList(new ArrayList<>());

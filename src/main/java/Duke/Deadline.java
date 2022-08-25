@@ -28,7 +28,7 @@ public class Deadline extends Task {
         return this.date.format(this.OUTPUT_FORMAT);
     }
 
-    public static LocalDateTime dateTimeParser(String time) throws DukeException {
+    private static LocalDateTime dateTimeParser(String time) throws DukeException {
         try {
             String[] timing = time.split(" ", 2);
             String[] dayMonYr = timing[0].split("/", 3);

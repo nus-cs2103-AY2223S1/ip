@@ -1,6 +1,13 @@
 package Duke;
 
 public class Parser {
+
+    /**
+     * Parses the input string.
+     * @param input the input string.
+     * @return the parsed string array.
+     * @throws DukeException If input is invalid.
+     */
     public static String[] parseInput(String input) throws DukeException {
         String phrases[] = input.split(" /.. ", 2); // splits sentence and removes by/at
         String words[] = phrases[0].split(" ", 2);

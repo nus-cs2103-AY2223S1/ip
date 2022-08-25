@@ -8,6 +8,10 @@ public class Duke {
     private Ui ui;
     private Storage storage;
 
+    /**
+     * Creates a Duke instance.
+     * @param filePath
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -19,6 +23,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs a Duke instance.
+     */
     public void run() {
         ui.printWelcome();
         String[] input;

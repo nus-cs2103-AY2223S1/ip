@@ -9,28 +9,50 @@ public class TaskList {
         this.lst = lst;
     }
 
+    /**
+     * Adds task to list.
+     * @param t task to add.
+     */
     public void addTask(Task t) {
         this.lst.add(t);
     }
 
+    /**
+     * Deletes task from list.
+     * @param i index of task starting from 1.
+     * @return the deleted task.
+     */
     public Task deleteTask(int i) {
         Task removed = lst.get(i - 1);
         lst.remove(i - 1);
         return removed;
     }
 
+    /**
+     * Mark task as done.
+     * @param i index of task starting from 1.
+     * @return the marked task.
+     */
     public Task markTask(int i) {
         Task t = lst.get(i - 1);
         t.markAsDone();
         return t;
     }
 
+    /**
+     * Mark task as done.
+     * @param i index of task starting from 1.
+     * @return the marked task.
+     */
     public Task unmarkTask(int i) {
         Task t = lst.get(i - 1);
         t.markAsNotDone();
         return t;
     }
 
+    /**
+     * Prints items in list.
+     */
     public void printList() {
         System.out.println("Here are the tasks in your list:");
         int count = 1;
@@ -39,6 +61,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Converts list to list of string.
+     * @return
+     */
     public ArrayList<String> toStringList() {
         ArrayList<String> items = new ArrayList<>();
         if (!(this.lst.isEmpty())) {
@@ -56,6 +82,10 @@ public class TaskList {
         return items;
     }
 
+    /**
+     * Returns size of list.
+     * @return list size.
+     */
     public int getSize() {
         return lst.size();
     }
