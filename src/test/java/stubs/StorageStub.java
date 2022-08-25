@@ -1,13 +1,16 @@
 package stubs;
-import java.util.List;
-import java.util.ArrayList;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Stub class representing Storage class.
+ */
 public class StorageStub {
-    Path path;
+    private Path path;
     public StorageStub(Path path) {
-        this.path =  path;
+        this.path = path;
     }
 
     public List<String> getAllLines() {
