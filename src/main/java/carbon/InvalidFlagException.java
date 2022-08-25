@@ -1,3 +1,5 @@
+package carbon;
+
 class InvalidFlagException extends CarbonException {
     private String type;
     private String flag;

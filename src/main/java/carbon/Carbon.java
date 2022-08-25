@@ -1,3 +1,5 @@
+package carbon;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -11,7 +13,7 @@ public class Carbon {
     // chat-bot specific displays
     // ascii art generated from patorjk.com
     // logo for Carbon
-    private static final String logo = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
+    private static final String LOGO = "                 _ _ _ ____ _    ____ ____ _  _ ____ \n" + 
         "                 | | | |___ |    |    |  | |\\/| |___ \n" + 
         "                 |_|_| |___ |___ |___ |__| |  | |___ \n\n" + 
         "  ▄████████    ▄████████    ▄████████ ▀█████████▄   ▄██████▄  ███▄▄▄▄   \n" + 
@@ -25,8 +27,8 @@ public class Carbon {
         "                           ███    ███                                   \n";
 
     // actual introduction
-    private static final String intro = "Hey, Carbon here. ";
-    private static final String[] initPrompts = {
+    private static final String INTRO = "Hey, Carbon here. ";
+    private static final String[] INIT_PROMPTS = {
         "What's up?",
         "How's things going?",
         "Nice weather today, huh?",
@@ -36,7 +38,7 @@ public class Carbon {
     };
 
     // text for exits
-    private static final String[] goodbyes = {
+    private static final String[] GOODBYES = {
         "Bye-bye, see you again soon!",
         "Farewell. Stay safe.",
         "Nice meeting you. Let's catch up again sometime.",
@@ -49,9 +51,9 @@ public class Carbon {
     private static Scanner sysScanner = new Scanner(System.in);
     
     // filepath for tasks savefile
-    private static String WORKINGDIR = System.getProperty("user.dir");
-    private static String SAVEFILE = Carbon.WORKINGDIR + "/../../../store/tasks.txt";
-    private static String SAVEFILEDIR = Carbon.WORKINGDIR + "/../../../store/";
+    private static final String WORKING_DIR = System.getProperty("user.dir");
+    private static final String SAVEFILE = Carbon.WORKING_DIR + "/../../../store/tasks.txt";
+    private static final String SAVEFILE_DIR = Carbon.WORKING_DIR + "/../../../store/";
 
     // own fields
     private Random rand;
@@ -83,13 +85,13 @@ public class Carbon {
         //     this.rand.nextInt(Carbon.initPrompts.length)
         // ];
 
-        String randomPrompt = Carbon.initPrompts[0];
+        String randomPrompt = Carbon.INIT_PROMPTS[0];
 
-        System.out.println(Carbon.logo);
+        System.out.println(Carbon.LOGO);
 
         // extra space
         System.out.println("\n\n");
-        Carbon.printOut(Carbon.intro + randomPrompt);
+        Carbon.printOut(Carbon.INTRO + randomPrompt);
     }
 
     // main shell method
@@ -133,7 +135,7 @@ public class Carbon {
 
     private void saveTasks() throws CarbonException {
         File savefile = new File(Carbon.SAVEFILE);
-        File savefileDir = new File(Carbon.SAVEFILEDIR);
+        File savefileDir = new File(Carbon.SAVEFILE_DIR);
         try {
             // ensures dir and file exists
             savefileDir.mkdir();
@@ -313,7 +315,7 @@ public class Carbon {
         //     this.rand.nextInt(Carbon.goodbyes.length)
         // ];
         
-        String randomGoodbye = Carbon.goodbyes[0] + "\n";
+        String randomGoodbye = Carbon.GOODBYES[0] + "\n";
         Carbon.printOut(randomGoodbye);
     }
 

@@ -1,3 +1,5 @@
+package carbon;
+
 class CorruptedSavefileException extends CarbonException {
     String data;
 

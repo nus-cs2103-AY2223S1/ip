@@ -1,3 +1,5 @@
+package carbon;
+
 abstract class CarbonException extends RuntimeException {
     public CarbonException(String message) {
         super(message);

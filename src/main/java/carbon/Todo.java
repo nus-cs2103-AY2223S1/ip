@@ -1,5 +1,7 @@
+package carbon;
+
 class Todo extends Task {
-    private static int typeKey = Task.getTypeKey(Task.Type.TODO);
+    private static int TYPEKEY = Task.getTypeKey(Task.Type.TODO);
 
     private static String extractName(String input) throws CarbonException {
         int len = input.length();
@@ -30,7 +32,7 @@ class Todo extends Task {
 
     @Override
     public String encode() {
-        int typeKey = Todo.typeKey;
+        int typeKey = Todo.TYPEKEY;
         int isDone = this.isDone ? 1 : 0;
         String result = String.format("%d|%d|%s\n", typeKey, isDone, this.name); 
         return result;

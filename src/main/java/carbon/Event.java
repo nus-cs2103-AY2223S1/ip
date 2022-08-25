@@ -1,3 +1,5 @@
+package carbon;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -5,7 +7,7 @@ import java.time.temporal.Temporal;
 
 class Event extends Task {
     public static final String FLAG = " /at";
-    private static final int typeKey = Task.getTypeKey(Task.Type.EVENT);
+    private static final int TYPEKEY = Task.getTypeKey(Task.Type.EVENT);
 
     private static String extractName(String input) {
         int flagIndex = input.indexOf(Event.FLAG);
@@ -45,7 +47,6 @@ class Event extends Task {
                 LocalDateTime time = LocalDateTime.parse(
                         timeString, 
                         Task.dateTimeFormat);
-                System.out.println(time);
                 return time;
             }
         } catch (DateTimeParseException error) {
@@ -76,7 +77,7 @@ class Event extends Task {
 
     @Override
     public String encode() {
-        int typeKey = Event.typeKey;
+        int typeKey = Event.TYPEKEY;
         int isDone = this.isDone ? 1 : 0;
         String result = String.format(
                 "%d|%d|%s|%s\n", typeKey, isDone, this.name, 

@@ -1,12 +1,14 @@
-class InvalidInputException extends CarbonException {
-    public InvalidInputException(String input) {
+package carbon;
+
+class InvalidParamException extends CarbonException {
+    public InvalidParamException(String input) {
         super(input);
     }
 
     @Override
     public String toString() {
         return String.format(
-                "%s\n    '%s'? I have no idea what that is.",
+                "%s\n    Looks like you're missing details for your '%s'.",
                 super.toString(),
                 this.getMessage()
                 );

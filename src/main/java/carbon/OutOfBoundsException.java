@@ -1,3 +1,5 @@
+package carbon;
+
 class OutOfBoundsException extends CarbonException {
     public OutOfBoundsException(int taskNumber, int length) {
         super(String.format(

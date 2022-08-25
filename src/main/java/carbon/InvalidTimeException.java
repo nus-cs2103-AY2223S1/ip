@@ -1,3 +1,5 @@
+package carbon;
+
 class InvalidTimeException extends CarbonException {
     public InvalidTimeException(String input) {
         super(input);

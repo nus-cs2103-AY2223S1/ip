@@ -1,3 +1,5 @@
+package carbon;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -5,7 +7,7 @@ import java.time.temporal.Temporal;
 
 class Deadline extends Task {
     public static final String FLAG = " /by";
-    private static final int typeKey = Task.getTypeKey(Task.Type.DEADLINE);
+    private static final int TYPEKEY = Task.getTypeKey(Task.Type.DEADLINE);
 
     private static String extractName(String input) throws CarbonException {
         int flagIndex = input.indexOf(Deadline.FLAG);
@@ -45,7 +47,6 @@ class Deadline extends Task {
                 LocalDateTime time = LocalDateTime.parse(
                         timeString, 
                         Task.dateTimeFormat);
-                System.out.println(time);
                 return time;
             }
         } catch (DateTimeParseException error) {
@@ -75,7 +76,7 @@ class Deadline extends Task {
 
     @Override
     public String encode() {
-        int typeKey = Deadline.typeKey;
+        int typeKey = Deadline.TYPEKEY;
         int isDone = this.isDone ? 1 : 0;
         String result = String.format(
                 "%d|%d|%s|%s\n", typeKey, isDone, this.name, 
