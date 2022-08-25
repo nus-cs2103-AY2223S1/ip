@@ -27,7 +27,7 @@ public class TaskList {
     }
 
     public Task getItem(int index) {
-        return taskArray.get(index);
+        return taskArray.get(index - 1);
     }
 
     /**

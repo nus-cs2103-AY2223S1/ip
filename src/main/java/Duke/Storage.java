@@ -18,8 +18,10 @@ public class Storage {
      * initData checks for existence of file, attempts to read and process the data if it exists,
      * creates a new file if it does not.
      */
-    public File load() {
-        return new File(filepath);
+    public File load() throws IOException {
+        File f = new File(filepath);
+        f.createNewFile();
+        return f;
     }
 
     /**

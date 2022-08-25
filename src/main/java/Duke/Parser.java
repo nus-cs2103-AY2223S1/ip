@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Parser {
 
     public Duke.Commands parseCommand(String input) {
+        input = input.trim();
         if (Objects.equals(input.toLowerCase(), "bye")) {
             return Duke.Commands.BYE;
         } else if (Objects.equals(input.toLowerCase(), "list")) {
