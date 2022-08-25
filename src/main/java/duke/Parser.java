@@ -18,8 +18,17 @@ import java.util.stream.Stream;
 import static duke.task.Task.*;
 
 public class Parser {
+    /**
+     * The String representation of the separator to divide a row of String into attributes.
+     */
     private static final String ATTRIBUTE_SEPARATOR = "}";
 
+    /**
+     * Returns an Arraylist of all beginning indices of target in the whole String.
+     * @param str1 The targeted String.
+     * @param str2 The whole String
+     * @return The Arraylist of all beginning indices of target in the whole String.
+     */
     public static ArrayList<Integer> getIndicesOfStr1InStr2(String str1, String str2) {
         int len1 = str1.length();
         int len2 = str2.length();
@@ -32,22 +41,44 @@ public class Parser {
         return result;
     }
 
+    /**
+     * Returns the first index of all beginning indices of target in the whole String.
+     * @param str1 The targeted String.
+     * @param str2 The whole String
+     * @return The first index of all beginning indices of target in the whole String.
+     */
     private static int getFirstIndexOfStr1InStr2(String str1, String str2) {
         ArrayList<Integer> indices = getIndicesOfStr1InStr2(str1, str2);
         return indices.size() == 0 ? -1 : indices.get(0);
     }
 
+    /**
+     * Returns an Arraylist of String separated as attributes from the given formatted String.
+     * @param string The given formatted String.
+     * @return The Arraylist of String separated as attributes from the given formatted String.
+     */
     public static ArrayList<String> separateAttributes(String string) {
         ArrayList<String> result = new ArrayList<>();
         Arrays.stream(string.split(ATTRIBUTE_SEPARATOR)).forEach(s -> result.add(s.trim()));
         return result;
     }
 
+    /**
+     * Returns the formatted String by combining attributes of Strings.
+     * @param strings The attributes of Array of Strings
+     * @return The formatted String.
+     */
     public static String combineAttributes(String... strings) {
         return Arrays.stream(strings)
                 .reduce("", (x, y) -> x + " " + ATTRIBUTE_SEPARATOR + " " + y).substring(ATTRIBUTE_SEPARATOR.length() + 2);
     }
 
+    /**
+     * Returns the Command indicated by given String.
+     * @param s The given String.
+     * @return The Command.
+     * @throws DukeException if the given String is not in correct format.
+     */
     public static Command parseCommand(String s) throws DukeException {
         int indexOfName;
         int indexOfTime;
@@ -151,6 +182,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the Task represented by given formatted String.
+     * @param formattedString The given formatted String.
+     * @return The Task represented by given formatted String.
+     * @throws ReadAttributeException if the String is not in correct format.
+     */
     public static Task parseTask(String formattedString) throws ReadAttributeException {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         switch (attributes.get(0)) {
@@ -166,6 +203,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the Event represented by given formatted String.
+     * @param formattedString The given formatted String.
+     * @return The Event represented by given formatted String.
+     * @throws ReadAttributeException if the String is not in correct format.
+     */
     private static Event parseEvent(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 4) {
@@ -178,6 +221,12 @@ public class Parser {
         return result;
     }
 
+    /**
+     * Returns the Deadline represented by given formatted String.
+     * @param formattedString The given formatted String.
+     * @return The Deadline represented by given formatted String.
+     * @throws ReadAttributeException if the String is not in correct format.
+     */
     private static Deadline parseDeadline(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 4) {
@@ -190,6 +239,12 @@ public class Parser {
         return result;
     }
 
+    /**
+     * Returns the Todo represented by given formatted String.
+     * @param formattedString The given formatted String.
+     * @return The Todo represented by given formatted String.
+     * @throws ReadAttributeException if the String is not in correct format.
+     */
     private static Todo parseTodo(String formattedString) {
         ArrayList<String> attributes = Parser.separateAttributes(formattedString);
         if (attributes.size() < 3) {
@@ -202,6 +257,12 @@ public class Parser {
         return result;
     }
 
+    /**
+     * Returns the TaskList represented by given formatted String.
+     * @param formattedString The given formatted String.
+     * @return The TaskList represented by given formatted String.
+     * @throws ReadAttributeException if the String is not in correct format.
+     */
     public static TaskList parseTaskList(String formattedString) {
         TaskList result = new TaskList();
         Arrays.stream(formattedString.split(System.lineSeparator()))
@@ -212,6 +273,11 @@ public class Parser {
         return result;
     }
 
+    /**
+     * Returns a boolean indicating whether the given String is a valid integer.
+     * @param s The given String
+     * @return The boolean indicating whether the given String is a valid integer.
+     */
     private static boolean isInt(String s) {
         try {
             Integer.parseInt(s);
@@ -221,10 +287,20 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a boolean indicating whether the given String is a valid String.
+     * @param input The given String
+     * @return The boolean indicating whether the given String is a valid String.
+     */
     private static boolean isValidString(String input) {
         return input != null && !input.equals("") && !input.contains(ATTRIBUTE_SEPARATOR);
     }
 
+    /**
+     * Returns a boolean indicating whether the given String is a valid LocalDateTime.
+     * @param input The given String
+     * @return The boolean indicating whether the given String is a valid LocalDateTime.
+     */
     private static boolean isValidDate(String input) {
         try {
             LocalDateTime.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
@@ -234,10 +310,20 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the number representation of a given boolean.
+     * @param bool The given boolean.
+     * @return The number representation of a given boolean.
+     */
     public static int convertBoolToInt(boolean bool) {
         return bool ? 1 : 0;
     }
 
+    /**
+     * Returns the boolean from given number representation.
+     * @param i The given number representation.
+     * @return The boolean.
+     */
     public static boolean convertIntToBool(int i) {
         if (i == 1) {
             return true;
@@ -248,14 +334,28 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the String representation of the Attribute Separator in formatted String.
+     * @return The String representation of the Attribute Separator in formatted String.
+     */
     public static String getAttributeSeparator() {
         return ATTRIBUTE_SEPARATOR;
     }
 
+    /**
+     * Returns the String representation of given LocalDateTime.
+     * @param localDateTime The given LocalDateTime.
+     * @return The String representation of given LocalDateTime.
+     */
     public static String parseDateTimeToString(LocalDateTime localDateTime) {
         return localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
+    /**
+     * Returns the LocalDateTime from given String representation.
+     * @param string The given String representation.
+     * @return The LocalDateTime from given String representation.
+     */
     public static LocalDateTime parseStringToDateTime(String string) {
         return LocalDateTime.parse(string, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }

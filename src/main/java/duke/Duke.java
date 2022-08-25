@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.Scanner;
 import java.util.function.Consumer;
 
+/**
+ * The Duke.
+ */
 public class Duke {
     private final HashMap<Action, Consumer<Command>> actionConsumerMap = new HashMap<>();
     private boolean isTerminated;
@@ -15,6 +18,10 @@ public class Duke {
     private TaskList tasks;
     private Storage storage;
 
+    /**
+     * The constructor of the Duke with given storage path.
+     * @param storagePath The given storage path.
+     */
     public Duke(String storagePath) {
         this.tasks = new TaskList();
         this.messagePrinter = new MessagePrinter(3, 100, '-');
@@ -22,6 +29,10 @@ public class Duke {
         this.execute(Command.greet());
     }
 
+    /**
+     * The main method of Duke.
+     * @param args The arguments.
+     */
     public static void main(String[] args) {
         String storagePathWin = "data\\duke.txt";
         String storagePathElse = "data/duke.txt";
@@ -29,6 +40,9 @@ public class Duke {
         new Duke(storagePath).run();
     }
 
+    /**
+     * The method to launch Duke.
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
         while (!this.isTerminated) {
@@ -45,14 +59,18 @@ public class Duke {
         }
     }
 
-    public boolean getIsTerminated() {
-        return this.isTerminated;
-    }
-
+    /**
+     * The method to execute a givenCommand.
+     * @param command The given Command.
+     */
     public void execute(Command command) {
         command.execute(this.tasks, this.messagePrinter, this.storage);
     }
 
+    /**
+     * The method to print given DukeException Details.
+     * @param dukeException The given DukeException.
+     */
     public void handle(DukeException dukeException) {
         this.messagePrinter.printMessage(dukeException.getMessage());
     }

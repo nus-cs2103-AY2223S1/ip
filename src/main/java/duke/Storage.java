@@ -11,22 +11,40 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Storage {
+    /**
+     * The Path of the file.
+     */
     private Path path;
 
+    /**
+     * The constructor of the Class.
+     * @param path
+     */
     public Storage(String path) {
         this.path = Paths.get(path);
         initialize();
     }
 
+    /**
+     * To check whether directory or file exists and create if not exist.
+     */
     private void initialize() {
         checkDirectory();
         checkFile();
     }
 
+    /**
+     * Return the path of the Storage.
+     * @return The path of the Storage.
+     */
     public Path getPath() {
         return path;
     }
 
+    /**
+     * Write given content the Path.
+     * @param content The given content.
+     */
     public void write(String content) {
         initialize();
         try {
@@ -38,6 +56,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Read given content from the Path.
+     * @return The content in the Path. Returns empty String if file does not exist.
+     */
     public String read() {
         String result = "";
         initialize();
@@ -52,6 +74,9 @@ public class Storage {
         return result;
     }
 
+    /**
+     * Check whether directory exists. Create if does not exist.
+     */
     private void checkDirectory() {
         File temp = this.path.getParent().toFile();
         if (!temp.exists()) {
@@ -59,6 +84,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Check whether file exists. Create if does not exist.
+     */
     private void checkFile() {
         File temp = this.path.toFile();
         try {
@@ -70,6 +98,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Return boolean indicating whether this object
+     * is equivalent to another object.
+     *
+     * @param obj The object to be checked.
+     * @return The boolean whether the given object is equivalent to this object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
