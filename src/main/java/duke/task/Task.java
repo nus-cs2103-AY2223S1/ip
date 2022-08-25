@@ -44,6 +44,16 @@ public abstract class Task {
         return this.toString();
     }
 
+    /**
+     * Verifies whether the Task description contains the given keyword.
+     *
+     * @param content Given keyword.
+     * @return true if it contains the given keyword, false otherwise.
+     */
+    public boolean contains(String content) {
+        return this.description.contains(content);
+    }
+
     public static Task fromStorage(String task) throws DukeException {
         String[] taskDetails = task.split(" \\| ");
         TaskType taskType = TaskType.parse(taskDetails[0]);

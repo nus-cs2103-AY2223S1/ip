@@ -44,6 +44,11 @@ public class Parser {
                 throw new DukeException("You forgot to tell me the task number!");
             }
             return new DeleteCommand(splitMessage[1], tasks);
+        case FIND:
+            if (splitMessage.length < 2) {
+                throw new DukeException("You forgot to tell me the keyword!");
+            }
+            return new FindCommand(splitMessage[1], tasks);
         default:
             throw new DukeException("Sorry, there is no such command!");
         }
