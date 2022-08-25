@@ -1,5 +1,6 @@
+package duke;
+
 import java.time.LocalDateTime;
-import java.util.Scanner;
 
 public class Task {
     private String status;

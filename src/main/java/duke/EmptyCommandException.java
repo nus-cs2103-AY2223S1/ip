@@ -1,3 +1,4 @@
+package duke;
 public class EmptyCommandException extends Exception {
     public EmptyCommandException(String command) {
         super(String.format(Duke.line + "\n" + "" +

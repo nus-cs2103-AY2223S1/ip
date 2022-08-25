@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
 
     public static final String DELETE_HEADER = Duke.line + "\n" + "Noted. I've removed this task:" + "\n";
