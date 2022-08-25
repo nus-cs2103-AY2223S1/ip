@@ -1,4 +1,4 @@
-public class Task {
+abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -17,6 +17,10 @@ public class Task {
 
     @Override
     public String toString() {
-        return String.format("[T][%s] %s", isDone ? "X" : " ", description);
+        return String.format("[%s] %s", isDone ? "X" : " ", description);
+    }
+
+    public String getSaveFormat() {
+        return String.format("%d | %s", isDone ? 1 : 0, description);
     }
 }

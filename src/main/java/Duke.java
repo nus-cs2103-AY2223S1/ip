@@ -1,11 +1,16 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Duke {
-    private Scanner sc = new Scanner(System.in);
+    private static final String filePath = "data/duke.txt";
     private List<Task> tasks = new ArrayList<>();
 
     public static void main(String[] args) {
@@ -13,9 +18,63 @@ public class Duke {
         duke.run();
     }
 
+    private void getData() throws DukeException {
+        Scanner sc;
+        try {
+            sc = new Scanner(new File(filePath));
+        } catch (FileNotFoundException e) {
+            throw new DukeException("File not found: Unable to retrieve data.");
+        }
+        sc.useDelimiter("( \\| )|(\\n)");  // split by | or new line
+        while (sc.hasNext()) {
+            try {
+                String type = sc.next(), status = sc.next(), description = sc.next();
+                Task task;
+                switch (type) {
+                case "T":
+                    task = new Todo(description);
+                    break;
+                case "D":
+                    task = new Deadline(description, sc.next());
+                    break;
+                case "E":
+                    task = new Event(description, sc.next());
+                    break;
+                default:
+                    throw new DukeException("Invalid task type: %s", type);
+                }
+                if (status.equals("1")) {
+                    task.markAsDone();;
+                } else if (!status.equals("0")) {
+                    throw new DukeException("Invalid task status: %s", status);
+                }
+                tasks.add(task);
+            } catch (NoSuchElementException e) {
+                throw new DukeException("File content is not in the correct format.");
+            }
+        }
+    }
+
+    private void saveData() throws DukeException {
+        try {
+            FileWriter fileWriter = new FileWriter(new File(filePath));
+            String content = tasks.stream().map(x -> x.getSaveFormat() + "\n").reduce("", (x,y) -> x + y);
+            fileWriter.write(content);
+            fileWriter.close();
+        } catch (IOException e) {
+            throw new DukeException("IOException: Unable to save data.");
+        }
+    }
+
     private void run() {
         print("Hello! I'm Duke\nWhat can I do for you?");
-        while (sc.hasNext()) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            getData();
+        } catch (DukeException e) {
+            print(e.getMessage());
+        }
+        scanner: while (sc.hasNext()) {
             String input = sc.next();
             try {
                 switch (input) {
@@ -43,8 +102,7 @@ public class Duke {
         
                     case "bye":
                         bye();
-                        sc.close();
-                        return;
+                        break scanner;
                     
                     default:
                         sc.nextLine();
@@ -54,11 +112,17 @@ public class Duke {
                 print(e.getMessage());
             }
         }
+        sc.close();
+        try {
+            saveData();
+        } catch (DukeException e) {
+            print(e.getMessage());
+        }
     }
 
-    private void print(String s) {
+    private void print(String s, Object... args) {
         String seperator = "    ____________________________________________________________\n";
-        System.out.println(seperator + Stream.of(s.split("\n")).map(x -> "     " + x + "\n").reduce("", (x,y) -> x + y) + seperator);
+        System.out.println(seperator + Stream.of(String.format(s, args).split("\n")).map(x -> "     " + x + "\n").reduce("", (x,y) -> x + y) + seperator);
     }
 
     private void list() {
@@ -75,7 +139,7 @@ public class Duke {
 
     private void add(String taskType, String rawDetails) throws DukeException {
         Task task;
-        if (rawDetails.isEmpty()) throw new DukeException(String.format("\u2639 OOPS!!! The description of a %s cannot be empty.", taskType));
+        if (rawDetails.isEmpty()) throw new DukeException("\u2639 OOPS!!! The description of a %s cannot be empty.", taskType);
         if (taskType.equals("deadline")) {
             String[] details = getTaskDetails(rawDetails, " /by ");
             task = new Deadline(details[0], details[1]);
@@ -83,10 +147,10 @@ public class Duke {
             String[] details = getTaskDetails(rawDetails, " /at ");
             task = new Event(details[0], details[1]);
         } else {
-            task = new Task(rawDetails);
+            task = new Todo(rawDetails);
         }
         tasks.add(task);
-        print(String.format("Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.", tasks.get(tasks.size() - 1), tasks.size()));
+        print("Got it. I've added this task:\n  %s\nNow you have %d tasks in the list.", tasks.get(tasks.size() - 1), tasks.size());
     }
 
     private void mark(String input) throws DukeException {
@@ -95,9 +159,9 @@ public class Duke {
             tasks.get(index - 1).markAsDone();
             print("Nice! I've marked this task as done:\n  " + tasks.get(index - 1));
         } catch (NumberFormatException e) {
-            throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. Index must be an integer and must not be blank.", input));
+            throw new DukeException("\u2639 OOPS!!! Invalid index %s. Index must be an integer and must not be blank.", input);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", input, tasks.size()));
+            throw new DukeException("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", input, tasks.size());
         }
     }
 
@@ -107,9 +171,9 @@ public class Duke {
             tasks.get(index - 1).markAsDone();
             print("OK, I've marked this task as not done yet:\n  " + tasks.get(index - 1));
         } catch (NumberFormatException e) {
-            throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. Index must be an integer and must not be blank.", input));
+            throw new DukeException("\u2639 OOPS!!! Invalid index %s. Index must be an integer and must not be blank.", input);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", input, tasks.size()));
+            throw new DukeException("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", input, tasks.size());
         }
     }
 
@@ -117,11 +181,11 @@ public class Duke {
         try {
             int index = Integer.parseInt(input);
             Task removedTask = tasks.remove(index - 1);
-            print(String.format("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.", removedTask, tasks.size()));
+            print("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.", removedTask, tasks.size());
         } catch (NumberFormatException e) {
-            throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. Index must be an integer and must not be blank.", input));
+            throw new DukeException("\u2639 OOPS!!! Invalid index %s. Index must be an integer and must not be blank.", input);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException(String.format("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", input, tasks.size()));
+            throw new DukeException("\u2639 OOPS!!! Invalid index %s. You only have %d tasks in your list.", input, tasks.size());
         }
     }
 

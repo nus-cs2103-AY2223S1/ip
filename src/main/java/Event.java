@@ -8,6 +8,11 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return String.format("[E][%s] %s (at: %s)", isDone ? "X" : " ", description, time);
+        return String.format("[E]%s (at: %s)", super.toString(), time);
+    }
+
+    @Override
+    public String getSaveFormat() {
+        return String.format("E | %s | %s", super.getSaveFormat(), time);
     }
 }
