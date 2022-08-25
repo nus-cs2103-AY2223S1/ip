@@ -14,7 +14,7 @@ public class TaskList {
     /**
      * Constructs a task list
      */
-    TaskList() {
+    public TaskList() {
         this.list = new ArrayList<>();
     }
 

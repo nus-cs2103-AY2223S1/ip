@@ -13,7 +13,7 @@ public class Ui {
     /**
      * Constructs a new Ui object, with a scanner object used to read user inputs
      */
-    Ui() {
+    public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
