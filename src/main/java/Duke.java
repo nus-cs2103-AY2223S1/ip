@@ -148,14 +148,17 @@ public class Duke {
                 case "mark":
                     int num1 = Integer.parseInt(input.split(" ")[1]);
                     mark(num1);
+                    update(path);
                     break;
                 case "unmark":
                     int num2 = Integer.parseInt(input.split(" ")[1]);
                     unmark(num2);
+                    update(path);
                     break;
                 case "delete":
                     int num3 = Integer.parseInt(input.split(" ")[1]);
                     delete(num3);
+                    update(path);
                     break;
                 default:
                     try {
