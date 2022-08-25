@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDate;
 
 public class Task {
@@ -15,7 +17,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " "); // mark done duke.task with X
     }
 
     public void markAsDone() {
@@ -30,7 +32,7 @@ public class Task {
         String[] entry = str.split("/");
 
         if (entry[0].equals("T")) {
-            return new ToDo(entry[2], Boolean.parseBoolean(entry[1]));
+            return new Deadline.ToDo(entry[2], Boolean.parseBoolean(entry[1]));
 
         } else if (entry[0].equals("E")) {
             LocalDate d = LocalDate.parse(entry[3]);

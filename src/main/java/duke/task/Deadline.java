@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -22,5 +24,26 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return "D/" +super.getStatusIcon() + "/" + super.description + "/" + by;
+    }
+
+    public static class ToDo extends Task {
+
+        public ToDo(String description) {
+            super(description);
+        }
+
+        public ToDo(String description, boolean isDone) {
+            super(description, isDone);
+        }
+
+        @Override
+        public String formatTask() {
+            return "[T] [" + super.getStatusIcon() + "] " + super.description;
+        }
+
+        @Override
+        public String toString() {
+            return "T/" + super.getStatusIcon() + "/" + super.description;
+        }
     }
 }

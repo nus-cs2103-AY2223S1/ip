@@ -1,8 +1,12 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Parser {
@@ -67,7 +71,7 @@ public class Parser {
                 String s = words[1];
 
                 String desc = "";
-                Task t = new ToDo("test");
+                Task t = new Deadline.ToDo("test");
                 if (first.equals("deadline")) {
                     String[] arr = s.split("/by");
                     desc = arr[0];
@@ -99,16 +103,16 @@ public class Parser {
 
                 else if (first.equals("todo")) {
                     desc = words[1];
-                    t = new ToDo(desc);
+                    t = new Deadline.ToDo(desc);
                     lst.addNewTask(t);
                 }
                 lst.updateStorage(storage);
-                System.out.println("Got it. I've added this task: \n" + t.formatTask() + "\nNow you have " + lst.size() + " tasks in the list.");
+                System.out.println("Got it. I've added this duke.task: \n" + t.formatTask() + "\nNow you have " + lst.size() + " tasks in the list.");
             }
 
             else if (first.equals("delete")) {
                 if (words.length==1) {
-                    throw new DukeException("Please specify task to delete");
+                    throw new DukeException("Please specify duke.task to delete");
                 }
                 int index = Integer.parseInt(words[1]) - 1;
                 lst.deleteTask(index);
