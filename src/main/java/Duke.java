@@ -4,9 +4,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+    private TaskList tasks;
     int num = 1;
 
     ArrayList<String> arrayList = new ArrayList<>();
+
+    public Duke() {
+        Ui ui = new Ui();
+        try {
+            tasks = new TaskList();
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
 
     public static void main(String[] args) {
         String command;
@@ -20,23 +31,28 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         command = sc.nextLine();
         Duke duke = new Duke();
+
+//        TaskList tasks = new TaskList();
         while (true) {
             try {
                 if (command.equals("bye")) {
                     System.out.println("Bye. Hope to see you again soon!");
                     break;
-                } // Say goodbye.
-                duke.PrintCommand(command);
-                String list = duke.getList();
-                OutputStream out = new FileOutputStream(new File("D:\\cs2103t\\duke.txt"));
-                out.write(list.getBytes());
-                out.close();
+                }
+                if (command.equals("list")) {
+                    System.out.println(duke.tasks.get());
+                }
+                else {
+                    Storage storage = new Storage("D:\\cs2103t\\duke.txt");
+                    duke.printCommand(command);
+
+                    storage.push(duke.getList());
+                    duke.tasks.set(storage.load());
+                }
                 command = sc.nextLine();
-            } catch (DukeException e) {
+            } catch (DukeException | IOException e) {
                 System.out.println(e.toString());
                 command = sc.nextLine();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
     }
@@ -46,15 +62,8 @@ public class Duke {
     *
     * @param command.
     */
-    public void PrintCommand(String command) {
-        if (command.equals("list")) {
-            String list = "";
-            for (int k = 1; k < arrayList.size() + 1; k++) {
-                list += k + "." + arrayList.get(k - 1) + "\n";
-            }
-            System.out.println(list);
-        }
-        else if (command.split(" ")[0].equals("delete")) {
+    public void printCommand(String command) {
+        if (command.split(" ")[0].equals("delete")) {
             int number = Integer.parseInt(command.split(" ")[1]) - 1;
             num--;
             Delete task = new Delete(arrayList.get(number), num);
