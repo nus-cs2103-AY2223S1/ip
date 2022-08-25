@@ -33,4 +33,8 @@ public class Task {
     public void undoTask() {
         this.isDone = false;
     }
+
+    public boolean match(String keyword) {
+        return this.description.contains(keyword);
+    }
 }
