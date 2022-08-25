@@ -2,17 +2,12 @@ package duke.util;
 
 import duke.Duke;
 import duke.exception.*;
-import duke.legacy.Actionable;
-import duke.legacy.Command;
-import duke.legacy.CommandType;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.HashMap;
-import java.util.Map;
 
-public class CommandParser {
+public class Parser {
 
     public static final String INPUT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
@@ -98,7 +93,7 @@ public class CommandParser {
     }
 
     public static int getTaskIndexFromCommand(String input) throws DukeIndexMissingException {
-        int indexOfFirstWhiteSpace = CommandParser.getIndexOfFirstWhiteSpace(input);
+        int indexOfFirstWhiteSpace = Parser.getIndexOfFirstWhiteSpace(input);
         String tailSubString = input.substring(indexOfFirstWhiteSpace, input.length());
         tailSubString = tailSubString.replace(" ", "");
         if (tailSubString.isEmpty()) {

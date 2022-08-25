@@ -5,7 +5,7 @@ import duke.exception.DukeCommandFormatException;
 import duke.exception.DukeDateTimeFormatException;
 import duke.exception.DukeTaskDateTimeMissingException;
 import duke.exception.DukeTaskTitleMissingException;
-import duke.util.CommandParser;
+import duke.util.Parser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,23 +24,23 @@ public abstract class Task {
     public static Task createFromCommand(String command)
             throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
             DukeDateTimeFormatException {
-        String firstWord = CommandParser.getFirstWord(command);
+        String firstWord = Parser.getFirstWord(command);
 
         String taskTitle = "";
         LocalDateTime dateTime;
         switch (firstWord) {
         case (TODO_TASK_COMMAND_STRING):
-            taskTitle = CommandParser.getTaskTitle(command);
+            taskTitle = Parser.getTaskTitle(command);
             return new ToDoTask(taskTitle);
 
         case (EVENT_TASK_COMMAND_STRING):
-            taskTitle = CommandParser.getTaskTitle(command);
-            dateTime = CommandParser.getAtDate(command);
+            taskTitle = Parser.getTaskTitle(command);
+            dateTime = Parser.getAtDate(command);
             return new EventTask(taskTitle, dateTime);
 
         case (DEADLINE_TASK_COMMAND_STRING):
-            taskTitle = CommandParser.getTaskTitle(command);
-            dateTime = CommandParser.getByDate(command);
+            taskTitle = Parser.getTaskTitle(command);
+            dateTime = Parser.getByDate(command);
             return new DeadlineTask(taskTitle, dateTime);
 
         default:

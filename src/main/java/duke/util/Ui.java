@@ -1,10 +1,14 @@
 package duke.util;
 
-public class OutputFormatter {
+public class Ui {
     private static final String HORIZONTAL_BAR = "-------------------------";
     private static final String INDENTATION = "    ";
 
-    public static String formatOutput(String output) {
+    private static String formatOutput(String output) {
         return HORIZONTAL_BAR + '\n' + INDENTATION + output + '\n' + HORIZONTAL_BAR + '\n' + '\n';
+    }
+
+    public static void printOutput(String output) {
+        System.out.println(formatOutput(output));
     }
 }

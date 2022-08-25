@@ -1,15 +1,13 @@
 package duke;
 
 import duke.exception.*;
-import duke.task.Task;
-import duke.util.CommandParser;
-import duke.util.OutputFormatter;
+import duke.util.Parser;
+import duke.util.TaskList;
+import duke.util.Ui;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
@@ -17,30 +15,32 @@ public class Duke {
     public static final String DELIMITER = "/";
     public static final String BY_DATE_DELIMITER = "/by";
     public static final String AT_DATE_DELIMITER = "/at";
-    public static final String TAB = "    ";
     public static final String FILE_WRITING_DELIMITER = "|";
+    public static final String TAB = "    ";
 
-    private static final String FILE_PATH = "../saved_list.txt";
-    private static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
+    public static final String FILE_PATH = "../saved_list.txt";
+    public static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
             + "\nWhat can I help you?";
-    private static final String EXIT_OUTPUT_STRING = "Bye! See you next time!";
-    private static final String EXIT_COMMAND_STRING = "bye";
-    private static final String DISPLAY_LIST_COMMAND_STRING = "list";
-    private static final String MARK_DONE_COMMAND_STRING = "mark";
-    private static final String MARK_DONE_OUTPUT_STRING = "Good to hear that! I have marked this as done: ";
-    private static final String MARK_DONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"mark <index>\"";
-    private static final String MARK_UNDONE_COMMAND_STRING = "unmark";
-    private static final String MARK_UNDONE_OUTPUT_STRING = "Sure, I have marked this as not done yet";
-    private static final String MARK_UNDONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"unmark <index>\"";
-    private static final String GENERAL_ERROR_STRING = "Sorry, I don't understand that!";
-    private static final String DELETE_COMMAND_STRING = "delete";
-    private static final String DELETE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"delete <index>\"";
-    private static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
+    public static final String EXIT_OUTPUT_STRING = "Bye! See you next time!";
+    public static final String EXIT_COMMAND_STRING = "bye";
+    public static final String DISPLAY_LIST_COMMAND_STRING = "list";
+    public static final String MARK_DONE_COMMAND_STRING = "mark";
+    public static final String MARK_DONE_OUTPUT_STRING = "Good to hear that! I have marked this as done: ";
+    public static final String MARK_DONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"mark <index>\"";
+    public static final String MARK_UNDONE_COMMAND_STRING = "unmark";
+    public static final String MARK_UNDONE_OUTPUT_STRING = "Sure, I have marked this as not done yet";
+    public static final String MARK_UNDONE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"unmark <index>\"";
+    public static final String GENERAL_ERROR_STRING = "Sorry, I don't understand that!";
+    public static final String DELETE_COMMAND_STRING = "delete";
+    public static final String DELETE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"delete <index>\"";
+    public static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
 
-    List<Task> taskList;
+    private TaskList taskList;
+    private Ui ui;
 
     Duke() {
-        this.taskList = new ArrayList<>();
+        this.taskList = new TaskList();
+        this.ui = new Ui();
     }
 
     public static void main(String[] args) {
@@ -51,85 +51,6 @@ public class Duke {
 
     private void greet() {
         System.out.println(GREETING_MESSAGE);
-    }
-
-    private String getListInfo() {
-        int len = taskList.size();
-        if (len == 0) {
-            return "The list is empty.";
-        }
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < len; i++) {
-            stringBuilder
-                    .append(i + 1)
-                    .append(". ")
-                    .append(taskList.get(i));
-            if (i < len - 1) {
-                stringBuilder.append('\n' + TAB);
-            }
-        }
-        return stringBuilder.toString();
-    }
-
-    private String addNewTask(String input)
-            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
-            DukeDateTimeFormatException {
-        Task newTask = Task.createFromCommand(input);
-        if (newTask == null) {
-            return GENERAL_ERROR_STRING;
-        }
-        taskList.add(newTask);
-        saveFile();
-        return "added: " + newTask.toString();
-    }
-
-    private String markTaskDone(int index) throws DukeIndexOutOfBoundException {
-        if (index < 0 || index >= taskList.size()) {
-            throw new DukeIndexOutOfBoundException(MARK_DONE_ERROR_STRING);
-        } else {
-            Task targetTask = taskList.get(index);
-            targetTask.markDone();
-            saveFile();
-            return MARK_DONE_OUTPUT_STRING
-                    + "\n"
-                    + TAB
-                    + targetTask;
-        }
-    }
-
-    private String markTaskUndone(int index) throws DukeIndexOutOfBoundException {
-        if (index < 0 || index >= taskList.size()) {
-            throw new DukeIndexOutOfBoundException(MARK_UNDONE_ERROR_STRING);
-        } else {
-            Task targetTask = taskList.get(index);
-            targetTask.markUndone();
-            saveFile();
-            return MARK_UNDONE_OUTPUT_STRING
-                    + "\n"
-                    + TAB
-                    + targetTask;
-        }
-    }
-
-    private String deleteTask(int index) throws DukeIndexOutOfBoundException {
-        if (index < 0 || index >= taskList.size()) {
-            throw new DukeIndexOutOfBoundException(DELETE_ERROR_STRING);
-        } else {
-            Task removedTask = taskList.remove(index);
-            boolean onlyOneTask = taskList.size() == 1;
-            saveFile();
-            return DELETE_OUTPUT_STRING
-                    + "\n"
-                    + TAB
-                    + removedTask
-                    + "\n"
-                    + TAB
-                    + "There "
-                    + (onlyOneTask ? "is " : "are ")
-                    + taskList.size()
-                    + (onlyOneTask ? " task" : " tasks")
-                    + " in the list";
-        }
     }
 
     private void standBy() {
@@ -147,25 +68,25 @@ public class Duke {
 
             boolean commandFetched = false;
 
-            String firstWord = CommandParser.getFirstWord(nextLine);
+            String firstWord = Parser.getFirstWord(nextLine);
             int index;
 
             try {
                 switch (firstWord) {
                 case (MARK_DONE_COMMAND_STRING):
-                    index = CommandParser.getTaskIndexFromCommand(nextLine);
+                    index = Parser.getTaskIndexFromCommand(nextLine);
                     output = markTaskDone(index);
                     commandFetched = true;
                     break;
 
                 case (MARK_UNDONE_COMMAND_STRING):
-                    index = CommandParser.getTaskIndexFromCommand(nextLine);
+                    index = Parser.getTaskIndexFromCommand(nextLine);
                     output = markTaskUndone(index);
                     commandFetched = true;
                     break;
 
                 case (DELETE_COMMAND_STRING):
-                    index = CommandParser.getTaskIndexFromCommand(nextLine);
+                    index = Parser.getTaskIndexFromCommand(nextLine);
                     output = deleteTask(index);
                     commandFetched = true;
                     break;
@@ -207,29 +128,11 @@ public class Duke {
                 output = exception.getMessage();
             }
 
-            System.out.println(OutputFormatter.formatOutput(output));
+
         }
     }
 
     private void saveFile() {
-        File file = new File(FILE_PATH);
-        if (!file.exists()) {
-            //TODO Handle non-existence
-        }
 
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < taskList.size(); i++) {
-            stringBuilder
-                    .append(taskList.get(i).getFileRepresentation())
-                    .append('\n');
-        }
-
-        try {
-            String toBeWritten = stringBuilder.toString();
-            FileWriter fileWriter = new FileWriter(FILE_PATH);
-            fileWriter.write(toBeWritten, 0, toBeWritten.length());
-        } catch (IOException exception) {
-            System.out.println(exception.getMessage());
-        }
     }
 }
