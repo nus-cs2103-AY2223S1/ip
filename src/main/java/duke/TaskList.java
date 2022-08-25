@@ -14,6 +14,35 @@ public class TaskList {
         this.tasks = tasks;
     }
 
+    public TaskList() {
+        this(new ArrayList<>());
+    }
+
+    /**
+     * Finds tasks with keyword in description and prints to output
+     *
+     * @param keyword String keyword to search for in Task
+     */
+    public void findTasks(String keyword) {
+        TaskList temp = new TaskList();
+        for (Task task : tasks) {
+            if (task.containsKeyword(keyword)) {
+                temp.tasks.add(task);
+            }
+        }
+        System.out.println("Here are the matching tasks in your list:");
+        temp.showTasksPlain();
+    }
+
+    /**
+     * Shows the tasks in TaskList without additional comments
+     */
+    private void showTasksPlain() {
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.printf("%d. %s\n", i + 1, tasks.get(i));
+        }
+    }
+
     /**
      * Adds a Task to TaskList
      *
@@ -60,9 +89,7 @@ public class TaskList {
      */
     public void showTasks() {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < tasks.size(); i++) {
-            System.out.printf("%d. %s\n", i + 1, tasks.get(i));
-        }
+        showTasksPlain();
     }
 
     /**
@@ -87,4 +114,6 @@ public class TaskList {
         }
         return str.toString();
     }
+
+
 }

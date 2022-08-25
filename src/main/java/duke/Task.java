@@ -61,4 +61,8 @@ public abstract class Task {
     public String getTxtString() {
         return String.format("%b %s", isDone, description);
     }
+
+    public boolean containsKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
 }
