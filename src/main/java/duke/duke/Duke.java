@@ -9,17 +9,28 @@ import duke.ui.Ui;
 
 import java.io.IOException;
 
+/**
+ * Duke class that runs the program
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Duke
+     * @param filePath
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
     }
 
+    /**
+     * Runs the entire program
+     * @throws IOException
+     */
     public void run() throws IOException {
         ui.showGreetings();
         tasks = new TaskList(storage.loadFile());
@@ -35,6 +46,12 @@ public class Duke {
             }
         }
     }
+
+    /**
+     * The main Duke method
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
         new Duke("data/duke.txt").run();
     }
