@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -98,21 +101,27 @@ public class Control {
             }
         }
 
-        public void evalDeadline(String[] subCmd) throws EmptyDescriptionException {
-            String tmp = String.join(" ", subCmd);
-            if (tmp.equals("")) {
-                throw new EmptyDescriptionException();
-            } else {
+    public void evalDeadline(String[] subCmd) throws DukeException {
+        String tmp = String.join(" ", subCmd);
+        if (tmp.equals("")) {
+            throw new EmptyDescriptionException();
+        } else {
+            try {
                 String[] tempSplit = tmp.split(" /by ");
-                Deadline tmpTask = new Deadline(tempSplit[0], tempSplit[1]);
+                LocalDate tempDate = LocalDate.parse(tempSplit[1], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                Deadline tmpTask = new Deadline(tempSplit[0], tempDate);
 
                 this.addDir(tmpTask);
                 System.out.println(String.format(
                         "Got it. I've added this task:\n\t%s\nNow you have %d task%s in the list.\n",
                         tmpTask, this.dir.size(), this.dir.size() == 1 ? "" : "s"));
+            } catch (DateTimeParseException e) {
+                throw new DukeException("Please change Date format to dd/mm/yyyy");
             }
 
         }
+
+    }
 
         public void evalEvent(String[] subCmd) throws EmptyDescriptionException{
             String tmp = String.join(" ", subCmd);
