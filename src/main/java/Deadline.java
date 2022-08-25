@@ -4,17 +4,17 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     private LocalDate by;
 
-    public Deadline(String taskDescription, String by) {
+    public Deadline(String taskDescription, LocalDate by) {
         super(taskDescription);
-        this.by = LocalDate.parse(by);
+        this.by = by;
     }
 
-    public static Deadline DeadlineFromData(String taskFromData, boolean isDone) throws DukeException {
-        String[] deadlineDesc = taskFromData.split("\\|", 2);
+    public static Deadline DeadlineFromFile(String taskFromFile, boolean isDone) throws DukeException {
+        String[] deadlineDesc = taskFromFile.split("\\|", 2);
         if (deadlineDesc.length != 2 || deadlineDesc[0].equals("") || deadlineDesc[1].equals("")) {
             throw new DukeException("OOPS! A deadline must contain a description and a due date.");
         }
-        Deadline result = new Deadline(deadlineDesc[0], deadlineDesc[1]);
+        Deadline result = new Deadline(deadlineDesc[0], LocalDate.parse(deadlineDesc[1]));
         result.isDoneSetter(isDone);
         return result;
     }
