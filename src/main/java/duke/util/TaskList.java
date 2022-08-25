@@ -6,11 +6,11 @@ import java.util.ArrayList;
 
 public class TaskList {
     // Class Fields
-    public final ArrayList<Task> tasklist;
+    public final ArrayList<Task> tasks;
 
     // Constructor
     public TaskList() {
-        tasklist = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -18,7 +18,7 @@ public class TaskList {
      * @param task the task to add
      */
     public void addTask(Task task) {
-        tasklist.add(task);
+        tasks.add(task);
     }
 
     /**
@@ -26,7 +26,7 @@ public class TaskList {
      * @param taskNum the index of task to be deleted
      */
     public void deleteTask(int taskNum) {
-        tasklist.remove(taskNum - 1);
+        tasks.remove(taskNum - 1);
     }
 
     /**
@@ -35,9 +35,9 @@ public class TaskList {
      */
     public String printList() {
         StringBuilder output = new StringBuilder();
-        for (int i = 0; i < tasklist.size(); ++i) {
-            Task curr = tasklist.get(i);
-            if (i == tasklist.size() - 1) {
+        for (int i = 0; i < tasks.size(); ++i) {
+            Task curr = tasks.get(i);
+            if (i == tasks.size() - 1) {
                 output.append(i + 1).append(". ").append(curr.toString());
             } else {
                 output.append(i + 1).append(". ").append(curr.toString()).append("\n");
@@ -52,7 +52,7 @@ public class TaskList {
      * @return the status string of the task in the Checklist in String format
      */
     public String printTaskStatus(int idx) {
-        Task curr = tasklist.get(idx);
+        Task curr = tasks.get(idx);
         return curr.toString();
     }
 }

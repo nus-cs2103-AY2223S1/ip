@@ -6,21 +6,19 @@ import duke.ui.Ui;
 import duke.util.TaskList;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class ListCommand extends Command {
-    private final String input;
+    private final ArrayList<String> words;
 
-    public ListCommand(String input) {
-        this.input = input;
+    public ListCommand(ArrayList<String> words) {
+        this.words = words;
     }
 
-    public void execute(Storage storage, TaskList tasks, Ui ui) throws DukeException {
-        ArrayList<String> words = new ArrayList<>(Arrays.asList(input.split(" ")));
+    public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
         if (words.size() == 0) {
             System.out.println(ui.SPACER + "\n"
                     + "Here's your list ^3^:\n"
-                    + tasks.printList() + "\n"
+                    + tasklist.printList() + "\n"
                     + ui.SPACER);
         } else {
             throw new DukeException(ui.SPACER + "\n"

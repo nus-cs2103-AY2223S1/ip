@@ -9,25 +9,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MarkCommand extends Command {
-    private final String input;
+    private final ArrayList<String> words;
+    private final String firstWord;
 
-    public MarkCommand(String input) {
-        this.input = input;
+    public MarkCommand(ArrayList<String> words, String firstWord) {
+        this.words = words;
+        this.firstWord = firstWord;
     }
 
-    public void execute(Storage storage, TaskList tasks, Ui ui) throws DukeException {
-        ArrayList<String> words = new ArrayList<>(Arrays.asList(input.split(" ")));
-        switch (input) {
+    public void execute(Storage storage, TaskList tasklist, Ui ui) throws DukeException {
+        switch (firstWord) {
         case "mark":
             // Implement error for empty mark argument
             int taskNum = Integer.parseInt(words.get(0));
-            if (taskNum > 0 && taskNum <= tasks.tasklist.size()) {
-                tasks.tasklist.get(taskNum - 1).markDone();
+            if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
+                tasklist.tasks.get(taskNum - 1).markDone();
                 System.out.println(ui.SPACER + "\n"
                         + "Great Job on completing this task! ^.^ :\n"
-                        + tasks.printTaskStatus(taskNum - 1) + "\n"
+                        + tasklist.printTaskStatus(taskNum - 1) + "\n"
                         + ui.SPACER);
-            } else if (tasks.tasklist.size() == 0) {
+            } else if (tasklist.tasks.size() == 0) {
                 throw new DukeException(ui.SPACER + "\n"
                         + "There's nothing in your list to mark! T^T\n"
                         + ui.SPACER);
@@ -40,13 +41,13 @@ public class MarkCommand extends Command {
         case "unmark":
             // Implement error for empty unmark argument
             taskNum = Integer.parseInt(words.get(0));
-            if (taskNum > 0 && taskNum <= tasks.tasklist.size()) {
-                tasks.tasklist.get(taskNum - 1).markUndone();
+            if (taskNum > 0 && taskNum <= tasklist.tasks.size()) {
+                tasklist.tasks.get(taskNum - 1).markUndone();
                 System.out.println(ui.SPACER + "\n"
                         + "Grrr, remember to finish your task! =3=:\n"
-                        + tasks.printTaskStatus(taskNum - 1) + "\n"
+                        + tasklist.printTaskStatus(taskNum - 1) + "\n"
                         + ui.SPACER);
-            } else if (tasks.tasklist.size() == 0) {
+            } else if (tasklist.tasks.size() == 0) {
                 throw new DukeException(ui.SPACER + "\n"
                         + "There's nothing in your list to unmark! T^T\n"
                         + ui.SPACER);
@@ -56,9 +57,6 @@ public class MarkCommand extends Command {
                         + ui.SPACER);
             }
             break;
-        default:
-            throw new DukeException("Sorry, I don't understand. T^T\n"
-                    + "Please start your command with list, mark, unmark, todo, deadline, event or bye. :')\n");
         }
     }
 }
