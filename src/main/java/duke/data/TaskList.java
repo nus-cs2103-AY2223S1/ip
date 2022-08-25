@@ -33,19 +33,19 @@ public class TaskList {
                 boolean isDone = Integer.parseInt(line.substring(4, 5)) != 0;
                 String action = line.substring(8);
                 switch (type) {
-                    case "T":
-                        list.add(new TodoTask(action, isDone));
-                        break;
-                    case "D":
-                        int i = action.indexOf('|');
-                        String date = action.substring(i + 1).strip();
-                        list.add(new DeadlineTask(action.substring(0, i).strip(), isDone, date));
-                        break;
-                    case "E":
-                        i = action.indexOf('|');
-                        date = action.substring(i + 1).strip();
-                        list.add(new EventTask(action.substring(0, i).strip(), isDone, date));
-                        break;
+                case "T":
+                    list.add(new TodoTask(action, isDone));
+                    break;
+                case "D":
+                    int i = action.indexOf('|');
+                    String date = action.substring(i + 1).strip();
+                    list.add(new DeadlineTask(action.substring(0, i).strip(), isDone, date));
+                    break;
+                case "E":
+                    i = action.indexOf('|');
+                    date = action.substring(i + 1).strip();
+                    list.add(new EventTask(action.substring(0, i).strip(), isDone, date));
+                    break;
                 }
             }
         } catch (DukeException | FileNotFoundException e) {
