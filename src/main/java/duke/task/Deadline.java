@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Deadline is a subclass of Task indicates task to be expired.
+ */
 public class Deadline extends Task {
     private static final String TASK_TYPE = "D";
 

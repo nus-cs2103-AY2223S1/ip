@@ -13,14 +13,32 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
+/**
+ * Add Tasks into TaskList depending on the relevant command given.
+ */
 public class AddCommand extends Command {
     public static final boolean IS_EXIT = false;
-    public final String fullCommand;
+    private final String fullCommand;
 
+    /**
+     * Constructs a AddCommand instance with the provided whole fullCommand input by the user.
+     *
+     * @param fullCommand fullCommand to be split into command and the task provided.
+     */
     public AddCommand(String fullCommand) {
         this.fullCommand = fullCommand;
     }
 
+    /**
+     * Split the fullCommand into command, task description, date and time,
+     * then passes the variables to create corresponding Command.
+     *
+     * @param taskList the TaskList to be added with new Task.
+     * @param ui unused for AddCommand.
+     * @param storage the Storage to write new Task into file.
+     * @throws EmptyTaskException if the task description is an empty String or null.
+     * @throws DateTimeParseException if the date or time given is in the wrong format.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
@@ -64,9 +82,6 @@ public class AddCommand extends Command {
             System.out.println("Got it. I've added this task:\n" + ui.beautyWrapTask(task)
                     + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n");
 
-            /* * *
-             *  Write file in duke.txt
-             * * */
             String list = "";
             for (Task t : taskList.getList()) {
                 list += t.toString();
@@ -80,18 +95,23 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Returns false as Add is not a terminating Command.
+     *
+     * @return false.
+     */
     public boolean isExit() {
         return this.IS_EXIT;
     }
 
-    public LocalTime validateTimeString(String timeString) {
+    private LocalTime validateTimeString(String timeString) {
         //desired date format "1800"
         String validatedTimeString = timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + ":" + "00";
         LocalTime time = LocalTime.parse(validatedTimeString);
         return time;
     }
 
-    public LocalDate validateDateString(String dateString) {
+    private LocalDate validateDateString(String dateString) {
         LocalDate date = LocalDate.parse(dateString);
         return date;
     }
