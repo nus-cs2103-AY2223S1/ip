@@ -1,11 +1,14 @@
 package Sakura;
 
-import java.io.IOException;
 import java.util.List;
 
 public class Ui {
     static String DIV = "________________________________________________________________";
     static String DIV2 = "============================================================";
+
+    public void printDiv() {
+        System.out.println("\t" + DIV);
+    }
 
     void greet() {
         String logo =     "   ▄████████    ▄████████    ▄█   ▄█▄ ███    █▄     ▄████████    ▄████████             ▄■▄          \n"
@@ -25,7 +28,7 @@ public class Ui {
         System.out.println("\t" + DIV2 + "\n");
     }
 
-    void showExit() {
+    public void showExit() {
         System.out.println("\tBye Senpai! It was a pleasure serving you, see you again soon!");
         System.out.println("\t" + DIV2 + "\n");
     }
