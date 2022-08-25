@@ -19,7 +19,6 @@ public class Dobby {
      *
      * @param filePath Path of file to be used for storing tasks.
      */
-    @SuppressWarnings("checkstyle:EmptyCatchBlock")
     public Dobby(String filePath) {
         dobbyList = new DobbyList();
         ui = new UserInput();

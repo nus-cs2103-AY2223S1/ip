@@ -17,3 +17,5 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 src/main/dobbyList.txt
 src/main/test.txt
+
+dobbyList.txt

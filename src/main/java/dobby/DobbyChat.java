@@ -115,6 +115,12 @@ public class DobbyChat {
     }
 
     /**
+     * Error message when no date is added after task description.
+     */
+    public static void noDate() {
+        printChat("Please add the date after the task name using /at or /by");
+    }
+    /**
      * Error message when false command is entered.
      */
     public static void unknown() {
@@ -196,5 +202,13 @@ public class DobbyChat {
      */
     public static void wrongDateFormat() {
         printChat("Master, please write dates using the YYYY-MM-DD HHMM format");
+    }
+
+    /**
+     * Method used to debug
+     * @param i int to print out
+     */
+    public static void error(int i) {
+        System.out.println("Error " + i);
     }
 }

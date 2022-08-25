@@ -33,8 +33,20 @@ public class UserInput {
             } else if (taskType.equals("todo") || taskType.equals("find")) {
                 desc = rest;
             } else if (taskType.equals("deadline") || taskType.equals("event")) {
-                date = Parser.getDate(rest);
-                desc = Parser.getDesc(rest);
+                String dateType = Parser.getDateType(rest);
+                if (dateType.equals("noDate")) {
+                    date = "noDate";
+                    desc = Parser.getDesc(rest);
+                } else if (taskType.equals("deadline") && !(dateType.equals("by"))) {
+                    date = "wrongDeadline";
+                    desc = Parser.getDesc(rest);
+                } else if(taskType.equals("event") && !(dateType.equals("at"))) {
+                    date = "wrongEvent";
+                    desc = Parser.getDesc(rest);
+                } else {
+                    date = Parser.getDate(rest);
+                    desc = Parser.getDesc(rest);
+                }
             }
         }
         return taskType;

@@ -2,9 +2,7 @@ package dobby.commands;
 
 import java.util.Objects;
 
-import dobby.DobbyChat;
-import dobby.DobbyList;
-import dobby.UserInput;
+import dobby.*;
 import dobby.tasks.Deadline;
 import dobby.tasks.Event;
 import dobby.tasks.Todo;
@@ -25,32 +23,37 @@ public class TaskCommand extends Command {
             String cmd = ui.getTaskType();
             String desc = ui.getDesc();
             String date;
-            if (desc.isBlank()) {
-                DobbyChat.noTaskDesc();
-            }
-            if (cmd.equals("todo")) {
-                Todo newTodo = new Todo(desc);
-                dl.add(newTodo);
-                DobbyChat.added(newTodo, dl);
+            if (desc.equals("")) {
+                DobbyChat.noDate();
             } else {
-                date = ui.getDate();
-                if (Objects.equals(date, "wrongDateFormat")) {
-
-                } else if (Objects.equals(date, "noDate")) {
-                    if (cmd.equals("event")) {
-                        DobbyChat.noEventDate();
-                    } else {
-                        DobbyChat.noDeadlineDate();
-                    }
+                if (cmd.equals("todo")) {
+                    Todo newTodo = new Todo(desc);
+                    dl.add(newTodo);
+                    DobbyChat.added(newTodo, dl);
                 } else {
-                    if (cmd.equals("deadline")) {
-                        Deadline newDeadline = new Deadline(desc, date);
-                        dl.add(newDeadline);
-                        DobbyChat.added(newDeadline, dl);
+                    date = ui.getDate();
+                    if (Objects.equals(date, "wrongDateFormat")) {
+                        DobbyChat.wrongDateFormat();
+                    } else if(date.equals("wrongDeadline")) {
+                        DobbyChat.noDeadlineDate();
+                    } else if(date.equals("wrongEvent")) {
+                        DobbyChat.noEventDate();
+                    } else if (Objects.equals(date, "noDate")) {
+                        if (cmd.equals("event")) {
+                            DobbyChat.noEventDate();
+                        } else {
+                            DobbyChat.noDeadlineDate();
+                        }
                     } else {
-                        Event newEvent = new Event(desc, date);
-                        dl.add(newEvent);
-                        DobbyChat.added(newEvent, dl);
+                        if (cmd.equals("deadline")) {
+                            Deadline newDeadline = new Deadline(desc, date);
+                            dl.add(newDeadline);
+                            DobbyChat.added(newDeadline, dl);
+                        } else {
+                            Event newEvent = new Event(desc, date);
+                            dl.add(newEvent);
+                            DobbyChat.added(newEvent, dl);
+                        }
                     }
                 }
             }
