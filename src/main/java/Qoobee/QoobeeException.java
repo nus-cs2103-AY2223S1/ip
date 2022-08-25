@@ -1,3 +1,5 @@
+package Qoobee;
+
 public class QoobeeException extends Exception {
 
     public QoobeeException(String message) {

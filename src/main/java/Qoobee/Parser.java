@@ -1,3 +1,5 @@
+package Qoobee;
+
 public class Parser {
 
     protected Ui ui;

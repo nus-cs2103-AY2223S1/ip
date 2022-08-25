@@ -1,3 +1,5 @@
+package Qoobee;
+
 import java.util.Scanner;
 
 public class Ui {
