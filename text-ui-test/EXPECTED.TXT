@@ -6,8 +6,8 @@ You can input stuff that you want me to write on this grandma-aged notebook.
 1. Type the type of a task followed by its content and time to add it into the list.
    There are three types: todo, deadline and event.
    - To add todo, type 'todo the content' such as 'todo do homework'.
-   - To add deadline, type 'deadline the content /the time' such as 'deadline do homework /9am'.
-   - To add event, type 'event the content /the time' such as 'event do homework /9am'.
+   - To add deadline, type 'deadline the content /year-month-day-time' such as 'deadline do homework /2022-08-22-1800'.
+   - To add event, type 'event the content /year-month-day-time' such as 'deadline do homework /2022-08-22-1800'.
 2. Type 'list' then I'll show all the existing lines to you.
 3. Type 'mark + the index of an existing task' to marks it as done. Like 'mark 1'.
 4. Type 'unmark + the index of an existing task' to unmark a task.
@@ -15,16 +15,15 @@ You can input stuff that you want me to write on this grandma-aged notebook.
 -----------------------------------------------------------------------------
 Actually why not just do me a favour? Type 'bye' in the console and free both of us.
 Ummm...what is that? I don't get it.
-There is no task in the list.
-You can't delete a task that's not in the list.
+1. [D][X] do homework by 2022-12-12 12:00
+Okay...task: do homework is deleted.
 Hey, be careful.
 The index must be between 1 and the size of the list, alright?
 Okay...noted.
 play basketball...Huh? Hope you can remember it.
 Okay...noted.
 do homework...Huh? Hope you can remember it.
-Okay...noted.
-meet with friends...Huh? Hope you can remember it.
+Hmmmm...I'm not sure if that's a valid time. Do you live on the earth or...?
 Do I have to teach you again the format of creating a task?
 Do I have to teach you again the format of creating a task?
 Type 'mark + the index of the task' if that's what you want.
@@ -34,9 +33,7 @@ Okay...task: do homework is marked as done.
 What do you mean? This task is already marked as done.
 Okay...task: play basketball is unmarked.
 1. [T][ ] play basketball
-2. [D][X] do homework by 9am 
-3. [E][ ] meet with friends at 3pm 
+2. [D][X] do homework by 2022-12-12 12:00
 Okay...task: play basketball is deleted.
-1. [D][X] do homework by 9am 
-2. [E][ ] meet with friends at 3pm 
+1. [D][X] do homework by 2022-12-12 12:00
 Thanks a lot. I'm gonna have some carrot tea later. See you...

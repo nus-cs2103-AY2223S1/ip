@@ -8,8 +8,6 @@ import java.io.File;
 import java.nio.file.Files;
 import java.io.FileWriter;
 import java.time.DateTimeException;
-import java.util.Scanner;
-import java.util.ArrayList;
 import java.time.LocalDateTime;
 
 /**
@@ -19,320 +17,80 @@ import java.time.LocalDateTime;
  * @author Jiang Zhimeng
  */
 public class Rabbit {
-    private static final String greet = "-----------------------------------------------------------------------------\n"
-            + "-----------------------------------------------------------------------------\n"
-            + "Yo...nice to meet you. This is rabbit...Ughhhhh I hate this job.\n"
-            + "You can input stuff that you want me to write on this grandma-aged notebook.\n"
-            + "-----------------------------------------------------------------------------\n"
-            + "1. Type the type of a task followed by its content and time to add it into the list.\n"
-            + "   There are three types: todo, deadline and event.\n"
-            + "   - To add todo, type 'todo the content' such as 'todo do homework'.\n"
-            + "   - To add deadline, type 'deadline the content /year-month-day-time' "
-            + "such as 'deadline do homework /2022-08-22-1800'.\n"
-            + "   - To add event, type 'event the content /year-month-day-time' "
-            + "such as 'deadline do homework /2022-08-22-1800'.\n"
-            + "2. Type 'list' then I'll show all the existing lines to you.\n"
-            + "3. Type 'mark + the index of an existing task' to marks it as done. Like 'mark 1'.\n"
-            + "4. Type 'unmark + the index of an existing task' to unmark a task.\n"
-            + "5. Type 'delete + the index of an existing task' to delete it.\n"
-            + "-----------------------------------------------------------------------------\n"
-            + "Actually why not just do me a favour? Type 'bye' in the console and free both of us.";
 
-    private static final String bye = "Thanks a lot. I'm gonna have some carrot tea later. See you...";
-    // initialise the list that stores tasks.
-    /** a list that keeps all the tasks */
-    private static ArrayList<Task> list = new ArrayList<>();
+    private Ui ui;
+    private Storage storage;
+    private TaskList taskList;
 
-    final static String dir = System.getProperty("user.dir");
-    /** path of data.txt */
-    private static Path path = Paths.get(dir, "data", "data.txt");
-
-    private enum TaskType {
-        TODO, DEADLINE, EVENT;
+    public Rabbit() {
+        this.ui = new Ui();
+        this.storage = new Storage();
+        this.taskList = new TaskList();
     }
 
-    /**
-     *  Adds the input lines the user types into
-     *  a list with a size no more than 100.
-     *
-     * @param task the type of the task that is to be added.
-     * @param input the content (and the time) of the task the user inputs.
-     */
-    private static void addToList(TaskType task, String input) throws AddToListException {
-        if (list.size() == 100) {
-            // throws an exception when there are already 100 lines in
-            // the list when the user is trying to input a new line.
-            throw new AddToListException(AddToListException.Type.FULL);
+    private void run() {
+        try {
+            this.storage.importData(this.taskList);
+
+        } catch (ImportDataException e) {
+            this.ui.showException(e);
         }
 
-        try {
-            // initialise the task to be added
-            Task added = new Todo("");
-            String content = "";
-            LocalDateTime time = LocalDateTime.now();
-            switch (task) {
-            case TODO:
-                content = input.substring(5, input.length());
-                added = new Todo(content);
-                list.add(added);
-                break;
-            case DEADLINE:
-                // the content and time of the task
-                String deadline = input.substring(9, input.length());
-                // the index of the character in the string before which is the content
-                int i = scanContent(deadline);
-                content = deadline.substring(0, i - 1);
-                time = scanTime(deadline.substring(i + 1, deadline.length()));
-                added = new Deadline(content, time);
-                list.add(added);
-                break;
-            case EVENT:
-                // the content and time of the task
-                String event = input.substring(6, input.length());
-                // the index of the character in the string before which is the content
-                int j = scanContent(event);
-                content = event.substring(0, j - 1);
-                time = scanTime(event.substring(j + 1, event.length()));
-                added = new Event(event.substring(0, j - 1), time);
-                list.add(added);
+        this.ui.showGreet();
+
+        while (true) {
+            String input = this.ui.readCommand();
+            if (input.equals("bye")) {
+                this.ui.showBye();
+                this.ui.endCommand();
                 break;
             }
-            System.out.println("Okay...noted.\n" + added.getContent() + "...Huh? Hope you can remember it.");
-        } catch (StringIndexOutOfBoundsException e) {
-            // if the format is wrong, there will be a
-            // StringIndexOutOfBoundsException, catch it
-            // and throw an AddToListException
-            throw new AddToListException(AddToListException.Type.FORMAT);
-        }
-    }
-
-    /**
-     * Prints the list of current tasks
-     * when the user inputs "list".
-     */
-    private static void list() {
-        if (list.size() == 0) {
-            System.out.println("There is no task in the list.");
-        }
-        for (int i  = 0; i < list.size(); i++ ) {
-            int index = i + 1;
-            System.out.println(index + ". " + list.get(i));
-        }
-    }
-
-    /**
-     * Marks the task at index i as done
-     *
-     * @param input the user's input.
-     */
-    private static void mark(String input) throws MarkUnmarkException {
-        try {
-            Integer.parseInt(input.substring(5));
-        } catch (NumberFormatException ex) {
-            // if input is mark + a non-integer,
-            // throws an exception due to incorrect format
-            throw new MarkUnmarkException(MarkUnmarkException.Type.MARKFORMAT);
-        }
-
-        int i = Integer.parseInt(input.substring(5));
-
-        if (i > list.size() || i <= 0) {
-            throw new MarkUnmarkException(MarkUnmarkException.Type.INDEX);
-        }
-
-        if (list.get(i - 1).isDone()) {
-            throw new MarkUnmarkException(MarkUnmarkException.Type.MARKREPEAT);
-        }
-
-        System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is marked as done.");
-        list.get(i - 1).markDone();
-    }
-
-    /**
-     * Unmarks the task at index i as not done
-     *
-     * @param input the user's input.
-     */
-    private static void unmark(String input) throws MarkUnmarkException {
-        try {
-            Integer.parseInt(input.substring(7));
-        } catch (NumberFormatException ex) {
-            // if input is unmark + a non-integer,
-            // throws an exception due to incorrect format
-            throw new MarkUnmarkException(MarkUnmarkException.Type.UNMARKFORMAT);
-        }
-
-        int i = Integer.parseInt(input.substring(7));
-        if (i > list.size() || i <= 0) {
-            throw new MarkUnmarkException(MarkUnmarkException.Type.INDEX);
-        }
-
-        if (!list.get(i - 1).isDone()) {
-            throw new MarkUnmarkException(MarkUnmarkException.Type.UNMARKREPEAT);
-        }
-
-        System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is unmarked.");
-        list.get(i - 1).unmark();
-    }
-
-    /**
-     * Returning the first word of the string.
-     *
-     * @param input the user's input
-     * @return the index of the character in the string
-     * before which is the first word
-     */
-    private static int scanFunction(String input) {
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == ' ') {
-                return i + 1;
-            }
-        }
-       return input.length();
-    }
-
-    /**
-     * Returns the index that separates the content
-     * from the time of the task when the user creates a task.
-     *
-     * @param input the string after the task type in the input.
-     * @return the index of the character in the string before which.
-     * is the content, after which is the time, -1 if the format is wrong.
-     */
-    private static int scanContent(String input) {
-        for (int i = 0; i < input.length() - 1; i++) {
-            if (input.charAt(i) == ' ' && input.charAt(i + 1) == '/') {
-                return i + 1;
-            }
-        }
-        return -1;
-    }
-
-    /**
-     * Returns localDataTime according to the input.
-     *
-     * @param input the time input from the user.
-     * @return a LocalDataTime instance.
-     */
-    private static LocalDateTime scanTime(String input) throws AddToListException {
-        try {
-            int year = Integer.parseInt(input.substring(0,4));
-            int month = Integer.parseInt(input.substring(5,7));
-            int day = Integer.parseInt(input.substring(8,10));
-            int hour = Integer.parseInt(input.substring(11,13));
-            int minute = Integer.parseInt(input.substring(13,15));
-            return LocalDateTime.of(year, month, day, hour, minute);
-        } catch (NumberFormatException e) {
-            // if input is delete + a non-integer,
-            // throws an exception due to incorrect format
-            throw new AddToListException(AddToListException.Type.FORMAT);
-        } catch (DateTimeException e) {
-            throw new AddToListException(AddToListException.Type.TIMEFORMAT);
-        }
-    }
-
-    /**
-     * Deletes a specified task from the list.
-     *
-     * @param input The input from the user intended to delete a task.
-     * @throws DeleteException The task to be deleted is not in the list.
-     */
-    private static void delete(String input) throws DeleteException {
-        try {
-            Integer.parseInt(input.substring(7));
-        } catch (NumberFormatException ex) {
-            // if input is delete + a non-integer,
-            // throws an exception due to incorrect format
-            throw new DeleteException(DeleteException.Type.FORMAT);
-        }
-
-        int i = Integer.parseInt(input.substring(7));
-        if (i > list.size() || i <= 0) {
-            // the index is not within the bound of the list
-            throw new DeleteException(DeleteException.Type.INDEX);
-        }
-
-        System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is deleted.");
-        list.remove(i - 1);
-    }
-
-    /**
-     * Imports a task from data.txt into the list.
-     *
-     * @param input the line of the task to be imported.
-     * @throws ImportDataException
-     * @throws AddToListException
-     */
-    private static void importData(String input) throws ImportDataException, AddToListException {
-        char type = input.charAt(0);
-        /** indicates the index of the second "|" */
-        int contentBreak = 0;
-
-        if (type == 'E' || type == 'D') {
-            for (int i = 2; i < input.length(); i++) {
-                if (input.charAt(i) == '|') {
-                    contentBreak = i;
-                }
-            }
-
+            // the function that the input is calling
+            String function = input.substring(0, Parser.parseFunction(input));
             try {
-                boolean isDone = input.charAt(2) == 'X';
-                String content = input.substring(4, contentBreak);
-                LocalDateTime time = scanTime(input.substring(contentBreak + 1, input.length()));
-                if (type == 'E') {
-                    list.add(new Event(content, time, isDone));
+                String content = "";
+                switch (function) {
+                case "list":
+                    this.taskList.list();
+                    break;
+                case "mark ":
+                    this.taskList.mark(input);
+                    this.storage.exportData(this.taskList);
+                    this.ui.showMark();
+                    break;
+                case "unmark ":
+                    this.taskList.unmark(input);
+                    this.storage.exportData(this.taskList);
+                    this.ui.showUnmark();
+                    break;
+                case "todo ":
+                    content = this.taskList.addToList(TaskList.TaskType.TODO, input);
+                    this.storage.exportData(this.taskList);
+                    this.ui.showAddToList(content);
+                    break;
+                case "deadline ":
+                    content = this.taskList.addToList(TaskList.TaskType.DEADLINE, input);
+                    this.storage.exportData(this.taskList);
+                    this.ui.showAddToList(content);
+                    break;
+                case "event ":
+                    content = this.taskList.addToList(TaskList.TaskType.EVENT, input);
+                    this.storage.exportData(this.taskList);
+                    this.ui.showAddToList(content);
+                    break;
+                case "delete ":
+                    this.taskList.delete(input);
+                    this.storage.exportData(this.taskList);
+                    this.ui.showDelete();
+                    break;
+                default:
+                    // the user keyed in an invalid input
+                    throw new InvalidInputException();
                 }
-                if (type == 'D') {
-                    list.add(new Deadline(content, time, isDone));
-                }
-            } catch (StringIndexOutOfBoundsException e) {
-                throw new ImportDataException();
-            } catch (AddToListException e) {
-                throw e;
-            }
 
-        } else if (type == 'T') {
-            boolean isDone = input.charAt(2) == 'X';
-            String content = input.substring(4, input.length());
-            list.add(new Todo(content, isDone));
-        } else {
-            throw new ImportDataException();
-        }
-    }
-
-    /**
-     * Exports tasks from the list into data.txt
-     *
-     * @throws ExportDataException
-     */
-    private static void exportData() throws ExportDataException {
-        try {
-            FileWriter fw = new FileWriter(path.toString());
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i) instanceof Todo) {
-                    Todo todo = (Todo) list.get(i);
-                    fw.write("T") ;
-                    fw.write("|" + (todo.isDone() ? "X" : " ")
-                            + "|"  + todo.getContent() + "\n");
-                } else if (list.get(i) instanceof Event) {
-                    Event event = (Event) list.get(i);
-                    fw.write("E") ;
-                    fw.write("|" + (event.isDone() ? "X" : " ")
-                            + "|"  + event.getContent()
-                    + "|" + event.getTime() + "\n");
-                } else if (list.get(i) instanceof Deadline) {
-                    Deadline deadline = (Deadline) list.get(i);
-                    fw.write("D") ;
-                    fw.write("|" + (deadline.isDone() ? "X" : " ")
-                            + "|"  + deadline.getContent()
-                            + "|" + deadline.getTime() + "\n");
-                } else {
-                    throw new ExportDataException();
-                }
+            } catch (RabbitException e) {
+                this.ui.showException(e);
             }
-            fw.close();
-        } catch (IOException e) {
-            System.out.println("Error when writing into data.txt.");
         }
     }
 
@@ -342,6 +100,9 @@ public class Rabbit {
      * @param args The commandline arguments.
      */
     public static void main(String[] args) {
+        Rabbit rabbit = new Rabbit();
+        rabbit.run();
+        /*
         // if directory ./date does not exist, create it
         if (!Files.exists(path.getParent())) {
             try {
@@ -370,9 +131,7 @@ public class Rabbit {
                 System.out.println("Error when creating data.txt.");
                 return;
             }
-        } catch (ImportDataException e) {
-            System.out.println(e);
-        } catch (AddToListException e) {
+        } catch (RabbitException e) {
             System.out.println(e);
         }
 
@@ -416,17 +175,11 @@ public class Rabbit {
                     throw new InvalidInputException();
                 }
                 exportData();
-            } catch (MarkUnmarkException e) {
-                System.out.println(e);
-            } catch (AddToListException e) {
-                System.out.println(e);
-            } catch (DeleteException e) {
-                System.out.println(e);
-            } catch (InvalidInputException e) {
-                System.out.println(e);
-            } catch (ExportDataException e) {
+            } catch (RabbitException e) {
                 System.out.println(e);
             }
         }
+
+         */
     }
 }
