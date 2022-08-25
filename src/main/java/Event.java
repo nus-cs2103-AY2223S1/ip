@@ -1,6 +1,9 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
   /** Time interval of Event */
-  private String timeInterval;
+  private LocalDateTime timeInterval;
 
   /**
    * Constructor to create a new Event
@@ -10,7 +13,9 @@ public class Event extends Task {
    */
   public Event(boolean isDone, String description, String timeInterval) {
     super(isDone, description);
-    this.timeInterval = timeInterval;
+    String inputPattern = "yyyy-dd-MM HH:mm";
+    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputPattern);
+    this.timeInterval = LocalDateTime.parse(timeInterval, inputFormatter);
   }
 
   public static Event createEvent(String description, String timeInterval) {
@@ -33,6 +38,8 @@ public class Event extends Task {
    */
   @Override
   public String toString() {
-    return "[E]" + super.toString() + " (at: " + this.timeInterval + ")";
+    String outputPattern = "dd-MM-yyyy HH:mm";
+    DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern(outputPattern);
+    return "[E]" + super.toString() + " (at: " + outputFormatter.format(timeInterval) + ")";
   }
 }
