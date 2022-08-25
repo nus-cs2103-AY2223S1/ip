@@ -6,9 +6,10 @@ import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
-import duke.command.TodoCommand;
+import duke.command.ToDoCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
 import duke.task.TasksList;
@@ -40,13 +41,15 @@ public class Parser {
             case UNMARK:
                 return new UnmarkCommand(tasksList, inputArray);
             case TODO:
-                return new TodoCommand(tasksList, inputArray);
+                return new ToDoCommand(tasksList, inputArray);
             case DEADLINE:
                 return new DeadlineCommand(tasksList, inputArray);
             case EVENT:
                 return new EventCommand(tasksList, inputArray);
             case DELETE:
                 return new DeleteCommand(tasksList, inputArray);
+            case FIND:
+                return new FindCommand(tasksList, inputArray);
             default:
                 throw new DukeException("Invalid Command");
             }

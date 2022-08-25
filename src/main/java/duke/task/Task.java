@@ -94,6 +94,14 @@ public class Task {
         return task;
     }
 
+    /**
+     * Checks if the description of the Task contains the keyword.
+     * @param keyword The word to be matched with.
+     * @return a boolean that indicates if the description of the Task contains the keyword.
+     */
+    public boolean hasKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
 
     /**
      * Returns the string representation of Task to be displayed.
