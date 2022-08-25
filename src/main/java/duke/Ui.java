@@ -2,6 +2,11 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Continuously asks the user for input and handles the inputs
+ *
+ * @author Sean Lam
+ */
 public class Ui {
     TaskList itemList;
 

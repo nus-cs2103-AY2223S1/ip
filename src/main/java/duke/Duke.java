@@ -1,10 +1,21 @@
 package duke;
 
+/**
+ * duke program implements a chatbot in the terminal that can respond to
+ * programmed commands.
+ *
+ * @author Sean Lam
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constucts Duke for use
+     *
+     * @param filePath Location of file storing list of saved tasks
+     */
     public Duke(String filePath) {
         storage = new Storage(filePath);
         try {

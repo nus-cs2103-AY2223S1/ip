@@ -4,12 +4,25 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalTime;
 
+/**
+ * A type of task that stores a date, start and end time
+ *
+ * @author Sean Lam
+ */
 public class Event extends Task {
     protected String type = "[E]";
     protected LocalDate date;
     protected LocalTime from;
     protected LocalTime to;
 
+    /**
+     * Constructor for Event class
+     *
+     * @param description Description of task
+     * @param date Date of deadline
+     * @param from Starting time of deadline
+     * @param to Starting time of deadline
+     */
     Event(String description, String date, String from, String to) {
         super(description);
         this.date = LocalDate.parse(date);
@@ -17,6 +30,11 @@ public class Event extends Task {
         this.to = LocalTime.parse(to);
     }
 
+    /**
+     * Returns string representation of Event task for display in TaskList
+     *
+     * @return Event task string
+     */
     @Override
     public String toString() {
         return type + super.toString() + " (at: " + date.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
@@ -24,6 +42,11 @@ public class Event extends Task {
                 + to.format(DateTimeFormatter.ofPattern("hhmma")) + ")";
     }
 
+    /**
+     * Returns string representation of Event task to be stored in dukeHistory
+     *
+     * @return Event task string
+     */
     @Override
     public String toFile() {
         String isDone = "0";
