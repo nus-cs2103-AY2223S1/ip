@@ -9,13 +9,13 @@ public class TaskList {
         return task;
     }
 
-    public Task addDeadline(String taskItem, String deadline) {
+    public Task addDeadline(String taskItem, DeadlineDateTime deadline) {
         Task task = new Deadline(taskItem, deadline);
         this.list.add(task);
         return task;
     }
 
-    public Task addEvent(String taskItem, String eventTiming) {
+    public Task addEvent(String taskItem, EventDateTime eventTiming) {
         Task task = new Event(taskItem, eventTiming);
         this.list.add(task);
         return task;

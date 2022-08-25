@@ -1,6 +1,6 @@
 public class Event extends Task{
-    private final String eventTiming;
-    public Event(String taskItem, String eventTiming) {
+    private final EventDateTime eventTiming;
+    public Event(String taskItem, EventDateTime eventTiming) {
         super(taskItem);
         this.eventTiming = eventTiming;
     }
@@ -8,6 +8,6 @@ public class Event extends Task{
     @Override
     public String toString() {
         String eventTimingDisplay = String.format(" (at: %s)", this.eventTiming);
-        return "[D]" + super.toString() + eventTimingDisplay;
+        return "[E]" + super.toString() + eventTimingDisplay;
     }
 }
