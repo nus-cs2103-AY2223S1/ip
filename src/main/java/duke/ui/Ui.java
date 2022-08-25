@@ -32,6 +32,10 @@ public class Ui {
         System.out.println(END_PROGRAM);
     }
 
+    /**
+     * Reads the user input
+     * @return the user command
+     */
     public String getUserCommand() {
         out.print("What's next: ");
         return scanner.nextLine();
