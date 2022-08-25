@@ -4,6 +4,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * Represents a Task, with no reference to date or time.
+ */
 public class ToDos extends Task {
 
     public ToDos(String s) {

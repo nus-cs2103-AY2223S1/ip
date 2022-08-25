@@ -1,11 +1,20 @@
 package commands;
 import byu.*;
+import exceptions.InvalidIndex;
 import task.Task;
 
+/**
+ * Represents a command to add a task to the list.
+ */
 public class AddCommand extends Command {
 
-    Task task;
+    private Task task;
 
+    /**
+     * Creates an AddCommand with the Task to be added.
+     *
+     * @param task the Task to be added.
+     */
     public AddCommand(Task task) {
         this.task = task;
     }

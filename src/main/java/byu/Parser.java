@@ -5,8 +5,16 @@ import commands.*;
 import exceptions.*;
 import task.*;
 
+/**
+ * Represents a parser, that interprets a given string and translates them into commands.
+ */
 public class Parser {
 
+    /**
+     * Returns the Command instance corresponding to the string.
+     *
+     * @param fullCommand the string to be parsed.
+     */
     public static Command parse(String fullCommand) {
         Command c = new NextCommand();
         try {

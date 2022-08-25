@@ -1,9 +1,14 @@
 package task;
 
+import exceptions.InvalidIndex;
+
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.io.IOException;
 
+/**
+ * Represents a Task, with a given name and status (completed or not completed).
+ */
 public class Task {
 
     private String name;
@@ -15,10 +20,18 @@ public class Task {
         this.done = false;
     }
 
+    /**
+     * Marks a task as done.
+     *
+     */
     public void markDone() {
         this.done = true;
     }
 
+    /**
+     * Marks a task as undone.
+     *
+     */
     public void markUndone() {
         this.done = false;
     }
@@ -26,6 +39,7 @@ public class Task {
     public String getName() {
         return this.name;
     }
+
     public int getDone() {
         if (this.done) {
             return 1;
@@ -36,6 +50,7 @@ public class Task {
 
     public void write(FileWriter writer) throws IOException {
     };
+
 
     @Override
     public String toString() {

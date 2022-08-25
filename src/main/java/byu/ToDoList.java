@@ -8,15 +8,26 @@ import exceptions.InvalidIndex;
 import java.io.File;
 import java.io.PrintWriter;
 
-
+/**
+ * Represents a list containing tasks.
+ */
 public class ToDoList {
     private final ArrayList<Task> list;
     private int numOfTasks = 0;
 
+    /**
+     * Creates a ToDoList that stores tasks.
+     * @return a ToDoList.
+     */
     public ToDoList() {
         this.list = new ArrayList<>();
     }
 
+    /**
+     * Adds a task to the list.
+     *
+     * @param task the Task to be added.
+     */
     public void addTask(Task task) {
         this.list.add(task);
         this.numOfTasks += 1;
@@ -28,6 +39,9 @@ public class ToDoList {
         }
     }
 
+    /**
+     * Prints all the tasks in the list.
+     */
     public void list() {
         System.out.println("These are the tasks in your list:");
         for (int i = 0; i < list.size(); i++) {
@@ -35,6 +49,12 @@ public class ToDoList {
         }
     }
 
+    /**
+     * Marks a task as done.
+     *
+     * @param i the index of the Task to be marked.
+     * @throws InvalidIndex if i > number of tasks in the list.
+     */
     public void mark(int i) throws InvalidIndex  {
         if (i > numOfTasks) {
             throw new InvalidIndex();
@@ -44,6 +64,12 @@ public class ToDoList {
         System.out.println("Nice! I've marked this task as done:\n" + t);
     }
 
+    /**
+     * Marks a task as undone.
+     *
+     * @param i the index of the Task to be unmarked.
+     * @throws InvalidIndex if i > number of tasks in the list.
+     */
     public void unMark(int i) throws InvalidIndex {
         if (i > numOfTasks) {
             throw new InvalidIndex();
@@ -53,6 +79,12 @@ public class ToDoList {
         System.out.println("OK, I've marked this task as not done yet:\n" + t);
     }
 
+    /**
+     * Deletes a task from the list.
+     *
+     * @param i the index of the Task to be deleted.
+     * @throws InvalidIndex if i > number of tasks in the list.
+     */
     public void delete(int i) throws InvalidIndex {
         if (i > numOfTasks) {
             throw new InvalidIndex();
@@ -64,6 +96,9 @@ public class ToDoList {
         System.out.format("Now you have %d tasks in the list.\n", this.numOfTasks);
     }
 
+    /**
+     * Updates the file.
+     */
     public void save() {
         try {
 
@@ -74,7 +109,6 @@ public class ToDoList {
                 t.write(fw);
             }
             fw.close();
-
 
         } catch (IOException e) {
             System.out.print(e.getMessage());

@@ -2,11 +2,12 @@ package byu;
 
 import java.io.*;
 import java.util.Scanner;
+
+import exceptions.InvalidIndex;
 import task.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 
 public class FileReader {
 
@@ -15,6 +16,12 @@ public class FileReader {
     InputStream is;
     ToDoList list;
 
+    /**
+     * Creates a FileReader that loads and stores data Executes the command.
+     *
+     * @return a FileReader instance
+     * @throws IOException
+     */
     public FileReader(String filePath) throws IOException {
 
         /*
@@ -39,7 +46,11 @@ public class FileReader {
 
     }
 
-
+    /**
+     * Loads the data of tasks previously added from the file.
+     *
+     * @return ToDoList that contains the previously added tasks.
+     */
     public ToDoList load() {
 /*
         try {

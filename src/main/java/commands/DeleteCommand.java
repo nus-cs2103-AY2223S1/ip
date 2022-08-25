@@ -1,11 +1,18 @@
 package commands;
 import byu.*;
 import exceptions.InvalidIndex;
-
+/**
+ * Represents a command to delete a task to the list.
+ */
 public class DeleteCommand extends Command{
 
-    int index;
+    private int index;
 
+    /**
+     * Creates a DeleteCommand with the index of the Task to be deleted.
+     *
+     * @param index the index of the Task to be deleted.
+     */
     public DeleteCommand(int index) {
         this.index = index;
     }

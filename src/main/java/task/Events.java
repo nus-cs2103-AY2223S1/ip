@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 
+/**
+ * Represents an event with a specified date and time.
+ */
 public class Events extends Task {
 
     private static final char SYMBOL = 'E';
