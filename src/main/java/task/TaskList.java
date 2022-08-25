@@ -61,11 +61,18 @@ public class TaskList {
      * Retrieves the {@code Task} object from the {@code taskList}.
      *
      * @param num The index + 1 of the task to be retrieved.
+     * @return Task numbered num.
      */
     public Task getTask(int num) {
         return this.taskList.get(num-1);
     }
 
+    /**
+     * Checks if the given keyword is in the name of the object.
+     *
+     * @param keyword The string keyword being checked.
+     * @return {@code TaskList} with the matching {@code Task} names.
+     */
     public TaskList match(String keyword) {
         TaskList matchedTasks = new TaskList();
         for (Task task: this.taskList) {

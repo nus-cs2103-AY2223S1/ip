@@ -83,6 +83,12 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    /**
+     * Checks if the given keyword is in the name of the object.
+     *
+     * @param keyword The string keyword being checked.
+     * @return The truth value of the check.
+     */
     public boolean match(String keyword) {
         return this.getName().contains(keyword.trim());
     }

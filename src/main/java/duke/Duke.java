@@ -34,7 +34,7 @@ public class Duke {
     /**
      * Runs the main logic of the application.
      *
-     * @throws DukeException If the user fails to provide inputs in the correct format.
+     * @throws DukeException If file is unable to be loaded.
      */
     public static void main(String[] args) throws DukeException {
         Duke duke = new Duke();
@@ -53,13 +53,17 @@ public class Duke {
      * Accepts user input and prints the response.
      */
     public void run() {
-        while (true) {
-            String input = this.ui.readInput();
-            this.ui.printOutput(this.parser.processInput(input, taskList));
-            if (input.equals("bye")) {
-                break;
+        try {
+            while (true) {
+                String input = this.ui.readInput();
+                this.ui.printOutput(this.parser.processInput(input, taskList));
+                if (this.ui.isEnd(input)) {
+                    break;
+                }
             }
+            this.storage.writeFile(this.taskList);
+        } catch(DukeException e) {
+            this.ui.printError(e);
         }
-        this.storage.writeFile(this.taskList);
     }
 }

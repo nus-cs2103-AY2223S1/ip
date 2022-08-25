@@ -73,9 +73,9 @@ public class Storage {
     }
 
     /**
-     * Reads the stored {@code Tasklist}.
+     * Reads the stored {@code TaskList} object.
      *
-     * @return The last saved {@code tasklist}.
+     * @return The last saved {@code TaskList} object.
      * @throws DukeException If inputted date is not of the accepted format.
      */
     public TaskList readFile() throws DukeException {
@@ -88,13 +88,13 @@ public class Storage {
                 taskList.addTask(createTask(line));
             }
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            throw DukeException.DukeFileNotFoundException();
         }
         return taskList;
     }
 
     /**
-     * Saves the latest version of the {@code tasklist}.
+     * Saves the latest version of the {@code taskList}.
      *
      * @param taskList List of {@code Task} objects to be saved to the file.
      */
