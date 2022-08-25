@@ -18,7 +18,7 @@ public class Deadline extends Task {
         if (deadline.equals("")) {
             throw new DukeException("☹ OOPS!!! The deadline of a deadline cannot be empty.");
         }
-        this.deadline = new DukeDate().convertToDate(deadline);
+        this.deadline = new DukeDate(deadline).getDateTime();
     }
 
     /**
@@ -26,11 +26,11 @@ public class Deadline extends Task {
      * @param newDeadline new deadline for Event
      */
     public void setDeadline(String newDeadline) {
-        this.deadline = new DukeDate().convertToDate(newDeadline);
+        this.deadline = new DukeDate(newDeadline).getDateTime();
     }
 
     public String getDeadline() {
-        return this.deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+        return this.deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Deadline extends Task {
     };
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return "[D]" + super.toString() + " (by:" + this.deadline.format(formatter) + ")";
     }
 }

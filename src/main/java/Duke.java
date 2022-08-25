@@ -1,23 +1,30 @@
 import java.util.Scanner;
-import java.nio.file.Path;
 
 public class Duke {
-    public static void main(String[] args) {
-        Scanner userInput = new Scanner(System.in);
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+    private TaskStorage storage;
+    private TaskList taskList;
+    private Ui ui;
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new TaskStorage(filePath);
+        taskList = storage.loadTask();
+    }
 
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
-
-        DukeHandler handler = new DukeHandler("data/Tasks.txt");
-
-        while (userInput.hasNextLine()) {
-            String input = userInput.nextLine();
-            handler.handleResponse(input);
+    public void run() {
+        try {
+            ui.displayWelcome();
+            DukeHandler handler = new DukeHandler(storage, taskList, ui);
+            Scanner userInput = new Scanner(System.in);
+            while (userInput.hasNextLine()) {
+                String input = userInput.nextLine();
+                handler.handleResponse(input);
+            }
         }
+        catch (DukeException e) {
+            ui.showError(e.getMessage());
+        }
+    }
+    public static void main(String[] args) {
+        new Duke("data/Tasks.txt").run();
     }
 }

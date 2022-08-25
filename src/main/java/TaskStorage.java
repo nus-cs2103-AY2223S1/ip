@@ -2,13 +2,14 @@ import java.io.File;
 import java.io.FileWriter;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class TaskStorage {
     protected String filePath;
-    protected File taskFile;
 
     TaskStorage(String filePath) {
         this.filePath = filePath;

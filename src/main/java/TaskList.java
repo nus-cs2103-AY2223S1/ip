@@ -33,39 +33,34 @@ public class TaskList {
      */
     public void addTask(Task task) {
         tasks.add(task);
-        System.out.println("Got it! I've added this task: \n"
-                + task.toString() + "\nNow you have " + tasks.size()
-                + " tasks in the list");
     }
 
     /**
      * Mark a task in the list as done
      * @param index index of the task to be marked as done
      */
-    public void mark(int index) {
+    public Task mark(int index) {
         Task temp = tasks.get(index-1);
         temp.mark();
-        System.out.println("Nice! I've marked this task as done: \n" + temp.toString());
+        return temp;
     }
     /**
      * Mark a task in the list as not done
      * @param index index of the task to be unmarked
      */
-    public void unmark(int index) {
+    public Task unmark(int index) {
         Task temp = tasks.get(index-1);
         temp.unmark();
-        System.out.println("OK, I've marked this task as not done yet: \n" + temp.toString());
+        return temp;
     }
 
     /**
      * Delete a task from the task list
      * @param index index of the task to be deleted
      */
-    public void delete(int index) {
+    public Task delete(int index) {
         Task temp = tasks.get(index-1);
         tasks.remove(index-1);
-        System.out.println( "Noted. I've removed this task: \n" + temp.toString() +
-                "\nNow you have " + tasks.size()
-                + " tasks in the list");
+        return temp;
     }
 }
