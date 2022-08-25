@@ -7,7 +7,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Represents the command that is executed when the user inputs <code>mark</code>.
+ * Represents the command that is executed when the user inputs mark.
  *
  * @author njxue
  * @version v0.1
@@ -18,16 +18,16 @@ public class MarkCommand extends Command {
     private int taskIndex;
 
     /**
-     * Returns the format of the <code>mark</code> command.
+     * Returns the format of the mark command.
      *
-     * @return The format of the <code>mark</code> command.
+     * @return The format of the mark command.
      */
     public static String getFormat() {
         return "mark <Integer>";
     }
 
     /**
-     * Creates a <code>MarkCommand</code>.
+     * Creates a MarkCommand.
      *
      * @param taskIndex The index of the task in the TaskList to be marked as done.
      */
@@ -36,13 +36,13 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Executes the <code>mark</code> command. Deletes the specific task in the TaskList.
+     * Executes the mark command. Deletes the specific task in the TaskList.
      *
-     * @param tasks <code>TaskList</code> containing the task to be marked.
-     * @param ui <code>Ui</code> object which interacts with the user.
-     * @param storage <code>Storage</code> object which loads and saves tasks.
+     * @param tasks TaskList containing the task to be marked.
+     * @param ui Ui object which interacts with the user.
+     * @param storage Storage object which loads and saves tasks.
      * @throws DukeException If storage object is unable to save the list of tasks after marking, 
-     * or if the <code>taskIndex</code> is not within range of the size of the TaskList.
+     * or if the taskIndex is not within range of the size of the TaskList.
      */
     
     @Override
@@ -53,7 +53,7 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Returns false, because <code>delete</code> is not an application terminating command.
+     * Returns false, because delete is not an application terminating command.
      *
      * @return False.
      */

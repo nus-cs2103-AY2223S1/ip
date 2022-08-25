@@ -8,7 +8,7 @@ import duke.task.TaskList;
 import duke.task.Todo;
 
 /**
- * Represents the command that is executed when the user inputs <code>todo</code>.
+ * Represents the command that is executed when the user inputs todo.
  *
  * @author njxue
  * @version v0.1
@@ -18,16 +18,16 @@ public class TodoCommand extends Command {
     private String description;
     
     /**
-     * Returns the format of the <code>todo</code> command.
+     * Returns the format of the todo command.
      *
-     * @return The format of the <code>todo</code> command.
+     * @return The format of the todo command.
      */
     public static String getFormat() {
         return "todo <String>";
     }
 
     /**
-     * Creates a <code>TodoCommand</code>.
+     * Creates a TodoCommand.
      *
      * @param description Description of the todo task.
      */
@@ -36,12 +36,12 @@ public class TodoCommand extends Command {
     }
 
     /**
-     * Executes the <code>todo</code> command. 
+     * Executes the todo command. 
      * Creates and adds a new todo task.
      * 
-     * @param tasks <code>TaskList</code> to add the newly created <code>Todo</code> into.
-     * @param ui <code>Ui</code> object which interacts with the user.
-     * @param storage <code>Storage</code> object which loads and saves tasks.
+     * @param tasks TaskList to add the newly created Todo into.
+     * @param ui Ui object which interacts with the user.
+     * @param storage Storage object which loads and saves tasks.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
@@ -52,7 +52,7 @@ public class TodoCommand extends Command {
     }
 
     /**
-     * Returns false, because <code>todo</code> is not an application terminating command.
+     * Returns false, because todo is not an application terminating command.
      *
      * @return False.
      */

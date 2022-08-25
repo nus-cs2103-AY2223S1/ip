@@ -18,18 +18,18 @@ import duke.exception.InvalidCommandFormatException;
 import duke.exception.UnknownCommandException;
 
 /**
- * The <code>Parser</code> parses input from the user and returns the corresponding commands to execute.
+ * The Parser parses input from the user and returns the corresponding commands to execute.
  * 
  * @author njxue
  * @version v0.1
  */
 public class Parser {
     /**
-     * Returns a <code>LocalDateTime</code> object from an appropriately-formatted string.
+     * Returns a LocalDateTime object from an appropriately-formatted string.
      * 
-     * @param dateTimeString String representation of a <code>LocalDateTime</code> object. 
-     *                       The expected format is <code>YYYY-MM-DDTHH:MM</code> or <code>YYYY-MM-DD</code>.
-     * @return <code>LocalDateTime</code> object corresponding to the <code>dateTimeString</code>.
+     * @param dateTimeString String representation of a LocalDateTime object. 
+     *                       The expected format is YYYY-MM-DDTHH:MM or YYYY-MM-DD.
+     * @return LocalDateTime object corresponding to the dateTimeString.
      */
     public static LocalDateTime parseDateTime(String dateTimeString) {
         String[] dateTimeSplit = dateTimeString.split("[ T]");
@@ -46,7 +46,7 @@ public class Parser {
      * Checks if a given string contains only digits.
      * 
      * @param str The target string.
-     * @return True if <code>str</code> contains only digits. Returns false otherwise.
+     * @return True if str contains only digits. Returns false otherwise.
      */
     private static boolean isDigit(String str) {
         for (char c : str.toCharArray()) {
@@ -58,12 +58,12 @@ public class Parser {
     }
 
     /**
-     * Parses the full input from the user and returns the correct <code>Command</code> object.
+     * Parses the full input from the user and returns the correct Command object.
      * 
      * @param fullCommand Full input from the user.
-     * @return <code>Command</code> object corresponding to the user's input.
+     * @return Command object corresponding to the user's input.
      * @throws DukeException If the user provides an empty command, or if the command is not a recognised command.
-     * @throws DateTimeException If the string representation of a <code>LocalDateTime</code> cannot be parsed
+     * @throws DateTimeException If the string representation of a LocalDateTime cannot be parsed
      *                          correctly due to incorrect formatting.  
      */
     public static Command parse(String fullCommand) throws DukeException, DateTimeException {

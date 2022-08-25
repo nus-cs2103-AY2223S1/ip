@@ -18,7 +18,7 @@ public class Task {
     private boolean isDone;
 
     /**
-     * Creates a <code>Task</code> object.
+     * Creates a Task object.
      * 
      * @param description Description of the task.
      */
@@ -28,10 +28,10 @@ public class Task {
     }
 
     /**
-     * Returns a <code>Task</code> object from a string.
+     * Returns a Task object from a string.
      * 
-     * @param fileFormatString String representation of the <code>Task</code> object, in file format. 
-     * @return New <code>Task</code> object.
+     * @param fileFormatString String representation of the Task object, in file format. 
+     * @return New Task object.
      */
     public static Task parse(String fileFormatString) {
         String[] taskSplit = fileFormatString.split("\\|");

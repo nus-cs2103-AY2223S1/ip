@@ -15,40 +15,40 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Represents the <code>Storage</code> object responsible for loading and saving tasks during a Duke session.
+ * Represents the Storage object responsible for loading and saving tasks during a Duke session.
  * 
  * @author njxue
  * @version v0.1
  */
 public class Storage {
-    /** <code>Path</code> object representing the relative path to the file to load and save the tasks. **/
-    private final Path path;
+    /** Path object representing the relative path to the file to load and save the tasks. **/
+    private final Path PATH;
 
     /** String representation of the relative path to the file to load and save the tasks. **/
-    private final String pathString;
+    private final String PATH_STRING;
 
     /**
-     * Creates a new <code>Storage</code> object.
+     * Creates a new Storage object.
      * 
      * @param filePath String representation of the relative path to the file to load and save the tasks.
      */
     public Storage(String filePath) {
-        this.path = Paths.get(filePath);
-        this.pathString = path.toString();
-        File parent = new File(new File(pathString).getParent());
+        this.PATH = Paths.get(filePath);
+        this.PATH_STRING = PATH.toString();
+        File parent = new File(new File(PATH_STRING).getParent());
         if (!parent.exists()) {
             parent.mkdirs();
         }
     }
 
     /**
-     * Loads the task from the file located in the specified path in <code>path</code>.
+     * Loads the task from the file located in the specified path in path.
      *
-     * @return <code>List</code> of previously saved tasks.
-     * @throws FileNotFoundException If the file located in <code>path</code> does not exist.
+     * @return List of previously saved tasks.
+     * @throws FileNotFoundException If the file located in path does not exist.
      */
     public List<Task> load() throws FileNotFoundException {
-        File file = new File(pathString);
+        File file = new File(PATH_STRING);
         Scanner sc = new Scanner(file);
         ArrayList<Task> tasks = new ArrayList<>();
         while (sc.hasNext()) {
@@ -59,13 +59,13 @@ public class Storage {
     }
 
     /**
-     * Saves the task to the file located in the specified path in <code>path</code>.
+     * Saves the task to the file located in the specified path in path.
      * 
-     * @param tasks <code>TaskList</code> containing the list of tasks to be saved.
-     * @throws DukeException If the file located in <code>path</code> does not exist.
+     * @param tasks TaskList containing the list of tasks to be saved.
+     * @throws DukeException If the file located in path does not exist.
      */
     public void save(TaskList tasks) throws DukeException {
-        File file = new File(pathString);
+        File file = new File(PATH_STRING);
         try {
             FileWriter fw = new FileWriter(file);
             for (Task task : tasks.getTasks()) {

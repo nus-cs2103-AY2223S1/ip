@@ -10,7 +10,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Represents the command that is executed when the user inputs <code>event</code>.
+ * Represents the command that is executed when the user inputs event.
  *
  * @author njxue
  * @version v0.1
@@ -23,7 +23,7 @@ public class EventCommand extends Command {
     private LocalDateTime atDateTime;
     
     /**
-     * Creates an <code>EventCommand</code>.
+     * Creates an EventCommand.
      *
      * @param description Description of the event task.
      * @param atDateTime Date and time of the event task.
@@ -34,21 +34,21 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Returns the format of the <code>event</code> command.
+     * Returns the format of the event command.
      *
-     * @return The format of the <code>event</code> command.
+     * @return The format of the event command.
      */
     public static String getFormat() {
         return "event <String> /at <String>";
     }
 
     /**
-     * Executes the <code>event</code> command. 
+     * Executes the event command. 
      * Creates and adds a new event task.
      *
-     * @param tasks <code>TaskList</code> the newly created event task should be added to.
-     * @param ui <code>Ui</code> object which interacts with the user.
-     * @param storage <code>Storage</code> object which loads and saves tasks.
+     * @param tasks TaskList the newly created event task should be added to.
+     * @param ui Ui object which interacts with the user.
+     * @param storage Storage object which loads and saves tasks.
      * @throws DukeException If storage object is unable to save the newly created event task.
      */
     @Override
@@ -60,7 +60,7 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Returns false, because <code>event</code> is not an application terminating command.
+     * Returns false, because event is not an application terminating command.
      *
      * @return False.
      */

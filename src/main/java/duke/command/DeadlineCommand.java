@@ -10,7 +10,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Represents the command that is executed when the user inputs <code>deadline</code>.
+ * Represents the command that is executed when the user inputs deadline.
  *
  * @author njxue
  * @version v0.1
@@ -24,7 +24,7 @@ public class DeadlineCommand extends Command {
     private LocalDateTime byDateTime;
 
     /**
-     * Creates a <code>DeadlineCommand</code>.
+     * Creates a DeadlineCommand.
      * 
      * @param description Description of the deadline task.
      * @param byDateTime Deadline of the deadline task.
@@ -35,21 +35,21 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Returns the format of the <code>deadline</code> command.
+     * Returns the format of the deadline command.
      * 
-     * @return The format of the <code>deadline</code> command.
+     * @return The format of the deadline command.
      */
     public static String getFormat() {
         return "deadline <String> /by <String>";
     }
 
     /**
-     * Executes the <code>deadline</code> command. 
+     * Executes the deadline command. 
      * Creates and adds a new deadline task.
      *
-     * @param tasks <code>TaskList</code> which the newly created deadline task should be added into.
-     * @param ui <code>Ui</code> object which interacts with the user.
-     * @param storage <code>Storage</code> object which loads and saves tasks.
+     * @param tasks TaskList which the newly created deadline task should be added into.
+     * @param ui Ui object which interacts with the user.
+     * @param storage Storage object which loads and saves tasks.
      * @throws DukeException If storage object is unable to save the newly created deadline task.
      */
     @Override
@@ -61,7 +61,7 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Returns false, because <code>deadline</code> is not an application terminating command.
+     * Returns false, because deadline is not an application terminating command.
      *
      * @return False.
      */

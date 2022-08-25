@@ -8,7 +8,7 @@ package duke.exception;
  */
 public class InvalidCommandFormatException extends DukeException {
     /**
-     * Returns an <code>InvalidCommandFormatException</code>.
+     * Returns an InvalidCommandFormatException.
      * 
      * @param format Correct format for the command.
      */

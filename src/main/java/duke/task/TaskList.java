@@ -15,7 +15,7 @@ public class TaskList {
     private List<Task> tasks;
 
     /**
-     * Creates a <code>TaskList</code> object from a <code>List</code> of tasks.
+     * Creates a TaskList object from a List of tasks.
      * 
      * @param tasks List of tasks.
      */
@@ -24,27 +24,27 @@ public class TaskList {
     }
 
     /**
-     * Creates a <code>TaskList</code> object containing an empty <code>List</code> of tasks.
+     * Creates a TaskList object containing an empty List of tasks.
      */
     public TaskList() {
         tasks = new ArrayList<>();
     }
 
     /**
-     * Adds a <code>Task</code> object to the <code>List</code> of tasks.
+     * Adds a Task object to the List of tasks.
      * 
-     * @param task <code>Task</code> object to be added.
+     * @param task Task object to be added.
      */
     public void add(Task task) {
         tasks.add(task);
     }
 
     /**
-     * Removes the <code>Task</code> object at index <code>taskIndex</code> from the <code>List</code> of tasks.
+     * Removes the Task object at index taskIndex from the List of tasks.
      * 
-     * @param taskIndex Index of the task in the <code>List</code> of tasks.
-     * @return The deleted <code>Task</code> object.
-     * @throws TaskIndexOutOfBoundsException If the <code>taskIndex</code> is not within range of the <code>List</code> of tasks.
+     * @param taskIndex Index of the task in the List of tasks.
+     * @return The deleted Task object.
+     * @throws TaskIndexOutOfBoundsException If the taskIndex is not within range of the List of tasks.
      */
     public Task delete(int taskIndex) throws TaskIndexOutOfBoundsException {
         if (!isValidIndex(taskIndex)) {
@@ -56,11 +56,11 @@ public class TaskList {
     }
 
     /**
-     * Marks the <code>Task</code> object at index <code>taskIndex</code> in the <code>List</code> of tasks as completed.
+     * Marks the Task object at index taskIndex in the List of tasks as completed.
      *
-     * @param taskIndex Index of the task in the <code>List</code> of tasks.
-     * @return The <code>Task</code> object marked as completed.
-     * @throws TaskIndexOutOfBoundsException If the <code>taskIndex</code> is not within range of the <code>List</code> of tasks.
+     * @param taskIndex Index of the task in the List of tasks.
+     * @return The Task object marked as completed.
+     * @throws TaskIndexOutOfBoundsException If the taskIndex is not within range of the List of tasks.
      */
     public Task mark(int taskIndex) throws TaskIndexOutOfBoundsException {
         if (!isValidIndex(taskIndex)) {
@@ -72,12 +72,12 @@ public class TaskList {
     }
 
     /**
-     * Unmarks the <code>Task</code> object at index <code>taskIndex</code> in the <code>List</code> of tasks as completed.
-     * In other words, marks the <code>Task</code> object as incomplete.
+     * Unmarks the Task object at index taskIndex in the List of tasks as completed.
+     * In other words, marks the Task object as incomplete.
      *
-     * @param taskIndex Index of the task in the <code>List</code> of tasks.
-     * @return The <code>Task</code> object unmarked as completed.
-     * @throws TaskIndexOutOfBoundsException If the <code>taskIndex</code> is not within range of the <code>List</code> of tasks.
+     * @param taskIndex Index of the task in the List of tasks.
+     * @return The Task object unmarked as completed.
+     * @throws TaskIndexOutOfBoundsException If the taskIndex is not within range of the List of tasks.
      */
     public Task unmark(int taskIndex) throws TaskIndexOutOfBoundsException {
         if (!isValidIndex(taskIndex)) {
@@ -89,20 +89,20 @@ public class TaskList {
     }
 
     /**
-     * Returns the number of tasks in the <code>List</code> of tasks.
-     * @return Size of the <code>List</code> of tasks.
+     * Returns the number of tasks in the List of tasks.
+     * @return Size of the List of tasks.
      */
     public int size() {
         return tasks.size();
     }
 
     /**
-     * Filters the list of <code>Task</code> objects in the <code>TaskList</code>, keep <code>Task</code> objects with
-     * descriptions matching the search term. Returns the list of found <code>Task</code> objects as a new 
-     * <code>TaskList</code>.
+     * Filters the list of Task objects in the TaskList, keep Task objects with
+     * descriptions matching the search term. Returns the list of found Task objects as a new 
+     * TaskList.
      * 
-     * @param searchTerm Search term used to find the list of matching <code>Tasks</code>.
-     * @return <code>TaskList</code> containing the list of found <code>Task</code> objects.
+     * @param searchTerm Search term used to find the list of matching Tasks.
+     * @return TaskList containing the list of found Task objects.
      */
     public TaskList find(String searchTerm) {
         List<Task> foundTasksList = new ArrayList<>();
@@ -115,15 +115,15 @@ public class TaskList {
     }
     
     /**
-     * Returns the <code>List</code> of tasks.
-     * @return <code>List</code> of tasks.
+     * Returns the List of tasks.
+     * @return List of tasks.
      */
     public List<Task> getTasks() {
         return tasks;
     }
 
     /**
-     * Prints all the tasks in the <code>List</code> of tasks.
+     * Prints all the tasks in the List of tasks.
      */
     public void listTasks() {
         int len = tasks.size();
@@ -138,9 +138,9 @@ public class TaskList {
     }
 
     /**
-     * Checks if <code>index</code> is a valid index of a <code>Task</code> object in the <code>List</code> of tasks.
-     * @param index Index of a <code>Task</code> object.
-     * @return True, if <code>index</code> is a valid index.
+     * Checks if index is a valid index of a Task object in the List of tasks.
+     * @param index Index of a Task object.
+     * @return True, if index is a valid index.
      */
     public boolean isValidIndex(int index) {
         return index >= 1 && index <= this.size();

@@ -8,7 +8,7 @@ package duke.exception;
  */
 public class UnknownCommandException extends DukeException {
     /**
-     * Returns an <code>UnknownCommandException</code>.
+     * Returns an UnknownCommandException.
      * 
      * @param invalidCommand Invalid command provided by the user.
      */

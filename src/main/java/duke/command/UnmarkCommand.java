@@ -7,7 +7,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Represents the command that is executed when the user inputs <code>unmark</code>.
+ * Represents the command that is executed when the user inputs unmark.
  *
  * @author njxue
  * @version v0.1
@@ -17,16 +17,16 @@ public class UnmarkCommand extends Command {
     private int taskIndex;
     
     /**
-     * Returns the format of the <code>unmark</code> command.
+     * Returns the format of the unmark command.
      *
-     * @return The format of the <code>unmark</code> command.
+     * @return The format of the unmark command.
      */
     public static String getFormat() {
         return "unmark <Integer>";
     }
     
     /**
-     * Creates an <code>UnmarkCommand</code>.
+     * Creates an UnmarkCommand.
      *
      * @param taskIndex The index of the task in the TaskList to be unmarked as done.
      */
@@ -35,13 +35,13 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Executes the <code>unmark</code> command. Deletes the specific task in the TaskList.
+     * Executes the unmark command. Deletes the specific task in the TaskList.
      *
-     * @param tasks <code>TaskList</code> containing the <code>Task</code> to be unmarked.
-     * @param ui <code>Ui</code> object which interacts with the user.
-     * @param storage <code>Storage</code> object which loads and saves tasks.
+     * @param tasks TaskList containing the Task to be unmarked.
+     * @param ui Ui object which interacts with the user.
+     * @param storage Storage object which loads and saves tasks.
      * @throws DukeException If storage object is unable to save the list of tasks after unmarking, 
-     * or if the <code>taskIndex</code> is not within range of the size of the TaskList.
+     * or if the taskIndex is not within range of the size of the TaskList.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
@@ -51,7 +51,7 @@ public class UnmarkCommand extends Command {
     }
 
     /**
-     * Returns false, because <code>delete</code> is not an application terminating command.
+     * Returns false, because delete is not an application terminating command.
      *
      * @return False.
      */

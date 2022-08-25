@@ -15,9 +15,9 @@ public abstract class Command {
     /**
      * Executes the corresponding command.
      *
-     * @param tasks <code>TaskList</code> containing the list of tasks.
-     * @param ui <code>Ui</code> object which interacts with the user.
-     * @param storage <code>Storage</code> object which loads and saves tasks.v
+     * @param tasks TaskList containing the list of tasks.
+     * @param ui Ui object which interacts with the user.
+     * @param storage Storage object which loads and saves tasks.
      * @throws DukeException
      */
     public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;

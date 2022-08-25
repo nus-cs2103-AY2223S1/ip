@@ -8,7 +8,7 @@ package duke.exception;
  */
 public class DukeException extends Exception {
     /**
-     * Returns a <code>DukeException</code> containing the message describing the exception.
+     * Returns a DukeException containing the message describing the exception.
      * 
      * @param message Message describing the exception.
      */

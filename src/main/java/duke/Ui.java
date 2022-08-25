@@ -4,7 +4,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Represents the <code>Ui</code> object responsible for printing messages to the user interface.
+ * Represents the Ui object responsible for printing messages to the user interface.
  *
  * @author njxue
  * @version v0.1
@@ -62,10 +62,10 @@ public class Ui {
     }
 
     /**
-     * Prints the <code>Task</code> object, along with the number of tasks, when it is successfully added.
+     * Prints the Task object, along with the number of tasks, when it is successfully added.
      * 
-     * @param task Newly added <code>Task</code> object.
-     * @param tasks <code>TaskList</code> to add the new <code>Task</code> into.
+     * @param task Newly added Task object.
+     * @param tasks TaskList to add the new Task into.
      */
     public void showAddTask(Task task, TaskList tasks) {
         System.out.println("Got it. I've added this task:");
@@ -74,10 +74,10 @@ public class Ui {
     }
 
     /**
-     * Prints the <code>Task</code> object, along with the number of tasks, when it is successfully removed.
+     * Prints the Task object, along with the number of tasks, when it is successfully removed.
      *
-     * @param task Removed <code>Task</code> object.
-     * @param tasks <code>TaskList</code> to remove the new <code>Task</code> from.
+     * @param task Removed Task object.
+     * @param tasks TaskList to remove the new Task from.
      */
     public void showDeleteTask(Task task, TaskList tasks) {
         System.out.println("Okie, I've deleted this task: ");
@@ -86,10 +86,10 @@ public class Ui {
     }
 
     /**
-     * Prints the <code>Task</code> object, along with the number of tasks, when it is successfully marked.
+     * Prints the Task object, along with the number of tasks, when it is successfully marked.
      *
-     * @param task Marked <code>Task</code> object.
-     * @param tasks <code>TaskList</code> containing the target <code>Task</code> to mark.
+     * @param task Marked Task object.
+     * @param tasks TaskList containing the target Task to mark.
      */
     public void showMarkTask(Task task, TaskList tasks) {
         System.out.println("Sure! I've marked this task as done: ");
@@ -98,10 +98,10 @@ public class Ui {
     }
 
     /**
-     * Prints the <code>Task</code> object, along with the number of tasks, when it is successfully unmarked.
+     * Prints the Task object, along with the number of tasks, when it is successfully unmarked.
      *
-     * @param task Unmarked <code>Task</code> object.
-     * @param tasks <code>TaskList</code> containing the target <code>Task</code> to unmark.
+     * @param task Unmarked Task object.
+     * @param tasks TaskList containing the target Task to unmark.
      */
     public void showUnmarkTask(Task task, TaskList tasks) {
         System.out.println("Sure! I've unmarked this task as done: ");
@@ -110,15 +110,15 @@ public class Ui {
     }
 
     /**
-     * Prints the number of <code>Task</code> objects currently in a <code>TaskList</code>.
-     * @param tasks Target <code>TaskList</code>
+     * Prints the number of Task objects currently in a TaskList.
+     * @param tasks Target TaskList
      */
     public void showNumTasks(TaskList tasks) {
         System.out.println("You have " + tasks.size() + " tasks in the list");
     }
 
     /**
-     * Prints a <code>Task</code> object, indented by 3 spaces.
+     * Prints a Task object, indented by 3 spaces.
      */
     public void showTask(Task task) {
         System.out.println("   " + task);

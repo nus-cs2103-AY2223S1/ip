@@ -6,18 +6,18 @@ import duke.exception.DukeException;
 import duke.task.TaskList;
 
 /**
- * Represents a <code>find</code> command which given a search term,
- * finds a list <code>Task</code> objects matching the search term.
+ * Represents a find command which given a search term,
+ * finds a list Task objects matching the search term.
  *
  * @author njxue
  * @version v0.1
  */
 public class FindCommand extends Command {
-    /** Search term of the <code>Task</code> to find. */
+    /** Search term of the Task to find. */
     private String searchTerm;
 
     /**
-     * Creates a new <code>FileCommand</code>.
+     * Creates a new FileCommand.
      * 
      * @param searchTerm Search term.
      */
@@ -26,22 +26,22 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Returns the format of the <code>find</code> command.
+     * Returns the format of the find command.
      *
-     * @return The format of the <code>find</code> command.
+     * @return The format of the find command.
      */
     public static String getFormat() {
         return "find <String>";
     }
 
     /**
-     * Executes the <code>find</code> command. 
-     * Finds a list of <code>Task</code> objects in the <code>TaskList</code> with descriptions that match the 
+     * Executes the find command. 
+     * Finds a list of Task objects in the TaskList with descriptions that match the 
      * given search term.
      *
-     * @param tasks <code>TaskList</code> to find the <code>Tasks</code> from.
-     * @param ui <code>Ui</code> object which interacts with the user.
-     * @param storage <code>Storage</code> object which loads and saves tasks.
+     * @param tasks TaskList to find the Tasks from.
+     * @param ui Ui object which interacts with the user.
+     * @param storage Storage object which loads and saves tasks.
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
@@ -51,7 +51,7 @@ public class FindCommand extends Command {
     }
 
     /**
-     * Returns false, because <code>find</code> is not an application terminating command.
+     * Returns false, because find is not an application terminating command.
      * 
      * @return False.
      */
