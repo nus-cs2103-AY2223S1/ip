@@ -28,5 +28,14 @@ public class UI {
     public static void printClosingMessage() {
         System.out.println("Quackbye!");
     }
+     public static void findingItems(){
+        System.out.println("Quack! Finding!!");
+     }
+    public static void foundItems() {
+        System.out.println("Quack! These items were found!");
+    }
+    public static void foundNoItems() {
+        System.out.println("Quack! There are no items! Search Better!");
+    }
 
 }

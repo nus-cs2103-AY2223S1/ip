@@ -1,4 +1,5 @@
 package Duck;
+
 import Commands.Commands;
 import Commands.ExitCommand;
 import Commands.ListCommand;
@@ -7,6 +8,8 @@ import Commands.MarkCommand;
 import Commands.UnmarkCommand;
 import Commands.DeleteCommand;
 import Commands.ErrorCommand;
+import Commands.FindCommand;
+
 import Models.Todo;
 import Models.Event;
 import Models.Deadline;
@@ -55,6 +58,8 @@ public class Parser {
                         return new UnmarkCommand(Integer.parseInt(arguments) - 1);
                     case "DELETE":
                         return new DeleteCommand(Integer.parseInt(arguments) - 1);
+                    case "FIND":
+                        return new FindCommand(arguments);
                     default:
                         UI.unrecognizedCommandMessage();
                         break;
