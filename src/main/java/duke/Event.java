@@ -1,14 +1,30 @@
 package duke;
 
+/**
+ * Event class is a Task that contains a date and time
+ */
 public class Event extends Task {
 
     protected String at;
 
+    /**
+     * Constructor for Event.
+     *
+     * @param description Description of the task
+     * @param at          Date and time
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;
     }
 
+    /**
+     * Second constructor for Event that takes in a boolean to indicate if the event is over
+     *
+     * @param description Description of the task
+     * @param at          Date and time
+     * @param isDone      Boolean to indicate if the event is over
+     */
     public Event(String description, String at, boolean isDone) {
         super(description, isDone);
         this.at = at;
@@ -19,6 +35,14 @@ public class Event extends Task {
         return "[E]" + super.toString() + "(at: " + at + ")";
     }
 
+    /**
+     * Returns an event that is constructed from a string with a particular format
+     * "[E][ ] Description (at: Date and Time)"
+     *
+     * @param s String to be converted to an Event
+     * @return Event that is constructed from a string with a particular format
+     * @throws DukeException When string does not begin with the event header "[E]"
+     */
     // duke.Event strings look like: [E][ ] project meeting (at: Aug 6th 2-4pm)
     public static Event stringToEvent(String s) throws DukeException {
         if (!s.startsWith("[E][")) {

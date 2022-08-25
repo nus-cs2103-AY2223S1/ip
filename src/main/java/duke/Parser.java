@@ -3,12 +3,20 @@ package duke;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * Parser is a class that deals with decoding user inputs
+ */
 public class Parser {
     private TaskList taskList;
     private Scanner scanner;
     private boolean isScanning;
 
 
+    /**
+     * Constructor for Parser
+     *
+     * @param taskList The taskList that may be pre-populated from a previous save.
+     */
     public Parser(TaskList taskList) {
         this.taskList = taskList;
         this.scanner = new Scanner(System.in);
@@ -19,6 +27,11 @@ public class Parser {
         return this.isScanning;
     }
 
+    /**
+     * Takes in user input, then updates the taskList with the appropriate Tasks
+     *
+     * @throws DukeException When command is unclear or string is given in a wrong format
+     */
     public void parse() throws DukeException {
         String line = scanner.nextLine();
 
@@ -36,7 +49,7 @@ public class Parser {
             if (line.length() <= 7) {
                 throw new DukeException("OOPS!!! Please enter a number after unmark");
             }
-            int index = Integer.parseInt(line.replaceAll("[^0-9]", "")); // regex gotten from https://stackoverflow.com/a/14974126
+            int index = Integer.parseInt(line.replaceAll("[^0-9]", ""));
             taskList.get(index - 1).markAsUndone();
             Ui.show("\tNice! I've marked this task as not done yet:");
             Ui.show("\t" + taskList.get(index - 1));

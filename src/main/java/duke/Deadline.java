@@ -39,8 +39,13 @@ public class Deadline extends Task {
             + "(by: " + byDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
-    // duke.Deadline strings look like: [D][ ] return book (by: Jun 6 2022)
-    // INPUTS look like deadline return book /by 06-06-2022
+    /**
+     * returns a Deadline from a string with format "[D][X] Description (by: MMM d yyyy)"
+     * e.g. [D][ ] return book (by: Jun 6 2022)
+     *
+     * @param s String to convert into a Deadline
+     * @throws DukeException when the string doesn't start with deadline tag [D]
+     */
     public static Deadline stringToDeadline(String s) throws DukeException {
         if (!s.startsWith("[D][")) {
             throw new DukeException("This string is not a duke.Deadline string!");
@@ -48,18 +53,14 @@ public class Deadline extends Task {
         char isDoneString = s.charAt(4); //[T][X] checks if X is present
         char X = 'X';
         boolean isDone = isDoneString == X;
-
         int idxOfBy = s.indexOf("(by:");
 
         String description = s.substring(7, idxOfBy);
-        String byString = s.substring(idxOfBy + 5, s.length() - 1); // to avoid the brackets. byString looks like Aug 30 2022
-        byString = byString.replace(" ", "-"); // byString looks like Aug-30-2022
+
+        // byString looks like Aug 30 2022
+        String byString = s.substring(idxOfBy + 5, s.length() - 1); // to avoid the brackets.
+        byString = byString.replace(" ", "-");
         LocalDate byDate = LocalDate.parse(byString, DateTimeFormatter.ofPattern("MMM-d-yyyy"));
         return new Deadline(description, byDate, isDone);
-    }
-
-    public static void main(String[] args) throws DukeException {
-        String testString = "[D][ ] return book (by: June 6th)";
-        System.out.println(stringToDeadline(testString));
     }
 }

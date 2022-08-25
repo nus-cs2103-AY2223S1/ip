@@ -2,13 +2,24 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * TaskList is a class that represents a list of Tasks
+ */
 public class TaskList {
     private ArrayList<Task> lst;
 
+    /**
+     * Constructor for TaskList, initialized with an empty ArrayList
+     */
     public TaskList() {
         this.lst = new ArrayList<>();
     }
 
+    /**
+     * Constructor for TaskList.
+     *
+     * @param lst ArrayList to initialize the TaskList with.
+     */
     public TaskList(ArrayList<Task> lst) {
         this.lst = lst;
     }
@@ -17,10 +28,13 @@ public class TaskList {
         return this.lst;
     }
 
+    /**
+     * Prints into console the current Tasks in the List in a nice format.
+     */
     public void showList() {
         if (!lst.isEmpty()) {
             Ui.showLine();
-            System.out.println("\tHere are the tasks in your list:");
+            Ui.show("\tHere are the tasks in your list:");
             for (int i = 0; i < lst.size(); i++) {
                 System.out.println("\t" + (i + 1) + "." + lst.get(i));
             }
@@ -30,22 +44,48 @@ public class TaskList {
         }
     }
 
+    /**
+     * Returns true if the list is empty.
+     *
+     * @return Returns true if the list is empty.
+     */
     public boolean isEmpty() {
         return lst.isEmpty();
     }
 
+    /**
+     * Returns the Task at the specified position in this list.
+     *
+     * @param index index of the element in the list.
+     * @return Returns the Task at the specified position in this list.
+     */
     public Task get(int index) {
         return lst.get(index);
     }
 
+    /**
+     * Appends the specified Task to the end of this list.
+     *
+     * @param t The Task to be added
+     */
     public void add(Task t) {
         lst.add(t);
     }
 
+    /**
+     * Returns the number of Tasks in the list.
+     *
+     * @return Returns the number of Tasks in the list.
+     */
     public int size() {
         return lst.size();
     }
 
+    /**
+     * Removes the Task at the specified index.
+     *
+     * @param index Index to remove the Task.
+     */
     public void remove(int index) {
         lst.remove(index);
     }
