@@ -16,7 +16,9 @@ public class Storage {
     protected File file;
 
     public Storage(String filePath) throws DukeException {
-        if (filePath.isEmpty()) throw new DukeException("\u2639 OOPS!!! File path cannot be empty.");
+        if (filePath.isEmpty()) {
+            throw new DukeException("\u2639 OOPS!!! File path cannot be empty.");
+        }
         this.file = new File(filePath);
     }
 

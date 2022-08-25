@@ -18,7 +18,9 @@ public abstract class TimedTask extends Task {
     }
 
     public static void setFormat(String format) throws DukeException {
-        if (format.isEmpty()) throw new DukeException("\u2639 OOPS!!! Format cannot be blank.");
+        if (format.isEmpty()) {
+            throw new DukeException("\u2639 OOPS!!! Format cannot be blank.");
+        }
         try {
             DateTimeFormatter.ofPattern(format);
         } catch (IllegalArgumentException e) {
@@ -41,12 +43,15 @@ public abstract class TimedTask extends Task {
             time = LocalDateTime.parse(rawDateTime, DateTimeFormatter.ofPattern(format));
         } catch (DateTimeParseException e1) {
             try {
-                time = LocalDateTime.of(LocalDate.parse(rawDateTime, DateTimeFormatter.ofPattern(format.split(" ")[0])), LocalTime.MIDNIGHT);
+                time = LocalDateTime.of(LocalDate.parse(rawDateTime,
+                        DateTimeFormatter.ofPattern(format.split(" ")[0])), LocalTime.MIDNIGHT);
             } catch (DateTimeParseException e2) {
                 try {
-                    time = LocalDateTime.of(LocalDate.now(), LocalTime.parse(rawDateTime, DateTimeFormatter.ofPattern(format.split(" ")[1])));
+                    time = LocalDateTime.of(LocalDate.now(), LocalTime.parse(rawDateTime,
+                            DateTimeFormatter.ofPattern(format.split(" ")[1])));
                 } catch (DateTimeParseException e3) {
-                    throw new DukeException("\u2639 OOPS!!! Wrong datetime format. Please input datetime in the format %s", TimedTask.format);
+                    throw new DukeException("\u2639 OOPS!!! Wrong datetime format. Please input datetime in the format %s",
+                            TimedTask.format);
                 }
             }
         }

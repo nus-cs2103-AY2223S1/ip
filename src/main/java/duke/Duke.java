@@ -37,37 +37,40 @@ public class Duke {
         ui.showGreeting();
         Scanner sc = new Scanner(System.in);
         scanner: while (sc.hasNextLine()) {
-            String[] parsedCommand;
+            String[] parsedCommands;
             Task task;
             try {
-                parsedCommand = Parser.parse(sc.nextLine());
+                parsedCommands = Parser.parse(sc.nextLine());
             } catch (DukeException e) {
                 ui.showError(e);
                 continue;
             }
             try {
-                switch (parsedCommand[0]) {
+                switch (parsedCommands[0]) {
                 case "list":
-                    if (parsedCommand.length == 1) {
+                    if (parsedCommands.length == 1) {
                         ui.showTasks(tasks);
                     } else {
-                        ui.showTasks(tasks, parsedCommand[1]);
+                        ui.showTasks(tasks, parsedCommands[1]);
                     }
                     break;
                 
                 case "todo":
-                    tasks.add(new Todo(parsedCommand[1]));
-                    ui.showSuccess("Got it. I've added this todo:\n  %s\nNow you have %d tasks in the list.", tasks.get(tasks.size()), tasks.size());
+                    tasks.add(new Todo(parsedCommands[1]));
+                    ui.showSuccess("Got it. I've added this todo:\n  %s\nNow you have %d tasks in the list.",
+                            tasks.get(tasks.size()), tasks.size());
                     break;
 
                 case "deadline":
-                    tasks.add(new Deadline(parsedCommand[1], parsedCommand[2]));
-                    ui.showSuccess("Got it. I've added this deadline:\n  %s\nNow you have %d tasks in the list.", tasks.get(tasks.size()), tasks.size());
+                    tasks.add(new Deadline(parsedCommands[1], parsedCommands[2]));
+                    ui.showSuccess("Got it. I've added this deadline:\n  %s\nNow you have %d tasks in the list.",
+                            tasks.get(tasks.size()), tasks.size());
                     break;
 
                 case "event":
-                    tasks.add(new Event(parsedCommand[1], parsedCommand[2]));
-                    ui.showSuccess("Got it. I've added this event:\n  %s\nNow you have %d tasks in the list.", tasks.get(tasks.size()), tasks.size());
+                    tasks.add(new Event(parsedCommands[1], parsedCommands[2]));
+                    ui.showSuccess("Got it. I've added this event:\n  %s\nNow you have %d tasks in the list.",
+                            tasks.get(tasks.size()), tasks.size());
                     break;
                 
                 case "sort":
@@ -76,23 +79,24 @@ public class Duke {
                     break;
                 
                 case "format":
-                    TimedTask.setFormat(parsedCommand[1]);
+                    TimedTask.setFormat(parsedCommands[1]);
                     ui.showTasks(tasks);
                     break;
 
                 case "mark":
-                    task = tasks.mark(Integer.parseInt(parsedCommand[1]));
+                    task = tasks.mark(Integer.parseInt(parsedCommands[1]));
                     ui.showSuccess("Nice! I've marked this task as done:\n  " + task);
                     break;
 
                 case "unmark":
-                    task = tasks.unmark(Integer.parseInt(parsedCommand[1]));
+                    task = tasks.unmark(Integer.parseInt(parsedCommands[1]));
                     ui.showSuccess("OK, I've marked this task as not done yet:\n  " + task);
                     break;
                 
                 case "delete":
-                    task = tasks.delete(Integer.parseInt(parsedCommand[1]));
-                    ui.showSuccess("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.", task, tasks.size());
+                    task = tasks.delete(Integer.parseInt(parsedCommands[1]));
+                    ui.showSuccess("Noted. I've removed this task:\n  %s\nNow you have %d tasks in the list.",
+                            task, tasks.size());
                     break;
     
                 case "bye":
