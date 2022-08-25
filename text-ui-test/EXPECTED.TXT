@@ -195,6 +195,15 @@ Type something in for Poolsheen to respond to you:
       meow *_*
 ---------------
 ---------------
+      Poolsheen now remembers: Fight Cake
+      meow *_*
+---------------
+---------------
+      Poolsheen thinks back... and remembers you said:
+      1. [T] [-] Eat Cake
+      meow *_*
+---------------
+---------------
       Goodbye :(
       meow *_*
 ---------------

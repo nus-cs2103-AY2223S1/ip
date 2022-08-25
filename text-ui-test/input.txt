@@ -28,4 +28,6 @@ deadline desc
 event desc
 deadline desc /by onetwothree
 event desc /at onetwothree
+todo Fight Cake
+FIND Eat
 bye
