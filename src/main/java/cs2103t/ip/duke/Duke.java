@@ -104,18 +104,8 @@ public class Duke {
                 } else {
                     throw new DukeException("☹ OOPS!!! Please include the index of the task you'd like to delete!");
                 }
-            } else if (parser.isFind(input)) {
-                if (input.length() > 5) {
-                    ArrayList<Task> arr = new ArrayList<>();
-                    Tasklist filteredTasks = new Tasklist(arr);
-                    for (Task t : tasks.getTasks()) {
-                        if (t.toString().contains(input.substring(5))) {
-                            filteredTasks.addTasks(t);
-                        }
-                    }
-                    ui.showFilteredList(filteredTasks, filteredTasks.size());
-                }
-            } else {
+            }
+            else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
