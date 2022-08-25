@@ -28,3 +28,9 @@ application {
     // Define the main class for the application.
     mainClass = 'duke.Duke'
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'duke.Duke'
+    }
+}
