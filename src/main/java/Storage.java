@@ -40,16 +40,6 @@ public class Storage {
         }
     }
 
-    public void addToFile(String textToAppend) throws DukeException {
-        try {
-            FileWriter fw = new FileWriter(filePath, true);
-            fw.write(textToAppend + "\n");
-            fw.close();
-        } catch (IOException e) {
-            throw new DukeException("An error occurred when updating file.");
-        }
-    }
-
     public void overwriteFile(String textToReplace) {
         try {
             FileWriter fw = new FileWriter(filePath);
