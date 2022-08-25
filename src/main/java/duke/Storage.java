@@ -8,6 +8,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents a storage system for tasks given to Duke chatbot.
+ *
+ * @author Conrad
+ */
 public class Storage {
 
     private String filePath;
@@ -15,6 +20,13 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the tasks locally from the previous session.
+     *
+     * @return An <code>ArrayList</code> of tasks read from the input file.
+     * @throws FileNotFoundException If the file does not exist.
+     * @throws DukeException If the file does not have the correct format.
+     */
     public ArrayList<Task> loadTasks() throws FileNotFoundException, DukeException {
         ArrayList<Task> userTasks = new ArrayList<>();
         File f = new File(this.filePath);
@@ -56,6 +68,12 @@ public class Storage {
         return userTasks;
     }
 
+    /**
+     * Saves the tasks locally from the current session.
+     *
+     * @param taskList A list of tasks to be saved.
+     * @throws DukeException If there is an error while accessing the file information.
+     */
     public void saveTasks(TaskList taskList) throws DukeException {
         try {
             FileWriter fw = new FileWriter(this.filePath);

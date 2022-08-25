@@ -21,13 +21,18 @@ public class Event extends Task {
         this.eventTime = eventTime;
     }
 
+    /**
+     * Returns a string representation of the event task to be stored locally.
+     *
+     * @return The storage representation of the event task.
+     */
     @Override
     public String getTextRepresentation() {
         return "E|" + (this.isCompleted() ? "1|" : "0|") + this.getTaskDescription() + "|" + this.eventTime + "\n";
     }
 
     /**
-     * Return a string representation of an event task.
+     * Returns a string representation of an event task.
      *
      * @return The string representation of an event task.
      */

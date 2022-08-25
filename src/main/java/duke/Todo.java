@@ -16,13 +16,18 @@ public class Todo extends Task {
         super(taskDescription);
     }
 
+    /**
+     * Returns a string representation of the event task to be stored locally.
+     *
+     * @return The storage representation of the event task.
+     */
     @Override
     public String getTextRepresentation() {
         return "T|" + (this.isCompleted() ? "1|" : "0|") + this.getTaskDescription() + "\n";
     }
 
     /**
-     * Return a string representation of a todo.
+     * Returns a string representation of a todo.
      *
      * @return The string representation of a todo.
      */

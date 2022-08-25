@@ -15,6 +15,12 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for the <code>Duke</code> chatbot.
+     *
+     * @param filePath The URL location of the local storage text file.
+     * @return A <code>Duke</code> chatbot instance.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -28,6 +34,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the bot for the user.
+     *
+     */
     public void run() {
         this.ui.showWelcome();
         Scanner sc = new Scanner(System.in);

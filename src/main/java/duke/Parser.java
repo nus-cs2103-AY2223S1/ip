@@ -4,9 +4,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
-
+/**
+ * Represents a parser for user input given to Duke chatbot.
+ *
+ * @author Conrad
+ */
 public class Parser {
 
+    /**
+     * Parses the task number from the user input command into its <code>TaskList</code> index.
+     *
+     * @param userInput String input provided by user.
+     * @return An integer representing the index of the task in the <code>TaskList</code>.
+     * @throws DukeException If input is not of the type [command] [taskNumber]
+     */
     public static int parseTaskNumber(String userInput) throws DukeException {
         String[] parsedInput = userInput.split(" ");
         String taskNumberString = parsedInput[1];
@@ -18,12 +29,24 @@ public class Parser {
 
     }
 
+    /**
+     * Parses the user input into a <code>Todo</code> task.
+     *
+     * @param userInput String input provided by user.
+     * @return An <code>Todo</code> task with the specified description.
+     */
     public static Todo parseTodoTask(String userInput) {
         String[] parsedUserResponse = userInput.split(" ");
         String newTaskDescription = String.join(" ", Arrays.copyOfRange(parsedUserResponse,1, parsedUserResponse.length));
         return new Todo(newTaskDescription);
     }
 
+    /**
+     * Parses the user input into an <code>Event</code> task.
+     *
+     * @param userInput String input provided by user.
+     * @return An <code>Event</code> task with the specified description and time of occurrence.
+     */
     public static Event parseEventTask(String userInput) {
 
         String[] parsedUserResponse = userInput.split(" ");
@@ -39,6 +62,12 @@ public class Parser {
         return new Event(newTaskDescription, newEventTime);
     }
 
+    /**
+     * Parses the user input into a <code>Deadline</code> task.
+     *
+     * @param userInput String input provided by user.
+     * @return An <code>Deadline</code> task with the specified description and deadline.
+     */
     public static Deadline parseDeadlineTask(String userInput) throws DukeException {
         String[] parsedUserResponse = userInput.split(" ");
         int bySeparationIndex = Arrays.asList(parsedUserResponse).indexOf("/by");
@@ -56,6 +85,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the user input into a <code>Command</code>.
+     *
+     * @param userResponse String input provided by user.
+     * @return A <code>Command</code> representing the action requested from Duke chatbot.
+     */
     public static Command parseUserResponse(String userResponse) throws DukeException {
         String[] parsedUserResponse = userResponse.split(" ");
         String mainCommand = parsedUserResponse[0];

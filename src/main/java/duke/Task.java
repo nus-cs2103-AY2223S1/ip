@@ -51,7 +51,7 @@ public class Task {
     }
 
     /**
-     * Get the description of the task.
+     * Retrieves the description of the task.
      *
      * @return A string representing the description of the task.
      */
@@ -61,7 +61,7 @@ public class Task {
 
 
     /**
-     * Return a string representation of a task.
+     * Returns a string representation of a task.
      *
      * @return The string representation of a task.
      */

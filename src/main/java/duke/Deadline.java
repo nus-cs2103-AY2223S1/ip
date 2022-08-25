@@ -22,6 +22,11 @@ public class Deadline extends Task {
         this.deadline = taskDeadline;
     }
 
+    /**
+     * Returns a string representation of the deadline task to be stored locally.
+     *
+     * @return The storage representation of the event task.
+     */
     @Override
     public String getTextRepresentation() {
 
@@ -29,7 +34,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Return a string representation of a task with a deadline.
+     * Returns a string representation of a task with a deadline.
      *
      * @return The string representation of a task with a deadline.
      */
