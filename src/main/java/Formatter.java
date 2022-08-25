@@ -16,7 +16,7 @@ public class Formatter {
         reply.append("Here are the tasks you have added:\n");
         int count = 1;
         for (T task: list) {
-            reply.append(count++ + ". " + task + "\n");
+            reply.append(count++).append(". ").append(task).append("\n");
         }
         reply.setLength(reply.length() - 1);
         return addSeparator(reply.toString());

@@ -1,6 +1,6 @@
 public class Todo extends Task {
 
-    public Todo(ParsedInput parsedInput) {
+    public Todo(ParsedData parsedInput) {
         super(parsedInput);
     }
 

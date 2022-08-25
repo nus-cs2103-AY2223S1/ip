@@ -2,10 +2,10 @@ public class Event extends Task {
     private String during;
     private String time;
 
-    public Event(ParsedInput parsedInput) {
+    public Event(ParsedData parsedInput) {
         super(parsedInput);
         this.during = parsedInput.getDuring();
-        this.time = parsedInput.getTime();
+        this.time = parsedInput.getTimeText();
     }
 
     @Override

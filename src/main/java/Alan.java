@@ -40,32 +40,32 @@ public class Alan {
                     System.out.println(formatter.list(taskList));
                     break;
                 case "event":
-                    ParsedInput eventInput = parser.parse(InputType.event, userInput);
+                    ParsedData eventInput = parser.parse(InputType.event, userInput);
                     Task eventTask = new Event(eventInput);
                     taskList.add(eventTask);
                     System.out.println(formatter.addTask(eventTask, taskList.size()));
                     break;
                 case "deadline":
-                    ParsedInput deadlineInput = parser.parse(InputType.deadline, userInput);
+                    ParsedData deadlineInput = parser.parse(InputType.deadline, userInput);
                     Task deadlineTask = new Deadline(deadlineInput);
                     taskList.add(deadlineTask);
                     System.out.println(formatter.addTask(deadlineTask, taskList.size()));
                     break;
                 case "todo":
-                    ParsedInput todoInput = parser.parse(InputType.todo, userInput);
+                    ParsedData todoInput = parser.parse(InputType.todo, userInput);
                     Task todoTask = new Todo(todoInput);
                     taskList.add(todoTask);
                     System.out.println(formatter.addTask(todoTask, taskList.size()));
                     break;
                 case "mark": {
-                    ParsedInput markInput = parser.parse(InputType.mark, userInput);
+                    ParsedData markInput = parser.parse(InputType.mark, userInput);
                     Task selectedTask = taskList.get(markInput.getListIndex());
                     selectedTask.markDone();
                     System.out.println(formatter.markDone(selectedTask));
                     break;
                 }
                 case "unmark": {
-                    ParsedInput unmarkInput = parser.parse(InputType.unmark, userInput);
+                    ParsedData unmarkInput = parser.parse(InputType.unmark, userInput);
                     Task selectedTask = taskList.get(unmarkInput.getListIndex());
                     selectedTask.markUndone();
                     System.out.println(formatter.markUndone(selectedTask));

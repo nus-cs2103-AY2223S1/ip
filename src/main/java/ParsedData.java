@@ -1,29 +1,30 @@
-public class ParsedInput {
-    private String command;
+import java.time.LocalDateTime;
+
+public class ParsedData {
     private String task;
     private String during;
-    private String time;
+    private String timeText;
+    private LocalDateTime dateTime;
     private int listIndex;
 
-    public ParsedInput(String command, String task, String during, String time) {
-        this.command = command;
+    public ParsedData(String task, String during, String time) {
         this.task = task;
         this.during = during;
-        this.time = time;
+        this.timeText = time;
     }
 
-    public ParsedInput(String command, String task) {
-        this.command = command;
+    public ParsedData(String task, String during, LocalDateTime dateTime) {
+        this.task = task;
+        this.during = during;
+        this.dateTime = dateTime;
+    }
+
+    public ParsedData(String task) {
         this.task = task;
     }
 
-    public ParsedInput(String command, int listIndex) {
-        this.command = command;
+    public ParsedData(int listIndex) {
         this.listIndex = listIndex;
-    }
-
-    public String getCommand() {
-        return command;
     }
 
     public String getTaskName() {
@@ -34,8 +35,8 @@ public class ParsedInput {
         return during;
     }
 
-    public String getTime() {
-        return time;
+    public String getTimeText() {
+        return timeText;
     }
 
     public int getListIndex() {
