@@ -23,7 +23,6 @@ public class Duke {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
-
     private DukeIO userIO;
     private TaskList tasks;
     private Storage dukeData;
@@ -33,7 +32,6 @@ public class Duke {
         this.dukeData = dukeData;
         this.tasks = tasks;
     }
-
 
     boolean executeCommand(ParsedData data) throws DukeException, IOException {
         Task task;
@@ -150,7 +148,7 @@ public class Duke {
             return null;
         }
 
-        return new Duke(tasks, dukeData);        
+        return new Duke(tasks, dukeData);
     }
 
     static Duke createApplication() {
@@ -168,10 +166,8 @@ public class Duke {
             return null;
         }
 
-        return new Duke(tasks, dukeData);        
+        return new Duke(tasks, dukeData);
     }
-
-
 
     public static void main(String[] args) {
         Duke duke = createApplication();

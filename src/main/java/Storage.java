@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String DEFAULT_SAVE_PATH = "SavedData.duke";
+    private static final String DEFAULT_SAVE_PATH = "data/SavedData.duke";
+    private static final String DEFAULT_SAVE_FOLDER = "data";
     private File file;
 
     Storage(File file) {
@@ -22,6 +23,7 @@ public class Storage {
 
     static Storage createStorage() throws IOException {
         File newFile = new File(DEFAULT_SAVE_PATH);
+        new File(DEFAULT_SAVE_FOLDER).mkdir();
         newFile.createNewFile();
         return new Storage(newFile);
     }
