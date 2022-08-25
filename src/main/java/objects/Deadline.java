@@ -2,9 +2,11 @@ package objects;
 
 import objects.Task;
 
+import javax.swing.text.DateFormatter;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
 
@@ -29,9 +31,13 @@ public class Deadline extends Task {
     }
 
     public String getDateTime() {
-        return this.endDate.toString() + " " + this.endTime.toString();
+        return this.endDate.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")).toString()
+                + " " + LocalTime.parse(this.endTime.toString(), DateTimeFormatter.ofPattern("HH:mm")).toString();
     }
 
+    // endDateTime must follow either "DD/MM/YYYY" or "DD/MM/YYYY TT:TT"
+    // where TT:TT is the time in 24-hour format
+    // if time is not included, the default value of 00:00 will be used
     private void updateEndDateTime(String endDateTime) {
         StringBuilder year = new StringBuilder();
         StringBuilder month = new StringBuilder();
@@ -62,15 +68,20 @@ public class Deadline extends Task {
             }
         }
 
-        int d = Integer.parseInt(year.toString()); // day
+        int y = Integer.parseInt(year.toString()); // year
         int m = Integer.parseInt(month.toString()); // month
-        int y = Integer.parseInt(day.toString()); // year
-        LocalDate endDate = LocalDate.of(d, m, y);
-        int hour = Integer.parseInt(time.toString().substring(0, 2));
-        int minute = Integer.parseInt(time.toString().substring(2, 4));
-        LocalTime endTime = LocalTime.of(hour, minute);
+        int d = Integer.parseInt(day.toString()); // day
+        LocalDate endDate = LocalDate.of(y, m, d);
+
+        LocalTime endTime = LocalTime.of(0, 0);
+        if (currentlyAnalyzing.equals(Calendar.TIME)) {
+            int hour = Integer.parseInt(time.toString().substring(0, 2));
+            int minute = Integer.parseInt(time.toString().substring(3, 5));
+            endTime = LocalTime.parse(LocalTime.of(hour, minute).toString(), DateTimeFormatter.ofPattern("HH:mm"));
+        }
 
         this.endDate = endDate;
+        // value of endTime defaults to 00:00 if no time is indicated
         this.endTime = endTime;
     }
 

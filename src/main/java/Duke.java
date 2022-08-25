@@ -32,8 +32,8 @@ public class Duke {
     public static void main(String[] args) throws IOException {
         try {
             // Assume that user has duke.jar in an empty folder
-            File dir = new File("data");
-            File f = new File("data/tasks.txt");
+            File dir = new File("sample");
+            File f = new File("sample/tasks.txt");
             // Create a new folder called data in the empty folder
             // Create a new file called tasks.txt in that folder to store data
             if (dir.mkdir()) {
