@@ -21,6 +21,7 @@ public class Storage {
         this.listOfTasks = new File(listOfTasks);
     }
 
+<<<<<<< HEAD
     /**
      * A method that does the loading of tasks from a file to an ArrayList
      * @return An ArrayList of tasks loaded from previously saved file (if there is saved file) or a new ArrayList of
@@ -28,6 +29,8 @@ public class Storage {
      * @throws IOException
      * @throws DukeException
      */
+=======
+>>>>>>> branch-Level-9
     public ArrayList<Task> load() throws IOException, DukeException {
         ArrayList<Task> lst = new ArrayList<>();
         Scanner input = null;

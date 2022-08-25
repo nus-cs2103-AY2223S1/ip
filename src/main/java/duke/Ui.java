@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.ArrayList;
+
 public class Ui {
     private final String LINE_BREAK = "____________________________________________________________";
 
@@ -59,6 +61,16 @@ public class Ui {
         System.out.printf(LINE_BREAK
                 + "\n\tOkay, I've marked this task as not done yet:\n\t%s\n"
                         + LINE_BREAK + "\n", task);
+    }
+
+    public void printFind(ArrayList<Task> lst) {
+        System.out.println(LINE_BREAK);
+        System.out.println("\tHere are the matching tasks in your list.");
+        for (int i = 0; i < lst.size(); i++) {
+            Task task = lst.get(i);
+            System.out.printf("\t%d. %s\n", i+1, task.toString());
+        }
+        System.out.println(LINE_BREAK);
     }
 
 

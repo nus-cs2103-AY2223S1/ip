@@ -1,5 +1,6 @@
 package duke;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Duke is an interactive chatbot that keeps track of tasks inputted by user
@@ -123,6 +124,20 @@ public class Duke {
         int size = tasks.getSize();
         ui.printDelete(taskToBeDeleted, size);
         storage.save(tasks);
+    }
+
+    public void find(String string) {
+        ArrayList<Task> lst = tasks.getTasks();
+        ArrayList<Task> filtered = new ArrayList<>();
+        for (Task task : lst) {
+            String description = task.description;
+            if (description.contains(string)) {
+                filtered.add(task);
+            }
+        }
+        ui.printFind(filtered);
+
+
     }
 
 }
