@@ -1,7 +1,8 @@
 package duke;
 
-import duke.task.Task;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * The Ui class deals with interactions with the user.
@@ -107,7 +108,7 @@ public class Ui {
      */
     public void showTasks(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
-        for (int i=0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
             System.out.format("%d. %s\n", i + 1, curr.toString());
         }

@@ -1,7 +1,9 @@
 package duke.command;
 
-import duke.*;
-import duke.exception.*;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.exception.DukeException;
 
 /**
  * The Command class represents instructions based on the user's input.

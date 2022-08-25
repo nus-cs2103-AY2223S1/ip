@@ -1,10 +1,11 @@
 package duke;
 
-import duke.task.Task;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.task.Task;
 
 /**
  * The TaskList class contains the List of Tasks and has operations to add
@@ -103,7 +104,7 @@ public class TaskList {
      */
     public void saveTasks(String filePath) throws IOException {
         FileWriter fw = new FileWriter(filePath);
-        for (int i=0; i < tasks.size(); i++) {
+        for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
             // System.out.println(curr.toDataEntry());
             fw.write(curr.toDataEntry());

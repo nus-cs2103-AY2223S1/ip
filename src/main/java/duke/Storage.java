@@ -1,12 +1,17 @@
 package duke;
 
-import duke.task.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 
 /**
  * The Storage class deals with loading tasks from the data file and
@@ -80,6 +85,4 @@ public class Storage {
     public void save(TaskList tasks) throws IOException {
         tasks.saveTasks(this.filePath);
     }
-
-
 }

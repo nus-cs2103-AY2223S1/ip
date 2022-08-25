@@ -1,9 +1,10 @@
 package duke.command;
 
-import duke.*;
-import duke.exception.*;
-
 import java.io.IOException;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 
 /**
  * The ExitCommand class represents a Command that exits the task manager.
