@@ -42,6 +42,7 @@ public class Duke {
 
             if (input[0].equals("list")) {
                 // when user request list
+                ui.printList();
                 items.printList();
             } else {
                 switch(input[0]) {
@@ -65,6 +66,12 @@ public class Duke {
                         Task tsk = items.unmarkTask(numb);
                         ui.printUnMark(tsk);
                     }
+                    break;
+
+                case "find":
+                    TaskList resultList = items.findTask(input[1]);
+                    ui.printResultList();
+                    resultList.printList();
                     break;
 
                 case "todo":

@@ -1,12 +1,30 @@
 package Duke;
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TaskList {
 
     private ArrayList<Task> lst;
+
     public TaskList(ArrayList<Task> lst) {
         this.lst = lst;
+    }
+
+    /**
+     * Returns the TaskList of tasks that matches the search term.
+     * @param input search term.
+     * @return the result list.
+     */
+    public TaskList findTask(String input) {
+        TaskList resultList = new TaskList(new ArrayList<Task>());
+        for (Task t : lst) {
+            if (isSimilar(input, t.getDescription())) {
+                resultList.addTask(t);
+            }
+        }
+        return resultList;
     }
 
     /**
@@ -54,7 +72,6 @@ public class TaskList {
      * Prints items in list.
      */
     public void printList() {
-        System.out.println("Here are the tasks in your list:");
         int count = 1;
         for (Task tsk : this.lst) {
             System.out.println(String.valueOf(count++) + "." + tsk);
@@ -90,5 +107,9 @@ public class TaskList {
         return lst.size();
     }
 
-
+    private static boolean isSimilar(String input, String toCompare){
+        Pattern pattern = Pattern.compile(".*" + input + ".*");
+        Matcher matcher = pattern.matcher(toCompare);
+        return (matcher.find());
+    }
 }

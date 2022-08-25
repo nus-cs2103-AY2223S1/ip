@@ -18,6 +18,12 @@ public class Parser {
             } else {
                 return words;
             }
+        } else if (words[0].equals("find")) {
+            if (words.length != 2) {
+                throw new DukeException("Please add in item to find.");
+            } else {
+                return words;
+            }
         } else if (words[0].equals("deadline") || words[0].equals("event")) {
             if (phrases.length != 2) {
                 throw new DukeException("Please add in timing information.");
