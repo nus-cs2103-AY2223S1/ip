@@ -6,12 +6,10 @@ class Event extends Task {
     private static final String SPLIT = "/at ";
 
     private String period;
-    private final Optional<LocalDateTime> dateTime;
 
     Event(String description, String period) {
-        super(description);
+        super(description, Parser.strToDateTime(period));
         this.period = period;
-        this.dateTime = Parser.strToDateTime(period);
     }
 
     static Event createEvent(ParsedData data) throws DukeException {

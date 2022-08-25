@@ -6,12 +6,10 @@ class Deadline extends Task {
     private static final String SPLIT = "/by ";
 
     private String deadline;
-    private final Optional<LocalDateTime> dateTime;
 
     Deadline(String description, String deadline) {
-        super(description);
+        super(description, Parser.strToDateTime(deadline));
         this.deadline = deadline;
-        this.dateTime = Parser.strToDateTime(deadline);
     }
 
     static Deadline createDeadline(ParsedData data) throws DukeException {
