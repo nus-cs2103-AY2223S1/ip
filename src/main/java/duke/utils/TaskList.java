@@ -24,6 +24,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a task to the task list.
+     *
+     * @param task The new task to be added.
+     */
     public void addTask(Task task) {
         tasks.add(task);
 
@@ -33,12 +38,22 @@ public class TaskList {
         System.out.println("  _______________\n");
     }
 
+    /**
+     * Marks a task as done.
+     *
+     * @param input The string representation of the index of the task to be marked.
+     */
     public void markTask(String input) throws Exception {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);
         task.markIsDone();
     }
 
+    /**
+     * Unmark a task if it is done.
+     *
+     * @param input The string representation of the index of the task to be unmarked.
+     */
     public void unmarkTask(String input) throws Exception {
         int taskNum = Integer.parseInt(input) - 1;
         Task task = getTask(taskNum);

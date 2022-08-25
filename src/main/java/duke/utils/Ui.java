@@ -12,6 +12,9 @@ public class Ui {
         return inputText;
     }
 
+    /**
+     * Prints Duke's greeting to the user.
+     */
     public void printGreeting() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -21,6 +24,9 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
     }
 
+    /**
+     * Prints Duke's goodbye to the user.
+     */
     public void printBye() {
         System.out.println("Goodbye. Hope to see you again soon!");
     }
