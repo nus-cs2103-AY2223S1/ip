@@ -1,4 +1,7 @@
 import java.nio.InvalidMarkException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,14 +67,14 @@ public class Duke {
                     respond();
                 }
                 else if (command.equals("event")) {
-                    String[] deets = arr[1].split("/at", 2);
-                    list.add(new Event(deets[0], deets[1]));
+                    String[] deets = arr[1].split("/at ", 2);
+                    list.add(new Event(deets[0], parseString(deets[1])));
                     list.get(count++).print();
                     respond();
                 }
                 else if (command.equals("deadline")) {
-                    String[] deets = arr[1].split("/by", 2);
-                    list.add(new Deadline(deets[0], deets[1]));
+                    String[] deets = arr[1].split("/by ", 2);
+                    list.add(new Deadline(deets[0], parseString(deets[1])));
                     list.get(count++).print();
                     respond();
                 }
@@ -122,6 +125,18 @@ public class Duke {
                 line + "\n"
         );
 
+    }
+
+    private LocalDateTime parseString(String s) {
+        DateTimeFormatter formatter = null;
+        LocalDateTime date = null;
+        try {
+            formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            date = LocalDateTime.parse(s,formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Please use time in dd/MM/yyyy HH:mm format");
+            respond();
+        }   return date;
     }
 
     public void bye() {
