@@ -1,5 +1,7 @@
 package poolsheen;
 
+import java.util.ArrayList;
+
 import poolsheen.command.Command;
 import poolsheen.command.ByeCommand;
 import poolsheen.command.DeadlineCommand;
@@ -9,8 +11,6 @@ import poolsheen.command.ListCommand;
 import poolsheen.command.MarkCommand;
 import poolsheen.command.ToDoCommand;
 import poolsheen.command.UnmarkCommand;
-
-import java.util.ArrayList;
 
 /**
  * Class that deals with parsing strings into commands.

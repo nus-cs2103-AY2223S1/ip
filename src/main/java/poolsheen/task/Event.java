@@ -2,6 +2,7 @@ package poolsheen.task;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+
 import poolsheen.IncompleteCommandException;
 
 public class Event extends Task {
@@ -25,12 +26,12 @@ public class Event extends Task {
 
     @Override
     public String[] toArr() {
-        return new String[]{"E", this.getStatusIcon(), this.description, this.time.toString()};
+        return new String[] {"E", this.getStatusIcon(), this.description, this.time.toString()};
     }
 
     @Override
     public String toString() {
-        return "[E] " + super.toString() + " (at: " +
-                this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[E] " + super.toString() + " (at: "
+                + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

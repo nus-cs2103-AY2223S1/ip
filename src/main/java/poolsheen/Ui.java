@@ -1,6 +1,7 @@
 package poolsheen;
 
 import java.util.Scanner;
+
 import poolsheen.task.Task;
 
 /**
@@ -20,7 +21,8 @@ public class Ui {
 
     private static final String HORIZONTAL_LINE = "---------------";
 
-    private static final String GOODBYE_MESSAGE = "MeoAww... See you next time :(\nTHE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
+    private static final String GOODBYE_MESSAGE = "MeoAww... See you next time :(\n"
+            + "THE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
 
     private Scanner s;
 
