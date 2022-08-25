@@ -8,7 +8,9 @@ import duke.task.Event;
 import duke.task.ToDo;
 import java.time.format.DateTimeParseException;
 
-
+/**
+ * To handle the user's input and execute the commands.
+ */
 public class Parser {
     private final TaskList list;
     enum LIST_COMMANDS {todo, deadline, event, mark, unmark, delete, }

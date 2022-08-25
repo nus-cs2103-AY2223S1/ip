@@ -6,6 +6,9 @@ import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
 import duke.task.Task;
 
+/**
+ * For anything related to printing statements in Duke.
+ */
 public class Ui {
     public static final String[] COMMAND_HELP = new String[] { "todo [description]",
                                                                 "deadline [description] /by [dd/MM/yy] <24hr time>",
