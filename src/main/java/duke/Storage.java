@@ -76,7 +76,7 @@ public class Storage {
                 }
 
                 if (messageArr[0].equals("E")) {
-                    Event event = new Event(messageArr[2],messageArr[3]);
+                    Event event = new Event(messageArr[2],messageArr[3],messageArr[4]);
                     if (messageArr[1].equals("1")) {
                         event.setCompleted();
                     }

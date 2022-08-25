@@ -6,6 +6,7 @@ import duke.task.Event;
 import duke.task.ToDo;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents class that allocate the relevant commands based on the input string
@@ -70,17 +71,26 @@ public class Parser {
                 AddCommand addDeadlineCommand = new AddCommand(deadline);
                 return addDeadlineCommand;
             }
-            catch (Exception e){
-                System.out.println("Invalid Input for date and time");
+            catch (DateTimeParseException e) {
+                throw new DukeException("Invalid Input for date and time in deadline task");
             }
 
         case "event":
             int endIndex = command.indexOf('/');
             String eventName = command.substring(6, endIndex - 1 );
-            String time = command.substring(endIndex + 4);
-            Event event = new Event(eventName,time);
-            AddCommand addEventNameCommand = new AddCommand(event);
-            return addEventNameCommand;
+            try {
+                String eventDateTime = command.substring(endIndex + 4);
+                String[] arrOfStr = eventDateTime.split(" ");
+                LocalDate eventDate = LocalDate.parse(arrOfStr[0]);
+                LocalTime eventTime = LocalTime.of(Integer.parseInt(arrOfStr[1].substring(0,2)),
+                        Integer.parseInt(arrOfStr[1].substring(2)));
+                Event event = new Event(eventName,eventDate,eventTime);
+                AddCommand addEventNameCommand = new AddCommand(event);
+                return addEventNameCommand;
+
+            } catch (DateTimeParseException e) {
+            throw new DukeException("Invalid Input for date and time in event task");
+        }
 
         case "find":
                 String keyword = strArr[1];
