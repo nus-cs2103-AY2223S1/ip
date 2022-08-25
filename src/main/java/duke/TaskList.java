@@ -44,6 +44,16 @@ public class TaskList {
         }
     }
 
+    public TaskList getTaskListWithKeyword(String keyword) {
+       TaskList listWithKeyword = new TaskList();
+        for (Task task : this.taskList) {
+            if (task.containKeyword(keyword)) {
+                listWithKeyword.addTask(task);
+            }
+        }
+        return listWithKeyword;
+    }
+
     @Override
     public String toString() {
         if (taskList.isEmpty()) return "List is empty";
