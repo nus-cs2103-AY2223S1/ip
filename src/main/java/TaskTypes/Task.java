@@ -1,3 +1,5 @@
+package TaskTypes;
+
 public class Task {
     private String title;
     private Boolean isDone;
@@ -14,7 +16,7 @@ public class Task {
 
     public void markIsDone() {
         if (isDone) {
-            System.out.println("Error: Task is already done");
+            System.out.println("Error: TaskTypes.Task is already done");
         } else {
             System.out.println("OK, I've marked this task as done: ");
             this.isDone = true;
@@ -28,7 +30,7 @@ public class Task {
             this.isDone = false;
             System.out.println(this);
         } else {
-            System.out.println("Error: Task is not done");
+            System.out.println("Error: TaskTypes.Task is not done");
         }
     }
 
