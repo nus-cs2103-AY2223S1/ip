@@ -1,13 +1,19 @@
+import java.nio.file.FileAlreadyExistsException;
 import java.util.Scanner;
 import java.util.Arrays;
 import java.util.ArrayList;
+import static java.util.stream.Collectors.joining;
+import java.nio.file.Paths;
+import java.nio.file.Path;
+import java.nio.file.Files;
+import java.io.IOException;
 
 public class Duke {
     public static void main(String[] args) {
         String greeting = "     Hello! I'm Duke\n" +
                 "     What can I do for you?";
         wrapPrint(greeting);
-        ArrayList<Task> taskList = new ArrayList<>();
+        ArrayList<Task> taskList = loadTaskListFromFile();
         Scanner in = new Scanner(System.in);
         while(true) {
             try {
@@ -36,6 +42,47 @@ public class Duke {
                 + leftPad(String.format("\n" + leftPad("Now you have %d %s in the list."), taskList.size(), taskString)));
     }
 
+    private static ArrayList<Task> loadTaskListFromFile() {
+        Path saveLocation = Paths.get("data/tasks.txt");
+        ArrayList<Task> taskList = new ArrayList<>();
+        try {
+            Files.lines(saveLocation).forEach((taskString) -> {
+                String type = taskString.split(",")[0];
+                switch (type) {
+                case "T":
+                    taskList.add(Task.fromSaveString(taskString));
+                    break;
+                case "E":
+                    taskList.add(Event.fromSaveString(taskString));
+                    break;
+                case "D":
+                    taskList.add(Deadline.fromSaveString(taskString));
+                    break;
+                default:
+                    throw new RuntimeException("Tried to read unexpected save data.");
+                }
+            });
+        } catch (RuntimeException e) {
+            // TODO Notify the user save data is corrupted.
+            return new ArrayList<>();
+        } catch (IOException ignored) {
+            // Save file does not exist, start afresh.
+            return new ArrayList<>();
+        }
+        return taskList;
+    }
+
+    private static void saveTaskListToFile(ArrayList<Task> taskList) throws IOException {
+        String toSave = taskList.stream().map((task) -> task.saveData()).collect(joining("\n"));
+        Files.createDirectories(Paths.get("data"));
+        Path saveLocation = Paths.get("data/tasks.txt");
+        try {
+            Files.createFile(saveLocation);
+        } catch (FileAlreadyExistsException ignored) {
+        }
+        Files.write(saveLocation, toSave.getBytes());
+    }
+
     private static String leftPad(String toPrint) {
         return "     " + toPrint;
     }
@@ -49,6 +96,11 @@ public class Duke {
         String[] inputSplit = input.split(" ");
         switch(inputSplit[0]) {
             case "bye":
+                try {
+                    saveTaskListToFile(taskList);
+                } catch (IOException e) {
+                    wrapPrint(leftPad("IOException: " + e.toString()));
+                }
                 wrapPrint(leftPad("Bye. Hope to see you again soon!"));
                 return true;
             case "list":
