@@ -1,2 +1,2 @@
-1.[D][ ] return book (by: 10月 15 2019)
-2.[E][ ] return book (at: 10月 15 2019)
+1.[D][X] return book (by: 10月 15 2019)
+2.[D][X] return book (by: 10月 18 2019)

@@ -1,3 +1,5 @@
+package duke;
+
 public class Unmark extends Task {
     public String command;
     public Unmark(String description) {

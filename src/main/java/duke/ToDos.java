@@ -1,3 +1,5 @@
+package duke;
+
 public class ToDos extends Task {
     public String command;
     public int num;

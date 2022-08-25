@@ -1,3 +1,5 @@
+package duke;
+
 public class Deadlines extends Task {
     public String command;
     public int num;

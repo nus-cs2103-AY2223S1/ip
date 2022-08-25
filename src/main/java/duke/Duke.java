@@ -1,5 +1,6 @@
+package duke;
+
 import java.io.*;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -32,7 +33,6 @@ public class Duke {
         command = sc.nextLine();
         Duke duke = new Duke();
 
-//        TaskList tasks = new TaskList();
         while (true) {
             try {
                 if (command.equals("bye")) {

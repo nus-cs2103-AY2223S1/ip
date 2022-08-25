@@ -1,3 +1,5 @@
+package duke;
+
 public class Add extends Task {
     public String command;
     public Add(String description) {

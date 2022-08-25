@@ -1,3 +1,5 @@
+package duke;
+
 public class Mark extends Task {
     public String command;
     public Mark(String description) {

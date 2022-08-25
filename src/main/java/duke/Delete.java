@@ -1,3 +1,5 @@
+package duke;
+
 public class Delete {
     public int num;
     public String command;
