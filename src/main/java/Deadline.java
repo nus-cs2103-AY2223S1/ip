@@ -10,6 +10,12 @@ public class Deadline extends Task {
         super(description);
         this.by = by;
     }
+
+    public Deadline(String description, boolean isDone, LocalDate by) {
+        super(description,isDone);
+        this.by = by;
+    }
+
     public String getName() {
         return "D";
     }
