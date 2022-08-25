@@ -18,7 +18,7 @@ public class Duke {
      * @param args
      */
     public static void main(String[] args) {
-        new Duke("/Users/shaune/Desktop/NUS/CS2103T/Duke.txt").run();
+        new Duke("/Users/shaune/Desktop/NUS/CS2103T/duke/Duke.txt").run();
     }
 
     /**
