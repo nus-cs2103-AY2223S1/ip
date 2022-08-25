@@ -8,13 +8,16 @@ import java.io.File;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ParserTest {
-    Storage storage = new Storage("tasks.txt");
+    private final Storage storage = new Storage(Duke.filePath);
     private final TaskList taskList = new TaskList(storage);
     private final Parser parser = new Parser(taskList);
 
+    /**
+     * Deletes the file that was created.
+     */
     @AfterEach
     void tearDown() {
-        final File file = new File("tasks.txt");
+        final File file = new File(Duke.filePath);
         if (file.exists() && !file.delete()) {
             throw new RuntimeException("Could not delete file");
         }
@@ -22,6 +25,11 @@ class ParserTest {
 
 //    featureUnderTest_testScenario_expectedBehavior
 
+    /**
+     * Tests all possible commands, except find. Improper input and improper commands that throw exceptions are also
+     * tested for.
+     * @throws CustomMessageException for improper input
+     */
     @Test
     public void parseUserCommand_actualCommand_performsAction() throws CustomMessageException {
         assertEquals("     Got it. I've added this task:\n" +

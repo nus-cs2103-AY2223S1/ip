@@ -6,25 +6,39 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Represents the storage of the tasks on disk
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructor for {@code Storage}
+     *
+     * @param filePath The filepath on the local Unix or Unix-like system
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-    public Scanner getScannerForTasksFile() throws CustomMessageException {
+    /**
+     * Returns a {@code Scanner} to allow the client to read the file
+     *
+     * @return A {@code Scanner}
+     * @throws FileNotFoundException if the file does not exist
+     */
+    public Scanner getScannerForTasksFile() throws FileNotFoundException {
         File tasksFile = new File(filePath);
         if (tasksFile.exists()) {
-            try {
-                return new Scanner(tasksFile);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            }
+            return new Scanner(tasksFile);
         }
-        throw new CustomMessageException("Unable to load file");
+        throw new FileNotFoundException();
     }
 
+    /**
+     * Writes a {@code String} representation of the tasks to disk
+     * @param stringToWrite The {@code String} to write
+     */
     public void writeToDisk(String stringToWrite) {
         try {
             File tasksFile = new File(filePath);
