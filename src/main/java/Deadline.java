@@ -14,6 +14,14 @@ public class Deadline extends Task {
         }
     }
 
+    public Deadline(String description, boolean isDone, LocalDate by) {
+        super(description, isDone);
+        this.by = by;
+    }
+
+    @Override
+    public String getType() { return "D"; }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
