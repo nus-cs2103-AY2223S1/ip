@@ -1,6 +1,7 @@
 package duke;
 
 import duke.commands.Command;
+import duke.exceptions.DukeException;
 
 public class Duke {
 
@@ -33,7 +34,7 @@ public class Duke {
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
-                ui.printError(e.toString());
+                ui.printError(e.getMessage());
             } finally {
                 ui.printLine();
             }

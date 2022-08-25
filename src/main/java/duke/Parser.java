@@ -9,6 +9,7 @@ import duke.commands.ExitCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.UnMarkCommand;
+import duke.exceptions.DukeException;
 
 public class Parser {
 

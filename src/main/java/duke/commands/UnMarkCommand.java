@@ -1,9 +1,9 @@
 package duke.commands;
 
-import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exceptions.DukeIndexOutOfBoundsException;
 
 public class UnMarkCommand extends Command {
 
@@ -12,13 +12,13 @@ public class UnMarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeIndexOutOfBoundsException {
         try {
             int index = Integer.parseInt(description.substring(7)) - 1;
             tasks.markTaskAsUndone(index);
             ui.printTaskMarkedUndone(tasks.get(index), tasks.size());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("OOPS!!! You cannot mark a non-existent task as undone.");
+            throw new DukeIndexOutOfBoundsException("OOPS!!! You cannot mark a non-existent task as undone.");
         }
     }
 }

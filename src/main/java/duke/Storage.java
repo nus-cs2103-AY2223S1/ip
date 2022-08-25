@@ -1,5 +1,7 @@
 package duke;
 
+import duke.exceptions.DukeException;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -17,7 +19,7 @@ public class Storage {
         this.file = new File(filePath);
     }
 
-    public void createDirectory(String path) throws DukeException{
+    public void createDirectory(String path) throws DukeException {
         File dir = new File(path);
         try {
             if(!dir.exists()) {
