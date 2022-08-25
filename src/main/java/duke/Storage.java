@@ -59,7 +59,8 @@ public class Storage {
             result.printData();
             return result;
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            System.out.println("No save file found.");
             return new TaskList();
         }
     }

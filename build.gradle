@@ -1,12 +1,9 @@
 plugins {
     id 'java'
     id 'application'
-    id 'checkstyle'
-    id 'com.github.johnrengelman.shadow' version '5.1.0'
+//    id 'checkstyle'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
-
-group 'org.example'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -21,6 +18,10 @@ sourceSets {
 
 test {
     useJUnitPlatform()
+}
+
+application {
+    mainClassName = "main.java.duke.Duke"
 }
 
 dependencies {

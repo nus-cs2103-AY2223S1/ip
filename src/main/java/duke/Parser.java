@@ -4,26 +4,26 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Parser {
-    static class EmptyInputException extends RuntimeException {
+    class EmptyInputException extends RuntimeException {
         public EmptyInputException() {
             super("☹ OOPS!!! The description of a todo cannot be empty.");
         }
     }
 
-    static class InvalidInputException extends RuntimeException {
+    class InvalidInputException extends RuntimeException {
         public InvalidInputException() {
             super("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 
-    public static void parse(String line, TaskList todolist) {
+    public int parse(String line, TaskList todolist) {
         switch (line) {
             case "":
                 throw new EmptyInputException();
 
             case "bye":
                 System.out.println("See you again!");
-                return;
+                return 1;
 
             case "list":
                 todolist.printData();
@@ -107,5 +107,6 @@ public class Parser {
 
                 throw new InvalidInputException();
         }
+        return 0;
     }
 }

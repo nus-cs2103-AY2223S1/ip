@@ -26,7 +26,8 @@ public class DukeTest {
     @Test
     public void parserInputTest() {
         TaskList tl = new TaskList();
-        Parser.parse("todo something", tl);
+        Parser parser = new Parser();
+        parser.parse("todo something", tl);
         String result = String.format("%s", tl.get(0));
         assertEquals(result, "[T] [ ] something");
     }
