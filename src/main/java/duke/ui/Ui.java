@@ -93,17 +93,8 @@ public class Ui {
                     "Help    To see the list of commands."));
     }
 
-<<<<<<< HEAD
-    /**
-     * Shows the list of current tasks.
-     * @param memo
-     */
-    public void showList(List<? extends Task> memo) {
-        String[] strArr = new String[memo.size() + 1];
-=======
     public void showList(List<Task> taskList) {
         String[] strArr = new String[taskList.size() + 1];
->>>>>>> branch-Level-9
         strArr[0] = "Here are the tasks in your list:";
         for (int i = 1; i < strArr.length; i++) {
             strArr[i] = i + ". " + taskList.get(i - 1);
