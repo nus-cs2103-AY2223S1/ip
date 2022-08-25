@@ -1,3 +1,8 @@
+package duke.main;
+
+import duke.DukeException;
+import duke.task.Task;
+
 import java.io.IOException;
 
 /**
@@ -40,7 +45,7 @@ public class Ui {
 
     /**
      * Print task marked as done message.
-     * @param taskToMark Task to be marked as done.
+     * @param taskToMark duke.task.Task to be marked as done.
      */
     public void printMarkDone(Task taskToMark) {
         printLine();
@@ -51,7 +56,7 @@ public class Ui {
 
     /**
      * Print task marked as not done message.
-     * @param taskToUnmark Task to be marked as not done.
+     * @param taskToUnmark duke.task.Task to be marked as not done.
      */
     public void printMarkNotDone(Task taskToUnmark) {
         printLine();
@@ -82,7 +87,7 @@ public class Ui {
 
     /**
      * Print the number of tasks message.
-     * @param taskList TaskList containing the list of tasks.
+     * @param taskList duke.main.TaskList containing the list of tasks.
      */
     public void printNumTasks(TaskList taskList) {
         System.out.println("Now you have " + taskList.getCount() + " tasks in the list.");
@@ -90,8 +95,8 @@ public class Ui {
 
     /**
      * Print the task added message.
-     * @param taskToAdd Task to be added.
-     * @param taskList TaskList which the task will be added to.
+     * @param taskToAdd duke.task.Task to be added.
+     * @param taskList duke.main.TaskList which the task will be added to.
      */
     public void printAdd(Task taskToAdd, TaskList taskList) {
         printLine();
@@ -103,8 +108,8 @@ public class Ui {
 
     /**
      * Print the task deleted message.
-     * @param index The index of the Task to be removed.
-     * @param taskList TaskList which the task will be removed from.
+     * @param index The index of the duke.task.Task to be removed.
+     * @param taskList duke.main.TaskList which the task will be removed from.
      */
     public void printDelete(int index, TaskList taskList) {
         printLine();

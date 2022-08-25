@@ -1,3 +1,11 @@
+package duke.main;
+
+import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -131,7 +139,7 @@ public class Storage {
 
 
     /**
-     * Updates the saveFile with the current TaskList.
+     * Updates the saveFile with the current duke.main.TaskList.
      * @param taskList The existing tasks.
      * @throws IOException If error encountered with FileWriter.
      */

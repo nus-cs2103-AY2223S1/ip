@@ -1,17 +1,21 @@
+package duke.main;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
     private final ArrayList<Task> taskArray;
 
     /**
-     * Constructor for generating a new blank TaskList.
+     * Constructor for generating a new blank duke.main.TaskList.
      */
     public TaskList() {
         this.taskArray = new ArrayList<>();
     }
 
     /**
-     * Constructor for generating a TaskList from saved file.
+     * Constructor for generating a duke.main.TaskList from saved file.
      * @param taskArray An ArrayList of tasks to be loaded.
      */
     public TaskList(ArrayList<Task> taskArray) {
@@ -19,24 +23,24 @@ public class TaskList {
     }
 
     /**
-     * Add a task to TaskList.
-     * @param task Task to add.
+     * Add a task to duke.main.TaskList.
+     * @param task duke.task.Task to add.
      */
     public void addTask(Task task) {
         taskArray.add(task);
     }
 
     /**
-     * Remove a Task.
-     * @param taskToRemoveIndex Index of the Task to be removed.
+     * Remove a duke.task.Task.
+     * @param taskToRemoveIndex Index of the duke.task.Task to be removed.
      */
     public void removeTask(int taskToRemoveIndex) {
         taskArray.remove(taskToRemoveIndex);
     }
 
     /**
-     * Getter to retrieve the tasksArray in TaskList.
-     * @return ArrayList of Tasks in TaskList.
+     * Getter to retrieve the tasksArray in duke.main.TaskList.
+     * @return ArrayList of Tasks in duke.main.TaskList.
      */
     public ArrayList<Task> getTasks() {
         return this.taskArray;

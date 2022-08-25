@@ -1,3 +1,5 @@
+package duke.task;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -30,8 +32,8 @@ public class Task {
     }
 
     /**
-     * Getter for the description of the Task.
-     * @return The description of the Task.
+     * Getter for the description of the duke.task.Task.
+     * @return The description of the duke.task.Task.
      */
     public String getDescription() {
         return this.description;
