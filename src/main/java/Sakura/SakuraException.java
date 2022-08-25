@@ -28,4 +28,16 @@ public class SakuraException {
     protected static void invalidTodo() {
         System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR Todo Command written incorrectly!! ✿\n");
     }
+
+    protected static void readingError() {
+        System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR Error while reading entry!! ✿\n");
+    }
+
+    protected static void databaseError() {
+        System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR I cannot find this data!! ✿\n");
+    }
+
+    protected static void saveError() {
+        System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR I cannot save this data!! ✿\n");
+    }
 }

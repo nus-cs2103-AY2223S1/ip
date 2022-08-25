@@ -10,7 +10,12 @@ public class Event extends Task {
     }
 
     @Override
+    public String stringifyTask() {
+        return String.format("E|%d|%s|%s", this.isDone ? 1 : 0, this.description, this.at);
+    }
+
+    @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + at + ")";
+        return "\u001B[35m(EVENT)\u001B[0m" + super.toString() + " (at: " + at + ")";
     }
 }
