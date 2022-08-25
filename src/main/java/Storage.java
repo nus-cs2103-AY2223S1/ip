@@ -26,32 +26,32 @@ public class Storage {
         while (sc.hasNext()) {
             String[] dataChunk = sc.nextLine().split(" \\| ");
             switch (dataChunk[0]) {
-                // Task is a Todo
-                case "T": {
-                    // "1" means done, "0" means not done
-                    Boolean isDone = dataChunk[1].equals("1");
-                    String name = dataChunk[2];
-                    tasks.add(new Todo(name, isDone));
-                    break;
-                }
-                // Task is a Deadline
-                case "D": {
-                    // "1" means done, "0" means not done
-                    Boolean isDone = dataChunk[1].equals("1");
-                    String name = dataChunk[2] + " ";
-                    String endDateTime = dataChunk[3];
-                    tasks.add(new Deadline(name, endDateTime));
-                    break;
-                }
-                // Task is an Event
-                case "E": {
-                    // "1" means done, "0" means not done
-                    Boolean isDone = dataChunk[1].equals("1");
-                    String name = dataChunk[2] + " ";
-                    String periodDateTime = dataChunk[3];
-                    tasks.add(new Event(name, periodDateTime));
-                    break;
-                }
+            // Task is a Todo
+            case "T": {
+                // "1" means done, "0" means not done
+                Boolean isDone = dataChunk[1].equals("1");
+                String name = dataChunk[2];
+                tasks.add(new Todo(name, isDone));
+                break;
+            }
+            // Task is a Deadline
+            case "D": {
+                // "1" means done, "0" means not done
+                Boolean isDone = dataChunk[1].equals("1");
+                String name = dataChunk[2] + " ";
+                String endDateTime = dataChunk[3];
+                tasks.add(new Deadline(name, endDateTime));
+                break;
+            }
+            // Task is an Event
+            case "E": {
+                // "1" means done, "0" means not done
+                Boolean isDone = dataChunk[1].equals("1");
+                String name = dataChunk[2] + " ";
+                String periodDateTime = dataChunk[3];
+                tasks.add(new Event(name, periodDateTime));
+                break;
+            }
             }
         }
     }
