@@ -11,6 +11,11 @@ import java.util.Scanner;
 public class Storage {
     String filepath;
 
+    /**
+     * Constructor for Storage
+     *
+     * @param filepath absolute or relative filepath to file for Duke to save data to or load data from
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
         String[] temp = filepath.split("/");
@@ -22,6 +27,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves TaskList to be loaded in the next program run
+     *
+     * @param taskList TaskList to be saved
+     */
     public void save(TaskList taskList) {
         try {
             // write over
@@ -33,6 +43,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads Tasks that are previously saved
+     *
+     * @return ArrayList of Tasks previously saved, new ArrayList if no tasks were previously saved
+     */
     public ArrayList<Task> load() {
         File file = new File(filepath);
         ArrayList<Task> tasks = new ArrayList<>();
