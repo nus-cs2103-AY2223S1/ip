@@ -5,11 +5,11 @@ package Duke;
  */
 abstract public class Task {
     private String task;
-    private boolean done;
+    private boolean isDone;
 
     Task(String task, boolean done) {
         this.task = task;
-        this.done = done;
+        this.isDone = done;
     }
 
     /**
@@ -24,7 +24,7 @@ abstract public class Task {
      * @return a string of the icom
      */
     public String getStatusIcon() {
-        return this.done ? "[X]" : "[ ]";
+        return this.isDone ? "[X]" : "[ ]";
     }
 
     /**
@@ -37,22 +37,22 @@ abstract public class Task {
     /**
      * This sets the parameter done to true
      */
-    public void markTaskAsDone() {
-        done = true;
+    public void setTaskAsDone() {
+        isDone = true;
     }
 
     /**
      * This sets the parameter done to false
      */
-    public void unMarkTaskAsDone() {
-        done = false;
+    public void setTaskAsUnDone() {
+        isDone = false;
     }
 
     /**
      * This returns an int
      */
     public int getDone() {
-        return done ? 1 : 0;
+        return isDone ? 1 : 0;
     }
 
     abstract char getType();

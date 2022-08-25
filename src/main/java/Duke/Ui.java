@@ -4,7 +4,6 @@ package Duke;
 public class Ui {
 
     public Ui() {
-
     }
 
     public static void printList(TaskList tasks) {

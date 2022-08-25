@@ -29,7 +29,7 @@ public class TaskList {
 
     public void markTaskAsDone(int i) {
         Task task = tasks.get(i);
-        task.markTaskAsDone();
+        task.setTaskAsDone();
         if (Storage.rewriteEntireFile(tasks)) {
             Ui.printMarkTaskSuccessfulMsg(task);
         }
@@ -37,7 +37,7 @@ public class TaskList {
 
     public void unMarkTaskAsDone(int i) {
         Task task = tasks.get(i);
-        task.unMarkTaskAsDone();
+        task.setTaskAsUnDone();
         if (Storage.rewriteEntireFile(tasks)) {
             Ui.printUnMarkTaskSuccessfulMsg(task);
         }
