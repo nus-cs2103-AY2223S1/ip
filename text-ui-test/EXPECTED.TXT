@@ -43,9 +43,7 @@
 	You have 3 task(s) in the list.
 	____________________________________________________________
 	____________________________________________________________
-	I've added a task into your list:
-		[D][ ] task (by: tonight)
-	You have 4 task(s) in the list.
+	Error with reading date and time! Please add in your date and time in yyyy-MM-dd HHmm format.
 	____________________________________________________________
 	____________________________________________________________
 	There's too many timings, I'm confused. ◔_◔

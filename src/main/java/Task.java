@@ -1,4 +1,4 @@
-public abstract class Task {
+public abstract class Task extends Command {
     /**
      * Specifies a task to be done.
      */
@@ -44,7 +44,7 @@ public abstract class Task {
         return taskDescription;
     }
 
-    public abstract String parse();
+    public abstract String parseToFile();
 
     @Override
     public String toString() {

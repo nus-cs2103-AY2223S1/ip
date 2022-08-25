@@ -22,7 +22,7 @@ public class Event extends Task {
      * @return String that is in the parsing format.
      */
     @Override
-    public String parse() {
+    public String parseToFile() {
         return String.format("E # %s # %s # %s", super.getStatusIcon(), super.getTaskDescription(), timing);
     }
 
