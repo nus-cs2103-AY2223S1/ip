@@ -8,6 +8,10 @@ mark 3
 list
 unmark 3
 list
+find deadline
+find TEST EVENT
+find test
+find text
 delete 2
 list
 delete 2
@@ -21,4 +25,5 @@ randomness
 deadline No end time
 event No time
 delete
+find
 bye

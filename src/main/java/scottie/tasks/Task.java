@@ -64,6 +64,18 @@ public abstract class Task {
     }
 
     /**
+     * Returns whether this Task's description contains the
+     * given searchText.
+     * This matching is case-insensitive.
+     *
+     * @param searchText The text to match against the description.
+     * @return Whether this Task's description contains the searchText.
+     */
+    boolean matchesAgainst(String searchText) {
+        return this.description.toLowerCase().contains(searchText.toLowerCase());
+    }
+
+    /**
      * Returns an encoded string representation of this Task.
      * The encoded string can later be decoded to recover the
      * corresponding Task.
