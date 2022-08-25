@@ -2,19 +2,26 @@ import java.util.Scanner;
 import java.io.IOException;
 import java.util.InputMismatchException;
 
-
+/**
+ * Main Duke class where duke program is ran
+ * @author Shaune Ang
+ */
 public class Duke {
     private String filePath;
     private FileLoaderSaver storage;
     private ToDoList toDoList;
     private Ui ui;
 
+    /**
+     * Initiates duke task with pathname to saved todolist and runs Duke
+     * @param args
+     */
     public static void main(String[] args) {
         new Duke("/Users/shaune/Desktop/NUS/CS2103T/Duke.txt").run();
     }
 
     /**
-     * Creates a Duke Object
+     * Duke Constructor
      *
      * @param filePath path to the saved todolist txt file if available
      */
@@ -32,7 +39,7 @@ public class Duke {
     }
 
     /**
-     * Runs the Duke Program
+     * Runs duke program
      */
     public void run() {
         Ui.greet(); //Ui

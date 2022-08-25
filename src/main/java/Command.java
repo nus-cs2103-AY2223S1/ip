@@ -1,8 +1,10 @@
-import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 
-// Executes commands given by parser
+/**
+ * Abstraction of all commands possibly received on duke,
+ * and executes all commands.
+ * @author Shaune Ang
+ */
 public class Command {
     static final String EXITWORD = "bye";
     private ToDoList toDoList;
@@ -12,6 +14,7 @@ public class Command {
 
     private CommandTypes commandType;
 
+    // enum of all command types
     public enum CommandTypes {
         LIST,
         TODO,
@@ -24,8 +27,9 @@ public class Command {
     }
 
     /**
-     * Creates command for non-tasks
-     * @param commandType type of command
+     * Constructor for command objects
+     * @param commandType type of command this command with execute
+     * @param fullCommand full user input command in String
      */
     public Command (CommandTypes commandType, String fullCommand) {
         this.commandType = commandType;
@@ -40,6 +44,14 @@ public class Command {
         return fullCommand.equals(EXITWORD);
     }
 
+    /**
+     * Executes tasks based on the command type of the command
+     * @param toDoList list containing all the current tasks
+     * @param ui user interaction object for output
+     * @param storage FileLoaderSaver object for saving tasks after creating, deletion or manipulation
+     * @throws IOException
+     * @throws Exception
+     */
     public void execute(ToDoList toDoList, Ui ui, FileLoaderSaver storage) throws IOException, Exception {
         this.toDoList = toDoList;
         this.ui = ui;
@@ -51,27 +63,27 @@ public class Command {
                 break;
             case TODO:
                 addToDo(fullCommand);
-                storage.writeToFile(toDoList.createFile());
+                storage.writeToFile(toDoList.createTxtFile());
                 toDoList.displayListSize();
                 break;
             case DEADLINE:
                 addDeadline(fullCommand);
-                storage.writeToFile(toDoList.createFile());
+                storage.writeToFile(toDoList.createTxtFile());
                 toDoList.displayListSize();
                 break;
             case EVENT:
                 addEvent(fullCommand);
-                storage.writeToFile(toDoList.createFile());
+                storage.writeToFile(toDoList.createTxtFile());
                 toDoList.displayListSize();
                 break;
             case MARK:
             case UNMARK:
                 changeMark(fullCommand);
-                storage.writeToFile(toDoList.createFile());
+                storage.writeToFile(toDoList.createTxtFile());
                 break;
             case DELETE:
                 deleteTask(fullCommand);
-                storage.writeToFile(toDoList.createFile());
+                storage.writeToFile(toDoList.createTxtFile());
                 toDoList.displayListSize();
                 break;
             case EXIT:
@@ -83,7 +95,7 @@ public class Command {
     /**
      * Changes status of the task according to index given
      *
-     * @param command
+     * @param command change mark command from user
      */
     private void changeMark(String command) {
         String[] splitComm = command.split(" ");
@@ -100,7 +112,7 @@ public class Command {
     /**
      * Changes status of the task according to index given
      *
-     * @param command
+     * @param command delete task command from user
      */
     private void deleteTask(String command) {
         String[] splitComm = command.split(" ");
@@ -112,7 +124,7 @@ public class Command {
     /**
      * Creates a ToDos instance and adds it to ToDoList
      *
-     * @param command
+     * @param command todo command from user
      * @throws Exception
      */
     private void addToDo(String command) throws Exception {
@@ -127,7 +139,7 @@ public class Command {
     /**
      * Creates a Deadline instance and adds it to ToDoList
      *
-     * @param command
+     * @param command deadline command from user
      * @throws Exception
      */
     private void addDeadline(String command) throws Exception {
@@ -147,7 +159,7 @@ public class Command {
     /**
      * Creates an Event instance and adds it to ToDoList
      *
-     * @param command
+     * @param command event command from user
      * @throws Exception
      */
     private void addEvent(String command) throws Exception {

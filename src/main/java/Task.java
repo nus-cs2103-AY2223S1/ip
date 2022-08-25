@@ -1,17 +1,32 @@
-public class Task {
+/**
+ * Abstract Task class encapsulates all the different types of tasks
+ * @author Shaune Ang
+ */
+abstract class Task {
     private String name;
     private Boolean status = false;
 
-    Task(String name) {
+    /**
+     * Task constructor for tasks created by user
+     * @param name name of task
+     */
+    public Task(String name) {
         this.name = name;
     }
 
-    Task(String name, boolean status) {
+    /**
+     * Task constructor for tasks loaded from saved file
+     * @param name name of task
+     * @param status Completion status of task
+     */
+    public Task(String name, boolean status) {
         this.name = name;
         this.status = status;
     }
 
-    // Sets status of task at index to be true
+    /**
+     * Changes status to done
+     */
     public void mark() {
         String message;
         if (status == true) {
@@ -24,7 +39,9 @@ public class Task {
         System.out.println("\t   " + toString());
     }
 
-    // Sets status of task at index to be false
+    /**
+     * Changes status to not done
+      */
     public void unmark() {
         String message;
         if (status == false) {
@@ -39,7 +56,6 @@ public class Task {
 
     /**
      * Returns name of task and its status to be used when list is called
-     * 
      * @return Returns String of name of task formatted with status showing
      */
     @Override
@@ -48,12 +64,18 @@ public class Task {
         return String.format("[%s] %s", mark, name);
     }
 
-    //Returns status of task
+    /**
+     * Returns completion status of task
+     * @return completion status of task
+     */
     public boolean getStatus() {
         return status;
     }
 
-    //Returns name of task
+    /**
+     * Returns name of task
+     * @return name of task
+     */
     public String getName() {
         return name;
     }

@@ -1,10 +1,19 @@
-// Helps to interpret command Strings and returns a Command object
+/**
+ * Parser class helps to interpret command Strings and returns a Command object with type of command user wants
+ * @author Shaune Ang
+ */
 public class Parser {
+    /**
+     * Returns a Command object based on the command given by user input
+     * @param command User Input
+     * @return Command object with type of command user wants
+     * @throws Exception
+     */
     public static Command parse(String command) throws Exception {
         if (command.equals("list")) {
             return new Command(Command.CommandTypes.LIST, command);
         }
-        else if (command.startsWith("todo")) { // create todo
+        else if (command.startsWith("todo")) { // create todos
             return new Command(Command.CommandTypes.TODO, command);
         }
         else if (command.startsWith("deadline")) { // create deadline

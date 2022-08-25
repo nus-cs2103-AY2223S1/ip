@@ -1,13 +1,24 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * ToDoList class manages all the tasks created by user
+ * @author Shaune Ang
+ */
 public class ToDoList {
     ArrayList<Task> toDoList;
 
+    /**
+     * Creates empty ToDoList
+     */
     ToDoList() {
         toDoList = new ArrayList<>();
     }
 
+    /**
+     * Creates ToDoList based on saved file
+     * @param txtFile List of Strings representing the tasks saved
+     */
     ToDoList(List<String> txtFile) {
         toDoList = new ArrayList<>();
         addTaskFromFile(txtFile);
@@ -15,8 +26,7 @@ public class ToDoList {
 
     /** 
      * Sets status of task at index to be complete
-     *
-     * @param index
+     * @param index index of task in the list
      * @throws IndexOutOfBoundsException
      */
     public void complete(int index) throws IndexOutOfBoundsException {
@@ -27,8 +37,7 @@ public class ToDoList {
     }
 
     /** Sets status of task at index to be incomplete
-     *
-     * @param index
+     * @param index index of task in the list
      * @throws IndexOutOfBoundsException
      */
     public void incomplete(int index) throws IndexOutOfBoundsException {
@@ -39,9 +48,8 @@ public class ToDoList {
     }
 
     /**
-     *  Add task to todoList
-     *
-     * @param task
+     *  Adds task to todoList
+     * @param task task to be added to toDoList
      */
     public void addTask(Task task) {
         toDoList.add(task);
@@ -49,7 +57,9 @@ public class ToDoList {
         System.out.println("\t  " + task);
     }
 
-    // Add task to todoList
+    /**
+     * Displays all tasks in toDoList
+     */
     public void listTasks() {
         if (toDoList.size() < 1) {
             System.out.println("\tYou don't have any pending tasks.");
@@ -66,7 +76,6 @@ public class ToDoList {
 
     /**
      * Deletes a Task
-     *
      * @param index index to delete
      * @Throws IndexOutOfBoundsException
      */
@@ -82,12 +91,11 @@ public class ToDoList {
         }
     }
 
-    /*
+    /**
      * Loads all the saved tasks into list
-     * 
      * @param txtFile list of tasks in String 
      */
-    public void addTaskFromFile(List<String> txtFile) {
+    private void addTaskFromFile(List<String> txtFile) {
         if (txtFile.isEmpty()) {
             return;
         }
@@ -120,10 +128,9 @@ public class ToDoList {
 
     
     /** Returns todolist formatted for saving in Duke.txt file in hard disk
-     * 
-     * @return string of tasks in todolist
+     * @return String of tasks in todolist
      */
-    public String createFile() {
+    public String createTxtFile() {
         String result = "";
         for (Task t : toDoList) {
             if (t instanceof ToDos) {
@@ -142,7 +149,9 @@ public class ToDoList {
         return result;
     }
 
-    // Print number of tasks in the list
+    /**
+     * Prints number of tasks in the list
+     */
     public void displayListSize() {
         System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.size());
     }
