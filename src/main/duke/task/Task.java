@@ -1,14 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
-
+package task;
 public class Task {
     private String description;
     private boolean isDone;
 
-    public Task(String str) throws DukeException {
-        if (str == null) {
-            throw new DukeException("☹ OOPS!!! The description of a task cannot be empty.");
-        }
+    public Task(String str) {
         this.description = str;
         this.isDone = false;
     }
@@ -23,14 +18,10 @@ public class Task {
 
     public void markAsDone() {
         this.isDone = true;
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(" " + this.toString());
     }
 
     public void markAsNotDone() {
         this.isDone = false;
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(" " + this.toString());
     }
 
     @Override

@@ -1,4 +1,2 @@
-[T][ ] watch tv
-[E][X] meeting (at: Apr 05 2022)
-[D][ ] write essay (by: Jul 28 2022)
-[D][ ] assignment (by: Mar 14 2022)
+[E][X] meeting (at: Jan 02 2019)
+[E][ ] meeting (at: Jan 02 2019)

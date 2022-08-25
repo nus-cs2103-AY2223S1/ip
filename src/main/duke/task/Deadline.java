@@ -1,11 +1,13 @@
+package task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
     private LocalDate by;
-    public Deadline(String description, String by) throws DukeException {
+    public Deadline(String description, LocalDate by) {
         super(description);
-        this.by = LocalDate.parse(by);
+        this.by = by;
     }
 
     @Override

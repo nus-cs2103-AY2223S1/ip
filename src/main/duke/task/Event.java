@@ -1,11 +1,13 @@
+package task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
     private LocalDate at;
-    public Event(String description, String at) throws DukeException {
+    public Event(String description, LocalDate at) {
         super(description);
-        this.at = LocalDate.parse(at);
+        this.at = at;
     }
 
     @Override
