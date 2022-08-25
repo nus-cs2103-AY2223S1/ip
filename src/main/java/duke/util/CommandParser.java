@@ -1,18 +1,20 @@
 package duke.util;
 
 import duke.Duke;
-import duke.exception.DukeCommandFormatException;
-import duke.exception.DukeIndexMissingException;
-import duke.exception.DukeTaskDateTimeMissingException;
-import duke.exception.DukeTaskTitleMissingException;
+import duke.exception.*;
 import duke.legacy.Actionable;
 import duke.legacy.Command;
 import duke.legacy.CommandType;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandParser {
+
+    public static final String INPUT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     private static final String DELIMITER = Duke.DELIMITER;
     private static final String BY_DATE_DELIMITER = Duke.BY_DATE_DELIMITER;
@@ -27,6 +29,8 @@ public class CommandParser {
             "Oops! You didn't specify the title of the task.";
     private static final String TASK_DATE_TIME_MISSING_ERROR_MESSAGE =
             "Oops! You didn't specify the title of the task.";
+    private static final String DATE_TIME_FORMAT_ERROR_MESSAGE =
+            "Oops! The date and time should follow the format: " + INPUT_DATE_TIME_FORMAT;
 
     public static int getIndexOfFirstOccurrence(String input, String pattern) {
         int indexOfFirstOccurrence = input.indexOf(pattern);
@@ -49,30 +53,32 @@ public class CommandParser {
         return input.substring(0, indexOfFirstWhiteSpace);
     }
 
-    public static String getByDate(String input) throws DukeCommandFormatException, DukeTaskDateTimeMissingException {
+    public static LocalDateTime getByDate(String input)
+            throws DukeCommandFormatException, DukeTaskDateTimeMissingException, DukeDateTimeFormatException {
         int indexOfDelimiter = input.indexOf(BY_DATE_DELIMITER);
         if (indexOfDelimiter == -1) {
             throw new DukeCommandFormatException(DEADLINE_WITHOUT_BY_ERROR_MESSAGE);
         }
-        String roughDate = input.substring(indexOfDelimiter + BY_DATE_DELIMITER.length(), input.length());
-        String realDate = removeHeadingAndTailingWhiteSpaces(roughDate);
-        if (realDate.isEmpty()) {
+        String rawDateString = input.substring(indexOfDelimiter + BY_DATE_DELIMITER.length(), input.length());
+        String refinedDateString = removeHeadingAndTailingWhiteSpaces(rawDateString);
+        if (refinedDateString.isEmpty()) {
             throw new DukeTaskDateTimeMissingException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
         }
-        return realDate;
+        return getLocalDateTimeFromString(refinedDateString);
     }
 
-    public static String getAtDate(String input) throws DukeCommandFormatException, DukeTaskDateTimeMissingException {
+    public static LocalDateTime getAtDate(String input)
+            throws DukeCommandFormatException, DukeTaskDateTimeMissingException, DukeDateTimeFormatException {
         int indexOfDelimiter = input.indexOf(AT_DATE_DELIMITER);
         if (indexOfDelimiter == -1) {
             throw new DukeCommandFormatException(EVENT_WITHOUT_AT_ERROR_MESSAGE);
         }
-        String roughDate = input.substring(indexOfDelimiter + AT_DATE_DELIMITER.length(), input.length());
-        String realDate = removeHeadingAndTailingWhiteSpaces(roughDate);
-        if (realDate.isEmpty()) {
+        String rawDateString = input.substring(indexOfDelimiter + AT_DATE_DELIMITER.length(), input.length());
+        String refinedDateString = removeHeadingAndTailingWhiteSpaces(rawDateString);
+        if (refinedDateString.isEmpty()) {
             throw new DukeTaskDateTimeMissingException(TASK_DATE_TIME_MISSING_ERROR_MESSAGE);
         }
-        return realDate;
+        return getLocalDateTimeFromString(refinedDateString);
     }
 
     public static String getTaskTitle(String input) throws DukeTaskTitleMissingException {
@@ -117,5 +123,16 @@ public class CommandParser {
             end--;
         }
         return input.substring(start, end);
+    }
+
+    private static LocalDateTime getLocalDateTimeFromString(String input) throws DukeDateTimeFormatException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(INPUT_DATE_TIME_FORMAT);
+        LocalDateTime output;
+        try {
+            output = LocalDateTime.parse(input, formatter);
+        } catch (DateTimeParseException exception) {
+            throw new DukeDateTimeFormatException(DATE_TIME_FORMAT_ERROR_MESSAGE);
+        }
+        return output;
     }
 }

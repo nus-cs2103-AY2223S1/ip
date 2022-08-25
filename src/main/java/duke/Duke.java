@@ -67,7 +67,8 @@ public class Duke {
     }
 
     private String addNewTask(String input)
-            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException {
+            throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
+            DukeDateTimeFormatException {
         Task newTask = Task.valueOf(input);
         if (newTask == null) {
             return GENERAL_ERROR_STRING;
@@ -192,6 +193,8 @@ public class Duke {
             } catch (DukeTaskTitleMissingException exception) {
                 output = exception.getMessage();
             } catch (DukeTaskDateTimeMissingException exception) {
+                output = exception.getMessage();
+            } catch (DukeDateTimeFormatException exception) {
                 output = exception.getMessage();
             }
 
