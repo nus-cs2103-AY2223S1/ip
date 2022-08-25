@@ -2,7 +2,6 @@
  * @author Silas Tay A0233425M
  */
 public class Deadline extends Task{
-    protected String by;
 
     /**
      * Constructor for Deadline task.
@@ -11,6 +10,7 @@ public class Deadline extends Task{
      */
     public Deadline(String description, String by) {
         super(description);
+        this.type = "[D]";
         this.by = by;
     }
 
@@ -20,7 +20,7 @@ public class Deadline extends Task{
      */
     @Override
     public String toString() {
-        String completionString = this.isDone ? "[D][x]" : "[D][ ]";
+        String completionString = this.type + (this.isDone ? "[x]" : "[ ]");
         return completionString + " " + this.description + " (by: " + this.by + ")";
     }
 }

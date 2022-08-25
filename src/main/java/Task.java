@@ -4,6 +4,9 @@
 public abstract class Task {
     protected String description;
     protected boolean isDone;
+    protected String type;
+    protected String by;
+    protected String at;
 
     /**
      * Abstract constructor for Task

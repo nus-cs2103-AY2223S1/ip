@@ -2,7 +2,6 @@
  * @author Silas Tay A0233425M
  */
 public class Event extends Task {
-    protected String at;
 
     /**
      * Constructor for Event task.
@@ -11,6 +10,7 @@ public class Event extends Task {
      */
     public Event(String description, String at) {
         super(description);
+        this.type = "[E]";
         this.at = at;
     }
 
@@ -20,7 +20,7 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        String completionString = this.isDone ? "[E][x]" : "[E][ ]";
+        String completionString = this.type + (this.isDone ? "[x]" : "[ ]");
         return completionString + " " + this.description + " (at: " + this.at + ")";
     }
 }

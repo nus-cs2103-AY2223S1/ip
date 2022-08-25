@@ -1,26 +1,89 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.regex.Pattern;
 
 /** Luffy is a tasklist program. Built for CS2103T Individual Project 2022 S1.
  * @author Silas Tay A0233425M
  */
 public class Luffy {
+    private static final String logo = "██╗░░░░░██╗░░░██╗███████╗███████╗██╗░░░██╗\n"
+            + "██║░░░░░██║░░░██║██╔════╝██╔════╝╚██╗░██╔╝\n"
+            + "██║░░░░░██║░░░██║█████╗░░█████╗░░░╚████╔╝░\n"
+            + "██║░░░░░██║░░░██║██╔══╝░░██╔══╝░░░░╚██╔╝░░\n"
+            + "███████╗╚██████╔╝██║░░░░░██║░░░░░░░░██║░░░\n"
+            + "╚══════╝░╚═════╝░╚═╝░░░░░╚═╝░░░░░░░░╚═╝░░░";
+
+    private static final String FILE_PATH = "./data/data.txt";
+
+    private static void updateSaveFile(ArrayList<Task> tasks, File dataFile) throws IOException {
+        PrintWriter pw = new PrintWriter(FILE_PATH);
+        pw.print("");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task currentTask = tasks.get(i);
+            dataFile.createNewFile();
+            FileWriter fw = new FileWriter(FILE_PATH, true);
+            String dataLine = currentTask.type + " | "
+                    + (currentTask.isDone ? "1" : "0") + " | "
+                    + currentTask.description
+                    + (currentTask.by != null ? " | " + currentTask.by : "")
+                    + (currentTask.at != null ? " | " + currentTask.at : "");
+            fw.write(dataLine + "\n");
+            fw.close();
+        }
+        pw.close();
+    }
+
     public static void main(String[] args) {
-        String logo = "██╗░░░░░██╗░░░██╗███████╗███████╗██╗░░░██╗\n"
-                + "██║░░░░░██║░░░██║██╔════╝██╔════╝╚██╗░██╔╝\n"
-                + "██║░░░░░██║░░░██║█████╗░░█████╗░░░╚████╔╝░\n"
-                + "██║░░░░░██║░░░██║██╔══╝░░██╔══╝░░░░╚██╔╝░░\n"
-                + "███████╗╚██████╔╝██║░░░░░██║░░░░░░░░██║░░░\n"
-                + "╚══════╝░╚═════╝░╚═╝░░░░░╚═╝░░░░░░░░╚═╝░░░";
+
         System.out.println("------------------------------------------------------");
         System.out.println("Hello from\n" + logo);
         System.out.println("What can I do for you?");
         System.out.println("------------------------------------------------------");
 
         //Actual Luffy Logic:
+
         Scanner in = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<Task>();
-        int counter = 0;
+
+        //Loading existing data:
+        File dataFile = new File(FILE_PATH);
+        try {
+            if (dataFile.exists()) {
+                System.out.println("Save file exists, loading saved data!");
+                Scanner scanner = new Scanner(dataFile);
+                while (scanner.hasNext()) {
+                    Task currentTask;
+                    String[] taskLine = scanner.nextLine().split(Pattern.quote(" | "));
+                    String taskDescription = taskLine[2];
+
+                    switch (taskLine[0]) {
+                        case "[T]":
+                            currentTask = new Todo(taskDescription);
+                            tasks.add(currentTask);
+                            break;
+                        case "[E]":
+                            currentTask = new Event(taskDescription, taskLine[3]);
+                            tasks.add(currentTask);
+                            break;
+                        case "[D]":
+                            currentTask = new Deadline(taskDescription, taskLine[3]);
+                            tasks.add(currentTask);
+                            break;
+                    }
+                }
+                System.out.println(tasks);
+                System.out.println("------------------------------------------------------");
+            }
+        } catch (IOException e) {
+            System.out.println("Something went wrong!");
+            e.printStackTrace();
+        }
+
+        int counter = tasks.size();
 
         while (true) {
             String s = in.nextLine();
@@ -34,6 +97,7 @@ public class Luffy {
                     System.out.println((i + 1) + "." + tasks.get(i));
                 }
                 System.out.println("------------------------------------------------------");
+                continue;
             } else if (s.length() >= 6 && s.substring(0, 4).equals("mark")) {
                 try {
                     System.out.println("------------------------------------------------------");
@@ -139,8 +203,16 @@ public class Luffy {
                 } else {
                     System.out.println("Now you have " + counter + " task in the list.");
                 }
-                System.out.println("------------------------------------------------------");
             }
+
+            //Updating data file:
+            try {
+                updateSaveFile(tasks, dataFile);
+            } catch (IOException e) {
+                System.out.println("Something went wrong!");
+                e.printStackTrace();
+            }
+            System.out.println("------------------------------------------------------");
         }
     }
 }
