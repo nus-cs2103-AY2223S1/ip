@@ -25,6 +25,21 @@ public class TaskList {
         System.out.println(line + "\n");
     }
 
+    public void find(String keyword) {
+        ArrayList<Task> matched = new ArrayList<>();
+        System.out.println(line + "\n");
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task t : tasks) {
+            if (t.getAction().contains(keyword)) {
+                matched.add(t);
+            }
+        }
+        for (int j = 0; j < matched.size(); j++) {
+            Task task = matched.get(j);
+            System.out.println((j + 1) + "." + task);
+        }
+    }
+
     public void mark(int idx) {
         Task t = tasks.get(idx);
         t.markIsDone();

@@ -21,6 +21,8 @@ public class Parser {
             return "EVENT";
         } else if (input.startsWith("delete ")) {
             return "DELETE";
+        } else if (input.startsWith("find ")) {
+            return "FIND";
         } else if (input.equals("bye")) {
             return "BYE";
         } else { // to handle unknown inputs, e.g. 'blah', 'todo'
