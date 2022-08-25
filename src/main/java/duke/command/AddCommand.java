@@ -42,24 +42,35 @@ public class AddCommand extends Command {
      */
     @Override
     public void execute(TaskRecords taskList, BotUI ui) throws DukeException {
-        if (super.getCommand().equals("todo")) {
-            Task task = new ToDos(details);
-            taskList.addProcess(task);
-            System.out.print((ui.addStatus(taskList, task)));
-        } else if (super.getCommand().equals("deadline")) {
-            String deadlineDetail = Parser.extractDetail(details, " /by ");
-            LocalDateTime dateTime = Parser.extractDateTime(details, " /by ");
-            Task task = new Deadlines(deadlineDetail, dateTime);
-            taskList.addProcess(task);
-            System.out.print((ui.addStatus(taskList, task)));
-        } else if (super.getCommand().equals("event")) {
-            String eventDetail = Parser.extractDetail(details, " /at ");
-            LocalDateTime dateTime = Parser.extractDateTime(details, " /at ");
-            Task task = new Events(eventDetail, dateTime);
-            taskList.addProcess(task);
-            System.out.print(ui.addStatus(taskList, task));
+        try {
+            String taskCommand = super.getCommand();
+            switch (taskCommand) {
+            case "todo":
+                Task taskToDo = new ToDos(details);
+                taskList.addProcess(taskToDo);
+                System.out.print((ui.addStatus(taskList, taskToDo)));
+                break;
+            case "deadline":
+                String deadlineDetail = Parser.extractDetail(details, " /by ");
+                LocalDateTime deadlineDateTime = Parser.extractDateTime(details, " /by ");
+                Task taskDeadline = new Deadlines(deadlineDetail, deadlineDateTime);
+                taskList.addProcess(taskDeadline);
+                System.out.print((ui.addStatus(taskList, taskDeadline)));
+                break;
+            case "event":
+                String eventDetail = Parser.extractDetail(details, " /at ");
+                LocalDateTime eventDateTime = Parser.extractDateTime(details, " /at ");
+                Task taskEvent = new Events(eventDetail, eventDateTime);
+                taskList.addProcess(taskEvent);
+                System.out.print(ui.addStatus(taskList, taskEvent));
+                break;
+            default:
+                System.out.print("Adding process fail!");
+                break;
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            throw new DukeException(ui.invalidDateFormat());
         }
-
     }
 
     /**
