@@ -20,7 +20,7 @@ public class MarkCommand extends Command {
      *
      * @param number marks specified task based on its position in the list
      */
-    public MarkCommand(int number) {
+    public MarkCommand(int number)  {
 
         this.number = number;
     }
@@ -35,9 +35,13 @@ public class MarkCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task task = tasks.getTaskList().get(this.number - 1);
-        task.setCompleted();
-        ui.showMarked(task);
-        storage.store(tasks.getTaskList());
+        try {
+            Task task = tasks.getTaskList().get(this.number - 1);
+            task.setCompleted();
+            ui.showMarked(task);
+            storage.store(tasks.getTaskList());
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("OH NO! You are not allowed here");
+        }
     }
 }

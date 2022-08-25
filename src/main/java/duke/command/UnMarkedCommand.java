@@ -35,9 +35,14 @@ public class UnMarkedCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        Task task = tasks.getTaskList().get(this.number - 1);
-        task.setUncompleted();
-        ui.showUnMarked(task);
-        storage.store(tasks.getTaskList());
+        try {
+            Task task = tasks.getTaskList().get(this.number - 1);
+            task.setUncompleted();
+            ui.showUnMarked(task);
+            storage.store(tasks.getTaskList());
+        }
+        catch (IndexOutOfBoundsException e) {
+            throw new DukeException("OH NO! You are not allowed here");
+        }
     }
 }
