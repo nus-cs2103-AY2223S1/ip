@@ -62,6 +62,15 @@ public class Ui {
                 + "\nNow you have " + size + " tasks in the list.");
     }
 
+    public void sayMatching(ArrayList<Task> arr) {
+        System.out.println("Here are the matching tasks in your list:");
+        int i = 1;
+        for (Task task: arr) {
+            System.out.println(i + "." + arr.get(i - 1).toString());
+            i++;
+        }
+    }
+
     public String readCommand() {
         System.out.println("Me: \t");
         return sc.nextLine();

@@ -1,7 +1,17 @@
 package duke.main;
 
-import duke.command.*;
-
+import duke.command.Command;
+import duke.command.FindCommand;
+import duke.command.ExitCommand;
+import duke.command.EventCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.DateCommand;
+import duke.command.DeadlineCommand;
+import duke.command.UnmarkCommand;
+import duke.command.IncomprehensibleCommand;
+import duke.command.ToDoCommand;
+import duke.command.DeleteCommand;
 import java.time.DateTimeException;
 
 public class Parser {
@@ -70,6 +80,13 @@ public class Parser {
                 } catch(DateTimeException e) {
                     throw new DukeException("Key in a valid date!");
                 }
+            case "find":
+                try {
+                    return new FindCommand(userInput[1]);
+                } catch(ArrayIndexOutOfBoundsException e) {
+                    throw new DukeException("What do you want me to find for you...?");
+                }
+
             default:
                 return new IncomprehensibleCommand();
         }
