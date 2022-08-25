@@ -26,25 +26,21 @@ public class Parser {
                 switch (text) {
                 //Handle case when task aTodo
                 case "todo" :
-                    String tDescription = input.next() + input.nextLine();
+                    String tDescription = input.nextLine().trim();
                     duke.addTodo(tDescription);
                     break;
 
                 //Handle case when task is a deadline
                 case "deadline": {
-                    String str = input.next() + input.nextLine();
-                    String dDescription = str.substring(0, str.indexOf('/') - 1);
-                    String dBy = str.substring(str.indexOf('/') + 4);
-                    duke.addDeadline(dDescription, dBy);
+                    String str = input.nextLine().trim();
+                    duke.addDeadline(str);
                     break;
                 }
 
                 //Handle case when task is an event
                 case "event": {
-                    String str = input.next() + input.nextLine();
-                    String eDescription = str.substring(0, str.indexOf('/') - 1);
-                    String eAt = str.substring(str.indexOf('/') + 4);
-                    duke.addEvent(eDescription, eAt);
+                    String str = input.nextLine().trim();
+                    duke.addEvent(str);
                     break;
                 }
 
@@ -79,7 +75,7 @@ public class Parser {
 
                 //Handle case when user wants to find tasks
                     case "find" :
-                        String str = input.next() + input.nextLine();
+                        String str = input.nextLine().trim();
                         duke.find(str);
                         break;
 

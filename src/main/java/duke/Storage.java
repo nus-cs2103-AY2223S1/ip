@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -59,7 +60,8 @@ public class Storage {
                 break;
             }
             case "D" : {
-                Task task = new Deadline(taskInArray[2], taskInArray[3]);
+                LocalDate date = LocalDate.parse(taskInArray[3]);
+                Task task = new Deadline(taskInArray[2], date);
                 lst.add(task);
                 if (taskInArray[1].equals("1")) {
                     task.markAsDone();

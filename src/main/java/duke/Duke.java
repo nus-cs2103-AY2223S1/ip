@@ -1,5 +1,7 @@
 package duke;
 import java.io.IOException;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -59,11 +61,22 @@ public class Duke {
 
     /**
      * Handles a Deadline task inputted by user by calling on TaskList and Ui objects
-     * @param dDescription A String of the description for the task
-     * @param dBy A String representing the deadline for the task
+     * @param str A string representing the entire input user keyed in after "deadline"
      */
-    public void addDeadline(String dDescription, String dBy) {
-        Task deadline = new Deadline(dDescription, dBy);
+    public void addDeadline(String str) throws DukeException {
+        LocalDate date;
+        String dDescription;
+        try {
+            if (str.equals("")) {
+                throw new DukeException("OOPS! The description of a todo cannot be empty.");
+            }
+            dDescription = str.substring(0, str.indexOf('/') - 1);
+            String dBy = str.substring(str.indexOf('/') + 4);
+            date = LocalDate.parse(dBy);
+        } catch (DateTimeException e) {
+            throw new DukeException("OOPS! Date must be in proper format!");
+        }
+        Task deadline = new Deadline(dDescription, date);
         tasks.addTask(deadline);
         int size = tasks.getSize();
         ui.printDeadline(deadline, size);
@@ -72,15 +85,22 @@ public class Duke {
 
     /**
      * Handles an Event task inputted by user by calling on TaskList and Ui objects
-     * @param eDescription A String of the description for the task
-     * @param eAt A String representing the day for the task
+     * @param str A string representing the entire input user keyed in after "event"
      */
-    public void addEvent(String eDescription, String eAt) {
-        Task event = new Event(eDescription, eAt);
-        tasks.addTask(event);
-        int size = tasks.getSize();
-        ui.printEvent(event, size);
-        storage.save(tasks);
+    public void addEvent(String str) throws DukeException {
+        String eDescription;
+        String eAt;
+        if (str.equals("")) {
+            throw new DukeException("OOPS! The description of a todo cannot be empty.");
+        } else {
+            eDescription = str.substring(0, str.indexOf('/') - 1);
+            eAt = str.substring(str.indexOf('/') + 4);
+            Task event = new Event(eDescription, eAt);
+            tasks.addTask(event);
+            int size = tasks.getSize();
+            ui.printEvent(event, size);
+            storage.save(tasks);
+        }
     }
 
     /**
