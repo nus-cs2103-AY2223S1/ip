@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -50,6 +51,9 @@ public class Duke {
                 } catch (DukeException e) {
                     System.out.println(line + e.getMessage() + "\n" + line);
                 }
+            } else if (userInput.startsWith("schedule")) {
+                String date = userInput.substring(9);
+                System.out.println(line + getSchedule(date, list) + line);
             } else {
                 try {
                     addTask(userInput, list);
@@ -124,5 +128,15 @@ public class Duke {
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+
+    public static String getSchedule(String date, ArrayList<Task> al) {
+        ArrayList<Task> scheduleList = new ArrayList<>();
+        for (int i = 0; i < al.size(); i++) {
+            if (al.get(i).onDate(date)) {
+                scheduleList.add(al.get(i));
+            }
+        }
+        return makeList(scheduleList);
     }
 }
