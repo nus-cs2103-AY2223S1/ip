@@ -86,6 +86,10 @@ public class TaskList {
                 + "Now you have " + this.taskArrayList.size() + " tasks in the list.");
     }
 
+    void addTask(Task t) {
+        this.taskArrayList.add(t);
+    }
+
     private void remove(int index) {
         ArrayList<Task> arr = this.taskArrayList;
         ArrayList<Task> newArr = new ArrayList<>();

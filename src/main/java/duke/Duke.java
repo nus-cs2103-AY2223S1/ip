@@ -2,19 +2,14 @@ package duke;
 
 public class Duke {
 
-    static final String filePath = "data/duke.txt";
-
+    private static final String filePath = "data/duke.txt";
     private static Storage storage;
-
-
-
 
     public static void main(String[] args) {
         TaskList taskList = new TaskList();
 
         storage = new Storage(filePath);
-//        storage.readResult(stored_items);
-
+        storage.readResult(taskList);
 
         // opening
         Ui.greet();
