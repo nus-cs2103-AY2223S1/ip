@@ -26,7 +26,7 @@ Here are the tasks in your list:
 1.[E][X] meeting (at: 7am)
 ☹ OOPS!!! The description of a todo cannot be empty.
 ☹ OOPS!!! Please indicate a description and date/time separated by /by
-☹ OOPS!!! The description of a event cannot be empty.
+☹ OOPS!!! Please indicate a description and date/time separated by /at
 Noted. I've removed this task:
 [E][X] meeting (at: 7am)
 Now you have 0 task(s) in the list.

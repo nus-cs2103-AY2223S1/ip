@@ -3,10 +3,12 @@ import java.io.IOException;
 public class Dukebot {
     private TaskList taskList;
     private Storage storage;
+    private Parser parser;
     private Ui ui;
 
     private void handleStartup() {
-        ui = new Ui();
+        this.ui = new Ui();
+        this.parser = new Parser();
         ui.display(Messages.STARTUP);
         try {
             this.storage = new Storage();
@@ -16,6 +18,7 @@ public class Dukebot {
             ui.display(Messages.LOAD_ERROR);
             this.taskList = new TaskList();
         }
+
     }
 
     private void handleBye() {
@@ -30,127 +33,84 @@ public class Dukebot {
         }
     }
 
-    private void handleRemove(String[] inputLessAction) throws DukeException {
-        if (inputLessAction.length < 2) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "remove"));
-        }
-        int currentPos = Integer.parseInt(inputLessAction[1]) - 1;
+    private void handleRemove(String[] inputArgs) throws DukeException {
+        int index = parser.parseIndex(inputArgs);
         ui.display(Messages.TASK_REMOVED);
-        ui.display(taskList.get(currentPos).toString());
-        taskList.remove(Integer.parseInt(inputLessAction[1]) - 1);
-        ui.display(String.format((Messages.TASK_COUNT) + "%n", taskList.getSize()));
+        ui.display(taskList.get(index).toString());
+        taskList.remove(Integer.parseInt(inputArgs[1]) - 1);
+        ui.display(String.format(Messages.TASK_COUNT, taskList.getSize()));
     }
 
-    private void handleMark(String[] inputLessAction) throws DukeException {
-        if (inputLessAction.length < 2) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "mark"));
-        }
-        int index = Integer.parseInt(inputLessAction[1]) - 1;
-        this.taskList.mark(index);
+    private void handleMark(String[] inputArgs) throws DukeException {
+        int index = parser.parseIndex(inputArgs);
+        taskList.mark(index);
         ui.display(Messages.TASK_MARKED);
         ui.display(this.taskList.get(index).toString());
     }
 
-    private void handleUnmark(String[] inputLessAction) throws DukeException {
-        if (inputLessAction.length < 2) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "unmark"));
-        }
-
-        int index = Integer.parseInt(inputLessAction[1]) - 1;
+    private void handleUnmark(String[] inputArgs) throws DukeException {
+        int index = parser.parseIndex(inputArgs);
         taskList.get(index).markUndone();
         ui.display(Messages.TASK_UNMARKED);
         ui.display(taskList.get(index).toString());
     }
 
-    private void handleTodo(String[] inputLessAction) throws DukeException {
-        if (inputLessAction.length < 2) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "todo"));
-        }
-        String taskDesc = inputLessAction[1];
-        this.taskList.add(new Todo(taskDesc));
+    private void handleTodo(String[] inputArgs) throws DukeException {
+        Todo t = parser.parseTodo(inputArgs);
+        taskList.add(t);
         ui.display(Messages.TASK_ADDED);
         ui.display(this.taskList.get(this.taskList.getSize() - 1).toString());
-        ui.display(String.format((Messages.TASK_COUNT) + "%n", this.taskList.getSize()));
+        ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
     }
 
-    private void handleDeadline(String[] inputLessAction) throws DukeException {
-        if (inputLessAction.length < 2) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "deadline"));
-        }
-        String temp = inputLessAction[1];
-        String[] tempStrArr = temp.split("\\s+/by\\s+", 2);
-        if (tempStrArr.length < 2) {;
-            throw new DukeException(String.format(ExceptionMessages.INVALID_FORMAT, "/by"));
-        }
-        String taskDesc = tempStrArr[0];
-        if (taskDesc.equals("")) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "deadline"));
-        }
-        String taskTime = tempStrArr[1];
-        if (taskTime.equals("")) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_TIME, "deadline"));
-        }
-        this.taskList.add(new Deadline(taskDesc, taskTime));
+    private void handleDeadline(String[] inputArgs) throws DukeException {
+        Deadline d = parser.parseDeadline(inputArgs);
+        taskList.add(d);
         ui.display(Messages.TASK_ADDED);
         ui.display(this.taskList.get(this.taskList.getSize() - 1).toString());
-        ui.display(String.format((Messages.TASK_COUNT) + "%n", this.taskList.getSize()));
+        ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
     }
 
-    private void handleEvent(String[] inputLessAction) throws DukeException {
-        if (inputLessAction.length < 2) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "event"));
-        }
-        String temp = inputLessAction[1];
-        String[] tempStrArr = temp.split("\\s+/at\\s+", 2);
-        if (tempStrArr.length < 2) {
-            throw new DukeException(String.format(ExceptionMessages.INVALID_FORMAT, "/at"));
-        }
-        String taskDesc = tempStrArr[0];
-        if (taskDesc.equals("")) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_DESCRIPTION, "event"));
-        }
-        String taskTime = tempStrArr[1];
-        if (taskTime.equals("")) {
-            throw new DukeException(String.format(ExceptionMessages.EMPTY_TASK_TIME, "event"));
-        }
-        this.taskList.add(new Event(taskDesc, taskTime));
+    private void handleEvent(String[] inputArgs) throws DukeException {
+        Event e = parser.parseEvent(inputArgs);
+        taskList.add(e);
         ui.display(Messages.TASK_ADDED);
         ui.display(this.taskList.get(this.taskList.getSize() - 1).toString());
-        ui.display(String.format((Messages.TASK_COUNT) + "%n", this.taskList.getSize()));
+        ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
     }
 
     protected void handleInput(String input) {
-        String[] inputLessAction = input.split("\\s+", 2);
-
+        String[] inputArgs = input.split("\\s+", 2);
+        String keyWord = inputArgs[0];
         try {
-            switch (inputLessAction[0]) {
+            switch (keyWord) {
             case "bye":
                 this.handleBye();
             case "list":
                 this.handleList();
                 break;
             case "remove":
-                this.handleRemove(inputLessAction);
+                this.handleRemove(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "mark":
-                this.handleMark(inputLessAction);
+                this.handleMark(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "unmark":
-                this.handleUnmark(inputLessAction);
+                this.handleUnmark(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "todo":
-                this.handleTodo(inputLessAction);
+                this.handleTodo(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "deadline":
-                this.handleDeadline(inputLessAction);
+                this.handleDeadline(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             case "event":
-                this.handleEvent(inputLessAction);
+                this.handleEvent(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
             default:
