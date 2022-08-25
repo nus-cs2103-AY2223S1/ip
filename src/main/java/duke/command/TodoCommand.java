@@ -6,7 +6,9 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.task.Todo;
 
-
+/**
+ * Adds Todo task in duke's tasklist.
+ */
 public class TodoCommand extends Command {
 
     private String description;

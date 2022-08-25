@@ -1,5 +1,7 @@
 package duke.task;
-
+/**
+ * Represents a todo task with description.
+ */
 public class Todo extends Task {
 
     public Todo(String description) {
@@ -10,7 +12,6 @@ public class Todo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
-
 
     @Override
     public String toStringForStorage() {

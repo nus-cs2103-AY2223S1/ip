@@ -5,6 +5,9 @@ import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Unmarks a task at a specific index in tasklist.
+ */
 public class UnmarkCommand extends Command {
     private int index;
 

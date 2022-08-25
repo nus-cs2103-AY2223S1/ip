@@ -12,7 +12,16 @@ import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 
+/**
+ * Parses the user input and executes the corresponding commands.
+ */
 public class Parser {
+    /**
+     * Returns Command object based on user's input.
+     * @param fullCommand user's input.
+     * @return specific command.
+     * @throws DukeException If command does not exist.
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String[] commandSegments = fullCommand.split(" ", 2);
         String mainCommand = commandSegments[0].toLowerCase().trim();

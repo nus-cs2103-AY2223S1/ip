@@ -15,9 +15,16 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
+/**
+ * Handles loading and saving tasks in the file.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Creates a new directory/file if it does not exist.
+     * @param filePath directory of where tasks are saved.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         String[] pathSegment = filePath.split("/");
@@ -25,11 +32,11 @@ public class Storage {
             File storageFolder = new File(pathSegment[0]);
             File storageFile = new File(this.filePath);
 
-            //make a data folder if it does not exists
+            //make a data folder if it does not exist
             if (!storageFolder.exists()) {
                 storageFolder.mkdir();
             }
-            //create task.txt if it doesnt exists
+            //create task.txt if it does not exist
             if (!storageFile.exists()) {
                 storageFile.createNewFile();
             }
@@ -39,6 +46,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads saved task from data.txt to a list.
+     * @return previously saved tasks.
+     * @throws DukeException If error loading file.
+     */
     public List<Task> load() throws DukeException {
         List<Task> loadedTasks = new ArrayList<>();
         try {
@@ -93,6 +105,10 @@ public class Storage {
         return loadedTasks;
     }
 
+    /**
+     * Saves all existing tasks into data.txt.
+     * @param taskToSave list of tasks to be saved.
+     */
     public void saveTasksInStorage(List<Task> taskToSave) {
         try {
             FileWriter storageWriter = new FileWriter(this.filePath);

@@ -5,6 +5,9 @@ import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 
+/**
+ * Lists all the task in tasklist.
+ */
 public class ListCommand extends Command {
 
     public ListCommand() {
