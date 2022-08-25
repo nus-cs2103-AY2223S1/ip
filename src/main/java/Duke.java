@@ -1,5 +1,19 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.File;
+import java.nio.file.Files;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+
+
+// look for file. if it does not exist, make it
+// from tasks in file, get the var of each line and update the duke list
+// 
+// at the end of every update, clear the whole file and rewrite with current list of tasks
 
 
 public class Duke {
@@ -59,6 +73,17 @@ public class Duke {
         }
     }
 
+    // taken from Week 3 topics
+    private static void printFileContents(String filePath) throws FileNotFoundException {
+        File f = new File(filePath); // create a File for the given file path
+        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        while (s.hasNext()) {
+            System.out.println(s.nextLine());
+        }
+    }
+
+
+
     private static void markTask(int num) {
         Task task = list.get(num - 1);
         task.mark();
@@ -83,7 +108,102 @@ public class Duke {
         }
     }
 
+
+    static void addDeadlineOrEvent(String s, String isMarked, String description, String datetime){
+//        System.out.println("type:" + s);
+        if (s.equals("D")){
+//            System.out.println("added D");
+            Deadline deadline = new Deadline(description, datetime);
+            if (isMarked.equals("1")) {
+                deadline.mark();
+            }
+            list.add(deadline);
+        } else {
+//            System.out.println("added E");
+            Event event = new Event(description, datetime);
+            if (isMarked.equals("1")) {
+                event.mark();
+            }
+            list.add(event);
+        }
+    }
+
+    static void addToDo(String isMarked, String description) {
+//        System.out.println("added T");
+        ToDo todo = new ToDo(description);
+        if (isMarked.equals("1")) {
+            todo.mark();
+        }
+        list.add(todo);
+    }
+
+    // settled reading task from text file
+    static void getTasks() throws FileNotFoundException{
+        File f = new File("data/duke.txt");
+        Scanner s = new Scanner(f); // create a Scanner using the File as the source
+        while (s.hasNext()) {
+            String[] taskInList = s.nextLine().split(" \\| ");
+//            System.out.println(taskInList.length);
+            if (taskInList.length == 4) {
+                addDeadlineOrEvent(taskInList[0], taskInList[1],taskInList[2],taskInList[3]);
+            } else {
+                addToDo(taskInList[1],taskInList[2]);
+            }
+        }
+    }
+
+    static String getEventDueDate(Event event) {
+        return event.getDueTime();
+    }
+    static String getDeadlineDueDate(Deadline deadline) {
+        return deadline.getDueTime();
+    }
+
+
+    // delete file, add lines to write, put string together and write in file writer
+    // NEVER DELETE WRITE THE FILE IN THE SAME METHOD
+    private static void rewriteTasks() throws IOException{
+        String path = "data/duke.txt";
+        FileWriter fw = new FileWriter(path);
+        ArrayList<String> taskListArray = new ArrayList<>();
+        for (int i=0; i < list.size(); i++){
+            if (list.get(i) instanceof ToDo) {
+                System.out.println("task is a todo");
+                String taskString = String.format("T | %s | %s", list.get(i).getIsDone() ? 1 : 0, list.get(i).getDescription());
+                taskListArray.add(taskString);
+            } else if (list.get(i) instanceof Deadline) {
+                System.out.println("task is a deadline");
+                String taskString = String.format("T | %s | %s | %s", list.get(i).getIsDone() ? 1 : 0, list.get(i).getDescription(), getDeadlineDueDate((Deadline) list.get(i)));
+                taskListArray.add(taskString);
+            } else {
+                System.out.println("task is an event");
+                String taskString = String.format("T | %s | %s | %s", list.get(i).getIsDone() ? 1 : 0, list.get(i).getDescription(), getEventDueDate((Event) list.get(i)));
+                taskListArray.add(taskString);
+            }
+        }
+        String taskListString = "";
+        for (int j=0; j < list.size(); j++) {
+            taskListString += taskListArray.get(j);
+            if (j != list.size() -1) {
+                taskListString += "\n";
+            }
+        }
+        fw.write(taskListString);
+        fw.close();
+    }
+
     public static void main(String[] args) throws DukeException {
+
+        try {
+            File file = new File("data/duke.txt");
+            System.out.println("Current Tasks:");
+            printFileContents("data/duke.txt");
+            getTasks();
+            System.out.println(list);
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found, added file");
+        }
+
         String intro = "Hello! I'm Duke\nWhat can I do for you?";
         System.out.println("____________________________________________________");
         System.out.println(intro);
@@ -103,7 +223,8 @@ public class Duke {
                     int taskNum = Integer.parseInt(inputArr[1]);
                     try {
                         markTask(taskNum);
-                    } catch (IndexOutOfBoundsException e) {
+                        rewriteTasks();
+                    } catch (IndexOutOfBoundsException | IOException e) {
                         System.out.println("Task does not exist!");
                     }
                     String output = String.format("Nice! I've marked this task as done:\n%s", list.get(taskNum - 1));
@@ -112,18 +233,27 @@ public class Duke {
                     int taskNum = Integer.parseInt(inputArr[1]);
                     try {
                         unmarkTask(taskNum);
-                    } catch (IndexOutOfBoundsException e) {
+                        rewriteTasks();
+                    } catch (IndexOutOfBoundsException | IOException e) {
                         System.out.println("Task does not exist!");
                     }
                     String output = String.format("OK, I've marked this task as not done yet:\n%s", list.get(taskNum - 1));
                     System.out.println(output);
                 } else if (inputArr[0].equals("delete")) {
-                    int taskNum = Integer.parseInt(inputArr[1]);
-                    deleteTask(taskNum);
+                    try {
+                        int taskNum = Integer.parseInt(inputArr[1]);
+                        deleteTask(taskNum);
+                        rewriteTasks();
+                    } catch (IOException e) {
+
+                    }
+
                 } else if (inputArr[0].equals("todo") || inputArr[0].equals("deadline") || inputArr[0].equals("event")) {
                     try {
                         addTask(inputArr[0], input);
-                    } catch (IndexOutOfBoundsException | DukeException e) {
+                        rewriteTasks();
+                    } catch (IndexOutOfBoundsException | DukeException | IOException e) {
+                        System.out.println(e.getMessage());
                         String output = String.format("Oops!! The description of a %s cannot be empty", inputArr[0]);
                         System.out.println(output);
                     }
