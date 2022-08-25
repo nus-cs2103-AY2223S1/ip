@@ -30,11 +30,4 @@ public class Event extends Task{
         return "[E]" + super.toString() + " (at: " + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 
-    private static LocalDate getDate(String date) throws DukeException {
-        try {
-            return LocalDate.parse(date);
-        } catch (DateTimeParseException e){
-            throw new DukeException("☹ OOPS!!! Please format your date as yyyy-mm-dd format (e.g., 2019-10-15)");
-        }
-    }
 }

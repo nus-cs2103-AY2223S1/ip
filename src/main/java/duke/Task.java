@@ -53,4 +53,8 @@ public abstract class Task {
     public String toString(){
         return "[" + getStatusIcon() + "]" +  " " + this.description;
     }
+
+    public boolean hasName(String name) {
+        return this.description.contains(name);
+    }
 }

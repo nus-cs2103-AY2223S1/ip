@@ -31,10 +31,13 @@ public class AddCommand extends Command {
         switch(type) {
             case "todo" :
                 task = new Todo(description);
+                break;
             case "event":
                 task = new Event(description,date);
+                break;
             case "deadline" :
                 task = new Deadline(description,date);
+                break;
         }
 
         taskList.addTask(task);
