@@ -20,11 +20,11 @@ public class Task {
 
 
 
-    public void taskDone() {
+    public void setDone() {
         this.isDone = true;
     }
 
-    public void taskUndone() {
+    public void setUndone() {
         this.isDone = false;
     }
 

@@ -15,7 +15,7 @@ public class UnmarkCommand extends Command{
     public void run(TaskList taskList) throws DukeException {
         int index = Integer.parseInt(input) - 1;
         try {
-            taskList.getTask(index).taskUndone();
+            taskList.getTask(index).setUndone();
             Ui.formatMessage("I've marked this duke.task as not done.. \n  "
                     + taskList.getTask(index).toString());
         } catch (IndexOutOfBoundsException e) {

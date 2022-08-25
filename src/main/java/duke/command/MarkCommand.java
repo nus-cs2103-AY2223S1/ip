@@ -15,7 +15,7 @@ public class MarkCommand extends Command{
     public void run(TaskList taskList) throws DukeException {
         int index = Integer.parseInt(input) - 1;
         try {
-            taskList.getTask(index).taskDone();
+            taskList.getTask(index).setDone();
             Ui.formatMessage("I've marked this duke.task as done! \n  "
                     + taskList.getTask(index).toString());
         } catch (IndexOutOfBoundsException e) {

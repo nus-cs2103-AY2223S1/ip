@@ -11,6 +11,7 @@ public class Parser {
             switch (segments[0]) {
                 case "list":
                     return new ListCommand();
+                //Fallthrough
 
                 case "mark":
                     return new MarkCommand(segments[1]);
