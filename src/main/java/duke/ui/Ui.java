@@ -58,13 +58,18 @@ public class Ui {
                     "Help    To see the list of commands."));
     }
 
-    public void showList(List<? extends Task> memo) {
-        String[] strArr = new String[memo.size() + 1];
+    public void showList(List<Task> tasksList) {
+        String[] strArr = new String[tasksList.size() + 1];
         strArr[0] = "Here are the tasks in your list:";
         for (int i = 1; i < strArr.length; i++) {
-            strArr[i] = i + ". " + memo.get(i - 1);
+            strArr[i] = i + ". " + tasksList.get(i - 1);
         }
         System.out.println(dialog(strArr));
+    }
+
+    public void showFindTask(List<Task> taskList) {
+        System.out.println(dialog("Here are the matching tasks in your list:"));
+        showList(taskList);
     }
 
     public static String dialog(String... strings) {

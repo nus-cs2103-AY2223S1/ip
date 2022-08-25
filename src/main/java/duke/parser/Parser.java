@@ -45,6 +45,9 @@ public class Parser {
             case "EVENT":
                 return parseToAddEventCommand(arr);
 
+            case "FIND":
+                return parseToFindCommand(arr);
+
             case "HELP":
                 return new HelpCommand();
 
@@ -54,7 +57,7 @@ public class Parser {
 
     }
 
-    protected static int parseToTaskIndex(String[] fullCommandArray) throws IllegalInputException {
+    public static int parseToTaskIndex(String[] fullCommandArray) throws IllegalInputException {
         if (fullCommandArray.length == 1) {
             throw new EmptyIndexException();
         }
@@ -63,6 +66,17 @@ public class Parser {
         } else {
             throw new InvalidIndexException();
         }
+    }
+
+    public static LocalDate parseToLocalDateTime(String date) throws IllegalDateFormatException {
+        date = date.trim();
+        LocalDate res = null;
+        try {
+            res = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new IllegalDateFormatException();
+        }
+        return res;
     }
 
     private static Command parseToAddTodoCommand(String[] fullCommandArray) throws EmptyDescriptionException {
@@ -104,15 +118,12 @@ public class Parser {
         return new AddCommand(new Event(description, date));
     }
 
-    public static LocalDate parseToLocalDateTime(String date) throws IllegalDateFormatException {
-        date = date.trim();
-        LocalDate res = null;
-        try {
-            res = LocalDate.parse(date);
-        } catch (DateTimeParseException e) {
-            throw new IllegalDateFormatException();
-        }
-        return res;
+    private static Command parseToFindCommand(String[] fullCommandArray) throws EmptyDescriptionException {
+
+        simpleDescriptionChecking(fullCommandArray);
+
+        String description = fullCommandArray[COMMAND_DESCRIPTION];
+        return new FindCommand(description);
     }
 
     private static void simpleDescriptionChecking(String[] fullCommandArray) throws EmptyDescriptionException {
