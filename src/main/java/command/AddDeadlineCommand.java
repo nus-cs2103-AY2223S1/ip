@@ -11,8 +11,6 @@ import utility.Parser;
  * Command that handles adding Deadline to TaskList and Storage.
  */
 public class AddDeadlineCommand extends Command {
-    public AddDeadlineCommand() {
-    }
 
     /**
      * Runs when deadline is to be added.
@@ -21,6 +19,7 @@ public class AddDeadlineCommand extends Command {
      * @param storage Storage space to append Deadline to.
      * @throws DukeException When parsing user command fails.
      */
+    @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
         String userInput = ui.currentInput;
         Deadline deadlineToAdd = Parser.stringToDeadline(userInput);
@@ -34,6 +33,7 @@ public class AddDeadlineCommand extends Command {
      * Returns false to allow program execution to continue.
      * @return false.
      */
+    @Override
     public boolean isExit() {
         return false;
     }
