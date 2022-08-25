@@ -5,17 +5,22 @@ import java.time.format.DateTimeFormatter;
  * description
  */
 public abstract class Task {
+    // Datetime formats for input and display
     public static final String DATE_TIME_INPUT_FORMAT = "yyyy-MM-dd HH:mm";
+    public static final String DATE_TIME_DISPLAY_FORMAT = "MMM dd yyyy HH:mm";
 
+    // Class variables used to parse and format datetime fields for input and display respectively
     public static final DateTimeFormatter dateTimeParser = DateTimeFormatter.ofPattern(DATE_TIME_INPUT_FORMAT);
-    public static final DateTimeFormatter dateTimeDisplayFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    public static final DateTimeFormatter dateTimeDisplayFormatter =
+            DateTimeFormatter.ofPattern(DATE_TIME_DISPLAY_FORMAT);
 
     protected final String description;
     protected boolean isDone;
     protected TaskType taskType;
 
     /**
-     * Constructor for task that takes in some description to identify the task
+     * Constructor for a task that takes in some description to identify the task and a boolean which determines
+     * whether they are done or not, which is only called in the different task types
      *
      * @param description The specified description.
      * @param isDone      The boolean indicating whether the task is done.
@@ -61,8 +66,6 @@ public abstract class Task {
     }
 
     /**
-     * {@inheritDoc}
-     * <p>
      * Returns the string formatted display of a task, with its status icon, task
      * type, and description
      */

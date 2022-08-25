@@ -20,6 +20,11 @@ public class Event extends Task {
         this.taskType = TaskType.E;
     }
 
+    /**
+     * Retrieves formatted value of the event's timing
+     *
+     * @return The formatted datetime string.
+     */
     public String getTiming() {
         return Task.dateTimeDisplayFormatter.format(this.timing);
     }
@@ -27,7 +32,7 @@ public class Event extends Task {
     /**
      * {@inheritDoc}
      * <p>
-     * Event has an additional datetime field for at
+     * Event has an additional datetime field for timing
      */
     @Override
     public String encode(String delimiter) {

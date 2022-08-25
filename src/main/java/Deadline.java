@@ -27,7 +27,7 @@ public class Deadline extends Task {
     /**
      * {@inheritDoc}
      * <p>
-     * Deadline has an additional datetime field for by
+     * Deadline has an additional datetime field for deadline
      */
     @Override
     public String encode(String delimiter) {

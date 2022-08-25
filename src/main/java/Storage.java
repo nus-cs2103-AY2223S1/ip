@@ -7,38 +7,20 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Represents the current tasks in the chatbot, which loads data from the hard disk (if data exists) whenever Duke
- * starts up
+ * Deals with loading tasks from the file and saving tasks in the file whenever Duke starts / shuts down
  */
 public class Storage {
     // Used in the encoding of task data
     public static final String DELIMITER = "|";
-    private static final String STORAGE_FILE_PATH = "data/duke.txt";
-
-    private final List<Task> taskList = new ArrayList<>(100);
+    private final String filePath;
 
     /**
-     * Constructs a storage for the chatbot, which attempts to read from a local file and update the current task
-     * list to the tasks specified in the local file
+     * Constructs a storage to store / retrieve tasks from some file path
+     *
+     * @param filePath The specified path for the storage file.
      */
-    Storage() {
-        try {
-            // Create storage file (and subdirectories) if they do not exist
-            File storageFile = new File(STORAGE_FILE_PATH);
-            createFileAndSubdirectories(storageFile);
-
-            // Read the existing data in the storage file into the current task list
-            Scanner scanner = new Scanner(storageFile);
-            while (scanner.hasNextLine()) {
-                String taskData = scanner.nextLine();
-                this.addTask(decodeTask(taskData));
-            }
-            scanner.close();
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        } catch (DukeException exception) {
-            System.out.println(exception.toString());
-        }
+    Storage(String filePath) {
+        this.filePath = filePath;
     }
 
     /**
@@ -93,17 +75,37 @@ public class Storage {
         return decodedTask;
     }
 
+    public List<Task> load() throws DukeException {
+        List<Task> loadedTasks = new ArrayList<>();
+        try {
+            // Create storage file (and subdirectories) if they do not exist
+            File storageFile = new File(this.filePath);
+            createFileAndSubdirectories(storageFile);
+
+            // Read the existing data in the storage file into the current task list
+            Scanner scanner = new Scanner(storageFile);
+            while (scanner.hasNextLine()) {
+                String taskData = scanner.nextLine();
+                loadedTasks.add(decodeTask(taskData));
+            }
+            scanner.close();
+        } catch (IOException exception) {
+            throw new DukeException("Error opening files");
+        }
+        return loadedTasks;
+    }
+
     /**
      * Overwrites the data inside the storage file with the current task list
      */
-    public void saveTasks() {
+    public void saveTasks(TaskList taskList) {
         try {
-            File storageFile = new File(STORAGE_FILE_PATH);
+            File storageFile = new File(this.filePath);
             createFileAndSubdirectories(storageFile);
 
             FileWriter fileWriter = new FileWriter(storageFile, false);
-            for (Task task : this.taskList) {
-                fileWriter.write(task.encode(DELIMITER) + "\n");
+            for (int i = 0; i < taskList.size(); i++) {
+                fileWriter.write(taskList.getTask(i).encode(DELIMITER) + "\n");
             }
             fileWriter.close();
         } catch (IOException exception) {
@@ -111,44 +113,5 @@ public class Storage {
         } catch (DukeException exception) {
             System.out.println(exception.toString());
         }
-    }
-
-    /**
-     * Retrieves the size of the current task list
-     *
-     * @return The size of the current task list
-     */
-    public int size() {
-        return this.taskList.size();
-    }
-
-    /**
-     * Retrieves the task at a given index.
-     *
-     * @param index The specified index.
-     * @return The task at the specified index.
-     */
-    public Task getTask(int index) {
-        return this.taskList.get(index);
-    }
-
-    /**
-     * Removes the task at a given index.
-     *
-     * @param index The specified index.
-     * @return The removed task.
-     */
-    public Task removeTask(int index) {
-        return this.taskList.remove(index);
-    }
-
-    /**
-     * Adds task to the current task list
-     *
-     * @param task The specified task.
-     * @return Boolean of whether the task was added successfully.
-     */
-    public boolean addTask(Task task) {
-        return this.taskList.add(task);
     }
 }
