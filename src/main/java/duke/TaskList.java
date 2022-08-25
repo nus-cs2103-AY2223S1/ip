@@ -118,6 +118,27 @@ public class TaskList {
     }
 
     /**
+     * Prints the list of tasks in this TaskList with the keyword in it.
+     *
+     * @param keyword word being searched for in the TaskList
+     */
+    public void find(String keyword) {
+        String match = "";
+        for (int i = 0, j = 0; j < tasks.size(); j++) {
+            Task curr = tasks.get(j);
+            if (curr.contains(keyword)) {
+                i++;
+                match += i + ". " + curr + "\n";
+            }
+        }
+        if (match == "") {
+            System.out.println("Duke: Sorry! Cannot find any matching tasks in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:\n" + match);
+        }
+    }
+
+    /**
      * Returns a string representation of this TaskList.
      *
      * @return a string representation of this TaskList

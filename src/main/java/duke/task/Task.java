@@ -39,9 +39,18 @@ public abstract class Task {
      *
      * @return 'X' if Task is done, else ' '
      */
-
     public String getStatusIcon() {
         return isDone ? "X" : " ";
+    }
+
+    /**
+     * Returns true if and only if keyword in a substring of the task description.
+     *
+     * @param keyword word being searched for
+     * @return true if and only if keyword in a substring of the task description
+     */
+    public boolean contains(String keyword) {
+        return taskDescription.contains(keyword);
     }
 
     /**
