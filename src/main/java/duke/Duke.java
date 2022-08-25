@@ -1,7 +1,8 @@
 package duke;
 
-import duke.command.Command;
 import java.io.FileNotFoundException;
+
+import duke.command.Command;
 
 public class Duke {
 
