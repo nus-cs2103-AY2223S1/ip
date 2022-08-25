@@ -6,6 +6,9 @@ import executor.Executor;
 import processor.Parser;
 import tobtob.TobTob;
 
+/**
+ * Represents a manager that manage the whole process (main logic) of the chatbot
+ */
 public class Duke {
     private Belly belly;
     private Brain brain;
@@ -26,6 +29,11 @@ public class Duke {
         parser = new Parser(executor);
     }
 
+    /**
+     * Runs the chatbot
+     *
+     * @return null
+     */
     public void run() {
         tobTob.tobTobGreets();
 
@@ -49,6 +57,12 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs Duke
+     *
+     * @param args
+     * @return null
+     */
     public static void main(String[] args) {
         new Duke().run();
     }

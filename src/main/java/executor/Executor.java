@@ -11,14 +11,31 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+/**
+ * Represents an executor that execute whatever thing a parser tells from the command
+ */
 public class Executor {
     public final Brain brain;
     public final Belly belly;
 
+    /**
+     * Executor constructor with the specified brain and belly
+     *
+     * @param brain a Brain instance
+     * @param belly a Belly instance
+     */
     public Executor(Brain brain, Belly belly) {
         this.brain = brain;
         this.belly = belly;
     }
+
+    /**
+     * Returns a <code>String</code> of <code>Task</code>s inside <code>brain</code>.
+     *
+     * @param commandDescription a <code>String</code> passed by parser
+     * @return <code>String</code>
+     * @throws DukeException
+     */
     public String showBrain(String commandDescription) throws DukeException {
         if (!commandDescription.equals("")) {
             throw DukeException.shouldHaveNoDescriptionError();
@@ -27,6 +44,13 @@ public class Executor {
         return brain.show();
     }
 
+    /**
+     * Returns a <code>String</code> indicating the marked <code>Task</code>.
+     *
+     * @param commandDescription a <code>String</code> passed by parser
+     * @return <code>String</code>
+     * @throws DukeException
+     */
     public String markTask(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
             throw DukeException.emptyCommandDescriptionError();
@@ -49,6 +73,13 @@ public class Executor {
         }
     }
 
+    /**
+     * Returns a <code>String</code> indicating the unmarked <code>Task</code>.
+     *
+     * @param commandDescription a <code>String</code> passed by parser
+     * @return <code>String</code>
+     * @throws DukeException
+     */
     public String unmarkTask(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
             throw DukeException.emptyCommandDescriptionError();
@@ -71,6 +102,15 @@ public class Executor {
         }
     }
 
+    /**
+     * Returns a <code>String</code> indicating the new <code>Task</code>.
+     *
+     * @param taskType
+     * @param taskDescriptionDatetime
+     * @param separatorIndex
+     * @return <code>String</code>
+     * @throws DukeException
+     */
     public String putInBrain(String taskType, String[] taskDescriptionDatetime, int separatorIndex) throws DukeException {
         if (taskDescriptionDatetime[0].equals("")) {
             throw DukeException.emptyCommandDescriptionError();
@@ -135,6 +175,13 @@ public class Executor {
         }
     }
 
+    /**
+     * Returns a <code>String</code> indicating the trashed <code>Task</code>.
+     *
+     * @param commandDescription a <code>String</code> passed by parser
+     * @return <code>String</code>
+     * @throws DukeException
+     */
     public String trashFromBrain(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
             throw DukeException.emptyCommandDescriptionError();
@@ -160,6 +207,11 @@ public class Executor {
         }
     }
 
+    /**
+     * Returns a <code>String</code> indicating the hibernating.
+     *
+     * @return <code>String</code>
+     */
     public String hibernate() {
         String result = "";
         result += "Byeee! Tob Tob is sick of you\n";

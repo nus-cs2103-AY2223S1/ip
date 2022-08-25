@@ -1,7 +1,12 @@
 package tobtob;
 
+import duke.DukeException;
+
 import java.util.Scanner;
 
+/**
+ * Represent a Ui that interacts with the user
+ */
 public class TobTob {
     private static final String TOB_TOB_LOGO = "            __                  __           __                  __\n"
             + "           |  |____    _____   |  |_____    |  |____    _____   |  |_____\n"
@@ -11,22 +16,44 @@ public class TobTob {
             + "            \\______/  \\_____/   \\_______/    \\______/  \\_____/   \\_______/";
 
     private static final int TOB_TOB_LUCKY_NUMBER = 88;
-    private static final String TOB_TOB_LINE = new String(new char[TOB_TOB_LUCKY_NUMBER]).replace("\0", "~");
+    private static final String TOB_TOB_BOUNDARY = new String(new char[TOB_TOB_LUCKY_NUMBER]).replace("\0", "~");
     private static final Scanner sc = new Scanner(System.in);
 
+    /**
+     * Returns a <code>String</code> of the input by user.
+     *
+     * @return <code>String</code>
+     */
     public String readInput() {
         return sc.nextLine().strip();
     }
 
+    /**
+     * Prints the specified <code>String</code> with indentation
+     *
+     * @param s a <code>String</code> to print
+     * @return <code>null</code>
+     * @throws DukeException
+     */
     public void printTobTobIndent(String s) {
         System.out.print("\t");
         System.out.println(s.replace("\n", "\n\t"));
     }
 
+    /**
+     * Prints the boundary
+     *
+     * @return <code>null</code>
+     */
     public void printTobTobBoundary() {
-        printTobTobIndent(TOB_TOB_LINE);
+        printTobTobIndent(TOB_TOB_BOUNDARY);
     }
 
+    /**
+     * Greets the user
+     *
+     * @return <code>null</code>
+     */
     public void tobTobGreets() {
         printTobTobIndent(TOB_TOB_LOGO);
         printTobTobIndent("");
@@ -36,6 +63,11 @@ public class TobTob {
         printTobTobBoundary();
     }
 
+    /**
+     * Informs the user that there is no file saved before
+     *
+     * @return <code>null</code>
+     */
     public void tobTobNeverMetBefore() {
         printTobTobBoundary();
         printTobTobIndent("We've never met before!");

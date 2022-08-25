@@ -16,11 +16,20 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+/**
+ * Represents a storage system to load data from or save data to local hard disk.
+ */
 public class Belly {
     public static final String FILE_DIRECTORY = "../data/";
     public static final String FILE_NAME = "duke.txt";
     public static final String FILE_PATH = FILE_DIRECTORY + FILE_NAME;
 
+    /**
+     * Returns an Arraylist of Tasks inside the file in the specified path.
+     *
+     * @return <code>ArrayList&lt;Task&gt;</code>
+     * @throws DukeException If there is no file found in the path
+     */
     public ArrayList<Task> puke() throws DukeException {
         try {
             File file = new File(FILE_PATH);
@@ -60,6 +69,12 @@ public class Belly {
         }
     }
 
+    /**
+     * Saves <code>txt</code> input to hard disk.
+     *
+     * @param txt String that will be saved
+     * @return <code>null</code>
+     */
     public void saveToHardDisk(String txt) {
         try {
             Files.createDirectories(Paths.get(FILE_DIRECTORY));

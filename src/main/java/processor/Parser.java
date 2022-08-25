@@ -3,13 +3,28 @@ package processor;
 import duke.DukeException;
 import executor.Executor;
 
+/**
+ * Represents a parser that process the input
+ */
 public class Parser {
     private final Executor executor;
 
+    /**
+     * Parser constructor with the specified executor
+     *
+     * @param executor
+     */
     public Parser(Executor executor) {
         this.executor = executor;
     }
 
+    /**
+     * Returns a <code>String</code> indicating the result of the parsing
+     *
+     * @param input a <code>String</code> input by the user
+     * @return <code>String</code>
+     * @throws DukeException
+     */
     public String parse(String input) throws DukeException {
         System.out.println(input);
         String command = input.split(" ")[0].toLowerCase();

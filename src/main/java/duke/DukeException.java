@@ -14,38 +14,81 @@ public class DukeException extends Exception {
             + "Please make sure that it's in format 'yyyy-mm-dd'";
     private static final String FILE_NOT_FOUND_ERROR_MESSAGE = "Oopsieee! There is no file in path %s";
 
+    /**
+     * DukeException constructor with the specified message
+     */
     public DukeException(String message) {
         super(message);
     }
 
+    /**
+     * Returns a <code>DukeException</code> instance with EMPTY_COMMAND_DESCRIPTION_ERROR_MESSAGE.
+     *
+     * @return <code>DukeException</code>
+     */
     public static DukeException emptyCommandDescriptionError() {
         return new DukeException(EMPTY_COMMAND_DESCRIPTION_ERROR_MESSAGE);
     }
 
+    /**
+     * Returns a <code>DukeException</code> instance with INTEGER_INDEX_ERROR_MESSAGE.
+     *
+     * @return <code>DukeException</code>
+     */
     public static DukeException integerIndexError(String command) {
         return new DukeException(String.format(INTEGER_INDEX_ERROR_MESSAGE, command));
     }
 
+    /**
+     * Returns a <code>DukeException</code> instance with TASK_INCORRECT_FORMAT_ERROR_MESSAGE.
+     *
+     * @return <code>DukeException</code>
+     */
     public static DukeException taskIncorrectFormatError(String separator, String taskType) {
         return new DukeException(String.format(TASK_INCORRECT_FORMAT_ERROR_MESSAGE, separator, taskType));
     }
 
+    /**
+     * Returns a <code>DukeException</code> instance with COMMAND_NOT_RECOGNIZED_ERROR_MESSAGE.
+     *
+     * @return <code>DukeException</code>
+     */
     public static DukeException commandNotRecognizedError(String command) {
         return new DukeException(String.format(COMMAND_NOT_RECOGNIZED_ERROR_MESSAGE, command));
     }
 
+    /**
+     * Returns a <code>DukeException</code> instance with SHOULD_HAVE_NO_DESCRIPTION_ERROR_MESSAGE.
+     *
+     * @return <code>DukeException</code>
+     */
     public static DukeException shouldHaveNoDescriptionError() {
         return new DukeException(SHOULD_HAVE_NO_DESCRIPTION_ERROR_MESSAGE);
     }
 
+    /**
+     * Returns a <code>DukeException</code> instance with INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE.
+     *
+     * @return <code>DukeException</code>
+     */
     public static DukeException indexOutOfBoundsError(int size) {
         return new DukeException(String.format(INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE, size, size));
     }
 
+    /**
+     * Returns a <code>DukeException</code> instance with DATETIME_FORMAT_ERROR_MESSAGE.
+     *
+     * @return <code>DukeException</code>
+     */
     public static DukeException datetimeFormatErrorMessage(String datetimeString) {
         return new DukeException(String.format(DATETIME_FORMAT_ERROR_MESSAGE, datetimeString));
     }
 
+    /**
+     * Returns a <code>DukeException</code> instance with FILE_NOT_FOUND_ERROR_MESSAGE.
+     *
+     * @return <code>DukeException</code>
+     */
     public static DukeException fileNotFoundError(String filePath) {
         return new DukeException(String.format(FILE_NOT_FOUND_ERROR_MESSAGE, filePath));
     }
