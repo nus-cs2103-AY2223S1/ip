@@ -2,10 +2,15 @@ package Duke;
 
 import Duke.enums.Command;
 import Duke.enums.SecondaryCommand;
-import Duke.exceptions.*;
+import Duke.exceptions.DukeException;
+import Duke.exceptions.InvalidCommandException;
+import Duke.exceptions.InvalidFindException;
+import Duke.exceptions.InvalidIndexException;
+import Duke.exceptions.InvalidSecondaryCommandException;
+import Duke.exceptions.InvalidTaskNameException;
 
 /**
- * The {@code Input} class formats a string input into an input object.
+ * The {@code Parser} class formats a string input into an input object.
  */
 public class Parser {
 
@@ -13,6 +18,9 @@ public class Parser {
     private String mainData;
     private String secondaryData;
 
+    /**
+     * Constructor for a parser object.
+     */
     private Parser() {
         mainData = "";
         secondaryData = "";

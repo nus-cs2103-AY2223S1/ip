@@ -1,7 +1,8 @@
 package Duke.enums;
 
 /**
- * Commands that can be used by users in the duke application.
+ * Command enum represents the possible commands that a user can provide to duke.
+ * The value of these commands are the string the user requires inputting.
  */
 public enum Command {
 
@@ -15,7 +16,7 @@ public enum Command {
     EVENT("event"),
     BYE("bye");
 
-    private final String value;
+    private final String value; // Value provided by user.
 
     /**
      * The constructor for the Command enum.

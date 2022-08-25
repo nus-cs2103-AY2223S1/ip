@@ -3,6 +3,7 @@ package Duke;
 import Duke.exceptions.DukeException;
 import Duke.exceptions.InvalidCommandException;
 import Duke.exceptions.InvalidDateException;
+import Duke.exceptions.InvalidFindException;
 import Duke.exceptions.InvalidIndexException;
 import Duke.exceptions.InvalidSecondaryCommandException;
 import Duke.exceptions.InvalidTaskNameException;
@@ -31,7 +32,7 @@ public class Duke {
     private final Ui ui;     // Deals with making sense of the user command.
 
     /**
-     * Constructor for a duke class.
+     * Constructor for a duke object.
      */
     public Duke(String filePath) {
         ui = new Ui();

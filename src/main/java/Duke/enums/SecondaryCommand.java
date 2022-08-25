@@ -8,8 +8,8 @@ public enum SecondaryCommand {
     BY("/by", 3),
     AT("/at", 3);
 
-    private final String value;
-    private final int length;
+    private final String value; // Value provided by user.
+    private final int length;   // Length of the string provided by the user
 
     /**
      * The constructor for the Secondary Command enum.
