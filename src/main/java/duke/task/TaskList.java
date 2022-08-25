@@ -87,11 +87,11 @@ public class TaskList {
         tasks.add(task);
     }
 
-    public TaskList find(String string) {
+    public TaskList find(String stringToFind) {
         TaskList res = new TaskList();
         for (int i = 0; i < tasks.size(); i++) {
             Task curr = tasks.get(i);
-            if (curr.toString().matches(string)) {
+            if (curr.toString().toUpperCase().contains(stringToFind.toUpperCase())) {
                 res.addTask(curr);
             }
         }

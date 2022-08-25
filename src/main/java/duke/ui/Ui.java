@@ -89,18 +89,33 @@ public class Ui {
                     "Todo {Task description}    To add a TODO task.",
                     "Deadline {Task description}/{YYYY-MM-DD}    To add a DEADLINE task.",
                     "Event {Task description}/{YYYY-MM-DD}    To add an EVENT task.",
+                    "Find {keyword} To find the task with keyword.",
                     "Help    To see the list of commands."));
     }
 
+<<<<<<< HEAD
     /**
      * Shows the list of current tasks.
      * @param memo
      */
     public void showList(List<? extends Task> memo) {
         String[] strArr = new String[memo.size() + 1];
+=======
+    public void showList(List<Task> taskList) {
+        String[] strArr = new String[taskList.size() + 1];
+>>>>>>> branch-Level-9
         strArr[0] = "Here are the tasks in your list:";
         for (int i = 1; i < strArr.length; i++) {
-            strArr[i] = i + ". " + memo.get(i - 1);
+            strArr[i] = i + ". " + taskList.get(i - 1);
+        }
+        System.out.println(dialog(strArr));
+    }
+
+    public void showFindTask(List<Task> taskList) {
+        String[] strArr = new String[taskList.size() + 1];
+        strArr[0] = "Here are the matching tasks in your list:";
+        for (int i = 1; i < strArr.length; i++) {
+            strArr[i] = i + ". " + taskList.get(i - 1);
         }
         System.out.println(dialog(strArr));
     }

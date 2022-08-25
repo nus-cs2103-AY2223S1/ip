@@ -54,6 +54,9 @@ public class Parser {
             case "EVENT":
                 return parseToAddEventCommand(arr);
 
+            case "FIND":
+                return parseToFindCommand(arr);
+
             case "HELP":
                 return new HelpCommand();
 
@@ -63,6 +66,7 @@ public class Parser {
 
     }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     protected static int parseToTaskIndex(String[] fullCommandArray) throws IllegalInputException {
 =======
@@ -74,6 +78,9 @@ public class Parser {
      */
     protected static int parseToTaskIndex(String[] fullCommandArray) throws EmptyIndexException {
 >>>>>>> branch-A-JavaDoc
+=======
+    public static int parseToTaskIndex(String[] fullCommandArray) throws IllegalInputException {
+>>>>>>> branch-Level-9
         if (fullCommandArray.length == 1) {
             throw new EmptyIndexException();
         }
@@ -84,12 +91,26 @@ public class Parser {
         }
     }
 
+<<<<<<< HEAD
     /**
      * Parses the string command into AddCommand that adds a Todo_task
      * @param fullCommandArray user input
      * @return AddCommand instance
      * @throws EmptyDescriptionException throws exception when the description of Todo_task is not given.
      */
+=======
+    public static LocalDate parseToLocalDateTime(String date) throws IllegalDateFormatException {
+        date = date.trim();
+        LocalDate res = null;
+        try {
+            res = LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new IllegalDateFormatException();
+        }
+        return res;
+    }
+
+>>>>>>> branch-Level-9
     private static Command parseToAddTodoCommand(String[] fullCommandArray) throws EmptyDescriptionException {
         if (fullCommandArray.length == 1) {
             throw new EmptyDescriptionException();
@@ -129,6 +150,7 @@ public class Parser {
         return new AddCommand(new Event(description, date));
     }
 
+<<<<<<< HEAD
     /**
      * Parses the input String into LocalDate instance
      * @param date the date that the user has entered.
@@ -144,6 +166,14 @@ public class Parser {
             throw new IllegalDateFormatException();
         }
         return res;
+=======
+    private static Command parseToFindCommand(String[] fullCommandArray) throws EmptyDescriptionException {
+
+        simpleDescriptionChecking(fullCommandArray);
+
+        String description = fullCommandArray[COMMAND_DESCRIPTION];
+        return new FindCommand(description);
+>>>>>>> branch-Level-9
     }
 
     private static void simpleDescriptionChecking(String[] fullCommandArray) throws EmptyDescriptionException {
