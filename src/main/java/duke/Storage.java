@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 import duke.task.Deadline;
 import duke.task.Task;
-import duke.task.ToDo;
+import duke.task.Todo;
 
 public class Storage {
     protected File file;
@@ -60,7 +60,7 @@ public class Storage {
             FileWriter writer = new FileWriter(file);
             for (int i = 0; i < list.size(); i++) {
                 Task task = list.get(i);
-                if (task instanceof ToDo) {
+                if (task instanceof Todo) {
                     writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.getDescription() + "\n");
                 } else if (task instanceof Deadline) {
                     Deadline deadline = (Deadline) task;

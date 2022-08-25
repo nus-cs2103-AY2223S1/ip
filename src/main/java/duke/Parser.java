@@ -13,7 +13,7 @@ import duke.command.UnmarkCommand;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDo;
+import duke.task.Todo;
 
 public class Parser {
 
@@ -59,7 +59,7 @@ public class Parser {
                     throw new DukeException("The description of a todo cannot be empty.");
                 }
                 String description = fullCommand.split(" ", 2)[1].split("/")[0].trim();
-                ToDo todo = new ToDo(description);
+                Todo todo = new Todo(description);
                 return new AddCommand(todo);
             } else if (fullCommand.startsWith("deadline")) {
                 // the task is a deadline
@@ -90,7 +90,7 @@ public class Parser {
             // the task is a todo
             String description = taskRecord.split("\\|", 3)[2].trim();
             int status = Integer.parseInt(taskRecord.split("\\|", 3)[1].trim());
-            return new ToDo(description, checkStatus(status));
+            return new Todo(description, checkStatus(status));
         } else if (taskRecord.startsWith("D")) {
             // the task is a deadline
             String description = taskRecord.split("\\|", 4)[2].trim();
