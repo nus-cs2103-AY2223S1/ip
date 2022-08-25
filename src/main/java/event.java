@@ -1,9 +1,8 @@
 public class event extends Task {
-    protected String day;
+    protected formatDate day;
 
     public event (String desc) {
         super(desc);
-        this.day = day;
     }
 
     @Override

@@ -61,7 +61,7 @@ public class Duke {
             String taskNameOnly = taskName.split(" ",2)[1];
             deadline input = new deadline(taskNameOnly);
             tasks.add(input);
-            input.date = str.substring(index + 4);
+            input.date = new formatDate(str.substring(index + 4));
             System.out.println("Got it. I've added this task:");
             System.out.println(input);
             System.out.printf("Now you have %d tasks int the list. \n", tasks.size());
@@ -72,7 +72,7 @@ public class Duke {
             String taskNameOnly = taskName.split(" ",2)[1];
             event input = new event(taskNameOnly);
             tasks.add(input);
-            input.day = str.substring(index + 4);
+            input.day = new formatDate(str.substring(index + 4));
             System.out.println("Got it. I've added this task:");
             System.out.println(input);
             System.out.printf("Now you have %d tasks int the list. \n", tasks.size());
