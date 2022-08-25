@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
 public class Duke {
     private static final String LOGO = "Welcome to\n"
@@ -24,24 +23,17 @@ public class Duke {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
-    private static final String EMPTY_LIST = "The current list is empty!";
-
     private DukeIO userIO;
-    private Parser parser;
+    private TaskList tasks;
+    private Storage dukeData;
 
-    private List<Task> tasks;
-    private int taskCompleted;
-
-    Duke() {
+    Duke(TaskList tasks, Storage dukeData) {
         userIO = new DukeIO();
-        tasks = new ArrayList<>();
-        parser = new Parser();
-        userIO.printTask(LOGO, 2);
-        userIO.printTask(INTRO, 3);
-        taskCompleted = 0;
+        this.dukeData = dukeData;
+        this.tasks = tasks;
     }
 
-    boolean executeCommand(ParsedData data) throws DukeException {
+    boolean executeCommand(ParsedData data) throws DukeException, IOException {
         Task task;
         switch (data.command) {
             case "bye":
@@ -49,7 +41,7 @@ public class Duke {
                 return false;
 
             case "list":
-                listAllTasks();
+                tasks.displayList(userIO);
                 return true;
 
             case "mark":
@@ -66,20 +58,23 @@ public class Duke {
 
             case "todo":
                 task = Todo.createTodo(data);
-                tasks.add(task);
-                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                tasks.addEntry(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.getSize()));
+                dukeData.saveTask(task);
                 return true;
 
             case "deadline":
                 task = Deadline.createDeadline(data);
-                tasks.add(task);
-                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                tasks.addEntry(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.getSize()));
+                dukeData.saveTask(task);
                 return true;
 
             case "event":
                 task = Event.createEvent(data);
-                tasks.add(task);
-                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                tasks.addEntry(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.getSize()));
+                dukeData.saveTask(task);
                 return true;
 
             default:
@@ -87,7 +82,7 @@ public class Duke {
         }
     }
 
-    void deleteEntry(ParsedData data) throws DukeException {
+    void deleteEntry(ParsedData data) throws DukeException, IOException {
         int index;
         try {
             index = Integer.parseInt(data.description) - 1;
@@ -95,71 +90,90 @@ public class Duke {
             throw new InvalidValueException(data.command);
         }
 
-        if (index >= tasks.size() || index < 0) {
-            throw new OutOfBoundException();
-        }
-
-        Task task = tasks.remove(index);
-        userIO.printTask(String.format(DELETE_TASK, task, tasks.size()));
+        Task task = tasks.deleteEntry(index);
+        userIO.printTask(String.format(DELETE_TASK, task, tasks.getSize()));
+        dukeData.saveTasks(tasks);
     }
 
-    void updateCompletionStatus(ParsedData data, boolean mark) throws DukeException {
+    void updateCompletionStatus(ParsedData data, boolean mark) throws DukeException, IOException {
         int index;
         try {
             index = Integer.parseInt(data.description) - 1;
         } catch (NumberFormatException e) {
             throw new InvalidValueException(data.command);
-        }
-
-        if (index >= tasks.size() || index < 0) {
-            throw new OutOfBoundException();
         }
 
         Task task = tasks.get(index);
         if (!mark) {
-            if (task.isCompleted())
-                taskCompleted--;
-
             task.unmark();
             userIO.printTask(String.format(UNMARKED, task));
+            dukeData.saveTasks(tasks);
             return;
         }
 
-        if (!task.isCompleted())
-            taskCompleted++;
-
         task.mark();
         userIO.printTask(String.format(MARKED, task));
+        dukeData.saveTasks(tasks);
     }
 
     boolean handleInput() {
         String txt = userIO.readLine();
-        ParsedData data = parser.parse(txt);
+        ParsedData data = Parser.parse(txt);
         boolean continueProgram = false;
         try {
             continueProgram |= executeCommand(data);
         } catch (DukeException e) {
             continueProgram = true;
             userIO.printError(e);
+        } catch (IOException e) {
+            userIO.printError(e);
+            continueProgram = false;
         }
 
         return continueProgram;
     }
 
-    void listAllTasks() {
-        if (tasks.size() == 0) {
-            userIO.printTask(EMPTY_LIST);
-            return;
+    static Duke createApplication(String filepath) {
+        DukeIO userIO = new DukeIO();
+        userIO.printTask(LOGO, 2);
+        userIO.printTask(INTRO, 3);
+        Storage dukeData;
+        TaskList tasks;
+        try {
+            dukeData = Storage.createStorage(filepath);
+            tasks = new TaskList(dukeData.readFile());
+        } catch (IOException e) {
+            userIO.printError(e);
+            userIO.printTask("Fatal Error! The system will exit abnormally!");
+            return null;
         }
-        userIO.printLine();
-        for (int i = 0; i < tasks.size(); ++i) {
-            userIO.printTask(String.format("%d. %s", i + 1, tasks.get(i)), 2);
+
+        return new Duke(tasks, dukeData);
+    }
+
+    static Duke createApplication() {
+        DukeIO userIO = new DukeIO();
+        userIO.printTask(LOGO, 2);
+        userIO.printTask(INTRO, 3);
+        Storage dukeData;
+        TaskList tasks;
+        try {
+            dukeData = Storage.createStorage();
+            tasks = new TaskList(dukeData.readFile());
+        } catch (IOException e) {
+            userIO.printError(e);
+            userIO.printTask("Fatal Error! The system will exit abnormally!");
+            return null;
         }
-        userIO.printLine();
+
+        return new Duke(tasks, dukeData);
     }
 
     public static void main(String[] args) {
-        Duke duke = new Duke();
+        Duke duke = createApplication();
+        if (duke == null) {
+            return;
+        }
         while (duke.handleInput()) {
         }
     }
