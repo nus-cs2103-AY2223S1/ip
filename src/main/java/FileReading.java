@@ -1,5 +1,7 @@
 import java.io.File;  // Import the File class
 import java.io.FileNotFoundException;  // Import this class to handle errors
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner; // Import the Scanner class to read text files
@@ -24,9 +26,11 @@ public class FileReading {
             switch (keyword) {
                 case 'E':
                 char icon = input.charAt(4); 
-                String at = input.substring(input.lastIndexOf(": ") + 1, input.length() - 1);
+                String at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
                 String desciption = input.substring(8, input.lastIndexOf(": ") - 4);
-                Task newTask = new Event(desciption, at);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                LocalDateTime date = LocalDateTime.parse(at, formatter);
+                Task newTask = new Event(desciption, date);
                 if (icon == ' ') {
                     tasksList.add(newTask);
                 } else {
@@ -49,9 +53,11 @@ public class FileReading {
 
                 case 'D':
                 icon = input.charAt(4);
-                at = input.substring(input.lastIndexOf(": ") + 1, input.length() - 1);
+                at = input.substring(input.lastIndexOf(": ") + 2, input.length() - 1);
                 desciption = input.substring(8, input.lastIndexOf(": ") - 4);
-                newTask = new Deadline(desciption, at);
+                formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                date = LocalDateTime.parse(at, formatter);
+                newTask = new Deadline(desciption, date);
                 if (icon == ' ') {
                     tasksList.add(newTask);
                 } else {

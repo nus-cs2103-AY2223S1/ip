@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Deadline extends TimeTask {
@@ -12,5 +11,9 @@ public class Deadline extends TimeTask {
     @Override
     public String toString() {
         return String.format("[D]" + "[%s] " + super.toString() + " (by: " + super.getDate() + ")", super.getStatusIcon());
+    }
+
+    public String toSave() {
+        return String.format("[D]" + "[%s] " + super.toString() + " (by: " + super.getDateSave() + ")", super.getStatusIcon());
     }
 }

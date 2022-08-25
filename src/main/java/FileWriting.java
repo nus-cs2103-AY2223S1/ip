@@ -23,7 +23,7 @@ public class FileWriting {
 
     public static void save(Task task) {
         try {
-            appendToFile(FILE_PATH, task.toString() + System.lineSeparator());
+            appendToFile(FILE_PATH, task.toSave() + System.lineSeparator());
         } catch (IOException e) {
             // TODO Auto-generated catch block
             System.out.println("Something went wrong: " + e.getMessage());
@@ -36,7 +36,7 @@ public class FileWriting {
         try {
             emptyFile(FILE_PATH);
             for (int i = 0; i < taskList.size(); i++) {
-                appendToFile(FILE_PATH, taskList.get(i).toString() + System.lineSeparator());
+                appendToFile(FILE_PATH, taskList.get(i).toSave() + System.lineSeparator());
             }
         } catch (IOException e) {
             // TODO Auto-generated catch block

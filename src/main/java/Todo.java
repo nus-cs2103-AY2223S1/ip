@@ -11,4 +11,8 @@ public class Todo extends Task {
     public String toString() {
         return String.format("[T]" + "[%s] " + super.toString(), super.getStatusIcon());
     }
+
+    public String toSave() {
+        return String.format("[T]" + "[%s] " + super.toString(), super.getStatusIcon());
+    }
 }

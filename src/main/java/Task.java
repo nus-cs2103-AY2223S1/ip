@@ -52,4 +52,8 @@ public class Task {
     public String getIcon() {
         return this.icon;
     }
+
+    public String toSave() {
+        return this.description;
+    }
 }

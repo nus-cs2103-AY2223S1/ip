@@ -13,6 +13,9 @@ public class TimeTask extends Task {
     public String getDate() {
         return this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy HH:mm"));
     }
-    
-    
+
+    public String getDateSave() {
+        return this.date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+    }
+
 }

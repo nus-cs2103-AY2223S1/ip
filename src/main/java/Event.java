@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Event extends TimeTask {
@@ -12,5 +11,9 @@ public class Event extends TimeTask {
     @Override
     public String toString() {
         return String.format("[E]" + "[%s] " + super.toString() + " (at: " + super.getDate() + ")", super.getStatusIcon());
+    }
+
+    public String toSave() {
+        return String.format("[E]" + "[%s] " + super.toString() + " (at: " + super.getDateSave() + ")", super.getStatusIcon());
     }
 }
