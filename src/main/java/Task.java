@@ -7,6 +7,11 @@ public class Task {
         this.isDone = false;
     }
 
+    public Task(String title, boolean isDone) {
+        this.title = title;
+        this.isDone = isDone;
+    }
+
     public void markIsDone() {
         if (isDone) {
             System.out.println("Error: Task is already done");
@@ -29,7 +34,12 @@ public class Task {
 
     @Override
     public String toString() {
-        String newString = String.format("[%s] %s", isDone ? "X" : " " , title);
+        String newString = String.format("[%s] %s", isDone ? "X" : " ", title);
         return newString;
+    }
+
+    public String toSaveString() {
+        String saveString = String.format("%s|%s", isDone ? "1" : "0", title);
+        return saveString;
     }
 }

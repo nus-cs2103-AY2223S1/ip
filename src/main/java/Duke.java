@@ -24,9 +24,10 @@ public class Duke {
         Scanner input = new Scanner(System.in);
 
         String home = System.getProperty("user.home");
-        Path filepath = Paths.get(home, "Desktop", "ip_save.txt");
+        Path filepath = Paths.get(home, "Desktop", "duke.txt");
         Storage storage = new Storage(filepath.toString());
 
+        tasks = storage.load();
         printGreeting();
 
         while (true) {

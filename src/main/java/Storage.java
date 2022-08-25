@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,18 +23,29 @@ public class Storage {
 
         FileWriter fileWriter = new FileWriter(this.path);
         for (Task task : tasks) {
-            fileWriter.write(task.toString() + System.lineSeparator());
+            fileWriter.write(task.toSaveString() + System.lineSeparator());
         }
         fileWriter.close();
     }
 
-    public ArrayList<Task> load() throws FileNotFoundException {
+    public ArrayList<Task> load() throws Exception {
         ArrayList<Task> tasks = new ArrayList<>();
+        Parser parser = new Parser();
+
+        if (file.createNewFile()) {
+            System.out.println("file created");
+        } else {
+            System.out.println("File already exists");
+        }
 
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
-            tasks.add(new Task("test"));
-            System.out.println(scanner.nextLine());
+            try {
+                Task parsedTask = parser.parseSave(scanner.nextLine());
+                tasks.add(parsedTask);
+            } catch (RuntimeException e) {
+                throw e;
+            }
         }
 
         return tasks;
