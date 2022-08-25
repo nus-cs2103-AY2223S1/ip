@@ -1,9 +1,11 @@
-import java.util.Scanner;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.time.LocalDate;
+package duke;
+
+import duke.commands.Command;
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.task.List;
+import duke.ui.Ui;
 
 public class Duke {
     private Storage storage;

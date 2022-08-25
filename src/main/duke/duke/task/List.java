@@ -1,10 +1,15 @@
-import java.util.*;
+package duke.task;
+
+import java.util.ArrayList;
+
+import duke.exception.DukeException;
 
 public class List {
 
     private ArrayList<Task> taskList = new ArrayList<>();
 
-    public List() {}
+    public List() {
+    }
 
     public void addTask(Task command) {
         taskList.add(command);

@@ -1,4 +1,11 @@
-public class ExitCommand extends Command{
+package duke.commands;
+
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.List;
+import duke.ui.Ui;
+
+public class ExitCommand extends Command {
     public static final String EXIT_COMMAND = "bye";
 
     public ExitCommand() {
@@ -18,4 +25,5 @@ public class ExitCommand extends Command{
     public boolean isExit() {
         return true;
     }
+    
 }

@@ -1,3 +1,5 @@
+package duke.storage;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,6 +9,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import duke.exception.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.List;
+import duke.task.Task;
+import duke.task.ToDo;
+
 public class Storage {
     private static final String DIRECTORY = System.getProperty("user.home") + "/Duke";
     private static final String FILE_PATH = DIRECTORY + "/Duke.txt";
@@ -14,7 +23,7 @@ public class Storage {
     protected File dukeFile;
     private List tasks;
 
-    public Storage(String filePath) throws DukeException{
+    public Storage(String filePath) throws DukeException {
         try {
             File parentDirectory = new File(DIRECTORY);
 
@@ -24,7 +33,7 @@ public class Storage {
 
             dukeFile = new File(FILE_PATH);
 
-            if(!dukeFile.exists()) {
+            if (!dukeFile.exists()) {
                 dukeFile.createNewFile();
             }
             path = Paths.get(FILE_PATH);

@@ -1,10 +1,18 @@
+package duke.commands;
+
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.List;
+import duke.task.Task;
+import duke.ui.Ui;
+
 public class MarkCommand extends Command {
 
     public static final String MARK_COMMAND = "mark";
 
-    public static final String MESSAGE_SUCCESS = "Congrats on completing this task!\n" 
-                                                    + "%1$s" + "\n" 
-                                                    + "You have " + "%2$s" + " tasks in the list.\n";
+    public static final String MESSAGE_SUCCESS = "Congrats on completing this task!\n"
+            + "%1$s" + "\n"
+            + "You have " + "%2$s" + " tasks in the list.\n";
 
     private int taskToMark;
     private Task task;
@@ -29,5 +37,5 @@ public class MarkCommand extends Command {
     public boolean isExit() {
         return false;
     }
-    
+
 }

@@ -1,3 +1,5 @@
+package duke.echo;
+
 import java.util.Scanner;
 
 public class Echo {

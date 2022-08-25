@@ -1,10 +1,17 @@
+package duke.commands;
+
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.task.List;
+import duke.task.Task;
+import duke.ui.Ui;
 
 public class DeleteCommand extends Command {
     public static final String DELETE_COMMAND = "delete";
 
-    public static final String MESSAGE_SUCCESS = "Yay, successfully removed this unwanted task :P \n" 
-                                                    + "%1$s" + "\n"
-                                                    + "Remaining " + "%2$s" + " tasks in the list.\n";
+    public static final String MESSAGE_SUCCESS = "Yay, successfully removed this unwanted task :P \n"
+            + "%1$s" + "\n"
+            + "Remaining " + "%2$s" + " tasks in the list.\n";
 
     private int taskNumber;
     private Task toDelete;
@@ -29,4 +36,5 @@ public class DeleteCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
 }

@@ -1,6 +1,10 @@
+package duke.task;
+
+import duke.exception.DukeException;
+
 public class ToDo extends Task {
 
-    public ToDo(String description) throws DukeException{
+    public ToDo(String description) throws DukeException {
         super(description);
         if (description.isBlank()) {
             throw new DukeException("Take me seriouslyy :( What do you want to do?\n");

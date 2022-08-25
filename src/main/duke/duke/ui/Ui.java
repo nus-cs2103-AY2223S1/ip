@@ -1,6 +1,11 @@
+package duke.ui;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 public class Ui {
