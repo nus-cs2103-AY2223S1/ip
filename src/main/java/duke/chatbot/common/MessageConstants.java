@@ -1,5 +1,8 @@
 package duke.chatbot.common;
 
+/**
+ * Contains the messages that are used by the application.
+ */
 public class MessageConstants {
     public static final String MESSAGE_WELCOME = "\t"
             + " ,-----.,--.               ,--.    ,--.                  " + "\n" + "\t"

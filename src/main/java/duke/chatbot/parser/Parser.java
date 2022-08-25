@@ -2,7 +2,7 @@ package duke.chatbot.parser;
 
 import duke.chatbot.command.*;
 import duke.chatbot.data.exception.InvalidInputException;
-import duke.chatbot.data.exception.InvalidTaskFileException;
+import duke.chatbot.data.exception.InvalidStorageFileException;
 import duke.chatbot.data.task.Deadline;
 import duke.chatbot.data.task.Event;
 import duke.chatbot.data.task.TaskList;
@@ -17,9 +17,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * A parser class to extract information from strings.
+ */
 public class Parser {
     public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
 
+    /**
+     * Returns an instance of Command, which contains all the arguments
+     * of the command string parsed in an instance List<String>.
+     * @param line The string to be parsed.
+     * @return An instance of Command which corresponds to the command
+     * string parsed.
+     * @throws InvalidInputException If line is not a valid command string.
+     */
     public static Command parseCommand(String line) throws InvalidInputException {
         if (line == null) {
             throw new InvalidInputException();
@@ -73,6 +84,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns an instance of LocalDateTime that corresponds to the
+     * string parsed.
+     * @param dateTime A string containing date and time information.
+     * @return An instance of LocalDateTime that corresponds to the
+     * string parsed.
+     * @throws InvalidInputException If the argument string does not
+     * follow the format.
+     */
     public static LocalDateTime parseDateTime(String dateTime) throws InvalidInputException {
         try {
             return LocalDateTime.parse(dateTime, DATE_TIME_INPUT_FORMAT);
@@ -81,6 +101,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a list of tasks that was stored in the file.
+     * @param file A file that contains a list of tasks.
+     * @return A list of tasks that was stored in the file.
+     * @throws FileNotFoundException If a file is not found.
+     * @throws InvalidInputException If the date and time portion
+     * of the encoded task is not in the correct format.
+     */
     public static TaskList parseFile(File file) throws FileNotFoundException, InvalidInputException {
         Scanner fileScanner = new Scanner(file);
         TaskList result = new TaskList();
@@ -91,13 +119,13 @@ public class Parser {
             String category = lineScanner.next();
 
             if (!lineScanner.hasNextInt()) {
-                throw new InvalidTaskFileException();
+                throw new InvalidStorageFileException();
             }
 
             boolean isDone = lineScanner.nextInt() == 1;
 
             if (!lineScanner.hasNext()) {
-                throw new InvalidTaskFileException();
+                throw new InvalidStorageFileException();
             }
 
             String description = lineScanner.next();
@@ -109,11 +137,11 @@ public class Parser {
             } else if (category.equals("T")) {
                 result.add(new ToDo(description, isDone));
             } else {
-                throw new InvalidTaskFileException();
+                throw new InvalidStorageFileException();
             }
 
             if (lineScanner.hasNext()) {
-                throw new InvalidTaskFileException();
+                throw new InvalidStorageFileException();
             }
         }
         return result;

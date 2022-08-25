@@ -1,9 +1,10 @@
 package duke.chatbot.data.task;
 
-import duke.chatbot.data.exception.InvalidInputException;
-
 import java.time.LocalDateTime;
 
+/**
+ * A type of task that has a date for the user to attend.
+ */
 public class Event extends TimedTask {
     public Event(String description, LocalDateTime dateTime) {
         super(description, dateTime);

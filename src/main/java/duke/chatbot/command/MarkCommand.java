@@ -6,11 +6,22 @@ import duke.chatbot.data.task.Task;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A command that marks the targeted task from the
+ * list of Task in the application. The targeted
+ * is chosen by an argument string with an integer in
+ * the argument list.
+ */
 public class MarkCommand extends Command {
     public MarkCommand(List<String> arguments) {
         this.arguments = arguments;
     }
 
+    /**
+     * Returns an instance of CommandResult with a message that displays the
+     * task marked.
+     * @return The result after executing the command.
+     */
     @Override
     public CommandResult execute() {
         List<String> message = new ArrayList<>();

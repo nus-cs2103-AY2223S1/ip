@@ -8,11 +8,22 @@ import duke.chatbot.parser.Parser;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A command that adds an instance of Deadline to the list of tasks
+ * stored in the Duke application instance.
+ */
 public class AddDeadlineCommand extends Command {
     public AddDeadlineCommand(List<String> arguments) {
         this.arguments = arguments;
     }
 
+    /**
+     * Adds an instance of Deadline to the list of tasks stored in
+     * the Duke application instance and returns an instance of
+     * CommandResult which contains the Deadline added.
+     * @return The result after executing the command.
+     * @throws InvalidInputException If arguments passed to Command is invalid.
+     */
     @Override
     public CommandResult execute() throws InvalidInputException {
         List<String> message = new ArrayList<>();

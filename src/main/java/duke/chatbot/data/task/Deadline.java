@@ -2,6 +2,10 @@ package duke.chatbot.data.task;
 
 import java.time.LocalDateTime;
 
+/**
+ * A type of task that has a date for the task to be
+ * completed by.
+ */
 public class Deadline extends TimedTask {
     public Deadline(String description, LocalDateTime dateTime) {
         super(description, dateTime);

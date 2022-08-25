@@ -5,16 +5,29 @@ import duke.chatbot.common.MessageConstants;
 
 import java.util.Scanner;
 
+/**
+ * Manages user input and also the output of the application.
+ */
 public class Ui {
     private static final String MESSAGE_SEPARATOR = "\t____________________________________________________________";
+
+    /** A scanner which takes in user input */
     private final Scanner userInput = new Scanner(System.in);
 
+    /**
+     * Prints a greeting message to the user.
+     */
     public void greetUser() {
         System.out.println(MESSAGE_SEPARATOR);
         System.out.println(MessageConstants.MESSAGE_WELCOME);
         System.out.println(MESSAGE_SEPARATOR);
     }
 
+    /**
+     * Prints a message that corresponds to the CommandResult argument.
+     * @param result The result of a command to be outputted for
+     *               the user to witness.
+     */
     public void showMessage(CommandResult result) {
         System.out.println(MESSAGE_SEPARATOR);
         for (String line : result.getMessage()) {
@@ -23,10 +36,17 @@ public class Ui {
         System.out.println(MESSAGE_SEPARATOR);
     }
 
+    /**
+     * Prints an application initialisation error message.
+     */
     public void printInitErrorMessage() {
         System.out.println("An unexpected error has occured, try running again or call technical support!");
     }
 
+    /**
+     * Returns a string that is obtained through user input.
+     * @return A string obtained through user input.
+     */
     public String getUserInput() {
         return userInput.nextLine();
     }

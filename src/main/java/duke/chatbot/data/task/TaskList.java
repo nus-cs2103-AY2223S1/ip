@@ -2,7 +2,16 @@ package duke.chatbot.data.task;
 
 import java.util.ArrayList;
 
+/**
+ * A list of tasks.
+ */
 public class TaskList extends ArrayList<Task> {
+    /**
+     * Returns a task that corresponds to the entry number given.
+     * @param entry The index of the element to return, with index 1
+     *              corresponding to the first element.
+     * @return A task that corresponds to the entry number given.
+     */
     @Override
     public Task get(int entry) {
         if (this.isInRange(entry)) {
@@ -11,6 +20,13 @@ public class TaskList extends ArrayList<Task> {
         return null;
     }
 
+    /**
+     * Returns a task that corresponds to the entry number given.
+     * Removes the task from the list in the process.
+     * @param entry The index of the element to be removed, with index 1
+     *              corresponding to the first element.
+     * @return A task that corresponds to the entry number given.
+     */
     @Override
     public Task remove(int entry) {
         if (this.isInRange(entry)) {
@@ -19,16 +35,30 @@ public class TaskList extends ArrayList<Task> {
         return null;
     }
 
+    /**
+     * Returns true if the entry number corresponds to an entry in the
+     * list.
+     * @param entry The index to be compared with the last index.
+     * @return A boolean describing whether the entry number is in range.
+     */
     public boolean isInRange(int entry) {
         return entry > 0 && entry <= this.size();
     }
 
+    /**
+     * Marks the task corresponding to the entry number argument.
+     * @param entry The index of the task to be marked.
+     */
     public void markTask(int entry) {
         if (this.isInRange(entry)) {
             this.get(entry).mark();
         }
     }
 
+    /**
+     * Unmarks the task corresponding to the entry number argument.
+     * @param entry The index of the task to be unmarked.
+     */
     public void unmarkTask(int entry) {
         if (this.isInRange(entry)) {
             this.get(entry).unmark();
@@ -44,6 +74,13 @@ public class TaskList extends ArrayList<Task> {
         return result;
     }
 
+    /**
+     * Returns a TaskList that contains the tasks that corresponds
+     * to the date argument string.
+     * @param date The date to compare the tasks in the list with.
+     * @return A TaskList that contains the tasks that corresponds
+     * to the date argument string.
+     */
     public TaskList filterTaskListByDate(String date) {
         TaskList result = new TaskList();
         for (int entry = 1; entry < this.size() + 1; entry++) {
@@ -58,6 +95,10 @@ public class TaskList extends ArrayList<Task> {
         return result;
     }
 
+    /**
+     * Returns a string that encodes all the tasks.
+     * @return A string that encodes all the tasks.
+     */
     public String encodeAll() {
         String result = "";
 

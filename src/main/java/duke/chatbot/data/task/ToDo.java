@@ -1,5 +1,8 @@
 package duke.chatbot.data.task;
 
+/**
+ * A type of task that only has a description.
+ */
 public class ToDo extends Task {
     public ToDo(String description) {
         super(description);
