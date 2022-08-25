@@ -9,8 +9,19 @@ import java.time.format.DateTimeParseException;
 import duke.command.Command;
 import duke.exception.DukeException;
 
+/**
+ * Deals with making sense of user commands.
+ *
+ * @author Bryan Ng Zi Hao
+ */
 public abstract class Parser {
 
+    /**
+     * Parses the users input to check which command should be run.
+     *
+     * @return The command that is required to run.
+     * @throws DukeException There is an error in returning the command to run.
+     */
     public static Command parse(String input) throws DukeException {
         Command command;
         String[] inputArray = input.split(" ", 2);
