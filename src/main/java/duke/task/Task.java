@@ -33,5 +33,8 @@ public class Task {
         return "," + getSavedStatusIcon() + "," + description;
     }
 
+    public boolean containKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
 
 }

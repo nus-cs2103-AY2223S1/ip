@@ -26,6 +26,8 @@ public class Parser {
                 commandToReturn = HandleDeadlineParse(inputSpilt[1]);
             } else if (inputSpilt[0].compareTo(EventCommand.COMMAND_WORD) == 0) {
                 commandToReturn = HandleEventParse(inputSpilt[1]);
+            } else if (inputSpilt[0].compareTo(FindCommand.COMMAND_WORD) == 0) {
+                commandToReturn = new FindCommand(inputSpilt[1]);
             } else {
                 throw new InvalidInputException();
             }
