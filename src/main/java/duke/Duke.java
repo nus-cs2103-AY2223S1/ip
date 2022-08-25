@@ -1,7 +1,9 @@
-import models.Deadline;
-import models.Event;
-import models.Task;
-import models.Todo;
+package duke;
+
+import duke.models.Deadline;
+import duke.models.Event;
+import duke.models.Task;
+import duke.models.Todo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -20,13 +22,15 @@ public class Duke {
         storage = new Storage(filePath);
     }
 
-    public void run() throws DukeException{
+    public void run() throws DukeException {
         ui.showWelcome();
         Scanner sc = new Scanner(System.in);
         List<Task> history = storage.loadData();
 
         while (true) {
             String input = sc.nextLine();
+            Parser.parse(input);
+
             if (input.equals("bye")) {
                 ui.showByeMessage();
                 sc.close();

@@ -1,4 +1,6 @@
-import models.Task;
+package duke;
+
+import duke.models.Task;
 
 import java.util.List;
 import java.util.ListIterator;

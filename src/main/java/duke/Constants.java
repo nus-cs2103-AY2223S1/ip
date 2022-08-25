@@ -1,14 +1,18 @@
+package duke;
+
 public final class Constants {
     /**
-     * Constants file
+     * duke.Constants file
      * https://stackoverflow.com/questions/12517978/java-constant-examples-create-a-java-file-having-only-constants
      */
     public Constants() {
 
     }
     public static final String indent = "     ";
-    public static final String WELCOME_MESSAGE = indent + "Hello! I'm Duke\n" + indent + "What can I do for you?";
+    public static final String WELCOME_MESSAGE = indent + "Hello! I'm duke.Duke\n" + indent + "What can I do for you?";
     public static final String INDENTED_DOTTED_LINE = indent + "____________________________________________________________";
-
+    public static final String EVENT_STRING = "event";
+    public static final String DEADLINE_STRING = "deadline";
+    public static final String TODO_STRING = "todo";
 }
 

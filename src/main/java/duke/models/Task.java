@@ -1,4 +1,4 @@
-package models;
+package duke.models;
 
 /**
  * Task class with parameters of description and isDone state

@@ -1,4 +1,6 @@
-import models.Task;
+package duke;
+
+import duke.models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +13,7 @@ public class TaskList {
     private List<Task> tasks;
 
     /**
-     * Initializes an empty TaskList
+     * Initializes an empty duke.TaskList
      */
     public TaskList() {
         tasks = new ArrayList<>();

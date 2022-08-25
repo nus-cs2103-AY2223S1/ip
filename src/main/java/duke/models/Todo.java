@@ -1,4 +1,4 @@
-package models;
+package duke.models;
 
 /**
  * A child class Todo that inherits properties description and isDone from Task

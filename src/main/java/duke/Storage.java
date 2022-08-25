@@ -1,7 +1,9 @@
-import models.Deadline;
-import models.Event;
-import models.Task;
-import models.Todo;
+package duke;
+
+import duke.models.Deadline;
+import duke.models.Event;
+import duke.models.Task;
+import duke.models.Todo;
 
 import java.io.*;
 import java.time.LocalDate;
