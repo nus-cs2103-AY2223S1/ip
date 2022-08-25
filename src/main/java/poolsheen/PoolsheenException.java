@@ -1,12 +1,14 @@
 package poolsheen;
 
 /**
- * General Exception Class for when the Poolsheen program encounters an error.
- * @author Ong Wee, Marcus (Tut Grp 03)
- * @version CS2103 AY22/23 Sem 1
+ * Represents a general Runtime Exception which is thrown when an error occurs in the Poolsheen program.
  */
-
 public class PoolsheenException extends RuntimeException {
+    /**
+     * A public constructor to initialise a PoolsheenException object.
+     *
+     * @param input The input given which caused the exception to be thrown.
+     */
     PoolsheenException(String input) {
         super(input);
     }

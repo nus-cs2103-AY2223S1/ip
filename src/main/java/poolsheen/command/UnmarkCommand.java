@@ -7,6 +7,10 @@ import poolsheen.task.Task;
 import poolsheen.TaskList;
 import poolsheen.Ui;
 
+/**
+ * Represents a MarkCommand which when executed will cause the Poolsheen program to
+ * unmark the task of that respective position which Poolsheen remembers.
+ */
 public class UnmarkCommand extends Command{
     public UnmarkCommand(ArrayList<String> rest) {
         super(false, rest);

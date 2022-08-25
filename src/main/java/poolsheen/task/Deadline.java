@@ -4,9 +4,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import poolsheen.IncompleteCommandException;
 
+/**
+ * Represents a Deadline task for Poolsheen to remember.
+ */
 public class Deadline extends Task {
     /**
      * A public constructor to initialise a Deadline task.
+     *
      * @param description The details of the task.
      * @param time The time which the task must be done by.
      */

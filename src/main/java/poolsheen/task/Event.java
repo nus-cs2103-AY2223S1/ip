@@ -4,9 +4,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import poolsheen.IncompleteCommandException;
 
+/**
+ * Represents an Event task for Poolsheen to remember.
+ */
 public class Event extends Task {
     /**
      * A public constructor to initialise an Event task.
+     *
      * @param description The details of the task.
      * @param time The time which the task must be done by.
      */

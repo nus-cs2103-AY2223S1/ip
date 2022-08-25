@@ -13,14 +13,20 @@ import poolsheen.task.Deadline;
 import poolsheen.task.ToDo;
 
 /**
- * Class that deals with reading and writing from and to files.
- * @author Ong Wee, Marcus (Tut Grp 03)
- * @version CS2103 AY22/23 Sem 1
+ * Represents everything that deals with reading from and writing to files.
  */
 public class Storage {
+    /** The file path of the save file that the Storage object will work with. */
     private String filePath;
+
+    /** The file object representing the save file which the Storage object will work with. */
     private File saveFile;
 
+    /**
+     * A public constructor to initialise a Storage object.
+     *
+     * @param filePath The path of the file which the Storage object will be interacting with.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.saveFile = new File(this.filePath);
@@ -39,6 +45,7 @@ public class Storage {
 
     /**
      * Returns an ArrayList of Tasks by parsing the contents of the save file.
+     *
      * @throws IOException Thrown if there is an error with parsing the file.
      */
     public ArrayList<Task> load() throws PoolsheenException {
@@ -97,6 +104,7 @@ public class Storage {
 
     /**
      * Updates the contents of the save file.
+     *
      * @param tl The ArrayList of Tasks to refer to when updating.
      */
     public void update(TaskList tl) throws IOException{

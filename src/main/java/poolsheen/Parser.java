@@ -1,5 +1,6 @@
 package poolsheen;
 
+import java.util.ArrayList;
 import poolsheen.command.Command;
 import poolsheen.command.ByeCommand;
 import poolsheen.command.DeadlineCommand;
@@ -10,16 +11,13 @@ import poolsheen.command.MarkCommand;
 import poolsheen.command.ToDoCommand;
 import poolsheen.command.UnmarkCommand;
 
-import java.util.ArrayList;
-
 /**
- * Class that deals with parsing strings into commands.
- * @author Ong Wee, Marcus (Tut Grp 03)
- * @version CS2103 AY22/23 Sem 1
+ * Represents a class that can parse strings into commands.
  */
 public class Parser {
     /**
-     * Returns a Command by checking the input of a string
+     * Returns a Command by checking the input of a string.
+     *
      * @param fullCommand The full string command given by the user.
      * @return A Command that will be executed later.
      */

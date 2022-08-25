@@ -4,7 +4,7 @@ import java.io.IOException;
 import poolsheen.command.Command;
 
 /**
- * Class for the Poolsheen CLI program.
+ * Represents the Poolsheen CLI program.
  * @author Ong Wee, Marcus (Tut Grp 03)
  * @version CS2103 AY22/23 Sem 1
  */
@@ -18,14 +18,19 @@ public class Poolsheen {
     /** Whether if this poolsheen object has stopped running */
     private boolean hasExited;
 
+    /** The object which Poolsheen uses to manage the save file. */
     private Storage storage;
 
+    /** The object which handles all operations regarding tasks. */
     private TaskList listOfTasks;
 
+    /** The object which handles all user interactions. */
     private Ui ui;
 
     /**
      * A private constructor to initialise the Poolsheen object.
+     *
+     * @param filePath The filePath which the Poolsheen program will depend on.
      */
     private Poolsheen(String filePath) {
         this.hasExited = false;

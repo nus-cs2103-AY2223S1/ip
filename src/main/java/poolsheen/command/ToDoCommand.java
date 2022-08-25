@@ -7,6 +7,10 @@ import poolsheen.TaskList;
 import poolsheen.task.ToDo;
 import poolsheen.Ui;
 
+/**
+ * Represents a MarkCommand which when executed will cause the Poolsheen program to
+ * add a ToDo task for Poolsheen to remember.
+ */
 public class ToDoCommand extends Command{
     public ToDoCommand(ArrayList<String> rest) {
         super(false, rest);

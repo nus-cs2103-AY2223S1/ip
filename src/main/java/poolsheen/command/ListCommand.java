@@ -6,6 +6,10 @@ import poolsheen.Storage;
 import poolsheen.TaskList;
 import poolsheen.Ui;
 
+/**
+ * Represents a ListCommand which when executed will cause the Poolsheen program to
+ * display all the tasks that Poolsheen remembers.
+ */
 public class ListCommand extends Command{
     public ListCommand(ArrayList<String> rest) {
         super(false, rest);

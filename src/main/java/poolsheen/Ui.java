@@ -4,37 +4,49 @@ import java.util.Scanner;
 import poolsheen.task.Task;
 
 /**
- * Class that deals with interactions with the user.
- * @author Ong Wee, Marcus (Tut Grp 03)
- * @version CS2103 AY22/23 Sem 1
+ * Represents everything that involves interactions with the user.
  */
 public class Ui {
+    /** The indentation for all printed Poolsheen lines. */
     public static final String BEGIN_SPACE = "      ";
 
+    /** The Poolsheen logo. */
     private static final String LOGO = "\n" + "POOLSHEEN";
 
+    /** The message first printed when the Poolsheen program runs. */
     private static final String WELCOME_MESSAGE = "Hello from" + LOGO + "\n" +
             "Type something in for Poolsheen to respond to you:";
 
+    /** The message printed last whenever Poolsheen replys. */
     private static final String LAST_REPLY = "meow *_*";
 
+    /** A horiontal line to distinguish each interaction the user has with Poolsheen. */
     private static final String HORIZONTAL_LINE = "---------------";
 
+    /** The message last printed when the Poolsheen program ends. */
     private static final String GOODBYE_MESSAGE = "MeoAww... See you next time :(\nTHE POOLSHEEN PROGRAM HAS STOPPED RUNNING";
 
+    /** The Scanner object which the Poolsheen program uses to interact with the user. */
     private Scanner s;
 
+    /**
+     * A public constructor to initialise a Ui object.
+     */
     public Ui() {
         s = new Scanner(System.in);
         System.out.println("Poolsheen UI has loaded");
     }
 
+    /**
+     * Prints a message whenever Poolsheen encounters a loading error.
+     */
     public static void showLoadingError() {
         System.out.println("Poolsheen has encountered a loading error");
     }
 
     /**
      * Prints a formatted message by Poolsheen.
+     *
      * @param message The message to be printed.
      */
     public void say(String message) {
@@ -44,7 +56,8 @@ public class Ui {
     }
 
     /**
-     * Prints a UI Error.
+     * Formats and prints a UI Error to the user.
+     *
      * @param errMsg The string obtained from an error's getMessage function.
      */
     public void showError(String errMsg, String errorType) {
@@ -95,6 +108,7 @@ public class Ui {
 
     /**
      * Returns a new line for Poolsheen to say.
+     *
      * @param line The string for Poolsheen to say in the new line.
      */
     public String newLine(String line) {
@@ -117,6 +131,7 @@ public class Ui {
 
     /**
      * Reads the user's input.
+     *
      * @return A string of the user input.
      */
     public String readCommand() {
