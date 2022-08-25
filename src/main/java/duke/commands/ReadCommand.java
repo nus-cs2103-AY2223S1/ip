@@ -6,8 +6,16 @@ import duke.Ui;
 import duke.exceptions.DukeException;
 import duke.exceptions.DukeTooManyArgumentException;
 
+/**
+ * Represents a <code>Command</code> to read input.
+ */
 public class ReadCommand extends Command {
 
+    /**
+     * Constructs a <code>ReadCommand</code> object.
+     *
+     * @param description description of command
+     */
     public ReadCommand(String description) {
         super(description);
     }

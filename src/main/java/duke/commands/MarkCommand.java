@@ -7,12 +7,25 @@ import duke.exceptions.DukeArrayOutOfBoundException;
 import duke.exceptions.DukeEmptyCommandException;
 import duke.exceptions.DukeException;
 
+/**
+ * Represents a <code>Command</code> to mark <code>Task</code>.
+ */
 public class MarkCommand extends Command {
 
+    /**
+     * Constructs a <code>MarkCommand</code> object.
+     *
+     * @param description description of command.
+     */
     public MarkCommand(String description) {
         super(description);
     }
 
+    /**
+     * Marks a task.
+     *
+     * @param storage Storage object that communicate with local storage.
+     */
     public void execute(Storage storage) {
 
         try {

@@ -7,12 +7,25 @@ import duke.exceptions.DukeArrayOutOfBoundException;
 import duke.exceptions.DukeEmptyCommandException;
 import duke.exceptions.DukeException;
 
+/**
+ * Represents a <code>Command</code> to unmark <code>Task</code>.
+ */
 public class UnMarkCommand extends Command {
 
+    /**
+     * Constructs a <code>MarkCommand</code> object.
+     *
+     * @param description description of command.
+     */
     public UnMarkCommand(String description) {
         super(description);
     }
 
+    /**
+     * Marks a task.
+     *
+     * @param storage Storage object that communicate with local storage.
+     */
     public void execute(Storage storage) {
 
         try {

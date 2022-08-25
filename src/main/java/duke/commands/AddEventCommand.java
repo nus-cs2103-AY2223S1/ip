@@ -7,12 +7,25 @@ import duke.exceptions.DukeInvalidDescriptionException;
 
 import java.time.DateTimeException;
 
+/**
+ * Represents a <code>Command</code> to add <code>Event</code>.
+ */
 public class AddEventCommand extends Command {
 
+    /**
+     * Constructs a <code>AddEventCommand</code> command.
+     *
+     * @param description description of command.
+     */
     public AddEventCommand(String description) {
         super(description);
     }
 
+    /**
+     * Add new event based on input to TaskList.
+     *
+     * @param storage Storage object that communicate with local storage.
+     */
     public void execute(Storage storage) {
 
         try {

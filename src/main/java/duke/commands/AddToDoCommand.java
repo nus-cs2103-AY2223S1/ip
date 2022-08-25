@@ -3,12 +3,25 @@ package duke.commands;
 import duke.*;
 import duke.exceptions.DukeEmptyCommandException;
 
+/**
+ * Represents a <code>Command</code> to add <code>ToDo</code>.
+ */
 public class AddToDoCommand extends Command{
 
+    /**
+     * Constructs a <code>AddToDoCommand</code> command.
+     *
+     * @param description description of command.
+     */
     public AddToDoCommand(String description) {
         super(description);
     }
 
+    /**
+     * Add new ToDo based on input to TaskList.
+     *
+     * @param storage Storage object that communicate with local storage.
+     */
     public void execute(Storage storage) {
 
         try {
