@@ -1,6 +1,8 @@
 plugins {
     id 'java'
     id 'checkstyle'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
 
@@ -11,7 +13,14 @@ test {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
 }
-
+application {
+    mainClassName = "Duke.Duke"
+}
 repositories {
     mavenCentral()
+}
+
+shadowJar {
+    archiveBaseName = "Duke"
+    archiveClassifier = null;
 }

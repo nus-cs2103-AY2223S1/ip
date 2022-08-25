@@ -6,10 +6,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Storage handles interaction with data file.
+ */
 public class Storage {
 
+    /**
+     * Stores the filepath of the data file.
+     */
     private final String filepath;
 
+    /**
+     * Constructor for class.
+     *
+     * @param filepath path of data file
+     */
     public Storage(String filepath) {
         this.filepath = filepath;
     }
@@ -29,7 +40,7 @@ public class Storage {
      *
      * @param input given Duke.Task to write to file.
      */
-    public void writeToFile(Task input) throws IOException{
+    public void writeToFile(Task input) throws IOException {
         FileWriter writer = new FileWriter(filepath, true);
         String taskType = input.taskType();
         String completed = input.isCompleted() ? "1" : "0";
@@ -48,7 +59,7 @@ public class Storage {
     /**
      * rewrites the entire data file with everyone item in current Array.
      */
-    public void rewriteFile(ArrayList<Task> taskArray) throws IOException{
+    public void rewriteFile(ArrayList<Task> taskArray) throws IOException {
         FileWriter writer = new FileWriter(filepath, false);
 
         for (Task task : taskArray) {

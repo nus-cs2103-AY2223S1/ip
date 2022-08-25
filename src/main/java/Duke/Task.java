@@ -26,7 +26,7 @@ public class Task {
     }
 
     /**
-     * sets complete to true.
+     * Sets complete to true.
      */
     public void mark() {
         completed = true;
@@ -38,7 +38,7 @@ public class Task {
     }
 
     /**
-     * sets complete to false.
+     * Sets complete to false.
      */
     public void unMark() {
         completed = false;
@@ -60,7 +60,7 @@ public class Task {
     }
 
     /**
-     * gives task type.
+     * Gives task type.
      *
      * @return task type code.
      */
@@ -69,7 +69,7 @@ public class Task {
     }
 
     /**
-     * returns task name.
+     * Returns task name.
      *
      * @return task name.
      */
@@ -78,7 +78,7 @@ public class Task {
     }
 
     /**
-     * returns completed attribute.
+     * Returns completed attribute.
      *
      * @return completed.
      */
@@ -87,7 +87,7 @@ public class Task {
     }
 
     /**
-     * returns the dates if possible.
+     * Returns the dates if possible.
      *
      * @return date.
      */

@@ -10,22 +10,43 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
+/**
+ * class deals with an array of Tasks.
+ */
 public class TaskList {
 
-
+    /**
+     * Array to store Tasks.
+     */
     private static ArrayList<Task> taskArray = new ArrayList<>();
 
-
+    /**
+     * Constructor for class.
+     *
+     * @param data file object of data
+     * @throws IOException file may not be found
+     */
     public TaskList(File data) throws IOException {
         if (!data.createNewFile()) {
             createObject(data);
         }
     }
 
+    /**
+     * Getter for TaskArray.
+     *
+     * @return taskArray
+     */
     public ArrayList<Task> getTaskArray() {
         return taskArray;
     }
 
+    /**
+     * Getter for item in array.
+     *
+     * @param index of item
+     * @return Task object
+     */
     public Task getItem(int index) {
         return taskArray.get(index - 1);
     }
@@ -62,9 +83,15 @@ public class TaskList {
 
     }
 
+    /**
+     * Gets the total size of array.
+     *
+     * @return int size
+     */
     public int getSize() {
         return taskArray.size();
     }
+
     /**
      * markTasks applies the required action on the correct task ID.
      *

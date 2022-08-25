@@ -2,8 +2,17 @@ package Duke;
 
 import java.util.Objects;
 
+/**
+ * Parser class helps to interpret user inputs.
+ */
 public class Parser {
 
+    /**
+     * translates user inputs into Duke.Command objects.
+     *
+     * @param input user input
+     * @return Duke.Command equivalent
+     */
     public Duke.Commands parseCommand(String input) {
         input = input.trim();
         if (Objects.equals(input.toLowerCase(), "bye")) {

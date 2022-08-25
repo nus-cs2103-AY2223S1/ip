@@ -11,9 +11,24 @@ import java.io.IOException;
  */
 public class Duke {
 
+    /**
+     * storage object deals with read/write interactions with file
+     */
     private Storage storage;
+
+    /**
+     * tasks manages a list of Task objects
+     */
     private TaskList tasks;
+
+    /**
+     * ui handles user inputs and outputs
+     */
     private Ui ui;
+
+    /**
+     * parser interpretes user commands
+     */
     private Parser parser;
 
     /**
@@ -28,6 +43,11 @@ public class Duke {
         CREATETASK
     }
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filePath filepath to data file.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -42,14 +62,14 @@ public class Duke {
     /**
      * Main method initializes welcome message, and then calls taskList method.
      *
-     * @param args unused.
+     * @param args unused
      */
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
     }
 
     /**
-     * taskList method creates an input loop, creating Duke.Task objects and adding it to the array.
+     * TaskList method creates an input loop, creating Duke.Task objects and adding it to the array.
      *
      * @throws NumberFormatException if User inputs a non integer after mark/unmark
      */
@@ -68,7 +88,7 @@ public class Duke {
 
 
     /**
-     * processes and runs user commands.
+     * Processes and runs user commands.
      *
      * @param command user command
      * @param input   input string

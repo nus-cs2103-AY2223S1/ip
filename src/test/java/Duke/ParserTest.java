@@ -5,12 +5,33 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Test class to test Parser Class.
+ */
 public class ParserTest {
+    /**
+     * Bye Command Object.
+     */
     private Duke.Commands byeCommand = Duke.Commands.BYE;
+
+    /**
+     * List Command Object.
+     */
     private Duke.Commands listCommand = Duke.Commands.LIST;
+
+    /**
+     * Mark Command Object.
+     */
     private Duke.Commands markCommand = Duke.Commands.MARK;
+
+    /**
+     * Parser object.
+     */
     private Parser parser = new Parser();
 
+    /**
+     * To test parseCommand().
+     */
     @Test
     @DisplayName("Test parseCommand")
     public void testParseCommand() {

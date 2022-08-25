@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Duke.Task with an associated deadline
+ * Duke.Task with an associated deadline.
  */
 public class Deadlines extends Task {
 
@@ -14,9 +14,13 @@ public class Deadlines extends Task {
     private final LocalDateTime deadline;
 
     /**
-     * Constructor to initialize class.
+     * Constructor to initialize deadline task.
      *
-     * @param name task name
+     * @param name      name of task
+     * @param init      true if initialized from data file
+     * @param completed true if task is completed
+     * @param deadline  time of deadline
+     * @param listSize  current size of list containing all tasks
      */
     public Deadlines(String name, boolean init, boolean completed, LocalDateTime deadline, int listSize) {
         super(name, init, completed, listSize);

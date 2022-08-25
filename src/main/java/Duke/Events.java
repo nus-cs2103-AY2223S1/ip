@@ -13,10 +13,14 @@ public class Events extends Task {
     /**
      * Constructor to initialize class.
      *
-     * @param name task name
+     * @param name      name of task
+     * @param init      true if initialized from data file
+     * @param completed true if task is completed
+     * @param timing    time of event
+     * @param listSize  current size of list containing all tasks
      */
     public Events(String name, boolean init, boolean completed, String timing, int listSize) {
-        super(name, init, completed,listSize);
+        super(name, init, completed, listSize);
         this.timing = timing;
         if (!init) {
             addMessage(listSize);

@@ -1,6 +1,9 @@
 package Duke;
 
-public class DukeException extends Exception{
+/**
+ * Exception class to create more specific exceptions for Duke.
+ */
+public class DukeException extends Exception {
 
     public DukeException(String errorMessage) {
         super(errorMessage);
@@ -25,9 +28,12 @@ public class DukeException extends Exception{
         }
     }
 
+    /**
+     * Exception raised when parameters contain invalid inputs.
+     */
     public static class InvalidParameterException extends DukeException {
         public InvalidParameterException(String errorMessage) {
-            super (errorMessage);
+            super(errorMessage);
         }
     }
 
