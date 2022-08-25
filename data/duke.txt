@@ -1,2 +1,3 @@
-[D] [ ] wash dishes (by: tomorrow)
-[T] [ ] hi
+[E] [ ] haha (at: hahaha)
+[D] [ ] hahah (by: Dec 01 2019)
+[T] [ ] haha
