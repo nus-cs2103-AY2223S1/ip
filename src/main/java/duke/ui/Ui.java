@@ -27,7 +27,7 @@ public class Ui {
      * Shows the welcome message to the user.
      */
     public void showWelcomeMessage() {
-        this.show(
+        show(
                 HORIZONTAL_LINE,
                 "Hello I'm",
                 "____        _        ",
@@ -45,7 +45,7 @@ public class Ui {
      * Shows the goodbye message to the user.
      */
     public void showGoodbyeMessage() {
-        this.show(
+        show(
                 "Bye, hope to see you soon!",
                 HORIZONTAL_LINE
         );
@@ -57,7 +57,7 @@ public class Ui {
      * @param message Error message to be shown to the user.
      */
     public void showErrorMessage(String message) {
-        this.show(
+        show(
                 message,
                 HORIZONTAL_LINE
         );
@@ -69,7 +69,7 @@ public class Ui {
      * @param exception Exception to be shown to the user.
      */
     public void showErrorMessage(Exception exception) {
-        this.showErrorMessage(exception.getMessage());
+        showErrorMessage(exception.getMessage());
     }
 
     /**
@@ -78,6 +78,6 @@ public class Ui {
      * @param result Result to be shown to the user.
      */
     public void showResult(CommandResult result) {
-        this.show(result.getUserMessage(), HORIZONTAL_LINE);
+        show(result.getUserMessage(), HORIZONTAL_LINE);
     }
 }

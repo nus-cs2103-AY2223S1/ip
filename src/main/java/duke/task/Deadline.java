@@ -51,7 +51,7 @@ public class Deadline extends Task {
      * @return Deadline in file saving format.
      */
     public String getFileFormat() {
-        return String.format("D | %s | %s", super.getFileFormat(), this.deadline);
+        return String.format("D | %s | %s", super.getFileFormat(), deadline);
     }
 
     /**

@@ -9,16 +9,14 @@ public class ListCommand extends Command {
     private static final String LINE_FORMAT = "%d: %s";
 
     /**
-     * Executes the command.
-     *
-     * @return Result of the execution.
+     * {@inheritDoc}
      */
     @Override
     public CommandResult execute() {
-        String[] lines = new String[this.tasks.size()];
+        String[] lines = new String[tasks.size()];
 
         for (int i = 0; i < tasks.size(); i++) {
-            lines[i] = String.format(LINE_FORMAT, i + 1, this.tasks.getTask(i));
+            lines[i] = String.format(LINE_FORMAT, i + 1, tasks.getTask(i));
         }
 
         String userMessage = String.join("\n", lines);

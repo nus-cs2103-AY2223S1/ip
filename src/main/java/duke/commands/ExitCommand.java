@@ -8,9 +8,7 @@ public class ExitCommand extends Command {
     public static final String COMMAND_WORD = "bye";
 
     /**
-     * Executes the command.
-     *
-     * @return Result of the execution.
+     * {@inheritDoc}
      */
     public CommandResult execute() {
         return new CommandResult("", false, true);

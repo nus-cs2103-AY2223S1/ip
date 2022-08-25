@@ -17,21 +17,21 @@ public abstract class Task {
      */
     protected Task(String description) {
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
      * Marks a task as done.
      */
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     /**
      * Marks a task as undone.
      */
     public void markAsUndone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     /**
@@ -41,7 +41,7 @@ public abstract class Task {
      * @return True if task contains keyword.
      */
     public boolean containsKeyword(String keyword) {
-        return this.description.contains(keyword);
+        return description.contains(keyword);
     }
 
     /**
@@ -50,7 +50,7 @@ public abstract class Task {
      * @return The task in file saving format.
      */
     public String getFileFormat() {
-        return String.format("%s | %s", this.isDone ? "1" : "0", this.description);
+        return String.format("%s | %s", isDone ? "1" : "0", description);
     }
 
     /**
@@ -60,7 +60,7 @@ public abstract class Task {
      */
     @Override
     public String toString() {
-        String doneIcon = this.isDone ? "X" : " ";
-        return String.format("[%s] %s", doneIcon, this.description);
+        String doneIcon = isDone ? "X" : " ";
+        return String.format("[%s] %s", doneIcon, description);
     }
 }

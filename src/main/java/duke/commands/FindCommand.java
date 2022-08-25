@@ -20,21 +20,19 @@ public class FindCommand extends Command {
      * @param arguments Arguments string is the find keyword.
      */
     public FindCommand(String arguments) {
-        this.keyword = arguments;
+        keyword = arguments;
     }
 
     /**
-     * Executes the command.
-     *
-     * @return Result of the execution.
+     * {@inheritDoc}
      */
     @Override
     public CommandResult execute() {
         ArrayList<String> foundTasks = new ArrayList<>();
 
-        for (int i = 0; i < this.tasks.size(); i++) {
-            Task task = this.tasks.getTask(i);
-            if (task.containsKeyword(this.keyword)) {
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.getTask(i);
+            if (task.containsKeyword(keyword)) {
                 String taskString = String.format(TASK_FORMAT, i + 1, task);
                 foundTasks.add(taskString);
             }

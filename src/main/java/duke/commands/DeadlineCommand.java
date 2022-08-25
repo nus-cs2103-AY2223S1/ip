@@ -49,15 +49,13 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Executes the command.
-     *
-     * @return Result of the execution.
+     * {@inheritDoc}
      */
     @Override
     public CommandResult execute() {
-        this.tasks.addTask(this.deadline);
-        int numberOfTasks = this.tasks.size();
-        String userMessage = String.format(USER_MESSAGE_FORMAT, this.deadline, numberOfTasks);
+        tasks.addTask(deadline);
+        int numberOfTasks = tasks.size();
+        String userMessage = String.format(USER_MESSAGE_FORMAT, deadline, numberOfTasks);
         return new CommandResult(userMessage, true, false);
     }
 }

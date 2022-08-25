@@ -23,19 +23,17 @@ public class TodoCommand extends Command {
             throw Todo.EMPTY_DESCRIPTION;
         }
 
-        this.todo = new Todo(arguments);
+        todo = new Todo(arguments);
     }
 
     /**
-     * Executes the command.
-     *
-     * @return Result of the execution.
+     * {@inheritDoc}
      */
     @Override
     public CommandResult execute() {
-        this.tasks.addTask(this.todo);
-        int numberOfTasks = this.tasks.size();
-        String userMessage = String.format(USER_MESSAGE_FORMAT, this.todo, numberOfTasks);
+        tasks.addTask(todo);
+        int numberOfTasks = tasks.size();
+        String userMessage = String.format(USER_MESSAGE_FORMAT, todo, numberOfTasks);
         return new CommandResult(userMessage, true, false);
     }
 }

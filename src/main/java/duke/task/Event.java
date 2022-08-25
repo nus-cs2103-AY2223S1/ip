@@ -51,7 +51,7 @@ public class Event extends Task {
      * @return Event in file saving format.
      */
     public String getFileFormat() {
-        return String.format("E | %s | %s", super.getFileFormat(), this.date);
+        return String.format("E | %s | %s", super.getFileFormat(), date);
     }
 
     /**

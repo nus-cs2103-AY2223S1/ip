@@ -12,7 +12,7 @@ public class TaskList {
      * Constructor to create an empty task list.
      */
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
     }
 
     /**
@@ -21,7 +21,7 @@ public class TaskList {
      * @param task Task to be added.
      */
     public void addTask(Task task) {
-        this.tasks.add(task);
+        tasks.add(task);
     }
 
     /**
@@ -30,7 +30,7 @@ public class TaskList {
      * @param index Index of task to be removed.
      */
     public void removeTask(int index) {
-        this.tasks.remove(index);
+        tasks.remove(index);
     }
 
     /**
@@ -40,7 +40,7 @@ public class TaskList {
      * @return The task to be retrieved.
      */
     public Task getTask(int index) {
-        return this.tasks.get(index);
+        return tasks.get(index);
     }
 
     /**
@@ -49,6 +49,6 @@ public class TaskList {
      * @return The size of the task list.
      */
     public int size() {
-        return this.tasks.size();
+        return tasks.size();
     }
 }

@@ -18,25 +18,22 @@ public class DeleteCommand extends Command {
      * @param arguments Arguments string is to be of the format "N".
      */
     public DeleteCommand(String arguments) {
-        this.index = Integer.parseInt(arguments);
+        index = Integer.parseInt(arguments);
     }
 
     /**
-     * Executes the command.
-     *
-     * @return Result of the execution.
-     * @throws DukeException Exception that occurred during the execution of the command.
+     * {@inheritDoc}
      */
     @Override
     public CommandResult execute() throws DukeException {
         // Check if index is out of bounds.
-        if (this.index <= 0 || this.index > this.tasks.size()) {
+        if (index <= 0 || index > tasks.size()) {
             throw DukeException.INVALID_INDEX;
         }
         // Subtract 1 to account for 0-index data structure.
-        Task task = this.tasks.getTask(this.index - 1);
-        this.tasks.removeTask(this.index - 1);
-        int numberOfTasks = this.tasks.size();
+        Task task = tasks.getTask(index - 1);
+        tasks.removeTask(index - 1);
+        int numberOfTasks = tasks.size();
         String userMessage = String.format(USER_MESSAGE_FORMAT, task, numberOfTasks);
         return new CommandResult(userMessage, true, false);
     }

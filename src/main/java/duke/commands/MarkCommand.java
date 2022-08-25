@@ -18,25 +18,22 @@ public class MarkCommand extends Command {
      * @param arguments Arguments string is to be of the format "N".
      */
     public MarkCommand(String arguments) {
-        this.index = Integer.parseInt(arguments);
+        index = Integer.parseInt(arguments);
     }
 
     /**
-     * Executes the command.
-     *
-     * @return Result of the execution.
-     * @throws DukeException Exception that occurred during the execution of the command.
+     * {@inheritDoc}
      */
     @Override
     public CommandResult execute() throws DukeException {
         // Check if index is out of bounds.
-        if (this.index <= 0 || this.index > this.tasks.size()) {
+        if (index <= 0 || index > tasks.size()) {
             throw DukeException.INVALID_INDEX;
         }
         // Subtract 1 to account for 0-index data structure.
-        Task task = this.tasks.getTask(this.index - 1);
+        Task task = tasks.getTask(index - 1);
         task.markAsDone();
-        String userMessage = String.format(USER_MESSAGE_FORMAT, this.index, task);
+        String userMessage = String.format(USER_MESSAGE_FORMAT, index, task);
         return new CommandResult(userMessage, true, false);
     }
 }

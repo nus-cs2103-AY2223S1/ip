@@ -45,19 +45,17 @@ public class EventCommand extends Command {
             throw DukeException.INVALID_DATE;
         }
 
-        this.event = new Event(description, localDateTime);
+        event = new Event(description, localDateTime);
     }
 
     /**
-     * Executes the command.
-     *
-     * @return Result of the execution.
+     * {@inheritDoc}
      */
     @Override
     public CommandResult execute() {
-        this.tasks.addTask(this.event);
-        int numberOfTasks = this.tasks.size();
-        String userMessage = String.format(USER_MESSAGE_FORMAT, this.event, numberOfTasks);
+        tasks.addTask(event);
+        int numberOfTasks = tasks.size();
+        String userMessage = String.format(USER_MESSAGE_FORMAT, event, numberOfTasks);
         return new CommandResult(userMessage, true, false);
     }
 }

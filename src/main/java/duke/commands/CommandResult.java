@@ -27,7 +27,7 @@ public class CommandResult {
      * @return User message.
      */
     public String getUserMessage() {
-        return this.userMessage;
+        return userMessage;
     }
 
     /**
@@ -36,7 +36,7 @@ public class CommandResult {
      * @return Whether there are any updates to the file.
      */
     public boolean shouldUpdateFile() {
-        return this.hasUpdates;
+        return hasUpdates;
     }
 
     /**
@@ -45,6 +45,6 @@ public class CommandResult {
      * @return Whether the application should exit.
      */
     public boolean shouldExit() {
-        return this.isExit;
+        return isExit;
     }
 }

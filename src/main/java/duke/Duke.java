@@ -25,16 +25,16 @@ public class Duke {
      * Constructor for a Duke application instance.
      */
     public Duke() {
-        this.parser = new Parser();
-        this.storage = new Storage("data", "data/tasks");
-        this.ui = new Ui();
+        parser = new Parser();
+        storage = new Storage("data", "data/tasks");
+        ui = new Ui();
 
         TaskList tasks;
         try {
             // Attempt to load tasks from storage.
-            tasks = this.storage.load();
+            tasks = storage.load();
         } catch (DukeException e) {
-            this.ui.showErrorMessage(e);
+            ui.showErrorMessage(e);
             // Load empty list if fail to load from storage.
             tasks = new TaskList();
         }
@@ -46,14 +46,14 @@ public class Duke {
      */
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        this.ui.showWelcomeMessage();
+        ui.showWelcomeMessage();
 
         while (scanner.hasNext()) {
             try {
                 String userInput = scanner.nextLine();
-                Command command = this.parser.parseCommand(userInput);
+                Command command = parser.parseCommand(userInput);
                 // Populate command with tasks.
-                command.setData(this.tasks);
+                command.setData(tasks);
                 CommandResult result = command.execute();
                 if (result.shouldExit()) {
                     // Exit application by exiting the scan loop.
@@ -61,18 +61,18 @@ public class Duke {
                 }
                 if (result.shouldUpdateFile()) {
                     // Save to storage.
-                    this.storage.save(this.tasks);
+                    storage.save(tasks);
                 }
-                this.ui.showResult(result);
+                ui.showResult(result);
             } catch (DukeException | IOException e) {
-                this.ui.showErrorMessage(e);
+                ui.showErrorMessage(e);
             } catch (NumberFormatException e) {
                 // Handles case where user inputs an invalid number.
-                this.ui.showErrorMessage("Invalid number!");
+                ui.showErrorMessage("Invalid number!");
             }
         }
 
-        this.ui.showGoodbyeMessage();
+        ui.showGoodbyeMessage();
         // Close scanner.
         scanner.close();
     }
