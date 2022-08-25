@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ParserTest {
-    private Duke.Commands byeCommand = Duke.Commands.BYE;
-    private Duke.Commands listCommand = Duke.Commands.LIST;
-    private Duke.Commands markCommand = Duke.Commands.MARK;
-    private Parser parser = new Parser();
+    private final Duke.Commands byeCommand = Duke.Commands.BYE;
+    private final Duke.Commands listCommand = Duke.Commands.LIST;
+    private final Duke.Commands markCommand = Duke.Commands.MARK;
+    private final Parser parser = new Parser();
 
     @Test
     @DisplayName("Test parseCommand")

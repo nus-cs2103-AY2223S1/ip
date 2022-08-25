@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class TaskList {
 
 
-    private static ArrayList<Task> taskArray = new ArrayList<>();
+    private static final ArrayList<Task> taskArray = new ArrayList<>();
 
 
     public TaskList(File data) throws IOException {
