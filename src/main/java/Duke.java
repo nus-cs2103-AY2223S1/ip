@@ -1,3 +1,6 @@
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,8 +11,14 @@ public class Duke {
 
     public static void main(String[] args) {
         System.out.println("Hello! I'm SoCCat\nWhat can I do for you?");
-        new Duke().start();
+        try {
+//            new Duke().createNewDirectory();
+            new Duke().start();
+        } catch (Exception e) {
+            
+        }
     }
+    
 
     private static String numberOfTasks() {
         return "Now you have " + index +  (index < 2 ? " task" : " tasks") + " in your list.";
@@ -22,9 +31,10 @@ public class Duke {
         }
     }
     
-    private void start() {
+    private void start() throws IOException, DukeException {
+        loadFromDisk();
         Scanner scanner = new Scanner(System.in);
-
+        
         while (scanner.hasNextLine()) {
             String input = scanner.nextLine();
             String[] words = input.split(" ", 2);
@@ -85,9 +95,10 @@ public class Duke {
         }
     }
     
-    private void newTaskAdded() {
+    private void newTaskAdded() throws DukeException{
         index++;
         System.out.println("Got it. I've added this task: \n" + listOfTasks.get(index - 1) + "\n" + numberOfTasks());
+        saveToDisk();
     }
     
     private void createToDos(String[] currInput) throws DukeException{
@@ -140,9 +151,61 @@ public class Duke {
             Task deletedTask = listOfTasks.remove(taskIndex);
             index--;
             System.out.println("Noted. I've removed this task: \n" + deletedTask + "\n" + numberOfTasks());
+            saveToDisk();
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
     }
     
+    private void loadFromDisk() throws DukeException, IOException {
+        Files.createDirectories(Paths.get("data"));
+        File file = new File("data/Duke.txt");
+        file.createNewFile();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] words = line.split(" ", 2);
+                String keyword = words[0];
+                if (keyword.equals("T")) {
+                    createToDos(words);
+                } else if (keyword.equals("D")) {
+                    createDeadlines(words);
+                } else if (keyword.equals("E")) {
+                    createEvents(words);
+                }
+                System.out.println(line);
+            }
+            reader.close();
+        } catch (IOException ex){
+            throw new DukeException(ex.getMessage());
+        }
+    }
+    
+    private void saveToDisk() throws DukeException{
+        try {
+            File file = new File("data/Duke.txt");
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+            for (Task task : listOfTasks) {
+                if (task instanceof ToDos) {
+                    writer.write("T | ");
+                    writer.write(task.isDone ? "1 | " : "0 | ");
+                } else if (task instanceof Deadlines) {
+                    writer.write("D | ");
+                    writer.write(task.isDone ? "1 | " : "0 | ");
+                    writer.write(task.description + " | ");
+                    writer.write(((Deadlines) task).by);
+                } else if (task instanceof Events) {
+                    writer.write("E | ");
+                    writer.write(task.isDone ? "1 | " : "0 | ");
+                    writer.write(task.description + " | ");
+                    writer.write(((Events) task).duration);
+                } 
+                writer.write("\n");
+            }
+            writer.close();
+        } catch (IOException ex) {
+            throw new DukeException(ex.getMessage());
+        }
+    }
 }
