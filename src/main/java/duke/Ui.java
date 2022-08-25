@@ -16,10 +16,10 @@ public class Ui {
         System.out.println(e.getMessage());
     }
 
-    public void showTaskList(TaskList t) {
+    public void showTaskList(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
-        for (int i = 0; i < t.size(); i++) {
-            System.out.println((i + 1) + "." + t.get(i));
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println((i + 1) + "." + tasks.get(i));
         }
     }
 
@@ -45,5 +45,12 @@ public class Ui {
 
     public void showSaved() {
         System.out.println("Your task list has been successfully saved.");
+    }
+
+    public void showFound(TaskList tasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println((i + 1) + "." + tasks.get(i));
+        }
     }
 }
