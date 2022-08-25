@@ -7,14 +7,31 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/**
+ * Find Tasks in the TaskList depending on the relevant keyword given.
+ */
 public class FindCommand extends Command {
     public static final boolean IS_EXIT = false;
     public final String keyword;
 
+    /**
+     * Constructs a FindCommand instance with the provided whole keyword input by the user.
+     *
+     * @param keyword keyword is to be searched from the TaskList.
+     */
     public FindCommand(String keyword) {
         this.keyword = keyword;
     }
 
+    /**
+     * Iterate the TaskList by each character to search for a match of the keyword,
+     * then at the end, prints the Tasks consisting of the keyword.
+     *
+     * @param taskList the TaskList to be searched.
+     * @param ui the Ui to assist with printing of the list.
+     * @param storage unused in FindCommand.
+     * @throws StringIndexOutOfBoundsException if the index exceeds the String length.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         ArrayList<Task> outputList = new ArrayList<Task>();
@@ -27,6 +44,7 @@ public class FindCommand extends Command {
                     String taskSubstr = taskString.substring(i, i + keywordLength);
                     if (taskSubstr.equals(this.keyword)) {
                         outputList.add(task);
+                        break;
                     }
                     i++;
                 }
@@ -38,6 +56,11 @@ public class FindCommand extends Command {
         }
     }
 
+    /**
+     * Returns false as Find is not a terminating Command.
+     *
+     * @return false.
+     */
     public boolean isExit() {
         return this.IS_EXIT;
     }

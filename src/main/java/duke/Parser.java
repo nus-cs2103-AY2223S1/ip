@@ -1,6 +1,13 @@
 package duke;
 
-import duke.command.*;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.EmptyCommand;
+import duke.command.ExitCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
 
 /**
  * Breaks input by user into smaller parts to find respective actions to be taken.
@@ -49,8 +56,8 @@ public class Parser {
             return new MarkCommand(command, Integer.parseInt(parts[1]) - 1);
         case "List":
             return new ListCommand();
-            case "Find":
-                return new FindCommand(fullCommand.substring(5));
+        case "Find":
+            return new FindCommand(fullCommand.substring(5));
         default:
             return new EmptyCommand();
         }
