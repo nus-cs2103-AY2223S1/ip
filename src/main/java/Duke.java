@@ -161,20 +161,26 @@ public class Duke {
         Files.createDirectories(Paths.get("data"));
         File file = new File("data/Duke.txt");
         file.createNewFile();
+        
         try {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] words = line.split(" ", 2);
+                String[] words = line.split("[|]", 4);
                 String keyword = words[0];
+                String isDone = words[1];
+                String taskDetails = words[2];
                 if (keyword.equals("T")) {
-                    createToDos(words);
-                } else if (keyword.equals("D")) {
-                    createDeadlines(words);
-                } else if (keyword.equals("E")) {
-                    createEvents(words);
+                    loadToDos(isDone, taskDetails);
+                } else {
+                    String dateTime = words[3];
+                    if (keyword.equals("D")) {
+                        loadDeadlines(isDone, taskDetails, dateTime);
+                    } else if (keyword.equals("E")) {
+                        loadEvents(isDone, taskDetails, dateTime);
+                    }
                 }
-                System.out.println(line);
+                index = listOfTasks.size();
             }
             reader.close();
         } catch (IOException ex){
@@ -188,17 +194,18 @@ public class Duke {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
             for (Task task : listOfTasks) {
                 if (task instanceof ToDos) {
-                    writer.write("T | ");
-                    writer.write(task.isDone ? "1 | " : "0 | ");
+                    writer.write("T|");
+                    writer.write(task.isDone ? "1|" : "0|");
+                    writer.write(task.description);
                 } else if (task instanceof Deadlines) {
-                    writer.write("D | ");
-                    writer.write(task.isDone ? "1 | " : "0 | ");
-                    writer.write(task.description + " | ");
+                    writer.write("D|");
+                    writer.write(task.isDone ? "1|" : "0|");
+                    writer.write(task.description + "|");
                     writer.write(((Deadlines) task).by);
                 } else if (task instanceof Events) {
-                    writer.write("E | ");
-                    writer.write(task.isDone ? "1 | " : "0 | ");
-                    writer.write(task.description + " | ");
+                    writer.write("E|");
+                    writer.write(task.isDone ? "1|" : "0|");
+                    writer.write(task.description + "|");
                     writer.write(((Events) task).duration);
                 } 
                 writer.write("\n");
@@ -207,5 +214,23 @@ public class Duke {
         } catch (IOException ex) {
             throw new DukeException(ex.getMessage());
         }
+    }
+    
+    private void loadToDos(String isDone, String taskDetails) {
+        Task newTask = new ToDos(taskDetails);
+        if (isDone.equals("1")) newTask.markAsDone();
+        listOfTasks.add(newTask);
+    }
+    
+    private void loadDeadlines(String isDone, String taskDetails, String dateTime) {
+        Task newTask = new Deadlines(taskDetails, dateTime);
+        if (isDone.equals("1")) newTask.markAsDone();
+        listOfTasks.add(newTask);
+    }
+    
+    private void loadEvents(String isDone, String taskDetails, String dateTime) {
+        Task newTask = new Events(taskDetails, dateTime);
+        if (isDone.equals("1")) newTask.markAsDone();
+        listOfTasks.add(newTask);
     }
 }
