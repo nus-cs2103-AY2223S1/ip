@@ -1,3 +1,5 @@
+package Parser;
+
 import DukeException.DateTimeFormatException;
 
 import java.lang.NumberFormatException;
@@ -8,9 +10,9 @@ import java.util.Arrays;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
-public class Helper {
+
+public class Parser {
     public static Integer strToInt (String str) {
         Integer result = null;
         try {

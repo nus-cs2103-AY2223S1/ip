@@ -1,6 +1,10 @@
+package Tasks;
+
 import DukeException.DateTimeFormatException;
+import Parser.Parser;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
 
@@ -8,7 +12,7 @@ public class Event extends Task {
 
     public Event(String description, String at) throws DateTimeFormatException {
         super(description);
-        this.at = Helper.strToDateTime(at);
+        this.at = Parser.strToDateTime(at);
     }
 
     public static Event addTask(String name, String at) throws DateTimeFormatException {
@@ -19,12 +23,13 @@ public class Event extends Task {
 
     @Override
     public String recordString() {
-        return "E | " + super.recordString() + " | " + at;
+        return "E | " + super.recordString() + " | "
+                + at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
     }
 
     @Override
     public String printSelf() throws DateTimeFormatException {
-        return "[E]" + super.printSelf() + " (at: " + Helper.dateTimeToString(this.at) + ")";
+        return "[E]" + super.printSelf() + " (at: " + Parser.dateTimeToString(this.at) + ")";
     }
 
 }

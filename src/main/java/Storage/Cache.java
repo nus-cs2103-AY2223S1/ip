@@ -1,17 +1,20 @@
+package Storage;
+
 import java.io.File;
 import java.io.FileWriter;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import DukeException.DukeException;
 import DukeException.TypeNotExistException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import Tasks.Task;
 
+import Ui;
 
 /**
  * A class represents a Storage.
@@ -32,7 +35,7 @@ public class Cache {
      * @return A recovered list of previous work or a blank list if no cache.
      * @throws DukeException If IOException occurs during the process.
      */
-    public ArrayList<Task> printPath() throws DukeException, IOException {
+    public TaskList printPath() throws DukeException, IOException {
         try {
             // Create path if not exist
             File file = new File(System.getProperty("user.dir") + "/data");
@@ -45,11 +48,11 @@ public class Cache {
             // Create file if not exist
             file = new File(filePath);
             if (file.exists()) {
-                return Interface.loading(file);
+                return Ui.loading(file);
             } else {
                 file.createNewFile();
                 assert (file.exists());
-                return new ArrayList<>();
+                return new TaskList();
             }
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
@@ -60,7 +63,7 @@ public class Cache {
      * @return A recovered list of previous work or a blank list if no cache.
      * @throws DukeException If IOException occurs during the process.
      */
-    public static ArrayList<Task> recovery(File f) throws DukeException, FileNotFoundException {
+    public static TaskList recovery(File f) throws DukeException, FileNotFoundException {
         ArrayList<Task> taskList = new ArrayList<>();
         String[] commands;
         String type;
@@ -77,20 +80,20 @@ public class Cache {
                 isDone = commands[1].trim().equals("1") ? true : false;
                 description = commands[2].trim();
 
-                // sync task using Interface functions
+                // sync task using Ui functions
                 if (type.equals("T")) {
-                    taskList.add(Interface.syncToDo(description, isDone));
+                    taskList.add(Ui.syncToDo(description, isDone));
                 } else if (type.equals("D")) {
-                    taskList.add(Interface.syncDeadline(description, isDone));
+                    taskList.add(Ui.syncDeadline(description, isDone));
                 } else if (type.equals("E")) {
-                    taskList.add(Interface.syncEvent(description, isDone));
+                    taskList.add(Ui.syncEvent(description, isDone));
                 } else {
                     throw new TypeNotExistException("");
                 }
 
             }
 
-            return taskList;
+            return new TaskList(taskList);
         } catch (FileNotFoundException e) {
             throw new DukeException("     ☹ OOPS!!! Cannot be read cos the file doesn't exist");
         }
@@ -98,13 +101,13 @@ public class Cache {
 
     /**
      * Updates the records in cache file once for all before closing Duke.
-     * @param taskList A Task list to be recorded.
+     * @param taskList A Tasks.Task list to be recorded.
      */
-    public void update(ArrayList<Task> taskList) throws DukeException {
+    public void update(TaskList taskList) throws DukeException {
         try {
             FileWriter writer = new FileWriter(this.filePath);
             StringBuilder builder = new StringBuilder();
-            for (Task task : taskList) {
+            for (Task task : taskList.getList()) {
                 builder.append(task.recordString());
                 builder.append("\n");
             }

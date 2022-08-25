@@ -1,7 +1,8 @@
+package Tasks;
+
 import DukeException.DateTimeFormatException;
 
 import java.lang.StringBuilder;
-import java.util.ArrayList;
 
 public class Task {
     protected String name;
@@ -19,7 +20,7 @@ public class Task {
     /**
      * Helper function to call while adding a new task.
      * @param name the new task description.
-     * @return the Task class being created.
+     * @return the Tasks.Task class being created.
      */
     public static Task addTask(String name) throws DateTimeFormatException {
         Task newTask = new Task(name);

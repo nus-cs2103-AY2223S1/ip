@@ -1,4 +1,8 @@
+package Tasks;
+
 import DukeException.DateTimeFormatException;
+import Parser.Parser;
+
 import java.time.LocalDate;
 
 public class Deadline extends Task {
@@ -7,7 +11,7 @@ public class Deadline extends Task {
 
     public Deadline(String description, String by) throws DateTimeFormatException {
         super(description);
-        this.by = Helper.strToDate(by);
+        this.by = Parser.strToDate(by);
     }
 
     public static Deadline addTask(String name, String by) throws DateTimeFormatException {
@@ -18,7 +22,7 @@ public class Deadline extends Task {
 
     @Override
     public String printSelf() throws DateTimeFormatException {
-        return "[D]" + super.printSelf() + " (by: " + Helper.dateToString(this.by) + ")";
+        return "[D]" + super.printSelf() + " (by: " + Parser.dateToString(this.by) + ")";
     }
 
     @Override

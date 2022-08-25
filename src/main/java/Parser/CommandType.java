@@ -1,3 +1,5 @@
+package Parser;
+
 import java.util.HashMap;
 
 public enum CommandType {

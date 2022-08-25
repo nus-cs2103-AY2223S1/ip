@@ -1,16 +1,21 @@
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.ArrayList;
 
 import DukeException.*;
+import Parser.CommandType;
+import Parser.Parser;
+import Storage.Cache;
+import Storage.TaskList;
+import Tasks.Task;
 
 public class Duke {
-    public static ArrayList<Task> taskList = new ArrayList<>();
+    public static TaskList taskList;
 
+    public Duke () {
+        taskList = new TaskList();
+    }
 
-    public static void main(String[] args) throws IncomplateCommandException, TaskOutOfBoundException,
-            NoSuchCommandException, TaskCompletionException, DateTimeFormatException, IOException,
-            DukeException {
+    public static void main(String[] args) throws IOException, DukeException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -24,7 +29,7 @@ public class Duke {
     }
 
     /**
-     * Main interface function:
+     * Main Ui function:
      * 1. Greetings on opening.
      * 2. bye: to exit.
      * 3. list: to print task list.
@@ -40,28 +45,28 @@ public class Duke {
         Integer taskIndex = null, i;
         CommandType type;
 
-        Interface.greet();
+        Ui.greet();
         while (!lastCommandOrNot) {
             command = in.nextLine().trim();
             commandList = command.split(" ", 2);
-            command = (Helper.multipleVariable(commandList[0])) ? commandList[0] : command;
+            command = (Parser.multipleVariable(commandList[0])) ? commandList[0] : command;
             type = CommandType.map(command);
 
             try {
                 switch (type) {
                     case BYE: {
-                        Interface.bye();
+                        Ui.bye();
                         lastCommandOrNot = true;
                         break;
                     }
                     case MARK:
                     case UNMARK: {
-                        taskIndex = Helper.strToInt(commandList[1]) - 1;
+                        taskIndex = Parser.strToInt(commandList[1]) - 1;
                         task = taskList.get(taskIndex);
                         switch (type) {
                             case MARK: {
                                 if (!task.checkDone())
-                                    Interface.mark(task);
+                                    Ui.mark(task);
                                 else {
                                     System.out.println("     ☹ OOPS!!! The task specified is already done");
                                     throw new TaskCompletionException("");
@@ -70,7 +75,7 @@ public class Duke {
                             }
                             case UNMARK: {
                                 if (task.checkDone())
-                                    Interface.unmark(task);
+                                    Ui.unmark(task);
                                 else {
                                     System.out.println("     ☹ OOPS!!! The task specified is not done yet");
                                     throw new TaskCompletionException("");
@@ -81,29 +86,29 @@ public class Duke {
                         break;
                     }
                     case DELETE: {
-                        taskIndex = Helper.strToInt(commandList[1]) - 1;
+                        taskIndex = Parser.strToInt(commandList[1]) - 1;
                         task = taskList.get(taskIndex);
-                        Interface.delete(task);
+                        Ui.delete(task);
                         taskList.remove(task);
-                        for (i = taskIndex; i < taskList.size(); i++) {
+                        for (i = taskIndex; i < taskList.countTask(); i++) {
                             taskList.get(i).updateRemoval();
                         }
                         break;
                     }
                     case LIST: {
-                        Interface.list(taskList);
+                        Ui.list(taskList);
                         break;
                     }
                     case TODO: {
-                        taskList.add(Interface.addToDo(commandList[1]));
+                        taskList.add(Ui.addToDo(commandList[1]));
                         break;
                     }
                     case DEADLINE: {
-                        taskList.add(Interface.addDeadline(commandList[1]));
+                        taskList.add(Ui.addDeadline(commandList[1]));
                         break;
                     }
                     case EVENT: {
-                        taskList.add(Interface.addEvent(commandList[1]));
+                        taskList.add(Ui.addEvent(commandList[1]));
                         break;
                     }
                     default:

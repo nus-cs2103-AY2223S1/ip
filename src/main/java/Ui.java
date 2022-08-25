@@ -1,11 +1,16 @@
 import DukeException.DukeException;
 import java.io.FileNotFoundException;
 import DukeException.DateTimeFormatException;
+import Storage.Cache;
+import Storage.TaskList;
+import Tasks.Deadline;
+import Tasks.Event;
+import Tasks.Task;
+import Tasks.ToDo;
 
-import java.util.ArrayList;
 import java.io.File;
 
-public class Interface {
+public class Ui {
     /**
      *  Greets.
      */
@@ -25,9 +30,9 @@ public class Interface {
     }
 
     /**
-     * Add a new Deadline.
+     * Add a new Tasks.Deadline.
      * @param str the description of ddl + by when
-     * @return a newly created Deadline class for storage.
+     * @return a newly created Tasks.Deadline class for storage.
      */
     public static Deadline addDeadline(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
@@ -42,9 +47,9 @@ public class Interface {
     }
 
     /**
-     * Adds a new Event.
+     * Adds a new Tasks.Event.
      * @param str The description of event + at what time
-     * @return A newly created Event class for storage.
+     * @return A newly created Tasks.Event class for storage.
      */
     public static Event addEvent(String str) throws DateTimeFormatException {
         String name = str.split(" /", 2)[0];
@@ -59,9 +64,9 @@ public class Interface {
     }
 
     /**
-     * Adds a new ToDo task.
+     * Adds a new Tasks.ToDo task.
      * @param str The description of to do task.
-     * @return A newly created ToDo class for storage.
+     * @return A newly created Tasks.ToDo class for storage.
      */
     public static ToDo addToDo(String str) throws DateTimeFormatException {
         printLine();
@@ -76,9 +81,9 @@ public class Interface {
      * Prints current task list.
      * @param taskList The task list retrieved directly from the storage.
      */
-    public static void list(ArrayList<Task> taskList) {
+    public static void list(TaskList taskList) {
         printLine();
-        for (Task task : taskList) {
+        for (Task task : taskList.getList()) {
             System.out.println(task);
         }
         printLine();
@@ -110,7 +115,7 @@ public class Interface {
 
     /**
      * Deletes a task from the list and prints out the task.
-     * @param task The Task object which the user wants to delete
+     * @param task The Tasks.Task object which the user wants to delete
      */
     public static void delete(Task task) throws DateTimeFormatException {
         printLine();
@@ -121,10 +126,10 @@ public class Interface {
     }
 
     /**
-     * Syncs a Deadline from cache file.
+     * Syncs a Tasks.Deadline from cache file.
      * @param str The description of ddl + by when.
      * @param isDone A boolean indicator to show if the task is marked done.
-     * @return A newly created Deadline class for storage.
+     * @return A newly created Tasks.Deadline class for storage.
      */
     public static Deadline syncDeadline(String str, boolean isDone) throws DateTimeFormatException {
         String name = str.split(" \\| ",2)[0];
@@ -138,10 +143,10 @@ public class Interface {
     }
 
     /**
-     * Syncs a Event from cache file.
-     * @param str The description of Event + at what time.
+     * Syncs a Tasks.Event from cache file.
+     * @param str The description of Tasks.Event + at what time.
      * @param isDone A boolean indicator to show if the task is marked done.
-     * @return A newly created Event class for storage.
+     * @return A newly created Tasks.Event class for storage.
      */
     public static Event syncEvent(String str, boolean isDone) throws DateTimeFormatException {
         String name = str.split(" \\| ",2)[0];
@@ -168,10 +173,10 @@ public class Interface {
         return task;
     }
 
-    public static ArrayList<Task> loading(File file) throws DukeException, FileNotFoundException {
+    public static TaskList loading(File file) throws DukeException, FileNotFoundException {
         printLine();
         System.out.println("     \uD83D\uDE0A Heyyo!!! Some saved work found in: " + file.getAbsolutePath() + "\n     Loading...");
-        ArrayList<Task> taskList = Cache.recovery(file);
+        TaskList taskList = Cache.recovery(file);
         System.out.println("     \uD83D\uDE0A Done loading~ Thanks for waiting!!!");
         printLine();
         return taskList;
