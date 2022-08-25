@@ -2,8 +2,10 @@ package duke;
 
 import duke.command.AddCommand;
 import duke.command.Command;
+import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
+import duke.models.Todo;
 
 import java.time.LocalDate;
 
@@ -12,9 +14,11 @@ import java.time.LocalDate;
  */
 public class Parser {
     private Ui ui;
+    private TaskList taskList;
 
-    public Parser(Ui ui) {
+    public Parser(Ui ui, TaskList tasks) {
         this.ui = ui;
+        this.taskList = tasks;
     }
 
     /**
@@ -33,12 +37,27 @@ public class Parser {
             case Constants.EVENT_STRING:
                 String eventDescription = command.split(Constants.EMPTY_SPACE)[1];
                 LocalDate eventDate = LocalDate.parse(command.split(Constants.EMPTY_SPACE)[3]);
-                Task t = new Event(eventDescription, eventDate);
-                return new AddCommand(t);
+                Task event = new Event(eventDescription, eventDate);
+                this.ui.newItemAdded(event, this.taskList.getSize());
+                return new AddCommand(event);
+            case Constants.TODO_STRING:
+                String todoDescription = command.split(Constants.EMPTY_SPACE)[1];
+                Task todo = new Todo(todoDescription);
+                this.ui.newItemAdded(todo, this.taskList.getSize());
+                return new AddCommand(todo);
+            case Constants.DEADLINE_STRING:
+                String deadlineDescription = command.split(Constants.EMPTY_SPACE)[1];
+                String dateString = command.split(Constants.EMPTY_SPACE)[3];
+                LocalDate parsedDate = DateParser.parseDate(dateString);
+                Task deadline = new Deadline(deadlineDescription, parsedDate);
+                this.ui.newItemAdded(deadline, this.taskList.getSize());
+                return new AddCommand(deadline);
+            case Constants.LIST_STRING:
+                ui.listAllTasks(this.taskList);
             case Constants.BYE_STRING:
                 this.ui.showByeMessage();
             default:
-                return null;
+                System.out.println("INVALID");
         }
     }
 }

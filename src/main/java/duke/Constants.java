@@ -15,6 +15,7 @@ public final class Constants {
     public static final String EVENT_STRING = "event";
     public static final String DEADLINE_STRING = "deadline";
     public static final String TODO_STRING = "todo";
-    public static final String BYE_STRING = "todo";
+    public static final String BYE_STRING = "bye";
+    public static final String LIST_STRING = "list";
 }
 

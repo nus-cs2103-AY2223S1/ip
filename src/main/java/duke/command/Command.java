@@ -1,11 +1,9 @@
 package duke.command;
 
 import duke.Storage;
-import duke.models.Task;
-
-import java.util.List;
+import duke.TaskList;
 
 public abstract class Command {
 
-    public abstract void execute(List<Task> list, Storage storage);
+    public abstract void execute(TaskList tasks, Storage storage);
 }

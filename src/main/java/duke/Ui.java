@@ -46,7 +46,6 @@ public class Ui {
         System.out.println(Constants.indent + "OK, I've marked this task as not done yet");
         System.out.println(Constants.indent + Constants.indent + t);
         this.showIndentedDottedLines();
-
     }
 
     public void showTaskDeletedMessage(Task t, int size) {
@@ -57,14 +56,15 @@ public class Ui {
         this.showIndentedDottedLines();
     }
 
-    public void listAllTasks(List<Task> taskList) {
-        ListIterator<Task> listIterator = taskList.listIterator();
+    public void showLoadingError() {
         this.showIndentedDottedLines();
-        while (listIterator.hasNext()) {
-            Task t = listIterator.next();
-            System.out.println(Constants.indent + listIterator.nextIndex() +
-                    ". " + t);
-        }
+        System.out.println(Constants.indent +"ERROR LOADING DATA FROM DISK");
+        this.showIndentedDottedLines();
+    }
+
+    public void listAllTasks(TaskList tasks) {
+        this.showIndentedDottedLines();
+        System.out.println(tasks.getAllTasks());
         this.showIndentedDottedLines();
     }
 }

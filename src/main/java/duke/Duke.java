@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 public class Duke {
 
     private Storage storage;
-    private TaskList taskList;
+    private TaskList tasks;
     private Ui ui;
 
     public Duke(String filePath) {
@@ -26,13 +26,13 @@ public class Duke {
     public void run() throws DukeException {
         ui.showWelcome();
         Scanner sc = new Scanner(System.in);
-        List<Task> history = storage.loadData();
-        Parser parser = new Parser(this.ui);
+        tasks = new TaskList(storage.loadData());
+        Parser parser = new Parser(this.ui, tasks);
 
         while(true) {
             String input = sc.nextLine();
             Command c = parser.parse(input);
-            c.execute(history, this.storage);
+            c.execute(tasks, this.storage);
         }
 
 //        while (true) {
@@ -55,33 +55,6 @@ public class Duke {
 //                Task t = history.get(index - 1);
 //                t.markAsNotDone();
 //                ui.showTaskUnmarkMessage(t);
-//            } else if (input.startsWith("todo")) {
-//                Task t = new Todo(input);
-//                history.add(t);
-//                storage.write(t.stringToWrite());
-//                ui.newItemAdded(t, history.size());
-//            } else if (input.startsWith("deadline")) {
-//                if(!input.contains("/by")) {
-//                    throw new DukeException("please use /by to indicate date for deadline");
-//                }
-//                String deadline = input.substring(input.lastIndexOf("/by") + 4);
-//                Pattern pattern = Pattern.compile("deadline(.*?)/by");
-//                Matcher matcher = pattern.matcher(input);
-//                String description = "";
-//                try{
-//                    LocalDate.parse(deadline);
-//                } catch (DateTimeParseException e) {
-//                    e.printStackTrace();
-//                } finally {
-//
-//                }
-//                while (matcher.find()) {
-//                    description = matcher.group(1);
-//                }
-//                Task t = new Deadline(description, LocalDate.parse(deadline));
-//                history.add(t);
-//                storage.write(t.stringToWrite());
-//                ui.newItemAdded(t, history.size());
 //            }
 //            else if (input.startsWith("event")) {
 //                if(!input.contains("/at")) {

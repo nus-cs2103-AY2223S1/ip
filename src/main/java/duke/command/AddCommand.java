@@ -1,9 +1,8 @@
 package duke.command;
 
 import duke.Storage;
+import duke.TaskList;
 import duke.models.Task;
-
-import java.util.List;
 
 public class AddCommand extends Command {
     private final Task toAdd;
@@ -13,8 +12,8 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(List<Task> list, Storage storage) {
-        list.add(toAdd);
+    public void execute(TaskList tasks, Storage storage) {
+        tasks.addTask(toAdd);
         storage.write(toAdd.stringToWrite());
     }
 }

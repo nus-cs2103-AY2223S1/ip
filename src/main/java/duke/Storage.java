@@ -66,7 +66,6 @@ public class Storage {
             FileWriter myWriter = new FileWriter(filePath,true);
             myWriter.write(text + "\n");
             myWriter.close();
-            System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();

@@ -4,6 +4,7 @@ import duke.models.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 
 /**
@@ -24,11 +25,30 @@ public class TaskList {
      * @param taskList List of existing tasks to be loaded
      */
     public TaskList(List<Task> taskList) {
-        tasks = taskList;
+        this.tasks = taskList;
     }
 
-    public void addTodo(Task t) {
+    public void addTask(Task t) {
         tasks.add(t);
+    }
+
+    public void deleteTask(int index) {
+        this.tasks.remove(index);
+    }
+
+    public String getAllTasks() {
+        String result = "";
+        ListIterator<Task> listIterator = tasks.listIterator();
+        while (listIterator.hasNext()) {
+            Task t = listIterator.next();
+            result += Constants.indent + listIterator.nextIndex() +
+                    ". " + t + "\n";
+        }
+        return result;
+    }
+
+    public int getSize() {
+        return tasks.size();
     }
 
 }
