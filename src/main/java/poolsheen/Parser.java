@@ -1,5 +1,6 @@
 package poolsheen;
 
+
 import java.util.ArrayList;
 
 import poolsheen.command.Command;
@@ -11,6 +12,8 @@ import poolsheen.command.ListCommand;
 import poolsheen.command.MarkCommand;
 import poolsheen.command.ToDoCommand;
 import poolsheen.command.UnmarkCommand;
+import poolsheen.command.FindCommand;
+
 
 /**
  * Represents a class that can parse strings into commands.
@@ -47,6 +50,8 @@ public class Parser {
             return new DeadlineCommand(arl);
         case "EVENT":
             return new EventCommand(arl);
+        case "FIND":
+            return new FindCommand(arl);
         default:
             throw new UnknownCommandException(String.join(" ", arl));
         }

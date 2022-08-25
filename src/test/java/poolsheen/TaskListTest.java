@@ -5,12 +5,17 @@ import org.junit.jupiter.api.Test;
 import poolsheen.task.Task;
 import java.util.ArrayList;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskListTest {
     public class ToDoStub extends Task {
         public ToDoStub() {
             super("desc", false);
+        }
+
+        public ToDoStub(String desc) {
+            super(desc, false);
         }
 
         //Code should not use this function
@@ -56,5 +61,29 @@ public class TaskListTest {
         tl.add(new ToDoStub());
         tl.deleteTask(1);
         assertEquals(0, tl.size());
+    }
+
+    @Test
+    public void find_twoSizeTaskList_success() {
+        TaskList tl = new TaskList(new ArrayList<Task>(100));
+        ToDoStub rb = new ToDoStub("read book");
+        ToDoStub bb = new ToDoStub("buy book");
+        ToDoStub gu = new ToDoStub("give up");
+        tl.add(rb);
+        tl.add(bb);
+        tl.add(gu);
+
+        TaskList tlFinal = new TaskList(new ArrayList<Task>(100));
+        tlFinal.add(rb);
+        tlFinal.add(bb);
+
+        assertArrayEquals(tlFinal.toArray(), tl.find("book").toArray());
+    }
+
+    @Test
+    public void find_zeroSizeTaskList_success() {
+        TaskList tl = new TaskList(new ArrayList<Task>(100));
+        TaskList tlFinal = new TaskList(new ArrayList<Task>(100));
+        assertArrayEquals(tlFinal.toArray(), tl.find("book").toArray());
     }
 }

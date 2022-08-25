@@ -69,6 +69,33 @@ public class TaskList {
      */
     public void deleteTask(int pos) {
         Task t = this.arl.get(pos - 1);
-        this.arl.remove(pos-1);
+        this.arl.remove(pos - 1);
+    }
+
+    /**
+     * Returns an Object array of all the tasks in the ArrayList.
+     *
+     * @return An object array.
+     */
+    public Object[] toArray() {
+        return this.arl.toArray();
+    }
+
+    /**
+     * Returns an ArrayList of tasks that matches the keyword given.
+     *
+     * @param keyword The keyword that is used to match the description of all tasks.
+     * @return An ArrayList of tasks whose descriptions match the keyword.
+     */
+    public TaskList find(String keyword) {
+        ArrayList<Task> finalArl = new ArrayList<>(100);
+        for (Task t : this.arl) {
+            for (String word : t.description.split(" ")) {
+                if (keyword.toUpperCase().equals(word.toUpperCase())) {
+                    finalArl.add(t);
+                }
+            }
+        }
+        return new TaskList(finalArl);
     }
 }
