@@ -53,6 +53,20 @@ public class Parser {
         return removeHeadingAndTailingWhiteSpaces(rawArgument);
     }
 
+    /**
+     *
+     *
+     *
+     *
+     *@param
+     *@param
+     *@param
+     *@param
+     *@param
+     *@return
+     *@throws
+     */
+
     public static LocalDateTime getByDate(String input)
             throws DukeCommandFormatException, DukeTaskDateTimeMissingException, DukeDateTimeFormatException {
         int indexOfDelimiter = input.indexOf(BY_DATE_DELIMITER);
@@ -66,6 +80,20 @@ public class Parser {
         }
         return getLocalDateTimeFromString(refinedDateString);
     }
+
+    /**
+     *
+     *
+     *
+     *
+     *@param
+     *@param
+     *@param
+     *@param
+     *@param
+     *@return
+     *@throws
+     */
 
     public static LocalDateTime getAtDate(String input)
             throws DukeCommandFormatException, DukeTaskDateTimeMissingException, DukeDateTimeFormatException {
@@ -112,6 +140,20 @@ public class Parser {
         }
         return taskIndex;
     }
+
+    /**
+     *
+     *
+     *
+     *
+     *@param
+     *@param
+     *@param
+     *@param
+     *@param
+     *@return
+     *@throws
+     */
 
     public static String removeHeadingAndTailingWhiteSpaces(String input) {
         int start = 0;

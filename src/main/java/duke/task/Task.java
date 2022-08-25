@@ -21,6 +21,20 @@ public abstract class Task {
 
     // TODO: Try to combine the string literals in line with duke.task.TaskType
 
+    /**
+     *
+     *
+     *
+     *
+     *@param
+     *@param
+     *@param
+     *@param
+     *@param
+     *@return
+     *@throws
+     */
+
     public static Task createFromCommand(String command)
             throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
             DukeDateTimeFormatException {
@@ -85,6 +99,20 @@ public abstract class Task {
     protected String getFileRepresentation(String label) {
         return getFileRepresentation(label, null);
     }
+
+    /**
+     *
+     *
+     *
+     *
+     *@param
+     *@param
+     *@param
+     *@param
+     *@param
+     *@return
+     *@throws
+     */
 
     protected String getFileRepresentation(String label, String dateTime) {
         String output = label
