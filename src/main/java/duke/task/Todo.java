@@ -11,7 +11,6 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
-
     @Override
     public String toStringForStorage() {
         return "T|" + super.toStringForStorage();
