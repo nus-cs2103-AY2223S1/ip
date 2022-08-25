@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents an ToDos task.
+ */
 public class ToDos extends Task {
 
     private static final String ID = "[T]";

@@ -9,6 +9,10 @@ import duke.storage.FileManager;
 import duke.storage.TaskRecords;
 import duke.ui.BotUI;
 
+/**
+ * Represents the main class of the duke bot program.
+ * A <code>Duke</code> object consists of BotUI and TaskRecords.
+ */
 public class Duke {
 
     private final BotUI ui;
@@ -45,7 +49,9 @@ public class Duke {
         System.out.print(ui.botDivider());
         System.out.println(ui.sayBye());
     }
-
+    /**
+     * Main method of the program.
+     */
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.runBot();

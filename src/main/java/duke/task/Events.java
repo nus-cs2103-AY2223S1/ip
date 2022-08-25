@@ -3,15 +3,34 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents an Event task.
+ * Contains LocalDateTime information.
+ */
 public class Events extends Task {
     private static final String ID = "[E]";
     private final LocalDateTime time;
 
+    /**
+     * Constructor of Events class.
+     * Allows the program to change isDone status and LocalDateTime of Events.
+     *
+     * @param detail String of detail extracted from user's raw input.
+     * @param isDone true/false of the task's done status.
+     * @param time LocalDateTime of the Events object.
+     */
     public Events(String detail, boolean isDone, LocalDateTime time) {
         super(detail, isDone);
         this.time = time;
     }
 
+    /**
+     * Constructor of Events class.
+     * isDone is set to false by default using super class constructor.
+     *
+     * @param detail String of detail extracted from user's raw input.
+     * @param time LocalDateTime of the Events object.
+     */
     public Events(String detail, LocalDateTime time) {
         super(detail);
         this.time = time;

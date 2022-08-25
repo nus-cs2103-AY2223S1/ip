@@ -13,7 +13,10 @@ import duke.task.Events;
 import duke.task.Task;
 import duke.task.ToDos;
 
-
+/**
+ * Deals with the saving and loading of TaskRecords data.
+ * Contains two read and write static method to perform saving and loading operation.
+ */
 
 public class FileManager {
 
@@ -22,6 +25,12 @@ public class FileManager {
             "CS2103", "ip", "src", "main", "java", "data", "duke.txt");
     private static final String SECTION_DIVIDER = " __ ";
 
+    /**
+     * Reads the data of TaskRecords saved from the previous duke operation at the start of duke bot operation.
+     *
+     * @return TaskRecords of the saved task list information.
+     * @throws FileNotFoundException - thrown if there is no data saved in the text file or the file does not exist.
+     */
     public static TaskRecords read() throws FileNotFoundException {
         TaskRecords savedList = new TaskRecords();
         File previousCache = new File(path.toUri());
@@ -44,6 +53,11 @@ public class FileManager {
         return savedList;
     }
 
+    /**
+     * Writes the data of TaskRecords to text file whenever changes is made.
+     *
+     * @throws IOException - thrown if the writing process has fail.
+     */
     public static void write(TaskRecords taskList) throws IOException {
         StringBuilder content = new StringBuilder();
         for (Task t : taskList.getList()) {
