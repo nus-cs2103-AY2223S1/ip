@@ -1,5 +1,9 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.ArrayList;
+import java.time.format.DateTimeFormatter;
+
 
 public class Duke {
     /**
@@ -84,13 +88,20 @@ public class Duke {
      * @param str The users input
      * @param arr The arraylist containing all the tasks
      */
-    public static void deadlineMessage(String str, ArrayList<Task> arr) throws DukeException{
+    public static void deadlineMessage(String str, ArrayList<Task> arr) throws DukeException, DateTimeParseException {
         if(str.length() > 9) {
             int sepPos = str.indexOf("/");
             if (sepPos != -1) {
                 String description = str.substring(9, sepPos);
                 String by = str.substring(sepPos + 4);
-                Deadline l = new Deadline(description, by);
+                DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                try {
+                    LocalDate.parse(by, format);
+                } catch (DateTimeParseException e) {
+                    System.out.println("Deadline format has to be in yyyy-MM-dd");
+                    return;
+                }
+                Deadline l = new Deadline(description, LocalDate.parse(by));
                 arr.add(counter, l);
                 counter++;
                 System.out.println("Got it. I've added this task:\n " + l +
