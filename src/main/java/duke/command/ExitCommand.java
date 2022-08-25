@@ -8,8 +8,6 @@ public class ExitCommand extends Command {
         super(command);
     }
 
-    private static final String COMMAND_ID = "exit";
-
     @Override
     public void execute(TaskRecords taskList, BotUI ui) {
 
