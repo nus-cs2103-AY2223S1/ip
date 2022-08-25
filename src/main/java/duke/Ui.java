@@ -28,6 +28,7 @@ public class Ui {
                         break;
                     // List out items
                     case "list":
+                        System.out.println("Here are the tasks in your list:");
                         System.out.println(itemList);
                         input = sc.nextLine();
                         break;
@@ -83,6 +84,10 @@ public class Ui {
                             itemList.addTask(toAdd);
                             input = sc.nextLine();
                         }
+                        break;
+                    case "find":
+                        itemList.findTask(Parser.getDescription(input));
+                        input = sc.nextLine();
                         break;
                     // unrecognised commands
                     default:
