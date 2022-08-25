@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Encapsulate a task that starts at a specific time and ends at a specific time.
+ */
 public class Event extends Task{
 
     protected String duration;

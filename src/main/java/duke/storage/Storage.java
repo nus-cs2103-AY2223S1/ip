@@ -11,8 +11,17 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Part of the chatbot that deals with reading and writing of task information in files.
+ */
 public class Storage {
 
+    /**
+     * Reads the file containing previously saved tasks and add them to the current task list of the chatbot.
+     * @param file The file containing previously saved tasks.
+     * @param tasks The TaskList object that contains the task list.
+     * @throws FileNotFoundException When the file of the previously saved tasks cannot be found.
+     */
     public void ReadFileContent(File file, TaskList tasks) throws FileNotFoundException {
         Scanner s = new Scanner(file);
         int curr = 0;
@@ -62,18 +71,23 @@ public class Storage {
 
     }
 
-    public void writeFileContent(String filePath, String textToWrite) throws IOException {
+
+    private void writeFileContent(String filePath, String textToWrite) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToWrite);
         fw.close();
     }
 
-    public void appendFileContent(String filePath, String textToAppend) throws IOException {
+    private void appendFileContent(String filePath, String textToAppend) throws IOException {
         FileWriter fw = new FileWriter(filePath, true);
         fw.write(textToAppend);
         fw.close();
     }
 
+    /**
+     * Saves the current task list to a text file that can be used in the future for reference.
+     * @param taskList The list containing the tasks that is to be saved.
+     */
     public void saveTaskToFile(ArrayList<Task> taskList) {
         try {
             for (int i = 0; i < taskList.size(); i++) {

@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-
+/**
+ * Encapsulate a task that needs to be done before a specific date/time.
+ */
 public class Deadline extends Task{
 
     protected LocalDate deadlineDate;
