@@ -13,26 +13,60 @@ public class Parser {
           return new ListCommand();
         case "mark":
           validateCommandHasNArguments(fullCommandArray, 1);
-          String markCommandArgument = fullCommandArray[1];
-          return new MarkCommand(parseArgumentToInt(markCommandArgument));
+          String markArgument = fullCommandArray[1];
+          return new MarkCommand(parseArgumentToInt(markArgument));
         case "unmark":
           validateCommandHasNArguments(fullCommandArray, 1);
-          String unmarkCommandArgument = fullCommandArray[1];
-          return new UnmarkCommand(parseArgumentToInt(unmarkCommandArgument));
+          String unmarkArgument = fullCommandArray[1];
+          return new UnmarkCommand(parseArgumentToInt(unmarkArgument));
         case "delete":
           validateCommandHasNArguments(fullCommandArray, 1);
-          String deleteCommandArgument = fullCommandArray[1];
-          return new DeleteCommand(parseArgumentToInt(deleteCommandArgument));
+          String deleteArgument = fullCommandArray[1];
+          return new DeleteCommand(parseArgumentToInt(deleteArgument));
+        case "todo":
+          validateCommandHasNArguments(fullCommandArray, 1);
+          String todoArgument = fullCommandArray[1];
+          return new TodoCommand(todoArgument);
+        case "deadline":
+          return parseDeadlineCommand(fullCommandArray);
+        case "event":
+          return parseEventCommand(fullCommandArray);
         default:
-          Task task = Task.createTask(inputArray);
-          taskList.addTask(task);
-          taskList.saveTaskList();
+          throw new CheeseException();
       }
-    } catch (NumberFormatException e) {
-      System.out.println("Cannot convert non-integer to integer.");
     } catch (CheeseException e) {
       System.out.println(e.getMessage());
     }
+  }
+
+  private static Command parseDeadlineCommand(String[] fullCommandArray) throws CheeseException {
+    validateCommandHasNArguments(fullCommandArray, 1);
+    String deadlineArgument = fullCommandArray[1];
+    if (deadlineArgument.indexOf("/by") == -1) {
+      throw new CheeseException("A deadline requires a /by flag.");
+    }
+    String[] deadlineArgumentArray = deadlineArgument.split("/by", 2);
+    if (deadlineArgumentArray[0].length() == 0 || deadlineArgumentArray[1].length() == 0) {
+      throw new CheeseException("A deadline requires both a description and deadline.");
+    }
+    String description = deadlineArgumentArray[0];
+    String deadline = deadlineArgumentArray[1];
+    return new DeadlineCommand(description, deadline);
+  }
+
+  private static Command parseEventCommand(String[] fullCommandArray) throws CheeseException {
+    validateCommandHasNArguments(fullCommandArray, 1);
+    String eventArgument = fullCommandArray[1];
+    if (eventArgument.indexOf("/at") == -1) {
+      throw new CheeseException("A deadline requires an /at flag.");
+    }
+    String[] eventArgumentArray = eventArgument.split("/at", 2);
+    if (eventArgumentArray[0].length() == 0 || eventArgumentArray[1].length() == 0) {
+      throw new CheeseException("An event requires both a description and event time.");
+    }
+    String description = eventArgumentArray[0];
+    String timeInterval = eventArgumentArray[1];
+    return new DeadlineCommand(description, timeInterval);
   }
 
   /**
@@ -55,16 +89,5 @@ public class Parser {
       throw new CheeseException("Cannot convert non-integer to integer.");
     }
     return parsedArgument;
-  }
-
-  private static Task getTaskFromList(String[] inputArray) throws CheeseException, NumberFormatException {
-    if (inputArray.length == 1 || inputArray[1].length() == 0) {
-      throw new CheeseException("Sowwy, the item number cannot be empty.");
-    }
-    int itemIdx = Integer.parseInt(inputArray[1]) - 1;
-    if (itemIdx < 0 || itemIdx >= Cheese.list.size()) {
-      throw new CheeseException("Item number is not in list range.");
-    }
-    return Cheese.list.get(itemIdx);
   }
 }

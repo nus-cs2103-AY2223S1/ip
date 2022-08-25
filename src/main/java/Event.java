@@ -5,6 +5,13 @@ public class Event extends Task {
   /** Time interval of Event */
   private LocalDateTime timeInterval;
 
+  public Event(String description, String timeInterval) {
+    super(description);
+    String inputPattern = "yyyy-dd-MM HH:mm";
+    DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputPattern);
+    this.timeInterval = LocalDateTime.parse(timeInterval, inputFormatter);
+  }
+
   /**
    * Constructor to create a new Event
    * 
@@ -16,14 +23,6 @@ public class Event extends Task {
     String inputPattern = "yyyy-dd-MM HH:mm";
     DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern(inputPattern);
     this.timeInterval = LocalDateTime.parse(timeInterval, inputFormatter);
-  }
-
-  public static Event createEvent(String description, String timeInterval) {
-    return new Event(false, description, timeInterval);
-  }
-
-  public static Event loadEvent(boolean isDone, String description, String timeInterval) {
-    return new Event(isDone, description, timeInterval);
   }
 
   @Override
