@@ -1,13 +1,23 @@
 package duke;
 import java.util.Scanner;
 
+/**
+ * Parse class that handles the string inputted by user
+ */
 public class Parser {
     private Duke duke;
 
+    /**
+     * Constructor for Parser Class
+     * @param duke The duke object the user is operating on
+     */
     public Parser(Duke duke) {
         this.duke = duke;
     }
 
+    /**
+     * A method that parses the various inputs inputted by user
+     */
     public void start() {
         Scanner input = new Scanner(System.in);
         String text = input.next();
@@ -43,27 +53,27 @@ public class Parser {
                     duke.printList();
                     break;
 
-                //Handle case when user wants to mark task
+                //Handle case when user wants to handleMark task
                 case "mark": {
                     //-1 to get index in 0 indexing
                     int index = input.nextInt() - 1;
-                    duke.mark(index);
+                    duke.handleMark(index);
                     break;
                 }
 
-                //Handle case when user wants to unmark task
+                //Handle case when user wants to handleUnmark task
                 case "unmark": {
                     //-1 to get index in 0 indexing
                     int index = input.nextInt() - 1;
-                    duke.unmark(index);
+                    duke.handleUnmark(index);
                     break;
                 }
 
-                //Handle case when user wants to delete task
+                //Handle case when user wants to handleDelete task
                 case "delete": {
                     //-1 to get in 0 indexing
                     int index = input.nextInt() - 1;
-                    duke.delete(index);
+                    duke.handleDelete(index);
                     break;
                 }
 

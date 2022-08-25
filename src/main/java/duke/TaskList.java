@@ -1,37 +1,65 @@
 package duke;
 import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * A TaskList class that represent the lists of tasks inputted by user
+ */
 public class TaskList {
     //ArrayList to store tasks
-    private List<Task> lst;
+    private ArrayList<Task> lst;
     //Constant string to represent a line break
     private final String LINE_BREAK = "____________________________________________________________";
 
+    /**
+     * Default constructor for TaskList class
+     */
     public TaskList() {
         this.lst = new ArrayList<>();
     }
-    public TaskList(List<Task> lst) {
+
+    /**
+     * Other constructor for TaskList class
+     * @param lst An ArrayList of the tasks inputted by user
+     */
+    public TaskList(ArrayList<Task> lst) {
         this.lst = lst;
     }
 
-    public List<Task> getTasks() {
+    /**
+     * A method that returns the list of tasks inputted by user in the form of an ArrayList
+     * @return An ArrayList of Task
+     */
+    public ArrayList<Task> getTasks() {
         return lst;
     }
 
+    /**
+     * A method that returns a specific task corresponding to the index specified
+     * @param i index of task in the ArrayList
+     * @return A Task object
+     */
     public Task getTask(int i) {
         return lst.get(i);
     }
 
+    /**
+     * A method that returns the number of tasks in the ArrayList (size of ArrayList)
+     * @return An integer representing the size of ArrayList
+     */
     public int getSize() {
         return lst.size();
     }
 
+    /**
+     * A method that adds the specified task into the ArrayList
+     * @param task Task object to be added to the ArrayList
+     */
     public void addTask(Task task) {
         lst.add(task);
     }
 
     /**
+     * A method that marks the task specified by the index
      * @param index An int representing the index of task to be marked
      * @throws DukeException
      */
@@ -46,6 +74,7 @@ public class TaskList {
     }
 
     /**
+     * A method that unmarks the task specified by the index
      * @param index An int representing the index of task to be unmarked
      * @throws DukeException
      */
@@ -60,6 +89,7 @@ public class TaskList {
     }
 
     /**
+     * A method that deletes the task specified by the index
      * @param index An int representing the index of task to be deleted
      * @throws DukeException
      */

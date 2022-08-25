@@ -4,19 +4,32 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Storage class that handle the saving and loading of tasks into/from a file respectively
+ */
 public class Storage {
     //File to store the list of tasks inputted by user
     private File listOfTasks;
 
+    /**
+     * Constructor for Storage class
+     * @param listOfTasks The file path to a file in String format
+     */
     public Storage(String listOfTasks) {
         this.listOfTasks = new File(listOfTasks);
     }
 
-    public List<Task> load() throws IOException, DukeException {
-        List<Task> lst = new ArrayList<>();
+    /**
+     * A method that does the loading of tasks from a file to an ArrayList
+     * @return An ArrayList of tasks loaded from previously saved file (if there is saved file) or a new ArrayList of
+     * tasks (if there is no saved file)
+     * @throws IOException
+     * @throws DukeException
+     */
+    public ArrayList<Task> load() throws IOException, DukeException {
+        ArrayList<Task> lst = new ArrayList<>();
         Scanner input = null;
         try {
             if (!listOfTasks.exists()) {
@@ -68,6 +81,10 @@ public class Storage {
         return lst;
     }
 
+    /**
+     * A method that does the saving of tasks from an ArrayList to a file
+     * @param tasklist A TaskList object that consists of the lists of tasks inputted by user
+     */
     public void save(TaskList tasklist) {
         try {
             FileWriter fw = new FileWriter(listOfTasks.getPath());

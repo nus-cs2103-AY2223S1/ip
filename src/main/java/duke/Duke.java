@@ -1,11 +1,18 @@
 package duke;
 import java.io.IOException;
 
+/**
+ * Duke is an interactive chatbot that keeps track of tasks inputted by user
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor of the Duke class
+     * @param filePath
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -33,6 +40,7 @@ public class Duke {
     }
 
     /**
+     * A method that calls TaskList and Ui objects to handle aTodo task inputted by user
      * @param tDescription A String of the description for the task
      * @throws DukeException
      */
@@ -49,6 +57,7 @@ public class Duke {
     }
 
     /**
+     * A method that calls TaskList and Ui objects to handle a Deadline task inputted by user
      * @param dDescription A String of the description for the task
      * @param dBy A String representing the deadline for the task
      */
@@ -61,6 +70,7 @@ public class Duke {
     }
 
     /**
+     * A method that calls TaskList and Ui objects to handle an Event task inputted by user
      * @param eDescription A String of the description for the task
      * @param eAt A String representing the day for the task
      */
@@ -72,25 +82,43 @@ public class Duke {
         storage.save(tasks);
     }
 
+    /**
+     * A method that calls Ui object to print the list of tasks
+     */
     public void printList() {
         ui.listTasks(tasks);
     }
 
-    public void mark(int index) throws DukeException {
+    /**
+     * A method that calls TaskList and Ui objects to handle the marking of a task
+     * @param index The index of the task to be marked
+     * @throws DukeException
+     */
+    public void handleMark(int index) throws DukeException {
         tasks.markTask(index);
         Task taskToBeMarked = tasks.getTask(index);
         ui.printMarkedTask(taskToBeMarked);
         storage.save(tasks);
     }
 
-    public void unmark(int index) throws DukeException {
+    /**
+     * A method that calls TaskList and Ui objects to handle the unmarking of a task
+     * @param index The index of the task to be unmarked
+     * @throws DukeException
+     */
+    public void handleUnmark(int index) throws DukeException {
         tasks.unmarkTask(index);
         Task taskToBeUnmarked = tasks.getTask(index);
         ui.printUnmarkedTask(taskToBeUnmarked);
         storage.save(tasks);
     }
 
-    public void delete(int index) throws DukeException {
+    /**
+     * A method that calls TaskList and Ui objects to handle the deleting of a task
+     * @param index The index of the task to be deleted
+     * @throws DukeException
+     */
+    public void handleDelete(int index) throws DukeException {
         Task taskToBeDeleted = tasks.deleteTask(index);
         int size = tasks.getSize();
         ui.printDelete(taskToBeDeleted, size);
