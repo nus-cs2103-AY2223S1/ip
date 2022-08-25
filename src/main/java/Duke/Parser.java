@@ -1,5 +1,6 @@
 package Duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 //making sense of the user command
@@ -25,6 +26,14 @@ public class Parser {
             } else if (strs.length == 2 && (strs[0].equals("delete"))) {
                 int index = Integer.parseInt(strs[1]) - 1;
                 tasks.delete(index);
+            } else if (strs.length == 2 && (strs[0].equals("find"))) {
+                ArrayList<Task> tempTasks = new ArrayList<>();
+                for (int i = 0; i < tasks.getSize(); i ++) {
+                    if (tasks.getTask(i).getTask().contains(strs[1])) {
+                        tempTasks.add(tasks.getTask(i));
+                    }
+                }
+                Ui.printFindTasks(tempTasks);
             } else {
                 try {
                     String[] details;
