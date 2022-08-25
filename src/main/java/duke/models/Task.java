@@ -1,4 +1,4 @@
-package models;
+package duke.models;
 
 /**
  * Task class with parameters of description and isDone state
@@ -36,6 +36,7 @@ public abstract class Task {
 
     public abstract String getSymbol();
     public abstract String getDescription();
+    public abstract String stringToWrite();
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
+package duke;
+
 /**
- * DukeException is to deal with errors such as incorrect inputs entered by the user.
+ * duke.DukeException is to deal with errors such as incorrect inputs entered by the user.
  */
 
 public class DukeException extends Exception {
