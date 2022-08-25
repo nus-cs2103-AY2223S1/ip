@@ -94,6 +94,24 @@ public class Ui {
     }
 
     /**
+     * Prints a message when the bot finds a task with a keyword.
+     */
+    public void find(TaskList tasks) {
+        System.out.println(line);
+        if (tasks.getNumberOfTasks() > 0) {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < tasks.getNumberOfTasks(); i++) {
+                int count = i + 1;
+                Task task = tasks.getTask(i);
+                System.out.println(count + "." + task.toString());
+            }
+        } else {
+            System.out.println("☹ OOPS!!! I'm sorry, but I can't find any tasks with that keyword :-(");
+        }
+        System.out.println(line);
+    }
+
+    /**
      * Prints a message when a user inputs a command that does not exist.
      */
     public void commandDoesNotExist() {

@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -28,6 +29,7 @@ public class Parser {
         UNMARK,
         DELETE,
         LIST,
+        FIND,
     }
 
     /** Enum class for the available types of tasks. */
@@ -58,7 +60,7 @@ public class Parser {
     public static boolean isCommand(String input) {
         return input.equals("bye") || input.equals("mark")
                 || input.equals("unmark") || input.equals("delete")
-                || input.equals("list");
+                || input.equals("list") || input.equals("find");
     }
 
     /**
@@ -90,6 +92,9 @@ public class Parser {
             return new UnmarkCommand(taskIndexToBeUnmarked);
         case LIST:
             return new ListCommand();
+        case FIND:
+            String keyword = input.split(" ")[1];
+            return new FindCommand(keyword);
         default:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -117,7 +122,6 @@ public class Parser {
             } catch (Exception e) {
                 throw new DukeException("☹ OOPS!!! Please specify what you want to do!");
             }
-            break;
         case EVENT:
             try {
                 String taskName = input.substring(input.indexOf(" ") + 1, input.indexOf("/") - 1);
@@ -141,6 +145,5 @@ public class Parser {
         default:
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
-        return null;
     }
 }
