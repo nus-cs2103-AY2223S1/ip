@@ -5,7 +5,18 @@ import ted.command.*;
 import ted.exception.TedException;
 import ted.task.*;
 
+/**
+ * Represents a parser for decoding user commands. <code>Parser</code> calls the
+ * correct <code>Command</code> according to the user input.
+ */
 public class Parser {
+    /**
+     * Returns a Command object based on the parsed user input command.
+     *
+     * @param command user input command.
+     * @return Command object to be executed by the bot.
+     * @throws TedException if user input command does not exist.
+     */
     public static Command parse(String command) throws TedException{
         Command c;
         String[] temp = command.split(" ", 2);
