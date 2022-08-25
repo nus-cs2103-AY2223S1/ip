@@ -14,6 +14,10 @@ public class Event extends Task {
     }
 
     public String getTask() {
-        return "[E] " + this.getStatusIcon() + this.getItem() + " (at: " + this.dateTime + ")";
+        return "[E] " + this.getStatusIcon() + " " + this.getItem() + " (at: " + this.dateTime + ")";
+    }
+
+    public String getFileLine() {
+        return "[E]" + "##" + this.getStatusIcon() + "##" + this.getItem() + "##" + this.dateTime;
     }
 }

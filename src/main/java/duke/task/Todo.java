@@ -8,6 +8,10 @@ public class Todo extends Task {
     }
 
     public String getTask() {
-        return "[T] " + this.getStatusIcon() + this.getItem();
+        return "[T] " + this.getStatusIcon() + " " + this.getItem();
+    }
+
+    public String getFileLine() {
+        return "[T]" + "##" + this.getStatusIcon() + "##" + this.getItem();
     }
 }

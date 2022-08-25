@@ -10,6 +10,6 @@ public class TodoTest {
         Todo todo = new Todo("hello");
 
 
-        assertEquals("[E] [ ] hello", todo.getTask());
+        assertEquals("[T] [ ] hello", todo.getTask());
     }
 }

@@ -9,7 +9,10 @@ public abstract class Task {
     public void setNotDone() {
         this.isDone = false;
     }
+
     public abstract String getTask();
+
+    public abstract String getFileLine();
 
     public void setItem(String item) {
         this.item = item;
@@ -20,6 +23,6 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "[X] " : "[ ] "); // mark done task with X
+        return (isDone ? "[X]" : "[ ]"); // mark done task with X
     }
 }
