@@ -18,12 +18,9 @@ public class Duke {
             File dataFolder = new File("data/");
             if (dataFolder.exists() && !dataFolder.isDirectory()) {
                 dataFolder.delete();
-                dataFolder.mkdir();
             }
+            dataFolder.mkdir();
             dataFile.createNewFile();
-            if (!dataFile.exists()) {
-                dataFile.createNewFile();
-            }
             Scanner scanner = new Scanner(dataFile);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

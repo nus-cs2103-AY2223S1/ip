@@ -18,6 +18,7 @@ bin/
 
 # Duke Storage
 /data/
+text-ui-test/data/
 
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
