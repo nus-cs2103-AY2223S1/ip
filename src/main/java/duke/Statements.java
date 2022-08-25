@@ -1,3 +1,5 @@
+package duke;
+
 public class Statements {
     public static void entryStatement() {
         System.out.println(" /\\_/\\");
