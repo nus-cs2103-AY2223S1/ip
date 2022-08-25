@@ -17,45 +17,53 @@ public class Storage {
 
     public List<Task> load() throws IOException, DukeException {
         List<Task> lst = new ArrayList<>();
+        Scanner input = null;
         try {
-            if (listOfTasks.exists()) {
-                Scanner input = new Scanner(listOfTasks);
-                while (input.hasNextLine()) {
-                    String taskInString = input.nextLine();
-                    String[] taskInArray = taskInString.split(" \\| ");
-                    String taskType = taskInArray[0];
-                    switch (taskType) {
-                        case "T" : {
-                            Task task= new Todo(taskInArray[2]);
-                            lst.add(task);
-                            if (taskInArray[1].equals("1")) {
-                                task.markAsDone();
-                            }
-                            break;
-                        }
-                        case "D" : {
-                            Task task = new Deadline(taskInArray[2], taskInArray[3]);
-                            lst.add(task);
-                            if (taskInArray[1].equals("1")) {
-                                task.markAsDone();
-                            }
-                            break;
-                        }
-                        case "E" : {
-                            Task task = new Event(taskInArray[2], taskInArray[3]);
-                            lst.add(task);
-                            if (taskInArray[1].equals("1")) {
-                                task.markAsDone();
-                            }
-                            break;
-                        }
-                        default:
-                            throw new DukeException("OOPS!I cannot find a valid task type!");
-                    }
+            if (!listOfTasks.exists()) {
+                System.out.println("OOPS! You do not have a file. Let me create one for you!");
+                try {
+                    listOfTasks.getParentFile().mkdirs();
+                    listOfTasks.createNewFile();
+                } catch (IOException e) {
+                    System.out.println("OOPS! I have problem creating directory!");
                 }
             }
+            input = new Scanner(listOfTasks);
         } catch (FileNotFoundException e) {
-            throw new DukeException("OOPS! I cannot find your file!");
+            throw new DukeException("OOPS! I cannot read your file!");
+        }
+        while (input.hasNextLine()) {
+            String taskInString = input.nextLine();
+            String[] taskInArray = taskInString.split(" \\| ");
+            String taskType = taskInArray[0];
+            switch (taskType) {
+                case "T" : {
+                    Task task= new Todo(taskInArray[2]);
+                    lst.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                    break;
+                }
+                case "D" : {
+                    Task task = new Deadline(taskInArray[2], taskInArray[3]);
+                    lst.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                    break;
+                }
+                case "E" : {
+                    Task task = new Event(taskInArray[2], taskInArray[3]);
+                    lst.add(task);
+                    if (taskInArray[1].equals("1")) {
+                        task.markAsDone();
+                    }
+                    break;
+                }
+                default:
+                    throw new DukeException("OOPS!I cannot find a valid task type!");
+            }
         }
         return lst;
     }

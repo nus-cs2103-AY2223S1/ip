@@ -42,10 +42,6 @@ public class TaskList {
         } else {
             Task taskToBeMarked = lst.get(index);
             taskToBeMarked.markAsDone();
-            System.out.printf(LINE_BREAK
-                            + "\n\tNice! I've marked this task as done:\n\t%s\n"
-                            + LINE_BREAK + "\n",
-                    taskToBeMarked);
         }
     }
 
@@ -60,10 +56,6 @@ public class TaskList {
         } else {
             Task taskToBeUnmarked = lst.get(index);
             taskToBeUnmarked.markAsUndone();
-            System.out.printf(LINE_BREAK
-                            + "\n\tOkay, I've marked this task as not done yet:\n\t%s\n"
-                            + LINE_BREAK + "\n",
-                    taskToBeUnmarked);
         }
     }
 
@@ -71,18 +63,14 @@ public class TaskList {
      * @param index An int representing the index of task to be deleted
      * @throws DukeException
      */
-    public void deleteTask(int index) throws DukeException {
+    public Task deleteTask(int index) throws DukeException {
         int size = lst.size();
         if (index >= size || index < 0) {
             throw new DukeException("OOPS! The index of the task does not exists.");
         } else {
             Task taskToBeDeleted = lst.get(index);
             lst.remove(index);
-            int newSize = lst.size();
-            System.out.printf(LINE_BREAK
-                            + "\n\tNoted. I've removed this task:\n\t%s\n" + "\tNow you have %d tasks in the list.\n"
-                            + LINE_BREAK + "\n",
-                    taskToBeDeleted, newSize);
+            return taskToBeDeleted;
         }
     }
 }
