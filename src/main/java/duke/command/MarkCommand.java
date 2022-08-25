@@ -1,7 +1,14 @@
-public class DeleteCommand extends Command {
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
+public class MarkCommand extends Command {
     int index;
 
-    public DeleteCommand(int index) {
+    public MarkCommand(int index) {
         this.index = index;
     }
 
@@ -10,10 +17,9 @@ public class DeleteCommand extends Command {
         if (index >= tasks.size()) {
             throw new DukeException("It seems that there is no corresponding task.");
         }
-        ui.deleteMessage(tasks, index, false);
-        tasks.remove(index);
+        tasks.get(index).setStatus(true);
         storage.writeFile(tasks, ui);
-        ui.deleteMessage(tasks, index, true);
+        ui.markMessage(tasks, index);
     }
 
     @Override

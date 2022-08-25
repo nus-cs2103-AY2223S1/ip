@@ -1,3 +1,8 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.ToDo;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -47,22 +52,6 @@ public class Storage {
         }
     }
 
-//    public String readFile() {
-//        initialiseFile();
-//        String output = "";
-//
-//        try {
-//            Scanner scanner = new Scanner(file);
-//            while (scanner.hasNextLine()) {
-//                output += scanner.nextLine() + System.lineSeparator();
-//            }
-//        } catch (IOException exception) {
-//            Duke.say(exception.getMessage(), true, true);
-//        }
-//
-//        return output;
-//    }
-
     public void writeFile(TaskList list, Ui ui) {
         initialiseFile(ui);
 
@@ -71,12 +60,12 @@ public class Storage {
             for (int i = 0; i < list.size(); i++) {
                 Task task = list.get(i);
                 if (task instanceof ToDo) {
-                    writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.description + "\n");
+                    writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.getDescription() + "\n");
                 }
                 else if (task instanceof Deadline) {
                     Deadline deadline = (Deadline) task;
-                    writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.description
-                            + " | " + deadline.by.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\n");
+                    writer.write(task.getType() + " | " + task.getStatusInt() + " | " + task.getDescription()
+                            + " | " + deadline.getBy().format(DateTimeFormatter.ofPattern("MMM d yyyy")) + "\n");
                 }
             }
             writer.close();
