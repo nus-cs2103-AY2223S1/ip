@@ -29,6 +29,14 @@ public class Chacha {
                 task.markAsDone();
                 System.out.println("Nice! I've marked this task as done:\n" + task.toString());
 
+            } else if (s.contains("delete")) {
+                String[] split = s.split("\\s+");
+                Task task = taskList.get(Integer.valueOf(split[1]) - 1);
+                System.out.println("Noted. I've removed this task:");
+                System.out.println(task.toString());
+                taskList.remove(Integer.valueOf(split[1]) - 1); 
+                System.out.println("Now you have " + taskList.size() + " tasks in the list.");
+                
             } else if (s.contains("deadline")) {
                 try {
                     String date = s.substring(s.indexOf("/by ") + 4);
@@ -47,7 +55,7 @@ public class Chacha {
             } else if (s.contains("todo")) {
                 try {
                     String description = s.substring(s.indexOf("todo ") + 5);
-                    description.charAt(6);
+                    System.out.println("heree");
                     description.trim();
                     Todo todo = new Todo(description);
                     taskList.add(todo);  
