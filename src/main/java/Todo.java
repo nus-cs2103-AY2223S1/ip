@@ -4,14 +4,17 @@ class Todo extends Task {
     }
 
     static Todo createTodo(ParsedData data) throws EmptyDescriptionException {
-        /*
-         * TODO
-         * Add error checking here
-         */
         if (data.description.length() == 0) {
             throw new EmptyDescriptionException("todo");
         }
         return new Todo(data.description);
+    }
+
+    static Todo createTodo(String description) throws CorruptedLineException {
+        if (description.length() == 0)
+            throw new CorruptedLineException();
+
+        return new Todo(description);
     }
 
     @Override
@@ -21,6 +24,8 @@ class Todo extends Task {
 
     @Override
     public ParsedData convertToParseData() {
-        return new ParsedData("T", description);
+        return new ParsedData(completed ? "Tc" : "Tx", description);
     }
+
+
 }

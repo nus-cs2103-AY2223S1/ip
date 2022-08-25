@@ -18,6 +18,13 @@ class Event extends Task {
         return new Event(data.description, data.additionalInfo.substring(3));
     }
 
+    static Event createEvent(String description, String period) throws CorruptedLineException {
+        if (description.length() == 0 || period.length() == 0)
+            throw new CorruptedLineException();
+
+        return new Event(description, period);
+    }
+
     @Override
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), period);
@@ -25,6 +32,6 @@ class Event extends Task {
 
     @Override
     public ParsedData convertToParseData() {
-        return new ParsedData("E", description, period);
+        return new ParsedData(completed ? "Ec" : "Ex", description, period);
     }
 }

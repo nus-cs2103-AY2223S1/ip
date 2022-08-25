@@ -1,6 +1,6 @@
 abstract class Task {
     protected final String description;
-    private boolean completed;
+    protected boolean completed;
 
     Task(String description) {
         this.description = description;

@@ -17,6 +17,13 @@ class Deadline extends Task {
         return new Deadline(data.description, data.additionalInfo.substring(3));
     }
 
+    static Deadline createDeadline(String description, String deadline) throws CorruptedLineException {
+        if (description.length() == 0 || deadline.length() == 0)
+            throw new CorruptedLineException();
+
+        return new Deadline(description, deadline);
+    }
+
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), deadline);
@@ -24,6 +31,6 @@ class Deadline extends Task {
 
     @Override
     public ParsedData convertToParseData() {
-        return new ParsedData("D", description, deadline);
+        return new ParsedData(completed ? "Dc" : "Dx", description, deadline);
     }
 }
