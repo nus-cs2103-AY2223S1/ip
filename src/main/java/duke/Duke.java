@@ -3,7 +3,6 @@ package duke;
 import duke.command.Command;
 
 public class Duke {
-    static String path2 = "data/duke.txt";
 
     private Storage storage;
     private TaskList tasks;
@@ -27,6 +26,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke(path2).run();
+        new Duke("data/duke.txt").run();
     }
 }
