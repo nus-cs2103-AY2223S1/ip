@@ -45,12 +45,6 @@ public class Duke {
                 ui.showLine();
             }
         }
-        try {
-            storage.save();
-        } catch (DukeException e) {
-            ui.showErrorMessage(e.getMessage());
-        }
-        ui.showGoodbyeMessage();
     }
 
     public static void main(String[] args) throws DukeException {

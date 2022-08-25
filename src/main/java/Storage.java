@@ -90,8 +90,8 @@ public class Storage {
     public void save() throws DukeException {
         try {
             FileWriter writer = new FileWriter(dukeFile);
-            for (int i = 0; i < tasks.taskList.size(); i++) {
-                Task task = tasks.taskList.get(i);
+            for (int i = 0; i < tasks.getTaskList().size(); i++) {
+                Task task = tasks.getTask(i);
                 writer.write(task.toString() + "\n");
             }
             writer.close();

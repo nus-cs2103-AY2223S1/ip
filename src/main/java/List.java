@@ -2,7 +2,7 @@ import java.util.*;
 
 public class List {
 
-    public ArrayList<Task> taskList = new ArrayList<>();
+    private ArrayList<Task> taskList = new ArrayList<>();
 
     public List() {}
 
@@ -17,11 +17,19 @@ public class List {
         return this.taskList.get(taskNumber);
     }
 
+    public ArrayList<Task> getTaskList() {
+        return taskList;
+    }
+
     public void deleteTask(int taskNumber) throws DukeException {
         if (taskNumber < 0 || taskNumber > this.taskList.size() - 1) {
             throw new DukeException("You cannot delete what you don't have from the beginning, auch!\n");
         }
         this.taskList.remove(taskNumber);
+    }
+
+    public int numberOfTasks() {
+        return taskList.size();
     }
 
 }

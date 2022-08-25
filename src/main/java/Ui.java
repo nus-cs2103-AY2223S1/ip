@@ -82,7 +82,7 @@ public class Ui {
         return String.format(MESSAGE_INDEXED_LIST_ITEM, visibleIndex, taskItem);
     }
 
-    private void showToUserAsIndexedList(ArrayList<Task> taskItems) {
+    public void showToUserAsIndexedList(ArrayList<Task> taskItems) {
         showToUser(getIndexedListForViewing(taskItems));
     }
 }
