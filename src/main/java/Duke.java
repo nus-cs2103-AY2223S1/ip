@@ -1,4 +1,5 @@
-import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,7 +56,12 @@ public class Duke {
                     markAsUndone(taskNum);
                 } else if (input.startsWith("deadline ")) {
                     String[] deadline = input.replace("deadline ", "").split(" /by ");
-                    addDeadline(deadline[0], deadline[1]);
+                    if (isDate(deadline[1])) {
+                        LocalDateTime byDate = parseDate(deadline[1]);
+                        addDeadline(deadline[0], byDate);
+                    } else {
+                        addDeadline(deadline[0], deadline[1]);
+                    }
                 } else if (input.startsWith("todo ")) {
                     String todo = input.replace("todo ", "");
                     validateTodo(todo);
@@ -78,6 +84,26 @@ public class Duke {
         }
 
         exitMessage();
+    }
+
+    private boolean isDate(String input) {
+        // Assume date is in the format 2/12/2019 1800
+        String[] splitInput = input.split("/");
+        if (splitInput.length != 3)  {
+            return false;
+        }
+
+        String[] yearAndTime = splitInput[2].split(" ");
+        if (yearAndTime.length != 2) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private LocalDateTime parseDate(String date) throws DukeException {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+        return LocalDateTime.parse(date, dateFormatter);
     }
 
     public void load() throws DukeException, FileNotFoundException {
@@ -182,6 +208,16 @@ public class Duke {
 
     public static void addDeadline(String description, String by) {
         Deadline newDeadline = new Deadline(description, by);
+        tasks.add(newDeadline);
+        linePrint();
+        System.out.println("\tGot it. I've added this task:\n\t" +
+                newDeadline.toString() +
+                "\n\tNow you have " + tasks.size() + " tasks in the list.");
+        linePrint();
+    }
+
+    public void addDeadline(String description, LocalDateTime byDate) {
+        Deadline newDeadline = new Deadline(description, byDate);
         tasks.add(newDeadline);
         linePrint();
         System.out.println("\tGot it. I've added this task:\n\t" +
