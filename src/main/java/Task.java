@@ -1,12 +1,10 @@
-import java.time.LocalDate;
-
 public abstract class Task {
     protected final String description;
     protected boolean isDone;
 
-    public Task(String description, boolean isDone) {
+    public Task(String description) {
         this.description = description;
-        this.isDone = isDone;
+        this.isDone = false;
     }
 
     public String getStatusIcon() {
@@ -33,7 +31,7 @@ public abstract class Task {
                 throw new DukeException();
             }
         }
-        return new ToDo(input.substring(5), false);
+        return new ToDo(input.substring(5));
     }
 
     public static Task createEvent(String input) throws DukeException {
@@ -47,9 +45,7 @@ public abstract class Task {
         } else if (slash == -1) {
             throw new DukeException("Please type the at in this format: /at dateTime");
         }
-        return new Event(input.substring(6, slash - 1),
-                false,
-                LocalDate.parse(input.substring(slash + 4)));
+        return new Event(input.substring(6, slash - 1), input.substring(slash + 4));
     }
 
     public static Task createDeadline(String input) throws DukeException {
@@ -63,9 +59,7 @@ public abstract class Task {
         } else if (slash == -1) {
             throw new DukeException("Please type the at in this format: /by dateTime");
         }
-        return new Deadline(input.substring(9, slash - 1),
-                false,
-                LocalDate.parse(input.substring(slash + 4)));
+        return new Deadline(input.substring(9, slash - 1), input.substring(slash + 4));
     }
 
     public static Task createTask(String input) throws DukeException {
@@ -82,21 +76,6 @@ public abstract class Task {
             }
         }
         return task;
-    }
-
-    public abstract String getSaveFormat();
-
-    public static Task fileLineToTask(String fileLine) {
-        String delimiter = " \\| ";
-        String[] strings = fileLine.split(delimiter, 3);
-        boolean isDone = strings[1].equals("1");
-        if (strings[0].equals("T")) {
-            return new ToDo(strings[2], isDone);
-        } else if (strings[0].equals("D")) {
-            return new Deadline(strings[2], isDone, LocalDate.parse(strings[3]));
-        } else {
-            return new Event(strings[2], isDone, LocalDate.parse(strings[3]));
-        }
     }
 
     @Override
