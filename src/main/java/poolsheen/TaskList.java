@@ -1,8 +1,7 @@
 package poolsheen;
 
-import poolsheen.task.Task;
-
 import java.util.ArrayList;
+import poolsheen.task.Task;
 
 /**
  * Class that encapsulates all the tasks Poolsheen remembers.
