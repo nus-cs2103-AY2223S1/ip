@@ -46,6 +46,9 @@ public class Duke {
                     input = sc.nextLine();
                     continue;
                 case "MARK":
+                    if (inputArray.length < 2) {
+                        throw new ArrayIndexOutOfBoundsException("You did not state a task number!" + LINE);
+                    }
                     int taskNum = Integer.parseInt(inputArray[1]) - 1;
                     Task taskChosen = listOfInputs.get(taskNum);
                     taskChosen.markAsDone();
@@ -54,6 +57,9 @@ public class Duke {
                     input = sc.nextLine();
                     continue;
                 case "UNMARK":
+                    if (inputArray.length < 2) {
+                        throw new ArrayIndexOutOfBoundsException("You did not state a task number!" + LINE);
+                    }
                     taskNum = Integer.parseInt(inputArray[1]) - 1;
                     taskChosen = listOfInputs.get(taskNum);
                     taskChosen.markAsUndone();
@@ -101,6 +107,9 @@ public class Duke {
                 throw new DukeException("I'm sorry, but I don't know what that means" + LINE);
             } catch (DukeException err) {
                 System.out.println(LINE + "\n:( OOPS! " + err.getMessage());
+                input = sc.nextLine();
+            } catch (ArrayIndexOutOfBoundsException err) {
+                System.out.println(LINE + "\nSlow down! " + err.getMessage());
                 input = sc.nextLine();
             }
         }
