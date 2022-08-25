@@ -126,6 +126,7 @@ public class Storage {
                 }
                 tasks.add(event);
                 break;
+            default:
             }
         }
 
@@ -164,6 +165,7 @@ public class Storage {
                 String str2 = String.format("%s | %s", descriptors1[0], descriptors1[1]);
                 output.append(str2).append(System.lineSeparator());
                 break;
+            default:
             }
             fw.write(output.toString());
             fw.flush();

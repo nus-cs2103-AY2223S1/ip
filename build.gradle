@@ -1,7 +1,12 @@
 plugins {
     id 'java'
+    id 'checkstyle'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '5.1.0'
+}
+
+checkstyle {
+    toolVersion = '10.2'
 }
 
 repositories {
@@ -28,11 +33,11 @@ test {
 }
 
 application {
-    mainClassName = "seedu.duke.Duke"
+    mainClassName = "skyler.Skyler"
 }
 
 shadowJar {
-    archiveBaseName = "duke"
+    archiveBaseName = "skyler"
     archiveClassifier = null
 }
 

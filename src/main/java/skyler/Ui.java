@@ -14,7 +14,11 @@ public class Ui {
         System.out.println("Bye! See you again soon!");
     }
 
-    public void showEmptyDescriptionError() { System.out.println("Oh no! Cannot insert task without description."); }
+    public void showEmptyDescriptionError() {
+        System.out.println("Oh no! Cannot insert task without description.");
+    }
 
-    public void showTaskNotRecognisedError() { System.out.println("Oops! I'm sorry, but I don't know what that means."); }
+    public void showTaskNotRecognisedError() {
+        System.out.println("Oops! I'm sorry, but I don't know what that means.");
+    }
 }
