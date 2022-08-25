@@ -2,8 +2,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class Duke {
 
@@ -152,9 +156,10 @@ public class Duke {
                     if (input.equals("")) {
                         throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
                     } else {
-                        String[] parts = input.split("/");
-                        String by = parts[1].replace("by ", "");
-                        Task t = new Deadline(parts[0], by);
+                        String[] parts = input.split("/by");
+                        String by = parts[1];
+                        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        Task t = new Deadline(parts[0], LocalDateTime.parse(by.trim(), dateFormat));
                         items.add(t);
                         System.out.println("Got it. I've added this task:");
                         System.out.println(t);
@@ -165,9 +170,10 @@ public class Duke {
                     if (input.equals("")) {
                         throw new DukeException("OOPS!!! The description of a event cannot be empty.");
                     } else {
-                        String[] parts = input.split("/");
-                        String by = parts[1].replace("at ", "");
-                        Task t = new Event(parts[0], by);
+                        String[] parts = input.split("/at");
+                        String by = parts[1];
+                        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        Task t = new Event(parts[0], LocalDateTime.parse(by.trim(), dateFormat));
                         items.add(t);
                         System.out.println("Got it. I've added this task:");
                         System.out.println(t);
