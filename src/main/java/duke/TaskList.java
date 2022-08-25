@@ -48,6 +48,22 @@ public class TaskList {
         taskList.remove(index);
     }
 
+    public static void find(String prefix) {
+        System.out.println("Here are the matching tasks in your list:");
+
+        for (int i = 0; i < taskList.size(); i++) {
+            Task curr = taskList.get(i);
+            if (curr == null) {
+                continue;
+            }
+
+            if (curr.startsWith(prefix)) {
+                System.out.println(i + 1 + "." + curr.toString());
+            }
+        }
+    }
+
+
     public static ArrayList<Task> getTaskList() {
         return taskList;
     }

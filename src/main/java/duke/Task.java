@@ -29,6 +29,10 @@ public class Task {
         this.isDone = false;
     }
 
+    public boolean startsWith(String prefix) {
+        return description.startsWith(prefix);
+    }
+
     @Override
     public String toString() {
         if (this.isDone) {

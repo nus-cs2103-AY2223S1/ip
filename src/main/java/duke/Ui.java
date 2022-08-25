@@ -80,6 +80,13 @@ public class Ui {
         System.out.println(error);
     }
 
+    public static void printFind(String prefix) {
+        printSeparator();
+        TaskList.find(prefix);
+        printSeparator();
+    }
+
+
     public static String getCommand() {
         return myScanner.nextLine().trim();
     }
