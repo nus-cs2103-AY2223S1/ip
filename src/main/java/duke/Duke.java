@@ -1,19 +1,17 @@
 package duke;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
+
 import duke.command.Command;
 import duke.command.CommandException;
 import duke.command.CommandFactory;
 import duke.command.handler.CommandHandler;
 import duke.command.response.CommandResponse;
-
 import duke.data.TaskList;
 import duke.data.storage.Storage;
 import duke.data.storage.StorageException;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
-import java.util.Scanner;
 
 public class Duke {
 
@@ -58,10 +56,10 @@ public class Duke {
                     commandStr);
                 CommandResponse commandResponse = commandHandler.run(taskList);
 
-                ui.replyUser(commandResponse.responseStr);
-                terminate = commandResponse.triggerTerminate;
+                ui.replyUser(commandResponse.getResponseStr());
+                terminate = commandResponse.isTriggerTerminate();
 
-                if (commandResponse.triggerSave) {
+                if (commandResponse.isTriggerSave()) {
                     taskListStorage.save(taskList);
                 }
             } catch (CommandException | StorageException error) {

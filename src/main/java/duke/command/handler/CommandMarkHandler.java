@@ -1,15 +1,14 @@
 package duke.command.handler;
 
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 import duke.command.CommandException;
 import duke.command.response.CommandResponse;
 import duke.command.response.UpdateTaskResponse;
 import duke.command.response.UpdateTaskResponse.UpdateType;
-
 import duke.data.TaskList;
 import duke.data.tasks.Task;
-
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
 
 public class CommandMarkHandler extends CommandHandler {
 

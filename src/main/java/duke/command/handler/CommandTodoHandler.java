@@ -1,14 +1,13 @@
 package duke.command.handler;
 
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 import duke.command.CommandException;
 import duke.command.response.AddTaskResponse;
 import duke.command.response.CommandResponse;
-
 import duke.data.TaskList;
 import duke.data.tasks.TaskTodo;
-
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
 
 public class CommandTodoHandler extends CommandHandler {
 

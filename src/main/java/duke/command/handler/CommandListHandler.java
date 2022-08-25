@@ -1,13 +1,12 @@
 package duke.command.handler;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Pattern;
+
 import duke.command.CommandException;
 import duke.command.response.CommandResponse;
-
 import duke.data.TaskList;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.util.regex.Pattern;
 
 public class CommandListHandler extends CommandHandler {
 

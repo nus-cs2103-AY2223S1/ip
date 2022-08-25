@@ -1,14 +1,13 @@
 package duke.command.handler;
 
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 import duke.command.CommandException;
 import duke.command.response.AddTaskResponse;
 import duke.command.response.CommandResponse;
-
 import duke.data.TaskList;
 import duke.data.tasks.TaskEvent;
-
-import java.util.regex.MatchResult;
-import java.util.regex.Pattern;
 
 public class CommandEventHandler extends CommandHandler {
 
@@ -20,7 +19,7 @@ public class CommandEventHandler extends CommandHandler {
         "\t- event e1 /at 2022-01-01 18:00"
     );
     private static final Pattern commandRegexPattern = Pattern.compile(
-        String.format("^event (.+) /at %s", commandDateTimeRegexStr));
+        String.format("^event (.+) /at %s", COMMAND_DATETIME_REGEX_STRING));
 
     public CommandEventHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
