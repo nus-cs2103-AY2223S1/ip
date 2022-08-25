@@ -1,7 +1,7 @@
 /**
  * Parser
  */
-class Parser {
+final class Parser {
     private static final String SPACE = " +";
     private static final String SEP = " +/";
     private static final String SAVE_SEP = " <<<< ";
@@ -24,6 +24,22 @@ class Parser {
         }
 
         return new ParsedData(command, parsedTmp[0], parsedTmp[1]);
+    }
+
+    static Task makeTaskFromParsed(ParsedData data) throws DukeException {
+        switch (data.command) {
+            case "T":
+                return Todo.createTodo(data);
+
+            case "D":
+                return Deadline.createDeadline(data);
+
+            case "E":
+                return Event.createEvent(data);
+
+            default:
+                throw new UnknownCommandException();
+        }
     }
 
     static ParsedData parseDataFromLine(String savedLine) throws CorruptedLineException {

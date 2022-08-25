@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class Duke {
     private static final String LOGO = "Welcome to\n"
             + " ____        _        \n"
@@ -24,21 +21,15 @@ public class Duke {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
-    private static final String EMPTY_LIST = "The current list is empty!";
 
     private DukeIO userIO;
-    private Parser parser;
-
-    private List<Task> tasks;
-    private int taskCompleted;
+    private TaskList tasks;
 
     Duke() {
         userIO = new DukeIO();
-        tasks = new ArrayList<>();
-        parser = new Parser();
+        tasks = new TaskList();
         userIO.printTask(LOGO, 2);
         userIO.printTask(INTRO, 3);
-        taskCompleted = 0;
     }
 
     boolean executeCommand(ParsedData data) throws DukeException {
@@ -49,7 +40,7 @@ public class Duke {
                 return false;
 
             case "list":
-                listAllTasks();
+                tasks.displayList(userIO);
                 return true;
 
             case "mark":
@@ -66,20 +57,20 @@ public class Duke {
 
             case "todo":
                 task = Todo.createTodo(data);
-                tasks.add(task);
-                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                tasks.addEntry(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.getSize()));
                 return true;
 
             case "deadline":
                 task = Deadline.createDeadline(data);
-                tasks.add(task);
-                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                tasks.addEntry(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.getSize()));
                 return true;
 
             case "event":
                 task = Event.createEvent(data);
-                tasks.add(task);
-                userIO.printTask(String.format(ADD_TASK, task, tasks.size()));
+                tasks.addEntry(task);
+                userIO.printTask(String.format(ADD_TASK, task, tasks.getSize()));
                 return true;
 
             default:
@@ -95,12 +86,8 @@ public class Duke {
             throw new InvalidValueException(data.command);
         }
 
-        if (index >= tasks.size() || index < 0) {
-            throw new OutOfBoundException();
-        }
-
-        Task task = tasks.remove(index);
-        userIO.printTask(String.format(DELETE_TASK, task, tasks.size()));
+        Task task = tasks.deleteEntry(index);
+        userIO.printTask(String.format(DELETE_TASK, task, tasks.getSize()));
     }
 
     void updateCompletionStatus(ParsedData data, boolean mark) throws DukeException {
@@ -111,22 +98,12 @@ public class Duke {
             throw new InvalidValueException(data.command);
         }
 
-        if (index >= tasks.size() || index < 0) {
-            throw new OutOfBoundException();
-        }
-
         Task task = tasks.get(index);
         if (!mark) {
-            if (task.isCompleted())
-                taskCompleted--;
-
             task.unmark();
             userIO.printTask(String.format(UNMARKED, task));
             return;
         }
-
-        if (!task.isCompleted())
-            taskCompleted++;
 
         task.mark();
         userIO.printTask(String.format(MARKED, task));
@@ -134,7 +111,7 @@ public class Duke {
 
     boolean handleInput() {
         String txt = userIO.readLine();
-        ParsedData data = parser.parse(txt);
+        ParsedData data = Parser.parse(txt);
         boolean continueProgram = false;
         try {
             continueProgram |= executeCommand(data);
@@ -144,18 +121,6 @@ public class Duke {
         }
 
         return continueProgram;
-    }
-
-    void listAllTasks() {
-        if (tasks.size() == 0) {
-            userIO.printTask(EMPTY_LIST);
-            return;
-        }
-        userIO.printLine();
-        for (int i = 0; i < tasks.size(); ++i) {
-            userIO.printTask(String.format("%d. %s", i + 1, tasks.get(i)), 2);
-        }
-        userIO.printLine();
     }
 
     public static void main(String[] args) {

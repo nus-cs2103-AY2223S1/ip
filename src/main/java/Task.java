@@ -1,5 +1,5 @@
-class Task {
-    private final String description;
+abstract class Task {
+    protected final String description;
     private boolean completed;
 
     Task(String description) {
@@ -23,4 +23,6 @@ class Task {
     public String toString() {
         return String.format("[%s] %s", (completed) ? "X" : " ", description);
     }
+
+    abstract public ParsedData convertToParseData();
 }

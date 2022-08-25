@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String DEFAULT_SAVE_PATH = "SavedData.duke";
+    private static final String DEFAULT_SAVE_PATH = "data/SavedData.duke";
     private String filePath;
     private File file;
 
@@ -28,22 +28,41 @@ public class Storage {
         return new Storage(newFile);
     }
 
-    List<ParsedData> readFile() throws FileNotFoundException {
-        List<ParsedData> ret = new ArrayList<>();
-            Scanner sc = new Scanner(file);
-            String line;
-            while (sc.hasNextLine()) {
-                line = sc.nextLine();
-                try {
-                    ret.add(Parser.parseDataFromLine(line));
-                } catch (CorruptedLineException e) {
-                    // TODO print err
-                }
+    List<Task> readFile() throws FileNotFoundException {
+        List<Task> ret = new ArrayList<>();
+        List<Integer> corruptedLines = new ArrayList<>();
+        Scanner sc = new Scanner(file);
+        String line;
+        int lineNum = 0;
+        ParsedData tmpData;
+        while (sc.hasNextLine()) {
+            line = sc.nextLine();
+            lineNum++;
+            try {
+                tmpData = Parser.parseDataFromLine(line);
+                ret.add(Parser.makeTaskFromParsed(tmpData));
+            } catch (DukeException e) {
+                corruptedLines.add(lineNum);
             }
+        }
+        sc.close();
         return ret;
     }
 
+    void saveData(ParsedData[] dataList) throws IOException {
+        StringBuilder sb = new StringBuilder();
+        for (ParsedData pd : dataList) {
+            sb.append(pd.getSavedString());
+            sb.append('\n');
+        }
+        FileWriter fw = new FileWriter(file);
+        fw.write(sb.toString());
+        fw.close();
+    }    
 
-
-    
+    void saveTask(Task task) throws IOException {
+        FileWriter fw = new FileWriter(file);
+        fw.append(String.format("%s%n", task.convertToParseData().getSavedString()));
+        fw.close();
+    }
 }
