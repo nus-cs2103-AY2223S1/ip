@@ -34,14 +34,7 @@ public class Duke {
     private static final String dataFileErrorMessage    = "There appears to be an issue retrieving your previous records";
     private static final ArrayList<Task> tasks = new ArrayList<>();
 
-    private static final Map<String, Function<String[], Task>> taskMaker = Map.of(
-            "todo"
-            , (input) -> new TodoTask(input[1])
-            , "deadline"
-            , (input) -> new DeadlineTask(input[1], input[2])
-            , "event"
-            , (input) -> new EventTask(input[1], input[2])
-            );
+
     private static final Map<String, Function<Integer, Integer>> taskOperations = Map.of(
             "mark"
             , (input) -> {
@@ -95,9 +88,9 @@ public class Duke {
                     } catch (NumberFormatException e) {
                         System.out.println(invalidInputMessage);
                     }
-                } else if (taskMaker.containsKey(inputSplit[0])) {
+                } else if (TaskMaker.isMakeTaskCmd(inputSplit[0])) {
                     try {
-                        Task newTask = taskMaker.get(inputSplit[0]).apply(inputSplit);
+                        Task newTask = TaskMaker.makeTask(inputSplit);
                         tasks.add(newTask);
                         appendTaskToDisk(newTask);
                         System.out.println(addTaskMessage + newTask);
