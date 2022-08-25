@@ -13,7 +13,7 @@ public class Poolsheen {
         new Poolsheen(SAVE_FILE_PATH).run();
     }
 
-    private static final String SAVE_FILE_PATH = "src/main/java/poolsheen/SAVE.TXT";
+    private static final String SAVE_FILE_PATH = "SAVE.TXT";
 
     /** Whether if this poolsheen object has stopped running */
     private boolean hasExited;

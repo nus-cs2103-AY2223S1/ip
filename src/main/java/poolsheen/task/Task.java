@@ -20,6 +20,7 @@ public abstract class Task {
 
     /**
      * Returns the status of the task.
+     *
      * @return A string of either "X" or "-".
      */
     public String getStatusIcon() {
