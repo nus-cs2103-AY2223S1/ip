@@ -1,14 +1,36 @@
 package scottie.tasks;
 
+/**
+ * Encapsulates a regular task with no extra information.
+ */
 public class Todo extends Task {
+    /**
+     * Constructs a Todo with the given description.
+     * The Todo defaults to being not done.
+     *
+     * @param description The description of this Todo.
+     */
     public Todo(String description) {
         this(description, false);
     }
 
+    /**
+     * Constructs a Todo with the given description and isDone status.
+     *
+     * @param description The description of this Todo.
+     * @param isDone Whether this Todo is done.
+     */
     private Todo(String description, boolean isDone) {
         super(description, isDone);
     }
 
+    /**
+     * Returns a Todo constructed based on the data in the provided string.
+     *
+     * @param encodedString The string containing the data for the Todo.
+     * @return The constructed Todo.
+     * @throws InvalidTaskDataException If the string is not formatted correctly.
+     */
     static Todo fromEncodedString(String encodedString) throws InvalidTaskDataException {
         String[] splitTaskData = encodedString.split("\\|");
         if (splitTaskData.length < 3) {
@@ -19,6 +41,9 @@ public class Todo extends Task {
         return new Todo(description, isDone);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     String toEncodedString() {
         return String.format("T|%s", super.toEncodedString());
