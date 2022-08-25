@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
-    private static final String DEFAULT_SAVE_PATH = "data/SavedData.duke";
+    private static final String DEFAULT_SAVE_PATH = "SavedData.duke";
     private File file;
 
     Storage(File file) {
@@ -54,7 +54,7 @@ public class Storage {
         FileWriter fw = new FileWriter(file);
         fw.write(sb.toString());
         fw.close();
-    }    
+    }
 
     void saveTasks(TaskList tl) throws IOException {
         saveData(tl.getParsedData());
