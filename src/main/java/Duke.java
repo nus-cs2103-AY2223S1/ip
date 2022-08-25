@@ -47,7 +47,12 @@ public class Duke {
                 if (splitTask[0].equals("T")) {
                     task = new Todo(splitTask[2]);
                 } else if (splitTask[0].equals("D")) {
-                    task = new Deadline(splitTask[2], splitTask[3]);
+                    if (DateParser.isDateValid(splitTask[2])) {
+                        task = new Deadline(splitTask[2], DateParser.convertToLocalDate(splitTask[2]));
+                    } else {
+                        System.out.println("OOPS!!! Look like your date format is incorrect");
+                        continue;
+                    }
                 } else {
                     task = new Event(splitTask[2], splitTask[3]);
                 }

@@ -15,6 +15,6 @@ public class Deadline extends Task {
 
     @Override
     public String toMemoryString() {
-        return "D | " + super.toMemoryString() + " | " + this.by;
+        return "D | " + super.toMemoryString() + " | " + DateParser.convertDateToString(date);
     }
 }
