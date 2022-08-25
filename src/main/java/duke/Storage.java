@@ -1,6 +1,16 @@
 package duke;
 
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -11,6 +21,7 @@ public class Storage {
 
     private static final String DIRECTORY_NAME = "SavedData";
     private static final String FILE_NAME = "SavedData/SaveData.txt";
+    private static final String CSV_LOCATION = "SavedData/Save.txt";
 
     /**
      * Takes in a list of items
@@ -19,11 +30,23 @@ public class Storage {
      */
         public static void save(List<Task> saveItems) {
         try {
-            FileOutputStream fos = new FileOutputStream(FILE_NAME);
+            FileWriter csvWriter = new FileWriter(CSV_LOCATION, false);
+
+            for (Task t: saveItems) {
+                String s = t.savableString();
+                csvWriter.write(s + "\n");
+            }
+            csvWriter.flush();
+            csvWriter.close();
+
+
+
+
+/*            FileOutputStream fos = new FileOutputStream(FILE_NAME);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(saveItems);
             fos.close();
-            oos.close();
+            oos.close();*/
         } catch (FileNotFoundException e) {
             System.out.println("Cannot save, File not found");
         } catch (IOException e) {
@@ -43,6 +66,12 @@ public class Storage {
         try {
             File directory = new File(DIRECTORY_NAME);
             directory.mkdir();
+            //Make CSV
+            File csvCreate = new File(CSV_LOCATION);
+            boolean createNewCSV = csvCreate.createNewFile();
+            if (createNewCSV) {
+                System.out.println("CSV doesn't exist, creating one");
+            }
             File f = new File(FILE_NAME);
             boolean createNewSaveFile = f.createNewFile();
             if (createNewSaveFile) {
@@ -56,24 +85,46 @@ public class Storage {
 
         try {
 
-            FileInputStream fis = new FileInputStream(FILE_NAME);
+            String line = "";
+            BufferedReader bf = new BufferedReader(new FileReader(CSV_LOCATION));
+            ArrayList<Task> readTaskList = new ArrayList<>();
+            while ((line = bf.readLine()) != null) {
+                String[] values = line.split("//");
+                System.out.println(values[0]);
+                if (values[0].equals("T")) {
+                    readTaskList.add(Todo.readTask(values));
+                } else if (values[0].equals("E")) {
+                    readTaskList.add(Event.readTask(values));
+                } else {
+                    readTaskList.add(Deadline.readTask(values));
+                }
+            }
+            return readTaskList;
+
+
+
+
+
+
+/*            FileInputStream fis = new FileInputStream(FILE_NAME);
             ObjectInputStream ois = new ObjectInputStream(fis);
             ArrayList<Task> readItems = (ArrayList<Task>) ois.readObject();
             ois.close();
             fis.close();
-            return readItems;
+            return readItems;*/
 
 
         } catch (FileNotFoundException e) {
             return new ArrayList<>(); //empty Task list for initial initialization
         } catch (IOException e) {
             return new ArrayList<>();
-        } catch (ClassNotFoundException e) {
+        } /**catch (ClassNotFoundException e) {
             System.out.println("Class not found");
             e.printStackTrace();
         }
-        return null;
+        return null; */
     }
+
 
     public static TaskList load() {
         List<Task> currItems = readItems();

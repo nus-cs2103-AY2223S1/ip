@@ -11,13 +11,37 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 public class Deadline extends Task {
     protected LocalDate by;
+    private String unformattedDate;
     private static final String TYPE = "[D]";
-
 
     public Deadline(String description, String notFormattedDate) {
         super(description);
+        this.unformattedDate = notFormattedDate;
         by = LocalDate.parse(notFormattedDate);
     }
+
+    public Deadline(boolean isDone, String description, String unformattedDate) {
+        super(isDone, description);
+        this.unformattedDate = unformattedDate;
+        by = LocalDate.parse(unformattedDate);
+    }
+
+
+    public static Deadline readTask(String[] values) {
+        boolean isDone = values[1].equals("0") ? true : false;
+        String description = values[2];
+        String unformattedDate = values[3];
+        return new Deadline(isDone, description, unformattedDate);
+
+    }
+
+    @Override
+    public String savableString() {
+        return "D" + super.savableString() + "//" + unformattedDate;
+    }
+
+
+
 
 
     private String customFormatter(LocalDate ld) {

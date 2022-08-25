@@ -45,9 +45,9 @@ public class DialogueBox extends HBox {
         circle.setCenterY(50);
         circle.setRadius(60);
         displayPicture.setClip(circle);
-        dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 0;");
-        dialog.setPadding(new Insets(15));
-        dialog.setFont(Font.font("Courier New", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 12));
+        dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 10;");
+        dialog.setPadding(new Insets(8));
+        dialog.setFont(Font.font("Courier New", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 10);
 
 
         dialog.setText(text);
@@ -67,8 +67,8 @@ public class DialogueBox extends HBox {
         circle.setCenterY(50);
         circle.setRadius(60);
         displayPicture.setClip(circle);
-        dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 0;");
-        dialog.setPadding(new Insets(15));
+        dialog.setStyle("-fx-background-color: #00ffc4;" + "-fx-background-radius: 10;");
+        dialog.setPadding(new Insets(8));
         dialog.setFont(Font.font("Comic Sans MS", FontWeight.SEMI_BOLD, FontPosture.REGULAR, 13));
     }
 

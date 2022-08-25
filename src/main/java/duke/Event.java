@@ -7,13 +7,34 @@ import java.time.temporal.ChronoUnit;
 public class Event extends Task {
 
     private static final String TYPE = "[E]";
-    protected LocalDate by;
+    protected LocalDate at;
+    private String unformattedDate;
 
     public Event(String description, String unformattedDate) {
         super(description);
-        by = LocalDate.parse(unformattedDate); //TODO: figure out how to parse multiple types
+        this.unformattedDate = unformattedDate;
+        this.at = LocalDate.parse(unformattedDate); //TODO: figure out how to parse multiple types
     }
 
+    public Event(boolean isDone, String description, String unformattedDate) {
+        super(isDone, description);
+        this.unformattedDate = unformattedDate;
+        this.at = LocalDate.parse(unformattedDate);
+    }
+
+
+    public static Event readTask(String[] values) {
+        boolean isDone = values[1].equals("0") ? true : false;
+        String description = values[2];
+        String unformattedDate = values[3];
+        return new Event(isDone, description, unformattedDate);
+
+    }
+
+    @Override
+    public String savableString() {
+        return "E" + super.savableString() + "//" + unformattedDate;
+    }
 
     /**
      * Formats the data nicely using the LocalData library
@@ -22,6 +43,7 @@ public class Event extends Task {
      * @return Event
      */
 
+
     public String customFormatter(LocalDate ld) {
         return ld.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
@@ -29,6 +51,6 @@ public class Event extends Task {
     @Override
     public String toString() {
 
-        return TYPE + super.toString() + "(at: " + customFormatter(by) + ")";
+        return TYPE + super.toString() + "(at: " + customFormatter(at) + ")";
     }
 }

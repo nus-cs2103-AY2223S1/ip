@@ -9,6 +9,11 @@ public class Task implements Serializable {
         this.isDone = false;
     }
 
+    public Task(boolean isDone, String description) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
@@ -23,6 +28,25 @@ public class Task implements Serializable {
 
     public String fullStatusIcon() {
         return "[" + getStatusIcon() + "]";
+    }
+
+    public static Task readTask(String[] values) {
+        boolean isDone = values[1].equals("0") ? true : false;
+        String description = values[2];
+        return new Task(isDone, description);
+
+    }
+
+    /**
+     * Converts the task into a string, seperated by "//" that is savable
+     * @return
+     */
+    public String savableString() {
+        String savedString = "";
+        savedString += isDone ? "//0" : "//1";
+        savedString += "//" + description;
+        return savedString;
+
     }
 
     public String getDescription() {
