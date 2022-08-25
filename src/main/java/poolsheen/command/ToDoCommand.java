@@ -1,6 +1,7 @@
 package poolsheen.command;
 
 import java.util.ArrayList;
+
 import poolsheen.IncompleteCommandException;
 import poolsheen.Storage;
 import poolsheen.TaskList;
@@ -19,7 +20,8 @@ public class ToDoCommand extends Command{
     @Override
     public void execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty()) {
-            throw new IncompleteCommandException(String.join(" ", rest), "todo", "The description of a todo cannot be empty");
+            throw new IncompleteCommandException(String.join(" ", rest),
+                    "todo", "The description of a todo cannot be empty");
         } else {
             String descTD = String.join(" ", rest);
             ToDo t = new ToDo(descTD, false);

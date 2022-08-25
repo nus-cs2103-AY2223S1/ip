@@ -1,6 +1,7 @@
 package poolsheen.command;
 
 import java.util.ArrayList;
+
 import poolsheen.IncompleteCommandException;
 import poolsheen.Storage;
 import poolsheen.task.Task;
@@ -19,7 +20,8 @@ public class UnmarkCommand extends Command{
     @Override
     public void execute(TaskList tl, Ui ui, Storage storage) {
         if (rest.isEmpty() || rest.size() != 1) {
-            throw new IncompleteCommandException(String.join(" ", rest), "unmark", "Please enter 1 appropriate integer");
+            throw new IncompleteCommandException(String.join(" ", rest),
+                    "unmark", "Please enter 1 appropriate integer");
         } else {
             int pos = java.lang.Integer.parseInt(rest.get(0));
             Task t = tl.get(pos - 1);

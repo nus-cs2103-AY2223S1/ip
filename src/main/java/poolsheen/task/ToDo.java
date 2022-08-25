@@ -15,7 +15,7 @@ public class ToDo extends Task {
 
     @Override
     public String[] toArr() {
-        return new String[]{"T", this.getStatusIcon(), this.description};
+        return new String[] {"T", this.getStatusIcon(), this.description};
     }
 
     @Override

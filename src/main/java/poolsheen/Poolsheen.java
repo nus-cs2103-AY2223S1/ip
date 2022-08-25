@@ -1,6 +1,7 @@
 package poolsheen;
 
 import java.io.IOException;
+
 import poolsheen.command.Command;
 
 /**
@@ -65,11 +66,14 @@ public class Poolsheen {
             } catch (IncompleteCommandException e) {
                 ui.showError(e.toString(), "IncompleteCommandException");
             } catch (IndexOutOfBoundsException e) {
-                ui.showError("Poolsheen thinks no task has this position.", "IndexOutOfBoundsException");
+                ui.showError("Poolsheen thinks no task has this position.",
+                        "IndexOutOfBoundsException");
             } catch (NumberFormatException e) {
-                ui.showError("Poolsheen believes this command needs an integer.", "NumberFormatException");
+                ui.showError("Poolsheen believes this command needs an integer.",
+                        "NumberFormatException");
             } catch(IllegalArgumentException e) {
-                ui.showError("Poolsheen has never seen this command and is confused.", "IllegalArgumentException");
+                ui.showError("Poolsheen has never seen this command and is confused.",
+                        "IllegalArgumentException");
             }  catch (Exception e) {
                 System.out.println("An unexpected error has occurred and the program will end.");
                 System.out.println("Error is: " + e.toString());

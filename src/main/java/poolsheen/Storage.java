@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.Scanner;
+
 import poolsheen.task.Task;
 import poolsheen.task.Event;
 import poolsheen.task.Deadline;
@@ -58,7 +60,7 @@ public class Storage {
                 for (String str : arr) {
                     arl.add(str);
                 }
-                Predicate<String> pred = (x) -> x.equals("");
+                Predicate<String> pred = x -> x.equals("");
                 arl.removeIf(pred);
                 //Uncomment to see how the file contents are parsed as arrays.
 //                System.out.println(arl.toString());

@@ -2,6 +2,7 @@ package poolsheen.task;
 
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
+
 import poolsheen.IncompleteCommandException;
 
 /**
@@ -20,7 +21,8 @@ public class Deadline extends Task {
         //Ensure that the time input is proper.
         String[] arr = time.split("-");
         if (arr.length != 3) {
-            throw new IncompleteCommandException(description, "Deadline", "Enter an appropriate date and time format");
+            throw new IncompleteCommandException(description,
+                    "Deadline", "Enter an appropriate date and time format");
         }
         for (String s : arr) {
             Integer.parseInt(s);
@@ -30,12 +32,12 @@ public class Deadline extends Task {
 
     @Override
     public String[] toArr() {
-        return new String[]{"D", this.getStatusIcon(), this.description, this.time.toString()};
+        return new String[] {"D", this.getStatusIcon(), this.description, this.time.toString()};
     }
 
     @Override
     public String toString() {
-        return "[D] " + super.toString() + " (by: " +
-                this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return "[D] " + super.toString() + " (by: "
+                + this.time.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

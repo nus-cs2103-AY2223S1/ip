@@ -1,6 +1,7 @@
 package poolsheen.command;
 
 import java.util.ArrayList;
+
 import poolsheen.IncompleteCommandException;
 import poolsheen.Storage;
 import poolsheen.TaskList;
@@ -20,7 +21,8 @@ public class ListCommand extends Command{
         if (rest.isEmpty()) {
             ui.displayList(tl);
         } else {
-            throw new IncompleteCommandException(String.join(" ", rest), "bye", "Were you trying to enter 'list'?");
+            throw new IncompleteCommandException(String.join(" ", rest),
+                    "bye", "Were you trying to enter 'list'?");
         }
     }
 }
