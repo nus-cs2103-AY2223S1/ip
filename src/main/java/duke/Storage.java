@@ -12,14 +12,27 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Storage loads and saves data from a specific path.
+ */
 public class Storage {
     protected File file;
 
+    /**
+     * Creates a new Storage from the file path.
+     * @param filePath The path to the file that data will be stored in.
+     * @throws DukeException
+     */
     public Storage(String filePath) throws DukeException {
         if (filePath.isEmpty()) throw new DukeException("\u2639 OOPS!!! File path cannot be empty.");
         this.file = new File(filePath);
     }
 
+    /**
+     * Loads data from the savefile.
+     * @return List of tasks.
+     * @throws DukeException
+     */
     public TaskList getData() throws DukeException {
         TaskList tasks = new TaskList();
         Scanner sc;
@@ -47,7 +60,7 @@ public class Storage {
                     throw new DukeException("\u2639 OOPS!!! Invalid task type: %s", type);
                 }
                 if (status.equals("1")) {
-                    task.markAsDone();;
+                    task.markAsDone();
                 } else if (!status.equals("0")) {
                     throw new DukeException("\u2639 OOPS!!! Invalid task status: %s", status);
                 }
@@ -61,6 +74,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves data into the savefile.
+     * @param tasks List of tasks.
+     * @throws DukeException
+     */
     public void saveData(TaskList tasks) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(file);

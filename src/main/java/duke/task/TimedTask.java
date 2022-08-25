@@ -8,15 +8,29 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Abstract class for all types of tasks with a specific time.
+ */
 public abstract class TimedTask extends Task {
     public static String format = "dd/MM/yyyy HH:mm";
     private LocalDateTime time;
 
+    /**
+     * Creates a new TimedTask.
+     * @param description Task description.
+     * @param rawDateTime The date and time of the task.
+     * @throws DukeException
+     */
     public TimedTask(String description, String rawDateTime) throws DukeException {
         super(description);
         this.time = convertRawTime(rawDateTime);
     }
 
+    /**
+     * Sets a new datetime format for existing and future tasks to follow.
+     * @param format A String representing the datetime format. Must be valid.
+     * @throws DukeException
+     */
     public static void setFormat(String format) throws DukeException {
         if (format.isEmpty()) throw new DukeException("\u2639 OOPS!!! Format cannot be blank.");
         try {
@@ -27,14 +41,28 @@ public abstract class TimedTask extends Task {
         TimedTask.format = format;
     }
     
+    /**
+     * Outputs time of the task.
+     * @return time.
+     */
     public LocalDateTime getTime() {
         return time;
     }
 
+    /**
+     * Outputs a String representation of the time of the task. 
+     * @return String representation of time.
+     */
     public String getFormattedTime() {
         return time.format(DateTimeFormatter.ofPattern(format));
     }
-
+    
+    /**
+     * Converts raw datetime from String to LocalDateTime. Raw datetime must be valid.
+     * @param rawDateTime Raw datetime as a String.
+     * @return Time of the task as a LocalDateTime.
+     * @throws DukeException
+     */
     public LocalDateTime convertRawTime(String rawDateTime) throws DukeException {
         LocalDateTime time;
         try {
