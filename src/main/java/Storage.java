@@ -16,14 +16,12 @@ public class Storage {
 
     static Storage createStorage(String path) throws IOException {
         File newFile = new File(path);
-        newFile.mkdirs();
         newFile.createNewFile();
         return new Storage(newFile);
     }
 
     static Storage createStorage() throws IOException {
         File newFile = new File(DEFAULT_SAVE_PATH);
-        newFile.mkdirs();
         newFile.createNewFile();
         return new Storage(newFile);
     }
