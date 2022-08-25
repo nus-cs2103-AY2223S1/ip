@@ -8,7 +8,7 @@ import duke.task.Task;
 import java.time.LocalDateTime;
 
 public class DeadlineCommand extends AddCommand {
-    private LocalDateTime time;
+    private final LocalDateTime time;
 
     protected DeadlineCommand(String msg, LocalDateTime time) {
         super(Action.DEADLINE, msg);

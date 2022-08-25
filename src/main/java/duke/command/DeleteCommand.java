@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.task.Task;
 
 public class DeleteCommand extends Command {
-    private int idTask;
+    private final int idTask;
 
     protected DeleteCommand(int idTask) {
         super(Action.DELETE);

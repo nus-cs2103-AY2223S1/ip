@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.task.Task;
 
 public class UnmarkCommand extends Command {
-    private int idTask;
+    private final int idTask;
 
     protected UnmarkCommand(int idTask) {
         super(Action.UNMARK);

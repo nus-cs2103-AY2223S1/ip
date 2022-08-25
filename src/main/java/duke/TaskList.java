@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 
 public class TaskList implements Savable<TaskList> {
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private final ArrayList<Task> tasks = new ArrayList<>();
 
     public boolean add(Task task) {
         return tasks.add(task);

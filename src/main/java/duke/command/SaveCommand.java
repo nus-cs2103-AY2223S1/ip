@@ -32,9 +32,6 @@ public class SaveCommand extends Command {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof SaveCommand) {
-            return true;
-        }
-        return false;
+        return obj instanceof SaveCommand;
     }
 }

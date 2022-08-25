@@ -23,8 +23,8 @@ public enum Action {
     //    Level_7
     SAVE, READ;
 
-    private static HashMap<Action, String> actionFormatMap = new HashMap<>();
-    private static HashMap<String, Action> stringActionMap = new HashMap<>();
+    private static final HashMap<Action, String> actionFormatMap = new HashMap<>();
+    private static final HashMap<String, Action> stringActionMap = new HashMap<>();
 
     static {
         HashMap<Action, String> map = actionFormatMap;

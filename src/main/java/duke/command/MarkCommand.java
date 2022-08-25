@@ -6,7 +6,7 @@ import duke.TaskList;
 import duke.task.Task;
 
 public class MarkCommand extends Command {
-    private int idTask;
+    private final int idTask;
 
     protected MarkCommand(int idTask) {
         super(Action.MARK);

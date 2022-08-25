@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 import java.util.Scanner;
 
 public class Storage {
-    private Path path;
+    private final Path path;
 
     public Storage(String path) {
         this.path = Paths.get(path);

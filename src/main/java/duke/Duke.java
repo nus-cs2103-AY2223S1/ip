@@ -11,9 +11,9 @@ import java.util.function.Consumer;
 public class Duke {
     private final HashMap<Action, Consumer<Command>> actionConsumerMap = new HashMap<>();
     private boolean isTerminated;
-    private duke.MessagePrinter messagePrinter;
-    private TaskList tasks;
-    private Storage storage;
+    private final duke.MessagePrinter messagePrinter;
+    private final TaskList tasks;
+    private final Storage storage;
 
     public Duke(String storagePath) {
         this.tasks = new TaskList();

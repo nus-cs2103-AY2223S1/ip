@@ -30,9 +30,6 @@ public class ExitCommand extends Command {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof ExitCommand) {
-            return true;
-        }
-        return false;
+        return obj instanceof ExitCommand;
     }
 }

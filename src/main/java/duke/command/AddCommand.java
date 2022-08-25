@@ -11,6 +11,7 @@ public abstract class AddCommand extends Command {
     public String getMsg() {
         return this.msg;
     }
+
     @Override
     public boolean isTerminated() {
         return false;
