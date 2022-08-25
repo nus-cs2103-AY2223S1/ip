@@ -66,11 +66,12 @@ public class Storage {
 
     public void createFile() throws DukeException {
         try {
-            if (!file.createNewFile()) {
-                throw new DukeException("File already exist.");
-            }
+            file.getParentFile().mkdirs();
+            file.createNewFile();
         } catch (IOException e) {
             throw new DukeException("An error occurred when creating new file.");
+        } catch (SecurityException e) {
+            throw new DukeException("Duke does not have access to write to file.");
         }
     }
 
