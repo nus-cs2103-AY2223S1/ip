@@ -16,15 +16,6 @@ public class TaskList {
         this.tasks = tasks;
     }
 
-    public void printTasks() {
-        System.out.println("Your tasks:");
-        for (Task task : tasks) {
-            int taskIndex = tasks.indexOf(task) + 1;
-            String taskString = String.format("%d. %s", taskIndex, task);
-            System.out.println(taskString);
-        }
-    }
-
     /**
      * Adds a task to the task list.
      *
