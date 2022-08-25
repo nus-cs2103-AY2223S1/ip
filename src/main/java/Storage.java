@@ -1,3 +1,5 @@
+import TaskTypes.Task;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,11 +17,8 @@ public class Storage {
     }
 
     public void save(ArrayList<Task> tasks) throws IOException {
-        if (file.createNewFile()) {
-            System.out.println("file created");
-        } else {
-            System.out.println("File already exists");
-        }
+
+        file.createNewFile();
 
         FileWriter fileWriter = new FileWriter(this.path);
         for (Task task : tasks) {
@@ -32,11 +31,7 @@ public class Storage {
         ArrayList<Task> tasks = new ArrayList<>();
         Parser parser = new Parser();
 
-        if (file.createNewFile()) {
-            System.out.println("file created");
-        } else {
-            System.out.println("File already exists");
-        }
+        file.createNewFile();
 
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {

@@ -1,5 +1,12 @@
+import TaskTypes.Deadline;
+import TaskTypes.Event;
+import TaskTypes.Task;
+import TaskTypes.ToDo;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -82,11 +89,16 @@ public class Duke {
                         String command = String.join(" ", inputArray.subList(1, inputArray.size()));
                         String[] commandArray = command.split(" /at ");
 
+                        String dateString = commandArray[1];
+
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
+
                         if (commandArray.length < 2) {
                             throw new DukeException("An event must at least have a description and date!");
                         }
 
-                        Event newTask = new Event(commandArray[0], commandArray[1]);
+                        Event newTask = new Event(commandArray[0], dateTime);
                         tasks.add(newTask);
 
                         printAddTask(newTask);
@@ -95,12 +107,18 @@ public class Duke {
                     case DEADLINE: {
                         String command = String.join(" ", inputArray.subList(1, inputArray.size()));
                         String[] commandArray = command.split(" /by ");
+                        // must check if /by is given
+
+                        String dateString = commandArray[1];
+
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+                        LocalDateTime dateTime = LocalDateTime.parse(dateString, formatter);
 
                         if (commandArray.length < 2) {
                             throw new DukeException("A deadline must at least have a description and date!");
                         }
 
-                        Deadline newTask = new Deadline(commandArray[0], commandArray[1]);
+                        Deadline newTask = new Deadline(commandArray[0], dateTime);
                         tasks.add(newTask);
 
                         printAddTask(newTask);
@@ -111,8 +129,9 @@ public class Duke {
                     }
                 }
                 storage.save(tasks);
-            } catch (DukeException e) {
-                System.out.println(e);
+
+            } catch (Exception e) {
+                System.out.println(new DukeException(e.getMessage()));
             }
         }
     }
@@ -169,7 +188,7 @@ public class Duke {
             System.out.println(String.format("  Now you have %d tasks in the list", tasks.size()));
             System.out.println("  _______________\n");
         } catch (Exception e) {
-            throw new DukeException(String.format("Task number %d not found", taskNum));
+            throw new DukeException(String.format("TaskTypes.Task number %d not found", taskNum));
         }
     }
 
@@ -179,7 +198,7 @@ public class Duke {
         try {
             task = tasks.get(taskNum);
         } catch (Exception e) {
-            throw new DukeException("Task number is incorrectly provided");
+            throw new DukeException("TaskTypes.Task number is incorrectly provided");
         }
 
         return task;
