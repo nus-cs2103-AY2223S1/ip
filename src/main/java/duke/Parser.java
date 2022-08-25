@@ -4,6 +4,9 @@ import duke.command.*;
 
 import java.util.Arrays;
 
+/**
+ * Parser parses and helps to make sense of user input.
+ */
 public class Parser {
     private enum Commands {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
@@ -11,6 +14,12 @@ public class Parser {
 
     private final static String INDENTATION = "   ";
 
+    /**
+     * Returns a command to carry out based on the user input.
+     * @param fullCommand user input.
+     * @return Command to carry out.
+     * @throws DukeException
+     */
     public static Command parse(String fullCommand) throws DukeException {
         String[] userInput = fullCommand.trim().split(" ");
         Commands command = Commands.valueOf(userInput[0].toUpperCase());

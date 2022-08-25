@@ -1,20 +1,32 @@
 package duke.task;
 
-
+/**
+ * ToDo is an extension of Task.
+ */
 public class ToDo extends Task{
     private String taskType;
 
+    /**
+     * Constructor for Task.
+     * @param description task description.
+     */
     public ToDo(String description) {
         super(description);
         this.taskType = "T";
     }
 
-
+    /**
+     * Returns task description.
+     * @return task description.
+     */
     public String getDescription() {
         return super.getDescription();
     }
 
 
+    /**
+     * @inheritDoc
+     */
     @Override
     public String getTaskType() {
         return taskType;
