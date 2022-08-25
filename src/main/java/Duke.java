@@ -1,23 +1,50 @@
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Arrays;
+=======
+import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.nio.file.Path;
+import java.util.ArrayList;
+>>>>>>> Level-7
 import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
+
+        int currentAction = 0;
+        int end = 0;
+
+        //Create new file
+        File file = Path.of("data/duke.txt").toFile();
+        ArrayList<Task> listOfActions = new ArrayList<Task>(100);
+        if (file.length() == 0 || !file.exists()) {
+            try {
+                file.createNewFile();
+                System.out.println("Hi new user, Lets get productive");
+            } catch (IOException e) {
+                System.out.println("Hmmm There seems to be a problem");
+            }
+        } else {
+            try {
+                currentAction = addBack(listOfActions, file, currentAction);
+                System.out.println("Ooo looks like you already have a todo list");
+            } catch (FileNotFoundException e) {
+                System.out.println("Hmmm There seems to be a problem ...");
+            }
+        }
+
         Scanner sc= new Scanner(System.in);
 
         System.out.println("----------------------\nHello! I'm HelperBot\nWhat can I do for you?\n----------------------\n");
         String userInput = sc.nextLine();
-        ArrayList<Task> listOfActions = new ArrayList<Task>(100);
-        int currentAction = 0;
-        int end = 0;
 
         while (end != 1) {
+            //System.out.println();
             //If user wants to check the list
-            String output = "";
-            for (int i = 0; i < currentAction; i++) {
-                output = output + String.format("%d", i + 1) + "." + listOfActions.get(i) + "\n";
-            }
+            String output = list(listOfActions, currentAction);
 
             if (userInput.equals("bye")) {
                 break;
@@ -159,11 +186,21 @@ public class Duke {
             }
             userInput = sc.nextLine();
         }
-        bye();
+        bye(listOfActions, file);
+        end = 1;
     }
 
-    public static void bye() {
+    public static void bye(ArrayList<Task> listOfActions, File file) {
         System.out.println("Thank you and ATB :)");
+        try {
+            FileWriter writer = new FileWriter(file.getPath());
+            for (Task t : listOfActions) {
+                writer.write(t.toString() + System.lineSeparator());
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Oops");
+        }
     }
 
     public static void mark(String userInput, ArrayList<Task> listOfActions) throws DukeException{
@@ -259,6 +296,70 @@ public class Duke {
         } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("");
         }
+    }
+
+
+    public static int addBack(ArrayList<Task> arr, File f, int currentAction) throws FileNotFoundException {
+        Scanner myReader = new Scanner(f);
+        while (myReader.hasNextLine()) {
+            currentAction = currentAction + 1;
+            String data = myReader.nextLine();
+            checkTask(data, arr);
+        }
+        return currentAction;
+    }
+
+    public static void checkTask(String str, ArrayList<Task> arr) {
+        //check what task
+        String t = Character.toString(str.charAt(1));
+        String done = Character.toString(str.charAt(4));
+        Boolean d = !done.equals(" ");
+        //If td
+
+        if (t.equals("T")) {
+            //check done
+            if (d) {
+                Todo add = new Todo(str.substring(7));
+                add.mark();
+                arr.add(add);
+            } else {
+                Todo add = new Todo(str.substring(7));
+                arr.add(add);
+            }
+        }
+        //If event
+        else if (t.equals("E")) {
+            int pos = str.indexOf("(") - 1;
+            if (d) {
+                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
+                add.mark();
+                arr.add(add);
+            } else {
+                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
+                arr.add(add);
+            }
+        }
+        //if Deadline
+        else if (t.equals("D")) {
+            int pos = str.indexOf("(") - 1;
+            if (d) {
+                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
+                add.mark();
+                arr.add(add);
+            } else {
+                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
+                arr.add(add);
+            }
+        }
+    }
+
+
+    public static String list(ArrayList<Task> listOfActions, int currentAction) {
+        String output = "";
+        for (int i = 0; i < currentAction; i++) {
+            output = output + String.format("%d", i + 1) + "." + listOfActions.get(i) + "\n";
+        }
+        return output;
     }
 
 
