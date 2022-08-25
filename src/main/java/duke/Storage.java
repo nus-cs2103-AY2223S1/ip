@@ -6,9 +6,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private final File file;
 
+    /**
+     * Creates a new storage instance from the given pathname string.
+     * @param pathname A pathname string.
+     */
     public Storage(String pathname) {
         this.file = new File(pathname);
         if (!this.file.exists()) {
@@ -21,6 +28,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads and return a string representation of the stored tasks.
+     * @return A string representing the stored tasks in the file.
+     */
     public String read() {
         try {
             Scanner scanner = new Scanner(this.file);
@@ -43,6 +54,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the tasks to the Storage file.
+     * @param contents A string representing the tasks to be stored in the Storage file.
+     */
     public void write(String contents) {
         try {
             FileWriter fileWriter = new FileWriter(this.file);

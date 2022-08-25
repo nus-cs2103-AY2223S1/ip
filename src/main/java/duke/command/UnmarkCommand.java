@@ -4,16 +4,29 @@ import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TasksList;
 
+/**
+ * Represents a command to mark a task in the TasksList as undone.
+ */
 public class UnmarkCommand extends Command {
     private String[] inputArray;
     private TasksList tasksList;
     private static final String UNMARK_MSG = "Sure! I've marked this task as not done yet:\n";
 
+    /**
+     * Creates a UnmarkCommand instance.
+     * @param tasksList The TasksList containing the task to be unmarked.
+     * @param inputArray The array that represents the user input.
+     */
     public UnmarkCommand(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;
         this.inputArray = inputArray;
     }
 
+    /**
+     * Mark the task in the TasksList as undone.
+     * @return The message to be displayed upon the execution of the command.
+     * @throws DukeException If the task cannot be marked as undone successfully.
+     */
     @Override
     public String execute() throws DukeException {
         if (this.inputArray.length < 2) {

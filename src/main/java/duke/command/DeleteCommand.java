@@ -4,16 +4,29 @@ import duke.exception.DukeException;
 import duke.task.Task;
 import duke.task.TasksList;
 
+/**
+ * Represents a command to delete a Task from the TasksList.
+ */
 public class DeleteCommand extends Command {
     private TasksList tasksList;
     private String[] inputArray;
     private static final String deleteMsg = "Noted. I've removed this task:\n";
 
+    /**
+     * Creates a new DeleteCommand instance.
+     * @param tasksList The TasksList to delete the Task from.
+     * @param inputArray The array that represents the user input.
+     */
     public DeleteCommand(TasksList tasksList, String[] inputArray) {
         this.tasksList = tasksList;
         this.inputArray = inputArray;
     }
 
+    /**
+     * Delete the Task from the TasksList.
+     * @return The message to be displayed upon the execution of the command.
+     * @throws DukeException If the task cannot be deleted from the TasksList.
+     */
     @Override
     public String execute() throws DukeException {
         if (this.inputArray.length < 2) {
