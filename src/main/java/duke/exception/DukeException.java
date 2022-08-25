@@ -1,10 +1,24 @@
 package duke.exception;
 
+/**
+ * The Exceptions might be thrown and caught by Duke.
+ */
 public class DukeException extends RuntimeException {
+    /**
+     * The constructor of the Duke Exception.
+     * @param message
+     */
     public DukeException(String message) {
         super("☹ OOPS!!! " + message);
     }
 
+    /**
+     * Return boolean indicating whether this object
+     * is equivalent to another object.
+     *
+     * @param obj The object to be checked.
+     * @return The boolean whether the given object is equivalent to this object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

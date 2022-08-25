@@ -2,11 +2,26 @@ package duke.exception;
 
 import java.nio.file.Path;
 
+/**
+ * The DukeRuntimeException that cannot read from file correctly.
+ */
 public class ReadFileException extends RuntimeException {
+    /**
+     * The constructor of the Exception.
+     * @param path The path of the file.
+     * @param message The error detail.
+     */
     public ReadFileException(Path path, String message) {
         super("When visiting '" + path.toString() + "'." + ":\n" + message);
     }
 
+    /**
+     * Return boolean indicating whether this object
+     * is equivalent to another object.
+     *
+     * @param obj The object to be checked.
+     * @return The boolean whether the given object is equivalent to this object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

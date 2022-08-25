@@ -3,7 +3,15 @@ package duke.exception;
 import duke.Parser;
 import duke.command.Action;
 
+/**
+ * The DukeException that the user enters incorrect arguments to a Duke Action.
+ */
 public class InvalidArgumentException extends CompileException {
+    /**
+     * The constructor of the Exception.
+     * @param action The invoking Action.
+     * @param message The error information.
+     */
     public InvalidArgumentException(Action action, String message) {
         super("The description of a [" + Action.getString(action) + "] is incorrect.\n"
                 + message
@@ -11,6 +19,13 @@ public class InvalidArgumentException extends CompileException {
                 + "\nAttribute Separator: '" + Parser.getAttributeSeparator() + "', is not allowed.");
     }
 
+    /**
+     * Return boolean indicating whether this object
+     * is equivalent to another object.
+     *
+     * @param obj The object to be checked.
+     * @return The boolean whether the given object is equivalent to this object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {
