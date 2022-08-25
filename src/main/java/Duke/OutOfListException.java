@@ -1,3 +1,5 @@
+package Duke;
+
 public class OutOfListException extends DukeException{
     public OutOfListException(String message){
         super(message);

@@ -1,4 +1,4 @@
-import java.io.IOException;
+package Duke;
 
 public class Duke {
 

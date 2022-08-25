@@ -1,3 +1,5 @@
+package Duke;
+
 public class IncompleteParamException extends DukeException{
     public IncompleteParamException(String message){
         super(message);
