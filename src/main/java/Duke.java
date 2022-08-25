@@ -1,16 +1,19 @@
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Duke {
 
     private static TaskList taskList;
     private static final Scanner sc = new Scanner(System.in);
+    private static File textFile;
 
     public static void printMessage(String input) throws DukeException {
         if(input.equalsIgnoreCase("bye")) {
             System.out.println("Goodbye!");
-            taskList.closeWriter();
+            writeTasksIntoFile(Duke.textFile);
             System.exit(0);
         } else if(input.equalsIgnoreCase("list")) {
             taskList.list();
@@ -77,7 +80,7 @@ public class Duke {
     public static void getTasksFromFile(File file) {
         try {
             file.createNewFile();
-            taskList = new TaskList(file);
+            taskList = new TaskList();
             Scanner scFile = new Scanner(file);
             while(scFile.hasNextLine()) {
                 String taskString = scFile.nextLine();
@@ -107,6 +110,30 @@ public class Duke {
         }
     }
 
+    public static void writeTasksIntoFile(File file) {
+        try {
+            FileWriter writer = new FileWriter(file);
+            for (int i = 0; i < taskList.size(); i++) {
+                Task task = taskList.get(i);
+                char taskType = task instanceof ToDo
+                                ? 'T'
+                                : task instanceof Deadline ? 'D' : 'E';
+                char isTaskDone = task.getStatusIcon().equals("X") ? '1' : '0';
+                String taskDescription = task.getDescription();
+                if (taskType == 'T') {
+                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + "\n");
+                } else if (taskType == 'D') {
+                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + " | " + ((Deadline) task).getBy() + "\n");
+                } else {
+                    writer.write(taskType + " | " + isTaskDone + " | " + taskDescription + " | " + ((Event) task).getTime() + "\n");
+                }
+            }
+            writer.close();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
     public static void main(String[] args) {
         String welcomeMsg = "Hi there! Baymax at your service.";
         System.out.println(welcomeMsg);
@@ -119,6 +146,7 @@ public class Duke {
 
         //Retrieves Tasks from local file, TaskList.txt.
         //Creates the file TaskList.txt in the data directory if it does not exist.
+        Duke.textFile = file;
         getTasksFromFile(file);
 
         String input = sc.nextLine();
