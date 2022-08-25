@@ -8,7 +8,7 @@ class Event extends Task{
 
     public Event(String itself, String time) {
         super(itself);
-        this.time = LocalDate.parse(time, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        this.time = LocalDate.parse(time);
     }
 
     public boolean isOnDate(LocalDate localDate) {
@@ -17,12 +17,12 @@ class Event extends Task{
 
     @Override
     public String writeToFile() {
-        return "E|" + super.writeToFile() + "|" + time;
+        return "E|" + super.writeToFile() + "|" + time.trim();
     }
 
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " +
-                time.format(DateTimeFormatter.ofPattern("MMMM d yyyy")) + ")";
+                time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")) + ")";
     }
 }

@@ -1,5 +1,5 @@
 T|N|Ashy
 T|N|Putu
 T|N|Plum
-E|N|ruaAshy|2022-08-10
-D|N|ruaPutu|2022-08-10
+D|N|ruaAshy|2:00
+E|N|ruaPlum|SRC stairs

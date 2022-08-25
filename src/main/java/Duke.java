@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.*;
+import java.time.LocalDateTime;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.time.format.DateTimeFormatter;
@@ -59,11 +60,6 @@ public class Duke {
                     break;
                 } else if (str.startsWith("delete")) {
                     delete(str);
-                } else if (str.startsWith("on")) {
-                    String[] temp = str.split(" ");
-                    String date = temp[1].trim();
-                    LocalDate lc = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                    getOnDate(lc);
                 } else {
                     throw new CannotUnderstandException();
                 }
@@ -163,8 +159,8 @@ public class Duke {
             throw new WrongMessageException();
         }
         String[] temp = ddlstr.split("/by");
-        String ddlinfo = temp[0].trim();
-        String date = temp[1].trim();
+        String ddlinfo = temp[0];
+        String date = temp[1];
         Task deadline = new Deadline(ddlinfo, date);
         willDo.add(deadline);
         int nowsize = willDo.size();
@@ -179,14 +175,14 @@ public class Duke {
             throw new WrongMessageException();
         }
         String[] temp = eventstr.split("/at");
-        String eventinfo = temp[0].trim();
-        String takeplace = temp[1].trim();
+        String eventinfo = temp[0];
+        String takeplace = temp[1];
         Task event = new Event(eventinfo, takeplace);
         willDo.add(event);
         int finalsize = willDo.size();
         System.out.println("Got it, I've added it to the task list:\n"
                 + event.toString() + "\n"
-                + "Now you have " + finalsize + " tasks");
+                + "Now you have " + (finalsize) + " tasks");
     }
 
     public static void mark(int target) {
@@ -228,6 +224,12 @@ public class Duke {
         for (Task t : shortList) {
             System.out.println((i + 1) + "." + t);
             i++;
+        }
+    }
+
+    public static void checkArray(Object[] o) {
+        for (Object i : o) {
+            System.out.println(i);
         }
     }
 }
