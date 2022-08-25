@@ -3,25 +3,54 @@ package duke;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parser makes sense of the user inputs.
+ *
+ * @author Alvin Jiang Min Jun
+ * @version v0.1
+ */
 public class Parser {
 
     private TaskList tasks;
     final static ArrayList<String> validCommands = new ArrayList<>(List.of("list", "mark", "unmark", "todo", "deadline", "event", "delete", "bye"));
 
+    /**
+     * Parser constructor that creates an instance of a Parser object.
+     *
+     * @param tasks The tasks that will be operated on after parsing user inputs.
+     */
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
+    /**
+     * A method which evaluates if the command given by user is bye
+     */
+    public boolean isBye(String str) {
+        return str.equals("bye");
+    }
 
+    /**
+     * A method which analyses the user input and returns the command word used.
+     *
+     * @param str The entire user input.
+     * @return String the command that is called by the user.
+     * @throws DukeException Exception thrown when the input does not have a valid command.
+     */
     public String parseCommand(String str) throws DukeException {
         String command = str.split(" ", 2)[0];
         if (validCommands.contains(command)) return command;
         throw new DukeException("OOPS!!! I'm sorry but I don't know what that means :-(");
     }
 
-    public boolean isBye(String str) {
-        return str.equals("bye");
-    }
-
+    /**
+     * A method which analyses the user input, as well as the command and modifies the taskList
+     * as necessary.
+     *
+     * @param command The command word given by the user.
+     * @param str The entire user input.
+     * @return TaskList The modified taskList as per specified by the given user command.
+     * @throws DukeException Exception thrown when the input string is empty.
+     */
     public TaskList executeCommand(String command, String str) throws DukeException {
         Ui ui = new Ui();
         try {
