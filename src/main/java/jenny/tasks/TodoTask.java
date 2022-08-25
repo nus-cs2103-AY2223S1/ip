@@ -1,6 +1,6 @@
-package TaskItems;
+package jenny.tasks;
 
-import Exceptions.TodoTaskException;
+import jenny.exceptions.TaskException;
 
 /**
  * A TodoTask to complete.
@@ -9,22 +9,23 @@ import Exceptions.TodoTaskException;
  *
  * @author Deon
  */
-public class TodoTask extends TaskItem {
+public class TodoTask extends AbstractTask {
+    private static final String MESSAGE_SCOPE = TodoTask.class.getSimpleName();
 
     /**
      * Constructor of a TodoTask.
+     *
      * @param description description of the task.
      */
     public TodoTask(String description) {
         super(description);
         if (description.equals("")) {
-            throw new TodoTaskException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new TaskException(String.format("%s: The description of this task cannot be empty.", MESSAGE_SCOPE));
         }
     }
 
     /**
-     * Returns the description of the task as a string.
-     * @return the description of the task as a string.
+     * {@inheritDoc}
      */
     @Override
     public String toString() {

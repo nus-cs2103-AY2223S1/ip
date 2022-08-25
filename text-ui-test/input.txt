@@ -27,4 +27,5 @@ event /at singapore
 event dance party /at
 event /at
 delete -1
+save
 bye
