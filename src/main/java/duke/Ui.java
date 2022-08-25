@@ -123,4 +123,17 @@ public class Ui {
         return sc.nextLine();
     }
 
+    /**
+     * Method that prints out the given matching tasks.
+     *
+     * @param tasks The TaskList containing the matching tasks.
+     */
+    public void showMatchingTasks(TaskList tasks) {
+        System.out.println("Here are the matching tasks in you list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            Task curr = tasks.get(i);
+            System.out.format("%d. %s\n", i + 1, curr.toString());
+        }
+    }
+
 }

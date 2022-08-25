@@ -1,12 +1,7 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
+import duke.command.FindCommand;
 import duke.exception.DukeException;
 import duke.exception.EmptyDateException;
 import duke.exception.EmptyTodoException;
@@ -76,6 +71,11 @@ public class Parser {
             String numString = words[1];
             int idx = Integer.parseInt(numString) - 1;
             return new DeleteCommand(idx);
+        } else if (words[0].equals("find")) {
+            // find keyword: find matching tasks
+            String[] find = input.split(" find ", 2);
+            String keyword = find[0];
+            return new FindCommand(keyword);
         } else {
             throw new UnknownCommandException();
         }

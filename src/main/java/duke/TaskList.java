@@ -111,4 +111,22 @@ public class TaskList {
         }
         fw.close();
     }
+
+    /**
+     * Method that finds tasks that are similar to a given keyword.
+     *
+     * @param keyword The String representing the matching keyword.
+     * @return The TaskList containing the matching words.
+     */
+    public TaskList findTasks(String keyword) {
+        TaskList matchingTasks = new TaskList();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            Task curr = this.tasks.get(i);
+            String desc = curr.toString();
+            if (desc.contains(keyword)) {
+                matchingTasks.addTask(curr);
+            }
+        }
+        return matchingTasks;
+    }
 }
