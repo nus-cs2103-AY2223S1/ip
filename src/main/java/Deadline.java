@@ -5,7 +5,7 @@ public class Deadline extends Task{
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
-        addNewTask();
+        this.type = Type.DEADLINE;
     }
 
     @Override

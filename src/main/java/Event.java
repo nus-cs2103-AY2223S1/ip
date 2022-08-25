@@ -3,8 +3,8 @@ public class Event extends Task{
 
     public Event(String description, String at) {
         super(description);
+        this.type = Type.EVENT;
         this.at = at;
-        addNewTask();
     }
 
     @Override

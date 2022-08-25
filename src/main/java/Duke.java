@@ -2,10 +2,10 @@ import java.util.Scanner;
 
 public class Duke {
     public static void main(String[] args) {
-
+        
         System.out.println("Hi... I'm Bishop... \nWhat can I do for you today?");
-
         Scanner scanner = new Scanner(System.in);
+        
         while (scanner.hasNextLine()) {
             String ans = scanner.nextLine();
             String[] input = ans.split(" ", 2);
@@ -29,15 +29,15 @@ public class Duke {
                         Task.delete(taskToDelete);
                         break;
                     case "todo":
-                        new Todo(input[1]);
+                        Task.addNewTask(new Todo(input[1]));
                         break;
                     case "deadline":
                         String[] str = input[1].split(" /by ", 2);
-                        new Deadline(str[0], str[1]);
+                        Task.addNewTask(new Deadline(str[0], str[1]));
                         break;
                     case "event":
                         String[] str2 = input[1].split(" /at ", 2);
-                        new Event(str2[0], str2[1]);
+                        Task.addNewTask(new Event(str2[0], str2[1]));
                         break;
                     default:
                         System.out.println("Sorry, I don't quite understand what you mean...");
@@ -51,4 +51,7 @@ public class Duke {
         }
         scanner.close();
     }
+
+    
+
 }
