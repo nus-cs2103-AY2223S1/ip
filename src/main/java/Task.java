@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Task {
 
     private String task;
@@ -8,9 +11,7 @@ public class Task {
         isDone = false;
     }
 
-    protected String getStatus() {
-        return isDone ? "[X]" : "[ ]";
-    }
+    protected String getStatus() { return isDone ? "[X]" : "[ ]"; }
 
     protected void mark() {
         isDone = true;
@@ -23,6 +24,11 @@ public class Task {
     @Override
     public String toString() {
         return getStatus() + " " + task;
+    }
+
+    protected String formatDateTime(LocalDateTime dateTime) {
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy kkmm");
+        return dateTime.format(outputFormatter);
     }
 
 }
