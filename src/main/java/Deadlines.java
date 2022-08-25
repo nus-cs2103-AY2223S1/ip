@@ -1,7 +1,14 @@
-public class Deadlines extends Task {
-    private String deadline;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
-    public Deadlines(String input) throws MissingDescriptionException, MissingDeadlineException {
+public class Deadlines extends Task {
+    private LocalDateTime deadline;
+    private static DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
+    private static DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
+
+    public Deadlines(String input)
+            throws MissingDescriptionException, MissingDeadlineException, DateTimeParseException {
         super();
         try {
             //remove initial command
@@ -13,13 +20,16 @@ public class Deadlines extends Task {
             }
             String description = sub.substring(0, timeIndex - 1);
             this.description = description;
-            this.deadline = sub.substring(timeIndex + 4);
+            String deadlineString = sub.substring(timeIndex + 4);
+            LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
+            this.deadline = deadline;
         } catch (StringIndexOutOfBoundsException e) {
             throw new MissingDescriptionException();
         }
     }
 
-    public Deadlines(String input, boolean isDone) throws MissingDescriptionException, MissingDeadlineException {
+    public Deadlines(String input, boolean isDone)
+            throws MissingDescriptionException, MissingDeadlineException, DateTimeParseException {
         super(isDone);
         try {
             //remove initial command
@@ -31,15 +41,18 @@ public class Deadlines extends Task {
             }
             String description = sub.substring(0, timeIndex - 1);
             this.description = description;
-            this.deadline = sub.substring(timeIndex + 4);
+            String deadlineString = sub.substring(timeIndex + 4);
+            LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
+            this.deadline = deadline;
         } catch (StringIndexOutOfBoundsException e) {
             throw new MissingDescriptionException();
         }
     }
 
-    public Deadlines(String description, String deadline, boolean isDone) {
+    public Deadlines(String description, String deadlineString , boolean isDone) throws DateTimeParseException {
         super(isDone);
         this.description = description;
+        LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
         this.deadline = deadline;
     }
 
@@ -47,9 +60,9 @@ public class Deadlines extends Task {
     public String processData() {
         String str;
         if (this.getIsDone()){
-            str = String.format("D|true|%s|%s|", this.getDescription(), this.deadline);
+            str = String.format("D|true|%s|%s|", this.getDescription(), this.deadline.format(DATE_TIME_INPUT_FORMAT));
         } else {
-            str = String.format("D|false|%s|%s|", this.getDescription(), this.deadline);
+            str = String.format("D|false|%s|%s|", this.getDescription(), this.deadline.format(DATE_TIME_INPUT_FORMAT));
         }
         return str;
     }
@@ -58,9 +71,11 @@ public class Deadlines extends Task {
     public String toString() {
         String str;
         if (this.getIsDone()){
-            str = String.format("[D] %s [X] (by %s)", this.getDescription(), this.deadline);
+            str = String.format("[D] %s [X] (by %s)", this.getDescription(),
+                    this.deadline.format(DATE_TIME_OUTPUT_FORMAT));
         } else {
-            str = String.format("[D] %s [ ] (by %s)", this.getDescription(), this.deadline);
+            str = String.format("[D] %s [ ] (by %s)", this.getDescription(),
+                    this.deadline.format(DATE_TIME_OUTPUT_FORMAT));
         }
         return str;
     }

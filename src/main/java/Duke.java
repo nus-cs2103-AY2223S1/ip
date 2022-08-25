@@ -1,4 +1,6 @@
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import java.io.File;
@@ -122,6 +124,8 @@ public class Duke {
                     System.out.println("Please indicate what the task is!");
                 } catch (MissingDeadlineException e) {
                     System.out.println("Please specify the deadline!");
+                } catch (DateTimeParseException e) {
+                    System.out.println("Please input a valid deadline in the format DD/MM/YYYY HHMM");
                 }
                 continue;
             }
@@ -136,6 +140,8 @@ public class Duke {
                     System.out.println("Please indicate what the task is!");
                 } catch (MissingTimingException e) {
                     System.out.println("Please specify the timeline!");
+                } catch (DateTimeParseException e) {
+                    System.out.println("Please input a valid time in the format DD/MM/YYYY HHMM");
                 }
                 continue;
             }
