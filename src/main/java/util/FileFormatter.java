@@ -15,7 +15,7 @@ public class FileFormatter {
      * @return The formatted string.
      */
     public String formatTask(Task task) {
-        return String.format("%s|%s|%s|%s|%s\n",
+        return String.format("%s|%s|%s|%s|%s|\n",
                 task.getTypeLetter(),
                 task.getStatusLetter(),
                 task.getDescription(),
