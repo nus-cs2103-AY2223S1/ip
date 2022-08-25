@@ -4,12 +4,17 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
 
-public class FileSaver {
-    private final static String PROJECT_ROOT = System.getProperty("user.dir");
+public class Storage {
+    private static final String PROJECT_ROOT = System.getProperty("user.dir");
     private static final Path SAVE_LOCATION = Path.of(PROJECT_ROOT, "data");
-    private final static String SAVE_FILE_NAME = "Task List.txt";
+    private static final String SAVE_FILE_NAME = "Task List.txt";
     private static final Path SAVE_FILE_PATH = (SAVE_LOCATION).resolve(SAVE_FILE_NAME);
+
+    public Storage() {
+
+    }
 
     public static void Load(List<Task> tasks) {
         // This is the current directory the system is in.
@@ -35,7 +40,11 @@ public class FileSaver {
             }
             // Load contents of file into tasks list.
             for (String s : listContents) {
-                tasks.add(parseTask(s));
+                try {
+                    tasks.add(parseTask(s));
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
             }
         } else {
             try {
@@ -67,7 +76,7 @@ public class FileSaver {
         }
     }
 
-    private static Task parseTask(String savedTask) {
+    private static Task parseTask(String savedTask) throws DukeException {
         Task task = null;
         String[] taskArr;
         // savedTask is the string representation of the save file format of a task.
@@ -79,14 +88,19 @@ public class FileSaver {
         case "T":
             task = new ToDo(taskDescription);
             break;
+
         case "E":
             String taskDuration = taskArr[3];
-            task = new Event(taskDescription);
+            LocalDateTime duration = LocalDateTime.parse(taskDuration, Task.OUTPUT_DATE_FORMAT);
+            task = new Event(taskDescription, duration);
             break;
+
         case "D":
             String taskDue = taskArr[3];
-            task = new Deadline(taskDescription);
+            LocalDateTime due = LocalDateTime.parse(taskDue, Task.OUTPUT_DATE_FORMAT);
+            task = new Deadline(taskDescription, due);
             break;
+
         }
 
         if (taskDone.equals("1") && task != null) {

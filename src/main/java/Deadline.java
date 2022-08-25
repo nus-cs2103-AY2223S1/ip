@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * This class inherits from the abstract Task class
@@ -17,6 +18,23 @@ public class Deadline extends Task {
         this.dueDate = dueDate;
     }
 
+    public static Deadline createDeadline(String in) throws DukeException {
+        String[] temp = in.split(" */by* ");
+        if (temp.length != 2) {
+            throw new DukeException("-Deadline- Please follow the format of ~description~ /by dd-MM-yyyy HHmm!\n");
+        }
+        String description = temp[0];
+        String dueDate = temp[1];
+        LocalDateTime deadline;
+        try {
+            deadline = LocalDateTime.parse(dueDate, INPUT_DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("-Deadline- Your date needs to be in dd-MM-yyyy HHmm format!\n");
+        }
+
+        return new Deadline(description, deadline);
+    }
+
     /**
      * Overriden toString method for the Deadline Task.
      * @return String representation of the Deadline.
@@ -33,6 +51,6 @@ public class Deadline extends Task {
      */
     @Override
     public String saveFormat() {
-        return String.format("D | %s | %s", super.saveFormat(), this.dueDate);
+        return String.format("D | %s | %s", super.saveFormat(), this.dueDate.format(OUTPUT_DATE_FORMAT));
     }
 }

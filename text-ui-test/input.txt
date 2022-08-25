@@ -2,6 +2,8 @@ invalid task
 todo task 1
 deadline task 2 /by xxx
 event task 3 /at xxx
+deadline task 2 /by 23-11-2000 2359
+event task 3 /at 23-11-2020 2359
 list
 mark 1
 mark 2

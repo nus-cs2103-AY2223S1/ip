@@ -1,4 +1,5 @@
 import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
 /**
  * This class inherits from the abstract Task class
@@ -14,6 +15,23 @@ public class Event extends Task {
     public Event(String description, LocalDateTime duration) {
         super(description);
         this.duration = duration;
+    }
+
+    public static Event createEvent(String in) throws DukeException {
+        String[] temp = in.split(" */at* ");
+        if (temp.length != 2) {
+            throw new DukeException("-Event- Please follow the format of ~description~ /at dd-MM-yyyy HHmm!\n");
+        }
+        String description = temp[0];
+        String duration = temp[1];
+        LocalDateTime event;
+        try {
+            event = LocalDateTime.parse(duration, INPUT_DATE_FORMAT);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("-Event- Your date needs to be in dd-MM-yyyy HHmm format!\n");
+        }
+
+        return new Event(description, event);
     }
 
     /**
@@ -32,6 +50,6 @@ public class Event extends Task {
      */
     @Override
     public String saveFormat() {
-        return String.format("E | %s | %s", super.saveFormat(), this.duration);
+        return String.format("E | %s | %s", super.saveFormat(), this.duration.format(OUTPUT_DATE_FORMAT));
     }
 }
