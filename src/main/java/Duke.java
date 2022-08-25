@@ -1,7 +1,11 @@
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Duke {
 
     /**
@@ -134,8 +138,8 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        ArrayList<Task> tasks = new ArrayList<Task>();
+    public static void main(String[] args) throws IOException {
+        ArrayList<Task> tasks = Storage.loadFile();
         Scanner sc = new Scanner(System.in);
 
         greet();
@@ -153,26 +157,32 @@ public class Duke {
                 }
                 else if (str.split(" ")[0].equals("mark")) {
                     markTask(tasks, str);
+                    Storage.writeToFile(tasks);
                 }
                 else if (str.split(" ")[0].equals("unmark")) {
                     unmarkTask(tasks, str);
+                    Storage.writeToFile(tasks);
                 }
                 else if(str.split(" ", 2)[0].equals("todo")) {
                     makeTask(tasks, str);
+                    Storage.writeToFile(tasks);
                 }
                 else if(str.split(" ", 2)[0].equals("deadline")) {
                     makeTask(tasks, str);
+                    Storage.writeToFile(tasks);
                 }
                 else if(str.split(" ", 2)[0].equals("event")) {
                     makeTask(tasks, str);
+                    Storage.writeToFile(tasks);
                 }
                 else if (str.split(" ")[0].equals("delete")) {
                     deleteTask(tasks, str);
+                    Storage.writeToFile(tasks);
                 }
                 else {
                     throw new DukeException("I'm sorry, but I don't know what that means :-(");
                 }
-            } catch (DukeException d) {
+            } catch (DukeException | IOException d) {
                 System.out.println(d.getMessage());
 
 

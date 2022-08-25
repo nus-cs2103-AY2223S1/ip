@@ -10,4 +10,8 @@ public class event extends Task {
     public String toString() {
         return "[E][" + super.getStatusIcon() + "] " + super.description + " (at: " + day + ")";
     }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
 }
