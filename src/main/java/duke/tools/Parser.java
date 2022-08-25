@@ -39,11 +39,11 @@ public class Parser {
             case "event":
                 return parseForEvent(input[1].strip());
             default:
-                throw new DukeException("☹ OOPS!!! "
-                        + "I'm sorry, but I don't know what that means :-(");
+                throw new DukeException("OOPS!!! "
+                        + "I'm sorry, but I don't know what that means :(");
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! "
+            throw new DukeException("OOPS!!! "
                     + "Wrong command parameters!");
         }
     }

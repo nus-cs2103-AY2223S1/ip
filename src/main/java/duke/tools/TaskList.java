@@ -24,7 +24,7 @@ public class TaskList {
         try {
             return taskList.get(index);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! Invalid task number.");
+            throw new DukeException("OOPS!!! Invalid task number.");
         }
     }
 
@@ -36,7 +36,7 @@ public class TaskList {
         try {
             taskList.remove(i);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("☹ OOPS!!! Invalid task number.");
+            throw new DukeException("OOPS!!! Invalid task number.");
         }
     }
 }

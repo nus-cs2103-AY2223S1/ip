@@ -52,7 +52,7 @@ public class Storage {
                     task = new Event(description, isDone, Parser.parseDateTime(storedInfo[3]));
                     break;
                 default:
-                    throw new DukeException("No save data found");
+                    throw new DukeException("OOPS!!! No save data found");
                 }
                 taskList.add(task);
             }
@@ -60,7 +60,7 @@ public class Storage {
             sc.close();
             return new TaskList(taskList);
         } catch (FileNotFoundException e) {
-            throw new DukeException("☹ OOPS!!! Data not found");
+            throw new DukeException("OOPS!!! Data not found");
         }
     }
 
@@ -76,7 +76,7 @@ public class Storage {
             }
             fw.close();
         } catch (IOException e) {
-            throw new DukeException("☹ OOPS!!! Data cannot be stored");
+            throw new DukeException("OOPS!!! Data cannot be stored");
         }
     }
 
@@ -88,7 +88,7 @@ public class Storage {
             data.write(task.taskToDataString());
             data.close();
         } catch (IOException e) {
-            throw new DukeException("☹ OOPS!!! File cannot be open");
+            throw new DukeException("OOPS!!! File cannot be open");
         }
     }
 
@@ -106,7 +106,7 @@ public class Storage {
                 data.createNewFile();
             }
         } catch (IOException e) {
-            throw new DukeException("☹ OOPS!!! Unable to create new file. " +
+            throw new DukeException("OOPS!!! Unable to create new file. " +
                     "Tasks might not be stored.");
         }
     }
