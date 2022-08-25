@@ -17,16 +17,16 @@ public class Parser {
     }
 
     private static String generateEmptyDescMessage(String taskType) {
-        return "\n      ☹ OOPS!!! The description of a " + taskType + " cannot be empty.\n";
+        return " ☹ OOPS!!! The description of a " + taskType + " cannot be empty.\n";
     }
 
     private static String generateEmptyActionMessage(String action) {
-        return "\n      ☹ OOPS!!! The action to " + action + " must have the index as an argument.\n";
+        return " ☹ OOPS!!! The action to " + action + " must have the index as an argument.\n";
     }
 
     private String generateTasksNumberMessage() {
         return "Now you have " + taskList.sizeOfList() + " task" + (taskList.sizeOfList() == 1 ? "" : "s")
-                + " in the list" + ".\n";
+                + " in the list.";
     }
 
     public String parseUserCommand(String command, BreakLoopIndicator breakLoopIndicator) throws CustomMessageException {
@@ -35,7 +35,7 @@ public class Parser {
         try {
             taskType = Command.valueOf(commands[0].toUpperCase());
         } catch (IllegalArgumentException e) {
-            throw new CustomMessageException(("\n      ☹ OOPS!!! I'm sorry, but I " +
+            throw new CustomMessageException((" ☹ OOPS!!! I'm sorry, but I " +
                     "don't know what that means :-(\n"));
         }
         commands[0] = "";
@@ -47,8 +47,8 @@ public class Parser {
                 breakLoopIndicator.setIsByeCommand();
                 break;
             case LIST:
-                toPrint = (Ui.indentedMessage("\n     Here are the tasks in your list:"
-                        + taskList.getTasksListsForUser() + "\n"));
+                toPrint = (Ui.indentedMessage("Here are the tasks in your list:"
+                        + taskList.getTasksListsForUser()));
                 break;
             case MARK:
                 if (commands.length == 1) {
@@ -56,7 +56,7 @@ public class Parser {
                 }
                 index = Integer.parseInt(commands[1]) - 1;
                 taskList.markTaskAsDone(index);
-                toPrint = "\n     Nice! I've marked this task as done:\n       " + taskList.getTaskString(index) + "\n";
+                toPrint = "Nice! I've marked this task as done:\n       " + taskList.getTaskString(index);
                 toPrint = (Ui.indentedMessage(toPrint));
                 break;
             case UNMARK:
@@ -65,8 +65,8 @@ public class Parser {
                 }
                 index = Integer.parseInt(commands[1]) - 1;
                 taskList.markTaskAsNotDone(index);
-                toPrint = "\n     OK, I've marked this task as not done yet:\n       "
-                        + taskList.getTaskString(index) + "\n";
+                toPrint = "OK, I've marked this task as not done yet:\n       "
+                        + taskList.getTaskString(index);
                 toPrint = (Ui.indentedMessage(toPrint));
                 break;
             case DELETE:
@@ -77,7 +77,7 @@ public class Parser {
                 index = Integer.parseInt(commands[1]) - 1;
                 String deletedTaskDescription = taskList.getTaskString(index);
                 taskList.removeTask(index);
-                toPrint = "\n     Noted. I've removed this task:\n       "
+                toPrint = "Noted. I've removed this task:\n       "
                         + deletedTaskDescription + "\n     " + generateTasksNumberMessage();
                 toPrint = (Ui.indentedMessage(toPrint));
                 break;
@@ -92,9 +92,9 @@ public class Parser {
                 break;
             default:
                 throw new CustomMessageException((
-                        "\n      ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
+                        " ☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n"));
         }
-        return toPrint;
+        return toPrint.equals("") ? "" : toPrint + "\n";
     }
 
     private String parseNewTaskCommand(String command, int commandsLen, Command taskCommand, String toSplitBy)
@@ -121,7 +121,7 @@ public class Parser {
             }
             taskList.addToTaskList(newTask);
         }
-        return (Ui.indentedMessage("\n     Got it. I've added this task:\n       "
+        return (Ui.indentedMessage("Got it. I've added this task:\n       "
                 + taskList.getTaskString(taskList.sizeOfList() - 1) + "\n     " + generateTasksNumberMessage()));
     }
 

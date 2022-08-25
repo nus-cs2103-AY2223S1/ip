@@ -22,7 +22,7 @@ public class Duke {
             try {
                 String nextCommand = ui.getNextCommand();
                 ui.showLine();
-                System.out.println(parser.parseUserCommand(nextCommand, parser.breakLoopIndicator));
+                System.out.print(parser.parseUserCommand(nextCommand, parser.breakLoopIndicator));
                 if (parser.breakLoopIndicator.getIsExitCommand()) {
                     ui.showExitMessage();
                     break;
