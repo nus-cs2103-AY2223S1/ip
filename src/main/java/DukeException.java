@@ -10,6 +10,6 @@ public class DukeException extends RuntimeException {
     }
 
     public String toString() {
-        return "Wake up your idea! " + message;
+        return ":( Something went wrong: " + message;
     }
 }

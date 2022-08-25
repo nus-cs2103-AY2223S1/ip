@@ -9,22 +9,18 @@ public class Event extends Task {
         this.at = at;
     }
 
-    public String getSaveFormat() {
+    public String toFileFormat() {
         String isDone = this.isDone ? "1" : "0";
         return "E | " + isDone + " | " + this.description + " | " + this.at;
     }
 
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
-=======
         return "[E]"
                 + super.toString()
                 + " (at: "
                 + at.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ")";
->>>>>>> branch-Level-8
     }
 
 }

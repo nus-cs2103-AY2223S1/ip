@@ -9,7 +9,7 @@ public class Deadline extends Task {
         this.by = by;
     }
 
-    public String getSaveFormat() {
+    public String toFileFormat() {
         String isDone = this.isDone ? "1" : "0";
         return "D | " + isDone + " | " + this.description + " | " + this.by;
     }

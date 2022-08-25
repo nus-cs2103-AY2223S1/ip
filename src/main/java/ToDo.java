@@ -3,7 +3,7 @@ public class ToDo extends Task {
         super(description, isDone);
     }
 
-    public String getSaveFormat() {
+    public String toFileFormat() {
         String isDone = this.isDone ? "1" : "0";
         return "T | " + isDone + " | " + this.description;
     }
