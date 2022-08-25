@@ -1,5 +1,7 @@
+package Duke;
+
 /**
- * Simple ToDo Task.
+ * Simple Duke.ToDo Duke.Task.
  */
 public class ToDo extends Task {
 

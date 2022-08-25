@@ -1,5 +1,7 @@
+package Duke;
+
 /**
- * Task class to store the states whether task is complete or not
+ * Duke.Task class to store the states whether task is complete or not
  */
 public class Task {
     /**
@@ -94,7 +96,7 @@ public class Task {
     }
 
     /**
-     * Creates a String representation of Task.
+     * Creates a String representation of Duke.Task.
      */
     public String toString() {
         String marked = "[ ]";

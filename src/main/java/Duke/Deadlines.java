@@ -1,8 +1,10 @@
+package Duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Task with an associated deadline
+ * Duke.Task with an associated deadline
  */
 public class Deadlines extends Task {
 

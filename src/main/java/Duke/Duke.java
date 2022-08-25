@@ -1,7 +1,9 @@
+package Duke;
+
 import java.io.IOException;
 
 /**
- * Duke is a basic chat-bot stores tasks into a list.
+ * Duke.Duke is a basic chat-bot stores tasks into a list.
  *
  * @author Chi Song Yi Amadeus
  * @version A-MoreOOP
@@ -47,7 +49,7 @@ public class Duke {
     }
 
     /**
-     * taskList method creates an input loop, creating Task objects and adding it to the array.
+     * taskList method creates an input loop, creating Duke.Task objects and adding it to the array.
      *
      * @throws NumberFormatException if User inputs a non integer after mark/unmark
      */

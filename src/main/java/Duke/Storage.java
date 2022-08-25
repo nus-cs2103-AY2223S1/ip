@@ -1,3 +1,5 @@
+package Duke;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -21,9 +23,9 @@ public class Storage {
     }
 
     /**
-     * parses and writes content of Task to the data file.
+     * parses and writes content of Duke.Task to the data file.
      *
-     * @param input given Task to write to file.
+     * @param input given Duke.Task to write to file.
      */
     public void writeToFile(Task input) throws IOException{
         FileWriter writer = new FileWriter(filepath, true);

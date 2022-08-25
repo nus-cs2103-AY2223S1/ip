@@ -6,7 +6,7 @@ Hello from
 |____/ \__,_|_|\_\___|
 
     ____________________________________________________________
-     Hello! I'm Duke
+     Hello! I'm Duke.Duke
      I can store a to-do list for you!
      Enter 'list' to display current contents and 'bye' to end the program.
      Start entering your tasks!

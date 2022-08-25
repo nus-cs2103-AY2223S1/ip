@@ -1,3 +1,5 @@
+package Duke;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.Scanner;
@@ -11,7 +13,7 @@ public class Ui {
             + "|____/ \\__,_|_|\\_\\___|\n";
 
     public static final String initMessage = "    ____________________________________________________________\n" +
-            "     Hello! I'm Duke\n" +
+            "     Hello! I'm Duke.Duke\n" +
             "     I can store a to-do list for you!\n" +
             "     Enter 'list' to display current contents and 'bye' to end the program.\n" +
             "     Start entering your tasks!\n" +

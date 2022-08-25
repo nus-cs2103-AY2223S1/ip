@@ -1,3 +1,5 @@
+package Duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -29,7 +31,7 @@ public class TaskList {
     }
 
     /**
-     * creates a Task object from given File data.
+     * creates a Duke.Task object from given File data.
      *
      * @param data file data to read from.
      */
@@ -89,7 +91,7 @@ public class TaskList {
     }
 
     /**
-     * createTask handles task of child type ToDo, Deadlines and Events.
+     * createTask handles task of child type Duke.ToDo, Duke.Deadlines and Duke.Events.
      *
      * @param input user input.
      * @throws ArrayIndexOutOfBoundsException       used to handle invalid inputs.

@@ -1,5 +1,7 @@
+package Duke;
+
 /**
- * Task with an associated timing.
+ * Duke.Task with an associated timing.
  */
 public class Events extends Task {
 
