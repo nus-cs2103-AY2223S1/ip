@@ -1,4 +1,4 @@
-package AlanExceptions;
+package alanExceptions;
 
 public class FileReadException extends AlanException {
     public FileReadException() {

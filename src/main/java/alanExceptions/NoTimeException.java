@@ -1,6 +1,4 @@
-package AlanExceptions;
-
-import AlanExceptions.AlanException;
+package alanExceptions;
 
 public class NoTimeException extends AlanException {
     public NoTimeException(String command) {

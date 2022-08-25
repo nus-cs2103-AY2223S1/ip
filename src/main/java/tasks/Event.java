@@ -1,11 +1,13 @@
+package tasks;
+
 import java.time.LocalDateTime;
 
-public class Deadline extends Task{
+public class Event extends Task {
     private String during;
     private LocalDateTime dateTime;
     private String timeText;
 
-    public Deadline(ParsedData parsedData) {
+    public Event(ParsedData parsedData) {
         super(parsedData);
         this.during = parsedData.getDuring();
         if (parsedData.hasDateTime()) {
@@ -16,12 +18,12 @@ public class Deadline extends Task{
 
     @Override
     public String getTypeIcon() {
-        return "[D]";
+        return "[E]";
     }
 
     @Override
     public String getTypeLetter() {
-        return "D";
+        return "E";
     }
 
     @Override

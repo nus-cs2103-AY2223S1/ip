@@ -1,4 +1,4 @@
-package AlanExceptions;
+package alanExceptions;
 
 public class InvalidTimeException extends AlanException {
     public InvalidTimeException() {

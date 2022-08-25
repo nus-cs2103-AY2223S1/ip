@@ -1,7 +1,9 @@
-import AlanExceptions.AlanException;
-import AlanExceptions.FileReadException;
-import AlanExceptions.FileWriteException;
-import AlanExceptions.SaveFileException;
+package util;
+
+import alanExceptions.AlanException;
+import alanExceptions.FileReadException;
+import alanExceptions.FileWriteException;
+import alanExceptions.SaveFileException;
 
 import java.io.BufferedWriter;
 import java.io.File;

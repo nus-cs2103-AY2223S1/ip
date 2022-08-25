@@ -1,4 +1,4 @@
-package AlanExceptions;
+package alanExceptions;
 
 public class SaveFileException extends AlanException {
     public SaveFileException() {

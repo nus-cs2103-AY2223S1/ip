@@ -1,6 +1,4 @@
-package AlanExceptions;
-
-import AlanExceptions.AlanException;
+package alanExceptions;
 
 public class NoValueException extends AlanException {
     public NoValueException(String command) {

@@ -1,6 +1,4 @@
-package AlanExceptions;
-
-import AlanExceptions.AlanException;
+package alanExceptions;
 
 public class NoDescriptionException extends AlanException {
     public NoDescriptionException(String command) {

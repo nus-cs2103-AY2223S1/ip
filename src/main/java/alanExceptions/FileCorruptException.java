@@ -1,4 +1,4 @@
-package AlanExceptions;
+package alanExceptions;
 
 public class FileCorruptException extends AlanException {
     public FileCorruptException() {

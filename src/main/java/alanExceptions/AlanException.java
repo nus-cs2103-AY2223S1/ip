@@ -1,4 +1,4 @@
-package AlanExceptions;
+package alanExceptions;
 
 public class AlanException extends Exception{
     public AlanException(String errorMsg) {

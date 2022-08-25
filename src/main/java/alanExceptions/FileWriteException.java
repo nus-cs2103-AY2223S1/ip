@@ -1,4 +1,4 @@
-package AlanExceptions;
+package alanExceptions;
 
 public class FileWriteException extends AlanException {
     public FileWriteException() {
