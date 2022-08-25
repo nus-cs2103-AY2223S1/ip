@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Parser {
     public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
     private static Ui ui = new Ui();
@@ -66,7 +66,7 @@ public class Parser {
                         throw new InvalidTaskIndexException();
                     }
                     taskList.deleteTask(Integer.parseInt(inputs[1]));
-                } else if (command.equals(Duke.Command.FIND.name().toLowerCase())) {
+                } else if (command.equals(Command.FIND.name().toLowerCase())) {
                     // inputs[1] is the keyword (do not accept keywords)
                     taskList.findTasks(inputs[1]);
                 } else {
