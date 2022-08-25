@@ -1,3 +1,5 @@
+package skyler;
+
 public class Ui {
 
     public Ui() {

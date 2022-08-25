@@ -1,13 +1,15 @@
+package skyler;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
+public class Event extends Task {
 
-    protected LocalDateTime by;
+    protected LocalDateTime at;
 
-    public Deadline(String description, LocalDateTime by) {
+    public Event(String description, LocalDateTime at) {
         super(description);
-        this.by = by;
+        this.at = at;
     }
 
     public String formatDateTime(LocalDateTime dateTime) {
@@ -16,13 +18,13 @@ public class Deadline extends Task {
 
     @Override
     public String toStringUnformatted() {
-        String unformatted = by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        String unformatted = at.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
         return String.format("[D]%s (by: %s)", super.toString(), unformatted);
     }
 
     @Override
     public String toString() {
-        String formatted = formatDateTime(by);
-        return String.format("[D]%s (by: %s)", super.toString(), formatted);
+        String formatted = formatDateTime(at);
+        return String.format("[E]%s (at: %s)", super.toString(), formatted);
     }
 }
