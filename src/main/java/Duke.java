@@ -84,7 +84,7 @@ public class Duke {
                         "E.g /by Aug 6th.\n"
                         + LINE);
             } else {
-                Deadline d = new Deadline(taskDeadline[0].substring(1), taskDeadline[1]);
+                Deadline d = new Deadline(taskDeadline[0].substring(1), " " + taskDeadline[1].substring(1));
                 int index = taskList.size() + 1;
                 taskList.add(d);
                 count++;
@@ -107,7 +107,7 @@ public class Duke {
                         "E.g /at 2-4pm.\n"
                         + LINE);
             } else {
-                Event e = new Event(taskEvent[0].substring(1), taskEvent[1]);
+                Event e = new Event(taskEvent[0].substring(1), " " + taskEvent[1].substring(1));
                 int index = taskList.size() + 1;
                 taskList.add(e);
                 count++;
