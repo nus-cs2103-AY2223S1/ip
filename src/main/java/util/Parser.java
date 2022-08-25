@@ -15,7 +15,18 @@ enum InputType {
     delete,
 }
 
+/**
+ * This class is used to parse command line inputs.
+ */
 public class Parser {
+    /**
+     * Parses command line input to ParsedData.
+     *
+     * @param type Type of input.
+     * @param input The input.
+     * @return ParsedData.
+     * @throws AlanException The exception in case of failure.
+     */
     public ParsedData parse(InputType type, String input) throws AlanException {
         ParsedData result;
         switch (type) {

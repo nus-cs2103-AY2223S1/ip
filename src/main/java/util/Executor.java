@@ -4,12 +4,18 @@ import alanExceptions.AlanException;
 import alanExceptions.InvalidValueException;
 import tasks.*;
 
+/**
+ * This class is used for executing commands.
+ */
 public class Executor {
     private final Ui ui;
     private final FileFormatter fileFormatter;
     private final Parser parser;
     private Storage alanIO;
 
+    /**
+     * Constructor for Executor
+     */
     public Executor() {
         this.ui = new Ui();
         this.fileFormatter = new FileFormatter();
@@ -21,10 +27,22 @@ public class Executor {
         }
     }
 
+    /**
+     * Lists a TaskList
+     *
+     * @param taskList The task list to be listed.
+     */
     public void excList(TaskList taskList) {
         System.out.println(ui.list(taskList.getTaskList()));
     }
 
+    /**
+     * Adds an Event to the given task list
+     *
+     * @param taskList The task list.
+     * @param userInput The user input.
+     * @throws AlanException The exception in case of failure.
+     */
     public void excEvent(TaskList taskList, String userInput) throws AlanException {
         ParsedData parsedData = parser.parse(InputType.event, userInput);
         Task currentTask = new Event(parsedData);
@@ -34,6 +52,13 @@ public class Executor {
         System.out.println(ui.addTask(currentTask, taskList.size()));
     }
 
+    /**
+     * Adds a Deadline to the given task list
+     *
+     * @param taskList The task list.
+     * @param userInput The user input.
+     * @throws AlanException The exception in case of failure.
+     */
     public void excDeadline(TaskList taskList, String userInput) throws AlanException {
         ParsedData parsedData = parser.parse(InputType.deadline, userInput);
         Task currentTask = new Deadline(parsedData);
@@ -43,6 +68,13 @@ public class Executor {
         System.out.println(ui.addTask(currentTask, taskList.size()));
     }
 
+    /**
+     * Adds a Todo to the given task list
+     *
+     * @param taskList The task list.
+     * @param userInput The user input.
+     * @throws AlanException The exception in case of failure.
+     */
     public void excTodo(TaskList taskList, String userInput) throws AlanException {
         ParsedData parsedData = parser.parse(InputType.todo, userInput);
         Task currentTask = new Todo(parsedData);
@@ -52,6 +84,13 @@ public class Executor {
         System.out.println(ui.addTask(currentTask, taskList.size()));
     }
 
+    /**
+     * Marks a task on the given list
+     *
+     * @param taskList The task list.
+     * @param userInput The user input.
+     * @throws AlanException The exception in case of failure.
+     */
     public void excMark(TaskList taskList, String userInput) throws AlanException {
         ParsedData parsedData = parser.parse(InputType.mark, userInput);
         try {
@@ -65,6 +104,13 @@ public class Executor {
         }
     }
 
+    /**
+     * Unmarks a task on the given list
+     *
+     * @param taskList The task list.
+     * @param userInput The user input.
+     * @throws AlanException The exception in case of failure.
+     */
     public void excUnmark(TaskList taskList, String userInput) throws AlanException {
         ParsedData parsedData = parser.parse(InputType.unmark, userInput);
         try {
@@ -78,6 +124,13 @@ public class Executor {
         }
     }
 
+    /**
+     * Deletes a specified task
+     *
+     * @param taskList The task list.
+     * @param userInput The user input.
+     * @throws AlanException The exception in case of failure.
+     */
     public void excDelete(TaskList taskList, String userInput) throws AlanException {
         ParsedData parsedData = parser.parse(InputType.delete, userInput);
         try {
@@ -91,6 +144,11 @@ public class Executor {
         }
     }
 
+    /**
+     * Prints the error message
+     *
+     * @param errorMsg The error message to be printed.
+     */
     public void excException(String errorMsg) {
         System.out.println(ui.addSeparator(errorMsg));
     }

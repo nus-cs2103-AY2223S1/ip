@@ -13,6 +13,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * This class is used to read and write files.
+ */
 public class Storage {
     private Path dirPath = Paths.get("data");
     private Path fileNamePath = Paths.get("alan.txt");
@@ -21,6 +24,11 @@ public class Storage {
     private final File SAVE_FILE;
     private BufferedWriter writer;
 
+    /**
+     * Constructor
+     *
+     * @throws AlanException Exception in case of failure.
+     */
     public Storage() throws AlanException {
         this.SAVE_DIR = new File(dirPath.toString());
         this.SAVE_FILE = new File(filePath.toString());
@@ -32,6 +40,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Constructor
+     *
+     * @param directory Custom directory.
+     * @param file Custom file name.
+     * @throws AlanException Exception in case of failure.
+     */
     public Storage(Path directory, Path file) throws AlanException {
         this.dirPath = directory;
         this.fileNamePath = file;
@@ -46,6 +61,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Rewrites an existing file.
+     *
+     * @param data Data to be written.
+     * @throws AlanException Exception in case of failure.
+     */
     public void write(String data) throws AlanException {
         try {
             writer = new BufferedWriter(new FileWriter(filePath.toString()));
@@ -56,6 +77,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Appends to an existing file.
+     *
+     * @param data Data to be appended.
+     * @throws AlanException Exception in case of failure.
+     */
     public void append(String data) throws AlanException {
         try {
             writer = new BufferedWriter(new FileWriter(filePath.toString(), true));
@@ -66,6 +93,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads a file
+     *
+     * @return The data read from the file.
+     * @throws AlanException Exception in case of failure.
+     */
     public String read() throws AlanException {
         String result;
         try {

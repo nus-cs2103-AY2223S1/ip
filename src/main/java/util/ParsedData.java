@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * This class encapsulates parsed data.
+ */
 public class ParsedData {
     private final String DEFAULT_TIME_FORMAT = "dd/MM/yyyy HH:mm";
     private DateTimeFormatter formatter;
@@ -14,6 +17,13 @@ public class ParsedData {
     private LocalDateTime dateTime;
     private int listIndex;
 
+    /**
+     * Constructor
+     *
+     * @param task Task.
+     * @param during Time keyword.
+     * @param time Time.
+     */
     public ParsedData(String task, String during, String time) {
         this.task = task;
         this.during = during;
@@ -29,6 +39,14 @@ public class ParsedData {
 
     }
 
+    /**
+     * Constructor
+     *
+     * @param status Status.
+     * @param task Task.
+     * @param during Time keyword.
+     * @param time Time.
+     */
     public ParsedData(String status, String task, String during, String time) {
         this.task = task;
         this.during = during;
@@ -44,10 +62,20 @@ public class ParsedData {
         this.isDone = status.equals("X");
     }
 
+    /**
+     * Constructor
+     *
+     * @param task Task.
+     */
     public ParsedData(String task) {
         this.task = task;
     }
 
+    /**
+     * Constructor
+     *
+     * @param listIndex Index.
+     */
     public ParsedData(int listIndex) {
         this.listIndex = listIndex;
     }

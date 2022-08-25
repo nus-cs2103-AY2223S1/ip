@@ -7,6 +7,9 @@ import util.Ui;
 
 import java.util.Scanner;
 
+/**
+ * This class encapsulates the Chat Bot.
+ */
 public class Alan {
     public static Alan instance;
     private Storage alanIO;
@@ -16,6 +19,9 @@ public class Alan {
     private final Executor executor;
     private TaskList taskList;
 
+    /**
+     * Private Constructor.
+     */
     private Alan() {
         this.input = new Scanner(System.in);
         this.ui = new Ui();
@@ -30,6 +36,11 @@ public class Alan {
         }
     }
 
+    /**
+     * Entry creates an Alan singleton
+     *
+     * @param args args.
+     */
     public static void main(String[] args) {
         if (Alan.instance == null) {
             Alan.instance = new Alan();

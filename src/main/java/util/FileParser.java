@@ -10,7 +10,17 @@ import tasks.Todo;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is used to parse the save file.
+ */
 public class FileParser {
+    /**
+     * Parses the save file into a list of tasks
+     *
+     * @param data The data from the save file.
+     * @return The list of tasks.
+     * @throws AlanException The exception in case of failure.
+     */
     public List<Task> parseFile(String data) throws AlanException {
         List<Task> result = new ArrayList<>();
         String[] lines = data.split("\n");
