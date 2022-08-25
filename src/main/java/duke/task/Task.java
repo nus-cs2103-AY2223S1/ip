@@ -64,6 +64,16 @@ public class Task {
     }
 
     /**
+     * Checks if the description contains this keyword.
+     *
+     * @param string The keyword.
+     * @return a boolean value.
+     */
+    public boolean contains(String string) {
+        return description.contains(string);
+    }
+
+    /**
      * Override the toString() method to display the task.
      *
      * @return A String representing the task.
