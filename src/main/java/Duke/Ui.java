@@ -75,4 +75,8 @@ public class Ui {
     public void showErrorWritingMessage() {
         System.out.println("Error writing to data!");
     }
+
+    public void showInvalidFindFiledMessage() {
+        System.out.println("Please include a word to search for!");
+    }
 }
