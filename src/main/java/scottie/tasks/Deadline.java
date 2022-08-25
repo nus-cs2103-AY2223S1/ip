@@ -16,16 +16,16 @@ public class Deadline extends Task {
         this.endDateTime = endDateTime;
     }
 
-     static Deadline fromEncodedString(String encodedString) throws InvalidTaskDataException {
-         String[] splitTaskData = encodedString.split("\\|");
-         if (splitTaskData.length < 4) {
-             throw new InvalidTaskDataException("The data for this deadline is not formatted correctly.");
-         }
-         String description = splitTaskData[2];
-         boolean isDone = splitTaskData[1].equals("1");
-         TemporalAccessor endDateTime = DateTimeUtil.parseCompactDateTime(splitTaskData[3]);
-         return new Deadline(description, isDone, endDateTime);
-     }
+    static Deadline fromEncodedString(String encodedString) throws InvalidTaskDataException {
+        String[] splitTaskData = encodedString.split("\\|");
+        if (splitTaskData.length < 4) {
+            throw new InvalidTaskDataException("The data for this deadline is not formatted correctly.");
+        }
+        String description = splitTaskData[2];
+        boolean isDone = splitTaskData[1].equals("1");
+        TemporalAccessor endDateTime = DateTimeUtil.parseCompactDateTime(splitTaskData[3]);
+        return new Deadline(description, isDone, endDateTime);
+    }
 
     @Override
     String toEncodedString() {
