@@ -7,7 +7,7 @@ import java.util.Scanner;
  * Deals with making sense of the user command.
  */
 public class Parser {
-    public static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete"};
+    private static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete"};
     public Parser() {};
 
     /**
@@ -48,7 +48,7 @@ public class Parser {
      * @return Event object.
      */
     public Event createEvent(String nextLine) {
-        String[]sections =nextLine.split(" /at ");
+        String[]sections = nextLine.split(" /at ");
         return new Event(sections[0], false, sections[1]);
     }
 

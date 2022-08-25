@@ -6,9 +6,9 @@ import java.util.List;
  * Represents a list of tasks. A Tasklist object stores information about the tasks in the list.
  */
 public class TaskList {
+    private static int count = 0;
     private List<Task> list;
     private Ui ui;
-    private static int count = 0;
 
     /**
      * Creates new TaskList object.
