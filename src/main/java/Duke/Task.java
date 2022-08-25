@@ -14,7 +14,6 @@ abstract public class Task {
         return getStatusIcon() + " " + task;
     }
 
-
     public String getStatusIcon() {
         return this.isDone ? "[X]" : "[ ]";
     }
@@ -26,7 +25,6 @@ abstract public class Task {
     public void setTaskAsDone() {
         isDone = true;
     }
-
 
     public void setTaskAsUnDone() {
         isDone = false;

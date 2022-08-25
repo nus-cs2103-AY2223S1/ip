@@ -3,8 +3,7 @@ package Duke;
 // deals with interactions with the user
 public class Ui {
 
-    public Ui() {
-    }
+    public Ui() {}
 
     public static void printList(TaskList tasks) {
         System.out.println("Here are the tasks in your list:");
