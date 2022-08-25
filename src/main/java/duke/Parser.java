@@ -17,7 +17,7 @@ import duke.command.UnmarkCommand;
  */
 public class Parser {
     /**
-     * Parse user command into Command instance to execute.
+     * Parses user command into Command instance to execute.
      * @param fullCommand String representing the command input of the user.
      * @return Command to be executed.
      * @throws DukeException If the fullCommand is not valid.
@@ -71,7 +71,7 @@ public class Parser {
     }
 
     /**
-     * Parse description into Todo instance
+     * Parses description into Todo instance
      * @param description Description of Todo
      * @return Todo instance
      * @throws DukeException If description is empty.
@@ -84,7 +84,7 @@ public class Parser {
     }
 
     /**
-     * Parse argsString into Deadline instance
+     * Parses argsString into Deadline instance
      * @param argsString String of format "description /by date"
      * @return Deadline instance.
      * @throws DukeException If argsString format is wrong.
@@ -105,7 +105,7 @@ public class Parser {
     }
 
     /**
-     * Parse argsString into Event instance.
+     * Parses argsString into Event instance.
      * @param argsString String of format "description /at date"
      * @return Event instance
      * @throws DukeException If argsString format is wrong.
@@ -125,7 +125,7 @@ public class Parser {
     }
 
     /**
-     * Parse String to Integer
+     * Parses String to Integer
      * @param number String representation of integer.
      * @return Integer with value integer.
      * @throws DukeException If number is not of number format.

@@ -7,7 +7,7 @@ import duke.TaskList;
 import duke.Ui;
 
 /**
- * Represents the list command to list all of the user's tasks.
+ * Represents the list command to list all the user's tasks.
  */
 public class ListCommand extends Command {
     /**

@@ -9,7 +9,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Return the string representation of a Todo.
+     * Returns the string representation of a Todo.
      * @return "[T] {taskDescription}"
      */
     @Override
@@ -18,7 +18,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Return the file representation of a Todo.
+     * Returns the file representation of a Todo.
      * @return "T | {1 if done else 0} | {taskDescription}"
      */
     @Override
@@ -27,7 +27,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Convert string representation to Todo.
+     * Converts string representation to Todo.
      * @param rep String representation of Todo
      * @return new Todo
      */

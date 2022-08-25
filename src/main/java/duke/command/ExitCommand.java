@@ -9,7 +9,7 @@ import duke.Ui;
  */
 public class ExitCommand extends Command {
     /**
-     * Return true because this is the exit command.
+     * Returns true because this is the exit command.
      * @return true.
      */
     public boolean isExit() {

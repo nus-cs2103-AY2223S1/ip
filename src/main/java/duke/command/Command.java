@@ -18,7 +18,7 @@ public abstract class Command {
     }
 
     /**
-     * Abstract execute method for each Command class to run once in the Duke main loop.
+     * Runs instructions of command.
      * @param taskList List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.

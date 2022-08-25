@@ -13,7 +13,7 @@ public class UnmarkCommand extends Command {
     private int index;
 
     /**
-     * Creates UnmarkCommand
+     * Creates UnmarkCommand.
      * @param index Index of task to mark as not done.
      */
     public UnmarkCommand(int index) {

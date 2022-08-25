@@ -23,7 +23,7 @@ public class Ui {
     }
 
     /**
-     * Print line with indentation.
+     * Prints line with indentation.
      * If message spans multiple lines, they are indented appropriately,
      * @param toPrint String to print.
      */
@@ -47,7 +47,7 @@ public class Ui {
     }
 
     /**
-     * Prints "Now you have {taskCount} tasks in the list."
+     * Prints "Now you have {taskCount} tasks in the list.".
      * @param taskCount Number of tasks.
      */
     public void printTaskCount(int taskCount) {

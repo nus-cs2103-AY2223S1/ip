@@ -13,7 +13,7 @@ public class Storage {
     private String filePath;
 
     /**
-     * Initialise Storage with filePath.
+     * Initialises Storage with filePath.
      * @param filePath filePath of data file.
      */
     public Storage(String filePath) {
@@ -21,7 +21,7 @@ public class Storage {
     }
 
     /**
-     * Load the data from the specified filePath. Creates an empty file if not found.
+     * Loads the data from the specified filePath. Creates an empty file if not found.
      * @return ArrayList containing Task used to initialise TaskList
      * @throws DukeException if file was wrongly modified, causing errors in reading the file.
      */
@@ -64,7 +64,7 @@ public class Storage {
     }
 
     /**
-     * Save taskList to specified filepath.
+     * Saves taskList to specified filepath.
      * @param taskList List of tasks.
      * @throws DukeException if Duke has insufficient permissions to write to file.
      */

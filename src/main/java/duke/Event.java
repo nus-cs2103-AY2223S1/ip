@@ -10,7 +10,7 @@ public class Event extends Task {
     private LocalDate at;
 
     /**
-     * Initialise new event with description and date.
+     * Initialises new event with description and date.
      * @param description Description of Event.
      * @param at Date of event.
      */
@@ -20,7 +20,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return whether Event is on that date.
+     * Returns whether Event is on that date.
      * @param date Specified date.
      * @return Boolean of whether Event is on that date.
      */
@@ -29,7 +29,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return file representation of Event.
+     * Returns file representation of Event.
      * @return "E | {1 if done else 0} | {description} | {at}"
      */
     @Override
@@ -38,7 +38,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return new Event instance from file representation
+     * Returns new Event instance from file representation
      * @param rep String representation of Event.
      * @return New Event instance.
      */
@@ -55,7 +55,7 @@ public class Event extends Task {
     }
 
     /**
-     * Return String representation of Event.
+     * Returns String representation of Event.
      * @return "[E] | {[X] if done else [ ]} | {description} | {formattedAt}"
      */
     @Override

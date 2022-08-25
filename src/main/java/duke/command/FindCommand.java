@@ -15,7 +15,7 @@ public class FindCommand extends Command {
     private String searchQuery;
 
     /**
-     * Create FindCommand
+     * Creates FindCommand.
      * @param searchQuery String to filter description for.
      */
     public FindCommand(String searchQuery) {

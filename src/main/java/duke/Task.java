@@ -10,7 +10,7 @@ public abstract class Task {
     private boolean done;
 
     /**
-     * Create a task.
+     * Creates a task.
      * @param description Description of task.
      */
     public Task(String description) {
@@ -19,21 +19,21 @@ public abstract class Task {
     }
 
     /**
-     * Mark task as done.
+     * Marks task as done.
      */
     public void markDone() {
         this.done = true;
     }
 
     /**
-     * Mark task as not done.
+     * Marks task as not done.
      */
     public void unmarkDone() {
         this.done = false;
     }
 
     /**
-     * Return common part of all tasks for file representation
+     * Returns common part of all tasks for file representation
      * @return "{1 if done else 0} | {description}"
      */
     public String toFileRepresentation() {
@@ -69,7 +69,7 @@ public abstract class Task {
     }
 
     /**
-     * Return String representation of Task.
+     * Returns String representation of Task.
      * @return "{[X] if done else [ ]} | {description}"
      */
     @Override

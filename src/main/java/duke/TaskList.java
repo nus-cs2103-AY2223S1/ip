@@ -13,14 +13,14 @@ public class TaskList implements Iterable<Task> {
     private ArrayList<Task> taskArrayList;
 
     /**
-     * Initialise an empty task list.
+     * Initialises an empty task list.
      */
     public TaskList() {
         this.taskArrayList = new ArrayList<>();
     }
 
     /**
-     * Initialise a task list with existing tasks.
+     * Initialises a task list with existing tasks.
      * @param taskArrayList List of tasks to initialize with.
      */
     public TaskList(ArrayList<Task> taskArrayList) {
@@ -28,7 +28,7 @@ public class TaskList implements Iterable<Task> {
     }
 
     /**
-     * Return number of tasks in the task list.
+     * Returns number of tasks in the task list.
      * @return Number of tasks.
      */
     public int taskCount() {
