@@ -1,14 +1,13 @@
 package duke.command;
 
-import java.util.List;
-
 import duke.DukeException;
 import duke.Ui;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.task.TaskList;
 
-
+/**
+ * Finds task with specific word in tasklist
+ */
 public class FindCommand extends Command {
     private String text;
 
@@ -18,7 +17,7 @@ public class FindCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        String output = ui.listToStringWithWord(taskList.getList(), text);
+        String output = ui.listToStringWithText(taskList.getList(), text);
         ui.printMessage(output);
     }
 

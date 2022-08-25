@@ -56,21 +56,27 @@ public class Ui {
         return output.toString();
     }
 
-    public String listToStringWithWord(List<Task> list, String word) {
+    /**
+     * Converts list containing tasks with specific text to string for printing.
+     * @param list list of user's saved tasks.
+     * @param text keyword to find in task description.
+     * @return matching tasks in string form.
+     */
+    public String listToStringWithText(List<Task> list, String text) {
         boolean foundMatchingTask = false;
         if (list.size() == 0) {
             return "List is empty ~\n";
         }
         StringBuilder output = new StringBuilder();
-        output.append("Here are the matching tasks containing \"" + word + "\":\n");
+        output.append("Here are the matching tasks containing \"" + text + "\":\n");
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getDescription().contains(word)) {
+            if (list.get(i).getDescription().contains(text)) {
                 output.append(i + 1).append(". ").append(list.get(i)).append("\n");
                 foundMatchingTask = true;
             }
         }
         if (!foundMatchingTask) {
-            return "No matching tasks with \"" + word + "\" :(";
+            return "No matching tasks with \"" + text + "\" :(";
         }
         return output.toString();
     }

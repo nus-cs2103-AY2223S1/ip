@@ -7,7 +7,7 @@ import duke.task.Event;
 import duke.task.TaskList;
 
 /**
- * Adds Event task in duke's tasklist.
+ * Adds Event task in tasklist.
  */
 public class EventCommand extends Command {
     private String description;

@@ -7,7 +7,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Removes task at specific index from duke's tasklist.
+ * Removes task at specific index from tasklist.
  */
 public class DeleteCommand extends Command {
     private int index;

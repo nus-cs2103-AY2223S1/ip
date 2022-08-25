@@ -9,7 +9,7 @@ import duke.task.Deadline;
 import duke.task.TaskList;
 
 /**
- * Adds Deadline task in duke's tasklist.
+ * Adds Deadline task in tasklist.
  */
 public class DeadlineCommand extends Command {
 
