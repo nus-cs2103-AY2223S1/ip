@@ -1,14 +1,9 @@
-<<<<<<< HEAD
-import java.util.ArrayList;
-import java.util.Arrays;
-=======
 import java.io.IOException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.nio.file.Path;
 import java.util.ArrayList;
->>>>>>> Level-7
 import java.util.Scanner;
 
 public class Duke {
