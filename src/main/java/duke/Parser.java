@@ -7,12 +7,17 @@ import java.util.Arrays;
 
 import static java.lang.Integer.parseInt;
 
+
+/**
+ * Encapsulates a class extracted from the main logic to parse the user input
+ */
 public class Parser {
 
-    public Parser(){
-
-    }
-
+    /**
+     * Parses the input and returns the appropriate command to be executed
+     * @param inputString the inputted string from the user
+     * @return the Command to the executed from the input
+     */
     public static Command parse(String inputString) throws DukeException {
         String[] input = inputString.split(" ");
         switch (input[0]) {
@@ -51,7 +56,11 @@ public class Parser {
         throw new DukeException("☹ OOPS!!! I don't understand what that means");
     }
 
-
+    /**
+     * Returns the index from an input
+     * @param input The input, split with " "
+     * @return The index for the inputted command
+     */
     private static int getNumber(String[] input) throws DukeException {
         if (input.length == 2 && input[1].matches("^[0-9]*$")) {
             return parseInt(input[1]);
@@ -73,6 +82,11 @@ public class Parser {
         throw new DukeException("☹ OOPS!!! Please add a date for your event with /at.");
     }
 
+    /**
+     * Returns the date from an input
+     * @param input The input, split with " "
+     * @return The date for the inputted command
+     */
     private static LocalDate getDate(String[] input) throws DukeException {
         try {
             if (input.length == 2 && input[1].matches("^[0-9]*$")) {
@@ -84,6 +98,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the input from a string to date
+     * @param input The inputted string
+     * @return The LocalDate returned
+     */
     private static LocalDate getDate(String input) throws DukeException {
         try {
             return LocalDate.parse(input);

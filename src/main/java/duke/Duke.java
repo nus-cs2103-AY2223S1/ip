@@ -3,11 +3,13 @@ package duke;
 import duke.command.Command;
 
 
-
+/**
+ * Main class for the chatbot programme
+ */
 public class Duke {
     static Ui ui = new Ui();
     static Storage storage = new Storage();
-    static TaskList taskList = new TaskList(storage.readFile("duke.txt"),ui);
+    static TaskList taskList = new TaskList(storage.readFile("duke.txt"));
 
 
     public static void main(String[] args) {

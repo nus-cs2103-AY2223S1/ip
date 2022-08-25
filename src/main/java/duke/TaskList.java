@@ -1,25 +1,43 @@
 package duke;
 import java.util.List;
 
+
+/**
+ * Encapsulates a deadline Class
+ */
 public class TaskList {
     private List<Task> taskList;
-    private Ui ui;
 
-    public TaskList(List<Task> taskList, Ui ui) {
+    /**
+     * Creates a new taskList
+     * @param taskList The List of Tasks to be stored
+     */
+    public TaskList(List<Task> taskList) {
         this.taskList = taskList;
-        this.ui = ui;
     }
 
+    /**
+     * Returns the List of Tasks that this class encapsulates
+     * @return the List of Tasks
+     */
     public List<Task> getTaskList(){
         return taskList;
     }
 
+    /**
+     * Prints the list of Tasks
+     */
     public void printTaskList(){
         for(int i = 0; i<taskList.size(); i++){
             Integer index = i+1;
             System.out.println(index + ". " + taskList.get(i));
         }
     }
+
+    /**
+     * Returns the number of tasks in the list
+     * @return the size of the List of Tasks
+     */
     public int size(){
         return taskList.size();
     }
@@ -51,6 +69,10 @@ public class TaskList {
         taskList.remove(task);
     }
 
+    /**
+     * Adds a task
+     * @param task The task to be added
+     */
     public void addTask(Task task) throws DukeException{
         taskList.add(task);
     }
