@@ -74,9 +74,9 @@ public class TaskList {
         message = "_________________________ \n";
         while (i < len) {
             Task task = taskList.get(i);
-            String desc = task.getDesc();
+            String desc = task.getDesc().toLowerCase();
             String taskType = task.getType();
-            if (desc.indexOf(str) != -1) {
+            if (desc.indexOf(str.toLowerCase()) != -1) {
                 if (num == 0) {
                     message += "Here's what we found: \n";
                 }
