@@ -41,7 +41,7 @@ public class TaskListTest {
         actualList.add(Task.event("cs1010s", Parser.parseStringToDateTime("2022-01-01 12:34")));
         actualList.add(Task.deadline("cs1231s", Parser.parseStringToDateTime("2022-02-01 13:34")));
         actualList.add(Task.event("cs2030s", Parser.parseStringToDateTime("2022-01-21 02:34")));
-        
+
         actual = actualList.get(2);
         assertEquals(actual, expected);
     }
