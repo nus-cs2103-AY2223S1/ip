@@ -13,6 +13,11 @@ dependencies {
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
 }
 
+clean.doLast{
+    file('test/history.txt').delete()
+    file('test').deleteDir()
+}
+
 test {
     useJUnitPlatform()
 
