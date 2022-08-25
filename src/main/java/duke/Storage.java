@@ -11,6 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Storage class to handle file operations
+ */
 public class Storage {
     private String filePath;
 
@@ -18,6 +21,9 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Function that run at the start of the application to load data
+     */
     public void run() {
         try {
             File myObj = new File(this.filePath);
@@ -31,6 +37,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Helper function to load data into the application from saved file
+     * @return A list of tasks
+     */
     public List<Task> loadData() {
         List<Task> result = new ArrayList<>();
         try {
@@ -61,6 +71,10 @@ public class Storage {
         return result;
     }
 
+    /**
+     * Write task to file
+     * @param text
+     */
     public void write(String text) {
         try {
             FileWriter myWriter = new FileWriter(filePath,true);
@@ -72,6 +86,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Some actions like update and delete require a rewrite of the
+     * entire text file
+     * @param list
+     */
     public void rewrite(List<Task> list) {
         try {
             FileWriter myWriter = new FileWriter(filePath,true);
