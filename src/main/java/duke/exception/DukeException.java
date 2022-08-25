@@ -1,8 +1,11 @@
 package duke.exception;
+<<<<<<< HEAD
 
 /**
  * Class type of exceptions unique to Duke
  */
+=======
+>>>>>>> branch-A-CodingStandard
 public class DukeException extends Exception {
 
     private String message;
