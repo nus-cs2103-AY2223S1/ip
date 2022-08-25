@@ -1,4 +1,8 @@
 package duke.exception;
+
+/**
+ * Parent Exception which inherited by different self-defined Exceptions.
+ */
 public class DukeException extends Exception {
     public DukeException() {}
 

@@ -5,14 +5,33 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+
+/**
+ * Delete Tasks from TaskList.
+ */
 public class DeleteCommand extends Command {
     public static final boolean IS_EXIT = false;
     public final int deleteIndex;
 
+    /**
+     * Constructs a DeleteCommand instance with the provided deleteIndex numbering
+     * the corresponding Task to be deleted.
+     *
+     * @param deleteIndex the numbered Task which is to be deleted.
+     */
     public DeleteCommand(int deleteIndex) {
         this.deleteIndex = deleteIndex;
     }
 
+    /**
+     * Remove the Task at deleteIndex from taskList.
+     *
+     * @param taskList the TaskList where the corresponding Task to be deleted from.
+     * @param ui the Ui to assist the conversion of Task to String.
+     * @param storage the Storage to remove new Task from file.
+     * @throws ArrayIndexOutOfBoundsException if the deleteIndex is not provided by the user.
+     * @throws IndexOutOfBoundsException if the deleteIndex exceeded the current existing number of Tasks.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
@@ -21,9 +40,6 @@ public class DeleteCommand extends Command {
             System.out.println("Noted. I've removed this task:\n " + ui.beautyWrapTask(removedTask)
                     + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n");
 
-            /* * *
-             *  Write file in duke.txt
-             * * */
             String list = "";
             for (Task t : taskList.getList()) {
                 list += t.toString();
@@ -36,6 +52,11 @@ public class DeleteCommand extends Command {
         }
     }
 
+    /**
+     * Returns false as Delete is not a terminating Command.
+     *
+     * @return false.
+     */
     public boolean isExit() {
         return this.IS_EXIT;
     }

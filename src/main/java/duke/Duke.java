@@ -3,11 +3,20 @@ package duke;
 import duke.command.Command;
 import duke.exception.DukeException;
 
+/**
+ * Main file of Duke to be run to initiate the program.
+ */
 public class Duke {
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructs a Duke instance and load the previous stored TaskList from the filePath.
+     *
+     * @param filePath the path of the .txt file in this project where the TaskList is to be stored.
+     * @throws DukeException the parent Exception inherited by self-created exceptions.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -26,7 +35,9 @@ public class Duke {
         new Duke("duke.txt").run();
     }
 
-
+    /**
+     * Initialise the Duke program.
+     */
     public void run() {
         this.ui.showGreetingMessage();
         this.ui.printList(this.taskList);
@@ -41,7 +52,6 @@ public class Duke {
                 ui.showError(e.getMessage());
             }
         }
-
         this.ui.showGoodbyeMessage();
     }
 

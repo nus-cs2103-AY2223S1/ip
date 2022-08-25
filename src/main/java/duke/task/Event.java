@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Event is a subclass of Task indicates task to be attended.
+ */
 public class Event extends Task {
     private static final String TASK_TYPE = "E";
 

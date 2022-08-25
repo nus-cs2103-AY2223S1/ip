@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * ToDo is a subclass of Task indicates task to be done in the future.
+ */
 public class ToDo extends Task {
     private static final String TASK_TYPE = "T";
 

@@ -8,12 +8,24 @@ import duke.command.ExitCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 
+/**
+ * Breaks input by user into smaller parts to find respective actions to be taken.
+ */
 public class Parser {
 
+    /**
+     * Constructs a Parser instance without initiating any parameter
+     */
     public Parser() {
 
     }
 
+    /**
+     * Split the fullCommand into smaller parts and decide which Command to be created and returned.
+     *
+     * @param fullCommand the whole command input by user.
+     * @return the corresponding Command subclasses.
+     */
     public static Command parse(String fullCommand) {
         String[] parts = fullCommand.split(" ", 0);
         String command = parts[0];
