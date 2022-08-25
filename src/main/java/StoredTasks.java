@@ -6,21 +6,27 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class StoredTasks {
-    private static final String FILEDIR = "data";
-    private static final String FILEPATH = FILEDIR + File.separator + "duke.txt";
     private static final int TASKTYPE = 0;
     private static final int ISTASKDONE = 1;
     private static final int TASKDESCRIPTION = 2;
     private static final int TASKTIME = 3;
 
-    public static ArrayList<Task> load() {
+    private String fileDir;
+    private String filePath;
+
+    public StoredTasks(String fileDir, String filePath) {
+        this.fileDir = fileDir;
+        this.filePath = filePath;
+    }
+
+    public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> storedTasks = new ArrayList<>(100);
         try {
-            File dir = new File(FILEDIR);
+            File dir = new File(this.fileDir);
             if (!dir.exists()) {
                 dir.mkdir();
             }
-            File fileName = new File(FILEPATH);
+            File fileName = new File(this.filePath);
             if (!fileName.exists()) {
                 fileName.createNewFile();
             }
@@ -58,14 +64,14 @@ public class StoredTasks {
             br.close();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            throw new DukeException("Failure in reading file, creating new save file");
         }
         return storedTasks;
     }
 
-    public static void save(ArrayList<Task> storedTasks) {
+    public void save(ArrayList<Task> storedTasks) {
         try {
-            FileWriter fw = new FileWriter(FILEPATH);
+            FileWriter fw = new FileWriter(this.filePath);
             for (Task task : storedTasks) {
                 fw.write(task.storedTaskString() + "\n");
             }
