@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,7 +38,7 @@ public class Storage {
         String s1 = stringStored.substring(7);
         // To isolate the string containing the task status
         String s2 = stringStored.substring(0, 6);
-
+        // To keep track if the task has been marked completed
         boolean isCompleted = s2.contains("[X]");
 
         if (s2.contains("[T]")) {
@@ -51,7 +50,6 @@ public class Storage {
             String[] separateAt = s1.split(" \\(at: ", 2);
             return new Event(separateAt[0], separateAt[1].substring(0, separateAt[1].length() - 1), isCompleted);
         }
-
     }
 
     public void writeToFile(TaskList tasks) throws IOException {

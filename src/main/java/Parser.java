@@ -52,10 +52,25 @@ public class Parser {
             }
             return new UnmarkCommand(array[1]);
         } else if (firstText.equals(TODO)) {
+            if (array.length == 1) {
+                String error_msg = "__________________________________________________\n" +
+                        "OOPS!!! The description of a todo cannot be empty.";
+                throw new DukeException(error_msg);
+            }
             return new AddCommand(0, array[1]);
         } else if (firstText.equals(DEADLINE)) {
+            if (array.length == 1) {
+                String error_msg = "__________________________________________________\n" +
+                        "OOPS!!! The description of a deadline cannot be empty.";
+                throw new DukeException(error_msg);
+            }
             return new AddCommand(1, array[1]);
         } else if (firstText.equals(EVENT)) {
+            if (array.length == 1) {
+                String error_msg = "__________________________________________________\n" +
+                        "OOPS!!! The description of a event cannot be empty.";
+                throw new DukeException(error_msg);
+            }
             return new AddCommand(2, array[1]);
         } else {
             return new WrongCommand();
