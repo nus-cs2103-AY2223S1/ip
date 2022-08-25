@@ -28,6 +28,12 @@ public class Parser {
             }
             return splitCommands;
         
+        case "find":
+            if (splitCommands.length == 1) {
+                throw new DukeException("\u2639 OOPS!!! Keyword cannot be blank.");
+            }
+            return splitCommands;
+
         case "deadline":
         case "event":
             if (splitCommands.length == 1) {
