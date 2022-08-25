@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -108,6 +111,13 @@ public class Duke {
                                         + "☹ OOPS!!! The description of a deadline cannot be empty. \n"
                                         + "____________________________________________________________");
 
+                        command = scan.nextLine();
+                        continue;
+                    } catch (DateTimeParseException e) {
+                        System.out.println(
+                                "____________________________________________________________ \n"
+                                        + "☹ OOPS!!! The deadline must be in yyyy-MM-dd hh:mm AM/PM format. \n"
+                                        + "____________________________________________________________");
                         command = scan.nextLine();
                         continue;
                     }
