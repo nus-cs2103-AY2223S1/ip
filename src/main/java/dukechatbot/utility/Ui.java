@@ -92,4 +92,16 @@ public class Ui {
         System.out.println("-------------------------------\n");
     }
 
+    public void listMatch(ArrayList<Task> tl) {
+        int count = 1;
+        System.out.println("-------------------------------\n");
+        System.out.println("\tHere are the matching tasks in your list: ");
+        for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
+            Task curr = it.next();
+            System.out.println("\t\t" +count + ". " + curr.toString());
+            count++;
+        }
+        System.out.println("-------------------------------\n");
+    }
+
 }

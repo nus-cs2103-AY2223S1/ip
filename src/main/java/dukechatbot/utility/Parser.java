@@ -7,9 +7,11 @@ public class Parser {
         this.tasks = tasks;
         this.ui = ui;
     }
-    public void categorise(String str) throws DukeException{
+    public void categorise(String str) throws DukeException {
         String uncap = str.toLowerCase();
-        if (uncap.startsWith("delete")) {
+        if (uncap.startsWith("find")) {
+            tasks.find(uncap.substring(5), ui);
+        } else if (uncap.startsWith("delete")) {
             Integer i = Integer.parseInt(String.valueOf(str.charAt(7)));
             tasks.delete(i, ui);
         } else {

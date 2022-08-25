@@ -1,5 +1,6 @@
 package dukechatbot.utility;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class TaskList {
     private ArrayList<Task> tl;
@@ -33,4 +34,15 @@ public class TaskList {
         ui.unmarked(t);
     }
 
+    public void find(String desc, Ui ui) {
+        int count = 1;
+        ArrayList<Task> tempList = new ArrayList<>();
+        for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
+            Task curr = it.next();
+            if (curr.toString().contains(desc)) {
+                tempList.add(curr);
+            }
+        }
+        ui.listMatch(tempList);
+    }
 }
