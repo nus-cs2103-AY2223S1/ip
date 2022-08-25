@@ -126,4 +126,20 @@ public class TaskList {
         this.tasks = t.printAndStoreTask(this.tasks);
     }
 
+    public void findTask(String keyword) {
+        String result = "";
+        int counter = 1;
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).match(keyword)) {
+                result += counter + ". " + this.tasks.get(i) + "\n";
+                counter++;
+            }
+        }
+        if (result.isEmpty()) {
+            System.out.println("Sorry! None of the tasks match " + "\"" + keyword + "\"");
+        } else {
+            System.out.println("Here are the matching tasks in your list:\n" + result);
+        }
+    }
+
 }

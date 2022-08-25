@@ -12,7 +12,7 @@ import java.util.List;
 public class Parser {
 
     private TaskList tasks;
-    final static ArrayList<String> validCommands = new ArrayList<>(List.of("list", "mark", "unmark", "todo", "deadline", "event", "delete", "bye"));
+    final static ArrayList<String> validCommands = new ArrayList<>(List.of("list", "mark", "unmark", "todo", "deadline", "event", "delete", "bye", "find"));
 
     /**
      * Parser constructor that creates an instance of a Parser object.
@@ -93,6 +93,10 @@ public class Parser {
                         String s6 = str.substring(7);
                         int i = Integer.parseInt(s6);
                         this.tasks.deleteTask(i - 1);
+                        break;
+                    case "find":
+                        String s7 = str.substring(5);
+                        this.tasks.findTask(s7);
                         break;
             }
         } catch (DukeException e) {
