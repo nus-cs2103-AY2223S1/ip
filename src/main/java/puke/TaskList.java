@@ -33,4 +33,18 @@ public class TaskList {
         this.removed++;
     }
 
+    public String find(String s) {
+        String s1 = "    ____________________________________________________________";
+        String str = "Here are the matching tasks in your list\n";
+        int count = 1;
+        for(int i = 0; i < tasks.size(); i++) {
+            if(tasks.get(i).description.contains(s)) {
+                str += count + "." + tasks.get(i) + "\n";
+                count++;
+            }
+        }
+        System.out.println(s1 + "\n" + str + "\n" + s1);
+        return s1 + "\n" + str + "\n" + s1;
+    }
+
 } 

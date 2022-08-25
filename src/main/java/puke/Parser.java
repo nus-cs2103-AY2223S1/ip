@@ -34,4 +34,13 @@ public class Parser {
         }
         return result;
     }
+
+    public static String getFindTask(String s) {
+        String temp = "";
+        for (int i = 0; i < s.length(); i++ ) {
+            if (i == 0) { continue;}
+            temp += s.charAt(i);
+        }
+        return temp;
+    }
 } 

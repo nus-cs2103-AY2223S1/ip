@@ -71,6 +71,10 @@ public class Duke {
             Duke.d.tasklist.delete(pos - 1);
             Duke.d.storage.saveTasks(Duke.d.tasklist.tasks);
             Duke.d.ui.systemMessage(3, d, temp);
+        } else if (a.equals("find")) {
+            String temp = d.p.getFindTask(s);
+            Duke.d.tasklist.find(temp);
+
         } else {
             throw new DukeException("    ____________________________________________________________\n     " +
                     "OOPS!!! I'm sorry, but I dont't know what that means\n" +
