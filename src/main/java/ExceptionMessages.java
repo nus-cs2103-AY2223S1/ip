@@ -1,3 +1,5 @@
+package duke;
+
 public final class ExceptionMessages {
     static String EMPTY_TASK_DESCRIPTION = "☹ OOPS!!! The description of a %s cannot be empty.";
     static String EMPTY_TASK_TIME = "☹ OOPS!!! The date/time of a %s cannot be empty.";

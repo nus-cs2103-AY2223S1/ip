@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
 
     public int parseIndex(String[] args) throws DukeParseException {

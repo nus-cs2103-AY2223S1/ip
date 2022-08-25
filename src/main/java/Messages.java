@@ -1,3 +1,5 @@
+package duke;
+
 public final class Messages {
     static String STARTUP = "Hello! I'm dukebot\n" +
                      "What can I do for you?";
