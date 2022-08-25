@@ -65,4 +65,13 @@ public class Ui {
             System.out.println("There are " + size + " tasks in your list.");
         }
     }
+
+    /**
+     * Prints the specified task prefixed by a chosen index number.
+     * @param task The task to be printed
+     * @param index The integer to index the task with
+     */
+    public void printTaskWithIndex(Task task, int index) {
+        System.out.println((index + 1) + ". " + task);
+    }
 }

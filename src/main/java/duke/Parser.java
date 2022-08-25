@@ -95,6 +95,11 @@ public class Parser {
                 throw new IllegalCommandException(commandArgs[0]);
             }
             return new Command(Keyword.EVENT, eventDetails);
+        case "find":
+            if (commandArgs.length == 1) {
+                throw new EmptyCommandException(commandArgs[0]);
+            }
+            return new Command(Keyword.FIND, commandArgs);
         default:
             throw new CommandNotFoundException(commandArgs[0]);
         }

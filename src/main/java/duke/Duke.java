@@ -65,6 +65,9 @@ public class Duke {
                     this.parser.parseDateTime(command.getCommandArgs()[1]));
             this.taskList.addTask(event);
             break;
+        case FIND:
+            String chars = command.getCommandArgs()[1];
+            this.taskList.findTask(chars);
         default:
             return;
         }

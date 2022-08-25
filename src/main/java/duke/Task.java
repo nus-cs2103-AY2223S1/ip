@@ -20,21 +20,31 @@ public class Task {
     private Boolean isMarked = false;
 
     /**
-     * Returns the current status (true for marked, false for unmarked)
-     * of the task
-     * @return Marked status of the task
-     */
-    public Boolean getStatus() {
-        return this.isMarked;
-    }
-
-    /**
      * The constructor to initialise a new Task object with a given name.
      *
      * @param taskName The name of the task to be created.
      */
     public Task(String taskName) {
         this.taskName = taskName;
+    }
+
+    /**
+     * Returns the current status (true for marked, false for unmarked)
+     * of the task
+     * @return True if marked done, False if marked undone
+     */
+    public Boolean getStatus() {
+        return this.isMarked;
+    }
+
+    /**
+     * Checks if the current task's name contains a specified sequence of chars.
+     * 
+     * @param chars The sequence of chars to match with task name
+     * @return True if yes, False if no
+     */
+    public Boolean nameContains(String chars) {
+        return this.taskName.contains(chars);
     }
 
     /**

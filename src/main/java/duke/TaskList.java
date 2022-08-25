@@ -72,7 +72,27 @@ public class TaskList {
     public void listTask() {
         System.out.println("Listing your current tasks:");
         for (int i = 0; i < this.getSize(); ++i) {
-            System.out.println((i + 1) + ". " + this.addedTasks.get(i));
+            this.ui.printTaskWithIndex(this.addedTasks.get(i), i);
+        }
+    }
+
+    /**
+     * Searches for tasks in the task array with a specific sequence of chars
+     * in their task name, then prints these tasks to output.
+     * @param chars The sequence of chars to search tasks by
+     */
+    public void findTask(String chars) {
+        Boolean isAnyTaskFound = false;
+        System.out.println("Tasks matching your search term:");
+        for (int i = 0; i < this.getSize(); ++i) {
+            Task searchedTask = this.addedTasks.get(i);
+            if (searchedTask.nameContains(chars)) {
+                isAnyTaskFound = true;
+                this.ui.printTaskWithIndex(searchedTask, i);
+            }
+        }
+        if (!isAnyTaskFound) {
+            System.out.println("No tasks found matching that search term.");
         }
     }
 
