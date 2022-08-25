@@ -1,4 +1,2 @@
 D | 0 | project | 2022-08-27
 E | 0 | meet | 2022-08-30
-T | 0 | read book
-E | 0 | return book  | 2022-08-26
