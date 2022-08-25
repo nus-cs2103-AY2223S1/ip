@@ -52,7 +52,7 @@ public class Pixel {
 
             try {
                 if (userInput.strip().equals("bye")) {
-                    System.out.println(UserInterface.goodbyeMessage);
+                    System.out.println(UserInterface.GOOD_BYE_MESSAGE);
                     System.exit(0);
 
                 } else if (userInput.strip().startsWith("todo ")) {
@@ -113,6 +113,14 @@ public class Pixel {
 
                 } else if (userInput.strip().startsWith("delete ")) {
                     storage.deleteEntry(userInput);
+
+                } else if (userInput.strip().startsWith("find ")) {
+                    ArrayList<Task> results = storage.findEntry(userInput);
+                    System.out.println("Here are the matching tasks in your list:");
+                    for (int i = 0; i < results.size(); i++) {
+                        Task currentTask = results.get(i);
+                        System.out.println((i + 1) + ". " + currentTask);
+                    }
 
                 } else {
                     throw new IncorrectFormatException("Input should be a task or command!"); // programme breaks
@@ -217,7 +225,7 @@ public class Pixel {
 
     public static void main(String[] args) {
         Pixel test = new Pixel("C:/!Education/CS2103/gitFolderOne/data/pixel.txt");
-        System.out.println(UserInterface.introMessage);
+        System.out.println(UserInterface.INTRO_MESSAGE);
         test.run();
     }
 }
