@@ -7,7 +7,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String getCsvString() {
-        return String.format("todo %s", super.getCsvString());
+    public String getTxtString() {
+        return String.format("todo %s", super.getTxtString());
     }
 }
