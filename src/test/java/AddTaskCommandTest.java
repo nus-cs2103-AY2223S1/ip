@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AddTaskCommandTest {
     @Test
     public void dummyTest(){
+
         assertEquals(2,2);
     }
 
