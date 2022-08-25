@@ -1,5 +1,7 @@
-abstract public class Task {
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
+abstract public class Task {
     private String task;
     private boolean isDone;
 
@@ -31,5 +33,10 @@ abstract public class Task {
     @Override
     public String toString() {
         return (isDone ? "[X]" : "[ ]") + " " + task;
+    }
+
+    protected String formatDateTime(LocalDateTime dateTime) {
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd MMM yyyy hh:mm a");
+        return dateTime.format(outputFormatter);
     }
 }

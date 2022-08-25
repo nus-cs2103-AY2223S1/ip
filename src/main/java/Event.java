@@ -1,14 +1,23 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
 
-    protected String by;
+    private String at;
+    private LocalDateTime dateTime;
 
     public Event(String task, String at) {
         super(task);
-        this.by = at;
+        this.at = at;
+        this.dateTime = LocalDateTime.parse(at.trim(), DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm"));
     }
 
     protected String getBy() {
-        return by;
+        return at;
+    }
+
+    protected String getDateTime() {
+        return formatDateTime(dateTime);
     }
 
     protected char getType() {
@@ -17,6 +26,6 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + by.trim() + ")";
+        return "[E]" + super.toString() + "(at: " + getDateTime() + ")";
     }
 }
