@@ -1,3 +1,8 @@
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -74,6 +79,25 @@ public class Duke {
             return "[E]" + super.toString() + " (at: " + at + ")";
         }
     }
+
+    private static void writeToFile(String filePath, String textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath, true);
+        fw.write(textToAdd);
+        fw.close();
+    }
+
+    private static void deleteFromFile(String filePath, ArrayList<Task> iterate) throws IOException {
+        FileWriter fw = new FileWriter("temp.txt",true);
+        File f = new File("temp.txt");
+        for (int i = 0; i< iterate.size(); i++) {
+            fw.write(iterate.get(i).toString()+ System.lineSeparator());
+        }
+        fw.close();
+        Files.delete(Paths.get(filePath));
+        File g = new File(filePath);
+        f.renameTo(g);
+
+    }
     public static void main(String[] args) {
 
         System.out.println("What can I do for you?");
@@ -117,10 +141,17 @@ public class Duke {
                     if (line.equals("todo")) {
                         throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
                     } else {
+
                         Todo test = new Todo(line.substring(5));
                         ls.add(test);
                         System.out.println("Got it. I've added this task:");
                         System.out.println(test.toString());
+                        String file2 = "duke.txt";
+                        try {
+                            writeToFile(file2, test.toString() + System.lineSeparator());
+                        } catch (IOException e) {
+                            System.out.println("Something went wrong: " + e.getMessage());
+                        }
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
 
                     }
@@ -134,6 +165,12 @@ public class Duke {
                         ls.add(test);
                         System.out.println("Got it. I've added this task:");
                         System.out.println(test.toString());
+                        String file2 = "duke.txt";
+                        try {
+                            writeToFile(file2, test.toString() + System.lineSeparator());
+                        } catch (IOException e) {
+                            System.out.println("Something went wrong: " + e.getMessage());
+                        }
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
 
                     }
@@ -148,6 +185,12 @@ public class Duke {
                         ls.add(test);
                         System.out.println("Got it. I've added this task:");
                         System.out.println(test.toString());
+                        String file2 = "duke.txt";
+                        try {
+                            writeToFile(file2, test.toString() + System.lineSeparator());
+                        } catch (IOException e) {
+                            System.out.println("Something went wrong: " + e.getMessage());
+                        }
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
 
                     }
@@ -159,7 +202,13 @@ public class Duke {
                         int removal = Integer.parseInt(line.substring(7));
                         System.out.println("Noted. I've removed this task:");
                         System.out.println(ls.get(removal - 1).toString());
+                        String file2 = "duke.txt";
                         ls.remove(removal - 1);
+                        try {
+                            deleteFromFile(file2, ls);
+                        } catch (IOException e) {
+                            System.out.println("Something went wrong: " + e.getMessage());
+                        }
                         System.out.println("Now you have" + " " + ls.size() + " " + "tasks in the list.");
 
                     }
