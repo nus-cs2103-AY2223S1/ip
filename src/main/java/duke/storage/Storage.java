@@ -1,6 +1,10 @@
 package duke.storage;
 
-import duke.task.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -92,9 +96,9 @@ public class Storage {
         try {
             for (int i = 0; i < taskList.size(); i++) {
                 if (i == 0) {
-                    writeFileContent("duke.txt", taskList.get(i).TaskSaveInfo());
+                    writeFileContent("duke.txt", taskList.get(i).taskSaveInfo());
                 } else {
-                    appendFileContent("duke.txt", "\n" + taskList.get(i).TaskSaveInfo());
+                    appendFileContent("duke.txt", "\n" + taskList.get(i).taskSaveInfo());
                 }
             }
         } catch (IOException e) {

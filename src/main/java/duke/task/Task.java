@@ -28,11 +28,11 @@ public class Task {
         isDone = false;
     }
 
-    public String TaskInfo() {
+    public String taskInfo() {
         return "[] [" + getStatusIcon() + "] " + description;
     }
 
-    public String TaskSaveInfo() {
+    public String taskSaveInfo() {
         return "," + getSavedStatusIcon() + "," + description;
     }
 

@@ -13,12 +13,12 @@ public class Event extends Task{
     }
 
     @Override
-    public String TaskInfo() {
+    public String taskInfo() {
         return "[E] [" + getStatusIcon() + "] " + description + " (at:" + duration + ")";
     }
 
     @Override
-    public String TaskSaveInfo() {
+    public String taskSaveInfo() {
         return "E," + getSavedStatusIcon() + "," + description + "," + duration;
     }
 }

@@ -1,12 +1,27 @@
 package duke.parse;
 
-import duke.command.*;
-import duke.exception.*;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.ToDoCommand;
+import duke.command.UnmarkCommand;
+
+import duke.exception.InvalidDateTimeException;
+import duke.exception.InvalidInputException;
+import duke.exception.MissingDeadlineDescriptionException;
+import duke.exception.MissingDescriptionException;
+import duke.exception.MissingEventDescriptionException;
+import duke.exception.MissingTargetException;
 
 import java.time.DateTimeException;
+import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
 
 /**
  * Part of the chatbot that deals with user commands.

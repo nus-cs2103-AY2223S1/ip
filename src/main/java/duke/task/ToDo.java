@@ -10,12 +10,12 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String TaskInfo() {
+    public String taskInfo() {
         return "[T] [" + getStatusIcon() + "] " + description;
     }
 
     @Override
-    public String TaskSaveInfo() {
+    public String taskSaveInfo() {
         return "T," + getSavedStatusIcon() + "," + description;
     }
 }

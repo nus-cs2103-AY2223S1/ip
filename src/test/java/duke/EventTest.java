@@ -11,7 +11,7 @@ public class EventTest {
     @Test
     public void testEvent() {
         Event testEvent =  new Event("project meeting", "Mon 2-4pm");
-        assertEquals(testEvent.TaskInfo(), "[E] [ ] project meeting (at:Mon 2-4pm)");
+        assertEquals(testEvent.taskInfo(), "[E] [ ] project meeting (at:Mon 2-4pm)");
     }
 
 
