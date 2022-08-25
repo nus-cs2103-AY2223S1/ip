@@ -1,5 +1,3 @@
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -14,40 +12,18 @@ public class TaskList {
     taskList.add(task);
   }
 
-  public void saveTaskList() {
-    String fileString = "";
-    for (int i = 0; i < taskList.size(); i++) {
-      Task task = taskList.get(i);
-      fileString += task.toFileString();
-      fileString += System.lineSeparator();
-    }
-    try {
-      FileWriter fw = new FileWriter("data/cheese.txt");
-      fw.write(fileString);
-      fw.close();
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
   public Task getTask(int taskIndex) throws CheeseException {
     validateTaskIndexInRange(taskIndex);
     return taskList.get(taskIndex);
   }
 
-  public void deleteTask(int taskIndex) throws CheeseException {
+  public void delete(int taskIndex) throws CheeseException {
     Task task = getTask(taskIndex);
     taskList.remove(task);
-    System.out.println("Gotcha! I'll forget about this task!");
-    System.out.println("  " + task);
-    System.out.println("You have " + taskList.size() + " task(s) remaining.");
   }
 
-  public void addTask(Task task) {
+  public void add(Task task) {
     taskList.add(task);
-    System.out.println("Gotcha! I have a paw-fect memory!");
-    System.out.println("  " + task);
-    System.out.println("You have " + taskList.size() + " task(s) in the list.");
   }
 
   public void markTaskAsDone(int taskIndex) throws CheeseException {
@@ -60,11 +36,26 @@ public class TaskList {
     task.markAsNotDone();
   }
 
-  /** Prints list */
-  public void printTaskList() {
-    for (int i = 1; i <= taskList.size(); i++) {
-      System.out.println(i + ". " + taskList.get(i - 1));
+  public String toFileString() {
+    String fileString = "";
+    for (int i = 0; i < taskList.size(); i++) {
+      Task task = taskList.get(i);
+      fileString += task.toFileString();
+      fileString += System.lineSeparator();
     }
+    return fileString;
+  }
+
+  @Override
+  public String toString() {
+    String taskListString = "";
+    for (int i = 0; i < taskList.size(); i++) {
+      int displayIndex = i++;
+      Task task = taskList.get(i);
+      taskListString += displayIndex + ". " + task;
+      taskListString += System.lineSeparator();
+    }
+    return taskListString;
   }
 
   private void validateTaskIndexInRange(int taskIndex) throws CheeseException {

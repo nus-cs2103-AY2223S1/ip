@@ -7,88 +7,32 @@ public class Cheese {
   public static final String BORDER = "-----";
 
   /** Array list to store list of tasks */
-  private static TaskList taskList = new TaskList();
+  private TaskList taskList = new TaskList();
+
+  private Storage storage;
+
+  private Ui ui;
+
+  public Cheese(String filePath) {
+    ui = new Ui();
+    storage = new Storage(filePath);
+    try {
+      taskList = storage.load();
+    } catch (CheeseException e) {
+      ui.showError(e.getMessage());
+      taskList = new TaskList();
+    }
+  }
 
   public static void main(String[] args) {
-    Cheese.greet();
-    try {
-      Cheese.loadData();
-    } catch (IOException e) {
-      System.out.println(e.getMessage());
-    }
-    Cheese.chat();
+    new Cheese("data/cheese.txt").run();
   }
 
-  /** Greets user */
-  private static void greet() {
-    String greeting = new String("Woof! I'm Cheese, your puppy assistant.\n"
-        + "What can I do for you?");
-    System.out.println(greeting);
-  }
-
-  private static void loadData() throws IOException {
-    try {
-      File cheeseFile = new File("data/cheese.txt");
-      cheeseFile.createNewFile();
-
-      Scanner cheeseScanner = new Scanner(cheeseFile);
-      while (cheeseScanner.hasNext()) {
-        taskList.loadTask(cheeseScanner.nextLine());
-      }
-      cheeseScanner.close();
-    } catch (CheeseException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  /** Chats with user */
-  private static void chat() {
-    Scanner scanner = new Scanner(System.in);
-    String userInput;
-
-    while (true) {
-      System.out.println(BORDER);
-      System.out.print("~ ");
-      userInput = scanner.nextLine();
-      System.out.println(BORDER);
-
-      String[] inputArray = userInput.split(" ", 2);
-      String command = inputArray[0];
-
-      try {
-        Cheese.validateCommand(command);
-        switch (Command.valueOf(command)) {
-          case bye:
-            Cheese.validateOneWordCommand(inputArray);
-            System.out.println("Going so soon? :') Bye");
-            scanner.close();
-            return;
-          case list:
-            Cheese.validateOneWordCommand(inputArray);
-            taskList.printTaskList();
-            break;
-          case mark:
-            taskList.markTaskAsDone(Integer.parseInt(inputArray[1]) - 1);
-            taskList.saveTaskList();
-            break;
-          case unmark:
-            taskList.markTaskAsNotDone(Integer.parseInt(inputArray[1]) - 1);
-            taskList.saveTaskList();
-            break;
-          case delete:
-            taskList.deleteTask(Integer.parseInt(inputArray[1]) - 1);
-            taskList.saveTaskList();
-            break;
-          default:
-            Task task = Task.createTask(inputArray);
-            taskList.addTask(task);
-            taskList.saveTaskList();
-        }
-      } catch (NumberFormatException e) {
-        System.out.println("Cannot convert non-integer to integer.");
-      } catch (CheeseException e) {
-        System.out.println(e.getMessage());
-      }
+  public void run() {
+    ui.showWelcome();
+    boolean isExit = false;
+    while (!isExit) {
+      String fullCommand = ui.readCommand();
     }
   }
 
