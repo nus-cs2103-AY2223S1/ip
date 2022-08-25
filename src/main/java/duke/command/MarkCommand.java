@@ -1,8 +1,8 @@
 package duke.command;
 
+import duke.Ui;
 import duke.exception.DukeException;
 import duke.processor.TaskList;
-import duke.Ui;
 import duke.task.Task;
 
 public class MarkCommand extends Command {

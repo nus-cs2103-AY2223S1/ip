@@ -1,8 +1,8 @@
 package duke.command;
 
+import duke.Ui;
 import duke.exception.DukeException;
 import duke.processor.TaskList;
-import duke.Ui;
 
 public class ByeCommand extends Command {
     @Override

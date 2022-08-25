@@ -1,12 +1,5 @@
 package duke.storage;
 
-import duke.processor.TaskList;
-import duke.exception.DukeException;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.ToDo;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,19 +7,26 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import duke.exception.DukeException;
+import duke.processor.TaskList;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 public class Storage {
-    protected final String DIRECTORY = System.getProperty("user.home") + "/DukeData";
-    protected final String FILE_PATH = DIRECTORY + "/Duke.txt";
+    protected final String directory = System.getProperty("user.home") + "/DukeData";
+    protected final String filePath = directory + "/Duke.txt";
 
     public File initialize() throws DukeException {
         try {
-            File parentDirectory = new File(DIRECTORY);
+            File parentDirectory = new File(directory);
 
             if (!parentDirectory.exists()) {
                 parentDirectory.mkdir();
             }
 
-            File dukeFile = new File(FILE_PATH);
+            File dukeFile = new File(filePath);
 
             if (!dukeFile.exists()) {
                 dukeFile.createNewFile();
@@ -50,38 +50,40 @@ public class Storage {
                 String description = commands.substring(7);
 
                 switch (typeOfTask) {
-                    case "T":
-                        Task toDo = new ToDo(description);
-                        if (marked == "X") {
-                            toDo.markAsDone();
-                        }
-                        tasks.add(toDo);
-                        break;
-                    case "D":
-                        String[] deadlineDescription = description.split("by:");
-                        String deadlineName = deadlineDescription[0]
-                                .substring(0, deadlineDescription[0].length() - 1)
-                                .trim();
-                        String by = deadlineDescription[1].substring(1, deadlineDescription[1].length() - 1).trim();
-                        LocalDate deadlineDate = LocalDate.parse(by);
-                        Task deadline = new Deadline(deadlineName, deadlineDate);
-                        if (marked == "X") {
-                            deadline.markAsDone();
-                        }
-                        tasks.add(deadline);
-                        break;
-                    case "E":
-                        String[] eventDescription = description.split("at:");
-                        String eventName = eventDescription[0]
-                                .substring(0, eventDescription[0].length() - 1)
-                                .trim();
-                        String at = eventDescription[1].substring(0, eventDescription[1].length() - 1).trim();
-                        Task event = new Event(eventName, at);
-                        if (marked == "X") {
-                            event.markAsDone();
-                        }
-                        tasks.add(event);
-                        break;
+                case "T":
+                    Task toDo = new ToDo(description);
+                    if (marked == "X") {
+                        toDo.markAsDone();
+                    }
+                    tasks.add(toDo);
+                    break;
+                case "D":
+                    String[] deadlineDescription = description.split("by:");
+                    String deadlineName = deadlineDescription[0]
+                            .substring(0, deadlineDescription[0].length() - 1)
+                            .trim();
+                    String by = deadlineDescription[1].substring(1, deadlineDescription[1].length() - 1).trim();
+                    LocalDate deadlineDate = LocalDate.parse(by);
+                    Task deadline = new Deadline(deadlineName, deadlineDate);
+                    if (marked == "X") {
+                        deadline.markAsDone();
+                    }
+                    tasks.add(deadline);
+                    break;
+                case "E":
+                    String[] eventDescription = description.split("at:");
+                    String eventName = eventDescription[0]
+                            .substring(0, eventDescription[0].length() - 1)
+                            .trim();
+                    String at = eventDescription[1].substring(0, eventDescription[1].length() - 1).trim();
+                    Task event = new Event(eventName, at);
+                    if (marked == "X") {
+                        event.markAsDone();
+                    }
+                    tasks.add(event);
+                    break;
+                default:
+                    break;
                 }
             }
             return tasks;

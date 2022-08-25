@@ -1,7 +1,7 @@
 package duke.command;
 
-import duke.processor.TaskList;
 import duke.Ui;
+import duke.processor.TaskList;
 
 public class ListCommand extends Command {
 
