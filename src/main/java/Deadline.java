@@ -21,6 +21,7 @@ public class Deadline extends Task {
 
     @Override
     public String toFileString() {
-        return "D" + "|" + (this.getTaskStatus() ? "1" : "0") + "|" + this.getTaskName() + "|" + this.endDate;
+        return "D" + "|" + (this.getTaskStatus() ? "1" : "0") + "|" + this.getTaskName() + "|"
+                + this.endDate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm"));
     }
 }
