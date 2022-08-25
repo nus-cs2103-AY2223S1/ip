@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Handles the list and list edit functions.
+ *
+ * @author Yuvaraj Kumaresan
  */
 public class TaskList {
 

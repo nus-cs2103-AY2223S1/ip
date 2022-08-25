@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 /**
  * Tests the tasklist class and associated methods.
+ *
+ * @author Yuvaraj Kumaresan
  */
 public class TaskListTest {
 

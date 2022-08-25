@@ -1,10 +1,13 @@
 package duke;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Tests the task class and associated methods.
+ *
+ * @author Yuvaraj Kumaresan
  */
 public class TaskTest {
 
@@ -22,20 +25,20 @@ public class TaskTest {
      * Tests the getStatusIcon method.
      */
     @Test
-    public void statusIconTest(){
+    public void statusIconTest() {
         assertEquals(" ", testTaskOne.getStatusIcon());
         testTaskTwo.setIsDone(true);
-        assertEquals("X",testTaskTwo.getStatusIcon());
+        assertEquals("X", testTaskTwo.getStatusIcon());
     }
 
     /**
      * Tests the getIsDone and setIsDone method.
      */
     @Test
-    public void isDoneTest(){
+    public void isDoneTest() {
         assertEquals(false, testTaskOne.getIsDone());
         testTaskTwo.setIsDone(true);
-        assertEquals(true,testTaskTwo.getIsDone());
+        assertEquals(true, testTaskTwo.getIsDone());
     }
 
 }

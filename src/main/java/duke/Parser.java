@@ -11,6 +11,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Handles user input.
+ *
+ * @author Yuvaraj Kumaresan
  */
 public class Parser {
 

@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * Handles storage, writing and editing of output text file.
+ *
+ * @author Yuvaraj Kumaresan
  */
 public class Storage {
 
