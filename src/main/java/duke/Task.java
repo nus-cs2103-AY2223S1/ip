@@ -4,15 +4,21 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
-    public Task(String description) {
+    Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Sets task as done
+     */
     public void markAsDone() {
         isDone = true;
     }
 
+    /**
+     * Sets task as !done
+     */
     public void markAsNotDone() {
         isDone = false;
     }
@@ -25,14 +31,26 @@ public class Task {
         return description;
     }
 
+    /**
+     * Returns a task data to be saved in duke.txt
+     * @return
+     */
     public String toWrite() {
         return "";
     }
 
+    /**
+     * Returns a task status (done or !done) as a String icon
+     * @return
+     */
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
 
+    /**
+     * Returns a task type as a String icon
+     * @return
+     */
     public String getTaskTypeIcon() { return "T"; }
 
     @Override

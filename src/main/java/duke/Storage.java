@@ -17,6 +17,12 @@ public class Storage {
         this.taskDataPath = taskDataPath;
         this.taskDataFileName = taskDataFileName;
     }
+
+    /**
+     * Reads list of tasks from saved data and updates inputted TaskList object accordingly
+     *
+     * @param taskList
+     */
     public void readTaskData(TaskList taskList) {
         try {
             File path = new File(taskDataPath);
@@ -61,6 +67,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves task list data based on inputted TaskList object
+     *
+     * @param taskList
+     */
     public void updateTaskData(TaskList taskList) {
         try {
             FileWriter fw = new FileWriter(taskDataPath + "/" + taskDataFileName);
