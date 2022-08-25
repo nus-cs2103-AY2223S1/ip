@@ -30,6 +30,9 @@ public class Parser {
                 case "delete":
                     return new DeleteCommand(segments[1]);
 
+                case "find":
+                    return new FindCommand(segments[1]);
+
                 case "bye":
                     return new ByeCommand();
 
