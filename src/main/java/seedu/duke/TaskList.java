@@ -1,4 +1,4 @@
-package duke;
+package seedu.duke;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -46,6 +46,7 @@ public class TaskList {
                 saveFile.addTask(newTask.toStore());
             } catch (DateTimeParseException e) {
                 Ui.wrongDateFormat();
+                return;
             }
         } else if (command.startsWith("event")) {
             if (command.length() <= 6) {
@@ -60,6 +61,7 @@ public class TaskList {
             saveFile.addTask(newTask.toStore());
         } else {
             Ui.unknownCommand();
+            return;
         }
 
         Ui.addText(storage.get(storage.size() - 1).toString(), storage.size());

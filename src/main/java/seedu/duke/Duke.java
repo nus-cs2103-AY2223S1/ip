@@ -1,4 +1,4 @@
-package duke;
+package seedu.duke;
 
 public class Duke {
     private static Storage save;
