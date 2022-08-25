@@ -1,3 +1,6 @@
+/**
+ * Lists the tasks that are currently in the task list
+ */
 package Command;
 
 import Duke.Storage;
@@ -9,6 +12,13 @@ public class ListCommand extends Command {
         super();
     }
 
+    /**
+     * Prints all the current task in the tasklist
+     *
+     * @param t which contains the current tasklist
+     * @param ui which handles the user interface
+     * @param storage which handles the saving and loading of file
+     */
     @Override
     public void execute(TaskList t, Ui ui, Storage storage) {
         t.printList();

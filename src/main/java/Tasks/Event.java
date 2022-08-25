@@ -1,3 +1,6 @@
+/**
+ * Creates a new Event from the event command
+ */
 package Tasks;
 
 import java.time.LocalDate;

@@ -1,3 +1,6 @@
+/**
+ * This class deals with loading tasks from the file and saving tasks in the file
+ */
 package Duke;
 
 import Tasks.Deadline;
@@ -15,9 +18,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
-/**
- * This class deals with loading tasks from the file and saving tasks in the file
- */
 public class Storage {
     private String filepath;
 
@@ -27,7 +27,6 @@ public class Storage {
 
     /**
      * Writes the tasks into a file
-     *
      */
     public void writeFile(ArrayList<String> tasks) {
         File file = new File(filepath);
@@ -48,7 +47,6 @@ public class Storage {
 
     /**
      * Loads the existing saved file to task list
-     *
      */
     public ArrayList<Task> readFile() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM uuuu");
