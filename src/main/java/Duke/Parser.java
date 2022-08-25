@@ -84,15 +84,40 @@ public class Parser {
                 scanner.nextLine();
             }
             else if(str.equals("unmark")){
-//                String strnum = scanner.next();
-//                int num = Integer.valueOf(strnum);
+                String strnum = scanner.next();
+                int num = Integer.valueOf(strnum);
+                String task;
+                if(num>tasklist.oldTasksSize()){
+                    task = tasklist.newTasks.get(num-tasklist.oldTasksSize()-1);
+                    String newTask = task.substring(0,4)+""+task.substring(5);
+                    System.out.println(newTask);
+                    tasklist.newTasks.set(num-1,newTask);
+                } else {
+                    task = tasklist.oldTasks.get(num-1);
+                    String newTask = task.substring(0,4)+""+task.substring(5);
+                    System.out.println(newTask);
+                    tasklist.oldTasks.set(num-1,newTask);
+                }
+                scanner.nextLine();
 //                newTasks.get(num-1).isDone = false;
 //                bot.markTask(false);
 //                System.out.println(newTasks.get(num-1).toString());
 //                scanner.nextLine();
             }else if(str.equals("mark")){
-//                String strnum = scanner.next();
-//                int num = Integer.valueOf(strnum);
+                String strnum = scanner.next();
+                int num = Integer.valueOf(strnum);
+                String task;
+                if(num>tasklist.oldTasksSize()){
+                    task = tasklist.newTasks.get(num-tasklist.oldTasksSize()-1);
+                    String newTask = task.substring(0,4)+"X"+task.substring(5);
+                    System.out.println(newTask);
+                    tasklist.newTasks.set(num-1,newTask);
+                } else {
+                    task = tasklist.oldTasks.get(num-1);
+                    String newTask = task.substring(0,4)+"X"+task.substring(5);
+                    System.out.println(newTask);
+                    tasklist.oldTasks.set(num-1,newTask);
+                }
 //                newTasks.get(num-1).isDone = true;
 //                bot.markTask(true);
 //                System.out.println(newTasks.get(num-1).toString());
@@ -103,7 +128,8 @@ public class Parser {
                     storage.replaceTasks("data/Duke2.txt",tasklist.oldTasks,tasklist.newTasks);
 
                 } else{
-                    storage.addTasks("data/Duke2.txt",tasklist.newTasks);
+                    storage.replaceTasks("data/Duke2.txt",tasklist.oldTasks,tasklist.newTasks);
+//                    storage.addTasks("data/Duke2.txt",tasklist.newTasks);
                 }
                 bot.displayError();
             }
@@ -113,7 +139,8 @@ public class Parser {
             if(tasklist.oldTasksSize()<initialSize){
                 storage.replaceTasks("data/Duke2.txt",tasklist.oldTasks,tasklist.newTasks);
             } else{
-                storage.addTasks("data/Duke2.txt",tasklist.newTasks);
+                storage.replaceTasks("data/Duke2.txt",tasklist.oldTasks,tasklist.newTasks);
+                //storage.addTasks("data/Duke2.txt",tasklist.newTasks);
             }
             bot.goodBye();
         }
