@@ -1,5 +1,6 @@
+import java.io.*;
+import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Duke {
@@ -26,10 +27,16 @@ public class Duke {
                     break;
                 } // Say goodbye.
                 duke.PrintCommand(command);
+                String list = duke.getList();
+                OutputStream out = new FileOutputStream(new File("D:\\cs2103t\\duke.txt"));
+                out.write(list.getBytes());
+                out.close();
                 command = sc.nextLine();
             } catch (DukeException e) {
                 System.out.println(e.toString());
                 command = sc.nextLine();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -61,5 +68,13 @@ public class Duke {
                 num++;
             }
         }
+    }
+
+    public String getList() {
+        String list = "";
+        for (int k = 1; k < arrayList.size() + 1; k++) {
+            list += k + "." + arrayList.get(k - 1) + "\n";
+        }
+        return list;
     }
 }
