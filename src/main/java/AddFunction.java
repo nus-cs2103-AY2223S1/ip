@@ -14,10 +14,10 @@ public class AddFunction extends Function {
                 String joinDesc = String.join(" ", descOnly);
                 Task newTask = new ToDo(joinDesc,false);
                 tasks.addTask(newTask);
-                textBox.chat(String.format("""
-                         Got it. I've added this task:
-                           %s\s
-                         Now you have %d tasks in the list.\s""".indent(1)
+                textBox.chat(String.format(
+                         "Got it. I've added this task:" +
+                         "\n  %s" +
+                         "\nNow you have %d tasks in the list."
                         ,newTask.toString(),tasks.getSize()));
             } else{
                 throw new CleverNotBotException("Please fill in the description of ToDo!",textBox);
@@ -35,10 +35,10 @@ public class AddFunction extends Function {
                 String by = getFunction().substring(mid + searchWord.length() + 1); // to remove the space
                 Task newTask = new Deadline(functionName,false,by);
                 tasks.addTask(newTask);
-                textBox.chat(String.format("""
-                                Got it. I've added this task:
-                                 %s\s
-                                Now you have %d tasks in the list.\s""".indent(1)
+                textBox.chat(String.format(
+                         "Got it. I've added this task:" +
+                         "\n  %s" +
+                         "\nNow you have %d tasks in the list."
                         ,newTask.toString(),tasks.getSize()));
             }
         }
@@ -55,10 +55,10 @@ public class AddFunction extends Function {
                 String at = getFunction().substring(mid + searchWord.length() + 1); // to remove the space;
                 Task newTask = new Event(functionName,false,at);
                 tasks.addTask(newTask);
-                textBox.chat(String.format("""
-                                Got it. I've added this task:
-                                 %s\s
-                                Now you have %d tasks in the list.\s""".indent(1)
+                textBox.chat(String.format(
+                         "Got it. I've added this task:" +
+                         "\n  %s" +
+                         "\nNow you have %d tasks in the list."
                         ,newTask.toString(),tasks.getSize()));
             }
         }else {
