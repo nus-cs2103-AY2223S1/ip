@@ -6,7 +6,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import ted.task.*;
+
+import ted.task.Deadline;
+import ted.task.Event;
+import ted.task.Task;
+import ted.task.TaskList;
+import ted.task.Todo;
 
 /**
  * Represents storage of task list. A <code>Storage</code> object corresponds

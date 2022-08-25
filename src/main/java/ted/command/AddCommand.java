@@ -1,7 +1,8 @@
 package ted.command;
 
 import ted.storage.Storage;
-import ted.task.*;
+import ted.task.Task;
+import ted.task.TaskList;
 import ted.ui.Ui;
 
 /**

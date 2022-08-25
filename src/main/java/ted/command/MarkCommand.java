@@ -2,7 +2,7 @@ package ted.command;
 
 import ted.exception.TedException;
 import ted.storage.Storage;
-import ted.task.*;
+import ted.task.TaskList;
 import ted.ui.Ui;
 
 /**
@@ -30,7 +30,7 @@ public class MarkCommand extends Command {
      * @throws TedException if error occurs while marking task or updating file.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage st) throws TedException{
+    public void execute(TaskList tasks, Ui ui, Storage st) throws TedException {
         ui.markResponse(tasks.markTask(taskIndex));
         st.updateFile(tasks);
     }

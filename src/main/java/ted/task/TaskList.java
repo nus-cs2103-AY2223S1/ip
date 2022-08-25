@@ -3,6 +3,7 @@ package ted.task;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import ted.exception.TedException;
 
 /**
@@ -70,7 +71,7 @@ public class TaskList {
      * @return marked task description.
      * @throws TedException if i index is out of bounds of the TaskList.
      */
-    public String markTask(int i) throws TedException{
+    public String markTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
             throw new TedException("Oh no, there's no such task T_T\n");
         }
@@ -86,7 +87,7 @@ public class TaskList {
      * @return unmarked task description.
      * @throws TedException if i index is out of bounds of the TaskList.
      */
-    public String unmarkTask(int i) throws TedException{
+    public String unmarkTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
             throw new TedException("Oh no, there's no such task T_T\n");
         }
@@ -113,7 +114,7 @@ public class TaskList {
      * @return deleted task description.
      * @throws TedException if i index is out of bounds of the TaskList.
      */
-    public String deleteTask(int i) throws TedException{
+    public String deleteTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
             throw new TedException("Oh no, there's no such task T_T\n");
         }

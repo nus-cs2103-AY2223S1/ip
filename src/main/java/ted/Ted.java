@@ -1,10 +1,10 @@
 package ted;
 
-import ted.command.*;
+import ted.command.Command;
 import ted.exception.TedException;
 import ted.parser.Parser;
 import ted.storage.Storage;
-import ted.task.*;
+import ted.task.TaskList;
 import ted.ui.Ui;
 
 /**
