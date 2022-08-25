@@ -230,10 +230,4 @@ public class Duke {
             i++;
         }
     }
-
-    public static void checkArray(Object[] o) {
-        for (Object i : o) {
-            System.out.println(i);
-        }
-    }
 }

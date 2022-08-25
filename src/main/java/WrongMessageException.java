@@ -4,4 +4,8 @@ public class WrongMessageException extends Exception{
         super("☹ OOPS!!! Please check whether you type correctly");
     }
 
+    public WrongMessageException(String s) {
+        super(s);
+    }
+
 }
