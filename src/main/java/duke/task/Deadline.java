@@ -19,10 +19,10 @@ public class Deadline extends Task{
     @Override
     public String TaskInfo() {
         if (deadlineTime == null) {
-            return "[D] [" + getStatusIcon() + "] " + description + "(by:" +
+            return "[D] [" + getStatusIcon() + "] " + description + " (by:" +
                     deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) +")";
         } else {
-            return "[D] [" + getStatusIcon() + "] " + description + "(by:" +
+            return "[D] [" + getStatusIcon() + "] " + description + " (by:" +
                     deadlineDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + " " + deadlineTime +")";
         }
 
