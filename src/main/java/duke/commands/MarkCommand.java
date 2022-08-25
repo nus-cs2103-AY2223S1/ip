@@ -14,7 +14,7 @@ public class MarkCommand extends Command {
             + "%1$s" + "\n"
             + "You have " + "%2$s" + " tasks in the list.\n";
 
-    private int taskToMark;
+    public int taskToMark;
     private Task task;
 
     public MarkCommand(int taskToMark) {
