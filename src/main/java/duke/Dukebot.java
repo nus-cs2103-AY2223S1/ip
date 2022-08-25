@@ -92,10 +92,24 @@ public class Dukebot {
     }
 
     /**
+     * Handles listing all tasks matching a given string
+     * @param inputArgs the full command entered by the user
+     * @throws DukeException if there command is incorrectly formatted
+     */
+    private void handleFind(String[] inputArgs) throws DukeException {
+        String key = parser.parseFind(inputArgs);
+        ui.display(String.format(Messages.FIND_TASKS, key));
+        for (int i = 0; i < taskList.getSize(); i++) {
+            if (taskList.get(i).getDescription().contains(key)) {
+                ui.display(taskList.get(i).toString());
+            }
+        }
+    }
+    /**
      * Overarching handler for commands entered by the user
      * @param input a full command entered by the user
      */
-    public void handleInput(String input) {
+    protected void handleInput(String input) {
         String[] inputArgs = input.split("\\s+", 2);
         String keyWord = inputArgs[0];
         try {
@@ -129,6 +143,8 @@ public class Dukebot {
                 handleEvent(inputArgs);
                 storage.writeToStorage(taskList);
                 break;
+            case "find":
+                handleFind(inputArgs);
             default:
                 throw new DukeException(ExceptionMessages.UNSUPPORTED_ACTION);
             }
@@ -139,6 +155,5 @@ public class Dukebot {
         }
 
     }
-
 
 }

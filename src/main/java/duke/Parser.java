@@ -90,6 +90,19 @@ public class Parser {
     }
 
     /**
+     * Validates find commmand input
+     * @param args String[] of format ["find", keyToMatch]
+     * @return the key to match task descriptions with
+     * @throws DukeParseException if the format is incorrect
+     */
+    public String parseFind(String[] args) throws DukeParseException {
+        if (args.length < 2) {
+            throw new DukeParseException(ExceptionMessages.INVALID_FIND_FORMAT);
+        }
+        return args[1];
+    }
+
+    /**
      * Represents exceptions specific to this parser
      */
     static class DukeParseException extends DukeException {
