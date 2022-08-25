@@ -1,3 +1,5 @@
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +22,10 @@ public class Duke {
 
     public static void main(String[] args) throws Exception {
         Scanner input = new Scanner(System.in);
+
+        String home = System.getProperty("user.home");
+        Path filepath = Paths.get(home, "Desktop", "ip_save.txt");
+        Storage storage = new Storage(filepath.toString());
 
         printGreeting();
 
@@ -103,6 +109,7 @@ public class Duke {
                         throw new DukeException("You did not provide a valid command");
                     }
                 }
+                storage.save(tasks);
             } catch (DukeException e) {
                 System.out.println(e);
             }
