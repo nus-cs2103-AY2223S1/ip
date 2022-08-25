@@ -35,17 +35,20 @@ public class TaskList {
     }
 
     /**
-     * Prints out all Tasks currently in TaskList
+     * Prints out all Tasks whose title matches keyword
+     * @param keyword Keyword of Task
      */
-    public void listTasks() {
-        System.out.println("Listing the tasks in your list...");
+    public void listTasks(String keyword) {
+        System.out.println(String.format("Listing the%s tasks in your list...", !keyword.equals("") ? " matching" : ""));
 
         if (this.arrayList.size() == 0) {
             System.out.println("You have no current tasks :-(");
         }
 
         for (int i = 0; i < this.arrayList.size(); i++) {
-            System.out.println(String.format("\t%d. %s", i + 1, this.arrayList.get(i)));
+            if (this.arrayList.get(i).title.toLowerCase().contains(keyword.toLowerCase())) {
+                System.out.println(String.format("\t%d. %s", i + 1, this.arrayList.get(i)));
+            }
         }
     }
 

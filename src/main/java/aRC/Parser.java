@@ -57,6 +57,9 @@ public class Parser {
         case "delete":
             this.parseDelete(commandArgs);
             break;
+        case "find":
+            this.parseFind(commandArgs);
+            break;
         default:
             throw new InvalidCommandException();
         }
@@ -71,7 +74,7 @@ public class Parser {
         if (commandArgs.length != 0) {
             throw new InvalidArgumentException();
         } else {
-            this.taskList.listTasks();
+            this.taskList.listTasks("");
         }
     }
 
@@ -194,6 +197,15 @@ public class Parser {
         } else {
             this.taskList.deleteTask(Integer.parseInt(commandArgs[0]) - 1);
             this.storage.save(this.taskList);
+        }
+    }
+
+    public void parseFind(String[] commandArgs) throws InvalidArgumentException {
+        if (commandArgs.length == 0) {
+            throw new InvalidArgumentException();
+        } else {
+            String keyword = String.join(" ", commandArgs);
+            this.taskList.listTasks(keyword);
         }
     }
 }
