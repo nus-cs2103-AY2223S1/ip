@@ -10,4 +10,12 @@ deadline return book /by 2022-09-26
 event project meeting /at 2022-12-31
 blah
 delete 3
+todo
+deadline pro forma /at 2022-09-26
+event forum /by 2022-12-31
+deadline report /by 26-09-2022
+event workshop /at 31-12-2022
+mark
+delete
+unmark
 bye
