@@ -1,7 +1,35 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
 
 public class Duke {
+    public static void saveData(ArrayList<Task> list) {
+        String home = System.getProperty("user.home");
+        Path path = Paths.get(home, "data", "duke");
+        String fileSeparator = System.getProperty("file.separator");
+        ArrayList<String> textArray = new ArrayList<>();
+        for (Task task : list) {
+            String entry = task.printText();
+            textArray.add(entry);
+        }
+        try {
+            Files.createDirectories(path);
+            File file = new File(path.toString(), "task-list.txt");
+            OutputStream os = new FileOutputStream(file);
+            String text = String.join("\n", textArray);
+            byte[] bytes = text.getBytes();
+            os.write(bytes);
+            os.close();
+        } catch (IOException exception) {
+            System.out.println(exception);
+        }
+    }
     public static void main(String[] args) {
         String indent = "     ";
         String divider = "  ____________________________________________________________\n";
@@ -45,6 +73,7 @@ public class Duke {
                         System.out.println(divider + indent + "Nice! I've marked this as done:");
                         System.out.println(indent + indent + taskList.get(taskIndex) + "\n" + divider);
                     }
+                    saveData(taskList);
                 } catch (StringIndexOutOfBoundsException exception) {
                     System.out.println(divider + indent + "Wait, which task are you referring to?\n"
                             + divider);
@@ -59,6 +88,7 @@ public class Duke {
                     System.out.println(divider + indent + "Noted, I've removed this task:");
                     System.out.println(indent + indent + removedTask.toString());
                     System.out.println(indent + "Now you have " + numberOfTasks + " tasks in your list.\n" + divider);
+                    saveData(taskList);
                 } catch (StringIndexOutOfBoundsException exception) {
                     System.out.println(divider + indent + "Wait, which task do you want to delete?\n" + divider);
                 } catch (Exception exception) {
@@ -112,6 +142,7 @@ public class Duke {
                     System.out.println(divider + indent + "Got it. I've added this task:");
                     System.out.println(indent + indent + newTask.toString());
                     System.out.println(indent + "Now you have " + numberOfTasks + " tasks in your list.\n" + divider);
+                    saveData(taskList);
                 }
             }
         }

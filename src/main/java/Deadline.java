@@ -2,7 +2,7 @@ public class Deadline extends Task {
     protected String dateTime;
 
     public Deadline(String dateTime, String description) {
-        super(description);
+        super(description, "D");
         this.dateTime = dateTime;
     }
 
@@ -11,7 +11,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String printText() {
+        return super.printText() + " | " + this.dateTime;
+    }
+
+    @Override
     public String toString() {
-        return "[D]" + super.toString() + this.getDateTime();
+        return "[" + this.getCode() + "]" + super.toString() + this.getDateTime();
     }
 }
