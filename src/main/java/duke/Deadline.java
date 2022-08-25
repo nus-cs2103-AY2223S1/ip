@@ -24,6 +24,7 @@ public class Deadline extends Task {
 
     @Override
     public String getTextRepresentation() {
+
         return "D|" + (this.isCompleted() ? "1|" : "0|") + this.getTaskDescription() + "|" + this.deadline + "\n";
     }
 

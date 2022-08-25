@@ -7,8 +7,15 @@ import java.util.Arrays;
 
 public class Parser {
 
-    public static int parseTaskNumber(String userInput) {
-        return Integer.parseInt(userInput.replaceAll("[^0-9]", "")) - 1;
+    public static int parseTaskNumber(String userInput) throws DukeException {
+        String[] parsedInput = userInput.split(" ");
+        String taskNumberString = parsedInput[1];
+        try {
+            return Integer.parseInt(taskNumberString) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeException("   " + taskNumberString + " is not a valid task number.\n");
+        }
+
     }
 
     public static Todo parseTodoTask(String userInput) {
