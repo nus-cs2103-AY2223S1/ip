@@ -1,134 +1,133 @@
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
 
+    private Storage storage;
+    private Ui ui;
+    private TaskList tasks;
     
     static String divider = "____________________________________________________________";
-
-    public static void addTask(Task task) {
-        TaskList.add(task);
-        System.out.println(divider);
-        System.out.println("K. Added your task:");
-        System.out.println(task);
-        System.out.println("Now you have " + TaskList.size() + " tasks.");
-        System.out.println(divider);
+    
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        tasks = new TaskList(storage.load());
+    }
+    
+    public void addTask(Task task) {
+        tasks.add(task);
+        storage.save(tasks);
+    }
+    
+    public void deleteTask(int index) {
+        tasks.delete(index);
+        storage.save(tasks);
     }
 
-    public static void failure() {
-        System.out.println(divider);
-        System.out.println("What's that??");
-        System.out.println(divider);
+    public void mark(int index) {
+        tasks.mark(index);
+        storage.save(tasks);
     }
-    public static void main(String[] args) {
-        
-        TaskList.initFile();
-        
-        System.out.println("Hello I'm Karen. What do you want??\n" + divider);
+
+    public void unmark(int index) {
+        tasks.unmark(index);
+        storage.save(tasks);
+    }
+    
+    public void run() {
+        ui.sendStartMessage();
         Scanner input = new Scanner(System.in);
         while (true) {
             String text = input.nextLine();
             if (text.equals("bye")) {
-                System.out.println(divider);
-                System.out.println("Hmm kay...\n" + divider);
+                ui.sendByeMessage();
                 break;
             }
             if (text.equals("list")) {
-                System.out.println(divider);
-                for (int i = 0; i < TaskList.size(); i++) {
-                    Task taskI = TaskList.get(i);
-                    System.out.println(i+1 + ". " + taskI);
-                }
-                System.out.println(divider);
+                ui.sendList(tasks);
                 continue;
             }
             if (text.startsWith("mark ")) {
                 int index = Integer.parseInt(text.split(" ")[1]) - 1;
-                if (index < 0 || index >= TaskList.size()) {
-                    System.out.println(divider);
-                    System.out.println("Umm can you count?" + "\n" + divider);
+                if (index < 0 || index >= tasks.size()) {
+                    ui.sendWrongIndexMessage();
                     continue;
                 }
-                TaskList.mark(index);
-                System.out.println(divider);
-                System.out.println("Oh you did a task. Congratulations.\n" + TaskList.get(index) + "\n" + divider);
+                mark(index);
+                ui.sendMarkedMessage(tasks.get(index));
                 continue;
             }
             if (text.startsWith("unmark ")) {
                 int index = Integer.parseInt(text.split(" ")[1]) - 1;
-                if (index < 0 || index >= TaskList.size()) {
-                    System.out.println(divider);
-                    System.out.println("Uh can you count?" + "\n" + divider);
+                if (index < 0 || index >= tasks.size()) {
+                    ui.sendWrongIndexMessage();
                     continue;
                 }
-                TaskList.unmark(index);
-                System.out.println(divider);
-                System.out.println("Hmm make up your mind maybe??.\n" + TaskList.get(index) + "\n" + divider);
+                unmark(index);
+                ui.sendUnmarkedMessage(tasks.get(index));
                 continue;
             }
             if (text.startsWith("todo ")) {
                 String desc = text.substring(5);
                 if (desc.trim().length() == 0) {
-                    System.out.println(divider);
-                    System.out.println("Empty task? Are you kidding me??");
-                    System.out.println(divider);
+                    ui.sendEmptyTaskMessage();
                     continue;
                 }
-                addTask(new Todo(desc));
+                Todo t = new Todo(desc);
+                addTask(t);
+                ui.sendAddedMessage(t, tasks.size());
                 continue;
             }
             if (text.startsWith("deadline ")) {
                 String[] params = text.substring(9).split(" /by ");
                 if (params.length < 2) {
-                    failure();
+                    ui.sendFailureMessage();
                     continue;
                 }
                 if (params[0].trim().length() == 0) {
-                    System.out.println(divider);
-                    System.out.println("Empty task? Are you kidding me??");
-                    System.out.println(divider);
+                    ui.sendEmptyTaskMessage();
                     continue;
                 }
 
-                LocalDateTime dt = Task.decodeDateTime(params[1]);
-                addTask(new Deadline(params[0], dt));
+                LocalDateTime dt = Parser.parseDateTime(params[1]);
+                Deadline t = new Deadline(params[0], dt);
+                addTask(t);
+                ui.sendAddedMessage(t, tasks.size());
                 continue;
             }
             if (text.startsWith("event ")) {
                 String[] params = text.substring(6).split(" /at ");
                 if (params[0].trim().length() == 0) {
-                    System.out.println(divider);
-                    System.out.println("Empty task? Are you kidding me??");
-                    System.out.println(divider);
+                    ui.sendEmptyTaskMessage();
                     continue;
                 }
                 if (params.length < 2) {
-                    failure();
+                    ui.sendFailureMessage();
                     continue;
                 }
 
-                LocalDateTime dt = Task.decodeDateTime(params[1]);
-                addTask(new Event(params[0], dt));
+                LocalDateTime dt = Parser.parseDateTime(params[1]);
+                Event t = new Event(params[0], dt);
+                addTask(t);
+                ui.sendAddedMessage(t, tasks.size());
                 continue;
             }
             if (text.startsWith("delete ")) {
                 int index = Integer.parseInt(text.split(" ")[1]) - 1;
-                if (index < 0 || index >= TaskList.size()) {
-                    System.out.println(divider);
-                    System.out.println("Umm can you count?" + "\n" + divider);
+                if (index < 0 || index >= tasks.size()) {
+                    ui.sendWrongIndexMessage();
                     continue;
                 }
-                Task toRemove = TaskList.get(index);
-                TaskList.delete(index);
-                System.out.println(divider);
-                System.out.println("K. Removed your task:");
-                System.out.println(toRemove);
-                System.out.println("Now you have " + TaskList.size() + " tasks.");
-                System.out.println(divider);
+                Task toRemove = tasks.get(index);
+                deleteTask(index);
+                ui.sendTaskDeletedMessage(toRemove, tasks.size());
                 continue;
             }
-            failure();
+            ui.sendFailureMessage();
         }
+    }
+    public static void main(String[] args) {
+        new Duke("data/tasks.txt").run();
     }
 }
