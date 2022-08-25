@@ -8,13 +8,13 @@ import java.util.ArrayList;
  * TaskList is a class that contains the task list.
  */
 public class TaskList {
-    private ArrayList<Task> taskList;
+    private ArrayList<Task> tasks;
 
     /**
      * Constructor for duke.TaskList, which stores task entered by user in duke.Duke.
      */
     public TaskList() {
-        this.taskList = new ArrayList<Task>();
+        this.tasks = new ArrayList<Task>();
     }
 
     /**
@@ -22,15 +22,15 @@ public class TaskList {
      * @param taskList ArrayList containing task objects.
      */
     public TaskList(ArrayList<Task> taskList) {
-        this.taskList = taskList;
+        this.tasks = taskList;
     }
 
     /**
      * Returns the task list.
      * @return task list.
      */
-    public ArrayList<Task> getTaskList() {
-        return taskList;
+    public ArrayList<Task> getTasks() {
+        return tasks;
     }
 
     /**
@@ -38,7 +38,7 @@ public class TaskList {
      * @param task task to be added to taskList.
      */
     public void addToTaskList(Task task) {
-        this.taskList.add(task);
+        this.tasks.add(task);
     }
 
     /**
@@ -46,7 +46,7 @@ public class TaskList {
      * @param taskIndex index of task to be removed.
      */
     public void removeFromTaskList(int taskIndex) {
-        this.taskList.remove(taskIndex - 1);
+        this.tasks.remove(taskIndex - 1);
     }
 
     /**
@@ -54,7 +54,7 @@ public class TaskList {
      * @return size of taskList.
      */
     public int getSize() {
-        return this.taskList.size();
+        return this.tasks.size();
     }
 
     /**
@@ -63,7 +63,7 @@ public class TaskList {
      * @return task in taskList at specified index.
      */
     public Task getTask(int index) {
-        return this.taskList.get(index - 1);
+        return this.tasks.get(index - 1);
     }
 
 }

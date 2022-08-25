@@ -5,7 +5,7 @@ import duke.task.Task;
 import java.util.Scanner;
 
 /**
- * Ui deals with intertions with the user.
+ * Ui deals with interactions with the user.
  */
 public class Ui {
     private final static String LINE = "____________________________________________________________";
@@ -54,10 +54,10 @@ public class Ui {
 
     /**
      * Prints out all tasks.
-     * @param taskList TaskList containing tasks list.
+     * @param tasks TaskList containing tasks list.
      */
-    public void showListMessage(TaskList taskList) {
-        int numOfTasks = taskList.getSize();
+    public void showListMessage(TaskList tasks) {
+        int numOfTasks = tasks.getSize();
         if (numOfTasks == 0) {
             System.out.println(INDENTATION + "You do not have any tasks in your list right now.");
         }
@@ -65,7 +65,7 @@ public class Ui {
                 numOfTasks > 1 ? "are" : "is", numOfTasks > 1 ? "s" : "");
         for (int i = 1; i <= numOfTasks; i++) {
             System.out.println(INDENTATION + String.valueOf(i) + ". " +
-                    taskList.getTask(i).toString());
+                    tasks.getTask(i).toString());
         }
     }
 
@@ -89,26 +89,26 @@ public class Ui {
 
     /**
      * Prints out task that is added.
-     * @param taskList TaskList containing tasks list.
+     * @param tasks TaskList containing tasks list.
      * @param task task that is added.
      */
-    public void showAddTaskMessage(TaskList taskList, Task task) {
+    public void showAddTaskMessage(TaskList tasks, Task task) {
         System.out.println(INDENTATION + "Got it. I've added this task:");
         System.out.println(INDENTATION + INDENTATION + "added: " + task.toString());
         System.out.println(INDENTATION +
-                "Now you have " + String.valueOf(taskList.getSize()) + " tasks in the list.");
+                "Now you have " + String.valueOf(tasks.getSize()) + " tasks in the list.");
     }
 
     /**
      * Prints out task that is deleted.
-     * @param taskList TaskList containing tasks list.
+     * @param tasks TaskList containing tasks list.
      * @param task task that is deleted.
      */
-    public void showDeleteMessage(TaskList taskList, Task task) {
+    public void showDeleteMessage(TaskList tasks, Task task) {
         System.out.println(INDENTATION + "Noted. I've removed this task:");
         System.out.println(INDENTATION + INDENTATION + task.toString());
         System.out.println(INDENTATION +
-                "Now you have " + String.valueOf(taskList.getSize()) + " tasks in the list.");
+                "Now you have " + String.valueOf(tasks.getSize()) + " tasks in the list.");
     }
 
     /**

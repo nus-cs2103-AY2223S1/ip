@@ -23,7 +23,6 @@ public class ToDo extends Task{
         return super.getDescription();
     }
 
-
     /**
      * @inheritDoc
      */
