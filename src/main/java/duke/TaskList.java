@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    public final ArrayList<Task> TASKS;
+    private final ArrayList<Task> TASKS;
 
     public TaskList() {
         TASKS = new ArrayList<>();
@@ -14,6 +14,10 @@ public class TaskList {
 
     public TaskList(ArrayList<Task> taskList) {
         TASKS = taskList;
+    }
+
+    public ArrayList<Task> getTasks() {
+        return this.TASKS;
     }
 
     public void addTask(Task task) {
