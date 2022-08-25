@@ -43,7 +43,7 @@ public abstract class Task {
 
 
     public String toStore() {
-        return getStatusIcon() + " | " + this.description;
+        return this.isDone ? "1" : "0" + " | " + this.description;
     }
 
     public abstract boolean compareDate(LocalDate date);

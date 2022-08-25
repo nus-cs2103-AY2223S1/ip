@@ -1,225 +1,64 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.Scanner;
 
 
 /**
  * The Duke is a personalized chatbot.
  */
 public class Duke {
-    /**
-     * Enum Command that represents all of Duke's commands.
-     */
-    private enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, EVENT, DEADLINE, DELETE, DATE;
-    }
 
-    private static boolean terminate = false;
-    private static Storage myStorage = new Storage();
+    private static Storage myStorage;
+    private TaskList tasks;
+    private Ui ui;
 
-    public static final String LOCALSTORAGE = "./data/duke.txt";
-
-    /**
-     * Displays error message.
-     * @param error The description for the error.
-     */
-    private static void displayError(String error) {
-        System.out.println("☹ OOPS!!!" + error);
-    }
-
-    /**
-     * Runs the given Duke command.
-     * @param userInput user's input to Duke.
-     */
-    private static void run(String userInput) {
-
-        String[] Strings = userInput.split(" ");
-        Command cmd = Command.valueOf(Strings[0].toUpperCase());
-
-        switch (cmd) {
-            case BYE:
-                terminate = true;
-                break;
-            case LIST:
-                myStorage.printStorage();
-                break;
-            case MARK:
-                try {
-                    mark(userInput);
-                } catch (IndexOutOfBoundsException e) {
-                    displayError("Please enter a valid index to mark.");
-                }
-                break;
-            case UNMARK:
-                try {
-                    unmark(userInput);
-                } catch (IndexOutOfBoundsException e) {
-                    displayError("Please enter a valid index to unmark.");
-                }
-                break;
-
-            case TODO:
-                try {
-                    todo(userInput);
-                } catch (StringIndexOutOfBoundsException e) {
-                    displayError("Please enter a task todo.");
-                }
-                break;
-            case EVENT:
-                try {
-                    event(userInput);
-                } catch (StringIndexOutOfBoundsException e) {
-                    displayError("Please enter a event.");
-                } catch (DukeException e) {
-                    displayError("Please only enter one event.");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    displayError("Please use /at to specify event time.");
-                }
-                break;
-            case DEADLINE:
-                try {
-                   deadline(userInput);
-                } catch (StringIndexOutOfBoundsException e) {
-                    displayError("Please enter a deadline.");
-                } catch (DukeException e) {
-                    displayError("Please only enter one deadline.");
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    displayError("Please use /by to specify deadline time.");
-                }
-                break;
-            case DELETE:
-                try {
-                    delete(userInput);
-                } catch (IndexOutOfBoundsException e) {
-                    displayError("Sorry. Task does not exist.");
-                }
-            case DATE:
-                try {
-                    getTasksOnDate(userInput);
-                } catch (StringIndexOutOfBoundsException e) {
-                    displayError("Please enter a date to search.");
-                } catch (DateTimeParseException | DukeException e2) {
-                    displayError("Please enter date in yyyy-M-d format.");
-                }
+    public Duke(String filePath) {
+        ui = new Ui();
+        myStorage = new Storage(filePath);
+        try {
+            tasks = new TaskList(myStorage.load());
+        } catch (FileNotFoundException e){
+            ui.showLoadingError();
+            File path = new File(filePath);
+            tasks = new TaskList();
+            try {
+                path.createNewFile();
+            } catch (IOException e2) {
+                path.getParentFile().mkdirs();
+            }
         }
     }
 
-    /**
-     * Mark task as done.
-     * @param userInput user's input to Duke.
-     */
-    private static void mark(String userInput) {
-        String input = userInput.substring(5);
-        myStorage.markDone(Integer.parseInt(input));
-    }
 
-    /**
-     * Mark task as not done.
-     * @param userInput user's input to Duke.
-     */
-    private static void unmark(String userInput){
-        String input = userInput.substring(7);
-        myStorage.unmarkDone(Integer.parseInt(input));
-    }
 
-    /**
-     * Delete a task.
-     * @param userInput user's input to Duke.
-     */
-    private static void delete(String userInput) {
-        String input = userInput.substring(7);
-        myStorage.deleteTask(Integer.parseInt(input));
-    }
 
-    /**
-     * Calls storage to add a todo task.
-     * @param userInput user's input to Duke.
-     */
-    private static void todo(String userInput) {
-        myStorage.addTask(new ToDo(userInput.substring(5)));
-    }
 
-    /**
-     * Calls storage to add an event.
-     * @param userInput user's input to Duke.
-     * @throws DukeException when user inputs more than one event.
-     */
-    private static void event(String userInput) throws DukeException {
-        userInput = userInput.substring(6);
 
-        String[] strings = userInput.split(" /at ");
-        if (strings.length > 2) {
-            throw new DukeException();
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command cmd = Parser.parse(fullCommand);
+                cmd.execute(tasks, ui, myStorage);
+                isExit = cmd.isExit();
+            } catch (IllegalArgumentException e) {
+                ui.showError("I'm sorry, but I don't know what that means :-(");
+            } catch (DukeException e2) {
+                ui.showError(e2.getMessage());
+            }
+
         }
-        myStorage.addTask(new Event(strings[0], strings[1]));
     }
-
-    /**
-     * Calls storage to add a deadline.
-     * @param userInput user's input to Duke.
-     * @throws DukeException when user inputs more than one deadline.
-     */
-    private static void deadline(String userInput) throws DukeException {
-        userInput = userInput.substring(9);
-        String[] strings = userInput.split(" /by ");
-        if (strings.length > 2) {
-            throw new DukeException();
-        }
-        myStorage.addTask(new Deadline(strings[0], strings[1]));
-    }
-
-
-    private static void getTasksOnDate(String userInput) throws DukeException {
-        String[] strings = userInput.split(" ");
-        if (strings.length > 2) {
-            throw new DukeException();
-        }
-        LocalDate targetDate = LocalDate.parse(strings[1]);
-        myStorage.getTasksOnDate(targetDate);
-    }
-
 
     /**
      * The main program for Duke.
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
 
-        try {
-            myStorage.loadLocalStorage();
-        } catch (FileNotFoundException e) {
-            displayError("File not found.");
-            File localStorage = new File(LOCALSTORAGE);
-            try {
-                localStorage.createNewFile();
-            } catch (IOException e2) {
-                localStorage.getParentFile().mkdirs();
-            }
-
-        }
-
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Hello! I'm Duke \nWhat can I do for you?");
-
-        while (!terminate) {
-            String userInput = sc.nextLine();
-            try {
-                run(userInput);
-            } catch (IllegalArgumentException e) {
-                displayError("I'm sorry, but I don't know what that means :-(");
-            }
-
-        }
-        sc.close();
-        System.out.println("Bye. Hope to see you again soon!");
+        new Duke("./data/duke.txt").run();
     }
 }
