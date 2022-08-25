@@ -21,5 +21,4 @@ public class Event extends Todo{
         return String.format("%s (at: %s)", super.toString().replace("[T]", "[E]"),
                 new SimpleDateFormat("MMM dd yyyy HH:mm").format(this.date));
     }
-
 }
