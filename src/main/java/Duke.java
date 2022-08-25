@@ -10,64 +10,8 @@ public class Duke {
         TODO, EVENT, DEADLINE
     }
 
-    private static void dukeFormat(String input) {
-        System.out.println("  ----");
-        System.out.println("  " + input);
-        System.out.println("  ----");
-    }
-
-    private static void createTask(ArrayList<Task> list, String input, Tasks enumTask) throws DukeException {
-        String segments[];
-        Task task;
-        switch (enumTask) {
-            case TODO:
-                task = new Todo(input);
-                break;
-
-            case DEADLINE:
-                segments = input.split("/by");
-                if (segments.length != 2) {
-                    throw new DukeException("Error with deadline input");
-                }
-                String time = segments[1].strip();
-                LocalDate date = LocalDate.parse(time);
-                task = new Deadline(segments[0], date);
-                break;
-
-            case EVENT:
-                segments = input.split("/at");
-                if (segments.length != 2) {
-                    throw new DukeException("Error with event input");
-                }
-                String time2 = segments[1].strip();
-                LocalDate date2 = LocalDate.parse(time2);
-                task = new Event(segments[0], date2);
-                break;
-
-            default:
-                throw new DukeException("Error with input");
-        }
-        list.add(task);
-        System.out.println("  ----\n  added: " + task.toString() + "\n  ----");
-    }
-
-    private static void dukeBye() {
-        dukeFormat("Goodbye!");
-    }
-
-    private static int dukeMark(String input) {
-        String digits = input.substring(5);
-        int index = Integer.parseInt(digits) - 1;
-        return index;
-    }
-
-    private static int dukeUnmark(String input) {
-        String digits = input.substring(7);
-        int index = Integer.parseInt(digits) - 1;
-        return index;
-    }
-
     public static void main(String[] args) throws DukeException {
+        Ui.greet();
         Scanner sc = new Scanner(System.in);
         Storage storage = new Storage();
         try {
@@ -75,75 +19,14 @@ public class Duke {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ArrayList<Task> taskList = storage.getTaskList();
-        dukeFormat("Hello I'm Duke! What can I do for you?");
+        TaskList taskList = storage.getTaskList();
         while (true) {
-            String input = sc.nextLine();
-            if (input.equals("bye")) {
-                storage.storageWrite(taskList);
-                System.out.println("  --> File saved successfully!");
-                dukeBye();
-                break;
-            }
-            String[] segments = input.split(" ", 2);
             try {
-                switch (segments[0]) {
-
-                    case "list":
-                        String toDisplay = "";
-                        int temp = 1;
-                        for (int i = 0; i < taskList.size(); i++) {
-                            toDisplay += (i + 1) + ": " + taskList.get(i) + "\n  ";
-                            temp++;
-                        }
-                        dukeFormat(toDisplay);
-                        break;
-
-                    case "mark":
-                        taskList.get(dukeMark(input)).taskDone();
-                        dukeFormat("I've marked this task as done! \n  "
-                                + taskList.get(dukeMark(input)).toString());
-                        break;
-
-                    case "unmark":
-                        taskList.get(dukeUnmark(input)).taskUndone();
-                        dukeFormat("I've marked this task as not done.. \n  "
-                                + taskList.get(dukeUnmark(input)).toString());
-                        break;
-
-                    case "todo":
-                        if (segments.length == 1) {
-                            throw new DukeException("Description of a todo cannot be empty!");
-                        }
-                        createTask(taskList, segments[1], Tasks.TODO);
-                        break;
-
-                    case "event":
-                        if (segments.length == 1) {
-                            throw new DukeException("Description of a event cannot be empty!");
-                        }
-                        createTask(taskList, segments[1], Tasks.EVENT);
-                        break;
-
-                    case "deadline":
-                        if (segments.length == 1) {
-                            throw new DukeException("Description of a deadline cannot be empty!");
-                        }
-                        createTask(taskList, segments[1], Tasks.DEADLINE);
-                        break;
-
-                    case "delete":
-                        int index = Integer.parseInt(segments[1]) - 1;
-                        System.out.println("  ----\n  Done! I have deleted this task:\n  " + taskList.get(index)
-                                + "\n  Now you have " + (taskList.size() - 1) + " tasks in the list.\n  ----");
-                        taskList.remove(index);
-                        break;
-
-                    default:
-                        throw new DukeException(":( I have no idea what you are telling me to do.");
-                }
+                String input = sc.nextLine();
+                Command command = Parser.parseCommand(input);
+                command.run(taskList);
             } catch (DukeException e) {
-                dukeFormat(e.toString());
+                Ui.formatMessage(e.toString());
             }
         }
     }

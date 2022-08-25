@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Storage{
-    private ArrayList<Task> taskList = new ArrayList<>();
+    private TaskList taskList = new TaskList(new ArrayList<>());
 
     public void storageRead() throws IOException {
             try {
@@ -18,39 +18,37 @@ public class Storage{
                     String[] segments = line.split(">");
                     switch (segments[0]) {
                         case "T":
-                            taskList.add(new Todo(segments[2]));
+                            taskList.createTaskSilently(new Todo(segments[2]));
                             if (segments[1].equals("X")) {
-                                taskList.get(taskList.size() - 1).taskDone();
+                                taskList.getTask(taskList.getSize() - 1).taskDone();
                             }
                             break;
 
                         case "E":
                             String time = segments[3].strip();
                             LocalDate date = LocalDate.parse(time);
-                            taskList.add(new Event(segments[2], date));
+                            taskList.createTaskSilently(new Event(segments[2], date));
                             if (segments[1].equals("X")) {
-                                taskList.get(taskList.size() - 1).taskDone();
+                                taskList.getTask(taskList.getSize() - 1).taskDone();
                             }
                             break;
 
                         case "D":
                             String time2 = segments[1].strip();
                             LocalDate date2 = LocalDate.parse(time2);
-                            taskList.add(new Deadline(segments[2], date2));
+                            taskList.createTaskSilently(new Deadline(segments[2], date2));
                             if (segments[1].equals("X")) {
-                                taskList.get(taskList.size() - 1).taskDone();
+                                taskList.getTask(taskList.getSize() - 1).taskDone();
                             }
                             break;
                     }
                     line = br.readLine();
                 }
-                String toDisplay = "  ----\n";
-                int temp = 1;
-                for (int i = 0; i < taskList.size(); i++) {
-                    toDisplay += "  " + (i + 1) + ": " + taskList.get(i) + "\n";
-                    temp++;
+                String toDisplay = "  <----\n";
+                for (int i = 0; i < taskList.getSize(); i++) {
+                    toDisplay += "  " + (i + 1) + ": " + taskList.getTask(i) + "\n";
                 }
-                toDisplay += "  ----";
+                toDisplay += "  ---->";
                 System.out.println(toDisplay);
                 br.close();
             } catch (IOException e) {
@@ -89,7 +87,7 @@ public class Storage{
         }
     }
 
-    public ArrayList<Task> getTaskList() {
+    public TaskList getTaskList() {
         return this.taskList;
     }
 }
