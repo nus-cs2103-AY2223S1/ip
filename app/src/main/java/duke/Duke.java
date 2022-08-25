@@ -34,6 +34,21 @@ public class Duke {
                 return "No tasks left!";
             }
             return out.toString();
+        case "find":
+            StringBuilder searchResults = new StringBuilder();
+            for (int i = 0; i < tasks.size(); ++i) {
+                if (!tasks.getTask(i).toString().contains(params)) {
+                    continue;
+                }
+                if (searchResults.length() != 0) {
+                    searchResults.append("\n");
+                }
+                searchResults.append(i + 1).append(". ").append(tasks.getTask(i));
+            }
+            if (searchResults.toString().equals("")) {
+                return "No search results!";
+            }
+            return searchResults.toString();
         case "mark":
             int markedTask = checkTask(params);
             if (markedTask < 0) return "Invalid task number!";
