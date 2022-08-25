@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.Locale;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -11,6 +13,10 @@ public class Task {
 
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
+    }
+
+    public boolean contains(String input) {
+        return this.description.toLowerCase().contains(input.toLowerCase());
     }
 
     public void markAsDone() {

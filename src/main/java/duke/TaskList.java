@@ -35,6 +35,22 @@ public class TaskList {
         this.storage.update(tasks);
     }
 
+    public String find(String input) {
+        StringBuilder str = new StringBuilder();
+        ArrayList<Task> results = new ArrayList<>();
+
+        for (Task task : tasks) {
+            if (task.contains(input)) {
+                results.add(task);
+            }
+        }
+
+        for (int i = 0; i < results.size(); i++) {
+            str.append("\n" + (i + 1) + ". " + results.get(i).toString());
+        }
+        return str.toString();
+    }
+
     public String taskToString(int index) {
         return this.tasks.get(index).toString();
     }
