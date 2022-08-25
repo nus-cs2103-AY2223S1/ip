@@ -61,6 +61,11 @@ public class Parser {
                         duke.handleDelete(index);
                         break;
                     }
+                    case "find": {
+                        input = sc.nextLine().trim();
+                        duke.find(input);
+                        break;
+                    }
                     default:
                         input += sc.nextLine();
                         throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");

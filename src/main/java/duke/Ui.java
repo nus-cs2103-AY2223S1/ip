@@ -1,5 +1,7 @@
 package duke;
 
+import java.util.ArrayList;
+
 /**
  * Ui class that deals with user interactions.
  */
@@ -41,6 +43,15 @@ public class Ui {
         StringBuilder message = new StringBuilder("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             Task curTask = taskList.get(i);
+            message.append("\n").append(i + 1).append(". ").append(curTask);
+        }
+        dukeReply(message.toString());
+    }
+
+    public void printFind(ArrayList<Task> filteredList) {
+        StringBuilder message = new StringBuilder("Here are the matching tasks in your list:");
+        for (int i = 0; i < filteredList.size(); i++) {
+            Task curTask = filteredList.get(i);
             message.append("\n").append(i + 1).append(". ").append(curTask);
         }
         dukeReply(message.toString());
