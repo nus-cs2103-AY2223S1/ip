@@ -18,6 +18,11 @@ public class DeleteCommand extends Command {
 
     private final int taskNumber;
 
+    /**
+     * Constructor for DeleteCommand.
+     *
+     * @param taskNumber task index in tasklist
+     */
     public DeleteCommand(int taskNumber) {
         this.taskNumber = taskNumber;
     }

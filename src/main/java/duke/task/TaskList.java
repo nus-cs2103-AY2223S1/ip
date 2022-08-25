@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import static duke.common.Messages.*;
 
 
+/**
+ * Represents the task list and methods to manage the task list.
+ */
 public class TaskList {
 
     private ArrayList<Task> tasks = new ArrayList<>();
@@ -68,7 +71,7 @@ public class TaskList {
     }
 
     /**
-     * Delete a task from the task list.
+     * Deletes a task from the task list.
      *
      * @param taskNumber index of the task in the list
      */
@@ -104,6 +107,9 @@ public class TaskList {
         return actualTaskIndex;
     }
 
+    /**
+     * Converts the list of tasks to a string to be saved into the storage file.
+     */
     public String encodeToString() {
         int i = 1;
         System.out.println(MESSAGE_TASK_LIST);

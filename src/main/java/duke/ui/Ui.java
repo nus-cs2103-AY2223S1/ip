@@ -18,7 +18,7 @@ public class Ui {
     private static final PrintStream out = System.out;
 
     /**
-     * Constructor for UI
+     * Constructor for UI.
      */
 //    public Ui() {
 //        this.scanner = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class Ui {
     }
 
     /**
-     * Reads the user input
+     * Reads the user input.
      * @return the user command
      */
     public String getUserCommand() {
@@ -45,7 +45,7 @@ public class Ui {
     }
 
     /**
-     * Shows the list of messages
+     * Shows the list of messages.
      * @param messages the list of messages to be shown
      */
     public void showMessages(String... messages) {

@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+/**
+ * Represents a deadline task.
+ */
 public class DeadlineTask extends Task {
 
     protected LocalDate dateline;
@@ -9,8 +12,8 @@ public class DeadlineTask extends Task {
     /** Constructor for deadline duke.task.
      *
      * @param description duke.task description
-     * @param dateline by when this duke.task has to be completed
-     * @return a new duke.DeadlineTask
+     * @param dateline by when this task has to be completed
+     * @return a new DeadlineTask
      */
     public DeadlineTask(String description, String dateline) {
         super(description);

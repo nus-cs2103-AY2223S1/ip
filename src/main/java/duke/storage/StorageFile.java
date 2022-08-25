@@ -38,7 +38,7 @@ public class StorageFile {
 
 
     /**
-     * Saves the {@code TodoList} data to the storage file.
+     * Saves the {@code TaskList} data to the storage file.
      *
      * @param list todolist data to save
      */
