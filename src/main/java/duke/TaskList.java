@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.Deadline;
+import duke.task.Event;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -44,10 +51,10 @@ public class TaskList {
         return String.join(",", type, completed, taskDescription);
     }
 
-    protected void add(Task task) {
+    public void add(Task task) {
         this.tasks.add(task);
     }
-    protected Task del(int ind) throws DukeException {
+    public Task del(int ind) throws DukeException {
         try {
             Task deleting_task = this.tasks.get(ind);
             this.tasks.remove(ind);
@@ -56,7 +63,7 @@ public class TaskList {
             throw new DukeException("Index given is out of range");
         }
     }
-    protected Task get(int i) throws DukeException {
+    public Task get(int i) throws DukeException {
         try {
             return this.tasks.get(i);
         } catch(IndexOutOfBoundsException e) {

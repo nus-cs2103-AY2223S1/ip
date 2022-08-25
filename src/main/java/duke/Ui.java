@@ -1,3 +1,6 @@
+package duke;
+
+import duke.task.Task;
 import java.util.Scanner;
 public class Ui {
     private static final String GREETINGS = "Hello! I'm Duke\n" + "What can I do for you?";
@@ -14,7 +17,7 @@ public class Ui {
         System.out.println(GREETINGS);
         System.out.println(LINE);
     }
-    protected void exit() {
+    public void exit() {
         System.out.println(EXIT_MESSAGE);
     }
     protected void lineBreak() {
@@ -23,27 +26,27 @@ public class Ui {
     protected void showError(String message) {
         System.err.println(message);
     }
-    protected void addTaskMessage(Task task, TaskList tasks) {
+    public void addTaskMessage(Task task, TaskList tasks) {
         System.out.println(ADD_MESSAGE);
         System.out.println(task.toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
-    protected void displayTasks(TaskList tasks) throws DukeException {
+    public void displayTasks(TaskList tasks) throws DukeException {
         System.out.println(LIST_MESSAGE);
         for (int i = 1; i <= tasks.size(); i++) {
             System.out.println(i + ". " + tasks.get(i - 1).toString());
         }
     }
-    protected void delTaskMessage(Task task, TaskList tasks) {
+    public void delTaskMessage(Task task, TaskList tasks) {
         System.out.println(DELETE_MESSAGE);
         System.out.println(task.toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
-    protected void markDone(Task task) {
+    public void markDone(Task task) {
         System.out.println(DONE_MESSAGE);
         System.out.println(task.toString());
     }
-    protected void markUndone(Task task) {
+    public void markUndone(Task task) {
         System.out.println(UNDONE_MESSAGE);
         System.out.println(task.toString());
     }

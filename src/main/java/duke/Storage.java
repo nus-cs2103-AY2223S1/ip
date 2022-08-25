@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -33,7 +35,7 @@ public class Storage {
             throw new DukeException("File could not be found");
         }
     }
-    protected void save(String data) throws DukeException {
+    public void save(String data) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath);
             fw.write(data);
