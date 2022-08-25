@@ -12,7 +12,7 @@ public class deadline extends Task {
         return "[D][" + super.getStatusIcon() + "] " + super.description + " (by: " + date + ")";
     }
 
-    public void setDate(String date) {
+    public void setDate(formatDate date) {
         this.date = date;
     }
 }

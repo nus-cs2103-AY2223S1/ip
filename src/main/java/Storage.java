@@ -40,7 +40,7 @@ public class Storage {
                 int closeBracket = str.indexOf(')');
                 String taskName = str.substring(7, openBracket - 1);
                 deadline input = new deadline(taskName);
-                input.setDate(str.substring(openBracket + 5, closeBracket));
+                input.setDate(new formatDate(str.substring(openBracket + 5, closeBracket)));
                 if (str.charAt(4) == 'X') {
                     input.markAsDone();
                 }
@@ -52,7 +52,7 @@ public class Storage {
                 int closeBracket = str.indexOf(')');
                 String taskName = str.substring(7, openBracket - 1);
                 event input = new event(taskName);
-                input.setDay(str.substring(openBracket + 5, closeBracket));
+                input.setDay(new formatDate(str.substring(openBracket + 5, closeBracket)));
                 if (str.charAt(4) == 'X') {
                     input.markAsDone();
                 }
