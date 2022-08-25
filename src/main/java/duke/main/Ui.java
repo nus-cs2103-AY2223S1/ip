@@ -4,6 +4,7 @@ import duke.DukeException;
 import duke.task.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Deals with interactions with the user.
@@ -127,5 +128,19 @@ public class Ui {
         System.out.println("____________________________________________________________");
     }
 
+    /**
+     * Print the list of tasks according to the input.
+     * @param tasks The list of tasks to print.
+     */
+    public void printSomeTasks(ArrayList<Task> tasks) {
+        printLine();
+        int count = 1;
+        System.out.println("Here are the tasks in your list:");
+        for(Task t : tasks) {
+            System.out.println(count++ + "." + t.toString());
+        }
+        System.out.println("Now you have " + (count - 1) + " tasks in the list.");
+        printLine();
+    }
 
 }

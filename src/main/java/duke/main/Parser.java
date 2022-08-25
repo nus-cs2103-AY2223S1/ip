@@ -43,6 +43,8 @@ public class Parser {
                 return new UnmarkCommand(Integer.parseInt(input[1]));
             case ("delete"):
                 return new DeleteCommand(Integer.parseInt(input[1]));
+            case("find"):
+                return new FindCommand(input[1].split(" "));
             default:
                 throw new DukeException("I'm sorry, but I don't know what that means :-(");
         }

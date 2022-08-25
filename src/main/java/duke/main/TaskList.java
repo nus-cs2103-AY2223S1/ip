@@ -54,4 +54,21 @@ public class TaskList {
         return getTasks().size();
     }
 
+    /**
+     * Find matching tasks based off the keyword.
+     * @param keywords Keyword used to find task.
+     * @return ArrayList consisting of tasks matching the keyword.
+     */
+    public ArrayList<Task> findTasks(String[] keywords, TaskList tasks) {
+        ArrayList<Task> tasksFound = new ArrayList<>();
+        for (String keyword : keywords) {
+            for (Task task : tasks.getTasks()) {
+                if (task.getDescription().contains(keyword)) {
+                    tasksFound.add(task);
+                }
+            }
+        }
+        return tasksFound;
+    }
+
 }
