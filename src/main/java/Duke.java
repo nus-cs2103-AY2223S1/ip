@@ -1,5 +1,7 @@
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.io.File;
 
@@ -36,7 +38,7 @@ public class Duke {
                     userTasks.add(savedTodo);
                     break;
                 case "D":
-                    String taskDeadline = parsedTaskTextRepresentation[3];
+                    LocalDate taskDeadline = LocalDate.parse(parsedTaskTextRepresentation[3]);
                     Task savedDeadline = new Deadline(taskDescription, taskDeadline);
                     if (isTaskDone) {
                         savedDeadline.setCompleted();
@@ -150,15 +152,18 @@ public class Duke {
                                                                 Arrays.copyOfRange(parsedUserResponse,
                                                                               1,
                                                                                 bySeparationIndex));
-                        String newTaskDeadline = String.join(" ",
-                                                            Arrays.copyOfRange(parsedUserResponse,
-                                                                    bySeparationIndex + 1,
-                                                                    parsedUserResponse.length));
-                        Task newUserTask = new Deadline(newTaskDescription, newTaskDeadline);
-                        userTasks.add(newUserTask);
-                        dukeOutput = "    " + "Got it. I've added this task:\n"
-                                + "        " + newUserTask + "\n"
-                                + "    " + "Now you have " + userTasks.size() + " tasks in the list.\n";
+                        try {
+                            LocalDate deadline = LocalDate.parse(parsedUserResponse[bySeparationIndex + 1]);
+                            Task newUserTask = new Deadline(newTaskDescription, deadline);
+                            userTasks.add(newUserTask);
+                            dukeOutput = "    " + "Got it. I've added this task:\n"
+                                    + "        " + newUserTask + "\n"
+                                    + "    " + "Now you have " + userTasks.size() + " tasks in the list.\n";
+                        } catch (ArrayIndexOutOfBoundsException e) {
+                            dukeOutput = "    " + "Error: No date added for the deadline.\n";
+                        } catch (DateTimeParseException e) {
+                            dukeOutput = "    " + "Error: Invalid deadline format, please key in as yyyy-mm-dd\n";
+                        }
                     }
 
                     break;
