@@ -10,7 +10,6 @@ import java.time.format.DateTimeParseException;
 public class Parser {
 
     public static final String INPUT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-
     private static final String DELIMITER = Duke.DELIMITER;
     private static final String BY_DATE_DELIMITER = Duke.BY_DATE_DELIMITER;
     private static final String AT_DATE_DELIMITER = Duke.AT_DATE_DELIMITER;

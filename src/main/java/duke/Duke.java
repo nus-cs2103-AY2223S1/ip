@@ -2,12 +2,10 @@ package duke;
 
 import duke.exception.*;
 import duke.util.Parser;
+import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
@@ -37,27 +35,28 @@ public class Duke {
 
     private TaskList taskList;
     private Ui ui;
+    private Storage storage;
 
-    Duke() {
+    Duke(String filePath) {
         this.taskList = new TaskList();
         this.ui = new Ui();
+        this.storage = new Storage(filePath);
     }
 
-    public static void main(String[] args) {
-        Duke chatBox = new Duke();
-        chatBox.greet();
-        chatBox.standBy();
+    public void run() {
+        greet();
+        listen();
     }
 
     private void greet() {
         System.out.println(GREETING_MESSAGE);
     }
 
-    private void standBy() {
+    private void listen() {
         Scanner scanner = new Scanner(System.in);
-        boolean quited = false;
+        boolean isExit = false;
 
-        while (!quited) {
+        while (!isExit) {
 
             String output = "";
             String nextLine = scanner.nextLine();
@@ -75,19 +74,22 @@ public class Duke {
                 switch (firstWord) {
                 case (MARK_DONE_COMMAND_STRING):
                     index = Parser.getTaskIndexFromCommand(nextLine);
-                    output = markTaskDone(index);
+                    output = taskList.markTaskDone(index);
+                    storage.saveFile(taskList.getFileStream());
                     commandFetched = true;
                     break;
 
                 case (MARK_UNDONE_COMMAND_STRING):
                     index = Parser.getTaskIndexFromCommand(nextLine);
-                    output = markTaskUndone(index);
+                    output = taskList.markTaskUndone(index);
+                    storage.saveFile(taskList.getFileStream());
                     commandFetched = true;
                     break;
 
                 case (DELETE_COMMAND_STRING):
                     index = Parser.getTaskIndexFromCommand(nextLine);
-                    output = deleteTask(index);
+                    output = taskList.deleteTask(index);
+                    storage.saveFile(taskList.getFileStream());
                     commandFetched = true;
                     break;
 
@@ -100,39 +102,37 @@ public class Duke {
                     case (EXIT_COMMAND_STRING):
                         output = EXIT_OUTPUT_STRING;
                         commandFetched = true;
-                        quited = true;
+                        isExit = true;
                         break;
 
                     case (DISPLAY_LIST_COMMAND_STRING):
-                        output = getListInfo();
+                        output = taskList.getListInfo();
                         commandFetched = true;
                         break;
 
                     default:
-                        output = addNewTask(nextLine);
+                        output = taskList.addNewTask(nextLine);
                         commandFetched = true;
+                        storage.saveFile(taskList.getFileStream());
                         break;
                     }
                 }
-            } catch (DukeIndexOutOfBoundException exception) {
-                output = exception.getMessage();
-            } catch (DukeCommandFormatException exception) {
-                output = exception.getMessage();
-            } catch (DukeIndexMissingException exception) {
-                output = exception.getMessage();
-            } catch (DukeTaskTitleMissingException exception) {
-                output = exception.getMessage();
-            } catch (DukeTaskDateTimeMissingException exception) {
-                output = exception.getMessage();
-            } catch (DukeDateTimeFormatException exception) {
+            } catch (DukeIndexOutOfBoundException | DukeDateTimeFormatException | DukeTaskDateTimeMissingException |
+                     DukeTaskTitleMissingException | DukeIndexMissingException | DukeCommandFormatException |
+                     DukeIoException exception) {
                 output = exception.getMessage();
             }
 
-
+            ui.printOutput(output);
         }
     }
 
     private void saveFile() {
 
+    }
+
+    public static void main(String[] args) {
+        Duke chatBot = new Duke(FILE_PATH);
+        chatBot.run();
     }
 }

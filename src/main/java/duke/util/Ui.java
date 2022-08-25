@@ -8,7 +8,7 @@ public class Ui {
         return HORIZONTAL_BAR + '\n' + INDENTATION + output + '\n' + HORIZONTAL_BAR + '\n' + '\n';
     }
 
-    public static void printOutput(String output) {
+    public void printOutput(String output) {
         System.out.println(formatOutput(output));
     }
 }
