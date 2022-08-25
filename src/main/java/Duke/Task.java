@@ -1,12 +1,17 @@
 package Duke;
 
 /**
- * An abstract class with parameters task and done
+ * The class is an abstract class with parameters task and done
  */
 abstract public class Task {
     private String task;
     private boolean isDone;
 
+    /**
+     * The method takes in two parameters
+     * @param task of type String
+     * @param done of type boolean
+     */
     Task(String task, boolean done) {
         this.task = task;
         this.isDone = done;
@@ -21,7 +26,7 @@ abstract public class Task {
     }
 
     /**
-     * @return a string of the icom
+     * @return a string of the icon
      */
     public String getStatusIcon() {
         return this.isDone ? "[X]" : "[ ]";

@@ -9,13 +9,18 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * deals with loading tasks from the file and saving tasks in the file
+ * The class deals with loading tasks from the file and saving tasks in the file
  */
 public class Storage {
     static String filePath;
     BufferedReader bR;
     File dukeFile;
 
+    /**
+     * The method takes in two parameters
+     * @param pathName of type String
+     * @param fileName of type String
+     */
     public Storage(String pathName, String fileName) {
         Path file = Paths.get(pathName);
         File curr = new File(String.valueOf(pathName), fileName);
@@ -32,6 +37,7 @@ public class Storage {
     }
 
     /**
+     * The method will load
      * @return returns an object of type ArrayList
      */
     public ArrayList<Task> load() {
@@ -69,6 +75,7 @@ public class Storage {
     }
 
     /**
+     * The method is a static and takes in a parameter and returns a boolean
      * @param task The input to be received
      * @return returns a boolean
      */
@@ -86,6 +93,7 @@ public class Storage {
     }
 
     /**
+     * The method is a static and takes in a parameter
      * @param tasks The input to be received
      * @return returns a boolean
      */

@@ -8,6 +8,7 @@ import java.util.Scanner;
  */
 public class Parser {
     /**
+     * The method takes in a parameter of type TaskList
      * @param tasks of type TaskList
      */
     public static void readLine(TaskList tasks) {
