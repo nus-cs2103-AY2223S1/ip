@@ -3,7 +3,6 @@ package duke.storage;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +21,6 @@ import duke.task.ToDo;
 public class Storage {
     private static final String DIRECTORY = System.getProperty("user.home") + "/Duke";
     private static final String FILE_PATH = DIRECTORY + "/Duke.txt";
-    private Path path;
     protected File dukeFile;
     private List tasks;
 
@@ -39,7 +37,7 @@ public class Storage {
             if (!dukeFile.exists()) {
                 dukeFile.createNewFile();
             }
-            path = Paths.get(FILE_PATH);
+            Paths.get(FILE_PATH);
         } catch (IOException e) {
             throw new DukeException("Ugh. I cannot seem to create a file for you ...");
         }
