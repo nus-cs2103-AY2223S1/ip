@@ -17,7 +17,7 @@ public class MarkCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         taskList.markTaskN(index, true);
         ui.printMarkTaskReply(taskList.getTaskN(index).toString());
-        storage.overwriteFile(taskList.toFile());
+        storage.overwriteFile(taskList.toStorageString());
 
     }
 }

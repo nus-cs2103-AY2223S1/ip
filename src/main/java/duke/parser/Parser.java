@@ -22,22 +22,22 @@ public class Parser {
                     }
                     return new ListCommand();
                 case "mark":
-                    return new MarkCommand(parseIntegerArgument(commandArg));
+                    return new MarkCommand(parseIntArg(commandArg));
                 case "unmark":
-                    return new UnmarkCommand(parseIntegerArgument(commandArg));
+                    return new UnmarkCommand(parseIntArg(commandArg));
                 case "todo":
                     if (commandArg.equals("")) {
                         throw new DukeException("todo must contain a description.");
                     }
                     return new ToDoCommand(new ToDo(commandArg));
                 case "deadline" :
-                    String[] deadlineArgs = parseDeadlineArguments(commandArg);
+                    String[] deadlineArgs = parseDeadlineArgs(commandArg);
                     return new DeadlineCommand(new Deadline(deadlineArgs[0], parseDateArg(deadlineArgs[1])));
                 case "event":
-                    String[] eventArgs = parseEventArguments(commandArg);
+                    String[] eventArgs = parseEventArgs(commandArg);
                     return new EventCommand(new Event(eventArgs[0], parseDateArg(eventArgs[1])));
                 case "delete":
-                    return new DeleteCommand(parseIntegerArgument(commandArg));
+                    return new DeleteCommand(parseIntArg(commandArg));
                 case "bye":
                     if (!commandArg.equals("")) {
                         throw new DukeException("bye must not have any argument.");
@@ -48,7 +48,7 @@ public class Parser {
             }
     }
 
-    private String[] parseDeadlineArguments(String desc) throws DukeException {
+    private String[] parseDeadlineArgs(String desc) throws DukeException {
         String[] res = desc.split("/by");
         for (int i = 0; i < res.length; i++) {
             res[i] = res[i].trim();
@@ -59,7 +59,7 @@ public class Parser {
         return res;
     }
 
-    private String[] parseEventArguments(String desc) throws DukeException {
+    private String[] parseEventArgs(String desc) throws DukeException {
         String[] res = desc.split("/at");
         for (int i = 0; i < res.length; i++) {
             res[i] = res[i].trim();
@@ -70,7 +70,7 @@ public class Parser {
         return res;
     }
 
-    private int parseIntegerArgument(String index) throws DukeException {
+    private int parseIntArg(String index) throws DukeException {
         try {
             return Integer.parseInt(index);
         }  catch (NumberFormatException e) {

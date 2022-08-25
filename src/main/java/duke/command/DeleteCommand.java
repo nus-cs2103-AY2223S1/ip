@@ -18,6 +18,6 @@ public class DeleteCommand extends Command {
         String deletedTaskDesc = tasklist.getTaskN(index).toString();
         tasklist.deleteTaskN(index);
         ui.printDeleteTaskReply(deletedTaskDesc, tasklist.getNumOfTask());
-        storage.overwriteFile(tasklist.toFile());
+        storage.overwriteFile(tasklist.toStorageString());
     }
 }

@@ -1,9 +1,6 @@
 package duke;
 
-import duke.task.Deadline;
-import duke.task.Event;
 import duke.task.Task;
-import duke.task.ToDo;
 
 import java.util.ArrayList;
 
@@ -14,36 +11,8 @@ public class TaskList {
         this.taskList = new ArrayList<>();
     }
 
-    public TaskList(String data) throws DukeException {
-        this.taskList = new ArrayList<>();
-        String[] taskFromDataStr = data.split("\n");
-        for (String taskFromDatum : taskFromDataStr) {
-            if (!taskFromDatum.equals("")) this.addTaskFromDataStr(taskFromDatum);
-        }
-    }
-
     public void addTask(Task task) {
         taskList.add(task);
-    }
-
-    private void addTaskFromDataStr(String task) throws DukeException {
-        Task newTask = null;
-        String[] taskSplit = task.split("\\|", 3);
-        String taskType = taskSplit[0];
-        boolean isDone = taskSplit[1].equals("1");
-        String taskDesc = taskSplit[2];
-        switch (taskType) {
-            case "T":
-                newTask = ToDo.ToDoFromData(taskDesc, isDone);
-                break;
-            case "D":
-                newTask = Deadline.DeadlineFromFile(taskDesc, isDone);
-                break;
-            case "E":
-                newTask = Event.EventFromFile(taskDesc, isDone);
-                break;
-        }
-        taskList.add(newTask);
     }
 
     public int getNumOfTask() {
@@ -85,11 +54,11 @@ public class TaskList {
         return result.toString();
     }
 
-    public String toFile() {
+    public String toStorageString() {
         if (taskList.isEmpty()) return "";
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < taskList.size(); i++) {
-            result.append(taskList.get(i).toFile()).append(i == taskList.size() - 1 ? "" : "\n");
+            result.append(taskList.get(i).toStorageString()).append(i == taskList.size() - 1 ? "" : "\n");
         }
         return result.toString();
     }

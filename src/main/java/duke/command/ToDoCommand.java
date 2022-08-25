@@ -18,6 +18,6 @@ public class ToDoCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         taskList.addTask(todo);
         ui.printAddTaskReply(todo.toString(), taskList.getNumOfTask());
-        storage.overwriteFile(taskList.toFile());
+        storage.overwriteFile(taskList.toStorageString());
     }
 }
