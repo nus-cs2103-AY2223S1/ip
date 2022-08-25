@@ -2,6 +2,7 @@ package duke;
 
 import exceptions.UnknownCommandException;
 
+import javax.sound.midi.Soundbank;
 import java.util.Scanner;
 
 public class Ui {
@@ -37,11 +38,10 @@ public class Ui {
                 nextCommand = sc.nextLine();
             }
             dukePrintLn(BYE);
-        } catch (UnknownCommandException e) {
-            System.out.println(e.getMessage());
+        } catch (UnknownCommandException | NumberFormatException e) {
+            System.out.println("Error: " + e.getMessage());
             readInput();
         }
-
     }
 
     public void executeCommand(String nextCommand) throws UnknownCommandException {
@@ -63,7 +63,11 @@ public class Ui {
             int index = convertToInt(nextCommand);
             storage.deleteLine(index);
             taskList.deleteTask(index);
-        } else {
+        } else if(nextCommand.startsWith(CommandsEnum.find.toString())){
+            String name = Parser.getFindObject(nextCommand);
+            taskList.findTask(name);
+        }
+        else {
             throw new UnknownCommandException();
         }
 
@@ -71,7 +75,7 @@ public class Ui {
     }
 
     private int convertToInt(String str) {
-        return Character.getNumericValue((str.charAt(str.length() - 1)));
+        return Integer.parseInt(str.substring(str.length()-1));
     }
 
     public void run() {

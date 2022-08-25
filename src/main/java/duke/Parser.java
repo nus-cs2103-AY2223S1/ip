@@ -87,4 +87,8 @@ public class Parser {
     public static String convertDateToString(LocalDate date) {
         return date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
+
+    public static String getFindObject(String command){
+        return command.split(" ",2)[1].trim();
+    }
 }
