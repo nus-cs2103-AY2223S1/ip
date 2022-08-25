@@ -2,8 +2,6 @@ package task;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.time.LocalDate;
 
 /**
  * Represents an event with a specified date and time.
@@ -21,7 +19,7 @@ public class Events extends Task {
 
     @Override
     public void write(FileWriter fw) throws IOException {
-        String str = String.format("E | %d | %s | %s\n", this.getDone(), this.getName(), this.period);
+        String str = String.format("E | %d | %s | %s\n", this.getDoneInt(), this.getName(), this.period);
         fw.write(str);
     }
 

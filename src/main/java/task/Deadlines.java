@@ -2,7 +2,7 @@ package task;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -22,7 +22,7 @@ public class Deadlines extends Task {
 
     @Override
     public void write(FileWriter fw) throws IOException {
-        String str = String.format("D | %d | %s | %s\n", this.getDone(), this.getName(), this.deadline);
+        String str = String.format("D | %d | %s | %s\n", this.getDoneInt(), this.getName(), this.deadline);
         fw.write(str);
     }
 

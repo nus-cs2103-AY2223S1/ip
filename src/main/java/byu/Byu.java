@@ -25,13 +25,12 @@ public class Byu {
             storage = new FileReader(filePath);
             tasks = storage.load();
         } catch (IOException e) {
-            System.out.print(e.getMessage());
         }
     }
 
     /**
      * Runs Byu and scans for user input.
-     * */
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

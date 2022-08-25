@@ -1,6 +1,8 @@
 package commands;
 
-import byu.*;
+import byu.ToDoList;
+import byu.Ui;
+
 import exceptions.InvalidIndex;
 
 /**
@@ -24,4 +26,5 @@ public abstract class Command {
      * @return true if command is an exit command, false otherwise.
      */
     public abstract boolean isExit();
+
 }

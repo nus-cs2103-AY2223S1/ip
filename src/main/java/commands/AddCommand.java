@@ -1,6 +1,8 @@
 package commands;
-import byu.*;
-import exceptions.InvalidIndex;
+
+import byu.ToDoList;
+import byu.Ui;
+
 import task.Task;
 
 /**

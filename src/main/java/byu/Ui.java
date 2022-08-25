@@ -1,8 +1,5 @@
 package byu;
 
-import exceptions.InvalidIndex;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.Scanner;
 
 /**
@@ -10,7 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
 
-    Scanner sc = new Scanner(System.in);
+    private Scanner sc = new Scanner(System.in);
 
     /**
      * Prints the welcome message.
@@ -41,4 +38,5 @@ public class Ui {
         System.out.print("Awww see you soon!!");
         sc.close();
     }
+
 }
