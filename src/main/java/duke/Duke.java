@@ -7,11 +7,21 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Duke, a chatbot that helps you keep track of the tasks you have.
+ *
+ * @author Bryan Ng Zi Hao
+ */
 public class Duke {
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filePath The location where the data is stored.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -23,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * The main function that runs Duke.
+     */
     public void run() {
         ui.greet();
         boolean isRunning = true;

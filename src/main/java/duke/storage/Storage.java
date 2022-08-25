@@ -13,13 +13,31 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import duke.exception.DukeException;
 
+/**
+ * The storage where data for Duke is stored.
+ *
+ * @author Bryan Ng Zi Hao
+ */
 public class Storage {
     private File currentFile;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param filePath The location where the data is stored.
+     */
     public Storage(String filePath) {
         this.currentFile = new File(filePath);
     }
 
+    /**
+     * Loads the given file stored in filePath and checks if any existing data
+     * is stored there. If so, the data is used for Duke's run. Else, a new
+     * memory file will be created.
+     *
+     * @return An ArrayList of Tasks stored in the filePath.
+     * @throws DukeException File could not be found or created.
+     */
     public ArrayList<Task> loadFile() throws DukeException {
         ArrayList<Task> taskList = new ArrayList<>();
         File folder = new File("data");
@@ -63,6 +81,13 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Rewrites the file in the filePath location to include all the newly
+     * edited and created tasks.
+     *
+     * @param data The list of ArrayList of tasks to be added to the txt file.
+     * @throws DukeException File could not be written.
+     */
     public void writeFile(ArrayList<Task> data) throws DukeException {
         File folder = new File("data");
         if (!folder.exists()) {
