@@ -4,8 +4,6 @@ import java.io.IOException;
 
 public class Duke {
 
-//    private String input;
-//    private Scanner sc = new Scanner(System.in);
     private Ui ui;
     private Storage storage;
     private TaskList tasks;
@@ -102,8 +100,5 @@ public class Duke {
     public void printException(DukeException e) {
         ui.dukeReply(e.getMessage());
     }
-
-
-
 
 }

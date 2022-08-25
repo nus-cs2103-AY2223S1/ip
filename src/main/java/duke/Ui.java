@@ -2,7 +2,6 @@ package duke;
 
 public class Ui {
 
-
     public void dukeReply(String message) {
         String lineBreak = "-------------------------------------------------";
         String reply = String.format("%s\n%s\n%s", lineBreak, message, lineBreak);
@@ -18,12 +17,12 @@ public class Ui {
     }
 
     public void printList(TaskList taskList) {
-        String message = "Here are the tasks in your list:";
+        StringBuilder message = new StringBuilder("Here are the tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             Task curTask = taskList.get(i);
-            message +="\n" + (i + 1) + ". " + curTask;
+            message.append("\n").append(i + 1).append(". ").append(curTask);
         }
-        dukeReply(message);
+        dukeReply(message.toString());
     }
 
     public void echoTask(Task task, TaskList taskList) {
