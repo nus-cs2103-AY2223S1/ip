@@ -21,8 +21,4 @@ class Event extends Task {
         return "E" + super.write() + ":" + this.timeInString;
     }
 
-    public String write() {
-        return "E" + super.write();
-    }
-
 }

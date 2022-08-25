@@ -19,8 +19,4 @@ class Deadline extends Task {
         return "D" + super.write() + ":" + this.timeInString;
     }
 
-    public String write() {
-        return "D" + super.write();
-    }
-
 }

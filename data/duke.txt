@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-1:D: :assignment 1 /by 6 june
-2:D:X:assignment 2 /by 7 june
-3:E:X:birthday party /at 6 june
-4:E:X:birthday party /at 8 aug
-5:T: :go korea
-6:T: :go japan
-=======
-1:D: :return book:2022-10-15
-2:D: :finish assignment:2022-11-13
-3:E: :birthday party:2022-11-15
-4:E: :meeting:2022-11-13
->>>>>>> branch-Level-8
+1:D:X:finish assignment 1:2022-05-05
+2:D: :return book:2022-06-13
+3:E: :birthday party:2022-12-31
+4:E:X:meeting:2022-03-14
+5:T:X:borrow book
+6:T: :return book
