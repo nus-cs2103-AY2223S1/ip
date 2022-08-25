@@ -30,7 +30,6 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
     }
 
-
     public void showWelcome() {
         System.out.println(INDENTATION + LINE);
         System.out.println(INDENTATION + "Hello! I'm duke.Duke");
@@ -43,8 +42,8 @@ public class Ui {
         sc.close();
     }
 
-    public void showListMessage(TaskList taskList) {
-        int numOfTasks = taskList.getSize();
+    public void showListMessage(TaskList tasks) {
+        int numOfTasks = tasks.getSize();
         if (numOfTasks == 0) {
             System.out.println(INDENTATION + "You do not have any tasks in your list right now.");
         }
@@ -52,7 +51,7 @@ public class Ui {
                 numOfTasks > 1 ? "are" : "is", numOfTasks > 1 ? "s" : "");
         for (int i = 1; i <= numOfTasks; i++) {
             System.out.println(INDENTATION + String.valueOf(i) + ". " +
-                    taskList.getTask(i).toString());
+                    tasks.getTask(i).toString());
         }
     }
 
@@ -66,18 +65,18 @@ public class Ui {
         System.out.println(INDENTATION + INDENTATION + task.toString());
     }
 
-    public void showAddTaskMessage(TaskList taskList, Task task) {
+    public void showAddTaskMessage(TaskList tasks, Task task) {
         System.out.println(INDENTATION + "Got it. I've added this task:");
         System.out.println(INDENTATION + INDENTATION + "added: " + task.toString());
         System.out.println(INDENTATION +
-                "Now you have " + String.valueOf(taskList.getSize()) + " tasks in the list.");
+                "Now you have " + String.valueOf(tasks.getSize()) + " tasks in the list.");
     }
 
-    public void showDeleteMessage(TaskList taskList, Task task) {
+    public void showDeleteMessage(TaskList tasks, Task task) {
         System.out.println(INDENTATION + "Noted. I've removed this task:");
         System.out.println(INDENTATION + INDENTATION + task.toString());
         System.out.println(INDENTATION +
-                "Now you have " + String.valueOf(taskList.getSize()) + " tasks in the list.");
+                "Now you have " + String.valueOf(tasks.getSize()) + " tasks in the list.");
     }
 
     public void showError(String message) {

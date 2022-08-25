@@ -15,7 +15,6 @@ public class Deadline extends Task{
         this.deadline = LocalDate.parse(by);
     }
 
-
     public String getDescription() {
         return super.getDescription() + " | " + by;
     }

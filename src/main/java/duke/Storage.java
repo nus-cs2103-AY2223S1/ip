@@ -39,7 +39,6 @@ public class Storage {
         Files.createFile(relativeFilePath);
     }
 
-
     public Task parseStringToTask(String details, String taskType) {
         Task task = null;
         switch (taskType) {
@@ -68,10 +67,9 @@ public class Storage {
 
 
     public ArrayList<Task> load() throws IOException {
-        ArrayList<Task> taskList = new ArrayList<>();
-
-        List<String> loadData = Files.readAllLines(relativeFilePath);
-        for (String taskString : loadData) {
+        ArrayList<Task> tasks = new ArrayList<>();
+        List<String> lines = Files.readAllLines(relativeFilePath);
+        for (String taskString : lines) {
             String[] taskDetails = taskString.split(" \\| ", 2);
             Task task = null;
             String taskType = taskDetails[0];
@@ -92,32 +90,32 @@ public class Storage {
                     break;
             }
             if (task != null) {
-                taskList.add(task);
+                tasks.add(task);
             }
         }
-        return taskList;
+        return tasks;
     }
 
 
-    public void save(ArrayList<Task> taskList) throws IOException {
+    public void save(ArrayList<Task> tasks) throws IOException {
         String data;
-        String[] stringDataArr = new String[taskList.size()];
+        String[] lines = new String[tasks.size()];
         int i = 0;
-        for (Task task : taskList) {
+        for (Task task : tasks) {
             switch (task.getTaskType()) {
                 case "T": {
                     data = "T" + " | " + task.getStatus() + " | " + task.getDescription();
-                    stringDataArr[i] = data;
+                    lines[i] = data;
                     break;
                 }
                 case "D": {
                     data = "D" + " | " + task.getStatus() + " | " + task.getDescription();
-                    stringDataArr[i] = data;
+                    lines[i] = data;
                     break;
                 }
                 case "E": {
                     data = "E" + " | " + task.getStatus() + " | " + task.getDescription();
-                    stringDataArr[i] = data;
+                    lines[i] = data;
                     break;
                 }
                 default:
@@ -125,6 +123,6 @@ public class Storage {
             }
             i++;
         }
-        Files.write(relativeFilePath, Arrays.asList(stringDataArr));
+        Files.write(relativeFilePath, Arrays.asList(lines));
     }
 }
