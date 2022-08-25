@@ -3,7 +3,12 @@ abstract public class Task {
     private boolean isCompleted = false;
 
     Task(String title) {
+        this(title, false);
+    }
+
+    Task(String title, boolean isCompleted) {
         this.title = title;
+        this.isCompleted = isCompleted;
     }
 
     public String getTitle() {
@@ -25,6 +30,10 @@ abstract public class Task {
         }
         this.isCompleted = completed;
         return true;
+    }
+
+    public String toSaveFormat() {
+        return String.format("%s;;%s;;", isCompleted ? 1 : 0, title);
     }
 
     @Override
