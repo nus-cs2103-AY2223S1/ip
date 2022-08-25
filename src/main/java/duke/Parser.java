@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Parser {
     String input = "";
     Scanner scan = new Scanner(System.in);
-    String[] validInputs = {"delete", "mark", "unmark", "todo", "deadline", "event"};
+    String[] validInputs = {"delete", "mark", "unmark", "todo", "deadline", "event", "find"};
     TaskList list;
 
     /**
@@ -60,7 +60,7 @@ public class Parser {
                                 this.list.addTodo(description);
                             }
                             break;
-                        case "deadline":  // Checks for Deadline
+                        case "deadline": {  // Checks for Deadline
                             if (split.length < 2) {
                                 throw new DukeException("deadline");
                             } else {
@@ -70,7 +70,8 @@ public class Parser {
                                 this.list.addDeadline(description, by);
                             }
                             break;
-                        case "event":  // Checks for Event
+                        }
+                        case "event": {  // Checks for Event
                             if (split.length < 2) {
                                 throw new DukeException("event");
                             } else {
@@ -80,6 +81,15 @@ public class Parser {
                                 this.list.addEvent(description, when);
                             }
                             break;
+                        }
+                        case "find": {
+                            if (split.length < 2) {
+                                throw new DukeException("find");
+                            } else {
+                                String keyword = split[1];
+                                this.list.findTask(keyword).printTaskList();
+                            }
+                        }
                     }
                 } else {
                     throw new DukeException(); // Invalid input

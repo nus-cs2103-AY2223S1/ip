@@ -44,7 +44,6 @@ public class Storage {
         while (readFile.hasNext()) {
             String taskString = readFile.nextLine();
             String[] split = taskString.split(" \\| ");
-            System.out.println(split[0] + split[1] + split[2]);
             switch (split[0]) {
                 case "T": { // Checks for Todo
                     list.add(new Todo(split[2]));
