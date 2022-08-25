@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Task {
@@ -32,13 +34,23 @@ public class Task {
         }
         if (command.split(" ")[0].equals("deadline")) {
             String time = command.split("/")[1].substring(3);
-            arrayList.add("[D][ ] " + command.substring(9) + "(by: " + time + ")");
-            return new Deadlines(command.split("/")[0].substring(9), number, time);
+            for (int k = 2; k < command.split("/").length; k++) {
+                time += command.split("/")[k];
+            }
+            LocalDate date = LocalDate.parse(time);
+            String tranTime = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            arrayList.add("[D][ ] " + command.split("/")[0].substring(9) + "(by: " + tranTime + ")");
+            return new Deadlines(command.split("/")[0].substring(9), number, tranTime);
         }
         if (command.split(" ")[0].equals("event")) {
             String time = command.split("/")[1].substring(3);
-            arrayList.add("[E][ ] " + command.substring(6) + "(at: " + time + ")");
-            return new Events(command.split("/")[0].substring(6), number, time);
+            for (int k = 2; k < command.split("/").length; k++) {
+                time += command.split("/")[k];
+            }
+            LocalDate date = LocalDate.parse(time);
+            String tranTime = date.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+            arrayList.add("[E][ ] " + command.split("/")[0].substring(6) + "(at: " + tranTime + ")");
+            return new Events(command.split("/")[0].substring(6), number, tranTime);
         }
         if (command.equals("blah")) {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
