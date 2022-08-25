@@ -105,7 +105,8 @@ public class Parser {
                     if (text.equalsIgnoreCase("mark") || text.equalsIgnoreCase("mark ")) {
                         ui.noNumberToMark();
                     } else {
-                        if (Integer.parseInt(text.replace("mark ", "")) - 1 < storage.taskList.arrayList.size() && Integer.parseInt(text.replace("mark ", "")) > 0) {
+                        if (Integer.parseInt(text.replace("mark ", "")) - 1 < storage.taskList.arrayList.size()
+                                && Integer.parseInt(text.replace("mark ", "")) > 0) {
                             Task toBeMarked = storage.taskList.arrayList.get(Integer.parseInt(text.replace("mark ", "")) - 1);
                             if (!toBeMarked.getIsDone()) {
                                 storage.taskList.mark(toBeMarked);
@@ -126,7 +127,8 @@ public class Parser {
                     if (text.equalsIgnoreCase("unmark") || text.equalsIgnoreCase("unmark ")) {
                         ui.noNumberToUnmark();
                     } else {
-                        if (Integer.parseInt(text.replace("unmark ", "")) - 1 < storage.taskList.arrayList.size() && Integer.parseInt(text.replace("unmark ", "")) > 0) {
+                        if (Integer.parseInt(text.replace("unmark ", "")) - 1 < storage.taskList.arrayList.size()
+                                && Integer.parseInt(text.replace("unmark ", "")) > 0) {
                             Task toBeUnmarked = storage.taskList.arrayList.get(Integer.parseInt(text.replace("unmark ", "")) - 1);
                             if (toBeUnmarked.getIsDone()) {
                                 storage.taskList.unmark(toBeUnmarked);
