@@ -15,9 +15,10 @@ public class FindCommand extends Command {
     private final String keyword;
 
     /**
-     * Constructs a FindCommand instance with the provided keyword
-     * @param keyword keyword to be searched
-     * @throws DukeException if the keyword is an empty String or null
+     * Constructs a FindCommand instance with the provided keyword.
+     *
+     * @param keyword keyword to be searched.
+     * @throws DukeException if the keyword is an empty String or null.
      */
     public FindCommand(String keyword) throws DukeException {
         if (keyword == null || keyword.equals("")) {
@@ -30,9 +31,9 @@ public class FindCommand extends Command {
      * Searches through the provided TaskList with its keyword and passes the results
      * to UI.
      *
-     * @param tasks the TaskList to be searched through
-     * @param ui the Ui where results are passed to
-     * @param storage unused for FindCommand
+     * @param tasks the TaskList to be searched through.
+     * @param ui the Ui where results are passed to.
+     * @param storage unused for FindCommand.
      */
     public void exec(TaskList tasks, Ui ui, Storage storage) {
         TaskList filteredTasks = tasks.filter((task) -> task.hasSubstring(this.keyword));
@@ -50,7 +51,8 @@ public class FindCommand extends Command {
 
     /**
      * Returns false as Find is not a terminating Command.
-     * @return false
+     *
+     * @return false.
      */
     public boolean isTerminator() {
         return false;

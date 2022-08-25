@@ -12,6 +12,12 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Constructs a Duke chatbot. The TaskList will be loaded from
+     * the Storage at the specified file path during this stage.
+     *
+     * @param filePath the specified file path parameter.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -27,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts the Duke chatbot.
+     */
     public void exec() {
         boolean exitCalled = false;
 
@@ -45,7 +54,6 @@ public class Duke {
             }
         }
     }
-
 
     public static void main(String[] args) {
         new Duke("data/save.txt").exec();

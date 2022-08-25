@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import duke.DukeException;
+
+/**
+ * This class encapsulates a task with a start time and end time.
+ */
 public class Event extends Task {
     private static final String NO_TIMERANGE_MESSAGE = "An Event-type Task must be provided with a time range."
             + " Use the /at parameter to add a time range.";
@@ -14,9 +18,18 @@ public class Event extends Task {
             + " You can provide only one date if you choose.";
     private static final String INVALID_DATERANGE_MESSAGE = "The second date is prior to the first date.";
 
+    /** The starting date of this task. */
     protected LocalDate startTime;
+
+    /** The ending date of this task. */
     protected LocalDate endTime;
 
+    /**
+     * Constructs a not completed Event with the specified description and time range parameter.
+     * @param desc the description of this Event.
+     * @param timeRange the time range of this Event.
+     * @throws DukeException if desc is null or empty, or if the time range was unable to be parsed into a date.
+     */
     public Event(String desc, String timeRange) throws DukeException {
         super(desc);
         if (timeRange == null || timeRange.equals("")) {
@@ -25,6 +38,13 @@ public class Event extends Task {
         parseTimeRange(timeRange);
     }
 
+    /**
+     * Constructs an Event with the specified description, time range, and state of completion parameter.
+     * @param desc the description of this Event.
+     * @param timeRange the time range of this Event.
+     * @param isDone the state of completion of this Event.
+     * @throws DukeException if desc is null or empty, or if the time range was unable to be parsed into a date.
+     */
     public Event(String desc, String timeRange, boolean isDone) throws DukeException {
         super(desc, isDone);
         if (timeRange == null || timeRange.equals("")) {
