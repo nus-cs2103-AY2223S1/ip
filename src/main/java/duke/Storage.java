@@ -8,16 +8,31 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Stores the task in a file under /data/duke.txt
+ * Contains the methods to load the file and modify the file when the tasks are modified in the app
+ */
 public class Storage {
     private final String path;
     private final TaskList taskList;
 
+    /**
+     * Constructor for the Storage class
+     *
+     * @param path path of the file
+     * @param taskList current Tasklist state
+     */
     public Storage(String path, TaskList taskList) {
         this.path = path;
         this.taskList = taskList;
     }
 
-    // creates file and folder if it doesn't exist
+    /**
+     * Loads the file into the app so that a saved state can be retrieved
+     * Creates file and folder if it doesn't exist
+     *
+     * @throws IOException
+     */
     public void loadFile() throws IOException {
         File file = new File(this.path);
         File parentFile = file.getParentFile();
@@ -37,12 +52,26 @@ public class Storage {
 
     }
 
+
+    /**
+     * Adds text to the file
+     *
+     * @param filePath path of the file
+     * @param textToAdd text to be added to the file
+     * @throws IOException If file is not found
+     */
     private static void writeToFile(String filePath, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath,true);
         fw.write(textToAdd + "\n");
         fw.close();
     }
 
+
+    /**
+     * Takes in command from User and handle the logic on what to save onto the file
+     *
+     * @param command Command received from User
+     */
     public void addLineToFile(String command) {
         try {
             String[] combiStr;
@@ -81,6 +110,12 @@ public class Storage {
     }
 
 
+    /**
+     * Changes the state of the task in the saved file
+     *
+     * @param index line number of that task in the file
+     * @param toDone decides whether to set the task to be done or undone
+     */
     public void toggleDone(int index, boolean toDone) {
         File file = new File(this.path);
         try{
@@ -115,6 +150,11 @@ public class Storage {
 
     }
 
+    /**
+     * Delete line from the saved file based on line number
+     *
+     * @param index line number of the task
+     */
     public void deleteLine(int index){
         File file = new File(this.path);
         try{
