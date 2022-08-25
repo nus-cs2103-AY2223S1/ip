@@ -20,6 +20,12 @@ public class CommandTodoHandler extends CommandHandler {
     );
     private static final Pattern commandRegexPattern = Pattern.compile("^todo (.+)");
 
+    /**
+     * Constructor for CommandTodoHandler
+     *
+     * @param commandStr input command string
+     * @throws CommandException if input command string does not meet format specifications
+     */
     public CommandTodoHandler(String commandStr) throws CommandException {
         super(commandStr, commandRegexPattern);
     }
@@ -29,6 +35,12 @@ public class CommandTodoHandler extends CommandHandler {
         return INVALID_FORMAT_MSG;
     }
 
+    /**
+     * Add a todo task to the task list
+     *
+     * @param taskList task list
+     * @return add task response
+     */
     @Override
     public CommandResponse run(TaskList taskList) {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();

@@ -31,6 +31,13 @@ public class CommandEventHandler extends CommandHandler {
         return INVALID_FORMAT_MSG;
     }
 
+    /**
+     * Add an event task to the task list
+     *
+     * @param taskList task list
+     * @return add task response
+     * @throws CommandException if date-time for event task cannot be parsed
+     */
     @Override
     public CommandResponse run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();

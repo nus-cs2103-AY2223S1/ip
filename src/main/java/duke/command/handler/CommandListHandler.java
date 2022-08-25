@@ -26,6 +26,15 @@ public class CommandListHandler extends CommandHandler {
         return INVALID_FORMAT_MSG;
     }
 
+    /**
+     * Returns a CommandResponse with a string representation of all tasks in the task list
+     * <p>
+     * If there is no tasks in the task list, return a string to inform user
+     * </p>
+     *
+     * @param taskList task list
+     * @return command response
+     */
     @Override
     public CommandResponse run(TaskList taskList) {
         if (taskList.isEmpty()) {

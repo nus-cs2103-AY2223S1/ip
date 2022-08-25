@@ -31,6 +31,14 @@ public class CommandMarkHandler extends CommandHandler {
         return INVALID_FORMAT_MSG;
     }
 
+    /**
+     * Update a task with a marked or unmarked status
+     *
+     * @param taskList task list
+     * @return update task response
+     * @throws CommandException if task number given is out of range or task number string cannot be
+     *                          parsed into a number
+     */
     @Override
     public CommandResponse run(TaskList taskList) throws CommandException {
         MatchResult regexMatchResult = commandRegexMatcher.toMatchResult();
