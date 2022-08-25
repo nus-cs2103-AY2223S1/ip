@@ -1,3 +1,5 @@
+package dukechatbot.utility;
+import dukechatbot.dukeexception.DukeException;
 public class Parser {
     private TaskList tasks;
     private Ui ui;

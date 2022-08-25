@@ -1,3 +1,4 @@
+package dukechatbot.dukeexception;
 import java.io.IOException;
 
 public class DukeException extends IOException {

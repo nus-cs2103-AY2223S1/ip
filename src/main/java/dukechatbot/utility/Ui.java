@@ -1,3 +1,5 @@
+package dukechatbot.utility;
+import dukechatbot.dukeexception.DukeException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;

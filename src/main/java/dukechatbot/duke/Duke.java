@@ -1,3 +1,10 @@
+package dukechatbot.duke;
+import dukechatbot.dukeexception.DukeException;
+import dukechatbot.utility.Task;
+import dukechatbot.utility.TaskList;
+import dukechatbot.utility.Storage;
+import dukechatbot.utility.Ui;
+import dukechatbot.utility.Parser;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,22 +31,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-//        try {
-//            fileName = Path.of("D:\\SouceTree Projects\\CS2103T_Ip\\storage.txt");
-//            file = fileName.toFile();
-//            System.out.println(file.getPath());
-//            if (file.exists()) {
-//                load();
-//                storeman();
-//            } else {
-//                if (file.createNewFile()) {
-//                    al = new ArrayList<>();
-//                    run();
-//                } else {
-//                    throw new IOException("File was not created!");
-//                }
-//            }
-//            save(al);
         try {
             new Duke("D:\\SouceTree Projects\\CS2103T_Ip\\storage.txt").run();
         } catch (DukeException de) {
