@@ -25,6 +25,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getFileStatus() {
+        return (isDone ? "1" : "0"); // mark done task with X
+    }
+
     /**
      * Function that marks the completion of a task
      */
@@ -41,5 +45,9 @@ public class Task {
 
     public String toString() {
         return description;
+    }
+
+    public String toFileString() {
+        return null;
     }
 }

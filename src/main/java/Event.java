@@ -19,4 +19,9 @@ public class Event extends Task{
     public String toString() {
         return "[E][" + this.getStatusIcon() + "] " + super.toString() + " (at: " + at + ")";
     }
+
+    @Override
+    public String toFileString() {
+        return "E | " +  this.getFileStatus() + " | " + super.toString() + " | " + this.at;
+    }
 }
