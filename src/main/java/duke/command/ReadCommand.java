@@ -11,7 +11,7 @@ public class ReadCommand extends Command {
 
     @Override
     public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
-        taskList.parse(storage.read());
+        taskList.loadFrom(storage.read());
         int size = taskList.size();
         String temp = size == 1 ? "task has" : "tasks have";
         messagePrinter.printMessage("Your " + size + " " + temp + " been loaded successfully\n"

@@ -61,6 +61,10 @@ public class TaskList implements Savable<TaskList> {
         return s;
     }
 
+    public void loadFrom(String formattedString) {
+        this.tasks = parse(formattedString).getTaskList();
+    }
+
     @Override
     public TaskList parse(String formattedString) {
         return Parser.parseTaskList(formattedString);
