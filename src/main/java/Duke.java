@@ -19,6 +19,7 @@ import java.util.Scanner;
 
 public class Duke {
     private static final ArrayList<TaskItem> taskItems = new ArrayList<>();
+    private final DateTimeParser dateTimeParser = new DateTimeParser("2019-10-15");
 
     /**
      * Starting point of the program.
