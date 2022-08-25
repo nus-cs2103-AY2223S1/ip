@@ -12,6 +12,7 @@ public class Event extends Task {
 
     private final DateTimeFormatter FORMAT_MMDDYY_TIME = 
             DateTimeFormatter.ofPattern("MM/dd/yy, HH:mm");
+            
     private LocalDateTime endTime;
 
     /**

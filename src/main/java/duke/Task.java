@@ -17,7 +17,7 @@ public class Task {
      * the task is undone and true indicates that
      * the task is done.
      */
-    private Boolean status = false;
+    private Boolean isMarked = false;
 
     /**
      * Returns the current status (true for marked, false for unmarked)
@@ -25,7 +25,7 @@ public class Task {
      * @return Marked status of the task
      */
     public Boolean getStatus() {
-        return this.status;
+        return this.isMarked;
     }
 
     /**
@@ -41,14 +41,14 @@ public class Task {
      * Marks the current Task object as done.
      */
     public void mark() {
-        this.status = true;
+        this.isMarked = true;
     }
 
     /**
      * Marks the current Task object as undone.
      */
     public void unmark() {
-        this.status = false;
+        this.isMarked = false;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        if (this.status) {
+        if (this.isMarked) {
             return "[X] " + this.taskName;
         }
         return "[ ] " + this.taskName;

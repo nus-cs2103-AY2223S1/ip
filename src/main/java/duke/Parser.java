@@ -53,50 +53,50 @@ public class Parser {
             throws DukeException {
         String keyword = commandArgs[0];
         switch (keyword) {
-            case "bye":
-                return new Command(Keyword.BYE, commandArgs);
-            case "list":
-                return new Command(Keyword.LIST, commandArgs);
-            case "mark":
-                if (commandArgs.length == 1) {
-                    throw new EmptyCommandException(commandArgs[0]);
-                }
-                return new Command(Keyword.MARK, commandArgs);
-            case "unmark":
-                if (commandArgs.length == 1) {
-                    throw new EmptyCommandException(commandArgs[0]);
-                }
-                return new Command(Keyword.UNMARK, commandArgs);
-            case "delete":
-                if (commandArgs.length == 1) {
-                    throw new EmptyCommandException(commandArgs[0]);
-                }
-                return new Command(Keyword.DELETE, commandArgs);
-            case "todo":
-                if (commandArgs.length == 1) {
-                    throw new EmptyCommandException(commandArgs[0]);
-                }
-                return new Command(Keyword.TODO, commandArgs);
-            case "deadline":
-                if (commandArgs.length == 1) {
-                    throw new EmptyCommandException(commandArgs[0]);
-                }
-                String[] deadlineDetails = commandArgs[1].split(" /by ");
-                if (deadlineDetails.length == 1) {
-                    throw new IllegalCommandException(commandArgs[0]);
-                }
-                return new Command(Keyword.DEADLINE, deadlineDetails);
-            case "event":
-                if (commandArgs.length == 1) {
-                    throw new EmptyCommandException(commandArgs[0]);
-                }
-                String[] eventDetails = commandArgs[1].split(" /at ");
-                if (eventDetails.length <= 1) {
-                    throw new IllegalCommandException(commandArgs[0]);
-                }
-                return new Command(Keyword.EVENT, eventDetails);
-            default:
-                throw new CommandNotFoundException(commandArgs[0]);
+        case "bye":
+            return new Command(Keyword.BYE, commandArgs);
+        case "list":
+            return new Command(Keyword.LIST, commandArgs);
+        case "mark":
+            if (commandArgs.length == 1) {
+                throw new EmptyCommandException(commandArgs[0]);
+            }
+            return new Command(Keyword.MARK, commandArgs);
+        case "unmark":
+            if (commandArgs.length == 1) {
+                throw new EmptyCommandException(commandArgs[0]);
+            }
+            return new Command(Keyword.UNMARK, commandArgs);
+        case "delete":
+            if (commandArgs.length == 1) {
+                throw new EmptyCommandException(commandArgs[0]);
+            }
+            return new Command(Keyword.DELETE, commandArgs);
+        case "todo":
+            if (commandArgs.length == 1) {
+                throw new EmptyCommandException(commandArgs[0]);
+            }
+            return new Command(Keyword.TODO, commandArgs);
+        case "deadline":
+            if (commandArgs.length == 1) {
+                throw new EmptyCommandException(commandArgs[0]);
+            }
+            String[] deadlineDetails = commandArgs[1].split(" /by ");
+            if (deadlineDetails.length == 1) {
+                throw new IllegalCommandException(commandArgs[0]);
+            }
+            return new Command(Keyword.DEADLINE, deadlineDetails);
+        case "event":
+            if (commandArgs.length == 1) {
+                throw new EmptyCommandException(commandArgs[0]);
+            }
+            String[] eventDetails = commandArgs[1].split(" /at ");
+            if (eventDetails.length <= 1) {
+                throw new IllegalCommandException(commandArgs[0]);
+            }
+            return new Command(Keyword.EVENT, eventDetails);
+        default:
+            throw new CommandNotFoundException(commandArgs[0]);
         }
     }
 }
