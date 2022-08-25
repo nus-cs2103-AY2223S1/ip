@@ -1,8 +1,8 @@
 package duke.data.tasks;
 
 import java.time.LocalDateTime;
-import java.time.format.FormatStyle;
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class TaskEvent extends Task {
     private static final long serialVersionUID = 23L;

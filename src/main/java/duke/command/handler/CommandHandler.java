@@ -1,23 +1,22 @@
 package duke.command.handler;
 
-import duke.command.CommandException;
-import duke.command.response.CommandResponse;
-import duke.data.TaskList;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.TemporalAccessor;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import duke.command.CommandException;
+import duke.command.response.CommandResponse;
+import duke.data.TaskList;
 
 public abstract class CommandHandler {
 
     // yyyy-MM-dd[ HH:mm] (time is optional)
     // Example: 2022-08-23 12:11, 2022-08-23
-    protected static final String commandDateTimeRegexStr = "(\\d{4}-\\d{2}-\\d{2}(\\s\\d{2}:\\d{2})?)";
+    protected static final String COMMAND_DATETIME_REGEX_STRING = "(\\d{4}-\\d{2}-\\d{2}(\\s\\d{2}:\\d{2})?)";
     private static final DateTimeFormatter commandDateTimeFormatter = DateTimeFormatter.ofPattern(
         "yyyy-MM-dd[ HH:mm]");
 
@@ -73,7 +72,7 @@ public abstract class CommandHandler {
      *
      * @return invalid format error message
      */
-    abstract protected String getInvalidFormatMessage();
+    protected abstract String getInvalidFormatMessage();
 
-    abstract public CommandResponse run(TaskList taskList) throws CommandException;
+    public abstract CommandResponse run(TaskList taskList) throws CommandException;
 }

@@ -1,11 +1,10 @@
 package duke.command.handler;
 
+import java.util.regex.Pattern;
+
 import duke.command.CommandException;
 import duke.command.response.CommandResponse;
-
 import duke.data.TaskList;
-
-import java.util.regex.Pattern;
 
 public class CommandTerminateHandler extends CommandHandler {
 

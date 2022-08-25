@@ -1,14 +1,13 @@
 package duke.command.handler;
 
+import java.util.regex.MatchResult;
+import java.util.regex.Pattern;
+
 import duke.command.CommandException;
 import duke.command.response.CommandResponse;
 import duke.command.response.DeleteTaskResponse;
-
 import duke.data.TaskList;
 import duke.data.tasks.Task;
-
-import java.util.regex.Pattern;
-import java.util.regex.MatchResult;
 
 public class CommandDeleteHandler extends CommandHandler {
 

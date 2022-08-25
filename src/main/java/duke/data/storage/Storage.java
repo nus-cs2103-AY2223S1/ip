@@ -1,14 +1,13 @@
 package duke.data.storage;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-
-import java.io.IOException;
-import java.io.Serializable;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 /**
  * A generic storage class to serialize and deserialize objects
