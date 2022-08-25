@@ -7,11 +7,22 @@ import duke.exception.InvalidInputException;
 import java.io.FileNotFoundException;
 import java.time.format.DateTimeParseException;
 
+/**
+ * This is the Main Duke program for our chatbot (our bot prefers to be addressed as Bob).
+ * Bob is a personal assistant chatbot that helps you keep track of what you have to do.
+ *
+ * @author Eugene Tan
+ */
 public class Duke {
     private final Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Class constructor for our chatbot.
+     *
+     * @param filePath File path where our data is stored.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -23,6 +34,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Starts and launches Duke (Bob).
+     */
     public void run() {
         ui.printWelcomeMessage();
         boolean isExit = false;

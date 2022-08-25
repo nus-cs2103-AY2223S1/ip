@@ -7,11 +7,25 @@ import duke.exception.InvalidInputException;
 
 import java.time.LocalDate;
 
+/**
+ * RequestHandler parses the user input and calls the corresponding commands.
+ *
+ * @author Eugene Tan
+ */
 public class RequestHandler {
     private enum CommandType {
         LIST, TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, BYE, FIND
     }
 
+    /**
+     * Returns a Command to be executed after parsing the user input.
+     *
+     * @param command The user input.
+     * @return Command which corresponds to the user input.
+     * @throws InvalidInputException If user input is invalid.
+     * @throws IncompleteInputException If user input is incomplete.
+     * @throws InvalidCommandException If user input is invalid command.
+     */
     public static Command handleRequest(String command) throws InvalidInputException, IncompleteInputException,
             InvalidCommandException {
         String[] commandSplit = command.trim().split(" ", 2);
