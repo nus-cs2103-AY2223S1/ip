@@ -6,7 +6,14 @@ import scottie.parser.Parser;
 import scottie.tasks.TaskList;
 import scottie.ui.Ui;
 
+/**
+ * Scottie is a task manager application used for recording and
+ * retrieving different types of tasks.
+ */
 public class Scottie {
+    /**
+     * The entry point of the Scottie program.
+     */
     public static void main(String[] args) {
         TaskList taskList = new TaskList();
         Ui ui = new Ui(System.in, System.out);
