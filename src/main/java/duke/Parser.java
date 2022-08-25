@@ -66,7 +66,7 @@ public class Parser {
                 break;
             case LIST:
                 toPrint = (Ui.indentedMessage("Here are the tasks in your list:"
-                        + taskList.getTasksListsForUser()));
+                        + taskList.getTextRepresentationOfAllTasks()));
                 break;
             case MARK:
                 if (commands.length == 1) {
@@ -107,6 +107,13 @@ public class Parser {
                 break;
             case EVENT:
                 toPrint = parseNewTaskCommand(command, commands.length, Command.EVENT, " /at ");
+                break;
+            case FIND:
+                if (commands.length == 1) {
+                    throw new CustomMessageException(generateEmptyActionMessage("find"));
+                }
+                toPrint = Ui.indentedMessage("Here are the matching tasks in your list:"
+                        + taskList.getTextRepresentationOfKeywordTasks(commands[1]));
                 break;
             default:
                 throw new CustomMessageException((

@@ -66,6 +66,10 @@ public abstract class Task {
      */
     abstract public String getFileStorageString(int index);
 
+    public boolean isMatchingKeywordInDescription(String keyword) {
+        return description.contains(keyword);
+    }
+
     @Override
     public String toString() {
         return "[" + this.getStatusIcon() + "] " + this.description;
