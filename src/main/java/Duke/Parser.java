@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Deals with making sense of the user's commands
+ */
 public class Parser {
     private TaskList tasklist;
     private Ui bot;
@@ -16,6 +19,11 @@ public class Parser {
          this.storage = storage;
     }
 
+    /**
+     * Reads user input and performs action depending on input
+     * @throws DukeException If input command is not recognised or if input is blank.
+     * @throws IOException If there is an error writing to file.
+     */
     public void readInput() throws DukeException, IOException {
         Scanner scanner = new Scanner(System.in);
         String str;

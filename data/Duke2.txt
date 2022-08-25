@@ -5,6 +5,6 @@
 [E][ ] anime comp (at: Sep 22 2018)
 [E][ ] go anime fest (at: Sep 22 2018)
 [T][ ]  eat shit
-[T][ ] eat
+[T][X] eat
 [D][X] homework (by: Mar 22 2016)
-[E][X] party (at: Dec 11 2015)
+[E][ ] party (at: Dec 11 2015)

@@ -1,5 +1,8 @@
 package Duke;
 
+/**
+ * Represents a task.
+ */
 public class Task {
     private String description;
     private boolean isDone;
@@ -7,10 +10,19 @@ public class Task {
         this.description = description;
         this.isDone = false;
     }
+
+    /**
+     * Checks if a task is done.
+     * @return String indicating whether a task is completed.
+     */
     public String getStatusIcon() {
         return (isDone? "X": " ");
     }
 
+    /**
+     * Returns a string representation of Task.
+     * @return String representation of Task.
+     */
     @Override
     public String toString() {
         return "["+ getStatusIcon()+"] "+this.description;
