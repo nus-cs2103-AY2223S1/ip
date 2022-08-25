@@ -5,7 +5,7 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-Hello I'm Duke
+Hello I'm duke.Duke
 What can I do for you
 You: Got it. I've added this task:
 [T] [ ] do dishes
@@ -41,4 +41,4 @@ You: 1. [T] [X] do dishes
 2. [D] [ ] read book (by: tomorrow)
 3. [E] [ ] buy stuff (at: next week)
 4. [D] [ ] go for a run (by: 4th september)
-You: Duke: Bye. hope to see you again soon!
+You: duke.Duke: Bye. hope to see you again soon!
