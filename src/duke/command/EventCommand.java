@@ -1,4 +1,8 @@
-package main.java;
+package duke.command;
+
+import duke.exception.IllegalDescriptionException;
+import duke.logic.TaskList;
+import duke.task.Event;
 
 import java.time.LocalDate;
 

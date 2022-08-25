@@ -1,4 +1,4 @@
-package main.java;
+package duke.command;
 
 public abstract class Command implements Runnable {
 

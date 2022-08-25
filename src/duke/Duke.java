@@ -1,4 +1,9 @@
-package main.java;
+package duke;
+
+import duke.logic.Parser;
+import duke.logic.Storage;
+import duke.logic.TaskList;
+import duke.logic.Ui;
 
 public class Duke {
     private Storage storage;

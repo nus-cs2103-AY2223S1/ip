@@ -1,4 +1,4 @@
-package main.java;
+package duke.logic;
 
 import java.util.Scanner;
 

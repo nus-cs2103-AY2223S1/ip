@@ -1,4 +1,6 @@
-package main.java;
+package duke.logic;
+
+import duke.task.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -40,14 +42,16 @@ public class TaskList extends ArrayList<Task> {
 
     @Override
     public Task remove(int index) {
+        Task temp = super.remove(index);
         storage.update(this);
-        return super.remove(index);
+        return temp;
     }
 
     @Override
     public boolean add(Task task) {
+        boolean bool = super.add(task);
         storage.update(this);
-        return super.add(task);
+        return bool;
     }
 
     public Task markTask(int index) {

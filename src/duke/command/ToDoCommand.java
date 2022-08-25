@@ -1,13 +1,14 @@
-package main.java;
+package duke.command;
 
-import java.time.LocalDate;
+import duke.logic.TaskList;
+import duke.exception.IllegalDescriptionException;
+import duke.task.ToDo;
 
-public class DeadlineCommand extends Command {
+public class ToDoCommand extends Command {
     private TaskList taskList;
     private String description;
-    private LocalDate time;
 
-    public DeadlineCommand(TaskList taskList, String description, LocalDate time) throws IllegalDescriptionException {
+    public ToDoCommand(TaskList taskList, String description) throws IllegalDescriptionException {
         this.taskList = taskList;
         //double check
         if (description.length() > 0) {
@@ -15,11 +16,10 @@ public class DeadlineCommand extends Command {
         } else {
             throw new IllegalDescriptionException("No description specified.");
         }
-        this.time = time;
     }
 
     public void run() {
-        taskList.add(new Deadline(description, time));
+        taskList.add(new ToDo(description));
         System.out.println("Got it. I've added this task:");
         System.out.println(taskList.get(taskList.size() - 1).toString());
         System.out.println(String.format("Now you have %d tasks in the list.", taskList.size()));

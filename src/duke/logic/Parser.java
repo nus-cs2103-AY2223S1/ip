@@ -1,4 +1,10 @@
-package main.java;
+package duke.logic;
+
+import duke.command.*;
+import duke.exception.IllegalDescriptionException;
+import duke.exception.IllegalTaskException;
+import duke.exception.IllegalTimeException;
+import duke.exception.IllegalTokenException;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;

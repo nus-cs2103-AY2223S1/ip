@@ -1,4 +1,4 @@
-package main.java;
+package duke.command;
 
 public class ByeCommand extends Command {
     public ByeCommand() {

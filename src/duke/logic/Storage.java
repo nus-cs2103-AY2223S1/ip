@@ -1,4 +1,6 @@
-package main.java;
+package duke.logic;
+
+import duke.task.Task;
 
 import java.io.File;
 import java.io.FileWriter;

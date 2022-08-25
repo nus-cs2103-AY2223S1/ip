@@ -1,4 +1,7 @@
-package main.java;
+package duke.command;
+
+import duke.logic.TaskList;
+import duke.task.Task;
 
 public class ListCommand extends Command {
     private TaskList taskList;

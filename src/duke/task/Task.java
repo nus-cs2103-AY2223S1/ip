@@ -1,4 +1,4 @@
-package main.java;
+package duke.task;
 
 abstract public class Task {
     private String description;

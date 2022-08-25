@@ -1,4 +1,7 @@
-package main.java;
+package duke.command;
+
+import duke.logic.TaskList;
+import duke.exception.IllegalTaskException;
 
 public class MarkCommand extends Command {
     private TaskList taskList;

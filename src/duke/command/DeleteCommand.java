@@ -1,4 +1,7 @@
-package main.java;
+package duke.command;
+
+import duke.exception.IllegalTaskException;
+import duke.logic.TaskList;
 
 public class DeleteCommand extends Command {
     private TaskList taskList;

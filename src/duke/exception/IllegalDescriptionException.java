@@ -1,4 +1,4 @@
-package main.java;
+package duke.exception;
 
 public class IllegalDescriptionException extends IllegalArgumentException {
     public IllegalDescriptionException(String s) {
