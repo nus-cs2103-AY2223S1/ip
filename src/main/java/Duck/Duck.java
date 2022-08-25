@@ -13,18 +13,16 @@ import java.util.Date;
 public class Duck {
     private Storage storage;
     private TaskList<Todo> list;
-    /**
-     * main function for running the Duck bot
-     * Works by parsing through the user input and splitting it at first by whitespace
-     * This allows the bot to read the command and go down the appropriate case
-     * It also allows the program to keep track of the arguments the user gives
-     * It also handles possible invalid inputs given by the user
-     * **/
+
     public static void main(String[] args) {
         Duck d = new Duck();
         d.run();
     }
 
+    /**
+     * Primary Constructor for the Duck Class.
+     * Initializes Storage and TaskList for use in the entire class
+     */
     public Duck() {
         try {
             this.storage = new Storage("data", "duck.txt");
@@ -34,6 +32,11 @@ public class Duck {
             System.out.println("Error! File not found!");
         }
     }
+    /**
+     * Run function for the Duck Bot
+     * Runs all the necessary functions from the various classes and,
+     * acts as an "entry point" to the bot
+     */
     public void run() {
         UI.printWelcomeMessage();
         Scanner scanner = new Scanner(System.in);
@@ -52,10 +55,22 @@ public class Duck {
         UI.printClosingMessage();
     }
 
+    /**
+     * Provides a centralized converter to convert date formats
+     * Just replace the format here and all other date formats will follow suite
+     * @param date date to be converted into string
+     * @return  string converted in the dd/MM/yyyy HHmm format
+     */
     public static String dateToStringConverter(Date date) {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
         return dateFormatter.format(date);
     }
+    /**
+     * Provides a centralized converter to convert date formats
+     * Just replace the format here and all other date formats will follow suite
+     * @param date string to be converted into date
+     * @return  date converted in the dd/MM/yyyy HHmm format
+     */
     public static Date dateStorageConverter(String date) throws ParseException {
         SimpleDateFormat dateFormatter = new SimpleDateFormat("dd/MM/yyyy HHmm");
         return dateFormatter.parse(date);

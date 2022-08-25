@@ -1,8 +1,12 @@
 package Duck;
 import Models.Todo;
 
-
+/**
+ * Primarily a Static class where
+ * all the print messages are stored
+ */
 public class UI {
+
     public static void printWelcomeMessage() {
         System.out.println("Hello! Got any grapes?");
     }

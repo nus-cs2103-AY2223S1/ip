@@ -10,6 +10,13 @@ import Models.Todo;
 
 public class Storage {
     File duckTxt;
+
+    /**
+     * Storage encapsulates the object of the file to be writen/read from
+     * @param path path of the data to be stored
+     * @param filename filename for data to be written into
+     * @throws IOException is thrown when the file is not accessible
+     */
     public Storage(String path, String filename) throws IOException {
         java.nio.file.Path filePath = java.nio.file.Paths.get(path);
         File duckTxt = new File(String.valueOf(path), filename);
@@ -46,6 +53,12 @@ public class Storage {
         }
         return null;
     }
+
+    /**
+     * writeListToFile function writes the given list
+     * into the file specified from the duckTxt variable
+     * @param list the TaskList to write into duckTxt
+     */
     public void writeListToFile(TaskList<Todo> list){
         try {
             FileWriter writer = new FileWriter(this.duckTxt, false);
@@ -53,9 +66,6 @@ public class Storage {
                 list.get(i).writeToFile(writer);
             }
             writer.close();
-        }
-        catch (ParseException e) {
-            System.out.println("Parse Exception at WriteListToFile!");
         }
         catch (IOException e) {
             System.out.println("IOException at WriteListToFile!");

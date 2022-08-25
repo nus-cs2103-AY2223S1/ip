@@ -16,7 +16,18 @@ import java.text.ParseException;
 
 
 public class Parser {
-
+    /**
+     * Parser is a static class that primarily
+     * serves to understand the user's input
+     * the parseText function splits the user input
+     * into 2 using space as a divider
+     * into two variables command and argument
+     * then it splits the arguments using
+     * /by or /at depending on the command
+     *
+     * @param input input string to be parsed
+     * @return returns a type of command corresponding to the input given
+     */
     public static Commands parseText(String input)  {
         try {
             if (input.contains(";")) throw new UnallowedCharacterException(";");

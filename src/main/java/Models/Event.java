@@ -8,12 +8,19 @@ import Duck.Duck;
 
 public class Event extends Todo{
     private Date date;
+    /**
+     * Class that encapsulates an event object
+     * It is a subclass of todo
+     * @param title title encapsulates the title of the todo object - inherited
+     * @param completed is a boolean value to keep track of the marked/unmarked status - inherited
+     * @param date stores the date that the event is on
+     */
     public Event(String title, boolean completed, Date date) {
         super(title, completed);
         this.date = date;
     }
     @Override
-    public void writeToFile(FileWriter writer) throws IOException, ParseException {
+    public void writeToFile(FileWriter writer) throws IOException {
         writer.write(String.format("E;%s;%s;%d\n", this.title, Duck.dateToStringConverter(this.date), this.completed ? 1 : 0));
     }
 

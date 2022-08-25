@@ -1,9 +1,17 @@
 package Duck;
 import java.util.List;
 
+/**
+ * @param <T> generic type of the List for the objects to store
+ */
 public class TaskList<T> {
     private List<T> list;
 
+    /**
+     * Encapsulates the list of tasks objects that Duck will use
+     * @param list List of type T for the TaskList to store,
+     *             typically  read from the Storage
+     */
     public TaskList(List<T> list){
         this.list = list;
     }
@@ -21,6 +29,11 @@ public class TaskList<T> {
     public int size() {
         return list.size();
     }
+
+    /**
+     * Simply prints all items from within the list variable
+     * @throws IndexOutOfBoundsException is thrown when the list is empty
+     */
     public void printList() throws IndexOutOfBoundsException {
         if (list.size() == 0) {
             throw new IndexOutOfBoundsException();
