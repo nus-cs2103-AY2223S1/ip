@@ -1,8 +1,14 @@
+import java.io.*;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
 public class Duke {
+    private static Path fileName;
+    private static ArrayList<Task> al;
+    private static BufferedReader br;
+    private static File file;
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -12,12 +18,30 @@ public class Duke {
         System.out.println("Hello from\n" + logo);
         greeting();
         try {
-            storeman();
+            fileName = Path.of("D:\\SouceTree Projects\\CS2103T_Ip\\storage.txt");
+            file = fileName.toFile();
+            System.out.println(file.getPath());
+            if (file.exists()) {
+                load();
+                storeman();
+            } else {
+                if (file.createNewFile()) {
+                    al = new ArrayList<>();
+                    storeman();
+                } else {
+                    throw new IOException("File was not created!");
+                }
+            }
+            save(al);
         } catch (DukeException de) {
             System.out.println("--------------------------------------\n");
             System.out.println(de.getMessage());
             System.out.println("--------------------------------------\n");
             main(args);
+        }  catch(IOException io) {
+            System.out.println("--------------------------------------\n");
+            System.out.println(io.getMessage());
+            System.out.println("--------------------------------------\n");
         }
     }
 
@@ -27,7 +51,7 @@ public class Duke {
         System.out.println("--------------------------------------\n");
     }
 
-    public static void echo() {
+    public static void echo() throws IOException {
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         String uncap = str.toLowerCase();
@@ -42,8 +66,7 @@ public class Duke {
         sc.close();
     }
 
-    public static ArrayList<Task> storeman() throws DukeException {
-        ArrayList<Task> al = new ArrayList<>();
+    public static ArrayList<Task> storeman() throws DukeException, IOException{
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
         String uncap = str.toLowerCase();
@@ -117,12 +140,13 @@ public class Duke {
             str = sc.nextLine();
             uncap = str.toLowerCase();
         }
+
         sc.close();
         bye();
         return al;
     }
 
-    private static void listOut(ArrayList<Task> al) {
+    private static ArrayList<Task> listOut(ArrayList<Task> al) {
         int count = 1;
         System.out.println("-------------------------------\n");
         System.out.println("\tHere are the tasks in your list: ");
@@ -133,12 +157,60 @@ public class Duke {
         }
         System.out.println("-------------------------------\n");
         count = 1;
+        return al;
     }
     public static Task delete(ArrayList<Task> at, Integer id) {
         int actual = id - 1;
         return at.remove(actual);
     }
 
+    public static void load() throws IOException {
+        al = new ArrayList<>();
+        br = new BufferedReader(new FileReader(fileName.toFile().getPath()));
+        String ln = br.readLine();
+        while(ln != null) {
+            add(ln);
+            ln = br.readLine();
+        }
+    }
+
+    public static void add(String ln) {
+        String tag = String.valueOf(ln.charAt(1));
+        String desc = null;
+        int id = -1;
+        boolean done = false;
+        Task toAdd = null;
+        if (String.valueOf(ln.charAt(4)).equals("X")) {
+            done = true;
+        }
+        if (tag.equals("T")) {
+            toAdd = new Todo(ln.substring(7));
+        } else if (tag.equals("D")) {
+            id = ln.indexOf("(by:");
+            toAdd = new Deadline(ln.substring(7,id - 1), ln.substring(id + 5 , ln.length() - 1));
+        } else if (tag.equals("E")) {
+            id = ln.indexOf("(at:");
+            String timeAttr = ln.substring(id + 5, id + 21)
+             + " " + ln.substring(ln.length() - 6, ln.length() - 1);
+            toAdd = new Event(ln.substring(7, id - 1), timeAttr);
+        } else {
+            toAdd = new Task(ln.substring(6));
+        }
+        if (done) {
+            toAdd.markAsDone();
+        }
+        al.add(toAdd);
+    }
+
+    public static void save(ArrayList<Task> lst) throws IOException {
+        FileWriter fw = new FileWriter(file.getAbsolutePath());
+        System.out.println(file.getAbsolutePath());
+        for (Iterator<Task> it = al.iterator(); it.hasNext();) {
+            Task curr = it.next();
+            fw.write(curr.toString() + "\r\n");
+        }
+        fw.close();
+    }
     public static void bye() {
         System.out.println("------------------------------\n");
         System.out.println("\tBye. Hope to see you soon again!");
