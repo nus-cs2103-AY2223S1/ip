@@ -1,5 +1,6 @@
-package duke;
+package duke.storage;
 
+import duke.TaskList;
 import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
@@ -89,14 +90,14 @@ public class Storage {
     /**
      * Some actions like update and delete require a rewrite of the
      * entire text file
-     * @param list
+     * @param tasks
      */
-    public void rewrite(List<Task> list) {
+    public void rewrite(TaskList tasks) {
         try {
             FileWriter myWriter = new FileWriter(filePath,true);
             PrintWriter pw = new PrintWriter(filePath);
-            for(int i = 0; i < list.size()-1; i++) {
-                myWriter.write(list.get(i).toString());
+            for(int i = 0; i < tasks.getSize()-1; i++) {
+                myWriter.write(tasks.getTask(i).toString());
             }
             pw.close();
             myWriter.close();

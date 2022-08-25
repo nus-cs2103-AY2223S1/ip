@@ -1,5 +1,7 @@
-package duke;
+package duke.ui;
 
+import duke.Constants;
+import duke.TaskList;
 import duke.models.Task;
 
 /**

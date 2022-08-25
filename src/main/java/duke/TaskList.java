@@ -33,7 +33,11 @@ public class TaskList {
     }
 
     public void deleteTask(int index) {
-        this.tasks.remove(index);
+        this.tasks.remove(index - 1);
+    }
+
+    public Task getTask(int index) {
+        return this.tasks.get(index - 1);
     }
 
     public String getAllTasks() {
