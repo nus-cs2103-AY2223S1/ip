@@ -7,6 +7,7 @@ import duke.commands.AddToDoCommand;
 import duke.commands.Command;
 import duke.commands.DeleteCommand;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.MarkCommand;
 import duke.commands.ReadCommand;
 import duke.commands.UnMarkCommand;
@@ -47,6 +48,10 @@ public class Parser {
 
             if (fullCommand.startsWith("todo")) {
                 return new AddToDoCommand(fullCommand);
+            }
+
+            if (fullCommand.startsWith("find")) {
+                return new FindCommand(fullCommand);
             }
 
             throw new DukeUnknownCommandException();
