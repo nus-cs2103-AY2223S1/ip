@@ -19,7 +19,7 @@ public class Duke {
                     "Include '/by' and date at the back");
         }
         String taskName = inputs[0];
-        String dueDate = inputs[1];
+        String dueDate = inputs[1].trim();
         Task newTask = new Deadline(taskName, dueDate);
         addTask(newTask);
     }
@@ -32,7 +32,7 @@ public class Duke {
                     "Include '/at' and date at the back");
         }
         String taskName = inputs[0];
-        String date = inputs[1];
+        String date = inputs[1].trim();
         Task newTask = new Event(taskName, date);
         addTask(newTask);
     }

@@ -1,13 +1,16 @@
+import java.time.LocalDateTime;
+
 public class Deadline extends Task{
-    private String dueDate;
+    private LocalDateTime dueDate;
+    private final static DateTimeParser PARSER = new DateTimeParser();
 
     public Deadline(String taskName, String dueDate) {
         super(taskName);
-        this.dueDate = dueDate;
+        this.dueDate = PARSER.getDateTime(dueDate);
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by:" + dueDate + ")";
+        return "[D]" + super.toString() + "(by: " + PARSER.getDateTimeString(dueDate) + ")";
     }
 }
