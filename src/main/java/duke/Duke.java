@@ -69,6 +69,8 @@ public class Duke {
                         this.tasks.deleteTask(Parser.parseTaskNumber(userResponse));
                         this.ui.showRemoveTaskSuccess(Parser.parseTaskNumber(userResponse), this.tasks);
                         break;
+                case FIND:
+                    this.ui.showMatchingTasks(Parser.parseSearchInput(userResponse), this.tasks);
                 }
             } catch (DukeException e) {
                 this.ui.showError(e);

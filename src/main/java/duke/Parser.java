@@ -110,8 +110,21 @@ public class Parser {
                 } else {
                     return Command.DELETE;
                 }
+        case "find":
+            if (parsedUserResponse.length < 2) {
+                throw new DukeException("    " + "Invalid number of arguments, at least two required\n");
+            } else {
+                return Command.FIND;
+            }
             default:
                 throw new DukeException("    " + "☹ OOPS!!! I'm sorry, but I don't know what that means :-(\n");
         }
+    }
+
+    public static String parseSearchInput(String userInput) {
+        String[] parsedUserResponse = userInput.split(" ");
+        String searchInput = String.join(" ",
+                Arrays.copyOfRange(parsedUserResponse,1, parsedUserResponse.length));
+        return searchInput;
     }
 }
