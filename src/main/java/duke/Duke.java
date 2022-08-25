@@ -3,6 +3,7 @@ package duke;
 public class Duke {
     private final Ui ui;
     private final TaskList taskList;
+    public static String filePath = "tasks.txt";
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -21,7 +22,7 @@ public class Duke {
             try {
                 String nextCommand = ui.getNextCommand();
                 ui.showLine();
-                System.out.println(parser.parseScannerLineInput(nextCommand, parser.breakLoopIndicator));
+                System.out.println(parser.parseUserCommand(nextCommand, parser.breakLoopIndicator));
                 if (parser.breakLoopIndicator.getIsExitCommand()) {
                     ui.showExitMessage();
                     break;
@@ -37,6 +38,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("tasks.txt").run();
+        new Duke(Duke.filePath).run();
     }
 }

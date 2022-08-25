@@ -4,6 +4,7 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -24,11 +25,11 @@ public class Parser {
     }
 
     private String generateTasksNumberMessage() {
-        return "Now you have " + taskList.sizeOfList() + "duke/task" + (taskList.sizeOfList() == 1 ? "" : "s")
+        return "Now you have " + taskList.sizeOfList() + " task" + (taskList.sizeOfList() == 1 ? "" : "s")
                 + " in the list" + ".\n";
     }
 
-    public String parseScannerLineInput(String command, BreakLoopIndicator breakLoopIndicator) throws CustomMessageException {
+    public String parseUserCommand(String command, BreakLoopIndicator breakLoopIndicator) throws CustomMessageException {
         String[] commands = command.split("\\s+");
         Command taskType;
         try {

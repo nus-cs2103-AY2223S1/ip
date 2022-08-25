@@ -1,6 +1,7 @@
 package duke;
 
 import duke.task.Task;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -17,7 +18,7 @@ public class TaskList {
         try {
             Scanner fileScanner = storage.getScannerForTasksFile();
             while (fileScanner.hasNextLine()) {
-                parser.parseScannerLineInput(fileScanner.nextLine(), parser.breakLoopIndicator);
+                parser.parseUserCommand(fileScanner.nextLine(), parser.breakLoopIndicator);
                 if (parser.breakLoopIndicator.getIsExitCommand()) break;
             }
             fileScanner.close();
@@ -56,7 +57,7 @@ public class TaskList {
     }
 
     // use LinkedHashMap to guarantee order of elements is insertion order
-    public LinkedHashMap<Integer, Task> getMappedIndexToUserText() {
+    private LinkedHashMap<Integer, Task> getMappedIndexToUserText() {
         return userTasks.stream().collect(LinkedHashMap::new,
                 (hashMap, streamElement) -> hashMap.put(hashMap.size() + 1, streamElement), HashMap::putAll);
     }
