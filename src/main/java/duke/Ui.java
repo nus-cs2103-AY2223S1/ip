@@ -1,4 +1,4 @@
-package duke;
+package main.java.duke;
 
 public class Ui {
 
