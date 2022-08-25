@@ -1,19 +1,23 @@
+package Duke;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-public class Deadline extends Task{
+public class Event extends Task{
 
-    protected String by;
+    protected String at;
+    protected String day;
     protected String date;
     protected String time;
     protected String a, b;
 
-    public Deadline(String name, String date, String time) {
+    public Event(String name, String at, String date, String time) {
         super(name);
-        this.date = date;
+        this.at = at;
         this.time = time;
+        this.date = date;
     }
 
     public void dateProcess() {
@@ -21,8 +25,8 @@ public class Deadline extends Task{
             date = "0" + date;
         }
         LocalDate d1 = LocalDate.parse(date.substring(6, 10) + "-" + date.substring(3, 5) + "-" + date.substring(0, 2));
-        by = d1.getDayOfWeek().toString(); // -> SUNDAY
-        a = d1.format(DateTimeFormatter.ofPattern("MMM dd YYYY")); // -> Dec 27 2001
+        day = d1.getDayOfWeek().toString(); // -> SUNDAY
+        a= d1.format(DateTimeFormatter.ofPattern("MMM dd YYYY")); // -> Dec 27 2001
     }
 
     public void timeProcess() {
@@ -36,6 +40,6 @@ public class Deadline extends Task{
     public String toString() {
         dateProcess();
         timeProcess();
-        return "[D]" + super.toString() + " (by: " + by + ", " + a + ", " + b + ")";
+        return "[E]" + super.toString() + " (at: " + at + ", " + day + ", " + a + ", " + b + ")";
     }
 }
