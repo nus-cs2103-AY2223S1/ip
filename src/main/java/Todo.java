@@ -10,8 +10,23 @@ public class Todo extends Task {
     }
 
     @Override
+    public String getTypeLetter() {
+        return "T";
+    }
+
+    @Override
+    public String getDuring() {
+        return "";
+    }
+
+    @Override
+    public String getTime() {
+        return "";
+    }
+
+    @Override
     public String toString() {
-        String result = this.getTypeIcon() + this.getStatusIcon() + this.taskName;
+        String result = this.getTypeIcon() + this.getStatusIcon() + this.description;
         return result;
     }
 }

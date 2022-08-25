@@ -5,25 +5,41 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Alan {
+    public static Alan instance;
+    private AlanIO alanIO;
     private final Scanner input;
     private final Formatter formatter;
+    private final FileParser fileParser;
     private final Executor executor;
-    private final List<Task> taskList;
+    private List<Task> taskList;
 
-    public Alan() {
+    private Alan() {
         this.input = new Scanner(System.in);
         this.formatter = new Formatter();
         this.executor = new Executor();
         this.taskList = new ArrayList<>();
+        this.fileParser = new FileParser();
+
+        try {
+            this.alanIO = new AlanIO();
+        } catch(AlanException e) {
+            executor.excException(e.getMessage());
+        }
     }
 
     public static void main(String[] args) {
-        // Create new instance of Alan and run him
-        Alan alan = new Alan();
-        alan.start();
+        if (Alan.instance == null) {
+            Alan.instance = new Alan();
+        }
+        Alan.instance.start();
     }
 
     private void start() {
+        try {
+            this.taskList = fileParser.parseFile(alanIO.read());
+        } catch (AlanException e) {
+            executor.excException(e.getMessage());
+        }
         greet();
         run();
     }

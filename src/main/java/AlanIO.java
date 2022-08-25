@@ -3,9 +3,9 @@ import AlanExceptions.FileReadException;
 import AlanExceptions.FileWriteException;
 import AlanExceptions.SaveFileException;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,12 +13,11 @@ import java.nio.file.Paths;
 
 public class AlanIO {
     private Path dirPath = Paths.get("data");
-    private Path fileNamePath = Paths.get("Alan.txt");
+    private Path fileNamePath = Paths.get("alan.txt");
     private Path filePath = dirPath.resolve(fileNamePath);
     private final File SAVE_DIR;
     private final File SAVE_FILE;
-    private final BufferedWriter writer;
-    private final BufferedReader reader;
+    private BufferedWriter writer;
 
     public AlanIO() throws AlanException {
         this.SAVE_DIR = new File(dirPath.toString());
@@ -26,8 +25,6 @@ public class AlanIO {
         try {
             SAVE_DIR.mkdirs();
             SAVE_FILE.createNewFile();
-            this.writer = Files.newBufferedWriter(filePath);
-            this.reader = Files.newBufferedReader(filePath);
         } catch (IOException | SecurityException e) {
             throw new SaveFileException();
         }
@@ -42,8 +39,6 @@ public class AlanIO {
         try {
             SAVE_DIR.mkdirs();
             SAVE_FILE.createNewFile();
-            this.writer = Files.newBufferedWriter(filePath);
-            this.reader = Files.newBufferedReader(filePath);
         } catch (IOException | SecurityException e) {
             throw new SaveFileException();
         }
@@ -51,8 +46,18 @@ public class AlanIO {
 
     public void write(String data) throws AlanException {
         try {
+            writer = new BufferedWriter(new FileWriter(filePath.toString()));
             writer.write(data);
-            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            throw new FileWriteException();
+        }
+    }
+
+    public void append(String data) throws AlanException {
+        try {
+            writer = new BufferedWriter(new FileWriter(filePath.toString(), true));
+            writer.write(data);
             writer.close();
         } catch (IOException e) {
             throw new FileWriteException();

@@ -1,10 +1,10 @@
 public abstract class Task {
-    protected String taskName;
+    protected String description;
     protected Boolean isDone;
 
     public Task(ParsedData parsedData) {
-        this.taskName = parsedData.getTaskName();
-        this.isDone = false;
+        this.description = parsedData.getTaskName();
+        this.isDone = parsedData.getStatus();
     }
 
     public boolean isDone() {
@@ -23,10 +23,19 @@ public abstract class Task {
         return (isDone ? "[X] " : "[ ] ");
     }
 
+    public String getStatusLetter() {
+        return isDone ? "X" : " ";
+    }
+
     public abstract String getTypeIcon();
 
-    @Override
-    public String toString() {
-        return taskName;
+    public abstract String getTypeLetter();
+
+    public abstract String getDuring();
+
+    public abstract String getTime();
+
+    public String getDescription() {
+        return this.description;
     }
 }

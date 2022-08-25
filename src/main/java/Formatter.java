@@ -11,12 +11,12 @@ public class Formatter {
                 + task + "\nYou currently have " + listLength + taskss + ".");
     }
 
-    public String list(List<? extends Task> list) {
+    public String list(List<Task> taskList) {
         StringBuilder reply = new StringBuilder();
         reply.append("Here are the tasks you have added:\n");
         int count = 1;
-        for (Task task: list) {
-            reply.append(count++ + ". " + task + "\n");
+        for (Task task: taskList) {
+            reply.append("  ").append(count++).append(". ").append(task.toString()).append("\n");
         }
         reply.setLength(reply.length() - 1);
         return addSeparator(reply.toString());

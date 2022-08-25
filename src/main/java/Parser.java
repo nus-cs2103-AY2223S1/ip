@@ -46,7 +46,7 @@ public class Parser {
         }
 
 
-        return new ParsedData(command, listIndex - 1);
+        return new ParsedData(listIndex - 1);
     }
 
     private ParsedData parseTimedTask(String input) throws AlanException {
@@ -73,7 +73,7 @@ public class Parser {
             throw new NoTimeException(command);
         }
 
-        return new ParsedData(command, task, during, time);
+        return new ParsedData(task, during, time);
     }
 
     private ParsedData parseUntimedTask(String input) throws AlanException {
@@ -88,6 +88,6 @@ public class Parser {
             throw new NoDescriptionException(command);
         }
 
-        return new ParsedData(command, task);
+        return new ParsedData(task);
     }
 }

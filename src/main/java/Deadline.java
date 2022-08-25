@@ -14,9 +14,27 @@ public class Deadline extends Task{
     }
 
     @Override
+    public String getTypeLetter() {
+        return "D";
+    }
+
+    @Override
+    public String getDuring() {
+        return this.during;
+    }
+
+    @Override
+    public String getTime() {
+        return this.time;
+    }
+
+    @Override
     public String toString() {
-        String result = this.getTypeIcon() + this.getStatusIcon() + this.taskName
-                + " (" + this.during + ": " + this.time + ")";
-        return result;
+        return String.format("%s%s%s (%s: %s)",
+                this.getTypeIcon(),
+                this.getStatusIcon(),
+                this.description,
+                this.during,
+                this.time);
     }
 }
