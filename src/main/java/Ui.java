@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 class Ui {
-    private Scanner sc = new Scanner(System.in);
+    protected Scanner sc = new Scanner(System.in);
 
     public void greet() {
         String greet = "Hello! I'm Lan\n"
@@ -16,5 +16,9 @@ class Ui {
 
     public String requirement() {
         return sc.nextLine();
+    }
+
+    public boolean hasNextReq() {
+        return sc.hasNextLine();
     }
 }

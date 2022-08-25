@@ -20,6 +20,17 @@ class Deadline extends Task {
         return "D|" + super.writeToFile() + "|" + by;
     }
 
+    public static Deadline fromFileDescription(String input) {
+        String[] strArray = input.split("\\|");
+        String info = strArray[2];
+        String by = strArray[3];
+        Deadline deadline = new Deadline(info, by);
+        if (strArray[1].equals("Y")) {
+            deadline.donelah();
+        }
+        return deadline;
+    }
+
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " +

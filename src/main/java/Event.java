@@ -20,6 +20,17 @@ class Event extends Task{
         return "E|" + super.writeToFile() + "|" + time;
     }
 
+    public static Event fromFileDescription(String input) {
+        String[] strArray = input.split("\\|");
+        String info = strArray[2];
+        String at = strArray[3];
+        Event event = new Event(info, at);
+        if (strArray[1].equals("Y")) {
+            event.donelah();
+        }
+        return event;
+    }
+
     @Override
     public String toString() {
         return "[E]" + super.toString() + " (at: " +

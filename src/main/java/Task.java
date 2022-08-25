@@ -25,7 +25,10 @@ public class Task {
         String status = getStatus();
         return status + "|" + itself.trim();
     }
-    
+
+    public static Task fromFileDescription(String input) {
+        return null;
+    }
     public boolean isOnDate(LocalDate lc) {
         return false;
     }

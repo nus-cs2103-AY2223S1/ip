@@ -6,7 +6,7 @@ class Parser {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new WrongMessageException("Come on. Give me a number instead! Like 1 or 3!");
+            throw new WrongMessageException("Come on. Give me a number instead!");
         }
     }
 
@@ -21,9 +21,9 @@ class Parser {
 
     public static Deadline deadline(String require) throws WrongMessageException {
         String info = require.substring(8).trim();
-        String ddlDate = require.split("/at")[1].trim();
-        String content = info.split("/at")[0].trim();
-        if (content.equals("") || info.startsWith("/at")) {
+        String ddlDate = require.split("/by")[1].trim();
+        String content = info.split("/by")[0].trim();
+        if (content.equals("") || info.startsWith("/by")) {
             throw new WrongMessageException();
         }
         Deadline ddl = new Deadline(content, ddlDate);
@@ -32,8 +32,8 @@ class Parser {
 
     public static Event event(String require) throws WrongMessageException {
         String info = require.substring(5).trim();
-        String happenTime = require.split("/by")[1].trim();
-        String content = info.split("/by")[0].trim();
+        String happenTime = require.split("/at")[1].trim();
+        String content = info.split("/at")[0].trim();
         if (content.equals("") || info.startsWith("/at")) {
             throw new WrongMessageException();
         }

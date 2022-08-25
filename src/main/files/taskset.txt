@@ -2,4 +2,5 @@ T|N|Ashy
 T|N|Putu
 T|N|Plum
 E|N|ruaAshy|2022-08-10
-D|N|ruaPutu|2022-08-10
+T|N|hi
+E|N|ruaPutu|2022-08-10

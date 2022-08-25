@@ -9,48 +9,85 @@ import java.util.stream.Collectors;
 
 public class Duke {
 
-    private static List<Task> willDo = new ArrayList<>();
-    // The main function to handle all commands here
-    public static void main(String[] args) {
-        run();
+    private Ui ui;
+    private TaskList tasks;
+    private Storage storage;
+    static String PATH = "./src/main/files/taskset.txt";
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.extractFile());
+        } catch (WrongMessageException e) {
+            System.out.println(e);
+            tasks = new TaskList();
+        }
     }
 
-    public static void run() {
-        String PATH = "./src/main/files/taskset.txt";
-        Scanner sc = new Scanner(System.in);
-        String greet = "Hello! I'm Lan\n"
-                + "What can I do for you?";
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(greet + "\n" + logo);
+    public void mark(int target) throws WrongMessageException {
+        Task willMark = tasks.getTask(target - 1);
+        willMark.donelah();
+        System.out.println("Congratulations! you complete this task:\n"
+                + willMark.toString());
+    }
 
-        try {
-            extractFileTo(PATH);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
+    public void unmark(int target) throws WrongMessageException {
+        Task willUnmark = tasks.getTask(target - 1);
+        willUnmark.nodone();
+        System.out.println("You undone this task:\n"
+                + willUnmark.toString());
+    }
+
+    public void showList() throws WrongMessageException {
+        System.out.println("Your list is as following");
+        for (int i = 1; i <= tasks.getSize(); i++) {
+            Task temp = tasks.getTask(i);
+            System.out.println((i) + "." + temp.toString());
         }
+    }
 
-        String str = sc.nextLine();
+    public void delete(String str) throws WrongMessageException {
+        String[] temp = str.split(" ");
+        int key3 = Integer.decode(temp[1]);
+        System.out.println("ok I will delete the task" + tasks.deleteTask(key3 - 1) + "it right now!");
+        System.out.println("now you have " + tasks.getSize() + " tasks in the list");
+    }
 
-        // To get the Command then reply
+    public void getOnDate(LocalDate localDate) {
+        List<Task> shortList = tasks.getTaskList().stream().filter(task -> task.isOnDate(localDate))
+                .collect(Collectors.toList());
+        int i = 0;
+        System.out.println("Hey, these are what you need to do on this date: "
+                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy")));
+        for (Task t : shortList) {
+            System.out.println((i + 1) + "." + t);
+            i++;
+        }
+    }
+
+    public void run() {
+        ui.greet();
+
         while (true) {
+            String str = ui.requirement();
             try {
                 if (str.startsWith("todo")) {
-                    todo(str);
+                    tasks.addTask(Parser.todo(str));
+                    System.out.println("got");
                 } else if (str.startsWith("deadline")) {
-                    deadline(str);
+                    tasks.addTask(Parser.deadline(str));
+                    System.out.println("got");
                 } else if (str.startsWith("event")) {
-                    event(str);
+                    tasks.addTask(Parser.event(str));
+                    System.out.println("got");
                 } else if (str.startsWith("mark")) {
                     String[] temp = str.split(" ");
-                    int key = Integer.decode(temp[1]);
+                    int key = Parser.parseInteger(temp[1]);
                     mark(key);
                 } else if (str.startsWith("unmark")) {
                     String[] temp = str.split(" ");
-                    int key = Integer.decode(temp[1]);
+                    int key = Parser.parseInteger(temp[1]);
                     unmark(key);
                 } else if (str.startsWith("list")) {
                     showList();
@@ -67,167 +104,19 @@ public class Duke {
                 } else {
                     throw new CannotUnderstandException();
                 }
-            // Handling exceptions
+                // Handling exceptions
             } catch (WrongMessageException | CannotUnderstandException e) {
                 System.out.println(e.getMessage());
             }
-            // For programming continue
-            str = sc.nextLine();
         }
-
         try {
-            saveFile(PATH);
+            storage.saveFile(tasks);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
 
-    public static void extractFileTo(String path) throws WrongMessageException {
-        File file = new File(path);
-        int index = 1;
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        } else {
-            try {
-                Scanner reader = new Scanner(file);
-                while (reader.hasNextLine()) {
-                    String temp = reader.nextLine();
-                    if (temp.equals("")) continue;
-                    String[] series = temp.split("\\|");
-                    String type = series[0].trim();
-                    String info = series[2].trim();
-                    String status = series[1].trim();
-                    if (type.equals("T")) {
-                        String willGive = "todo " + info;
-                        todo(willGive);
-                        if (status.equals("Y")) {
-                            mark(index);
-                        }
-                        index++;
-                    } else if (type.equals("E")) {
-                        String time = series[3];
-                        String willGive = "event " + info + " /at " + time;
-                        event(willGive);
-                        if (status.equals("Y")) {
-                            mark(index);
-                        }
-                        index++;
-                    } else if (type.equals("D")) {
-                        String time = series[3];
-                        String willGive = "deadline " + info + " /by " + time;
-                        deadline(willGive);
-                        if (status.equals("Y")) {
-                            mark(index);
-                        }
-                        index++;
-                    } else {
-                        throw new WrongMessageException();
-                    }
-                }
-            } catch (WrongMessageException | IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    public static void saveFile(String path) throws IOException {
-        //File target = new File(path);
-        FileWriter fw = new FileWriter(path);
-        for (Task task : willDo) {
-            String temp = task.writeToFile();
-            fw.write(temp + "\n");
-        }
-        fw.close();
-    }
-
-    public static void todo(String str) throws WrongMessageException{
-        String content = str.substring(4).trim();
-        if (content.equals("")) {
-            throw new WrongMessageException();
-        }
-        Task todo = new Todo(content);
-        willDo.add(todo);
-        int size = willDo.size();
-        System.out.println("Got it, I've added it to the task list:\n"
-                + todo.toString() + "\n"
-                + "Now you have " + (size) + " tasks");
-    }
-
-    public static void deadline(String str) throws WrongMessageException {
-        String ddlstr = str.substring(8).trim();
-        if (ddlstr.equals("")) {
-            throw new WrongMessageException();
-        }
-        String[] temp = ddlstr.split("/by");
-        String ddlinfo = temp[0].trim();
-        String date = temp[1].trim();
-        Task deadline = new Deadline(ddlinfo, date);
-        willDo.add(deadline);
-        int nowsize = willDo.size();
-        System.out.println("Got it, I've added it to the task list:\n"
-                + deadline.toString() + "\n"
-                + "Now you have " + (nowsize) + " tasks");
-    }
-
-    public static void event(String str) throws WrongMessageException {
-        String eventstr = str.substring(5).trim();
-        if (eventstr.equals("")) {
-            throw new WrongMessageException();
-        }
-        String[] temp = eventstr.split("/at");
-        String eventinfo = temp[0].trim();
-        String takeplace = temp[1].trim();
-        Task event = new Event(eventinfo, takeplace);
-        willDo.add(event);
-        int finalsize = willDo.size();
-        System.out.println("Got it, I've added it to the task list:\n"
-                + event.toString() + "\n"
-                + "Now you have " + finalsize + " tasks");
-    }
-
-    public static void mark(int target) {
-        Task willMark = willDo.get(target - 1);
-        willMark.donelah();
-        System.out.println("Congratulations! you complete this task:\n"
-                + willMark.toString());
-    }
-
-    public static void unmark(int target) {
-        Task willUnmark = willDo.get(target - 1);
-        willUnmark.nodone();
-        System.out.println("You undone this task:\n"
-                + willUnmark.toString());
-    }
-
-    public static void showList() {
-        System.out.println("Your list is as following");
-        for (int i = 0; i < willDo.size(); i++) {
-            Task temp = willDo.get(i);
-            System.out.println((i + 1) + "." + temp.toString());
-        }
-    }
-
-    public static void delete(String str) {
-        String[] temp = str.split(" ");
-        int key3 = Integer.decode(temp[1]);
-        System.out.println("ok I will delete the task" + willDo.get(key3 - 1) + "it right now!");
-        willDo.remove(key3 - 1);
-        System.out.println("now you have " + willDo.size() + " tasks in the list");
-    }
-
-    public static void getOnDate(LocalDate localDate) {
-        List<Task> shortList = willDo.stream().filter(task -> task.isOnDate(localDate))
-                .collect(Collectors.toList());
-        int i = 0;
-        System.out.println("Hey, these are what you need to do on this date: "
-                + localDate.format(DateTimeFormatter.ofPattern("MMMM d yyyy")));
-        for (Task t : shortList) {
-            System.out.println((i + 1) + "." + t);
-            i++;
-        }
+    public static void main(String[] args) {
+        new Duke(PATH).run();
     }
 }
