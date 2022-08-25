@@ -10,15 +10,15 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "X" : " "); // mark done task with X
+        return (isDone ? "X" : " ");
     }
 
     public void markAsDone() {
-        this.isDone = true; // mark tasks as done
+        this.isDone = true;
     }
 
     public void markAsUndone() {
-        this.isDone = false; // mark task as undone
+        this.isDone = false;
     }
 
     public abstract String savedString();

@@ -5,8 +5,6 @@ import java.util.List;
 public class TaskList {
     //ArrayList to store tasks
     private List<Task> lst;
-    //Constant string to represent a line break
-    private final String LINE_BREAK = "____________________________________________________________";
 
     public TaskList() {
         this.lst = new ArrayList<>();
