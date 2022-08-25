@@ -2,11 +2,24 @@ package duke;
 
 import command.Command;
 
+/**
+ * The main class that runs the Duke program.
+ *
+ * @author ShummyOwnzYou
+ * @version 0.1
+ */
+
 public class Duke {
 
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
+
+    /**
+     * Initializes a Duke object with the specified file path to load and store tasks.
+     *
+     * @param filePath The file path to the local file responsible for loading and saving.
+     */
 
     public Duke(String filePath) {
         ui = new Ui();
@@ -18,6 +31,10 @@ public class Duke {
             tasks = new TaskList();
         }
     }
+
+    /**
+     * Runs the Duke program.
+     */
 
     public void run() {
         ui.welcome();
