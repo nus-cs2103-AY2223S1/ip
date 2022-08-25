@@ -61,6 +61,12 @@ public class Parser {
         return new Event(taskDesc, taskTime);
     }
 
+    /**
+     * Validates find commmand input
+     * @param args where the args[0] is "find", args[1] is the string to be matched, possibly containing spaces
+     * @return the key to match task descriptions with
+     * @throws DukeParseException if the input is incorrectly formatted
+     */
     public String parseFind(String[] args) throws DukeParseException {
         if (args.length < 2) {
             throw new DukeParseException(ExceptionMessages.INVALID_FIND_FORMAT);

@@ -83,6 +83,11 @@ public class Dukebot {
         ui.display(String.format(Messages.TASK_COUNT, this.taskList.getSize()));
     }
 
+    /**
+     * Handles listing all tasks matching a given string
+     * @param inputArgs the full command entered by the user
+     * @throws DukeException if there command is incorrectly formatted
+     */
     private void handleFind(String[] inputArgs) throws DukeException {
         String key = parser.parseFind(inputArgs);
         ui.display(String.format(Messages.FIND_TASKS, key));
