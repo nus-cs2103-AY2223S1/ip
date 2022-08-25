@@ -9,6 +9,8 @@ public class Task {
     //To keep track of the status of the task (done/not done)
     protected boolean isDone;
 
+    protected boolean createBefore;
+
     /**
      * This is a constructor for Task. It creates an instance of Task and sets
      * the fields of the Task instance.
@@ -54,6 +56,6 @@ public class Task {
      */
     @Override
     public String toString() {
-        return "[" + this.getStatusIcon() + "] " + this.description;
+            return "[" + this.getStatusIcon() + "] " + this.description;
     }
 }

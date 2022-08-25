@@ -90,182 +90,182 @@ public class ChatBox {
 
 
                 switch (input_type) {
-                    case BYE:
-                        System.out.println("__________________________________________________");
-                        System.out.println("Adios Amigo! See you soon!");
-                        System.out.println("__________________________________________________");
-                        break;
+                case BYE:
+                    System.out.println("__________________________________________________");
+                    System.out.println("Adios Amigo! See you soon!");
+                    System.out.println("__________________________________________________");
+                    break;
 
-                    case LIST:
-                        System.out.println("__________________________________________________");
-                        System.out.println("Here are the tasks in your to-do list:");
-                        for (int i = 0; i < task_list.size(); i++) {
-                            System.out.printf("%d. " + task_list.get(i).toString() + "\n", i + 1);
-                        }
-                        System.out.println("__________________________________________________");
-                        break;
+                case LIST:
+                    System.out.println("__________________________________________________");
+                    System.out.println("Here are the tasks in your to-do list:");
+                    for (int i = 0; i < task_list.size(); i++) {
+                        System.out.printf("%d. " + task_list.get(i).toString() + "\n", i + 1);
+                    }
+                    System.out.println("__________________________________________________");
+                    break;
 
-                    case DELETE:
-                        //Exception: Throw an error when user tries to delete from an empty list
-                        if (task_list.isEmpty()) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! There are no task left to be deleted!\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-
-                        //Exception: Throw an error when the second half after "delete" keyword is blank
-                        if (array.length == 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! The task number for deleting must be specified!\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-
-                        int task_num = Integer.parseInt(array[1]);
-                        //Exception: Throw an error when the second half after "delete" keyword is greater than task_list
-                        if (task_num > task_list.size() || task_num < 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! There is no such task number!\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-
-                        System.out.println("__________________________________________________");
-                        System.out.println("Noted. I have removed this task:");
-                        System.out.println("  " + task_list.get(task_num - 1).toString());
-                        task_list.remove(task_num - 1);
-                        System.out.println("Now you have " + task_list.size() + " tasks in the list.");
-                        System.out.println("__________________________________________________");
-                        break;
-
-                    case MARK:
-                        //Exception: Throw an error when the second half after "mark" keyword is blank
-                        if (array.length == 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! The task number for marking must be specified!\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-
-                        task_num = Integer.parseInt(array[1]);
-                        //Exception: Throw an error when the second half after "mark" keyword is greater than task_list
-                        if (task_num > task_list.size() || task_num < 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! There is no such task number!\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-
-                        task_list.get(task_num - 1).markTaskDone();
-                        System.out.println("__________________________________________________");
-                        System.out.println("Good Job! I have marked this task as done:");
-                        System.out.println("  " + task_list.get(task_num - 1).toString());
-                        System.out.println("__________________________________________________");
-                        break;
-
-                    case UNMARK:
-                        //Exception: Throw an error when the second half after "unmark" keyword is blank
-                        if (array.length == 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! The task number for un-marking must be specified!\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-
-                        task_num = Integer.parseInt(array[1]);
-                        //Exception: Throw an error when the second half after "unmark" keyword is greater than task_list
-                        if (task_num > task_list.size() || task_num < 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! There is no such task number!\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-
-                        task_list.get(task_num - 1).markTaskUndone();
-                        System.out.println("__________________________________________________");
-                        System.out.println("Alright! I have marked this task as not done yet:");
-                        System.out.println("  " + task_list.get(task_num - 1).toString());
-                        System.out.println("__________________________________________________");
-                        break;
-
-                    case TODO:
-                        String task_description = "";
-                        //Exception: Throw an error when the second half after "todo" keyword is blank
-                        if (array.length == 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! The description of a todo cannot be empty.\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-                        task_list.add(new Todo(array[1]));
-                        task_description = "  " + task_list.get(task_list.size() - 1).toString();
-                        System.out.println("__________________________________________________");
-                        System.out.println("Got it. I have added this task:");
-                        System.out.println(task_description);
-
-                        if (task_list.size() == 1) { //For a single task
-                            System.out.println("Now you have 1 task in the list.");
-                        } else { //For multiple tasks
-                            System.out.println("Now you have " + task_list.size() + " tasks in the list.");
-                        }
-                        System.out.println("__________________________________________________");
-                        break;
-
-                    case DEADLINE:
-                        //Exception: Throw an error when the second half after "deadline" keyword is blank
-                        if (array.length == 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! The description of a deadline cannot be empty.\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-                        String task_info = array[1];
-                        String[] info_arr = task_info.split(" /by ", 2);
-                        task_list.add(new Deadline(info_arr[0], info_arr[1]));
-                        task_description = "  " + task_list.get(task_list.size() - 1).toString();
-                        System.out.println("__________________________________________________");
-                        System.out.println("Got it. I have added this task:");
-                        System.out.println(task_description);
-
-                        if (task_list.size() == 1) { //For a single task
-                            System.out.println("Now you have 1 task in the list.");
-                        } else { //For multiple tasks
-                            System.out.println("Now you have " + task_list.size() + " tasks in the list.");
-                        }
-                        System.out.println("__________________________________________________");
-                        break;
-
-                    case EVENT:
-                        //Exception: Throw an error when the second half after "event" keyword is blank
-                        if (array.length == 1) {
-                            String error_msg = "__________________________________________________\n" +
-                                    "OOPS!!! The description of a event cannot be empty.\n" +
-                                    "__________________________________________________";
-                            throw new DukeException(error_msg);
-                        }
-                        task_info = array[1];
-                        info_arr = task_info.split(" /at ", 2);
-                        task_list.add(new Event(info_arr[0], info_arr[1]));
-                        task_description = "  " + task_list.get(task_list.size() - 1).toString();
-                        System.out.println("__________________________________________________");
-                        System.out.println("Got it. I have added this task:");
-                        System.out.println(task_description);
-
-                        if (task_list.size() == 1) { //For a single task
-                            System.out.println("Now you have 1 task in the list.");
-                        } else { //For multiple tasks
-                            System.out.println("Now you have " + task_list.size() + " tasks in the list.");
-                        }
-                        System.out.println("__________________________________________________");
-                        break;
-
-                    case WRONG:
-                        //Exception: When the user-input does not specify within the 3 different tasks mentioned above
+                case DELETE:
+                    //Exception: Throw an error when user tries to delete from an empty list
+                    if (task_list.isEmpty()) {
                         String error_msg = "__________________________________________________\n" +
-                                "OOPS!!! I'm sorry, but I don't know what that means :-(\n" +
+                                "OOPS!!! There are no task left to be deleted!\n" +
                                 "__________________________________________________";
                         throw new DukeException(error_msg);
+                    }
+
+                    //Exception: Throw an error when the second half after "delete" keyword is blank
+                    if (array.length == 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! The task number for deleting must be specified!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    int task_num = Integer.parseInt(array[1]);
+                    //Exception: Throw an error when the second half after "delete" keyword is greater than task_list
+                    if (task_num > task_list.size() || task_num < 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! There is no such task number!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    System.out.println("__________________________________________________");
+                    System.out.println("Noted. I have removed this task:");
+                    System.out.println("  " + task_list.get(task_num - 1).toString());
+                    task_list.remove(task_num - 1);
+                    System.out.println("Now you have " + task_list.size() + " tasks in the list.");
+                    System.out.println("__________________________________________________");
+                    break;
+
+                case MARK:
+                    //Exception: Throw an error when the second half after "mark" keyword is blank
+                    if (array.length == 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! The task number for marking must be specified!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    task_num = Integer.parseInt(array[1]);
+                    //Exception: Throw an error when the second half after "mark" keyword is greater than task_list
+                    if (task_num > task_list.size() || task_num < 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! There is no such task number!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    task_list.get(task_num - 1).markTaskDone();
+                    System.out.println("__________________________________________________");
+                    System.out.println("Good Job! I have marked this task as done:");
+                    System.out.println("  " + task_list.get(task_num - 1).toString());
+                    System.out.println("__________________________________________________");
+                    break;
+
+                case UNMARK:
+                    //Exception: Throw an error when the second half after "unmark" keyword is blank
+                    if (array.length == 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! The task number for un-marking must be specified!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    task_num = Integer.parseInt(array[1]);
+                    //Exception: Throw an error when the second half after "unmark" keyword is greater than task_list
+                    if (task_num > task_list.size() || task_num < 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! There is no such task number!\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+
+                    task_list.get(task_num - 1).markTaskUndone();
+                    System.out.println("__________________________________________________");
+                    System.out.println("Alright! I have marked this task as not done yet:");
+                    System.out.println("  " + task_list.get(task_num - 1).toString());
+                    System.out.println("__________________________________________________");
+                    break;
+
+                case TODO:
+                    String task_description = "";
+                    //Exception: Throw an error when the second half after "todo" keyword is blank
+                    if (array.length == 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! The description of a todo cannot be empty.\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+                    task_list.add(new Todo(array[1]));
+                    task_description = "  " + task_list.get(task_list.size() - 1).toString();
+                    System.out.println("__________________________________________________");
+                    System.out.println("Got it. I have added this task:");
+                    System.out.println(task_description);
+
+                    if (task_list.size() == 1) { //For a single task
+                        System.out.println("Now you have 1 task in the list.");
+                    } else { //For multiple tasks
+                        System.out.println("Now you have " + task_list.size() + " tasks in the list.");
+                    }
+                    System.out.println("__________________________________________________");
+                    break;
+
+                case DEADLINE:
+                    //Exception: Throw an error when the second half after "deadline" keyword is blank
+                    if (array.length == 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! The description of a deadline cannot be empty.\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+                    String task_info = array[1];
+                    String[] info_arr = task_info.split(" /by ", 2);
+                    task_list.add(new Deadline(info_arr[0], info_arr[1]));
+                    task_description = "  " + task_list.get(task_list.size() - 1).toString();
+                    System.out.println("__________________________________________________");
+                    System.out.println("Got it. I have added this task:");
+                    System.out.println(task_description);
+
+                    if (task_list.size() == 1) { //For a single task
+                        System.out.println("Now you have 1 task in the list.");
+                    } else { //For multiple tasks
+                        System.out.println("Now you have " + task_list.size() + " tasks in the list.");
+                    }
+                    System.out.println("__________________________________________________");
+                    break;
+
+                case EVENT:
+                    //Exception: Throw an error when the second half after "event" keyword is blank
+                    if (array.length == 1) {
+                        String error_msg = "__________________________________________________\n" +
+                                "OOPS!!! The description of a event cannot be empty.\n" +
+                                "__________________________________________________";
+                        throw new DukeException(error_msg);
+                    }
+                    task_info = array[1];
+                    info_arr = task_info.split(" /at ", 2);
+                    task_list.add(new Event(info_arr[0], info_arr[1]));
+                    task_description = "  " + task_list.get(task_list.size() - 1).toString();
+                    System.out.println("__________________________________________________");
+                    System.out.println("Got it. I have added this task:");
+                    System.out.println(task_description);
+
+                    if (task_list.size() == 1) { //For a single task
+                        System.out.println("Now you have 1 task in the list.");
+                    } else { //For multiple tasks
+                        System.out.println("Now you have " + task_list.size() + " tasks in the list.");
+                    }
+                    System.out.println("__________________________________________________");
+                    break;
+
+                case WRONG:
+                    //Exception: When the user-input does not specify within the 3 different tasks mentioned above
+                    String error_msg = "__________________________________________________\n" +
+                            "OOPS!!! I'm sorry, but I don't know what that means :-(\n" +
+                            "__________________________________________________";
+                    throw new DukeException(error_msg);
                 }
 
             } catch (DukeException | ArrayIndexOutOfBoundsException e) {
