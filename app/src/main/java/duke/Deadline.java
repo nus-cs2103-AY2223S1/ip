@@ -6,6 +6,11 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     public LocalDate deadline;
 
+    /**
+     * Creates a new Deadline.
+     * @param details What needs to be done.
+     * @param deadline When the deadline is.
+     */
     public Deadline(String details, String deadline) {
         super(details);
         this.deadline = LocalDate.parse(deadline);
