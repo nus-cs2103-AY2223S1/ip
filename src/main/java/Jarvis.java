@@ -1,6 +1,9 @@
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.io.FileWriter;
 
 public class Jarvis {
     public static void main(String[] args) throws JarvisException {
@@ -12,6 +15,12 @@ public class Jarvis {
         String farewell = "Goodbye, have a good day.";
 
         List<Task> taskList = new ArrayList<>();
+
+        try {
+            IOhandler.readFile(taskList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         System.out.println(introduction);
         try {
@@ -93,11 +102,42 @@ public class Jarvis {
                 }
                 throw new JarvisException("I'm sorry, but I don't know what that means");
             }
-
+            try {
+                File dir = new File("data");
+                File myFile = new File(dir, "taskList.txt");
+                myFile.createNewFile();
+                FileWriter myWriter = new FileWriter(myFile);
+                for (int i = 0; i < taskList.size(); i++ ) {
+                    Task curr = taskList.get(i);
+                    if (curr instanceof Deadline) {
+                        if (curr.isDone) {
+                            myWriter.write("D" + " | 1 | " + curr.description + " | " + ((Deadline) curr).by + "\n");
+                        } else {
+                            myWriter.write("D" + " | 0 | " + curr.description + " | " + ((Deadline) curr).by + "\n");
+                        }
+                    } else if (curr instanceof Event) {
+                        if (curr.isDone) {
+                            myWriter.write("E" + " | 1 | " + curr.description + " | " + ((Event) curr).at + "\n");
+                        } else {
+                            myWriter.write("E" + " | 0 | " + curr.description + " | " + ((Event) curr).at + "\n");
+                        }
+                    } else {
+                        if (curr.isDone) {
+                            myWriter.write("T" + " | 1 | " + curr.description + "\n");
+                        } else {
+                            myWriter.write("T" + " | 0 | " + curr.description + "\n");
+                        }
+                    }
+                }
+                myWriter.close();
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
             System.out.print(farewell);
         }
         catch (JarvisException e) {
-            System.out.println((e.toString()));
+            System.out.println((e));
         }
     }
 }
