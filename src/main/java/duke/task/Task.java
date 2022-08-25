@@ -17,7 +17,7 @@ public abstract class Task {
      *
      * @param taskName The name of the task.
      */
-    protected Task(String taskName){
+    protected Task(String taskName) {
         this.taskName = taskName;
         this.isDone = false;
     }
@@ -35,14 +35,14 @@ public abstract class Task {
     /**
      * Marks a task as done.
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 
     /**
      * Unmarks a task as undone.
      */
-    public void unmarkAsDone(){
+    public void unmarkAsDone() {
         this.isDone = false;
     }
 

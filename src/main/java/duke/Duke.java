@@ -1,15 +1,15 @@
 package duke;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import duke.command.Command;
 import duke.exception.DukeException;
 import duke.processor.Parser;
 import duke.processor.TaskList;
 import duke.storage.Storage;
 import duke.task.Task;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * The main class that executes the duke.Duke chatbot.
@@ -22,7 +22,9 @@ public class Duke {
 
     protected Storage storage;
 
-    /** duke.Ui that prints statements for the bot. */
+    /**
+     * duke.Ui that prints statements for the bot.
+     */
     protected Ui ui;
 
     public Duke() {
