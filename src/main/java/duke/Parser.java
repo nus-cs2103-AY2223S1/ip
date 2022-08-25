@@ -39,6 +39,11 @@ public class Parser {
                 tasks.deleteTask(inputTaskIndex);
                 continue;
             }
+            if(userInput.split(" ", 2)[0].equals("find")) {
+                String search = userInput.split(" ", 2)[1];
+                tasks.find(search);
+                continue;
+            }
 
             try{
                 tasks.userInputCheck(userInput);

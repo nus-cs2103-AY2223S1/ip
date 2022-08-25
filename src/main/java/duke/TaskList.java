@@ -36,6 +36,21 @@ public class TaskList {
         }
     }
 
+    public void find(String search) {
+        int count = 0;
+        for(int i = 0; i < storeList.size(); i++) {
+            if(storeList.get(i).description.contains(search)) {
+                count++;
+                if(count == 1) {
+                    System.out.println("Here are the matching tasks in your list:");
+                }
+                System.out.println(i + 1 + ". " + storeList.get(i).toString());
+            }
+        }
+        if(count == 0) {
+            System.out.println("No tasks match the search term");
+        }
+    }
     public void mark(int taskIndex) {
         String oldText = storeList.get(taskIndex).toString();
         storeList.get(taskIndex).markAsDone();
