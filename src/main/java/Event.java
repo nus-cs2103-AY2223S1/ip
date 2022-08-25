@@ -9,6 +9,11 @@ public class Event extends Task {
         this.dateTime = dateTime;
     }
 
+    public Event(LocalDateTime dateTime, String description, boolean isDone) {
+        super(description, "E", isDone);
+        this.dateTime = dateTime;
+    }
+
     public String getDateTime() {
         return " (at: " +
                 this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
@@ -18,9 +23,11 @@ public class Event extends Task {
         return this.dateTime;
     }
 
+    @Override
     public String printText() {
-        return super.printText() + " | " + this.dateTime;
+        return super.printText() + " | " + this.getDateTime();
     }
+
     @Override
     public String toString() {
         return "[" + this.getCode() + "]" + super.toString() + this.getDateTime();

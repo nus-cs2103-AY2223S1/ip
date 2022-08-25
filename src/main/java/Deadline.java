@@ -9,6 +9,11 @@ public class Deadline extends Task {
         this.dateTime = dateTime;
     }
 
+    public Deadline(LocalDateTime dateTime, String description, boolean isDone) {
+        super(description, "D", isDone);
+        this.dateTime = dateTime;
+    }
+
     public String getDateTime() {
         return " (by: " +
                 this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
@@ -20,7 +25,7 @@ public class Deadline extends Task {
 
     @Override
     public String printText() {
-        return super.printText() + " | " + this.dateTime;
+        return super.printText() + " | " + this.getDateTime();
     }
 
     @Override
