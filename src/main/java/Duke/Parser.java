@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Parser {
 
 
-    public void startParse() {
+    public String startParse() {
         System.out.println("Hello! I'm Duke What can I do for you?");
         ArrayList<Task> array = new ArrayList<>(100);
         int counter = 0;
@@ -87,5 +87,7 @@ public class Parser {
                 }
             }
         }
+
+        return "Hello! I'm Duke What can I do for you?";
     }
 }
