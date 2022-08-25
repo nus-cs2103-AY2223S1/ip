@@ -10,10 +10,21 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 
+/**
+ * Handles the storage functions
+ * - Stores, modifies and deletes new tasks on external .txt file
+ * - Deletes tasks from ArrayList of Tasks (in Pixel.java)
+ * - (future) handles all operations on Arraylist of Tasks
+ */
 public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructor for a new Storage object
+     *
+     * @param filePath absolute path of the file where the tasks will be saved
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
@@ -25,10 +36,22 @@ public class Storage {
    Hence, the number of communication to the disk is reduced.
    */
 
+    /**
+     * Clears the output file
+     *
+     * @throws IOException
+     */
     public void resetFile() throws IOException {
         new FileWriter(this.filePath, false).close();
     }
 
+    /**
+     * Removes a task of a particular index of the list from the ArrayList
+     * and updates the external file
+     *
+     * @param userInput input from the user, starting with "delete ..."
+     * @throws IOException
+     */
     public void deleteEntry(String userInput) throws IOException {
 
         Task tempRecord;
@@ -69,6 +92,12 @@ public class Storage {
 
     }
 
+    /**
+     * Appends a new task to the external file
+     *
+     * @param task new task to be appended
+     * @throws IOException
+     */
     public void appendToFile(Task task) throws IOException {
         String textToAdd = task.formatTaskBeforeSave();
         Writer bufferedFileWriter = new BufferedWriter(new FileWriter(this.filePath, true)); // FileWriter(String fileName, boolean append)

@@ -1,6 +1,11 @@
 package pixel.util;
 
-// Ui: deals with interactions with the user
+/**
+ * Ui: deals with interactions with the user
+ * Currently only contains messages to be displayed
+ *
+ * Needs more work atm, will require enums
+ */
 public class UserInterface {
     String logo = " ____        _        \n"
         + "|  _ \\ _   _| | _____ \n"
@@ -23,8 +28,4 @@ public class UserInterface {
 
     public static final String goodbyeMessage = "Bye. Hope to see you again soon!";
 
-//    @Override
-//    public String toString() {
-//        return introMessage;
-//    }
 }
