@@ -1,40 +1,35 @@
 package duke.task;
 
-import duke.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
     private LocalDate at;
 
-    public Event(String taskDescription, LocalDate at) throws DukeException {
+    public Event(String taskDescription, LocalDate at) {
         super(taskDescription);
         this.at = at;
     }
 
-    public static Event EventFromFile(String taskFromFile, boolean isDone) throws DukeException {
-        String[] eventDesc = taskFromFile.split("\\|", 2);
-        if (eventDesc.length != 2 || eventDesc[0].equals("") || eventDesc[1].equals("")) {
-            throw new DukeException("OOPS! An event must contain a description and a date.");
-        }
-        Event result = new Event(eventDesc[0], LocalDate.parse(eventDesc[1]));
-        result.isDoneSetter(isDone);
-        return result;
+    public Event(String taskDescription, LocalDate at, Boolean isDone) {
+        super(taskDescription);
+        this.at = at;
+        this.isDoneSetter(isDone);
     }
 
+
     @Override
-    public String getTypeIcon() {
+    protected String getTypeIcon() {
         return "[E]";
     }
 
     @Override
-    public String toFile() {
-        return "E" + "|" + super.toFile() + "|" + at;
+    public String toStorageString() {
+        return "E" + "|" + super.toStorageString() + "|" + at;
     }
 
     @Override
     public String toString() {
-        return super.toString() + " (at:" + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+        return super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
     }
 }

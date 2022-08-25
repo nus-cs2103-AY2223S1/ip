@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import duke.parser.Parser;
 
 public class Duke {
     private final Storage storage;
@@ -13,19 +14,20 @@ public class Duke {
         this.ui = new Ui();
         this.parser = new Parser();
         try {
-            this.taskList = new TaskList(storage.load());
+            this.taskList = storage.load();
         } catch (DukeException e) {
-            this.taskList = new TaskList();
+            ui.printException(e);
         }
 
     }
+
     public static void main(String[] args) {
         new Duke("data/duke.txt").run();
     }
 
     public void run() {
         boolean terminateFlag = false;
-        this.ui.printWelcome();
+        ui.printWelcome();
 
         while(!terminateFlag) {
             try {

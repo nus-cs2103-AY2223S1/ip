@@ -1,33 +1,65 @@
 package duke;
 
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Storage {
-    private String filePath;
-    private File file;
+    private final String filePath;
+    private final File file;
 
     public Storage(String filePath) {
         this.filePath = filePath;
         this.file = new File(filePath);
     }
 
-    public String load() throws DukeException {
+    public TaskList load() throws DukeException {
         Scanner sc = null;
-        StringBuilder res = new StringBuilder();
+        TaskList taskList = new TaskList();
         try {
             sc = new Scanner(file);
             while (sc.hasNextLine()) {
-                res.append(sc.nextLine()).append("\n");
+                String currLine = sc.nextLine();
+
+                if (currLine.equals("")) {
+                    break;
+                }
+
+                String[] taskSplit = currLine.split("\\|", 4);
+                Task newTask = null;
+                String taskType = taskSplit[0].trim();
+                boolean isDone = taskSplit[1].trim().equals("1");
+                String taskDesc = taskSplit[2].trim();
+                String taskDate = taskSplit.length == 4 ? taskSplit[3].trim() : "";
+                switch (taskType) {
+                    case "T":
+                        newTask = new ToDo(taskDesc, isDone);
+                        break;
+                    case "D":
+                        newTask = new Deadline(taskDesc, LocalDate.parse(taskDate), isDone);
+                        break;
+                    case "E":
+                        newTask = new Event(taskDesc, LocalDate.parse(taskDate), isDone);
+                        break;
+                }
+                taskList.addTask(newTask);
             }
-            return res.toString();
+            return taskList;
         } catch (FileNotFoundException e) {
             this.createFile();
-            return this.load();
-        } finally {
+            return new TaskList();
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Saved file is corrupted.");
+        }finally {
             if (sc != null) sc.close();
         }
     }

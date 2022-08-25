@@ -1,24 +1,22 @@
 package duke.task;
 
 public class ToDo extends Task {
-
     public ToDo(String taskDescription) {
         super(taskDescription);
     }
 
-    public static ToDo ToDoFromData(String taskFromData, boolean isDone) {
-        ToDo result = new ToDo(taskFromData);
-        result.isDoneSetter(isDone);
-        return result;
+    public ToDo(String taskDescription, boolean isDone) {
+        super(taskDescription);
+        this.isDoneSetter(isDone);
     }
 
     @Override
-    public String getTypeIcon() {
+    protected String getTypeIcon() {
         return "[T]";
     }
 
     @Override
-    public String toFile() {
-        return "T" + "|" + super.toFile();
+    public String toStorageString() {
+        return "T" + "|" + super.toStorageString();
     }
 }

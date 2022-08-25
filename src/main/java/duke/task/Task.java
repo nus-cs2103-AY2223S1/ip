@@ -13,13 +13,13 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
-    public abstract String getTypeIcon();
+    protected abstract String getTypeIcon();
 
     public String getStatusIcon() {
         return "[" + (isDone ? "X" : " ") + "]";
     }
 
-    public String toFile() {
+    public String toStorageString() {
         return (isDone ? "1" : "0") + "|" + taskDescription;
     }
 

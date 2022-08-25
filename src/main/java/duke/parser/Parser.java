@@ -1,5 +1,6 @@
-package duke;
+package duke.parser;
 
+import duke.DukeException;
 import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -25,9 +26,11 @@ public class Parser {
                     return new MarkCommand(parseIntArg(commandArg));
                 case "unmark":
                     return new UnmarkCommand(parseIntArg(commandArg));
+                case "delete":
+                    return new DeleteCommand(parseIntArg(commandArg));
                 case "todo":
                     if (commandArg.equals("")) {
-                        throw new DukeException("todo must contain a description.");
+                        throw new DukeException("A todo must contain a description.");
                     }
                     return new ToDoCommand(new ToDo(commandArg));
                 case "deadline" :
@@ -36,8 +39,6 @@ public class Parser {
                 case "event":
                     String[] eventArgs = parseEventArgs(commandArg);
                     return new EventCommand(new Event(eventArgs[0], parseDateArg(eventArgs[1])));
-                case "delete":
-                    return new DeleteCommand(parseIntArg(commandArg));
                 case "bye":
                     if (!commandArg.equals("")) {
                         throw new DukeException("bye must not have any argument.");
