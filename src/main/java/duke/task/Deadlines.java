@@ -5,7 +5,7 @@ import java.time.Month;
 
 public class Deadlines extends Task {
     private LocalDate byDate;
-    Deadlines(String name, LocalDate byDate) {
+    public Deadlines(String name, LocalDate byDate) {
         super(name);
         this.byDate = byDate;
     }

@@ -3,7 +3,7 @@ package duke.task;
 public abstract class Task {
     protected String name;
     protected Boolean done = false;
-    Task(String name) {
+    public Task(String name) {
         this.name = name;
     }
     /**

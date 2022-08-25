@@ -5,7 +5,7 @@ import java.time.Month;
 
 public class Events extends Task {
     private LocalDate atDate;
-    Events(String name, LocalDate atDate) {
+    public Events(String name, LocalDate atDate) {
         super(name);
         this.atDate = atDate;
     }
