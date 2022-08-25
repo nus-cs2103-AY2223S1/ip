@@ -56,7 +56,7 @@ public class Storage {
             if (command[1].equals("1")) {
                 newTask.markComplete();
             }
-            taskList.addTask(newTask, true);
+            taskList.addTask(newTask);
         }
         return taskList;
     }

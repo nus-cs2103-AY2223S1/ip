@@ -8,14 +8,8 @@ public class TaskList extends ArrayList<Task> {
         super();
     }
 
-    public void addTask(Task newTask, boolean onStartUp) {
+    public void addTask(Task newTask) {
         this.add(newTask);
-        if (!onStartUp) {
-            System.out.println("    Got it. I've added this task:");
-            System.out.print("      ");
-            System.out.println(newTask);
-            System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
-        }
     }
 
     public Task deleteTask(int taskToDelete) {

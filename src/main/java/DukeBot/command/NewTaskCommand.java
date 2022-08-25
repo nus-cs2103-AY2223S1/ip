@@ -37,6 +37,7 @@ public class NewTaskCommand extends Command {
             }
             newTask = new Deadline(s[0], s[1]);
         }
-        tasks.addTask(newTask, false);
+        tasks.addTask(newTask);
+        ui.showNewTask(newTask);
     }
 }

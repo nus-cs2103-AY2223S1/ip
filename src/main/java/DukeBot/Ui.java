@@ -24,6 +24,18 @@ public class Ui {
     }
 
     /**
+     * Prints the new task onto the output.
+     *
+     * @param newTask to be printed on the output.
+     */
+    public void showNewTask(Task newTask) {
+        System.out.println("    Got it. I've added this task:");
+        System.out.print("      ");
+        System.out.println(newTask);
+        System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
+    }
+
+    /**
      * Prints the welcome message onto the output.
      */
     public void showWelcome() {
@@ -35,7 +47,7 @@ public class Ui {
     /**
      * Prints the error onto the output.
      *
-     * @param e
+     * @param e to be printed on the output.
      */
     public void showError(Exception e) {
         System.out.println(e);
