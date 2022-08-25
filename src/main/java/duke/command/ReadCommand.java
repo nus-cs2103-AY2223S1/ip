@@ -27,4 +27,15 @@ public class ReadCommand extends Command {
     public boolean isTerminated() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof ReadCommand) {
+            return true;
+        }
+        return false;
+    }
 }

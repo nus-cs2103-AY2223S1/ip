@@ -10,4 +10,19 @@ public class InvalidArgumentException extends CompileException {
                 + "\nThe format of [" + Action.getString(action)+ "] should be '" + Action.getFormat(action) + "'"
                 + "\nAttribute Separator: '" + Parser.getAttributeSeparator() + "', is not allowed.");
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof InvalidArgumentException) {
+            InvalidArgumentException e = (InvalidArgumentException) obj;
+            if (e == null) {
+                return false;
+            }
+            return this.getMessage().equals(e.getMessage());
+        }
+        return false;
+    }
 }

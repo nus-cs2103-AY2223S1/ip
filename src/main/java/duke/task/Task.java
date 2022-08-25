@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.Parser;
+import duke.Savable;
 import duke.exception.DukeRuntimeException;
 import duke.exception.ReadAttributeException;
 
@@ -26,35 +27,6 @@ public abstract class Task {
 
     public static Deadline deadline(String msg, LocalDateTime time) {
         return new Deadline(msg, time);
-    }
-
-    protected static int convertBoolToInt(boolean bool) {
-        return bool ? 1 : 0;
-    }
-
-    protected static boolean convertIntToBool(int i) {
-        if (i == 1) {
-            return true;
-        } else if (i == 0) {
-            return false;
-        } else {
-            throw new DukeRuntimeException(i + " is not defined when converting int to bool.");
-        }
-    }
-
-    public static Task parseTask(String formattedString) throws ReadAttributeException {
-        ArrayList<String> attributes = Parser.separateAttributes(formattedString);
-        switch (attributes.get(0)) {
-        case Todo.SYMBOL:
-            return Todo.parseTodo(formattedString);
-        case Event.SYMBOL:
-            return Event.parseEvent(formattedString);
-        case Deadline.SYMBOL:
-            return Deadline.parseDeadline(formattedString);
-        default:
-            throw new ReadAttributeException(
-                    "Task", formattedString, "Task Symbol: [" + attributes.get(0) + "] is invalid.");
-        }
     }
 
     public String getName() {

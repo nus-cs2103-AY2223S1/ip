@@ -2,9 +2,11 @@ package duke;
 
 import duke.command.Action;
 import duke.command.Command;
-import duke.exception.DukeException;
-import duke.exception.InvalidArgumentException;
-import duke.exception.NoArgumentException;
+import duke.exception.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Stream;
+
+import static duke.task.Task.*;
 
 public class Parser {
     private static final String ATTRIBUTE_SEPARATOR = "}";
@@ -147,6 +151,67 @@ public class Parser {
         }
     }
 
+    public static Task parseTask(String formattedString) throws ReadAttributeException {
+        ArrayList<String> attributes = Parser.separateAttributes(formattedString);
+        switch (attributes.get(0)) {
+        case Todo.SYMBOL:
+            return parseTodo(formattedString);
+        case Event.SYMBOL:
+            return parseEvent(formattedString);
+        case Deadline.SYMBOL:
+            return parseDeadline(formattedString);
+        default:
+            throw new ReadAttributeException(
+                    "Task", formattedString, "Task Symbol: [" + attributes.get(0) + "] is invalid.");
+        }
+    }
+
+    private static Event parseEvent(String formattedString) {
+        ArrayList<String> attributes = Parser.separateAttributes(formattedString);
+        if (attributes.size() < 4) {
+            throw new ReadAttributeException("Event", formattedString, "Number of attributes less than 4");
+        }
+        Event result = event(attributes.get(2), parseStringToDateTime(attributes.get(3)));
+        if (convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
+            result.markAsDone();
+        }
+        return result;
+    }
+
+    private static Deadline parseDeadline(String formattedString) {
+        ArrayList<String> attributes = Parser.separateAttributes(formattedString);
+        if (attributes.size() < 4) {
+            throw new ReadAttributeException("Deadline", formattedString, "Number of attributes less than 4");
+        }
+        Deadline result = deadline(attributes.get(2), parseStringToDateTime(attributes.get(3)));
+        if (convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
+            result.markAsDone();
+        }
+        return result;
+    }
+
+    private static Todo parseTodo(String formattedString) {
+        ArrayList<String> attributes = Parser.separateAttributes(formattedString);
+        if (attributes.size() < 3) {
+            throw new ReadAttributeException("Todo", formattedString, "Number of attributes less than 3");
+        }
+        Todo result = todo(attributes.get(2));
+        if (Parser.convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
+            result.markAsDone();
+        }
+        return result;
+    }
+
+    public static TaskList parseTaskList(String formattedString) {
+        TaskList result = new TaskList();
+        Arrays.stream(formattedString.split(System.lineSeparator()))
+                .filter(s -> !s.trim().equals(""))
+                .map(s -> s.trim())
+                .map(s -> Parser.parseTask(s))
+                .forEach(task -> result.add(task));
+        return result;
+    }
+
     private static boolean isInt(String s) {
         try {
             Integer.parseInt(s);
@@ -162,10 +227,24 @@ public class Parser {
 
     private static boolean isValidDate(String input) {
         try {
-            LocalDate.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+            LocalDateTime.parse(input, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+
+    public static int convertBoolToInt(boolean bool) {
+        return bool ? 1 : 0;
+    }
+
+    public static boolean convertIntToBool(int i) {
+        if (i == 1) {
+            return true;
+        } else if (i == 0) {
+            return false;
+        } else {
+            throw new DukeRuntimeException(i + " is not defined when converting int to bool.");
         }
     }
 

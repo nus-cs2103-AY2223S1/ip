@@ -8,6 +8,9 @@ public abstract class AddCommand extends Command {
         this.msg = message;
     }
 
+    public String getMsg() {
+        return this.msg;
+    }
     @Override
     public boolean isTerminated() {
         return false;

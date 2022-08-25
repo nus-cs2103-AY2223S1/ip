@@ -24,4 +24,22 @@ public class TodoCommand extends AddCommand {
                 + "Now you have " + taskList.size() + " tasks in the list.";
         messagePrinter.printMessage(successMsg);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof DeadlineCommand) {
+            DeadlineCommand c = (DeadlineCommand) obj;
+            if (this.getMsg() == c.getMsg()) {
+                return true;
+            }
+            if (this.getMsg() == null || c.getMsg() == null) {
+                return false;
+            }
+            return this.getMsg().equals(c.getMsg());
+        }
+        return false;
+    }
 }

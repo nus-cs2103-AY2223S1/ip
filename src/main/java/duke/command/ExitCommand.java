@@ -24,4 +24,15 @@ public class ExitCommand extends Command {
     public boolean isTerminated() {
         return true;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof ExitCommand) {
+            return true;
+        }
+        return false;
+    }
 }

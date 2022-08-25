@@ -23,5 +23,16 @@ public class DoNothingCommand extends Command {
     public boolean isTerminated() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof DoNothingCommand) {
+            return true;
+        }
+        return false;
+    }
 }
 

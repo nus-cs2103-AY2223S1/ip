@@ -13,6 +13,10 @@ public class DeleteCommand extends Command {
         this.idTask = idTask;
     }
 
+    public int getIdTask() {
+        return idTask;
+    }
+
     @Override
     public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String successMsg = "Noted. I've removed this task:";
@@ -29,6 +33,18 @@ public class DeleteCommand extends Command {
 
     @Override
     public boolean isTerminated() {
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof DeleteCommand) {
+            DeleteCommand c = (DeleteCommand) obj;
+            return this.idTask == c.getIdTask();
+        }
         return false;
     }
 }

@@ -13,6 +13,10 @@ public class MarkCommand extends Command {
         this.idTask = idTask;
     }
 
+    public int getIdTask() {
+        return idTask;
+    }
+
     @Override
     public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String successMsg = "Nice! I've marked this task as done:";
@@ -28,6 +32,18 @@ public class MarkCommand extends Command {
 
     @Override
     public boolean isTerminated() {
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof MarkCommand) {
+            MarkCommand c = (MarkCommand) obj;
+            return this.idTask == c.getIdTask();
+        }
         return false;
     }
 }

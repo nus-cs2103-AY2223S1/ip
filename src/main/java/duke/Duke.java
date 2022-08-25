@@ -1,10 +1,8 @@
+package duke;
+
 import duke.command.Action;
 import duke.command.Command;
-import duke.Parser;
 import duke.exception.DukeException;
-import duke.TaskList;
-import duke.MessagePrinter;
-import duke.Storage;
 
 import java.util.HashMap;
 import java.util.Scanner;

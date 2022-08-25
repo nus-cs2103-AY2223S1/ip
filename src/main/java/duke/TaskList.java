@@ -4,7 +4,6 @@ import duke.exception.TaskNotFoundException;
 import duke.task.Task;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class TaskList implements Savable<TaskList> {
@@ -39,7 +38,6 @@ public class TaskList implements Savable<TaskList> {
     }
 
 
-
     @Override
     public String toString() {
         String message = Stream.iterate(0, x -> x + 1)
@@ -61,12 +59,6 @@ public class TaskList implements Savable<TaskList> {
 
     @Override
     public TaskList parse(String formattedString) {
-        this.tasks = new ArrayList<>();
-        Arrays.stream(formattedString.split(System.lineSeparator()))
-                .filter(s -> !s.trim().equals(""))
-                .map(s -> s.trim())
-                .map(s -> Task.parseTask(s))
-                .forEach(task -> this.tasks.add(task));
-        return this;
+        return Parser.parseTaskList(formattedString);
     }
 }

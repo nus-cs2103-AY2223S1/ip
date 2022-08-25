@@ -7,24 +7,12 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Event extends Task {
-    protected static final String SYMBOL = "E";
+    public static final String SYMBOL = "E";
     private LocalDateTime time;
 
     protected Event(String name, LocalDateTime time) {
         super(name);
         this.time = time;
-    }
-
-    public static Event parseEvent(String formattedString) {
-        ArrayList<String> attributes = Parser.separateAttributes(formattedString);
-        if (attributes.size() < 4) {
-            throw new ReadAttributeException("Event", formattedString, "Number of attributes less than 4");
-        }
-        Event result = event(attributes.get(2), Parser.parseStringToDateTime(attributes.get(3)));
-        if (convertIntToBool(Integer.parseInt(attributes.get(1))) == true) {
-            result.markAsDone();
-        }
-        return result;
     }
 
     public LocalDateTime getTime() {
@@ -43,8 +31,34 @@ public class Event extends Task {
     @Override
     public String toFormattedString() {
         return Parser.combineAttributes(this.SYMBOL,
-                Integer.toString(convertBoolToInt(this.getIsDone())),
+                Integer.toString(Parser.convertBoolToInt(this.getIsDone())),
                 this.getName(),
                 Parser.parseDateTimeToString(this.getTime()));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof Event) {
+            Event e = (Event) obj;
+            if (e == null) {
+                return false;
+            }
+            if (this.time == e.time && this.getName() == e.getName()) {
+                return true;
+            }
+            if (this.getName() == null || this.time == null) {
+                return false;
+            }
+            if (e.getName() == null || e.getTime() == null) {
+                return false;
+            }
+            return this.getName().equals(e.getName())
+                    && this.getIsDone() == e.getIsDone()
+                    && this.getTime().equals(e.getTime());
+        }
+        return false;
     }
 }

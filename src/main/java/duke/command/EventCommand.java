@@ -15,6 +15,10 @@ public class EventCommand extends AddCommand {
         this.time = time;
     }
 
+    public LocalDateTime getTime() {
+        return time;
+    }
+
     @Override
     public String getFormat() {
         return "event [Event Name] /at [Event Time(yyyy-MM-dd HH:mm)]";
@@ -28,5 +32,26 @@ public class EventCommand extends AddCommand {
         successMsg = successMsg + "\n" + event + "\n" +
                 "Now you have " + taskList.size() + " tasks in the list.";
         messagePrinter.printMessage(successMsg);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof EventCommand) {
+            EventCommand c = (EventCommand) obj;
+            if (this.getMsg() == c.getMsg() && this.time == c.getTime()) {
+                return true;
+            }
+            if (this.getMsg() == null || c.getMsg() == null) {
+                return false;
+            }
+            if (this.getTime() == null || c.getTime() == null) {
+                return false;
+            }
+            return this.getTime().equals(c.getTime()) && this.getMsg().equals(c.getMsg());
+        }
+        return false;
     }
 }

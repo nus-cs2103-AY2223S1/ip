@@ -6,4 +6,19 @@ public class CompileException extends DukeException {
                 + "please check with following information:\n"
                 + msg);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof CompileException) {
+            CompileException compileException = (CompileException) obj;
+            if (compileException == null) {
+                return false;
+            }
+            return this.getMessage().equals(compileException.getMessage());
+        }
+        return false;
+    }
 }
