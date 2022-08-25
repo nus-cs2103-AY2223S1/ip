@@ -1,5 +1,5 @@
 T / 1 / read book
-D / 0 / return book / June 6th
-E / 0 / project meeting / Aug 6th 2-4pm
 T / 1 / join sports club
 T / 0 / five
+E / 0 / do that / 12/12/2020 17:59
+D / 0 / do this / 15/08/2022 23:08
