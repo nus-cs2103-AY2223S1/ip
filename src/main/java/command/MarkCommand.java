@@ -13,7 +13,7 @@ import utility.Parser;
 public class MarkCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        int n = Parser.getTaskNumber(ui.currentInput, taskList.getSize());
+        int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
         taskList.markTask(n);
         String storeLine = taskList.getTask(n).toString() + "\n";
         storage.changeLine(n, storeLine);
