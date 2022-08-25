@@ -5,7 +5,7 @@ public class Duke {
     private static Ui ui;
 
     /**
-     * A contructor that returns an instance of Duke.
+     * A constructor that returns an instance of Duke.
      *
      * @param filePath The path to the save file where data is stored.
      */
