@@ -14,7 +14,12 @@ public class Events extends Task {
 
 
     public String toString() {
-        String result = "[E]" + "[" + getStatusIcon() + "] " + this.description + "(at:" + this.timing + ")";
+        String result = "[E]" + "[" + getStatusIcon() + "] " + this.description + " (at: " + this.timing + ")";
         return result;
+    }
+
+    public String fileString() {
+        String write = "E / " + (isDone ? "1 / " : "0 / ") + this.description.strip() + " / " + this.timing.strip();
+        return write;
     }
 }

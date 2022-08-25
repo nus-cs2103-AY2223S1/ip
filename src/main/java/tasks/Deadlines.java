@@ -14,7 +14,13 @@ public class Deadlines extends Task {
 
 
     public String toString() {
-        String result = "[D]" + "[" + getStatusIcon() + "] " + this.description + "(by:" + this.deadline + ")";
+        String result = "[D]" + "[" + getStatusIcon() + "] " + this.description + " (by: " + this.deadline + ")";
         return result;
     }
+
+    public String fileString() {
+        String write = "D / " + (isDone ? "1 / " : "0 / ") + this.description.strip() + " / " + this.deadline.strip();
+        return write;
+    }
+
 }

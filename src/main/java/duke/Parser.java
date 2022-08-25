@@ -15,7 +15,7 @@ public class Parser {
     public static Command parse(String input) throws DukeException {
         String[] inputSplit = input.split(" ", 2);
         if (inputSplit.length == 1) {
-            switch (COMMANDS.valueOf(inputSplit[0].toUpperCase())) {
+            switch (COMMANDS.valueOf(inputSplit[0].strip().toUpperCase())) {
                 case BYE:
                     return new ByeCommand();
                 case LIST:
@@ -36,7 +36,7 @@ public class Parser {
                     throw new NoSuchCommandException();
             }
         } else {
-                switch (COMMANDS.valueOf(inputSplit[0].toUpperCase())) {
+                switch (COMMANDS.valueOf(inputSplit[0].strip().toUpperCase())) {
                     case UNMARK:
                         int indUnmark = Integer.parseInt(inputSplit[1]) - 1;
                         return new UnMarkCommand(indUnmark);

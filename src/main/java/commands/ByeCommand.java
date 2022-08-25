@@ -5,7 +5,7 @@ import tasks.*;
 import duke.Statements;
 
 public class ByeCommand extends Command {
-    boolean toExitProgram;
+    boolean toExitProgram = true;
 
     public ByeCommand() {
         super();

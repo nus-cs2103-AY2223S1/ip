@@ -20,6 +20,10 @@ public class Task {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
+    public String getDescription() {
+        return this.description;
+    }
+
     public int getTotal() {
         return this.total;
     }
@@ -36,5 +40,10 @@ public class Task {
     public String toString() {
         String result = "[" + getStatusIcon() + "] " + this.description;
         return result;
+    }
+
+    public String fileString() {
+        String write = "NA";
+        return write;
     }
 }
