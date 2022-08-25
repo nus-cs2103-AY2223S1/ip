@@ -1,3 +1,5 @@
+package task;
+
 public abstract class Task {
     private final String TaskItem;
     private boolean isMarked;
@@ -16,4 +18,14 @@ public abstract class Task {
     public void setIsMarked(boolean status) {
         isMarked = status;
     }
+
+    protected boolean getIsMarked() {
+        return isMarked;
+    }
+
+    protected String getTaskItem() {
+        return TaskItem;
+    }
+
+    public abstract String encode();
 }
