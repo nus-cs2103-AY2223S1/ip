@@ -28,6 +28,14 @@ public class TodoTask extends AbstractTask {
      * {@inheritDoc}
      */
     @Override
+    public String save() {
+        return String.format("%s,%s,%s", MESSAGE_SCOPE, this.isDone, this.description);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String toString() {
         return "[T]" + super.toString();
     }

@@ -1,15 +1,11 @@
 package jenny.util;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
-public class DateTimeParser {
-    private final LocalDateTime dateTime;
-    public DateTimeParser(String date) {
-        LocalDateTime dateTime = LocalDateTime.parse(date);
-        this.dateTime = dateTime;
+public class Validator {
+    public Validator() {
 
         //create dates from strings
         LocalDate d1 = LocalDate.parse("2019-12-01");
