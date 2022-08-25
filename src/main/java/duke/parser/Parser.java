@@ -7,6 +7,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -20,7 +21,7 @@ import duke.exception.DukeException;
 public class Parser {
     /** All valid commands. */
     private static final ArrayList<String> validCommands = new ArrayList<>(Arrays.asList("bye", "list", "todo",
-            "event", "deadline", "mark", "unmark", "delete"));
+            "event", "deadline", "mark", "unmark", "delete", "find"));
 
     /** All valid commands without arguments. */
     private static final ArrayList<String> validCommandsWithoutArgs = new ArrayList<>(Arrays.asList("bye", "list"));
@@ -51,6 +52,10 @@ public class Parser {
             throw new DukeException("Usage 'delete index'");
         }
 
+        if (userInput.equals("find")) {
+            throw new DukeException("Usage 'find title'");
+        }
+
         String userCommand = inputWords[0];
         String arguments = Parser.canRunWithoutArgs(inputWords[0]) || !Parser.isValidCommand(inputWords[0])
                 ? ""
@@ -67,6 +72,8 @@ public class Parser {
             return new MarkCommand(arguments);
         case "unmark":
             return new UnmarkCommand(arguments);
+        case "find":
+            return new FindCommand(arguments);
         case "list":
             return new ListCommand();
         case "bye":
