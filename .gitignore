@@ -13,10 +13,14 @@ src/main/resources/docs/
 *.iml
 bin/
 
+# text-ui-test folder
 text-ui-test/
 
 # Java Classes
 *.class
 
-#Side note
+# Side note
 notes.txt
+
+# javadoc folder
+javadoc/
