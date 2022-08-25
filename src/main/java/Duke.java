@@ -31,9 +31,8 @@ public class Duke {
         }
     }
     
-    private void start() throws IOException {
+    private void start() throws IOException, DukeException {
         loadFromDisk();
-        
         Scanner scanner = new Scanner(System.in);
         
         while (scanner.hasNextLine()) {
@@ -158,7 +157,7 @@ public class Duke {
         }
     }
     
-    private void loadFromDisk() throws DukeException {
+    private void loadFromDisk() throws DukeException, IOException {
         Files.createDirectories(Paths.get("data"));
         File file = new File("data/Duke.txt");
         file.createNewFile();
