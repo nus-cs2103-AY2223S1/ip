@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Ui {
 
-    Scanner s = new Scanner(System.in);
-    String input;
+    private Scanner s = new Scanner(System.in);
+    private String input;
 
     public void showWelcome() {
         System.out.println("Just a moment...\nHello! I am Duke.");

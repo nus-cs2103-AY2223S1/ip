@@ -72,26 +72,26 @@ public class Parser {
 
     public static Command parseDate(String commandWord, String description) throws DukeException {
         switch (commandWord) {
-            case AddCommand.COMMAND_WORD_DEADLINE:
-                if (description.contains(" /by ")) {
-                    String[] arr = description.split(" /by ", 2);
-                    String message = arr[0];
-                    LocalDate date = parseDateFormats(arr[1]);
-                    return new AddCommand(new Deadline(message, date));
-                } else {
-                    throw new DukeException(
-                            "☹ Please follow the format <deadline description /by date>");
-                }
-            default:
-                if (description.contains(" /at ")) {
-                    String[] arr = description.split(" /at ", 2);
-                    String message = arr[0];
-                    LocalDate date = parseDateFormats(arr[1]);
-                    return new AddCommand(new Event(message, date));
-                } else {
-                    throw new DukeException(
-                            "☹ Please follow the format <event description /at date>");
-                }
+        case AddCommand.COMMAND_WORD_DEADLINE:
+            if (description.contains(" /by ")) {
+                String[] arr = description.split(" /by ", 2);
+                String message = arr[0];
+                LocalDate date = parseDateFormats(arr[1]);
+                return new AddCommand(new Deadline(message, date));
+            } else {
+                throw new DukeException(
+                        "☹ Please follow the format <deadline description /by date>");
+            }
+        default:
+            if (description.contains(" /at ")) {
+                String[] arr = description.split(" /at ", 2);
+                String message = arr[0];
+                LocalDate date = parseDateFormats(arr[1]);
+                return new AddCommand(new Event(message, date));
+            } else {
+                throw new DukeException(
+                        "☹ Please follow the format <event description /at date>");
+            }
         }
     }
 
