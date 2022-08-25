@@ -22,17 +22,17 @@ public class UnmarkCommand extends Command {
 
     /**
      * Marks task as not done and prints it to user.
-     * Also saves the updated taskList to storage.
-     * @param taskList List of tasks.
+     * Also saves the updated tasks to storage.
+     * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        Task task = taskList.unmarkTask(index);
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        Task task = tasks.unmarkTask(index);
         ui.printWithIndent("OK, I've marked this task as not done yet:");
         ui.printWithIndent("  " + task);
-        storage.saveFile(taskList);
+        storage.saveFile(tasks);
     }
 }

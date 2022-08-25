@@ -19,10 +19,10 @@ public abstract class Command {
 
     /**
      * Runs instructions of command.
-     * @param taskList List of tasks.
+     * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @throws DukeException
      */
-    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 }

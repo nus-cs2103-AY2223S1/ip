@@ -24,17 +24,17 @@ public class FindCommand extends Command {
 
     /**
      * Prints out tasks that have the search query in the description.
-     * @param taskList List of tasks.
+     * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        ArrayList<Task> filteredTaskList = taskList.searchTasks(searchQuery);
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        ArrayList<Task> filteredTasks = tasks.searchTasks(searchQuery);
         ui.printWithIndent(String.format("Here are the tasks containing '%s':", searchQuery));
-        for (int i = 0; i < filteredTaskList.size(); i++) {
-            Task task = filteredTaskList.get(i);
+        for (int i = 0; i < filteredTasks.size(); i++) {
+            Task task = filteredTasks.get(i);
             ui.printWithIndent(i + 1 + ". " + task);
         }
     }

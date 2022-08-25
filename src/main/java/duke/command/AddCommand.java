@@ -18,18 +18,18 @@ public class AddCommand extends Command {
 
     /**
      * Adds task to list and prints the task and task count.
-     * Also saves the updated taskList to storage.
-     * @param taskList List of tasks.
+     * Also saves the updated tasks to storage.
+     * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        taskList.addTask(task);
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        tasks.addTask(task);
         ui.printWithIndent("Got it. I've added this task:");
         ui.printWithIndent(" " + task);
-        ui.printTaskCount(taskList.taskCount());
-        storage.saveFile(taskList);
+        ui.printTaskCount(tasks.taskCount());
+        storage.saveFile(tasks);
     }
 }

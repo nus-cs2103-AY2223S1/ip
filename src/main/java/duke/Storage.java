@@ -26,7 +26,7 @@ public class Storage {
      * @throws DukeException if file was wrongly modified, causing errors in reading the file.
      */
     public ArrayList<Task> loadFile() throws DukeException {
-        ArrayList<Task> taskList = new ArrayList<>();;
+        ArrayList<Task> tasks = new ArrayList<>();;
         File dataDirectory = new File("data");
         if (!dataDirectory.exists()) {
             dataDirectory.mkdir();
@@ -52,7 +52,7 @@ public class Storage {
                     default:
                         throw new DukeException("Did you wrongly modify the file?");
                     }
-                    taskList.add(task);
+                    tasks.add(task);
                 }
             } else {
                 dataFile.createNewFile();
@@ -60,22 +60,22 @@ public class Storage {
         } catch (IOException e) {
             System.out.println("This should not happen... " + e.getMessage());
         }
-        return taskList;
+        return tasks;
     }
 
     /**
-     * Saves taskList to specified filepath.
-     * @param taskList List of tasks.
+     * Saves tasks to specified filepath.
+     * @param tasks List of tasks.
      * @throws DukeException if Duke has insufficient permissions to write to file.
      */
-    public void saveFile(TaskList taskList) throws DukeException {
+    public void saveFile(TaskList tasks) throws DukeException {
         try {
             File dataFolder = new File("data");
             if (!dataFolder.exists()) {
                 dataFolder.mkdir();
             }
             FileWriter fw = new FileWriter(this.filePath);
-            for (Task task : taskList) {
+            for (Task task : tasks) {
                 fw.write(task.toFileRepresentation() + System.lineSeparator());
             }
             fw.close();

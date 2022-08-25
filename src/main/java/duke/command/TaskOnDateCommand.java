@@ -25,17 +25,17 @@ public class TaskOnDateCommand extends Command {
 
     /**
      * Filters for tasks on a specified date and prints it to the user.
-     * @param taskList List of tasks.
+     * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         String formattedDate = date.format(DateTimeFormatter.ofPattern("E, d MMM yyyy"));
-        ArrayList<Task> filteredTaskList = taskList.getTasksOn(date);
+        ArrayList<Task> filteredTasks = tasks.getTasksOn(date);
         ui.printWithIndent(String.format("Here are the tasks on %s:", formattedDate));
-        for (int i = 0; i < filteredTaskList.size(); i++) {
-            Task task = filteredTaskList.get(i);
+        for (int i = 0; i < filteredTasks.size(); i++) {
+            Task task = filteredTasks.get(i);
             ui.printWithIndent(i + 1 + ". " + task);
         }
     }

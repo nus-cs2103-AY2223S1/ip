@@ -12,16 +12,16 @@ import duke.Ui;
 public class ListCommand extends Command {
     /**
      * Prints out list of tasks individually with index.
-     * @param taskList List of tasks.
+     * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         ui.printWithIndent("Here are the tasks in your list:");
-        for (int i = 1; i <= taskList.taskCount(); i++) {
-            Task task = taskList.getTask(i);
+        for (int i = 1; i <= tasks.taskCount(); i++) {
+            Task task = tasks.getTask(i);
             ui.printWithIndent(i + ". " + task);
         }
     }

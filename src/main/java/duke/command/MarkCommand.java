@@ -22,17 +22,17 @@ public class MarkCommand extends Command {
 
     /**
      * Marks task as done and prints it to user.
-     * Also saves the updated taskList to storage.
-     * @param taskList List of tasks.
+     * Also saves the updated tasks to storage.
+     * @param tasks List of tasks.
      * @param ui Ui interface for input and output.
      * @param storage Storage for Duke's file operations.
      * @throws DukeException
      */
     @Override
-    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        Task task = taskList.markTask(index);
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        Task task = tasks.markTask(index);
         ui.printWithIndent("Nice! I've marked this task as done:");
         ui.printWithIndent("  " + task);
-        storage.saveFile(taskList);
+        storage.saveFile(tasks);
     }
 }
