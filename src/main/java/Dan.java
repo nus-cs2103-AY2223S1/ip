@@ -1,57 +1,87 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
 public class Dan {
     private static final int MAX_TASK_SIZE = 100;
+    private static final String DATA_FILE = "TestData1";
 
     public static void main(String[] args) {
         //start up sequence
         Scanner sc = new Scanner(System.in);
-        List<Task> tasks = new ArrayList<>(MAX_TASK_SIZE);
-        greet();
+        TaskListReader tlr = new TaskListReader(DATA_FILE);
+        try {
+            List<Task> tasks = tlr.readTaskListFromFile();
+            greet();
 
-        while (true) {
-            String input = sc.nextLine().strip();
-            String action = input.split(" ")[0];
-            try {
-                switch (action) {
-                case "bye":
-                    sayonara();
-                    return;
+            while (true) {
+                String input = sc.nextLine().strip();
+                String action = input.split(" ")[0];
+                try {
+                    switch (action) {
+                    case "bye":
+                        sayonara();
+                        return;
 
-                case "list":
-                    showTasks(tasks);
-                    break;
+                    case "list":
+                        showTasks(tasks);
+                        break;
 
-                case "mark":
-                    markTask(tasks, Integer.parseInt(input.split(" ")[1]));
-                    break;
+                    case "mark":
+                        markTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                        break;
 
-                case "unmark":
-                    unMarkTask(tasks, Integer.parseInt(input.split(" ")[1]));
-                    break;
+                    case "unmark":
+                        unMarkTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                        break;
 
-                case "delete":
-                    deleteTask(tasks, Integer.parseInt(input.split(" ")[1]));
-                    break;
+                    case "delete":
+                        deleteTask(tasks, Integer.parseInt(input.split(" ")[1]));
+                        break;
 
-                case "todo":
-                    //fall through
-                case "deadline":
-                    //fall through
-                case "event":
-                    addTask(tasks, input);
-                    break;
+                    case "todo":
+                        //fall through
+                    case "deadline":
+                        //fall through
+                    case "event":
+                        addTask(tasks, input);
+                        break;
 
-                default:
-                    throw new DanException("I don't really understand what do you mean by that...");
+                    default:
+                        throw new DanException("I don't really understand what do you mean by that...");
+                    }
+                } catch (DanException e) {
+                    printBlock(e.getMessage());
+                } catch (NumberFormatException nfe) {
+                    printBlock("Please use an integer instead");
                 }
-            } catch (DanException e) {
-                printBlock(e.getMessage());
+
+                try {
+                    tlr.writeTaskListToFile(tasks);
+                } catch (IOException ioe) {
+                    printIndent(ioe.getMessage() + "Error when creating saving to data file");
+                }
             }
+        } catch (NoSuchFileException e) {
+            try {
+                printIndent("Task list data not found, creating new data file...");
+                tlr.createFile();
+                printIndent(String.format("Data file created at %s\n Please start me again.", tlr.getPath()));
+            } catch (IOException ioe) {
+                ioe.printStackTrace();
+                printIndent("Error when creating new data file");
+            }
+        } catch (IOException ioe) {
+           ioe.printStackTrace();
+           printIndent("Error when reading current data file");
         }
+        // write list every iteration
+
     }
+
 
     public static void printIndent(String s) {
         System.out.println("    " + s);

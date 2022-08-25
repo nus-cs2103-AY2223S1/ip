@@ -1,4 +1,5 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -15,11 +16,15 @@ public class TaskListReader {
     Tasktype{T,D,E}|Task.isDone{1,0}|Task.Name|(optional)Deadline String
      */
     public static final String SEPARATOR = "%&";
-    private static final String ROOT_PATH = "../../data/";
+    private static final String ROOT_PATH = "src/main/data/";
     private final Path filePath;
 
     public TaskListReader(String fileName) {
         this.filePath = Paths.get(ROOT_PATH + fileName + ".txt");
+    }
+
+    public String getPath() {
+        return this.filePath.toString();
     }
 
     public void createFile() throws IOException {
