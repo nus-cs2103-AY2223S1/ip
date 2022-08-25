@@ -177,7 +177,8 @@ public class Dan {
     }
 
     public static void markTask(List<Task> tasks, int index) throws DanException {
-        if (index >= tasks.size()) {
+        if (index > tasks.size()) {
+            printIndent("tasks.size(): " + tasks.size());
             throw new DanException("This task number doesn't exist!");
         }
         Task task = tasks.get(index - 1);
@@ -187,7 +188,7 @@ public class Dan {
     }
 
     public static void unMarkTask(List<Task> tasks, int index) throws DanException {
-        if (index >= tasks.size()) {
+        if (index > tasks.size()) {
             throw new DanException("This task number doesn't exist!");
         }
         Task task = tasks.get(index - 1);
