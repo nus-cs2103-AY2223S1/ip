@@ -1,8 +1,10 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.Month;
 
 public class Deadlines extends Task {
-    LocalDate byDate;
+    private LocalDate byDate;
     Deadlines(String name, LocalDate byDate) {
         super(name);
         this.byDate = byDate;
@@ -19,6 +21,6 @@ public class Deadlines extends Task {
         int year = byDate.getYear();
         int day = byDate.getDayOfMonth();
         Month month = byDate.getMonth();
-        return "[D]" + super.toString() + "(by: " + day + " " + month + " " + year + ")";
+        return "[D]" + super.toString() + " (by: " + day + " " + month + " " + year + ")";
     }
 }

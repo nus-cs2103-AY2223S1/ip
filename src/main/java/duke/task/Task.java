@@ -1,6 +1,8 @@
+package duke.task;
+
 public abstract class Task {
-    String name;
-    Boolean done = false;
+    protected String name;
+    protected Boolean done = false;
     Task(String name) {
         this.name = name;
     }
