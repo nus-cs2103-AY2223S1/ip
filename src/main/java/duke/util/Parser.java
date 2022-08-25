@@ -42,9 +42,15 @@ public class Parser {
         return getIndexOfFirstOccurrence(input, DELIMITER);
     }
 
-    public static String getFirstWord(String input) {
+    public static String getCommandInstruction(String input) {
         int indexOfFirstWhiteSpace = getIndexOfFirstWhiteSpace(input);
         return input.substring(0, indexOfFirstWhiteSpace);
+    }
+
+    public static String getCommandArgument(String input) {
+        int indexOfFirstWhiteSpace = getIndexOfFirstWhiteSpace(input);
+        String rawArgument = input.substring(indexOfFirstWhiteSpace, input.length());
+        return removeHeadingAndTailingWhiteSpaces(rawArgument);
     }
 
     public static LocalDateTime getByDate(String input)

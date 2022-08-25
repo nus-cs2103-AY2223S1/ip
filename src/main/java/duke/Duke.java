@@ -32,6 +32,9 @@ public class Duke {
     public static final String DELETE_COMMAND_STRING = "delete";
     public static final String DELETE_ERROR_STRING = "Oops! Do check the index range, and the format should be \"delete <index>\"";
     public static final String DELETE_OUTPUT_STRING = "Sure, I have removed this task from the list: ";
+    public static final String FIND_COMMAND_STRING = "find";
+    public static final String FIND_COMMAND_OUTPUT_STRING = "Here are what I found: ";
+
 
     private TaskList taskList;
     private Ui ui;
@@ -67,7 +70,7 @@ public class Duke {
 
             boolean commandFetched = false;
 
-            String firstWord = Parser.getFirstWord(nextLine);
+            String firstWord = Parser.getCommandInstruction(nextLine);
             int index;
 
             try {
@@ -109,6 +112,9 @@ public class Duke {
                         output = taskList.getListInfo();
                         commandFetched = true;
                         break;
+
+                    case (FIND_COMMAND_STRING):
+                        output = taskList.find(Parser.getCommandArgument(nextLine));
 
                     default:
                         output = taskList.addNewTask(nextLine);

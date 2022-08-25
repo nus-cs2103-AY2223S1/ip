@@ -24,7 +24,7 @@ public abstract class Task {
     public static Task createFromCommand(String command)
             throws DukeCommandFormatException, DukeTaskTitleMissingException, DukeTaskDateTimeMissingException,
             DukeDateTimeFormatException {
-        String firstWord = Parser.getFirstWord(command);
+        String firstWord = Parser.getCommandInstruction(command);
 
         String taskTitle = "";
         LocalDateTime dateTime;
@@ -103,5 +103,9 @@ public abstract class Task {
                     + dateTime;
         }
         return output;
+    }
+
+    public boolean contains(String keyword) {
+        return taskTitle.contains(keyword);
     }
 }
