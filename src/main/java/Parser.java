@@ -55,6 +55,9 @@ public class Parser {
                         throw new InvalidTaskIndexException();
                     }
                     taskList.deleteTask(Integer.parseInt(inputs[1]));
+                } else if (command.equals(Duke.Command.FIND.name().toLowerCase())) {
+                    // inputs[1] is the keyword (do not accept keywords)
+                    taskList.findTasks(inputs[1]);
                 } else {
                     // when none of the commands match
                     throw new UnknownCommandException();

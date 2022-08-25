@@ -1,0 +1,4 @@
+T | 0 | task 1
+T | 1 | task 2
+T | 1 | tasks3
+T | 0 | taks 4

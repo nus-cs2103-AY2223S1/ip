@@ -7,17 +7,13 @@ import java.util.List;
 
 public class Duke {
     public enum Command {
-        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
+        BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, FIND
     }
 
-    // IMPORTANT: Configure isTest to true if you are running ./runtest.sh
+    // IMPORTANT: Configure isTest to true if you are running ./runtest.sh in text-ui-test
     private static final String JAR_FILE_PATH = "data/tasks.txt";
     private static final Boolean isTest = false;
-    // Comment out the conditional expression and add in JAR_FILE_PATH if running on JAR
-    private static final String FILE_PATH = JAR_FILE_PATH;
-//            isTest
-//            ? "../src/main/java/data/tasksTest.txt"
-//            : "src/main/java/data/tasks.txt";
+    private static final String FILE_PATH = isTest ? "data/tasksUiTest.txt" : JAR_FILE_PATH;
 
     private static Ui ui = new Ui();
     private static TaskList taskList = new TaskList();
