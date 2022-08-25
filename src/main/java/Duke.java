@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,8 +12,13 @@ public class Duke {
 
     public static void main(String[] args) {
         System.out.println("Hello! I'm SoCCat\nWhat can I do for you?");
-        new Duke().start();
+        try {
+//            new Duke().createNewDirectory();
+        } catch (Exception e) {
+            
+        }
     }
+    
 
     private static String numberOfTasks() {
         return "Now you have " + index +  (index < 2 ? " task" : " tasks") + " in your list.";
@@ -143,6 +152,13 @@ public class Duke {
         } catch (NumberFormatException | IndexOutOfBoundsException ex) {
             throw new DukeIndexOutOfBoundsException(listOfTasks.size());
         }
+    }
+    
+    private void createNewDirectory(String input) throws IOException {
+        Files.createDirectories(Paths.get("data"));
+        File file = new File("data/Duke.txt");
+        file.createNewFile();
+//        Files.write(file, input);
     }
     
 }
