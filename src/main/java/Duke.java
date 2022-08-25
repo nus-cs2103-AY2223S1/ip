@@ -1,3 +1,7 @@
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Duke {
@@ -8,7 +12,6 @@ public class Duke {
     private static final String COMPLETED_TASK = "Nice! You've completed this task. I'll mark it as done.";
     private static final String incompleteTask = "Alright this task has been marked as undone.";
     private static final String addedTask = "I've added this task to your list.\n\tHere you go: ";
-    private static int totalTasks = 0;
 
     //Exceptions:
     private static final String NoInputMessage = "You didn't say what I should do! (ಠ_ʖಠ)";
@@ -45,7 +48,7 @@ public class Duke {
     }
 
     private static void markTask(int taskIndex) throws DukeException {
-        if (taskIndex > 0 && taskIndex <= totalTasks) {
+        if (taskIndex > 0 && taskIndex <= tasks.size()) {
             Task current = tasks.get(taskIndex - 1);
             current.markDone();
             System.out.println(messageFormatter(COMPLETED_TASK + "\n\t" + " " + current));
@@ -53,7 +56,7 @@ public class Duke {
     }
 
     private static void unmarkTask(int taskIndex) throws DukeException {
-        if (taskIndex > 0 && taskIndex <= totalTasks) {
+        if (taskIndex > 0 && taskIndex <= tasks.size()) {
             Task current = tasks.get(taskIndex - 1);
             current.unmark();
             System.out.println(messageFormatter(incompleteTask + "\n\t" + " " + current));
@@ -61,18 +64,17 @@ public class Duke {
     }
 
     private static void deleteTask(int taskNumber) throws DukeException {
-        if (taskNumber > 0 && taskNumber <= totalTasks) {
-            totalTasks--;
+        if (taskNumber > 0 && taskNumber <= tasks.size()) {
             String message = "Deleted: " + tasks.get(taskNumber - 1) + "\n\tYou have "
-                    + totalTasks + " task(s) remaining.";
+                    + tasks.size() + " task(s) remaining.";
             tasks.remove(taskNumber - 1);
             System.out.println(messageFormatter(message));
         } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
     }
 
     private static void addTaskMessage(Task task) {
-        totalTasks++;
-        String message = addedTask + task.toString() + "\n\tYou have " + totalTasks + " tasks in your list.";
+        tasks.size();
+        String message = addedTask + task.toString() + "\n\tYou have " + tasks.size() + " tasks in your list.";
         System.out.println(messageFormatter(message));
     }
 
@@ -84,7 +86,7 @@ public class Duke {
 
     private static void createToDo(String input) throws DukeException {
         if (!isEmptyCommand(input, "todo".length())) {
-            Task newTask = Task.createTask(input, null, "todo");
+            Task newTask = new ToDo(input.split(" ")[1]);
             tasks.add(newTask);
             addTaskMessage(newTask);
         } else throw new DukeException(messageFormatter(EmptyCommandMessage + " todo"));
@@ -92,9 +94,9 @@ public class Duke {
 
     private static void createDeadline(String input) throws DukeException {
         if (!isEmptyCommand(input, "deadline".length())) {
-            String date = input.split("/")[1];
+            String date = input.split("/by ")[1];
             String name = input.split(" ")[1];
-            Task newTask = Task.createTask(name, date, "deadline");
+            Task newTask = new Deadline(name, date);
             tasks.add(newTask);
             addTaskMessage(newTask);
         } else throw new DukeException(messageFormatter(EmptyCommandMessage + " deadline"));
@@ -102,9 +104,9 @@ public class Duke {
 
     private static void createEvent(String input) throws DukeException {
         if (!isEmptyCommand(input, "event".length())) {
-            String date = input.split("/")[1];
+            String date = input.split("/by ")[1];
             String name = input.split(" ")[1];
-            Task newTask = Task.createTask(name, date, "event");
+            Task newTask = new Event(name, date);
             tasks.add(newTask);
             addTaskMessage(newTask);
         } else throw new DukeException(messageFormatter(EmptyCommandMessage + " event"));
@@ -153,6 +155,10 @@ public class Duke {
 
     public static void main(String[] args) {
         start();
-
+//        String test = "deadline csdfcds /by 02/10/2000 1822";
+//        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm");
+//        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy kkmm");
+//        //LocalDateTime dateTime = LocalDateTime.parse(test.split("/by")[1], inputFormatter);
+//        System.out.println(test.split("/by ")[1]);
     }
 }
