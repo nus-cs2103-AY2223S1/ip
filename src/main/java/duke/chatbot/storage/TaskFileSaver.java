@@ -17,20 +17,9 @@ public class TaskFileSaver {
         try {
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.append(taskList.encodeAll());
-
             fileWriter.close();
         } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void reset() {
-        try {
-            FileWriter fileWriter = new FileWriter(file);
-
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }

@@ -39,7 +39,8 @@ public class TaskList extends ArrayList<Task> {
     public String toString() {
         String result = "";
         for (int entry = 1; entry < this.size() + 1; entry++) {
-            result += "\t" + entry + "." + this.get(entry).toString() + "\n";
+            result += "\t" + entry + "."
+                    + this.get(entry).toString() + "\n";
         }
         return result;
     }
@@ -64,7 +65,6 @@ public class TaskList extends ArrayList<Task> {
         for (int entry = 1; entry < this.size() + 1; entry++) {
             result += this.get(entry).encode() + "\n";
         }
-
         return result;
     }
 }

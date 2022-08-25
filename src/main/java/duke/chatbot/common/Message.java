@@ -1,6 +1,6 @@
 package duke.chatbot.common;
 
-public class MessageConstants {
+public class Message {
     public static final String MESSAGE_WELCOME = "\t"
             + " ,-----.,--.               ,--.    ,--.                  " + "\n" + "\t"
             + "'  .--./|  ,---.  ,--,--.,-'  '-.,-'  '-.,--.,--. ,---.  " + "\n" + "\t"
@@ -17,4 +17,6 @@ public class MessageConstants {
     public static final String MESSAGE_UNMARKED = "Alright, I've unmarked this for you:";
     public static final String MESSAGE_DELETED = "Hey! I've deleted this task as requested:";
     public static final String MESSAGE_CHECK_DATE = "These are the tasks that correspond to the date:";
+    public static final String MESSAGE_INIT_FAILED = "An unexpected error has occured,"
+            + " try running again or call technical support!";
 }

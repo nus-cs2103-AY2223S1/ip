@@ -1,15 +1,13 @@
 package duke.chatbot.data.task;
 
-import duke.chatbot.data.exception.InvalidInputException;
-
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import static duke.chatbot.common.DateFormat.DATE_OUTPUT_FORMAT;
+import static duke.chatbot.common.DateFormat.DATE_TIME_INPUT_FORMAT;
+import static duke.chatbot.common.DateFormat.TIME_OUTPUT_FORMAT;
 
 public abstract class TimedTask extends Task {
-    public static final DateTimeFormatter DATE_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
-    public static final DateTimeFormatter TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("HHmm");
-
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
     public TimedTask(String description, LocalDateTime dateTime) {
         super(description);
@@ -22,21 +20,19 @@ public abstract class TimedTask extends Task {
     }
 
     public boolean hasMatchingDate(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        return dateTime.toLocalDate().format(formatter).equals(date);
+        return dateTime.toLocalDate().format(DATE_TIME_INPUT_FORMAT).equals(date);
     }
 
     protected String getDateString() {
-        return dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return dateTime.format(DATE_OUTPUT_FORMAT);
     }
 
     protected String getTimeString() {
-        return dateTime.format(DateTimeFormatter.ofPattern("HHmm")) + "hrs";
+        return dateTime.format(TIME_OUTPUT_FORMAT) + "hrs";
     }
 
     @Override
     public String encode() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-        return super.encode() + ",,," + dateTime.format(formatter);
+        return super.encode() + ",,," + dateTime.format(DATE_TIME_INPUT_FORMAT);
     }
 }

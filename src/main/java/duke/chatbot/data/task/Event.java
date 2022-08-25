@@ -1,7 +1,5 @@
 package duke.chatbot.data.task;
 
-import duke.chatbot.data.exception.InvalidInputException;
-
 import java.time.LocalDateTime;
 
 public class Event extends TimedTask {
@@ -15,7 +13,9 @@ public class Event extends TimedTask {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + super.getDateString() + ", " + super.getTimeString() + ")";
+        return "[E]" + super.toString() + " (at: "
+                + super.getDateString() + ", "
+                + super.getTimeString() + ")";
     }
 
     @Override

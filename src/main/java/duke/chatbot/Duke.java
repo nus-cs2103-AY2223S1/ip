@@ -11,10 +11,7 @@ import duke.chatbot.ui.Ui;
 
 import java.io.FileNotFoundException;
 
-
 public class Duke {
-    private static final String MESSAGE_SEPARATOR = "\t____________________________________________________________";
-
     private Storage storage;
     private TaskList taskList;
     private Ui ui;
@@ -51,7 +48,6 @@ public class Duke {
             ui.printInitErrorMessage();
             exit();
         }
-
         ui.greetUser();
         applicationLoop();
         exit();
