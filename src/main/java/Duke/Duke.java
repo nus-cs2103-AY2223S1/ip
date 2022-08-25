@@ -70,6 +70,9 @@ public class Duke {
                 case LIST:
                     listTasks();
                     break;
+                case FIND:
+                    findTasks(input.getMainData());
+                    break;
                 case CHECK:
                     checkTask(input.getMainData());
                     break;
@@ -93,7 +96,7 @@ public class Duke {
                 }
             } catch (InvalidCommandException err) {
                 ui.showError(String.format("%s is not a valid command", err.getMessage()));
-            } catch (InvalidTaskNameException | InvalidIndexException err) {
+            } catch (InvalidTaskNameException | InvalidIndexException | InvalidFindException err) {
                 ui.showError(err.getMessage());
             } catch (InvalidSecondaryCommandException err) {
                 ui.showError(String.format("Please include %s command and the necessary information\n", err.getMessage()));
@@ -123,7 +126,13 @@ public class Duke {
      */
     private void listTasks() {
         ui.listTasks(tasks);
-        ui.lineDivider();
+    }
+
+    /**
+     * Find all current task in the taskList base on a string.
+     */
+    private void findTasks(String string) {
+        ui.findTasks(tasks, string);
     }
 
     /**

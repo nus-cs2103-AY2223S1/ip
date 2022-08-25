@@ -33,6 +33,7 @@ public class Ui {
         System.out.printf("- %s (task name) %s (date) \n",
                 Command.EVENT.getValue(), SecondaryCommand.AT.getValue());
         System.out.printf("- %s\n", Command.LIST.getValue());
+        System.out.printf("- %s\n", Command.FIND.getValue());
         System.out.printf("- %s (index)\n", Command.CHECK.getValue());
         System.out.printf("- %s (index)\n", Command.UNCHECK.getValue());
         System.out.printf("- %s (index)\n", Command.DELETE.getValue());
@@ -73,6 +74,27 @@ public class Ui {
             output.append(String.format("%d) %s\n", i + 1, taskList.getTask(i)));
         }
         output.append("Number of tasking: ").append(taskList.getNumberOfTask());
+        System.out.println(output);
+    }
+
+    /**
+     * A function that list all the tasks in the list based on a search.
+     *
+     * @param taskList task list that contains tasks to be displayed.
+     * @param search   contains the string we are interested in.
+     */
+    public void findTasks(TaskList taskList, String search) {
+        StringBuilder output = new StringBuilder();
+        int count = 0;
+        output.append("\nSearch Results\n");
+        for (int i = 0; i < taskList.getNumberOfTask(); i++) {
+            Task task = taskList.getTask(i);
+            if (task.getTaskName().contains(search)) {
+                output.append(String.format("%d) %s\n", i + 1, task));
+                count += 1;
+            }
+        }
+        output.append("Number of tasking: ").append(count);
         System.out.println(output);
     }
 
