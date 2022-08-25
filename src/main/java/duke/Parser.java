@@ -76,6 +76,14 @@ public class Parser {
                 tl.delete(array, num, counter);
                 counter--;
                 System.out.println("_________________________________________________________________________");
+
+            } else if(firstword.equals("find")) {
+                System.out.println("_________________________________________________________________________");
+                String str = arr[1];
+                ops.findWord(str,array,counter);
+                System.out.println("_________________________________________________________________________");
+
+
             } else {
                 try {
                     ops.randomword(output);
