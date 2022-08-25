@@ -5,11 +5,30 @@ import scottie.ui.Ui;
 
 import java.util.Map;
 
+/**
+ * Encapsulates the mark instruction which is used to
+ * mark a task as done.
+ */
 class MarkInstruction extends Instruction {
+    /**
+     * Constructs a MarkInstruction with the given arguments.
+     *
+     * @param mainArgument The main argument provided to this instruction.
+     * @param flagArgumentsMap The map between flags and values provided to
+     *                         this instruction.
+     */
     MarkInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         super(mainArgument, flagArgumentsMap);
     }
 
+    /**
+     * Marks a Task in the given TaskList as done.
+     * The main argument of this instruction is interpreted as
+     * the index of the task to mark.
+     *
+     * @param taskList The TaskList containing the Task to mark.
+     * @param ui The Ui used to display messages to the user.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (this.hasMainArgument()) {

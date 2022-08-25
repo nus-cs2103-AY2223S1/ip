@@ -7,9 +7,17 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Handles storing and retrieving task data in a data file.
+ */
 class Storage {
     private static final Path TASKS_DATA_FILE_PATH = Paths.get("data", "tasks.txt");
 
+    /**
+     * Loads the task data lines from the data file.
+     *
+     * @return A List of lines from the data file.
+     */
     List<String> loadTasksData() {
         try {
             if (Files.exists(TASKS_DATA_FILE_PATH)) {
@@ -24,6 +32,12 @@ class Storage {
         return List.of();
     }
 
+    /**
+     * Writes the given list of tasks to the data file.
+     * The file is overwritten every time.
+     *
+     * @param tasks The list of tasks to write to the file.
+     */
     void saveTasks(List<Task> tasks) {
         try {
             List<String> encodedTasks = tasks.stream().map(Task::toEncodedString).collect(Collectors.toList());
