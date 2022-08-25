@@ -1,5 +1,10 @@
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.ParseException;
 
 public class Storage {
     private static File file;
@@ -35,24 +40,42 @@ public class Storage {
                 loadedList.add(input);
             }
             else if(str.charAt(1) == 'D') {
-                int index = str.indexOf("/");
                 int openBracket = str.indexOf('(');
                 int closeBracket = str.indexOf(')');
                 String taskName = str.substring(7, openBracket - 1);
                 deadline input = new deadline(taskName);
-                input.setDate(new formatDate(str.substring(openBracket + 5, closeBracket)));
+
+                SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat from = new SimpleDateFormat("MMM dd yyyy");
+                try {
+                    Date date = from.parse(str.substring(openBracket + 5, closeBracket));
+                    String result = to.format(date);
+                    input.setDate(new formatDate(result));
+                } catch (ParseException e) {
+                    System.out.println("Invalid Date Format!");
+                }
+
                 if (str.charAt(4) == 'X') {
                     input.markAsDone();
                 }
                 loadedList.add(input);
             }
             else if(str.charAt(1) == 'E') {
-                int index = str.indexOf("/");
                 int openBracket = str.indexOf('(');
                 int closeBracket = str.indexOf(')');
                 String taskName = str.substring(7, openBracket - 1);
                 event input = new event(taskName);
-                input.setDay(new formatDate(str.substring(openBracket + 5, closeBracket)));
+
+                SimpleDateFormat to = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat from = new SimpleDateFormat("MMM dd yyyy");
+                try {
+                    Date date = from.parse(str.substring(openBracket + 5, closeBracket));
+                    String result = to.format(date);
+                    input.setDay(new formatDate(result));
+                } catch (ParseException e) {
+                    System.out.println("Invalid Date Format!");
+                }
+
                 if (str.charAt(4) == 'X') {
                     input.markAsDone();
                 }
