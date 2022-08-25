@@ -1,9 +1,12 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
-    public String deadline;
+    public LocalDate deadline;
 
     public Deadline(String details, String deadline) {
         super(details);
-        this.deadline = deadline;
+        this.deadline = LocalDate.parse(deadline);
     }
 
     @Override
@@ -13,7 +16,7 @@ public class Deadline extends Task {
 
     @Override
     public String getDetails() {
-        return details + " (by: " + deadline + ")";
+        return details + " (by: " + deadline.format(DateTimeFormatter.ofPattern("dd MMM yyyy")) + ")";
     }
 
     @Override

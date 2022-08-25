@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -63,13 +64,21 @@ public class Duke {
         case "deadline":
             if (params.equals("")) return "Deadline description can't be empty.";
             String[] splitDeadline = splitOnFirst(params, " /by ");
-            tasks.add(new Deadline(splitDeadline[0], splitDeadline[1]));
+            try {
+                tasks.add(new Deadline(splitDeadline[0], splitDeadline[1]));
+            } catch (DateTimeParseException e) {
+                return "Invalid date! (yyyy-mm-dd)";
+            }
             saveToFile();
             return "Added new deadline: " + tasks.get(tasks.size() - 1);
         case "event":
             if (params.equals("")) return "Event description can't be empty.";
             String[] splitEvent = splitOnFirst(params, " /at ");
-            tasks.add(new Event(splitEvent[0], splitEvent[1]));
+            try {
+                tasks.add(new Event(splitEvent[0], splitEvent[1]));
+            } catch (DateTimeParseException e) {
+                return "Invalid date! (yyyy-mm-dd)";
+            }
             saveToFile();
             return "Added new event: " + tasks.get(tasks.size() - 1);
         default:
@@ -114,7 +123,11 @@ public class Duke {
         try {
             Scanner saved = new Scanner(new File("tasks.txt"));
             while (saved.hasNextLine()) {
-                tasks.add(Task.fromEncoded(saved.nextLine()));
+                try {
+                    tasks.add(Task.fromEncoded(saved.nextLine()));
+                } catch (DateTimeParseException e) {
+                    System.out.println("<failed to load a task from file>");
+                }
             }
             System.out.println("<loaded " + tasks.size() + " tasks from file>");
             saved.close();
