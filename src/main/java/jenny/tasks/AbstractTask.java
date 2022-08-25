@@ -1,27 +1,29 @@
-package JennyTasks;
+package jenny.tasks;
 
 /**
- * An abstract class {@code JennyTask} that serves as a foundation for all other tasks.
+ * An abstract class {@code AbstractTask} that serves as a foundation for all other tasks.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
-public abstract class JennyTask {
+public abstract class AbstractTask {
     protected final String description;
     protected boolean isDone;
 
     /**
-     * Constructor of a {@code JennyTask}.
+     * Constructor of a {@code AbstractTask}.
+     *
      * @param description Description of the task.
      */
-    public JennyTask(String description) {
+    public AbstractTask(String description) {
         this.description = description;
         this.isDone = false;
     }
 
     /**
      * Returns the state of the task as a string.
+     *
      * @return the state of the task as a string.
      */
     public String icon() {
@@ -30,14 +32,16 @@ public abstract class JennyTask {
 
     /**
      * Sets the state (boolean) the task.
+     *
      * @param isDone the state (boolean) the task.
      */
-    public void isDone(boolean isDone) {
+    public void markAsDone(boolean isDone) {
         this.isDone = isDone;
     }
 
     /**
-     * Returns a comma delimited {@code String} containing data of the {@code JennyTask}.
+     * Returns a comma delimited {@code String} containing data of the {@code AbstractTask}.
+     *
      * @return a comma delimited {@code String}.
      */
     public String save() {
@@ -48,6 +52,7 @@ public abstract class JennyTask {
 
     /**
      * Returns the description of the task as a string.
+     *
      * @return the description of the task as a string.
      */
     @Override

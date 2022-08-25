@@ -1,29 +1,31 @@
-package JennyTasks;
+package jenny.tasks;
 
-import Exceptions.EventJennyTaskException;
+import jenny.exceptions.TaskException;
 
 /**
- * A EventJennyTask to complete.
+ * A Event to complete.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
-public class EventJennyTask extends JennyTask {
+public class Event extends AbstractTask {
     private final String dueDate;
 
     /**
-     * Constructor of a EventJennyTask.
+     * Constructor of a Event.
      *
      * @param description description of the task.
      * @param dueDate     due date of the task.
      */
-    public EventJennyTask(String description, String dueDate) {
+    public Event(String description, String dueDate) {
         super(description);
         if (description != null && description.trim().isEmpty()) {
-            throw new EventJennyTaskException("☹ OOPS!!! The description of a event cannot be empty.");
+            throw new TaskException(String.format("%s: The description of this task cannot be empty.",
+                    this.getClass().getSimpleName()));
         } else if (dueDate != null && dueDate.trim().isEmpty()) {
-            throw new EventJennyTaskException("☹ OOPS!!! The due date of a event cannot be empty.");
+            throw new TaskException(String.format("%s: The due date of this task cannot be empty.",
+                    this.getClass().getSimpleName()));
         }
         this.dueDate = dueDate;
     }

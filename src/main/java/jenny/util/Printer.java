@@ -1,16 +1,18 @@
-import JennyTasks.JennyTask;
+package jenny.util;
+
+import jenny.tasks.AbstractTask;
 
 import java.util.ArrayList;
 
 /**
- * JennyPrinter to print stuff to the console.
+ * jenny.util.Printer to print stuff to the console.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
 
-public class JennyPrinter {
+public final class Printer {
     /**
      * Prints a horizontal line.
      */
@@ -32,7 +34,7 @@ public class JennyPrinter {
      */
     public static void greet() {
         print_line();
-        print("Hello! I'm JennyBot");
+        print("Hello! I'm jenny.JennyBot");
         print("What can I do for you?");
         print_line();
     }
@@ -58,15 +60,27 @@ public class JennyPrinter {
     }
 
     /**
+     * Prints a message.
+     *
+     * @param scope location of the message.
+     * @param message a message.
+     */
+    public static void echo(String scope, String message) {
+        print_line();
+        print(String.format("%s: %s", scope, message));
+        print_line();
+    }
+
+    /**
      * Prints list of JennyTasks.
      *
-     * @param jennyTasks list of JennyTasks.
+     * @param abstractTasks list of JennyTasks.
      */
-    public static void list(ArrayList<JennyTask> jennyTasks) {
+    public static void list(ArrayList<AbstractTask> abstractTasks) {
         print_line();
         int i = 1;
-        for (JennyTask jennyTask : jennyTasks) {
-            print(i++ + "." + jennyTask.toString());
+        for (AbstractTask abstractTask : abstractTasks) {
+            print(i++ + "." + abstractTask.toString());
         }
         print_line();
     }
@@ -74,7 +88,7 @@ public class JennyPrinter {
     /**
      * Prints a mark message.
      *
-     * @param taskItem string representation of a JennyTask.
+     * @param taskItem string representation of a AbstractTask.
      */
     public static void mark(String taskItem) {
         print_line();
@@ -86,7 +100,7 @@ public class JennyPrinter {
     /**
      * Prints unmark message.
      *
-     * @param taskItem string representation of a JennyTask.
+     * @param taskItem string representation of a AbstractTask.
      */
     public static void unmark(String taskItem) {
         print_line();
@@ -98,7 +112,7 @@ public class JennyPrinter {
     /**
      * Prints an add message.
      *
-     * @param taskItem string representation of a JennyTask.
+     * @param taskItem string representation of a AbstractTask.
      * @param size     size of the list.
      */
     public static void add(String taskItem, int size) {
@@ -112,7 +126,7 @@ public class JennyPrinter {
     /**
      * Prints a delete message.
      *
-     * @param taskItem string representation of a JennyTask.
+     * @param taskItem string representation of a AbstractTask.
      * @param size     size of the list.
      */
     public static void delete(String taskItem, int size) {

@@ -1,25 +1,26 @@
-package JennyTasks;
+package jenny.tasks;
 
-import Exceptions.TodoJennyTaskException;
+import jenny.exceptions.TaskException;
 
 /**
- * A TodoJennyTask to complete.
+ * A Todo to complete.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
-public class TodoJennyTask extends JennyTask {
+public class Todo extends AbstractTask {
 
     /**
-     * Constructor of a TodoJennyTask.
+     * Constructor of a Todo.
      *
      * @param description description of the task.
      */
-    public TodoJennyTask(String description) {
+    public Todo(String description) {
         super(description);
         if (description.equals("")) {
-            throw new TodoJennyTaskException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new TaskException(String.format("%s: The description of this task cannot be empty.",
+                    this.getClass().getSimpleName()));
         }
     }
 
