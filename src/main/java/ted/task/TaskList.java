@@ -67,4 +67,18 @@ public class TaskList {
         tasks.remove(i - 1);
         return task;
     }
+
+    public String findTasks(String keyword) {
+        String temp = "Here are the matching tasks in your list:\n";
+        int count = 1;
+
+        for (int i = 0; i < tasks.size(); i++) {
+            String toSearch = tasks.get(i).toString();
+            if (toSearch.contains(keyword)) {
+                temp = temp + count + ". " + toSearch + "\n";
+                count++;
+            }
+        }
+        return temp;
+    }
 }

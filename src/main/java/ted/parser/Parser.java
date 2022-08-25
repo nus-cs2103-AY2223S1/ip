@@ -24,6 +24,9 @@ public class Parser {
                     }
                     c = new ListCommand();
                     break;
+                case "find":
+                    c = new FindCommand(temp[1]);
+                    break;
                 case "mark":
                     if (temp.length == 1) {
                         throw new TedException("Oh no, please indicate task to mark T_T\n");
