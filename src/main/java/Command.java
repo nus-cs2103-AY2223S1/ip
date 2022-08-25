@@ -1,8 +1,18 @@
 abstract class Command {
     private final Mia context;
+    private final boolean isExit;
 
     private Command(Mia context) {
+        this(context, false);
+    }
+
+    private Command(Mia context, boolean isExit) {
         this.context = context;
+        this.isExit = isExit;
+    }
+
+    public boolean shouldExitContext() {
+        return isExit;
     }
 
     public static Command from(Mia context, String input) throws IllegalArgumentException {
@@ -55,7 +65,7 @@ abstract class Command {
 
     private static class ExitCommand extends Command {
         private ExitCommand(Mia context) {
-            super(context);
+            super(context, true);
         }
 
         @Override
