@@ -62,7 +62,7 @@ public class Duke {
 
             String type = lineComponents[0];
             boolean doneStatus = lineComponents[1].equals("X");
-            //DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
             switch (type) {
                 case "T ":
@@ -73,7 +73,7 @@ public class Duke {
                 case "D ":
                     Deadline d = new Deadline(
                             lineComponents[2],
-                            lineComponents[3].trim()
+                            LocalDateTime.parse(lineComponents[3].trim(), dateFormat)
                     );
                     d.setIsDone(doneStatus);
                     tasks.add(d);
@@ -81,7 +81,7 @@ public class Duke {
                 case "E ":
                     Event e = new Event(
                             lineComponents[2],
-                            lineComponents[3].trim()
+                            LocalDateTime.parse(lineComponents[3].trim(), dateFormat)
                     );
                     e.setIsDone(doneStatus);
                     tasks.add(e);
