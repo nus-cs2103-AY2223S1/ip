@@ -9,9 +9,16 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Represents a storage class for I/O operations.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Returns a storage instance.
+     * @param filePath Path to the file duke.txt.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
