@@ -34,33 +34,6 @@ public class Cheese {
   }
 
   /**
-   * Checks if given command is valid
-   * 
-   * @param command given command from the user
-   * @throws CheeseException if given command is invalid
-   */
-  private static void validateCommand(String command) throws CheeseException {
-    for (Command cmd : Command.values()) {
-      if (cmd.name().equals(command)) {
-        return;
-      }
-    }
-    throw new CheeseException();
-  }
-
-  /**
-   * Checks if given command has no arguments
-   * 
-   * @param inputArray array containing user input after splitting by space
-   * @throws CheeseException if given command contains extra arguments
-   */
-  private static void validateOneWordCommand(String[] inputArray) throws CheeseException {
-    if (inputArray.length != 1) {
-      throw new CheeseException();
-    }
-  }
-
-  /**
    * Gets task from list
    * 
    * @param inputArray array containing user input after splitting by space

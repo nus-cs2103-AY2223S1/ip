@@ -10,8 +10,7 @@ public class Parser {
           return new ByeCommand();
         case "list":
           validateCommandHasNoArguments(fullCommandArray);
-          taskList.printTaskList();
-          break;
+          return new ListCommand();
         case mark:
           taskList.markTaskAsDone(Integer.parseInt(inputArray[1]) - 1);
           taskList.saveTaskList();
