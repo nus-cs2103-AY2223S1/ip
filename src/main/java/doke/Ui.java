@@ -5,12 +5,12 @@ package doke;
  */
 public class Ui {
 
-    private static String MESSAGE_HELLO = "_________________________ \n" + "    Hi, my name is Doke" +
-            "\n" + "    What can I do for you? \n" + "    Enter a String!! \n"
+    private static final String MESSAGE_HELLO = "_________________________ \n" + "    Hi, my name is Doke"
+            + "\n" + "    What can I do for you? \n" + "    Enter a String!! \n"
             + "_________________________" + "\n";
 
-    private static String MESSAGE_BYE ="_________________________ \n" + "    Bye bye! \n" +
-            "_________________________ \n";
+    private static final String MESSAGE_BYE = "_________________________ \n" + "    Bye bye! \n"
+            + "_________________________ \n";
 
     /**
      * A method to print out the message to the terminal

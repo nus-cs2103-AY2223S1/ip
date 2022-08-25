@@ -1,13 +1,15 @@
 package doke;
 
-import java.util.*;
+//import java.util.*;
+
+import java.util.Scanner;
 
 /**
  * A class to represent the Doke program
  */
 public class Doke {
 
-    public static final String dokeFilePath = "src/main/java/data/doke.txt";
+    protected static final String DOKE_FILE_PATH = "src/main/java/data/doke.txt";
 
     /**
      * A main method which runs the Doke program.
@@ -22,7 +24,7 @@ public class Doke {
         Parser parser = new Parser();
         TaskList taskList;
 
-        ui.printOut("full path: " + Storage.dokeFile.getAbsolutePath());
+        ui.printOut("full path: " + Storage.DOKE_FILE.getAbsolutePath());
 
         ui.printOut("hello");
 

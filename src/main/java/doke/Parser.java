@@ -67,36 +67,36 @@ public class Parser {
             int num = Miscellaneous.toInt(temp[1]);
             Task current = taskList.get(num);
             String message;
-            if(action.equals("mark")) {
+            if (action.equals("mark")) {
                 try {
                     current.markDone();
-                    storage.updateFile(taskList.getList());
-                    message = "_________________________ \n" + "I've marked this task as done: \n" +
-                            current.toString() + "\n _________________________ \n";
+                    storage.updateFile(taskList.getList(), ui);
+                    message = "_________________________ \n" + "I've marked this task as done: \n"
+                            + current.toString() + "\n _________________________ \n";
                     ui.printOut(message);
                 } catch (DokeException a) {
-                    message = "_________________________ \n" + "Task is already marked done: \n" +
-                            current.toString() + "\n _________________________ \n";
+                    message = "_________________________ \n" + "Task is already marked done: \n"
+                            + current.toString() + "\n _________________________ \n";
                     ui.printOut(message);
                 }
-            } else if(action.equals("unmark")) {
+            } else if (action.equals("unmark")) {
                 try {
                     current.markNotDone();
-                    storage.updateFile(taskList.getList());
-                    message = "_________________________ \n" + "I've marked this task not done: \n" +
-                            current.toString() + "\n _________________________ \n";
+                    storage.updateFile(taskList.getList(), ui);
+                    message = "_________________________ \n" + "I've marked this task not done: \n"
+                            + current.toString() + "\n _________________________ \n";
                     ui.printOut(message);
                 } catch (DokeException a) {
-                    message = "_________________________ \n" + "This task is already not marked done: \n" +
-                            current.toString() + "\n _________________________ \n";
+                    message = "_________________________ \n" + "This task is already not marked done: \n"
+                            + current.toString() + "\n _________________________ \n";
                     ui.printOut(message);
                 }
-            } else if(action.equals("delete")) {
+            } else if (action.equals("delete")) {
                 taskList.delete(num);
-                storage.updateFile(taskList.getList());
-                message = "_________________________ \n" + "This task has been removed \n" +
-                        current.toString() + "\n" + "Now you have " + taskList.getSize() +
-                        " tasks!! "+ "\n _________________________ \n";
+                storage.updateFile(taskList.getList(), ui);
+                message = "_________________________ \n" + "This task has been removed \n"
+                        + current.toString() + "\n" + "Now you have " + taskList.getSize()
+                        + " tasks!! " + "\n _________________________ \n";
                 ui.printOut(message);
             }
 
@@ -104,7 +104,7 @@ public class Parser {
         }
 
         //handle the case if the task adding action is valid
-        if (action.equals("todo") || action.equals("deadline") || action.equals("event")){
+        if (action.equals("todo") || action.equals("deadline") || action.equals("event")) {
             String word = "";
             String time = "";
             int i = 1;
@@ -142,15 +142,15 @@ public class Parser {
                 addition = new Events(word, time);
                 taskList.add(addition);
             }
-            ui.printOut("_________________________ \n" + "added: " + addition.toString() + "\n" +
-                    "Nice, now you have " + taskList.getSize() + " tasks!! \n" +
-                    "_________________________" +"\n");
+            ui.printOut("_________________________ \n" + "added: " + addition.toString() + "\n"
+                    + "Nice, now you have " + taskList.getSize() + " tasks!! \n"
+                    + "_________________________" + "\n");
 
             try {
-                storage.writeToFile( Storage.createWordForFile(addition));
+                storage.writeToFile(Storage.createWordForFile(addition));
             } catch (IOException e) {
-                ui.printOut("_________________________ \n" + "Something went wrong, try again" +
-                        "\n _________________________ \n");
+                ui.printOut("_________________________ \n" + "Something went wrong, try again"
+                        + "\n _________________________ \n");
 
             }
             return true;
