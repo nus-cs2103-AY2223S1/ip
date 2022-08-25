@@ -72,7 +72,7 @@ public class Parser {
         } catch (DateTimeParseException e) {
             System.out.println(e);
             throw new DukeException("Please enter a valid date format:\n"
-                    + "day/month/year");
+                    + "day/month/year > dd/mm/yyyy");
         }
     }
 
@@ -91,7 +91,7 @@ public class Parser {
         } catch (DateTimeParseException e) {
             System.out.println(e);
             throw new DukeException("Please enter a valid date and time format:\n"
-                    + "day/month/year <24 hour time HH:mm>");
+                    + "day/month/year 24 hour time > dd/mm/yyyy HH:mm");
         }
     }
 
