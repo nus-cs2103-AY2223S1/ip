@@ -1,14 +1,15 @@
+package exceptions;
+
 /**
- * Custom exception only used in Duke chatbot
+ * Custom exception only used in chatbot
  */
 public class DukeException extends Exception {
     /**
-     * A DukeException will take some errorString which will be printed to
-     * the console if thrown
+     * Takes some errorString which will be printed to console if thrown
      *
      * @param errorString The specified error message to be displayed.
      */
-    DukeException(String errorString) {
+    public DukeException(String errorString) {
         super(errorString);
     }
 

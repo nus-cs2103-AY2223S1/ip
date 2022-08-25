@@ -1,3 +1,11 @@
+package duke;
+
+import exceptions.DukeException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +27,7 @@ public class Storage {
      *
      * @param filePath The specified path for the storage file.
      */
-    Storage(String filePath) {
+    public Storage(String filePath) {
         this.filePath = filePath;
     }
 

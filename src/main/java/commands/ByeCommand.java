@@ -1,3 +1,9 @@
+package commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 /**
  * Terminates the chatbot program after execution, and saves the current tasks to some local storage
  */

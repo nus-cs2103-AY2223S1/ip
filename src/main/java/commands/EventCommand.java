@@ -1,3 +1,12 @@
+package commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import exceptions.DukeException;
+import task.Event;
+import task.Task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -7,7 +16,7 @@ import java.time.format.DateTimeParseException;
 public class EventCommand extends Command {
     private final String[] inputStrings;
 
-    EventCommand(String[] inputStrings) {
+    public EventCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 

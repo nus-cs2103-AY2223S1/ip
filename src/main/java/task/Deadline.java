@@ -1,3 +1,5 @@
+package task;
+
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +16,7 @@ public class Deadline extends Task {
      * @param isDone      The boolean indicating whether the task is done.
      * @param deadline    The specified datetime for the deadline.
      */
-    Deadline(String description, boolean isDone, LocalDateTime deadline) {
+    public Deadline(String description, boolean isDone, LocalDateTime deadline) {
         super(description, isDone);
         this.deadline = deadline;
         this.taskType = TaskType.D;

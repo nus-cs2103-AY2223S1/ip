@@ -1,3 +1,16 @@
+package duke;
+
+import commands.ByeCommand;
+import commands.Command;
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.EventCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.TodoCommand;
+import commands.UnmarkCommand;
+import exceptions.DukeException;
+
 /**
  * Used to parse user's input and returns the corresponding commands
  */

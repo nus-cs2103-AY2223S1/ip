@@ -1,10 +1,18 @@
+package commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import exceptions.DukeException;
+import task.Task;
+
 /**
- * Marks the specified task as done
+ * Marks a task as not done
  */
-public class MarkCommand extends Command {
+public class UnmarkCommand extends Command {
     private final String[] inputStrings;
 
-    public MarkCommand(String[] inputStrings) {
+    public UnmarkCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
@@ -15,8 +23,9 @@ public class MarkCommand extends Command {
             int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
 
             Task task = tasks.getTask(taskIndex);
-            task.markTask();
-            ui.showMarkTask(task);
+            task.unmarkTask();
+
+            ui.showUnmarkTask(task);
         } catch (NumberFormatException | IndexOutOfBoundsException exception) {
             throw new DukeException("     ☹ OOPS!!! The index specified is invalid.");
         }
@@ -25,4 +34,5 @@ public class MarkCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
 }

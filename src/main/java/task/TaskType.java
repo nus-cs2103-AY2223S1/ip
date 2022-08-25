@@ -1,3 +1,5 @@
+package task;
+
 /**
  * An enum used to distinguish between different task types
  */

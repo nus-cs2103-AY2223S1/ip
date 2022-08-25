@@ -1,5 +1,10 @@
+package duke;
+
+import commands.Command;
+import exceptions.DukeException;
+
 /**
- * Main class for Duke chatbot
+ * Main class for chatbot
  */
 public class Duke {
     private final Ui ui;

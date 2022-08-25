@@ -1,10 +1,18 @@
+package commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import exceptions.DukeException;
+import task.Task;
+
 /**
  * Deletes the specified task
  */
 public class DeleteCommand extends Command {
     private final String[] inputStrings;
 
-    DeleteCommand(String[] inputStrings) {
+    public DeleteCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 

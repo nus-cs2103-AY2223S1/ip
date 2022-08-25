@@ -1,13 +1,22 @@
+package commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import exceptions.DukeException;
+import task.Deadline;
+import task.Task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
- * Command used to create a new deadline
+ * Creates a new deadline
  */
 public class DeadlineCommand extends Command {
     private final String[] inputStrings;
 
-    DeadlineCommand(String[] inputStrings) {
+    public DeadlineCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 

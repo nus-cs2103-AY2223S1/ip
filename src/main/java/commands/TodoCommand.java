@@ -1,10 +1,18 @@
+package commands;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import exceptions.DukeException;
+import task.Todo;
+
 /**
  * Creates a new Todo
  */
 public class TodoCommand extends Command {
     private final String[] inputStrings;
 
-    TodoCommand(String[] inputStrings) {
+    public TodoCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 

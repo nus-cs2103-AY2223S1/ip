@@ -1,3 +1,5 @@
+package task;
+
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +16,7 @@ public class Event extends Task {
      * @param isDone      The boolean indicating whether the task is done.
      * @param timing      The specified datetime string for the start time.
      */
-    Event(String description, boolean isDone, LocalDateTime timing) {
+    public Event(String description, boolean isDone, LocalDateTime timing) {
         super(description, isDone);
         this.timing = timing;
         this.taskType = TaskType.E;
