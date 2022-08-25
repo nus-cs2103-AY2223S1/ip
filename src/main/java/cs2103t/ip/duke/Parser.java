@@ -76,4 +76,12 @@ public class Parser {
         return input.startsWith("list");
     }
 
+    /**
+     * Checks if input begins with "list" which signifies that the user is using the search function.
+     * @param input
+     * @return True if input begins with "find".
+     */
+    public boolean isFind(String input) {
+        return input.startsWith("find");
+    }
 }
