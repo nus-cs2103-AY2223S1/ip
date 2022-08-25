@@ -21,7 +21,7 @@ public class UnmarkTaskCommand extends Command {
         try {
             controller.changeTaskStatus(taskIndexToUnmark, false);
             String reply = controller.getTask(taskIndexToUnmark).toString();
-            ui.display(reply, false, false, true, false);
+            ui.display(reply, false, false, true, false, false);
         } catch (NoSuchTaskException e) {
             ui.reportError("The task you choose does not exist! Please try again...");
             ui.showSplitLine();

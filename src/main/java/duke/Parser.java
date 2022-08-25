@@ -16,7 +16,7 @@ public class Parser {
      * @throws InvalidCommandException if command < 1 or command > 8
      */
     private void checkCommand(int command) throws InvalidCommandException {
-        if (command < 1 || command > 8) {
+        if (command < 1 || command > 9) {
             throw new InvalidCommandException("ERROR");
         }
     }
@@ -55,6 +55,9 @@ public class Parser {
                     command = new DeleteTaskCommand();
                     break;
                 case 8:
+                    command = new FindCommand();
+                    break;
+                case 9:
                     command = new ExitCommand();
                     break;
             }

@@ -28,7 +28,7 @@ public class CreateDeadlineCommand extends Command {
             controller.checkTimeFormat(ddlTime);
             Deadline ddlTask = new Deadline(ddl, ddlTime);
             controller.addToList(ddlTask);
-            ui.display(ddlTask.toString(), false, false, false, false);
+            ui.display(ddlTask.toString(), false, false, false, false, false);
         } catch (EmptyContentException ece) {
             ui.reportError("No empty task is allowed! Please try again...");
             ui.showSplitLine();

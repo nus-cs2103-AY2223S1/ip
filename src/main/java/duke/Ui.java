@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Ui {
     private final String COMMAND_LIST = "1. Add a ToDo\n" + "2. Add an Event\n" + "3. Add a Deadline\n" +
-            "4. List all Tasks\n" + "5. Mark\n" + "6. Unmark\n" + "7. Delete a Task\n" + "8. Exit";
+            "4. List all Tasks\n" + "5. Mark\n" + "6. Unmark\n" + "7. Delete a Task\n" + "8. Find\n" + "9. Exit";
     private final String SPLIT_LINE = "*".repeat(80);
     private final Scanner sc = new Scanner(System.in);
 
@@ -74,31 +74,41 @@ public class Ui {
      * @param isMark true if it is a mark command
      * @param isUnmark true if it is an unmark command
      */
-    public void display(String info, boolean isList, boolean isMark, boolean isUnmark, boolean isDelete) {
+    public void display(String info, boolean isList, boolean isMark, boolean isUnmark, boolean isDelete,
+                        boolean isFind) {
         if (isList) {
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
             System.out.println("Here are all your tasks:");
             System.out.println(info);
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
         } else if (isMark) {
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
             System.out.println("Successfully marked! You can see it in your task list as follows:");
             System.out.println(info);
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
         } else if (isUnmark) {
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
             System.out.println( "Successfully unmarked! You can see it in your task list as follows:");
             System.out.println(info);
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
         } else if (isDelete) {
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
             System.out.println("Successfully deleted! You can use list command to check your tasks.");
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
+        } else if (isFind) {
+            showSplitLine();
+            if (info.isBlank()) {
+                System.out.println("Sorry, we couldn't find anything you want");
+            } else {
+                System.out.println("Here are what we found for you:");
+                System.out.println(info);
+            }
+            showSplitLine();
         } else {
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
             System.out.println("Successfully added! You can see it in your task list as follows:");
             System.out.println(info);
-            System.out.println(SPLIT_LINE);
+            showSplitLine();
         }
     }
 

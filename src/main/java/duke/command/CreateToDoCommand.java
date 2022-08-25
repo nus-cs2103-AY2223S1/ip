@@ -23,7 +23,7 @@ public class CreateToDoCommand extends Command {
             controller.checkTaskContent(todo);
             ToDo todoTask = new ToDo(todo);
             controller.addToList(todoTask);
-            ui.display(todoTask.toString(), false, false, false, false);
+            ui.display(todoTask.toString(), false, false, false, false, false);
         } catch (EmptyContentException ece) {
             ui.reportError("No empty task is allowed! Please try again...");
             ui.showSplitLine();

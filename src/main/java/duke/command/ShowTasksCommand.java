@@ -15,6 +15,6 @@ public class ShowTasksCommand extends Command {
      * @param storage Duke IO processor
      */
     public void execute(TasksController controller, Ui ui, Storage storage) {
-        ui.display(controller.toString(), true, false, false, false);
+        ui.display(controller.toString(), true, false, false, false, false);
     }
 }
