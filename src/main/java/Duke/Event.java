@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * An extension to the Task with the functionality to add date
+ * The class is an extension to the Task with the functionality to add date
+ * @author LimWeiJun
  */
 public class Event extends Task {
     LocalDateTime at;

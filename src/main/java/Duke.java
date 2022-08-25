@@ -4,7 +4,8 @@ import Duke.TaskList;
 import Duke.Ui;
 
 /**
-* The Duke class stores Storage and TaskList as parameters
+ * The Duke class stores Storage and TaskList as parameters
+ * @author LimWeiJun
  */
 public class Duke {
     private Storage storage;

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
-* Making sense of the user command
+* The class make sense of the user command
+ * @author LimWeiJun
  */
 public class Parser {
     /**

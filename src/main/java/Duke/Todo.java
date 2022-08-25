@@ -2,6 +2,7 @@ package Duke;
 
 /**
  * The class is an extension of class Task
+ * @author LimWeiJun
  */
 public class Todo extends Task {
     public Todo(String desc, boolean done){

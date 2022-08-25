@@ -2,6 +2,7 @@ package Duke;
 
 /**
  * The class is an abstract class with parameters task and done
+ * @author LimWeiJun
  */
 abstract public class Task {
     private String task;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * The class contains the task list e.g., it has operations to add/delete tasks in the list
+ * @author LimWeiJun
  */
 public class TaskList {
     ArrayList<Task> tasks;

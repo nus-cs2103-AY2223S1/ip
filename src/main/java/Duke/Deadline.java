@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 /**
  * The Deadline class is an extension to the Task with the functionality to add date
+ * @author LimWeiJun
  */
 public class Deadline extends Task {
     private final LocalDateTime by;

@@ -10,6 +10,7 @@ import java.util.Objects;
 
 /**
  * The class deals with loading tasks from the file and saving tasks in the file
+ * @author LimWeiJun
  */
 public class Storage {
     static String filePath;
