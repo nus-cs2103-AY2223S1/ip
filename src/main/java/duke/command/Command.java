@@ -1,8 +1,9 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.storage.TaskRecords;
 import duke.ui.BotUI;
-import duke.DukeException;
+
 public abstract class Command {
 
     private final String command;

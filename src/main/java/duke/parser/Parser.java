@@ -1,4 +1,4 @@
-package duke.inputparser;
+package duke.parser;
 
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
@@ -6,14 +6,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import duke.DukeException;
-import duke.ui.BotUI;
 import duke.command.AddCommand;
-import duke.command.ListCommand;
+import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
-import duke.command.Command;
+import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.common.InputChecker;
+import duke.ui.BotUI;
+
 
 
 public class Parser {
@@ -25,7 +26,7 @@ public class Parser {
     }
 
     public static Command parse(String rawInput) throws DukeException {
-        try{
+        try {
             String[] commandAndDetail = rawInput.split(" ", 2);
             String command = commandAndDetail[0];
             if (commandAndDetail.length < 2) {
@@ -65,7 +66,7 @@ public class Parser {
             }
             return LocalDateTime.of(dateInfo.get(0), dateInfo.get(1), dateInfo.get(2),
                     hours, minutes);
-        } catch(DateTimeException ex) {
+        } catch (DateTimeException ex) {
             throw new DukeException(UI.invalidDateFormat());
         }
 

@@ -3,15 +3,15 @@ package duke;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import duke.ui.BotUI;
-import duke.storage.TaskRecords;
-import duke.storage.FileManager;
-import duke.inputparser.Parser;
 import duke.command.Command;
+import duke.parser.Parser;
+import duke.storage.FileManager;
+import duke.storage.TaskRecords;
+import duke.ui.BotUI;
 
 public class Duke {
 
-    BotUI ui;
+    private final BotUI ui;
     private final TaskRecords taskList;
 
     Duke() {
@@ -33,17 +33,15 @@ public class Duke {
                 String rawCommand = ui.readCommand();
                 Command c = Parser.parse(rawCommand);
                 c.execute(taskList, ui);
+                FileManager.write(this.taskList);
                 exitDuke = c.isExit();
             } catch (DukeException de) {
                 System.out.print(de.getMessage());
+            } catch (IOException ex) {
+                System.out.println("Error while Saving File!");
             }
         }
 
-        try {
-            FileManager.write(this.taskList);
-        } catch (IOException ex) {
-            System.out.println("Error while Saving File!");
-        }
         System.out.print(ui.botDivider());
         System.out.println(ui.sayBye());
     }

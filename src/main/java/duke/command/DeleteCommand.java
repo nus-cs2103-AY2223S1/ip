@@ -1,8 +1,9 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.storage.TaskRecords;
 import duke.ui.BotUI;
-import duke.DukeException;
+
 public class DeleteCommand extends Command {
     private final String details;
 
@@ -12,12 +13,12 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskRecords taskList, BotUI ui) throws DukeException{
+    public void execute(TaskRecords taskList, BotUI ui) throws DukeException {
         try {
             int taskIdx = Integer.parseInt(details) - 1;
             System.out.print(ui.successRemoved(taskList, taskList.delete(taskIdx)));
         } catch (NumberFormatException ex) {
-            throw new DukeException(ui.invalidCheckFormat()) ;
+            throw new DukeException(ui.invalidCheckFormat());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeException(ui.taskNotExist(taskList));
         }

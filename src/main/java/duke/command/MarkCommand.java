@@ -1,8 +1,8 @@
 package duke.command;
 
-import duke.task.Task;
-import duke.storage.TaskRecords;
 import duke.DukeException;
+import duke.storage.TaskRecords;
+import duke.task.Task;
 import duke.ui.BotUI;
 
 public class MarkCommand extends Command {
@@ -22,7 +22,7 @@ public class MarkCommand extends Command {
             taskList.addProcess(currTask);
             System.out.print(ui.informMarkStatus(taskList.get(taskIdx)));
         } catch (NumberFormatException ex) {
-            throw new DukeException(ui.invalidCheckFormat()) ;
+            throw new DukeException(ui.invalidCheckFormat());
         } catch (IndexOutOfBoundsException ex) {
             throw new DukeException(ui.taskNotExist(taskList));
         }

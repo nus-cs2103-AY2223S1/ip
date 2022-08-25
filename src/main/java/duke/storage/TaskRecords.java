@@ -13,12 +13,12 @@ public class TaskRecords {
         if (!this.lst.contains(task)) {
             this.lst.add(task);
         } else {
-            this.lst.set(lst.indexOf(task),task);
+            this.lst.set(lst.indexOf(task), task);
         }
     }
 
     public Task delete(int idx) {
-        Task currTask =  this.lst.get(idx);
+        Task currTask = this.lst.get(idx);
         this.lst.remove(idx);
         return currTask;
     }

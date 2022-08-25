@@ -1,14 +1,15 @@
 package duke.command;
 
 import java.time.LocalDateTime;
+
 import duke.DukeException;
-import duke.task.ToDos;
+import duke.parser.Parser;
+import duke.storage.TaskRecords;
 import duke.task.Deadlines;
 import duke.task.Events;
 import duke.task.Task;
-import duke.storage.TaskRecords;
+import duke.task.ToDos;
 import duke.ui.BotUI;
-import duke.inputparser.Parser;
 
 public class AddCommand extends Command {
 
@@ -27,14 +28,14 @@ public class AddCommand extends Command {
                 taskList.addProcess(task);
                 System.out.print((ui.addStatus(taskList, task)));
             } else if (super.getCommand().equals("deadline")) {
-                String deadlineDetail = Parser.extractDetail(details, "/by ");
-                LocalDateTime dateTime = Parser.extractDateTime(details, "/by ");
-                Task task = new Deadlines(deadlineDetail ,dateTime);
+                String deadlineDetail = Parser.extractDetail(details, " /by ");
+                LocalDateTime dateTime = Parser.extractDateTime(details, " /by ");
+                Task task = new Deadlines(deadlineDetail , dateTime);
                 taskList.addProcess(task);
                 System.out.print((ui.addStatus(taskList, task)));
             } else if (super.getCommand().equals("event")) {
-                String eventDetail = Parser.extractDetail(details, "/at ");
-                LocalDateTime dateTime = Parser.extractDateTime(details, "/at ");
+                String eventDetail = Parser.extractDetail(details, " /at ");
+                LocalDateTime dateTime = Parser.extractDateTime(details, " /at ");
                 Task task = new Events(eventDetail, dateTime);
                 taskList.addProcess(task);
                 System.out.print(ui.addStatus(taskList, task));

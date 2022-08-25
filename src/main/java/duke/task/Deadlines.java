@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadlines extends Task {
-    private static final String timeId = "/by ";
     private static final String ID = "[D]";
     private final LocalDateTime time;
 

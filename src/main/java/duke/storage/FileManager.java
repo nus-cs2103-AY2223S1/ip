@@ -7,24 +7,26 @@ import java.io.IOException;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import duke.task.ToDos;
-import duke.task.Events;
+import duke.parser.Parser;
 import duke.task.Deadlines;
+import duke.task.Events;
 import duke.task.Task;
-import duke.inputparser.Parser;
+import duke.task.ToDos;
+
+
 
 public class FileManager {
 
-    private static String home = System.getProperty("user.home");
-    private static java.nio.file.Path path = java.nio.file.Paths.get(home
-            , "CS2103", "ip", "src", "main", "java", "data", "duke.txt");
+    private static final String home = System.getProperty("user.home");
+    private static final java.nio.file.Path path = java.nio.file.Paths.get(home,
+            "CS2103", "ip", "src", "main", "java", "data", "duke.txt");
     private static final String SECTION_DIVIDER = " __ ";
 
     public static TaskRecords read() throws FileNotFoundException {
         TaskRecords savedList = new TaskRecords();
         File previousCache = new File(path.toUri());
         Scanner scn = new Scanner(previousCache);
-        while(scn.hasNextLine()) {
+        while (scn.hasNextLine()) {
             String[] info = scn.nextLine().split(SECTION_DIVIDER);
             if (info.length < 3) {
                 break;
@@ -48,7 +50,7 @@ public class FileManager {
             content.append(t.getId()).append(SECTION_DIVIDER)
                     .append(t.isDone()).append(SECTION_DIVIDER)
                     .append(t.getDetail()).append(SECTION_DIVIDER);
-            if(!t.getId().equals("[T]")) {
+            if (!t.getId().equals("[T]")) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
                 content.append(t.getTime().format(formatter)).append(SECTION_DIVIDER);
             }

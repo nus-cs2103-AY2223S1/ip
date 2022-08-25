@@ -1,18 +1,18 @@
 package duke.ui;
 
-import static duke.common.Messages.MESSAGE_BYE;
-import static duke.common.Messages.MESSAGE_HI;
-import static duke.common.Messages.MESSAGE_BOT_DIVIDER;
-import static duke.common.Messages.MESSAGE_USER_DIVIDER;
-import static duke.common.Messages.MESSAGE_NOTHING_IN_LIST;
-import static duke.common.Messages.MESSAGE_MARK_SUCCESS;
-import static duke.common.Messages.MESSAGE_UNMARK_SUCCESS;
 import static duke.common.Messages.MESSAGE_ADD_SUCCESS;
+import static duke.common.Messages.MESSAGE_BOT_DIVIDER;
+import static duke.common.Messages.MESSAGE_BYE;
 import static duke.common.Messages.MESSAGE_DELETE_SUCCESS;
+import static duke.common.Messages.MESSAGE_HI;
+import static duke.common.Messages.MESSAGE_INVALID_DATE_FORMAT;
+import static duke.common.Messages.MESSAGE_MARK_SUCCESS;
+import static duke.common.Messages.MESSAGE_NOTHING_IN_LIST;
+import static duke.common.Messages.MESSAGE_REQUIRE_INTEGER;
 import static duke.common.Messages.MESSAGE_SHOW_FORMAT;
 import static duke.common.Messages.MESSAGE_TASK_NOT_EXIST;
-import static duke.common.Messages.MESSAGE_REQUIRE_INTEGER;
-import static duke.common.Messages.MESSAGE_INVALID_DATE_FORMAT;
+import static duke.common.Messages.MESSAGE_UNMARK_SUCCESS;
+import static duke.common.Messages.MESSAGE_USER_DIVIDER;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -61,8 +61,8 @@ public class BotUI {
     }
 
     public String informMarkStatus(Task task) {
-       return botSpeak((task.isDone()) ? String.format(MESSAGE_MARK_SUCCESS, task) :
-               String.format(MESSAGE_UNMARK_SUCCESS, task));
+        return botSpeak((task.isDone()) ? String.format(MESSAGE_MARK_SUCCESS, task)
+               : String.format(MESSAGE_UNMARK_SUCCESS, task));
     }
 
     public String addStatus(TaskRecords taskList, Task task) {
