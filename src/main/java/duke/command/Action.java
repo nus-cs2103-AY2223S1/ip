@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+/**
+ * Represents all Actions that Duke supports.
+ */
 public enum Action {
     DONOTHING,
     //    Level_1
@@ -17,13 +20,20 @@ public enum Action {
     //    Level_4
     TODO, EVENT, DEADLINE,
     //    Level_5
-//    No new actions is added
-//    Level_6
+    //    No new actions is added
+    //    Level_6
     DELETE,
     //    Level_7
     SAVE, READ;
 
+    /**
+     * The HashMap stores the standardFormat of an Action.
+     */
     private static HashMap<Action, String> actionFormatMap = new HashMap<>();
+
+    /**
+     * The HashMap stores the String representation of an Action.
+     */
     private static HashMap<String, Action> stringActionMap = new HashMap<>();
 
     static {
@@ -80,7 +90,11 @@ public enum Action {
         map.put("read", Action.READ);
     }
 
-
+    /**
+     * Returns the String representation of an Action.
+     * @param action The Action to convert.
+     * @return The String representation of an Action.
+     */
     public static String getString(Action action) {
         for (Map.Entry<String, Action> m : stringActionMap.entrySet()) {
             if (m.getValue().equals(action)) {
@@ -90,12 +104,23 @@ public enum Action {
         return "";
     }
 
+    /**
+     * Returns a mapped Action of the given String.
+     * @param action The String to convert to Action
+     * @return The mapped Action of the given String.
+     * @throws InvalidActionException If the mapping of the given String is undefined.
+     */
     public static Action getAction(String action) throws InvalidActionException {
         return Optional.ofNullable(action)
                 .map(x -> Action.stringActionMap.get(x.trim()))
                 .orElseThrow(() -> new InvalidActionException(action));
     }
 
+    /**
+     * Returns the standard format of the given Action.
+     * @param action The action.
+     * @return String of standard format.
+     */
     public static String getFormat(Action action) {
         return Optional.ofNullable(action)
                 .map(x -> Action.actionFormatMap.get(x))

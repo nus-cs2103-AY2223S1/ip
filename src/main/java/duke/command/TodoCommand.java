@@ -5,16 +5,33 @@ import duke.Storage;
 import duke.TaskList;
 import duke.task.Task;
 
+/**
+ * Represents a Command to create a Todo Task in Duke.
+ */
 public class TodoCommand extends AddCommand {
+    /**
+     * The constructor of the Class.
+     * @param msg The information of the Task.
+     */
     protected TodoCommand(String msg) {
         super(Action.TODO, msg);
     }
 
+    /**
+     * Returns the standard format of the Command.
+     * @return String of standard format.
+     */
     @Override
     public String getFormat() {
         return "todo [Name]";
     }
 
+    /**
+     * Execute the Command with given Duke Segments.
+     * @param taskList TaskList of the Duke.
+     * @param messagePrinter MessagePrinter of the Duke.
+     * @param storage Storage of the Duke.
+     */
     public void execute(TaskList taskList, MessagePrinter messagePrinter, Storage storage) {
         String msg = this.msg;
         String successMsg = "Got it. I've added this Task:";
@@ -25,6 +42,13 @@ public class TodoCommand extends AddCommand {
         messagePrinter.printMessage(successMsg);
     }
 
+    /**
+     * Return boolean indicating whether this object
+     * is equivalent to another object.
+     *
+     * @param obj The object to be checked.
+     * @return The boolean whether the given object is equivalent to this object.
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
