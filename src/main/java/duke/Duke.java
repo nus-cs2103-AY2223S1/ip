@@ -12,7 +12,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-
+/**
+ * Represents a personal task manager named Duke.
+ */
 public class Duke {
     private static Path PATH = Paths.get(System.getProperty("user.dir" ), "data", "duke.txt");
 
