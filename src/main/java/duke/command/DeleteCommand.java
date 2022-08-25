@@ -1,11 +1,11 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.util.TaskList;
-
-import java.util.ArrayList;
 
 public class DeleteCommand extends Command {
     private final ArrayList<String> words;

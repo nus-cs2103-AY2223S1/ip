@@ -1,12 +1,11 @@
 package duke.command;
 
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.ui.Ui;
 import duke.util.TaskList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MarkCommand extends Command {
     private final ArrayList<String> words;
