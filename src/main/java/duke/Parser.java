@@ -1,7 +1,5 @@
 package duke;
 
-import java.util.Scanner;
-
 import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
@@ -16,9 +14,6 @@ import duke.exception.DukeException;
  * Parser to parse user input and interpret which commands user are inputting.
  */
 public class Parser {
-
-    private static int cnt = 0;
-    private static Scanner sc = new Scanner(System.in);
 
     /**
      * Parse input of users and analysing which command is used
@@ -51,7 +46,6 @@ public class Parser {
             if (cmd.length != 2 || cmd[1].length() < 1) {
                 throw new DukeException("The index of a task cannot be empty.");
             }
-
             num = Integer.parseInt(cmd[1]);
             return new DeleteCommand(cmd[0], num - 1);
         case "find":
@@ -60,7 +54,6 @@ public class Parser {
             }
             return new FindCommand(cmd[0], cmd[1]);
         default:
-            cnt++;
             return new AddCommand(input);
         }
     }

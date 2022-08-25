@@ -8,6 +8,7 @@ import duke.exception.DukeException;
  * Command class to execute operation.
  */
 public abstract class Command {
+
     private String info;
 
     /**

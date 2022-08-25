@@ -2,7 +2,6 @@ package duke.command;
 
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.DukeException;
 import duke.task.Task;
 
 /**
@@ -13,10 +12,10 @@ public class ListCommand extends Command {
     /**
      * Constructor for ListCommand.
      *
-     * @param cmd Type of command
+     * @param info Type of command
      */
-    public ListCommand(String cmd) {
-        super(cmd);
+    public ListCommand(String info) {
+        super(info);
     }
 
     /**
@@ -26,16 +25,18 @@ public class ListCommand extends Command {
      *
      * @param ui Ui to show List operation messages
      * @param taskList TaskList to execute List command
-     * @throws DukeException If invalid commands or arguments
      */
     @Override
-    public void execute(Ui ui, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, TaskList taskList) {
         ui.showList();
+
         for (int i = 0; i < taskList.getSize(); i++) {
             Task task = taskList.getTask(i);
+
             if (task == null) {
                 break;
             }
+
             int index = i + 1;
             ui.showTask(index, task);
         }

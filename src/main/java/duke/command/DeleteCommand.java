@@ -2,25 +2,26 @@ package duke.command;
 
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.DukeException;
 import duke.task.Task;
 
 /**
  * Command to delete a task with given index.
  */
 public class DeleteCommand extends Command {
+
     private int num;
 
     /**
      * Constructor for DeleteCommand.
      *
-     * @param cmd Type of comand
+     * @param info Type of command
      * @param num Index to delete
      */
-    public DeleteCommand(String cmd, int num) {
-        super(cmd);
+    public DeleteCommand(String info, int num) {
+        super(info);
         this.num = num;
     }
+
     public int getNum() {
         return num;
     }
@@ -30,13 +31,12 @@ public class DeleteCommand extends Command {
      *
      * @param ui Ui to show Delete operation messages
      * @param taskList TaskList to execute delete command
-     * @throws DukeException If invalid commands or arguments
      */
     @Override
-    public void execute(Ui ui, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, TaskList taskList) {
         Task task = taskList.getTask(this.num);
         taskList.remove(this.num);
         int size = taskList.getSize();
-        ui.showDeleteMsg(task, size);
+        ui.showDeleteMessage(task, size);
     }
 }

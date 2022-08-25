@@ -33,7 +33,7 @@ public class TaskList {
     }
 
     /**
-     * @return Size of tasklist
+     * @return Size of TaskList
      */
     public int getSize() {
         return tasks.size();

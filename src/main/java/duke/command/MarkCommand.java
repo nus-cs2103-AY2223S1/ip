@@ -2,25 +2,29 @@ package duke.command;
 
 import duke.TaskList;
 import duke.Ui;
-import duke.exception.DukeException;
 import duke.task.Task;
 
 /**
  * Command to mark tasks as done.
  */
 public class MarkCommand extends Command {
+
     private int num;
 
     /**
      * Constructor for MarkCommand.
      *
-     * @param cmd type of command
+     * @param info type of command
      * @param num index of task
      */
-    public MarkCommand(String cmd, int num) {
-        super(cmd);
+    public MarkCommand(String info, int num) {
+        super(info);
         this.num = num;
     }
+
+    /**
+     * @return Index of task
+     */
     public int getNum() {
         return num;
     }
@@ -31,12 +35,11 @@ public class MarkCommand extends Command {
      *
      * @param ui Ui to show mark operation messages
      * @param taskList TaskList to execute mark command
-     * @throws DukeException If invalid commands or arguments
      */
     @Override
-    public void execute(Ui ui, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, TaskList taskList) {
         Task task = taskList.getTask(num);
-        task.markT();
-        ui.showMarkMsg(task);
+        task.setMarked();
+        ui.showMarkMessage(task);
     }
 }

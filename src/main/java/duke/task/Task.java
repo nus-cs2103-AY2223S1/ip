@@ -4,19 +4,19 @@ package duke.task;
  * Task with TaskType, description of task and boolean to check whether the task is done yet.
  */
 public class Task {
-    private TaskType type;
+    private TaskType taskType;
     private String name;
     private boolean isMarked;
 
     /**
      * Constructor for Task.
      *
-     * @param type Type of task
+     * @param taskType Type of task
      * @param name Description of task
      * @param isMarked Denotes whether the task is done yet
      */
-    public Task(TaskType type, String name, boolean isMarked) {
-        this.type = type;
+    public Task(TaskType taskType, String name, boolean isMarked) {
+        this.taskType = taskType;
         this.name = name;
         this.isMarked = isMarked;
     }
@@ -25,7 +25,7 @@ public class Task {
      * @return TaskType of task
      */
     public TaskType getTaskType() {
-        return type;
+        return taskType;
     }
 
     /**
@@ -45,14 +45,14 @@ public class Task {
     /**
      * Mark the task as done
      */
-    public void markT() {
+    public void setMarked() {
         isMarked = true;
     }
 
     /**
      * Unmark the task as done
      */
-    public void unmarkT() {
+    public void setUnmarked() {
         isMarked = false;
     }
 
@@ -65,9 +65,9 @@ public class Task {
     public String toString() {
         if (isMarked) {
             return "[X] " + name;
+        } else {
+            return "[ ] " + name;
         }
-
-        return "[ ] " + name;
     }
 }
 

@@ -11,8 +11,9 @@ import duke.task.Task;
  * Printing messages, errors and reading user input are done in this class.
  */
 public class Ui {
-
     private static Scanner sc = new Scanner(System.in);
+    private static final String LINE = "-----------------------------------------"
+            + "---------------------------------------------";
 
     /**
      * Analyse the user input and get the command after parsing
@@ -22,8 +23,7 @@ public class Ui {
      * @throws DukeException If invalid commands
      */
     public Command run(String input) throws DukeException {
-        Parser parser = new Parser();
-        return parser.parse(input);
+        return Parser.parse(input);
     }
 
     /**
@@ -39,13 +39,13 @@ public class Ui {
      * Show message to separate commands
      */
     public void showLine() {
-        System.out.println("--------------------------------------------------------------------------------------");
+        System.out.println(LINE);
     }
 
     /**
      * Show Greetings to user
      */
-    public void showGreetMsg() {
+    public void showGreetMessage() {
         String out = "Hello! I'm Duke\n"
                 + "What can I do for you?\n";
         System.out.println(out);
@@ -54,24 +54,24 @@ public class Ui {
     /**
      * Show unknown command messages
      */
-    public void showUnknownMsg() {
-        System.out.println("I'm sorry, but I don't know what that means :-(");
+    public void showUnknownMessage() {
+        System.out.println("I'm sorry, "
+                + "but I don't know what that means :-(");
     }
 
     /**
      * Show add messages
      *
      * @param task Task added
-     * @param cnt Size of TaskList
+     * @param size Size of TaskList
      */
-    public void showAddMsg(Task task, int cnt) {
-        String plural = cnt == 1
+    public void showAddMessage(Task task, int size) {
+        String plural = size == 1
                 ? "task"
                 : "tasks";
-
         String out = "Got it. I've added this task:\n "
                 + task + "\nNow you have "
-                + cnt + " " + plural + " in the list.";
+                + size + " " + plural + " in the list.";
         System.out.println(out);
     }
 
@@ -81,7 +81,7 @@ public class Ui {
      * @param task Task that is going to be deleted
      * @param size Size of TaskList
      */
-    public void showDeleteMsg(Task task, int size) {
+    public void showDeleteMessage(Task task, int size) {
         String info = task.toString();
         String plural = size - 1 <= 1
                 ? "task"
@@ -95,9 +95,8 @@ public class Ui {
     /**
      * Show exit messages when the program is going to end.
      */
-    public void showExitMsg() {
-        String out = "Bye. Hope to see you again soon!";
-        System.out.println(out);
+    public void showExitMessage() {
+        System.out.println("Bye. Hope to see you again soon!");
     }
 
     /**
@@ -122,7 +121,7 @@ public class Ui {
      *
      * @param task Task marked as done
      */
-    public void showMarkMsg(Task task) {
+    public void showMarkMessage(Task task) {
         String out = "Nice! I've marked this task as done:\n  " + task.toString();
         System.out.println(out);
     }
@@ -132,7 +131,7 @@ public class Ui {
      *
      * @param task Task unMarked as done.
      */
-    public void showUnmarkMsg(Task task) {
+    public void showUnmarkMessage(Task task) {
         String out = "OK, I've marked this task as not done yet:\n  " + task.toString();
         System.out.println(out);
     }
@@ -140,33 +139,38 @@ public class Ui {
     /**
      * Show find message when tasks are found.
      */
-    public void showFindMsg() {
+    public void showFindMessage() {
         System.out.println("Here are the matching tasks in your list:\n");
     }
 
     /**
      * Show find message when no task is found.
      */
-    public void showFindEmptyMsg() {
+    public void showFindEmptyMessage() {
         System.out.println("There are no matching task in your list\n");
     }
 
     /**
      * Show error messages.
      *
-     * @param msg Error message
+     * @param message Error message
      */
-    public void showLoadingError(String msg) {
-        System.out.println(msg);
+    public void showLoadingError(String message) {
+        System.out.println(message);
     }
 
     /**
      * Show message when file is not found
-     * @param msg Error message
+     * @param message Error message
      */
-    public void showFileNotFound(String msg) {
-        System.out.println(msg);
+    public void showFileNotFound(String message) {
+        System.out.println(message);
     }
 
-
+    /**
+     * Show message when file is being read
+     */
+    public void showReadMessage() {
+        System.out.println("Reading files and storing tasks into TaskList");
+    }
 }

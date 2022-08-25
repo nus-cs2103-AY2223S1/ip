@@ -8,21 +8,22 @@ import java.time.format.DateTimeFormatter;
  * boolean to check whether the task is done, and time of deadline.
  */
 public class Event extends Task {
+
     private LocalDateTime atTime;
 
     /**
      * Constructor for Event
      *
-     * @param type TaskType of event
+     * @param taskType TaskType of event
      * @param name Description of the event
      * @param isMarked Denotes whether the event is done yet
      * @param timeStr Time of event
      */
-    public Event(TaskType type, String name, boolean isMarked, String timeStr) {
-        super(type, name, isMarked);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm, d/MM/yyyy");
-        LocalDateTime atTime = LocalDateTime.parse(timeStr, formatter);
-        this.atTime = atTime;
+    public Event(TaskType taskType, String name, boolean isMarked, String timeStr) {
+        super(taskType, name, isMarked);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+                "HHmm, d/MM/yyyy");
+        this.atTime = LocalDateTime.parse(timeStr, formatter);
     }
 
     /**
@@ -37,7 +38,9 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a, EEE, d MMM yyyy");
-        return "[E]" + super.toString() + " (at: " + atTime.format(formatter) + ")";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+                "hh:mm a, EEE, d MMM yyyy");
+        return "[E]" + super.toString()
+                + " (at: " + atTime.format(formatter) + ")";
     }
 }

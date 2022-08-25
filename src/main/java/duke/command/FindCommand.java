@@ -8,10 +8,9 @@ import duke.task.Task;
  * Command to find task with names that contain the keyword.
  */
 public class FindCommand extends Command {
-    private Ui ui;
-    private TaskList taskList;
+    
     private String keyword;
-    private TaskList ansTaskList;
+    
     /**
      * Constructor of FindCommand
      *
@@ -21,8 +20,8 @@ public class FindCommand extends Command {
     public FindCommand(String info, String keyword) {
         super(info);
         this.keyword = keyword;
-        ansTaskList = new TaskList();
     }
+    
     /**
      * Execute find command
      *
@@ -31,21 +30,22 @@ public class FindCommand extends Command {
      */
     public void execute(Ui ui, TaskList taskList) {
         TaskList ansTaskList = new TaskList();
-        int cnt = 1;
+        int count = 1;
+
         for (int i = 0; i < taskList.getSize(); i++) {
             Task task = taskList.getTask(i);
             if (task.getName().contains(keyword)) {
-                if (cnt == 1) {
-                    ui.showFindMsg();
+                if (count == 1) {
+                    ui.showFindMessage();
                 }
                 ansTaskList.add(task);
-                ui.showTask(cnt, task);
-                cnt++;
+                ui.showTask(count, task);
+                count++;
             }
         }
 
-        if (cnt == 1) {
-            ui.showFindEmptyMsg();
+        if (count == 1) {
+            ui.showFindEmptyMessage();
         }
     }
 }

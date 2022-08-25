@@ -75,7 +75,7 @@ public class Storage {
 
             String line;
             tasks = new ArrayList<>();
-
+            ui.showReadMessage();
             while (true) {
                 line = br.readLine();
                 if (line == null) {
@@ -96,7 +96,6 @@ public class Storage {
                 default:
                     throw new DukeException("Invalid task");
                 }
-
             }
         } catch (DukeException msg) {
             throw new DukeException(msg.toString());
@@ -109,10 +108,9 @@ public class Storage {
      * Write file to store task in a text file.
      *
      * @param taskList TaskList to extract task and save it inside a text file
-     * @throws IOException If error writing files
      * @throws DukeException If there is invalid task
      */
-    public void writeFile(TaskList taskList) throws IOException, DukeException {
+    public void writeFile(TaskList taskList) throws DukeException {
         try {
             File writeF = new File("./data/duke.txt");
             if (!writeF.exists()) {
@@ -152,12 +150,10 @@ public class Storage {
                 }
 
                 String line = type + marked + name;
-
                 if (time != null) {
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm, d/MM/yyyy");
                     line += time.format(formatter);
                 }
-
                 line += "\n";
                 fw.write(line);
             }

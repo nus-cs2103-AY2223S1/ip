@@ -14,16 +14,16 @@ public class Deadline extends Task {
     /**
      * Constructor for Deadline
      *
-     * @param type TaskType of deadline
+     * @param taskType TaskType of deadline
      * @param name Description of the deadline
      * @param isMarked Denotes whether the deadline is done yet
      * @param timeStr Time of deadline
      */
-    public Deadline(TaskType type, String name, boolean isMarked, String timeStr) {
-        super(type, name, isMarked);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HHmm, d/MM/yyyy");
-        LocalDateTime time = LocalDateTime.parse(timeStr, formatter);
-        this.byTime = time;
+    public Deadline(TaskType taskType, String name, boolean isMarked, String timeStr) {
+        super(taskType, name, isMarked);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+                "HHmm, d/MM/yyyy");
+        this.byTime = LocalDateTime.parse(timeStr, formatter);
     }
 
     /**
@@ -39,7 +39,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a, EEE, d MMM yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+                "hh:mm a, EEE, d MMM yyyy");
         return "[D]" + super.toString()
                 + " (by: " + byTime.format(formatter) + ")";
     }

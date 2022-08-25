@@ -5,8 +5,8 @@ package duke.task;
  */
 public class Todo extends Task {
 
-    public Todo(TaskType type, String name, boolean isMarked) {
-        super(type, name, isMarked);
+    public Todo(TaskType taskType, String name, boolean isMarked) {
+        super(taskType, name, isMarked);
     }
 
     /**
