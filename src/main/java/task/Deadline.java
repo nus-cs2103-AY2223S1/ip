@@ -7,6 +7,11 @@ import java.time.LocalDate;
 public class Deadline extends Task {
     protected LocalDate date;
 
+    /**
+     * Constructor.
+     * @param description Description of the Deadline.
+     * @param by Date associated with the Deadline.
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.date = by;
@@ -40,7 +45,7 @@ public class Deadline extends Task {
     @Override
     public String longDescription() {
         String status;
-        String done = this.isDone? "was completed at": "is to be completed by";
+        String done = this.isDone ? "was completed at" : "is to be completed by";
         status = String.format("Deadline %s %s %s %d %s %d",
                 this.description, done, this.date.getDayOfWeek(),
                 this.date.getDayOfMonth() , this.date.getMonth(),
@@ -48,3 +53,4 @@ public class Deadline extends Task {
         return status;
     }
 }
+
