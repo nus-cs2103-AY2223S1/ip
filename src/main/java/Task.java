@@ -64,7 +64,10 @@ public abstract class Task {
             throw new DukeException("Please type the at in this format: /by dateTime");
         }
         return new Deadline(input.substring(9, slash - 1),
+<<<<<<< HEAD
                 false,
+=======
+>>>>>>> branch-Level-8
                 LocalDate.parse(input.substring(slash + 4)));
     }
 

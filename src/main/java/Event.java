@@ -16,7 +16,15 @@ public class Event extends Task {
 
     @Override
     public String toString() {
+<<<<<<< HEAD
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ")";
+=======
+        return "[E]"
+                + super.toString()
+                + " (at: "
+                + at.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
+                + ")";
+>>>>>>> branch-Level-8
     }
 
 }
