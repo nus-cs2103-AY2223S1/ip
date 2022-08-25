@@ -96,6 +96,11 @@ public class TaskList {
         tasks.add(task);
     }
 
+    /**
+     * Finds all the tasks that contain a specific keyword
+     * @param stringToFind the keyword
+     * @return the matched tasks
+     */
     public TaskList find(String stringToFind) {
         TaskList res = new TaskList();
         for (Task curr : tasks) {

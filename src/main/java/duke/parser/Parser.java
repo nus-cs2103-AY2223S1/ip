@@ -1,5 +1,8 @@
 package duke.parser;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
@@ -8,23 +11,17 @@ import duke.command.FindCommand;
 import duke.command.HelpCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
-
-
 import duke.exception.DukeException;
 import duke.exception.EmptyDateException;
-import duke.exception.EmptyIndexException;
 import duke.exception.EmptyDescriptionException;
+import duke.exception.EmptyIndexException;
 import duke.exception.IllegalDateFormatException;
 import duke.exception.IllegalInputException;
 import duke.exception.InvalidCommandException;
 import duke.exception.InvalidIndexException;
-
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 /**
  * A parser class that encapsulates the action of parsing string to desired Object.

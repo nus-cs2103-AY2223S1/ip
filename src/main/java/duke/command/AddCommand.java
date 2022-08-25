@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.exception.FileIOException;
+import duke.exception.FileIoException;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
@@ -22,7 +22,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) throws FileIOException {
+    public void execute(TaskList tasks, Storage storage, Ui ui) throws FileIoException {
         tasks.addTask(taskToAdd);
         storage.save(tasks);
         ui.showAddTask(taskToAdd, tasks.getNumOfRemainingTasks());

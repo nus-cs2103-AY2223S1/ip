@@ -1,6 +1,6 @@
 package duke.command;
 
-import duke.exception.FileIOException;
+import duke.exception.FileIoException;
 import duke.exception.InvalidIndexException;
 import duke.storage.Storage;
 import duke.task.Task;
@@ -27,7 +27,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Storage storage, Ui ui) throws InvalidIndexException, FileIOException {
+    public void execute(TaskList tasks, Storage storage, Ui ui) throws InvalidIndexException, FileIoException {
         if (indexOfTaskToMark <= 0 || indexOfTaskToMark > tasks.getNumOfRemainingTasks()) {
             throw new InvalidIndexException();
         }

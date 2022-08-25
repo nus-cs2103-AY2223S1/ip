@@ -11,7 +11,7 @@ import java.util.List;
 
 import duke.exception.DukeException;
 import duke.exception.FileDoesNotExistException;
-import duke.exception.FileIOException;
+import duke.exception.FileIoException;
 import duke.task.TaskList;
 
 /**
@@ -39,7 +39,7 @@ public class Storage {
      * @param taskList the current task list in Duke
      * @throws FileDoesNotExistException Throws an exception when the storage file does not exist.
      */
-    public void save(TaskList taskList) throws FileIOException {
+    public void save(TaskList taskList) throws FileIoException {
         List<String> encodedTasks = StorageEncoder.encode(taskList);
 
         try {
@@ -67,7 +67,11 @@ public class Storage {
         return StorageDecoder.decode(path);
     }
 
-    public void create() throws FileIOException {
+    /**
+     * Creates a file
+     * @throws FileIoException throws an exception when encountering error in creating the file
+     */
+    public void create() throws FileIoException {
         String currentDir = System.getProperty(CURRENT_DIRECTORY);
         Path newPath = Paths.get(currentDir, DEFAULT_STORAGE_FILE);
         File newFile = newPath.toFile();
@@ -75,7 +79,7 @@ public class Storage {
             newFile.createNewFile();
             this.path = newPath;
         } catch (IOException e) {
-            throw new FileIOException("Error creating file: " + path);
+            throw new FileIoException("Error creating file: " + path);
         }
     }
 

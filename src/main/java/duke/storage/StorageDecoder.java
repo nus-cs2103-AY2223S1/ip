@@ -1,7 +1,13 @@
 package duke.storage;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.exception.DukeException;
-import duke.exception.FileIOException;
+import duke.exception.FileIoException;
 import duke.exception.IllegalSyntaxException;
 import duke.parser.Parser;
 import duke.task.Deadline;
@@ -9,12 +15,6 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A StorageDecoder class that encapsulates that action of decoding storage file
@@ -45,7 +45,7 @@ public class StorageDecoder {
                 taskList.add(task);
             }
         } catch (IOException e) {
-            throw new FileIOException("Error reading from file: " + path);
+            throw new FileIoException("Error reading from file: " + path);
         }
         return new TaskList(taskList);
     }

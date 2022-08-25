@@ -1,14 +1,15 @@
 package duke.parser;
 
-import duke.exception.IllegalDateFormatException;
-import duke.exception.IllegalInputException;
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDate;
-
 import static duke.parser.Parser.parseToLocalDateTime;
 import static duke.parser.Parser.parseToTaskIndex;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
+
+import org.junit.jupiter.api.Test;
+
+import duke.exception.IllegalDateFormatException;
+import duke.exception.IllegalInputException;
 
 public class ParserTest {
     @Test

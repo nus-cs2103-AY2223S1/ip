@@ -1,9 +1,9 @@
 package duke.ui;
 
-import duke.task.Task;
-
 import java.util.List;
 import java.util.Scanner;
+
+import duke.task.Task;
 
 /**
  * An Ui class that encapsulates the ui of Duke.
@@ -97,6 +97,10 @@ public class Ui {
                 "Help    To see the list of commands."));
     }
 
+    /**
+     * Shows all the tasks in the list
+     * @param taskList the list
+     */
     public void showList(List<Task> taskList) {
         String[] strArr = new String[taskList.size() + 1];
         strArr[0] = "Here are the tasks in your list:";
@@ -106,6 +110,10 @@ public class Ui {
         System.out.println(dialog(strArr));
     }
 
+    /**
+     * Shows all the tasks that has been found
+     * @param taskList all the tasks
+     */
     public void showFindTask(List<Task> taskList) {
         String[] strArr = new String[taskList.size() + 1];
         strArr[0] = "Here are the matching tasks in your list:";
