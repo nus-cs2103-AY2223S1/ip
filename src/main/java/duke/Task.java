@@ -66,6 +66,10 @@ public class Task {
             arrayList.add("[E][ ] " + command.split("/")[0].substring(6) + "(at: " + tranTime + ")");
             return new Events(command.split("/")[0].substring(6), number, tranTime);
         }
+        if (command.split(" ")[0].equals("find")) {
+            String target = command.split(" ")[1];
+            return new Find(target, arrayList);
+        }
         if (command.equals("blah")) {
             throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
