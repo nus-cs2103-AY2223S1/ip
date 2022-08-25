@@ -1,7 +1,8 @@
 package duke;
 
-import duke.exception.DukeException;
 import duke.command.Command;
+import duke.exception.DukeException;
+
 public class Duke {
     private Storage storage;
     private TaskList taskList;

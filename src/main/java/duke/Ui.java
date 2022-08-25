@@ -1,8 +1,8 @@
 package duke;
 
-import duke.task.Task;
-
 import java.util.Scanner;
+
+import duke.task.Task;
 
 public class Ui {
     public static final String LOADING_ERROR_MESSAGE = "Task list is empty.";
@@ -40,7 +40,8 @@ public class Ui {
                 preposition = "(by: ";
             }
         }
-        return "[" + task.getTaskType() + "][" + (task.isMarked() ? "X" : " ") + "] " + task.getTaskName() + preposition + task.getOutputDateAndTime();
+        return "[" + task.getTaskType() + "][" + (task.isMarked() ? "X" : " ") + "] "
+                + task.getTaskName() + preposition + task.getOutputDateAndTime();
     }
 
     public void showError(String errorMessage) {

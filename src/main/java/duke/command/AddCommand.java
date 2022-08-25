@@ -1,18 +1,17 @@
 package duke.command;
 
-import duke.Storage;
-import duke.TaskList;
-import duke.Ui;
-import duke.exception.EmptyTaskException;
-import duke.task.Task;
-import duke.task.ToDo;
-import duke.task.Deadline;
-import duke.task.Event;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.exception.EmptyTaskException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 public class AddCommand extends Command {
     public static final boolean IS_EXIT = false;
@@ -25,7 +24,7 @@ public class AddCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            String parts[] = fullCommand.split(" ", 0);
+            String[] parts = fullCommand.split(" ", 0);
             String command = parts[0];
             if (parts.length == 1) {
                 throw new EmptyTaskException();
@@ -62,7 +61,8 @@ public class AddCommand extends Command {
                 task = new Event(taskName, date, time);
             }
             taskList.getList().add(task);
-            System.out.println("Got it. I've added this task:\n" + ui.beautyWrapTask(task) + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n");
+            System.out.println("Got it. I've added this task:\n" + ui.beautyWrapTask(task)
+                    + "\nNow you have " + taskList.getList().size() + " tasks in the list.\n");
 
             /* * *
              *  Write file in duke.txt
@@ -72,13 +72,11 @@ public class AddCommand extends Command {
                 list += t.toString();
             }
             storage.write(list);
-        }
-        catch (EmptyTaskException ex){
+        } catch (EmptyTaskException ex) {
             System.out.println("☹ OOPS!!! The description of a todo cannot be empty.");
-        }
-        catch (DateTimeParseException ex) {
-            System.out.println("Invalid date & time format. Please follow the format of date as \"YYYY-MM-DD\" and time as \"HHMM\".");
-
+        } catch (DateTimeParseException ex) {
+            System.out.println("Invalid date & time format. Please follow the format of date "
+                    + "as \"YYYY-MM-DD\" and time as \"HHMM\".");
         }
     }
 
@@ -88,7 +86,7 @@ public class AddCommand extends Command {
 
     public LocalTime validateTimeString(String timeString) {
         //desired date format "1800"
-        String validatedTimeString = timeString.substring(0,2) + ":" + timeString.substring(2,4) + ":" + "00";
+        String validatedTimeString = timeString.substring(0, 2) + ":" + timeString.substring(2, 4) + ":" + "00";
         LocalTime time = LocalTime.parse(validatedTimeString);
         return time;
     }

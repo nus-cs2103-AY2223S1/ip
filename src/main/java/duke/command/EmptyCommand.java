@@ -15,8 +15,7 @@ public class EmptyCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
             throw new InvalidCommandException();
-        }
-        catch (InvalidCommandException ex) {
+        } catch (InvalidCommandException ex) {
             System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }

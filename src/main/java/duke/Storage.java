@@ -1,18 +1,18 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.ToDo;
-import duke.task.Deadline;
-import duke.task.Event;
-
-import java.io.File;  // Import the File class
-import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
 
 public class Storage {
     public final String fileName;
@@ -31,7 +31,8 @@ public class Storage {
             myWriter.write(text);
             myWriter.close();
         } catch (IOException e) {
-            System.out.println("Uh uh! The system cannot find the path specified. Are you sure your file path is correct?");
+            System.out.println("Uh uh! The system cannot find the path specified. "
+                    + "Are you sure your file path is correct?");
         }
     }
 
@@ -45,9 +46,9 @@ public class Storage {
                 taskList.add(task);
             }
             br.close();
-        }
-        catch (IOException e) {
-            System.out.println("Uh uh! The system cannot find the path specified. Are you sure your file path is correct?");
+        } catch (IOException e) {
+            System.out.println("Uh uh! The system cannot find the path specified. "
+                    + "Are you sure your file path is correct?");
         }
         return taskList;
     }
@@ -55,7 +56,7 @@ public class Storage {
     public Task convertStringToTask(String taskString) {
         String[] parts = taskString.split(",", 0);
         String taskType = parts[0];
-        boolean isMarked = (Integer.parseInt(parts[1]) == 1) ? true : false ;
+        boolean isMarked = (Integer.parseInt(parts[1]) == 1) ? true : false;
         String taskName = parts[2];
         LocalDate date = null;
         LocalTime time = null;
@@ -64,14 +65,14 @@ public class Storage {
             time = LocalTime.parse(parts[4]);
         }
         switch(taskType) {
-            case "T":
-                return new ToDo(taskName, isMarked, date, time);
-            case "D":
-                return new Deadline(taskName, isMarked, date, time);
-            case "E":
-                return new Event(taskName, isMarked, date, time);
-
+        case "T":
+            return new ToDo(taskName, isMarked, date, time);
+        case "D":
+            return new Deadline(taskName, isMarked, date, time);
+        case "E":
+            return new Event(taskName, isMarked, date, time);
+        default:
+            return new Task(taskName, isMarked, date, time);
         }
-        return new Task(taskName, isMarked, date, time); //never reach this line
     }
 }

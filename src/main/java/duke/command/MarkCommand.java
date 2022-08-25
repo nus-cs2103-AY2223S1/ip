@@ -34,7 +34,8 @@ public class MarkCommand extends Command {
             } else if (command.equals("unmark")) {
                 Task unmarkedTask = taskList.getList().get(this.markIndex).unmark();
                 taskList.getList().set(this.markIndex, unmarkedTask);
-                System.out.println("OK, I've marked this task as not done yet:\n" + ui.beautyWrapTask(unmarkedTask) + "\n");
+                System.out.println("OK, I've marked this task as not done yet:\n"
+                        + ui.beautyWrapTask(unmarkedTask) + "\n");
                 /* * *
                  *  Write file in duke.txt
                  * * */
@@ -44,11 +45,9 @@ public class MarkCommand extends Command {
                 }
                 storage.write(list);
             }
-        }
-        catch (ArrayIndexOutOfBoundsException ex) {
+        } catch (ArrayIndexOutOfBoundsException ex) {
             System.out.println("☹ OOPS!!! You did not specify which task to be marked/unmarked.\n");
-        }
-        catch (IndexOutOfBoundsException ex) {
+        } catch (IndexOutOfBoundsException ex) {
             System.out.println("☹ OOPS!!! Your list only has " + taskList.getList().size() + " tasks.\n");
         }
     }
