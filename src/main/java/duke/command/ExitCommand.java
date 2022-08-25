@@ -1,9 +1,10 @@
 package duke.command;
+
 import duke.exception.DukeException;
-import duke.task.Task;
+import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
-import duke.Storage;
+
 public class ExitCommand extends Command{
     public ExitCommand() {
         super();

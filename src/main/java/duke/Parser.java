@@ -1,5 +1,4 @@
 package duke;
-
 import duke.exception.DukeException;
 import duke.exception.InvalidInputException;
 import duke.exception.MissingInputException;
