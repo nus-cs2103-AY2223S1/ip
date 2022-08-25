@@ -8,16 +8,19 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class List {
-    private static final String FILE_PATH = "././././data/duke.txt";
-    private ArrayList<Task> data;
-
-    public List() {
-        this.data = new ArrayList<>();
+public class Storage {
+    private final String FILE_PATH;
+    
+    public Storage(String FILE_PATH) {
+        this.FILE_PATH = FILE_PATH;
+    }
+    
+    public ArrayList<Task> load() throws DukeException {
+        ArrayList<Task> data = new ArrayList<>();
         try {
             Scanner sc = new Scanner(new File(FILE_PATH));
             while (sc.hasNext()) {
-                String s = sc.nextLine(); 
+                String s = sc.nextLine();
                 Task task;
                 switch (s.charAt(1)) {
                 case 'T':
@@ -38,35 +41,30 @@ public class List {
                 case 'E':
                     String[] sections = s.substring(7).split(" \\(at: ");
                     task = new EventTask(sections[0], sections[1]);
-                    break; 
+                    break;
                 default:
                     throw new DukeException("Unrecognised Task Type");
                 }
                 if (s.charAt(4) == 'X') task.mark(true);
                 data.add(task);
             }
-        } catch (IOException | DukeException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+        } catch (IOException e) {
+            throw new DukeException(e.getMessage());
         }
+        return data;
     }
-
-    public void addTask(Task task) {
-        data.add(task);
-        
+    
+    public void appendFile(Task task) throws DukeException {
         try {
             FileWriter fw = new FileWriter(FILE_PATH, true);
             fw.write(task.toString() + "\n");
             fw.close();
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
-        }
-        
-        System.out.println("Got it. I've added this task:\n" +
-                " " + task + "\n" +
-                "Now you have " + data.size() + " tasks in the list.\n");
+            throw new DukeException(e.getMessage());
+        } 
     }
-    
-    public void writeDataFile (int pos, Task task) {
+
+    public void writeFile(int pos, Task task) throws DukeException {
         try {
             Scanner sc = new Scanner(new File(FILE_PATH));
             StringBuilder copy = new StringBuilder();
@@ -86,37 +84,7 @@ public class List {
             fw.write(fileContents);
             fw.close();
         } catch (IOException e) {
-            System.out.println("Something went wrong: " + e.getMessage());
+            throw new DukeException(e.getMessage());
         }
-    }
-
-    public void markTask (int pos, boolean isDone) {
-        Task task = data.get(pos);
-        task.mark(isDone);
-        writeDataFile(pos, task);
-        System.out.println(
-                ( isDone ? "Nice! I've marked this task as done:\n " : "OK, I've marked this task as not done yet:\n ")
-                        + task + "\n"
-        );
-    }
-    
-    public void deleteTask(int pos) {
-        Task task = data.get(pos);
-        data.remove(pos);
-        writeDataFile(pos, null);
-        System.out.println("Noted. I've removed this task:\n " + 
-                task + "\n" +
-                "Now you have " + data.size() + " tasks in the list.\n");
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder("Here are the tasks in your list:\n");
-        for (int i = 0; i < data.size(); i++) {
-            result.append(i + 1).append(".").append(data.get(i)).append("\n");
-        }
-        return result.toString();
     }
 }
-// must wait for data to be saved before entering another command
-// do not open duke.txt before running as opening it will create the first empty line 
