@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Dealine Class to represent a class that will store Deadline object that extends from Tasks Class
+ * @author amresh A0235398R
+ */
 public class Deadline extends Task {
     protected String by;
     protected LocalDate date;
@@ -14,6 +18,10 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * Method to convert deadline String to LocalDate format
+     * @return boolean true value if converted
+     */
     public boolean convertToDate() {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

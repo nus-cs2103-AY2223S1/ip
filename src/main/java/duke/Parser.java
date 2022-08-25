@@ -2,14 +2,25 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Parser Class to represent a class that will hold all the Parse methods
+ * @author amresh A0235398R
+ */
 public class Parser {
 
     protected TaskList tasks;
 
+    /**
+     * Constructor for Parser Class to create Parse object
+     * @param tasks TaskList object
+     */
     public Parser(TaskList tasks) {
         this.tasks = tasks;
     }
 
+    /**
+     * Method that runs to parse userInput
+     */
     public void parseFunc() {
         Scanner scanner = new Scanner(System.in);
         String userInput = "";
