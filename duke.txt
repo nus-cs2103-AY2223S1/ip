@@ -1,2 +1,3 @@
-1.[D][X] return book (by: 10月 15 2019)
-2.[D][X] return book (by: 10月 18 2019)
+1.[T][ ] read book
+2.[D][ ] return book (by: 10月 15 2019)
+3.[T][ ] run
