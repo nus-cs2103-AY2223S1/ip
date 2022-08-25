@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 class Storage {
@@ -21,43 +20,10 @@ class Storage {
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line = br.readLine();
-            Task curr;
-            boolean isDone;
-            LocalDate localDate;
-            String description;
+
             while (line != null) {
                 line = line.replace("\n", "");
-                if (line.substring(4, 5).equals("0")) {
-                    isDone = false;
-                } else {
-                    isDone = true;
-                }
-                switch (line.substring(0, 1)) {
-                case "T":
-                    description = line.split("\\|", 3)[2];
-                    description = description.substring(1);
-                    curr = new Todo(description);
-                    curr.setDone(isDone);
-                    taskList.addTask(curr);
-                    break;
-                case "E":
-                    description = line.split("\\|", 4)[2];
-                    description = description.substring(1, description.length()-1);
-                    localDate = LocalDate.parse(line.split("\\|", 4)[3].substring(1));
-                    curr = new Event(description, localDate);
-                    curr.setDone(isDone);
-                    taskList.addTask(curr);
-                    break;
-                case "D":
-                    description = line.split("\\|", 4)[2];
-                    description = description.substring(1, description.length()-1);
-                    localDate = LocalDate.parse(line.split("\\|", 4)[3].substring(1));
-                    curr = new Deadline(description, localDate);
-                    curr.setDone(isDone);
-                    taskList.addTask(curr);
-                    break;
-                default:
-                }
+                taskList.readPreCreatedTask(line);
                 line = br.readLine();
             }
         } catch (IOException e) {

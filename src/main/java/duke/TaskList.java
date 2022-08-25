@@ -29,6 +29,47 @@ public class TaskList {
         return res;
     }
 
+    protected void readPreCreatedTask(String line) {
+        Task curr;
+        boolean isDone;
+        LocalDate localDate;
+        String description;
+        if (line.substring(4, 5).equals("0")) {
+            isDone = false;
+        } else {
+            isDone = true;
+        }
+        switch (line.substring(0, 1)) {
+        case "T":
+            description = line.split("\\|", 3)[2];
+            description = description.substring(1);
+            curr = new Todo(description);
+            curr.setDone(isDone);
+            this.addTask(curr);
+            break;
+
+        case "E":
+            description = line.split("\\|", 4)[2];
+            description = description.substring(1, description.length()-1);
+            localDate = LocalDate.parse(line.split("\\|", 4)[3].substring(1));
+            curr = new Event(description, localDate);
+            curr.setDone(isDone);
+            this.addTask(curr);
+            break;
+
+        case "D":
+            description = line.split("\\|", 4)[2];
+            description = description.substring(1, description.length()-1);
+            localDate = LocalDate.parse(line.split("\\|", 4)[3].substring(1));
+            curr = new Deadline(description, localDate);
+            curr.setDone(isDone);
+            this.addTask(curr);
+            break;
+
+        default:
+            // unrecognized pre-created task
+        }
+    }
 
     private void createEvent(TaskEnum taskEnum, String command) throws DukeException{
         String args[];
@@ -57,7 +98,7 @@ public class TaskList {
         default:
             throw new DukeException("Invalid Input");
         }
-        this.taskArrayList.add(res);
+        this.addTask(res);
         Ui.FormatPrint("Got it. I've added this task:\n" + res.toString());
     }
 
