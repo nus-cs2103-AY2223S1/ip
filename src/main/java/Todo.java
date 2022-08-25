@@ -6,7 +6,7 @@ class Todo extends Task{
         super(itself);
     }
 
-    public boolean isOnDate() {
+    public boolean isOnDate(LocalDate lc) {
         return false;
     }
 
