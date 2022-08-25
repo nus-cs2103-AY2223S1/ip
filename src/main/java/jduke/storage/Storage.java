@@ -1,13 +1,13 @@
 package jduke.storage;
 
-import jduke.data.exception.JdukeException;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import jduke.data.exception.JdukeException;
 
 /**
  * Represents the storage for the tasks.

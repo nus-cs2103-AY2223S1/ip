@@ -1,10 +1,10 @@
-package commands;
-
-import jduke.commands.TodoCommand;
-import jduke.data.TaskList;
-import org.junit.jupiter.api.Test;
+package jduke.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+
+import jduke.data.TaskList;
 
 public class TodoCommandTest {
     @Test

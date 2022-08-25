@@ -19,9 +19,9 @@ public class Event extends Task {
         super(description);
         String[] timingParams = timing.split(" ");
         if (timingParams.length == 2) {
-            this.time = LocalTime.parse(timingParams[1], Task.inputTimeFormatter);
+            this.time = LocalTime.parse(timingParams[1], Task.FORMATTER_INPUT_TIME);
         }
-        this.date = LocalDate.parse(timingParams[0], Task.inputDateFormatter);
+        this.date = LocalDate.parse(timingParams[0], Task.FORMATTER_INPUT_DATE);
     }
     @Override
     protected String getType() {
@@ -45,11 +45,10 @@ public class Event extends Task {
     @Override
     public String toStorageFormat() {
         return String.format(
-                "E | %d | %s | %s%s",
-                (this.isCompleted ? 1 : 0),
-                this.description,
-                this.date.format(Deadline.inputDateFormatter),
-                (this.time == null ? "" : " " + this.time.format(Task.inputTimeFormatter)));
+                "E | %d | %s | %s%s", (this.isCompleted ? 1 : 0), this.description,
+                this.date.format(Task.FORMATTER_INPUT_DATE), (this.time == null
+                        ? ""
+                        : " " + this.time.format(Task.FORMATTER_INPUT_TIME)));
     }
 
     /**
@@ -60,7 +59,8 @@ public class Event extends Task {
     public String toString() {
         return String.format("[%s][%s] %s (at: %s%s)",
                 this.getType(), (this.isCompleted ? "X" : " "), this.description,
-                this.date.format(Task.outputDateFormatter),
-                (this.time == null ? "" : " " + this.time.format(Task.outputTimeFormatter)));
+                this.date.format(Task.FORMATTER_OUTPUT_DATE), (this.time == null
+                        ? ""
+                        : " " + this.time.format(Task.FORMATTER_OUTPUT_TIME)));
     }
 }

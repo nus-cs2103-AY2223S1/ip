@@ -1,13 +1,13 @@
 package jduke.data;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 import jduke.task.Deadline;
 import jduke.task.Event;
 import jduke.task.Task;
 import jduke.task.Todo;
-
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 
 /**
  * Represents the entire list of tasks.
@@ -39,6 +39,8 @@ public class TaskList {
                 break;
             case "E":
                 tasks.add(new Event(taskParams[2], taskParams[3]));
+                break;
+            default:
                 break;
             }
             if (taskParams[1].equals("1")) {

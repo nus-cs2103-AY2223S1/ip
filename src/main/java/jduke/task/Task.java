@@ -7,13 +7,15 @@ import java.time.format.DateTimeFormatter;
  * Represents a task.
  */
 public abstract class Task {
+    protected static final DateTimeFormatter FORMATTER_INPUT_DATE = DateTimeFormatter.ofPattern("d/M/yyyy");
+    protected static final DateTimeFormatter FORMATTER_INPUT_TIME = DateTimeFormatter.ofPattern("HHmm");
+    protected static final DateTimeFormatter FORMATTER_OUTPUT_DATE = DateTimeFormatter.ofPattern("MMM dd yyyy");
+    protected static final DateTimeFormatter FORMATTER_OUTPUT_TIME = DateTimeFormatter.ofPattern("hh:mm a");
+
     protected final String description;
     protected boolean isCompleted;
 
-    protected static DateTimeFormatter inputDateFormatter = DateTimeFormatter.ofPattern("d/M/yyyy");
-    protected static DateTimeFormatter inputTimeFormatter = DateTimeFormatter.ofPattern("HHmm");
-    protected static DateTimeFormatter outputDateFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy");
-    protected static DateTimeFormatter outputTimeFormatter = DateTimeFormatter.ofPattern("hh:mm a");
+
 
     protected Task(String description) {
         this.description = description;

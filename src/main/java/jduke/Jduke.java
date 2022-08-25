@@ -8,6 +8,9 @@ import jduke.parser.Parser;
 import jduke.storage.Storage;
 import jduke.ui.Ui;
 
+/**
+ * The main entry point to the program.
+ */
 public class Jduke {
     private TaskList tasklist;
     private Storage storage;

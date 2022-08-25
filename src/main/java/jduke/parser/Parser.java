@@ -1,8 +1,10 @@
 package jduke.parser;
 
+import java.util.regex.Pattern;
+
 import jduke.commands.ByeCommand;
-import jduke.commands.DeadlineCommand;
 import jduke.commands.Command;
+import jduke.commands.DeadlineCommand;
 import jduke.commands.DeleteCommand;
 import jduke.commands.EventCommand;
 import jduke.commands.FindCommand;
@@ -12,18 +14,17 @@ import jduke.commands.MarkCommand;
 import jduke.commands.TodoCommand;
 import jduke.commands.UnmarkCommand;
 
-import java.util.regex.Pattern;
 
 /**
  * Represents a parser to parse user input.
  */
 public class Parser {
     private static final String REGEX_DEADLINE =
-            "[^ ](.*) /by ([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4}" +
-                    "(( ([01][0-9]|2[0-3])([0-5][0-9]))|)";
+            "[^ ](.*) /by ([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4}"
+                    + "(( ([01][0-9]|2[0-3])([0-5][0-9]))|)";
     private static final String REGEX_EVENT =
-            "[^ ](.*) /at ([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4}" +
-                    "(( ([01][0-9]|2[0-3])([0-5][0-9]))|)";
+            "[^ ](.*) /at ([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4}"
+                    + "(( ([01][0-9]|2[0-3])([0-5][0-9]))|)";
     private static final String REGEX_LIST =
             "(([1-9]|[0-2][0-9]|(3)[0-1])/(((0)?[0-9])|((1)[0-2]))/[0-9]{4}|)";
 

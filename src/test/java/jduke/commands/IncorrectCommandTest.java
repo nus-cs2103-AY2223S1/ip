@@ -1,9 +1,8 @@
-package commands;
-
-import jduke.commands.IncorrectCommand;
-import org.junit.jupiter.api.Test;
+package jduke.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 public class IncorrectCommandTest {
     @Test
