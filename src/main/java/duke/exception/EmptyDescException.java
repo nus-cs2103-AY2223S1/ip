@@ -1,3 +1,5 @@
+package duke.exception;
+
 public class EmptyDescException extends Exception {
     String desc;
     public EmptyDescException(String message) {

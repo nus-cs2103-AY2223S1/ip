@@ -1,10 +1,16 @@
+package duke.command;
+
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
 import java.io.IOException;
 
-public class MarkCommand extends Command {
+public class UnmarkCommand extends Command {
 
     private int index;
 
-    public MarkCommand(String desc) {
+    public UnmarkCommand(String desc) {
         String numberOnly = desc.replaceAll("[^0-9]", "");
         index = Integer.parseInt(numberOnly);
     }
@@ -12,9 +18,9 @@ public class MarkCommand extends Command {
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         try {
-            tasks.markTask(index);
+            tasks.unmarkTask(index);
             storage.rebuildFile(tasks.getIterator());
-            ui.printMessage("Alright, this task is marked as done:\n"
+            ui.printMessage("Alright, this task is marked as not done yet:\n"
                     + tasks.getTask(index).toString());
         } catch (IOException ioe) {
             System.out.println("Something went wrong: " + ioe.getMessage());
