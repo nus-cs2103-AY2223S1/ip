@@ -17,7 +17,8 @@ public class Parser {
         TODO("todo"),
         DEADLINE("deadline"),
         EVENT("event"),
-        DELETE("delete");
+        DELETE("delete"),
+        FIND("find");
 
         private String value;
 
@@ -64,6 +65,8 @@ public class Parser {
                 return new AddCommand(new Event(description[0], dates[0], dates[1]));
             case DELETE:
                 return new DeleteCommand(parseInt(input[1]));
+            case FIND:
+                return new FindCommand(input[1]);
             default:
                 return null;
         }

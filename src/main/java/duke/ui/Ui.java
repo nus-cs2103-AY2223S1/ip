@@ -57,6 +57,18 @@ public class Ui {
         System.out.println("\t\t" + task);
     }
 
+    public void find(String description, TaskList taskList) {
+        System.out.println("\tHere are the matching tasks in your list!");
+        int num = 1;
+        for (int i = 1; i < Task.getNumOfTasks() + 1; i++) {
+            Task t = taskList.getTask(i);
+            if (t.contains(description)) {
+                System.out.println("\t\t" + num + ". " + t);
+                num += 1;
+            }
+        }
+    }
+
     public void showDivider() {
         System.out.println("\t-----------------------------------------------------");
     }
