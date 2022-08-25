@@ -1,4 +1,4 @@
-T|X|do homework
-E| |do homework|9am
-E|X|do homework|10am
 T| |do homework
+E|X|do homework|2022-12-30-1500
+D|X|do homework|2022-12-30-1500
+E| |play basketball|2012-12-12-1623
