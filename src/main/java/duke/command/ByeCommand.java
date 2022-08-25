@@ -1,12 +1,12 @@
 package duke.command;
 
-import duke.storage.Storage;
-import duke.task.TaskList;
 import duke.DukeException;
 import duke.Ui;
+import duke.storage.Storage;
+import duke.task.TaskList;
 
 public class ByeCommand extends Command {
-    public ByeCommand () {
+    public ByeCommand() {
     }
 
     @Override
@@ -15,7 +15,7 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return true;
     }
 }

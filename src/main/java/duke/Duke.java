@@ -1,15 +1,15 @@
 package duke;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import duke.command.Command;
 import duke.storage.Storage;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Duke {
-    static List<Task> list = new ArrayList<>();
+    private List<Task> list = new ArrayList<>();
 
     private Storage storage;
     private TaskList tasks;
@@ -20,7 +20,7 @@ public class Duke {
         storage = new Storage(filePath);
         try {
             tasks = new TaskList(storage.load());
-            System.out.println("list size-"+tasks.listSize());
+            System.out.println("list size-" + tasks.listSize());
         } catch (DukeException e) {
             ui.showLoadingError();
             tasks = new TaskList();
@@ -31,7 +31,7 @@ public class Duke {
         new Duke("data/tasks.txt").run();
     }
 
-    public void run(){
+    public void run() {
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {

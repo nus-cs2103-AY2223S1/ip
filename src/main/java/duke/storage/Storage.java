@@ -8,32 +8,34 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import duke.task.Task;
-import duke.task.Deadline;
-import duke.task.Todo;
-import duke.task.Event;
+
 import duke.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 public class Storage {
     private final String filePath;
 
     public Storage(String filePath) {
         this.filePath = filePath;
-        String pathSegment[] = filePath.split("/");
+        String[] pathSegment = filePath.split("/");
         try {
             File storageFolder = new File(pathSegment[0]);
             File storageFile = new File(this.filePath);
 
+            //make a data folder if it does not exists
             if (!storageFolder.exists()) {
                 storageFolder.mkdir();
             }
-
+            //create task.txt if it doesnt exists
             if (!storageFile.exists()) {
                 storageFile.createNewFile();
             }
 
         } catch (IOException error) {
-            System.out.println("error finding:"+error.getMessage());
+            System.out.println("error finding:" + error.getMessage());
         }
     }
 
@@ -43,22 +45,22 @@ public class Storage {
             BufferedReader storageReader = new BufferedReader(new FileReader(this.filePath));
             String savedTaskString = storageReader.readLine();
 
-            while(savedTaskString != null) {
+            while (savedTaskString != null) {
                 String[] taskSegment = savedTaskString.split("\\|");
                 String taskType = taskSegment[0];
                 String taskStatus = taskSegment[1];
                 String taskDescription = taskSegment[2];
                 String taskDate = null;
                 LocalDate taskLocalDate = null;
-                if(taskSegment.length >= 4) {
-                    if(taskType.equals("D")) {
+                if (taskSegment.length >= 4) {
+                    if (taskType.equals("D")) {
                         try {
                             taskLocalDate = LocalDate.parse(taskSegment[3]);
                         } catch (Exception ex) {
                             System.out.println(ex.getMessage());
                         }
                     } else {
-                         taskDate = taskSegment[3];
+                        taskDate = taskSegment[3];
                     }
                 }
 
@@ -73,6 +75,8 @@ public class Storage {
                 case "E":
                     currentSavedTask = new Event(taskDescription, taskDate);
                     break;
+                default:
+                    break;
                 }
 
                 if (taskStatus.equals("X")) {
@@ -84,7 +88,7 @@ public class Storage {
             }
             storageReader.close();
         } catch (IOException error) {
-            System.out.println("error loading:"+error.getMessage());
+            System.out.println("error loading:" + error.getMessage());
         }
         return loadedTasks;
     }

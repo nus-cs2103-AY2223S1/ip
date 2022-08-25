@@ -1,8 +1,16 @@
 package duke;
 
-import duke.command.*;
-
 import java.time.LocalDate;
+
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
@@ -21,7 +29,7 @@ public class Parser {
             return new DeadlineCommand(deadlineSegments[0], LocalDate.parse(deadlineSegments[1].trim()));
         case "event":
             String[] eventSegments = commandSegments[1].split("/at", 2);
-            return new EventCommand(eventSegments[0],eventSegments[1]);
+            return new EventCommand(eventSegments[0], eventSegments[1]);
         case "mark":
             return new MarkCommand(Integer.parseInt(commandSegments[1].trim()));
         case "unmark":

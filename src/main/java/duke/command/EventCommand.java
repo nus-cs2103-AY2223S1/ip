@@ -1,10 +1,10 @@
 package duke.command;
 
+import duke.DukeException;
+import duke.Ui;
 import duke.storage.Storage;
 import duke.task.Event;
 import duke.task.TaskList;
-import duke.DukeException;
-import duke.Ui;
 
 public class EventCommand extends Command {
     private String description;
@@ -24,7 +24,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }

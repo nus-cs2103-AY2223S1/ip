@@ -1,29 +1,29 @@
 package duke.command;
 
-import duke.storage.Storage;
-import duke.task.TaskList;
 import duke.DukeException;
 import duke.Ui;
+import duke.storage.Storage;
+import duke.task.TaskList;
 
 public class MarkCommand extends Command {
     private int index;
 
     public MarkCommand(int index) {
-        this.index= index;
+        this.index = index;
     }
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
-        if(index > taskList.listSize()){
+        if (index > taskList.listSize()) {
             throw new DukeException("There is no " + index + " index in the list. （ﾟДﾟ ）\n");
         } else {
-            taskList.markTaskAtIndex(index-1);
-            ui.printMessage("[X] You've completed a task!\n" + taskList.getTaskAtIndex(index-1) + "\n");
+            taskList.markTaskAtIndex(index - 1);
+            ui.printMessage("[X] You've completed a task!\n" + taskList.getTaskAtIndex(index - 1) + "\n");
         }
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
 }

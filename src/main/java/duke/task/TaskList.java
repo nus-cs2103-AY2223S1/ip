@@ -4,39 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
-     List<Task> list;
+    private List<Task> list;
 
-     public TaskList(){
-          this.list = new ArrayList<>();
-     }
-     public TaskList(List<Task> list){
-          this.list = list;
-     }
+    public TaskList() {
+        this.list = new ArrayList<>();
+    }
 
-     public void addTask(Task task){
-          list.add(task);
-     }
+    public TaskList(List<Task> list) {
+        this.list = list;
+    }
 
-     public void markTaskAtIndex (int index) {
-          list.get(index).markAsDone();
-     }
-     public void unmarkTaskAtIndex (int index) {
-           list.get(index).markAsUndone();
-     }
+    public void addTask(Task task) {
+        list.add(task);
+    }
 
-     public void removeTaskAtIndex(int index){
-          list.remove(index);
-     }
+    public void markTaskAtIndex(int index) {
+        list.get(index).markAsDone();
+    }
 
-     public Task getTaskAtIndex (int index) {
-          return list.get(index);
-     }
+    public void unmarkTaskAtIndex(int index) {
+        list.get(index).markAsUndone();
+    }
 
-     public int listSize(){
-          return list.size();
-     }
+    public void removeTaskAtIndex(int index) {
+        list.remove(index);
+    }
 
-     public List<Task> getList(){
-          return list;
-     }
+    public Task getTaskAtIndex(int index) {
+        return list.get(index);
+    }
+
+    public int listSize() {
+        return list.size();
+    }
+
+    public List<Task> getList() {
+        return list;
+    }
 }

@@ -1,17 +1,18 @@
 package duke.command;
 
+import duke.DukeException;
+import duke.Ui;
 import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.task.Todo;
-import duke.DukeException;
-import duke.Ui;
+
 
 public class TodoCommand extends Command {
 
     private String description;
 
     public TodoCommand(String description) {
-            this.description = description;
+        this.description = description;
     }
 
     @Override
@@ -20,12 +21,12 @@ public class TodoCommand extends Command {
         taskList.addTask(todo);
         ui.printMessage("+ Added this todo:\n" + todo + "\nNow you have " + taskList.listSize()
                 + " tasks in the list\n");
-        //storage.saveTasks(taskList);
-
+        //storage.saveTasksInStorage(taskList);
     }
 
     @Override
-    public boolean isExit(){
+    public boolean isExit() {
         return false;
     }
+
 }
