@@ -1,5 +1,7 @@
 package Duke;
 
+import java.util.ArrayList;
+
 // deals with interactions with the user
 public class Ui {
 
@@ -21,6 +23,13 @@ public class Ui {
         System.out.println("Got it! I've added this task:\n"
                 + task.toString()
                 + "\nNow you've got " + size + " tasks in the list!");
+    }
+
+    public static void printFindTasks(ArrayList<Task> tasks) {
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i ++) {
+            System.out.println((i + 1) + ". " + tasks.get(i));
+        }
     }
 
     public static void printDeleteSuccessfulMsg(Task task, int size) {
