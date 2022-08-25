@@ -87,44 +87,44 @@ public class Duke {
                             + LINE);
                 }
 
-                if (taskDeadline.length < 2 || taskDeadline[1].isEmpty()) {
-                    throw new DukeException(LINE + "☹ OOPS!!! Please include a /by for your deadline. " +
-                            "E.g /by Aug 6th.\n"
-                            + LINE);
-                } else {
-                    Deadline d = new Deadline(taskDeadline[0].substring(1), taskDeadline[1]);
-                    int index = taskList.size() + 1;
-                    taskList.add(d);
-                    count++;
-                    System.out.println(LINE + "Got it. I've added this task:\n" + d.toString());
-                    System.out.println("Now you have " + index + " tasks in this list.\n" + LINE);
-                    break;
-                }
-            case "event":
-                String[] eventArray = input.split("event", 2);
-                String taskAt = eventArray[1];
-                String[] taskEvent = taskAt.split("/at", 2);
+            if (taskDeadline.length < 2 || taskDeadline[1].isEmpty()) {
+                throw new DukeException(LINE + "☹ OOPS!!! Please include a /by for your deadline. " +
+                        "E.g /by 2019-10-15T10:15:00.\n"
+                        + LINE);
+            } else {
+                Deadline d = new Deadline(taskDeadline[0].substring(1), " " + taskDeadline[1].substring(1));
+                int index = taskList.size() + 1;
+                taskList.add(d);
+                count++;
+                System.out.println(LINE + "Got it. I've added this task:\n" + d.toString());
+                System.out.println("Now you have " + index + " tasks in this list.\n" + LINE);
+                break;
+            }
+        case "event":
+            String[] eventArray = input.split("event", 2);
+            String taskAt = eventArray[1];
+            String[] taskEvent = taskAt.split("/at", 2);
 
                 if (eventArray.length < 2 || eventArray[1].isEmpty()) {
                     throw new DukeException(LINE + "☹ OOPS!!! The description of a event cannot be empty.\n"
                             + LINE);
                 }
 
-                if (taskEvent.length < 2 || taskEvent[1].isEmpty()) {
-                    throw new DukeException(LINE + "☹ OOPS!!! Please include a /at for your deadline. " +
-                            "E.g /at 2-4pm.\n"
-                            + LINE);
-                } else {
-                    Event e = new Event(taskEvent[0].substring(1), taskEvent[1]);
-                    int index = taskList.size() + 1;
-                    taskList.add(e);
-                    count++;
-                    System.out.println(LINE + "Got it. I've added this task:\n" + e.toString());
-                    System.out.println("Now you have " + index + " tasks in this list.\n" + LINE);
-                    break;
-                }
-            default:
-                System.out.println("I can't add this task. Sorry :(");
+            if (taskEvent.length < 2 || taskEvent[1].isEmpty()) {
+                throw new DukeException(LINE + "☹ OOPS!!! Please include a /at for your deadline. " +
+                        "E.g /at 2019-10-15T10:15:00.\n"
+                        + LINE);
+            } else {
+                Event e = new Event(taskEvent[0].substring(1), " " + taskEvent[1].substring(1));
+                int index = taskList.size() + 1;
+                taskList.add(e);
+                count++;
+                System.out.println(LINE + "Got it. I've added this task:\n" + e.toString());
+                System.out.println("Now you have " + index + " tasks in this list.\n" + LINE);
+                break;
+            }
+        default:
+            System.out.println("I can't add this task. Sorry :(");
         }
     }
 
