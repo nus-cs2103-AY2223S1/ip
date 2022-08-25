@@ -9,9 +9,23 @@ import duke.task.ToDo;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * The Parser class contains the methods that handles user commands.
+ */
 public class Parser {
+
+    /**
+     * Initializes an instance of a Parser.
+     */
     public Parser() {}
 
+    /**
+     * Parses the input of the user to an instance of a Command.
+     *
+     * @param input Input from user.
+     * @return Command object.
+     * @throws DukeException If user input is invalid.
+     */
     public Command parse(String input) throws DukeException {
         String[] arg = input.split(" ", 2);
         String command = arg[0];
@@ -34,10 +48,10 @@ public class Parser {
                     }
                     return new ToDoCommand(new ToDo(commandArg));
                 case "deadline" :
-                    String[] deadlineArgs = parseDeadlineArgs(commandArg);
+                    String[] deadlineArgs = getDeadlineArgs(commandArg);
                     return new DeadlineCommand(new Deadline(deadlineArgs[0], parseDateArg(deadlineArgs[1])));
                 case "event":
-                    String[] eventArgs = parseEventArgs(commandArg);
+                    String[] eventArgs = getEventArgs(commandArg);
                     return new EventCommand(new Event(eventArgs[0], parseDateArg(eventArgs[1])));
                 case "bye":
                     if (!commandArg.equals("")) {
@@ -49,7 +63,7 @@ public class Parser {
             }
     }
 
-    private String[] parseDeadlineArgs(String desc) throws DukeException {
+    private String[] getDeadlineArgs(String desc) throws DukeException {
         String[] res = desc.split("/by");
         for (int i = 0; i < res.length; i++) {
             res[i] = res[i].trim();
@@ -60,7 +74,7 @@ public class Parser {
         return res;
     }
 
-    private String[] parseEventArgs(String desc) throws DukeException {
+    private String[] getEventArgs(String desc) throws DukeException {
         String[] res = desc.split("/at");
         for (int i = 0; i < res.length; i++) {
             res[i] = res[i].trim();

@@ -13,15 +13,30 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * The Storage class encapsulates the file used as a local database and its associated methods.
+ */
 public class Storage {
     private final String filePath;
     private final File file;
 
+    /**
+     * Initializes an instance of Storage.
+     * The filePath argument specify the file used as a local database.
+     *
+     * @param filePath File path to the local database.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.file = new File(filePath);
     }
 
+    /**
+     * Retrieves saved tasks from the {@link #file}.
+     *
+     * @return Task list.
+     * @throws DukeException If unable to find, access, or read data from file.
+     */
     public TaskList load() throws DukeException {
         Scanner sc = null;
         TaskList taskList = new TaskList();
@@ -64,6 +79,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates a new directory and/or a new file for the {@link #filePath}.
+     *
+     * @throws DukeException If unable to create new file or/and new directory.
+     */
     public void createFile() throws DukeException {
         try {
             file.getParentFile().mkdirs();
@@ -75,6 +95,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Overwrites the text stored in the {@link #file}.
+     *
+     * @param textToReplace Replacement text.
+     */
     public void overwriteFile(String textToReplace) {
         try {
             FileWriter fw = new FileWriter(filePath);

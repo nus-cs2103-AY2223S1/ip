@@ -10,7 +10,7 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasklist, Ui ui, Storage storage) {
+    public void execute(TaskList taskList, Ui ui, Storage storage) {
         ui.printGoodbye();
     }
 }
