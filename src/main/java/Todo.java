@@ -1,10 +1,11 @@
 /**
  * A todo task which inherits from Task.
  */
-public class Todo extends Task{
+public class Todo extends Task {
 
     /**
      * Constructor for a Todo.
+     *
      * @param description The description of the Todo.
      */
     public Todo(String description) {
@@ -13,6 +14,7 @@ public class Todo extends Task{
 
     /**
      * Returns the string representation of the todo object.
+     *
      * @return The string representation of the todo object.
      */
     @Override
@@ -22,6 +24,7 @@ public class Todo extends Task{
 
     /**
      * Returns the string representation of the Todo object to be stored in the file.
+     *
      * @return The string representation of the Todo object to be stored in the file.
      */
     @Override

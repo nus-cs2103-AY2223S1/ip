@@ -5,6 +5,7 @@ public class DukeException extends RuntimeException {
 
     /**
      * Returns the string representation of the DukeException object.
+     *
      * @return The string representation of the DukeException object.
      */
     @Override

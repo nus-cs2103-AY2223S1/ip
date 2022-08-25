@@ -14,12 +14,14 @@ public abstract class Task {
 
     /**
      * Returns the string representation of the Task object to be stored in the file.
+     *
      * @return The string representation of the Task object to be stored in the file.
      */
     public abstract String toFile();
 
     /**
      * Constructor for a Task.
+     *
      * @param description The description of the Task.
      */
     public Task(String description) {
@@ -29,6 +31,7 @@ public abstract class Task {
 
     /**
      * Returns the status of the Task.
+     *
      * @return A string indicating if the Task is done.
      */
     protected String getStatusIcon() {
@@ -37,6 +40,7 @@ public abstract class Task {
 
     /**
      * Sets the Task to be done.
+     *
      * @return true if the task has changed state.
      */
     public boolean setDone() {
@@ -50,6 +54,7 @@ public abstract class Task {
 
     /**
      * Sets the Task to be undone.
+     *
      * @return true if the task has changed state.
      */
     public boolean setUnDone() {
@@ -63,6 +68,7 @@ public abstract class Task {
 
     /**
      * Returns the string representation of the Task object.
+     *
      * @return The string representation of the Task object.
      */
     @Override

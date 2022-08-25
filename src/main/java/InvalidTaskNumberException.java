@@ -1,7 +1,7 @@
 /**
  * An invalid task number exception for the Duke chatbot which extends from DukeException.
  */
-public class InvalidTaskNumberException extends DukeException{
+public class InvalidTaskNumberException extends DukeException {
 
     /** The command that threw the exception. */
     private String cmd;
@@ -11,7 +11,8 @@ public class InvalidTaskNumberException extends DukeException{
 
     /**
      * Constructor for an InvalidTaskNumberException.
-     * @param cmd The command that threw the exception.
+     *
+     * @param cmd    The command that threw the exception.
      * @param number The invalid task number entered.
      */
     public InvalidTaskNumberException(String cmd, String number) {
@@ -21,6 +22,7 @@ public class InvalidTaskNumberException extends DukeException{
 
     /**
      * Returns the string representation of the InvalidTaskNumberException object.
+     *
      * @return The string representation of the InvalidTaskNumberException object.
      */
     @Override

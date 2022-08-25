@@ -1,13 +1,14 @@
 /**
  * An empty task exception for the Duke chatbot which extends from DukeException.
  */
-public class EmptyTaskException extends DukeException{
+public class EmptyTaskException extends DukeException {
 
     /** The command that threw the exception. */
     private String cmd;
 
     /**
      * Constructor for an EmptyTaskException.
+     *
      * @param cmd The command that threw the exception.
      */
     public EmptyTaskException(String cmd) {
@@ -16,6 +17,7 @@ public class EmptyTaskException extends DukeException{
 
     /**
      * Returns the string representation of the EmptyTaskException object.
+     *
      * @return The string representation of the EmptyTaskException object.
      */
     @Override

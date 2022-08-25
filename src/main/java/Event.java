@@ -1,4 +1,3 @@
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -6,7 +5,7 @@ import java.time.format.DateTimeParseException;
 /**
  * An event task which contains a date/time for the event, which inherits from Task.
  */
-public class Event extends Task{
+public class Event extends Task {
 
     /** A string representing the date/time of the Event. */
     protected String at;
@@ -17,8 +16,9 @@ public class Event extends Task{
 
     /**
      * Constructor for an Event.
+     *
      * @param description The description of the Event.
-     * @param at The date/time of the Event.
+     * @param at          The date/time of the Event.
      */
     public Event(String description, String at) {
         super(description);
@@ -35,6 +35,7 @@ public class Event extends Task{
 
     /**
      * Returns the string representation of the Event object.
+     *
      * @return The string representation of the Event object.
      */
     @Override
@@ -45,6 +46,7 @@ public class Event extends Task{
 
     /**
      * Returns the string representation of the Event object to be stored in the file.
+     *
      * @return The string representation of the Event object to be stored in the file.
      */
     @Override

@@ -1,7 +1,7 @@
 /**
  * An invalid argument exception for the Duke chatbot which extends from DukeException.
  */
-public class InvalidArgumentException extends DukeException{
+public class InvalidArgumentException extends DukeException {
 
     /** The type of Task that threw the exception. */
     private String task;
@@ -11,8 +11,9 @@ public class InvalidArgumentException extends DukeException{
 
     /**
      * Constructor for an InvalidArgumentException.
+     *
      * @param task The type of Task that threw the exception.
-     * @param cmd The correct command to be used.
+     * @param cmd  The correct command to be used.
      */
     public InvalidArgumentException(String task, String cmd) {
         this.task = task;
@@ -21,6 +22,7 @@ public class InvalidArgumentException extends DukeException{
 
     /**
      * Returns the string representation of the InvalidArgumentException object.
+     *
      * @return The string representation of the InvalidArgumentException object.
      */
     @Override

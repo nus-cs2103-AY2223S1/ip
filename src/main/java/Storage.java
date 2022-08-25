@@ -8,19 +8,17 @@ import java.util.Scanner;
 /**
  * A file reader to read and write to the task file.
  */
-public class FileReader {
+public class Storage {
 
     /** The file that is to be read from and to write to. */
     private File file;
 
     /**
-     * Empty constructor for a FileReader object.
+     * Constructor for a Storage object.
+     *
+     * @param path The path to locate the file to be read from.
      */
-    public FileReader() {
-
-    }
-
-    public void readFrom(String path) {
+    public Storage(String path) {
         this.file = new File(path);
         try {
             this.file.createNewFile();
@@ -29,7 +27,7 @@ public class FileReader {
         }
     }
 
-    public void writeFrom(List<Task> lst) {
+    public void writeToFile(List<Task> lst) {
         try {
             FileWriter fileWriter = new FileWriter(this.file);
             String str = "";
@@ -44,7 +42,7 @@ public class FileReader {
 
     }
 
-    public void updateList(List<Task> lst) {
+    public void readFromFile(List<Task> lst) {
         try {
             Scanner fileScanner = new Scanner(this.file);
             while (fileScanner.hasNextLine()) {
@@ -66,6 +64,7 @@ public class FileReader {
                 }
                 lst.add(temp);
             }
+            fileScanner.close();
         } catch (FileNotFoundException e) {
             System.out.println("File not found.");
         }

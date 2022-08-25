@@ -1,7 +1,7 @@
 /**
- * An unkown command exception for the Duke chatbot which extends from DukeException.
+ * An unknown command exception for the Duke chatbot which extends from DukeException.
  */
-public class UnknownCommandException extends DukeException{
+public class UnknownCommandException extends DukeException {
 
     /** A string of all the recognized commands. */
     private String commands = "\ttodo - adds the task to the list\n" +
@@ -20,6 +20,7 @@ public class UnknownCommandException extends DukeException{
 
     /**
      * Constructor for an UnknownCommandException.
+     *
      * @param cmd The command that threw the exception.
      */
     public UnknownCommandException(String cmd) {
@@ -28,6 +29,7 @@ public class UnknownCommandException extends DukeException{
 
     /**
      * Returns the string representation of the UnknownCommandException object.
+     *
      * @return The string representation of the UnknownCommandException object.
      */
     @Override

@@ -1,7 +1,7 @@
 /**
  * An empty duration exception for the Duke chatbot which extends from DukeException.
  */
-public class EmptyDurationException extends DukeException{
+public class EmptyDurationException extends DukeException {
 
     /** The type of Task that threw the exception. */
     private String task;
@@ -11,8 +11,9 @@ public class EmptyDurationException extends DukeException{
 
     /**
      * Constructor for an EmptyDurationException.
+     *
      * @param task The type of Task that threw the exception.
-     * @param cmd The command used with the empty duration.
+     * @param cmd  The command used with the empty duration.
      */
     public EmptyDurationException(String task, String cmd) {
         this.task = task;
@@ -21,6 +22,7 @@ public class EmptyDurationException extends DukeException{
 
     /**
      * Returns the string representation of the EmptyDurationException object.
+     *
      * @return The string representation of the EmptyDurationException object.
      */
     @Override
