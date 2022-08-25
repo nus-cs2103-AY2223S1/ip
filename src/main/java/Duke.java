@@ -17,10 +17,11 @@ public class Duke {
         System.out.println("Hello! I am Greg!");
         System.out.println("What do you need help with?");
         System.out.println(spacing + "\n");
+
+        // Queries for tasks until terminated
         while (true) {
             String word = br.readLine();
-            String[] splitWord = word.split(" ");
-            // Say goodbye
+            // 1. Say goodbye
             if (word.equals("bye")) { 
                 System.out.println(spacing);
                 System.out.println("Goobye, see you again!\n");
@@ -28,21 +29,19 @@ public class Duke {
                 break;
             } 
 
-            // Lists out all the tasks
+            // 2. Lists out all the tasks
             else if (word.equals("list")) { 
                 System.out.println(spacing);
                 System.out.println("Here are the tasks in your list:");
                 for (int i = 0; i < numTasks; i++) {
-                    Task task = tasks[i];
-                    String output = Integer.toString(i+1) + ". [" + task.getStatusIcon()+ "] " + task.getTask();
-                    System.out.println(output);
+                    System.out.println(Integer.toString(i+1) + "." + tasks[i].toString());
                 }
                 System.out.println("\n" + spacing + "\n");
             }
 
-            // Mark task as done 
-            else if (splitWord[0].equals("mark")) {
-                int taskNumber = Integer.parseInt(splitWord[1]) - 1;
+            // 3. Mark task as done 
+            else if (word.startsWith("mark")) {
+                int taskNumber = Integer.parseInt(word.split(" ")[1]) - 1;
                 tasks[taskNumber].setStatus(1);
                 System.out.println(spacing);
                 System.out.println("Nice! I have marked this task as done:");
@@ -50,9 +49,9 @@ public class Duke {
                 System.out.println(spacing + "\n");
             }
 
-            // Mark task as undone
-            else if (splitWord[0].equals("unmark")) {
-                int taskNumber = Integer.parseInt(splitWord[1]) - 1;
+            // 4. Mark task as undone
+            else if (word.startsWith("unmark")) {
+                int taskNumber = Integer.parseInt(word.split(" ")[1]) - 1;
                 tasks[taskNumber].setStatus(0);
                 System.out.println(spacing);
                 System.out.println("Ok, I have marked this task as not done yet:");
@@ -60,13 +59,43 @@ public class Duke {
                 System.out.println(spacing + "\n");
             }
 
-            // Adds in tasks
-            else {
-                Task task = new Task(word);
-                tasks[numTasks] = task;
+            // 5. Adding in tasks
+            // Todo
+            else if (word.startsWith("todo")) {
+                String todoTask = word.replace("todo ", "");
+                Todo todo = new Todo(todoTask);
+                tasks[numTasks] = todo;
                 numTasks += 1;
-                System.out.println(spacing);
-                System.out.println("added: " + word + "\n");
+                System.out.println("\n" +spacing);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(todo.toString());
+                System.out.println("Now you have " + Integer.toString(numTasks) + " tasks in the list.\n");
+                System.out.println(spacing + "\n");
+            }
+
+            // Deadline
+            else if (word.startsWith("deadline")) {
+                String[] deadlineTask = (word.replace("deadline ", "")).split("/by ");
+                Deadline deadline = new Deadline(deadlineTask[0], deadlineTask[1]);
+                tasks[numTasks] = deadline;
+                numTasks += 1;
+                System.out.println("\n" +spacing);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(deadline.toString());
+                System.out.println("Now you have " + Integer.toString(numTasks) + " tasks in the list.\n");
+                System.out.println(spacing + "\n");
+            }
+
+            // Event
+            else if (word.startsWith("event")) {
+                String[] eventTask = word.replace("event ", "").split("/at ");
+                Event event = new Event(eventTask[0], eventTask[1]);
+                tasks[numTasks] = event;
+                numTasks += 1;
+                System.out.println("\n" +spacing);
+                System.out.println("Got it. I've added this task:");
+                System.out.println(event.toString());
+                System.out.println("Now you have " + Integer.toString(numTasks) + " tasks in the list.\n");
                 System.out.println(spacing + "\n");
             }
         }
