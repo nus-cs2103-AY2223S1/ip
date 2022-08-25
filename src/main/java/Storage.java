@@ -57,4 +57,18 @@ public class Storage {
             }
         }
     }
+
+    void updateSave(TaskList tasks) throws DukeException {
+        try {
+            FileWriter writer = new FileWriter(filePath);
+            StringBuilder toWrite = new StringBuilder();
+            for (int i = 1; i <= tasks.numOfTasks(); i++) {
+                toWrite.append(tasks.fetchTask(i).saveFileFormat() + "\n");
+            }
+            writer.write(toWrite.toString());
+            writer.flush();
+        } catch (IOException e) {
+            throw new DukeException("Save Error");
+        }
+    }
 }
