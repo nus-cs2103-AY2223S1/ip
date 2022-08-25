@@ -1,12 +1,6 @@
 package duke;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.EmptyCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
+import duke.command.*;
 
 public class Parser {
 
@@ -28,6 +22,8 @@ public class Parser {
             mainCommand = "Mark";
         } else if (command.equals("list")) {
             mainCommand = "List";
+        } else if (command.equals("find")) {
+            mainCommand = "Find";
         }
 
         switch (mainCommand) {
@@ -41,6 +37,8 @@ public class Parser {
             return new MarkCommand(command, Integer.parseInt(parts[1]) - 1);
         case "List":
             return new ListCommand();
+            case "Find":
+                return new FindCommand(fullCommand.substring(5));
         default:
             return new EmptyCommand();
         }
