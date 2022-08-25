@@ -2,7 +2,17 @@ package puke;
 
 import java.util.Scanner;
 
+/**
+ * Handles the user interface for the User interactions
+ */
 public class Ui {
+
+    /**
+     * Sends a corresponding system message based on given tasks and conditions
+     * @param i controller to decide which message to send
+     * @param d chatbot object
+     * @param t task that is being manipulated
+     */
     public void systemMessage(int i , Duke d, Task t) {
         if (i == 1) {
             //Bye message
@@ -28,6 +38,9 @@ public class Ui {
 
     }
 
+    /**
+     * Prints the introduction for the Puke Chatbot
+     */
     public void intro() {
         String logo = " ____         _        \n"
                 + "|   | \\ _   _| | _____ \n"
@@ -59,6 +72,12 @@ public class Ui {
         echo(sc);
     }
 
+    /**
+     * Prints out system message for marking tasks as done/undone
+     * @param s input by user
+     * @param pos index of task to mark
+     * @param d puke chatbot
+     */
     public void taskManager(String s, int pos, Duke d) {
         if (s.equals("do")) {
             System.out.println("    ____________________________________________________________");

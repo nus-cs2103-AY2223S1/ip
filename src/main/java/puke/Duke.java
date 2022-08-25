@@ -3,24 +3,42 @@ package puke;
 import java.util.Scanner;
 import java.time.LocalDate;
 
+/**
+ * Main class
+ */
 public class Duke {
 
+    /**
+     * storage field that handles logic to deal with hard disk
+     */
     protected Storage storage;
+    /**
+     * taskList that stores details of the list status
+     */
     protected TaskList tasklist;
+    /**
+     * Handles the UI interaction with user
+     */
     protected Ui ui;
+    /**
+     * Handles user input
+     */
     private Parser p;
 
     private Scanner receiver = new Scanner(System.in);
     protected static Duke d = new Duke();
 
+    /**
+     * Creates the chatbot
+     */
     public Duke() {
         this.ui = new Ui();
-        this.storage = new Storage("pukeData.txt");
+        this.storage = new Storage();
         this.tasklist = new TaskList(storage.load());
         this.p = new Parser();
     }
 
-    //Actually does what is needed to do
+    
     public static void puke(Scanner sc, Duke d) throws DukeException {
         String a = sc.next();
         if (a.equals("bye")) {
@@ -99,6 +117,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Entry point to application
+     * @param args
+     */
     public static void main(String[] args) {
         Duke.d.ui.intro();
         Duke.startBot();
