@@ -11,7 +11,7 @@ import java.util.List;
 public class Storage {
 
     protected String filePath;
-    protected ArrayList<Task> storeList = new ArrayList<>();
+    protected ArrayList<Task> storeLists = new ArrayList<>();
 
     public Storage(String filePath) {
         this.filePath = filePath;
@@ -33,7 +33,7 @@ public class Storage {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        return storeList;
+        return storeLists;
     }
 
     public void printFileContents(String filePath) throws FileNotFoundException {
@@ -50,21 +50,19 @@ public class Storage {
     public void renderStringsAsTasks(String taskStr) {
         String taskType = String.valueOf(taskStr.charAt(1));
         String taskDescription = taskStr.split("] ", 2)[1];
-        if(taskType.equals("T")) {
+        if (taskType.equals("T")) {
             Todo t = new Todo(taskDescription);
-            storeList.add(t);
-        }
-        else if(taskType.equals("D")) {
+            storeLists.add(t);
+        } else if (taskType.equals("D")) {
             String duration = taskDescription.split("y: ", 2)[1];
             taskDescription = taskDescription.split("\\(", 2)[0];
             Deadline d = new Deadline(taskDescription, duration);
-            storeList.add(d);
-        }
-        else {
+            storeLists.add(d);
+        } else {
             String duration = taskDescription.split("t: ", 2)[1];
             taskDescription = taskDescription.split("\\(", 2)[0];
             Event e = new Event(taskDescription, duration);
-            storeList.add(e);
+            storeLists.add(e);
         }
     }
 
@@ -74,13 +72,11 @@ public class Storage {
             FileWriter fw = new FileWriter(this.filePath, true); // create a FileWriter in append mode
             if(newFile.length() == 0) {
                 fw.write(textToAppend);
-            }
-            else {
+            } else {
                 fw.write("\n" + textToAppend);
             }
             fw.close();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
@@ -98,14 +94,12 @@ public class Storage {
             }
 
             Files.write(path, fileContent, StandardCharsets.UTF_8);
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
     public void removeLineInText(String textToRemove) {
         try {
-
             File inFile = new File(this.filePath);
 
             if (!inFile.isFile()) {
@@ -124,9 +118,7 @@ public class Storage {
             //Read from the original file and write to the new
             //unless content matches data to be removed.
             while ((line = br.readLine()) != null) {
-
                 if (!line.trim().equals(textToRemove)) {
-
                     pw.println(line);
                     pw.flush();
                 }
@@ -142,11 +134,9 @@ public class Storage {
             //Rename the new file to the filename the original file had.
             if (!tempFile.renameTo(inFile))
                 System.out.println("Could not rename file");
-        }
-        catch (FileNotFoundException ex) {
+        } catch (FileNotFoundException ex) {
             ex.printStackTrace();
-        }
-        catch (IOException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
