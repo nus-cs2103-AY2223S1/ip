@@ -1,21 +1,28 @@
 package Sakura;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class Deadline extends Task {
 
-    protected String by;
+    protected LocalDateTime by;
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        LocalDateTime dateFormat = LocalDateTime.parse(by, formatter);
+        this.by = dateFormat;
     }
 
     @Override
     public String stringifyTask() {
-        return String.format("D|%d|%s|%s", this.isDone ? 1 : 0, this.description, this.by);
+        String timeFormat = this.by.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
+        return String.format("D|%d|%s|%s", this.isDone ? 1 : 0, this.description, timeFormat);
     }
 
     @Override
     public String toString() {
-        return "\u001B[31m(DEADLINE)\u001B[0m" + super.toString() + " (by: " + by + ")";
+        String timeFormat = this.by.format(DateTimeFormatter.ofPattern("HH:mm, MMM dd yyyy"));
+        return "\u001B[31m(DEADLINE)\u001B[0m" + super.toString() + " (by: " + timeFormat + ")";
     }
 }

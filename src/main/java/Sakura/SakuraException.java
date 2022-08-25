@@ -40,4 +40,8 @@ public class SakuraException {
     protected static void saveError() {
         System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR I cannot save this data!! ✿\n");
     }
+
+    protected static void dateError() {
+        System.out.println("\t(ﾐ`⋏´ﾐ) RAWRRR Please enter date in the format yyyy-MM-dd HHmm!! ✿\\n\"");
+    }
 }
