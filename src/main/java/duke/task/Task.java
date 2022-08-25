@@ -2,6 +2,9 @@ package duke.task;
 
 import duke.exception.DukeException;
 
+/**
+ * Represents a generic task.
+ */
 public abstract class Task {
     private static final String DONE = "[X]";
     private static final String NOT_DONE = "[ ]";
@@ -12,38 +15,80 @@ public abstract class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructs a new Task.
+     *
+     * @param description Description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Returns the String representation of the completion status.
+     *
+     * @return String representation of the completion status.
+     */
     public String getStatusIcon() {
         return (isDone ? DONE : NOT_DONE); // mark done task with X
     }
 
+    /**
+     * Returns the String representation of the completion status for storage.
+     * .
+     * @return String representation of the completion status for storage.
+     */
     public String getStorageStatusIcon() {
         return (isDone ? DONE_STORAGE : NOT_DONE_STORAGE);
     }
 
+    /**
+     * Returns the String representation of the Task.
+     *
+     * @return String representation of the Task.
+     */
     @Override
     public String toString() {
         return this.getStatusIcon() + " " + this.description;
     }
 
+    /**
+     * Returns the String representation of the Task for storage.
+     *
+     * @return String representation of the Task for storage.
+     */
     public String toStorage() {
         return SEPARATOR + this.getStorageStatusIcon() + SEPARATOR + this.description;
     }
 
+    /**
+     * Marks the task as done.
+     *
+     * @return String representation of the Task.
+     */
     public String markAsDone() {
         this.isDone = true;
         return this.toString();
     }
 
+    /**
+     * Marks the task as not done.
+     *
+     * @return String representation of the Task.
+     */
     public String markAsUndone() {
         this.isDone = false;
         return this.toString();
     }
 
+    /**
+     * Constructs a Task based on the corresponding storage String.
+     *
+     * @param task String representation of the Task for storage.
+     * @return Task corresponding to the storage String.
+     * @throws DukeException If the storage String is invalid.
+     */
     public static Task fromStorage(String task) throws DukeException {
         String[] taskDetails = task.split(" \\| ");
         TaskType taskType = TaskType.parse(taskDetails[0]);

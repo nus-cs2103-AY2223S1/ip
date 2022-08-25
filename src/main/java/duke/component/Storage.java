@@ -10,11 +10,19 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-
+/**
+ * Represents a storage that handles loading and saving tasks into the file.
+ */
 public class Storage {
 
     private final File file;
 
+    /**
+     * Constructs a new Storage.
+     *
+     * @param path Path to the file that stores the data.
+     * @throws DukeException If an error occurs when making directories or creating file.
+     */
     public Storage(Path path) throws DukeException {
         this.file = path.toFile();
         if (!this.file.exists()) {
@@ -29,6 +37,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the data from the file.
+     *
+     * @return TaskList of all tasks that is contained in the file.
+     * @throws DukeException If there is no file located.
+     */
     public TaskList load() throws DukeException {
         try {
             Scanner sc = new Scanner(this.file);
@@ -46,7 +60,13 @@ public class Storage {
         }
     }
 
-    public void save(TaskList tasks) {
+    /**
+     * Saves the data into the file.
+     *
+     * @param tasks List of all tasks to be saved.
+     * @throws DukeException If there is no file located or an error occurs during writing to file.
+     */
+    public void save(TaskList tasks) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(this.file);
             fileWriter.write(tasks.toStorage());
