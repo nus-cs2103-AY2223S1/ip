@@ -7,6 +7,7 @@ import duke.chatbot.command.CheckDateCommand;
 import duke.chatbot.command.Command;
 import duke.chatbot.command.DeleteCommand;
 import duke.chatbot.command.ExitCommand;
+import duke.chatbot.command.FindCommand;
 import duke.chatbot.command.ListCommand;
 import duke.chatbot.command.MarkCommand;
 import duke.chatbot.command.UnmarkCommand;
@@ -64,6 +65,9 @@ public class Parser {
                         return new DeleteCommand(arguments);
                     }
                 }
+            } else if (caseString.equals("find") && sc.hasNext()) {
+                arguments.add(sc.nextLine().substring(1));
+                return new FindCommand(arguments);
             } else if (caseString.equals("todo") && sc.hasNext()) {
                 arguments.add(sc.nextLine().substring(1));
                 return new AddToDoCommand(arguments);

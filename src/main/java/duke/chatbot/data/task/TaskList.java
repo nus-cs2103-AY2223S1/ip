@@ -84,13 +84,29 @@ public class TaskList extends ArrayList<Task> {
      */
     public TaskList filterTaskListByDate(String date) {
         TaskList result = new TaskList();
-        for (int entry = 1; entry < this.size() + 1; entry++) {
-            Task task = this.get(entry);
+        for (Task task : this) {
             if (task instanceof TimedTask) {
                 TimedTask timedTask = (TimedTask) task;
                 if (timedTask.hasMatchingDate(date)) {
                     result.add(timedTask);
                 }
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns a TaskList that contains the tasks have descriptions
+     * containing a substring that is the same as the argument string.
+     * @param substring The substring to look for in the task description.
+     * @return A TaskList that contains the tasks with substrings that
+     * are the same as the argument string.
+     */
+    public TaskList filterTaskListBySubstring(String substring) {
+        TaskList result = new TaskList();
+        for (Task task : this) {
+            if (task.hasSubstring(substring)) {
+                result.add(task);
             }
         }
         return result;

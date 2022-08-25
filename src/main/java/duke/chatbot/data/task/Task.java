@@ -66,4 +66,8 @@ public abstract class Task {
         return ",,," + (isDone ? 1 : 0)
                 + ",,," + description;
     }
+
+    public boolean hasSubstring(String substring) {
+        return description.contains(substring);
+    }
 }
