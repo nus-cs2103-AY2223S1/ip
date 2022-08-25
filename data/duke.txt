@@ -1,4 +1,0 @@
-T | O | read book
-D | X | return book | 06/06/2022
-E | X | project meeting | 06/08/2022 1400
-T | O | join sports club

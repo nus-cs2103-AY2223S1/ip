@@ -1,3 +1,5 @@
+package duke.tasks;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -6,8 +8,6 @@ public abstract class Task {
         this.description = description;
         this.isDone = false;
     }
-
-    public abstract String saveData();
 
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
@@ -20,6 +20,8 @@ public abstract class Task {
     public void markAsUndone() {
         this.isDone = false;
     }
+
+    public abstract String taskToDataString();
 
     @Override
     public String toString() {

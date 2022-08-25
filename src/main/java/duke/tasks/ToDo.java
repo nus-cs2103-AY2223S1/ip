@@ -1,4 +1,7 @@
+package duke.tasks;
+
 public class ToDo extends Task {
+
     /**
      * Constructor for ToDos class
      * @param description description of task to do
@@ -11,7 +14,7 @@ public class ToDo extends Task {
     }
 
     @Override
-    public String saveData() {
+    public String taskToDataString() {
         String isDone;
         if (super.isDone) {
             isDone = "O";
