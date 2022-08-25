@@ -15,4 +15,22 @@ public abstract class Command {
      * Executes the command.
      */
     public abstract CommandResult execute();
+
+    /**
+     * Returns true if command is the 'bye' command.
+     *
+     * @return True if command is the 'bye' command
+     */
+    public boolean isByeCommand() {
+        return this instanceof ByeCommand;
+    }
+
+    /**
+     * Returns true if task is a task command.
+     *
+     * @return True if task is a task command
+     */
+    public boolean isTaskCommand() {
+        return this instanceof TaskCommand;
+    }
 }

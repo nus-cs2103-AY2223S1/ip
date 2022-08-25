@@ -1,11 +1,9 @@
 import commands.Command;
 import commands.CommandResult;
+import commands.TaskCommand;
 import exception.*;
 import parser.Parser;
-import tasks.Deadline;
-import tasks.Event;
-import tasks.Task;
-import tasks.ToDo;
+import tasks.*;
 import ui.TextUi;
 
 import java.io.File;
@@ -23,14 +21,14 @@ public class Blob {
     // File path for text file which stores the data of all tasks
     private static final Path SAVED_TASKS_FILE_PATH = Paths.get("data","tasks.txt");
 
-    private final ArrayList<Task> taskList = new ArrayList<>();
-
-    TextUi ui;
-    Parser parser;
+    private final TaskList taskList;
+    private final TextUi ui;
+    private final Parser parser;
 
     Blob() {
         this.ui = new TextUi();
         this.parser = new Parser();
+        this.taskList = new TaskList();
     }
 
     /**
@@ -198,59 +196,20 @@ public class Blob {
             ui.promptUserInput();
             try {
                 Command command = parser.parseUserInput(sc.nextLine());
-                CommandResult result = command.execute();
-//                switch (command) {
-//                case "bye":
-//                    end();
-//                case "list":
-//                    listTasks();
-//                    break;
-//                case "mark":
-//                    try {
-//                        int index = Integer.parseInt(deconstructedInput[1]);
-//                        markTaskAtIndexDone(index);
-//                    } catch (NumberFormatException exception) {
-//                        throw new InvalidTaskIndexException();
-//                    }
-//                    break;
-//                case "unmark":
-//                    try {
-//                        int index = Integer.parseInt(deconstructedInput[1]);
-//                        markTaskAtIndexUndone(index);
-//                    } catch (NumberFormatException exception) {
-//                        throw new InvalidTaskIndexException();
-//                    }
-//                    break;
-//                case "todo":
-//                    if (deconstructedInput.length < 2) {
-//                        throw new MissingTaskDescriptionException();
-//                    }
-//                    addTodo(deconstructedInput[1]);
-//                    break;
-//                case "deadline":
-//                    if (deconstructedInput.length < 2) {
-//                        throw new MissingTaskDescriptionException();
-//                    }
-//                    addDeadline(deconstructedInput[1]);
-//                    break;
-//                case "event":
-//                    if (deconstructedInput.length < 2) {
-//                        throw new MissingTaskDescriptionException();
-//                    }
-//                    addEvent(deconstructedInput[1]);
-//                    break;
-//                case "delete":
-//                    try {
-//                        int index = Integer.parseInt(deconstructedInput[1]);
-//                        deleteTaskAtIndex(index);
-//                    } catch (NumberFormatException exception) {
-//                        throw new InvalidTaskIndexException();
-//                    }
-//                    break;
-//                default:
-//                    throw new UnknownCommandException();
-//                }
+                CommandResult result;
 
+                if (command.isTaskCommand()) {
+                    TaskCommand taskCommand = (TaskCommand) command;
+                    taskCommand.setTaskList(taskList);
+                    result = taskCommand.execute();
+                } else {
+                    result = command.execute();
+                }
+
+                if (command.isByeCommand()) {
+                    end();
+                }
+                ui.speakToUser(result.getResultMessages());
             } catch (BlobException exception) {
                 ui.speakToUser(exception.getBlobMessages());
             }
@@ -259,7 +218,6 @@ public class Blob {
 
     public void end() {
         saveTasks();
-        ui.sayGoodbyeToUser();
         System.exit(0);
     }
 }
