@@ -1,3 +1,5 @@
+package Rabbit.RabbitException;
+
 public class DeleteException extends RabbitException {
     public enum Type {
         FORMAT, INDEX;

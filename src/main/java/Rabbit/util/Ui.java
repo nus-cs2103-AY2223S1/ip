@@ -1,3 +1,5 @@
+package Rabbit.util;
+
 import java.util.Scanner;
 
 public class Ui {

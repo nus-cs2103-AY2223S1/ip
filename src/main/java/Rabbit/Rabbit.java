@@ -1,14 +1,13 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.nio.file.Paths;
-import java.nio.file.Path;
-import java.io.File;
-import java.nio.file.Files;
-import java.io.FileWriter;
-import java.time.DateTimeException;
-import java.time.LocalDateTime;
+package Rabbit;
+
+import Rabbit.util.Ui;
+import Rabbit.util.Parser;
+import Rabbit.util.TaskList;
+import Rabbit.util.Storage;
+import Rabbit.RabbitException.RabbitException;
+import Rabbit.RabbitException.ImportDataException;
+import Rabbit.RabbitException.InvalidInputException;
+
 
 /**
  * Rabbit is a short-tempered, annoyed bot that puts in her 30% efforts
@@ -17,7 +16,6 @@ import java.time.LocalDateTime;
  * @author Jiang Zhimeng
  */
 public class Rabbit {
-
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
@@ -102,84 +100,5 @@ public class Rabbit {
     public static void main(String[] args) {
         Rabbit rabbit = new Rabbit();
         rabbit.run();
-        /*
-        // if directory ./date does not exist, create it
-        if (!Files.exists(path.getParent())) {
-            try {
-                Files.createDirectories(path.getParent());
-            } catch (IOException e) {
-                System.out.println("Error when creating directory ./data.");
-                return;
-            }
-        }
-
-        // try import data.txt from ./data
-        try {
-            File data = new File(path.toString());
-            Scanner s = new Scanner(data); // create a Scanner using the File as the source
-            while (s.hasNext()) {
-                String input = s.nextLine();
-                importData(input);
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("File data.txt is not found.");
-            System.out.println("Create a new data.txt.");
-            // if data.txt is not found, create a new data.txt file under ./data
-            try {
-                Files.createFile(path);
-            } catch (IOException ioException) {
-                System.out.println("Error when creating data.txt.");
-                return;
-            }
-        } catch (RabbitException e) {
-            System.out.println(e);
-        }
-
-        System.out.println(greet);
-        Scanner sc = new Scanner(System.in);
-
-        while (true) {
-            String input = sc.nextLine();
-            if (input.equals("bye")) {
-                System.out.println(bye);
-                sc.close();
-                break;
-            }
-            // the function that the input is calling
-            String function = input.substring(0, scanFunction(input));
-            try {
-                switch (function) {
-                case "list":
-                    list();
-                    break;
-                case "mark ":
-                    mark(input);
-                    break;
-                case "unmark ":
-                    unmark(input);
-                    break;
-                case "todo ":
-                    addToList(TaskType.TODO, input);
-                    break;
-                case "deadline ":
-                    addToList(TaskType.DEADLINE, input);
-                    break;
-                case "event ":
-                    addToList(TaskType.EVENT, input);
-                    break;
-                case "delete ":
-                    delete(input);
-                    break;
-                default:
-                    // the user keyed in an invalid input
-                    throw new InvalidInputException();
-                }
-                exportData();
-            } catch (RabbitException e) {
-                System.out.println(e);
-            }
-        }
-
-         */
     }
 }

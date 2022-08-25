@@ -1,3 +1,5 @@
+package Rabbit.Task;
+
 /**
  * A subclass of task.
  */

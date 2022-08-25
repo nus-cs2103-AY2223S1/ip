@@ -1,3 +1,5 @@
+package Rabbit.RabbitException;
+
 public class ImportDataException extends RabbitException {
     @Override
     public String toString() {

@@ -1,3 +1,5 @@
+package Rabbit.RabbitException;
+
 /**
  * the class of exceptions related to
  * add to list function of Rabbit

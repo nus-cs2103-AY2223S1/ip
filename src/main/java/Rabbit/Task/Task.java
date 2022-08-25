@@ -1,3 +1,5 @@
+package Rabbit.Task;
+
 /**
  * A class of tasks noted by Rabbit.
  */
