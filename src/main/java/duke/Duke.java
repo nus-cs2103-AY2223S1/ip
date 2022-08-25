@@ -9,13 +9,18 @@ import duke.storage.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
-
+/**
+ * A Duke class that encapsulates the information of Duke
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private final Ui ui;
 
+    /**
+     * Constructs a Duke object
+     */
     public Duke() {
         ui = new Ui();
 
@@ -28,6 +33,9 @@ public class Duke {
         }
     }
 
+    /**
+     * To run the Duke.
+     */
     public void run() {
         ui.showWelcome();
         boolean bye = false;
@@ -43,6 +51,10 @@ public class Duke {
         }
     }
 
+    /**
+     * The entry of the Duke application
+     * @param args user input.
+     */
     public static void main(String[] args) {
         new Duke().run();
     }

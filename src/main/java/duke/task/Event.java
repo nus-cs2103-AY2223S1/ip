@@ -3,15 +3,29 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * An Event class that encapsulates the information of an Event task.
+ */
 public class Event extends Task {
 
-    protected LocalDate at;
+    private LocalDate at;
 
+    /**
+     * Constructs an Event class.
+     * @param description the description of the Event task.
+     * @param at the date of the event.
+     */
     public Event(String description, LocalDate at) {
         super(description);
         this.at = at;
     }
 
+    /**
+     * Constructs an Event class.
+     * @param description the description of the Event task.
+     * @param at the date of the event.
+     * @param status to indicate whether the task has been done
+     */
     public Event(String description, LocalDate at, String status) {
         this(description, at);
         if (status.equals("1")) {

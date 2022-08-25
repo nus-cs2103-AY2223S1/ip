@@ -7,11 +7,19 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * A command class that encapsulates the action of mark or unmark a specific task in the task list.
+ */
 public class MarkCommand extends Command {
 
     private boolean toMark;
     private int indexOfTaskToMark;
 
+    /**
+     * Constructs a MarkCommand instance.
+     * @param toMark Indicates whether to mark or unmark the specific task.
+     * @param indexOfTaskToDelete Indicates the index of the task that needs to be marked or unmarked.
+     */
     public MarkCommand(boolean toMark, int indexOfTaskToDelete) {
         this.toMark = toMark;
         this.indexOfTaskToMark = indexOfTaskToDelete;
