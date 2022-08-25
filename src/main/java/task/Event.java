@@ -1,5 +1,4 @@
 package task;
-
 /**
  * Class for an Event task
  */

@@ -33,7 +33,7 @@ public class TaskModel {
      * @param description
      * @return The task created
      */
-    public TaskResponse addTodo(String description) {
+    public TaskResponse addTodo(String description) throws DukeException {
         Task newTask = new Todo(description);
         tasks.add(newTask);
         return new TaskResponse(newTask, tasks.size());
