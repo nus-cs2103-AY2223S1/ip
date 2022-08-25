@@ -1,11 +1,17 @@
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 class Event extends Task {
-    private String period;
     private static final String PREFIX = "at ";
     private static final String SPLIT = "/at ";
 
-    Event(String description, String period) {
+    private String period;
+    private final Optional<LocalDateTime> dateTime;
+
+    Event(String description, String period, Optional<LocalDateTime> dateTime) {
         super(description);
         this.period = period;
+        this.dateTime = dateTime;
     }
 
     static Event createEvent(ParsedData data) throws DukeException {
@@ -14,8 +20,8 @@ class Event extends Task {
 
         if (data.additionalInfo.length() == 0 || !data.additionalInfo.startsWith(PREFIX))
             throw new EmptyTimeException("event", SPLIT);
-
-        return new Event(data.description, data.additionalInfo.substring(3));
+        String additonalInfo = data.additionalInfo.substring(3);
+        return new Event(data.description, additonalInfo, Parser.strToDateTime(additonalInfo));
     }
 
     @Override

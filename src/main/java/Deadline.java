@@ -1,11 +1,17 @@
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 class Deadline extends Task {
-    private String deadline;
     private static final String PREFIX = "by ";
     private static final String SPLIT = "/by ";
 
-    Deadline(String description, String deadline) {
+    private String deadline;
+    private final Optional<LocalDateTime> dateTime;
+
+    Deadline(String description, String deadline, Optional<LocalDateTime> dateTime) {
         super(description);
         this.deadline = deadline;
+        this.dateTime = dateTime;
     }
 
     static Deadline createDeadline(ParsedData data) throws DukeException {
@@ -14,7 +20,9 @@ class Deadline extends Task {
 
         if (data.additionalInfo.length() == 0 || !data.additionalInfo.startsWith(PREFIX))
             throw new EmptyTimeException("deadline", SPLIT);
-        return new Deadline(data.description, data.additionalInfo.substring(3));
+
+        String additionalInfo = data.additionalInfo.substring(3);
+        return new Deadline(data.description, additionalInfo, Parser.strToDateTime(additionalInfo));
     }
 
     @Override
