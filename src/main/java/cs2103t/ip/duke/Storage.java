@@ -9,13 +9,14 @@ import java.util.Scanner;
 
 public class Storage {
 
-    protected String filePath;
-    protected String folderPath;
+    protected final String filePath;
+    protected final String folderPath;
 
     public Storage(String folderPath, String filePath) {
         this.folderPath = folderPath;
         this.filePath = filePath;
     }
+
     public static void writeToFile(String filePath, String textToAdd) throws IOException {
         FileWriter fw = new FileWriter(filePath);
         fw.write(textToAdd);
