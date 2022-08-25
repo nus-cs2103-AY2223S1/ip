@@ -2,8 +2,8 @@ package duke.command;
 
 import java.io.IOException;
 
-import duke.storage.Storage;
 import duke.Ui;
+import duke.storage.Storage;
 import duke.task.TaskList;
 
 public class UnMarkCommand extends Command {
@@ -20,6 +20,13 @@ public class UnMarkCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Returns a string of the unmarked task that had just been executed
+     * @param taskList
+     * @param ui
+     * @param storage
+     * @return a result of the current unmarked task execution
+     */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         String result = taskList.markTaskAsUnDone(this.targetIndex);

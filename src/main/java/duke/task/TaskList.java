@@ -11,11 +11,17 @@ public class TaskList {
     private static final String NO_TASKS_LEFT = "List is empty, 0 items left !";
     private final List<Task> taskList;
 
-
+    /**
+     * Constructor for a TaskList
+     */
     public TaskList() {
         this.taskList = new ArrayList<>();
     }
 
+    /**
+     * Constructor for a TaskList
+     * @param taskList
+     */
     public TaskList(List<Task> taskList) {
         this.taskList = taskList;
     }

@@ -2,8 +2,8 @@ package duke.command;
 
 import java.io.IOException;
 
-import duke.storage.Storage;
 import duke.Ui;
+import duke.storage.Storage;
 import duke.task.TaskList;
 
 public class DeleteCommand extends Command {
@@ -21,6 +21,13 @@ public class DeleteCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Returns a string of delete task that had just been executed
+     * @param taskList
+     * @param ui
+     * @param storage
+     * @return a result of the current delete task execution
+     */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         String result = taskList.removeTaskFromList(this.targetIndex);

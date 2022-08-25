@@ -2,8 +2,8 @@ package duke.command;
 
 import java.io.IOException;
 
-import duke.storage.Storage;
 import duke.Ui;
+import duke.storage.Storage;
 import duke.task.TaskList;
 
 public class FindCommand extends Command {
@@ -20,6 +20,13 @@ public class FindCommand extends Command {
         this.query = query;
     }
 
+    /**
+     * Returns a string of the task that has just been executed
+     * @param taskList
+     * @param ui
+     * @param storage
+     * @return string of executed task information.
+     */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         TaskList matchingTaskList = taskList.findMatchingTasks(this.query);

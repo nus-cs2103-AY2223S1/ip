@@ -11,6 +11,9 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 public class DukeTest {
+    /**
+     * Test the adding of a ToDo task to TaskList.
+     */
     @Test
     public void addTodo_descriptionToDo_success() {
         // Test description = "Test todo for Duke !"
@@ -29,6 +32,9 @@ public class DukeTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Test the adding of a Deadline task to TaskList
+     */
     @Test
     public void addDeadline_descriptionDeadlineLocalDateTime_success() {
         // Test description = "Finish Assignment 1";
@@ -49,6 +55,9 @@ public class DukeTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Test the adding of an Event to TaskList
+     */
     @Test
     public void addEvent_descriptionEventLocalDateTime_success() {
         // Test description = "Dinner Date"

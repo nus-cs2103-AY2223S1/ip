@@ -6,6 +6,15 @@ import duke.task.TaskList;
 
 public class ListCommand extends Command {
     public static final String COMMAND_ID = "LIST";
+
+    /**
+     * Returns a string of the list all task that had just been executed
+     * @param taskList
+     * @param ui
+     * @param storage
+     * @return a result of the current list all task execution
+     * @see duke.task.TaskList
+     */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) {
         String tasksLeft = String.format(

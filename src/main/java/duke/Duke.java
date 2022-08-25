@@ -40,32 +40,4 @@ public class Duke {
         }
         return "";
     }
-
-    /**
-     * Starts Duke
-     */
-    public void run() {
-        ui.startMessage();
-        boolean isExit = false;
-
-        while (!isExit) {
-            try {
-                String command = ui.getUserCommand();
-                Command c = Parser.parse(command);
-                c.execute(this.storage.loadSavedData(), this.ui, this.storage);
-                isExit = c.isExit(c);
-            } catch (Exception e) {
-                System.out.println(e);
-            }
-        }
-    }
-
-    /**
-     * Start point for the Duke class
-     * @param args
-     */
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.run();
-    }
 }

@@ -2,8 +2,8 @@ package duke.command;
 
 import java.io.IOException;
 
-import duke.storage.Storage;
 import duke.Ui;
+import duke.storage.Storage;
 import duke.task.TaskList;
 
 public class MarkCommand extends Command {
@@ -21,6 +21,14 @@ public class MarkCommand extends Command {
         this.targetIndex = targetIndex;
     }
 
+    /**
+     * Returns a string of the MarkCommand task that had just been executed
+     * @param taskList
+     * @param ui
+     * @param storage
+     * @return a result of the current MarkCommand task execution
+     * @see duke.task.TaskList
+     */
     @Override
     public String execute(TaskList taskList, Ui ui, Storage storage) throws IOException {
         String result = taskList.markTaskAsDone(this.targetIndex);

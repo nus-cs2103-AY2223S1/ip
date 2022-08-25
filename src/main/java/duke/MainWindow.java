@@ -29,6 +29,9 @@ public class MainWindow extends AnchorPane {
     private final Image dukeImage = new Image(
             this.getClass().getResourceAsStream("/images/githubprofile.png"));
 
+    /**
+     * Initializes the VBox upon initial start up of the javaFx application
+     */
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());

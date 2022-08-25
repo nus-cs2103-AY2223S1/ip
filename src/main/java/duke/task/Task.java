@@ -68,10 +68,17 @@ public class Task {
         return isDone ? 1 : 0;
     }
 
+    /**
+     * Returns the LocalDateTime in string format
+     * @return string of LocalDateTime stored in Task instance.
+     */
     public String getBy() {
         return "";
     }
 
+    /**
+     *  Returns the string that describes a particular task
+     */
     @Override
     public String toString() {
         String toPrint = String.format("%s %s", this.getMarkedStatus(), this.description);
