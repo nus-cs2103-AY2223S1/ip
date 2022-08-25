@@ -8,4 +8,8 @@ class Deadline extends Task {
         return "[D]" + super.toString();
     }
 
+    public String write() {
+        return "D" + super.write();
+    }
+
 }

@@ -1,7 +1,12 @@
+import java.io.*;
 import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 class SkeletonDuke {
     private List<Task> list;
     private static int noOfTasks;
+    private final static String fileLocation = "./data/duke.txt";
 
     SkeletonDuke() {
         this.list = new ArrayList<Task>();
@@ -11,7 +16,63 @@ class SkeletonDuke {
     void greet() {
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
+
     }
+
+    static boolean checkFile() {
+        File taskFile = new File(fileLocation);
+        String base = System.getProperty("user.dir");
+        java.nio.file.Path path =  java.nio.file.Paths.get(base, fileLocation);
+        boolean fileExists = java.nio.file.Files.exists(path);
+        return fileExists;
+    }
+
+    static void createFiles() throws Exception {
+        File taskFile = new File(fileLocation);
+        taskFile.getParentFile().mkdirs();
+        taskFile.createNewFile();
+    }
+
+    void readFiles() throws Exception {
+        if (this.checkFile() == true) {
+            FileReader file = new FileReader(fileLocation);
+            Scanner sc = new Scanner(file);
+            while (sc.hasNextLine() ) {
+                String task = sc.nextLine();
+                String[] strarr = task.split(":");
+                String typeOfTask = strarr[1];
+                String statusOfTask = strarr[2];
+                String taskDescription = strarr[3];
+                if (typeOfTask.equals("T")) {
+                    Task pastTask = new ToDo(taskDescription);
+                    if (statusOfTask.equals("X")) {
+                        pastTask.markAsDone();
+                    }
+                    list.add(pastTask);
+                    this.noOfTasks++;
+                } else if (typeOfTask.equals("D")) {
+                    Task pastTask = new Deadline(taskDescription);
+                    if (statusOfTask.equals("X")) {
+                        pastTask.markAsDone();
+                    }
+                    list.add(pastTask);
+                    this.noOfTasks++;
+                } else if (typeOfTask.equals("E")) {
+                    Task pastTask = new Event(taskDescription);
+                    if (statusOfTask.equals("X")) {
+                        pastTask.markAsDone();
+                    }
+                    this.list.add(pastTask);
+                    this.noOfTasks++;
+                }
+
+            }
+        } else {
+            System.out.println("There is no existing task list. Duke is creating a new one now.");
+            this.createFiles();
+        }
+    }
+
 
     void exit() {
         System.out.println("Bye. Hope to see you again soon!");
@@ -58,7 +119,7 @@ class SkeletonDuke {
         System.out.println("Here are the tasks in your list:");
         for(int i = 1; i < list.size() + 1; i++) {
             String currentTask = list.get(i - 1).toString();
-            System.out.println(i + ". "+ currentTask);
+            System.out.println(i + ". " + currentTask);
         }
     }
 
@@ -86,6 +147,15 @@ class SkeletonDuke {
         } else {
             throw new TaskWithNoDescriptionException(":( OOPS!!! The description of a " + strarr[0] + " cannot be empty.");
         }
+    }
+
+    void saveNewChanges() throws IOException {
+        File taskFile = new File(fileLocation);
+        PrintWriter pw = new PrintWriter(taskFile);
+        for(int i = 0; i < this.list.size(); i++) {
+            pw.println( (i+1) + ":" + this.list.get(i).write());
+        }
+        pw.close();
     }
 
 

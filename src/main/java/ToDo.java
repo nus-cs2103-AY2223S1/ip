@@ -8,4 +8,8 @@ class ToDo extends Task {
         return "[T]" + super.toString();
     }
 
+    public String write() {
+        return "T" + super.write();
+    }
+
 }
