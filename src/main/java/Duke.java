@@ -7,12 +7,54 @@ import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.FileOutputStream;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class Duke {
+    public static LocalDateTime processDateTime(String stringDateTime) {
+        LocalDateTime dateTime = LocalDateTime.now();
+        String date = "None";
+        String time = "None";
+        if (stringDateTime.length() > 9) {
+            date = stringDateTime.substring(0, stringDateTime.indexOf(" ") - 1);
+            time = stringDateTime.substring(stringDateTime.indexOf(" "));;
+        } else if (stringDateTime.length() == 8) {
+            date = stringDateTime;
+        } else {
+            time = stringDateTime;
+        }
+        try {
+            System.out.println(date);
+            System.out.println(time);
+            if (!date.equals("None") && !time.equals("None")) {
+                DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
+                DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
+                LocalDate localDate = LocalDate.parse(date, formatDate);
+                LocalTime localTime = LocalTime.parse(time, formatTime);
+                return LocalDateTime.of(localDate, localTime);
+            } else if (!date.equals("None")) {
+                DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("yyyyMMdd");
+                DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
+                LocalDate localDate = LocalDate.parse(date, formatDate);
+                LocalTime localTime = LocalTime.parse("00:00", formatTime);
+                return LocalDateTime.of(localDate, localTime);
+            } else {
+                DateTimeFormatter formatTime = DateTimeFormatter.ofPattern("HHmm");
+                LocalTime localTime = LocalTime.parse(time, formatTime);
+                return LocalDateTime.of(LocalDate.now(), localTime);
+            }
+        } catch (DateTimeParseException exception) {
+            System.out.println(exception);
+            System.out.println("Please enter date and time in YYYYMMDD HHMM format");
+        }
+        return dateTime;
+    }
     public static void saveData(ArrayList<Task> list) {
         String home = System.getProperty("user.home");
         Path path = Paths.get(home, "data", "duke");
-        String fileSeparator = System.getProperty("file.separator");
         ArrayList<String> textArray = new ArrayList<>();
         for (Task task : list) {
             String entry = task.printText();
@@ -99,7 +141,8 @@ public class Duke {
                 if (input.contains("event")) {
                     try {
                         int indexOfDateTime = input.indexOf("/at");
-                        String dateTime = input.substring(indexOfDateTime + 4);
+                        String stringDateTime = input.substring(indexOfDateTime + 4);
+                        LocalDateTime dateTime = processDateTime(stringDateTime);
                         String eventDescription = input.substring(6, indexOfDateTime - 1);
                         Event newTask = new Event(dateTime, eventDescription);
                         response = taskList.add(newTask);
@@ -123,7 +166,8 @@ public class Duke {
                 } else if (input.contains("deadline")) {
                     try {
                         int indexOfDateTime = input.indexOf("/by");
-                        String dateTime = input.substring(indexOfDateTime + 4);
+                        String stringDateTime = input.substring(indexOfDateTime + 4);
+                        LocalDateTime dateTime = processDateTime(stringDateTime);
                         String deadlineDescription = input.substring(9, indexOfDateTime - 1);
                         Deadline newDeadline = new Deadline(dateTime, deadlineDescription);
                         response = taskList.add(newDeadline);
