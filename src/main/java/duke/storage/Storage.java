@@ -1,22 +1,19 @@
-package storage;
+package duke.storage;
 
-import others.DukeException;
-import parser.Parser;
-import task.Deadline;
-import task.Event;
-import task.Task;
-import task.ToDo;
-import ui.Ui;
+import duke.others.DukeException;
+import duke.parser.Parser;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.ToDo;
+import duke.ui.Ui;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 

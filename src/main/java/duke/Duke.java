@@ -1,9 +1,11 @@
-import commands.Command;
-import others.DukeException;
-import parser.Parser;
-import storage.Storage;
-import storage.TaskList;
-import ui.Ui;
+package duke;
+
+import duke.commands.Command;
+import duke.others.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.storage.TaskList;
+import duke.ui.Ui;
 
 public class Duke {
 

@@ -1,16 +1,16 @@
-package parser;
+package duke.parser;
 
-import commands.AddCommand;
-import commands.Command;
-import commands.DeleteCommand;
-import commands.ExitCommand;
-import commands.ListCommand;
-import commands.MarkCommand;
-import commands.UnmarkCommand;
-import others.DukeException;
-import task.Deadline;
-import task.Event;
-import task.ToDo;
+import duke.commands.AddCommand;
+import duke.commands.Command;
+import duke.commands.DeleteCommand;
+import duke.commands.ExitCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.UnmarkCommand;
+import duke.others.DukeException;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -61,7 +61,7 @@ public class Parser {
 
     public static Command prepareAdd(String commandWord, String description) throws DukeException {
         if (description == null) {
-            throw new DukeException("☹ Description of a task cannot be empty!");
+            throw new DukeException("☹ Description of a duke.task cannot be empty!");
         }
         if (commandWord.equals(AddCommand.COMMAND_WORD_TODO)) {
             return new AddCommand(new ToDo(description));
@@ -122,7 +122,7 @@ public class Parser {
                 return new UnmarkCommand(index);
             }
         } catch (NumberFormatException nfe) {
-            throw new DukeException("☹ Please enter an index of a task!");
+            throw new DukeException("☹ Please enter an index of a duke.task!");
         }
     }
 

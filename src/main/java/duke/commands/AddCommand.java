@@ -1,16 +1,15 @@
-package commands;
+package duke.commands;
 
-import others.DukeException;
-import storage.Storage;
-import storage.TaskList;
-import task.Task;
-import ui.Ui;
+import duke.storage.Storage;
+import duke.storage.TaskList;
+import duke.task.Task;
+import duke.ui.Ui;
 
 public class AddCommand extends Command {
     public static final String COMMAND_WORD_DEADLINE = "deadline";
     public static final String COMMAND_WORD_EVENT = "event";
     public static final String COMMAND_WORD_TODO = "todo";
-    public static final String MESSAGE_SUCCESS = "Got it. I've added this task:\n ";
+    public static final String MESSAGE_SUCCESS = "Got it. I've added this duke.task:\n ";
     private Task taskToAdd;
 
     public AddCommand(Task taskToAdd) {

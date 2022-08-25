@@ -1,13 +1,13 @@
-package commands;
+package duke.commands;
 
-import storage.Storage;
-import storage.TaskList;
-import task.Task;
-import ui.Ui;
+import duke.storage.Storage;
+import duke.storage.TaskList;
+import duke.task.Task;
+import duke.ui.Ui;
 
 public class UnmarkCommand extends Command {
     public static final String COMMAND_WORD = "unmark";
-    public static final String MESSAGE_SUCCESS = "OK, I've marked this task as not done yet:\n ";
+    public static final String MESSAGE_SUCCESS = "OK, I've marked this duke.task as not done yet:\n ";
     private int index;
 
     public UnmarkCommand(int index) {

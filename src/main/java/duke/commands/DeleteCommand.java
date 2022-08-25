@@ -1,14 +1,14 @@
-package commands;
+package duke.commands;
 
-import others.DukeException;
-import storage.Storage;
-import storage.TaskList;
-import task.Task;
-import ui.Ui;
+import duke.others.DukeException;
+import duke.storage.Storage;
+import duke.storage.TaskList;
+import duke.task.Task;
+import duke.ui.Ui;
 
 public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_SUCCESS = "Noted. I've removed this task:\n ";
+    public static final String MESSAGE_SUCCESS = "Noted. I've removed this duke.task:\n ";
     private int index;
 
     public DeleteCommand(int index) {
