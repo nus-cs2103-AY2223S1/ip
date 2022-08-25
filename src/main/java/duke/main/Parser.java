@@ -79,6 +79,8 @@ public class Parser {
                     return new DateCommand(userInput[1]);
                 } catch(DateTimeException e) {
                     throw new DukeException("Key in a valid date!");
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException("Which date?? Please specify!");
                 }
             case "find":
                 try {

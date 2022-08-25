@@ -33,6 +33,10 @@ public class Ui {
     }
 
     public void sayList(ArrayList<Task> arr) {
+        if (arr.size() == 0) {
+            System.out.println("You have nothing due soon! :)");
+            return;
+        }
         int i = 1;
         System.out.println("Here are the tasks in your list:");
         for (Task task: arr) {
@@ -63,6 +67,10 @@ public class Ui {
     }
 
     public void sayMatching(ArrayList<Task> arr) {
+        if (arr.size() == 0) {
+            System.out.println("There are no matches unfortunately :(");
+            return;
+        }
         System.out.println("Here are the matching tasks in your list:");
         int i = 1;
         for (Task task: arr) {
