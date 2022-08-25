@@ -109,12 +109,8 @@ public class Duke {
         boolean hasNextInput = true;
         readFile();
 
-        String logo = "_________                     ___\n" + "\\    ___ \\  ___________   ____\\_ |_________  ____\n"
-                + "/    \\  \\/_/ __ \\_  __ \\_/ __ \\| __ \\_  __ \\/  _ \\\n"
-                + "\\     \\___\\  ___/|  | \\/\\  ___/| \\_\\ \\  | \\(  (_) )\n"
-                + " \\________/\\_____>__|    \\_____>_____/__|   \\____/\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("What can I do for you?");
+        Ui ui = new Ui();
+        ui.greet();
 
         while (hasNextInput) {
             System.out.print("--> ");
@@ -148,14 +144,13 @@ public class Duke {
                     break;
                 }
             } catch (NumberFormatException e) {
-                System.out.println("Please Enter a valid task number!");
+                ui.showError("Please Enter a valid task number!");
             } catch (IllegalArgumentException e) {
-                System.out.println("🙁 OOPS! I'm sorry but I don't know what that means.");
+                ui.showError("I'm sorry but I don't know what that means.");
             } catch (DukeException e) {
-                System.out.println(e.getMessage());
+                ui.showError(e);
             }
         }
-
-        System.out.println("Goodbye! See you soon!");
+        ui.bye();
     }
 }
