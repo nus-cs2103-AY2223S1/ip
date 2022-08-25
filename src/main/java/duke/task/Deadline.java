@@ -3,10 +3,19 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task{
+/**
+ * Represents a task that has a deadline.
+ */
+public class Deadline extends Task {
 
+    public static final String TAG = "D";
     protected LocalDateTime dateAndTime;
 
+    /**
+     * Constructor for a Deadline.
+     * @param name Name of the task
+     * @param dateAndTime Deadline of the task
+     */
     public Deadline(String name, String dateAndTime) {
         super(name);
 
@@ -22,6 +31,12 @@ public class Deadline extends Task{
         );
     }
 
+    /**
+     * Creates a Deadline with a known completion status.
+     * @param name Name of the task
+     * @param dateAndTime Deadline of the task
+     * @param isDone Completion status
+     */
     public Deadline(String name, String dateAndTime, boolean isDone) {
         super(name, isDone);
         String[] dateAndTimeSplit = dateAndTime.split(" ");
@@ -36,22 +51,29 @@ public class Deadline extends Task{
         );
     }
 
-
+    /**
+     * Getter for deadline date and time.
+     * @return YYYY-MM-dd HHMM representation of date and time.
+     */
     public String getDateString() {
         return this.dateAndTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
-    public String tag() {
-        return "D";
-    }
-
+    /**
+     * toString method for a Deadline.
+     * @return To-do list friendly representation of a Deadline.
+     */
     @Override
     public String toString() {
-        return String.format("[%s]%s (by: %s)", tag(), super.toString(), getDateString());
+        return String.format("[%s]%s (by: %s)", TAG, super.toString(), getDateString());
     }
 
+    /**
+     * Returns a Deadline in a save-friendly format.
+     * @return save-friendly representation of a Deadline.
+     */
     @Override
     public String savedString() {
-        return String.format("%s,%s,%s", tag(), super.savedString(), getDateString());
+        return String.format("%s,%s,%s", TAG, super.savedString(), getDateString());
     }
 }

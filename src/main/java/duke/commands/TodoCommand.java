@@ -5,8 +5,14 @@ import duke.storage.Storage;
 import duke.task.ToDo;
 import duke.ui.Ui;
 
-public class TodoCommand extends Command{
+/**
+ * Command to create a todo task.
+ */
+public class TodoCommand extends Command {
 
+    /**
+     * Executes the command.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         String userInput = ui.userString();

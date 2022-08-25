@@ -4,8 +4,18 @@ import duke.data.TaskList;
 import duke.storage.Storage;
 import duke.task.Event;
 import duke.ui.Ui;
-public class EventCommand extends Command{
 
+/**
+ * Command to create an event task.
+ */
+public class EventCommand extends Command {
+
+    /**
+     * Executes the command.
+     * @param taskList
+     * @param ui User Interface of the to-do-list.
+     * @param storage Storage option.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         String[] splitInput = ui.userString().split(" ");

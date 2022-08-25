@@ -3,9 +3,19 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Event extends Task{
+/**
+ * Represents an event task.
+ */
+public class Event extends Task {
+    public static final String TAG = "E";
     protected LocalDateTime dateAndTime;
 
+
+    /**
+     * Constructor for an event.
+     * @param name
+     * @param dateAndTime
+     */
     public Event(String name, String dateAndTime) {
         super(name);
 
@@ -22,6 +32,12 @@ public class Event extends Task{
     }
 
 
+    /**
+     * Constructor for an event with a known completion status.
+     * @param name
+     * @param dateAndTime
+     * @param isDone
+     */
     public Event(String name, String dateAndTime, boolean isDone) {
         super(name, isDone);
         String[] dateAndTimeSplit = dateAndTime.split(" ");
@@ -36,21 +52,29 @@ public class Event extends Task{
         );
     }
 
-    public String tag() {
-        return "E";
-    }
-
+    /**
+     * Getter for event date and time.
+     * @return YYYY-MM-dd HHMM representation of date and time.
+     */
     public String getDateString() {
         return this.dateAndTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm"));
     }
 
+    /**
+     * toString method for an Event.
+     * @return To-do list friendly representation of an Event.
+     */
     @Override
     public String toString() {
-        return String.format("[%s]%s (at: %s)",tag(), super.toString(), getDateString());
+        return String.format("[%s]%s (at: %s)", TAG, super.toString(), getDateString());
     }
 
+    /**
+     * Returns an Event in a save-friendly format.
+     * @return save-friendly representation of an Event.
+     */
     @Override
     public String savedString() {
-        return String.format("%s,%s,%s", tag(), super.savedString(), this.getDateString());
+        return String.format("%s,%s,%s", TAG, super.savedString(), this.getDateString());
     }
 }

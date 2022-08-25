@@ -4,8 +4,17 @@ import duke.data.TaskList;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
-public class ListCommand extends Command{
+/**
+ * Command to list out all current tasks.
+ */
+public class ListCommand extends Command {
 
+    /**
+     * Executes the command.
+     * @param taskList
+     * @param ui User Interface of the to-do-list.
+     * @param storage Storage option.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         System.out.println("Here are the tasks in your list:");
@@ -17,9 +26,6 @@ public class ListCommand extends Command{
                 System.out.printf(" %d. %s\n", i + 1, taskList.get(i));
             }
         }
-
-        storage.save(taskList);
-
     }
 
 
