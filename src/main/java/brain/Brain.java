@@ -1,3 +1,7 @@
+package brain;
+
+import task.Task;
+
 import java.util.ArrayList;
 
 public class Brain {

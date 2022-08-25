@@ -1,3 +1,5 @@
+package duke;
+
 public class DukeException extends Exception {
     private static final String EMPTY_COMMAND_DESCRIPTION_ERROR_MESSAGE = "Oopsieee! Command description cannot be empty";
     private static final String INTEGER_INDEX_ERROR_MESSAGE = "Oopsieee! Command \"%s\" should be followed with an integer index";

@@ -1,6 +1,14 @@
+package duke;
+
+import belly.Belly;
+import brain.Brain;
+import executor.Executor;
+import processor.Parser;
+import tobtob.TobTob;
+
 public class Duke {
-    private Belly belly; //storage
-    private Brain brain; //task
+    private Belly belly;
+    private Brain brain;
     private TobTob tobTob;
     private Parser parser;
     private Executor executor;

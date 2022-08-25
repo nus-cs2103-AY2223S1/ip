@@ -1,3 +1,5 @@
+package tobtob;
+
 import java.util.Scanner;
 
 public class TobTob {
