@@ -1,5 +1,7 @@
 package task;
 
+import org.json.JSONObject;
+
 /**
  * Data class to represent a Task and output a user-friendly String representation
  */
@@ -34,6 +36,15 @@ public abstract class Task {
     public void unmark() {
         this.isDone = false;
     }
+
+    protected JSONObject toJsonObject() {
+        JSONObject obj = new JSONObject();
+        obj.put("description", description);
+        obj.put("taskType", taskType);
+        obj.put("isDone", isDone);
+        return obj;
+    }
+    protected abstract String serialize();
 
     @Override
     public String toString() {

@@ -1,5 +1,7 @@
 package task;
 
+import org.json.JSONObject;
+
 /**
  * Class representing a Deadline task
  */
@@ -18,6 +20,13 @@ public class Deadline extends Task {
     @Override
     protected String getTypeIndicator() {
         return "D";
+    }
+
+    @Override
+    protected String serialize() {
+        JSONObject superObj = super.toJsonObject();
+        superObj.put("by", by);
+        return superObj.toString();
     }
 
     @Override

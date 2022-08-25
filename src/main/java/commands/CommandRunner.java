@@ -32,7 +32,7 @@ public class CommandRunner {
         Command deadline = new DeadlineCommand(taskModel);
         Command event = new EventCommand(taskModel);
         Command delete = new DeleteCommand(taskModel);
-        Command exit = new ExitCommand();
+        Command exit = new ExitCommand(taskModel);
 
         Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline, event, delete };
         commandMap = new HashMap<>();

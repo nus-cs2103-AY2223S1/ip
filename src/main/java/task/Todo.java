@@ -1,5 +1,7 @@
 package task;
 
+import org.json.JSONObject;
+
 /**
  * Class representing a Todo task
  */
@@ -11,5 +13,10 @@ public class Todo extends Task {
     @Override
     protected String getTypeIndicator() {
         return "T";
+    }
+
+    @Override
+    protected String serialize() {
+        return super.toJsonObject().toString();
     }
 }

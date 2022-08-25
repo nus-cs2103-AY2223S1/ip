@@ -2,6 +2,7 @@ package task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import exceptions.DukeException;
 import exceptions.StorageException;
@@ -113,5 +114,15 @@ public class TaskModel {
      */
     public List<Task> getAllTasks() {
         return tasks;
+    }
+
+    /**
+     * Save current tasks to persistent storage
+     */
+    public void save() throws DukeException {
+        List<String> serialised = tasks.stream()
+                .map(t -> t.serialize())
+                .collect(Collectors.toList());
+        storage.store(serialised);
     }
 }
