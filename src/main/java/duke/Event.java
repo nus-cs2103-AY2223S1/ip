@@ -1,7 +1,8 @@
 package duke;
 
 /**
- * Represents a type of task. An Event object corresponds to a task with a specific start and end time e.g. lesson at 2-4pm.
+ * Represents a type of task. An Event object corresponds to a task with a specific start and end time
+ * e.g. lesson at 2-4pm.
  */
 public class Event extends Task {
     protected String time;

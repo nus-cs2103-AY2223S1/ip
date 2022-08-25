@@ -4,7 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a type of task. A Deadline object corresponds to a task which needs to be done by a specific date e.g. return book by 01-02-2022.
+ * Represents a type of task. A Deadline object corresponds to a task which needs to be done by a specific date
+ * e.g. return book by 01-02-2022.
  */
 public class Deadline extends Task {
     protected LocalDate by;

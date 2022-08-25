@@ -1,7 +1,8 @@
 package duke;
 
 /**
- * Represents a task that can be added to TaskList. A Task object contains a String description and a boolean representing the completion status of the task.
+ * Represents a task that can be added to TaskList. A Task object contains a String description and a boolean
+ * representing the completion status of the task.
  */
 public abstract class Task {
     protected String description;
@@ -28,6 +29,11 @@ public abstract class Task {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public boolean containsKeyword(String keyword) {
+        keyword = keyword.toLowerCase();
+        return this.description.contains(keyword);
     }
 
     public abstract String getStorageString();

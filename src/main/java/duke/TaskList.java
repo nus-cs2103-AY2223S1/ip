@@ -1,14 +1,15 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Represents a list of tasks. A Tasklist object stores information about the tasks in the list.
  */
 public class TaskList {
-    private static int count = 0;
     private List<Task> list;
     private Ui ui;
+    private int count;
 
     /**
      * Creates new TaskList object.
@@ -18,7 +19,7 @@ public class TaskList {
     public TaskList(List<Task> list) {
         this.list = list;
         this.ui = new Ui();
-        count += list.size();
+        this.count = list.size();
     }
 
     /**
@@ -43,8 +44,16 @@ public class TaskList {
         this.ui.showTaskUnmarked(task);
     }
 
+    public int getCount() {
+        return this.count;
+    }
+
     public List<Task> getList() {
         return list;
+    }
+
+    public Task get(int index) {
+        return this.list.get(index);
     }
 
     /**
@@ -55,7 +64,7 @@ public class TaskList {
     public void add(Task task) {
         this.ui.showTaskAdded(task);
         this.list.add(task);
-        count++;
+        this.count++;
         printTaskCount();
     }
 
@@ -65,15 +74,25 @@ public class TaskList {
      * @param index Index of task to be deleted.
      */
     public void delete(int index) {
-        Task task = this.list.get(index - 1);
+        Task task = this.get(index - 1);
         this.ui.showTaskDeleted(task);
         this.list.remove(index - 1);
-        count--;
+        this.count--;
         printTaskCount();
     }
 
     public void printTaskCount() {
-        this.ui.showTaskCount(count);
+        this.ui.showTaskCount(this.count);
+    }
+
+    public TaskList findTasks(String keyword) {
+        List<Task> list = new ArrayList<Task>();
+        for (int i = 0; i < this.count; i++) {
+            if (this.get(i).containsKeyword(keyword)) {
+                list.add(this.get(i));
+            }
+        }
+        return new TaskList(list);
     }
 
     /**
@@ -83,12 +102,12 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        if (count == 0) {
+        if (this.count == 0) {
             return "\tList is empty!";
         } else {
             String result = "\tHere are the tasks in your list:";
-            for (int i = 0; i < count; i++) {
-                result = result + "\n\t\t" + (i + 1) + "." + this.list.get(i);
+            for (int i = 0; i < this.count; i++) {
+                result = result + "\n\t\t" + (i + 1) + "." + this.get(i);
             }
             return result;
         }

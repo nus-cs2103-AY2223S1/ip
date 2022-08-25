@@ -7,7 +7,8 @@ import java.util.Scanner;
  * Deals with making sense of the user command.
  */
 public class Parser {
-    private static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete"};
+    private static String[] keywords = {"bye", "list", "mark", "unmark", "todo", "deadline", "event", "delete", "find"};
+
     public Parser() {};
 
     /**

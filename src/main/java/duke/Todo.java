@@ -1,7 +1,8 @@
 package duke;
 
 /**
- * Represents a type of task. A Todo object corresponds to a task without a date or time attached to it e.g. borrow book.
+ * Represents a type of task. A Todo object corresponds to a task without a date or time attached to it
+ * e.g. borrow book.
  */
 public class Todo extends Task {
     /**
