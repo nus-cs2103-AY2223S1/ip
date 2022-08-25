@@ -1,7 +1,7 @@
 package ted.command;
 
 import ted.storage.Storage;
-import ted.task.*;
+import ted.task.TaskList;
 import ted.ui.Ui;
 
 public class ByeCommand extends Command {

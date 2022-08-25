@@ -2,7 +2,7 @@ package ted.command;
 
 import ted.exception.TedException;
 import ted.storage.Storage;
-import ted.task.*;
+import ted.task.TaskList;
 import ted.ui.Ui;
 
 public abstract class Command {

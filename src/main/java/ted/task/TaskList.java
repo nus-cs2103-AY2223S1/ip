@@ -3,6 +3,7 @@ package ted.task;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import ted.exception.TedException;
 
 public class TaskList {
@@ -35,7 +36,7 @@ public class TaskList {
         }
     }
 
-    public String markTask(int i) throws TedException{
+    public String markTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
             throw new TedException("Oh no, there's no such task T_T\n");
         }
@@ -44,7 +45,7 @@ public class TaskList {
         return tasks.get(i - 1).toString();
     }
 
-    public String unmarkTask(int i) throws TedException{
+    public String unmarkTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
             throw new TedException("Oh no, there's no such task T_T\n");
         }
@@ -58,7 +59,7 @@ public class TaskList {
         return t.toString();
     }
 
-    public String deleteTask(int i) throws TedException{
+    public String deleteTask(int i) throws TedException {
         if (i - 1 < 0 || i > tasks.size()) {
             throw new TedException("Oh no, there's no such task T_T\n");
         }
