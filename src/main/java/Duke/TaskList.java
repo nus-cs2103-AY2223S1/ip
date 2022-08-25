@@ -100,7 +100,7 @@ public class TaskList {
      * @return ArrayList containing all the tasks in Strings
      */
     public ArrayList<String> tasksToString() {
-        ArrayList<String> content = new ArrayList<>();
+        ArrayList<String> content = new ArrayList<String>();
         for (int i = 0; i < tasks.size(); i++) {
             Task t = tasks.get(i);
             String type = t.toString().substring(1,2);

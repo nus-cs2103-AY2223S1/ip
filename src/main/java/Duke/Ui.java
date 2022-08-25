@@ -36,12 +36,9 @@ public class Ui {
         scanner.close();
     }
 
-    public void closeScanner() {
-        scanner.close();
-    }
-
     public void printAddTask(Task t, int size) {
-        System.out.printf("Got it. I've added this task: \n %s \nNow you have %d tasks in the list.\n", t.toString(), size);
+        System.out.printf("Got it. I've added this task: \n %s \nNow you have %d tasks in the list.\n",
+                t.toString(), size);
     }
 
     public void printMarkTask(Task t) {

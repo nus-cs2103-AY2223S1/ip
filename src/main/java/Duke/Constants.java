@@ -1,9 +1,11 @@
 package Duke;
 
 public class Constants {
+
     public static final String NAME = "Shanice:)";
 
-    public static final String LINE = "____________________________________________________________________________";
+    public static final String LINE =
+            "____________________________________________________________________________";
 
     public static final String LIST = "Here are the tasks in your list: ";
 
