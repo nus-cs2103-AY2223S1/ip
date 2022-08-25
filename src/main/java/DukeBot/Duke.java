@@ -16,49 +16,6 @@ public class Duke {
     private static TaskList tasks = new TaskList();
     //private Ui ui;
 
-    private static File fileToRead;
-
-    private static Path path;
-
-    /*
-    public Duke(String filePath) {
-
-    }
-     */
-
-    public static void list() {
-        System.out.println("    Here are the tasks in your list:");
-        for (int i = 0; i < Task.getTaskCount(); i++) {
-            System.out.println(String.format("      %d. %s", i + 1, tasks.get(i)));
-        }
-    }
-
-    public static void mark(int taskNumber) throws DukeException {
-        tasks.get(taskNumber).markComplete();
-        System.out.println("    Nice! I've marked this task as done:");
-        System.out.println(String.format("      %s", tasks.get(taskNumber)));
-    }
-
-    public static void unmark(int taskNumber) throws DukeException {
-        tasks.get(taskNumber).markIncomplete();
-        System.out.println("    OK, I've marked this task as not done yet");
-        System.out.println(String.format("      %s", tasks.get(taskNumber)));
-    }
-
-    public static void delete(int taskToDelete) {
-        tasks.deleteTask(taskToDelete);
-    }
-
-    /*
-    public void run() {
-        Scanner sc = new Scanner(System.in);
-        while (true) {
-
-        }
-
-    }
-     */
-
     public static void main(String[] args) {
         storage = new Storage("src/main/tasks.txt");
         try {
