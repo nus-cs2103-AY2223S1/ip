@@ -10,13 +10,24 @@ import java.util.Scanner;
 
 public class Duke {
 
-    static TaskList taskList = new TaskList();
-    private static String keySeparator = "//";
-    private static String fileName = "data/tasks.txt";
-    private static Storage storage = new Storage(fileName);
-    private static Ui ui;
+    private TaskList taskList;
+    private final String KEY_SEPARATOR = "//";
+    private final String fileName = "data/tasks.txt";
+    private Storage storage;
+    private Ui ui;
 
-    public static class Ui {
+    public Duke() {
+        ui = new Ui();
+        storage = new Storage(fileName);
+        try {
+            taskList = new TaskList(storage.load());
+        } catch (FileNotFoundException e) {
+            ui.showError("file not found!");
+            taskList = new TaskList();
+        }
+
+    }
+    public class Ui {
 
         public final String ADDED = "oke i added this:";
         public final String DELETED = "oke i deleted this:";
@@ -24,7 +35,7 @@ public class Duke {
         public final String UNMARKED = "oke this is undone now:";
 
         public Ui () {
-
+            System.out.println("----------------------");
         }
 
         public void showWelcome() {
@@ -45,16 +56,24 @@ public class Duke {
             System.out.println(taskList.toString());
 
         }
+
+        public void showTotalTasks() {
+            System.out.println("now u have " + taskList.getSize() + " task(s)!");
+        }
         public void showError(String message) {
             System.out.println("error! " + message);
         }
 
-        public void readCommand() {
-
+        public String readCommand() {
+            String str = "";
+            Scanner scanner = new Scanner(System.in);
+            str = scanner.nextLine();
+            scanner.close();
+            return str;
         }
     }
 
-    public static class Storage {
+    public class Storage {
         private String filePath;
 
         public Storage(String filePath) {
@@ -63,7 +82,7 @@ public class Duke {
 
         public void save() {
             try {
-                FileWriter fw = new FileWriter(fileName, false);
+                FileWriter fw = new FileWriter(filePath, false);
                 fw.write(taskList.formatTasks());
                 fw.close();
             } catch (IOException e) {
@@ -72,12 +91,13 @@ public class Duke {
             }
         }
 
-        public void load() throws FileNotFoundException {
-            File file = new File(fileName);
+        public List<Task> load() throws FileNotFoundException {
+            File file = new File(filePath);
             Scanner scanner = new Scanner(file);
+            List<Task> tasks= new ArrayList<>();
             while(scanner.hasNext()) {
                 String dataStr = scanner.nextLine();
-                String[] taskStr = dataStr.split(keySeparator);
+                String[] taskStr = dataStr.split(KEY_SEPARATOR);
                 Task task;
 
                 switch (taskStr[0]) {
@@ -95,21 +115,156 @@ public class Duke {
                 } else {
                     task.markAsUndone();
                 }
-                taskList.addTask(task);
+                tasks.add(task);
             }
             scanner.close();
+            return tasks;
         }
     }
 
-    public static class Parser {
+    public class Parser {
+        private final String exit = "bye";
 
+        public Parser() {
+
+        }
+
+        public String parse(String string) {
+//            if(string.equals(exit)) {
+//                ui.showExit();
+//                return "exit";
+//            } else if (string.equals("list")) {
+//                ui.printTasks();
+//                return "";
+//            } else {
+//                String[] substr = reply.split(" ", 2); // to identify the keyword used
+//                Integer index;
+//                Task temp;
+//                switch (substr[0]) {
+//                    case "mark":
+//                        if(substr.length == 1) { // no number was given
+//                            ui.showError("enter an index!");
+//                            //System.out.println();
+//                            break;
+//                        }
+//                        try {
+//                            index = Integer.parseInt(substr[1]) - 1;
+//                            if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
+//                                ui.showError("thrs nth there :<");
+//                                //System.out.println("thrs nth there :<");
+//                                continue;
+//                            }
+//                            taskList.markTask(index);
+//                            temp = taskList.getTask(index);
+//                            ui.displayTask(ui.MARKED, temp);
+//                            storage.save();
+//                        } catch (NumberFormatException e) {
+//                            ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
+//                        }
+//                        break;
+//                    case "unmark":
+//                        if(substr.length == 1) {
+//                            ui.showError("enter an index!");
+//                            break;
+//                        }
+//                        try {
+//                            index = Integer.parseInt(substr[1]) - 1;
+//                            if(index < 0 || index >= taskList.getSize()) { // check if index is out of range
+//                                ui.showError("thrs nth there :<");
+//                                continue;
+//                            }
+//                            taskList.unmarkTask(index);
+//                            temp = taskList.getTask(index);
+//
+//                            System.out.println(ui.UNMARKED + temp);
+//                            storage.save();
+//                        } catch (NumberFormatException e) {
+//                            ui.showError("Invalid input");
+//                        }
+//
+//                        break;
+//                    case "delete":
+//                        if(substr.length == 1) {
+//                            ui.showError("enter an index!");
+//                            break;
+//                        }
+//                        try {
+//                            index = Integer.parseInt(substr[1]) - 1;
+//                            if(index < 0 || index >= taskList.getSize()) {
+//                                ui.showError("thrs nth there :<");
+//                                continue;
+//                            }
+//                            taskList.removeTask(index);
+//                            temp = taskList.getTask(index);
+//                            storage.save();
+//                            ui.displayTask(ui.DELETED, temp);
+//                            System.out.println("now u have " + taskList.getSize() + " task(s)!");
+//                        } catch (NumberFormatException e) {
+//                            ui.showError("Invalid input");
+//                        }
+//                        break;
+//                    case "todo":
+//                        if(substr.length == 1) {
+//                            ui.showError("The description cannot be empty!");
+//                            break;
+//                        }
+//                        temp = new Todo(substr[1]);
+//                        addTask(temp);
+//                        break;
+//                    case "deadline":
+//                        if(substr.length == 1) {
+//                            ui.showError("The description cannot be empty!");
+//                            break;
+//                        }
+//                        String[] dlDesc = substr[1].split(" /by ", 2);
+//                        if(dlDesc.length < 2) {
+//                            ui.showError("The deadline cannot be empty");
+//                            break;
+//                        }
+//                        try {
+//                            LocalDate date = LocalDate.parse(dlDesc[1]);
+//                            temp = new Deadline(dlDesc[0], date);
+//                            addTask(temp);
+//                            break;
+//                        } catch (DateTimeParseException e) {
+//                            ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
+//                            break;
+//                        }
+//
+//
+//                    case "event":
+//                        if(substr.length == 1) {
+//                            ui.showError("The description cannot be empty!");
+//                            break;
+//                        }
+//                        String[] eventDesc = substr[1].split(" /at ", 2);
+//                        if(eventDesc.length < 2) {
+//                            ui.showError("The date cannot be empty");
+//                            break;
+//                        }
+//
+//                        temp = new Event(eventDesc[0], eventDesc[1]);
+//                        addTask(temp);
+//                        break;
+//                    default:
+//                        ui.showError("idk what that means :(");
+//                        break;
+//                }
+//
+//            }
+//            return "";
+        }
     }
 
-    public static class TaskList {
+    public class TaskList {
         private List<Task> tasks;
 
         public TaskList() {
             this.tasks = new ArrayList<>();
+        }
+
+        public TaskList(List<Task> tasks) {
+            this.tasks = tasks;
         }
 
         public void addTask(Task task) {
@@ -157,7 +312,7 @@ public class Duke {
     /**
      * class for each task
      */
-    public static class Task {
+    public class Task {
         protected String description;
         protected boolean isDone;
 
@@ -194,7 +349,7 @@ public class Duke {
             return "[" + getStatusIcon() + "] " + this.description;
         }
     }
-    public static class Deadline extends Task {
+    public class Deadline extends Task {
 
         protected LocalDate date;
 
@@ -211,8 +366,8 @@ public class Duke {
         @Override
         public String formatToSave() {
             return isDone
-                    ? "D" + keySeparator + 1 + keySeparator + description + keySeparator + date
-                    : "D" + keySeparator + 0 + keySeparator + description + keySeparator + date;
+                    ? "D" + KEY_SEPARATOR + 1 + KEY_SEPARATOR + description + KEY_SEPARATOR + date
+                    : "D" + KEY_SEPARATOR + 0 + KEY_SEPARATOR + description + KEY_SEPARATOR + date;
         }
         /**
          * Returns a String representation of the task
@@ -223,7 +378,7 @@ public class Duke {
             return "[D]" + super.toString() + " (by: " + date + ")";
         }
     }
-    public static class Todo extends Task {
+    public class Todo extends Task {
 
         /**
          * Takes in a description for the task
@@ -236,8 +391,8 @@ public class Duke {
         @Override
         public String formatToSave() {
             return isDone
-                    ? "T" + keySeparator + 1 + keySeparator + description
-                    : "T" + keySeparator + 0 + keySeparator + description;
+                    ? "T" + KEY_SEPARATOR + 1 + KEY_SEPARATOR + description
+                    : "T" + KEY_SEPARATOR + 0 + KEY_SEPARATOR + description;
         }
         /**
          * Returns a String representation of the task
@@ -249,7 +404,7 @@ public class Duke {
         }
     }
 
-    public static class Event extends Task {
+    public class Event extends Task {
         protected String at;
 
         /**
@@ -265,8 +420,8 @@ public class Duke {
         @Override
         public String formatToSave() {
             return isDone
-                    ? "E" + keySeparator + 1 + keySeparator + description + keySeparator + at
-                    : "E" + keySeparator + 0 + keySeparator + description + keySeparator + at;
+                    ? "E" + KEY_SEPARATOR + 1 + KEY_SEPARATOR + description + KEY_SEPARATOR + at
+                    : "E" + KEY_SEPARATOR + 0 + KEY_SEPARATOR + description + KEY_SEPARATOR + at;
         }
         /**
          * Returns a String representation of the task
@@ -279,6 +434,10 @@ public class Duke {
     }
 
     public static void main(String[] args) {
+        new Duke().run();
+    }
+
+    public void run() {
         String reply = "";
         String exit = "bye"; // the keyword to exit
 
@@ -286,21 +445,19 @@ public class Duke {
             storage.load();
         } catch (FileNotFoundException e) {
             ui.showError("File not found");
-            //System.out.println("File not found!");
             return;
         }
         ui = new Ui();
         ui.showWelcome();
-        //System.out.println("hi im chompers what do u need!!!\n");
 
         while(true) {
-            Scanner scanIn = new Scanner(System.in);
-            reply = scanIn.nextLine(); // read from input
+//            Scanner scanIn = new Scanner(System.in);
+//            reply = scanIn.nextLine(); // read from input
+            reply = ui.readCommand();
 
             if(reply.equals(exit)) {
                 ui.showExit();
-                //System.out.println("bye see u"); // exits the program
-                scanIn.close();
+                //scanIn.close();
                 break;
             } else if (reply.equals("list")) {
                 ui.printTasks();
@@ -428,10 +585,10 @@ public class Duke {
      * Adds the task to the list
      * @param task task to be added
      */
-    public static void addTask(Task task) {
+    public void addTask(Task task) {
         taskList.addTask(task);
         ui.displayTask(ui.ADDED, task);
-        System.out.println("now u have " + taskList.getSize() + " task(s)!");
+        ui.showTotalTasks();
         storage.save();
     }
 
