@@ -21,9 +21,9 @@ import java.util.Locale;
  */
 public class Task {
 
-    private String description;
+    private final String description;
     private boolean isDone = false;
-    protected String due; // can be accessed by subclasses
+    protected final String due; // can be accessed by subclasses
     protected final String commandWord;
 
     DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
@@ -123,11 +123,11 @@ public class Task {
         String tag = "";
 
         if (this instanceof Event) {
-            tag = ((Event) this).tag;
+            tag = Event.TAG;
         } else if (this instanceof Deadline) {
-            tag = ((Deadline) this).tag;
+            tag = Deadline.TAG;
         } else if (this instanceof ToDo) {
-            tag = ((ToDo) this).tag;
+            tag = ToDo.TAG;
         }
 
         String taskToString = tag + " | " + isTaskDone + " | " + this.description + "| " + this.due;
@@ -142,6 +142,10 @@ public class Task {
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
+    }
+
+    public String getDescription() {
+        return this.description;
     }
 
     private String getStatusIcon() {

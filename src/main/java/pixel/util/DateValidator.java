@@ -8,7 +8,7 @@ import java.time.format.DateTimeParseException;
  * in yyyy-MM-dd HHmm
  */
 public class DateValidator {
-    private DateTimeFormatter dateFormatter;
+    private final DateTimeFormatter dateTimeFormatter;
 
     /**
      * Constructor for a new DateValidator object
@@ -16,7 +16,7 @@ public class DateValidator {
      * @param dateFormatter determines the accepted date&time format of the input string
      */
     public DateValidator(DateTimeFormatter dateFormatter) {
-        this.dateFormatter = dateFormatter;
+        this.dateTimeFormatter = dateFormatter;
     }
 
     /**
@@ -26,7 +26,7 @@ public class DateValidator {
      */
     public boolean isValid(String dateStr) {
         try {
-            this.dateFormatter.parse(dateStr);
+            this.dateTimeFormatter.parse(dateStr);
         } catch (DateTimeParseException e) {
             return false;
         }
