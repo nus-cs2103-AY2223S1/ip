@@ -64,13 +64,18 @@ public class Storage {
         FileWriter dukeWriter = new FileWriter("duke.txt");
         for (int i = 0; i < taskList.arrayList.size(); i++) {
             if (taskList.arrayList.get(i).getClass() == ToDo.class) {
-                dukeWriter.write("duke.ToDo / " + taskList.arrayList.get(i).getIsDone() + " / " + taskList.arrayList.get(i).getDescription() + "\n");
+                dukeWriter.write("duke.ToDo / " + taskList.arrayList.get(i).getIsDone()
+                        + " / " + taskList.arrayList.get(i).getDescription() + "\n");
             }
             if (taskList.arrayList.get(i).getClass() == Event.class) {
-                dukeWriter.write("duke.Event / " + ((Event) taskList.arrayList.get(i)).getIsDone() + " / " + ((Event) taskList.arrayList.get(i)).getDescription() + " / " + ((Event) taskList.arrayList.get(i)).getAt() + "\n");
+                dukeWriter.write("duke.Event / " + ((Event) taskList.arrayList.get(i)).getIsDone()
+                        + " / " + ((Event) taskList.arrayList.get(i)).getDescription() + " / "
+                        + ((Event) taskList.arrayList.get(i)).getAt() + "\n");
             }
             if (taskList.arrayList.get(i).getClass() == Deadline.class) {
-                dukeWriter.write("duke.Deadline / " + ((Deadline) taskList.arrayList.get(i)).getIsDone() + " / " + ((Deadline) taskList.arrayList.get(i)).getDescription() + " / " + ((Deadline) taskList.arrayList.get(i)).getBy().format(DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm")) + "\n");
+                dukeWriter.write("duke.Deadline / " + ((Deadline) taskList.arrayList.get(i)).getIsDone()
+                        + " / " + ((Deadline) taskList.arrayList.get(i)).getDescription() + " / "
+                        + ((Deadline) taskList.arrayList.get(i)).getBy().format(DateTimeFormatter.ofPattern("yyyy-MMM-dd HH:mm")) + "\n");
             }
         }
         dukeWriter.close();

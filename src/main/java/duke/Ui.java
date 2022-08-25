@@ -13,7 +13,8 @@ public class Ui {
         this.storage = storage;
     }
 
-    String divider = "----------------------------------------------------------------------------------------------------------------";
+    String divider = "--------------------------------------------------" +
+            "--------------------------------------------------------------";
 
     /**
      * Handles UI output for list keyword.
@@ -82,7 +83,8 @@ public class Ui {
      */
     public void deleteNumberFormatError() {
         System.out.println(divider);
-        System.out.println("Invalid command please add a space between delete and the list item you would like to interact with. \n" +
+        System.out.println("Invalid command please add a space between delete and " +
+                "the list item you would like to interact with. \n" +
                 "Additionally ensure you have entered a number after delete.");
         System.out.println(divider);
     }
@@ -94,7 +96,8 @@ public class Ui {
      */
     public void todo(ToDo item) {
         System.out.println(divider);
-        System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.taskList.arrayList.size() + " tasks in the list");
+        System.out.println("Got it. I've added this task. \n" + item.toString()
+                + "\nNow you have " + storage.taskList.arrayList.size() + " tasks in the list");
         System.out.println(divider);
     }
 
@@ -116,7 +119,8 @@ public class Ui {
      */
     public void deadline(Deadline item) {
         System.out.println(divider);
-        System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.taskList.arrayList.size() + " tasks in the list");
+        System.out.println("Got it. I've added this task. \n" + item.toString()
+                + "\nNow you have " + storage.taskList.arrayList.size() + " tasks in the list");
         System.out.println(divider);
     }
 
@@ -125,7 +129,8 @@ public class Ui {
      */
     public void dateTimeParseError() {
         System.out.println(divider);
-        System.out.println("Incorrect date time format the format is dd/mm/yyyy hh:mm if time is not provided the default is 00:00");
+        System.out.println("Incorrect date time format the format is dd/mm/yyyy hh:mm " +
+                "if time is not provided the default is 00:00");
         System.out.println(divider);
     }
 
@@ -134,7 +139,8 @@ public class Ui {
      */
     public void dateTimeArrayException() {
         System.out.println(divider);
-        System.out.println("Please provide a deadline and a by time e.g. deadline <description of the deadline> /by <time of the deadline>");
+        System.out.println("Please provide a deadline and a by time e.g. deadline " +
+                "<description of the deadline> /by <time of the deadline>");
         System.out.println(divider);
     }
 
@@ -145,7 +151,8 @@ public class Ui {
      */
     public void event(Event item) {
         System.out.println(divider);
-        System.out.println("Got it. I've added this task. \n" + item.toString() + "\nNow you have " + storage.taskList.arrayList.size() + " tasks in the list");
+        System.out.println("Got it. I've added this task. \n" + item.toString()
+                + "\nNow you have " + storage.taskList.arrayList.size() + " tasks in the list");
         System.out.println(divider);
     }
 
@@ -154,7 +161,8 @@ public class Ui {
      */
     public void eventError() {
         System.out.println(divider);
-        System.out.println("Please provide a event and an at time e.g. event <description of the event> /at <time of the event>");
+        System.out.println("Please provide a event and an at time " +
+                "e.g. event <description of the event> /at <time of the event>");
         System.out.println(divider);
     }
 
@@ -203,7 +211,8 @@ public class Ui {
      */
     public void markFormatError() {
         System.out.println(divider);
-        System.out.println("Invalid command please add a space between mark and the list item you would like to interact with. \n" +
+        System.out.println("Invalid command please add a space between " +
+                "mark and the list item you would like to interact with. \n" +
                 "Additionally ensure you have entered a number after mark.");
         System.out.println(divider);
     }
@@ -253,7 +262,8 @@ public class Ui {
      */
     public void unmarkFormatError() {
         System.out.println(divider);
-        System.out.println("Invalid command please add a space between unmark and the list item you would like to interact with. \n" +
+        System.out.println("Invalid command please add a space between " +
+                "unmark and the list item you would like to interact with. \n" +
                 "Additionally ensure you have entered a number after unmark.");
         System.out.println(divider);
     }
@@ -263,11 +273,14 @@ public class Ui {
      */
     public void help() {
         System.out.println(divider);
-        System.out.println("Welcome to the user guide. This guide has all the commands that are necessary to operate duke.Duke\n\n" +
+        System.out.println("Welcome to the user guide. This guide has all the" +
+                " commands that are necessary to operate duke.Duke\n\n" +
                 "Main commands : \n\n" +
                 "Todo : adds a todo task to the task list :-> todo <description of the task> \n" +
-                "duke.Deadline : adds a deadline task to the task list :-> deadline <description of the deadline> /by <time of the deadline> \n" +
-                "duke.Event : adds an event task to the task list :-> event <description of the event> /at <time of the event> \n\n" +
+                "duke.Deadline : adds a deadline task to the task list :->" +
+                " deadline <description of the deadline> /by <time of the deadline> \n" +
+                "duke.Event : adds an event task to the task list :-> event" +
+                " <description of the event> /at <time of the event> \n\n" +
                 "Other commands: \n\n" +
                 "Mark : marks a task as done :-> mark <task number> \n" +
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +
@@ -289,8 +302,10 @@ public class Ui {
         System.out.println("Please provide a proper command. Formats are as follows: \n\n" +
                 "Main commands : \n\n" +
                 "Todo : adds a todo task to the task list :-> todo <description of the task> \n" +
-                "duke.Deadline : adds a deadline task to the task list :-> deadline <description of the deadline> /by <time of the deadline> \n" +
-                "duke.Event : adds an event task to the task list :-> event <description of the event> /at <time of the event> \n\n" +
+                "duke.Deadline : adds a deadline task to the task list :-> deadline" +
+                " <description of the deadline> /by <time of the deadline> \n" +
+                "duke.Event : adds an event task to the task list :-> event " +
+                "<description of the event> /at <time of the event> \n\n" +
                 "Other commands: \n\n" +
                 "Mark : marks a task as done :-> mark <task number> \n" +
                 "Unmark : marks a task as not done :-> unmark <task number> \n" +

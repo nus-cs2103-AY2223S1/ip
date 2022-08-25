@@ -32,7 +32,8 @@ public class Duke {
      * @throws DukeException
      */
     public static void main(String[] args) throws DukeException, IOException {
-        String divider = "----------------------------------------------------------------------------------------------------------------";
+        String divider = "---------------------------------------------------" +
+                "-------------------------------------------------------------";
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"

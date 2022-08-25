@@ -14,7 +14,7 @@ What can I do for you?
 The list is empty, please add more items to display them here.
 ----------------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------
-Welcome to the user guide. This guide has all the commands that are necessary to operate duke.Duke
+Welcome to the user guide. This guide has all the commands that are necessary to operate duke.duke
 
 Main commands : 
 
@@ -28,7 +28,7 @@ Mark : marks a task as done :-> mark <task number>
 Unmark : marks a task as not done :-> unmark <task number> 
 Delete : deletes a task :-> delete <task number>
 Help : brings up this display :-> help
-Bye : closes duke.Duke :-> bye
+Bye : closes duke.duke :-> bye
 
 Please enter one of the above to continue.
 ----------------------------------------------------------------------------------------------------------------
@@ -58,7 +58,7 @@ Mark : marks a task as done :-> mark <task number>
 Unmark : marks a task as not done :-> unmark <task number> 
 Delete : deletes a task :-> delete <task number>
 Help : brings up this display :-> help
-Bye : closes duke.Duke :-> bye
+Bye : closes duke.duke :-> bye
 
 Please enter one of the above to continue.
 ----------------------------------------------------------------------------------------------------------------
