@@ -6,6 +6,7 @@ import ted.command.AddCommand;
 import ted.command.ByeCommand;
 import ted.command.Command;
 import ted.command.DeleteCommand;
+import ted.command.FindCommand;
 import ted.command.ListCommand;
 import ted.command.MarkCommand;
 import ted.command.UnmarkCommand;
@@ -43,6 +44,9 @@ public class Parser {
                     throw new TedException("Oh no, I don't understand T_T\n");
                 }
                 c = new ListCommand();
+                break;
+            case "find":
+                c = new FindCommand(temp[1]);
                 break;
             case "mark":
                 if (temp.length == 1) {

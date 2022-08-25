@@ -41,7 +41,7 @@ public class TaskList {
     /**
      * Returns String representation of the list of tasks in the TaskList object.
      *
-     * @return string of task list.
+     * @return String of task list.
      */
     public String list() {
         String listOfTasks = "Your tasklist:\n";
@@ -122,5 +122,26 @@ public class TaskList {
         String task = tasks.get(i - 1).toString();
         tasks.remove(i - 1);
         return task;
+    }
+
+    /**
+     * Returns String representation of the list of tasks in the TaskList object
+     * that contain the keyword.
+     *
+     * @param keyword keyword to be searched for in TaskList.
+     * @return String of filtered task list.
+     */
+    public String findTasks(String keyword) {
+        String temp = "Here are the matching tasks in your list:\n";
+        int count = 1;
+
+        for (int i = 0; i < tasks.size(); i++) {
+            String toSearch = tasks.get(i).toString();
+            if (toSearch.contains(keyword)) {
+                temp = temp + count + ". " + toSearch + "\n";
+                count++;
+            }
+        }
+        return temp;
     }
 }
