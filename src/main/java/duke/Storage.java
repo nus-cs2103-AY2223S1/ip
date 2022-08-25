@@ -14,8 +14,14 @@ import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
+/**
+ * Contains the processes that store data and manipulates the data file of the application
+ */
 public class Storage {
+    /** list that stores the tasks */
     private ArrayList<Task> list = new ArrayList<>();
+
+    /** Keeps track of the number of tasks */
     private int count = 0;
 
     public Storage() {
@@ -35,6 +41,9 @@ public class Storage {
         }
     };
 
+    /**
+     * loads the data into the list from the data file
+     */
     public void loadData() {
         try {
             File f = new File("data/duke.txt"); // create a File for the given file path
@@ -74,7 +83,9 @@ public class Storage {
             System.out.println("File not found");
         }
     }
-
+    /**
+     * writes the data into the data file from the list
+     */
     public void writeToFile(){
         try {
             new FileWriter("data/duke.txt", false).close();
@@ -88,6 +99,7 @@ public class Storage {
             System.out.println("File not found");
         }
     }
+
     public ArrayList<Task> getList() {
         return this.list;
     }

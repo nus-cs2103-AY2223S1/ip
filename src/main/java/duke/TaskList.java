@@ -7,16 +7,28 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * the object that stores the list of tasks
+ */
 public class TaskList {
+    /** list that stores the tasks*/
     private ArrayList<Task> list;
+
+    /** storage object */
     private Storage storage;
+
+    /** count to keep track of items */
     private int count;
+
     public TaskList(Storage storage) {
         this.list = storage.getList();
         this.storage = storage;
         this.count = 0;
     }
 
+    /**
+     * prints the list of tasks
+     */
     public void printTaskList() {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i) == null) {
@@ -26,6 +38,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * sets the task to done
+     * @param index Index of the task in the list
+     */
     public void setDone(int index) {
         try {
             list.get(index).setDone();
@@ -37,6 +53,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Sets the task to not done
+     * @param index Index of the task in the list
+     */
     public void setUndone(int index) {
         try {
             list.get(index).setNotDone();
@@ -48,6 +68,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Creates a deadline object and stores it
+     * @param item the input of the user
+     */
     public void createDeadline(String item) {
         try {
             int slash = 0;
@@ -72,6 +96,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Creates and event object and stores it
+     * @param item the user's input
+     */
     public void createEvent(String item) {
         try {
             int slash = 0;
@@ -93,6 +121,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Creates a todo object and stores it
+     * @param item The user's input
+     */
     public void createTask(String item) {
         try {
             list.add(new Todo(item.substring(5)));
@@ -106,6 +138,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes a task from the list
+     * @param index Index of the task
+     */
     public void deleteTask(int index) {
         try {
             String text = list.get(index).getTask();

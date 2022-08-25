@@ -8,9 +8,17 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the duke application
+ */
 public class Duke {
+    /** object to store and manage the tasks*/
     private Storage storage;
+
+    /** Object to handle the UI of the application */
     private Ui ui;
+
+    /** Object that represent the list of tasks */
     private TaskList tasks;
 
     public Duke() {
@@ -19,6 +27,9 @@ public class Duke {
         this.tasks = new TaskList(storage);
     }
 
+    /**
+     * Runs the main application of duke
+     */
     public void run() {
         ui.initialize();
         Scanner scan = new Scanner(System.in);

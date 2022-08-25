@@ -1,7 +1,15 @@
 package duke;
 
+/**
+ * Represents the parsing aspects of the program
+ */
 public class Parser {
 
+    /**
+     * Provides approproite responses to input given by user
+     * @param item the description of the task
+     * @param taskList the object used to store the tasks
+     */
     public static void parse(String item, TaskList taskList) {
         if (item.equals("list")) {
             taskList.printTaskList();
