@@ -52,6 +52,8 @@ public class Parser {
             case "date" :
                 LocalDate date = getDate(input);
                 return new DateCommand(date);
+            case "find" :
+                return new FindCommand(input[1]);
         }
         throw new DukeException("☹ OOPS!!! I don't understand what that means");
     }

@@ -61,6 +61,7 @@ public class AddCommand extends Command {
                 break;
             case "deadline" :
                 task = new Deadline(description,date);
+                break;
         }
 
         taskList.addTask(task);

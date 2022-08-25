@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -75,6 +76,14 @@ public class Ui {
     public void showUnmark(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(" " + task.toString());
+    }
+
+    public void showFindResult(List<Integer> indexList, TaskList taskList) throws DukeException {
+        System.out.println("Here are the matching tasks in your list:");
+        for (Integer index : indexList) {
+            System.out.println(taskList.getTask(index).toString());
+        }
+
     }
 
 
