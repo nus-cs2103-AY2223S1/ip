@@ -1,13 +1,20 @@
-public class Deadline extends Task {
-    private String deadline;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    Deadline(String title, String deadline) {
+public class Deadline extends Task {
+    private LocalDate byDate;
+    private LocalTime byTime;
+
+    Deadline(String title, String deadline) throws IllegalArgumentException {
         this(title, false, deadline);
     }
 
-    Deadline(String title, boolean isCompleted, String deadline) {
+    Deadline(String title, boolean isCompleted, String deadline) throws IllegalArgumentException {
         super(title, isCompleted);
-        this.deadline = deadline;
+        byDate = RegexHelper.extractAndParseDate(deadline)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid deadline date: " + deadline));
+        byTime = RegexHelper.extractAndParseTime(deadline)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid deadline time: " + deadline));
     }
 
     public static Deadline fromSaveFormat(String saveFormat) throws IllegalArgumentException {
@@ -25,6 +32,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return String.format("‼ %s (by %s)", super.toString(), deadline);
+        return String.format("‼ %s (by %s at %s)", super.toString(), byDate, byTime);
     }
 }
