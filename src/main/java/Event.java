@@ -1,14 +1,21 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task {
 
-    protected String at;
+    protected LocalDate startDate;
+    protected LocalDate endDate;
 
-    public Event(String description, String at) {
+    public Event(String description, String timePeriod) {
         super(description);
-        this.at = at;
+        String[] str = timePeriod.split(" ");
+        this.startDate = LocalDate.parse(str[0]);
+        this.endDate = LocalDate.parse(str[1]);
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (at: " + this.at + ")";
+        return "[E]" + super.toString() + " (at: " + this.startDate.format(DateTimeFormatter.ofPattern("d MMM YYYY"))
+                + " to " + this.endDate.format(DateTimeFormatter.ofPattern("d MMM YYYY")) + ")";
     }
 }
