@@ -61,7 +61,7 @@ public class TaskList {
         return this.list;
     }
 
-    public String getTask(int index) {
+    public String getTaskString(int index) {
         return list.get(index).toString();
     }
 
@@ -90,4 +90,7 @@ public class TaskList {
         }
     }
 
+    public Task getTask(int index) {
+        return list.get(index);
+    }
 }

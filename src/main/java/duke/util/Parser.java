@@ -25,6 +25,8 @@ public class Parser {
             return "deleteTask";
         } else if (isValidTask(parseTaskType(action))) {
             return "addToList";
+        } else if (action.length() >= 4 && Objects.equals(action.substring(0, 4), "find")) {
+            return "find";
         } else {
             return "";
         }

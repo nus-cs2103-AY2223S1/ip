@@ -36,6 +36,16 @@ public class Task {
         return isDone;
     }
 
+    public boolean matchKeyword(String keyword) {
+        String[] words = action.split(" ");
+        for (String word : words) {
+            if (word.contains(keyword)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public String getDate() {
         return date;
     }

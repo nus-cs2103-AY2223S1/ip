@@ -30,7 +30,7 @@ public class Ui {
      * Prints no such task error.
      */
     public void noSuchTaskError() {
-        System.out.println("OOPS!!! Error: No Such duke.Task\n"
+        System.out.println("OOPS!!! Error: No Such Task :-(\n"
                 + "--------------------------");
     }
 
@@ -94,6 +94,16 @@ public class Ui {
         String output = mark ? "Nice! I've marked this task as done:" : "OK, I've marked this task as not done yet:";
         System.out.println(output);
         System.out.println(task);
+        System.out.println("--------------------------");
+    }
+
+    /**
+     * Prints the task found to match input keyword.
+     * @param list list of tasks found.
+     */
+    public void showFoundTasks(ArrayList<Task> list) {
+        System.out.println("I found some matching tasks!");
+        this.getList(list);
         System.out.println("--------------------------");
     }
 }

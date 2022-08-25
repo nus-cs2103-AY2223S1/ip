@@ -4,11 +4,13 @@ import duke.data.Storage;
 import duke.data.TaskList;
 import duke.task.DeadlineTask;
 import duke.task.EventTask;
+import duke.task.Task;
 import duke.task.TodoTask;
 import duke.util.DukeException;
 import duke.util.Parser;
 import duke.util.Ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -72,6 +74,26 @@ public class Duke {
     }
 
     /**
+     * Finds task that matches the keyword
+     * @param action
+     */
+    public void findTask(String action) {
+        ArrayList<Task> filteredTasks = new ArrayList<>();
+        String keyword = action.substring(5).strip();
+        for (int i = 0; i < tasks.getSize(); i++) {
+            Task task = tasks.getTask(i);
+            if (task.matchKeyword(keyword)) {
+                filteredTasks.add(task);
+            }
+        }
+        if (filteredTasks.size() > 0) {
+            ui.showFoundTasks(filteredTasks);
+        } else {
+            ui.noSuchTaskError();
+        }
+    }
+
+    /**
      * Deletes specified task
      * @param action takes in action from input
      */
@@ -79,7 +101,7 @@ public class Duke {
         try {
             String i = action.substring(6).replaceAll(" ", "");
             int index = Integer.parseInt(i) - 1;
-            String removedTask = tasks.getTask(index);
+            String removedTask = tasks.getTaskString(index);
             tasks.removeTask(index);
             ui.removeTask(removedTask, tasks.getSize());
         } catch (Exception e) {
@@ -110,7 +132,7 @@ public class Duke {
             default:
                 throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
-            ui.addedTask(tasks.getTask(tasks.getSize() - 1), tasks.getSize());
+            ui.addedTask(tasks.getTaskString(tasks.getSize() - 1), tasks.getSize());
         } catch (DukeException e) {
             ui.cannotUnderstandError();
         }
@@ -127,7 +149,7 @@ public class Duke {
             i = i.replaceAll(" ", "");
             int index = Integer.parseInt(i) - 1;
             tasks.markTaskStatus(index, mark);
-            ui.markedTask(mark, tasks.getTask(index));
+            ui.markedTask(mark, tasks.getTaskString(index));
         } catch (Exception e) {
             ui.noSuchTaskError();
         }
