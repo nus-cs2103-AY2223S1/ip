@@ -129,6 +129,15 @@ public abstract class Command {
     }
 
     /**
+     * A public static factory method to return a FindCommand.
+     * @param target The String of the target.
+     * @return The FindCommand
+     */
+    public static FindCommand find(String target) {
+        return new FindCommand(target);
+    }
+
+    /**
      * Execute the Command with given Duke Segments.
      * @param taskList TaskList of the Duke.
      * @param messagePrinter MessagePrinter of the Duke.

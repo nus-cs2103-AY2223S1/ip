@@ -115,6 +115,14 @@ public class TaskList implements Savable<TaskList> {
     }
 
     /**
+     * Load the instantiated Tasks from given formatted String to current TaskList.
+     * @param formattedString
+     */
+    public void loadFrom(String formattedString) {
+        this.tasks = parse(formattedString).getTaskList();
+    }
+
+    /**
      * Returns the TaskList represented by given formatted String.
      * @param formattedString The given formatted String.
      * @return The TaskList represented by given formatted String.

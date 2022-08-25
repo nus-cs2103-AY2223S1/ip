@@ -94,49 +94,49 @@ public class Parser {
         case EXIT:
             return Command.exit();
         case MARK:
-            arg1 = s.substring(Action.getString(Action.MARK).length()).trim();
+            arg1 = s.substring(Action.getString(action).length()).trim();
             if (arg1.equals("")) {
-                throw new NoArgumentException(Action.MARK);
+                throw new NoArgumentException(action);
             } else if (!isInt(arg1)) {
-                throw new InvalidArgumentException(Action.MARK, "The argument should be an integer.");
+                throw new InvalidArgumentException(action, "The argument should be an integer.");
             }
             return Command.mark(Integer.parseInt(arg1));
         case UNMARK:
-            arg1 = s.substring(Action.getString(Action.UNMARK).length()).trim();
+            arg1 = s.substring(Action.getString(action).length()).trim();
             if (arg1.equals("")) {
-                throw new NoArgumentException(Action.UNMARK);
+                throw new NoArgumentException(action);
             } else if (!isInt(arg1)) {
-                throw new InvalidArgumentException(Action.UNMARK, "The argument should be an integer.");
+                throw new InvalidArgumentException(action, "The argument should be an integer.");
             }
             return Command.unmark(Integer.parseInt(arg1));
         case LIST:
             return Command.list();
         case TODO:
-            arg1 = s.substring(Action.getString(Action.TODO).length()).trim();
+            arg1 = s.substring(Action.getString(action).length()).trim();
             if (arg1.equals("")) {
-                throw new NoArgumentException(Action.TODO);
+                throw new NoArgumentException(action);
             } else if (!isValidString(arg1)) {
-                throw new InvalidArgumentException(Action.EVENT,
+                throw new InvalidArgumentException(action,
                         "Todo details should not contain '}'.");
             }
             return Command.todo(arg1);
         case EVENT:
             String START_OF_EVENT_TIME_SYMBOL = " /at ";
             if (!s.contains(START_OF_EVENT_TIME_SYMBOL)) {
-                throw new InvalidArgumentException(Action.EVENT, "Keyword: [" +
+                throw new InvalidArgumentException(action, "Keyword: [" +
                         START_OF_EVENT_TIME_SYMBOL + " ] or [Time] is not found.");
             }
-            indexOfName = Action.getString(Action.EVENT).length();
+            indexOfName = Action.getString(action).length();
             indexOfTime = getFirstIndexOfStr1InStr2(START_OF_EVENT_TIME_SYMBOL, s);
             arg1 = s.substring(indexOfName, indexOfTime).trim();
             arg2 = s.substring(indexOfTime + START_OF_EVENT_TIME_SYMBOL.length()).trim();
             if (arg1.equals("") && arg2.equals("")) {
-                throw new NoArgumentException(Action.EVENT);
+                throw new NoArgumentException(action);
             } else if (!isValidString(arg1)) {
-                throw new InvalidArgumentException(Action.EVENT,
+                throw new InvalidArgumentException(action,
                         "Event [Name] is not found.");
             } else if (!isValidDate(arg2)) {
-                throw new InvalidArgumentException(Action.EVENT,
+                throw new InvalidArgumentException(action,
                         "Event [Time] is not found.");
             }
 
@@ -145,38 +145,46 @@ public class Parser {
             String START_OF_DEADLINE_TIME_SYMBOL = " /by ";
 
             if (!s.contains(START_OF_DEADLINE_TIME_SYMBOL)) {
-                throw new InvalidArgumentException(Action.DEADLINE, "Keyword: [" +
+                throw new InvalidArgumentException(action, "Keyword: [" +
                         START_OF_DEADLINE_TIME_SYMBOL + " ] or [Time] is not found.");
             }
 
-            indexOfName = Action.getString(Action.DEADLINE).length();
+            indexOfName = Action.getString(action).length();
             indexOfTime = getFirstIndexOfStr1InStr2(START_OF_DEADLINE_TIME_SYMBOL, s);
             arg1 = s.substring(indexOfName, indexOfTime).trim();
             arg2 = s.substring(indexOfTime + START_OF_DEADLINE_TIME_SYMBOL.length()).trim();
 
             if (arg1.equals("") && arg2.equals("")) {
-                throw new NoArgumentException(Action.DEADLINE);
+                throw new NoArgumentException(action);
             } else if (!isValidString(arg1)) {
-                throw new InvalidArgumentException(Action.DEADLINE,
+                throw new InvalidArgumentException(action,
                         "Deadline [Name] is not found.");
             } else if (!isValidDate(arg2)) {
-                throw new InvalidArgumentException(Action.DEADLINE,
+                throw new InvalidArgumentException(action,
                         "Deadline [Time] is not found.");
             }
 
             return Command.deadline(arg1, parseStringToDateTime(arg2));
         case DELETE:
-            arg1 = s.substring(Action.getString(Action.DELETE).length()).trim();
+            arg1 = s.substring(Action.getString(action).length()).trim();
             if (arg1.equals("")) {
-                throw new NoArgumentException(Action.DELETE);
+                throw new NoArgumentException(action);
             } else if (!isInt(arg1)) {
-                throw new InvalidArgumentException(Action.DELETE, "The argument should be an integer.");
+                throw new InvalidArgumentException(action, "The argument should be an integer.");
             }
             return Command.delete(Integer.parseInt(arg1));
         case SAVE:
             return Command.save();
         case READ:
             return Command.read();
+        case FIND:
+            arg1 = s.substring(Action.getString(action).length()).trim();
+            if (arg1.equals("")) {
+                throw new NoArgumentException(action);
+            } else if (!isValidString(arg1)) {
+                throw new InvalidArgumentException(action, "The argument should be a String.");
+            }
+            return Command.find(arg1);
         default:
             return Command.doNothing();
         }
