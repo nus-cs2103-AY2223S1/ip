@@ -7,7 +7,7 @@ public class Task {
     private boolean finished = false;
 
     /**
-     * Constructor for Task.
+     * Creates a Task.
      *
      * @param  taskname the name of the task.
      * @return A Task.

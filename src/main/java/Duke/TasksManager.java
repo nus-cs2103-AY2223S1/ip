@@ -12,7 +12,7 @@ public class TasksManager {
     private static ArrayList<Task> tasks = new ArrayList<>();
 
     /**
-     * Constructor for TasksManager class.
+     * Creates a TasksManager class.
      *
      * @return A TasksManager.
      */
@@ -22,7 +22,7 @@ public class TasksManager {
     }
 
     /**
-     * Add a Task and update Storage.
+     * Adds a Task and update Storage.
      *
      * @param task A Task.
      * @return A boolean indicating that update was sucessful.
@@ -43,7 +43,7 @@ public class TasksManager {
     }
 
     /**
-     * Add a task to the tasks ArrayList without
+     * Adds a task to the tasks ArrayList without
      * adding it to Storage.
      *
      * @param task A Task to be added

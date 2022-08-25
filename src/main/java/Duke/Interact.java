@@ -9,7 +9,7 @@ public class Interact {
     private TasksManager tasksManager;
 
     /**
-     * Initializes the user interface and greets the user.
+     * Greets the user.
      *
      * @return void.
      */
@@ -65,8 +65,7 @@ public class Interact {
     }
 
     /**
-     * Says bye to the user and calls the taskmanager
-     * to shut down and write files to tasklist.txt.
+     * Shuts down program.
      *
      * @return void.
      */
@@ -79,11 +78,10 @@ public class Interact {
     }
 
     /**
-     * The main class creates an interact object,
-     * which controls interactions with the user
-     * and calls on other classes to do what the
-     * user wishes, accordingly. The Scanner takes in
-     * these inputs and seeds them to Interact.
+     * Creates an Interact, which controls interactions
+     * with the user and calls on other classes to do
+     * what the user wishes, accordingly. The Scanner
+     * takes in these inputs and seeds them to Interact.
      *
      * @param args user input.
      * @return void.

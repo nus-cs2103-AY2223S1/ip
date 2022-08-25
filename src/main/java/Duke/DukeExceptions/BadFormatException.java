@@ -6,7 +6,7 @@ public class BadFormatException extends DukeException {
     private String format;
 
     /**
-     * Constructor for BadFormatException.
+     * Creates a BadFormatException.
      *
      * @param errorMessage the errormMessage.
      * @return A BadFormatException.
@@ -17,7 +17,7 @@ public class BadFormatException extends DukeException {
     }
 
     /**
-     * Constructor for BadFormatException.
+     * Creates a BadFormatException.
      *
      * @param message the errormMessage.
      * @param taskType type of task.

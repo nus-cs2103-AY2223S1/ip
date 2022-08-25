@@ -4,7 +4,7 @@ public class Event extends Task {
     protected String at;
 
     /**
-     * Constructor for Event.
+     * Creates an Event.
      *
      * @param description the description of each event.
      * @param at the location of the event.

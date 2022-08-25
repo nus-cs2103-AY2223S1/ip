@@ -4,7 +4,7 @@ public class DukeException extends Exception {
     private static String line = "_______________________________________";
 
     /**
-     * Constructor for DukeException.
+     * Creates a DukeException.
      *
      * @param errorMessage the errormMessage.
      * @return A DukeException.

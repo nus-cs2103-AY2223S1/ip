@@ -16,7 +16,7 @@ public class Storage {
     private PrintWriter printWriter;
 
     /**
-     * A constructor for the Storage class.
+     * Creates a Storage class.
      * Creates director "data" amd file "tasklist.txt"
      * if not present.
      *

@@ -7,10 +7,10 @@ public class Deadline extends Task {
     protected LocalDate by;
 
     /**
-     * Constructor for the Deadline.
+     * Creates a Deadline.
      *
      * @param description The description of the task.
-     * @param by due date in string format.
+     * @param by Due date in string format.
      * @return A Deadline.
      */
     public Deadline(String description, String by) {

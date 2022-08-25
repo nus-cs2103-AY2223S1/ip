@@ -5,7 +5,7 @@ public class BadTaskOperationException extends DukeException {
     private String taskType;
 
     /**
-     * Constructor for BadTaskOperationException.
+     * Creates a BadTaskOperationException.
      *
      * @param errorMessage the errormMessage.
      * @param taskType type of task.

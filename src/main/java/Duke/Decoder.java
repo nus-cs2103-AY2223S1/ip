@@ -15,7 +15,7 @@ import java.time.LocalDate;
 public class Decoder {
 
     /**
-     * Returns a Task given the name, date and type of
+     * Creates a Task given the name, date and type of
      * task: Event, Todo or Deadline, indicated by a tag.
      *
      * @param word the name of the task.
@@ -36,11 +36,8 @@ public class Decoder {
     }
 
     /**
-     * Returns a Task given the name, date and type of
+     * Creates a Task given the name, date and type of
      * task: Event, Todo or Deadline, indicated by a tag.
-     * As well as whether the task is finished. This
-     * function is used for making tasks out of what is
-     * written in the tasklist.txt file
      *
      * @param word the name of the task.
      * @param date the date of the task in YYYY-MM-DD format.
@@ -65,8 +62,7 @@ public class Decoder {
     }
 
     /**
-     * Takes user input from the command line and
-     * returns a task depending on is asked.
+     * Returns task depending on user input.
      *
      * @param word the input read from command line.
      * @return a new Task.
@@ -102,8 +98,7 @@ public class Decoder {
     }
 
     /**
-     * Returns a Task given the form of a
-     * task in the file tasklist.txt.
+     * Returns a Task in txt form.
      *
      * @param word the string form of a task stored
      *             in tasklist.txt.
@@ -205,7 +200,7 @@ public class Decoder {
     }
 
     /**
-     * Returns is number is valid
+     * Returns is number is valid.
      *
      * @param num user input from command line.
      * @return A boolean.

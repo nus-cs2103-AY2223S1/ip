@@ -4,7 +4,7 @@ public class EmptyDescException extends DukeException {
     private static String line = "_______________________________________";
 
     /**
-     * Constructor for EmptyDescException.
+     * Creates a EmptyDescException.
      *
      * @param errorMessage the errormMessage.
      * @return An EmptyDescException.

@@ -2,7 +2,7 @@ package Duke.DukeTasks;
 
 public class Todo extends Task {
     /**
-     * Constructor for Todo.
+     * Creates a Todo.
      *
      * @return A Todo.
      */
