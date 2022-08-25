@@ -22,7 +22,7 @@ public class Duke {
 
     }
 
-    public void run() {
+    private void run() {
         ui.showWelcome();
         Parser parser = new Parser();
 

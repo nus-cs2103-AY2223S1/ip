@@ -9,7 +9,7 @@ public class Deadline  extends Task{
         deadline = date;
     }
 
-    public String getDeadlineString() {
+    private String getDeadlineString() {
         int day = this.deadline.getDayOfMonth();
         int month = this.deadline.getMonthValue();
         int year = this.deadline.getYear();

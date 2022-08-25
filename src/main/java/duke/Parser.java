@@ -84,7 +84,7 @@ public class Parser {
         return t;
     }
 
-    public void checkMarkInputs(String[] command) throws DukeException{
+    private void checkMarkInputs(String[] command) throws DukeException{
         if (command.length == 1) {
             throw new MissingInputException("index", "mark");
         }
@@ -95,7 +95,7 @@ public class Parser {
         }
     }
 
-    public void checkUnmarkInputs(String[] command) throws DukeException{
+    private void checkUnmarkInputs(String[] command) throws DukeException{
         if (command.length == 1) {
             throw new MissingInputException("index", "unmark");
         }
@@ -106,13 +106,13 @@ public class Parser {
         }
     }
 
-    public void checkTodoInputs(String[] arr) throws DukeException{
+    private void checkTodoInputs(String[] arr) throws DukeException{
         if(arr.length < 2) {
             throw new MissingInputException("description", "todo");
         }
     }
 
-    public int checkDeadlineInput(String[] arr) throws DukeException{
+    private int checkDeadlineInput(String[] arr) throws DukeException{
         int i = 1;
         while (i < arr.length && !arr[i].equals("/by") ) {
             i++;
@@ -125,7 +125,7 @@ public class Parser {
         return i;
     }
 
-    public void checkDeleteInputs(String[] command) throws DukeException{
+    private void checkDeleteInputs(String[] command) throws DukeException{
         if (command.length == 1) {
             throw new MissingInputException("index", "delete");
         }
@@ -136,7 +136,7 @@ public class Parser {
         }
     }
 
-    public int checkEventInput(String[] arr) throws DukeException{
+    private int checkEventInput(String[] arr) throws DukeException{
         int i = 1;
         while (i < arr.length && !arr[i].equals("/at") ) {
             i++;
@@ -149,7 +149,7 @@ public class Parser {
         return i;
     }
 
-    public Task getDeadline(String[] splitInput, int byIndex) throws DukeException {
+    private Task getDeadline(String[] splitInput, int byIndex) throws DukeException {
         try {
             String description = String.join(" ", Arrays.copyOfRange(splitInput, 1, byIndex));
 
@@ -161,14 +161,14 @@ public class Parser {
         }
     }
 
-    public Task getEvent(String[] splitInput, int atIndex) {
+    private Task getEvent(String[] splitInput, int atIndex) {
         String description = String.join(" ", Arrays.copyOfRange(splitInput, 1, atIndex));
         String dueDate = String.join(" ", Arrays.copyOfRange(splitInput, atIndex + 1, splitInput.length));
         String[] packagedArguments = {description, dueDate};
         return new Event(packagedArguments);
     }
 
-    public LocalDateTime stringToDate(String string) {
+     private LocalDateTime stringToDate(String string) {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         return LocalDateTime.parse(string, format);
     }

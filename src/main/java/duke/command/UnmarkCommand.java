@@ -8,7 +8,7 @@ import duke.Ui;
 
 
 public class UnmarkCommand extends Command{
-    public String index;
+    private String index;
 
     public UnmarkCommand(String index) {
         this.index = index;
