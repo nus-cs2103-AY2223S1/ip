@@ -23,7 +23,7 @@ public class TaskList {
     }
 
     public Task get(int i) {
-        return this.taskL.get(i);
+        return this.taskL.get(i-1);
     }
 
     public ArrayList<Task> getTasks() {

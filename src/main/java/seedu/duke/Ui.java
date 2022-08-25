@@ -5,7 +5,7 @@ public class Ui {
 
     private static String start = "Hello! I'm Duke\nWhat can I do for you?";
     private static String end = "Bye. Hope to see you again soon!";
-    public static String breaker = "____________________________________________________________\n";
+    private static String breaker = "____________________________________________________________\n";
 
     private boolean isActive;
 

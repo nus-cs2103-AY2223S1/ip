@@ -18,13 +18,13 @@ public class Storage {
         //structure: command|1 (1 for mark, 0 for unmark)
         ArrayList<Task> arr = taskL.getTasks();
         FileWriter fw = new FileWriter(this.dataFileName);
-        for (int i = 0; i < arr.size(); i++) {
-            fw.write(arr.get(i).getData() + "\n");
+        for (Task task : arr) {
+            fw.write(task.getData() + "\n");
         }
         fw.close();
     }
 
-    public String loadFromFile(TaskList taskL) {
+    public void loadFromFile(TaskList taskL) {
         try {
 
             File f = new File(dataFileName);
@@ -38,6 +38,5 @@ public class Storage {
         } catch (FileNotFoundException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
-        return "";
     }
 }
