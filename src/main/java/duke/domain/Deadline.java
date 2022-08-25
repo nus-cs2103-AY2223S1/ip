@@ -18,27 +18,27 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         return String.format(
-            "[D] %s (by: %s)",
-            super.toString(),
-            this.deadline.format(FORMATTER)
-        );
+                "[D] %s (by: %s)",
+                super.toString(),
+                this.deadline.format(FORMATTER));
     }
 
     @Override
     public String exportString() {
         return String.format(
-            "%s%s%s",
-            "D",
-            super.exportString(),
-            this.deadline.format(FORMATTER)
-        );
+                "%s%s%s",
+                "D",
+                super.exportString(),
+                this.deadline.format(FORMATTER));
     }
 
     /**
      * Of deadline.
      *
-     * @param text     the text
-     * @param dateTime the date time
+     * @param text
+     *            the text
+     * @param dateTime
+     *            the date time
      * @return the deadline
      */
     public static Deadline of(String text, LocalDateTime dateTime) {
@@ -48,16 +48,18 @@ public class Deadline extends Task {
     /**
      * Of deadline.
      *
-     * @param done     the done
-     * @param text     the text
-     * @param dateTime the date time
+     * @param done
+     *            the done
+     * @param text
+     *            the text
+     * @param dateTime
+     *            the date time
      * @return the deadline
      */
     public static Deadline of(
-        String done,
-        String text,
-        LocalDateTime dateTime
-    ) {
+            String done,
+            String text,
+            LocalDateTime dateTime) {
         Deadline newDeadline = Deadline.of(text, dateTime);
         if (Objects.equals(done, "1")) {
             newDeadline.setComplete();

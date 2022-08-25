@@ -18,27 +18,27 @@ public class Event extends Task {
     @Override
     public String toString() {
         return String.format(
-            "[E] %s (at: %s)",
-            super.toString(),
-            this.dateTime.format(FORMATTER)
-        );
+                "[E] %s (at: %s)",
+                super.toString(),
+                this.dateTime.format(FORMATTER));
     }
 
     @Override
     public String exportString() {
         return String.format(
-            "%s%s%s",
-            "E",
-            super.exportString(),
-            this.dateTime.format(FORMATTER)
-        );
+                "%s%s%s",
+                "E",
+                super.exportString(),
+                this.dateTime.format(FORMATTER));
     }
 
     /**
      * Of event.
      *
-     * @param text     the text
-     * @param dateTime the date time
+     * @param text
+     *            the text
+     * @param dateTime
+     *            the date time
      * @return the event
      */
     public static Event of(String text, LocalDateTime dateTime) {
@@ -48,9 +48,12 @@ public class Event extends Task {
     /**
      * Of event.
      *
-     * @param done     the done
-     * @param text     the text
-     * @param dateTime the date time
+     * @param done
+     *            the done
+     * @param text
+     *            the text
+     * @param dateTime
+     *            the date time
      * @return the event
      */
     public static Event of(String done, String text, LocalDateTime dateTime) {

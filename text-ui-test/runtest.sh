@@ -23,10 +23,10 @@ fi
 mkdir ../bin/duke/data/
 
 # copy the existing data file into the test bin folder
-cp -v ../src/main/java/duke/data/data.txt ../bin/duke/data/data.txt
+cp ../src/main/java/duke/data/tasks.txt ../bin/duke/data/tasks.txt
 
 # run the program, feed commands from input.txt file and redirect the output to the ACTUAL.TXT
-java -classpath ../bin duke.Duke < input.txt > ACTUAL.TXT
+java -classpath ../bin duke.Duke ../bin/duke/data/tasks.txt < input.txt > ACTUAL.TXT
 
 # convert to UNIX format
 cp EXPECTED.TXT EXPECTED-UNIX.TXT

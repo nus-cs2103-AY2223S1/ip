@@ -8,7 +8,8 @@ public class MissingArgumentException extends DukeException {
     /**
      * Instantiates a new Missing argument exception.
      *
-     * @param errorString the error string
+     * @param errorString
+     *            the error string
      */
     public MissingArgumentException(String errorString) {
         super(errorString);

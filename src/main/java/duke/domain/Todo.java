@@ -18,13 +18,14 @@ public class Todo extends Task {
 
     @Override
     public String exportString() {
-        return String.format("%s%s%s", "T", super.exportString(), "$_$");
+        return String.format("%s%s%s", "T", super.exportString(), NULL_SYMBOL);
     }
 
     /**
      * Of todo.
      *
-     * @param todoText the todo text
+     * @param todoText
+     *            the todo text
      * @return the todo
      */
     public static Todo of(String todoText) {
@@ -34,8 +35,10 @@ public class Todo extends Task {
     /**
      * Of todo.
      *
-     * @param done     the done
-     * @param todoText the todo text
+     * @param done
+     *            the done
+     * @param todoText
+     *            the todo text
      * @return the todo
      */
     public static Todo of(String done, String todoText) {

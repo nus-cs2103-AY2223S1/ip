@@ -8,7 +8,8 @@ public class InvalidTaskSpecificationException extends DukeException {
     /**
      * Instantiates a new Invalid task specification exception.
      *
-     * @param errorString the error string
+     * @param errorString
+     *            the error string
      */
     public InvalidTaskSpecificationException(String errorString) {
         super(errorString);

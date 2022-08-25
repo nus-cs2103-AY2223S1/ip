@@ -18,13 +18,15 @@ public class Task {
      */
     protected static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(
             "dd-MM-yyyy HH:mm");
+    protected static final String NULL_SYMBOL = "$_$";
     private final String text;
     private Boolean isComplete;
 
     /**
      * Instantiates a new Task.
      *
-     * @param text the text
+     * @param text
+     *            the text
      */
     protected Task(String text) {
         this.text = text;
@@ -62,13 +64,19 @@ public class Task {
     /**
      * Of task.
      *
-     * @param type          the type
-     * @param done          the done
-     * @param text          the text
-     * @param dateTimeInput the date time input
+     * @param type
+     *            the type
+     * @param done
+     *            the done
+     * @param text
+     *            the text
+     * @param dateTimeInput
+     *            the date time input
      * @return the task
-     * @throws InvalidDateTimeException          the invalid date time exception
-     * @throws InvalidTaskSpecificationException the invalid task specification exception
+     * @throws InvalidDateTimeException
+     *             the invalid date time exception
+     * @throws InvalidTaskSpecificationException
+     *             the invalid task specification exception
      */
     public static Task of(
             String type,
@@ -135,7 +143,8 @@ public class Task {
     /**
      * Is before boolean.
      *
-     * @param dateTime the date time
+     * @param dateTime
+     *            the date time
      * @return the boolean
      */
     public Boolean isBefore(LocalDateTime dateTime) {
@@ -145,7 +154,8 @@ public class Task {
     /**
      * Is after boolean.
      *
-     * @param dateTime the date time
+     * @param dateTime
+     *            the date time
      * @return the boolean
      */
     public Boolean isAfter(LocalDateTime dateTime) {

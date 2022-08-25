@@ -8,7 +8,8 @@ public class UnknownCommandException extends DukeException {
     /**
      * Instantiates a new Unknown command exception.
      *
-     * @param errorString the error string
+     * @param errorString
+     *            the error string
      */
     public UnknownCommandException(String errorString) {
         super(errorString);

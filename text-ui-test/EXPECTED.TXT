@@ -1,146 +1,135 @@
 Welcome to Aladdin Services
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ This task has been successfully added!
 
-Your wish is my command. I've added this task:
-[T] [ ] borrow book
-___________________________ 
+[T] [ ] borrow book 
+ ------------------------- 
 
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ Here are your tasks:
+1:[T] [ ] borrow book
+ 
+ ------------------------- 
 
-Here are the tasks in your list
+Enter Command:
 
-1: [T] [ ] borrow book
-2: [D] [ ] return book (by: 02-12-2019 18:00)
-3: [E] [ ] project meeting (at: 05-12-2019 12:00)
-4: [D] [ ] do homework (by: 05-02-2020 12:00)
-5: [T] [ ] read book
-6: [D] [ ] return book (by: 06-06-2019 00:00)
-7: [T] [ ] join sports club
+ ------------------------- 
+ This task has been successfully added!
 
-___________________________ 
+[D] [ ] return book (by: 02-12-2019 18:00) 
+ ------------------------- 
 
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ This task has been successfully added!
 
-Your wish is my command. I've added this task:
-[D] [ ] return book (by: 02-12-2019 18:00)
-___________________________ 
+[E] [ ] project meeting (at: 05-12-2019 12:00) 
+ ------------------------- 
 
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ This task has been successfully added!
 
-Your wish is my command. I've added this task:
-[E] [ ] project meeting (at: 05-12-2019 12:00)
-___________________________ 
+[D] [ ] do homework (by: 05-02-2020 12:00) 
+ ------------------------- 
 
-Enter Command: 
-
-___________________________ 
-
-Your wish is my command. I've added this task:
-[D] [ ] do homework (by: 05-02-2020 12:00)
-___________________________ 
-
-Enter Command: 
+Enter Command:
 The description of the todo cannot be empty!
-Enter Command: 
+Enter Command:
 Sorry I don't understand that command
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ This task has been successfully added!
 
-Your wish is my command. I've added this task:
-[T] [ ] read book
-___________________________ 
+[T] [ ] read book 
+ ------------------------- 
 
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ This task has been successfully added!
 
-Your wish is my command. I've added this task:
-[D] [ ] return book (by: 06-06-2019 00:00)
-___________________________ 
+[D] [ ] return book (by: 06-06-2019 00:00) 
+ ------------------------- 
 
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ This task has been successfully added!
 
-Your wish is my command. I've added this task:
-[T] [ ] join sports club
-___________________________ 
+[T] [ ] join sports club 
+ ------------------------- 
 
-Enter Command: 
-I've marked this task as done:
-[T] [X] read book
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ This task has been successfully marked!
+[T] [X] read book 
+ ------------------------- 
 
-Here are the tasks in your list
+Enter Command:
 
-1: [T] [ ] borrow book
-2: [D] [ ] return book (by: 02-12-2019 18:00)
-3: [E] [ ] project meeting (at: 05-12-2019 12:00)
-4: [D] [ ] do homework (by: 05-02-2020 12:00)
-5: [T] [X] read book
-6: [D] [ ] return book (by: 06-06-2019 00:00)
-7: [T] [ ] join sports club
+ ------------------------- 
+ Here are your tasks:
+1:[T] [ ] borrow book
+2:[D] [ ] return book (by: 02-12-2019 18:00)
+3:[E] [ ] project meeting (at: 05-12-2019 12:00)
+4:[D] [ ] do homework (by: 05-02-2020 12:00)
+5:[T] [X] read book
+6:[D] [ ] return book (by: 06-06-2019 00:00)
+7:[T] [ ] join sports club
+ 
+ ------------------------- 
 
-___________________________ 
+Enter Command:
 
-Enter Command: 
+ ------------------------- 
+ This task has been successfully deleted!
+[E] [ ] project meeting (at: 05-12-2019 12:00) 
+ ------------------------- 
 
-___________________________ 
+Enter Command:
 
-Your wish is my command. I've deleted this task:
-[E] [ ] project meeting (at: 05-12-2019 12:00)
-___________________________ 
+ ------------------------- 
+ Here are your tasks:
+1:[T] [ ] borrow book
+2:[D] [ ] return book (by: 02-12-2019 18:00)
+3:[D] [ ] do homework (by: 05-02-2020 12:00)
+4:[T] [X] read book
+5:[D] [ ] return book (by: 06-06-2019 00:00)
+6:[T] [ ] join sports club
+ 
+ ------------------------- 
 
-Enter Command: 
+Enter Command:
 
-___________________________ 
+ ------------------------- 
+ Here are your tasks:
+1:[T] [ ] borrow book
+2:[T] [X] read book
+3:[T] [ ] join sports club
+ 
+ ------------------------- 
 
-Here are the tasks in your list
+Enter Command:
 
-1: [T] [ ] borrow book
-2: [D] [ ] return book (by: 02-12-2019 18:00)
-3: [D] [ ] do homework (by: 05-02-2020 12:00)
-4: [T] [X] read book
-5: [D] [ ] return book (by: 06-06-2019 00:00)
-6: [T] [ ] join sports club
+ ------------------------- 
+ Here are your tasks:
+1:[T] [ ] borrow book
+2:[D] [ ] do homework (by: 05-02-2020 12:00)
+3:[T] [X] read book
+4:[T] [ ] join sports club
+ 
+ ------------------------- 
 
-___________________________ 
+Enter Command:
+Goodbye:
 
-Enter Command: 
-
-___________________________ 
-
-Here are the tasks in your list
-
-1: [T] [ ] borrow book
-2: [T] [X] read book
-3: [T] [ ] join sports club
-
-___________________________ 
-
-Enter Command: 
-
-___________________________ 
-
-Here are the tasks in your list
-
-1: [T] [ ] borrow book
-2: [D] [ ] do homework (by: 05-02-2020 12:00)
-3: [T] [X] read book
-4: [T] [ ] join sports club
-
-___________________________ 
-
-Enter Command: 
 Goodbye and have a nice day!
