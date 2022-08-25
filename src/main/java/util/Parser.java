@@ -1,6 +1,8 @@
 package util;
 
 import command.*;
+import date.DeadlineDateTime;
+import date.EventDateTime;
 import exception.DukeException;
 import task.Deadline;
 import task.Event;
@@ -37,15 +39,19 @@ public class Parser {
                 cmd = new AddTaskCommand(todo);
                 break;
             case "deadline":
-                // Regex "\\s+/" matches one or more space followed by a /
-                String[] taskArgs = splitted[1].split("\\s+/", 2);
-                Task deadline = new Deadline(taskArgs[0], taskArgs[1]);
+                // Regex "\\s+/" matches one or more space followed by a /by,
+                // followed by one or more space
+                String[] taskArgs = splitted[1].split("\\s+/by\\s+",2);
+                DeadlineDateTime deadlineDateTime = DeadlineDateTime.parseDate(taskArgs[1]);
+                Task deadline = new Deadline(taskArgs[0], deadlineDateTime);
                 cmd = new AddTaskCommand(deadline);
                 break;
             case "event":
-                // Regex "\\s+/" matches one or more space followed by a /
-                taskArgs = splitted[1].split("\\s+/", 2);
-                Task event = new Event(taskArgs[0], taskArgs[1]);
+                // Regex "\s+/at\s+" matches one or more space followed by a /at,
+                // followed by one or more space
+                taskArgs = splitted[1].split("\\s+/at\\s+",2);
+                EventDateTime eventDateTime = EventDateTime.parseDate(taskArgs[1]);
+                Task event = new Event(taskArgs[0], eventDateTime);
                 cmd = new AddTaskCommand(event);
                 break;
             default:
@@ -64,10 +70,12 @@ public class Parser {
                 taskItem = new Todo(splitted[2]);
                 break;
             case "E":
-                taskItem = new Event(splitted[2], splitted[3]);
+                EventDateTime eventDateTime = EventDateTime.parseDateFromStorage(splitted[3]);
+                taskItem = new Event(splitted[2], eventDateTime);
                 break;
             case "D":
-                taskItem = new Deadline(splitted[2], splitted[3]);
+                DeadlineDateTime deadlineDateTime = DeadlineDateTime.parseDateFromStorage(splitted[3]);
+                taskItem = new Deadline(splitted[2], deadlineDateTime);
                 break;
             default:
                 throw new DukeException(DukeException.ErrorCode.UNKNOWN_TASK_ENCODING);
