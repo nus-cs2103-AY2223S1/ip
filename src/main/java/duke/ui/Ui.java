@@ -33,7 +33,7 @@ public class Ui {
      */
     public void showByeMessage() {
         this.showIndentedDottedLines();
-        System.out.println(Constants.indent + "Bye! Hope to see you again soon!");
+        System.out.println(Constants.INDENT + "Bye! Hope to see you again soon!");
         this.showIndentedDottedLines();
     }
 
@@ -44,9 +44,9 @@ public class Ui {
      */
     public void newItemAdded(Task t, int size) {
         this.showIndentedDottedLines();
-        System.out.println(Constants.indent + "Got it. I've added this task:");
-        System.out.println(Constants.indent + Constants.indent + t);
-        System.out.println(Constants.indent +"Now you have " + size + " tasks in the list.");
+        System.out.println(Constants.INDENT + "Got it. I've added this task:");
+        System.out.println(Constants.INDENT + Constants.INDENT + t);
+        System.out.println(Constants.INDENT + "Now you have " + size + " tasks in the list.");
         this.showIndentedDottedLines();
     }
 
@@ -56,8 +56,8 @@ public class Ui {
      */
     public void showTaskMarkMessage(Task t) {
         this.showIndentedDottedLines();
-        System.out.println(Constants.indent + "Nice! I've marked this task as done");
-        System.out.println(Constants.indent+ Constants.indent + t);
+        System.out.println(Constants.INDENT + "Nice! I've marked this task as done");
+        System.out.println(Constants.INDENT + Constants.INDENT + t);
         this.showIndentedDottedLines();
     }
 
@@ -67,8 +67,8 @@ public class Ui {
      */
     public void showTaskUnmarkMessage(Task t) {
         this.showIndentedDottedLines();
-        System.out.println(Constants.indent + "OK, I've marked this task as not done yet");
-        System.out.println(Constants.indent + Constants.indent + t);
+        System.out.println(Constants.INDENT + "OK, I've marked this task as not done yet");
+        System.out.println(Constants.INDENT + Constants.INDENT + t);
         this.showIndentedDottedLines();
     }
 
@@ -79,9 +79,9 @@ public class Ui {
      */
     public void showTaskDeletedMessage(Task t, int size) {
         this.showIndentedDottedLines();
-        System.out.println(Constants.indent +"Noted. I've removed this task:");
-        System.out.println(Constants.indent + Constants.indent + t);
-        System.out.println(Constants.indent +"Now you have " + size + " tasks in the list.");
+        System.out.println(Constants.INDENT + "Noted. I've removed this task:");
+        System.out.println(Constants.INDENT + Constants.INDENT + t);
+        System.out.println(Constants.INDENT + "Now you have " + size + " tasks in the list.");
         this.showIndentedDottedLines();
     }
 
@@ -90,7 +90,7 @@ public class Ui {
      */
     public void showLoadingError() {
         this.showIndentedDottedLines();
-        System.out.println(Constants.indent +"ERROR LOADING DATA FROM DISK");
+        System.out.println(Constants.INDENT + "ERROR LOADING DATA FROM DISK");
         this.showIndentedDottedLines();
     }
 

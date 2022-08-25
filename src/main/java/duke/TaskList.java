@@ -1,10 +1,11 @@
 package duke;
 
-import duke.models.Task;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+
+import duke.models.Task;
+
 
 
 /**
@@ -45,8 +46,8 @@ public class TaskList {
         ListIterator<Task> listIterator = tasks.listIterator();
         while (listIterator.hasNext()) {
             Task t = listIterator.next();
-            result += Constants.indent + listIterator.nextIndex() +
-                    ". " + t + "\n";
+            result += Constants.INDENT + listIterator.nextIndex()
+                    + ". " + t + "\n";
         }
         return result;
     }
