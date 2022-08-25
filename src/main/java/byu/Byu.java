@@ -2,6 +2,8 @@ package byu;
 import commands.Command;
 import exceptions.DukeException;
 
+import java.io.IOException;
+
 public class Byu {
 
     private FileReader storage;
@@ -9,9 +11,13 @@ public class Byu {
     private Ui ui;
 
     public Byu(String filePath) {
-        ui = new Ui();
-        storage = new FileReader(filePath);
-        tasks = storage.load();
+        try {
+            ui = new Ui();
+            storage = new FileReader(filePath);
+            tasks = storage.load();
+        } catch (IOException e) {
+
+        }
     }
 
     public void run() {
@@ -31,7 +37,7 @@ public class Byu {
 
 
     public static void main(String[] args) {
-        new Byu("./data/tasks.txt").run();
+        new Byu("./data/Duke.txt").run();
     }
 
 }

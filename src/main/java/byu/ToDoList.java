@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.io.FileWriter;
 import task.*;
 import exceptions.InvalidIndex;
+import java.io.File;
+import java.io.PrintWriter;
 
 
 public class ToDoList {
@@ -64,12 +66,16 @@ public class ToDoList {
 
     public void save() {
         try {
-            FileWriter fw = new FileWriter("./data/Duke.txt");
+
+            FileWriter fw = new FileWriter("./Duke.txt");
+
             for (int i = 0; i < numOfTasks; i++) {
                 Task t = list.get(i);
                 t.write(fw);
             }
             fw.close();
+
+
         } catch (IOException e) {
             System.out.print(e.getMessage());
         }

@@ -1,6 +1,7 @@
 package task;
 
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.io.IOException;
 
 public class Task {
@@ -33,7 +34,7 @@ public class Task {
         }
     }
 
-    public void write(FileWriter fw) throws IOException {
+    public void write(FileWriter writer) throws IOException {
     };
 
     @Override
