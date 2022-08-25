@@ -68,6 +68,12 @@ public class TaskList {
         return toDelete.toString();
     }
 
+    /**
+     * Finds and returns a list of tasks that contains the given wordToFind.
+     *
+     * @param wordToFind The keyword to find in the TaskList.
+     * @return String representation of the list containing the tasks found.
+     */
     public String findTasks(String wordToFind) {
         ArrayList<String> foundTasks = new ArrayList<>();
         for (Task task : taskList) {

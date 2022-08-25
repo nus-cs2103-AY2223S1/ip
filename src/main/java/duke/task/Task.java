@@ -44,6 +44,12 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Checks if the task contains a certain word in its description.
+     *
+     * @param wordToFind The keyword to search for.
+     * @return A boolean indicating if the word is found in the task description.
+     */
     public boolean containsWord(String wordToFind) {
         return this.description.contains(wordToFind);
     }
