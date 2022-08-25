@@ -68,6 +68,32 @@ public class TaskList {
         return toDelete.toString();
     }
 
+    /**
+     * Finds and returns a list of tasks that contains the given wordToFind.
+     *
+     * @param wordToFind The keyword to find in the TaskList.
+     * @return String representation of the list containing the tasks found.
+     */
+    public String findTasks(String wordToFind) {
+        ArrayList<String> foundTasks = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.containsWord(wordToFind)) {
+                foundTasks.add(task.toString());
+            }
+        }
+
+        if (foundTasks.size() == 0) {
+            return "Sorry, there is no tasks with the keyword";
+        } else {
+            StringBuilder returnString = new StringBuilder();
+            returnString.append("Here are the tasks found : ");
+            for (int i = 1; i <= foundTasks.size(); i++) {
+                returnString.append(String.format("%n%d.%s", i, foundTasks.get(i - 1)));
+            }
+            return returnString.toString();
+        }
+    }
+
     @Override
     public String toString() {
         if (this.taskList.size() == 0) {
