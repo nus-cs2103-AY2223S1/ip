@@ -14,29 +14,29 @@ import duke.task.TaskList;
  * @version v0.1
  */
 public class Duke {
-    /** <code>Ui</code> object which interacts with the user. **/
-    private final Ui ui;
+    /** Ui object which interacts with the user. **/
+    private final Ui UI;
 
-    /** <code>Storage</code> object which loads and saves the list of tasks. **/
-    private final Storage storage;
+    /** Storage object which loads and saves the list of tasks. **/
+    private final Storage STORAGE;
     
-    /** <code>TaskList</code> object containing user's list of tasks. **/
+    /** TaskList object containing user's list of tasks. **/
     private TaskList tasks;
 
     /**
-     * Creates a new <code>Duke</code> object.
+     * Creates a new Duke object.
      * 
      * @param pathString Relative path to the file containing the list of tasks.
      */
     public Duke(String pathString) {
-        ui = new Ui();
-        storage = new Storage(pathString);
-        ui.showIsLoading();
+        UI = new Ui();
+        STORAGE = new Storage(pathString);
+        UI.showIsLoading();
         try {
-            tasks = new TaskList(storage.load());
-            ui.showLoadingSuccess();
+            tasks = new TaskList(STORAGE.load());
+            UI.showLoadingSuccess();
         } catch (FileNotFoundException fnfe) {
-            ui.showLoadingError();
+            UI.showLoadingError();
             tasks = new TaskList();
         }
     }
@@ -46,17 +46,17 @@ public class Duke {
      */
     public void start() {
         Scanner scanner = new Scanner(System.in);
-        ui.showWelcome();
+        UI.showWelcome();
         boolean isExit = false;
         while (!isExit) {
             try {
-                ui.showPrompt();
+                UI.showPrompt();
                 String fullCommand = scanner.nextLine();
                 Command command = Parser.parse(fullCommand);
-                command.execute(tasks, ui, storage);
+                command.execute(tasks, UI, STORAGE);
                 isExit = command.isExit();
             } catch (DukeException de) {
-                ui.showError(de.getMessage());
+                UI.showError(de.getMessage());
             }
         }
     }
