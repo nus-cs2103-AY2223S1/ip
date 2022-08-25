@@ -47,5 +47,5 @@ public abstract class Task {
      *
      * @return Formatted string representation of task.
      */
-    public abstract String saveFormat();
+    public abstract String convertToSaveFormat();
 }

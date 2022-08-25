@@ -34,7 +34,7 @@ public class ToDo extends Task {
      * @return Formatted string representation of task.
      */
     @Override
-    public String saveFormat() {
+    public String convertToSaveFormat() {
         int status = isDone ? 1 : 0;
         return String.format("%s | %d | %s", "T", status, name);
     }

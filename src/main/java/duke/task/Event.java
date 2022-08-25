@@ -40,7 +40,7 @@ public class Event extends Task {
      * @return Formatted string representation of event task.
      */
     @Override
-    public String saveFormat() {
+    public String convertToSaveFormat() {
         int status = isDone ? 1 : 0;
         return String.format("%s | %d | %s | %s", "E", status, name,
                 DateTimeFormatUtils.inputFormat(startDate) + " to " + DateTimeFormatUtils.inputFormat(endDate));

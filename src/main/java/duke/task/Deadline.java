@@ -38,7 +38,7 @@ public class Deadline extends Task {
      * @return Formatted string representation of deadline task.
      */
     @Override
-    public String saveFormat() {
+    public String convertToSaveFormat() {
         int status = isDone ? 1 : 0;
         return String.format("%s | %d | %s | %s", "D", status, name,
                 DateTimeFormatUtils.inputFormat(deadlineDate));

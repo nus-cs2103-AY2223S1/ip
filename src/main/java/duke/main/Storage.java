@@ -50,7 +50,7 @@ public class Storage {
             for (int i = 1; i <= tasks.size(); i++) {
                 // Format each task to its save format
                 Task task = tasks.getTask(Integer.toString(i));
-                String formattedTask = task.saveFormat();
+                String formattedTask = task.convertToSaveFormat();
                 if (i == 1) { // First Task
                     Files.write(filePath, formattedTask.getBytes());
                 } else {

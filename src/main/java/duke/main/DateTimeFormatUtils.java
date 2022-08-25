@@ -49,7 +49,7 @@ public class DateTimeFormatUtils {
             return new LocalDateTime[] {startDate, endDate};
         } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
             throw new DukeException("\tDate Format Police here!!" +
-                    "\n\tYour deadline has to be in <YYYY-MM-DD HHmm to YYYY-MM-DD HHmm> format!!");
+                    "\n\tYour deadline has to be in YYYY-MM-DD HHmm to YYYY-MM-DD HHmm format!!");
         }
     }
 
