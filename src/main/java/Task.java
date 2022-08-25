@@ -1,24 +1,37 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public abstract class Task {
     protected String name;
     protected boolean done;
     protected String type;
-    protected String date;
+    protected LocalDateTime dateTime;
+    protected String dateStringForm;
+    protected static final DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy kkmm");
+    protected static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy kkmm");
 
     protected Task(String name, String date) {
         this.name = name;
         this.done = false;
-        this.date = date;
+
+        if (date != null) {
+            dateStringForm = date;
+            this.dateTime = LocalDateTime.parse(date, inputFormatter);
+        } else {
+            dateStringForm = "";
+        }
+
     }
 
     @Override
     public String toString() {
-        return "[" + type + "]" + getStatus() + " " + stringType() + " " + name + " " + date;
+        return String.format("[%s]%s %s %s", type, getStatus(), stringType(), name);
     }
 
     public static Task createTask(String type, String name, String date) {
         switch (type) {
             case "T":
-                return new ToDo(name, "");
+                return new ToDo(name);
             case "D":
                 return new Deadline(name, date);
             default:
@@ -51,8 +64,12 @@ public abstract class Task {
     }
 
     protected String getDate() {
-        return date;
+        return outputFormatter.format(dateTime);
     }
 
     protected abstract String stringType();
+
+    protected String getDateForFileWrite() {
+        return dateStringForm;
+    }
 }

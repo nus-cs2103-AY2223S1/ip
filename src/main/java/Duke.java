@@ -1,15 +1,19 @@
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
+
 public class Duke {
-    protected static final String TOP_WINDOW = "╔══════════════════════════════════════════════╗";
-    protected static final String BOTTOM_WINDOW = "╚══════════════════════════════════════════════╝";
+    protected static final String TOP_WINDOW = "╔════════════════════════════════════════════════════╗";
+    protected static final String BOTTOM_WINDOW = "╚════════════════════════════════════════════════════╝";
+
     private static final String GREETING = "Hi, I'm Ploopy! Nice to meet you!\n\tWhats up?";
     private static final String FAREWELL = "Okay then, see ya later :)";
+
     private static final String COMPLETED_TASK = "Nice! You've completed this task. I'll mark it as done.";
-    private static final String incompleteTask = "Alright this task has been marked as undone.";
+    private static final String INCOMPLETE_TASK = "Alright this task has been marked as undone.";
     private static final String addedTask = "I've added this task to your list.\n\tHere you go: ";
 
     //Exceptions:
@@ -53,7 +57,6 @@ public class Duke {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-
          command();
     }
 
@@ -62,12 +65,13 @@ public class Duke {
     }
 
     private static String formatLineToWrite(Task task) {
-        final String seperator = "/";
+        final String sep = "_";
         String type = task.getType();
         String done = task.isDone() ? "1" : "0";
         String name = task.getName();
-        String date = task.getDate();
-        return type + seperator + done + seperator + name + seperator + date;
+        String date = task.getDateForFileWrite();
+        return String.format("%s%s%s%s%s%s%s", type, sep, done, sep, name, sep, date);
+
     }
 
     private static void readFromFile() {
@@ -84,7 +88,7 @@ public class Duke {
     }
 
     private static void spliceData(String input) {
-        String[] inputSequence = input.split("/");
+        String[] inputSequence = input.split("_");
         String type = inputSequence[0];
         String name = inputSequence[2];
         String date = inputSequence.length > 3 ? inputSequence[3] : "";
@@ -95,7 +99,7 @@ public class Duke {
         tasks.add(createdTask);
     }
 
-    private static void rewriteFile() {
+    private static void emptyFile() {
         try {
             FileWriter fileDelete = new FileWriter(FILE_PATH, false);
             fileDelete.write("");
@@ -135,7 +139,7 @@ public class Duke {
             Task current = tasks.get(taskIndex - 1);
             current.markDone();
             System.out.println(messageFormatter(COMPLETED_TASK + "\n\t" + " " + current));
-            rewriteFile();
+            emptyFile();
         } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
     }
 
@@ -143,19 +147,18 @@ public class Duke {
         if (taskIndex > 0 && taskIndex <= tasks.size()) {
             Task current = tasks.get(taskIndex - 1);
             current.unmark();
-            System.out.println(messageFormatter(incompleteTask + "\n\t" + " " + current));
-            rewriteFile();
+            System.out.println(messageFormatter(INCOMPLETE_TASK + "\n\t" + " " + current));
+            emptyFile();
         } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
     }
 
     private static void deleteTask(int taskNumber) throws DukeException {
         if (taskNumber > 0 && taskNumber <= tasks.size()) {
-            //totalTasks--;
             String message = "Deleted: " + tasks.get(taskNumber - 1) + "\n\tYou have "
-                    + tasks.size() + " task(s) remaining.";
+                    + (tasks.size() - 1) + " task(s) remaining.";
             tasks.remove(taskNumber - 1);
             System.out.println(messageFormatter(message));
-            rewriteFile();
+            emptyFile();
         } else throw new DukeException(messageFormatter("That task number doesn't exist on your list!"));
     }
 
@@ -170,35 +173,32 @@ public class Duke {
 
     private static void createToDo(String input) throws DukeException {
         if (!isEmptyCommand(input, "todo".length())) {
-            Task newTask = new ToDo(input.split(" ")[1], "");
+            Task newTask = new ToDo(input.split(" ")[1]);
             tasks.add(newTask);
             addTaskMessage(newTask);
             writeToFile(newTask);
-            //totalTasks++;
         } else throw new DukeException(messageFormatter(EmptyCommandMessage + " todo"));
     }
 
     private static void createDeadline(String input) throws DukeException {
         if (!isEmptyCommand(input, "deadline".length())) {
-            String date = input.split("/")[1];
+            String date = input.split("/by ")[1];
             String name = input.split(" ")[1];
             Task newTask = new Deadline(name, date);
             tasks.add(newTask);
             addTaskMessage(newTask);
             writeToFile(newTask);
-            //totalTasks++;
         } else throw new DukeException(messageFormatter(EmptyCommandMessage + " deadline"));
     }
 
     private static void createEvent(String input) throws DukeException {
         if (!isEmptyCommand(input, "event".length())) {
-            String date = input.split("/")[1];
+            String date = input.split("/at ")[1];
             String name = input.split(" ")[1];
             Task newTask = new Event(name, date);
             tasks.add(newTask);
             addTaskMessage(newTask);
             writeToFile(newTask);
-            //totalTasks++;
         } else throw new DukeException(messageFormatter(EmptyCommandMessage + " event"));
     }
 
@@ -247,6 +247,5 @@ public class Duke {
 
     public static void main(String[] args) {
         start();
-
     }
 }
