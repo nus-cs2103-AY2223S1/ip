@@ -9,6 +9,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Encapsulates the data storage.
+ */
 public class Storage {
 
     private File file;
@@ -29,6 +32,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the .txt file containing the tasks.
+     *
+     * @return Task list containing all the tasks in the .txt file.
+     * @throws DukeException
+     */
     public TaskList load() throws DukeException {
         Scanner scanner;
         TaskList taskList = new TaskList();
@@ -61,6 +70,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Writes the tasks in the task list into a .txt file.
+     *
+     * @param tasksToWrite The list of tasks to write.
+     */
     public void write(TaskList tasksToWrite) {
         try {
             ArrayList<String> commandToWrite = new ArrayList<>();

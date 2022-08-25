@@ -1,21 +1,18 @@
 package DukeBot;
 import DukeBot.command.Command;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Scanner;
-
+/**
+ * Encapsulates the Duke class.
+ */
 public class Duke {
 
     private static Storage storage;
     private static TaskList tasks = new TaskList();
     private Ui ui;
 
+    /**
+     * Runs the Duke program.
+     */
     public void run() {
         this.ui = new Ui();
         storage = new Storage("src/main/tasks.txt");

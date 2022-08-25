@@ -1,4 +1,8 @@
 package DukeBot;
+
+/**
+ * Encapsulates a particular task by the user.
+ */
 public abstract class Task {
 
     private static int taskCount = 0;

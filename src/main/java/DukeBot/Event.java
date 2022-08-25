@@ -4,6 +4,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.time.LocalDate;
 
+/**
+ * Encapsulates the Event sub-class of Task class.
+ */
 public class Event extends Task {
 
     private LocalDate time;

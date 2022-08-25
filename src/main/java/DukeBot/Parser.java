@@ -2,6 +2,9 @@ package DukeBot;
 
 import DukeBot.command.*;
 
+/**
+ * Encapsulates the class that parses the commands from user.
+ */
 public class Parser {
 
     private TaskList tasks;
@@ -10,6 +13,13 @@ public class Parser {
         this.tasks = tasks;
     }
 
+    /**
+     * Parses the command from the user.
+     *
+     * @param str The command given by the user.
+     * @return Command instance corresponding to the user's command.
+     * @throws DukeException
+     */
     public Command parse(String str) throws DukeException {
         String[] commands = str.split(" ");
         String action = commands[0];
