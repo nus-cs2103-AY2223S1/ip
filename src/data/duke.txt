@@ -1,0 +1,4 @@
+[E][X] project meeting (at: Mon 2-4pm)
+[E][X] project meeting (at: Mon 2-4pm)
+[T][ ] hello
+[D][X] return book (by: Sunday)

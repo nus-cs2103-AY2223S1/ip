@@ -1,6 +1,9 @@
 import java.util.ArrayList;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
-import java.util.Collections;
 
 /**
  *  Duke Class
@@ -65,7 +68,6 @@ public class Duke {
                     + tempTask.toString() + "\n";
 
         }
-
         return userInputs;
     }
 
@@ -94,6 +96,84 @@ public class Duke {
     }
 
     /**
+     *Save updates to the file
+     *
+     * @param file
+     * @throws IOException
+     */
+    private static void saveFile(String file) throws IOException {
+        FileWriter fileWriter = new FileWriter(file);
+        for (int i = 0; i < inputs.size(); i++) {
+            fileWriter.write(inputs.get(i).toString() + "\n");
+        }
+        fileWriter.close();
+     }
+
+    /**
+     * Reads the file and refills inputs arraylist with the specific tasks
+     * @param file
+     * @throws FileNotFoundException
+     */
+
+     private static void parseFile(File file) throws FileNotFoundException {
+         Scanner scanner = new Scanner(file);
+         System.out.println("parsing activated");
+         //fix the whitespacing problem or it is gonna be even more painful later!
+
+
+         while (scanner.hasNext()) {
+             //this is for formating
+             String[] task = scanner.nextLine().split("[\\[||\\]]");
+             String taskContentHelper = task[4].split(" ", 2)[1];//the task and time without the brackets
+             String taskContent = taskContentHelper.split("\\(")[0].trim();//just the task
+             //System.out.println("task main content" + taskContentHelper);
+             //System.out.println("task1 " + taskContent);
+             for (int i = 0; i < task.length; i++) {
+                 System.out.println("Array index: " + task[i]);
+             }
+             String taskMark = task[3];
+             String taskType = task[1];
+             Task newTask;
+            // System.out.println("the mark:" + taskMark);
+
+             if (taskType.equals("T")) {
+                 //System.out.println("todo parsed");
+                 newTask = new ToDo(taskContent);
+                 if (taskMark.equals("X")) {
+                     newTask.setDone();
+                 }
+                 inputs.add(newTask);
+             } else if (taskType.equals("D")) {
+                 //System.out.println("event parsed");
+                 String[] preciseContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment
+                 //System.out.println("preciseContent: " + preciseContent[1]);
+                 String time[] = preciseContent[1].split(" ");//array of the elements in the time
+                 String date  = time[1];//the specific date
+                 //System.out.println(date);
+                 newTask = new Deadline(taskContent, date);
+                 if (taskMark.equals("X")) {
+                     newTask.setDone();
+                 }
+                 inputs.add(newTask);
+             } else {
+                 //System.out.println("event parsed");
+                 String[] preciseContent = taskContentHelper.split("[\\(||\\)]");
+                 //System.out.println("preciseContent: " + preciseContent[1]);
+                 String time[] = preciseContent[1].split(" ");
+                 String at  = time[1] + " " + time[2];
+                 //System.out.println(at);
+                 newTask = new Event(taskContent, at);
+                 if (taskMark.equals("X")) {
+                     newTask.setDone();
+                 }
+                 inputs.add(newTask);
+             }
+          }
+     }
+
+
+
+    /**
      *The Main function for interaction between the user and DUKE
      */
     public static void main(String[] args) throws DukeException {
@@ -105,8 +185,22 @@ public class Duke {
                 + "|____/ \\,_|_|\\_\\___|\n";
 
         System.out.println("Hello I'm\n" + logo + "What can I do for you?\n");
+
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
+
+        try{
+            File dukeFile = new File("data/duke.txt");
+            dukeFile.getParentFile().mkdirs();//create the directory
+            if(dukeFile.createNewFile()){
+                System.out.println("new file created!");
+            } else {
+                parseFile(dukeFile);
+                System.out.println("reading file");
+            }
+        }catch (IOException e) {
+            System.out.println("Error in creating file");
+        }
 
         while(!str.equals("bye"))
         {
@@ -134,7 +228,7 @@ public class Duke {
                     inputs.get(index).setUndone();
                     System.out.println(markUndone(inputs.get(index).toString()));
                 }
-                else if(instruction.equals("todo"))
+                else if (instruction.equals("todo"))
                 {
                   try {
                       str = str.split(" ", 2)[1];
@@ -152,8 +246,8 @@ public class Duke {
                   try {
                       //splits away deadline
                       str = str.split(" ", 2)[1];
-                      String desc = str.split("/by")[0];
-                      String by = str.split("/by")[1];
+                      String desc = str.split("/by")[0].trim();
+                      String by = str.split("/by")[1].trim();
                       Deadline taskDeadline = new Deadline(desc, by);
                       inputs.add(taskDeadline);
                       System.out.println(addition(taskDeadline.toString()));
@@ -167,8 +261,8 @@ public class Duke {
                   try {
                       //splits away event
                       str = str.split(" ", 2)[1];
-                      String desc = str.split("/at")[0];
-                      String at = str.split("/at")[1];
+                      String desc = str.split("/at")[0].trim();
+                      String at = str.split("/at")[1].trim();
                       Event taskEvent = new Event(desc, at);
                       inputs.add(taskEvent);
                       System.out.println(addition(taskEvent.toString()));
@@ -191,6 +285,17 @@ public class Duke {
                     throw new DukeException("I have no idea what you are saying, this is not a task >_<");
                 }
             }
+
+
+            try {
+                saveFile("data/duke.txt");//updates dukeFile after each input
+            } catch (IOException e) {
+                System.out.println("Error in saving the file");
+            }
+
+
+
+
             str = sc.nextLine();
         }
         System.out.println("_______________________________________________________" +
