@@ -83,6 +83,16 @@ public abstract class Task {
     }
 
     /**
+     * Verifies whether the Task description contains the given keyword.
+     *
+     * @param content Given keyword.
+     * @return true if it contains the given keyword, false otherwise.
+     */
+    public boolean contains(String content) {
+        return this.description.contains(content);
+    }
+
+    /**
      * Constructs a Task based on the corresponding storage String.
      *
      * @param task String representation of the Task for storage.

@@ -1,6 +1,8 @@
 todo borrow book
 deadline return book /by 2022-12-12
 event project meeting /at 2010-01-01
+find book
+find sad
 list
 mark 1
 mark 2
@@ -16,6 +18,7 @@ deadline
 event
 deadline return book
 event project meeting
+find
 mark
 mark 0
 mark mark

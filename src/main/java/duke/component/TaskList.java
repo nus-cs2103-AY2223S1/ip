@@ -17,7 +17,8 @@ public class TaskList {
     public static final String MSG_DELETE = "Noted. I've removed this task:\n";
     public static final String MSG_NUMBER_START = "Now you have ";
     public static final String MSG_NUMBER_END = " tasks in the list.";
-
+    public static final String MSG_FIND = "Here are the matching tasks in your list:\n";
+    public static final String MSG_NO_MATCH = "There are no matching tasks!";
 
     /**
      * Constructs a new TaskList.
@@ -109,5 +110,31 @@ public class TaskList {
             throw new DukeException("There is no such task number!");
         }
         return MSG_UNDONE + this.tasks.get(index).markAsUndone();
+    }
+
+    /**
+     * Finds tasks in the TaskList that matches the given keyword.
+     *
+     * @param content Given keyword.
+     * @return String representation of the response after finding tasks that matched the given keyword.
+     */
+    public String findTasks(String content) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        for (Task task : this.tasks) {
+            if (task.contains(content)) {
+                matchingTasks.add(task);
+            }
+        }
+        if (matchingTasks.size() == 0) {
+            return MSG_NO_MATCH;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 1; i <= matchingTasks.size(); i++) {
+            stringBuilder.append(i + ". " + matchingTasks.get(i - 1));
+            if (i < matchingTasks.size()) {
+                stringBuilder.append("\n");
+            }
+        }
+        return MSG_FIND + stringBuilder;
     }
 }

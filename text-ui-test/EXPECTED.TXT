@@ -18,6 +18,14 @@ Got it. I've added this task:
 Now you have 3 tasks in the list.
 _________________________
 _________________________
+Here are the matching tasks in your list:
+1. [T][ ] borrow book
+2. [D][ ] return book (by: Dec 12 2022)
+_________________________
+_________________________
+There are no matching tasks!
+_________________________
+_________________________
 Here are the tasks in your list:
 1. [T][ ] borrow book
 2. [D][ ] return book (by: Dec 12 2022)
@@ -77,6 +85,9 @@ _________________________
 _________________________
 _________________________
 ☹ OOPS!!! You forgot to add the time!
+_________________________
+_________________________
+☹ OOPS!!! You forgot to tell me the keyword!
 _________________________
 _________________________
 ☹ OOPS!!! You forgot to tell me the task number!
