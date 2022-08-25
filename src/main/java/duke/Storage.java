@@ -4,12 +4,25 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Deals with loading tasks from the file and storing tasks in the file.
+ */
 public class Storage {
     private String path;
 
+    /**
+     * Creates new Storage object.
+     *
+     * @param path Path to folder storing data.
+     */
     public Storage(String path) {
         this.path = path;
     }
+    /**
+     * Returns list containing all tasks stored in the file.
+     *
+     * @return List of tasks.
+     */
     public List<Task> loadTasks() {
         List<Task> tasks = new ArrayList<Task>();
         try {
@@ -54,6 +67,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Writes tasks from list into file.
+     *
+     * @param list List of tasks to be stored in the file.
+     */
     public void updateTasks(List<Task> list) {
         try {
             FileWriter fileWriter = new FileWriter(this.path, false);
