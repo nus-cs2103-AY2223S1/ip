@@ -1,3 +1,6 @@
 E | 0 | go watch football | 2022-08-31
 D | 1 | finish IP | 2022-08-26
 T | 0 | watch lecture 1
+T | 1 | read book
+E | 0 | watch TF2 i69 | 2022-08-27
+D | 1 | finish watching lecture 2 | 2022-08-28

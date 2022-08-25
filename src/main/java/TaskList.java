@@ -1,13 +1,55 @@
-import java.time.DateTimeException;
 import java.util.ArrayList;
 import java.time.LocalDate;
-
 
 public class TaskList {
     private static ArrayList<Task> taskList;
 
-    public TaskList() {
+    public TaskList(ArrayList<String> tasks) {
         taskList = new ArrayList<>();
+        for (String s : tasks) {
+            String[] splitCommand = s.split("\\| ", 3);
+            String taskType = splitCommand[0];
+            boolean isMarked = splitCommand[1].equals("1 ");
+            String description = splitCommand[2];
+            switch (taskType) {
+            case "T ": {
+                taskList.add(new Todo(description));
+                int numOfTasks = taskList.size();
+                if (isMarked) {
+                    taskList.get(numOfTasks - 1).markAsCompleted();
+                } else {
+                    taskList.get(numOfTasks - 1).markAsNotCompleted();
+                }
+                break;
+            }
+            case "D ": {
+                String[] splitBy = description.split("\\| ", 2);
+                LocalDate byDate = LocalDate.parse(splitBy[1]);
+                taskList.add(new Deadline(splitBy[0], byDate));
+                int numOfTasks = taskList.size();
+                if (isMarked) {
+                    taskList.get(numOfTasks - 1).markAsCompleted();
+                } else {
+                    taskList.get(numOfTasks - 1).markAsNotCompleted();
+                }
+                break;
+            }
+            case "E ": {
+                String[] splitAt = description.split("\\| ", 2);
+                LocalDate atDate = LocalDate.parse(splitAt[1]);
+                taskList.add(new Event(splitAt[0], atDate));
+                int numOfTasks = taskList.size();
+                if (isMarked) {
+                    taskList.get(numOfTasks - 1).markAsCompleted();
+                } else {
+                    taskList.get(numOfTasks - 1).markAsNotCompleted();
+                }
+                break;
+            }
+            default:
+                break;
+            }
+        }
     }
 
     public void addTodo(String s) {

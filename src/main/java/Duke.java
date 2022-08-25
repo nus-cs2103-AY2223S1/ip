@@ -3,33 +3,39 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
 
-        Seaward seaward = new Seaward("tasks.txt");
-        System.out.println(seaward.getWelcome());
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-        try {
-            File f = new File("tasks.txt");
-            if (f.exists()) {
-                Scanner sc = new Scanner(f);
-                while (sc.hasNext()) {
-                    String curr = sc.nextLine();
-                    seaward.readTasks(curr);
-                }
-                sc.close();
-            } else {
-                f.createNewFile();
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+    public Duke(String filePath) {
+        // Deals with interactions with the user
+        // Most likely will be using Scanner
+        // Returns messages/error messages to the user
+        ui = new Ui();
 
-        // Need to find a way to accept input
+        // Deals with loading tasks from the file and
+        // saving them in the file
+        storage = new Storage(filePath);
+
+        // Loading the tasks in the file to the taskList
+        tasks = new TaskList(storage.load());
+    }
+
+    public void run() {
+
+        // Deals with reading user commands
+        Parser parser = new Parser(tasks, storage, ui);
+
+        // Greets the user
+        System.out.println(ui.getWelcome());
+
+        // Awaiting input
         Scanner input = new Scanner(System.in);
         while (true) {
             String s = input.nextLine();
             try {
-                System.out.println(seaward.readInputString(s));
+                System.out.println(parser.readInputString(s));
                 if (s.equals("bye")) {
                     break;
                 }
@@ -38,5 +44,9 @@ public class Duke {
             }
         }
         input.close();
+    }
+
+    public static void main(String[] args) {
+        new Duke("tasks.txt").run();
     }
 }
