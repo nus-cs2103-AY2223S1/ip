@@ -66,8 +66,24 @@ public class TaskList {
 
     /**
      * To mark tasks as marked
-     * @param taskIndex Index of task to be marked
+     * @param search String that needs to be searched
      */
+    public void find(String search) {
+        int count = 0;
+        for(int i = 0; i < storeLists.size(); i++) {
+            if(storeLists.get(i).description.contains(search)) {
+                count++;
+                if(count == 1) {
+                    System.out.println("Here are the matching tasks in your list:");
+                }
+                System.out.println(i + 1 + ". " + storeLists.get(i).toString());
+            }
+        }
+        if(count == 0) {
+            System.out.println("No tasks match the search term");
+        }
+    }
+    
     public void mark(int taskIndex) {
         String oldText = storeLists.get(taskIndex).toString();
         storeLists.get(taskIndex).markAsDone();
