@@ -11,34 +11,70 @@ public class TaskList {
         this.storage = storage;
     }
 
+    /**
+     * Removes task at the given index from the list.
+     *
+     * @param index Index of the task.
+     */
     public void remove(int index) {
         tasks.remove(index);
         this.storage.update(tasks);
     }
 
+    /**
+     * Adds task to the list.
+     *
+     * @param task Task to be added.
+     */
     public void add(Task task) {
         tasks.add(task);
         this.storage.update(tasks);
     }
 
+    /**
+     * Returns the number of tasks.
+     *
+     * @return Number of tasks.
+     */
     public int size() {
         return this.tasks.size();
     }
 
+    /**
+     * Marks the task at the given index as done.
+     *
+     * @param index Index of the task.
+     */
     public void markTaskAsDone(int index) {
         this.tasks.get(index).markAsDone();
         this.storage.update(tasks);
     }
 
+    /**
+     * Marks the task at the given index as undone.
+     *
+     * @param index Index of the task.
+     */
     public void markTaskAsUndone(int index) {
         this.tasks.get(index).markAsUndone();
         this.storage.update(tasks);
     }
 
+    /**
+     * Returns the details of the task at the given index.
+     *
+     * @param index Index of the task.
+     * @return Details of the task.
+     */
     public String taskToString(int index) {
         return this.tasks.get(index).toString();
     }
 
+    /**
+     * Returns the numbered list of tasks stored.
+     *
+     * @return List of tasks.
+     */
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();

@@ -16,6 +16,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks saved on the hard disk.
+     * If the file does not exist, creates the file.
+     *
+     * @return ArrayList containing the tasks.
+     */
     public ArrayList<Task> load() {
         ArrayList<Task> tasks = new ArrayList<>();
         try {
@@ -57,6 +63,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Updates the tasks stored on the hard disk.
+     *
+     * @param tasks New tasks to be updated.
+     */
     public void update(ArrayList<Task> tasks) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));

@@ -8,6 +8,9 @@ public class Duke {
     protected Ui ui = new Ui();
     protected Parser parser = new Parser(ui, tasks);
 
+    /**
+     * Runs the main program of Duke.
+     */
     public void run() {
         ui.showWelcome();
         Scanner input = new Scanner(System.in);

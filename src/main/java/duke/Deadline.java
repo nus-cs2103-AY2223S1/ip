@@ -8,6 +8,11 @@ public class Deadline extends Task {
         this.by = by;
     }
 
+    /**
+     * Returns the details of the deadline.
+     *
+     * @return Details of deadline.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
