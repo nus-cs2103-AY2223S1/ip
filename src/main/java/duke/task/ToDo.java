@@ -1,5 +1,6 @@
 package duke.task;
 
+
 public class ToDo extends Task{
     private String taskType;
 
