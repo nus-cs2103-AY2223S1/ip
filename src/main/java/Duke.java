@@ -4,13 +4,16 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.File;
 import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     public static final String line = "____________________________________________________________";
-    public Scanner sc = new Scanner(System.in);
+    public static Scanner sc = new Scanner(System.in);
     public static ArrayList<Task> list = updateFile(new File("duke.txt"));
     public static int count = 0;
 
@@ -112,7 +115,7 @@ public class Duke {
             e.printStackTrace();
         }
     }
-    public void addTaskToFile(File file, Task t) {
+    public static void addTaskToFile(File file, Task t) {
         try {
             FileWriter fw = new FileWriter(file, true);
             fw.write(t.toString());
@@ -122,7 +125,7 @@ public class Duke {
         }
     }
 
-    public void overwriteFile(File f, List<Task> t) {
+    public static void overwriteFile(File f, List<Task> t) {
         try {
             FileWriter fw = new FileWriter(f);
             fw.close();
@@ -150,13 +153,13 @@ public class Duke {
             int indexofdates = s.indexOf(')');
             String name = s.substring(6,indexofdate);
             String date = s.substring(indexofdate + 5, indexofdates);
-            task = new Event(name,date);
+            task = new Event(name,parseString(date));
         } else if (task_type == 'D') {
             int indexofdate = s.indexOf('(');
             int indexofdates = s.indexOf(')');
             String name = s.substring(6,indexofdate);
             String date = s.substring(indexofdate + 5, indexofdates);
-            task = new Deadline(name,date);
+            task = new Deadline(name,parseString(date));
         }
         if (done == 'X') {
             task.setStatus("[X]");
@@ -164,7 +167,7 @@ public class Duke {
     }
 
 
-    public void respond()  {
+    public static void respond()  {
         try {
             String input = sc.nextLine();
 
@@ -216,7 +219,7 @@ public class Duke {
                 }
                 else if (command.equals("event")) {
                     String[] deets = arr[1].split("/at", 2);
-                    Event e = new Event(deets[0], deets[1]);
+                    Event e = new Event(deets[0], parseString(deets[1]));
                     list.add(e);
                     list.get(count++).print();
                     addTaskToFile(file,e);
@@ -224,7 +227,7 @@ public class Duke {
                 }
                 else if (command.equals("deadline")) {
                     String[] deets = arr[1].split("/by", 2);
-                    Deadline d = new Deadline(deets[0], deets[1]);
+                    Deadline d = new Deadline(deets[0], parseString(deets[1]));
                     list.add(d);
                     list.get(count++).print();
                     addTaskToFile(file,d);
@@ -263,7 +266,7 @@ public class Duke {
 
     }
 
-    public void list() {
+    public static void list() {
         System.out.println(
                 line + "\n" +
                         "Here are the tasks in your list:");
@@ -279,7 +282,19 @@ public class Duke {
 
     }
 
-    public void bye() {
+    private static LocalDateTime parseString(String s) {
+        DateTimeFormatter formatter = null;
+        LocalDateTime date = null;
+        try {
+            formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+            date = LocalDateTime.parse(s,formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("Please use time in dd/MM/yyyy HH:mm format");
+            respond();
+        }   return date;
+    }
+
+    public static void bye() {
         System.out.println(
                 line + "\n" +
                         "Bye. Hope to see you again soon!" + "\n" + line

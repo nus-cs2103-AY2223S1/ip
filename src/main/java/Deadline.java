@@ -1,14 +1,18 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
 
     private String name;
     private String type;
     private String status;
 
-    private String deadline;
+    private LocalDateTime deadline;
 
-    public Deadline(String name, String deadline) {
+
+
+    public Deadline(String name, LocalDateTime deadline) {
         this.name = name;
         this.status = "[ ]";
         this.type = "[D]";
@@ -23,21 +27,21 @@ public class Deadline extends Task {
         System.out.println(
                 Duke.line + "\n" +
                         "Got it. I've added this task:" + "\n" +
-                        this.type + this.status + " " + this.name + "(by: " + this.deadline + ")"+"\n" +
+                        this.type + this.status + " " + this.name + "(by: " + formatDateString(this.deadline) + ")"+"\n" +
                         " Now you have " + Duke.count + " tasks in the list." +
                         "\n" + Duke.line + "\n"
 
         );
     }
     public void list() {
-        System.out.println(this.type + this.status + " " + this.name + "(by: " + this.deadline + ")" );
+        System.out.println(this.type + this.status + " " + this.name + "(by: " + formatDateString(this.deadline) + ")" );
     }
 
     public void mark(Task t, int index) {
         System.out.println(
                 Duke.line + "\n" +
                         "Nice! I've marked this task as done:" + "\n" +
-                        "[X] " + Duke.list.get(index-1).getName() + "(by: " + this.deadline + ")" + "\n" + Duke.line
+                        "[X] " + Duke.list.get(index-1).getName() + "(by: " + formatDateString(this.deadline) + ")" + "\n" + Duke.line
         );
         t.setStatus("[X]");
     }
@@ -45,14 +49,14 @@ public class Deadline extends Task {
     public void delete(Task b, int index, ArrayList<Task> list) {
         list.remove(index);
         System.out.println(Duke.line + "\n" + "Noted. I've removed this task:" + "\n" + b.getType()+ b.getStatus()+" " +b.getName()
-        + " (by: " + this.deadline + ")");
+        + " (by: " + formatDateString(this.deadline) + ")");
         System.out.println("Now you have " + Duke.count+ " tasks in the list." + "\n" + Duke.line);
     };
     public void unmark(Task t, int index) {
         System.out.println(
                 Duke.line + "\n" +
                         "OK, I've marked this task as not done yet:" + "\n" +
-                        "[ ] " + t.getName() + "(by: " + this.deadline + ")" + "\n" + Duke.line
+                        "[ ] " + t.getName() + "(by: " + formatDateString(this.deadline) + ")" + "\n" + Duke.line
         );
         t.setStatus("[ ]");
     }
@@ -70,11 +74,20 @@ public class Deadline extends Task {
         return type;
     }
 
-    public String getDeadline() {
+    public LocalDateTime getDeadline() {
         return deadline;
     }
+
 
     public String toString() {
         return this.getType() + this.getStatus() + this.getName() + " (by: " + this.deadline + ")" + "\n";
     }
+
+
+    private String formatDateString (LocalDateTime d) {
+            return d.format(DateTimeFormatter.ofPattern("MMM dd yyyy h:mm a"));
+    }
+
+
+
 }
