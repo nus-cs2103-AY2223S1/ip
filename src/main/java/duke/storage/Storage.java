@@ -17,14 +17,29 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents a storage place that deals with loading tasks
+ * from the file and saving tasks in the file.
+ */
 public class Storage {
 
     private String filePath;
 
+    /**
+     * Constructs a Storage instance with a specified file path.
+     *
+     * @param filePath File path in local disk.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Appends the given text to the file.
+     *
+     * @param textToAppend Text to be appended.
+     * @param ui Ui that shows message to the user.
+     */
     public void appendToFile(String textToAppend, Ui ui) {
         try {
             FileWriter fw = new FileWriter(filePath, true);
@@ -35,6 +50,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Overwrites the file with content stored in the task list.
+     *
+     * @param tasks Task list whose content is used in overriding.
+     * @param ui Ui that shows message to the user.
+     */
     public void overwriteFile(TaskList tasks, Ui ui) {
         try {
             FileWriter fw = new FileWriter(filePath);
@@ -48,6 +69,14 @@ public class Storage {
             ui.showError(e.getMessage());
         }
     }
+
+    /**
+     * Loads content of the specified file in the local disk into an ArrayList,
+     * and returns the ArrayList with parsed tasks inside.
+     *
+     * @return ArrayList that contains tasks stored in the local file.
+     * @throws DukeException If the specified file is not found in loca ldisk.
+     */
     public List<Task> load() throws DukeException {
         try {
             File file = new File(filePath);
@@ -64,6 +93,15 @@ public class Storage {
         }
     }
 
+    /**
+     * Interprets the information stored in the local file.
+     * Converts the information into a task.
+     * Returns the task.
+     *
+     * @param str A line in the local file.
+     * @return A task instance.
+     * @throws DukeException If information in the local file cannot be understood.
+     */
     public Task fileInterpreter(String str) throws DukeException {
         Task task;
         String description = str.split("] ", 2)[1];
@@ -85,12 +123,5 @@ public class Storage {
         }
         return task;
     }
-
-//    public String parseDate(String dateString) throws ParseException {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
-//        Date date = dateFormat.parse(dateString);
-//        dateFormat.applyPattern("yyyy-MM-dd");
-//        return dateFormat.format(date);
-//    }
 
 }
