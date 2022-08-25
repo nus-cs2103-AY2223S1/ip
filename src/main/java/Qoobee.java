@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,7 +32,7 @@ public class Qoobee {
                     } else {
                         fw.write("0 | ");
                     }
-                    fw.write(task.getDescription() + " | " + ((Deadline) task).getBy());
+                    fw.write(task.getDescription() + " | " + ((Deadline) task).getDateTime());
                 } else if (task instanceof Event) {
                     fw.write("D | ");
                     if (task.getStatusIcon() == "X") {
@@ -44,7 +45,7 @@ public class Qoobee {
                 fw.write(System.lineSeparator());
             }
             fw.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println("Something went wrong!!");
         };
     }
@@ -111,19 +112,27 @@ public class Qoobee {
                     if (stringArray[1].equals("1")) {
                         mark(todo);
                     }
-                    addTask(todo);
+                    list.add(todo);
+                    save(list);
                 } else if (stringArray[0].equals("D")) {
-                    Task deadline = new Deadline(stringArray[2], stringArray[3]);
+                    String[] dateTime = stringArray[3].split(" ", 4);
+                    String[] time = dateTime[3].split(":", 2);
+                    Task deadline = new Deadline(stringArray[2],
+                            LocalDateTime.of(Integer.parseInt(dateTime[2]), Integer.parseInt(dateTime[1])
+                            , Integer.parseInt(dateTime[0]), Integer.parseInt(time[0]),
+                                    Integer.parseInt(time[1])));
                     if (stringArray[1].equals("1")) {
                         mark(deadline);
                     }
-                    addTask(deadline);
+                    list.add(deadline);
+                    save(list);
                 } else if (stringArray[0].equals("E")) {
                     Task event = new Event(stringArray[2], stringArray[3]);
                     if (stringArray[1].equals("1")) {
                         mark(event);
                     }
-                    addTask(event);
+                    list.add(event);
+                    save(list);
                 }
             }
             run();
@@ -171,7 +180,7 @@ public class Qoobee {
                         if (!command[1].contains("/by")) {
                             throw new QoobeeException("Please use /by to specify a deadline :]");
                         }
-                        String[] curr = command[1].split("/by", 2);
+                        String[] curr = command[1].split("/by ", 2);
                         Task deadline = new Deadline(curr[0], curr[1]);
                         addTask(deadline);
                     } else if (input.startsWith("event")) {
