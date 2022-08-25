@@ -162,4 +162,17 @@ public class TaskList {
 
     }
 
+    public void findTask(String name){
+        System.out.println("------");
+        System.out.println("Here are the matching tasks in your list:");
+        for(int i = 0; i < taskList.size(); i++){
+            Task task = taskList.get(i);
+            if(task.getTaskName().contains(name)){
+                System.out.println(i + ". " + task);
+            }
+        }
+        System.out.println("------");
+
+    }
+
 }
