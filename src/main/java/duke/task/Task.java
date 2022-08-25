@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * Stores the description of a task and whether it is done.
  */

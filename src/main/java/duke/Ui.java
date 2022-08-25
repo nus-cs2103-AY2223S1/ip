@@ -1,8 +1,11 @@
+package duke;
+
+import duke.task.TaskList;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 /**
  * UI of the application
@@ -57,7 +60,7 @@ public class Ui {
                 + "_______________________________________________________");
     }
 
-    public String wrapMessage(String str, String taskDescription, ArrayList<Task> taskList) {
+    public String wrapMessage(String str, String taskDescription, TaskList taskList) {
         return String.format(
                 str + "\n\t\t" + taskDescription + "\n\tNow you have " + taskList.size() + " tasks in the list.");
     }
