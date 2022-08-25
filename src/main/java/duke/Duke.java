@@ -23,17 +23,19 @@ public class Duke {
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
             .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
             .toFormatter();
-    private enum COMMAND {
+    public enum Command {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE, SAVE
     }
     private final Storage storage;
     private TaskList tasks;
     private final Ui ui;
+    private final Parser parser;
     private ZoneId timeZone = ZoneId.of("GMT+00:00");
 
     protected Duke() {
         ui = new Ui();
         storage = new Storage();
+        parser = new Parser();
     }
 
     public static void main(String[] args) {
@@ -58,8 +60,8 @@ public class Duke {
             try {
                 // Event loop
                 String input = ui.getInput();
-                String[] fullCommand = input.split(" ", 2);
-                COMMAND command = COMMAND.valueOf(fullCommand[0].toUpperCase());
+                String[] fullCommand = parser.parseFullCommand(input);
+                Command command = parser.parseCommand(input);
 
                 // Handle commands
                 switch (command) {
