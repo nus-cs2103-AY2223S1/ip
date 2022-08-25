@@ -2,6 +2,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
+    public enum CommandType {
+        BYE,
+        MARK,
+        UNMARK,
+        DELETE,
+        LIST,
+        TODO,
+        DEADLINE,
+        EVENT
+    }
     public static void main(String[] args) {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -13,48 +24,64 @@ public class Duke {
 
         ArrayList<Task> tasks = new ArrayList<>();
         Scanner in = new Scanner(System.in);
+        outer:
         while (true) {
             try {
                 String s = in.next();
-                if ("bye".equalsIgnoreCase(s)) {
-                    break;
-                } else if (s.equalsIgnoreCase("mark")) {
-                    int selectedTask = in.nextInt();
-                    if (selectedTask > tasks.size()) {
-                        System.out.println("No such task");
-                    } else {
-                        Task t = tasks.get(selectedTask - 1);
-                        t.markAsDone();
-                        System.out.println("Nice! I've marked this task as done:\n" + t);
+                CommandType type;
+                try {
+                    type = CommandType.valueOf(s.toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    continue;
+                }
+                switch (type) {
+                    case BYE:
+                        break outer;
+                    case MARK: {
+                        int selectedTask = in.nextInt();
+                        if (selectedTask > tasks.size()) {
+                            System.out.println("No such task");
+                        } else {
+                            Task t = tasks.get(selectedTask - 1);
+                            t.markAsDone();
+                            System.out.println("Nice! I've marked this task as done:\n" + t);
+                        }
+                        break;
                     }
-                } else if (s.equalsIgnoreCase("unmark")) {
-                    int selectedTask = in.nextInt();
-                    if (selectedTask > tasks.size()) {
-                        System.out.println("No such task");
-                    } else {
-                        Task t = tasks.get(selectedTask - 1);
-                        t.markAsNotDone();
-                        System.out.println("OK, I've marked this task as not done yet:\n" + t);
+                    case UNMARK: {
+                        int selectedTask = in.nextInt();
+                        if (selectedTask > tasks.size()) {
+                            System.out.println("No such task");
+                        } else {
+                            Task t = tasks.get(selectedTask - 1);
+                            t.markAsNotDone();
+                            System.out.println("OK, I've marked this task as not done yet:\n" + t);
+                        }
+                        break;
                     }
-                } else if (s.equalsIgnoreCase("delete")) {
-                    int selectedTask = in.nextInt();
-                    if (selectedTask > tasks.size()) {
-                        System.out.println("No such task");
-                    } else {
-                        Task t = tasks.remove(selectedTask - 1);
+                    case DELETE: {
+                        int selectedTask = in.nextInt();
+                        if (selectedTask > tasks.size()) {
+                            System.out.println("No such task");
+                        } else {
+                            Task t = tasks.remove(selectedTask - 1);
+                            int length = tasks.size();
+                            String output = length == 1 ? " task in the list." : " tasks in the list.";
+                            System.out.println("Noted. I've removed this task:\n" + t +
+                                    "\nNow you have " + length + output);
+                        }
+                        break;
+                    }
+                    case LIST: {
                         int length = tasks.size();
-                        String output = length == 1 ? " task in the list." : " tasks in the list.";
-                        System.out.println("Noted. I've removed this task:\n" + t +
-                                "\nNow you have " + length + output);
+                        System.out.println("Here are the tasks in your list:");
+                        for (int i = 0; i < length; i++) {
+                            System.out.println(i + 1 + ". " + tasks.get(i));
+                        }
+                        break;
                     }
-                } else if (s.equalsIgnoreCase("list")) {
-                    int length = tasks.size();
-                    System.out.println("Here are the tasks in your list:");
-                    for (int i = 0; i < length; i++) {
-                        System.out.println(i + 1 + ". " + tasks.get(i));
-                    }
-                } else {
-                    if (s.equalsIgnoreCase("todo")) {
+                    case TODO: {
                         s = in.nextLine();
                         if (s.length() < 2) {
                             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
@@ -66,7 +93,9 @@ public class Duke {
                         String output = length == 1 ? " task in the list." : " tasks in the list.";
                         System.out.println("Got it. I've added this task:\n" + t +
                                 "\nNow you have " + length + output);
-                    } else if (s.equalsIgnoreCase("deadline")) {
+                        break;
+                    }
+                    case DEADLINE: {
                         StringBuilder desc = new StringBuilder();
                         String token;
                         while (!(token = in.next()).equals("/by")) {
@@ -80,7 +109,9 @@ public class Duke {
                         String output = length == 1 ? " task in the list." : " tasks in the list.";
                         System.out.println("Got it. I've added this task:\n" + t +
                                 "\nNow you have " + length + output);
-                    } else if (s.equalsIgnoreCase("event")) {
+                        break;
+                    }
+                    case EVENT: {
                         StringBuilder desc = new StringBuilder();
                         String token;
                         while (!(token = in.next()).equals("/at")) {
@@ -94,11 +125,11 @@ public class Duke {
                         String output = length == 1 ? " task in the list." : " tasks in the list.";
                         System.out.println("Got it. I've added this task:\n" + t +
                                 "\nNow you have " + length + output);
-                    } else {
-                        throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                        break;
                     }
                 }
-            } catch (DukeException e) {
+                }
+             catch (DukeException e) {
                 System.out.println(e.getMessage());
             }
         }
