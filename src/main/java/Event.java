@@ -17,9 +17,20 @@ public class Event extends Task {
         }
     }
 
-    public Event(String description, boolean isDone, String at) {
+    public Event(String description, boolean isDone, String at) throws DukeException {
         super(description, isDone);
         this.at = at;
+        try {
+            this.event = LocalDateTime.parse(at.substring(1));
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Please input the deadline in yyyy-mm-ddTHours:Minutes:Seconds format. " +
+                    "E.g 2019-10-15T10:15:00");
+        }
+    }
+
+    private String printTime() {
+        String s = this.event.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm:ss a"));
+        return s;
     }
 
     @Override
@@ -29,7 +40,7 @@ public class Event extends Task {
     @Override
     public String toString() {
         return "[E]" + super.toString() + "(at: "
-                + this.event.format(DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm:ss a")) + ")";
+                + printTime() + ")";
     }
 }
 

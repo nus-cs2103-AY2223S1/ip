@@ -92,7 +92,7 @@ public class Duke {
                         "E.g /by 2019-10-15T10:15:00.\n"
                         + LINE);
             } else {
-                Deadline d = new Deadline(taskDeadline[0].substring(1), " " + taskDeadline[1].substring(1));
+                Deadline d = new Deadline(taskDeadline[0].substring(1), taskDeadline[1]);
                 int index = taskList.size() + 1;
                 taskList.add(d);
                 count++;
@@ -115,7 +115,7 @@ public class Duke {
                         "E.g /at 2019-10-15T10:15:00.\n"
                         + LINE);
             } else {
-                Event e = new Event(taskEvent[0].substring(1), " " + taskEvent[1].substring(1));
+                Event e = new Event(taskEvent[0].substring(1), taskEvent[1]);
                 int index = taskList.size() + 1;
                 taskList.add(e);
                 count++;
@@ -166,29 +166,33 @@ public class Duke {
 
     public static void formatToList(File f, ArrayList<Task> taskList) throws FileNotFoundException {
         Scanner s = new Scanner(f);
-        while (s.hasNextLine()) {
-            String[] taskDescription = s.nextLine().split(" \\| ");
-            String taskType = taskDescription[0];
-            boolean isDone = taskDescription[1].equals("1");
-            String description = taskDescription[2] + " ";
-            String date = " ";
-            Task task = null;
-            if (taskDescription.length == 4) {
-                date += taskDescription[3];
+        try {
+            while (s.hasNextLine()) {
+                String[] taskDescription = s.nextLine().split(" \\| ");
+                String taskType = taskDescription[0];
+                boolean isDone = taskDescription[1].equals("1");
+                String description = taskDescription[2] + " ";
+                String date = " ";
+                Task task = null;
+                if (taskDescription.length == 4) {
+                    date += taskDescription[3];
+                }
+                if (taskType.equals("T")) {
+                    task = new ToDo(description, isDone);
+                }
+                if (taskType.equals("D")) {
+                    task = new Deadline(description, isDone, date);
+                }
+                if (taskType.equals("E")) {
+                    task = new Event(description, isDone, date);
+                }
+                if (isDone) {
+                    task.markAsDone();
+                }
+                taskList.add(task);
             }
-            if (taskType.equals("T")) {
-                task = new ToDo(description, isDone);
-            }
-            if (taskType.equals("D")) {
-                task = new Deadline(description, isDone, date);
-            }
-            if (taskType.equals("E")) {
-                task = new Event(description, isDone, date);
-            }
-            if (isDone) {
-                task.markAsDone();
-            }
-            taskList.add(task);
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
         }
     }
 
