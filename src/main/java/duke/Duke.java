@@ -1,10 +1,11 @@
 package duke;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Duke {
 
-//    private String input;
+    //    private String input;
 //    private Scanner sc = new Scanner(System.in);
     private Ui ui;
     private Storage storage;
@@ -31,7 +32,7 @@ public class Duke {
 
     private void start() {
         ui.greet();
-}
+    }
 
     public void printList() {
         ui.printList(tasks);
@@ -60,8 +61,7 @@ public class Duke {
         try {
             String description = input.substring(5);
             return new ToDo(description);
-        }
-        catch (StringIndexOutOfBoundsException e) {
+        } catch (StringIndexOutOfBoundsException e) {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
     }
@@ -86,6 +86,7 @@ public class Duke {
         ui.echoTask(event, tasks);
         storage.save(tasks);
     }
+
     private Task createEvent(String input) throws DukeException {
         int end = input.indexOf('/');
         String description = input.substring(6, end - 1);
@@ -99,11 +100,16 @@ public class Duke {
         storage.save(tasks);
     }
 
+    public void find(String input) {
+        ArrayList<Task> newList = tasks.filterToArrayList(input);
+        ui.printFind(newList);
+        storage.save(tasks);
+    }
+
     public void printException(DukeException e) {
         ui.dukeReply(e.getMessage());
     }
-
-
-
-
 }
+
+
+

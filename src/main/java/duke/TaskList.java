@@ -25,6 +25,17 @@ public class TaskList {
         return this.list.get(i);
     }
 
+    public ArrayList<Task> filterToArrayList(String str) {
+        ArrayList<Task> newList = new ArrayList<>();
+        for (Task task : list) {
+            String description = task.description;
+            if (description.contains(str)) {
+                newList.add(task);
+            }
+        }
+        return newList;
+    }
+
     public Task delete(int i) throws DukeException {
         int size = this.size();
         if (size == 0) {
