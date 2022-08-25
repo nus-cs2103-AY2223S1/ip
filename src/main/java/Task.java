@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -24,6 +26,25 @@ public class Task {
         this.isDone = false;
     }
 
+    public static Task parseTask(String str) {
+        String[] entry = str.split("/");
+
+        if (entry[0].equals("T")) {
+            return new ToDo(entry[2], Boolean.parseBoolean(entry[1]));
+
+        } else if (entry[0].equals("E")) {
+            LocalDate d = LocalDate.parse(entry[3]);
+            return new Event(entry[2],  Boolean.parseBoolean(entry[1]), d);
+
+        } else {
+            LocalDate d = LocalDate.parse(entry[3]);
+            return new Deadline(entry[2],  Boolean.parseBoolean(entry[1]), d);
+        }
+    }
+
+    public String formatTask() {
+        return "task";
+    }
     @Override
     public String toString() {
         return "task";
