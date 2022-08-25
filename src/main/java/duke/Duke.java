@@ -84,6 +84,7 @@ public class Duke {
                 this.ui.showError(e);
             }
         }
+        sc.close();
 
     }
 
