@@ -10,6 +10,10 @@ import java.util.Scanner;
 public class Storage {
     private final String fileName;
 
+    /**
+     * Saves a task list to the file.
+     * @param taskList The task list to be saved.
+     */
     public void save(TaskList taskList) {
         try {
             PrintWriter saveFile = new PrintWriter(fileName);
@@ -22,6 +26,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads a task list from the file.
+     * @return The loaded task list.
+     */
     public TaskList load() {
         TaskList tasks = new TaskList();
         try {
@@ -39,6 +47,10 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Creates a new storage handler.
+     * @param fileName Where the file is located.
+     */
     public Storage(String fileName) {
         this.fileName = fileName;
     }
