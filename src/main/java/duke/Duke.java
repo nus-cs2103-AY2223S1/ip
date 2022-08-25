@@ -98,6 +98,9 @@ public class Duke {
                     tasklist.addTask(newTask);
                     break;
                 }
+                case FIND: {
+                    tasklist.findTasks(content);
+                }
                 }
                 storage.save(tasklist.getTasks());
             } catch (Exception e) {

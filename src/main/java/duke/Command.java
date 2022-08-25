@@ -12,4 +12,5 @@ public enum Command {
     TODO,
     EVENT,
     DEADLINE,
+    FIND
 }

@@ -30,5 +30,4 @@ public class Ui {
     public void printBye() {
         System.out.println("Goodbye. Hope to see you again soon!");
     }
-
 }

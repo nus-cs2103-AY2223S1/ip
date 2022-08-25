@@ -4,6 +4,7 @@ import duke.DukeException;
 import duke.task.Task;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Represents the list of tasks that Duke keeps track of.
@@ -89,5 +90,27 @@ public class TaskList {
 
     public ArrayList<Task> getTasks() {
         return tasks;
+    }
+
+    public void printTasks() {
+        System.out.println("Your tasks:");
+        for (Task task : tasks) {
+            int taskIndex = tasks.indexOf(task) + 1;
+            String taskString = String.format("%d. %s", taskIndex, task);
+            System.out.println(taskString);
+        }
+    }
+
+    public ArrayList<Task> findTasks(String input) {
+        ArrayList<Task> results = tasks.stream().filter(task -> task.isContain(input))
+                .collect(Collectors.toCollection(ArrayList::new));
+
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task task : results) {
+            int taskIndex = tasks.indexOf(task) + 1;
+            String taskString = String.format("%d. %s", taskIndex, task);
+            System.out.println(taskString);
+        }
+        return results;
     }
 }
