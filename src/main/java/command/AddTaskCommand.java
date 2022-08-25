@@ -6,9 +6,6 @@ import tasklist.TaskList;
 import ui.UI;
 import task.Task;
 import utility.Parser;
-import utility.StorageParser;
-
-import java.text.Normalizer;
 
 public class AddTaskCommand extends Command{
     @Override

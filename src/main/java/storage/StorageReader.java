@@ -9,8 +9,6 @@ import java.nio.file.Path;
 import task.Task;
 import exceptions.DukeException;
 import utility.StorageParser;
-import task.Deadline;
-import task.Event;
 import tasklist.TaskList;
 
 /**

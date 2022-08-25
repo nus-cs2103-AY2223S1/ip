@@ -5,8 +5,6 @@ import task.Event;
 import task.Task;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 /**
  * Parses all lines to be stored or retrieved from file.

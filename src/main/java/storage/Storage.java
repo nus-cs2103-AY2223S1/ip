@@ -6,8 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import exceptions.DukeException;
-import task.Task;
-import java.util.ArrayList;
 import tasklist.TaskList;
 
 public class Storage {
