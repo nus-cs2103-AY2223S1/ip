@@ -1,3 +1,10 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -25,18 +32,13 @@ public class Storage {
         while (sc.hasNext()) {
             try {
                 String type = sc.next(), status = sc.next(), description = sc.next();
-                System.out.println(type);
-                System.out.println(status);
-                System.out.println(description);
                 Task task;
                 switch (type) {
                 case "T":
                     task = new Todo(description);
                     break;
                 case "D":
-                    String date = sc.next();
-                    System.out.println("here" + date);
-                    task = new Deadline(description, date);
+                    task = new Deadline(description, sc.next());
                     break;
                 case "E":
                     task = new Event(description, sc.next());

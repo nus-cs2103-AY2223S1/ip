@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.DukeException;
+
 public class Event extends TimedTask {
     public Event(String description, String rawDateTime) throws DukeException {
         super(description, rawDateTime);

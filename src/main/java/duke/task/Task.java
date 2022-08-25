@@ -1,4 +1,6 @@
-abstract class Task implements Comparable<Task> {
+package duke.task;
+
+public abstract class Task implements Comparable<Task> {
     protected String description;
     protected boolean isDone;
 

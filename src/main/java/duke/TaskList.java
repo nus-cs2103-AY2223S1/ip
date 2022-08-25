@@ -1,3 +1,8 @@
+package duke;
+
+import duke.task.Task;
+import duke.task.TimedTask;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -42,7 +47,7 @@ public class TaskList {
         }
         return new TaskList(
             tasks.stream()
-                .filter(x -> x instanceof TimedTask && ((TimedTask) x).time.toLocalDate().equals(convertedDate))
+                .filter(x -> x instanceof TimedTask && ((TimedTask) x).getTime().toLocalDate().equals(convertedDate))
                 .collect(Collectors.toList())
         );
     }

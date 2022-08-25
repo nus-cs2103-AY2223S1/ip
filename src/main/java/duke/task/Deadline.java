@@ -1,3 +1,7 @@
+package duke.task;
+
+import duke.DukeException;;
+
 public class Deadline extends TimedTask {
     public Deadline(String description, String rawDateTime) throws DukeException {
         super(description, rawDateTime);

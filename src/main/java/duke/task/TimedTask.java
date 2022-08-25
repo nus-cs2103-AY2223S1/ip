@@ -1,12 +1,16 @@
+package duke.task;
+
+import duke.DukeException;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-abstract class TimedTask extends Task {
-    protected static String format = "dd/MM/yyyy HH:mm";
-    protected LocalDateTime time;
+public abstract class TimedTask extends Task {
+    public static String format = "dd/MM/yyyy HH:mm";
+    private LocalDateTime time;
 
     public TimedTask(String description, String rawDateTime) throws DukeException {
         super(description);
@@ -23,14 +27,16 @@ abstract class TimedTask extends Task {
         TimedTask.format = format;
     }
     
+    public LocalDateTime getTime() {
+        return time;
+    }
+
     public String getFormattedTime() {
         return time.format(DateTimeFormatter.ofPattern(format));
     }
 
     public LocalDateTime convertRawTime(String rawDateTime) throws DukeException {
         LocalDateTime time;
-        System.out.println("stuff");
-        System.out.println("a" + rawDateTime + "b");
         try {
             time = LocalDateTime.parse(rawDateTime, DateTimeFormatter.ofPattern(format));
         } catch (DateTimeParseException e1) {
