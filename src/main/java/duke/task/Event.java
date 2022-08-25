@@ -2,6 +2,9 @@ package duke.task;
 
 import duke.exception.DukeException;
 
+/**
+ * Represents a task of type Event.
+ */
 public class Event extends Task {
     protected String at;
 

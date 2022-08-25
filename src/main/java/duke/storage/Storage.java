@@ -16,6 +16,9 @@ import duke.task.List;
 import duke.task.Task;
 import duke.task.ToDo;
 
+/**
+ * Represents the file used to store task list.
+ */
 public class Storage {
     private static final String DIRECTORY = System.getProperty("user.home") + "/Duke";
     private static final String FILE_PATH = DIRECTORY + "/Duke.txt";
@@ -42,6 +45,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the {@code duke} data from this storage file, and then returns it.
+     * Returns an empty {@code duke} if the file does not exist, or is not a regular file.
+     *
+     * @throws DukeException if there were errors reading and/or converting data from file.
+     */
     public void load(List tasks) throws DukeException {
         this.tasks = tasks;
         try {
@@ -94,6 +103,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves the {@code duke} data to the storage file.
+     *
+     * @throws DukeException if there were errors converting and/or storing data to file.
+     */
     public void save() throws DukeException {
         try {
             FileWriter writer = new FileWriter(dukeFile);
@@ -105,10 +119,6 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("Sorry! I think I cannot write your file.");
         }
-    }
-
-    public String getPath() {
-        return path.toString();
     }
 
 }

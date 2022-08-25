@@ -5,6 +5,9 @@ import duke.storage.Storage;
 import duke.task.List;
 import duke.ui.Ui;
 
+/**
+ * Exits the program.
+ */
 public class ExitCommand extends Command {
     public static final String EXIT_COMMAND = "bye";
 

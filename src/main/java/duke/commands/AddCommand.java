@@ -6,6 +6,9 @@ import duke.task.List;
 import duke.task.Task;
 import duke.ui.Ui;
 
+/**
+ * Adds a task to the task list.
+ */
 public class AddCommand extends Command {
 
     public static final String ADD_TODO = "todo";

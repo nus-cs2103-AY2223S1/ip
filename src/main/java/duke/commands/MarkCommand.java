@@ -6,6 +6,9 @@ import duke.task.List;
 import duke.task.Task;
 import duke.ui.Ui;
 
+/**
+ * Marks a task as done.
+ */
 public class MarkCommand extends Command {
 
     public static final String MARK_COMMAND = "mark";
