@@ -26,7 +26,7 @@ public class Parser {
             return new ExitCommand();
         } else if (fullCommand.equals("list")) {
             if (taskList.isEmpty()) {
-                throw new DukeException("☹ OOPS!!! No tasks available!");
+                throw new DukeException("OOPS!!! No tasks available!");
             } else {
                 return new ListCommand();
             }
@@ -35,7 +35,7 @@ public class Parser {
                 fullCommand.substring(5).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(5));
             if (number > taskList.taskListSize() || number <= 0) {
-                throw new DukeException("☹ OOPS!!! Task number does not exist.");
+                throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
                 return new MarkCommand(number);
                 //taskList.getTask(number - 1).markAsDone();
@@ -47,7 +47,7 @@ public class Parser {
                 fullCommand.substring(7).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(7));
             if (number > taskList.taskListSize() || number <= 0) {
-                throw new DukeException("☹ OOPS!!! Task number does not exist.");
+                throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
                 return new UnmarkCommand(number);
                 //taskList.getTask(number - 1).markAsNotDone();
@@ -59,12 +59,20 @@ public class Parser {
                 fullCommand.substring(7).chars().allMatch(Character::isDigit))) {
             int number = parseInt(fullCommand.substring(7));
             if (number > taskList.taskListSize() || number <= 0) {
-                throw new DukeException("☹ OOPS!!! Task number does not exist.");
+                throw new DukeException("OOPS!!! Task number does not exist.");
             } else {
                 return new DeleteCommand(number);
             }
+        } else if (fullCommand.length() >= 5 && (fullCommand.startsWith("find")
+                && (Character.isWhitespace(fullCommand.charAt(4))))) {
+            String string = fullCommand.substring(5);
+            if (string.isBlank()) {
+                throw new DukeException("OOPS!!! Enter keyword to find.");
+            } else {
+                return new FindCommand(string);
+            }
         } else if (fullCommand.equals("todo") || (fullCommand.startsWith("todo") && fullCommand.substring(5).isBlank())) {
-            throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
         } else if (fullCommand.startsWith("todo") && Character.isWhitespace(fullCommand.charAt(4))) {
             return new AddCommand(new ToDo(fullCommand));
             //taskList.add(new ToDo(fullCommand));
@@ -73,30 +81,30 @@ public class Parser {
             //        " tasks in the list.");
         } else if (fullCommand.equals("deadline") || (fullCommand.startsWith("deadline")
                 && fullCommand.substring(9).isBlank())) {
-            throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         } else if (fullCommand.startsWith("deadline") && Character.isWhitespace(fullCommand.charAt(8))) {
             if (!fullCommand.contains("/by")) {
-                throw new DukeException("☹ OOPS!!! Please use the correct format!");
+                throw new DukeException("OOPS!!! Please use the correct format!");
             } else {
                 try {
                     return new AddCommand(new Deadline(fullCommand));
                 } catch (DateTimeParseException e) {
-                    throw new DukeException("☹ OOPS!!! Please use the correct date format!");
+                    throw new DukeException("OOPS!!! Please use the correct date format!");
                 }
                 //System.out.println("Got it. I've added this task:");
                 //System.out.println(taskList.latestTask() + "\nNow you have " + taskList.taskListSize() +
                 //        " tasks in the list.");
             }
         } else if (fullCommand.equals("event") || (fullCommand.startsWith("event") && fullCommand.substring(6).isBlank())) {
-            throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+            throw new DukeException("OOPS!!! The description of an event cannot be empty.");
         } else if (fullCommand.startsWith("event") && Character.isWhitespace(fullCommand.charAt(5))) {
             if (!fullCommand.contains("/at")) {
-                throw new DukeException("☹ OOPS!!! Please use the correct format!");
+                throw new DukeException("OOPS!!! Please use the correct format!");
             } else {
                 try {
                     return new AddCommand(new Event(fullCommand));
                 } catch (DateTimeParseException e) {
-                    throw new DukeException("☹ OOPS!!! Please use the correct date format!");
+                    throw new DukeException("OOPS!!! Please use the correct date format!");
                 }
                // System.out.println("Got it. I've added this task:");
                // System.out.println(taskList.latestTask() + "\nNow you have "
@@ -104,7 +112,7 @@ public class Parser {
                //         " tasks in the list.");
             }
         } else {
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 

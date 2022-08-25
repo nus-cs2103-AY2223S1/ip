@@ -49,4 +49,19 @@ public class TaskList {
     public void markAsNotDone(int integer) {
         tasks.get(integer - 1).markAsNotDone();
     }
+
+    /**
+     * Creates a taskList containing tasks with the keyword string found inside
+     * @param string the keyword to be found in tasks
+     * @return a taskList that contains tasks with the string found inside
+     */
+    public TaskList findTasks(String string) {
+        TaskList taskList = new TaskList();
+        for (Task task : tasks) {
+            if (task.toString().contains(string)) {
+                taskList.add(task);
+            }
+        }
+        return taskList;
+    }
 }

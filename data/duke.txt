@@ -1,2 +1,4 @@
 [T][ ] bye tile
-[T][ ] ms
+[T][X] ms
+[T][ ] die tile
+[D][X] tile yo (by: Aug 09 2018)
