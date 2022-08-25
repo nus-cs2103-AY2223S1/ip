@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public abstract class Task {
     protected String description;
     protected boolean isDone;
@@ -30,5 +33,10 @@ public abstract class Task {
         this.isDone = false;
         System.out.println("\tOK, I've marked this task as not done yet:");
         System.out.println("\t" + this.toString());
+    }
+
+    public String getDateTime(LocalDateTime dt) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+        return dtf.format(dt);
     }
 }
