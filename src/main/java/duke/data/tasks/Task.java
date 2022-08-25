@@ -31,6 +31,10 @@ public abstract class Task implements Serializable {
         this.marked = false;
     }
 
+    public boolean containsKeyword(String keyword) {
+        return this.title.contains(keyword);
+    }
+
     @Override
     public String toString() {
         return String.format("[%c] %s", this.marked ? 'X' : ' ', this.title);
