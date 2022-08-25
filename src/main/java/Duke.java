@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.io.*;
 import java.util.*;
 
@@ -206,7 +209,7 @@ public class Duke {
 
                 // create deadline string and deadline
                 StringBuilder deadlineStr = new StringBuilder();
-                StringBuilder deadline = new StringBuilder();
+                String deadline = "";
                 for (int i = 1; i < strArray.length; i++) {
                     if (strArray[i].equals("/by")) {
                         break;
@@ -217,9 +220,10 @@ public class Duke {
                 }
                 for (int i = 1; i < strArray.length; i++) {
                     if (strArray[i].equals("/by")) {
-                        for (int j = i + 1; j < strArray.length; j++) {
-                            deadline.append(" ");
-                            deadline.append(strArray[j]);
+                        if (i + 1 > strArray.length - 1) {
+                            System.out.println("Please type a deadline after /by");
+                        } else {
+                            deadline = strArray[i + 1];
                         }
                         break;
                     }
@@ -228,6 +232,19 @@ public class Duke {
                 String deadlineDate = deadline.toString();
                 taskList.add(new Deadline(deadlineDescription, deadlineDate));
                 Task currTask = taskList.get(taskList.size() - 1);
+
+                // make sure deadline is in correct format to accept input
+                String deadlinePattern = "yyyy-MM-dd";
+                DateTimeFormatter deadlineFormatter = DateTimeFormatter.ofPattern(deadlinePattern);
+                try {
+                    LocalDate.parse(deadline, deadlineFormatter);
+                } catch (DateTimeParseException e) {
+                    System.out.println("Invalid deadline format! Please type in deadline format as yyyy-MM-dd");
+                    break;
+                }
+                tasks.add(new Deadline(deadlineStr.toString(), LocalDate.parse(deadline)));
+                System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
+                        "\nNow you have " + tasks.size() + " tasks in the list.");
 
                 // print message when deadline is added
                 System.out.println("Got it. I've added this task:\n  " + currTask +
