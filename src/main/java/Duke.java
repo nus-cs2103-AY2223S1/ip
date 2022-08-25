@@ -1,20 +1,18 @@
 import TaskTypes.Deadline;
 import TaskTypes.Event;
-import TaskTypes.Task;
 import TaskTypes.ToDo;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Duke {
     // Could refactor this out into a TaskList class
-    static ArrayList<Task> tasks = new ArrayList<>();
+    private TaskList tasklist;
 
     private enum Command {
         BYE,
@@ -28,13 +26,18 @@ public class Duke {
     }
 
     public static void main(String[] args) throws Exception {
+        Duke duke = new Duke();
+        duke.run();
+    }
+
+    private void run() throws Exception {
         Scanner input = new Scanner(System.in);
 
         String home = System.getProperty("user.home");
         Path filepath = Paths.get(home, "Desktop", "duke.txt");
         Storage storage = new Storage(filepath.toString());
 
-        tasks = storage.load();
+        tasklist = new TaskList(storage.load());
         printGreeting();
 
         while (true) {
@@ -55,34 +58,32 @@ public class Duke {
                         printBye();
                         return;
                     case LIST:
-                        printTasks();
+                        tasklist.printTasks();
                         break;
                     case MARK: {
                         if (inputArray.size() != 2) {
                             throw new DukeException("Input for mark not correct");
                         }
-                        markTask(inputArray.get(1));
+                        tasklist.markTask(inputArray.get(1));
                         break;
                     }
                     case UNMARK: {
                         if (inputArray.size() != 2) {
                             throw new DukeException("Input for unmark not correct");
                         }
-                        unmarkTask(inputArray.get(1));
+                        tasklist.unmarkTask(inputArray.get(1));
                         break;
                     }
                     case DELETE: {
                         if (inputArray.size() != 2) {
                             throw new DukeException("Input for delete not correct");
                         }
-                        deleteTask(inputArray.get(1));
+                        tasklist.deleteTask(inputArray.get(1));
                         break;
                     }
                     case TODO: {
                         ToDo newTask = new ToDo(String.join(" ", inputArray.subList(1, inputArray.size())));
-                        tasks.add(newTask);
-
-                        printAddTask(newTask);
+                        tasklist.addTask(newTask);
                         break;
                     }
                     case EVENT: {
@@ -99,9 +100,7 @@ public class Duke {
                         }
 
                         Event newTask = new Event(commandArray[0], dateTime);
-                        tasks.add(newTask);
-
-                        printAddTask(newTask);
+                        tasklist.addTask(newTask);
                         break;
                     }
                     case DEADLINE: {
@@ -119,28 +118,19 @@ public class Duke {
                         }
 
                         Deadline newTask = new Deadline(commandArray[0], dateTime);
-                        tasks.add(newTask);
-
-                        printAddTask(newTask);
+                        tasklist.addTask(newTask);
                         break;
                     }
                     default: {
                         throw new DukeException("You did not provide a valid command");
                     }
                 }
-                storage.save(tasks);
+                storage.save(tasklist.getTasks());
 
             } catch (Exception e) {
                 System.out.println(new DukeException(e.getMessage()));
             }
         }
-    }
-
-    private static void printAddTask(Task task) {
-        System.out.println("\n  _______________");
-        System.out.println("  Added: " + task);
-        System.out.println(String.format("  Now you have %d tasks in the list", tasks.size()));
-        System.out.println("  _______________\n");
     }
 
     private static void printGreeting() {
@@ -154,53 +144,5 @@ public class Duke {
 
     private static void printBye() {
         System.out.println("Goodbye. Hope to see you again soon!");
-    }
-
-    private static void printTasks() {
-        System.out.println("Your tasks:");
-        for (Task task : tasks) {
-            int taskIndex = tasks.indexOf(task) + 1;
-            String taskString = String.format("%d. %s", taskIndex, task);
-            System.out.println(taskString);
-        }
-    }
-
-    private static void markTask(String input) throws Exception {
-        int taskNum = Integer.parseInt(input) - 1;
-        Task task = getTask(taskNum);
-        task.markIsDone();
-    }
-
-    private static void unmarkTask(String input) throws Exception {
-        int taskNum = Integer.parseInt(input) - 1;
-        Task task = getTask(taskNum);
-        task.unmarkIsDone();
-    }
-
-    private static void deleteTask(String input) throws Exception {
-        int taskNum = Integer.parseInt(input) - 1;
-        Task task = getTask(taskNum);
-        try {
-            tasks.remove(taskNum);
-
-            System.out.println("\n  _______________");
-            System.out.println("  Removed: " + task);
-            System.out.println(String.format("  Now you have %d tasks in the list", tasks.size()));
-            System.out.println("  _______________\n");
-        } catch (Exception e) {
-            throw new DukeException(String.format("TaskTypes.Task number %d not found", taskNum));
-        }
-    }
-
-    private static Task getTask(int taskNum) throws Exception {
-        Task task;
-
-        try {
-            task = tasks.get(taskNum);
-        } catch (Exception e) {
-            throw new DukeException("TaskTypes.Task number is incorrectly provided");
-        }
-
-        return task;
     }
 }
