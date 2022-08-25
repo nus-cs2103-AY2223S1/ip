@@ -8,10 +8,10 @@ class Deadline extends Task {
     private String deadline;
     private final Optional<LocalDateTime> dateTime;
 
-    Deadline(String description, String deadline, Optional<LocalDateTime> dateTime) {
+    Deadline(String description, String deadline) {
         super(description);
         this.deadline = deadline;
-        this.dateTime = dateTime;
+        this.dateTime = Parser.strToDateTime(deadline);
     }
 
     static Deadline createDeadline(ParsedData data) throws DukeException {
@@ -21,12 +21,23 @@ class Deadline extends Task {
         if (data.additionalInfo.length() == 0 || !data.additionalInfo.startsWith(PREFIX))
             throw new EmptyTimeException("deadline", SPLIT);
 
-        String additionalInfo = data.additionalInfo.substring(3);
-        return new Deadline(data.description, additionalInfo, Parser.strToDateTime(additionalInfo));
+        return new Deadline(data.description, data.additionalInfo.substring(3));
+    }
+
+    static Deadline createDeadline(String description, String deadline) throws CorruptedLineException {
+        if (description.length() == 0 || deadline.length() == 0)
+            throw new CorruptedLineException();
+
+        return new Deadline(description, deadline);
     }
 
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), deadline);
+    }
+
+    @Override
+    public ParsedData convertToParseData() {
+        return new ParsedData(completed ? "Dc" : "Dx", description, deadline);
     }
 }
