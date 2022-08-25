@@ -43,6 +43,25 @@ public class TaskList {
     }
 
     /**
+     * Finds all the tasks which contain the specified keyword and prints them out
+     * @input keyword to check
+     */ 
+    public void find(String keyword) {
+        ArrayList<Task> matched = new ArrayList<>();
+        System.out.println(line + "\n");
+        System.out.println("Here are the matching tasks in your list:");
+        for (Task t : tasks) {
+            if (t.getAction().contains(keyword)) {
+                matched.add(t);
+            }
+        }
+        for (int j = 0; j < matched.size(); j++) {
+            Task task = matched.get(j);
+            System.out.println((j + 1) + "." + task);
+        }
+    }
+   
+    /**
      * Marks a task (with a specified index) as "Done"
      * @input idx of task in TaskList
      */

@@ -83,10 +83,15 @@ public class Duke {
                     int deleteIdx = Integer.parseInt(fullCommand.substring(7)) - 1;
                     tasks.delete(deleteIdx);
                     break;
+                case "FIND":
+                    String keyword = fullCommand.substring(5);
+                    tasks.find(keyword);
+                    break;
                 case "BYE":
                     ui.saysBye();
                     break;
                 }
+                if (commandType.equals("BYE")) { break; }
             } catch (IllegalArgumentException iae) {
                 System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             } catch (IOException e) {

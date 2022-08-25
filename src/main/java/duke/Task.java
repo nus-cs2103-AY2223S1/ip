@@ -31,6 +31,12 @@ public class Task {
     }
 
     /**
+     * Getter to get the action description
+     * @return the description of the action
+     */ 
+    public String getAction() { return this.action; }
+
+    /**
      * Getter to get the action status
      * @return the status of the action
      */
