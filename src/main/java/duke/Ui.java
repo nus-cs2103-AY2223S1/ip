@@ -24,7 +24,7 @@ public class Ui {
 
     /**
      * Outputs a string using the chosen output stream
-     * @param s
+     * @param s string to output
      */
     public void display(String s) {
         out.println(s);
