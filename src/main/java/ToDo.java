@@ -18,4 +18,14 @@ public class ToDo extends Task{
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    /**
+     * Override save format method from Task class.
+     *
+     * @return formatted String for the Event task.
+     */
+    @Override
+    public String saveFormat() {
+        return String.format("T | %s", super.saveFormat());
+    }
 }

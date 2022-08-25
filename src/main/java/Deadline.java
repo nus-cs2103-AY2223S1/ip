@@ -23,4 +23,14 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + dueDate + ")";
     }
+
+    /**
+     * Override save format method from Task class.
+     *
+     * @return formatted String for the Event task.
+     */
+    @Override
+    public String saveFormat() {
+        return String.format("D | %s | %s", super.saveFormat(), this.dueDate);
+    }
 }

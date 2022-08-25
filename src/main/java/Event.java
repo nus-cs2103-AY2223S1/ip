@@ -16,11 +16,21 @@ public class Event extends Task {
     }
 
     /**
-     * Overriden toString method for the Event Task.
+     * Override toString method for the Event Task.
      * @return String representation of the Event.
      */
     @Override
     public String toString() {
         return "[E]" + super.toString() +" (at: " + duration + ")";
+    }
+
+    /**
+     * Override save format method from Task class.
+     *
+     * @return formatted String for the Event task.
+     */
+    @Override
+    public String saveFormat() {
+        return String.format("E | %s | %s", super.saveFormat(), this.duration);
     }
 }

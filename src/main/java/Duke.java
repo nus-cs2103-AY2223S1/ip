@@ -1,4 +1,6 @@
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 // This class is the main logic unit for Duke
@@ -41,7 +43,7 @@ public class Duke {
      * @param description description of the task.
      * @throws
      */
-    private static void addTask(Command type, String description) throws DukeException {
+    private static void addTask(Command type, String description) throws DukeException, IOException {
         Task task;
         if (type == Command.TODO) {
             task = new ToDo(description);
@@ -52,6 +54,7 @@ public class Duke {
         }
         System.out.println("Added: " + task.toString() + "\n");
         tasks.add(task);
+        FileSaver.Save(tasks, false);
     }
 
     /**
@@ -89,6 +92,7 @@ public class Duke {
             System.out.println("Ok, I've removed this task:");
             System.out.println(task);
             tasks.remove(taskNo - 1);
+            FileSaver.Save(tasks, true);
             System.out.println("You have " + tasks.size() + " tasks left currently\n");
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             System.out.println("Invalid index, please input the index of an available task!\n");
@@ -143,6 +147,8 @@ public class Duke {
                     System.out.println(e.getMessage());
                 } catch (IndexOutOfBoundsException p) {
                     System.out.println("Please add a description to your task!\n");
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
             in = sc.nextLine();
@@ -152,7 +158,7 @@ public class Duke {
 
     public static void main(String[] args) {
         Greet();
+        FileSaver.Load(tasks);
         taskHandler();
     }
-
 }

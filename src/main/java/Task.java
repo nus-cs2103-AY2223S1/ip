@@ -31,6 +31,15 @@ public abstract class Task {
     }
 
     /**
+     * Formats the task into a suitable format for files
+     *
+     * @return String representation of the Task in saved format.
+     */
+    public String saveFormat() {
+         return String.format("%d | %s", this.isDone ? 1 : 0, this.description);
+    }
+
+    /**
      * Marks the task as done.
      */
     public void markDone() {
