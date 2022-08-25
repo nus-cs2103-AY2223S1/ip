@@ -15,17 +15,19 @@ public class Storage {
     public void save(ArrayList<Task> taskList){
         try{
             FileWriter fw = new FileWriter(pathFile,false);
+            String allTasks = "";
             for (Task task : taskList){
-                fw.write(task.changeFormat() + "\n");
+                allTasks += task.changeFormat() + "\n";
             }
+            fw.write(allTasks);
             fw.close();
         } catch (IOException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
 
-    public ArrayList<Task> load() throws IOException{
-        ArrayList<Task> taskList = new ArrayList<>();
+    public TaskList load() throws IOException{
+        TaskList taskList = new TaskList();
         try {
             File file = new File(this.pathFile);
             Scanner sc = new Scanner(file);
@@ -45,7 +47,7 @@ public class Storage {
                 if (isDone){
                     currentTask.markAsDone();
                 }
-                taskList.add(currentTask);
+                taskList.load(currentTask);
             }
 
         } catch (FileNotFoundException e) {

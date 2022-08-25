@@ -6,7 +6,7 @@ public class Deadline extends Task {
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = DateTimeConverter.formatDate(by.substring(1));
+        this.by = DateTimeConverter.formatDate(by);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by:" + DateTimeConverter.formatString(by) + ")";
+        return "[D]" + super.toString() + "(by: " + DateTimeConverter.formatString(by) + ")";
     }
 }

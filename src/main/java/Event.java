@@ -5,7 +5,7 @@ public class Event extends Task{
 
     public Event(String description, String at) {
         super(description);
-        this.at = DateTimeConverter.formatDate(at.substring(1));
+        this.at = DateTimeConverter.formatDate(at);
     }
 
     @Override
@@ -16,6 +16,6 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at:" + DateTimeConverter.formatString(at) + ")";
+        return "[E]" + super.toString() + "(at: " + DateTimeConverter.formatString(at) + ")";
     }
 }
