@@ -5,13 +5,19 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
+/**
+ * Encapsulates a Parser that makes sense of the user input
+ */
 public class Parser {
     private Storage storage;
     private TaskList taskList;
     private UI ui;
+
     /**
-     * Constructor for DukeControl
-     * Initializes arrayList
+     * Constructor for Parser
+     * @param storage Storage object that handles loading and saving of data
+     * @param taskList TaskList object that stores all user tasks
+     * @param ui UI object that handles user interface
      */
     public Parser(Storage storage, TaskList taskList, UI ui) {
         this.storage = storage;
@@ -72,7 +78,7 @@ public class Parser {
     /**
      * Parses the mark command
      * @param commandArgs Array of Strings representing command arguments
-     * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
+     * @throws DukeException Throws a aRC.DukeException specific to this program
      */
     public void parseMark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
@@ -88,7 +94,7 @@ public class Parser {
     /**
      * Parses the unmark command
      * @param commandArgs Array of Strings representing command arguments
-     * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
+     * @throws DukeException Throws a aRC.DukeException specific to this program
      */
     public void parseUnmark(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {
@@ -104,7 +110,7 @@ public class Parser {
     /**
      * Parses the todo command
      * @param commandArgs Array of Strings representing command arguments
-     * @throws EmptyTitleException If input title is empty
+     * @throws DukeException Throws a aRC.DukeException specific to this program
      */
     public void parseTodo(String[] commandArgs) throws DukeException {
         String title = String.join(" ", commandArgs);
@@ -120,7 +126,7 @@ public class Parser {
     /**
      * Parses the deadline command
      * @param commandArgs Array of Strings representing command arguments
-     * @throws DukeException If /by is not included or if input title or deadline is empty
+     * @throws DukeException Throws a aRC.DukeException specific to this program
      */
     public void parseDeadline(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/by")) {
@@ -149,7 +155,7 @@ public class Parser {
     /**
      * Parses the event command
      * @param commandArgs Array of Strings representing command arguments
-     * @throws DukeException If /at is not included or if input title or time is empty
+     * @throws DukeException Throws a aRC.DukeException specific to this program
      */
     public void parseEvent(String[] commandArgs) throws DukeException {
         if (!Arrays.asList(commandArgs).contains("/at")) {
@@ -173,7 +179,7 @@ public class Parser {
     /**
      * Parses the delete command
      * @param commandArgs Array of Strings representing command arguments
-     * @throws InvalidArgumentException If additional arguments are entered or if index is out of bounds
+     * @throws DukeException Throws a aRC.DukeException specific to this program
      */
     public void parseDelete(String[] commandArgs) throws DukeException {
         if (commandArgs.length != 1) {

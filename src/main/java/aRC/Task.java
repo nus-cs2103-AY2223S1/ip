@@ -1,14 +1,11 @@
 package aRC;
 
+/**
+ * Encapsulates a Task object
+ */
 public abstract class Task {
-    /**
-     * The title of the aRC.Task
-     */
-    protected String title;
 
-    /**
-     * The completion status of the aRC.Task
-     */
+    protected String title;
     protected boolean isDone;
 
     /**
@@ -22,7 +19,7 @@ public abstract class Task {
     }
 
     /**
-     * Marks the task as done
+     * Marks this task as done
      */
     public void mark() {
         this.isDone = true;
@@ -30,17 +27,25 @@ public abstract class Task {
     }
 
     /**
-     * Marks the task as not done
+     * Marks this task as not done
      */
     public void unmark() {
         this.isDone = false;
         System.out.println(String.format("Ok, I've marked this task as not done yet:\n\t%s", this));
     }
 
+    /**
+     * Returns how a Task should be represented
+     * @return String representation of Task
+     */
     @Override
     public String toString() {
         return String.format("[%s] %s", this.isDone ? "X" : " ", this.title);
     }
 
+    /**
+     * Returns how a Task should be stored in a txt file
+     * @return String representation of Task
+     */
     public abstract String fileFormat();
 }

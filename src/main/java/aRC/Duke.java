@@ -1,11 +1,18 @@
 package aRC;
 
+/**
+ * Encapsulates the main Duke program
+ */
 public class Duke {
     private Storage storage;
     private TaskList tasklist;
     private Parser parser;
     private UI ui;
 
+    /**
+     * Constructor for Duke
+     * @param filePath String representing the relative path of the datafile
+     */
     public Duke(String filePath) {
         this.storage = new Storage(filePath);
         this.tasklist = new TaskList(this.storage.load());
@@ -17,6 +24,9 @@ public class Duke {
         new Duke("data/aRC.txt").run();
     }
 
+    /**
+     * Runs the program
+     */
     public void run() {
         this.ui.hello();
         String input = this.ui.readInput();
