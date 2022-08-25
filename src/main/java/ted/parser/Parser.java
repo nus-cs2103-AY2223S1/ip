@@ -1,9 +1,9 @@
-package duke.parser;
+package ted.parser;
 
 import java.time.format.DateTimeParseException;
-import duke.command.*;
-import duke.exception.TedException;
-import duke.task.*;
+import ted.command.*;
+import ted.exception.TedException;
+import ted.task.*;
 
 public class Parser {
     public static Command parse(String command) throws TedException{

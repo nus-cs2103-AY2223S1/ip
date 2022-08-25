@@ -1,6 +1,6 @@
-package duke.task;
+package ted.task;
 
-import duke.exception.TedException;
+import ted.exception.TedException;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -1,18 +1,18 @@
-package duke;
+package ted;
 
-import duke.command.*;
-import duke.exception.TedException;
-import duke.parser.Parser;
-import duke.storage.Storage;
-import duke.task.*;
-import duke.ui.Ui;
+import ted.command.*;
+import ted.exception.TedException;
+import ted.parser.Parser;
+import ted.storage.Storage;
+import ted.task.*;
+import ted.ui.Ui;
 
-public class Duke {
+public class Ted {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
-    public Duke(String filePath, String fileName) {
+    public Ted(String filePath, String fileName) {
         storage = new Storage(filePath, fileName);
         tasks = storage.loadFile();
         ui = new Ui();
@@ -34,6 +34,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data/ted.txt", "ted.txt").run();
+        new Ted("data/ted.txt", "ted.txt").run();
     }
 }

@@ -1,4 +1,4 @@
-package duke.ui;
+package ted.ui;
 
 import java.util.Scanner;
 

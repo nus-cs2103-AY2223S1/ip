@@ -1,4 +1,4 @@
-package duke.task;
+package ted.task;
 
 public class Task {
     private String taskDescription;
