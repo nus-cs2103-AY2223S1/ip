@@ -1,3 +1,5 @@
+package pixel.task;
+
 public class Deadline extends Task {
 
     public final String tag = "D";

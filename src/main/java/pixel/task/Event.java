@@ -1,3 +1,5 @@
+package pixel.task;
+
 public class Event extends Task {
 
     public final String tag = "E";

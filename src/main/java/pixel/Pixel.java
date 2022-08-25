@@ -1,3 +1,13 @@
+package pixel;
+
+import pixel.task.Deadline;
+import pixel.task.Event;
+import pixel.task.Task;
+import pixel.task.ToDo;
+import pixel.util.IncorrectFormatException;
+import pixel.util.Storage;
+import pixel.util.UserInterface;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;

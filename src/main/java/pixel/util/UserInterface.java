@@ -1,3 +1,5 @@
+package pixel.util;
+
 // Ui: deals with interactions with the user
 public class UserInterface {
     String logo = " ____        _        \n"
