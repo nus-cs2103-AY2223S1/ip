@@ -3,6 +3,7 @@ package scottie.tasks;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TaskList implements Iterable<Task> {
     private final Storage storage;
@@ -51,6 +52,20 @@ public class TaskList implements Iterable<Task> {
     public void unmarkTask(int index) {
         this.getTask(index).markAsUndone();
         this.saveTasks();
+    }
+
+    /**
+     * Returns a List of Tasks in this TaskList whose
+     * descriptions contain the given searchText.
+     * This search is case-insensitive.
+     *
+     * @param searchText The text to search for.
+     * @return A List of matching Tasks.
+     */
+    public List<Task> filterTasks(String searchText) {
+        return this.tasks.stream()
+                .filter(task -> task.matchesAgainst(searchText))
+                .collect(Collectors.toList());
     }
 
     @Override
