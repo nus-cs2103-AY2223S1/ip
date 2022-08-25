@@ -14,7 +14,7 @@ public class TaskList {
     public TaskList(Storage storage) {
         this.list = storage.getList();
         this.storage = storage;
-        this.count = 0;
+        this.count = storage.getCount();
     }
 
     public void printTaskList() {
@@ -23,6 +23,18 @@ public class TaskList {
                 break;
             }
             System.out.println(Integer.toString(i + 1) + ". " + list.get(i).getTask());
+        }
+    }
+
+    public void printFilteredTaskList(String filter) {
+        System.out.println("Here are the matching tasks in your list:\n");
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) == null) {
+                break;
+            }
+            if(list.get(i).getItem().contains(filter)) {
+                System.out.println(Integer.toString(i + 1) + ". " + list.get(i).getTask());
+            }
         }
     }
 

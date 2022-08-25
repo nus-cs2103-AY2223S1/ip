@@ -49,6 +49,7 @@ public class Storage {
                             event.setDone();
                         }
                         list.add(event);
+                        this.count++;
                         break;
                     case("[D]"):
                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy", Locale.ENGLISH);
@@ -58,6 +59,7 @@ public class Storage {
                             deadline.setDone();
                         }
                         list.add(deadline);
+                        this.count++;
                         break;
                     case("[T]"):
                         Todo todo = new Todo(parts[2]);
@@ -65,6 +67,7 @@ public class Storage {
                             todo.setDone();
                         }
                         list.add(todo);
+                        this.count++;
                         break;
                 }
 
@@ -79,7 +82,7 @@ public class Storage {
         try {
             new FileWriter("data/duke.txt", false).close();
             for (int i = 0; i < list.size(); i++) {
-                FileWriter fw = new FileWriter("data/duke.txt", true); // create a FileWriter in append mode
+                FileWriter fw = new FileWriter("data/duke.txt", true);
                 fw.write(list.get(i).getFileLine());
                 fw.write(System.lineSeparator());
                 fw.close();
@@ -88,10 +91,12 @@ public class Storage {
             System.out.println("File not found");
         }
     }
+
     public ArrayList<Task> getList() {
         return this.list;
     }
 
-
-
+    public int getCount() {
+        return this.count;
+    }
 }

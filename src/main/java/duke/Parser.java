@@ -20,6 +20,8 @@ public class Parser {
         } else if (item.length() >= 6 && item.substring(0, 6).equals("delete")) {
             int index = Integer.parseInt(item.substring(7)) - 1;
             taskList.deleteTask(index);
+        } else if (item.length() >= 4 && item.substring(0, 4).equals("find")){
+            taskList.printFilteredTaskList(item.substring(5));
         } else {
             System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
