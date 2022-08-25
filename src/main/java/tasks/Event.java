@@ -1,9 +1,8 @@
 package tasks;
 
-import utils.DeadlineParser;
+import parser.DeadlineParser;
 
 import java.time.LocalDateTime; // Import the LocalDateTime class
-import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
 import java.time.format.DateTimeParseException;
 
 public class Event extends Task{

@@ -2,7 +2,7 @@ package tasks;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-import utils.DeadlineParser;
+import parser.DeadlineParser;
 
 public class Deadline extends Task{
 

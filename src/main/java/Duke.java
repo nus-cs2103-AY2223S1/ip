@@ -3,28 +3,16 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.io.FileWriter;   // Import the FileWriter class
-import java.io.IOException;  // Import the IOException class to handle errors
 
+import storage.Storage;
 import tasks.*;
 import exceptions.*;
-import utils.DeadlineParser;
 
 public class Duke {
 
-    private static final TaskList TASK_LIST = new TaskList();
+    private static final Storage STORAGE = new Storage();
+    private static final TaskList TASK_LIST = STORAGE.load();
     private static final Pattern COMMAND_PATTERN = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
-
-    public static void saveFile() {
-        try {
-            FileWriter myWriter = new FileWriter("tasklist.txt");
-            myWriter.write(TASK_LIST.toString());
-            myWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
 
     public static void handle(String command) {
         String action;
@@ -80,7 +68,7 @@ public class Duke {
 
         while (!command.equalsIgnoreCase("bye")) {
             handle(command);
-            saveFile();
+            STORAGE.save();
             command = sc.nextLine();
         }
 

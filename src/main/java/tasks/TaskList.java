@@ -1,7 +1,7 @@
 package tasks;
 
 import exceptions.*;
-import utils.DeadlineParser;
+import parser.DeadlineParser;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -47,6 +47,10 @@ public class TaskList {
             tasks.remove(index);
             System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
         }
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
     }
 
     public void addToDo(String desc) throws DukeException {

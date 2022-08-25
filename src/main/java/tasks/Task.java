@@ -19,6 +19,10 @@ public class Task {
         this.isDone = true;
     }
 
+    public void markAsUndone() {
+        this.isDone = false;
+    }
+
     public boolean isBefore(String deadline) throws DateTimeParseException { return false; }
 
     @Override
