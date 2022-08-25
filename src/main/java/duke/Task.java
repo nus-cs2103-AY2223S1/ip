@@ -32,5 +32,9 @@ abstract public class Task {
         System.out.println(acknowledgement);
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public abstract String toFile();
 }
