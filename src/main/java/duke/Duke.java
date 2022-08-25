@@ -9,9 +9,8 @@ import java.util.Scanner;
  */
 public class Duke {
     private TaskList tasks;
-    int num = 1;
-
     ArrayList<String> arrayList = new ArrayList<>();
+    int num = 1;
 
     public Duke() {
         Ui ui = new Ui();
@@ -25,7 +24,6 @@ public class Duke {
 
     public static void main(String[] args) {
         String command;
-
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -54,7 +52,7 @@ public class Duke {
                 }
                 command = sc.nextLine();
             } catch (DukeException | IOException e) {
-                System.out.println(e.toString());
+                System.out.println(e);
                 command = sc.nextLine();
             }
         }
@@ -71,17 +69,22 @@ public class Duke {
             num--;
             Delete task = new Delete(arrayList.get(number), num);
             arrayList.remove(number);
-            System.out.println(task.toString());
+            System.out.println(task);
         }
         else {
             Task task = Task.of(command, arrayList, num);
-            System.out.println(task.toString());
+            System.out.println(task);
             if (task.AddToList()) {
                 num++;
             }
         }
     }
 
+    /**
+     * Returns a String representation of the command list.
+     *
+     * @return String
+     */
     public String getList() {
         String list = "";
         for (int k = 1; k < arrayList.size() + 1; k++) {
