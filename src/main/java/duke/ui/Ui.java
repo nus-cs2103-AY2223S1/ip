@@ -133,12 +133,15 @@ public class Ui {
         System.out.println("--------------------------------");
     }
 
+    /**
+     * Display all the tasks in the task list that matches the user input keyword.
+     */
     public void displayMatchedTasks(ArrayList<Task> tasks) {
         int size = tasks.size();
         displaySeparator();
         System.out.println("Here are the matching tasks in your list");
         for (int i = 0; i < size; i++) {
-            System.out.println((i + 1) + ". " + tasks.get(i).TaskInfo());
+            System.out.println((i + 1) + ". " + tasks.get(i).taskInfo());
         }
         displaySeparator();
     }

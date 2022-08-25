@@ -74,6 +74,11 @@ public class TaskList {
         listOfTasks.remove(TaskNum);
     }
 
+    /**
+     * Returns an arraylist containing all the tasks that matches the keyword by the user input.
+     * @param keyword The keyword used to find list of tasks that matches it.
+     * @return Returns an arraylist containing all the tasks that matches the keyword.
+     */
     public ArrayList<Task> FindTasks(String keyword) {
         ArrayList<Task> taskContainingKeyword = new ArrayList<>();
         for (int i = 0; i < listOfTasks.size(); i++) {
