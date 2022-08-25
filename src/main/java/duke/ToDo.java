@@ -2,9 +2,7 @@ package duke;
 
 
 /**
- * Child class duke.ToDo
- *
- * duke.ToDo class a child class of the task and has similar functionality.
+ * Has similar functionality to duke.Task
  *
  * @author Yuvaraj Kumaresan
  */

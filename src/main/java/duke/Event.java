@@ -2,10 +2,7 @@ package duke;
 
 
 /**
- * Child class duke.Event
- *
- * duke.Event a child class of duke.Task has the same functionality
- * but adds on with an at field which allows users to set an event timing.
+ * Adds on with an at field which allows users to set an event timing.
  *
  * @author Yuvaraj Kumaresan
  */
@@ -25,7 +22,7 @@ public class Event extends Task {
     }
 
     /**
-     * Method toString()
+     * Converts event object to its string representation.
      *
      * @return String representation of the event object.
      */
@@ -35,7 +32,7 @@ public class Event extends Task {
     }
 
     /**
-     * Method getAt()
+     * Gets the at attribute from the event object
      *
      * @return String representation of the at attribute.
      */
