@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Event extends Task {
     private LocalDate startDate;
@@ -37,7 +39,11 @@ public class Event extends Task {
 
     @Override
     public String toSaveFormat() {
-        return String.format("E;;%s;;%s;;%s", startTime, endTime, super.toSaveFormat());
+        return String.format("E;;%s %s;;%s %s;;%s",
+                startDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
+                startTime,
+                endDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
+                endTime, super.toSaveFormat());
     }
 
     @Override

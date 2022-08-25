@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 public class Deadline extends Task {
     private LocalDate byDate;
@@ -27,7 +29,9 @@ public class Deadline extends Task {
 
     @Override
     public String toSaveFormat() {
-        return String.format("D;;%s;;%s", deadline, super.toSaveFormat());
+        return String.format("D;;%s %s;;%s",
+                byDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)),
+                byTime, super.toSaveFormat());
     }
 
     @Override
