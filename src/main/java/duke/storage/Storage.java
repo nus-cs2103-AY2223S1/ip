@@ -1,16 +1,18 @@
 package duke.storage;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.ToDo;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import duke.exception.DukeException;
 
 public class Storage {
@@ -34,20 +36,20 @@ public class Storage {
                     String data = s.nextLine();
                     char type = data.charAt(0);
                     switch (type) {
-                        case 'T':
-                            ToDo todo = ToDo.parseFile(data);
-                            taskList.add(todo);
-                            break;
-                        case 'D':
-                            Deadline deadline = Deadline.parseFile(data);
-                            taskList.add(deadline);
-                            break;
-                        case 'E':
-                            Event event = Event.parseFile(data);
-                            taskList.add(event);
-                            break;
-                        default:
-                            throw new DukeException("File format is invalid!");
+                    case 'T':
+                        ToDo todo = ToDo.parseFile(data);
+                        taskList.add(todo);
+                        break;
+                    case 'D':
+                        Deadline deadline = Deadline.parseFile(data);
+                        taskList.add(deadline);
+                        break;
+                    case 'E':
+                        Event event = Event.parseFile(data);
+                        taskList.add(event);
+                        break;
+                    default:
+                        throw new DukeException("File format is invalid!");
                     }
                 }
             } catch (FileNotFoundException e) {
