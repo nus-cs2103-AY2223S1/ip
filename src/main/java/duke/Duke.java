@@ -6,8 +6,8 @@ import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
+import java.io.IOException;
 import java.util.Scanner;
-import java.io.*;
 
 public class Duke {
 
