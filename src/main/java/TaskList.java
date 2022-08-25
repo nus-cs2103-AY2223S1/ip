@@ -7,33 +7,36 @@ public class TaskList {
     this.taskList = new ArrayList<>();
   }
 
-  public void loadTask(String taskString) throws CheeseException {
-    Task task = Task.createTaskFromFile(taskString);
-    taskList.add(task);
-  }
-
   public Task getTask(int taskIndex) throws CheeseException {
     validateTaskIndexInRange(taskIndex);
     return taskList.get(taskIndex);
   }
 
-  public void delete(int taskIndex) throws CheeseException {
+  public Task delete(int taskIndex) throws CheeseException {
     Task task = getTask(taskIndex);
     taskList.remove(task);
+    return task;
   }
 
-  public void add(Task task) {
+  public Task add(Task task) {
     taskList.add(task);
+    return task;
   }
 
-  public void markTaskAsDone(int taskIndex) throws CheeseException {
+  public Task markTaskAsDone(int taskIndex) throws CheeseException {
     Task task = getTask(taskIndex);
     task.markAsDone();
+    return task;
   }
 
-  public void markTaskAsNotDone(int taskIndex) throws CheeseException {
+  public Task markTaskAsNotDone(int taskIndex) throws CheeseException {
     Task task = getTask(taskIndex);
     task.markAsNotDone();
+    return task;
+  }
+
+  public int getSize() {
+    return taskList.size();
   }
 
   public String toFileString() {

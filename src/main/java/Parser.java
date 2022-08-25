@@ -6,23 +6,23 @@ public class Parser {
     try {
       switch (command) {
         case "bye":
-          validateCommandHasNoArguments(fullCommandArray);
+          validateCommandHasNArguments(fullCommandArray, 0);
           return new ByeCommand();
         case "list":
-          validateCommandHasNoArguments(fullCommandArray);
+          validateCommandHasNArguments(fullCommandArray, 0);
           return new ListCommand();
-        case mark:
-          taskList.markTaskAsDone(Integer.parseInt(inputArray[1]) - 1);
-          taskList.saveTaskList();
-          break;
-        case unmark:
-          taskList.markTaskAsNotDone(Integer.parseInt(inputArray[1]) - 1);
-          taskList.saveTaskList();
-          break;
-        case delete:
-          taskList.deleteTask(Integer.parseInt(inputArray[1]) - 1);
-          taskList.saveTaskList();
-          break;
+        case "mark":
+          validateCommandHasNArguments(fullCommandArray, 1);
+          String markCommandArgument = fullCommandArray[1];
+          return new MarkCommand(parseArgumentToInt(markCommandArgument));
+        case "unmark":
+          validateCommandHasNArguments(fullCommandArray, 1);
+          String unmarkCommandArgument = fullCommandArray[1];
+          return new UnmarkCommand(parseArgumentToInt(unmarkCommandArgument));
+        case "delete":
+          validateCommandHasNArguments(fullCommandArray, 1);
+          String deleteCommandArgument = fullCommandArray[1];
+          return new DeleteCommand(parseArgumentToInt(deleteCommandArgument));
         default:
           Task task = Task.createTask(inputArray);
           taskList.addTask(task);
@@ -41,9 +41,30 @@ public class Parser {
    * @param inputArray array containing user input after splitting by space
    * @throws CheeseException if given command contains extra arguments
    */
-  private static void validateCommandHasNoArguments(String[] fullCommandArray) throws CheeseException {
-    if (fullCommandArray.length != 1) {
+  private static void validateCommandHasNArguments(String[] fullCommandArray, int n) throws CheeseException {
+    if (fullCommandArray.length != n + 1) {
       throw new CheeseException();
     }
+  }
+
+  private static int parseArgumentToInt(String argument) throws CheeseException {
+    int parsedArgument;
+    try {
+      parsedArgument = Integer.parseInt(argument);
+    } catch (NumberFormatException e) {
+      throw new CheeseException("Cannot convert non-integer to integer.");
+    }
+    return parsedArgument;
+  }
+
+  private static Task getTaskFromList(String[] inputArray) throws CheeseException, NumberFormatException {
+    if (inputArray.length == 1 || inputArray[1].length() == 0) {
+      throw new CheeseException("Sowwy, the item number cannot be empty.");
+    }
+    int itemIdx = Integer.parseInt(inputArray[1]) - 1;
+    if (itemIdx < 0 || itemIdx >= Cheese.list.size()) {
+      throw new CheeseException("Item number is not in list range.");
+    }
+    return Cheese.list.get(itemIdx);
   }
 }
