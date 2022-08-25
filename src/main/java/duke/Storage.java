@@ -7,10 +7,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage is used to load save data/create a save file if none exist. Storage also updates the saved data after
+ * each time duke is run.
+ *
+ * @author Sean Lam
+ */
 public class Storage {
     protected ArrayList<Task> itemList = new ArrayList<>();
     protected boolean isLoaded;
 
+    /**
+     * Constructor for storage.
+     *
+     * @param filePath Location of file to load
+     */
     public Storage(String filePath) {
         try {
             readFile(filePath);
@@ -22,6 +33,12 @@ public class Storage {
             isLoaded = false;
         }
     }
+
+    /**
+     * Update file after duke is run.
+     *
+     * @param updatedList list to get updates from
+     */
     public void updateFile(ArrayList<Task> updatedList) {
         try {
             FileWriter myWriter = new FileWriter("dukeHistory.txt");
@@ -36,6 +53,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Create file is no file is found.
+     */
     public void makeFile() {
         try {
             File blankFile = new File("dukeHistory.txt");
@@ -50,6 +70,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Add task read from file to the list of tasks.
+     *
+     * @param taskItem Information about the task to add
+     */
     public void addToList(String taskItem) {
         String[] details = taskItem.split("[|]");
         Task toAdd = new ToDo("");
@@ -75,6 +100,12 @@ public class Storage {
         itemList.add(toAdd);
     }
 
+    /**
+     * Reads the file and makes a list of tasks.
+     *
+     * @param fileLocation Location of save file
+     * @throws FileNotFoundException File is not found at the specified location
+     */
     public void readFile(String fileLocation) throws FileNotFoundException {
         File dukeHistory = new File(fileLocation);
         Scanner myReader = new Scanner(dukeHistory);
@@ -85,6 +116,12 @@ public class Storage {
         myReader.close();
     }
 
+    /**
+     * Returns the list of task created
+     *
+     * @return list of tasks
+     * @throws DukeException File not found
+     */
     public ArrayList<Task> load() throws DukeException {
         if (isLoaded) {
             return itemList;
