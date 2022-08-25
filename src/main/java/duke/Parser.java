@@ -67,6 +67,12 @@ public class Parser {
                     break;
                 }
 
+                //Handle case when user wants to find tasks
+                    case "find" :
+                        String str = input.next() + input.nextLine();
+                        duke.find(str);
+                        break;
+
                 //Default case: Not any of the tasks(aTodo, Deadline, Event) and hence, throws an Exception
                 default:
                     //To handle any extra words the user keyed in

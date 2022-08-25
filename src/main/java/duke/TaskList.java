@@ -1,21 +1,20 @@
 package duke;
 import java.util.ArrayList;
-import java.util.List;
 
 public class TaskList {
     //ArrayList to store tasks
-    private List<Task> lst;
+    private ArrayList<Task> lst;
     //Constant string to represent a line break
     private final String LINE_BREAK = "____________________________________________________________";
 
     public TaskList() {
         this.lst = new ArrayList<>();
     }
-    public TaskList(List<Task> lst) {
+    public TaskList(ArrayList<Task> lst) {
         this.lst = lst;
     }
 
-    public List<Task> getTasks() {
+    public ArrayList<Task> getTasks() {
         return lst;
     }
 

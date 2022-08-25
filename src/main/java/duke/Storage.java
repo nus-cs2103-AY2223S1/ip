@@ -15,8 +15,8 @@ public class Storage {
         this.listOfTasks = new File(listOfTasks);
     }
 
-    public List<Task> load() throws IOException, DukeException {
-        List<Task> lst = new ArrayList<>();
+    public ArrayList<Task> load() throws IOException, DukeException {
+        ArrayList<Task> lst = new ArrayList<>();
         Scanner input = null;
         try {
             if (!listOfTasks.exists()) {
