@@ -6,7 +6,7 @@ import java.io.PrintWriter;
 
 public class Seaward {
 
-    private final static String welcome = "Hello! I'm Seaward,\n" +
+    private final static String WELCOME = "Hello! I'm Seaward,\n" +
             "your friendly neighbourhood chatbot.\n" +
             "Type something and I will reply!";
 
@@ -34,7 +34,7 @@ public class Seaward {
     }
 
     public String getWelcome() {
-        return welcome;
+        return WELCOME;
     }
 
     public String readInputString(String s) throws InvalidCommandException,
@@ -54,6 +54,20 @@ public class Seaward {
                     Seaward.appendToFile(taskToAppend);
                     break;
                 }
+                case 'D': {
+                    String taskStatus = status.equals("X") ? "1" : "0";
+                    String taskToAppend = "D | " + taskStatus + " | " + taskList.getDescription(i) + "| "
+                            + taskList.getDate(i);
+                    Seaward.appendToFile(taskToAppend);
+                    break;
+                }
+                case 'E': {
+                    String taskStatus = status.equals("X") ? "1" : "0";
+                    String taskToAppend = "E | " + taskStatus + " | " + taskList.getDescription(i) + "| "
+                            + taskList.getDate(i);
+                    Seaward.appendToFile(taskToAppend);
+                    break;
+                }
                 default:
                     break;
                 }
@@ -61,17 +75,21 @@ public class Seaward {
             return "Seaward out!";
         case "list": {
             int numOfTasks = taskList.getNumOfTasks();
-            String list = "";
-            for (int i = 0; i < numOfTasks; i++) {
-                int index = i + 1;
-                String taskDescription = taskList.readTask(i);
-                if (index == numOfTasks) {
-                    list = list + index + "." + taskDescription;
-                } else {
-                    list = list + index + "." + taskDescription + "\n";
+            if (numOfTasks == 0) {
+                return "You currently have no tasks. Add some!";
+            } else {
+                String list = "";
+                for (int i = 0; i < numOfTasks; i++) {
+                    int index = i + 1;
+                    String taskDescription = taskList.readTask(i);
+                    if (index == numOfTasks) {
+                        list = list + index + "." + taskDescription;
+                    } else {
+                        list = list + index + "." + taskDescription + "\n";
+                    }
                 }
+                return list;
             }
-            return list;
         }
         case "mark": {
             if (splitCommand.length == 1) {
@@ -115,7 +133,6 @@ public class Seaward {
                 throw new InvalidDescriptionException("Please add a description.");
             }
             taskList.addTodo(splitCommand[1]);
-
             int numOfTasks = taskList.getNumOfTasks();
             return "Noted. I have added:\n" + taskList.readTask(numOfTasks - 1)
                     + "\n" + "Now you have "
@@ -147,12 +164,13 @@ public class Seaward {
     }
 
     public void readTasks(String s) {
-        String[] splitCommand = s.split("|", 9);
+        String[] splitCommand = s.split("\\| ", 3);
         String taskType = splitCommand[0];
-        boolean isMarked = splitCommand[4].equals("1");
+        boolean isMarked = splitCommand[1].equals("1 ");
+        String description = splitCommand[2];
         switch (taskType) {
-        case "T": {
-            taskList.addTodo(splitCommand[8]);
+        case "T ": {
+            taskList.addTodo(description);
             int numOfTasks = taskList.getNumOfTasks();
             if (isMarked) {
                 taskList.setCompleted(numOfTasks - 1);
@@ -161,10 +179,9 @@ public class Seaward {
             }
             break;
         }
-        case "D": {
-            String[] splitDescription = s.split(" | ", 2);
-            String description = splitDescription[0];
-            taskList.addDeadline(description + "/by" + splitDescription[1]);
+        case "D ": {
+            String[] splitBy = description.split("\\| ", 2);
+            taskList.addDeadline(splitBy[0] + "/by" + splitBy[1]);
             int numOfTasks = taskList.getNumOfTasks();
             if (isMarked) {
                 taskList.setCompleted(numOfTasks - 1);
@@ -173,10 +190,9 @@ public class Seaward {
             }
             break;
         }
-        case "E": {
-            String[] splitDescription = s.split(" | ", 2);
-            String description = splitDescription[0];
-            taskList.addDeadline(description + "/at" + splitDescription[1]);
+        case "E ": {
+            String[] splitAt = description.split("\\| ", 2);
+            taskList.addEvent(splitAt[0] + "/at" + splitAt[1]);
             int numOfTasks = taskList.getNumOfTasks();
             if (isMarked) {
                 taskList.setCompleted(numOfTasks - 1);

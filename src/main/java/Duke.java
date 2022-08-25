@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,12 +10,15 @@ public class Duke {
 
         try {
             File f = new File("tasks.txt");
-            if (!f.createNewFile()) {
+            if (f.exists()) {
                 Scanner sc = new Scanner(f);
                 while (sc.hasNext()) {
                     String curr = sc.nextLine();
                     seaward.readTasks(curr);
                 }
+                sc.close();
+            } else {
+                f.createNewFile();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
