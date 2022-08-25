@@ -41,6 +41,11 @@ public class TaskList implements Serializable {
         return deletedTask;
     }
 
+    public TaskList findTasks(String keyword) {
+        return new TaskList(this.tasks.stream().filter(task -> task.containsKeyword(keyword))
+            .collect(java.util.stream.Collectors.toList()));
+    }
+
     @Override
     public String toString() {
         List<String> taskListStr = new ArrayList<>();

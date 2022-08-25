@@ -3,6 +3,7 @@ package duke.command;
 import duke.command.handler.CommandDeadlineHandler;
 import duke.command.handler.CommandDeleteHandler;
 import duke.command.handler.CommandEventHandler;
+import duke.command.handler.CommandFindHandler;
 import duke.command.handler.CommandHandler;
 import duke.command.handler.CommandListHandler;
 import duke.command.handler.CommandMarkHandler;
@@ -52,6 +53,8 @@ public class CommandFactory {
             return new CommandEventHandler(commandStr);
         case DELETE:
             return new CommandDeleteHandler(commandStr);
+        case FIND:
+            return new CommandFindHandler(commandStr);
         case BYE:
             return new CommandTerminateHandler(commandStr);
         default:
