@@ -1,3 +1,7 @@
+package exceptions;
+
+import exceptions.TumuException;
+
 public class UnrecognisedCommandException extends TumuException {
     private String command;
 

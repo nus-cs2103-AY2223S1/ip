@@ -1,9 +1,15 @@
+package drivers;
+
 import exceptions.GeneralException;
 import exceptions.TumuException;
+import tasks.Deadline;
+import tasks.Event;
+import tasks.Task;
+import tasks.Todo;
 
 /**
  * Extracts the information from the file into
- * the Task class.
+ * the tasks.Task class.
  */
 public class TaskFormatter {
     private static final String DELIMITER = " # ";
@@ -45,7 +51,7 @@ public class TaskFormatter {
             markTask(todo);
             return todo;
         default:
-            throw new GeneralException("Task type is not found!");
+            throw new GeneralException("tasks.Task type is not found!");
         }
     }
 

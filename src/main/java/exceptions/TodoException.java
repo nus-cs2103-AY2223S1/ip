@@ -1,3 +1,5 @@
+package exceptions;
+
 public class TodoException extends TumuException {
     private static String TODO_EXCEPTION = "Please enter a task.";
 

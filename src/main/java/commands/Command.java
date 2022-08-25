@@ -1,4 +1,4 @@
-package command;
+package commands;
 
 import drivers.Storage;
 import drivers.TaskList;

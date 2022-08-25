@@ -1,4 +1,6 @@
-public abstract class Task extends Command {
+package tasks;
+
+public abstract class Task {
     /**
      * Specifies a task to be done.
      */

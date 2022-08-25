@@ -1,3 +1,5 @@
+package exceptions;
+
 public abstract class TumuException extends Exception {
     private String message;
 

@@ -1,4 +1,6 @@
-import command.*;
+package drivers;
+
+import commands.*;
 import exceptions.TumuException;
 import exceptions.UnrecognisedCommandException;
 

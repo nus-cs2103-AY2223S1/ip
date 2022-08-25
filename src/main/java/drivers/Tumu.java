@@ -1,3 +1,6 @@
+package drivers;
+
+import commands.Command;
 import exceptions.TumuException;
 
 /**
@@ -42,7 +45,7 @@ public class Tumu {
             } finally {
                 ui.showLine();
             }
-        } while (command.equalsIgnoreCase("bye"));
+        } while (!command.equalsIgnoreCase("bye"));
 
         ui.closeReader();
     }
