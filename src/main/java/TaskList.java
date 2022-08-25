@@ -44,6 +44,22 @@ public class TaskList {
         return taskList.size();
     }
 
-    public void deleteTask(int index) { taskList.remove(index); }
+    public void deleteTask(int index) {
+        taskList.remove(index);
+    }
 
+    public String getDescription(int index) {
+        return taskList.get(index).getDescription();
+    }
+
+    public String getDate(int index) {
+        Task curr = taskList.get(index);
+        if (curr instanceof Deadline) {
+            return ((Deadline) curr).getBy();
+        } else if (curr instanceof Event) {
+            return ((Event) curr).getAt();
+        } else {
+            return "";
+        }
+    }
 }

@@ -1,0 +1,3 @@
+E | 0 | go watch football | Saturday 9pm
+D | 1 | finish IP | Saturday 10pm
+T | 0 | watch lecture 1
