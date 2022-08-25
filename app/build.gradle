@@ -34,3 +34,5 @@ jar {
         attributes 'Main-Class': 'duke.Duke'
     }
 }
+
+run.standardInput = System.in
