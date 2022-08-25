@@ -11,7 +11,8 @@ public enum Command {
     DELETE("delete"),
     TODO("todo"),
     DEADLINE("deadline"),
-    EVENT("event");
+    EVENT("event"),
+    FIND("find");
 
     private final String commandString;
 
