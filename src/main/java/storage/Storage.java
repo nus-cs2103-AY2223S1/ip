@@ -59,15 +59,15 @@ public class Storage {
         boolean isDone = Boolean.parseBoolean(split[1]);
         Task task = null;
         switch (command) {
-            case "T":
-                task = new Todo(split[2], isDone);
-                break;
-            case "D":
-                task = new Deadline(split[2], parser.parseTime(split[3]), isDone);
-                break;
-            case "E":
-                task = new Event(split[2], parser.parseTime(split[3]), isDone);
-                break;
+        case "T":
+            task = new Todo(split[2], isDone);
+            break;
+        case "D":
+            task = new Deadline(split[2], parser.parseTime(split[3]), isDone);
+            break;
+        case "E":
+            task = new Event(split[2], parser.parseTime(split[3]), isDone);
+            break;
         }
         return task;
     }
