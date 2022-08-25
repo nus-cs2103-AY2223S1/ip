@@ -11,4 +11,10 @@ public class Event extends Task{
         String color = (isDone ? ANSI_GREEN : ANSI_RED);
         return color + "[E]" + super.toString() + " (at: " + at + ")" + ANSI_RESET;
     }
+
+    @Override
+    public String toFile() {
+        int done = (isDone ? 1 : 0);
+        return String.format("E | %d | %s | %s", done, description, at);
+    }
 }
