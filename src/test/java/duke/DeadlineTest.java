@@ -20,12 +20,12 @@ public class DeadlineTest {
     @Test
     public void getCsvStringTest1() {
         Deadline deadline3 = new Deadline("project3", "2022-08-25", false);
-        assertEquals("deadline false project3 /by 2022-08-25", deadline3.getCsvString());
+        assertEquals("deadline false project3 /by 2022-08-25", deadline3.getTxtString());
     }
 
     @Test
     public void getCsvStringTest2() {
         Deadline deadline4 = new Deadline("project4", "2023-12-12", true);
-        assertEquals("deadline true project4 /by 2023-12-12", deadline4.getCsvString());
+        assertEquals("deadline true project4 /by 2023-12-12", deadline4.getTxtString());
     }
 }

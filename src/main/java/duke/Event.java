@@ -15,7 +15,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String getCsvString() {
-        return String.format("event %s /at %s", super.getCsvString(), time);
+    public String getTxtString() {
+        return String.format("event %s /at %s", super.getTxtString(), time);
     }
 }

@@ -75,7 +75,7 @@ public class TaskList {
         for (Task task : tasks) {
             // format is such that
             // <taskName> <isDone> <description> <time>
-            str.append(task.getCsvString()).append("\n");
+            str.append(task.getTxtString()).append("\n");
         }
         return str.toString();
     }

@@ -23,7 +23,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String getCsvString() {
-        return String.format("deadline %s /by %s", super.getCsvString(), date);
+    public String getTxtString() {
+        return String.format("deadline %s /by %s", super.getTxtString(), date);
     }
 }

@@ -31,7 +31,7 @@ public abstract class Task {
         System.out.printf("OK, I've marked this task as not done yet:\n  %s\n", this);
     }
 
-    public String getCsvString() {
+    public String getTxtString() {
         return String.format("%b %s", isDone, description);
     }
 
