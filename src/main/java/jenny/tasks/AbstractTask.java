@@ -1,20 +1,21 @@
 package jenny.tasks;
 
 /**
- * An abstract class {@code AbstractTask} that serves as a foundation for all other tasks.
+ * Serves as a base class for all other different types tasks.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
 public abstract class AbstractTask {
-    protected final String description;
+    private static final String MESSAGE_SCOPE = AbstractTask.class.getSimpleName();
+    protected String description;
     protected boolean isDone;
 
     /**
-     * Constructor of a {@code AbstractTask}.
+     * Creates an instance of a new task.
      *
-     * @param description Description of the task.
+     * @param description a string to describe the task.
      */
     public AbstractTask(String description) {
         this.description = description;
@@ -22,32 +23,31 @@ public abstract class AbstractTask {
     }
 
     /**
-     * Returns the state of the task as a string.
+     * Returns the status of the task as a string.
+     * "X" to indicate completed, " " to indicate uncompleted.
      *
-     * @return the state of the task as a string.
+     * @return the status of the task as a string.
      */
     public String icon() {
-        return (isDone ? "X" : " ");
+        return (this.isDone ? "X" : " ");
     }
 
     /**
-     * Sets the state (boolean) the task.
+     * Sets the status the task.
      *
-     * @param isDone the state (boolean) the task.
+     * @param isDone the status the task.
      */
     public void markAsDone(boolean isDone) {
         this.isDone = isDone;
     }
 
     /**
-     * Returns a comma delimited {@code String} containing data of the {@code AbstractTask}.
+     * Returns a comma delimited string containing data of the task.
      *
-     * @return a comma delimited {@code String}.
+     * @return a comma delimited string.
      */
     public String save() {
-        return String.format("%s,%s,%s",
-                this.getClass().getSimpleName(), this.isDone,
-                this.description);
+        return String.format("%s,%s,%s", MESSAGE_SCOPE, this.isDone, this.description);
     }
 
     /**

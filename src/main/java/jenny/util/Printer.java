@@ -5,7 +5,7 @@ import jenny.tasks.AbstractTask;
 import java.util.ArrayList;
 
 /**
- * jenny.util.Printer to print stuff to the console.
+ * Prints stuff to the console.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
@@ -34,7 +34,7 @@ public final class Printer {
      */
     public static void greet() {
         print_line();
-        print("Hello! I'm jenny.JennyBot");
+        print("Hello! I'm JennyBot");
         print("What can I do for you?");
         print_line();
     }
@@ -62,7 +62,7 @@ public final class Printer {
     /**
      * Prints a message.
      *
-     * @param scope location of the message.
+     * @param scope   location of the message.
      * @param message a message.
      */
     public static void echo(String scope, String message) {
@@ -72,15 +72,15 @@ public final class Printer {
     }
 
     /**
-     * Prints list of JennyTasks.
+     * Prints list of tasks.
      *
-     * @param abstractTasks list of JennyTasks.
+     * @param tasks list of tasks.
      */
-    public static void list(ArrayList<AbstractTask> abstractTasks) {
+    public static void list(ArrayList<AbstractTask> tasks) {
         print_line();
         int i = 1;
-        for (AbstractTask abstractTask : abstractTasks) {
-            print(i++ + "." + abstractTask.toString());
+        for (AbstractTask task : tasks) {
+            print(i++ + "." + task.toString());
         }
         print_line();
     }
@@ -88,37 +88,37 @@ public final class Printer {
     /**
      * Prints a mark message.
      *
-     * @param taskItem string representation of a AbstractTask.
+     * @param task string representation of a task.
      */
-    public static void mark(String taskItem) {
+    public static void mark(String task) {
         print_line();
         print("Nice! I've marked this task as done:");
-        print("  " + taskItem);
+        print("  " + task);
         print_line();
     }
 
     /**
      * Prints unmark message.
      *
-     * @param taskItem string representation of a AbstractTask.
+     * @param task string representation of a task.
      */
-    public static void unmark(String taskItem) {
+    public static void unmark(String task) {
         print_line();
         print("OK, I've marked this task as not done yet:");
-        print("  " + taskItem);
+        print("  " + task);
         print_line();
     }
 
     /**
      * Prints an add message.
      *
-     * @param taskItem string representation of a AbstractTask.
+     * @param task string representation of a task.
      * @param size     size of the list.
      */
-    public static void add(String taskItem, int size) {
+    public static void add(String task, int size) {
         print_line();
         print("Got it. I've added this task:");
-        print("  " + taskItem);
+        print("  " + task);
         print("Now you have " + size + " tasks in the list.");
         print_line();
     }
@@ -126,13 +126,13 @@ public final class Printer {
     /**
      * Prints a delete message.
      *
-     * @param taskItem string representation of a AbstractTask.
+     * @param task string representation of a task.
      * @param size     size of the list.
      */
-    public static void delete(String taskItem, int size) {
+    public static void delete(String task, int size) {
         print_line();
         print("Got it. I've added this task:");
-        print("  " + taskItem);
+        print("  " + task);
         print("Now you have " + size + " tasks in the list.");
         print_line();
     }

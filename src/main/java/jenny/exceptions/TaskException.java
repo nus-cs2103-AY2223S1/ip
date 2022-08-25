@@ -3,7 +3,7 @@ package jenny.exceptions;
 import jenny.tasks.AbstractTask;
 
 /**
- * Encapsulates an instance to represent exceptions thrown in the {@link AbstractTask} class.
+ * Represents exceptions thrown in the {@link AbstractTask AbstrackTask} class and its members.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
@@ -11,7 +11,8 @@ import jenny.tasks.AbstractTask;
  */
 public class TaskException extends IllegalArgumentException {
     /**
-     * Constructor of a TaskException.
+     * Creates an instance of the exception.
+     *
      * @param errorMessage error message of the exception.
      */
     public TaskException(String errorMessage) {

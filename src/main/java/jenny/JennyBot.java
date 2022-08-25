@@ -1,33 +1,32 @@
 package jenny;
 
 import jenny.exceptions.TaskException;
-import jenny.storage.Storage;
+import jenny.storage.TaskStorage;
 import jenny.tasks.AbstractTask;
-import jenny.tasks.Deadline;
-import jenny.tasks.Event;
-import jenny.tasks.Todo;
+import jenny.tasks.DeadlineTask;
+import jenny.tasks.EventTask;
+import jenny.tasks.TodoTask;
 import jenny.util.Printer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Starting point of jenny.JennyBot chatbot.
+ * Initialise the JennyBot application.
  * CS2103 Week 2
  * AY21/22 Semester 1
  *
  * @author Deon
  */
-
 public final class JennyBot {
-    private static ArrayList<AbstractTask> abstractTasks = new ArrayList<>();
     private static final String MESSAGE_SCOPE = JennyBot.class.getSimpleName();
+    private static final TaskStorage<ArrayList<AbstractTask>> TASK_STORAGE = new TaskStorage<>("tasks.txt");
+    private static ArrayList<AbstractTask> tasks = new ArrayList<>();
 
     /**
-     * Starting point of the program.
+     * Starting point of the application.
      *
-     * @param args program arguments.
+     * @param args optional program arguments.
      */
     public static void main(String[] args) {
         Printer.greet();
@@ -48,10 +47,10 @@ public final class JennyBot {
 
             case "list":
                 sc.nextLine(); // flush extra text after list command.
-                if (abstractTasks.isEmpty()) {
+                if (tasks.isEmpty()) {
                     Printer.echo(MESSAGE_SCOPE, "There is nothing in your list to display.");
                 } else {
-                    Printer.list(new ArrayList<>(abstractTasks));
+                    Printer.list(new ArrayList<>(tasks));
                 }
                 break;
 
@@ -59,7 +58,7 @@ public final class JennyBot {
                 cmd = sc.nextLine().trim(); // get index number.
                 try {
                     int index = Integer.parseInt(cmd) - 1; // -1 offset for zero indexed array.
-                    abstractTask = abstractTasks.get(index);
+                    abstractTask = tasks.get(index);
                     abstractTask.markAsDone(true);
                     Printer.mark(abstractTask.toString());
                 } catch (NumberFormatException e) {
@@ -72,7 +71,7 @@ public final class JennyBot {
             case "unmark":
                 cmd = sc.nextLine().trim(); // get index number.
                 try {
-                    abstractTask = abstractTasks.get(Integer.parseInt(cmd) - 1);
+                    abstractTask = tasks.get(Integer.parseInt(cmd) - 1);
                     abstractTask.markAsDone(false);
                     Printer.unmark(abstractTask.toString());
                 } catch (NumberFormatException e) {
@@ -85,9 +84,9 @@ public final class JennyBot {
             case "todo":
                 cmd = sc.nextLine().trim(); // get abstractTask description.
                 try {
-                    abstractTask = new Todo(cmd);
-                    abstractTasks.add(abstractTask);
-                    Printer.add(abstractTask.toString(), abstractTasks.size());
+                    abstractTask = new TodoTask(cmd);
+                    tasks.add(abstractTask);
+                    Printer.add(abstractTask.toString(), tasks.size());
                 } catch (TaskException e) {
                     Printer.echo(e.getMessage());
                 }
@@ -97,9 +96,9 @@ public final class JennyBot {
                 cmd = sc.nextLine().trim(); // get abstractTask description and due date.
                 String[] deadlineTask = cmd.split(" /by ");
                 try {
-                    abstractTask = new Deadline(deadlineTask[0], deadlineTask[1]);
-                    abstractTasks.add(abstractTask);
-                    Printer.add(abstractTask.toString(), abstractTasks.size());
+                    abstractTask = new DeadlineTask(deadlineTask[0], deadlineTask[1]);
+                    tasks.add(abstractTask);
+                    Printer.add(abstractTask.toString(), tasks.size());
                 } catch (ArrayIndexOutOfBoundsException e) {
                     Printer.echo(MESSAGE_SCOPE,
                             "You have entered an invalid format for deadline <description> /by <due date>.");
@@ -112,9 +111,9 @@ public final class JennyBot {
                 cmd = sc.nextLine().trim(); // get abstractTask description and due date.
                 String[] eventTask = cmd.split(" /at ");
                 try {
-                    abstractTask = new Event(eventTask[0], eventTask[1]);
-                    abstractTasks.add(abstractTask);
-                    Printer.add(abstractTask.toString(), abstractTasks.size());
+                    abstractTask = new EventTask(eventTask[0], eventTask[1]);
+                    tasks.add(abstractTask);
+                    Printer.add(abstractTask.toString(), tasks.size());
                 } catch (ArrayIndexOutOfBoundsException e) {
                     Printer.echo(MESSAGE_SCOPE,
                             "You have entered an invalid format for event <description> /by <due date>.");
@@ -126,8 +125,8 @@ public final class JennyBot {
             case "delete":
                 cmd = sc.nextLine().trim(); // get index number.
                 try {
-                    abstractTask = abstractTasks.remove(Integer.parseInt(cmd) - 1);
-                    Printer.delete(abstractTask.toString(), abstractTasks.size());
+                    abstractTask = tasks.remove(Integer.parseInt(cmd) - 1);
+                    Printer.delete(abstractTask.toString(), tasks.size());
                 } catch (NumberFormatException e) {
                     Printer.echo(MESSAGE_SCOPE, "You have entered a invalid number for delete <number>.");
                 } catch (IndexOutOfBoundsException e) {
@@ -136,23 +135,12 @@ public final class JennyBot {
                 break;
 
             case "save":
-                try {
-                    Storage storage = new Storage();
-                    storage.save(abstractTasks);
-                } catch (IOException e) {
-                    Printer.echo(MESSAGE_SCOPE, "I/O Exception when saving in jenny.storage.Storage.");
-                }
+                TASK_STORAGE.save(tasks);
                 break;
 
             case "load":
-                try {
-                    Storage storage = new Storage();
-                    abstractTasks = storage.load();
-                } catch (IOException e) {
-                    Printer.echo(MESSAGE_SCOPE, "I/O Exception when loading in jenny.storage.Storage.");
-                } catch (ClassNotFoundException e) {
-                    Printer.echo(MESSAGE_SCOPE, "Loaded a corrupted save in jenny.storage.Storage.");
-                }
+                tasks = TASK_STORAGE.load();
+                Printer.list(new ArrayList<>(tasks));
                 break;
 
             default:
