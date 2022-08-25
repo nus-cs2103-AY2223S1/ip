@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
     private String LINE_BREAK = "\t-------------------------------";
     private String FILE_NAME;
