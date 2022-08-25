@@ -12,4 +12,8 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
 
+    @Override
+    public String toStringForFile() {
+        return super.toStringForFile() + "deadline " + this.description + " /by " + this.by;
+    }
 }

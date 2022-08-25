@@ -3,12 +3,15 @@ import java.util.ArrayList;
 public class TaskList {
 
     protected ArrayList<Task> tasks;
+    protected Storage storage;
 
     public TaskList() {
-        this.tasks = new ArrayList<>();
+        this.storage = new Storage();
+        this.tasks = storage.readFile();
     }
 
     public void showList() {
+        this.tasks = storage.readFile();
         this.drawLine();
         this.indentMessage("Here are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
@@ -27,6 +30,8 @@ public class TaskList {
         this.indentMessage("Nice! I've marked this task as done:");
         this.indentMessage("  " + task);
         this.drawLine();
+
+        this.storage.writeToFile(this.tasks);
     }
 
     public void markAsNotDone(int index) throws DukeException {
@@ -39,6 +44,8 @@ public class TaskList {
         this.indentMessage("OK, I've marked this task as not done yet:");
         this.indentMessage("  " + task);
         this.drawLine();
+
+        this.storage.writeToFile(this.tasks);
     }
     
     public void indentMessage(String msg) {
@@ -49,15 +56,16 @@ public class TaskList {
         Duke.drawLine();
     }
 
-    public void addToList(String msg) {
-        Task task = new Task(msg);
-        this.tasks.add(task);
-
-        this.drawLine();
-        this.indentMessage("Task successfully added!");
-        this.indentMessage("  " + task);
-        this.drawLine();
-    }
+//    public void addToList(String msg) {
+//        Task task = new Task(msg);
+//        this.tasks.add(task);
+//
+//        this.drawLine();
+//        this.indentMessage("Task successfully added!");
+//        this.indentMessage("  " + task);
+//        this.drawLine();
+//
+//    }
 
     public void addTodo(String msg) throws DukeException {
 
@@ -80,6 +88,8 @@ public class TaskList {
         this.indentMessage("  " + task);
         showNumberOfTasks();
         this.drawLine();
+
+        this.storage.writeToFile(this.tasks);
     }
 
     public void addDeadline(String msg) throws DukeException {
@@ -116,6 +126,8 @@ public class TaskList {
         this.indentMessage("  " + task);
         showNumberOfTasks();
         this.drawLine();
+
+        this.storage.writeToFile(this.tasks);
     }
 
     public void addEvent(String msg) throws DukeException {
@@ -152,6 +164,8 @@ public class TaskList {
         this.indentMessage("  " + task);
         showNumberOfTasks();
         this.drawLine();
+
+        this.storage.writeToFile(this.tasks);
     }
 
     public void deleteTask(int index) throws DukeException {
@@ -165,6 +179,8 @@ public class TaskList {
         this.indentMessage("  " + task);
         showNumberOfTasks();
         this.drawLine();
+
+        this.storage.writeToFile(this.tasks);
     }
 
     public void showNumberOfTasks() {

@@ -9,4 +9,9 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
+    @Override
+    public String toStringForFile() {
+        return super.toStringForFile() + "todo " + this.description;
+    }
+
 }

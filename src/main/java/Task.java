@@ -23,4 +23,12 @@ public class Task {
     public void markAsNotDone() {
         this.isDone = false;
     }
+
+    public String toStringForFile() {
+        if (this.isDone) {
+            return "M|";
+        } else {
+            return "N|";
+        }
+    }
 }

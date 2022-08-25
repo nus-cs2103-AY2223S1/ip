@@ -12,4 +12,9 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + at + ")";
     }
 
+    @Override
+    public String toStringForFile() {
+        return super.toStringForFile() + "event " + this.description + " /at " + this.at;
+    }
+
 }
