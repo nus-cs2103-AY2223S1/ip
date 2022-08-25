@@ -3,6 +3,7 @@ package DukeBot.command;
 import DukeBot.DukeException;
 import DukeBot.Task;
 import DukeBot.TaskList;
+import DukeBot.Ui;
 
 public class MarkCommand extends Command {
 
@@ -16,7 +17,7 @@ public class MarkCommand extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(Ui ui) throws DukeException {
         String[] s = command.split(" ");
         if (s.length != 2) {
             throw new DukeException("list command in this format: list <index>");

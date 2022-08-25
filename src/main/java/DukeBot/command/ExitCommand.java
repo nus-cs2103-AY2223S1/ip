@@ -2,6 +2,7 @@ package DukeBot.command;
 
 import DukeBot.DukeException;
 import DukeBot.TaskList;
+import DukeBot.Ui;
 
 public class ExitCommand extends Command {
 
@@ -20,10 +21,10 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(Ui ui) throws DukeException {
         if (!command.equals("bye")) {
             throw new DukeException("Not sure what that means.");
         }
-        System.out.println("    Bye. Hope to see you again soon!");
+        ui.showBye();
     }
 }

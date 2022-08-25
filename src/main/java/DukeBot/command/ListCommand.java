@@ -3,6 +3,7 @@ package DukeBot.command;
 import DukeBot.DukeException;
 import DukeBot.Task;
 import DukeBot.TaskList;
+import DukeBot.Ui;
 
 public class ListCommand extends Command {
 
@@ -16,13 +17,10 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(Ui ui) throws DukeException {
         if (!command.equals("list")) {
             throw new DukeException("Sorry, I'm not sure what that means");
         }
-        System.out.println("    Here are the tasks in your list:");
-        for (int i = 0; i < Task.getTaskCount(); i++) {
-            System.out.println(String.format("      %d. %s", i + 1, tasks.get(i)));
-        }
+        ui.showList(tasks);
     }
 }

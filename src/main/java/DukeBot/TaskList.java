@@ -18,11 +18,9 @@ public class TaskList extends ArrayList<Task> {
         }
     }
 
-    public void deleteTask(int taskToDelete) {
+    public Task deleteTask(int taskToDelete) {
         Task deletedTask = this.remove(taskToDelete);
         Task.reduceTaskCount();
-        System.out.println("    Noted. I've removed this task:");
-        System.out.println(String.format("      %s", deletedTask));
-        System.out.println(String.format("    Now you have %d tasks in the list.", Task.getTaskCount()));
+        return deletedTask;
     }
 }

@@ -2,6 +2,7 @@ package DukeBot.command;
 
 import DukeBot.DukeException;
 import DukeBot.TaskList;
+import DukeBot.Ui;
 
 public class DeleteCommand extends Command {
 
@@ -15,7 +16,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute() throws DukeException {
+    public void execute(Ui ui) throws DukeException {
         String[] s = command.split(" ");
         if (s.length != 2) {
             throw new DukeException("delete command in this format: delete <index>");
@@ -26,6 +27,6 @@ public class DeleteCommand extends Command {
         } catch (NumberFormatException e) {
             throw new DukeException("delete command in this format: delete <index>");
         }
-        tasks.deleteTask(indexOfTask - 1);
+        ui.showDelete(tasks.deleteTask(indexOfTask - 1));
     }
 }

@@ -1,7 +1,7 @@
 package DukeBot.command;
 
 import DukeBot.DukeException;
-import DukeBot.TaskList;
+import DukeBot.Ui;
 
 /**
  * Abstract class that encapsulates a command.
@@ -20,5 +20,5 @@ public abstract class Command {
     /**
      * Executes the command.
      */
-    public abstract void execute() throws DukeException;
+    public abstract void execute(Ui ui) throws DukeException;
 }
