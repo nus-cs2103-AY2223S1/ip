@@ -2,6 +2,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -54,7 +56,7 @@ public class Database {
                         task = new Event(desc, strArr[3]);
                         break;
                     case "DEADLINE":
-                        task = new Deadline(desc, strArr[3]);
+                        task = new Deadline(desc, LocalDate.parse(strArr[3]));
                         break;
                     default:
                         throw new IOException();
@@ -68,6 +70,8 @@ public class Database {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println("Error: Could not load file into array");
+        } catch (DateTimeParseException e) {
+            System.out.println("Deadline format is incorrect");
         }
         return newList;
     }
