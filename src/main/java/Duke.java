@@ -117,7 +117,7 @@ public class Duke {
 
      private static void parseFile(File file) throws FileNotFoundException {
          Scanner scanner = new Scanner(file);
-         System.out.println("parsing activated");
+         //System.out.println("parsing activated");
          //fix the whitespacing problem or it is gonna be even more painful later!
 
 
@@ -127,10 +127,7 @@ public class Duke {
              String taskContentHelper = task[4].split(" ", 2)[1];//the task and time without the brackets
              String taskContent = taskContentHelper.split("\\(")[0].trim();//just the task
              //System.out.println("task main content" + taskContentHelper);
-             //System.out.println("task1 " + taskContent);
-             for (int i = 0; i < task.length; i++) {
-                 System.out.println("Array index: " + task[i]);
-             }
+             System.out.println("task1 " + taskContent);
              String taskMark = task[3];
              String taskType = task[1];
              Task newTask;
@@ -145,24 +142,33 @@ public class Duke {
                  inputs.add(newTask);
              } else if (taskType.equals("D")) {
                  //System.out.println("event parsed");
-                 String[] preciseContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment
-                 //System.out.println("preciseContent: " + preciseContent[1]);
-                 String time[] = preciseContent[1].split(" ");//array of the elements in the time
-                 String date  = time[1];//the specific date
-                 //System.out.println(date);
+                 String[] timingContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment
+                 System.out.println("timingContent: " + timingContent[1]);
+                 //small problem where the user may not specify porperly
+                 String time[] = timingContent[1].split(" ");//array of the elements in the time
+                 String dateHelper = "";// the specific date
+                 for (int i = 1; i < time.length; i++) {
+                     dateHelper += time[i] + " ";
+                 }
+                 String date = dateHelper.trim();
+                 //System.out.println(date + "no");
                  newTask = new Deadline(taskContent, date);
                  if (taskMark.equals("X")) {
                      newTask.setDone();
                  }
                  inputs.add(newTask);
              } else {
-                 //System.out.println("event parsed");
-                 String[] preciseContent = taskContentHelper.split("[\\(||\\)]");
-                 //System.out.println("preciseContent: " + preciseContent[1]);
-                 String time[] = preciseContent[1].split(" ");
-                 String at  = time[1] + " " + time[2];
-                 //System.out.println(at);
-                 newTask = new Event(taskContent, at);
+                 String[] timingContent = taskContentHelper.split("[\\(||\\)]");//this is to split up and obtain time segment
+                 //System.out.println("timingContent: " + timingContent[1]);
+                 //small problem where the user may not specify porperly
+                 String time[] = timingContent[1].split(" ");//array of the elements in the time
+                 String dateHelper = "";// the specific date
+                 for (int i = 1; i < time.length; i++) {
+                     dateHelper += time[i] + " ";
+                 }
+                 String date = dateHelper.trim();
+                 //System.out.println(date + "no");
+                 newTask = new Event(taskContent, date);
                  if (taskMark.equals("X")) {
                      newTask.setDone();
                  }
@@ -185,10 +191,6 @@ public class Duke {
                 + "|____/ \\,_|_|\\_\\___|\n";
 
         System.out.println("Hello I'm\n" + logo + "What can I do for you?\n");
-
-        Scanner sc = new Scanner(System.in);
-        String str = sc.nextLine();
-
         try{
             File dukeFile = new File("data/duke.txt");
             dukeFile.getParentFile().mkdirs();//create the directory
@@ -196,11 +198,15 @@ public class Duke {
                 System.out.println("new file created!");
             } else {
                 parseFile(dukeFile);
-                System.out.println("reading file");
+                System.out.println("updated file");
             }
         }catch (IOException e) {
             System.out.println("Error in creating file");
         }
+
+
+        Scanner sc = new Scanner(System.in);
+        String str = sc.nextLine();
 
         while(!str.equals("bye"))
         {
