@@ -6,11 +6,30 @@ import scottie.ui.Ui;
 
 import java.util.Map;
 
+/**
+ * Encapsulates the delete instruction which is used to
+ * delete a task from the task list.
+ */
 class DeleteInstruction extends Instruction {
+    /**
+     * Constructs a DeleteInstruction with the given arguments.
+     *
+     * @param mainArgument The main argument provided to this instruction.
+     * @param flagArgumentsMap The map between flags and values provided to
+     *                         this instruction.
+     */
     DeleteInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         super(mainArgument, flagArgumentsMap);
     }
 
+    /**
+     * Deletes a task from the given TaskList.
+     * The main argument of this instruction is interpreted as
+     * the index of the Task to delete.
+     *
+     * @param taskList The TaskList to delete the task from.
+     * @param ui The Ui used to display messages to the user.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (this.hasMainArgument()) {

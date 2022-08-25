@@ -8,11 +8,30 @@ import scottie.ui.Ui;
 import java.time.temporal.TemporalAccessor;
 import java.util.Map;
 
+/**
+ * Encapsulates the deadline instruction which is used to
+ * add a deadline to the task list.
+ */
 class DeadlineInstruction extends Instruction {
+    /**
+     * Constructs a DeadlineInstruction with the given arguments.
+     *
+     * @param mainArgument The main argument provided to this instruction.
+     * @param flagArgumentsMap The map between flags and values provided to
+     *                         this instruction.
+     */
     DeadlineInstruction(String mainArgument, Map<String, String> flagArgumentsMap) {
         super(mainArgument, flagArgumentsMap);
     }
 
+    /**
+     * Adds a new Deadline to the given TaskList.
+     * The main argument of this instruction is used as the Deadline's
+     * description and the "by" flag argument is used as the end date time.
+     *
+     * @param taskList The TaskList to add the Deadline to.
+     * @param ui The Ui used to display messages to the user.
+     */
     @Override
     public void execute(TaskList taskList, Ui ui) {
         if (!this.hasMainArgument()) {
