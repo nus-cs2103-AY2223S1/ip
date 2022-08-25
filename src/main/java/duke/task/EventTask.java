@@ -1,21 +1,24 @@
 package duke.task;
 
-import duke.Duke;
+import java.time.LocalDateTime;
 
 public class EventTask extends Task {
 
     private static final String LABEL = "E";
 
-    private String dateTime;
+    private LocalDateTime dateTime;
 
-    protected EventTask(String taskTitle, String dateTime) {
+    protected EventTask(String taskTitle, LocalDateTime dateTime) {
         super(taskTitle, TaskType.EVENT);
         this.dateTime = dateTime;
     }
 
     @Override
     public String toString() {
-        return super.getStringRepresentation(LABEL, super.taskTitle + " at " + dateTime);
+        return super.getStringRepresentation(
+                LABEL,
+                super.taskTitle + " at " + dateTime.format(Task.OUTPUT_FORMATTER)
+        );
     }
 
     @Override

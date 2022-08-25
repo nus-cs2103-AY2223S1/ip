@@ -203,6 +203,8 @@ public class Duke {
                 output = exception.getMessage();
             } catch (DukeTaskDateTimeMissingException exception) {
                 output = exception.getMessage();
+            } catch (DukeDateTimeFormatException exception) {
+                output = exception.getMessage();
             }
 
             System.out.println(OutputFormatter.formatOutput(output));
