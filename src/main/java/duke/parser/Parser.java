@@ -1,10 +1,14 @@
 package duke.parser;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 import duke.commands.AddCommand;
 import duke.commands.Command;
 import duke.commands.DeleteCommand;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.UnmarkCommand;
@@ -70,6 +74,12 @@ public class Parser {
 
             case ListCommand.LIST_COMMAND:
                 return new ListCommand();
+
+            case FindCommand.FIND_COMMAND:
+                arguments = userInput.trim().split(" ", 2)[1];
+                Set<String> keywords = new HashSet<>();
+                keywords.add(arguments);
+                return new FindCommand(keywords);
 
             case ExitCommand.EXIT_COMMAND:
                 return new ExitCommand();
