@@ -1,9 +1,9 @@
 package task;
 
 public class Deadline extends Task {
-    private final String deadline;
+    private final DeadlineDateTime deadline;
 
-    public Deadline(String taskItem, String deadline) {
+    public Deadline(String taskItem, DeadlineDateTime deadline) {
         super(taskItem);
         this.deadline = deadline;
     }
