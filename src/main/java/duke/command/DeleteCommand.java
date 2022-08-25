@@ -1,7 +1,14 @@
-public class UnmarkCommand extends Command {
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+
+public class DeleteCommand extends Command {
     int index;
 
-    public UnmarkCommand(int index) {
+    public DeleteCommand(int index) {
         this.index = index;
     }
 
@@ -10,9 +17,10 @@ public class UnmarkCommand extends Command {
         if (index >= tasks.size()) {
             throw new DukeException("It seems that there is no corresponding task.");
         }
-        tasks.get(index).setStatus(false);
+        ui.deleteMessage(tasks, index, false);
+        tasks.remove(index);
         storage.writeFile(tasks, ui);
-        ui.unmarkMessage(tasks, index);
+        ui.deleteMessage(tasks, index, true);
     }
 
     @Override
