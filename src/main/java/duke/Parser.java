@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
-
 /**
  * Handles user input.
  */
@@ -29,7 +28,7 @@ public class Parser {
      * Constructor
      *
      * @param list The storage list used.
-     * @param ui The Ui interface used.
+     * @param ui   The Ui interface used.
      */
     public Parser(Storage list, Ui ui) {
         this.storage = list;

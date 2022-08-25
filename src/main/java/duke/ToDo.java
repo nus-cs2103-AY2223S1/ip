@@ -2,7 +2,7 @@ package duke;
 
 
 /**
- * Has similar functionality to duke.Task
+ * Has similar functionality to duke.Task.
  *
  * @author Yuvaraj Kumaresan
  */
