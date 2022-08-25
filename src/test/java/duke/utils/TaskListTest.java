@@ -39,15 +39,13 @@ public class TaskListTest {
         assertEquals(taskList.getTask(0), task);
     }
 
-//    @Test
-//    public void deleteTaskTest() {
-//        IndexOutOfBoundsException thrown = assertThrows(IndexOutOfBoundsException.class, () -> {
-//            Task task = new TaskStub();
-//            TaskList taskList = new TaskList();
-//            taskList.addTask(task);
-//            taskList.deleteTask(0);
-//        }, "IndexOutOfBoundsException was expected");
-//
-//        assertEquals("", thrown.getMessage());
-//    }
+    @Test
+    public void deleteTaskTest() {
+        IndexOutOfBoundsException thrown = assertThrows(IndexOutOfBoundsException.class, () -> {
+            TaskList taskList = new TaskList();
+            taskList.deleteTask(0);
+        });
+
+        assertEquals("Index 0 out of bounds for length 0", thrown.getMessage());
+    }
 }

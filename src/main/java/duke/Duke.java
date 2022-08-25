@@ -28,7 +28,6 @@ public class Duke {
      * Main application loop for duke.Duke.
      */
     public void run() {
-        taskList.deleteTask(0);
         boolean isExit = false;
 
         ui.sayGreetings();
