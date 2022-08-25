@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 
 public class Duke {
@@ -87,102 +90,122 @@ public class Duke {
      * @param tasks The task list
      */
     public static void createNewTask(String firstWord, String[] strArray, ArrayList<Task> tasks) throws DukeException {
-        if (firstWord.equals("todo")) {
-            // throw exception if no word after to-do
-            if (strArray.length < 2) {
-                throw new DukeException("The description of a todo cannot be empty.");
-            }
-
-            StringBuilder todoStr = new StringBuilder();
-            for (int i = 1; i < strArray.length; i++) {
-                todoStr.append(" ").append(strArray[i]);
-            }
-            tasks.add(new Todo(todoStr.toString()));
-            System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
-                    "\nNow you have " + tasks.size() + " tasks in the list.");
-
-        } else if (firstWord.equals("deadline")) {
-            // throw exception if no word after deadline
-            if (strArray.length < 2) {
-                throw new DukeException("The description of a deadline cannot be empty.");
-            }
-
-            // throw exception if no deadline time
-            int indexCheck = 1000;
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/by")) {
-                    indexCheck = i;
+        switch (firstWord) {
+            case "todo": {
+                // throw exception if no word after to-do
+                if (strArray.length < 2) {
+                    throw new DukeException("The description of a todo cannot be empty.");
                 }
-            }
-            if (indexCheck == 1000) {
-                throw new DukeException("This description needs a timing! Add again with /by followed by the deadline timing.");
+
+                StringBuilder todoStr = new StringBuilder();
+                for (int i = 1; i < strArray.length; i++) {
+                    todoStr.append(" ").append(strArray[i]);
+                }
+                tasks.add(new Todo(todoStr.toString()));
+                System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
+                        "\nNow you have " + tasks.size() + " tasks in the list.");
+
+                break;
             }
 
-            // create deadline string and deadline
-            StringBuilder deadlineStr = new StringBuilder();
-            StringBuilder deadline = new StringBuilder();
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/by")) {
-                    break;
-                } else {
-                    deadlineStr.append(" ");
-                    deadlineStr.append(strArray[i]);
+            case "deadline": {
+                // throw exception if no word after deadline
+                if (strArray.length < 2) {
+                    throw new DukeException("The description of a deadline cannot be empty.");
                 }
-            }
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/by")) {
-                    for (int j = i + 1; j < strArray.length; j++) {
-                        deadline.append(" ");
-                        deadline.append(strArray[j]);
+
+                // throw exception if no deadline time
+                int indexCheck = 1000;
+                for (int i = 1; i < strArray.length; i++) {
+                    if (strArray[i].equals("/by")) {
+                        indexCheck = i;
                     }
-                    break;
                 }
-            }
-            tasks.add(new Deadline(deadlineStr.toString(), deadline.toString()));
-            System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
-                    "\nNow you have " + tasks.size() + " tasks in the list.");
-
-        } else if (firstWord.equals("event")) {
-            // throw exception if no word after event
-            if (strArray.length < 2) {
-                throw new DukeException("The description of an event cannot be empty.");
-            }
-
-            // throw exception if no event time
-            int indexCheck = 1000;
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/at")) {
-                    indexCheck = i;
+                if (indexCheck == 1000) {
+                    throw new DukeException("This description needs a timing! Add again with /by followed by the deadline timing.");
                 }
-            }
-            if (indexCheck == 1000) {
-                throw new DukeException("This description needs a timing! Add again with /at followed by the deadline timing.");
-            }
 
-            // create event string and deadline
-            StringBuilder eventStr = new StringBuilder();
-            StringBuilder eventTime = new StringBuilder();
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/at")) {
-                    break;
-                } else {
-                    eventStr.append(" ");
-                    eventStr.append(strArray[i]);
-                }
-            }
-            for (int i = 1; i < strArray.length; i++) {
-                if (strArray[i].equals("/at")) {
-                    for (int j = i + 1; j < strArray.length; j++) {
-                        eventTime.append(" ");
-                        eventTime.append(strArray[j]);
+                // create deadline string and deadline
+                StringBuilder deadlineStr = new StringBuilder();
+                String deadline = "";
+                for (int i = 1; i < strArray.length; i++) {
+                    if (strArray[i].equals("/by")) {
+                        break;
+                    } else {
+                        deadlineStr.append(" ");
+                        deadlineStr.append(strArray[i]);
                     }
+                }
+                for (int i = 1; i < strArray.length; i++) {
+                    if (strArray[i].equals("/by")) {
+                        if (i + 1 > strArray.length - 1) {
+                            System.out.println("Please type a deadline after /by");
+                        } else {
+                            deadline = strArray[i + 1];
+                        }
+                        break;
+                    }
+                }
+
+                // make sure deadline is in correct format to accept input
+                String deadlinePattern = "yyyy-MM-dd";
+                DateTimeFormatter deadlineFormatter = DateTimeFormatter.ofPattern(deadlinePattern);
+                try {
+                    LocalDate.parse(deadline, deadlineFormatter);
+                } catch (DateTimeParseException e) {
+                    System.out.println("Invalid deadline format! Please type in deadline format as yyyy-MM-dd");
                     break;
                 }
-            }
-            tasks.add(new Event(eventStr.toString(), eventTime.toString()));
-            System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
-                    "\nNow you have " + tasks.size() + " tasks in the list.");
+                tasks.add(new Deadline(deadlineStr.toString(), LocalDate.parse(deadline)));
+                System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
+                        "\nNow you have " + tasks.size() + " tasks in the list.");
 
+                break;
+            }
+
+            case "event": {
+                // throw exception if no word after event
+                if (strArray.length < 2) {
+                    throw new DukeException("The description of an event cannot be empty.");
+                }
+
+                // throw exception if no event time
+                int indexCheck = 1000;
+                for (int i = 1; i < strArray.length; i++) {
+                    if (strArray[i].equals("/at")) {
+                        indexCheck = i;
+                    }
+                }
+                if (indexCheck == 1000) {
+                    throw new DukeException("This description needs a timing! Add again with /at followed by the deadline timing.");
+                }
+
+                // create event string and deadline
+                StringBuilder eventStr = new StringBuilder();
+                StringBuilder eventTime = new StringBuilder();
+                for (int i = 1; i < strArray.length; i++) {
+                    if (strArray[i].equals("/at")) {
+                        break;
+                    } else {
+                        eventStr.append(" ");
+                        eventStr.append(strArray[i]);
+                    }
+                }
+                for (int i = 1; i < strArray.length; i++) {
+                    if (strArray[i].equals("/at")) {
+                        for (int j = i + 1; j < strArray.length; j++) {
+                            eventTime.append(" ");
+                            eventTime.append(strArray[j]);
+                        }
+                        break;
+                    }
+                }
+                tasks.add(new Event(eventStr.toString(), eventTime.toString()));
+                System.out.println("Got it. I've added this task:\n  " + tasks.get(tasks.size() - 1) +
+                        "\nNow you have " + tasks.size() + " tasks in the list.");
+
+                break;
+            }
         }
     }
 

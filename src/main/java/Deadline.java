@@ -1,15 +1,17 @@
+import java.time.LocalDate;
+
 public class Deadline extends Task {
-    protected String by;
+    protected LocalDate date;
 
     /**
      * Constructor for the deadline type of task.
      *
      * @param description description of the deadline task
-     * @param by the deadline timing of the deadline task
+     * @param date the deadline timing of the deadline task
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, LocalDate date) {
         super(description);
-        this.by = by;
+        this.date = date;
     }
 
     /**
@@ -19,6 +21,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + date.getMonth() + " "
+                + date.getDayOfMonth() + " " + date.getYear() + ")";
     }
 }
