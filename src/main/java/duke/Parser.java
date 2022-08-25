@@ -5,7 +5,7 @@ import java.util.Set;
 // TODO 1: Parse the commands
 public class Parser {
     private static final Set<String> SET_OF_COMMANDS = Set.of(
-            "bye", "list", "mark", "unmark", "delete", "todo", "deadline", "event");
+            "bye", "list", "mark", "unmark", "delete", "find", "todo", "deadline", "event");
 
     public static Command parse(String fullCommand) throws DukeException {
         // split into ["userCommand", "description"]
@@ -32,6 +32,9 @@ public class Parser {
             break;
         case "delete":
             command = new DeleteCommand(parseIndex(getDescription(userInput)));
+            break;
+        case "find":
+            command = new FindCommand(getDescription(userInput));
             break;
         default:
             String taskDescription = getDescription(userInput);
