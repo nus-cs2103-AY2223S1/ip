@@ -60,9 +60,6 @@ public class ReadCommand extends Command {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof ReadCommand) {
-            return true;
-        }
-        return false;
+        return obj instanceof ReadCommand;
     }
 }

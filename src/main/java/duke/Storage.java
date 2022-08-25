@@ -14,7 +14,7 @@ public class Storage {
     /**
      * The Path of the file.
      */
-    private Path path;
+    private final Path path;
 
     /**
      * The constructor of the Class.

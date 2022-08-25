@@ -27,7 +27,7 @@ public class ListCommand extends Command {
         if (taskList.size() == 0) {
             message = "Currently no tasks in the list.";
         } else {
-            message = message + taskList.toString();
+            message = message + taskList;
         }
         messagePrinter.printMessage(message);
     }
@@ -62,9 +62,6 @@ public class ListCommand extends Command {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof ListCommand) {
-            return true;
-        }
-        return false;
+        return obj instanceof ListCommand;
     }
 }

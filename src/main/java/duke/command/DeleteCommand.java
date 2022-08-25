@@ -12,7 +12,7 @@ public class DeleteCommand extends Command {
     /**
      * The index of Task to be deleted in the TaskList.
      */
-    private int idTask;
+    private final int idTask;
 
     /**
      * The constructor of the class.

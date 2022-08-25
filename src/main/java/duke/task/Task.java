@@ -1,12 +1,6 @@
 package duke.task;
 
-import duke.Parser;
-import duke.Savable;
-import duke.exception.DukeRuntimeException;
-import duke.exception.ReadAttributeException;
-
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public abstract class Task {
     private String name;

@@ -1,9 +1,6 @@
 package duke.task;
 
 import duke.Parser;
-import duke.exception.ReadAttributeException;
-
-import java.util.ArrayList;
 
 public class Todo extends Task {
     public static final String SYMBOL = "T";
@@ -14,12 +11,12 @@ public class Todo extends Task {
 
     @Override
     public String toString() {
-        return "[" + this.SYMBOL + "]" + super.toString();
+        return "[" + SYMBOL + "]" + super.toString();
     }
 
     @Override
     public String toFormattedString() {
-        return Parser.combineAttributes(this.SYMBOL,
+        return Parser.combineAttributes(SYMBOL,
                 Integer.toString(Parser.convertBoolToInt(this.getIsDone())),
                 this.getName());
     }

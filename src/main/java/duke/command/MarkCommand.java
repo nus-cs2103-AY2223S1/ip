@@ -9,7 +9,7 @@ import duke.task.Task;
  * Represents a Command to mark a Task as done in Duke.
  */
 public class MarkCommand extends Command {
-    private int idTask;
+    private final int idTask;
 
     /**
      * The constructor of the Class.

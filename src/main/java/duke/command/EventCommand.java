@@ -14,7 +14,7 @@ public class EventCommand extends AddCommand {
     /**
      * The date and time of the Task.
      */
-    private LocalDateTime time;
+    private final LocalDateTime time;
 
     /**
      * The constructor of the class.

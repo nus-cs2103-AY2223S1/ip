@@ -86,6 +86,13 @@ public class TaskList implements Savable<TaskList> {
         }
     }
 
+    /**
+     * Returns the Task ArrayList of the TaskList.
+     * @return The Task ArrayList of the TaskList.
+     */
+    protected ArrayList<Task> getTaskList() {
+        return tasks;
+    }
 
     /**
      * Return the String representation of the TaskList.

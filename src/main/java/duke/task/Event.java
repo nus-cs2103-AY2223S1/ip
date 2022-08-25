@@ -1,10 +1,8 @@
 package duke.task;
 
 import duke.Parser;
-import duke.exception.ReadAttributeException;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 
 public class Event extends Task {
     public static final String SYMBOL = "E";
@@ -25,12 +23,12 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + this.SYMBOL + "]" + super.toString() + " (at: " + Parser.parseDateTimeToString(this.time) + ")";
+        return "[" + SYMBOL + "]" + super.toString() + " (at: " + Parser.parseDateTimeToString(this.time) + ")";
     }
 
     @Override
     public String toFormattedString() {
-        return Parser.combineAttributes(this.SYMBOL,
+        return Parser.combineAttributes(SYMBOL,
                 Integer.toString(Parser.convertBoolToInt(this.getIsDone())),
                 this.getName(),
                 Parser.parseDateTimeToString(this.getTime()));

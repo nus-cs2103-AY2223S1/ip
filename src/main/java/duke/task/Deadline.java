@@ -23,12 +23,12 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[" + this.SYMBOL + "]" + super.toString() + " (by: " + Parser.parseDateTimeToString(this.time) + ")";
+        return "[" + SYMBOL + "]" + super.toString() + " (by: " + Parser.parseDateTimeToString(this.time) + ")";
     }
 
     @Override
     public String toFormattedString() {
-        return Parser.combineAttributes(this.SYMBOL,
+        return Parser.combineAttributes(SYMBOL,
                 Integer.toString(Parser.convertBoolToInt(this.getIsDone())),
                 this.getName(),
                 Parser.parseDateTimeToString(this.getTime()));

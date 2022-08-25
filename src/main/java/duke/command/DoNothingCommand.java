@@ -56,10 +56,7 @@ public class DoNothingCommand extends Command {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof DoNothingCommand) {
-            return true;
-        }
-        return false;
+        return obj instanceof DoNothingCommand;
     }
 }
 

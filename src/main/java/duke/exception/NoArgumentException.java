@@ -12,7 +12,7 @@ public class NoArgumentException extends CompileException {
      */
     public NoArgumentException(Action action) {
         super("The description of a [" + Action.getString(action) + "] cannot be empty."
-                + "\nThe format of [" + Action.getString(action)+ "] should be '" + Action.getFormat(action)+ "'");
+                + "\nThe format of [" + Action.getString(action) + "] should be '" + Action.getFormat(action) + "'");
     }
 
     /**

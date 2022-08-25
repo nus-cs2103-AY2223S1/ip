@@ -9,7 +9,7 @@ public class TaskNotFoundException extends RuntimeException {
      * @param idTask The index of the Task.
      */
     public TaskNotFoundException(int idTask) {
-        super("Task No.: " + String.valueOf(idTask) + " is not found in the task list. \n" +
+        super("Task No.: " + idTask + " is not found in the task list. \n" +
                 "Try command [list] to show the tasks you may choose from.");
     }
 

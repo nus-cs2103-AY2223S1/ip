@@ -62,9 +62,6 @@ public class GreetCommand extends Command {
         if (this == obj) {
             return true;
         }
-        if (obj instanceof GreetCommand) {
-            return true;
-        }
-        return false;
+        return obj instanceof GreetCommand;
     }
 }
