@@ -1,16 +1,23 @@
+import command.Command;
+import exceptions.DukeException;
 import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
-import exceptions.DukeException;
-import command.Command;
 import utility.Parser;
 
+/**
+ * Main Duke class.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private UI ui;
 
+    /**
+     * Constructor.
+     * @param filePath Path where disk file should be created.
+     */
     public Duke(String filePath) {
         try {
             ui = new UI();
@@ -22,6 +29,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs Duke program.
+     */
     public void run() {
         ui.greetUser();
         boolean isExit = false;

@@ -6,10 +6,14 @@ import tasklist.TaskList;
 import ui.UI;
 import utility.Parser;
 
-public class UnmarkCommand extends Command{
+/**
+ * Unmarks given task, and updates
+ * status in TaskList and Storage.
+ */
+public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        int n = Parser.getTaskNumber(ui.currentInput, taskList.getSize());
+        int n = Parser.getTaskNumber(ui.getCurrentInput(), taskList.getSize());
         taskList.unmarkTask(n);
         String storeLine = taskList.getTask(n).toString() + "\n";
         storage.changeLine(n, storeLine);

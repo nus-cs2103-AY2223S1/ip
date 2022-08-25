@@ -6,14 +6,22 @@ import task.Deadline;
 import tasklist.TaskList;
 import ui.UI;
 import utility.Parser;
-import utility.StorageParser;
 
+/**
+ * Command that handles adding Deadline to TaskList and Storage.
+ */
 public class AddDeadlineCommand extends Command {
-    public AddDeadlineCommand() {
-    }
 
+    /**
+     * Runs when deadline is to be added.
+     * @param taskList TaskList to append Deadline to.
+     * @param ui ui provides user command.
+     * @param storage Storage space to append Deadline to.
+     * @throws DukeException When parsing user command fails.
+     */
+    @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        String userInput = ui.currentInput;
+        String userInput = ui.getCurrentInput();
         Deadline deadlineToAdd = Parser.stringToDeadline(userInput);
         String storableLine = deadlineToAdd.toString() + "\n";
         storage.appendLine(storableLine);
@@ -21,6 +29,11 @@ public class AddDeadlineCommand extends Command {
         ui.showMessage("added deadline");
     }
 
+    /**
+     * Returns false to allow program execution to continue.
+     * @return false.
+     */
+    @Override
     public boolean isExit() {
         return false;
     }

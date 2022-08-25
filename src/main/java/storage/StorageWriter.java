@@ -3,15 +3,15 @@ package storage;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
-import java.nio.file.Path;
 
 /**
  * Encapsulates all write operations to disk file storage.
  */
 public class StorageWriter {
-    Path path;
+    private Path path;
 
     public StorageWriter(Path path) {
         this.path = path;
@@ -22,7 +22,7 @@ public class StorageWriter {
      * @param s line to be appended.
      * @return true if appended successfully.
      */
-    public  boolean appendLine(String s)  {
+    public boolean appendLine(String s) {
         try {
             Files.write(path, s.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);
             return true;
@@ -43,8 +43,9 @@ public class StorageWriter {
             String temp = "";
             List<String> history = Files.readAllLines(path);
             Files.write(path, temp.getBytes(StandardCharsets.UTF_8));
-            int n = history.size(), i;
-            for (i = 0; i < n ; i ++) {
+            int n = history.size();
+            int i;
+            for (i = 0; i < n; i++) {
                 if (i != index - 1) {
                     temp = history.get(i) + "\n";
                     Files.write(path, temp.getBytes(StandardCharsets.UTF_8), StandardOpenOption.APPEND);

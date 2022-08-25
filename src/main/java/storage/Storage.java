@@ -5,21 +5,32 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+
 import exceptions.DukeException;
-import task.Task;
-import java.util.ArrayList;
 import tasklist.TaskList;
 
+
+/**
+ * Class representing disk storage used in Duke
+ * to backup task list.
+ * Requires valid file parh to be set at
+ * each run of Duke.
+ */
 public class Storage {
     private Path path;
     private final StorageReader storageReader;
     private final StorageWriter storageWriter;
 
+    /**
+     * Constructor.
+     * @param filePath String representation of relative file path.
+     */
     public Storage(String filePath) {
         createFileIfDoesntExist(filePath);
         this.storageWriter = new StorageWriter(path);
         this.storageReader = new StorageReader(path);
     }
+
     /**
      * Gets location of disk storage file.
      * @throws DukeException when Duke program run outside of Duke folder.
@@ -49,10 +60,6 @@ public class Storage {
         }
     }
 
-    public List<String> getAllLines() {
-        return storageReader.getAllLines();
-    }
-
     //Define all StorageWriter methods
 
     public boolean appendLine(String s) {
@@ -67,7 +74,13 @@ public class Storage {
         return storageWriter.changeLine(index, newString);
     }
 
-    public TaskList syncArrayList() throws DukeException{
-            return storageReader.syncArrayList();
+    //Define all StorageReader methods
+
+    public TaskList syncArrayList() throws DukeException {
+        return storageReader.syncArrayList();
+    }
+
+    public List<String> getAllLines() {
+        return storageReader.getAllLines();
     }
 }

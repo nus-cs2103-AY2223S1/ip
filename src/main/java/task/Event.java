@@ -4,9 +4,14 @@ import java.time.LocalDate;
 /**
  * Event class has a date field.
  */
-public class Event extends Task{
+public class Event extends Task {
     protected LocalDate date;
 
+    /**
+     * Constructor.
+     * @param description Description of the Event.
+     * @param date Date associated with the Event.
+     */
     public Event(String description, LocalDate date) {
         super(description);
         this.date = date;
@@ -39,7 +44,7 @@ public class Event extends Task{
     @Override
     public String longDescription() {
         String status;
-        String done = this.isDone? "was at": "is going to be on";
+        String done = this.isDone ? "was at" : "is going to be on";
         status = String.format("Event %s %s %s %d %s %d",
                 this.description, done, this.date.getDayOfWeek(),
                 this.date.getDayOfMonth() , this.date.getMonth(),
@@ -47,3 +52,4 @@ public class Event extends Task{
         return status;
     }
 }
+

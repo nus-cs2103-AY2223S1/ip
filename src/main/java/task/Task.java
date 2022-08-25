@@ -6,6 +6,10 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Constructor.
+     * @param description Description of the Task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
@@ -25,6 +29,11 @@ public class Task {
         }
         return status;
     }
+
+    /**
+     * Returns long description of the Task.
+     * @return Long description of the Task.
+     */
     public String longDescription() {
         String status;
         if (this.isDone) {
@@ -35,6 +44,9 @@ public class Task {
         return status;
     }
 
+    /**
+     * Marks Task as done.
+     */
     public void markAsDone() {
         this.isDone = true;
 

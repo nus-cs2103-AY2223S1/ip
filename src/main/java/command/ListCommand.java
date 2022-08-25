@@ -5,10 +5,13 @@ import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
 
-public class ListCommand extends Command{
+/**
+ * Lists all tasks in TaskList.
+ */
+public class ListCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        StringBuffer contents  = new StringBuffer("Tasks in your list are:\n________\n");
+        StringBuffer contents = new StringBuffer("Tasks in your list are:\n________\n");
         contents.append(taskList.getContents());
         contents.append("________\n");
         contents.append("Total: " + taskList.getSize());

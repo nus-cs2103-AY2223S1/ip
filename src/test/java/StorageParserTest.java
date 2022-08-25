@@ -1,23 +1,23 @@
-import exceptions.DukeException;
-import org.junit.jupiter.api.Test;
-import stubs.StorageStub;
-import utility.StorageParser;
-import task.Task;
-import storage.Storage;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.nio.file.Paths;
 import java.util.List;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import exceptions.DukeException;
+import stubs.StorageStub;
+import task.Task;
+import utility.StorageParser;
+
 public class StorageParserTest {
     private StorageStub storageStub = new StorageStub(Paths.get("tasksStub.txt"));
 
     @Test
-    public void test_file_line_to_task() {
+    public void fileLineToTask_convertsStringToTask_taskReturned() {
         try {
             List<String> lines = storageStub.getAllLines();
-            for (int i  = 0; i < lines.size(); i ++) {
+            for (int i = 0; i < lines.size(); i++) {
                 assert (StorageParser.fileLineToTask(lines.get(i)) instanceof Task);
             }
         } catch (DukeException d) {

@@ -5,10 +5,13 @@ import storage.Storage;
 import tasklist.TaskList;
 import ui.UI;
 
-public class ExitCommand extends Command{
+/**
+ * Causes program to terminate.
+ */
+public class ExitCommand extends Command {
     @Override
     public void execute(TaskList taskList, UI ui, Storage storage) throws DukeException {
-        String command = ui.currentInput;
+        String command = ui.getCurrentInput();
         if (command.trim().equalsIgnoreCase("bye")) {
             ui.showExitMessage();
             System.exit(0);
