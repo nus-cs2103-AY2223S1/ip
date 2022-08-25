@@ -12,7 +12,7 @@ public class Deadline extends Task {
      * @param by When to finish the task by
      */
     public Deadline(String description, String by) {
-        super(description);
+        super(description, TaskType.DEADLINE);
         this.by = by;
     }
     @Override
