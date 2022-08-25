@@ -3,11 +3,11 @@ package duke.task;
 import duke.exception.DukeException;
 
 public abstract class Task {
-    private static final String DONE = "[X]";
-    private static final String NOT_DONE = "[ ]";
-    private static final String DONE_STORAGE = "1";
-    private static final String NOT_DONE_STORAGE ="0";
-    protected static final String SEPARATOR = " | ";
+    public static final String STATUS_DONE = "[X]";
+    public static final String STATUS_NOT_DONE = "[ ]";
+    public static final String DONE_STORAGE = "1";
+    public static final String NOT_DONE_STORAGE ="0";
+    public static final String SEPARATOR = " | ";
 
     protected String description;
     protected boolean isDone;
@@ -18,7 +18,7 @@ public abstract class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? DONE : NOT_DONE); // mark done task with X
+        return (isDone ? STATUS_DONE : STATUS_NOT_DONE); // mark done task with X
     }
 
     public String getStorageStatusIcon() {

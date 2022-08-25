@@ -22,7 +22,8 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[" + EVENT_REP + "]" + super.toString() + " (at: " + this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
+        return "[" + EVENT_REP + "]" + super.toString()
+                + " (at: " + this.time.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
     @Override

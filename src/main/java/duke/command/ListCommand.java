@@ -5,7 +5,7 @@ import duke.exception.DukeException;
 
 public class ListCommand extends Command {
 
-    public static final String LIST = "Here are the tasks in your list:\n";
+    public static final String MSG_LIST = "Here are the tasks in your list:\n";
 
 
     public ListCommand(TaskList tasks) {
@@ -14,7 +14,7 @@ public class ListCommand extends Command {
 
     @Override
     public String run() throws DukeException {
-        return LIST + this.tasks.toString();
+        return MSG_LIST + this.tasks.toString();
     }
 
 }

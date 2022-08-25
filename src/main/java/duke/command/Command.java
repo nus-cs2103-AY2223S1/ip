@@ -8,7 +8,8 @@ public abstract class Command {
     protected String content;
     protected TaskList tasks;
 
-    public Command() {}
+    public Command() {
+    }
 
     public Command(TaskList tasks) {
         this.tasks = tasks;

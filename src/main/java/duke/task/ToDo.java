@@ -1,7 +1,7 @@
 package duke.task;
 
 public class ToDo extends Task {
-    private static final String TODO_REP = "T";
+    public static final String TODO_REP = "T";
 
     public ToDo(String message) {
         super(message);
