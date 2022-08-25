@@ -1,5 +1,8 @@
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.io.FileWriter;
 
@@ -141,15 +144,31 @@ public class TaskList {
         if (inputs.length != 4) {
             throw new InvalidDataFileException("Invalid Input from Data File: Insufficient details");
         } else {
-            Deadline temp = new Deadline(inputs[2], inputs[3]);
-            if (inputs[1].equalsIgnoreCase("1")) {
-                temp.markAsDone();
-            } else if (inputs[1].equalsIgnoreCase("0")) {
-                temp.markAsNotDone();
-            } else {
-                throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
+            try {
+                String dateTime[] = inputs[3].split(",", 2);
+                try {
+                    Deadline temp;
+                    if (dateTime.length == 2) {
+                        LocalDate d = LocalDate.parse(dateTime[0], DateTimeFormatter.ofPattern("MMM d yyyy"));
+                        String deadlineDateTime = d.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                        deadlineDateTime = deadlineDateTime + dateTime[1];
+                        temp = new Deadline(inputs[2], deadlineDateTime);
+                    } else {
+                        temp = new Deadline(inputs[2], dateTime[0]);
+                    }
+                    if (inputs[1].equalsIgnoreCase("1")) {
+                        temp.markAsDone();
+                    } else if (inputs[1].equalsIgnoreCase("0")) {
+                        temp.markAsNotDone();
+                    } else {
+                        throw new InvalidDataFileException("Invalid Input from Data File: Incorrect marker");
+                    }
+                    this.list.add(temp);
+                } catch (DateTimeParseException e) {}
+            } catch (InvalidCommandException e) {
+                throw new InvalidDataFileException("Invalid Input from Data File: Invalid Deadline Task");
             }
-            this.list.add(temp);
+
         }
     }
 

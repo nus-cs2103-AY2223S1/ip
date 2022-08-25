@@ -40,6 +40,6 @@ public class Deadline extends Task {
         } else {
             icon = "0";
         }
-        return "D , " + icon + " , " + this.description + " , " + this.by + "\n";
+        return "D , " + icon + " , " + this.description + " , " + this.byDateTime + "\n";
     }
 }
