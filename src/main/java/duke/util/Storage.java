@@ -5,7 +5,13 @@ import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,7 +33,7 @@ public class Storage{
                         case "T":
                             taskList.createTaskSilently(new Todo(segments[2]));
                             if (segments[1].equals("X")) {
-                                taskList.getTask(taskList.getSize() - 1).taskDone();
+                                taskList.getTask(taskList.getSize() - 1).setDone();
                             }
                             break;
 
@@ -36,7 +42,7 @@ public class Storage{
                             LocalDate date = LocalDate.parse(time);
                             taskList.createTaskSilently(new Event(segments[2], date));
                             if (segments[1].equals("X")) {
-                                taskList.getTask(taskList.getSize() - 1).taskDone();
+                                taskList.getTask(taskList.getSize() - 1).setDone();
                             }
                             break;
 
@@ -45,7 +51,7 @@ public class Storage{
                             LocalDate date2 = LocalDate.parse(time2);
                             taskList.createTaskSilently(new Deadline(segments[2], date2));
                             if (segments[1].equals("X")) {
-                                taskList.getTask(taskList.getSize() - 1).taskDone();
+                                taskList.getTask(taskList.getSize() - 1).setDone();
                             }
                             break;
                     }
