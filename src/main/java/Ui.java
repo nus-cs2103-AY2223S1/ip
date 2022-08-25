@@ -1,6 +1,12 @@
 public class Ui {
-    private static final String startUpMessage  = "Hello! I'm Duke\n"
-                                                + "What can I do for you?";
+    void showWelcome() {
+        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
+    }
+
+    void showLine() {
+        System.out.println("_".repeat(100));
+    }
+
     private static final String exitMessage = "Bye. Hope to see you again soon!";
     private static final String exitCmd = "bye";
     private static final String noTaskMessage   = "It appears you have no tasks right now,\n"
