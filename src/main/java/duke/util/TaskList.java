@@ -18,6 +18,7 @@ public class TaskList {
     private static final String GENERAL_ERROR_STRING = Duke.GENERAL_ERROR_STRING;
     private static final String DELETE_ERROR_STRING = Duke.DELETE_ERROR_STRING;
     private static final String DELETE_OUTPUT_STRING = Duke.DELETE_OUTPUT_STRING;
+    private static final String FIND_COMMAND_OUTPUT_STRING = Duke.FIND_COMMAND_OUTPUT_STRING;
 
     private List<Task> tasks;
 
@@ -106,6 +107,31 @@ public class TaskList {
             stringBuilder
                     .append(tasks.get(i).getFileRepresentation())
                     .append('\n');
+        }
+        return stringBuilder.toString();
+    }
+
+    public String find(String keyword) {
+        int len = tasks.size();
+
+        if (len == 0) {
+            return "The list is empty.";
+        }
+
+        StringBuilder stringBuilder = new StringBuilder(FIND_COMMAND_OUTPUT_STRING);
+        int displayIndex = 1;
+
+        for (int i = 0; i < len; i++) {
+            Task curr = tasks.get(i);
+            if (curr.contains(keyword)) {
+                stringBuilder
+                        .append(displayIndex++)
+                        .append(". ")
+                        .append(curr);
+                if (i < len - 1) {
+                    stringBuilder.append('\n' + TAB);
+                }
+            }
         }
         return stringBuilder.toString();
     }
