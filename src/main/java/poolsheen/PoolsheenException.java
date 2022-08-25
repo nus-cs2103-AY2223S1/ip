@@ -1,3 +1,5 @@
+package poolsheen;
+
 /**
  * General Exception Class for when the Poolsheen program encounters an error.
  * @author Ong Wee, Marcus (Tut Grp 03)

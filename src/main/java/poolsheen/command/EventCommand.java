@@ -1,4 +1,11 @@
+package poolsheen.command;
+
 import java.util.ArrayList;
+import poolsheen.IncompleteCommandException;
+import poolsheen.Storage;
+import poolsheen.TaskList;
+import poolsheen.task.Event;
+import poolsheen.Ui;
 
 public class EventCommand extends Command{
     public EventCommand(ArrayList<String> rest) {

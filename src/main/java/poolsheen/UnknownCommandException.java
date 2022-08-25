@@ -1,3 +1,5 @@
+package poolsheen;
+
 /**
  * Exception Class for when an unknown command is entered.
  * @author Ong Wee, Marcus (Tut Grp 03)

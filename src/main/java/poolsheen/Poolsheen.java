@@ -1,4 +1,7 @@
+package poolsheen;
+
 import java.io.IOException;
+import poolsheen.command.Command;
 
 /**
  * Class for the Poolsheen CLI program.

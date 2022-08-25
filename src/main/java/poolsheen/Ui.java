@@ -1,4 +1,7 @@
+package poolsheen;
+
 import java.util.Scanner;
+import poolsheen.task.Task;
 
 /**
  * Class that deals with interactions with the user.

@@ -1,4 +1,11 @@
+package poolsheen.command;
+
 import java.util.ArrayList;
+import poolsheen.IncompleteCommandException;
+import poolsheen.Storage;
+import poolsheen.task.Deadline;
+import poolsheen.TaskList;
+import poolsheen.Ui;
 
 public class DeadlineCommand extends Command {
     public DeadlineCommand(ArrayList<String> rest) {

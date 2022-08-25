@@ -1,3 +1,5 @@
+package poolsheen.task;
+
 import java.time.LocalDate;
 
 /**
@@ -8,7 +10,7 @@ import java.time.LocalDate;
 
 public abstract class Task {
     /** The details of the task */
-    protected String description;
+    public String description;
 
     /** If the task is finished */
     protected boolean isDone;

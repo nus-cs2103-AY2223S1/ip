@@ -1,3 +1,5 @@
+package poolsheen;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -5,6 +7,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.Scanner;
+import poolsheen.task.Task;
+import poolsheen.task.Event;
+import poolsheen.task.Deadline;
+import poolsheen.task.ToDo;
 
 /**
  * Class that deals with reading and writing from and to files.

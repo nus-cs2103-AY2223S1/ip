@@ -1,3 +1,5 @@
+package poolsheen;
+
 /**
  * Exception Class for when an incomplete command is entered.
  * @author Ong Wee, Marcus (Tut Grp 03)
@@ -8,7 +10,7 @@ public class IncompleteCommandException extends RuntimeException {
     String commandType;
     String whatToDo;
 
-    IncompleteCommandException(String input, String commandType, String whatToDo) {
+    public IncompleteCommandException(String input, String commandType, String whatToDo) {
         super(input);
         this.commandType = commandType;
         this.whatToDo = whatToDo;

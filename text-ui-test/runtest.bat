@@ -10,7 +10,7 @@ REM delete save from previous run
 if exist SAVE.TXT del SAVE.TXT
 
 REM compile the code into the bin folder
-javac  -encoding ISO-8859-1  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\*.java
+javac  -encoding ISO-8859-1  -cp ..\src\main\java -Xlint:none -d ..\bin ..\src\main\java\poolsheen\*.java
 IF ERRORLEVEL 1 (
     echo ********** BUILD FAILURE **********
     exit /b 1
