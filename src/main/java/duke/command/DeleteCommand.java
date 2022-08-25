@@ -10,7 +10,7 @@ import duke.task.TasksList;
 public class DeleteCommand extends Command {
     private TasksList tasksList;
     private String[] inputArray;
-    private static final String deleteMsg = "Noted. I've removed this task:\n";
+    private static final String DELETE_MSG = "Noted. I've removed this task:\n";
 
     /**
      * Creates a new DeleteCommand instance.
@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Delete the Task from the TasksList.
+     * Deletes the Task from the TasksList.
      * @return The message to be displayed upon the execution of the command.
      * @throws DukeException If the task cannot be deleted from the TasksList.
      */
@@ -36,14 +36,14 @@ public class DeleteCommand extends Command {
             int taskNumber = Integer.parseInt(this.inputArray[1]);
             Task deletedTask = this.tasksList.deleteTask(taskNumber);
             StringBuilder sb = new StringBuilder();
-            sb.append(DeleteCommand.deleteMsg + deletedTask + "\n" + "Now you have ");
+            sb.append(DeleteCommand.DELETE_MSG + deletedTask + "\n" + "Now you have ");
             if (this.tasksList.getLength() <= 1) {
                 sb.append(this.tasksList.getLength() + " task in the list.\n");
             } else {
                 sb.append(this.tasksList.getLength() + " tasks in the list.\n");
             }
             return sb.toString();
-            //exception due to parsing
+            /** exception due to parsing */
         } catch (NumberFormatException exception) {
             throw new DukeException("Please enter a integer for task number!");
         }

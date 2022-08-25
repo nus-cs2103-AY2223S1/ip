@@ -1,7 +1,7 @@
 package duke.exception;
 
 /**
- * Represent the Exception thrown due to invalid input by User.
+ * Represents the Exception thrown due to invalid input by User.
  */
 public class DukeException extends Exception {
     /**
