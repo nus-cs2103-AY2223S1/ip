@@ -49,6 +49,25 @@ public class Ui {
         return output.toString();
     }
 
+    public String listToStringWithWord(List<Task> list, String word) {
+        boolean foundMatchingTask = false;
+        if (list.size() == 0) {
+            return "List is empty ~\n";
+        }
+        StringBuilder output = new StringBuilder();
+        output.append("Here are the matching tasks containing \"" + word + "\":\n");
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDescription().contains(word)) {
+                output.append(i + 1).append(". ").append(list.get(i)).append("\n");
+                foundMatchingTask = true;
+            }
+        }
+        if (!foundMatchingTask) {
+            return "No matching tasks with \"" + word + "\" :(";
+        }
+        return output.toString();
+    }
+
     void showLoadingError() {
         System.out.println("Error in loading task :( New task list created!");
     }
@@ -61,12 +80,12 @@ public class Ui {
         String[] commandSegments = input.split(" ", 2);
         String mainCommand = commandSegments[0].toLowerCase().trim();
 
-        String[] allCommands = {"list", "bye", "todo", "deadline", "event", "mark", "unmark", "delete"};
+        String[] allCommands = {"list", "bye", "todo", "deadline", "event", "mark", "unmark", "delete", "find"};
         if (!Arrays.asList(allCommands).contains(mainCommand)) {
             //handles invalid commands
             throw new DukeException(mainCommand + "? (´･_･`) I don't know what that means\n");
         }
-        String[] commandsWithDescription = {"todo", "deadline", "event"};
+        String[] commandsWithDescription = {"todo", "deadline", "event", "find"};
         if (Arrays.asList(commandsWithDescription).contains(mainCommand)) {
 
             if (commandSegments.length <= 1) {
@@ -75,6 +94,7 @@ public class Ui {
 
             switch (mainCommand) {
             case "todo":
+            case "find":
                 break;
             case "deadline":
                 String[] deadlineSegments = commandSegments[1].split("/by", 2);
