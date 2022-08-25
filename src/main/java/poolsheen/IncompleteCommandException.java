@@ -1,15 +1,22 @@
 package poolsheen;
 
 /**
- * Exception Class for when an incomplete command is entered.
- * @author Ong Wee, Marcus (Tut Grp 03)
- * @version CS2103 AY22/23 Sem 1
+ * Represents a Runtime Exception which will be thrown an incomplete command is entered.
  */
-
 public class IncompleteCommandException extends RuntimeException {
+    /** The type of command. */
     String commandType;
+
+    /** What the user should do to prevent this exception from being thrown again. */
     String whatToDo;
 
+    /**
+     * A public constructor to initialise an IncompleteCommandException object.
+     *
+     * @param input The input given which caused the exception to be thrown.
+     * @param commandType The type of the command.
+     * @param whatToDo The steps that should be taken to prevent this error from occurring.
+     */
     public IncompleteCommandException(String input, String commandType, String whatToDo) {
         super(input);
         this.commandType = commandType;

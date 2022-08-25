@@ -7,6 +7,10 @@ import poolsheen.task.Task;
 import poolsheen.TaskList;
 import poolsheen.Ui;
 
+/**
+ * Represents a DeleteCommand which when executed will cause the Poolsheen program to
+ * delete one task of the respective index that Poolsheen remembers.
+ */
 public class DeleteCommand extends Command{
     public DeleteCommand(ArrayList<String> rest) {
         super(false, rest);

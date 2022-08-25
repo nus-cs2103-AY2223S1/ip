@@ -1,8 +1,12 @@
 package poolsheen.task;
 
+/**
+ * Represents a ToDo task for Poolsheen to remember.
+ */
 public class ToDo extends Task {
     /**
      * A public constructor to initialise a ToDo task.
+     *
      * @param description The details of the task.
      */
     public ToDo(String description, boolean isDone) {

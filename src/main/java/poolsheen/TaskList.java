@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import poolsheen.task.Task;
 
 /**
- * Class that encapsulates all the tasks Poolsheen remembers.
- * @author Ong Wee, Marcus (Tut Grp 03)
- * @version CS2103 AY22/23 Sem 1
+ * Represents a collection of all the tasks that Poolsheen remembers.
  */
 public class TaskList {
     ArrayList<Task> arl;
 
     /**
      * Public constructor to initialise an already filled TaskList.
+     *
      * @param arl The ArrayList of tasks to fill up the TaskList.
      */
     public TaskList(ArrayList<Task> arl) {
@@ -44,6 +43,7 @@ public class TaskList {
 
     /**
      * Marks a task as done assuming the user input is correct.
+     *
      * @param pos The index position of the task in the list.
      */
     public void mark(int pos) {
@@ -53,6 +53,7 @@ public class TaskList {
 
     /**
      * Marks a task as not done assuming the user input is correct.
+     *
      * @param pos The index position of the task in the list.
      */
     public void unmark(int pos) {
@@ -62,6 +63,7 @@ public class TaskList {
 
     /**
      * Removes a task from the list of tasks that Poolsheen remembers.
+     *
      * @param pos The index+1 position of the task that is to be deleted.
      */
     public void deleteTask(int pos) {

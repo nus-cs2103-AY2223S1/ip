@@ -7,6 +7,10 @@ import poolsheen.task.Deadline;
 import poolsheen.TaskList;
 import poolsheen.Ui;
 
+/**
+ * Represents a DeadlineCommand which when executed will cause the Poolsheen program to
+ * create a new Deadline task for Poolsheen to remember.
+ */
 public class DeadlineCommand extends Command {
     public DeadlineCommand(ArrayList<String> rest) {
         super(false, rest);

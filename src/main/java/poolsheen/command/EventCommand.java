@@ -7,6 +7,10 @@ import poolsheen.TaskList;
 import poolsheen.task.Event;
 import poolsheen.Ui;
 
+/**
+ * Represents an EventCommand which when executed will cause the Poolsheen program to
+ * add one Event task for Poolsheen to remember.
+ */
 public class EventCommand extends Command{
     public EventCommand(ArrayList<String> rest) {
         super(false, rest);

@@ -1,12 +1,14 @@
 package poolsheen;
 
 /**
- * Exception Class for when an unknown command is entered.
- * @author Ong Wee, Marcus (Tut Grp 03)
- * @version CS2103 AY22/23 Sem 1
+ * Represents a Runtime Exception which will be thrown an unknown command is entered.
  */
-
 public class UnknownCommandException extends RuntimeException {
+    /**
+     * A public constructor to initialise an UnknownCommandException object.
+     *
+     * @param input The input given which caused the exception to be thrown.
+     */
     UnknownCommandException(String input) {
         super(input);
     }
