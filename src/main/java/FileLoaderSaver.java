@@ -5,6 +5,12 @@ import java.util.List;
 import java.io.FileWriter;
 
 public class FileLoaderSaver {
+    private Path filePath;
+
+    FileLoaderSaver(String filePath) {
+        this.filePath = Path.of(filePath);
+    }
+
     /*
      * Returns List of inputs
      * 
@@ -12,8 +18,7 @@ public class FileLoaderSaver {
      * @return List<String> returns the each line of input in a List after reading the file
      * @Throws IOException
      */
-    public static List<String> loadFile(String file) throws IOException{
-        Path filePath = Path.of(file);
+    public List<String> loadFile() throws IOException{
         //Find existing toDoList
         if (!Files.exists(filePath))
         {
@@ -30,8 +35,8 @@ public class FileLoaderSaver {
      * @param txtFile string of text to write to file
      * @Throws IOException
      */
-    public static void writeToFile(String filePath, String txtFile) throws IOException {
-        try (FileWriter fw = new FileWriter(filePath)) {
+    public void writeToFile(String txtFile) throws IOException {
+        try (FileWriter fw = new FileWriter(filePath.toString())) {
             fw.write(txtFile);
         }
     }

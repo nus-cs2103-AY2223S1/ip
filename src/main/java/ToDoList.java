@@ -2,10 +2,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoList {
-    ArrayList<Task> list;
+    ArrayList<Task> toDoList;
 
     ToDoList() {
-        list = new ArrayList<>();
+        toDoList = new ArrayList<>();
+    }
+
+    ToDoList(List<String> txtFile) {
+        toDoList = new ArrayList<>();
+        addTaskFromFile(txtFile);
     }
 
     /** 
@@ -15,10 +20,10 @@ public class ToDoList {
      * @throws IndexOutOfBoundsException
      */
     public void complete(int index) throws IndexOutOfBoundsException {
-        if (index >= list.size()) {
+        if (index >= toDoList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        list.get(index).mark();
+        toDoList.get(index).mark();
     }
 
     /** Sets status of task at index to be incomplete
@@ -27,10 +32,10 @@ public class ToDoList {
      * @throws IndexOutOfBoundsException
      */
     public void incomplete(int index) throws IndexOutOfBoundsException {
-        if (index >= list.size()) {
+        if (index >= toDoList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        list.get(index).unmark();
+        toDoList.get(index).unmark();
     }
 
     /**
@@ -39,29 +44,24 @@ public class ToDoList {
      * @param task
      */
     public void addTask(Task task) {
-        list.add(task);
+        toDoList.add(task);
         System.out.println("\tGot it. I've added this task:");
         System.out.println("\t  " + task);
     }
 
     // Add task to todoList
     public void listTasks() {
-        if (list.size() < 1) {
+        if (toDoList.size() < 1) {
             System.out.println("\tYou don't have any pending tasks.");
             return;
         }
 
         System.out.println("\tHere are the tasks in your list:");
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) != null){
-                System.out.printf("\t%d. %s\n", i + 1, list.get(i));
+        for (int i = 0; i < toDoList.size(); i++) {
+            if (toDoList.get(i) != null){
+                System.out.printf("\t%d. %s\n", i + 1, toDoList.get(i));
             }
         }
-    }
-
-    // Returns size of current list
-    public int getSize() {
-        return list.size();
     }
 
     /**
@@ -71,12 +71,12 @@ public class ToDoList {
      * @Throws IndexOutOfBoundsException
      */
     public void delete(int index) throws IndexOutOfBoundsException {
-        if (index >= list.size()) {
+        if (index >= toDoList.size()) {
             throw new IndexOutOfBoundsException();
         }
         else {
-            Task tempTask = list.get(index);
-            list.remove(index);
+            Task tempTask = toDoList.get(index);
+            toDoList.remove(index);
             System.out.println("\tNoted. I've removed this task:");
             System.out.println("\t  " + tempTask);
         }
@@ -104,28 +104,28 @@ public class ToDoList {
             switch (taskType) {
             case "T": 
                 task = new ToDos(taskName, status);
-                list.add(task);
+                toDoList.add(task);
                 break;
             case "D":
                 task = new Deadline(taskName, eventInfo, status);
-                list.add(task);
+                toDoList.add(task);
                 break;
             case "E":
                 task = new Event(taskName, eventInfo, status);
-                list.add(task);
+                toDoList.add(task);
                 break;
             }
         }
     }
 
     
-    /* Returns todolist formatted for saving in Duke.txt file in hard disk
+    /** Returns todolist formatted for saving in Duke.txt file in hard disk
      * 
      * @return string of tasks in todolist
      */
     public String createFile() {
         String result = "";
-        for (Task t : list) {
+        for (Task t : toDoList) {
             if (t instanceof ToDos) {
                 ToDos td = (ToDos) t;
                 result += String.format("T # %b # %s\n", td.getStatus(), td.getName());
@@ -140,5 +140,10 @@ public class ToDoList {
             }
         }
         return result;
+    }
+
+    // Print number of tasks in the list
+    public void displayListSize() {
+        System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.size());
     }
 }
