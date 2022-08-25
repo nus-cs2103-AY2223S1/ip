@@ -13,7 +13,7 @@ public class Duke {
 
         Scanner sc = new Scanner(System.in);
 
-        List list = new List(100);
+        List list = new List();
 
         while(true) {
             String input = sc.nextLine();
