@@ -1,6 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-/** 
+
+/**
  * This class encapsulates the idea of a deadline
  */
 public class Deadline extends Task {
@@ -20,7 +21,7 @@ public class Deadline extends Task {
     @Override
     public String getDescription() {
         String status = super.getStatus() ? "T" : "F";
-        return "D | " + status + " | " + super.toString() + " | " + deadline + "\n";
+        return "D | " + status + " | " + super.toString() + " | " + date.toString() + "\n";
     }
 
     @Override

@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import java.io.BufferedReader;
@@ -7,7 +8,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
 /**
  * This class encapsulates the idea of a memory/taskLists of the chatbot.
  */
@@ -15,9 +15,9 @@ public class Memory {
     //this is where the tasks are stored
     private ArrayList<Task> taskLists;
     //this is the physical file saving the items
-    private static final File storageFile = new File("C:\\Users\\xudao\\OneDrive" +
-            "\\Documents\\NUS FILES\\year 2\\sem 1\\cs2103t\\git\\ip\\storage.txt");
-
+    private static final File STORAGEFILE = new File("C:\\Users\\xudao\\Documents\\nus\\year 2\\sem 1" +
+            "\\2103t\\git stuff\\individual project\\src\\data\\storage.txt");
+    //private static final File STORAGEFILE = new File("..\\..\\data\\storage.txt");
     private BufferedReader reader;
     private BufferedWriter writer;
 
@@ -52,11 +52,9 @@ public class Memory {
     //reads data in text file and saves it in taskLists
     private void readData() {
         try {
-            this.reader = new BufferedReader(new FileReader(storageFile));
+            this.reader = new BufferedReader(new FileReader(STORAGEFILE));
             String currentLine;
-            String description;
             boolean status;
-            String time;
             while((currentLine = reader.readLine()) != null) {
                 String type = currentLine.substring(0, 1);
                 status = currentLine.substring(4, 5).equals("T");
@@ -67,7 +65,7 @@ public class Memory {
                     case "D":
                         int divider = currentLine.substring(8).indexOf("|") + 8;
                         taskLists.add(new Deadline(currentLine.substring(8, divider - 1),
-                                status, currentLine.substring(divider + 2)));
+                                status, LocalDateTime.parse(currentLine.substring(divider + 2))));
                         break;
                     case "E":
                         int divider_2 = currentLine.substring(8).indexOf("|") + 8;
@@ -87,7 +85,7 @@ public class Memory {
     private void transferData() {
         try {
             for (int i = 0; i < taskLists.size(); i++) {
-                this.writer = new BufferedWriter(new FileWriter(storageFile));
+                this.writer = new BufferedWriter(new FileWriter(STORAGEFILE));
                 writer.write(taskLists.get(i).getDescription());
             }
             writer.close();
@@ -104,7 +102,7 @@ public class Memory {
     public void saveTask(Task task) {
         taskLists.add(task);
         try {
-            this.writer = new BufferedWriter(new FileWriter(storageFile, true));
+            this.writer = new BufferedWriter(new FileWriter(STORAGEFILE, true));
             writer.write(task.getDescription());
             writer.close();
         }
