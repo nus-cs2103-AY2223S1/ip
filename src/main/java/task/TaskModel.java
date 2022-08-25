@@ -36,7 +36,6 @@ public class TaskModel {
     public TaskResponse addTodo(String description) {
         Task newTask = new Todo(description);
         tasks.add(newTask);
-        System.out.println(tasks);
         return new TaskResponse(newTask, tasks.size());
     }
 
@@ -113,6 +112,6 @@ public class TaskModel {
      * @return a List of all the Tasks at the current time
      */
     public List<Task> getAllTasks() {
-        System.out.println(tasks); return tasks;
+        return tasks;
     }
 }

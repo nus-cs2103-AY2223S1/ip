@@ -22,12 +22,7 @@ public class CommandRunner {
      * Creates new CommandRunner
      */
     public CommandRunner() throws StorageException {
-        TaskModel taskModel = null;
-        try {
-            taskModel = new TaskModel();
-        } catch (StorageException e) {
-            throw e;
-        }
+        TaskModel taskModel = new TaskModel();
 
         // Add new commands here
         Command list = new ListCommand(taskModel);

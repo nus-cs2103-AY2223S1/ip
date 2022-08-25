@@ -21,10 +21,17 @@ public class Duke {
     public static void main(String[] args) {
         OutputLogger.printIntroduction();
         Scanner sc = new Scanner(System.in);
+        CommandRunner cmdRunner = null;
+        boolean canRun = true;
+        try {
+            cmdRunner = new CommandRunner();
+        } catch (StorageException e) {
+            OutputLogger.output("There was an issue loading tasks. Shutting down...");
+            canRun = false;
+        }
 
-        while (true) {
+        while (canRun) {
             try {
-                CommandRunner cmdRunner = new CommandRunner();
                 System.out.print(">> ");
                 String input = sc.nextLine().trim();
 
@@ -35,9 +42,6 @@ public class Duke {
                 if (res.isExit()) {
                     break;
                 }
-            } catch (StorageException e) {
-                OutputLogger.output("There was an issue with storage of tasks. Shutting down...");
-                break;
             } catch (DukeException err) {
                 OutputLogger.output(err.getMessage());
             } catch (Exception err) {
