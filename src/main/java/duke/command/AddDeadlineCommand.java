@@ -6,14 +6,29 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Deadline;
 
+/**
+ * AddDeadlineCommand is a Command when the user wants to add a Deadline task.
+ */
 public class AddDeadlineCommand extends Command {
 
     private String details;
 
+    /**
+     * Constructor for AddDeadlineCommand.
+     *
+     * @param details The details of the task.
+     */
     public AddDeadlineCommand(String details) {
         this.details = details;
     }
 
+    /**
+     * Adds a Deadline task to the TaskList.
+     *
+     * @param tasks The list of tasks.
+     * @param ui The class that deals with interactions with the user.
+     * @param storage The class that deals with loading and storing tasks.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (!details.contains("/by")) {

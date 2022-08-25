@@ -2,12 +2,20 @@ package duke;
 
 import duke.command.Command;
 
+/**
+ * Duke is a Chatbot that is able to store and keep track of tasks inputted by the user.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param filePath The relative path of the location to store the tasks.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -20,6 +28,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Start the Duke program.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;

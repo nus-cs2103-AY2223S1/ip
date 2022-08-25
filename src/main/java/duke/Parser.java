@@ -2,11 +2,19 @@ package duke;
 
 import duke.command.*;
 
-import java.util.Scanner;
-
+/**
+ * Parser deals with making sense of the user command.
+ */
 public class Parser {
 
-    public static Command parse(String fullCommand) {
+    /**
+     * Parse the inputted user command.
+     *
+     * @param fullCommand The full user input.
+     * @return Command corresponding to the input.
+     * @throws DukeException If an error is encountered with a command.
+     */
+    public static Command parse(String fullCommand) throws DukeException {
 
         String[] split = fullCommand.split(" ");
         String command = split[0];

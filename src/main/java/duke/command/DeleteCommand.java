@@ -6,14 +6,29 @@ import duke.TaskList;
 import duke.Ui;
 import duke.task.Task;
 
+/**
+ * DeleteCommand is the Command when the user wants to delete a task.
+ */
 public class DeleteCommand extends Command {
 
     private int i;
 
+    /**
+     * Constructor for DeleteCommand.
+     *
+     * @param i The index of the task to be deleted.
+     */
     public DeleteCommand(int i) {
         this.i = i;
     }
 
+    /**
+     * Deletes the ith task.
+     *
+     * @param tasks The list of tasks.
+     * @param ui The class that deals with interactions with the user.
+     * @param storage The class that deals with loading and storing tasks.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (i < 0 || i >= tasks.getSize()) {

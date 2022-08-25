@@ -13,15 +13,29 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Storage deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
 
     private final String DIR = System.getProperty("user.dir");
     private String filePath;
 
+    /**
+     * Constructor for Storage
+     *
+     * @param filePath The relative path of the location to store the tasks.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads the saved tasks from filePath.
+     *
+     * @return ArrayList containing the saved tasks.
+     * @throws IOException If the target is not found.
+     */
     public ArrayList<Task> load() throws IOException {
         File target = new File(filePath);
         ArrayList<Task> tasks = new ArrayList<>();
@@ -68,6 +82,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Stores the tasks after closing the program.
+     *
+     * @param tasks The list of tasks the user has inputted.
+     * @throws IOException If the named file is not a file (e.g. directory).
+     */
     public void store(TaskList tasks) throws IOException {
         FileWriter writer = new FileWriter(filePath);
         for (int i = 0; i < tasks.getSize(); i++) {

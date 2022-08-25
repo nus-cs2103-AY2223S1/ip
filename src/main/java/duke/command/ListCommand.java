@@ -6,8 +6,18 @@ import duke.Ui;
 import duke.DukeException;
 import duke.task.Task;
 
+/**
+ * ListCommand is the Command when the user wants the list of the user's current tasks.
+ */
 public class ListCommand extends Command {
 
+    /**
+     * Displays the user's tasks.
+     *
+     * @param tasks The list of tasks.
+     * @param ui The class that deals with interactions with the user.
+     * @param storage The class that deals with loading and storing tasks.
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         if (tasks.getSize() == 0) {
