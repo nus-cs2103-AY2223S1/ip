@@ -8,22 +8,19 @@
 
 // Level 2
 
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class List {
-    /**
-     * The list that keeps track of what the user has input.
-     */
-    private final static ArrayList<Task> list = new ArrayList<>(100);
+    /** The list that keeps track of what the user has input or saved. */
+    private static ArrayList<Task> list;
+    private static SavedTasks sv;
 
-    /**
-     * The number/integer that keeps track of the next index in the list that is not filled.
-     */
+    /** The number/integer that keeps track of the next index in the list that is not filled. */
     private static int index = 0;
 
     //Exception Messages
-
     private static final String TODO_NO_DESC = "☹ OOPS!!! The description of a todo cannot be empty.";
     private static final String DEADLINE_NO_DESC = "☹ OOPS!!! The description of a deadline cannot be empty.";
     private static final String DEADLINE_NO_TIME = "☹ OOPS!!! The date/time of a deadline cannot be empty.";
@@ -32,10 +29,20 @@ public class List {
     private static final String NO_INDEX = "☹ OOPS!!! The index of the task to be marked/unmarked/deleted cannot be empty.";
     private static final String INVALID_INDEX = "☹ OOPS!!! The index of the task to be marked/unmarked/deleted must be valid/within range.";
     private static final String UNKNOWN_COMMAND = "☹ OOPS!!! I'm sorry, but I don't know what that means :-(";
+
     /**
-     * The method that initialises and runs the list.
+     * Retrieves saved data of tasks if it exists.
      */
-    public static void run() {
+    public static void initialise() throws DukeException, IOException {
+        List.sv = new SavedTasks();
+        list = sv.getTasks();
+        List.printList();
+    }
+
+    /**
+     * Runs the list.
+     */
+    public static void run() throws DukeException {
         Scanner sc = new Scanner(System.in);
         while (sc.hasNextLine()) {
             try {
@@ -82,6 +89,7 @@ public class List {
                     Deadline d = new Deadline(description, by);
                     temp.close();
                     List.add(d);
+                    sv.appendToFile(d.toString());
                 } else if (temp.hasNext("event")) {
                     temp.useDelimiter("event\\s*|\\s*/at\\s*");
                     if (!temp.hasNext()) {
@@ -95,6 +103,7 @@ public class List {
                     Event e = new Event(description, at);
                     temp.close();
                     List.add(e);
+                    sv.appendToFile(e.toString());
                 } else if (temp.hasNext("todo")) {
                     temp.useDelimiter("todo\\s*");
                     if (!temp.hasNext()) {
@@ -104,6 +113,7 @@ public class List {
                     Todo t = new Todo((description));
                     temp.close();
                     List.add(t);
+                    sv.appendToFile(t.toString());
                 } else if (temp.hasNext("delete")) {
                     temp.useDelimiter("delete\\s*");
                     if (!temp.hasNextInt()) {
@@ -128,14 +138,14 @@ public class List {
                         throw new DukeException(UNKNOWN_COMMAND);
                     }
                 }
-            } catch (DukeException e){
+            } catch (DukeException | IOException e){
                 System.out.println(e.getMessage());
             }
         }
         sc.close();
     }
     /**
-     * Helper function that returns a string.
+     * Returns a specific string in singular/plural form.
      *
      * @return task/tasks depending on the number of existing tasks in the list.
      */
@@ -146,8 +156,11 @@ public class List {
             return " tasks ";
         }
     }
+
     /**
-     * The method that adds a Task to the list.
+     * Adds the specified Task to the list.
+     *
+     * @param t
      */
     public static void add(Task t) {
         list.add(t);
@@ -156,14 +169,16 @@ public class List {
     }
 
     /**
-     * Helper function that prints existing list to screen.
+     * Prints existing tasks in the list to screen.
      */
     public static void printList() {
         list.forEach(t -> System.out.println(list.indexOf(t) + 1 + ". " + list.get(list.indexOf(t)).toString()));
     }
 
     /**
-     * The method that deletes a Task from the list.
+     * Deletes a specified Task from the list.
+     *
+     * @param index
      */
     public static void deleteTask(int index) {
         System.out.println("Noted. I've removed this task:\n" + list.get(index).toString() + "\n" + "Now you have " + (List.index - 1) + taskString() + "in the list.");
