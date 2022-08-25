@@ -1,10 +1,13 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Parser
  */
 final class Parser {
     private static final String SPACE = " +";
     private static final String SEP = " +/";
-    private static final String SAVE_SEP = " <<<< ";
+    private static final Pattern SAVE_PATTERN = Pattern.compile("^([TDE])([cx]) <<<< (.*) <<<< (.*)");
 
     Parser() {
     }
@@ -25,28 +28,36 @@ final class Parser {
 
         return new ParsedData(command, parsedTmp[0], parsedTmp[1]);
     }
+    
+    static Task parseDataFromLine(String savedLine) throws CorruptedLineException {
+        Matcher result = SAVE_PATTERN.matcher(savedLine);
+        if (!result.find()) {
+            throw new CorruptedLineException();
+        }
 
-    static Task makeTaskFromParsed(ParsedData data) throws DukeException {
-        switch (data.command) {
+        Task ret;
+        switch (result.group(1)) {
             case "T":
-                return Todo.createTodo(data);
+                ret = Todo.createTodo(result.group(3));
+                break;
 
             case "D":
-                return Deadline.createDeadline(data);
-
+                ret = Deadline.createDeadline(result.group(3), result.group(4));
+                break;
             case "E":
-                return Event.createEvent(data);
-
+                ret = Event.createEvent(result.group(3), result.group(4));
+                break;
             default:
-                throw new UnknownCommandException();
+                throw new CorruptedLineException();
         }
-    }
 
-    static ParsedData parseDataFromLine(String savedLine) throws CorruptedLineException {
-        String[] parsedTmp = savedLine.split(SAVE_SEP, 3);
-        if (parsedTmp.length != 3) {
-            throw new CorruptedLineException(savedLine);
+        if (result.group(2).equals("c")) {
+            ret.completed = true;
+        } else if (!result.group(2).equals("x")) {
+            throw new CorruptedLineException();
         }
-        return ParsedData.makeParsedData(parsedTmp);
+
+        return ret;
+
     }
 }
