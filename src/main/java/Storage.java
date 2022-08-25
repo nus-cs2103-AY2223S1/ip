@@ -8,10 +8,10 @@ public class Storage {
     private BufferedReader br;
     private ArrayList<Task> al;
 
-    public Storage(String fileName) throws IOException {
+    public Storage(String fileName, ArrayList<Task> al) throws IOException {
         this.file = Path.of(fileName).toFile();
         this.br = new BufferedReader(new FileReader(file));
-
+        this.al = al;
         if (file.exists()) {
             this.load();
         } else {

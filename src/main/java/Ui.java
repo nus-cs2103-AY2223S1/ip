@@ -1,10 +1,20 @@
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Ui {
     private ArrayList<Task> tl;
 
+    public Ui(ArrayList<Task> tl) {
+        this.tl = tl;
+    }
     public void greet() {
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
+        System.out.println("Hello from\n" + logo);
         System.out.println("--------------------------------------\n");
         System.out.println("\tHello I'm Duke, what can I do for you?");
         System.out.println("--------------------------------------\n");
@@ -16,10 +26,8 @@ public class Ui {
         System.out.println("--------------------------------------\n");
     }
 
-    public void showLoadingError() {
-        System.out.println("--------------------------------------\n");
-        System.out.println("File Loading Error!");
-        System.out.println("--------------------------------------\n");
+    public void showLoadingError() throws IOException {
+        throw new IOException("File Loading Error!");
     }
 
     public void askForPath() {
@@ -27,6 +35,11 @@ public class Ui {
         System.out.println("Please enter path name for me to read: ");
         System.out.println("--------------------------------------\n");
     }
+    public void added(Task t) {
+        System.out.println("------------------------------\n");
+        System.out.printf("\tGot it. I've added this task: \n\t\t%s\n", t.toString());
+        System.out.println("\tNow you have " + this.tl.size() + " task(s) in the list.");
+        System.out.println("------------------------------\n");    }
 
     public void marked(Task t) {
         System.out.println("-------------------------------\n");
@@ -42,11 +55,34 @@ public class Ui {
         System.out.println("-------------------------------\n");
     }
 
-    public void listOut() {
+    public void removed(Task t, ArrayList<Task> tl) {
+        System.out.println("------------------------------\n");
+        System.out.println("\tNoted. I've removed this task:");
+        System.out.println("\t\t" + t.toString());
+        System.out.println("\tNow you have " + tl.size() + " task(s) in the list.");
+        System.out.println("------------------------------\n");
+    }
+
+    public void showTimeMissingError() throws DukeException {
+        throw new DukeException(
+                "☹ OOPS!!! Associated time for event or deadline cannot be empty.");
+    }
+
+    public void showDescEmptyError(String str) throws DukeException {
+        throw new DukeException("" +
+                "☹ OOPS!!! The description of a " + str + " cannot be empty.");
+    }
+
+    public void showUnknownCommandError() throws DukeException {
+        throw new DukeException(
+                "☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+    }
+
+    public void listOut(ArrayList<Task> tl) {
         int count = 1;
         System.out.println("-------------------------------\n");
         System.out.println("\tHere are the tasks in your list: ");
-        for (Iterator<Task> it = this.tl.iterator(); it.hasNext();) {
+        for (Iterator<Task> it = tl.iterator(); it.hasNext();) {
             Task curr = it.next();
             System.out.println("\t\t" +count + ". " + curr.toString());
             count++;
