@@ -44,7 +44,7 @@ public class Storage {
 
             //Add contents to file.
             for (Task task : userTasks) {
-                fileWriter.write(task.parse() + "\n");
+                fileWriter.write(task.parseToFile() + "\n");
             }
             fileWriter.close();
         } catch (IOException e) {

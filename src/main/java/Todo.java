@@ -9,7 +9,7 @@ public class Todo extends Task {
      * @return String that is in the parsing format.
      */
     @Override
-    public String parse() {
+    public String parseToFile() {
         return String.format("T # %s # %s # ", super.getStatusIcon(), super.getTaskDescription());
     }
 

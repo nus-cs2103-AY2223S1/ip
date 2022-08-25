@@ -1,7 +1,15 @@
+import java.util.Scanner;
+
 /**
  * Deals with interactions from the user.
  */
 public class UI {
+    private Scanner sc;
+
+    public UI() {
+        sc = new Scanner(System.in);
+    }
+
     public void greeting() {
         /**
          * Greeting message to the user during chat-bot startup.
@@ -42,5 +50,13 @@ public class UI {
      */
     public void notifyUser(String message) {
         System.out.println("\t" + message);
+    }
+
+    public String readCommand() {
+        return sc.nextLine();
+    }
+
+    public void closeReader() {
+        sc.close();
     }
 }
