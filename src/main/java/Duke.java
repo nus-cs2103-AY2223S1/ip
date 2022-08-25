@@ -201,9 +201,7 @@ public class Duke {
             }
             myWriter.write(str.toString());
             myWriter.close();
-            System.out.println("Dino can write!");
         } catch (IOException e) {
-            System.out.println("Dino failed at writing.");
             e.printStackTrace();
         }
     }
