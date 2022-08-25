@@ -30,7 +30,7 @@ public class TaskManager {
                 }
             }
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Save file not found, starting from scratch...");
         }
     }
 
