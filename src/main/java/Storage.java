@@ -13,7 +13,8 @@ public class Storage {
         this.currentFile = new File(filePath);
     }
 
-    public void loadFile() throws DukeException {
+    public ArrayList<Task> loadFile() throws DukeException {
+        ArrayList<Task> taskList = new ArrayList<>();
         File folder = new File("data");
         if (!folder.exists()) {
             folder.mkdir();
@@ -28,15 +29,15 @@ public class Storage {
                     switch (type) {
                         case 'T':
                             ToDo todo = ToDo.parseFile(data);
-                            Duke.loadTask(todo);
+                            taskList.add(todo);
                             break;
                         case 'D':
                             Deadline deadline = Deadline.parseFile(data);
-                            Duke.loadTask(deadline);
+                            taskList.add(deadline);
                             break;
                         case 'E':
                             Event event = Event.parseFile(data);
-                            Duke.loadTask(event);
+                            taskList.add(event);
                             break;
                         default:
                             throw new DukeException("File format is invalid!");
@@ -52,6 +53,7 @@ public class Storage {
                 e.printStackTrace();
             }
         }
+        return taskList;
     }
 
     public void writeFile(ArrayList<Task> data) throws DukeException {
