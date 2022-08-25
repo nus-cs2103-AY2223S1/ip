@@ -18,4 +18,8 @@ public class Deadline extends Task {
         return "[D]" + super.printSelf() + " (by: " + this.by + ")";
     }
 
+    @Override
+    public String recordString() {
+        return "D | " + super.recordString() + " | " + by;
+    }
 }

@@ -42,7 +42,7 @@ public class Task {
     }
 
     /**
-     * Get the icon depending on isDone status.
+     * Gets the icon depending on isDone status.
      * @return [X] if not done, [ ] is done.
      */
     public String getStatusIcon() {
@@ -50,7 +50,15 @@ public class Task {
     }
 
     /**
-     * To flip the status of isDone
+     * Gets the "1" or "0" depending on isDone status.
+     * @return 1 if not done, 0 is done.
+     */
+    public String getStatusString() {
+        return (this.isDone ? "1" : "0");
+    }
+
+    /**
+     * Flips the status of isDone
      */
     public void changeStatus() {
         this.isDone = !this.isDone;
@@ -80,10 +88,16 @@ public class Task {
         output.append(this.getStatusIcon() + " " + this.name);
         return output.toString();
     }
+
+    public String recordString() {
+        return getStatusString() + " | " + name;
+    }
+
     @Override
     public String toString() {
         StringBuilder output = new StringBuilder("     ");
         output.append(this.index + "." + this.printSelf());
         return output.toString();
     }
+
 }

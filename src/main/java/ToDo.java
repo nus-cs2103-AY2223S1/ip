@@ -10,10 +10,14 @@ public class ToDo extends Task {
         return newToDo;
     }
 
+
     @Override
     public String printSelf() {
         return "[T]" + super.printSelf();
     }
 
-
+    @Override
+    public String recordString() {
+        return "T | " + super.recordString();
+    }
 }

@@ -1,20 +1,23 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+
 import DukeException.*;
 
 public class Duke {
     public static ArrayList<Task> taskList = new ArrayList<>();
 
-    public static void main(String[] args) throws IncomplateCommandException, TaskOutOfBoundException,
-            NoSuchCommandException, TaskCompletionException {
+    public static void main(String[] args) throws DukeException, IOException {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-
+        Cache cache = new Cache(System.getProperty("user.dir") + "\\data\\duke.txt");
+        taskList = cache.printPath();
         run();
+        cache.update(taskList);
     }
 
     /**
@@ -103,8 +106,7 @@ public class Duke {
                     default:
                         throw new NoSuchCommandException("     ☹ Unfortunately, but I cannot understand what that means :-(");
                 }
-            }
-            catch (ArrayIndexOutOfBoundsException e) {
+            } catch (ArrayIndexOutOfBoundsException e) {
                 if (command.equals("mark") || command.equals("unmark")) {
                     System.out.println("     ☹ OOPS!!! The index of a task cannot be empty.");
                     suggestion = "Try again with a task index";
@@ -116,8 +118,7 @@ public class Duke {
 
                 //IndexOutOfBoundsException mark 1 > totalNumber
                 //check mark/ unmark
-            }
-            catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException e) {
                 if (command.equals("mark") || command.equals("unmark") || command.equals("delete")) {
                     System.out.println("     ☹ OOPS!!! You have less than " + (taskIndex + 1) + " task(s).");
                     suggestion = "Try again with a task index";
