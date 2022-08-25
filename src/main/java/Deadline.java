@@ -16,6 +16,10 @@ public class Deadline extends Task {
         this.byDate = byDate;
     }
 
+    public String getOutput() {
+        return String.format("D | %d | %s | %s", isDone ? 1 : 0, description, by);
+    }
+
     @Override
     public String toString() {
         if (byDate != null) {
