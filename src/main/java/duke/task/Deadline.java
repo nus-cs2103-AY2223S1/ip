@@ -14,7 +14,9 @@ public class Deadline  extends Task{
         int month = this.deadline.getMonthValue();
         int year = this.deadline.getYear();
         int time = this.deadline.getHour() * 100 + this.deadline.getMinute();
-        return String.format("%d/%d/%d %d", day, month, year, time);
+        return month < 10
+                ? String.format("%d/0%d/%d %d", day, month, year, time)
+                : String.format("%d/%d/%d %d", day, month, year, time);
     }
 
     @Override
