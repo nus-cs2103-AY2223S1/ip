@@ -70,7 +70,6 @@ public class Duke {
             ui.printInitErrorMessage();
             exit();
         }
-
         ui.greetUser();
         applicationLoop();
         exit();

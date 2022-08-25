@@ -1,6 +1,15 @@
 package duke.chatbot.parser;
 
-import duke.chatbot.command.*;
+import duke.chatbot.command.AddDeadlineCommand;
+import duke.chatbot.command.AddEventCommand;
+import duke.chatbot.command.AddToDoCommand;
+import duke.chatbot.command.CheckDateCommand;
+import duke.chatbot.command.Command;
+import duke.chatbot.command.DeleteCommand;
+import duke.chatbot.command.ExitCommand;
+import duke.chatbot.command.ListCommand;
+import duke.chatbot.command.MarkCommand;
+import duke.chatbot.command.UnmarkCommand;
 import duke.chatbot.data.exception.InvalidInputException;
 import duke.chatbot.data.exception.InvalidStorageFileException;
 import duke.chatbot.data.task.Deadline;
@@ -11,18 +20,18 @@ import duke.chatbot.data.task.ToDo;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static duke.chatbot.common.DateFormat.DATE_TIME_INPUT_FORMAT;
+
+
 /**
  * A parser class to extract information from strings.
  */
 public class Parser {
-    public static final DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
-
     /**
      * Returns an instance of Command, which contains all the arguments
      * of the command string parsed in an instance List<String>.
@@ -121,13 +130,10 @@ public class Parser {
             if (!lineScanner.hasNextInt()) {
                 throw new InvalidStorageFileException();
             }
-
             boolean isDone = lineScanner.nextInt() == 1;
-
             if (!lineScanner.hasNext()) {
                 throw new InvalidStorageFileException();
             }
-
             String description = lineScanner.next();
 
             if (category.equals("D") && lineScanner.hasNext()) {

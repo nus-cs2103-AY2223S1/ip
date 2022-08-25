@@ -17,7 +17,9 @@ public class Deadline extends TimedTask {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + super.getDateString() + " at " + super.getTimeString() + ")";
+        return "[D]" + super.toString() + " (by: "
+                + super.getDateString() + " at "
+                + super.getTimeString() + ")";
     }
 
     @Override

@@ -1,16 +1,17 @@
 package duke.chatbot.ui;
 
 import duke.chatbot.command.CommandResult;
-import duke.chatbot.common.MessageConstants;
 
 import java.util.Scanner;
+
+import static duke.chatbot.common.Message.MESSAGE_INIT_FAILED;
+import static duke.chatbot.common.Message.MESSAGE_SEPARATOR;
+import static duke.chatbot.common.Message.MESSAGE_WELCOME;
 
 /**
  * Manages user input and also the output of the application.
  */
 public class Ui {
-    private static final String MESSAGE_SEPARATOR = "\t____________________________________________________________";
-
     /** A scanner which takes in user input */
     private final Scanner userInput = new Scanner(System.in);
 
@@ -19,7 +20,7 @@ public class Ui {
      */
     public void greetUser() {
         System.out.println(MESSAGE_SEPARATOR);
-        System.out.println(MessageConstants.MESSAGE_WELCOME);
+        System.out.println(MESSAGE_WELCOME);
         System.out.println(MESSAGE_SEPARATOR);
     }
 
@@ -40,7 +41,7 @@ public class Ui {
      * Prints an application initialisation error message.
      */
     public void printInitErrorMessage() {
-        System.out.println("An unexpected error has occured, try running again or call technical support!");
+        System.out.println(MESSAGE_INIT_FAILED);
     }
 
     /**

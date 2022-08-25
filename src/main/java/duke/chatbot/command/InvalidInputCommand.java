@@ -1,9 +1,9 @@
 package duke.chatbot.command;
 
-import duke.chatbot.common.MessageConstants;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static duke.chatbot.common.Message.MESSAGE_UNEXPECTED;
 
 /**
  * A command that prints an error message.
@@ -17,7 +17,7 @@ public class InvalidInputCommand extends Command {
     @Override
     public CommandResult execute() {
         List<String> message = new ArrayList<>();
-        message.add(MessageConstants.MESSAGE_UNEXPECTED);
+        message.add(MESSAGE_UNEXPECTED);
         return new CommandResult(message);
     }
 }

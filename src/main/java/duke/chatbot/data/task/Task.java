@@ -63,6 +63,7 @@ public abstract class Task {
      * @return A string that is written onto a text file to be stored.
      */
     public String encode() {
-        return ",,," + (isDone ? 1 : 0) + ",,," + description;
+        return ",,," + (isDone ? 1 : 0)
+                + ",,," + description;
     }
 }

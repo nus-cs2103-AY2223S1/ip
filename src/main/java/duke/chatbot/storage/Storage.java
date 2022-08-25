@@ -5,6 +5,7 @@ import duke.chatbot.data.task.TaskList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * A storage for any task data that requires storing between
@@ -39,11 +40,9 @@ public class Storage {
             if (!file.exists()) {
                 file.createNewFile();
             }
-
             return new Storage(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
