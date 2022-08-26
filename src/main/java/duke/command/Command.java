@@ -1,4 +1,18 @@
+package duke.command;
+
 import java.io.IOException;
+
+import duke.exception.DukeException;
+
+import duke.storage.Storage;
+
+import duke.task.Task;
+import duke.task.Todo;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.TaskList;
+
+import duke.ui.Ui;
 
 public abstract class Command {
     public abstract Boolean isExit();
