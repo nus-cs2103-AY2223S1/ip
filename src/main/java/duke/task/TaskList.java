@@ -3,6 +3,7 @@ package duke.task;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import duke.Ui;
 
@@ -38,6 +39,17 @@ public class TaskList {
             Ui.messagePrint("Sorry, the number " + index + ", wasn't in the range.");
             return Optional.empty();
         }
+    }
+
+    /**
+     * Get tasks that match the search term.
+     * @param query Search term.
+     * @return List of tasks.
+     */
+    public static List<Task> filterTasks(String query) {
+        return taskList.stream()
+                .filter((task) -> task.isMatchingQuery(query))
+                .collect(Collectors.toList());
     }
 
     public static List<Task> getTaskList() {

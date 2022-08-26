@@ -300,5 +300,28 @@
 | 16.[E][ ] wow  much  space (at: 10am)
 '----------------------------------------------------------------
 ,----------------------------------------------------------------
+| (>.<') Add a description to your find.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| (>.<') Add a description to your find.
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here are the tasks that you might be looking for:
+| 1.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 2.[E][ ] meet friends (at: [unknown])
+| 3.[E][ ] meet people at dinner (at: 6:25 pm)
+| 4.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
+| Here are the tasks that you might be looking for:
+| 1.[T][ ] homework
+| 2.[E][X] meet people at function x/y/z whatever (at: 7:12am)
+| 3.[T][ ] homework
+| 4.[T][ ] other homework
+| 5.[E][ ] meet friends (at: [unknown])
+| 6.[E][ ] meet people at dinner (at: 6:25 pm)
+| 7.[E][ ] meet people at function x/y/z whatever (at: 7:12am)
+'----------------------------------------------------------------
+,----------------------------------------------------------------
 | It was nice to have you around, I'm going back to sleep...
 '----------------------------------------------------------------

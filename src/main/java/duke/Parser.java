@@ -14,17 +14,21 @@ import java.util.List;
  */
 public class Parser {
 
+    private static String[] listTasks(String response, List<Task> tasks) {
+        String[] output = new String[tasks.size() + 1];
+        output[0] = response;
+        for (int i = 0; i < tasks.size(); i++) {
+            output[i + 1] = (i + 1) + "." + tasks.get(i).toString();
+        }
+        return output;
+    }
+
     public static ArrayList<CommandMatcher> getCommands() {
         ArrayList<CommandMatcher> commands = new ArrayList<>();
 
         commands.add(new CommandMatcher((str) -> str.equals("list"), (str) -> {
-            List<Task> list = TaskList.getTaskList();
-            String[] output = new String[list.size() + 1];
-            output[0] = "Here, your tasks:";
-            for (int i = 0; i < list.size(); i++) {
-                output[i + 1] = (i + 1) + "." + list.get(i).toString();
-            }
-            Ui.messagePrint(output);
+            List<Task> tasks = TaskList.getTaskList();
+            Ui.messagePrint(listTasks("Here, your tasks:", tasks));
         }));
 
         commands.add(new PrefixCommandMatcher("mark", (str, map) -> {
@@ -71,6 +75,11 @@ public class Parser {
                         task.toString(),
                         String.format("You have %d tasks left.", TaskList.getTaskList().size()));
             });
+        }));
+
+        commands.add(new PrefixCommandMatcher("find", (str, map) -> {
+            List<Task> tasks = TaskList.filterTasks(str);
+            Ui.messagePrint(listTasks("Here are the tasks that you might be looking for:", tasks));
         }));
 
         // default command matcher - add to list
