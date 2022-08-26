@@ -1,5 +1,12 @@
-import java.util.Scanner;
 import java.util.ArrayList; 
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Duke {
 
@@ -38,6 +45,8 @@ public class Duke {
                 return String.format("[ ] %s", content);
             }
         }
+
+        public abstract String toFileData();
     }
 
     private class ToDo extends Task {
@@ -48,6 +57,11 @@ public class Duke {
         @Override
         public String toString() {
             return String.format("[T]%s", super.toString());
+        }
+
+        @Override
+        public String toFileData() {
+            return String.format("T | %d | %s", this.status ? 1 : 0, this.content);
         }
     }
 
@@ -63,6 +77,11 @@ public class Duke {
         public String toString() {
             return String.format("[D]%s (by: %s)", super.toString(), by);
         }
+
+        @Override
+        public String toFileData() {
+            return String.format("D | %d | %s | %s", this.status ? 1 : 0, this.content, this.by);
+        }
     }
 
     private class Event extends Task {
@@ -77,6 +96,11 @@ public class Duke {
         public String toString() {
             return String.format("[E]%s (at: %s)", super.toString(), time);
         }
+
+        @Override
+        public String toFileData() {
+            return String.format("E | %d | %s | %s", this.status ? 1 : 0, this.content, this.time);
+        }
     }
 
     private class DukeException extends Exception {
@@ -88,6 +112,14 @@ public class Duke {
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.greeting();
+        String path = "data/duke.txt";
+        new File("data").mkdir();
+        try {
+            duke.loadData(path);
+            System.out.println("\tYour previous tasks have been loaded!");
+        } catch (FileNotFoundException e) {
+            System.out.println("\tHello new user!");
+        }
         Boolean quit = false;
         Scanner scanner = new Scanner(System.in);
         while (!quit) {
@@ -99,6 +131,12 @@ public class Duke {
                 System.out.println(e.getMessage());
                 quit = false;
             }
+        }
+        try {
+            duke.writeData(path);
+        } catch (IOException e) {
+            System.out.println(e);
+            System.out.println("\t☹ OOPS!!! I'm sorry, saving of tasks has failed :-(");
         }
         scanner.close();
         duke.goodbye();
@@ -273,5 +311,54 @@ public class Duke {
         System.out.println(String.format("\tNow you have %d tasks in the list.", this.list.size()));
         System.out.println("\t____________________________________________________________");
     }
-    
+
+    public void loadData(String path) throws FileNotFoundException {
+        File f = new File(path);
+        Scanner scanner = new Scanner(f);
+
+        while (scanner.hasNext()) {
+            String task = scanner.nextLine();
+            if (task.charAt(0) == 'T') {
+                Boolean status = task.charAt(4) == '1';
+                String content = task.substring(8).trim();
+                ToDo toDo = new ToDo(content);
+                if (status) {
+                    toDo.markComplete();
+                }
+                this.list.add(toDo);
+
+            } else if (task.charAt(0) == 'D') {
+                Boolean status = task.charAt(4) == '1';
+                String[] split = task.substring(8).split(" \\| ");
+                String content = split[0].trim();
+                String by = split[1].trim();
+                Deadline deadline = new Deadline(content, by);
+                if (status) {
+                    deadline.markComplete();
+                }
+                this.list.add(deadline);
+
+            } else if (task.charAt(0) == 'E') {
+                Boolean status = task.charAt(4) == '1';
+                String[] split = task.substring(8).split(" \\| ");
+                String content = split[0].trim();
+                String date = split[1].trim();
+                Event event = new Event(content, date);
+                if (status) {
+                    event.markComplete();
+                }
+                this.list.add(event);
+            }
+        }
+        scanner.close();
+    }
+
+    public void writeData(String path) throws IOException {
+        FileWriter fw = new FileWriter(path, true);
+        for (int i = 0; i < this.list.size(); i++) {
+            fw.write(list.get(i).toFileData());
+            fw.write(System.lineSeparator());
+        }
+        fw.close();
+    }
 }
