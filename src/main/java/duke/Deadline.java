@@ -32,7 +32,7 @@ public class Deadline extends Task {
         return "[D] "
                 + this.getStatusIcon()
                 + " " + super.description
-                + " (by:"
+                + " (by: "
                 + date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"))
                 + ", "
                 + time.format(DateTimeFormatter.ofPattern("h:mm a"))
