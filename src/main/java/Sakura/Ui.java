@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Ui {
     static String DIV = "________________________________________________________________";
-    static String DIV2 = "============================================================";
+    static String DIV2 = "==============================================================";
 
     public void printDiv() {
         System.out.println("\t" + DIV);

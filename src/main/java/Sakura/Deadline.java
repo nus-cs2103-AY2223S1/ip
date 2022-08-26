@@ -22,7 +22,7 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        String timeFormat = this.by.format(DateTimeFormatter.ofPattern("HH:mm, MMM dd yyyy"));
+        String timeFormat = this.by.format(DateTimeFormatter.ofPattern("HH:mm, dd MMM yyyy"));
         return "\u001B[31m(DEADLINE)\u001B[0m" + super.toString() + " (by: " + timeFormat + ")";
     }
 }
