@@ -16,12 +16,22 @@ class Ui {
     private static final String ERROR_PROCESS_MESSAGE = "OOPS!!! The command cannot be processed :( Type 'help' for more guides";
     private static final String ERROR_WRITE_MESSAGE = "OOPS!!! I fail to write in the file, possibly due to no permission. Please help me out :(";
 
+    /**
+     * Prints the given string in a formatted manner.
+     *
+     * @param s string to be printed
+     */
     protected static void FormatPrint(String s) {
         System.out.println(SEPARATING_LINE);
         System.out.println(s);
         System.out.println(SEPARATING_LINE);
     }
 
+    /**
+     * Prints the list of tasks in a detailed manner.
+     *
+     * @param taskList the list of tasks
+     */
     protected static void ListPrint(TaskList taskList) {
         ArrayList<Task> arr = taskList.taskArrayList;
         int count = 1;
@@ -30,31 +40,52 @@ class Ui {
             if (count != 1) {
                 result += "\n";
             }
-            result += "    " + String.valueOf(count) + ". " + t.toString();
+            result += "    " + count + ". " + t.toString();
             count++;
         }
         FormatPrint(result);
     }
 
+    /**
+     * Greets the user.
+     */
     protected static void greet() {
         System.out.println("Hello from\n" + logo);
         FormatPrint(OPENING);
     }
 
+    /**
+     * Says bye to the user.
+     */
     protected static void bye() {
         FormatPrint(ENDING);
     }
 
+    /**
+     * Reads the user input by one line.
+     *
+     * @return the user input in string
+     */
     protected static String readInput() {
         Scanner sc = new Scanner(System.in);
         String temp = sc.nextLine();
         return temp;
     }
 
+    /**
+     * Outputs to the user with the given string.
+     *
+     * @param arg string to output
+     */
     protected static void output(String arg) {
         System.out.println(arg);
     }
 
+    /**
+     * Processes the exception output.
+     *
+     * @param msg the error message to decide which scenario
+     */
     protected static void processExceptionOutput(String msg) {
         switch (msg) {
         case "Unable to parse query":

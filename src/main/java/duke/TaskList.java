@@ -3,6 +3,9 @@ package duke;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * TaskList class to model list of Tasks and relevant operations.
+ */
 public class TaskList {
     ArrayList<Task> taskArrayList;
     enum TaskEnum {
@@ -11,7 +14,10 @@ public class TaskList {
         Event
     }
 
-    TaskList() {
+    /**
+     * Constructs an instance of TaskList and initializes a new array list.
+     */
+    public TaskList() {
         this.taskArrayList = new ArrayList<>();
     }
 
@@ -29,6 +35,10 @@ public class TaskList {
         return res;
     }
 
+    /**
+     * Reads pre-created records from the given line from the file
+     * @param line string of pre-created record
+     */
     protected void readPreCreatedTask(String line) {
         Task curr;
         boolean isDone;
@@ -127,7 +137,7 @@ public class TaskList {
                 + "Now you have " + this.taskArrayList.size() + " tasks in the list.");
     }
 
-    void addTask(Task t) {
+    private void addTask(Task t) {
         this.taskArrayList.add(t);
     }
 
@@ -165,6 +175,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Parses instructions from the given string
+     * @param args string of command in the relevant formats
+     * @throws DukeException the exception containing the error message when encountered error
+     */
     void parseInstructions(String args) throws DukeException{
         String arguments[] = args.split(" ", 2);
         try {
