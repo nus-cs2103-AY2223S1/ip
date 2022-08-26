@@ -19,6 +19,7 @@ text-ui-test/EXPECTED-UNIX.TXT
 # Java stuff
 *.class
 .java-version
+.settings/
 
 # Local store of tasks data
 /store/
