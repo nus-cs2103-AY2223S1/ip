@@ -11,7 +11,7 @@ import duke.task.TaskList;
  * that marks a task in duke.Duke as done.
  */
 public class MarkCommand extends Command {
-    /** The number of the task to be deleted. */
+    /** The number of the task to be marked as done. */
     private final int n;
 
     /**

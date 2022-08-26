@@ -18,6 +18,7 @@ public class Ui {
     private static final String LINE = INDENTATION
             + "____________________________________________________________";
 
+    /** The scanner that reads inputs from the user. */
     private Scanner scanner;
 
     public Ui() {

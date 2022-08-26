@@ -10,7 +10,9 @@ import java.time.format.DateTimeParseException;
  * happens at a specified time.
  */
 public class Event extends Task {
+    /** A string describing at when the event occurs. */
     private String at;
+    /** The date at which the event occurs. */
     private LocalDate date;
 
     /**
