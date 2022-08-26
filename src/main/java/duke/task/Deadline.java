@@ -31,7 +31,6 @@ public class Deadline extends Task {
         return "[D]" + super.toString() + " (by: " + DateTimeFormatUtils.printDate(deadlineDate) + ")";
     }
 
-
     /**
      * Returns formatted string representation of deadline task for save processing.
      *
@@ -41,6 +40,6 @@ public class Deadline extends Task {
     public String convertToSaveFormat() {
         int status = isDone ? 1 : 0;
         return String.format("%s | %d | %s | %s", "D", status, name,
-                DateTimeFormatUtils.inputFormat(deadlineDate));
+                DateTimeFormatUtils.convertToInputFormat(deadlineDate));
     }
 }

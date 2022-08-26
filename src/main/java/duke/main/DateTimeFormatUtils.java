@@ -46,7 +46,7 @@ public class DateTimeFormatUtils {
             String[] input = date.split(" to ");
             LocalDateTime startDate = LocalDateTime.parse(input[0], INPUT_FORMAT);
             LocalDateTime endDate = LocalDateTime.parse(input[1], INPUT_FORMAT);
-            return new LocalDateTime[] {startDate, endDate};
+            return new LocalDateTime[]{startDate, endDate};
         } catch (DateTimeParseException | ArrayIndexOutOfBoundsException e) {
             throw new DukeException("\tDate Format Police here!!" +
                     "\n\tYour deadline has to be in YYYY-MM-DD HHmm to YYYY-MM-DD HHmm format!!");
@@ -70,7 +70,7 @@ public class DateTimeFormatUtils {
      * @param date LocalDateTime object.
      * @return String representation of given LocalDatetime object.
      */
-    public static String inputFormat(LocalDateTime date) {
+    public static String convertToInputFormat(LocalDateTime date) {
         String output = date.format(INPUT_FORMAT);
         return output;
     }

@@ -6,7 +6,6 @@ import duke.exception.DukeException;
  * Class handling input parsing and validation.
  */
 public class Parser {
-
     /* Command keyword of the current input string being parsed */
     private static Keyword command;
     /* Argument string of the current input string being parsed */
