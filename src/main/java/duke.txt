@@ -1,4 +1,2 @@
-[D][ ] your father (by: Jan 10 2020)
-[D][ ] you (by: Oct 10 2010)
-[E][ ] me (at: Sep 6 2030)
-[D][ ] me (by: Sep 8 2020)
+[T][ ] your mother
+[E][ ] your father (at: Sep 9 2018)
