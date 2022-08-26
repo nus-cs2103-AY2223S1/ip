@@ -2,18 +2,23 @@ package duke.util;
 
 import java.util.Scanner;
 
-//Deals with interactions with the user
 /**
- * Insert Javadocs
+ * To handle the interactions with the user.
  */
 public class Ui {
     private Scanner scanner;
+
+    /**
+     * Constructor to create an instance of Ui.
+     */
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
     /**
-     * Insert Javadocs
+     * A welcome message to be shown when the starting the ChatBot.
+     *
+     * @return a String representation of a Welcome Message
      */
     public String showWelcome() {
         String logo = " _           _        \n"
@@ -30,14 +35,27 @@ public class Ui {
                 + "__________________________________________________";
     }
 
+    /**
+     * Reads the next line of user input.
+     *
+     * @return the String representation of the next line of user input
+     */
     public String readCommand() {
         return this.scanner.nextLine();
     }
 
+    /**
+     * Prints out a divider for formatting.
+     */
     public void showLine() {
         System.out.println("__________________________________________________");
     }
 
+    /**
+     * Display the error messages.
+     *
+     * @param errorMessage a String representation of the error message to be shown
+     */
     public void showError(String errorMessage) {
         System.out.println(errorMessage);
     }

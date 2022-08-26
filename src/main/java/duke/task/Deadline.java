@@ -11,10 +11,11 @@ public class Deadline extends Task {
 
     /**
      * Constructor method for an instance of Deadline and it also utilises
-     * the constructor of it's parent class (Task)
+     * the constructor of its parent class (Task)
      *
      * @param description String that contains the details about the task
      * @param by String that contains the information of the deadline
+     * @param isDone a boolean to keep track if the task has been marked before
      */
     public Deadline(String description, String by, boolean isDone) {
         super(description, isDone);

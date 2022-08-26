@@ -11,14 +11,12 @@ public class Task {
     //To keep track of the status of the task (done/not done)
     protected boolean isDone;
 
-    protected boolean createBefore;
-
     /**
      * This is a constructor for Task. It creates an instance of Task and sets
      * the fields of the Task instance.
      *
      * @param description This is a String describing the task to be done.
-     * @return an instance of Task
+     * @param isDone a boolean to keep track if the task has been marked before
      */
     public Task(String description, boolean isDone) {
         this.description = description;
@@ -29,7 +27,8 @@ public class Task {
      * This method is used to check the status of the task (done/undone)
      * and mark it with an X if it is done.
      *
-     * @return a String representation of "X" for tasks that are done and an empty space " " for tasks that are undone.
+     * @return a String representation of "X" for tasks that are done and an empty space
+     *     " " for tasks that are undone.
     */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X

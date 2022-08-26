@@ -13,6 +13,7 @@ public class Todo extends Task {
      * the constructor of it's parent class (Task)
      *
      * @param description String that contains the details about the task
+     * @param isDone a boolean to keep track if the task has been marked before
      */
     public Todo(String description, boolean isDone) {
         super(description, isDone);
@@ -28,6 +29,13 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
+    /**
+     * Overridden equals method to check if two Todo Task are the same.
+     *
+     * @param o an Object to be compared against an instance of Todo
+     * @return true if the Object is an instance of Todo and both have the same task
+     *     description/toString representation
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this) {

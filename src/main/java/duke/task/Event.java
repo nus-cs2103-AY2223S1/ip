@@ -15,6 +15,7 @@ public class Event extends Task {
      *
      * @param description String that contains the details about the task
      * @param at String that contains the information of the specific time of event
+     * @param isDone a boolean to keep track if the task has been marked before
      */
     public Event(String description, String at, boolean isDone) {
         super(description, isDone);

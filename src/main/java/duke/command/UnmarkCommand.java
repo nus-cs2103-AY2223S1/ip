@@ -7,19 +7,32 @@ import duke.task.TaskList;
 import duke.util.Storage;
 import duke.util.Ui;
 
-
-
 /**
- * Insert Javadocs
+ * Encapsulates the logic for the UnmarkCommand when the user wants to unmark a certain task as
+ * not completed.
  */
 public class UnmarkCommand extends Command {
     private int taskNumber;
+
+    /**
+     * Constructor to create an instance of UnmarkCommand.
+     *
+     * @param taskDetails a String representation of the task descriptions
+     * @return an instance of UnmarkCommand
+     */
     public UnmarkCommand(String taskDetails) {
         this.taskNumber = Integer.parseInt(taskDetails);
     }
 
     /**
-     * Insert Javadocs
+     * Executes the UnmarkCommand by unmarking the task specified as not completed by removing
+     * the 'X' symbol. Storing the updated tasks by writing to the txt file.
+     *
+     * @param tasks a list that keeps track of the tasks added/removed
+     * @param ui ui that handles the interaction with user inputs
+     * @param storage storage that handles the writing/reading of data from a txt file
+     * @throws DukeException if the specified task is invalid
+     * @throws IOException if an error occurred while writing data to the txt file
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.taskNumber > tasks.size() || this.taskNumber < 1) {
@@ -34,16 +47,33 @@ public class UnmarkCommand extends Command {
         storage.writeToFile(tasks);
     }
 
+    /**
+     * Check if it is the exit command in order to exit loop
+     *
+     * @return false since a UnmarkCommand does not end the ChatBot
+     */
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * A String representation of successfully executing the UnmarkCommand.
+     *
+     * @return a String to notify the user that the specified task has been unmarked
+     */
     @Override
     public String toString() {
         return "__________________________________________________\n"
                 + "Alright! I have marked this task as not done yet:";
     }
 
+    /**
+     * Overridden equals method to check if the Object o is the same as an instance of UnmarkCommand.
+     *
+     * @param o Object to be compared against an instance of UnmarkCommand
+     * @return true if the Object is an instance of UnmarkCommand and both have the same task number, else
+     *     return false
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this) {

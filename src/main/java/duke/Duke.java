@@ -11,7 +11,8 @@ import duke.util.Storage;
 import duke.util.Ui;
 
 /**
- * Insert Javadocs
+ * An interactive ChatBot that provides functions of a to-do list
+ * depending on the user's input.
  */
 public class Duke {
     private Storage storage;
@@ -19,7 +20,9 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Insert Javadocs
+     * Contructor to create an instance of Duke.
+     *
+     * @param filePath the String representation of the relative file path to store the data
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -35,7 +38,7 @@ public class Duke {
     }
 
     /**
-     * Insert Javadocs
+     * To kickstart the entire ChatBot.
      */
     public void run() {
         System.out.println(ui.showWelcome());

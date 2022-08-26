@@ -85,8 +85,9 @@ public class AddCommand extends Command {
     }
 
     /**
-     * A string
-     * @return
+     * A string representation of successfully executing the AddCommand
+     *
+     * @return a String to notify user that task has been successfully added
      */
     @Override
     public String toString() {
@@ -94,6 +95,13 @@ public class AddCommand extends Command {
                 + "Got it. I have added this task:";
     }
 
+    /**
+     * Overridden equals method to check if 2 instances of AddCommand are the same
+     *
+     * @param o Object to be tested against an instance of AddCommand
+     * @return true if the Object is an instance of AddCommand, contains the same
+     *     taskType and same taskDetails
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this) {

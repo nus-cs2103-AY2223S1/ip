@@ -9,17 +9,30 @@ import duke.util.Ui;
 
 
 /**
- * Insert Javadocs
+ * Encapsulates the logic for the MarkCommand when the user wants to mark a certain task as done.
  */
 public class MarkCommand extends Command {
     private int taskNumber;
 
+    /**
+     * Constructor to create an instance of MarkCommand.
+     *
+     * @param taskDetails a string representation of the task description
+     * @return an instance of MarkCommand
+     */
     public MarkCommand(String taskDetails) {
         this.taskNumber = Integer.parseInt(taskDetails);
     }
 
     /**
-     * Insert Javadocs
+     * Executes the MarkCommand by marking the task specified as completed with an 'X'.
+     * Storing the updated tasks by writing to the txt file.
+     *
+     * @param tasks a list that keeps track of the tasks added/removed
+     * @param ui ui that handles the interaction with user inputs
+     * @param storage storage that handles the writing/reading of data from a txt file
+     * @throws DukeException if the specified task is invalid
+     * @throws IOException if an error occurred while writing data to the txt file
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException, IOException {
         if (this.taskNumber > tasks.size() || this.taskNumber < 1) {
@@ -34,16 +47,33 @@ public class MarkCommand extends Command {
         storage.writeToFile(tasks);
     }
 
+    /**
+     * Check if it is the exit command in order to exit loop
+     *
+     * @return false since a MarkCommand does not end the ChatBot
+     */
     public boolean isExit() {
         return false;
     }
 
+    /**
+     * A String representation of successfully executing the MarkCommand.
+     *
+     * @return a String to notify the user that the specified task has been marked
+     */
     @Override
     public String toString() {
         return "__________________________________________________\n"
                 + "Good Job! I have marked this task as done:";
     }
 
+    /**
+     * Overridden equals method to check if the Object o is the same as an instance of MarkCommand.
+     *
+     * @param o Object to be compared against an instance of MarkCommand
+     * @return true if the Object is an instance of MarkCommand and both have the same task number, else
+     *     return false
+     */
     @Override
     public boolean equals(Object o) {
         if (o == this) {

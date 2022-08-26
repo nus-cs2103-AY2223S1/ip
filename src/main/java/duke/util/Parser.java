@@ -11,7 +11,8 @@ import duke.command.WrongCommand;
 import duke.exception.DukeException;
 
 /**
- * Insert Javadocs
+ * A class to handle the process of parsing the user inputs and to carry out the
+ * corresponding commands.
  */
 public class Parser {
     //The important keywords to check against with the user-input
@@ -26,14 +27,22 @@ public class Parser {
     public static final String DEADLINE = "deadline";
     public static final String EVENT = "event";
 
+    /**
+     * Default constructor to create an instance of a Parser
+     */
     public Parser() {
     }
 
     /**
-     * Insert Javadocs
+     * Processes the user input and check it against the specified commands and carry out
+     * the valid commands depending on the keywords used.
+     *
+     * @param fullCommand a String representing the entire line of user input
+     * @return an instance of a Command corresponding to the keyword used in user input
+     * @throws DukeException if an error specific to the ChatBot occurs
      */
     public static Command parse(String fullCommand) throws DukeException {
-
+        //Exception: When the user input is empty/blank
         if (fullCommand.isEmpty() || fullCommand.isBlank()) {
             String errorMessage = "__________________________________________________\n"
                     + "Please enter valid inputs, empty strings or blanks are not valid!";
