@@ -27,6 +27,7 @@ public class Storage {
     }
 
     public void loadTasks() throws IOException, DukeException {
+
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileDestination));
         String readByLine = bufferedReader.readLine();
         while (readByLine != null) {

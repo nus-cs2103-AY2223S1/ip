@@ -8,7 +8,7 @@ public class Duke {
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
-    private final static String FILEDESTINATION = "src/main/duke.txt";
+    private final static String FILEDESTINATION = "./src/main/duke.txt";
 
     public Duke() {
         ui = new Ui();
