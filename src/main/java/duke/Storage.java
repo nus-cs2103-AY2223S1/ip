@@ -1,14 +1,13 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * The Storage class deals with loading tasks from a file
