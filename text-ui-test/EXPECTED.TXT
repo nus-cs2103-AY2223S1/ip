@@ -39,29 +39,57 @@ Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
-OOPS!!! Details missing! A deadline must have both description and date/time.
+OOPS!!! Details missing! A deadline must have both description and date & time.
 Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
-OOPS!!! Details missing! A deadline must have both description and date/time.
+OOPS!!! Details missing! A deadline must have both description and date & time.
 Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
-OOPS!!! I do not accept blank details. A deadline must have both description and date/time.
+OOPS!!! I do not accept blank details. A deadline must have both description and date & time.
 Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
-OOPS!!! Details missing! A deadline must have both description and date/time.
+OOPS!!! Details missing! A deadline must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
 Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
 Got it. I've added this task:
-[D][ ] return book (by: June 6th)
+[D][ ] return book (by: Sep 02 2022 00:00)
 Now you have 2 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
@@ -74,28 +102,49 @@ Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
-OOPS!!! Details missing! An event must have both description and specific start & end time.
+OOPS!!! Details missing! An event must have both description and date & time.
 Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
-OOPS!!! Details missing! An event must have both description and specific start & end time.
+OOPS!!! Details missing! An event must have both description and date & time.
 Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
-OOPS!!! I do not accept blank details. An event must have both description and specific start & end time.
+OOPS!!! I do not accept blank details. An event must have both description and date & time.
 Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
-OOPS!!! Details missing! An event must have both description and specific start & end time.
+OOPS!!! Details missing! An event must have both description and date & time.
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
 Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
 Got it. I've added this task:
-[E][ ] project meeting (at: Aug 6th 2-4pm)
+[E][ ] project meeting (at: Oct 01 2022 14:00)
 Now you have 3 tasks in the list.
 ____________________________________________________________
 
@@ -108,8 +157,8 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][ ] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[E][ ] project meeting (at: Oct 01 2022 14:00)
 4.[T][ ] join sports club
 ____________________________________________________________
 
@@ -130,7 +179,7 @@ ____________________________________________________________
 
 ____________________________________________________________
 Nice! I've marked this task as done:
-[D][X] return book (by: June 6th)
+[D][X] return book (by: Sep 02 2022 00:00)
 ____________________________________________________________
 
 ____________________________________________________________
@@ -161,26 +210,26 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][X] read book
-2.[D][X] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][X] return book (by: Sep 02 2022 00:00)
+3.[E][ ] project meeting (at: Oct 01 2022 14:00)
 4.[T][X] join sports club
 ____________________________________________________________
 
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-[E][ ] project meeting (at: Aug 6th 2-4pm)
+[E][ ] project meeting (at: Oct 01 2022 14:00)
 ____________________________________________________________
 
 ____________________________________________________________
 OK, I've marked this task as not done yet:
-[D][ ] return book (by: June 6th)
+[D][ ] return book (by: Sep 02 2022 00:00)
 ____________________________________________________________
 
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[E][ ] project meeting (at: Oct 01 2022 14:00)
 4.[T][X] join sports club
 ____________________________________________________________
 
@@ -193,8 +242,8 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
-3.[E][ ] project meeting (at: Aug 6th 2-4pm)
+2.[D][ ] return book (by: Sep 02 2022 00:00)
+3.[E][ ] project meeting (at: Oct 01 2022 14:00)
 4.[T][X] join sports club
 5.[T][ ] borrow book
 ____________________________________________________________
@@ -216,27 +265,41 @@ ____________________________________________________________
 
 ____________________________________________________________
 Noted. I've removed this task:
-[E][ ] project meeting (at: Aug 6th 2-4pm)
+[E][ ] project meeting (at: Oct 01 2022 14:00)
 Now you have 4 tasks in the list.
 ____________________________________________________________
 
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
+2.[D][ ] return book (by: Sep 02 2022 00:00)
 3.[T][X] join sports club
 4.[T][ ] borrow book
 ____________________________________________________________
 
 ____________________________________________________________
-Got it. I've added this task:
-[D][ ] return book (by: Sunday)
-Now you have 5 tasks in the list.
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
 ____________________________________________________________
 
 ____________________________________________________________
 Got it. I've added this task:
-[E][ ] project meeting (at: Mon 2-4pm)
+[D][ ] return book (by: Aug 29 2022 15:30)
+Now you have 5 tasks in the list.
+____________________________________________________________
+
+____________________________________________________________
+You have keyed in an invalid date and time!
+Please specify date and time in the format: dd/MM/yyyy HHmm
+E.g. 24/08/2022 2359
+Please try again!
+____________________________________________________________
+
+____________________________________________________________
+Got it. I've added this task:
+[E][ ] project meeting (at: Sep 09 2022 17:00)
 Now you have 6 tasks in the list.
 ____________________________________________________________
 
@@ -260,11 +323,11 @@ ____________________________________________________________
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
+2.[D][ ] return book (by: Sep 02 2022 00:00)
 3.[T][X] join sports club
 4.[T][ ] borrow book
-5.[D][ ] return book (by: Sunday)
-6.[E][ ] project meeting (at: Mon 2-4pm)
+5.[D][ ] return book (by: Aug 29 2022 15:30)
+6.[E][ ] project meeting (at: Sep 09 2022 17:00)
 ____________________________________________________________
 
 ____________________________________________________________
@@ -287,21 +350,21 @@ Opening the file that stores all your tasks...
 
 These are the tasks in your list:
 T | X | read book
-D |   | return book | June 6th
+D |   | return book | 02/09/2022 0000
 T | X | join sports club
 T |   | borrow book
-D |   | return book | Sunday
-E |   | project meeting | Mon 2-4pm
+D |   | return book | 29/08/2022 1530
+E |   | project meeting | 09/09/2022 1700
 ____________________________________________________________
 
 ____________________________________________________________
 Here are the tasks in your list:
 1.[T][X] read book
-2.[D][ ] return book (by: June 6th)
+2.[D][ ] return book (by: Sep 02 2022 00:00)
 3.[T][X] join sports club
 4.[T][ ] borrow book
-5.[D][ ] return book (by: Sunday)
-6.[E][ ] project meeting (at: Mon 2-4pm)
+5.[D][ ] return book (by: Aug 29 2022 15:30)
+6.[E][ ] project meeting (at: Sep 09 2022 17:00)
 ____________________________________________________________
 
 ____________________________________________________________

@@ -12,9 +12,9 @@ import java.util.Scanner;
  * <ul>
  *     <li>ToDos (tasks without any date/time): todo taskDescription</li>
  *     e.g.todo borrow book
- *     <li>Deadlines (tasks to be done before date/time): deadline taskDescription /by dateTime</li>
+ *     <li>Deadlines (tasks to be done before date & time): deadline taskDescription /by dateTime</li>
  *     e.g. deadline return book /by Sunday
- *     <li>Events (tasks that start and end at a specific time): event taskDescription /at dateTime</li>
+ *     <li>Events (tasks at date & time): event taskDescription /at dateTime</li>
  *     e.g. event project meeting /at Mon 2-4pm
  * </ul>
  * <li>List task (displays a list of all tasks stored): list</li>
@@ -122,20 +122,20 @@ public class CaCa {
     /**
      * Adds a Deadline task to user list.
      *
-     * @param taskInfo Task information with task description and task date/time.
-     * @throws MissingDetailException If task description or task date/time is missing.
+     * @param taskInfo Task information with task description and task date & time.
+     * @throws MissingDetailException If task description or task date & time is missing.
      */
     public static void addDeadline(String taskInfo) throws MissingDetailException, InvalidDateException {
         String[] detailedCommand = taskInfo.split(" /by ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
-                    + "A deadline must have both description and date/time.";
+                    + "A deadline must have both description and date & time.";
             throw new MissingDetailException(message);
 
         } else {
             if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
                 String MESSAGE = "OOPS!!! I do not accept blank details. "
-                        + "A deadline must have both description and date/time.";
+                        + "A deadline must have both description and date & time.";
                 throw new MissingDetailException(MESSAGE);
 
             } else {
@@ -154,20 +154,20 @@ public class CaCa {
     /**
      * Adds an Event task to user list.
      *
-     * @param taskInfo Task information with task description and task start & end time.
-     * @throws MissingDetailException If task description or task start & end time is missing.
+     * @param taskInfo Task information with task description and date & time.
+     * @throws MissingDetailException If task description or task date & time is missing.
      */
     public static void addEvent(String taskInfo) throws MissingDetailException, InvalidDateException {
         String[] detailedCommand = taskInfo.split(" /at ", 2);
         if (detailedCommand.length == 1) {
             String message = "OOPS!!! Details missing! "
-                    + "An event must have both description and specific start & end time.";
+                    + "An event must have both description and date & time.";
             throw new MissingDetailException(message);
 
         } else {
             if (detailedCommand[0].isBlank() || detailedCommand[1].isBlank()) {
                 String message = "OOPS!!! I do not accept blank details. "
-                        + "An event must have both description and specific start & end time.";
+                        + "An event must have both description and date & time.";
                 throw new MissingDetailException(message);
 
             } else {

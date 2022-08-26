@@ -8,6 +8,10 @@ deadline /by Sun
 deadline  /by Mon
 deadline revision /by
 deadline return book /by June 6th
+deadline return book /by 01/09/2022 2400
+deadline return book /by 1/09/2022 2400
+deadline return book /by 01/09/2022 2401
+deadline return book /by 01/13/2022 0005
 hello
 event
 event meeting
@@ -15,6 +19,9 @@ event /at Fri 1-3pm
 event  /at Fri 1-3pm
 event meeting /at
 event project meeting /at Aug 6th 2-4pm
+event project meeting /at 1/10/2022 1400
+event project meeting /at 01/13/2022 1400
+event project meeting /at 01/10/2022 1400
 todo join sports club
 list
 mark -1
@@ -38,7 +45,9 @@ delete 6
 delete 3
 list
 deadline return book /by Sunday
+deadline return book /by 29/08/2022 1530
 event project meeting /at Mon 2-4pm
+event project meeting /at 09/09/2022 1700
 todo exercise
 mark 7
 delete 7
