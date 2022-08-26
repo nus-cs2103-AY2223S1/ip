@@ -8,19 +8,33 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import piggy.task.Deadline;
 import piggy.task.Event;
 import piggy.task.Task;
 import piggy.task.TaskWithDate;
 import piggy.task.Todo;
 
+/**
+ * Class that handles storing and retrieving task data from the disk.
+ */
 class Storage {
-    File file;
+    private File file;
 
+    /**
+     * Creates a new Storage object for the given file path.
+     *
+     * @param path The path to the file to read/write to (does not have to exist)
+     */
     Storage(String path) {
         file = new File(path);
     }
 
+    /**
+     * Returns a list of tasks read from the data file.
+     *
+     * @return A list of Tasks.
+     */
     List<Task> readTasks() {
         List<Task> tasks = new ArrayList<>();
         Scanner sc = null;
@@ -68,6 +82,12 @@ class Storage {
         return tasks;
     }
 
+    /**
+     * Writes the tasks to the disk inside the data file. Overrides any existing
+     * content in the file.
+     *
+     * @param tasks The TaskList to write to disk.
+     */
     void writeTasks(TaskList tasks) {
         FileWriter writer = null;
         try {
