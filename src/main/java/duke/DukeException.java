@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Exception related to the Duke class
+ */
 public class DukeException extends Exception{
     /**
      * A constructor to intialize the DukeException object

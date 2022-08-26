@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Class to test the TaskList methods
+ */
 public class TaskListTest {
     private Todo todo = new Todo("Borrow Book");
     private Deadline dl = new Deadline("Borrow Book", LocalDate.parse("2022-02-02"));

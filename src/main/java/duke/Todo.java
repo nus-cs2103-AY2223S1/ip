@@ -1,4 +1,8 @@
 package duke;
+
+/**
+ * Task to be completed at any time
+ */
 public class Todo extends Task{
     /**
      * A constructor to intialize the Todo object with the description

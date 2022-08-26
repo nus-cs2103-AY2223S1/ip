@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.time.LocalDate;
 
+/**
+ * Class to test the Deadline methods
+ */
 public class DeadlineTest {
     private Deadline dl = new Deadline("Borrow Book", LocalDate.parse("2022-02-02"));
 

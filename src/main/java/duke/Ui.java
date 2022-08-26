@@ -1,6 +1,10 @@
 package duke;
 
 import java.util.Scanner;
+
+/**
+ * Class that deals with interactions with the user
+ */
 public class Ui {
 
     /**

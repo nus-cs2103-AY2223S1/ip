@@ -2,6 +2,9 @@ package duke;
 
 import java.util.ArrayList;
 
+/**
+ * List storing all the Task objects
+ */
 public class TaskList {
 
     /**

@@ -4,7 +4,9 @@ import java.io.FileNotFoundException;
 import java.util.*;
 import java.io.IOException;
 
-
+/**
+ * The class of the Duke bot
+ */
 public class Duke {
 
     /**

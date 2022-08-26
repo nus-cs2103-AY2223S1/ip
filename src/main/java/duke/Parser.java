@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Class that deals with making sense of the user command
+ */
 public class Parser {
     /**
      * Parses the input and returns if the scanner should scan a new line

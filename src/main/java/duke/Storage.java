@@ -9,6 +9,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class that deals with loading tasks from the file and saving tasks in the file
+ */
 public class Storage {
     /**
      * The file path of the text file that stores the date
