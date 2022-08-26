@@ -33,6 +33,9 @@ public class Input {
     protected String inputString;
     protected Map<String, String> parameters; // store arguments without arg_start
     protected String[] tokens;
+    protected Input() {
+        return;
+    }
 
     /**
      * Parses the input string received from the user and stores command name, parameters and arguments

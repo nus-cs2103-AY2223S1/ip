@@ -13,7 +13,8 @@ public class StringArgumentTest {
     @Test
     public void argumentValidation_validInput() {
         try {
-            Input valid = Input.newInput("deadline /d description ");
+            Input valid = new InputStub("deadline /d description ");
+
             StringArgument s = new StringArgument(valid, "d", "Empty", "Missing");
             s.validate();
             assertEquals(s.getParameter(), "description");
@@ -25,7 +26,7 @@ public class StringArgumentTest {
     @Test
     public void argumentValidation_invalidInput_emptyParameter() {
         try {
-            Input invalid = Input.newInput("deadline /d ");
+            Input invalid = new InputStub("deadline /d");
             StringArgument s = new StringArgument(invalid, "d", "Empty", "Missing");
             s.validate();
         } catch (DukeException e) {
@@ -36,7 +37,7 @@ public class StringArgumentTest {
     @Test
     public void argumentValidation_invalidInput_missingParameter() {
         try {
-            Input invalid = Input.newInput("deadline ");
+            Input invalid = new InputStub("deadline ");
             StringArgument s = new StringArgument(invalid, "d", "Empty", "Missing");
             s.validate();
         } catch (DukeException e) {
