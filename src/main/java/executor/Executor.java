@@ -50,7 +50,7 @@ public class Executor {
      * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
      * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
-     * than total {@link Task}s
+     *      than total {@link Task}s
      */
     public String markTask(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
@@ -80,7 +80,7 @@ public class Executor {
      * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
      * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
-     * than total {@link Task}s
+     *      than total {@link Task}s
      */
     public String unmarkTask(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
@@ -112,8 +112,8 @@ public class Executor {
      * @param separatorIndex int index of the separator
      * @return <code>String</code>
      * @throws DukeException If {@code commandDescription} is an empty {@link String}/{@code commandDescription}
-     * for {@link Deadline} is not separated using " /by "/{@code commandDescription}
-     * for {@link Deadline} is not separated using " /at "
+     *      for {@link Deadline} is not separated using " /by "/{@code commandDescription}
+     *      for {@link Deadline} is not separated using " /at "
      */
     public String putInBrain(String taskType, String[] taskDescriptionDatetime, int separatorIndex)
             throws DukeException {
@@ -186,7 +186,7 @@ public class Executor {
      * @param commandDescription a {@link String} passed by parser
      * @return {@link String}
      * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
-     * than total {@link Task}s
+     *      than total {@link Task}s
      */
     public String trashFromBrain(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
