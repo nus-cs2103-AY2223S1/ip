@@ -15,28 +15,25 @@ import duke.task.Todo;
  * Encapsulation of reading from and writing into file.
  *
  * @author   Sun Ruoxin
- * @version  %I%, %G%
  */
 public class Storage {
-    /**
-     * The file being read from and write to.
-     */
+    /** The file being read from and write to. */
     protected File file;
 
     /**
      * Class constructor.
      *
-     * @param filePath  the path of the file
+     * @param filePath the path of the file
      */
     public Storage(String filePath) {
         this.file = new File(filePath);
     }
 
     /**
-     * Loads from the file containing existing records of Tasks.
+     * Loads from the file containing existing records of tasks.
      *
-     * @param ui  the UI handling interactions with the user
-     * @return    the list of existing Tasks
+     * @param ui the UI handling interactions with the user
+     * @return the list of existing tasks
      */
     public ArrayList<Task> load(Ui ui) {
         initialiseFile(ui);
@@ -59,7 +56,7 @@ public class Storage {
     /**
      * Creates the directory and the file if not already exist.
      *
-     * @param ui  the UI handling interactions with the user
+     * @param ui the UI handling interactions with the user
      */
     public void initialiseFile(Ui ui) {
         File directory = new File(this.file.getParent());
@@ -79,10 +76,10 @@ public class Storage {
     }
 
     /**
-     * Writes the current list of Tasks to the file.
+     * Writes the current list of tasks to the file.
      *
-     * @param list  the current list of Tasks
-     * @param ui    the UI handling interactions with the user
+     * @param list the current list of tasks
+     * @param ui the UI handling interactions with the user
      */
     public void writeFile(TaskList list, Ui ui) {
         initialiseFile(ui);

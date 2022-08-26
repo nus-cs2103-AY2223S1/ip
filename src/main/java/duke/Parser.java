@@ -18,16 +18,15 @@ import duke.task.Todo;
 /**
  * Encapsulation of parsing user inputs and records in the file.
  *
- * @author   Sun Ruoxin
- * @version  %I%, %G%
+ * @author Sun Ruoxin
  */
 public class Parser {
 
     /**
-     * Parses user input to Command.
+     * Parses user input to command.
      *
-     * @param fullCommand  the input to be parsed
-     * @return             the parsed Command
+     * @param fullCommand the input to be parsed
+     * @return the parsed command
      */
     public static Command parse(String fullCommand) {
         if (fullCommand.equals("bye")) {
@@ -98,10 +97,10 @@ public class Parser {
     }
 
     /**
-     * Parses String record in the file to Task to be stored.
+     * Parses string record in the file to task to be stored.
      *
-     * @param taskRecord  the String record in the file
-     * @return            the Task to be stored
+     * @param taskRecord the string record in the file
+     * @return the task to be stored
      */
     public static Task toTask(String taskRecord) {
         if (taskRecord.startsWith("T")) {
@@ -127,8 +126,8 @@ public class Parser {
     /**
      * Checks whether the Task recorded in the file is marked as done.
      *
-     * @param status  integer representing the status of the Task
-     * @return        boolean value representing whether the Task is marked as done
+     * @param status integer representing the status of the Task
+     * @return a boolean value representing whether the Task is marked as done
      */
     public static boolean checkStatus(int status) {
         // if status == 0, the task is not done yet
@@ -139,8 +138,8 @@ public class Parser {
     /**
      * Parses the String record in the file to LocalDate to be stored.
      *
-     * @param date  the String in the record representing a date
-     * @return      the LocalDate to be stored in Task
+     * @param date the String in the record representing a date
+     * @return the LocalDate to be stored in Task
      */
     public static LocalDate parseDate(String date) {
         return LocalDate.parse(date, DateTimeFormatter.ofPattern("MMM d yyyy"));
