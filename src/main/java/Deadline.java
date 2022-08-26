@@ -1,15 +1,19 @@
-public class Deadline extends Task{
-    private String dueDate;
-    private final String TASK_TYPE = "D";
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 
-    public Deadline(String taskName, String dueDate) {
+public class Deadline extends Task{
+    private LocalDateTime dueDate;
+    private final String TASK_TYPE = "D";
+    private final static DateTimeParser PARSER = new DateTimeParser();
+
+    public Deadline(String taskName, String dueDate) throws DateTimeException {
         super(taskName);
-        this.dueDate = dueDate;
+        this.dueDate = PARSER.getDateTime(dueDate);
     }
 
     public Deadline(String taskName, boolean hasCompleted, String dueDate) {
         super(taskName, hasCompleted);
-        this.dueDate = dueDate;
+        this.dueDate = PARSER.getDateTime(dueDate);
     }
 
 

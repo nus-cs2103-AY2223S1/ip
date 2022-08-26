@@ -1,15 +1,19 @@
-public class Event extends Task {
-    private String date;
-    private final String TASK_TYPE = "E";
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 
-    public Event(String taskName, String date) {
+public class Event extends Task {
+    private LocalDateTime date;
+    private final String TASK_TYPE = "E";
+    private final static DateTimeParser PARSER = new DateTimeParser();
+
+    public Event(String taskName, String date) throws DateTimeException {
         super(taskName);
-        this.date = date;
+        this.date = PARSER.getDateTime(date);
     }
 
     public Event(String taskName, boolean hasCompleted, String date) {
         super(taskName, hasCompleted);
-        this.date = date;
+        this.date = PARSER.getDateTime(date);
     }
 
     @Override
