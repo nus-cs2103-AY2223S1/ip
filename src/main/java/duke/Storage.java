@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +13,7 @@ public class Storage {
     private static File folder, file;
     private UI ui;
 
-    public Storage(UI ui) throws DukeException {
+    public Storage(UI ui) throws PloopyException {
         folder = new File(FOLDER_PATH);
         file = new File(FILE_PATH);
         this.ui = ui;
@@ -20,7 +22,7 @@ public class Storage {
             try {
                 folder.mkdir();
             } catch (SecurityException e) {
-                throw new DukeException("IO");
+                throw new PloopyException("IO");
             }
         }
 
@@ -29,7 +31,7 @@ public class Storage {
                 ui.createFilesMessage();
             }
         } catch (IOException e) {
-            throw new DukeException("IO");
+            throw new PloopyException("IO");
         }
     }
 
@@ -43,7 +45,7 @@ public class Storage {
 
     }
 
-    public void loadFile(TaskList taskList) throws DukeException{
+    public void loadFile(TaskList taskList) throws PloopyException {
         try {
             Scanner fileReader = new Scanner(file);
             ui.addingFilesMessage();
@@ -51,11 +53,11 @@ public class Storage {
                 taskList.addTasksFromFile(fileReader.nextLine());
             }
         } catch (IOException e) {
-            throw new DukeException("IO");
+            throw new PloopyException("IO");
         }
     }
 
-    public void rewriteFile(ArrayList<Task> taskList) throws DukeException {
+    public void rewriteFile(ArrayList<Task> taskList) throws PloopyException {
         try {
             FileWriter fileDelete = new FileWriter(FILE_PATH, false);
             fileDelete.write("");
@@ -66,17 +68,17 @@ public class Storage {
             }
             fileWriter.close();
         } catch (IOException e) {
-            throw new DukeException("IO");
+            throw new PloopyException("IO");
         }
     }
 
-    public void writeToFile(Task task) throws DukeException {
+    public void writeToFile(Task task) throws PloopyException {
         try {
             FileWriter fileWriter = new FileWriter(FILE_PATH, true);
             fileWriter.write(formatLineToWrite(task) + "\n");
             fileWriter.close();
         } catch (IOException e) {
-            throw new DukeException("IO");
+            throw new PloopyException("IO");
         }
     }
 }

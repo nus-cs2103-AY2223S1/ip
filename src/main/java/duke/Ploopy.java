@@ -1,16 +1,18 @@
+package duke;
+
 import java.util.Scanner;
 
-public class Duke {
+public class Ploopy {
 
     private UI ui;
     private TaskList taskList;
     private Storage storage;
 
-    public Duke() {
+    public Ploopy() {
         ui = new UI();
         try {
             storage = new Storage(ui);
-        } catch (DukeException e) {
+        } catch (PloopyException e) {
             ui.exceptionMessage(e.getMessage());
         }
         taskList = new TaskList(ui, storage);
@@ -20,7 +22,7 @@ public class Duke {
         ui.greeting();
         try {
             storage.loadFile(taskList);
-        } catch (DukeException e) {
+        } catch (PloopyException e) {
             ui.exceptionMessage(e.getMessage());
         }
         command();
@@ -33,7 +35,7 @@ public class Duke {
         while (!input.equals("bye")) {
             try {
                Parser.parseInput(input, taskList);
-            } catch (DukeException e) {
+            } catch (PloopyException e) {
                 ui.exceptionMessage(e.getMessage());
             }
             input = scanner.nextLine();
@@ -42,6 +44,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke().start();
+        new Ploopy().start();
     }
 }

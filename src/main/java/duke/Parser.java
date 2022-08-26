@@ -1,9 +1,11 @@
+package duke;
+
 public class Parser {
 
-    public static void parseInput(String input, TaskList taskList) throws DukeException {
+    public static void parseInput(String input, TaskList taskList) throws PloopyException {
         String[] inputSequence = input.split(" ");
         if (input.isBlank() || input.isEmpty()) {
-            throw new DukeException("blank");
+            throw new PloopyException("blank");
         }
         String command = inputSequence[0];
         switch (command) {
@@ -11,14 +13,14 @@ public class Parser {
                 if (!isEmptyCommand(input, "mark".length())) {
                     taskList.markTask(Integer.parseInt(inputSequence[1]));
                 } else {
-                    throw new DukeException("mark");
+                    throw new PloopyException("mark");
                 }
                 break;
             case "unmark":
                 if (!isEmptyCommand(input, "unmark".length())) {
                     taskList.unmarkTask(Integer.parseInt(inputSequence[1]));
                 } else {
-                    throw new DukeException("unmark");
+                    throw new PloopyException("unmark");
                 }
                 break;
             case "list":
@@ -28,32 +30,32 @@ public class Parser {
                 if (!isEmptyCommand(input, "delete".length())) {
                     taskList.deleteTask(Integer.parseInt(inputSequence[1]));
                 } else {
-                    throw new DukeException("delete");
+                    throw new PloopyException("delete");
                 }
                 break;
             case "todo":
                 if (!isEmptyCommand(input, "todo".length())) {
                     taskList.createToDo(input);
                 } else {
-                    throw new DukeException("todo");
+                    throw new PloopyException("todo");
                 }
                 break;
             case "deadline":
                 if (!isEmptyCommand(input, "deadline".length())) {
                     taskList.createDeadline(input);
                 } else {
-                    throw new DukeException("deadline");
+                    throw new PloopyException("deadline");
                 }
                 break;
             case "event":
                 if (!isEmptyCommand(input, "mark".length())) {
                     taskList.createEvent(input);
                 } else {
-                    throw new DukeException("event");
+                    throw new PloopyException("event");
                 }
                 break;
             default:
-                throw new DukeException("nonsense");
+                throw new PloopyException("nonsense");
         }
 
     }

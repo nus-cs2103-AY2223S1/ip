@@ -1,3 +1,5 @@
+package duke;
+
 public class Event extends Task {
 
     protected Event(String name, String date) {

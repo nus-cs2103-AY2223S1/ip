@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -20,34 +22,34 @@ public class TaskList {
         ui.showBottomWindow();
     }
 
-    public void markTask(int taskIndex) throws DukeException {
+    public void markTask(int taskIndex) throws PloopyException {
         Task current = taskList.get(taskIndex - 1);
         current.markDone();
         ui.markTaskMessage(current);
         storage.rewriteFile(taskList);
     }
 
-    public void unmarkTask(int taskIndex) throws DukeException {
+    public void unmarkTask(int taskIndex) throws PloopyException {
         Task current = taskList.get(taskIndex - 1);
         current.unmark();
         ui.unmarkTaskMessage(current);
         storage.rewriteFile(taskList);
     }
 
-    public void deleteTask(int taskNumber) throws DukeException {
+    public void deleteTask(int taskNumber) throws PloopyException {
         ui.deleteTaskMessage(taskList.get(taskNumber - 1), taskList.size() - 1);
         taskList.remove(taskNumber - 1);
         storage.rewriteFile(taskList);
     }
 
-    public void createToDo(String input) throws DukeException {
+    public void createToDo(String input) throws PloopyException {
         Task newTask = new ToDo(input.split(" ")[1]);
         taskList.add(newTask);
         ui.addTaskMessage(newTask, taskList.size());
         storage.writeToFile(newTask);
     }
 
-    public void createDeadline(String input) throws DukeException {
+    public void createDeadline(String input) throws PloopyException {
         String date = input.split("/by ")[1];
         String name = input.split(" ")[1];
         Task newTask = new Deadline(name, date);
@@ -56,7 +58,7 @@ public class TaskList {
         storage.writeToFile(newTask);
     }
 
-    public void createEvent(String input) throws DukeException {
+    public void createEvent(String input) throws PloopyException {
         String date = input.split("/at ")[1];
         String name = input.split(" ")[1];
         Task newTask = new Event(name, date);

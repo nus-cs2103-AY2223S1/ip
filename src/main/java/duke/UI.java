@@ -1,3 +1,5 @@
+package duke;
+
 public class UI {
     private static final String TEXT_ART = "\n" +
             "\t███████████████████████████████████\n" +
@@ -8,7 +10,7 @@ public class UI {
     private static final String TOP_WINDOW = "╔════════════════════════════════════════════════════╗";
     private static final String BOTTOM_WINDOW = "╚════════════════════════════════════════════════════╝";
 
-    private static final String GREETING = "Hi, I'm Ploopy! Nice to meet you!\n\tWhats up?";
+    private static final String GREETING = "Hi, I'm duke.Ploopy! Nice to meet you!\n\tWhats up?";
     private static final String FAREWELL = "Okay then, see ya later :)";
 
     private static final String COMPLETED_TASK = "Nice! You've completed this task. I'll mark it as done.";
