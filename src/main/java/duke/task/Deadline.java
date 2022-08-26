@@ -8,8 +8,7 @@ import duke.util.ParsedData;
 import duke.util.Parser;
 
 /**
- * Task that potentiall have a time deadline
- * Identified by /by
+ * Task that potentiall have a time deadline Identified by /by
  */
 public class Deadline extends Task {
     private static final String SPLIT = "/by ";
@@ -39,11 +38,10 @@ public class Deadline extends Task {
     }
 
     /**
-     * Creates Deadline given the 2 seperate information.
-     * Used when reading from file.
+     * Creates Deadline given the 2 seperate information. Used when reading from file.
      * 
      * @param description Description of Task
-     * @param deadline    When/period where its due
+     * @param deadline When/period where its due
      * @return Deadline
      * @throws CorruptedLineException Throws when there is missing fields
      */
@@ -55,8 +53,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * {@inheritDoc}
-     * Adds [D] Identifier for deadline
+     * {@inheritDoc} Adds [D] Identifier for deadline
      * 
      * @return String
      */

@@ -32,7 +32,7 @@ public class TodoCommand extends DataCommand {
      * Creates a todo task and add it to task list.
      * 
      * @throws DukeException Thrown when the description is invalid
-     * @throws IOException   Thrown when data failed to save.
+     * @throws IOException Thrown when data failed to save.
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {

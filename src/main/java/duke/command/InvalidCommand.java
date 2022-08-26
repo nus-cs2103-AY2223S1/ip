@@ -13,8 +13,7 @@ import duke.util.TaskList;
 public class InvalidCommand implements Command {
 
     /**
-     * {@inheritDoc}
-     * Does not end program
+     * {@inheritDoc} Does not end program
      */
     @Override
     public boolean isExit() {
@@ -22,8 +21,7 @@ public class InvalidCommand implements Command {
     }
 
     /**
-     * {@inheritDoc}
-     * Throws invalid command exception
+     * {@inheritDoc} Throws invalid command exception
      * 
      * @throws UnknownCommandException Throw invalid command
      */

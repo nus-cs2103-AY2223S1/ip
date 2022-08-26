@@ -21,11 +21,11 @@ public interface Command {
     /**
      * Runs a given command.
      * 
-     * @param tasks   TaskList object used by the main loop
-     * @param io      DukeIo object used to handle IO
+     * @param tasks TaskList object used by the main loop
+     * @param io DukeIo object used to handle IO
      * @param storage Storage used to interact with file system
      * @throws DukeException Throws in case of error
-     * @throws IOException   Throws in case of error when saving
+     * @throws IOException Throws in case of error when saving
      */
     void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException;
 }

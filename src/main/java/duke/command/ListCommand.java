@@ -10,8 +10,7 @@ import duke.util.TaskList;
 public class ListCommand implements Command {
 
     /**
-     * {@inheritDoc}
-     * List command does not exit
+     * {@inheritDoc} List command does not exit
      */
     @Override
     public boolean isExit() {

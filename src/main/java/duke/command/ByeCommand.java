@@ -23,8 +23,7 @@ public class ByeCommand implements Command {
     }
 
     /**
-     * {@inheritDoc}
-     * Prints goodbye message and exits program.
+     * {@inheritDoc} Prints goodbye message and exits program.
      * 
      * @throws IOException raised if an error occured when saving
      */

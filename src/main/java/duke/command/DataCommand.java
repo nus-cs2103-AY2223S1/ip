@@ -10,8 +10,7 @@ public abstract class DataCommand implements Command {
     protected ParsedData data;
 
     /**
-     * {@inheritDoc}
-     * Data commands usually always continue hence false.
+     * {@inheritDoc} Data commands usually always continue hence false.
      * 
      * @return false
      */

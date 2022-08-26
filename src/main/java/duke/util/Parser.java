@@ -38,9 +38,7 @@ public final class Parser {
     private static final Pattern SAVE_PATTERN = Pattern.compile("^([TDE])([cx]) <<<< (.*) <<<< (.*)");
 
     static enum DateFormatEnum {
-        T1("MMM d yyyy"),
-        T2("dd/MM/yyyy"),
-        T3("dd-MM-yyyy");
+        T1("MMM d yyyy"), T2("dd/MM/yyyy"), T3("dd-MM-yyyy");
 
         final DateTimeFormatter dtf;
 
@@ -50,9 +48,7 @@ public final class Parser {
     }
 
     static enum DateTimeFormatEnum {
-        T1("MMM d yyyy HH:mm"),
-        T2("dd/MM/yyyy HH:mm"),
-        T3("dd-MM-yyyy HH:mm");
+        T1("MMM d yyyy HH:mm"), T2("dd/MM/yyyy HH:mm"), T3("dd-MM-yyyy HH:mm");
 
         final DateTimeFormatter dtf;
 
@@ -69,28 +65,28 @@ public final class Parser {
      */
     public static Command dataToCommand(ParsedData data) {
         switch (data.command) {
-            case "bye":
-                return new ByeCommand();
-            case "list":
-                return new ListCommand();
-            case "mark":
-                return new MarkCommand(data);
-            case "unmark":
-                return new UnmarkCommand(data);
-            case "delete":
-                return new DeleteCommand(data);
-            case "todo":
-                return new TodoCommand(data);
-            case "deadline":
-                return new DeadlineCommand(data);
-            case "event":
-                return new EventCommand(data);
-            case "by":
-                return new ByCommand(data);
-            case "find":
-                return new FindCommand(data);
-            default:
-                return new InvalidCommand();
+        case "bye":
+            return new ByeCommand();
+        case "list":
+            return new ListCommand();
+        case "mark":
+            return new MarkCommand(data);
+        case "unmark":
+            return new UnmarkCommand(data);
+        case "delete":
+            return new DeleteCommand(data);
+        case "todo":
+            return new TodoCommand(data);
+        case "deadline":
+            return new DeadlineCommand(data);
+        case "event":
+            return new EventCommand(data);
+        case "by":
+            return new ByCommand(data);
+        case "find":
+            return new FindCommand(data);
+        default:
+            return new InvalidCommand();
         }
     }
 
@@ -110,16 +106,16 @@ public final class Parser {
         String command = parsedTmp[0];
 
         switch (command) {
-            case "deadline":
-                parsedTmp = parsedTmp[1].split(DEADLINE_SEP, 2);
-                break;
+        case "deadline":
+            parsedTmp = parsedTmp[1].split(DEADLINE_SEP, 2);
+            break;
 
-            case "event":
-                parsedTmp = parsedTmp[1].split(EVENT_SEP, 2);
-                break;
+        case "event":
+            parsedTmp = parsedTmp[1].split(EVENT_SEP, 2);
+            break;
 
-            default:
-                return new ParsedData(command, parsedTmp[1]);
+        default:
+            return new ParsedData(command, parsedTmp[1]);
         }
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
             return new ParsedData(command, parsedTmp[0]);
@@ -129,9 +125,7 @@ public final class Parser {
     }
 
     /**
-     * Returns Command from raw user input.
-     * Done by combining {@code Parser.parse} and
-     * {@code Parser.dataToCommand}
+     * Returns Command from raw user input. Done by combining {@code Parser.parse} and {@code Parser.dataToCommand}
      * 
      * @param txt Raw user input
      * @return Command
@@ -155,18 +149,18 @@ public final class Parser {
 
         Task ret;
         switch (result.group(1)) {
-            case "T":
-                ret = Todo.createTodo(result.group(3));
-                break;
+        case "T":
+            ret = Todo.createTodo(result.group(3));
+            break;
 
-            case "D":
-                ret = Deadline.createDeadline(result.group(3), result.group(4));
-                break;
-            case "E":
-                ret = Event.createEvent(result.group(3), result.group(4));
-                break;
-            default:
-                throw new CorruptedLineException();
+        case "D":
+            ret = Deadline.createDeadline(result.group(3), result.group(4));
+            break;
+        case "E":
+            ret = Event.createEvent(result.group(3), result.group(4));
+            break;
+        default:
+            throw new CorruptedLineException();
         }
 
         if (result.group(2).equals("c")) {
