@@ -53,12 +53,12 @@ public class TaskList {
   public String toString() {
     String taskListString = "";
     for (int i = 0; i < taskList.size(); i++) {
-      int displayIndex = i + 1;
       Task task = taskList.get(i);
+      int displayIndex = i + 1;
       taskListString += displayIndex + ". " + task;
       taskListString += System.lineSeparator();
     }
-    return taskListString;
+    return taskListString.trim();
   }
 
   private void validateTaskIndexInRange(int taskIndex) throws CheeseException {

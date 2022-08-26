@@ -1,56 +1,63 @@
+import java.io.PrintStream;
 import java.util.Scanner;
 
 public class Ui {
+  private final Scanner in;
+  private final PrintStream out;
+
+  public Ui() {
+    in = new Scanner(System.in);
+    out = System.out;
+  }
+
   public void showWelcome() {
-    System.out.println("Woof! I'm Cheese, your puppy assistant.\n"
+    out.println("Woof! I'm Cheese, your puppy assistant.\n"
         + "What can I do for you?");
   }
 
   public String readCommand() {
     showLine();
-    System.out.print("~ ");
-    Scanner scanner = new Scanner(System.in);
-    String fullCommand = scanner.nextLine();
-    scanner.close();
+    out.print("~ ");
+    String fullCommand = in.nextLine();
     showLine();
     return fullCommand;
   }
 
   public void showAddTask(Task addedTask, int newListSize) {
-    System.out.println("Gotcha! I have a paw-fect memory!");
-    System.out.println("  " + addedTask);
-    System.out.println("You have " + newListSize + " task(s) in the list.");
+    out.println("Gotcha! I have a paw-fect memory!");
+    out.println("  " + addedTask);
+    out.println("You have " + newListSize + " task(s) in the list.");
   }
 
   public void showDeleteTask(Task deletedTask, int remainingListSize) {
-    System.out.println("Gotcha! I'll forget about this task!");
-    System.out.println("  " + deletedTask);
-    System.out.println("You have " + remainingListSize + " task(s) remaining.");
+    out.println("Gotcha! I'll forget about this task!");
+    out.println("  " + deletedTask);
+    out.println("You have " + remainingListSize + " task(s) remaining.");
   }
 
   public void showMarkTaskAsDone(Task taskDone) {
-    System.out.println("Paw-some! Another task done!");
-    System.out.println("  " + taskDone);
+    out.println("Paw-some! Another task done!");
+    out.println("  " + taskDone);
   }
 
   public void showMarkTaskAsNotDone(Task taskNotDone) {
-    System.out.println("Okay, I've marked this task as not done yet.");
-    System.out.println("  " + taskNotDone);
+    out.println("Okay, I've marked this task as not done yet.");
+    out.println("  " + taskNotDone);
   }
 
   public void showTaskList(TaskList taskList) {
-    System.out.println(taskList);
+    out.println(taskList);
   }
 
   public void showGoodbye() {
-    System.out.println("Going so soon? :') Bye");
+    out.println("Going so soon? :') Bye");
   }
 
   public void showError(String errorMessage) {
-    System.out.println(errorMessage);
+    out.println(errorMessage);
   }
 
   public void showLine() {
-    System.out.println("-----");
+    out.println("-----");
   }
 }
