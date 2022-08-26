@@ -93,7 +93,7 @@ public class Parser {
             } catch (DateTimeParseException e) {
                 throw new DukeException("date not in yyyy-mm-dd format");
             }
-            String[] cmdDescp = splitSlash[0].split(" ");
+            cmdDescp = splitSlash[0].split(" ");
             if (cmdDescp.length < 2) {
                 throw new DukeException("Task description is missing");
             }
