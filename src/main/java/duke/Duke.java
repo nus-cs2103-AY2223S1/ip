@@ -18,48 +18,48 @@ import duke.ui.Ui;
 
 public class Duke {
 
-  /**
-   * Stores all the tasks of the user.
-   */
-  private static TaskList tasks;
-
-  /**
-   * Handles the start up, running, and terminating of the Duke programme.
-   */
-  public static void main(String[] args) throws DukeException {
-    // Welcome message
-    Ui.print("MumBot: Hi dear! You are precious <3\n");
+    /**
+     * Stores all the tasks of the user.
+     */
+    private static TaskList tasks;
 
     /**
-     * Handling of the .txt file containing the list of tasks.
+     * Handles the start up, running, and terminating of the Duke programme.
      */
-    String filePath = "/Users/kw/Library/Mobile Documents/com~apple~CloudDocs/MODS/cs2103/projects/ip/data/duke.txt";
-    Storage storage = new Storage(filePath);
-    tasks = storage.getTasks();
+    public static void main(String[] args) throws DukeException {
+        // Welcome message
+        Ui.print("MumBot: Hi dear! You are precious <3\n");
 
-    String input;
-    Scanner sc = new Scanner(System.in);
-    input = Ui.awaitUserInput(sc);
+        /**
+         * Handling of the .txt file containing the list of tasks.
+         */
+        String filePath = "/Users/kw/Library/Mobile Documents/com~apple~CloudDocs/MODS/cs2103/projects/ip/data/duke.txt";
+        Storage storage = new Storage(filePath);
+        tasks = storage.getTasks();
 
-    while (true) {
-      boolean notTerminated;
-
-      try {
-        notTerminated = Parser.settleInput(input, tasks);
-      } catch (DukeException e) {
-        Ui.print(e + "\n");
+        String input;
+        Scanner sc = new Scanner(System.in);
         input = Ui.awaitUserInput(sc);
-        continue;
-      }
 
-      if (notTerminated) {
-        input = Ui.awaitUserInput(sc);
-      } else {
-        break;
-      }
+        while (true) {
+            boolean notTerminated;
+
+            try {
+                notTerminated = Parser.settleInput(input, tasks);
+            } catch (DukeException e) {
+                Ui.print(e + "\n");
+                input = Ui.awaitUserInput(sc);
+                continue;
+            }
+
+            if (notTerminated) {
+                input = Ui.awaitUserInput(sc);
+            } else {
+                break;
+            }
+        }
+
+        storage.save();
+        System.exit(0);
     }
-
-    storage.save();
-    System.exit(0);
-  }
 }
