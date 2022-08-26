@@ -227,8 +227,7 @@ public class Parser {
 
         default:
             throw new DukeException("Invalid Command!");
-    }
-
+        }
         return command;
     }
 }
