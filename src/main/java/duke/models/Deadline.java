@@ -8,6 +8,12 @@ import java.time.format.DateTimeFormatter;
  */
 public class Deadline extends Task {
     protected LocalDate by;
+
+    /**
+     * Initialises an Deadline object with description and date of the deadline
+     * @param description
+     * @param by
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;

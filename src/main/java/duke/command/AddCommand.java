@@ -1,9 +1,9 @@
 package duke.command;
 
-import duke.storage.Storage;
 import duke.TaskList;
 import duke.models.Task;
 import duke.ui.Ui;
+import duke.storage.Storage;
 
 /**
  * Adds new Task to the TaskList

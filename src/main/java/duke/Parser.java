@@ -1,13 +1,16 @@
 package duke;
 
-import duke.command.*;
+import java.time.LocalDate;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.InvalidCommand;
 import duke.models.Deadline;
 import duke.models.Event;
 import duke.models.Task;
 import duke.models.Todo;
 import duke.ui.Ui;
 
-import java.time.LocalDate;
 
 /**
  * This class returns a command based on the user input
@@ -16,6 +19,11 @@ public class Parser {
     private Ui ui;
     private TaskList taskList;
 
+    /**
+     * Initialise a Parser object
+     * @param ui
+     * @param tasks
+     */
     public Parser(Ui ui, TaskList tasks) {
         this.ui = ui;
         this.taskList = tasks;
@@ -66,6 +74,7 @@ public class Parser {
                 break;
             default:
                 return new InvalidCommand();
+
         }
         return new InvalidCommand();
     }
