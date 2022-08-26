@@ -4,6 +4,11 @@ package task;
  * Represents a todo task
  */
 public class Todo extends Task {
+    /**
+     * Todo constructor with the specified description.
+     *
+     * @param description a {@link String} indicating the todo description
+     */
     public Todo(String description) {
         super(description);
     }
@@ -21,7 +26,7 @@ public class Todo extends Task {
     /**
      * Returns a {@link String} representation of a todo
      *
-     * @return String
+     * @return {@link String}
      */
     @Override
     public String toString() {
@@ -31,7 +36,7 @@ public class Todo extends Task {
     /**
      * Returns a {@link String} representation of a todo
      *
-     * @return String
+     * @return {@link String}
      */
     @Override
     public String toTxt() {

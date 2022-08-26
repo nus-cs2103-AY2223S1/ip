@@ -15,11 +15,11 @@ public class TaskDatetimeFormatter {
             .withResolverStyle(ResolverStyle.STRICT);
 
     /**
-     * Returns a <code>LocalDate</code> of the converted <code>String</code>
+     * Returns a {@link LocalDate} of the converted {@link String}.
      *
-     * @param datetimeString a <code>String</code> to convert
-     * @return <code>LocalDate</code>
-     * @throws DukeException
+     * @param datetimeString a {@link String} to convert
+     * @return {@link LocalDate}
+     * @throws DukeException If {@code datetimeString} doesn't follow the format.
      */
     public static LocalDate stringToDatetime(String datetimeString) throws DukeException {
         try {

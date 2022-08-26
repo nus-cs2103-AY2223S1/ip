@@ -25,9 +25,9 @@ public class Belly {
     public static final String FILE_PATH = FILE_DIRECTORY + FILE_NAME;
 
     /**
-     * Returns an Arraylist of Tasks inside the file in the specified path.
+     * Returns an {@link ArrayList} of {@link Task}s inside the file in the specified path.
      *
-     * @return <code>ArrayList&lt;Task&gt;</code>
+     * @return {@link ArrayList}&lt;{@link Task}&gt;
      * @throws DukeException If there is no file found in the path
      */
     public ArrayList<Task> puke() throws DukeException {
@@ -71,9 +71,9 @@ public class Belly {
     }
 
     /**
-     * Saves <code>txt</code> input to hard disk.
+     * Saves {@code txt} input to hard disk.
      *
-     * @param txt String that will be saved
+     * @param txt {@link String} that will be saved
      */
     public void saveToHardDisk(String txt) {
         try {

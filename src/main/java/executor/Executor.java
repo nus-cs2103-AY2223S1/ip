@@ -22,8 +22,8 @@ public class Executor {
     /**
      * Executor constructor with the specified brain and belly
      *
-     * @param brain a Brain instance
-     * @param belly a Belly instance
+     * @param brain a {@link Brain} instance
+     * @param belly a {@link Belly} instance
      */
     public Executor(Brain brain, Belly belly) {
         this.brain = brain;
@@ -31,11 +31,11 @@ public class Executor {
     }
 
     /**
-     * Returns a <code>String</code> of <code>Task</code>s inside <code>brain</code>.
+     * Returns a {@link String} representation of {@link Task}s inside <code>brain</code>.
      *
-     * @param commandDescription a <code>String</code> passed by parser
-     * @return <code>String</code>
-     * @throws DukeException
+     * @param commandDescription a {@link String} passed by parser
+     * @return {@link String}
+     * @throws DukeException If {@code commandDescription} is an empty string
      */
     public String showBrain(String commandDescription) throws DukeException {
         if (!commandDescription.equals("")) {
@@ -46,11 +46,12 @@ public class Executor {
     }
 
     /**
-     * Returns a <code>String</code> indicating the marked <code>Task</code>.
+     * Returns a {@link String} indicating the marked {@link Task}.
      *
-     * @param commandDescription a <code>String</code> passed by parser
-     * @return <code>String</code>
-     * @throws DukeException
+     * @param commandDescription a {@link String} passed by parser
+     * @return {@link String}
+     * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
+     * than total {@link Task}s
      */
     public String markTask(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
@@ -75,11 +76,12 @@ public class Executor {
     }
 
     /**
-     * Returns a <code>String</code> indicating the unmarked <code>Task</code>.
+     * Returns a {@link String} indicating the unmarked {@link String}.
      *
-     * @param commandDescription a <code>String</code> passed by parser
-     * @return <code>String</code>
-     * @throws DukeException
+     * @param commandDescription a {@link String} passed by parser
+     * @return {@link String}
+     * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
+     * than total {@link Task}s
      */
     public String unmarkTask(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
@@ -106,11 +108,13 @@ public class Executor {
     /**
      * Returns a <code>String</code> indicating the new <code>Task</code>.
      *
-     * @param taskType
-     * @param taskDescriptionDatetime
-     * @param separatorIndex
+     * @param taskType type of {@link Task}
+     * @param taskDescriptionDatetime {@code String[]} of taskDescription and datetime
+     * @param separatorIndex int index of the separator
      * @return <code>String</code>
-     * @throws DukeException
+     * @throws DukeException If {@code commandDescription} is an empty {@link String}/{@code commandDescription}
+     * for {@link Deadline} is not separated using " /by "/{@code commandDescription}
+     * for {@link Deadline} is not separated using " /at "
      */
     public String putInBrain(String taskType, String[] taskDescriptionDatetime, int separatorIndex)
             throws DukeException {
@@ -178,11 +182,12 @@ public class Executor {
     }
 
     /**
-     * Returns a <code>String</code> indicating the trashed <code>Task</code>.
+     * Returns a {@link String} indicating the trashed {@link Task}.
      *
-     * @param commandDescription a <code>String</code> passed by parser
-     * @return <code>String</code>
-     * @throws DukeException
+     * @param commandDescription a {@link String} passed by parser
+     * @return {@link String}
+     * @throws DukeException If {@code commandDescription} is an empty {@link String}/not an {@link Integer}/bigger
+     * than total {@link Task}s
      */
     public String trashFromBrain(String commandDescription) throws DukeException {
         if (commandDescription.equals("")) {
@@ -210,9 +215,9 @@ public class Executor {
     }
 
     /**
-     * Returns a <code>String</code> indicating the hibernating.
+     * Returns a {@link String} indicating the hibernating.
      *
-     * @return <code>String</code>
+     * @return {@link String}
      */
     public String hibernate() {
         String result = "";
@@ -227,7 +232,7 @@ public class Executor {
      * Returns a {@link String} of {@link Task}s that have the specified keyword.
      *
      * @param keyword a {@link String} that wants to be searched
-     * @return String
+     * @return {@link String}
      */
     public String findInBrain(String keyword) {
         String result = "";

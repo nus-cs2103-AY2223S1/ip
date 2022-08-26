@@ -29,33 +29,33 @@ public class Task {
     }
 
     /**
-     * Returns isDone in a {@link String} representation
+     * Returns {@code isDone} in a {@link String} representation
      *
-     * @return String a String indicating if the task has been marked as done
+     * @return {@link String} a {@link String} indicating if the task has been marked as done
      */
     public String getStatusIcon() {
         return (isDone ? "X" : " "); // mark done task with X
     }
 
     /**
-     * Changes isDone to true
+     * Changes {@code isDone} to {@code true}
      */
     public void markAsDone() {
         isDone = true;
     }
 
     /**
-     * Changes isDone to false
+     * Changes {@code isDone} to {@code false}
      */
     public void markAsUndone() {
         isDone = false;
     }
 
     /**
-     * Returns a boolean indicating if the task has the specified keyword
+     * Returns a {@code boolean} indicating if the task has the specified keyword
      *
      * @param keyword a {@link String} that wants to be searched
-     * @return a {@code boolean}
+     * @return a {@link boolean}
      */
     public boolean hasKeyword(String keyword) {
         return description.contains(keyword);
@@ -64,8 +64,9 @@ public class Task {
     /**
      * Returns a {@link String} representation of a task
      *
-     * @return String
+     * @return {@link String}
      */
+    @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), description);
     }
@@ -73,7 +74,7 @@ public class Task {
     /**
      * Returns a {@link String} representation of a task
      *
-     * @return String
+     * @return {@link String}
      */
     public String toTxt() {
         return String.format("%s @@ %s", getStatusIcon(), description);

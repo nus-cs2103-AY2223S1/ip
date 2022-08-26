@@ -20,19 +20,18 @@ public class TobTob {
     private static final Scanner sc = new Scanner(System.in);
 
     /**
-     * Returns a <code>String</code> of the input by user.
+     * Returns a {@link String} of the input by user.
      *
-     * @return <code>String</code>
+     * @return {@link String}
      */
     public String readInput() {
         return sc.nextLine().strip();
     }
 
     /**
-     * Prints the specified <code>String</code> with indentation
+     * Prints the specified {@link String} with indentation
      *
-     * @param s a <code>String</code> to print
-     * @throws DukeException
+     * @param s a {@link String} to print
      */
     public void printTobTobIndent(String s) {
         System.out.print("\t");

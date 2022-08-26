@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import task.Task;
 
 /**
- * Represents a space to store <code>Task</code>s.
+ * Represents a space to store {@link Task}s.
  */
 public class Brain {
     private ArrayList<Task> taskList;
@@ -13,7 +13,7 @@ public class Brain {
     /**
      * Brain constructor with the specified <code>taskList</code>.
      *
-     * @param taskList An <code>ArrayList</code> of <code>Task</code>s
+     * @param taskList An {@link ArrayList} of {@link Task}s
      */
     public Brain(ArrayList<Task> taskList) {
         this.taskList = taskList;
@@ -27,9 +27,9 @@ public class Brain {
     }
 
     /**
-     * Returns a <code>Task</code> in the specified index of <code>taskList</code>.
+     * Returns a {@link Task} in the specified index of <code>taskList</code>.
      *
-     * @param index index of the <code>Task</code> in <code>taskList</code> to return
+     * @param index index of the {@link Task} in <code>taskList</code> to return
      * @return {@link Task}
      */
     public Task get(int index) {
@@ -37,7 +37,7 @@ public class Brain {
     }
 
     /**
-     * Returns a <code>String</code> of <code>Task</code>s inside <code>brain</code>.
+     * Returns a {@link String} of {@link Task}s inside <code>brain</code>.
      *
      * @return {@link String}
      */
@@ -50,9 +50,9 @@ public class Brain {
     }
 
     /**
-     * Returns a {@link String} representation of a brain
+     * Returns a {@link String} representation of a <code>brain</code>.
      *
-     * @return String
+     * @return {@link String}
      */
     @Override
     public String toString() {
@@ -66,7 +66,7 @@ public class Brain {
     }
 
     /**
-     * Returns a text representation of <code>Task</code>s in <code>taskList</code>.
+     * Returns a text representation of {@link Task}s in <code>taskList</code>.
      *
      * @return {@link String}
      */
@@ -83,25 +83,25 @@ public class Brain {
     /**
      * Returns the size of <code>taskList</code>.
      *
-     * @return {@link int}
+     * @return {@code int}
      */
     public int size() {
         return taskList.size();
     }
 
     /**
-     * Returns an Arraylist of Tasks inside the file in the specified path.
+     * Returns an {@link ArrayList} of {@link Task}s inside the file in the specified path.
      *
-     * @param task <code>Task</code> object to add in <code>taskList</code>
+     * @param task {@link Task} object to add to <code>taskList</code>
      */
     public void add(Task task) {
         taskList.add(task);
     }
 
     /**
-     * Removes a <code>Task</code> in the specified index of <code>taskList</code>.
+     * Removes a {@link Task} in the specified index of <code>taskList</code>.
      *
-     * @param index index of the <code>Task</code> in <code>taskList</code> to remove
+     * @param index index of the {@link Task} in <code>taskList</code> to remove
      */
     public void remove(int index) {
         taskList.remove(index);
@@ -111,7 +111,7 @@ public class Brain {
      * Returns a {@link Brain} instance with the matching {@link Task}s
      *
      * @param keyword a {@link String} that wants to be searched
-     * @return Brain
+     * @return {@link Brain}
      */
     public Brain findInTask(String keyword) {
         ArrayList<Task> tempTaskList = new ArrayList<>();

@@ -56,7 +56,7 @@ public class Duke {
     }
 
     /**
-     * Runs Duke
+     * Runs Duke program
      *
      * @param args
      */

@@ -35,7 +35,7 @@ public class Deadline extends Task {
     /**
      * Returns a {@link String} representation of a deadline
      *
-     * @return String
+     * @return {@link String}
      */
     @Override
     public String toString() {
@@ -45,7 +45,7 @@ public class Deadline extends Task {
     /**
      * Returns a {@link String} representation of a deadline
      *
-     * @return String
+     * @return {@link String}
      */
     @Override
     public String toTxt() {

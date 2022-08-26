@@ -12,18 +12,18 @@ public class Parser {
     /**
      * Parser constructor with the specified executor
      *
-     * @param executor
+     * @param executor an {@link Executor} instance
      */
     public Parser(Executor executor) {
         this.executor = executor;
     }
 
     /**
-     * Returns a <code>String</code> indicating the result of the parsing
+     * Returns a {@link String} indicating the result of the parsing
      *
-     * @param input a <code>String</code> input by the user
-     * @return <code>String</code>
-     * @throws DukeException
+     * @param input a {@link String} input by the user
+     * @return {@link String}
+     * @throws DukeException If the command is not recognized or {@link Executor} throws an Error
      */
     public String parse(String input) throws DukeException {
         System.out.println(input);
