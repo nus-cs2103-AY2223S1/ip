@@ -1,4 +1,4 @@
-package duke.internals;
+package duke.internal;
 
 /**
  * A typical exception thrown by the Duke application.
