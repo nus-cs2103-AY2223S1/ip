@@ -1,13 +1,16 @@
+import java.io.File;
 import java.security.InvalidParameterException;
 
 public class EventDispatcher {
 
     private Calendar table;
     private UiHandler ui;
+    private FileHandler disk;
 
-    public EventDispatcher(Calendar table, UiHandler ui){
+    public EventDispatcher(Calendar table, UiHandler ui, FileHandler disk){
         this.table=table;
         this.ui=ui;
+        this.disk=disk;
     }
 
     private int help(){
@@ -20,14 +23,15 @@ public class EventDispatcher {
     }
 
     @Deprecated
-    private int add(String[] entry_info){
+    private int add(String[] entry_info) throws Exception{
         CalendarEntry entry=new CalendarEntry(entry_info[0]);
         this.table.addEntry(entry);
         ui.cout(UiHandler.generateSection("Added: "+entry.toString()+"\n"));
+        disk.syncToFile(this.table);
         return 200;
     }
 
-    private int markAsDoneUndone(String input){
+    private int markAsDoneUndone(String input) throws Exception{
         String[] args=input.toLowerCase().split(" ");
         if (args.length!=2){
             throw new InvalidParameterException("Sorry, which entry do you want me to mark/unmark?");
@@ -39,6 +43,7 @@ public class EventDispatcher {
                 ui.cout(UiHandler.generateSection("Jawohl, I have marked the following event as completed:\n     " +
                         this.table.getEntry(Integer.parseInt(args[1]))+"\n"));
             }
+            disk.syncToFile(this.table);
             return status;
         }
         if (args[0].equals("unmark")){
@@ -47,6 +52,7 @@ public class EventDispatcher {
                 ui.cout(UiHandler.generateSection("Jawohl, I have marked the following event as incomplete:\n     " +
                         this.table.getEntry(Integer.parseInt(args[1]))+"\n"));
             }
+            disk.syncToFile(this.table);
             return status;
         }
         else{
@@ -55,7 +61,7 @@ public class EventDispatcher {
         }
     }
 
-    private int delete(String input){
+    private int delete(String input) throws Exception{
         String[] args=input.toLowerCase().split(" ");
         if (args.length!=2){
             throw new InvalidParameterException("Sorry, which entry do you want me to delete?");
@@ -63,6 +69,7 @@ public class EventDispatcher {
         }
         ui.cout(UiHandler.generateSection("Jawohl, I have removed the following entry from your calendar:\n     " +
                 this.table.deleteEntry(Integer.parseInt(args[1]))+"\n"));
+        disk.syncToFile(this.table);
         return 200;
     }
 
@@ -74,6 +81,7 @@ public class EventDispatcher {
             if (status==200){
                 ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
+            disk.syncToFile(this.table);
             return status;
         }
         else if (args[0].equals("deadline") && args.length>=4){
@@ -89,6 +97,7 @@ public class EventDispatcher {
             if (status==200){
                 ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
+            disk.syncToFile(this.table);
             return status;
         }
         else if (args[0].equals("event") && args.length>=4){
@@ -104,6 +113,7 @@ public class EventDispatcher {
             if (status==200){
                 ui.cout(UiHandler.generateSection("Verstehe, added: "+entry.toString()+"\n"));
             }
+            disk.syncToFile(this.table);
             return status;
         }
         throw new InvalidParameterException("Sorry, I don't seem to understand you");
@@ -156,6 +166,13 @@ public class EventDispatcher {
      */
     public int startWorking(){
         ui.cout(ui.getGreeting());
+        try {
+            this.disk.syncFromFile(this.table);
+        }
+        catch (Exception e){
+            ui.cout(e.getMessage()+"\n");
+            ui.cout("Error syncing with disk, starting with a fresh new table"+"\n");
+        }
         while (true){
             try {
                 int status=this.dispatchCommand(ui.getCommand());
