@@ -43,7 +43,7 @@ class Storage {
         }
 
         File file = new File(filePath);
-        ArrayList<Task> arrayList = taskList.taskArrayList;
+        ArrayList<Task> arrayList = taskList.getTaskArrayList();
         try {
             FileWriter fw = new FileWriter(file);
 
