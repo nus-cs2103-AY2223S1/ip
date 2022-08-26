@@ -2,7 +2,7 @@ package Sakura;
 
 import java.io.*;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Sakura {
@@ -85,7 +85,7 @@ public class Sakura {
             System.out.println("\tBye Senpai! It was a pleasure serving you, see you again soon!");
             System.out.println("\t" + DIV2 + "\n");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            SakuraException.saveError();
         }
     }
 

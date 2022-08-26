@@ -1,4 +1,5 @@
 package Sakura;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -27,30 +28,35 @@ public class TaskManager {
     }
 
     public void addTask(String input) {
-        if (input.toLowerCase().startsWith("todo")) {
-            if (input.split(" ").length == 1) {
-                SakuraException.invalidTodo();
-            } else {
-                Todo todo = new Todo(input.substring("todo ".length()));
-                this.addDescription(todo);
+        try {
+            if (input.toLowerCase().startsWith("todo")) {
+                if (input.split(" ").length == 1) {
+                    SakuraException.invalidTodo();
+                } else {
+                    Todo todo = new Todo(input.substring("todo ".length()));
+                    this.addDescription(todo);
+                }
+            } else if (input.toLowerCase().startsWith("deadline")) {
+                try {
+                    String[] strArr = input.split(" /by ", 2);
+                    Deadline deadline = new Deadline(strArr[0].substring("deadline ".length()), strArr[1]);
+                    this.addDescription(deadline);
+                } catch (ArrayIndexOutOfBoundsException | StringIndexOutOfBoundsException e) {
+                    SakuraException.invalidDeadline();
+                }
+            } else if (input.toLowerCase().startsWith("event")) {
+                try {
+                    String[] strArr = input.split(" /at ", 2);
+                    Event event  = new Event(strArr[0].substring("event ".length()), strArr[1]);
+                    this.addDescription(event);
+                } catch (ArrayIndexOutOfBoundsException  | StringIndexOutOfBoundsException e) {
+                    SakuraException.invalidEvent();
+                }
             }
-        } else if (input.toLowerCase().startsWith("deadline")) {
-            try {
-                String[] strArr = input.split(" /by ", 2);
-                Deadline deadline = new Deadline(strArr[0].substring("deadline ".length()), strArr[1]);
-                this.addDescription(deadline);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                SakuraException.invalidDeadline();
-            }
-        } else if (input.toLowerCase().startsWith("event")) {
-            try {
-                String[] strArr = input.split(" /at ", 2);
-                Event event  = new Event(strArr[0].substring("event ".length()), strArr[1]);
-                this.addDescription(event);
-            } catch (ArrayIndexOutOfBoundsException e) {
-                SakuraException.invalidEvent();
-            }
+        } catch (DateTimeParseException e) {
+            SakuraException.dateError();
         }
+
     }
 
     public void showAllTask() {
