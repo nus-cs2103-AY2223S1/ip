@@ -25,14 +25,15 @@ public class ToDoList {
     /**
      * Creates duke.ToDoList based on saved file
      * @param txtFile List of Strings representing the tasks saved
+     * @throws Exception when adding task from file fails
      */
-    ToDoList(List<String> txtFile) {
+    ToDoList(List<String> txtFile) throws Exception {
         toDoList = new ArrayList<>();
         addTaskFromFile(txtFile);
     }
 
     /** 
-     * Sets status of task at index to be complete
+     * Sets isComplete status of task at index to be complete
      * @param index index of task in the list
      * @throws IndexOutOfBoundsException
      */
@@ -43,7 +44,7 @@ public class ToDoList {
         toDoList.get(index).mark();
     }
 
-    /** Sets status of task at index to be incomplete
+    /** Sets isComplete status of task at index to be incomplete
      * @param index index of task in the list
      * @throws IndexOutOfBoundsException
      */
@@ -102,7 +103,7 @@ public class ToDoList {
      * Loads all the saved tasks into list
      * @param txtFile list of tasks in String 
      */
-    private void addTaskFromFile(List<String> txtFile) {
+    private void addTaskFromFile(List<String> txtFile) throws Exception {
         if (txtFile.isEmpty()) {
             return;
         }
@@ -110,27 +111,29 @@ public class ToDoList {
         for (String line : txtFile) {
             String[] details = line.split(" # ");
             String taskType = details[0];
-            boolean status = Boolean.parseBoolean(details[1]);
+            boolean isComplete = Boolean.parseBoolean(details[1]);
             String taskName = details[2];
             String eventInfo = details.length > 3 ? details[3] : "";
 
-            Task task;
-
-            switch (taskType) {
-            case "T": 
-                task = new ToDos(taskName, status);
-                toDoList.add(task);
-                break;
-            case "D":
-                task = new Deadline(taskName, eventInfo, status);
-                toDoList.add(task);
-                break;
-            case "E":
-                task = new Event(taskName, eventInfo, status);
-                toDoList.add(task);
-                break;
+            Task task = createTaskFromString(taskType, taskName, eventInfo, isComplete);
+            if (task == null) {
+                throw new Exception("Unable to load task");
             }
+            toDoList.add(task);
         }
+    }
+
+    public Task createTaskFromString(String taskType, String taskName, String eventInfo, boolean isComplete) {
+        switch (taskType) {
+            case "T":
+                return new ToDos(taskName, isComplete);
+            case "D":
+                return new Deadline(taskName, eventInfo, isComplete);
+            case "E":
+                return new Event(taskName, eventInfo, isComplete);
+        }
+
+        return null;
     }
 
     

@@ -98,7 +98,7 @@ public class Command {
     }
 
     /**
-     * Changes status of the task according to index given
+     * Changes isCompleted of the task according to index given
      *
      * @param command change mark command from user
      */
@@ -115,7 +115,7 @@ public class Command {
     }
 
     /**
-     * Changes status of the task according to index given
+     * Deletes task according to index given
      *
      * @param command delete task command from user
      */
@@ -162,7 +162,7 @@ public class Command {
     }
 
     /**
-     * Creates an duke.task.Event instance and adds it to duke.ToDoList
+     * Creates a duke.task.Event instance and adds it to duke.ToDoList
      *
      * @param command event command from user
      * @throws Exception

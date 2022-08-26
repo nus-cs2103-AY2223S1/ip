@@ -33,8 +33,8 @@ public class Duke {
 
         try {
             toDoList = new ToDoList(storage.loadFile());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
             toDoList = new ToDoList();
         }
     }
@@ -54,14 +54,12 @@ public class Duke {
                 Command c = Parser.parse(fullCommand);
                 c.execute(toDoList, ui, storage);
                 isExit = c.isExit();
-
-
-            } catch (InputMismatchException e) {
+            } catch (InputMismatchException exception) {
                 System.out.println("\tError: please only input String commands.");
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException exception) {
                 System.out.println("\tIndex specified out of range, please try again...");
-            } catch (Exception e) {
-                System.out.println("\t" + e.getMessage());
+            } catch (Exception exception) {
+                System.out.println("\t" + exception.getMessage());
             } finally {
                 ui.showLine();
             }
