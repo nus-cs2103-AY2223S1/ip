@@ -1,3 +1,0 @@
-t|0|Do the dishes||
-d|1|Attend ceremony|Today|
-e|1|Eat with grandma|Next Tuesday, 2-3pm|
