@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.ArrayList;
 
 /**
  * Handles the storage functions
@@ -17,7 +18,7 @@ import java.io.Writer;
  */
 public class Storage {
 
-    private final String filePath;
+    private String filePath;
 
     /**
      * Constructor for a new Storage object
@@ -28,11 +29,38 @@ public class Storage {
         this.filePath = filePath;
     }
 
-   /* During the write operation, the characters are written to the internal buffer instead of the disk.
-   Once the buffer is filled or the writer is closed, the whole characters in the buffer are
-   written to the disk.
-   Hence, the number of communication to the disk is reduced.
-   */
+    /**
+     * Finds if a tasks which description matches the query string exists
+     *
+     * @param userInput input from the user, starting with "find ..."
+     * @return an ArrayList containing all the matching tasks
+     * @throws IOException
+     */
+    public ArrayList<Task> findEntry(String userInput) throws IndexOutOfBoundsException {
+        ArrayList<Task> resultTasks = new ArrayList<>(100);
+        // truncate the front part
+        String queryString = userInput.substring(5).strip();
+
+        for (Task task : Pixel.inputTasks) {
+            if (task.getDescription().contains(queryString)) {
+                resultTasks.add(task);
+            }
+        }
+        return resultTasks;
+    }
+
+    /* During the write operation, the characters are written to the internal buffer instead of the disk.
+    Once the buffer is filled or the writer is closed, the whole characters in the buffer are
+    written to the disk.
+    Hence, the number of communication to the disk is reduced.
+    */
+
+    /* During the write operation, the characters are written to the internal buffer instead of the disk.
+    Once the buffer is filled or the writer is closed, the whole characters in the buffer are
+    written to the disk.
+
+    Hence, the number of communication to the disk is reduced.
+    */
 
     /**
      * Clears the output file
@@ -86,6 +114,7 @@ public class Storage {
             Pixel.count -= 1;
             System.out.println("Now you have " + Pixel.count + " tasks in the list.");
         }
+        // run();
 
     }
 
@@ -101,4 +130,5 @@ public class Storage {
         bufferedFileWriter.append(textToAdd).append("\n");
         bufferedFileWriter.close();
     }
+
 }
