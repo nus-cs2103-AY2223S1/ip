@@ -4,9 +4,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 public class Duke {
 
@@ -22,7 +19,7 @@ public class Duke {
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
                 String task = sc.nextLine();
-                String[] line = task.split("~");
+                String[] line = task.split("/");
                 String label = line[0];
                 boolean isDone = line[1].equals("1");
                 String description = line[2];
