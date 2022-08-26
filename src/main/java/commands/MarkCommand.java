@@ -20,7 +20,7 @@ public class MarkCommand extends Command {
         try {
             // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
             // Hence, we need to account for this offset here
-            int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
+            int taskIndex = Integer.parseInt(inputStrings[1].trim()) - 1;
 
             Task task = tasks.getTask(taskIndex);
             task.markTask();

@@ -57,6 +57,15 @@ public abstract class Task {
     }
 
     /**
+     * Returns the description of the current task.
+     *
+     * @return The description of the current task.
+     */
+    public String getDescription() {
+        return this.description;
+    }
+
+    /**
      * Converts the task into a String where each field is delimited by some
      * delimiter
      *

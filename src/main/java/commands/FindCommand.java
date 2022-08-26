@@ -5,28 +5,23 @@ import duke.TaskList;
 import duke.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDescriptionException;
-import task.TaskType;
-import task.Todo;
 
 /**
- * Creates a new Todo
+ * Creates a new event
  */
-public class TodoCommand extends Command {
+public class FindCommand extends Command {
     private final String[] inputStrings;
 
-    public TodoCommand(String[] inputStrings) {
+    public FindCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        if (inputStrings.length == 1) {
-            throw new EmptyDescriptionException(TaskType.T);
+        if (this.inputStrings.length == 1 || this.inputStrings[1].trim().isEmpty()) {
+            throw new EmptyDescriptionException();
         }
-
-        Todo todo = new Todo(inputStrings[1].trim(), false);
-        tasks.addTask(todo);
-
-        ui.showAddTask(todo, tasks.size());
+        TaskList filteredTasks = tasks.filter(this.inputStrings[1]);
+        ui.showMatchingTasks(filteredTasks);
     }
 
     public boolean isExit() {

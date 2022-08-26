@@ -94,6 +94,22 @@ public class Ui {
         this.showLine();
     }
 
+    public void showTasks(TaskList tasks) {
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println("     " + (i + 1) + "." + tasks.getTask(i));
+        }
+    }
+
+    public void showCurrentTasks(TaskList tasks) {
+        System.out.println("     Here are the tasks in your list:");
+        this.showTasks(tasks);
+    }
+
+    public void showMatchingTasks(TaskList tasks) {
+        System.out.println("     Here are the matching tasks in your list:");
+        this.showTasks(tasks);
+    }
+
     /**
      * Prints the goodbye message when the chatbot shuts down
      */
