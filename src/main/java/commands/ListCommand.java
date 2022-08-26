@@ -5,11 +5,11 @@ import duke.TaskList;
 import duke.Ui;
 
 /**
- * Prints the current tasks in the list
+ * Prints the current tasks in the list.
  */
 public class ListCommand extends Command {
     /**
-     * Lists the current tasks
+     * Lists the current tasks.
      * <p>
      * {@inheritDoc}
      */

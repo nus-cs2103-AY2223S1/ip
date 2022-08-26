@@ -3,14 +3,13 @@ package task;
 import java.time.LocalDateTime;
 
 /**
- * Represents a deadline, a type of task
+ * Represents a deadline, a type of task.
  */
 public class Deadline extends Task {
     private final LocalDateTime deadline;
 
     /**
-     * Constructs a deadline with some description and a datetime to indicate
-     * the deadline
+     * Constructs a deadline with some description and a datetime to indicate the deadline.
      *
      * @param description The specified description.
      * @param isDone      The boolean indicating whether the task is done.
@@ -27,7 +26,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Deadline has an additional datetime field for deadline
+     * Deadline has an additional datetime field for deadline.
      * <p>
      * {@inheritDoc}
      */

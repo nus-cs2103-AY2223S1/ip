@@ -9,13 +9,13 @@ import task.TaskType;
 import task.Todo;
 
 /**
- * Creates a new Todo
+ * Creates a new Todo.
  */
 public class TodoCommand extends Command {
     private final String[] inputStrings;
 
     /**
-     * Constructs a todo command, which creates a new todo based on the input strings
+     * Constructs a todo command, which creates a new todo based on the input strings.
      *
      * @param inputStrings The specified input strings.
      */
@@ -24,7 +24,7 @@ public class TodoCommand extends Command {
     }
 
     /**
-     * Creates a new todo
+     * Creates a new todo.
      * <p>
      * {@inheritDoc}
      */

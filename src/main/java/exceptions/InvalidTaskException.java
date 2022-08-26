@@ -3,7 +3,7 @@ package exceptions;
 import task.TaskType;
 
 /**
- * Used when the task data being decoded is invalid
+ * Used when the task data being decoded is invalid.
  */
 public class InvalidTaskException extends DukeException {
     /**
@@ -14,6 +14,6 @@ public class InvalidTaskException extends DukeException {
      * @param taskData The specified task data.
      */
     public InvalidTaskException(TaskType taskType, String taskData) {
-        super("     ☹ OOPS!!! Invalid format for " + taskType.value + "\n" + taskData);
+        super("     ☹ OOPS!!! Invalid format for " + taskType.getValue() + "\n" + taskData);
     }
 }

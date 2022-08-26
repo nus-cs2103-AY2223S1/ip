@@ -1,12 +1,12 @@
 package exceptions;
 
 /**
- * Used when the datetime field entered does not match the date time format
+ * Used when the datetime field entered does not match the datetime format.
  */
 public class InvalidDateTimeException extends DukeException {
     /**
-     * Constructs an exception that indicates that the datetime input does not follow the specified date time
-     * format
+     * Constructs an exception that indicates that the datetime input does not follow the specified datetime
+     * format.
      *
      * @param dateTimeFormat The specified date time format.
      */

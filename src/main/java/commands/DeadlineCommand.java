@@ -15,13 +15,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
- * Creates a new deadline
+ * Creates a new deadline.
  */
 public class DeadlineCommand extends Command {
     private final String[] inputStrings;
 
     /**
-     * Constructs a deadline command, using the input strings to generate the deadline
+     * Constructs a deadline command, using the input strings to generate the deadline.
      *
      * @param inputStrings The specified input strings.
      */
@@ -30,7 +30,7 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Creates a new deadline
+     * Creates a new deadline.
      * <p>
      * {@inheritDoc}
      */

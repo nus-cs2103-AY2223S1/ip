@@ -17,15 +17,15 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Deals with loading tasks from the file and saving tasks in the file whenever Duke starts / shuts down
+ * Deals with loading tasks from the file and saving tasks in the file whenever Duke starts / shuts down.
  */
 public class Storage {
-    // Used in the encoding of task data
+    // Used in the encoding of task data.
     public static final String DELIMITER = "|";
     private final File file;
 
     /**
-     * Constructs a storage to store / retrieve tasks from some file path
+     * Constructs a storage to store / retrieve tasks from some file path.
      *
      * @param filePath The specified path for the storage file.
      */
@@ -34,7 +34,7 @@ public class Storage {
     }
 
     /**
-     * Creates file and subdirectories leading to the file if they have not been created
+     * Creates file and subdirectories leading to the file if they have not been created.
      *
      * @param file The specified path to the file.
      * @throws DukeException when a subdirectory or the file is unable to be created.
@@ -47,14 +47,14 @@ public class Storage {
     }
 
     /**
-     * Decodes task from storage file and returns the corresponding task
+     * Decodes task from storage file and returns the corresponding task.
      *
      * @param taskData The specified task data.
      * @return The corresponding task based on the taskData.
      * @throws DukeException when the values of the tasks are not valid.
      */
     public static Task decodeTask(String taskData) throws DukeException {
-        // Backslashes in split method is necessary as | is a metacharacter in regex
+        // Backslashes in split method is necessary as | is a metacharacter in regex.
         String[] taskValues = taskData.split("\\|", 4);
         Task decodedTask = null;
         switch (taskValues[0]) {
@@ -90,7 +90,7 @@ public class Storage {
         try {
             createFileAndSubdirectoriesIfFileNotFound(this.file);
 
-            // Read the existing data in the storage file into the current task list
+            // Read the existing data in the storage file into the current task list.
             Scanner scanner = new Scanner(this.file);
             while (scanner.hasNextLine()) {
                 String taskData = scanner.nextLine();
@@ -104,7 +104,7 @@ public class Storage {
     }
 
     /**
-     * Overwrites the data inside the storage file with the current task list
+     * Overwrites the data inside the storage file with the current task list.
      */
     public void saveTasks(TaskList taskList) {
         try {

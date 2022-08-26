@@ -12,18 +12,18 @@ import commands.UnmarkCommand;
 import exceptions.DukeException;
 
 /**
- * Used to parse user's input and returns the corresponding commands
+ * Used to parse user's input and returns the corresponding commands.
  */
 public class Parser {
     /**
-     * Parses the input command and returns the corresponding command
+     * Parses the input command and returns the corresponding command.
      *
      * @param command The specified input command.
-     * @return The corresponding command to be executed
+     * @return The corresponding command to be executed.
      * @throws DukeException if an error was thrown during the construction of command.
      */
     public static Command parse(String command) throws DukeException {
-        // Limit of 2 is used to avoid splitting the second argument in fullCommand
+        // Limit of 2 is used to avoid splitting the second argument in fullCommand.
         String[] inputValues = command.split(" ", 2);
         switch (inputValues[0]) {
         case "bye": {

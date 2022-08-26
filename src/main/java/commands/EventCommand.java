@@ -15,13 +15,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
- * Creates a new event
+ * Creates a new event.
  */
 public class EventCommand extends Command {
     private final String[] inputStrings;
 
     /**
-     * Constructs an event command, which creates a new event based on input strings
+     * Constructs an event command, which creates a new event based on input strings.
      *
      * @param inputStrings The specified input strings.
      */
@@ -30,7 +30,7 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Creates a new event and stores it in the current task list
+     * Creates a new event and stores it in the current task list.
      * <p>
      * {@inheritDoc}
      */

@@ -3,14 +3,13 @@ package task;
 import java.time.LocalDateTime;
 
 /**
- * Represents an event, a type of task
+ * Represents an event, a type of task.
  */
 public class Event extends Task {
     private final LocalDateTime timing;
 
     /**
-     * Constructs an event with some description and datetime for the event's start
-     * time
+     * Constructs an event with some description and datetime for the event's start time.
      *
      * @param description The specified description.
      * @param isDone      The boolean indicating whether the task is done.
@@ -23,7 +22,7 @@ public class Event extends Task {
     }
 
     /**
-     * Retrieves formatted value of the event's timing
+     * Retrieves formatted value of the event's timing.
      *
      * @return The formatted datetime string.
      */
@@ -32,7 +31,7 @@ public class Event extends Task {
     }
 
     /**
-     * Event has an additional datetime field for timing
+     * Event has an additional datetime field for timing.
      * <p>
      * {@inheritDoc}
      */

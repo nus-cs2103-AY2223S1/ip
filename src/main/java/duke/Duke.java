@@ -4,7 +4,7 @@ import commands.Command;
 import exceptions.DukeException;
 
 /**
- * Main class for chatbot
+ * Main class for chatbot.
  */
 public class Duke {
     private final Ui ui;
@@ -12,7 +12,7 @@ public class Duke {
     private final TaskList tasks;
 
     /**
-     * Constructs a new chatbot which uses some file path as a way to store tasks
+     * Constructs a new chatbot which uses some file path as a way to store tasks.
      *
      * @param filePath The specified file path.
      */
@@ -35,7 +35,7 @@ public class Duke {
     }
 
     /**
-     * Driver method to start the chatbot
+     * Starts the chatbot by reading user input.
      */
     public void run() {
         ui.showWelcome();

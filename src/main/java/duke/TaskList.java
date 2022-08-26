@@ -6,20 +6,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Used to keep track of the current task of the chatbot
+ * Used to keep track of the current task of the chatbot.
  */
 public class TaskList {
     private final List<Task> list;
 
     /**
-     * Constructs a task list
+     * Constructs a task list.
      */
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
     /**
-     * Constructs a task list with some tasks
+     * Constructs a task list with some tasks.
      *
      * @param tasks The specified tasks.
      */
@@ -28,7 +28,7 @@ public class TaskList {
     }
 
     /**
-     * Retrieves the size of the current task list
+     * Retrieves the size of the current task list.
      *
      * @return The size of the current task list.
      */
@@ -48,7 +48,7 @@ public class TaskList {
     }
 
     /**
-     * Removes the task at a given index
+     * Removes the task at a given index.
      *
      * @param index The specified index.
      * @return The removed task.
@@ -59,7 +59,7 @@ public class TaskList {
     }
 
     /**
-     * Adds task to the current task list
+     * Adds task to the current task list.
      *
      * @param task The specified task.
      */
