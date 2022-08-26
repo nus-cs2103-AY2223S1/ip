@@ -1,4 +1,8 @@
-import java.security.spec.RSAOtherPrimeInfo;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,7 +12,69 @@ public class Duke {
 
     private static ArrayList<Task> tasks = new ArrayList<>();
 
+    private static void loadTasks() {
+        try {
+            File db = new File("database.txt");
+            Scanner myScanner = new Scanner(db);
+            while (myScanner.hasNextLine()) {
+                // TODO: Bug where "|" may be part of the description
+                String[] data = myScanner.nextLine().split(" \\| ");
+                Task task;
+                try {
+                    switch (data[0]) {
+                    case "T": {
+                        task = new Todo(data[2]);
+                        break;
+                    }
+
+                    case "E": {
+                        task = new Event(data[2], data[3]);
+                        break;
+                    }
+
+                    case "D": {
+                        task = new Deadline(data[2], data[3]);
+                        break;
+                    }
+                    default: {
+                        continue;
+                    }
+
+                    }
+                } catch (DukeException e) {
+                    continue;
+                }
+
+                if (data[1].equals("1")) {
+                    task.markAsDone();
+                }
+                tasks.add(task);
+            }
+        } catch (FileNotFoundException e) {
+            // Nothing to do if no existing file
+        }
+    }
+
+    public static void updateTasks() {
+        StringBuilder store = new StringBuilder();
+
+        for (Task task : tasks) {
+            store.append(task.encode()).append("\n");
+        }
+
+        try {
+            FileWriter writer = new FileWriter("database.txt");
+            writer.write(store.toString());
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("Unable to store your files :(");
+        }
+    }
+
     public static void main(String[] args) {
+        // Initialize the tasks array list
+        loadTasks();
+
         Scanner scanner = new Scanner(System.in);
 
         String logo = line
@@ -48,6 +114,7 @@ public class Duke {
                 } catch (DukeException e) {
                     System.out.println("Unable to create new todo item: " + e);
                 }
+                updateTasks();
                 break;
             }
 
@@ -69,6 +136,7 @@ public class Duke {
                 } catch (DukeException e) {
                     System.out.println("Unable to create new deadline item: " + e);
                 }
+                updateTasks();
                 break;
             }
 
@@ -90,6 +158,7 @@ public class Duke {
                 } catch (DukeException e) {
                     System.out.println("Unable to create new deadline item: " + e);
                 }
+                updateTasks();
                 break;
             }
 
@@ -118,6 +187,7 @@ public class Duke {
                 Task task = tasks.get(idx - 1);
                 task.markAsDone();
                 System.out.println("Marked '" + task.getDescription() + "' as done.");
+                updateTasks();
                 break;
             }
 
@@ -138,6 +208,7 @@ public class Duke {
                 Task task = tasks.get(idx - 1);
                 task.unmark();
                 System.out.println("Unmarked '" + task.getDescription() + "'.");
+                updateTasks();
                 break;
             }
 
@@ -159,6 +230,7 @@ public class Duke {
                 System.out.println(
                         "Deleted this task:\n" + task + "\nYou have " + tasks.size() + " tasks remaining."
                 );
+                updateTasks();
                 break;
             }
 
