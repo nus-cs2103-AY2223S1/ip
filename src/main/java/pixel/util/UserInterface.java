@@ -18,6 +18,7 @@ public class UserInterface {
         " mark <index of task in the list> -- to mark as done \n" +
         " unmark <index of task in the list> -- to mark as not done \n" +
         " delete <index of task in the list> -- to delete that particular task \n" +
+        " find <query> -- Find all tasks with description containing query \n" +
         " end -- leaves the chatbot \n" +
         "   Your input: ");
 
