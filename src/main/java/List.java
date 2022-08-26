@@ -37,6 +37,7 @@ public class List {
         List.sv = new SavedTasks();
         list = sv.getTasks();
         List.printList();
+        index = list.size();
     }
 
     /**
