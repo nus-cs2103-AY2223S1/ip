@@ -14,9 +14,11 @@ public class GreetCommand extends DisplayCommand {
 
     /**
      * Prints the greeting message
+     *
+     * @return wrapped message
      */
     @Override
-    public void execute() {
-        wrapWithLines(Messages.GREET.toString(), Messages.LOGO.toString());
+    public String execute() {
+        return wrapWithoutLines(Messages.GREET.toString(), Messages.LOGO.toString());
     }
 }

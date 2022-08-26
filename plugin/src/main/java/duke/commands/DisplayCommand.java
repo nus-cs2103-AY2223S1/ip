@@ -18,21 +18,39 @@ public class DisplayCommand implements Command {
     /**
      * Prints line separations before and after the messages
      * @param msg The intended message to be printed
+     * @return the wrapped message
      */
-    public void wrapWithLines(String... msg) {
-        System.out.println(Messages.LINE_SEPARATION);
+    public String wrapWithLines(String... msg) {
+        String output = Messages.LINE_SEPARATION.toString();
         for (String i : msg) {
-            System.out.println(i);
+            output += "\n";
+            output += i;
         }
-        System.out.println(Messages.LINE_SEPARATION);
+        output += Messages.LINE_SEPARATION.toString();
+        return output;
     }
 
     /**
-     * Prints a message
-     * @throws DukeException when there is a DukeException
-     * @throws IOException when there is an IOError
+     * Wraps message without lines
+     * @param msg to be wrapped
+     * @return joined messages
      */
-    public void execute() throws DukeException, IOException {
-        wrapWithLines("Testing...1,2,3...");
+    public String wrapWithoutLines(String ...msg) {
+        String output = "";
+        for (String i : msg) {
+            output += "\n";
+            output += i;
+        }
+        return output;
+    }
+    /**
+     * Prints a message
+     *
+     * @return wrapped message
+     * @throws DukeException when there is a DukeException
+     * @throws IOException   when there is an IOError
+     */
+    public String execute() throws DukeException, IOException {
+        return wrapWithoutLines("Testing...1,2,3...");
     }
 }

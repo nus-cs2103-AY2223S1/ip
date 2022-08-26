@@ -1,11 +1,10 @@
 package duke.commands;
 
-import duke.entities.Task;
+import java.io.IOException;
+
 import duke.enums.Messages;
 import duke.exceptions.DukeException;
 import duke.lists.TaskList;
-
-import java.io.IOException;
 
 /**
  * Search for a task that cotnains the given keyword
@@ -25,7 +24,7 @@ public class FindCommand extends DisplayCommand {
     }
 
     @Override
-    public void execute() throws DukeException, IOException {
-        wrapWithLines(Messages.FOUND.toString(), tasks.find(keyword));
+    public String execute() throws DukeException, IOException {
+        return wrapWithoutLines(Messages.FOUND.toString(), tasks.find(keyword));
     }
 }

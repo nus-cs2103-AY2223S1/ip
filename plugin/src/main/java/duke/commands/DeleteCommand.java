@@ -15,14 +15,15 @@ public class DeleteCommand extends Mark {
 
     /**
      * Removes the task at the indx being pointed at.
+     *
+     * @return wrapped message
      * @throws DukeException When the index is out of bound
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         try {
             Task currentTask = tasks.removeTask(indx);
-            wrapWithLines(Messages.DELETE.toString(), currentTask.toString());
-
+            return wrapWithoutLines(Messages.DELETE.toString(), currentTask.toString());
         } catch (IndexOutOfBoundsException e) {
             // Invalid index
             throw new DukeException(Messages.ERROR_INVALID_INDEX.toString());

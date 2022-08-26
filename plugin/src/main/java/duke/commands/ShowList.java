@@ -17,11 +17,13 @@ public class ShowList extends DisplayCommand {
 
     /**
      * Prints the current taskings
+     *
+     * @return wrapped message
      * @throws DukeException
      * @throws IOException
      */
     @Override
-    public void execute() throws DukeException, IOException {
-        wrapWithLines(tasks.toString());
+    public String execute() throws DukeException, IOException {
+        return wrapWithoutLines(tasks.toString());
     }
 }

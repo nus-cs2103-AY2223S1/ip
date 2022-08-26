@@ -13,9 +13,11 @@ public class ExitCommand extends DisplayCommand {
 
     /**
      * Prints the exit message
+     *
+     * @return wrapped message
      */
     @Override
-    public void execute() {
-        wrapWithLines(Messages.EXIT.toString());
+    public String execute() {
+        return wrapWithoutLines(Messages.EXIT.toString());
     }
 }

@@ -17,7 +17,14 @@ public enum Messages {
     MARK_DONE("Nice! I've marked this task as done:"),
     MARK_UNDONE(":( Stop Procrastinating! I've marked it as undone."),
     DELETE("Wow! Good job, I have removed the following task: "),
-    ERROR_INVALID_COMMAND("Beep-Boop, I don't understand you :<"),
+    ERROR_INVALID_COMMAND("Beep-Boop, I don't understand you :< \n Valid Commands: \n"
+                            + "list (show all tasks) \n\n"
+                            + "todo task description (add a todo to list)\n\n"
+                            + "event task description /at yyyy-mm-dd hh:mm (add an event)\n\n"
+                            + "deadline task description /at yyyy-mm-dd hh:mm (add a task)\n\n"
+                            + "mark index (mark the task at that index)\n\n"
+                            + "delete index (delete task at that index)\n\n"
+                            + "find keyword (finds task containing that keyword)\n\n"),
     ERROR_TODO(">:| OOPS!!! The description of a todo cannot be empty."),
     ERROR_INVALID_INDEX(">:| OOPS!!! There is no task with this index."),
     ERROR_MISSING_PARAMETERS(">:| OOPS!!! There are missing parameters."),

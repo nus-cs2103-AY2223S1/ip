@@ -9,5 +9,5 @@ import duke.exceptions.DukeException;
  */
 public interface Command {
 
-    void execute() throws DukeException, IOException;
+    String execute() throws DukeException, IOException;
 }

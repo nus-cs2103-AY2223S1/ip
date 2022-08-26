@@ -34,15 +34,17 @@ public class AddDeadlineCommand extends AddTodoCommand {
 
     /**
      * Add new event to the task list
+     *
+     * @return wrapped message
      * @throws DukeException when the datetime string is of the wrong format
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         try {
             LocalDateTime deadline = LocalDateTime.parse(this.deadline, datetimeFormat);
             Deadline currentEvent = new Deadline(descrition, deadline);
             tasks.addTask(currentEvent);
-            wrapWithLines(Messages.ADD_DEADLINE.toString(), currentEvent.toString());
+            return wrapWithoutLines(Messages.ADD_DEADLINE.toString(), currentEvent.toString());
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.ERROR_INVALID_DATETIME.toString());
         }
