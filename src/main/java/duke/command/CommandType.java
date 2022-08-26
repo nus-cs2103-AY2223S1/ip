@@ -12,7 +12,7 @@ public enum CommandType {
     /**
      * Mapping of string input to its command type.
      */
-    public static final HashMap<String, CommandType> commandMap = new HashMap<>(
+    public static final HashMap<String, CommandType> COMMAND_MAP = new HashMap<>(
             Map.of(
                     "todo", TODO,
                     "deadline", DEADLINE,
