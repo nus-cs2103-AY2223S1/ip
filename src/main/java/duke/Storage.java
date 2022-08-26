@@ -17,6 +17,7 @@ public class Storage {
 
     /**
      * Constructs a storage space.
+     *
      * @param filepath the file path for the file to be stored.
      */
     public Storage(String filepath) {
@@ -26,6 +27,7 @@ public class Storage {
 
     /**
      * Loads the task in the file.
+     *
      * @param file the file to be load.
      */
     public void load_task(File file) {
@@ -64,6 +66,7 @@ public class Storage {
 
     /**
      * Returns the task list in the specified file.
+     *
      * @param file the file that stores the task list.
      * @return the task list in the specified file.
      */
@@ -93,6 +96,7 @@ public class Storage {
 
     /**
      * Adds task to a file.
+     *
      * @param file the file that the tasks is being added to.
      * @param task the task to be added.
      */
@@ -108,6 +112,7 @@ public class Storage {
 
     /**
      * Overwrites the task list in a file.
+     *
      * @param file the file that needs to be overwritten.
      * @param taskList the new task list.
      */
@@ -127,6 +132,7 @@ public class Storage {
 
     /**
      * Converts string representation of the task to task.
+     *
      * @param s string representation of the task.
      * @return the task that given the description of the string.
      */

@@ -15,6 +15,7 @@ public class Deadline extends Task {
 
     /**
      * Constructs a task with deadline.
+     *
      * @param name name of the task
      * @param deadline deadline of the task
      */
@@ -27,6 +28,7 @@ public class Deadline extends Task {
 
     /**
      * Sets the status of the task as specified
+     *
      * @param status the status of the task. [X] for done, [ ] for undone.
      */
     public void setStatus(String status) {
@@ -50,6 +52,7 @@ public class Deadline extends Task {
 
     /**
      * Gets the deadline name.
+     *
      * @return the string representation of the deadline name.
      */
     public String getName() {
@@ -58,6 +61,7 @@ public class Deadline extends Task {
 
     /**
      * Gets the deadline status.
+     *
      * @return the string representation of the deadline status.
      */
     @Override
@@ -67,6 +71,7 @@ public class Deadline extends Task {
 
     /**
      * Gets the deadline type.
+     *
      * @return the string representation of the deadline type.
      */
     @Override
@@ -76,6 +81,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the full string representation of the deadline task.
+     *
      * @return the complete string representation of the deadline task.
      */
     public String toString() {
@@ -89,6 +95,7 @@ public class Deadline extends Task {
 
     /**
      * Returns the string representation of the deadline task.
+     *
      * @return the string representation of the deadline task.
      */
     public String description() {

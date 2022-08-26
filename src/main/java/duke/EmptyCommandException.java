@@ -7,6 +7,7 @@ public class EmptyCommandException extends Exception {
 
     /**
      * Constructs an empty command exception.
+     *
      * @param command the command that the user has inputted.
      */
     public EmptyCommandException(String command) {

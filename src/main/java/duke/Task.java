@@ -20,6 +20,7 @@ public class Task {
 
     /**
      * Constructs a task given a name.
+     *
      * @param name the task name.
      */
     public Task(String name) {
@@ -29,6 +30,7 @@ public class Task {
 
     /**
      * Returns a string representation of the type of the task.
+     *
      * @return the task type.
      */
     public String getType() {
@@ -37,6 +39,7 @@ public class Task {
 
     /**
      * Returns a string representation of the name of the task.
+     *
      * @return the task name.
      */
     public String getName() {
@@ -45,6 +48,7 @@ public class Task {
 
     /**
      * Returns a string representation of the status of the task.
+     *
      * @return the task status.
      */
     public String getStatus() {
@@ -53,6 +57,7 @@ public class Task {
 
     /**
      * Returns the time of the task.
+     *
      * @return the task time.
      */
     public LocalDateTime getTime() {
@@ -61,6 +66,7 @@ public class Task {
 
     /**
      * Sets the status of the task as specified.
+     *
      * @param status the status of the task. [X] for done, [ ] for undone.
      */
     public void setStatus(String status) {
@@ -87,6 +93,7 @@ public class Task {
 
     /**
      * Returns the String representation of the task.
+     *
      * @return the String representation of the task.
      */
     public String toString() {
@@ -95,6 +102,7 @@ public class Task {
 
     /**
      * Returns the description of the task.
+     *
      * @return the description of the task.
      */
     public String description() {

@@ -11,6 +11,7 @@ public class Todo extends Task {
 
     /**
      * Constructs a todo task.
+     *
      * @param name the todo name.
      */
     public Todo(String name) {
@@ -21,6 +22,7 @@ public class Todo extends Task {
 
     /**
      * Gets the name of the todo task.
+     *
      * @return the name of the todo task.
      */
     @Override
@@ -30,6 +32,7 @@ public class Todo extends Task {
 
     /**
      * Gets the status of the todo task.
+     *
      * @return the status of the todo task.
      */
     @Override
@@ -39,6 +42,7 @@ public class Todo extends Task {
 
     /**
      * Gets the type of the todo task.
+     *
      * @return the type of the todo task.
      */
     @Override
@@ -48,6 +52,7 @@ public class Todo extends Task {
 
     /**
      * Sets the status of the task as specified.
+     *
      * @param status the status of the task. [X] for done, [ ] for undone.
      */
     public void setStatus(String status) {
@@ -71,6 +76,7 @@ public class Todo extends Task {
 
     /**
      * Returns the string representation the todo task.
+     *
      * @return the string representation the todo task.
      */
     public String description() {
@@ -79,6 +85,7 @@ public class Todo extends Task {
 
     /**
      * Returns the full string representation the todo task.
+     *
      * @return the full string representation the todo task.
      */
     public String toString() {

@@ -7,6 +7,7 @@ public class MarkException extends Exception {
 
     /**
      * Constructs a mark exception.
+     *
      * @param command command by the user.
      */
     public MarkException(String command) {

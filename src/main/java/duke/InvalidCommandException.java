@@ -7,6 +7,7 @@ public class InvalidCommandException extends Exception {
 
     /**
      * Constructs an invalid command exception.
+     *
      * @param command command by the user.
      */
     public InvalidCommandException(String command) {

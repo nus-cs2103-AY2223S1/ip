@@ -15,6 +15,7 @@ public class Event extends Task {
 
     /**
      * Constructs an event.
+     *
      * @param name event name.
      * @param time event time.
      */
@@ -27,6 +28,7 @@ public class Event extends Task {
 
     /**
      * Sets the status of the event as specified.
+     *
      * @param status the status of the event. [X] for done, [ ] for undone.
      */
     public void setStatus(String status) {
@@ -51,6 +53,7 @@ public class Event extends Task {
 
     /**
      * Gets the name of the event.
+     *
      * @return the string representation of the event name.
      */
     public String getName() {
@@ -59,6 +62,7 @@ public class Event extends Task {
 
     /**
      * Gets the status of the event.
+     *
      * @return the string representation of the event status.
      */
     @Override
@@ -68,6 +72,7 @@ public class Event extends Task {
 
     /**
      * Gets the type of the event.
+     *
      * @return the string representation of the event type.
      */
     @Override
@@ -77,6 +82,7 @@ public class Event extends Task {
 
     /**
      * Gets the event time.
+     *
      * @return the event time.
      */
     public LocalDateTime getTime() {
@@ -85,6 +91,7 @@ public class Event extends Task {
 
     /**
      * Returns the full string representation of the event.
+     *
      * @return the complete string representation of the event.
      */
     public String toString() {
@@ -98,6 +105,7 @@ public class Event extends Task {
 
     /**
      * Returns the string representation of the event.
+     *
      * @return the string representation of the event.
      */
     @Override

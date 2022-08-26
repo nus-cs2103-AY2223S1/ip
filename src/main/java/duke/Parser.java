@@ -98,6 +98,7 @@ public class Parser {
 
     /**
      * Converts strings to date format.
+     *
      * @param s string representation of the date.
      * @return the date as specified by the string.
      */
@@ -116,6 +117,7 @@ public class Parser {
 
     /**
      * Converts the strings in a file to date format.
+     *
      * @param s string representation of the date.
      * @return the date as specified by the string.
      */

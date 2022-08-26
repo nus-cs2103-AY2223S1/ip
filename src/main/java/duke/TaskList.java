@@ -18,6 +18,7 @@ public class TaskList {
 
     /**
      * Gets the task list.
+     *
      * @return the task list.
      */
     public ArrayList<Task> getList() {
@@ -26,6 +27,7 @@ public class TaskList {
 
     /**
      * Adds task into the list.
+     *
      * @param task the task to be added.
      */
     public void add(Task task) {
@@ -34,6 +36,7 @@ public class TaskList {
 
     /**
      * Gets the task from the list given its index.
+     *
      * @param index the index in the list of a task that needs to be returned.
      * @return
      */
@@ -43,6 +46,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the task list.
+     *
      * @param list the task list.
      * @param task the task to be deleted.
      * @param index the index of the to-be-deleted task.
@@ -67,6 +71,7 @@ public class TaskList {
 
     /**
      * Marks a task as done.
+     *
      * @param list the task list.
      * @param index the index of the task to be marked.
      */
@@ -77,6 +82,7 @@ public class TaskList {
 
     /**
      * Marks a task as undone.
+     *
      * @param list the task list.
      * @param index the index of the task to be unmarked.
      */
@@ -87,6 +93,7 @@ public class TaskList {
 
     /**
      * Finds tasks in the task list that matches the keyword.
+     *
      * @param list the task list.
      * @param keyword the keyword to be mapped.
      */

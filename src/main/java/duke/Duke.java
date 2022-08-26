@@ -22,6 +22,7 @@ public class Duke {
 
     /**
      * Constructs a Duke bot.
+     *
      * @param filePath the file path in which the data is being stored.
      */
     public Duke(String filePath) {
