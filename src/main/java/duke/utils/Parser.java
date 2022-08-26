@@ -5,6 +5,7 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.TodoCommand;
@@ -93,6 +94,13 @@ public class Parser {
                     throw new TaskException();
                 } else {
                     return new TodoCommand(arg[1]);
+                }
+
+            case "find":
+                if (arg.length == 1) {
+                    throw new TaskException();
+                } else {
+                    return new FindCommand(arg[1]);
                 }
 
             default:
