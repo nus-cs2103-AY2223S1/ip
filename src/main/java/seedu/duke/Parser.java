@@ -1,7 +1,9 @@
 package seedu.duke;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class Parser {
@@ -13,7 +15,8 @@ public class Parser {
         }
     }
 
-    public static void parse(String command, String input, TaskList taskList, ArrayList<Boolean> isOpen, Scanner scanner) {
+    public static void parse(String command, String input, TaskList taskList, ArrayList<Boolean> isOpen,
+                             Scanner scanner) {
 
         String[] inputArr = input.split(" ");
 //        String command = inputArr[0];
@@ -31,7 +34,8 @@ public class Parser {
             } catch (IndexOutOfBoundsException | IOException e) {
                 System.out.println("Task does not exist!");
             }
-            String output = String.format("Nice! I've marked this task as done:\n%s", taskList.taskList.get(taskNum - 1));
+            String output = String.format("Nice! I've marked this task as done:\n%s",
+                    taskList.taskList.get(taskNum - 1));
             System.out.println(output);
             break;
         case "unmark":
@@ -42,7 +46,8 @@ public class Parser {
             } catch (IndexOutOfBoundsException | IOException e) {
                 System.out.println("Task does not exist!");
             }
-            String output2 = String.format("OK, I've marked this task as not done yet:\n%s", taskList.taskList.get(taskNum2 - 1));
+            String output2 = String.format("OK, I've marked this task as not done yet:\n%s",
+                    taskList.taskList.get(taskNum2 - 1));
             System.out.println(output2);
             break;
         case "delete":

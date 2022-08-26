@@ -1,9 +1,5 @@
 package seedu.duke;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-
 public class Ui {
 
     public static final String INTRO = "Hello! I'm Duke\nWhat can I do for you?";

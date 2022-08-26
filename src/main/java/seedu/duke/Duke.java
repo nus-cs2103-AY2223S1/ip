@@ -74,7 +74,7 @@ public class Duke {
     }
 
     // dealt with getting from file initially and saving, but need to call function for rewrite somewhere
-    public static void main(String[] args) throws DukeException{
+    public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
     }
 }

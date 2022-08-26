@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import java.util.Scanner;
 
 public class Storage {
@@ -21,7 +24,7 @@ public class Storage {
     }
 
 
-    public ArrayList<Task> load() throws FileNotFoundException{
+    public ArrayList<Task> load() throws FileNotFoundException {
         ArrayList<Task> taskList = new ArrayList<>();
         this.getTasks(taskList);
         return taskList;
@@ -54,9 +57,10 @@ public class Storage {
         taskList.add(todo);
     }
 
-    public void addDeadlineOrEvent(ArrayList<Task> taskList, String s, String isMarked, String description, String datetime){
+    public void addDeadlineOrEvent(ArrayList<Task> taskList, String s, String isMarked, String description,
+                                   String datetime) {
 //        System.out.println("type:" + s);
-        if (s.equals("D")){
+        if (s.equals("D")) {
 //            System.out.println("added D");
             String[] dateAndTime = datetime.split(" ");
             System.out.println(dateAndTime.length);
@@ -89,7 +93,7 @@ public class Storage {
     }
 
     // settled reading task from text file
-    public void getTasks(ArrayList<Task> taskList) throws FileNotFoundException{
+    public void getTasks(ArrayList<Task> taskList) throws FileNotFoundException {
         File f = new File("data/duke.txt");
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
         while (s.hasNext()) {
@@ -112,28 +116,31 @@ public class Storage {
 
     // delete file, add lines to write, put string together and write in file writer
     // NEVER DELETE WRITE THE FILE IN THE SAME METHOD
-    public static void rewriteTasks(TaskList tl) throws IOException{
+    public static void rewriteTasks(TaskList tl) throws IOException {
         ArrayList<Task> currTaskList = tl.taskList;
         String path = "data/duke.txt";
         FileWriter fw = new FileWriter(path);
         ArrayList<String> taskListArray = new ArrayList<>();
-        for (int i=0; i < currTaskList.size(); i++){
+        for (int i = 0; i < currTaskList.size(); i++) {
             if (currTaskList.get(i) instanceof ToDo) {
                 System.out.println("task is a todo");
-                String taskString = String.format("T | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0, currTaskList.get(i).getDescription());
+                String taskString = String.format("T | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
+                        currTaskList.get(i).getDescription());
                 taskListArray.add(taskString);
             } else if (currTaskList.get(i) instanceof Deadline) {
                 System.out.println("task is a deadline");
-                String taskString = String.format("T | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0, currTaskList.get(i).getDescription(), getDeadlineDueDate((Deadline) currTaskList.get(i)));
+                String taskString = String.format("T | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
+                        currTaskList.get(i).getDescription(), getDeadlineDueDate((Deadline) currTaskList.get(i)));
                 taskListArray.add(taskString);
             } else {
                 System.out.println("task is an event");
-                String taskString = String.format("T | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0, currTaskList.get(i).getDescription(), getEventDueDate((Event) currTaskList.get(i)));
+                String taskString = String.format("T | %s | %s | %s", currTaskList.get(i).getIsDone() ? 1 : 0,
+                        currTaskList.get(i).getDescription(), getEventDueDate((Event) currTaskList.get(i)));
                 taskListArray.add(taskString);
             }
         }
         String taskListString = "";
-        for (int j=0; j < currTaskList.size(); j++) {
+        for (int j = 0; j < currTaskList.size(); j++) {
             taskListString += taskListArray.get(j);
             if (j != currTaskList.size() -1) {
                 taskListString += "\n";
