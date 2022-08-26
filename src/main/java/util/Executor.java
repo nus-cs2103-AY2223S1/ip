@@ -86,6 +86,13 @@ public class Executor {
         System.out.println(ui.addTask(currentTask, taskList.size()));
     }
 
+    /**
+     * Finds task in task list
+     *
+     * @param taskList Task list to be searched.
+     * @param userInput User input.
+     * @throws AlanException Exception in case of failure.
+     */
     public void excFind(TaskList taskList, String userInput) throws AlanException {
         ParsedData parsedData = parser.parse(InputType.find, userInput);
         List<Task> result = taskList.find(parsedData.getDescription());
