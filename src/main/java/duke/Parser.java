@@ -1,6 +1,5 @@
 package duke;
 
-import duke.DukeException;
 import duke.command.*;
 
 public class Parser {

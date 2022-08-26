@@ -17,6 +17,18 @@ public class AddCommand extends Command {
         this.type = type;
         this.description = description; 
     }
+   
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        } else if (o instanceof AddCommand) {
+            AddCommand command = (AddCommand) o;
+            return command.type.equals(this.type) && command.description.equals(this.description);
+        } else {
+            return false;
+        }
+    }
 
     public void execute(TaskList tasks) throws DukeException {
         switch(type) {
