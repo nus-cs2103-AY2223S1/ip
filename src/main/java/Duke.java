@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class Duke {
     private static final String LOGO = "Welcome to\n"
@@ -41,7 +42,7 @@ public class Duke {
                 return false;
 
             case "list":
-                tasks.displayList(userIO);
+                userIO.printList(tasks.getTasks());
                 return true;
 
             case "mark":
@@ -77,9 +78,19 @@ public class Duke {
                 dukeData.saveTask(task);
                 return true;
 
+            case "by":
+                filterDateTime(data.description);
+                return true;
+
             default:
                 throw new UnknownCommandException();
         }
+    }
+
+    void filterDateTime(String timeStamp) throws DukeException {
+        LocalDateTime dt = Parser.strToDateTime(timeStamp)
+                .orElseThrow(() -> new InvalidTimeFormatException(timeStamp));
+        userIO.printList(tasks.filterBefore(dt));
     }
 
     void deleteEntry(ParsedData data) throws DukeException, IOException {

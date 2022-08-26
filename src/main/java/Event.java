@@ -1,10 +1,11 @@
 class Event extends Task {
-    private String period;
     private static final String PREFIX = "at ";
     private static final String SPLIT = "/at ";
 
+    private String period;
+
     Event(String description, String period) {
-        super(description);
+        super(description, Parser.strToDateTime(period));
         this.period = period;
     }
 
@@ -14,7 +15,6 @@ class Event extends Task {
 
         if (data.additionalInfo.length() == 0 || !data.additionalInfo.startsWith(PREFIX))
             throw new EmptyTimeException("event", SPLIT);
-
         return new Event(data.description, data.additionalInfo.substring(3));
     }
 

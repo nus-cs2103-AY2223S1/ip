@@ -1,10 +1,11 @@
 class Deadline extends Task {
-    private String deadline;
     private static final String PREFIX = "by ";
     private static final String SPLIT = "/by ";
 
+    private String deadline;
+
     Deadline(String description, String deadline) {
-        super(description);
+        super(description, Parser.strToDateTime(deadline));
         this.deadline = deadline;
     }
 
@@ -14,6 +15,7 @@ class Deadline extends Task {
 
         if (data.additionalInfo.length() == 0 || !data.additionalInfo.startsWith(PREFIX))
             throw new EmptyTimeException("deadline", SPLIT);
+
         return new Deadline(data.description, data.additionalInfo.substring(3));
     }
 

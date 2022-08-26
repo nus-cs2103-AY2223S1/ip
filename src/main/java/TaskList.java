@@ -1,10 +1,9 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TaskList {
     private List<Task> tasks;
-    private static final String EMPTY_LIST = "The current list is empty!";
-
 
     public TaskList(List<Task> tasks) {
         this.tasks = tasks;
@@ -32,26 +31,32 @@ public class TaskList {
         return tasks.get(index);
     }
 
+    public List<Task> filterBefore(LocalDateTime dt) {
+        List<Task> cpy = new ArrayList<>(tasks);
+        cpy.sort(null);
+        List<Task> ret = new ArrayList<>();
+        for (Task t : cpy) {
+            if (t.compareTo(dt) > 0) {
+                break;
+            }
+            ret.add(t);
+        }
+
+        return ret;
+    }
+
     public int getSize() {
         return tasks.size();
     }
 
-    public void displayList(DukeIO io) {
-        if (tasks.isEmpty()) {
-            io.printTask(EMPTY_LIST);
-            return;
-        }
-        io.printLine();
-        for (int i = 0; i < tasks.size(); ++i) {
-            io.printTask(String.format("%d. %s", i + 1, tasks.get(i)), 2);
-        }
-        io.printLine();
-    }
+    public List<Task> getTasks() {
+        return tasks;
+    };
 
-    public ParsedData[]  getParsedData() {
+    public ParsedData[] getParsedData() {
         ParsedData[] ret = new ParsedData[tasks.size()];
-        for (int i = 0 ; i < ret.length ; i++) {
-            ret[i]  = tasks.get(i).convertToParseData();
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = tasks.get(i).convertToParseData();
         }
         return ret;
     }

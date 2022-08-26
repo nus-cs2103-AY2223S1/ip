@@ -1,3 +1,8 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,6 +13,30 @@ final class Parser {
     private static final String SPACE = " +";
     private static final String SEP = " +/";
     private static final Pattern SAVE_PATTERN = Pattern.compile("^([TDE])([cx]) <<<< (.*) <<<< (.*)");
+
+    static enum DateFormatEnum {
+        T1("MMM d yyyy"),
+        T2("dd/MM/yyyy"),
+        T3("dd-MM-yyyy");
+
+        final DateTimeFormatter dtf;
+
+        DateFormatEnum(String signature) {
+            dtf = DateTimeFormatter.ofPattern(signature);
+        }
+    }
+
+    static enum DateTimeFormatEnum {
+        T1("MMM d yyyy HH:mm"),
+        T2("dd/MM/yyyy HH:mm"),
+        T3("dd-MM-yyyy HH:mm");
+
+        final DateTimeFormatter dtf;
+
+        DateTimeFormatEnum(String signature) {
+            dtf = DateTimeFormatter.ofPattern(signature);
+        }
+    }
 
     Parser() {
     }
@@ -28,7 +57,7 @@ final class Parser {
 
         return new ParsedData(command, parsedTmp[0], parsedTmp[1]);
     }
-    
+
     static Task parseDataFromLine(String savedLine) throws CorruptedLineException {
         Matcher result = SAVE_PATTERN.matcher(savedLine);
         if (!result.find()) {
@@ -60,4 +89,25 @@ final class Parser {
         return ret;
 
     }
+
+    static Optional<LocalDateTime> strToDateTime(String str) {
+        for (DateTimeFormatEnum signature : DateTimeFormatEnum.values()) {
+            try {
+                return Optional.of(LocalDateTime.parse(str, signature.dtf));
+            } catch (DateTimeParseException e) {
+                continue;
+            }
+        }
+
+        for (DateFormatEnum signature : DateFormatEnum.values()) {
+            try {
+                return Optional.of(LocalDate.parse(str, signature.dtf).atStartOfDay());
+            } catch (DateTimeParseException e) {
+                continue;
+            }
+        }
+
+        return Optional.empty();
+    }
+
 }
