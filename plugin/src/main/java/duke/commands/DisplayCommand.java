@@ -1,8 +1,9 @@
+
 package duke.commands;
 
 import java.io.IOException;
 
-import duke.enums.*;
+import duke.enums.Messages;
 import duke.exceptions.DukeException;
 
 /**
@@ -14,20 +15,8 @@ public class DisplayCommand implements Command {
     public DisplayCommand() {
 
     }
-
-    /**
-     * This validates the semantics of the commmand
-     * Commands with no inputs are vacuously true
-     * 
-     * @return If the input parameters are valid
-     */
-    public boolean validate() {
-        return true;
-    }
-
     /**
      * Prints line separations before and after the messages
-     * 
      * @param msg The intended message to be printed
      */
     public void wrapWithLines(String... msg) {
@@ -40,9 +29,8 @@ public class DisplayCommand implements Command {
 
     /**
      * Prints a message
-     * 
-     * @throws DukeException
-     * @throws IOException
+     * @throws DukeException when there is a DukeException
+     * @throws IOException when there is an IOError
      */
     public void execute() throws DukeException, IOException {
         wrapWithLines("Testing...1,2,3...");

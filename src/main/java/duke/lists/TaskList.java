@@ -7,6 +7,9 @@ import duke.entities.Task;
 import duke.exceptions.DukeException;
 import duke.utils.Storage;
 
+/**
+ * Stores task and acts as an intermediate layer between Duke and Task
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
     private Storage fh;
@@ -14,7 +17,6 @@ public class TaskList {
     /**
      * Initialises the task list and the save file if
      * the save file does not already exist.
-     * 
      * If the file exists, data will be read from it and loaded into the list.
      */
     public TaskList(String fname) throws DukeException {
@@ -29,7 +31,6 @@ public class TaskList {
 
     /**
      * Returns the Task at the given indx
-     * 
      * @param indx Specifies the Task to return
      * @return The task at index
      */
@@ -39,7 +40,6 @@ public class TaskList {
 
     /**
      * Adds a task to the task list
-     * 
      * @param task Task to be added
      */
     public void addTask(Task task) throws DukeException {
@@ -54,9 +54,8 @@ public class TaskList {
     /**
      * Removes task at the specified index
      * Also removes it from the saved txt file
-     * 
      * @param indx of the tasks to be removed
-     * @return
+     * @return the task removed
      */
     public Task removeTask(int indx) throws DukeException {
         Task deleted = tasks.remove(indx);
@@ -68,6 +67,11 @@ public class TaskList {
         return deleted;
     }
 
+    /**
+     * Marks task as done
+     * @param indx of the task to be marked
+     * @return the task marked
+     */
     public Task markTask(int indx) throws DukeException, IOException {
         Task currentTask = tasks.get(indx);
         currentTask.toggleComplete();
@@ -85,6 +89,6 @@ public class TaskList {
             output += tasks.get(i);
             output += "\n";
         }
-        return output != "" ? output : "No tasks!";
+        return !output.equals("") ? output : "No tasks!";
     }
 }

@@ -1,5 +1,8 @@
 package duke.utils;
 
+/**
+ * Displays Ui
+ */
 public class Ui {
     public Ui() {
 

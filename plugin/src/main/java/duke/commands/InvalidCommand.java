@@ -1,8 +1,10 @@
 package duke.commands;
 
-import duke.enums.Messages;
 import duke.exceptions.DukeException;
 
+/**
+ * Handles the Invalid commands
+ */
 public class InvalidCommand extends DisplayCommand {
     private String message;
 
@@ -11,19 +13,8 @@ public class InvalidCommand extends DisplayCommand {
     }
 
     /**
-     * Validates the semantics of the commmand
-     * Commands with no inputs are vacuously true
-     * 
-     * @return If the input parameters are valid
-     */
-    public boolean validate() {
-        return true;
-    }
-
-    /**
      * Throws invalid command error
-     * 
-     * @throws DukeException
+     * @throws DukeException when the message is wrong
      */
     public void execute() throws DukeException {
         wrapWithLines(message);
