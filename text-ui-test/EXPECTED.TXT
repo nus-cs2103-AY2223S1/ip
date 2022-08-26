@@ -24,7 +24,14 @@ Oh no :( I have marked [E][ ] rest (on: 10pm tonight) as undone, Master.
 Here is your to-do list, Master:
 1. [D][ ] send help (by: tomorrow)
 2. [D][ ] project (by: wed)
-3. [E][ ] rest (on: 10pm tonight)
+3. [E][X] rest (on: 10pm tonight)
+DukeException: There is no task 6 just yet, Master.
+Very well. I have deleted [D][ ] send help (by: tomorrow) from the list, Master.
+Oh no :( I have marked [E][ ] rest (on: 10pm tonight) as undone, Master.
+DukeException: There is no task 3 just yet, Master.
+Here is your to-do list, Master:
+1. [D][ ] project (by: wed)
+2. [E][ ] rest (on: 10pm tonight)
 Goodbye, Master! Thank you for visiting
  ____        _
 |  _ \ _   _| | _____

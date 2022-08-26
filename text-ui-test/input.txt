@@ -8,6 +8,9 @@ mark 3
 mark 3
 mark 6
 mark 4
+list
+delete 6
+delete 1
 unmark 2
 unmark 3
 list

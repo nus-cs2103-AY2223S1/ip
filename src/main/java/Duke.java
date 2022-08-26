@@ -70,7 +70,7 @@ public class Duke {
                             taskNumber += String.valueOf(text.charAt(8));
                         }
                         int number = Integer.parseInt(taskNumber) - 1;
-                        if (number >= list.size() || number <= 0) {
+                        if (number >= list.size() || number < 0) {
                             throw new DukeException("There is no task " + taskNumber + " just yet, Master.");
                         } else {
                             Task curr = list.get(number);
@@ -85,6 +85,24 @@ public class Duke {
                         }
                     }
                     text = scanner.nextLine().toLowerCase();
+                } else if (text.startsWith("delete")) {
+                    if (text.length() <= 7) {
+                        throw new DukeException("You'll have to provide more information than that, Master.");
+                    } else {
+                        String taskNumber = String.valueOf(text.charAt(7));
+                        if (text.length() == 9) {
+                            taskNumber += String.valueOf(text.charAt(8));
+                        }
+                        int number = Integer.parseInt(taskNumber) - 1;
+                        if (number >= list.size() || number < 0) {
+                            throw new DukeException("There is no task " + taskNumber + " just yet, Master.");
+                        } else {
+                            Task tmp = list.get(number);
+                            list.remove(number);
+                            System.out.println("Very well. I have deleted " + tmp + " from the list, Master.");
+                        }
+                        text = scanner.nextLine().toLowerCase();
+                    }
                 } else if (text.startsWith("deadline")) {
                     if (text.length() <= 9) {
                         throw new DukeException("You'll have to provide more information than that, Master.");
