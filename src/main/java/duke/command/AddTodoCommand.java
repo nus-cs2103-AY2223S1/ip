@@ -6,9 +6,17 @@ import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.Todo;
 
+/**
+ * Adds a todo task when command is called.
+ */
 public class AddTodoCommand extends Command {
     private String description;
 
+    /**
+     * Adds a todo based on command received
+     *
+     * @param description description of todo
+     */
     public AddTodoCommand(String description) {
         this.description = description;
     }

@@ -6,9 +6,17 @@ import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.Task;
 
+/**
+ * Delete a task when command is called.
+ */
 public class DeleteCommand extends Command {
     private int taskNum;
 
+     /**
+     * Delete the task based on the index entered when command is called.
+     *
+     * @param taskNum index of task to be deleted
+     */
     public DeleteCommand(int taskNum) {
         this.taskNum = taskNum;
     }

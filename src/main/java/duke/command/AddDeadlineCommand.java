@@ -8,16 +8,31 @@ import duke.task.Deadline;
 
 import java.time.LocalDateTime;
 
+/**
+ * Adds a deadline task to the list when command is called.
+ */
 public class AddDeadlineCommand extends Command {
     private String description;
     private String by;
     private LocalDateTime byDate;
 
+    /**
+     * Adds a deadline based on command received
+     *
+     * @param description description of deadline
+     * @param by time by which task needs to be done
+     */
     public AddDeadlineCommand(String description, String by) {
         this.description = description;
         this.by = by;
     }
 
+    /**
+     * Adds a deadline based on command received
+     *
+     * @param description description of deadline
+     * @param byDate deadline in date representation
+     */
     public AddDeadlineCommand(String description, LocalDateTime byDate) {
         this.description = description;
         this.byDate = byDate;

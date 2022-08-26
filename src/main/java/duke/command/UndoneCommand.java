@@ -5,9 +5,17 @@ import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 
+/**
+ * Mark a task as undone when command is called.
+ */
 public class UndoneCommand extends Command {
     private int taskNum;
 
+    /**
+     * Marks task as undone based on index entered when command is called.
+     *
+     * @param taskNum index of task to be marked as undone
+     */
     public UndoneCommand(int taskNum) {
         this.taskNum = taskNum;
     }
