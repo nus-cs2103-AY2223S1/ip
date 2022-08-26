@@ -1,9 +1,11 @@
 package duke;
 
-import duke.exceptions.CannotFindTaskException;
 import duke.exceptions.DukeException;
-import duke.exceptions.TaskMarkedException;
+import duke.exceptions.CannotFindTaskException;
+import duke.exceptions.NoMatchingKeywordException;
 import duke.exceptions.TaskUnmarkedException;
+import duke.exceptions.TaskMarkedException;
+
 
 import java.util.ArrayList;
 
@@ -19,18 +21,20 @@ public class TaskList {
         this.taskList.add(task);
     }
 
-    /*
-    public Task toggleTaskStatus(Task task) throws CannotFindTaskException{
+
+    public TaskList findTask(String keyword) throws NoMatchingKeywordException {
+        TaskList successList = new TaskList();
         for (int i = 0; i < taskList.size(); i ++) {
             Task curr = taskList.get(i);
-            if (curr.equals(task)) {
-                curr.toggleStatus();
-                return curr;
+            if (curr.isMatchKeyword(keyword)) {
+                successList.addTask(curr);
             }
         }
-        throw new CannotFindTaskException();
+        if (successList.size() == 0) {
+            throw new NoMatchingKeywordException(keyword);
+        }
+        return successList;
     }
-    */
 
     public Task markStatus(int task) throws DukeException {
         try {
@@ -77,6 +81,9 @@ public class TaskList {
         return result;
     }
 
+    public int size() {
+        return taskList.size();
+    }
     public String numOfTask() {
         if (taskList.size() > 1) {
             return "YOU HAVE " + taskList.size() + " TASKS!";

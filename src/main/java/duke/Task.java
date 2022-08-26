@@ -34,5 +34,14 @@ public abstract class Task {
         return false;
     }
 
+    public boolean isMatchKeyword(String keyword) {
+        String[] descriptionArr = this.description.split(" ");
+        for (int i = 0; i < descriptionArr.length; i++) {
+            if (descriptionArr[i].equals(keyword)) {
+                return true;
+            }
+        }
+        return  false;
+    }
     public abstract String toSaveVersion();
 }
