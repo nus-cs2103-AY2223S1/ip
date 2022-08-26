@@ -5,6 +5,12 @@ public class ToDo extends Task{
     }
 
     @Override
+    protected String getStorageString() {
+        String parStr = super.getStorageString();
+        return String.format("%s|%s|", "T", parStr);
+    }
+
+    @Override
     public String toString() {
         String parStr = super.toString();
         return String.format("[T]%s", parStr);

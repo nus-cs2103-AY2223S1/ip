@@ -23,6 +23,10 @@ public class Task {
         this.isDone = false;
     }
 
+    protected String getStorageString() {
+        return String.format("%s|%s", getStatusIcon(), getDescription());
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", getStatusIcon(), getDescription());

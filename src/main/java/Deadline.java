@@ -12,6 +12,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    protected String getStorageString() {
+        String parStr = super.getStorageString();
+        return String.format("%s|%s|%s", "D", parStr, getBy());
+    }
+
+    @Override
     public String toString() {
         String parStr = super.toString();
         return String.format("[D]%s (by: %s)", parStr, getBy());
