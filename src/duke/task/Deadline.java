@@ -22,10 +22,10 @@ public class Deadline extends Task {
         if (data.description.length() == 0)
             throw new EmptyDescriptionException("deadline");
 
-        if (data.additionalInfo.length() == 0 || !data.additionalInfo.startsWith(PREFIX))
+        if (data.additionalInfo.length() == 0)
             throw new EmptyTimeException("deadline", SPLIT);
 
-        return new Deadline(data.description, data.additionalInfo.substring(3));
+        return new Deadline(data.description, data.additionalInfo);
     }
 
     public static Deadline createDeadline(String description, String deadline) throws CorruptedLineException {

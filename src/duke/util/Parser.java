@@ -7,6 +7,17 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import duke.command.ByCommand;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.EventCommand;
+import duke.command.InvalidCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.TodoCommand;
+import duke.command.UnmarkCommand;
 import duke.exceptions.CorruptedLineException;
 import duke.task.Deadline;
 import duke.task.Event;
@@ -18,7 +29,10 @@ import duke.task.Todo;
  */
 public final class Parser {
     private static final String SPACE = " +";
-    private static final String SEP = " +/";
+    // private static final String SEP = " +(/by|/at) +";
+    private static final String DEADLINE_SEP = " +/by +";
+    private static final String EVENT_SEP = " +/at +";
+    
     private static final Pattern SAVE_PATTERN = Pattern.compile("^([TDE])([cx]) <<<< (.*) <<<< (.*)");
 
     static enum DateFormatEnum {
@@ -45,7 +59,34 @@ public final class Parser {
         }
     }
 
-    Parser() {
+    public static Command dataToCommand(ParsedData data) {
+        switch (data.command) {
+            case "bye":
+                return new ByeCommand();
+            case "list":
+                return new ListCommand();
+            case "mark":
+                return new MarkCommand(data);
+            case "unmark":
+                return new UnmarkCommand(data);
+            case "delete":
+                return new DeleteCommand(data);
+            case "todo":
+                return new TodoCommand(data);
+            case "deadline":
+                return new DeadlineCommand(data);
+            case "event":
+                return new EventCommand(data);
+            case "by":
+                return new ByCommand(data);
+
+            default:
+                return new InvalidCommand();
+        }
+    }
+
+    public static Command parseCommand(String txt) {
+        return dataToCommand(parse(txt));
     }
 
     public static ParsedData parse(String txt) {
@@ -56,12 +97,23 @@ public final class Parser {
         }
 
         String command = parsedTmp[0];
-        parsedTmp = parsedTmp[1].split(SEP, 2);
-
+        
+        switch (command) {
+            case "deadline":
+                parsedTmp = parsedTmp[1].split(DEADLINE_SEP, 2);
+                break;
+            
+            case "event":
+                parsedTmp = parsedTmp[1].split(EVENT_SEP, 2);
+                break;
+        
+            default:
+                return new ParsedData(command, parsedTmp[1]);
+        }
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
             return new ParsedData(command, parsedTmp[0]);
         }
-
+        
         return new ParsedData(command, parsedTmp[0], parsedTmp[1]);
     }
 

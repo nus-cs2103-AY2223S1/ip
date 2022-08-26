@@ -8,5 +8,6 @@ import duke.util.Storage;
 import duke.util.TaskList;
 
 public interface Command {
+    boolean isExit();
     void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException;
 }

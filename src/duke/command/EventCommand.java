@@ -16,7 +16,7 @@ public class EventCommand extends DataCommand {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
-    EventCommand(ParsedData d) {
+    public EventCommand(ParsedData d) {
         super(d);
     }
 

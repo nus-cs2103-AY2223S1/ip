@@ -16,7 +16,7 @@ public class DeleteCommand extends DataCommand {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
-    DeleteCommand(ParsedData d) {
+    public DeleteCommand(ParsedData d) {
         super(d);
     }
 

@@ -12,12 +12,7 @@ import duke.util.Storage;
 import duke.util.TaskList;
 
 public class ByCommand extends DataCommand {
-
-    private static final String ADD_TASK = "Got it. I've added this task:%n"
-            + "  %s%n"
-            + "Now you have %d tasks in the list.";
-
-    ByCommand(ParsedData d) {
+    public ByCommand(ParsedData d) {
         super(d);
     }
 

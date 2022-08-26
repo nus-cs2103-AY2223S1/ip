@@ -14,7 +14,7 @@ public class UnmarkCommand extends DataCommand {
 
     private static final String UNMARKED = "OK, I've marked this task as not done yet:%n  %s";
 
-    UnmarkCommand(ParsedData data) {
+    public UnmarkCommand(ParsedData data) {
         super(data);
     }
 

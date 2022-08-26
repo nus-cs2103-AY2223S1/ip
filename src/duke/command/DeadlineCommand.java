@@ -16,7 +16,7 @@ public class DeadlineCommand extends DataCommand {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
-    DeadlineCommand(ParsedData d) {
+    public DeadlineCommand(ParsedData d) {
         super(d);
     }
 

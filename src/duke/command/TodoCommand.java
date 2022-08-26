@@ -16,7 +16,7 @@ public class TodoCommand extends DataCommand {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
             
-    TodoCommand(ParsedData d) {
+    public TodoCommand(ParsedData d) {
         super(d);
     }
 

@@ -22,9 +22,9 @@ public class Event extends Task {
         if (data.description.length() == 0)
             throw new EmptyDescriptionException("event");
 
-        if (data.additionalInfo.length() == 0 || !data.additionalInfo.startsWith(PREFIX))
+        if (data.additionalInfo.length() == 0)
             throw new EmptyTimeException("event", SPLIT);
-        return new Event(data.description, data.additionalInfo.substring(3));
+        return new Event(data.description, data.additionalInfo);
     }
 
     public static Event createEvent(String description, String period) throws CorruptedLineException {

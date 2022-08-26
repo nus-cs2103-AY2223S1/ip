@@ -14,7 +14,7 @@ public class MarkCommand extends DataCommand {
 
     private static final String MARKED = "Nice! I've marked this task as done:%n  %s";
 
-    MarkCommand(ParsedData data) {
+    public MarkCommand(ParsedData data) {
         super(data);
     }
 
