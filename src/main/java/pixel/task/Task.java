@@ -12,6 +12,13 @@ import java.time.format.ResolverStyle;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Represents a Task
+ * Has three types, Event, Deadline and ToDo
+ * Users can set deadlines to tasks
+ * Tasks can be marked and unmarked as done
+ * Tasks can be deleted
+ */
 public class Task {
 
     private String description;
@@ -19,17 +26,30 @@ public class Task {
     protected String due; // can be accessed by subclasses
     protected final String commandWord;
 
-    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
+    private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.US)
         .withResolverStyle(ResolverStyle.SMART);
 
-    DateValidator validator = new DateValidator(dateFormatter);
+    private final DateValidator validator = new DateValidator(dateFormatter);
 
+    /**
+     * Constructor for a new Task object -- will only be called through its subclasses
+     *
+     * @param description description of the task
+     * @param due due day/ date and time of the task
+     * @param commandWord "at" or "by"
+     */
     public Task (String description, String due, String commandWord) {
         this.description = description;
         this.due = dateTimeProcessing(due);
         this.commandWord = commandWord;
     }
 
+    /**
+     * converts input date&time from yyyy-MM-dd HHmm to MONTH dd yyyy hh:mm aa format
+     *
+     * @param due due date and time
+     * @return date and time in MONTH dd yyyy hh:mm aa format
+     */
     private String dateTimeProcessing(String due) {
         String temp = due;
         String[] tempStringArray = temp.strip().split(" ", 2);
@@ -65,12 +85,15 @@ public class Task {
         } catch (DateTimeParseException e) {
             System.out.println(e);
             System.out.println("Please ensure that your date & time input are in yyyy-MM-dd(SPACE)HHmm(24h) format");
+
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e);
             System.out.println("Please ensure that you have entered both date and time in yyyy-MM-dd(SPACE)HHmm(24h) format");
+
         } catch (ParseException e) {
             System.out.println(e);
             System.out.println("Caught parse exception!");
+
         } catch (Exception e) {
             System.out.println(e);
             System.out.println("Some other error occurred");
@@ -79,14 +102,25 @@ public class Task {
         return due; // Shouldn't reach here
     }
 
+    /**
+     * Marks task as done
+     */
     public void markAsDone() {
         this.isDone = true;
     }
 
+    /**
+     * Marks task as not done
+     */
     public void markAsNotDone() {
         this.isDone = false;
     }
 
+    /**
+     * Converts the task to desired format before written to file
+     *
+     * @return string representation of task to be saved to file
+     */
     public String formatTaskBeforeSave() {
         String isTaskDone = this.isDone ? "Done" : "Not Done";
         String tag = "";
@@ -103,6 +137,11 @@ public class Task {
         return taskToString;
     }
 
+    /**
+     * toString method
+     *
+     * @return String representation of the Task object
+     */
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + this.description;
