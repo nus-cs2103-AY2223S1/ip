@@ -7,6 +7,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Storage class to read and write file
+ */
 class Storage {
     private String filePath;
 
@@ -14,7 +17,12 @@ class Storage {
         this.filePath = arg;
     }
 
-    void readResult(TaskList taskList) {
+    /**
+     * Reads stored result into the task list.
+     *
+     * @param taskList the target destination to store result
+     */
+    protected void readResult(TaskList taskList) {
         File file = new File(filePath);
         try {
             FileReader fr = new FileReader(file);
@@ -31,7 +39,13 @@ class Storage {
         }
     }
 
-    int writeResult(TaskList taskList) {
+    /**
+     * Writes the task list result to the file.
+     *
+     * @param taskList the task list that stores the information to be written
+     * @return 0 if successfully written in else 1
+     */
+    protected int writeResult(TaskList taskList) {
         int endIndex = filePath.lastIndexOf("/");
         String dirPath = filePath.substring(0, endIndex);
         File dest = new File(dirPath);

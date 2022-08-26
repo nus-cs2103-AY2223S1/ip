@@ -20,13 +20,22 @@ class Ui {
     private static final String ERROR_WRITE_MESSAGE =
             "OOPS!!! I fail to write in the file, possibly due to no permission. Please help me out :(";
 
-
+    /**
+     * Prints the given string in a formatted manner.
+     *
+     * @param s string to be printed
+     */
     protected static void formatPrint(String s) {
         System.out.println(SEPARATING_LINE);
         System.out.println(s);
         System.out.println(SEPARATING_LINE);
     }
 
+    /**
+     * Prints the list of tasks in a detailed manner.
+     *
+     * @param taskList the list of tasks
+     */
     protected static void listPrint(TaskList taskList) {
         ArrayList<Task> arr = taskList.getTaskArrayList();
         int count = 1;
@@ -41,21 +50,37 @@ class Ui {
         Ui.formatPrint(result);
     }
 
+    /**
+     * Greets the user.
+     */
     protected static void greet() {
         System.out.println("Hello from\n" + logo);
         Ui.formatPrint(OPENING);
     }
 
+    /**
+     * Says bye to the user.
+     */
     protected static void bye() {
         Ui.formatPrint(ENDING);
     }
 
+    /**
+     * Reads the user input by one line.
+     *
+     * @return the user input in string
+     */
     protected static String readInput() {
         Scanner sc = new Scanner(System.in);
         String temp = sc.nextLine();
         return temp;
     }
 
+    /**
+     * Outputs to the user with the given string.
+     *
+     * @param arg string to output
+     */
     protected static void output(String arg) {
         System.out.println(arg);
     }
@@ -74,6 +99,11 @@ class Ui {
         Ui.formatPrint(res + t.toString());
     }
 
+    /**
+     * Processes the exception output.
+     *
+     * @param msg the error message to decide which scenario
+     */
     protected static void processExceptionOutput(String msg) {
         switch (msg) {
         case "Unable to parse query":

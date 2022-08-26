@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Parser class to parse raw string into commands.
+ */
 public class Parser {
     static final String LIST_WORD = "list";
     static final String END_WORD = "bye";
@@ -12,7 +15,15 @@ public class Parser {
         }
     }
 
-    static int parseCommand(String args, TaskList taskList, Storage storage) {
+    /**
+     * Parses raw string command to different actions.
+     *
+     * @param args raw string of the input
+     * @param taskList current TaskList storing
+     * @param storage the storage unit
+     * @return
+     */
+    protected static int parseCommand(String args, TaskList taskList, Storage storage) {
         String command = args.replace("\n", "").replace("/r", "");
         switch (command) {
         case LIST_WORD:
