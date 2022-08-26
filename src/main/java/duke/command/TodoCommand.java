@@ -1,16 +1,17 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.Todo;
 
-import java.io.IOException;
-
 /**
  * A command to add a to-do task to the task list.
- * Usage: todo <description>
+ * Usage: todo [0]
+ * [0]: description
  */
 public class TodoCommand extends Command {
     private final String description;

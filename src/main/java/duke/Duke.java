@@ -1,14 +1,14 @@
 package duke;
 
+import java.io.IOException;
+import java.nio.file.Path;
+
 import duke.command.Command;
 import duke.internal.DukeException;
 import duke.internal.Parser;
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.TaskList;
-
-import java.io.IOException;
-import java.nio.file.Path;
 
 /**
  * The main class of the Duke application.
@@ -29,7 +29,6 @@ public class Duke {
         }
         this.tasks = tasks;
     }
-    
     /**
      * You should have your own function to generate a response to user input.
      * Replace this stub with your completed method.
@@ -45,7 +44,6 @@ public class Duke {
             return e.toString();
         }
     }
-    
     public String getWelcome() {
         return ui.showWelcome().flush();
     }

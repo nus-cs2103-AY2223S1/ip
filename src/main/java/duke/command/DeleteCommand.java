@@ -1,15 +1,16 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.io.IOException;
-
 /**
  * A command to delete a task from the task list.
- * Usage: delete <index>
+ * Usage: delete [0]
+ * [0]: index of the task to delete
  * Note that the index starts at 1.
  */
 public class DeleteCommand extends Command {

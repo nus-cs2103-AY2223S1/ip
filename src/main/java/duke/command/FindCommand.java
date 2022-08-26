@@ -1,18 +1,18 @@
 package duke.command;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
-
 /**
  * Prints the tasks that contain a given search query in its description.
- * Usage: find <query>
- *     
+ * Usage: find [0]
+ * [0]: search query
  * @since Level-9
  */
 public class FindCommand extends Command {

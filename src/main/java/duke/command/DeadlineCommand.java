@@ -1,16 +1,18 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Deadline;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.io.IOException;
-
 /**
  * A command to add a deadline task to the task list.
- * Usage: deadline <description> /by <date>
+ * Usage: deadline [1] /by [2]
+ * [1]: description
+ * [2]: deadline (date)
  */
 public class DeadlineCommand extends Command {
     private final String description;

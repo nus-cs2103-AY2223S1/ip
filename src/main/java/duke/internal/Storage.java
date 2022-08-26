@@ -1,13 +1,13 @@
 package duke.internal;
 
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Handles the storage of the task list, reading and/or writing to a file.

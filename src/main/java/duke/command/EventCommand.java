@@ -1,16 +1,18 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.io.IOException;
-
 /**
  * A command to add an event task to the task list.
- * Usage: event <description> /at <date>
+ * Usage: event [0] /at [1]
+ * [0]: description
+ * [1]: date
  */
 public class EventCommand extends Command {
     private final String description;
