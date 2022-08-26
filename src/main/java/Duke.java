@@ -16,11 +16,11 @@ public class Duke {
         System.out.println("What can I do for you today, Master?");
 
         Scanner scanner = new Scanner(System.in);
-        String text = scanner.nextLine();
+        String text = scanner.nextLine().toLowerCase();
         boolean open = true;
         while (open) {
             // Bye
-            if (text.equalsIgnoreCase("bye")) {
+            if (text.equals("bye") || text.equals("exit")) {
                 scanner.close();
                 open = false;
                 System.out.println("Goodbye, Master! Thank you for visiting\n" + logo);
@@ -28,14 +28,13 @@ public class Duke {
             } else if (text.equalsIgnoreCase("list")) {
                 if (list.isEmpty()) {
                     System.out.println("There is nothing in your list yet!");
-
                 } else {
                     System.out.println("Here is your to-do list, Master:");
                     for (int i = 1; i <= list.size(); i++) {
-                        System.out.println(i + ". " + list.get(i - 1).getName() + list.get(i - 1).getStatus());
+                        System.out.println(i + ". " + list.get(i - 1).toString());
                     }
                 }
-                text = scanner.nextLine();
+                text = scanner.nextLine().toLowerCase();
 
             // Mark
             } else if (text.startsWith("mark") && text.length() <= 7) {
@@ -44,15 +43,20 @@ public class Duke {
                     taskNumber += String.valueOf(text.charAt(6));
                 }
                 int number = Integer.parseInt(taskNumber) - 1;
-                if (number >= list.size() || number <= 0) {
-                    System.out.println("There is no such task just yet, Master.");
-                } else if (list.get(number).isDone) {
-                    System.out.println("This task was already marked done, Master.");
+                if (number >= list.size() || number < 0) {
+                    System.out.println("There is no task " + taskNumber + " just yet, Master.");
                 } else {
-                    list.get(number).markDone();
-                    System.out.println("Well done! I have marked " + list.get(number).getName() + " as done, Master.");
+                    Task curr = list.get(number);
+                    if (curr.isDone) {
+                        System.out.println("This task was already marked done, Master.");
+                    } else {
+                        curr.markDone();
+                        System.out.println("Well done! I have marked "
+                                            + curr.toString() +
+                                            " as done, Master.");
+                    }
                 }
-                text = scanner.nextLine();
+                text = scanner.nextLine().toLowerCase();
             } else if (text.startsWith("unmark")) {
                 String taskNumber = String.valueOf(text.charAt(7));
                 if (text.length() == 9) {
@@ -61,17 +65,53 @@ public class Duke {
                 int number = Integer.parseInt(taskNumber) - 1;
                 if (number >= list.size() || number <= 0) {
                     System.out.println("There is no such task just yet, Master.");
-                } else if (!list.get(number).isDone) {
-                    System.out.println("This task was already marked undone, Master.");
                 } else {
-                    list.get(number).markUndone();
-                    System.out.println("Oh no :( I have marked " + list.get(number).getName() + " as undone, Master.");
+                    Task curr = list.get(number);
+                    if (!curr.isDone) {
+                        System.out.println("This task was already marked undone, Master.");
+                    } else {
+                        curr.markUndone();
+                        System.out.println("Oh no :( I have marked " +
+                                            curr.toString()
+                                            + " as undone, Master.");
+                    }
                 }
-                text = scanner.nextLine();
+                text = scanner.nextLine().toLowerCase();
+            } else if (text.startsWith("deadline")) {
+                if (text.contains("/by")) {
+                    int splitNum = text.indexOf("/");
+                    String taskName = text.substring(9, splitNum - 1);
+                    String time = text.substring(splitNum + 4, text.length());
+                    Deadline newTask = new Deadline(taskName, time);
+                    list.add(newTask);
+                    System.out.println("I have added " + newTask.toString() + " to the list, Master.");
+                } else {
+                    System.out.println("I need to know the deadline to add this task to the list, Master.");
+                }
+                text = scanner.nextLine().toLowerCase();
+            } else if (text.startsWith("event")) {
+                if (text.contains("/on") || text.contains("/at")) {
+                    int splitNum = text.indexOf("/");
+                    String taskName = text.substring(6,  splitNum - 1);
+                    String time = text.substring(splitNum + 4, text.length());
+                    Event newTask = new Event(taskName, time);
+                    list.add(newTask);
+                    System.out.println("I have added " + newTask.toString() + " to the list, Master.");
+                } else {
+                    System.out.println("I need to know the time to add this task to the list, Master.");
+                }
+                text = scanner.nextLine().toLowerCase();
+            } else if (text.startsWith("todo")) {
+                String taskName = text.substring(5, text.length());
+                ToDo newTask = new ToDo(taskName);
+                list.add(newTask);
+                System.out.println("I have added " + newTask.toString() + " to the list, Master.");
+                text = scanner.nextLine().toLowerCase();
             } else {
-                list.add(new Task(text));
-                System.out.println("I have added " + text + " to your to-do list, Master.");
-                text = scanner.nextLine();
+                ToDo newTask = new ToDo(text);
+                list.add(newTask);
+                System.out.println("I have added " + newTask.toString() + " to the list, Master.");
+                text = scanner.nextLine().toLowerCase();
             }
         }
     }
