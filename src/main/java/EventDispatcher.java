@@ -66,7 +66,7 @@ public class EventDispatcher {
         return 200;
     }
 
-    private int addEntryToCalendar(String input){
+    private int addEntryToCalendar(String input) throws Exception {
         String[] args=input.toLowerCase().split(" ");
         if (args[0].equals("todo") && args.length>=2){
             CalendarEntryTodo entry=new CalendarEntryTodo(input.substring(5));

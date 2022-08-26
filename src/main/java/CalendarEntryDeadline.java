@@ -1,12 +1,12 @@
 public class CalendarEntryDeadline extends CalendarEntry {
-    private String time;
-    public CalendarEntryDeadline(String title, String time){
+    private CalendarTime time;
+    public CalendarEntryDeadline(String title, String time) throws Exception {
         super(title);
-        this.time=time;
+        this.time=CalendarTime.parseInput(time);
     }
 
     @Override
     public String toString(){
-        return "[D]"+super.toString()+" (by: "+this.time+")";
+        return "[D]"+super.toString()+" (by: "+this.time.toString()+")";
     }
 }
