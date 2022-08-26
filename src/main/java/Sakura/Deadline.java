@@ -10,7 +10,12 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String stringifyTask() {
+        return String.format("D|%d|%s|%s", this.isDone ? 1 : 0, this.description, this.by);
+    }
+
+    @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "\u001B[31m(DEADLINE)\u001B[0m" + super.toString() + " (by: " + by + ")";
     }
 }

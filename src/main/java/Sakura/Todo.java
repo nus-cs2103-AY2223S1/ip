@@ -7,7 +7,12 @@ public class Todo extends Task {
     }
 
     @Override
+    public String stringifyTask() {
+        return String.format("T|%d|%s", this.isDone ? 1 : 0, this.description);
+    }
+
+    @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return "\u001B[36m(TODO)\u001B[0m" + super.toString();
     }
 }

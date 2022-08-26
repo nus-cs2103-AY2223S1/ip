@@ -1,6 +1,6 @@
 package Sakura;
 
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -20,6 +20,8 @@ public class Task {
     public void markUndone() {
         this.isDone = false;
     }
+
+    public abstract String stringifyTask();
 
     @Override
     public String toString() {
