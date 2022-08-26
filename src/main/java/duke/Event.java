@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,8 +21,9 @@ public class Event extends Task {
         return "[E]" + super.toString() + "(at: " + at + ")";
     }
 
+    @Override
     public String toUser() {
-        return "[D]" + super.toString() + "(by: " + this.dateTime.format(DateTimeFormatter
+        return "[E]" + super.toUser() + " (by: " + this.dateTime.format(DateTimeFormatter
                 .ofLocalizedDate(FormatStyle.FULL)) + ")";
     }
 }

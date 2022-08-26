@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class Task {
     protected String description;
@@ -34,5 +34,8 @@ public class Task {
         return "[" + this.getStatusIcon() + "] " + description;
     }
 
-    //...
+    public String toUser() {
+        return "[" + this.getStatusIcon() + "] " + description;
+    }
+
 }

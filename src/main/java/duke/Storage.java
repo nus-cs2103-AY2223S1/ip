@@ -1,7 +1,6 @@
-package Duke;
+package duke;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
@@ -45,12 +44,12 @@ public class Storage {
                     current = new ToDo(todoDescription);
                     break;
                 case "D":
-                    String deadlineDescription = data.substring(7, data.indexOf("("));
+                    String deadlineDescription = data.substring(7, data.indexOf("(") - 1);
                     String by = data.substring(data.indexOf("(") + 5, data.length() - 1);
                     current = new Deadline(deadlineDescription, by);
                     break;
                 case "E":
-                    String eventDescription = data.substring(7, data.indexOf("("));
+                    String eventDescription = data.substring(7, data.indexOf("(") - 1 );
                     String at = data.substring(data.indexOf("(") + 5, data.length() - 1);
                     current = new Deadline(eventDescription, at);
                     break;

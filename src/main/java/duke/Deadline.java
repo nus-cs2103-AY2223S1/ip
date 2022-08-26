@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -18,11 +18,12 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + by + ")";
     }
 
+    @Override
     public String toUser() {
-        return "[D]" + super.toString() + "(by: " + this.dateTime.format(DateTimeFormatter
+        return "[D]" + super.toUser() + " (by: " + this.dateTime.format(DateTimeFormatter
                 .ofLocalizedDate(FormatStyle.FULL)) + ")";
     }
 }

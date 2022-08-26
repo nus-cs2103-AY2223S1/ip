@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class ToDo extends Task {
 
@@ -19,6 +19,11 @@ public class ToDo extends Task {
     @Override
     public String toString() {
         return "[T]" + super.toString();
+    }
+
+    @Override
+    public String toUser() {
+        return "[T]" + super.toUser();
     }
 
 }
