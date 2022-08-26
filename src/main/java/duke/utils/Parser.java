@@ -7,6 +7,7 @@ import duke.commands.AddCommand;
 import duke.commands.Command;
 import duke.commands.DeleteCommand;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
@@ -42,6 +43,8 @@ public class Parser {
             return prepareUnmark(userInput);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+        case FindCommand.COMMAND_WORD:
+            return prepareFind(userInput);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
@@ -152,6 +155,14 @@ public class Parser {
         } catch (NumberFormatException e) {
             return NUMBER_FORMAT;
         }
+    }
+
+    private Command prepareFind(String userInput) {
+        String[] tokens = userInput.split(" ", 2);
+        if (tokens.length < 2) {
+            return new InvalidCommand("Oh no! Try find <keyword>!");
+        }
+        return new FindCommand(tokens[1]);
     }
 
     /**
