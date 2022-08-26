@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -37,7 +39,7 @@ public class Duke {
         } else if (input.length() > 7 && input.substring(0, 8).equals("deadline")) {
             String taskInput = input.substring(9);
             String[] taskAndDate = taskInput.split("/by ");
-            Task newTask = new Deadline(taskAndDate[0], taskAndDate[1]);
+            Task newTask = new Deadline(taskAndDate[0], handleDate(taskAndDate[1]));
             addTask(newTask);
             updateFile(listTasks());
             return "Got it. I've added this task:\n  " + newTask.toString() +
@@ -45,7 +47,7 @@ public class Duke {
         } else if (input.length() > 4 && input.substring(0, 5).equals("event")) {
             String taskInput = input.substring(6);
             String[] taskAndDate = taskInput.split("/at ");
-            Task newTask = new Event(taskAndDate[0], taskAndDate[1]);
+            Task newTask = new Event(taskAndDate[0], handleDate(taskAndDate[1]));
             addTask(newTask);
             updateFile(listTasks());
             return "Got it. I've added this task:\n  " + newTask.toString() +
@@ -82,6 +84,11 @@ public class Duke {
         } catch (IOException e) {
             System.out.println("Unable to write to file");
         }
+    }
+
+    private static LocalDateTime handleDate(String dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
+        return LocalDateTime.parse(dateTime, formatter);
     }
 
     public static void main(String[] args) {
