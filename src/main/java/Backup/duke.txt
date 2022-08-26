@@ -1,0 +1,4 @@
+T~1~TestCase
+D~0~run~Jun 22 2022
+E~0~meeting~Jun 23 2022
+E~1~another meeting~Jun 24 2022
