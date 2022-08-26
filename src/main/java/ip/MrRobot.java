@@ -1,5 +1,10 @@
 package ip;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -7,6 +12,7 @@ import ip.task.Deadline;
 import ip.task.Event;
 import ip.task.Task;
 import ip.task.ToDo;
+
 import ip.exception.InvalidCommand;
 import ip.exception.NoDeadline;
 import ip.exception.NoDescription;
@@ -25,6 +31,9 @@ import ip.exception.NoTaskFound;
 public class MrRobot {
     /** List of all tasks. */
     private static LinkedList<Task> tasks = new LinkedList<>();
+    private final static String path = "src/main/java/ip/data/taskData.txt";
+    /** File to load and save task data to. */
+    private static File taskDataFile = new File(path);
     /** Stream of input from the user. */
     private static Scanner input = new Scanner(System.in);
     /** The latest command entered by the user. */
@@ -35,6 +44,10 @@ public class MrRobot {
     }
 
     public static void main(String[] args) {
+        // TODO
+        // Load existing task data (if it exists)
+        // If task data does not exist, create the file.
+        loadSavedData(path);
         // Greeting Message
         System.out.println("HELLO HUMAN. TELL ME WHAT'S ON YOUR MIND?");
         // Primary Program Loop
@@ -58,6 +71,7 @@ public class MrRobot {
                     show();
                 // Execute commands that require options.
                 } else {
+                    // Store all subsequent text as options.
                     Scanner options = new Scanner(input.nextLine());
                         if (lastCommand == Command.MARK ||
                                 lastCommand == Command.UNMARK ||
@@ -67,17 +81,17 @@ public class MrRobot {
                                 // Try executing the command.
                                 try {
                                     switch (lastCommand) {
-                                        case MARK:
-                                            mark(index);
-                                            break;
-                                        case UNMARK:
-                                            unmark(index);
-                                            break;
-                                        case DELETE:
-                                            delete(index);
-                                            break;
-                                        default:
-                                            break;
+                                    case MARK:
+                                        mark(index);
+                                        break;
+                                    case UNMARK:
+                                        unmark(index);
+                                        break;
+                                    case DELETE:
+                                        delete(index);
+                                        break;
+                                    default:
+                                        break;
                                     }
                                 } catch (NoTaskFound e) {
                                     System.out.println("There is no task at index " + index);
@@ -107,15 +121,64 @@ public class MrRobot {
                             } catch (NoDeadline e) {
                                 System.out.println("ADD DEADLINE BY APPENDING TASK WITH \"/by [date]\"");
                             } catch (NoPeriod e) {
-                                System.out.println("ADD PEROID BY APPENDING TASK WITH \"/at [date]\"");
+                                System.out.println("ADD PERIOD BY APPENDING TASK WITH \"/at [date]\"");
                             }
                         }
+                    // TODO
+                    // After execution of commands that edit the tasklist, save changes to file.
                 }
             } else {
                 System.out.println("NO INPUT DETECTED. TERMINATING...");
                 break;
             }
         }
+    }
+
+    private static void loadSavedData(String dataFilePath) {
+        System.out.println("SEARCHING FOR EXISTING TASK DATA...");
+        try {
+            if (taskDataFile.createNewFile()) {
+                System.out.println("EXISTING TASK DATA NOT FOUND. INITIALIZING...");
+                System.out.println("TASK DATABASE SUCCESSFULLY INITIALIZED: " + taskDataFile.getName());
+            } else {
+                System.out.println("FILE ALREADY EXISTS. LOADING DATA...");
+                // Parse data from taskDataFile.txt into ArrayList Tasks.
+                /* Sample text data for tasks:
+                t|0|Do the dishes||
+                d|1|Attend ceremony|Today|
+                e|1|Eat with grandma|Next Tuesday, 2-3pm|
+
+                 */
+                String data = new String(Files.readAllBytes(Path.of(path)));
+                String[] lines = data.split("\\r?\\n");
+                for (String line : lines) {
+                    System.out.println(line);
+                    String[] props = line.split("\\|");
+                    String taskType = props[0];
+                    switch (taskType) {
+                    case "t":
+                        tasks.add(new ToDo(props));
+                        break;
+                    case "d":
+                        tasks.add(new Deadline(props));
+                        break;
+                    case "e":
+                        tasks.add(new Event(props));
+                        break;
+                    default:
+                        System.out.println("INVALID TASK FORMAT DETECTED. SKIPPING LINE.");
+                    }
+                }
+                show();
+            }
+        } catch (IOException e) {
+            System.out.println("IO ERROR!!!");
+            e.printStackTrace();
+        }
+    }
+
+    private static void updateTask(int index) {
+
     }
 
     /**

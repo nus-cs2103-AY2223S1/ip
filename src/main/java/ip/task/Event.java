@@ -16,7 +16,6 @@ public class Event extends Task {
             if (options.hasNext()) {
                 String period = options.next();
                 super.describe(description);
-                super.unmark();
                 this.period = period;
                 System.out.println("CREATED EVENT: " + description + " AT: " + period);
             } else {
@@ -24,6 +23,14 @@ public class Event extends Task {
             }
         } else {
             throw new NoDescription();
+        }
+    }
+
+    public Event(String[] props) {
+        super.describe(props[2]);
+        this.period = props[3];
+        if (props[1].equals("1")) {
+            super.mark();
         }
     }
 

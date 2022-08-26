@@ -10,10 +10,16 @@ public class ToDo extends Task {
         if (options.hasNext()) {
             String description = options.nextLine().substring(1);
             super.describe(description);
-            super.unmark();
             System.out.println("CREATED TASK: " + description);
         } else {
             throw new NoDescription();
+        }
+    }
+
+    public ToDo(String[] props) {
+        super.describe(props[2]);
+        if (props[1].equals("1")) {
+            super.mark();
         }
     }
 

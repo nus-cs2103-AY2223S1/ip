@@ -6,6 +6,9 @@ public class Task {
     /** Completion status of the task. */
     private boolean isComplete;
 
+    public Task() {
+        isComplete = false;
+    }
     /**
      * Sets task description to the given string.
      * 

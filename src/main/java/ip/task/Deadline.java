@@ -15,7 +15,6 @@ public class Deadline extends Task {
             if (options.hasNext()) {
                 String deadline = options.next();
                 super.describe(description);
-                super.unmark();
                 this.deadline = deadline;
                 System.out.println("CREATED DEADLINE: " + description + " DUE ON: " + deadline);
             } else {
@@ -23,6 +22,14 @@ public class Deadline extends Task {
             }
         } else {
             throw new NoDescription();
+        }
+    }
+
+    public Deadline(String[] props) {
+        super.describe(props[2]);
+        this.deadline = props[3];
+        if (props[1].equals("1")) {
+            super.mark();
         }
     }
 
