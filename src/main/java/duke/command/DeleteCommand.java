@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
                     + (hasOnlyOneTask ? "is " : "are ")
                     + size
                     + (hasOnlyOneTask ? " task" : " tasks")
-                    + " in the list";
+                    + " in the list.";
         } catch (DukeIndexOutOfBoundException exception) {
             output = ERROR_MESSAGE;
         }

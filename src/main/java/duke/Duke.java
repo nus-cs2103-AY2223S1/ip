@@ -7,8 +7,6 @@ import duke.util.Storage;
 import duke.util.TaskList;
 import duke.util.Ui;
 
-import java.util.Scanner;
-
 /**
  *
  *
@@ -26,7 +24,7 @@ public class Duke {
 
     public static final String TAB = "    ";
 
-    private static final String FILE_PATH = "../saved_list.txt";
+    private static final String FILE_PATH = "saved_list.txt";
     private static final String GREETING_MESSAGE = "Hi there! I' am duke.Duke, your personal time manager."
             + "\nWhat can I help you?";
 
@@ -52,14 +50,15 @@ public class Duke {
     }
 
     private void startListening() {
-        Scanner scanner = new Scanner(System.in);
+
         boolean isExit = false;
 
         while (!isExit) {
-            String nextLine = scanner.nextLine();
+            String input = ui.readInput();
 
-            Command nextCommand = parser.parse(nextLine);
+            Command nextCommand = parser.parse(input);
             isExit = nextCommand.isExit();
+
             try {
                 nextCommand.execute(ui, taskList, storage);
             } catch (DukeCommandAlreadyExecutedException exception) {

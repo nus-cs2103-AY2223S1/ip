@@ -19,7 +19,8 @@ public enum CommandType {
         this.commandString = commandString;
     }
 
-    String getCommandString() {
+    @Override
+    public String toString() {
         return commandString;
     }
 }

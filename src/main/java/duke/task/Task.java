@@ -4,7 +4,7 @@ import java.time.format.DateTimeFormatter;
 
 public abstract class Task {
 
-    protected static final String OUTPUT_DATE_TIME_FORMAT = "yyyy/MM/dd T HH:mm:ss";
+    protected static final String OUTPUT_DATE_TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
     protected static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern(OUTPUT_DATE_TIME_FORMAT);
     private static final String FILE_WRITING_DELIMITER = "|";
 

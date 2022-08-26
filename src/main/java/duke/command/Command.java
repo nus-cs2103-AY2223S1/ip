@@ -23,7 +23,7 @@ public abstract class Command {
 
     private static final String COMMAND_ALREADY_EXECUTED_ERROR_MESSAGE = "Oops! This command has been executed";
 
-    CommandType commandType;
+    private CommandType commandType;
     boolean isExecuted;
 
     public Command(CommandType commandType) {
