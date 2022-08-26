@@ -83,4 +83,20 @@ public class TaskList {
     public void delete(Task tsk) {
         this.lst.remove(tsk);
     }
+
+    /**
+     * A method that returns a task based on a keyword
+     *
+     * @param keyword The keyword
+     * @return Task The task with the keyword
+     */
+    public ArrayList<Task> findTask(String keyword) {
+        ArrayList<Task> allTasks = new ArrayList<>();
+        for (Task t: lst) {
+            if (t.description.contains(keyword)) {
+                allTasks.add(t);
+            }
+        }
+        return allTasks;
+    }
 }

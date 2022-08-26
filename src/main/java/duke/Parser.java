@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 public class Parser {
     /**
@@ -40,6 +41,9 @@ public class Parser {
                 return false;
             } else if (first.length() == 8 && first.substring(0, 6).equals("delete")) {
                 deleteMessage(first, lst, store);
+                return false;
+            } else if (first.length() >= 4 && first.substring(0, 4).equals("find")) {
+                findMessage(first, lst, store);
                 return false;
             }
             else {
@@ -201,6 +205,33 @@ public class Parser {
             System.out.println("Noted. I've removed this task: \n " + t + "\nNow you have "
                     + lst.count() + " tasks in the list.");
             storage.updateFile(lst);
+        }
+    }
+
+    /**
+     * Finds a task based on a keyword
+     *
+     * @param str The users input
+     * @param lst The tasklist
+     * @param storage the storage object
+     */
+    public static void findMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
+        if (str.length() > 6) {
+            String keyword = str.substring(5);
+            ArrayList<Task> allTasks = lst.findTask(keyword);
+            int counter = 1;
+            if (allTasks.isEmpty()) {
+                throw new DukeException("No such tasks with that keyword!!");
+            } else {
+                String tasks = "Here are the matching tasks in your list:\n";
+                for (Task t: allTasks) {
+                    tasks += counter + ". " + t.toString() + "\n";
+                    counter++;
+                }
+                System.out.println(tasks);
+            }
+        } else {
+            throw new DukeException("Add keyword to find");
         }
     }
 }
