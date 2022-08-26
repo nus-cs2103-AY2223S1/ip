@@ -102,6 +102,10 @@ public class TaskList {
         storage.save(taskList);
     }
 
+    /**
+     * Finds a task in the list
+     * @param description The description of the task
+     */
     public void findTask(String description) {
         List<Task> foundTasks = new ArrayList<>();
         for (int i = 0; i < taskListSize(); i++) {
