@@ -28,14 +28,16 @@ public class Event extends Task {
         datetime = new ParsedDateTime(at);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(), datetime.toString());
     }
 
     /**
-     * Get a string array representation suitable for printing to files.
-     * @return String array representation.
+     * {@inheritDoc}
      */
     @Override
     public String[] getAsStringArray() {

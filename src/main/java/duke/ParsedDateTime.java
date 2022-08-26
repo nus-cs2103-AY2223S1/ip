@@ -37,6 +37,10 @@ public class ParsedDateTime {
         }
     }
 
+    /**
+     * Gets a nicely-formatted date.
+     * @return The date if it parses, else the original string.
+     */
     @Override
     public String toString() {
         return parsedDateTime.map((dateTime) -> {
