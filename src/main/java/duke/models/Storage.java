@@ -48,8 +48,6 @@ public class Storage {
             TaskList taskList = new TaskList();
             while (fileReader.hasNextLine()) {
                 String data = fileReader.nextLine();
-                System.out.println("Reading");
-                System.out.println(data);
                 taskList.AddTask(parseTextToTask(data));
             }
             fileReader.close();
