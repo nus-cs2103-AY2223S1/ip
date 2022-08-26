@@ -12,9 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- * Main class of chatbot
- */
 public class Pixel {
 
     public static int count = 0; // made public for testing
@@ -108,6 +105,14 @@ public class Pixel {
 
                 } else if (userInput.strip().startsWith("delete ")) {
                     storage.deleteEntry(userInput);
+
+                } else if (userInput.strip().startsWith("find ")) {
+                    ArrayList<Task> results = storage.findEntry(userInput);
+                    System.out.println("Here are the matching tasks in your list:");
+                    for (int i = 0; i < results.size(); i++) {
+                        Task currentTask = results.get(i);
+                        System.out.println((i + 1) + ". " + currentTask);
+                    }
 
                 } else {
                     throw new IncorrectFormatException("Input should be a task or command!"); // programme breaks
