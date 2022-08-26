@@ -9,17 +9,29 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Gets tasks from file, creates a new file if file is absent, and upload tasks in file.
+ */
 public class Storage {
     private String pathname;
     private ArrayList<Task> listStored;
     private String directory;
 
+    /**
+     * Creates a Storage object.
+     * @param pathname Pathname to the file to be stored.
+     * @param listStored
+     * @param directory Directory of the file to be stored.
+     */
     Storage(String pathname, ArrayList<Task> listStored, String directory) {
         this.pathname = pathname;
         this.listStored = listStored;
         this.directory = directory;
     }
 
+    /**
+     * Gets data from the given path of the file and store the tasks in this.listStored.
+     */
     public void getData() {
         try {
             File f = new File(this.pathname);
@@ -66,6 +78,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates file if file is not found when getting data from the file with the given path.
+     */
     public void createFile() {
         try {
             File f = new File(this.pathname);
@@ -77,6 +92,10 @@ public class Storage {
         }
     }
 
+    /**
+     * Goes through the this.listStored to update the updated list of tasks into the file when exiting program.
+     * @throws IOException
+     */
     public void updateFile() throws IOException {
         File f = new File(this.pathname);
         FileWriter fw = new FileWriter(f);

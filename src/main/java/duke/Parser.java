@@ -1,10 +1,24 @@
 package duke;
+
+/**
+ * Represents a class which contains methods to make sense of the commands.
+ */
 public class Parser {
     String stringToParse;
+
+    /**
+     * Creates a Parser object.
+     * @param stringToParse String command to be parse to capture the keyword.
+     */
     Parser(String stringToParse) {
         this.stringToParse = stringToParse;
     }
 
+    /**
+     * Creates a new command depending if it has the correct substring for that command.
+     * @return Command depending on the substrings of different commands.
+     * @throws DukeUnknownWordException
+     */
      Command parse() throws DukeUnknownWordException {
         if (isSubstringForDeleteCommand()){
             return new DeleteCommand();
