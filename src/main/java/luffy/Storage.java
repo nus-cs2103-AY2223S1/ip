@@ -19,6 +19,12 @@ public class Storage {
 
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<Task>();
+
+        File dataFolder = new File("./data");
+        if (!dataFolder.exists()) {
+            dataFolder.mkdir();
+        }
+
         File dataFile = new File(this.filePath);
         try {
             if (dataFile.exists()) {
