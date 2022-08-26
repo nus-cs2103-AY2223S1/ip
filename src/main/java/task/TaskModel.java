@@ -22,9 +22,9 @@ public class TaskModel {
      * @throws StorageException - if there was an issue initialising storage related dependencies
      */
     public TaskModel() throws StorageException {
-        this.tasks = new ArrayList<>();
+        tasks = new ArrayList<>();
         try {
-            this.storage = new Storage();
+            storage = new Storage();
             tasks = storage.load()
                     .stream()
                     .map(TaskDeserializer::deserializeTaskString)

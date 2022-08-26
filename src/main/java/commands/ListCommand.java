@@ -33,7 +33,7 @@ public class ListCommand extends Command {
         if (allTasks.size() == 0) {
             return new CommandResponse("No tasks added.");
         }
-        List<String> stringList = allTasks.stream().map(t -> t.toString()).collect(Collectors.toList());
+        List<String> stringList = allTasks.stream().map(Task::toString).collect(Collectors.toList());
         return new CommandResponse(OutputLogger.numberedOutput(stringList));
     }
 }

@@ -40,7 +40,7 @@ public class Input {
      */
     private Input(String input) throws DukeException {
         // remove trailing space
-        this.inputString = input.trim();
+        inputString = input.trim();
 
         if (this.inputString.length() == 0) {
             throw new DukeException("Input should not be empty!");
@@ -53,8 +53,8 @@ public class Input {
             throw new DukeException(String.format("Commands do not start with %s :)", ARG_START));
         }
 
-        this.commandName = tokens[0];
-        this.parameters = new HashMap<>();
+        commandName = tokens[0];
+        parameters = new HashMap<>();
 
         // currArg string and buffer for the strings that are in its param
         String currentArg = null;
