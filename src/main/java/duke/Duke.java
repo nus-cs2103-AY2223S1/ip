@@ -9,6 +9,8 @@ public class Duke {
     private TaskList tasks;
     private final Ui ui;
 
+    private final Parser parser;
+
     /**
      * Creates a Duke object with the specified file path.
      * @param filePath The file path of the Duke.txt file where the last saved task list will be retrieved from.
@@ -16,6 +18,7 @@ public class Duke {
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
+        parser = new Parser();
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
