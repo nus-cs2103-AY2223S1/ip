@@ -81,7 +81,6 @@ public class Pixel {
 
                     System.out.println(" Nice! I've marked this task as done:");
                     System.out.println(inputTasks.get(indexToChange - 1));
-                    // run();
 
                 } else if (userInput.strip().startsWith("unmark ")) {
                     // truncate the front part
@@ -113,6 +112,14 @@ public class Pixel {
 
                 } else if (userInput.strip().startsWith("delete ")) {
                     storage.deleteEntry(userInput);
+
+                } else if (userInput.strip().startsWith("find ")) {
+                    ArrayList<Task> results = storage.findEntry(userInput);
+                    System.out.println("Here are the matching tasks in your list:");
+                    for (int i = 0; i < results.size(); i++) {
+                        Task currentTask = results.get(i);
+                        System.out.println((i + 1) + ". " + currentTask);
+                    }
 
                 } else {
                     throw new IncorrectFormatException("Input should be a task or command!"); // programme breaks
