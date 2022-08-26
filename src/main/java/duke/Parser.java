@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.IOException;
 public class Parser {
     public static boolean parse(String str, TaskList taskList, Ui ui, Storage storage) throws DukeException {
@@ -18,15 +20,15 @@ public class Parser {
                     taskList.unmarkTask(str, taskList);
                     storage.writeToFile(taskList);
                 }
-                else if(str.split(" ", 2)[0].equals("todo")) {
+                else if(str.split(" ", 2)[0].equals("duke.todo")) {
                     Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
                 }
-                else if(str.split(" ", 2)[0].equals("deadline")) {
+                else if(str.split(" ", 2)[0].equals("duke.deadline")) {
                     Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
                 }
-                else if(str.split(" ", 2)[0].equals("event")) {
+                else if(str.split(" ", 2)[0].equals("duke.event")) {
                     Task.makeTask(taskList, str);
                     storage.writeToFile(taskList);
                 }

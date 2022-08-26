@@ -1,6 +1,10 @@
+package duke;
+
+import duke.Task;
+import duke.formatDate;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class deadline extends Task {
