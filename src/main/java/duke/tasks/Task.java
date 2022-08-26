@@ -6,7 +6,7 @@ public abstract class Task {
 
     public Task(String description) {
         this.description = description;
-        this.isDone = false;
+        isDone = false;
     }
 
     public String getStatusIcon() {
@@ -14,17 +14,17 @@ public abstract class Task {
     }
 
     public void markAsDone() {
-        this.isDone = true;
+        isDone = true;
     }
 
     public void markAsUndone() {
-        this.isDone = false;
+        isDone = false;
     }
 
     public abstract String taskToDataString();
 
     @Override
     public String toString() {
-        return String.format("[%s] %s", this.getStatusIcon(), this.description);
+        return String.format("[%s] %s", this.getStatusIcon(), description);
     }
 }

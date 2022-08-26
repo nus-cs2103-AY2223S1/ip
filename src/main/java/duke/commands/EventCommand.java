@@ -18,9 +18,9 @@ public class EventCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            taskList.addTask(this.event);
-            storage.appendToFile(this.event);
-            ui.addTask(this.event);
+            taskList.addTask(event);
+            storage.appendToFile(event);
+            ui.addTask(event);
             ui.printListSize(taskList);
         } catch (DukeException e) {
             ui.printException(e);

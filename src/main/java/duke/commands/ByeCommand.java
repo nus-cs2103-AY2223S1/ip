@@ -11,7 +11,7 @@ public class ByeCommand implements Command {
     public void execute (TaskList tasks, Ui ui, Storage storage) {
         try {
             ui.printFarewell();
-            storage.storeToFile(tasks);
+            storage.saveToFile(tasks);
             ui.exit();
         } catch (DukeException e) {
             ui.printException(e);

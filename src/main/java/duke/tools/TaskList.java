@@ -8,16 +8,16 @@ import java.util.List;
 public class TaskList {
     private List<Task> taskList;
 
-    public TaskList(List<Task> storedTask) {
-        this.taskList = storedTask;
+    public TaskList(List<Task> taskList) {
+        this.taskList = taskList;
     }
 
     public List<Task> getTaskList() {
-        return this.taskList;
+        return taskList;
     }
 
     public int getSize() {
-        return this.taskList.size();
+        return taskList.size();
     }
 
     public Task getTask(int index) throws DukeException {

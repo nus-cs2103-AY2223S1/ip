@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class DeadlineTest {
 
     @Test
-    public void testToString_expectedBehavior() {
+    public void testToString() {
         assertEquals("[D][ ] test1 (by: Dec 12 2022)",
                 new Deadline("test1", false, LocalDate.of(2022, 12, 12)).toString());
         assertEquals("[D][X] test2 (by: Jan 25 2023)",
@@ -18,7 +18,7 @@ class DeadlineTest {
     }
 
     @Test
-    public void testTaskToDataString_expectedBehavior() {
+    public void testTaskToDataString() {
         Deadline test3 = new Deadline("test3", false, LocalDate.of(2022, 11, 28));
         assertEquals("D | X | test3 | 28/11/2022\n", test3.taskToDataString());
 

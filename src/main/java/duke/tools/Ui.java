@@ -69,6 +69,6 @@ public class Ui {
     }
 
     public void exit() {
-        this.isExit = true;
+        isExit = true;
     }
 }

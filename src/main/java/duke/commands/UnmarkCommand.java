@@ -16,7 +16,7 @@ public class UnmarkCommand implements Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
             taskList.getTask(index).markAsUndone();
-            storage.storeToFile(taskList);
+            storage.saveToFile(taskList);
             ui.markAsUndone(index, taskList.getTask(index));
         } catch (DukeException e) {
             ui.printException(e);

@@ -15,7 +15,7 @@ public class Duke {
     private String fileName;
 
     public Duke() {
-        this.fileName = "data.txt";
+        fileName = "data.txt";
     }
 
     public Duke(String fileName) {
@@ -28,7 +28,7 @@ public class Duke {
     }
 
     public void run() {
-        Storage storage = new Storage(this.fileName);
+        Storage storage = new Storage(fileName);
         Ui ui = new Ui();
         TaskList taskList;
 
