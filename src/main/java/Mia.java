@@ -29,65 +29,12 @@ public class Mia {
 
             try {
                 final Command command = Command.from(this, line);
+                command.run();
                 if (command.shouldExitContext()) {
-                respond("See you!");
                     break;
                 }
             } catch (IllegalArgumentException e) {
                 respond(e.getMessage());
-            }
-
-            if (line.equals("list")) {
-                respond(tasksManager.toString());
-            } else if (line.startsWith("delete ")) {
-                final int number = Integer.parseInt(line.substring(7));
-                if (tasksManager.deleteTask(number)) {
-                    respond("Task has been deleted!");
-                } else {
-                    respond(String.format(
-                            "Something went wrong when deleting task %d! Likely, you specified an invalid task number.",
-                            number));
-                }
-            } else if (line.startsWith("mark ")) {
-                final int number = Integer.parseInt(line.substring(5));
-                if (tasksManager.checkTask(number)) {
-                    respond("Task has been marked as done!");
-                } else {
-                    respond(String.format(
-                            "Task not modified! Either the task is already done, or you specified an invalid task number %d.",
-                            number));
-                }
-            } else if (line.startsWith("unmark ")) {
-                final int number = Integer.parseInt(line.substring(7));
-                if (tasksManager.uncheckTask(number)) {
-                    respond("Task has been marked as not done!");
-                } else {
-                    respond(String.format(
-                            "Task not modified! Either the task is still not done, or you specified an invalid task number %d.",
-                            number));
-                }
-            } else if (line.startsWith("todo ")) {
-                final Task todo = new Todo(line.substring(5));
-                tasksManager.addTask(todo);
-                respond(String.format("Added todo \"%s\" to tasks list!", todo.getTitle()));
-            } else if (line.startsWith("deadline ")) {
-                final String[] data = line.substring(9).split("/by", 2);
-                if (data.length == 2) {
-                    final Task deadline = new Deadline(data[0], data[1]);
-                    tasksManager.addTask(deadline);
-                    respond(String.format("Added \"%s\" (task with deadline) to tasks list!", deadline.getTitle()));
-                } else {
-                    respond("Incorrect format of deadline command!");
-                }
-            } else if (line.startsWith("event ")) {
-                final String[] data = line.substring(6).split("/at", 2);
-                if (data.length == 2) {
-                    final Task event = new Event(data[0], data[1]);
-                    tasksManager.addTask(event);
-                    respond(String.format("Added new event \"%s\" to tasks list!", event.getTitle()));
-                } else {
-                    respond("Incorrect format of event command!");
-                }
             }
         }
         window.dispose();
