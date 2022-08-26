@@ -1,14 +1,6 @@
 package duke.main;
 
-import duke.command.Command;
-import duke.command.ListCommand;
-import duke.command.UnmarkCommand;
-import duke.command.MarkCommand;
-import duke.command.AddDeadlineCommand;
-import duke.command.AddTodoCommand;
-import duke.command.AddEventsCommand;
-import duke.command.ErrorCommand;
-import duke.command.DeleteCommand;
+import duke.command.*;
 
 import java.time.DateTimeException;
 
