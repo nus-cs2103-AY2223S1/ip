@@ -1,3 +1,5 @@
+package duke;
+
 public class Ui {
 
     protected Ui() {
