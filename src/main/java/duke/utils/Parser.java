@@ -25,6 +25,7 @@ public class Parser {
 
     /**
      * Parses the user input and returns the appropriate Command.
+     *
      * @param userInput Raw user input
      * @return Command based on user input
      */
@@ -56,6 +57,7 @@ public class Parser {
      * Prepares and returns a new AddCommand.
      * This method parses the user input to distinguish between the different Tasks
      * and returns an AddCommand with the correct Task.
+     *
      * @param userInput Raw user input
      * @return AddCommand based on raw user input
      */
@@ -105,6 +107,7 @@ public class Parser {
 
     /**
      * Prepares and returns a new DeleteCommand.
+     *
      * @param userInput Raw user input
      * @return DeleteCommand based on raw user input
      */
@@ -123,6 +126,7 @@ public class Parser {
 
     /**
      * Prepares and returns a new MarkCommand.
+     *
      * @param userInput Raw user input
      * @return MarkCommand based on raw user input
      */
@@ -141,6 +145,7 @@ public class Parser {
 
     /**
      * Prepares and returns a new UnmarkCommand.
+     *
      * @param userInput Raw user input
      * @return UnmarkCommand based on raw user input
      */

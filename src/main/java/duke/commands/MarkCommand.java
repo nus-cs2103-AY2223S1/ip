@@ -15,6 +15,7 @@ public class MarkCommand extends Command {
 
     /**
      * Initializes a new MarkCommand instance.
+     *
      * @param taskIndex Task index to be added
      */
     public MarkCommand(int taskIndex) {

@@ -15,6 +15,7 @@ public class DeleteCommand extends Command {
 
     /**
      * Initializes a new DeleteCommand instance.
+     *
      * @param taskIndex Index of the task to be added
      */
     public DeleteCommand(int taskIndex) {

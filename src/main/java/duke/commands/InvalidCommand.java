@@ -14,6 +14,7 @@ public class InvalidCommand extends Command {
 
     /**
      * Initializes a new InvalidCommand instance.
+     *
      * @param errorMsg Error message to be encapsulated by the command
      */
     public InvalidCommand(String errorMsg) {

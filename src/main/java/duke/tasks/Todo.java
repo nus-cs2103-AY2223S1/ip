@@ -12,6 +12,7 @@ public class Todo extends Task {
 
     /**
      * Initializes a new Todo instance.
+     *
      * @param description Description of the task
      * @param done Whether the task is completed or not
      * @param at The event duration for this task
@@ -22,6 +23,7 @@ public class Todo extends Task {
 
     /**
      * Returns an empty Optional.
+     *
      * @return Empty Optional
      */
     @Override
@@ -31,6 +33,7 @@ public class Todo extends Task {
 
     /**
      * Returns the task type as a String.
+     *
      * @return Task type as a String
      */
     @Override
@@ -40,6 +43,7 @@ public class Todo extends Task {
 
     /**
      * Returns a string representation of the Todo instance.
+     *
      * @return String representation of the Todo instance
      */
     @Override

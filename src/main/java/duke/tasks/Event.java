@@ -14,6 +14,7 @@ public class Event extends Task {
 
     /**
      * Initializes a new Event instance.
+     *
      * @param description Description of the task
      * @param done Whether the task is completed or not
      * @param at The event duration for this task
@@ -25,6 +26,7 @@ public class Event extends Task {
 
     /**
      * Returns an Optional of the time of event.
+     *
      * @return Optional of the time of event
      */
     @Override
@@ -34,6 +36,7 @@ public class Event extends Task {
 
     /**
      * Returns the task type as a String.
+     *
      * @return Task type as a String
      */
     @Override
@@ -43,6 +46,7 @@ public class Event extends Task {
 
     /**
      * Returns a string representation of the Deadline instance.
+     *
      * @return String representation of the Deadline instance
      */
     @Override

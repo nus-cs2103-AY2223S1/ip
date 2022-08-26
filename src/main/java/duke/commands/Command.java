@@ -11,6 +11,7 @@ import duke.utils.Ui;
 public abstract class Command {
     /**
      * Checks if the command executed exits the program or not.
+     *
      * @return Whether the command executed exits the program or not
      */
     public boolean isExit() {
@@ -19,6 +20,7 @@ public abstract class Command {
 
     /**
      * Executes the command and return the results.
+     *
      * @param taskList The TaskList to use.
      * @param ui The Ui to use.
      * @param storage The storage to use.
