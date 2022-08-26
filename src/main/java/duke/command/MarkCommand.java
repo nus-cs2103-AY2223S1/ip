@@ -19,10 +19,10 @@ public class MarkCommand extends Command {
         String task;
         if (mark.equals("mark")) {
             task = tasks.markTask(taskNumber, true);
-            ui.botReply("Nice! I've marked this duke.task as done:\n" + task);
+            ui.reply("Nice! I've marked this duke.task as done:\n" + task);
         } else if (mark.equals("unmark")) {
             task = tasks.markTask(taskNumber, false);
-            ui.botReply("OK, I've marked this duke.task as not done yet:\n" + task);
+            ui.reply("OK, I've marked this duke.task as not done yet:\n" + task);
         }
         storage.saveTasks(tasks);
     }
