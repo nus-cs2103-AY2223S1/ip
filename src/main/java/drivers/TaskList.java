@@ -50,6 +50,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Mark a task at the stated index within the task list.
+     * @param oneIndexedNum The index at which a task will be marked.
+     * @return The task that is marked.
+     * @throws TumuException Parent exception for the program.
+     */
     public Task markTask(int oneIndexedNum) throws TumuException {
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
@@ -62,6 +68,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Unmark a task at the stated index within the task list.
+     * @param oneIndexedNum The index at which a task will be unmarked.
+     * @return The task that is unmarked.
+     * @throws TumuException Parent exception for the program.
+     */
     public Task unmarkTask(int oneIndexedNum) throws TumuException {
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
@@ -74,6 +86,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes a task at the stated index within the task list.
+     * @param oneIndexedNum The index at which a task will be deleted.
+     * @return The task that is deleted.
+     * @throws TumuException Parent exception for the program.
+     */
     public Task deleteTask(int oneIndexedNum) throws TumuException {
         if (oneIndexedNum < 1 || oneIndexedNum > userTasks.size()) {
             //Specified index from user is out of bounds of list.
@@ -87,6 +105,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Add a task to the task list.
+     * @param task The task to be added to the task list.
+     */
     public void addTask(Task task) {
         userTasks.add(task);
     }
