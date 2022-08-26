@@ -8,6 +8,7 @@ public enum Messages {
             + "\\\n| |_| | |_| |   <  __/\n|____/ \\__,_|_|\\_\\___|\n"),
     GREET("Hi! I am Duke, what can I do for you?"),
     EXIT("Goodbye! Hope to see you soon!"),
+    FOUND("Here are the matching tasks in your list:"),
     LINE_SEPARATION("-*-*-*-*-*-*-*-*-*-*-*"),
     ADD_TASK("Added task: "),
     ADD_TODO("Added todo: "),

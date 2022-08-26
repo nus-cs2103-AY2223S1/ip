@@ -15,6 +15,7 @@ public enum Commands {
     DEADLINE("deadline"),
     DELETE("delete"),
     MARK("mark"),
+    FIND("find"),
     ERROR("");
 
     private final String command;

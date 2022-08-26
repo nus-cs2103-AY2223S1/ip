@@ -9,6 +9,7 @@ import duke.commands.AddEventCommand;
 import duke.commands.AddTodoCommand;
 import duke.commands.Command;
 import duke.commands.DeleteCommand;
+import duke.commands.FindCommand;
 import duke.commands.InvalidCommand;
 import duke.commands.Mark;
 import duke.commands.ShowList;
@@ -62,6 +63,8 @@ public class Parser {
                 return new DeleteCommand(tasks, indexDescription);
             case LIST:
                 return new ShowList(tasks);
+            case FIND:
+                return new FindCommand(tasks, indexDescription);
             default:
                 return new InvalidCommand(Messages.ERROR_INVALID_COMMAND.toString());
             }

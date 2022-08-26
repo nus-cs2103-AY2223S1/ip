@@ -44,6 +44,14 @@ public class Task {
         return description;
     }
 
+    /**
+     * Checks if the task contains the keyword
+     * @param keyword keyword to search
+     * @return true if the keyword is in else false
+     */
+    public boolean contains(String keyword) {
+        return toString().contains(keyword);
+    }
     @Override
     public String toString() {
         String marker = isComplete ? "[X] " : "[ ] ";
