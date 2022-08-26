@@ -16,7 +16,7 @@ public class Storage {
         this.f = new File(filePath);
     }
 
-    public boolean fileExists() {
+    public boolean isFileExists() {
         return f.exists();
     }
 

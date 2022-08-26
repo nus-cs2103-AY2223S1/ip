@@ -22,6 +22,5 @@ public class DeadlineCommand extends Command {
         tasks.add(deadline);
         ui.DeadlineTask(tasks, deadline);
         storage.update(tasks.getTasks());
-
     }
 }

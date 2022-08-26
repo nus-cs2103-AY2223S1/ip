@@ -10,13 +10,14 @@ public class Duke {
     private final TaskList tasks;
     private final Ui ui;
 
-    public Duke(String filePath) {
+    public Duke(String filePath) throws IOException {
         ui = new Ui();
         storage = new Storage(filePath);
-        if (storage.fileExists()) {
+        if (storage.isFileExists()) {
             tasks = new TaskList(storage.load());
         } else {
             ui.showLoadingError();
+            storage.createNewFile();
             tasks = new TaskList();
         }
     }
