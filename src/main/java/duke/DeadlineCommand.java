@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class DeadlineCommand extends Command{
 
     @Override
-<<<<<<< HEAD
     void execute(String fullCommand, ArrayList<Task> listOfTasks, Ui ui, Storage storage) throws IOException, DukeDeadlineEmptyException {
         if(fullCommand.length() == 8){
             throw new DukeDeadlineEmptyException();
@@ -16,19 +15,7 @@ public class DeadlineCommand extends Command{
         int index = fullCommand.indexOf("/");
         String subS = fullCommand.substring(9, index - 1);
         String subString = fullCommand.substring(index + 4);
-=======
-    void execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage)
-            throws IOException, DukeDeadlineEmptyException {
-        if(taskName.length() == 8) {
-            throw new DukeDeadlineEmptyException();
-        }
-
-        int index = taskName.indexOf("/");
-        String subS = taskName.substring(9, index - 1);
-        String subString = taskName.substring(index + 4);
->>>>>>> branch-A-CodingStandard
         TaskList taskList = new TaskList(listOfTasks);
-
         try {
             LocalDate date = LocalDate.parse(subString);
             Task t = new Deadline(subS,false, date);

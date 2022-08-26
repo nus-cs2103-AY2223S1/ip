@@ -15,14 +15,10 @@ public class TaskList {
         this.list = list;
     }
 
-<<<<<<< HEAD
     /**
      * Displays the tasks in the list.
      */
     void showList(){
-=======
-    void showList() {
->>>>>>> branch-A-CodingStandard
         Ui ui = new Ui();
         ui.displayListUi(this.list);
     }
@@ -41,10 +37,10 @@ public class TaskList {
      * Deletes task from list.
      * @param s Name of the task to be deleted from the list.
      */
-     void delete(String s) {
+    void delete(String s) {
         int i = Integer.parseInt(s.substring(7)) - 1;
         Task task = this.list.remove(i);
-         Ui ui = new Ui();
-         ui.deleteUi(task, this.list);
+        Ui ui = new Ui();
+        ui.deleteUi(task, this.list);
     }
 }

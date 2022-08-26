@@ -1,11 +1,8 @@
 package duke;
 
-<<<<<<< HEAD
 /**
  * Represents a class which contains methods to make sense of the commands.
  */
-=======
->>>>>>> branch-A-CodingStandard
 public class Parser {
     String stringToParse;
 
@@ -22,7 +19,7 @@ public class Parser {
      * @return Command depending on the substrings of different commands.
      * @throws DukeUnknownWordException
      */
-     Command parse() throws DukeUnknownWordException {
+    Command parse() throws DukeUnknownWordException {
         if (isSubstringForDeleteCommand()){
             return new DeleteCommand();
         } else if (isSubstringForMarkCommand()){
@@ -35,14 +32,13 @@ public class Parser {
             return new EventCommand();
         } else if (isSubstringForTodoCommand()){
             return new TodoCommand();
-        } else if (isSubstringForShowListCommand()) {
+        } else if (isSubstringForShowListCommand()){
             return new ShowListCommand();
         } else if (isSubstringForFindCommand()) {
             return new FindCommand();
-        }
-        //} else if (isSubStringForExitCommand()){
-          //  return new ExitCommand();
-         else {
+            //} else if (isSubStringForExitCommand()){
+            //  return new ExitCommand();
+        } else {
             throw new DukeUnknownWordException();
         }
     }
@@ -54,7 +50,7 @@ public class Parser {
         return this.stringToParse.equals("list");
     }
     boolean isSubstringForMarkCommand(){
-       return this.stringToParse.length() > 5 && this.stringToParse.substring(0, 4).equals("mark");
+        return this.stringToParse.length() > 5 && this.stringToParse.substring(0, 4).equals("mark");
     }
 
     boolean isSubstringForUnmarkCommand() {
@@ -76,9 +72,7 @@ public class Parser {
     boolean isSubstringForDeleteCommand() {
         return this.stringToParse.length() > 7 && this.stringToParse.substring(0, 6).equals("delete");
     }
-
     boolean isSubstringForFindCommand() {
         return this.stringToParse.substring(0,4).equals("find");
     }
 }
-
