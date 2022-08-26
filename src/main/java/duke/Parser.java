@@ -1,10 +1,21 @@
 package duke;
 
+/**
+ * A class that handles user inputs for the Duke chat-bot
+ */
 public class Parser {
 
+    /**
+     * Constructor for the Parser class
+     */
     public Parser() {
     }
 
+    /**
+     * Processes the user input and does a corresponding action
+     * @param response The user input
+     * @param tasks The TaskList object that contains the tasks currently stored in the Duke chat-bot
+     */
     public void parse(String response, TaskList tasks) {
         if (response.equals("list")) {
             System.out.println("     The following are your saved tasks: ");
