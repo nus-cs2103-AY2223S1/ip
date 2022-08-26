@@ -8,6 +8,11 @@ public class Event extends Task {
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at:" + time + ")";
+        return "[E]" + super.toString() + " (at: " + time + ")";
+    }
+
+    @Override
+    public String toWrite() {
+        return String.format("E/%s/%s/%s", (isDone ? "1" : "0"), description.trim(), time.trim());
     }
 }

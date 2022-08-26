@@ -7,4 +7,9 @@ public class ToDo extends Task {
     public String toString() {
         return "[T]" + super.toString();
     }
+
+    @Override
+    public String toWrite() {
+        return String.format("T/%s/%s", (isDone ? "1" : "0"), description.trim());
+    }
 }

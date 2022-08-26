@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,8 +9,65 @@ public class Duke {
 
     //  initialise task list
     private static ArrayList<Task> list = new ArrayList<>(100);
+    private static String path = "data/duke.txt";
 
     // Methods Start
+
+    private static void readFromFile() {
+        try {
+            File file = new File(path);
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                String task = sc.nextLine();
+                String[] line = task.split("/");
+                String label = line[0];
+                boolean isDone = line[1].equals("1");
+                String description = line[2];
+                Task newTask;
+
+                switch (line[0]) {
+                    case "T":
+                        newTask = new ToDo(description);
+                        if (isDone) {
+                            newTask.setDone();
+                        }
+                        list.add(newTask);
+                        break;
+
+                    case "D":
+                        newTask = new Deadline(description, line[3]);
+                        if (isDone) {
+                            newTask.setDone();
+                        }
+                        list.add(newTask);
+                        break;
+
+                    case "E":
+                        newTask = new Event(description, line[3]);
+                        if (isDone) {
+                            newTask.setDone();
+                        }
+                        list.add(newTask);
+                        break;
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File Not Found!");
+        }
+    }
+
+    private static void updateTaskList() {
+        try {
+            FileWriter writer = new FileWriter(path);
+            for (int x = 0; x < list.size(); x++) {
+                writer.write(list.get(x).toWrite() + "\n");
+            }
+            writer.close();
+        } catch(IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
     private static void addTask(Task task) {
         list.add(task);
         System.out.println("Got it. I've added this task:");
@@ -57,11 +118,13 @@ public class Duke {
 
     // Methods End
     public static void main(String[] args) {
+        // initialise scanner
+        Scanner sc = new Scanner(System.in);
+        readFromFile();
         //  Opening statements
         System.out.println("Hello! I'm Duke");
         System.out.println("What can I do for you?");
-        // initialise scanner
-        Scanner sc = new Scanner(System.in);
+
         //  program start
         while (true) {
             try {
@@ -86,6 +149,7 @@ public class Duke {
                     String remainder = str.substring(5);
                     int index = Integer.valueOf(remainder) - 1;
                     mark(index);
+                    updateTaskList();
                     continue;
                 }
                 //  Unmarking
@@ -97,6 +161,7 @@ public class Duke {
                     String remainder = str.substring(7);
                     int index = Integer.valueOf(remainder) - 1;
                     unmark(index);
+                    updateTaskList();
                     continue;
                 }
                 //  Add Todo Task
@@ -106,6 +171,7 @@ public class Duke {
                         throw new EmptyDescriptionException("OOPS!!! The description of a todo cannot be empty.");
                     }
                     addTask(new ToDo(str.substring(5)));
+                    updateTaskList();
                     continue;
                 }
             //  Add Deadline Task
@@ -116,9 +182,10 @@ public class Duke {
                 }
                 String remainder = str.substring(9);
                 String[] arr = remainder.split("/by");
-                String description = arr[0];
-                String deadline = arr[1];
+                String description = arr[0].trim();
+                String deadline = arr[1].trim();
                 addTask(new Deadline(description, deadline));
+                updateTaskList();
                 continue;
             }
             //  Add Event Task
@@ -129,9 +196,10 @@ public class Duke {
                 }
                 String remainder = str.substring(6);
                 String[] arr = remainder.split("/at");
-                String description = arr[0];
-                String time = arr[1];
+                String description = arr[0].trim();
+                String time = arr[1].trim();
                 addTask(new Event(description, time));
+                updateTaskList();
                 continue;
             }
             //  Delete Tasks
@@ -139,6 +207,7 @@ public class Duke {
                 String remainder = str.substring(7);
                 int index = Integer.valueOf(remainder) - 1;
                 deleteTask(index);
+                updateTaskList();
                 continue;
             }
             //  if loop reaches here, raise error

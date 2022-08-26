@@ -8,6 +8,12 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by:" + deadline + ")";
+        return "[D]" + super.toString() + " (by: " + deadline + ")";
     }
+
+    @Override
+    public String toWrite() {
+        return String.format("D/%s/%s/%s", (isDone ? "1" : "0"), description.trim(), deadline.trim());
+    }
+
 }
