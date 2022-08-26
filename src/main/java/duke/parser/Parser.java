@@ -1,3 +1,11 @@
+package duke.parser;
+
+import duke.DukeException;
+import duke.command.*;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
@@ -42,7 +50,7 @@ public class Parser {
             throw new DukeException("OOPS!!! Invalid todo command.");
         }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! Todo description cannot be empty.");
+            throw new DukeException("OOPS!!! duke.task.Todo description cannot be empty.");
         }
         return new AddCommand(new Todo(splitInput[1]));
     }
@@ -53,23 +61,23 @@ public class Parser {
             throw new DukeException("OOPS!!! Invalid deadline command.");
         }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! Deadline description cannot be empty.");
+            throw new DukeException("OOPS!!! duke.task.Deadline description cannot be empty.");
         }
         String[] splitInputByDeadlineSplit = splitInput[1].split(DEADLINE_SPLIT, 2);
         if (!isValidSplit(splitInputByDeadlineSplit, 2)) {
             throw new DukeException("OOPS!!! Invalid deadline command.");
         }
         if (splitInputByDeadlineSplit[0].trim().length() == 0) {
-            throw new DukeException("OOPS!!! Deadline description cannot be empty.");
+            throw new DukeException("OOPS!!! duke.task.Deadline description cannot be empty.");
         }
         if (splitInputByDeadlineSplit[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! Deadline due date cannot be empty.");
+            throw new DukeException("OOPS!!! duke.task.Deadline due date cannot be empty.");
         }
         try {
             LocalDate due = DateParser.convertToLocalDate(splitInputByDeadlineSplit[1].trim());
             return new AddCommand(new Deadline(splitInputByDeadlineSplit[0].trim(), due));
         } catch (DateTimeParseException e) {
-            throw new DukeException("OOPS!!! Deadline due date format is wrong. Follow format yyyy-mm-dd for due date");
+            throw new DukeException("OOPS!!! duke.task.Deadline due date format is wrong. Follow format yyyy-mm-dd for due date");
         }
     }
 
@@ -79,22 +87,22 @@ public class Parser {
             throw new DukeException("OOPS!!! Invalid event command.");
         }
         if (splitInput[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! Event description cannot be empty.");
+            throw new DukeException("OOPS!!! duke.task.Event description cannot be empty.");
         }
         String[] splitInputByEventSplit = splitInput[1].split(EVENT_SPLIT, 2);
         if (!isValidSplit(splitInputByEventSplit, 2)) {
             throw new DukeException("OOPS!!! Invalid event command.");
         }
         if (splitInputByEventSplit[0].trim().length() == 0) {
-            throw new DukeException("OOPS!!! Event description cannot be empty.");
+            throw new DukeException("OOPS!!! duke.task.Event description cannot be empty.");
         }
         if (splitInputByEventSplit[1].trim().length() == 0) {
-            throw new DukeException("OOPS!!! Event date time cannot be empty.");
+            throw new DukeException("OOPS!!! duke.task.Event date time cannot be empty.");
         }
         try {
             return new AddCommand(new Event(splitInputByEventSplit[0].trim(), splitInputByEventSplit[1].trim()));
         } catch (DateTimeParseException e) {
-            throw new DukeException("OOPS!!! Event date time format is wrong.");
+            throw new DukeException("OOPS!!! duke.task.Event date time format is wrong.");
         }
     }
 
