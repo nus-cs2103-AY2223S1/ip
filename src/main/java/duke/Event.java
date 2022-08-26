@@ -1,3 +1,5 @@
+package duke;
+
 public class Event extends Task{
     /**
      * Event object at field which indicates the timings

@@ -1,3 +1,4 @@
+package duke;
 public class Task {
     /**
      * Task object description field which indicates the task to complete
