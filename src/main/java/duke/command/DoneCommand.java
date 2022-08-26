@@ -5,9 +5,17 @@ import duke.main.Storage;
 import duke.main.TaskList;
 import duke.main.Ui;
 
+/**
+ * Mark a task as done when command is called.
+ */
 public class DoneCommand extends Command {
     private int taskNum;
 
+    /**
+     * Marks task as done based on index entered when command is called.
+     *
+     * @param taskNum index of task to be marked as done
+     */
     public DoneCommand(int taskNum) {
         this.taskNum = taskNum;
     }

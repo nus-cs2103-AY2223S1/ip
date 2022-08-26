@@ -6,12 +6,20 @@ import duke.exception.DukeException;
 import java.io.IOException;
 import java.io.File;
 
+/**
+ * Starts the duke chatbot.
+ */
 public class Duke {
 
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Initializes the chatbot.
+     *
+     * @param filePath path to store all the tasks.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -22,7 +30,6 @@ public class Duke {
             tasks = new TaskList();
         }
     }
-
 
     public static void main(String[] args) throws IOException {
         File dir = new File("data/");

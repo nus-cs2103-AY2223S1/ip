@@ -6,10 +6,19 @@ import duke.main.TaskList;
 import duke.main.Ui;
 import duke.task.Event;
 
+/**
+ * Adds an event task to the list when command is called.
+ */
 public class AddEventCommand extends Command {
     private String description;
     private String time;
 
+    /**
+     * Adds an event based on command received
+     *
+     * @param description description of event
+     * @param time duration of event
+     */
     public AddEventCommand(String description, String time) {
         this.description = description;
         this.time = time;
