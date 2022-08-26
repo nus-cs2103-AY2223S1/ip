@@ -1,4 +1,3 @@
-import java.security.spec.RSAOtherPrimeInfo;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -55,7 +54,7 @@ public class Duke {
                 int idx = text.indexOf("/by");
 
                 if (command.length < 4 || idx < 0 || idx == 9) {
-                    System.out.println("Invalid deadline command. Example: deadline return book /by Sunday");
+                    System.out.println("Invalid deadline command. Example: deadline return book /by 2022-04-02");
                     break;
                 }
 
@@ -76,7 +75,7 @@ public class Duke {
                 int idx = text.indexOf("/at");
 
                 if (command.length < 4 || idx < 0 || idx == 6) {
-                    System.out.println("Invalid deadline command. Example: event project meeting /at Mon 2-4pm");
+                    System.out.println("Invalid deadline command. Example: event project meeting /at 2020-02-29");
                     break;
                 }
 
