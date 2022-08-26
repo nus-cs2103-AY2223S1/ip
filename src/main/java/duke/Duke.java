@@ -1,6 +1,7 @@
 package duke;
 
 import duke.command.Command;
+import duke.command.CommandParser;
 import duke.storage.Storage;
 import duke.ui.Ui;
 
@@ -24,9 +25,10 @@ public class Duke {
         Parser parser = new Parser(this.ui, tasks);
 
         while(true) {
+            //Parse -> Execute -> Print Result
             String input = sc.nextLine();
             Command c = parser.parse(input);
-            c.execute(tasks, this.storage);
+            c.execute(tasks, this.storage, ui);
         }
 
 //        while (true) {
