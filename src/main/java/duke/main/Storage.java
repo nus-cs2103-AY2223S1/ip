@@ -14,17 +14,9 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDos;
 
-/**
- * Represents a Storage to store tasks in the text file.
- * Storage contains the file path where the text file is located.
- */
 public class Storage {
     private String filePath;
 
-    /**
-     * Constructor for Storage
-     * @param file String describing the location of the file
-     */
     public Storage(String file) {
         filePath = file;
     }
@@ -32,23 +24,13 @@ public class Storage {
     private File checkFile() throws IOException {
         File file = new File(filePath);
         if (file.exists() && !file.isDirectory()) {
-//            System.out.println("File already exists.");
-
         } else {
             file.getParentFile().mkdir();
             file.createNewFile();
-//            System.out.println("File created: " + file.getName());
         }
         return file;
-    };
+    }
 
-    /**
-     * Creates an arraylist to store existing tasks in text file into the array
-     * or creates a new text file
-     * @return ArrayList containing the tasks
-     * @throws DukeException exception thrown in reading the file
-     */
-    // reads existing file and stores into an array or creates a new file
     public ArrayList<Task> load() throws DukeException {
         try {
             File file = checkFile();
@@ -58,7 +40,6 @@ public class Storage {
                 String line = fileScanner.nextLine();
                 String[] separatedLines = line.split("\\|");
                 switch (separatedLines[0]) {
-                // task
                 case ("T"):
                     Task todo = new ToDos(separatedLines[2]);
                     if (separatedLines[1] == "1") {
@@ -89,16 +70,8 @@ public class Storage {
         } catch (IOException e) {
             throw new DukeException("IOException in loading" + e.getMessage());
         }
-    };
+    }
 
-    // saves the whole array and rewrites the entire file (for extra oop add in mtd to append
-    // when adding files and use this for deletion)
-
-    /**
-     * Saves Task from TaskList into the text file
-     * @param tasks TaskList containing tasks
-     * @throws DukeException thrown in reading the file
-     */
     public void save(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath);
