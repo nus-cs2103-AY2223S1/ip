@@ -48,16 +48,17 @@ abstract class Command {
         if (args.length < 2) {
             throw e;
         }
-        final String[] parsed = new String[args.length + 1];
-        String unparsed = args[1].strip();
-        for (int i = 0; i < args.length; i++) {
-            final String[] splits = unparsed.split(delimiters[i], 2);
+        final String[] parsed = new String[delimiters.length + 1];
+        String remaining = args[1].strip();
+        for (int i = 0; i < delimiters.length; i++) {
+            final String[] splits = remaining.split(delimiters[i], 2);
             if (splits.length < 2) {
                 throw e;
             }
             parsed[i] = splits[0].strip();
-            unparsed = splits[1].strip();
+            remaining = splits[1].strip();
         }
+        parsed[delimiters.length] = remaining;
         return parsed;
     }
 
