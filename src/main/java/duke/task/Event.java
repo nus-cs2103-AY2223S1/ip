@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.exception.DukeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -11,8 +12,10 @@ import java.time.format.DateTimeParseException;
 public class Event extends Task {
     /* Duration field */
     private LocalDateTime duration;
+
     /**
      * Constructor for the Event Task.
+     *
      * @param description description of the task.
      */
     public Event(String description, LocalDateTime duration) {
@@ -46,11 +49,12 @@ public class Event extends Task {
 
     /**
      * Override toString method for the Event Task.
+     *
      * @return String representation of the Event.
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() +" (at: " + duration.format(OUTPUT_DATE_FORMAT) + ")";
+        return "[E]" + super.toString() + " (at: " + duration.format(OUTPUT_DATE_FORMAT) + ")";
     }
 
     /**

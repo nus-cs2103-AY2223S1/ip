@@ -2,6 +2,7 @@ package duke;
 
 import duke.exception.DukeException;
 import duke.task.Task;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -73,9 +74,10 @@ public class Duke {
     }
 
     /**
-     * The main class, running the chat bot.
+     * The main class, running the chat-bot.
      */
     public static void main(String[] args) {
         new Duke().run();
     }
+
 }

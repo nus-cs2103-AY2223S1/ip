@@ -70,8 +70,8 @@ public class TaskList {
     /**
      * Marks/Unmarks Tasks.
      *
-     * @param markStatus input to mark/unmark a task.
-     * @param userInstructions   input of the user.
+     * @param markStatus       input to mark/unmark a task.
+     * @param userInstructions input of the user.
      */
     public void taskMarker(Command markStatus, String userInstructions) {
         try {
