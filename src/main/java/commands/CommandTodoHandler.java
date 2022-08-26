@@ -1,7 +1,9 @@
 package commands;
 
 import exceptions.DukeException;
+import tasks.Task;
 import tasks.TaskList;
+import tasks.ToDo;
 
 public class CommandTodoHandler extends CommandHandler {
 
@@ -16,7 +18,8 @@ public class CommandTodoHandler extends CommandHandler {
         throw new DukeException("Correct usage: todo read book");
     }
 
-    public String handle(TaskList taskList) throws DukeException {
-        return taskList.addToDo(value, flag, additionalValue);
+    public String handle(TaskList taskList) {
+        Task task = new ToDo(this.value);
+        return taskList.addTask(task);
     }
 }

@@ -1,10 +1,10 @@
-import commands.Command;
 import commands.CommandHandlerFactory;
-import commands.CommandParser;
 import commands.CommandHandler;
+import data.Storage;
 import exceptions.DukeException;
 import tasks.TaskList;
 
+import java.io.File;
 import java.util.Scanner;
 
 import static utils.DukeUtils.wrapWithLines;
@@ -16,23 +16,20 @@ public class Duke {
             + "| |_| | |_| |   <  __/\n"
             + "|____/ \\__,_|_|\\_\\___|\n";
 
-    private final TaskList taskList = new TaskList();
-
-    private void handle(String input) throws DukeException {
-        Command command;
-
-        try {
-            CommandParser cp = new CommandParser();
-            command = cp.getCommand(input);
-        } catch (IllegalStateException e) {
-            throw new DukeException("This command does not exist!");
-        }
-        String message = "";
-        wrapWithLines(message);
-    }
+    private TaskList taskList;
 
     private void initialise() {
         wrapWithLines("Hello from\n" + Duke.logo);
+
+        File storageDirectory = new File("./data");
+        if (!storageDirectory.exists()) {
+            if (!storageDirectory.mkdir()) {
+                wrapWithLines("Could not create /data directory");
+            }
+        }
+
+        Storage db = new Storage("./data/duke.txt");
+        taskList = db.load();
 
         Scanner sc = new Scanner(System.in);
         CommandHandlerFactory commandHandlerFactory = new CommandHandlerFactory();

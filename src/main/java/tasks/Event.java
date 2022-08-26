@@ -1,24 +1,31 @@
 package tasks;
 
-import exceptions.DukeException;
+import utils.DateTime;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Event extends Task {
-    private String at;
+    private static final DateTimeFormatter formatter = DateTime.formatter;
+    private final LocalDateTime time;
 
-    public Event(String description, String at) {
+    public Event(String description, String time) {
         super(description);
-        this.at = at;
+        this.time = LocalDateTime.parse(time, formatter);
+    }
+
+    public Event(boolean isMarked, String description, String time) {
+        super(isMarked, description);
+        this.time = LocalDateTime.parse(time);
     }
 
     @Override
-    public void checkCommandValidity(String value, String flag, String options) throws DukeException {
-        if (flag == null || !(flag.equals("at"))) {
-            throw new DukeException("Correct usage: event project /at 1st Jan");
-        }
+    public String dbRepresentation() {
+        return String.join("|", "E", Boolean.toString(isMarked),  description, time.toString());
     }
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + "(at: " + at + ")";
+        return "[E]" + super.toString() + "(at: " + this.time.format(formatter) + ")";
     }
 }

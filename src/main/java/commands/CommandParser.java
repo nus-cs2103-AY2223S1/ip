@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  */
 public class CommandParser {
     private static final Pattern commandParser =
-            Pattern.compile("^([a-zA-Z]+)(?:\\s([^/]+))?(?:\\s/([a-zA-Z]+))?(?:\\s([^/]+))?$");
+            Pattern.compile("^([a-zA-Z]+)(?:\\s([^/]+))?(?:\\s/([a-zA-Z]+))?(?:\\s(.*))?$");
 
     public Command getCommand(String input) throws DukeException {
         String firstWord = input.split(" ", 2)[0];

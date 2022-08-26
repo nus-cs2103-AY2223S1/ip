@@ -1,24 +1,31 @@
 package tasks;
 
-import exceptions.DukeException;
+import utils.DateTime;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
-    private String by;
+    private static final DateTimeFormatter formatter = DateTime.formatter;
+    private final LocalDateTime time;
 
-    public Deadline(String description, String by) {
+    public Deadline(String description, String time) {
         super(description);
-        this.by = by;
+        this.time = LocalDateTime.parse(time, formatter);
+    }
+
+    public Deadline(boolean isMarked, String description, String time) {
+        super(isMarked, description);
+        this.time = LocalDateTime.parse(time);
     }
 
     @Override
-    public void checkCommandValidity(String value, String flag, String options) throws DukeException {
-        if (flag == null || !(flag.equals("by"))) {
-            throw new DukeException("Correct usage: deadline project /by 1st Jan");
-        }
+    public String dbRepresentation() {
+        return String.join("|", "D", Boolean.toString(isMarked),  description, time.toString());
     }
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(by: " + by + ")";
+        return "[D]" + super.toString() + "(by: " + this.time.format(formatter) + ")";
     }
 }

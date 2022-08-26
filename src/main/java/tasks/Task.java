@@ -1,25 +1,31 @@
 package tasks;
 
-import exceptions.DukeException;
-import utils.CheckBox;
-
 public abstract class Task {
-    private final String description;
-    private final CheckBox checkBox;
+    protected final String description;
+    protected boolean isMarked;
 
     public Task(String name) {
         this.description = name;
-        this.checkBox = new CheckBox(false);
+        this.isMarked = false;
+    }
+
+    public Task(boolean isMarked, String description) {
+        this.isMarked = isMarked;
+        this.description = description;
     }
 
     public void mark(boolean isCompleted) {
-        this.checkBox.setCheckBox(isCompleted);
+        this.isMarked = isCompleted;
     }
 
-    public abstract void checkCommandValidity(String value, String flag, String options) throws DukeException;
+    public abstract String dbRepresentation();
+
+    private String getStatusIcon() {
+        return this.isMarked ? "X" : " ";
+    }
 
     @Override
     public String toString() {
-        return this.checkBox + " " + this.description;
+        return "[" + getStatusIcon() + "] " + this.description;
     }
 }
