@@ -108,4 +108,19 @@ public class TaskList {
             System.out.println("Invalid index, please input the index of an available task!\n");
         }
     }
+
+    public void findTask(String match) {
+        if (!tasks.isEmpty()) {
+            System.out.printf("Here's all I could find with \"%s\"!\n", match);
+            for (int i = 1; i <= tasks.size(); i++) {
+                Task temp = tasks.get(i - 1);
+                if (temp.getDescription().contains(match)) {
+                    System.out.println(i + ". " + temp.toString());
+                }
+            }
+            System.out.println("");
+        } else {
+            System.out.println("No tasks have been added!\n");
+        }
+    }
 }

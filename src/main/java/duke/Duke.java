@@ -51,6 +51,10 @@ public class Duke {
                 taskList.taskMarker(command, userInstructions);
             }
 
+            if (command == Command.FIND) {
+                taskList.findTask(userInstructions);
+            }
+
             if (command == Command.DELETE) {
                 try {
                     taskList.deleteTask(userInstructions);

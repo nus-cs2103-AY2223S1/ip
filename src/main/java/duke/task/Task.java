@@ -61,4 +61,13 @@ public abstract class Task {
     public void markUndone() {
         this.isDone = false;
     }
+
+    /**
+     * Getter for the description of the task.
+     *
+     * @return String representation of the description of the task.
+     */
+    public String getDescription() {
+        return this.description;
+    }
 }

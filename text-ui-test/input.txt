@@ -31,4 +31,8 @@ delete 2
 list
 delete 1
 list
+find 1
+find 2
+find 3
+find task
 bye

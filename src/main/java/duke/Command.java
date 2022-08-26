@@ -11,6 +11,7 @@ public enum Command {
     MARK("mark"),
     UNMARK("unmark"),
     DELETE("delete"),
+    FIND("find"),
     BYE("bye");
 
     /* The input command by the user. */
@@ -38,7 +39,7 @@ public enum Command {
                 return c;
             }
         }
-        throw new IllegalArgumentException("No such available command, " + "\"" + command + "\" please try again.");
+        throw new IllegalArgumentException("No such available command, " + "\"" + command + "\" please try again.\n");
     }
 }
 
