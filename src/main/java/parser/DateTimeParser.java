@@ -1,46 +1,61 @@
 package parser;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
 public class DateTimeParser {
 
-    DateTimeFormatter formatter;
+    private final String[] dateFormats = {
+            "dd-MM-yyyy",
+            "yyyy-MM-dd",
+            "d MMM yyyy",
+            "MMM d yyyy",
+    };
+    private final String[] dateTimeFormats = {
+            "dd-MM-yyyy H:mm",
+            "dd-MM-yyyy H:mm a",
+            "yyyy-MM-dd H:mm",
+            "yyyy-MM-dd H:mm a",
+            "d MMM yyyy H:mm",
+            "d MMM yyyy H:mm a",
+            "MMM d yyyy H:mm",
+            "MMM d yyyy H:mm a"
+    };
+    private final DateTimeFormatter dateFormatter;
+    private final DateTimeFormatter dateTimeFormatter;
+
     public DateTimeParser() {
-        DateTimeFormatterBuilder builder = new DateTimeFormatterBuilder().parseCaseInsensitive();
-        String[] dateFormats = {
-                "dd-MM-yyyy",
-                "yyyy-MM-dd",
-                "d MMM yyyy",
-                "MMM d yyyy",
-        };
+        DateTimeFormatterBuilder dateFormatterBuilder = new DateTimeFormatterBuilder().parseCaseInsensitive();
         for (String dateFormat : dateFormats) {
-            builder.appendPattern(dateFormat);
+            dateFormatterBuilder.appendPattern(dateFormat);
         }
-        String[] dateTimeFormats = {
-                "dd-MM-yyyy H:mm",
-                "dd-MM-yyyy H:mm a",
-                "yyyy-MM-dd H:mm",
-                "yyyy-MM-dd H:mm a",
-                "d MMM yyyy H:mm",
-                "d MMM yyyy H:mm a",
-                "MMM d yyyy H:mm",
-                "MMM d yyyy H:mm a"
-        };
+
+        DateTimeFormatterBuilder dateTimeFormatterBuilder = new DateTimeFormatterBuilder().parseCaseInsensitive();
         for (String dateTimeFormat : dateTimeFormats) {
-            builder.appendPattern(dateTimeFormat);
+            dateTimeFormatterBuilder.appendPattern(dateTimeFormat);
         }
-        this.formatter = builder.toFormatter(Locale.ENGLISH);
+        this.dateFormatter = dateFormatterBuilder.toFormatter(Locale.ENGLISH);
+        this.dateTimeFormatter = dateTimeFormatterBuilder.toFormatter(Locale.ENGLISH);
     }
 
     /**
      * Returns a string in the appropriate date ("d MMM yyyy") or datetime ("d MMM yyyy H:mm a") formats.
      *
-     * @param inputDateTime The input date time to parse
+     * @param inputDateTime The input datetime to parse.
      * @return A string in the appropriate date or datetime formats
      */
-    public String parse(String inputDateTime) {
-
+    public String parse(String inputDateTime) throws DateTimeParseException {
+        try {
+            LocalDate parsedDate = LocalDate.parse(inputDateTime, this.dateFormatter);
+            return parsedDate.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        } catch (DateTimeParseException exception) {
+            // Try to parse as datetime instead
+            LocalDateTime parsedDateTime = LocalDateTime.parse(inputDateTime, this.dateTimeFormatter);
+            return parsedDateTime.format(DateTimeFormatter.ofPattern("d MMM yyyy H:mm a"));
+        }
     }
 }

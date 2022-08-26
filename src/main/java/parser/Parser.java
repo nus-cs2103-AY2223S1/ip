@@ -1,11 +1,8 @@
 package parser;
 
 import commands.*;
-import exception.InvalidDeadlineException;
-import exception.MissingTaskDescriptionException;
+import common.Messages;
 import exception.UnknownCommandException;
-
-import java.time.LocalDateTime;
 
 public class Parser {
 
@@ -34,13 +31,13 @@ public class Parser {
             return new ListCommand();
 
         case DELETE:
-            return new DeleteCommand();
+            return parseDelete(deconstructedInput);
 
         case MARK:
-            return new MarkCommand();
+            return parseMark(deconstructedInput);
 
         case UNMARK:
-            return new UnmarkCommand();
+            return parseUnmark(deconstructedInput);
 
         case BYE:
             return new ByeCommand();
@@ -51,38 +48,38 @@ public class Parser {
     }
 
     /**
-     * Returns a TodoCommand based on user input
+     * Returns a Command based on parsing user input in the context of a TodoCommand.
      *
      * @param deconstructedInput The deconstructed user input.
-     * @return A TodoCommand based on user input
+     * @return A Command based on parsing user input in the context of a TodoCommand
      */
-    private TodoCommand parseTodo(String[] deconstructedInput) throws MissingTaskDescriptionException {
+    private Command parseTodo(String[] deconstructedInput) {
         if (deconstructedInput.length < 2) {
-            throw new MissingTaskDescriptionException();
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_DESCRIPTION,
+                    Messages.MESSAGE_USAGE_TASK_COMMAND);
         }
         String taskDetails = deconstructedInput[1];
         return new TodoCommand(taskDetails);
     }
 
     /**
-     * Returns a DeadlineCommand based on user input
+     * Returns a Command based on parsing user input in the context of a DeadlineCommand.
      *
      * @param deconstructedInput The deconstructed user input.
-     * @return A DeadlineCommand based on user input
+     * @return A Command based on parsing user input in the context of a DeadlineCommand
      */
-    private DeadlineCommand parseDeadline(String[] deconstructedInput) throws
-            MissingTaskDescriptionException, InvalidDeadlineException {
+    private Command parseDeadline(String[] deconstructedInput) {
         if (deconstructedInput.length < 2) {
-            throw new MissingTaskDescriptionException();
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_DESCRIPTION,
+                    Messages.MESSAGE_USAGE_TASK_COMMAND);
         }
         String taskDetails = deconstructedInput[1];
         String[] deconstructedDetails = taskDetails.split("\\s+(/by)\\s+", 2);
         if (deconstructedDetails.length < 2) {
-            throw new InvalidDeadlineException();
+            return new InvalidCommand(Messages.MESSAGE_ERROR_INVALID_DEADLINE,
+                    Messages.MESSAGE_USAGE_DEADLINE_COMMAND);
         }
-        String formattedDateTime;
-        String inputDate = deconstructedDetails[1];
-        return new DeadlineCommand(deconstructedDetails[0], formattedDateTime);
+        return new DeadlineCommand(deconstructedDetails[0], deconstructedDetails[1]);
     }
 
     /**
@@ -91,21 +88,58 @@ public class Parser {
      * @param deconstructedInput The deconstructed user input.
      * @return An EventCommand based on user input
      */
-    private EventCommand parseEvent(String[] deconstructedInput) throws MissingTaskDescriptionException {
+    private Command parseEvent(String[] deconstructedInput) {
         if (deconstructedInput.length < 2) {
-            throw new MissingTaskDescriptionException();
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_DESCRIPTION,
+                    Messages.MESSAGE_USAGE_TASK_COMMAND);
         }
         String taskDetails = deconstructedInput[1];
+        String[] deconstructedDetails = taskDetails.split("\\s+(/by)\\s+", 2);
+        if (deconstructedDetails.length < 2) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_INVALID_EVENT,
+                    Messages.MESSAGE_USAGE_EVENT_COMMAND);
+        }
+
+        return new EventCommand(deconstructedDetails[0], deconstructedDetails[1]);
     }
 
-    /**
-     * Returns a
-     * @param inputDateTime
-     * @return
-     */
-    private String parseDateTime(String inputDateTime) {
-        LocalDateTime dateTime = LocalDateTime.parse(inputDateTime);
+    private Command parseMark(String[] deconstructedInput) {
+        if (deconstructedInput.length < 2) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_INDEX,
+                    Messages.MESSAGE_USAGE_MARK_COMMAND);
+        }
 
+        try {
+            return new MarkCommand(Integer.parseInt(deconstructedInput[1]));
+        } catch (NumberFormatException exception) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_TASK_NOT_FOUND);
+        }
+    }
+
+    private Command parseUnmark(String[] deconstructedInput) {
+        if (deconstructedInput.length < 2) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_INDEX,
+                    Messages.MESSAGE_USAGE_MARK_COMMAND);
+        }
+
+        try {
+            return new UnmarkCommand(Integer.parseInt(deconstructedInput[1]));
+        } catch (NumberFormatException exception) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_TASK_NOT_FOUND);
+        }
+    }
+
+    private Command parseDelete(String[] deconstructedInput) {
+        if (deconstructedInput.length < 2) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_MISSING_TASK_INDEX,
+                    Messages.MESSAGE_USAGE_DELETE_COMMAND);
+        }
+
+        try {
+            return new DeleteCommand(Integer.parseInt(deconstructedInput[1]));
+        } catch (NumberFormatException exception) {
+            return new InvalidCommand(Messages.MESSAGE_ERROR_TASK_NOT_FOUND);
+        }
     }
 
 }

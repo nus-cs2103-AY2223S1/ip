@@ -1,5 +1,7 @@
 package tasks;
 
+import exception.InvalidTaskIndexException;
+
 import java.util.ArrayList;
 
 /**

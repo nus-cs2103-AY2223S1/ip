@@ -1,9 +1,8 @@
 package tasks;
 
 import exception.InvalidDateFormatException;
+import parser.DateTimeParser;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -11,12 +10,12 @@ import java.time.format.DateTimeParseException;
  * A Deadline task is a task that needs to be done before a specific time/date.
  */
 public class Deadline extends Task {
-    protected LocalDate by;
+    private String by;
 
     public Deadline(String description, String by) throws InvalidDateFormatException {
         super(description, TaskType.DEADLINE);
         try {
-            this.by = LocalDate.parse(by);
+            this.by = new DateTimeParser().parse(by);
         } catch (DateTimeParseException exception){
             throw new InvalidDateFormatException();
         }
@@ -29,8 +28,7 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("%s (by: %s)", super.toString(),
-                this.by.format(DateTimeFormatter.ofPattern("d MMM yyyy")));
+        return String.format("%s (by: %s)", super.toString(), by);
     }
 
     /**

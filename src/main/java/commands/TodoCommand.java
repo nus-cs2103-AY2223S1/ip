@@ -13,8 +13,8 @@ public class TodoCommand extends TaskCommand {
     public CommandResult execute() {
         ToDo task = new ToDo(taskDescription);
         this.taskList.addTask(task);
-        return new CommandResult(Messages.MESSAGE_NEW_TASK_ADDED_1,
+        return new CommandResult(Messages.MESSAGE_TASK_ADDED,
                 String.format("\n\t\t%s \n", task),
-                String.format(Messages.MESSAGE_NEW_TASK_ADDED_2, taskList.getNumberOfTasks()));
+                String.format(Messages.MESSAGE_TASK_LIST_SIZE, taskList.getNumberOfTasks()));
     }
 }

@@ -1,8 +1,8 @@
 package commands;
 
 import common.Messages;
+import exception.InvalidDateFormatException;
 import tasks.Deadline;
-import tasks.ToDo;
 
 public class DeadlineCommand extends TaskCommand {
     String taskDescription;
@@ -14,10 +14,14 @@ public class DeadlineCommand extends TaskCommand {
     }
 
     public CommandResult execute() {
-        ToDo task = new Deadline(taskDescription, by);
-        this.taskList.addTask(task);
-        return new CommandResult(Messages.MESSAGE_NEW_TASK_ADDED_1,
-                String.format("\n\t\t%s \n", task),
-                String.format(Messages.MESSAGE_NEW_TASK_ADDED_2, taskList.getNumberOfTasks()));
+        try {
+            Deadline task = new Deadline(taskDescription, by);
+            this.taskList.addTask(task);
+            return new CommandResult(Messages.MESSAGE_TASK_ADDED,
+                    String.format("\n\t\t%s \n", task),
+                    String.format(Messages.MESSAGE_TASK_LIST_SIZE, taskList.getNumberOfTasks()));
+        } catch (InvalidDateFormatException exception) {
+            return new CommandResult(exception.getBlobMessages());
+        }
     }
 }

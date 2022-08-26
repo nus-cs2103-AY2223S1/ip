@@ -32,103 +32,6 @@ public class Blob {
     }
 
     /**
-     * Enumerates the list of added tasks.
-     */
-    private void listTasks() {
-        StringBuilder tasksStringBuilder = new StringBuilder();
-        tasksStringBuilder.append("\n");
-        for (int i = 0; i < taskList.size(); i++) {
-            tasksStringBuilder.append(String.format("\t\t%d. %s \n", i + 1, taskList.get(i).toString()));
-        }
-        ui.speakToUser(String.format("Blob remembers %d task(s)...", taskList.size()),
-                taskList.size() == 0 ? "Give Blob task to remember...?" : tasksStringBuilder.toString());
-    }
-
-    /**
-     * Adds a ToDo task to the list of tasks.
-     */
-    private void addTodo(String description) {
-        ToDo task = new ToDo(description);
-        taskList.add(task);
-        ui.speakToUser("Blob will remember task...", String.format("\n\t\t%s \n", task),
-                String.format("Blob now remembers %d task(s)...", taskList.size()));
-    }
-
-    /**
-     * Adds a Deadline task to the list of tasks
-     */
-    private void addDeadline(String details) throws InvalidDeadlineException, InvalidDateFormatException {
-        String[] deconstructedDetails = details.split("\\s+(/by)\\s+", 2);
-        if (deconstructedDetails.length < 2) {
-            throw new InvalidDeadlineException();
-        }
-        Deadline task = new Deadline(deconstructedDetails[0], deconstructedDetails[1]);
-        taskList.add(task);
-        ui.speakToUser("Blob will remember task...", String.format("\n\t\t%s \n", task),
-                String.format("Blob now remembers %d task(s)...", taskList.size()));
-    }
-
-    /**
-     * Adds an Event task to the list of tasks
-     */
-    private void addEvent(String details) throws InvalidEventException, InvalidDateFormatException {
-        String[] deconstructedDetails = details.split("\\s+(/at)\\s+", 2);
-        if (deconstructedDetails.length < 2) {
-            throw new InvalidEventException();
-        }
-        Event task = new Event(deconstructedDetails[0], deconstructedDetails[1]);
-        taskList.add(task);
-        ui.speakToUser("Blob will remember task...", String.format("\n\t\t%s \n", task),
-        String.format("Blob now remembers %d task(s)...", taskList.size()));
-    }
-
-    /**
-     * Marks task at the index to be done.
-     *
-     * @param index The index of the task to be marked done
-     */
-    private void markTaskAtIndexDone(int index) throws InvalidTaskIndexException {
-        try {
-            Task task = taskList.get(index - 1);
-            task.markAsDone();
-            ui.speakToUser("Blob congratulates on task well done...", String.format("\n\t\t%s \n", task));
-        } catch (IndexOutOfBoundsException exception) {
-            throw new InvalidTaskIndexException();
-        }
-    }
-
-    /**
-     * Marks task at the index to be undone.
-     *
-     * @param index The index of the task to be marked undone
-     */
-    private void markTaskAtIndexUndone(int index) throws InvalidTaskIndexException {
-        try {
-            Task task = taskList.get(index - 1);
-            task.markAsUndone();
-            ui.speakToUser("Blob will mark as undone...", String.format("\n\t\t%s \n", task));
-        } catch (IndexOutOfBoundsException exception) {
-            throw new InvalidTaskIndexException();
-        }
-    }
-
-    /**
-     * Delete task at the index.
-     *
-     * @param index The index of the task to be deleted
-     * @throws InvalidTaskIndexException
-     */
-    private void deleteTaskAtIndex(int index) throws InvalidTaskIndexException {
-        try {
-            Task task = taskList.get(index - 1);
-            taskList.remove(index - 1);
-            ui.speakToUser("Ok... Blob forget task...", String.format("\n\t\t%s \n", task));
-        } catch (IndexOutOfBoundsException exception) {
-            throw new InvalidTaskIndexException();
-        }
-    }
-
-    /**
      * Loads task based on data in text file
      */
     private void loadTasks() throws InvalidDateFormatException {
@@ -156,7 +59,7 @@ public class Blob {
                         task.markAsDone();
                     }
 
-                    taskList.add(task);
+                    taskList.addTask(task);
                 }
             }
         } catch (IOException e) {
@@ -171,8 +74,8 @@ public class Blob {
     private void saveTasks() {
         try {
             FileWriter taskFileWriter = new FileWriter(SAVED_TASKS_FILE_PATH.toFile());
-            for (int i = 0; i < taskList.size(); i++) {
-                taskFileWriter.write(taskList.get(i).toFileString());
+            for (int i = 0; i < taskList.getNumberOfTasks(); i++) {
+                taskFileWriter.write(taskList.getTask(i).toFileString());
                 taskFileWriter.write(System.lineSeparator());
             }
             taskFileWriter.close();
@@ -206,10 +109,11 @@ public class Blob {
                     result = command.execute();
                 }
 
+                ui.speakToUser(result.getResultMessages());
+
                 if (command.isByeCommand()) {
                     end();
                 }
-                ui.speakToUser(result.getResultMessages());
             } catch (BlobException exception) {
                 ui.speakToUser(exception.getBlobMessages());
             }
