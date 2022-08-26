@@ -19,11 +19,6 @@ public class Deadline extends Task {
         }
     }
 
-    public String getDeadLine() {
-        String deadlineToString = this.dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        return deadlineToString;
-    }
-
     @Override
     public String toString() {
         String deadlineToString = this.dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));

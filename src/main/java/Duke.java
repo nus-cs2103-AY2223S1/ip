@@ -1,46 +1,42 @@
-import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
 
-    public static void handleInput(String userCommand, String userAction, Tasks tasks) {
+    private Storage storage;
+    private TaskList tasks;
+    private DukeUi ui;
+
+    public Duke(String filePath) {
+        ui = new DukeUi();
+        storage = new Storage(filePath);
         try {
-            if (userCommand.equals("list")) {
-                tasks.getList();
-            } else if (userCommand.equals("mark")) {
-                tasks.markMessage(userAction);
-            } else if (userCommand.equals("unmark")) {
-                tasks.unmarkMessage(userAction);
-            } else if (userCommand.equals("todo")) {
-                tasks.todoMessage(userAction);
-            } else if (userCommand.equals("event")) {
-                tasks.eventMessage(userAction);
-            } else if (userCommand.equals("deadline")) {
-                tasks.deadlineMessage(userAction);
-            } else if (userCommand.equals("delete")) {
-                tasks.deleteMessage(userAction);
-            } else {
-                throw new DukeException("I'm sorry, but I don't know what that means :-(");
-            }
+            tasks = new TaskList(storage.load());
+            DukeUi.sendMessage("load complete!");
         } catch (DukeException e) {
-            DukeMessage.sendMessage(e.getMessage());
+            ui.showLoadingError();
+            tasks = new TaskList(new ArrayList<>());
+        }
+    }
+
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
+            try {
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
+            }
         }
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        DukeMessage.startMessage();
-        Tasks tasks = new Tasks(100);
-        tasks.loadTasks();
-        while (scanner.hasNextLine()) {
-            String userCommand = scanner.next();
-            String userAction = scanner.nextLine().stripLeading();
-            if (userCommand.equals("bye")) {
-                tasks.saveFile();
-                DukeMessage.endMessage();
-                scanner.close();
-                System.exit(0);
-            }
-            handleInput(userCommand, userAction, tasks);
-        }
+        new Duke("./data/tasks.txt").run();
     }
 }

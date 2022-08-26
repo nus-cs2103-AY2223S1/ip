@@ -1,11 +1,12 @@
 public class Todo extends Task {
 
-    // class variables
-    protected String by;
-
     // constructor
     public Todo(String description) {
         super(description);
+    }
+
+    public String getTodoDescription() {
+        return this.description;
     }
 
     @Override
