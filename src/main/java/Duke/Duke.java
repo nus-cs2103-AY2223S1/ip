@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class Duke {
     public static void main(String[] args) throws DukeException, IllegalArgumentException {

@@ -1,4 +1,4 @@
-package Duke;
+package duke;
 
 public class IncompleteTaskNameException extends DukeException {
     IncompleteTaskNameException(String error) {
