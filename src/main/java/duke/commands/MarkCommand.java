@@ -6,19 +6,24 @@ import duke.utils.TaskList;
 import duke.utils.Ui;
 
 /**
- * Mark the task with the input index as done and prints a confirmation
- * message.
- *
- * @author sikai 00
+ * Represents an executable command that marks the task as done.
  */
 public class MarkCommand extends Command {
+    /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "mark";
     private final int taskIndex;
 
+    /**
+     * Initializes a new MarkCommand instance.
+     * @param taskIndex Task index to be added
+     */
     public MarkCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {

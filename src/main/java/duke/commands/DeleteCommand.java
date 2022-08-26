@@ -6,18 +6,24 @@ import duke.utils.TaskList;
 import duke.utils.Ui;
 
 /**
- * Delete a task and prints a confirmation message.
- *
- * @author sikai00
+ * Represents an executable command that adds a Task to the specified TaskList.
  */
 public class DeleteCommand extends Command {
+    /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "delete";
     private final int taskIndex;
 
+    /**
+     * Initializes a new DeleteCommand instance.
+     * @param taskIndex Index of the task to be added
+     */
     public DeleteCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {

@@ -1,10 +1,5 @@
 package duke.utils;
 
-import duke.tasks.Task;
-import duke.tasks.Deadline;
-import duke.tasks.Event;
-import duke.tasks.Todo;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,11 +7,19 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
+import duke.tasks.Deadline;
+import duke.tasks.Event;
+import duke.tasks.Task;
+import duke.tasks.Todo;
+
+/**
+ * Handles all the storage-related tasks.
+ */
 public class Storage {
     /**
      * Reads and parses the task list from persistent storage and returns it.
      *
-     * @return duke.utils.TaskList from persistent storage.
+     * @return TaskList from persistent storage.
      */
     public static TaskList readFromStorage() throws FileNotFoundException {
         TaskList taskList = new TaskList();
@@ -66,7 +69,7 @@ public class Storage {
     /**
      * Creates a new, blank persistent storage file and writes the input duke.utils.TaskList into the file.
      *
-     * @param taskList Input duke.utils.TaskList to read from and write into the persistent storage file.
+     * @param taskList Input TaskList to read from and write into the persistent storage file.
      */
     public static void writeAllToStorage(TaskList taskList) {
         File dataDirectory = new File("data");
@@ -89,7 +92,7 @@ public class Storage {
     }
 
     /**
-     * Appends a new duke.tasks.Task to persistent storage.
+     * Appends a new Task to persistent storage.
      */
     public static void appendTaskToStorage(Task task) {
         File dataDirectory = new File("data");

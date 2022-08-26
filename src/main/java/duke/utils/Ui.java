@@ -3,14 +3,15 @@ package duke.utils;
 import java.util.Scanner;
 
 /**
- * This class handles all the UI-related tasks e.g., read input from user, print to System.out, etc.
- *
- * @author sikai00
+ * Handles all the UI-related tasks.
  */
 
 public class Ui {
     private final Scanner sc;
 
+    /**
+     * Initializes a new Ui instance.
+     */
     public Ui() {
         this.sc = new Scanner(System.in);
     }

@@ -5,13 +5,15 @@ import duke.utils.TaskList;
 import duke.utils.Ui;
 
 /**
- * Prints an overview of all added tasks and their status.
- *
- * @author sikai00
+ * Represents an executable command prints an overview of all added tasks and their status.
  */
 public class ListCommand extends Command {
+    /** Command identifier used by Parser **/
     public static final String COMMAND_WORD = "list";
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         if (taskList.size() <= 0) {
