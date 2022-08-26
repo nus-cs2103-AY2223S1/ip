@@ -1,4 +1,5 @@
 package duke.util;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,6 +14,7 @@ import duke.command.Command;
 import duke.command.DeadlineCommand;
 import duke.command.DeleteCommand;
 import duke.command.EventCommand;
+import duke.command.FindCommand;
 import duke.command.InvalidCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
@@ -32,7 +34,7 @@ public final class Parser {
     // private static final String SEP = " +(/by|/at) +";
     private static final String DEADLINE_SEP = " +/by +";
     private static final String EVENT_SEP = " +/at +";
-    
+
     private static final Pattern SAVE_PATTERN = Pattern.compile("^([TDE])([cx]) <<<< (.*) <<<< (.*)");
 
     static enum DateFormatEnum {
@@ -79,7 +81,8 @@ public final class Parser {
                 return new EventCommand(data);
             case "by":
                 return new ByCommand(data);
-
+            case "find":
+                return new FindCommand(data);
             default:
                 return new InvalidCommand();
         }
@@ -97,23 +100,23 @@ public final class Parser {
         }
 
         String command = parsedTmp[0];
-        
+
         switch (command) {
             case "deadline":
                 parsedTmp = parsedTmp[1].split(DEADLINE_SEP, 2);
                 break;
-            
+
             case "event":
                 parsedTmp = parsedTmp[1].split(EVENT_SEP, 2);
                 break;
-        
+
             default:
                 return new ParsedData(command, parsedTmp[1]);
         }
         if (parsedTmp.length == 1 || parsedTmp[1].equals("")) {
             return new ParsedData(command, parsedTmp[0]);
         }
-        
+
         return new ParsedData(command, parsedTmp[0], parsedTmp[1]);
     }
 

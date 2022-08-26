@@ -61,4 +61,5 @@ public abstract class Task implements Comparable<Task> {
     }
 
     abstract public ParsedData convertToParseData();
+
 }
