@@ -1,7 +1,15 @@
 package duke;
 
+/**
+ * A Task class that represents a task inputted by user.
+ */
 public abstract class Task {
 
+    /**
+     * Constructor for the Task Class.
+     *
+     * @param description Description of task.
+     */
     protected String description;
     protected boolean isDone;
 
