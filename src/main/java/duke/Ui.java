@@ -1,9 +1,11 @@
+package duke;
+
 public class Ui {
     /**
      * Prints the starting message.
      */
     public static void sayGreeting() {
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?\n");
+        System.out.println("Hello! I'm duke.Duke\n" + "What can I do for you?\n");
     }
 
     /**
