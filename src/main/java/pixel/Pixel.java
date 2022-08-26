@@ -14,15 +14,13 @@ import java.util.Scanner;
 
 public class Pixel {
 
-    public static int count = 0; // made public for testing
+    private static int count = 0;
     private final Scanner myScanner = new Scanner(System.in);  // Create a Scanner object
-    public static final ArrayList<Task> inputTasks = new ArrayList<>(100); // made public for testing
-
-    // the following fields are made final to facilitate testing, should be private
-    public final String filePath;
-    public final Storage storage;
-    public final Parser parser;
-    public final TaskList taskList;
+    private final ArrayList<Task> inputTasks = new ArrayList<>(100);
+    private final String filePath;
+    private final Storage storage;
+    private final Parser parser;
+    private final TaskList taskList;
 
     public Pixel(String filePath) {
         this.filePath = filePath;
@@ -32,34 +30,30 @@ public class Pixel {
     }
 
     private void run() {
-        while (myScanner.hasNextLine()) {
-            String userInput = myScanner.nextLine();  // Read user input
-            parser.parse(userInput);
-        }
+        String userInput = myScanner.nextLine();  // Read user input
+        int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
+        parser.parse(userInput, indexOfSlash);
     }
 
     // Parser: deals with making sense of the user command
-    // Class is made public to facilitate testing, should be private
-    public class Parser { // inner class
+    private class Parser { // inner class
 
-        public Parser() {}
+        private Parser() {}
 
-        // Method is made public to facilitate testing, should be private
-        public void parse(String userInput) {
-
+        private void parse(String userInput, int indexOfSlash) {
             try {
                 if (userInput.strip().equals("bye")) {
                     System.out.println(UserInterface.goodbyeMessage);
                     System.exit(0);
 
                 } else if (userInput.strip().startsWith("todo ")) {
-                    taskList.handleNewTask(userInput, "T");
+                    taskList.handleNewTask(userInput, indexOfSlash, "T");
 
                 } else if (userInput.strip().startsWith("deadline ")) {
-                    taskList.handleNewTask(userInput, "D");
+                    taskList.handleNewTask(userInput, indexOfSlash, "D");
 
                 } else if (userInput.strip().startsWith("event ")) {
-                    taskList.handleNewTask(userInput, "E");
+                    taskList.handleNewTask(userInput, indexOfSlash, "E");
 
                 } else if (userInput.strip().startsWith("mark ")) {
                     // truncate the front part
@@ -71,7 +65,7 @@ public class Pixel {
                         inputTasks.get(indexToChange - 1).markAsDone();
                     }
 
-                    storage.resetFile();
+                    storage.deleteFileContent();
                     for (Task task : inputTasks) {
                         storage.appendToFile(task);
                     }
@@ -90,7 +84,7 @@ public class Pixel {
                         inputTasks.get(indexToChange - 1).markAsNotDone();
                     }
 
-                    storage.resetFile();
+                    storage.deleteFileContent();
                     for (Task task : inputTasks) {
                         storage.appendToFile(task);
                     }
@@ -109,7 +103,41 @@ public class Pixel {
                     // run();
 
                 } else if (userInput.strip().startsWith("delete ")) {
-                    storage.deleteEntry(userInput);
+                    Task tempRecord;
+                    // truncate the front part
+                    String temp = userInput.substring(7);
+                    // System.out.println(temp);
+                    int indexToDelete = Character.getNumericValue(temp.charAt(0));
+                    // System.out.println(indexToChange);
+                    if ((indexToDelete > 0) && (indexToDelete < 100)) {
+                        tempRecord = inputTasks.get(indexToDelete - 1);
+                        int originalInputListSize = inputTasks.size();
+
+                        System.out.println("Noted. I've removed this task:");
+                        System.out.println(tempRecord);
+                        System.out.println(originalInputListSize + " input task size");
+
+                        // shift everything forward by 1, starting at the element to be removed (which is replaced by next element)
+                        for (int i = (indexToDelete - 1); i < originalInputListSize; i++) {
+                            // move everything up by 1
+                            if (i == (originalInputListSize - 1)) {
+                                // System.out.println(i + " remove");
+                                inputTasks.remove(i);
+                            } else {
+                                // System.out.println(i + " replace");
+                                inputTasks.set(i, inputTasks.get(i + 1));
+                            }
+                        }
+
+                        storage.deleteFileContent();
+                        for (Task task : inputTasks) {
+                            storage.appendToFile(task);
+                        }
+
+                        count -= 1;
+                        System.out.println("Now you have " + count + " tasks in the list.");
+                    }
+                    // run();
 
                 } else {
                     throw new IncorrectFormatException("Input should be a task or command!"); // programme breaks
@@ -144,13 +172,11 @@ public class Pixel {
 
     }
 
-    // Made public to facilitate testing
-    public class TaskList {
+    private class TaskList {
 
-        public TaskList() {}
+        private TaskList() {}
 
-        public void handleNewTask(String userInput, String type) throws IOException {
-            int indexOfSlash = userInput.indexOf("/"); // returns -1 if such a string doesn't exist
+        private void handleNewTask(String userInput, int indexOfSlash, String type) throws IOException {
             // If there's a "/by" or "/at" in the input string, then the info behind the "/by" or "/at" is the due
             // if there's no "/by" and "/at" string, then due should be empty
             String due = indexOfSlash == -1 ? "" : userInput.substring(indexOfSlash + 4);
@@ -164,7 +190,7 @@ public class Pixel {
                 } else if (userInput.substring(indexOfSlash + 1).startsWith("at")) {
                     commandWord = "at";
                 } else {
-                    throw new IncorrectFormatException("Slash should be followed by \"by\" or \"at\"!"); // programme breaks
+                    throw new IncorrectFormatException("Slash should he followed \"by\" or \"at\"! "); // programme breaks
                 }
             }
 
@@ -188,7 +214,7 @@ public class Pixel {
                     break;
                 }
                 default:  //shouldn't reach here
-                    throw new IncorrectFormatException("Incorrect format of input!"); // programme breaks
+                    throw new IncorrectFormatException("Invalid format of input!"); // programme breaks
 
             }
 
@@ -196,7 +222,7 @@ public class Pixel {
 
             // Not so efficient method
             // first delete existing content in old file
-            storage.resetFile();
+            storage.deleteFileContent();
 
             // run through all the files in the list and update pixel.txt accordingly
             for (Task task : inputTasks) {
