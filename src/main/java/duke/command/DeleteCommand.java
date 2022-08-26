@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(Storage storage, TaskList tasks, Ui ui) {
         try {
-            tasks.delete(taskToDelete);
+            tasks.deleteTask(taskToDelete);
             storage.store(tasks);
         } catch (IndexOutOfBoundsException e) {
             System.out.println("Task index not found");

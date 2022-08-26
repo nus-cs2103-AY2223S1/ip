@@ -44,7 +44,7 @@ public class TaskList {
                         + "\nNow you have " + taskList.size() + " tasks in the list.");
     }
     
-    public void delete(int taskIndex) { 
+    public void deleteTask(int taskIndex) { 
         Task task = taskList.remove(taskIndex - 1);
         System.out.println(
                 "Noted. I've removed this task:\n "
