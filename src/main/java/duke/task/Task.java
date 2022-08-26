@@ -81,4 +81,13 @@ abstract public class Task {
     public String getName() {
         return name;
     }
+
+    /**
+     * Returns true if task name contains the searchString
+     * @param searchString
+     * @return true if task name contains searchString
+     */
+    public boolean nameContains (String searchString) {
+        return name.contains(searchString);
+    }
 }

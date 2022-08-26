@@ -12,14 +12,14 @@ import java.util.List;
  * duke.ToDoList class manages all the tasks created by user
  * @author Shaune Ang
  */
-public class ToDoList {
-    ArrayList<Task> toDoList;
+public class TaskList {
+    ArrayList<Task> taskList;
 
     /**
      * Creates empty duke.ToDoList
      */
-    public ToDoList() {
-        toDoList = new ArrayList<>();
+    public TaskList() {
+        taskList = new ArrayList<>();
     }
 
     /**
@@ -27,8 +27,8 @@ public class ToDoList {
      * @param txtFile List of Strings representing the tasks saved
      * @throws Exception when adding task from file fails
      */
-    ToDoList(List<String> txtFile) throws Exception {
-        toDoList = new ArrayList<>();
+    TaskList(List<String> txtFile) throws Exception {
+        taskList = new ArrayList<>();
         addTaskFromFile(txtFile);
     }
 
@@ -38,10 +38,10 @@ public class ToDoList {
      * @throws IndexOutOfBoundsException
      */
     public void complete(int index) throws IndexOutOfBoundsException {
-        if (index >= toDoList.size()) {
+        if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        toDoList.get(index).mark();
+        taskList.get(index).mark();
     }
 
     /** Sets isComplete status of task at index to be incomplete
@@ -49,10 +49,10 @@ public class ToDoList {
      * @throws IndexOutOfBoundsException
      */
     public void incomplete(int index) throws IndexOutOfBoundsException {
-        if (index >= toDoList.size()) {
+        if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
-        toDoList.get(index).unmark();
+        taskList.get(index).unmark();
     }
 
     /**
@@ -60,7 +60,7 @@ public class ToDoList {
      * @param task task to be added to toDoList
      */
     public void addTask(Task task) {
-        toDoList.add(task);
+        taskList.add(task);
         System.out.println("\tGot it. I've added this task:");
         System.out.println("\t  " + task);
     }
@@ -69,15 +69,16 @@ public class ToDoList {
      * Displays all tasks in toDoList
      */
     public void listTasks() {
-        if (toDoList.size() < 1) {
+        if (taskList.size() < 1) {
             System.out.println("\tYou don't have any pending tasks.");
             return;
         }
 
         System.out.println("\tHere are the tasks in your list:");
-        for (int i = 0; i < toDoList.size(); i++) {
-            if (toDoList.get(i) != null){
-                System.out.printf("\t%d. %s\n", i + 1, toDoList.get(i));
+        for (int i = 0; i < taskList.size(); i++) {
+            Task currentTask = taskList.get(i);
+            if (currentTask != null){
+                System.out.printf("\t%d. %s\n", i + 1, currentTask);
             }
         }
     }
@@ -88,12 +89,12 @@ public class ToDoList {
      * @Throws IndexOutOfBoundsException
      */
     public void delete(int index) throws IndexOutOfBoundsException {
-        if (index >= toDoList.size()) {
+        if (index >= taskList.size()) {
             throw new IndexOutOfBoundsException();
         }
         else {
-            Task tempTask = toDoList.get(index);
-            toDoList.remove(index);
+            Task tempTask = taskList.get(index);
+            taskList.remove(index);
             System.out.println("\tNoted. I've removed this task:");
             System.out.println("\t  " + tempTask);
         }
@@ -119,7 +120,7 @@ public class ToDoList {
             if (task == null) {
                 throw new Exception("Unable to load task");
             }
-            toDoList.add(task);
+            taskList.add(task);
         }
     }
 
@@ -142,7 +143,7 @@ public class ToDoList {
      */
     public String createTxtFile() {
         String result = "";
-        for (Task t : toDoList) {
+        for (Task t : taskList) {
             if (t instanceof ToDos) {
                 ToDos td = (ToDos) t;
                 result += String.format("T # %b # %s\n", td.getStatus(), td.getName());
@@ -163,6 +164,26 @@ public class ToDoList {
      * Prints number of tasks in the list
      */
     public void displayListSize() {
-        System.out.printf("\tNow you have %d tasks in the list.\n", toDoList.size());
+        System.out.printf("\tNow you have %d tasks in the list.\n", taskList.size());
+    }
+
+    /**
+     * Searches for searchString by iterating through all the names of the tasks in toDoList
+     * @param searchString
+     */
+    public void findTasks(String searchString) {
+        int findCount = 0;
+        System.out.println("\tHere are the matching tasks in your list:");
+        for (int i = 0; i < taskList.size(); i++) {
+            Task currentTask = taskList.get(i);
+            if (currentTask.nameContains(searchString)){
+                findCount++;
+                System.out.printf("\t%d. %s\n", findCount, currentTask);
+            }
+        }
+
+        if (findCount == 0) {
+            System.out.printf("\tNo tasks were found matching: %s\n", searchString);
+        }
     }
 }

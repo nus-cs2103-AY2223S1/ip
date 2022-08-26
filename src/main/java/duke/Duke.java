@@ -10,7 +10,7 @@ import java.util.InputMismatchException;
 public class Duke {
     private String filePath;
     private FileLoaderSaver storage;
-    private ToDoList toDoList;
+    private TaskList taskList;
     private Ui ui;
 
     /**
@@ -18,7 +18,7 @@ public class Duke {
      * @param args
      */
     public static void main(String[] args) {
-        new Duke("/Users/shaune/Desktop/NUS/CS2103T/duke/Duke.txt").run();
+        new Duke("/Users/shaune/Desktop/NUS/CS2103T/Duke.txt").run();
     }
 
     /**
@@ -32,10 +32,10 @@ public class Duke {
         storage = new FileLoaderSaver(filePath);
 
         try {
-            toDoList = new ToDoList(storage.loadFile());
+            taskList = new TaskList(storage.loadFile());
         } catch (Exception exception) {
             System.out.println(exception.getMessage());
-            toDoList = new ToDoList();
+            taskList = new TaskList();
         }
     }
 
@@ -52,7 +52,7 @@ public class Duke {
                 fullCommand = ui.readCommand();
                 ui.showLine();
                 Command c = Parser.parse(fullCommand);
-                c.execute(toDoList, ui, storage);
+                c.execute(taskList, ui, storage);
                 isExit = c.isExit();
             } catch (InputMismatchException exception) {
                 System.out.println("\tError: please only input String commands.");

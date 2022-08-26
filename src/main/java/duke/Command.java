@@ -2,6 +2,7 @@ package duke;
 
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
 import duke.task.ToDos;
 import java.io.IOException;
 
@@ -12,7 +13,7 @@ import java.io.IOException;
  */
 public class Command {
     static final String EXITWORD = "bye";
-    private ToDoList toDoList;
+    private TaskList taskList;
     private Ui ui;
     private FileLoaderSaver storage;
     private String fullCommand;
@@ -28,6 +29,7 @@ public class Command {
         MARK,
         UNMARK,
         DELETE,
+        FIND,
         EXIT
     }
 
@@ -51,45 +53,48 @@ public class Command {
 
     /**
      * Executes tasks based on the command type of the command
-     * @param toDoList list containing all the current tasks
+     * @param taskList list containing all the current tasks
      * @param ui user interaction object for output
      * @param storage duke.FileLoaderSaver object for saving tasks after creating, deletion or manipulation
      * @throws IOException
      * @throws Exception
      */
-    public void execute(ToDoList toDoList, Ui ui, FileLoaderSaver storage) throws IOException, Exception {
-        this.toDoList = toDoList;
+    public void execute(TaskList taskList, Ui ui, FileLoaderSaver storage) throws IOException, Exception {
+        this.taskList = taskList;
         this.ui = ui;
         this.storage = storage;
 
         switch (commandType) {
             case LIST:
-                toDoList.listTasks();
+                taskList.listTasks();
                 break;
             case TODO:
                 addToDo(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
-                toDoList.displayListSize();
+                storage.writeToFile(taskList.createTxtFile());
+                taskList.displayListSize();
                 break;
             case DEADLINE:
                 addDeadline(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
-                toDoList.displayListSize();
+                storage.writeToFile(taskList.createTxtFile());
+                taskList.displayListSize();
                 break;
             case EVENT:
                 addEvent(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
-                toDoList.displayListSize();
+                storage.writeToFile(taskList.createTxtFile());
+                taskList.displayListSize();
                 break;
             case MARK:
             case UNMARK:
                 changeMark(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
+                storage.writeToFile(taskList.createTxtFile());
                 break;
             case DELETE:
                 deleteTask(fullCommand);
-                storage.writeToFile(toDoList.createTxtFile());
-                toDoList.displayListSize();
+                storage.writeToFile(taskList.createTxtFile());
+                taskList.displayListSize();
+                break;
+            case FIND:
+                findTask(fullCommand);
                 break;
             case EXIT:
                 Ui.goodBye();
@@ -108,9 +113,9 @@ public class Command {
         int index = Integer.parseInt(splitComm[1]) - 1;
 
         if (action.equals("mark")) {
-            toDoList.complete(index);
+            taskList.complete(index);
         } else if (action.equals("unmark")){
-            toDoList.incomplete(index);
+            taskList.incomplete(index);
         }
     }
 
@@ -123,7 +128,7 @@ public class Command {
         String[] splitComm = command.split(" ");
         int index = Integer.parseInt(splitComm[1]) - 1;
 
-        toDoList.delete(index);
+        taskList.delete(index);
     }
 
     /**
@@ -138,7 +143,7 @@ public class Command {
         }
         String name = command.substring(command.indexOf(" ") + 1);
 
-        toDoList.addTask(new ToDos(name));
+        taskList.addTask(new ToDos(name));
     }
 
     /**
@@ -158,7 +163,7 @@ public class Command {
         String name = details.split(" /by ")[0];
         String deadline = details.split(" /by ")[1];
 
-        toDoList.addTask(new Deadline(name, deadline));
+        taskList.addTask(new Deadline(name, deadline));
     }
 
     /**
@@ -178,6 +183,16 @@ public class Command {
         String name = details.split(" /at ")[0];
         String time = details.split(" /at ")[1];
 
-        toDoList.addTask(new Event(name, time));
+        taskList.addTask(new Event(name, time));
+    }
+
+    /**
+     * Finds tasks whose name matches search
+     * @param command
+     * @throws Exception
+     */
+    private void findTask(String command) throws Exception {
+        String searchString = command.substring(command.indexOf(" ") + 1);
+        taskList.findTasks(searchString);
     }
 }

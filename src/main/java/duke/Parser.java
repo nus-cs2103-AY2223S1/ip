@@ -35,6 +35,9 @@ public class Parser {
         else if (command.matches("delete [0-9]+")) { // delete
             return new Command(Command.CommandTypes.DELETE, command);
         }
+        else if (command.startsWith("find")) { // find
+            return new Command(Command.CommandTypes.FIND, command);
+        }
         else if (command.equals("bye")) {
             return new Command(Command.CommandTypes.EXIT, command);
         }
