@@ -95,7 +95,7 @@ public class Parser {
     }
 
     /**
-     * Process the lines of text from the hard disk by converting strings of tasks into
+     * Processes lines of text from the hard disk by converting strings of tasks into
      * appropriate Task instances.
      *
      * @param tasks String of task to be converted to a Task instance

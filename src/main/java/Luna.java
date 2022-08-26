@@ -6,7 +6,7 @@ import command.Command;
 import ui.Ui;
 
 /**
- * A personal assistant chatbot, Luna, that helps the user keep track of
+ * Represents a personal assistant chatbot, Luna, that helps the user keep track of
  * various tasks and events.
  * Nature and celestial themed.
  *
