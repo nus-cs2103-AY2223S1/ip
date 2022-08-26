@@ -1,5 +1,7 @@
 import java.io.IOException;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import java.io.File;
@@ -11,6 +13,7 @@ public class Duke {
     private static Scanner sc = new Scanner(System.in);
     private static List<Task> store = new ArrayList<>();
     private static File dataFile;
+    private static FileWriter fw;
 
     public static void main(String[] args) {
         loadData();
@@ -54,9 +57,24 @@ public class Duke {
                 }
                 store.add(t);
             }
+            fw = new FileWriter("data/duke.txt", false);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void updateData() throws IOException {
+        String newText = "";
+        for (int i = 0; i < store.size(); i++) {
+            String s = store.get(i).getStringToSave();
+            if (i == 0) {
+                newText += s;
+            } else {
+                newText +='\n' + s;
+            }
+        }
+        fw.write(newText);
+        fw.close();
     }
 
     private static void printTab(String content) {
@@ -66,10 +84,18 @@ public class Duke {
     public static void command(String[] arr, String s) {
         String comm = arr[0];
         if (comm.equals("bye")) {
-            printTab(LINEBREAK);
-            printTab("Bye. Hope to see you again soon!");
-            printTab(LINEBREAK);
-            System.out.println();
+            try {
+                updateData();
+                printTab(LINEBREAK);
+                printTab("Bye. Hope to see you again soon!");
+                printTab(LINEBREAK);
+                System.out.println();
+            } catch (IOException e) {
+                printTab("Can't save to duke.txt. There is an invalid data, please edit accordingly");
+                String newS = sc.nextLine();
+                String[] newArr = newS.split(" ", 2);
+                command(newArr, newS);
+            }
         } else {
             try {
                 switch (comm) {

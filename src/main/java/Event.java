@@ -18,6 +18,13 @@ public class Event extends Task {
     }
 
     @Override
+    public String getStringToSave() {
+        return this.isDone
+                ? "E | 1 | " + description + " | " + at
+                : "E | 0 | " + description + " | " + at;
+    }
+
+    @Override
     public String toString() {
         return date == null
                 ? "[E]" + super.toString() + " (at: " + at + ")"

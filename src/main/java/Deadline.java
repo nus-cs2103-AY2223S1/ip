@@ -19,6 +19,13 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String getStringToSave() {
+        return this.isDone
+                ? "D | 1 | " + description + " | " + by
+                : "D | 0 | " + description + " | " + by;
+    }
+
+    @Override
     public String toString() {
         return date == null
                 ? "[D]" + super.toString() + " (by: " + by + ")"

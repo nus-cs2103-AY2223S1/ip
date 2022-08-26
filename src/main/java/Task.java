@@ -19,10 +19,13 @@ public class Task {
         this.isDone = false;
     }
 
+    public String getStringToSave() {
+        return "";
+    }
+
     @Override
     public String toString() {
         String s = String.format("[%s] %s", this.getStatusIcon(), this.description);
         return s;
     }
-
 }
