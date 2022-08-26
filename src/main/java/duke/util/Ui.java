@@ -15,16 +15,19 @@ public class Ui {
     /**
      * Insert Javadocs
      */
-    public void showWelcome() {
+    public String showWelcome() {
         String logo = " _           _        \n"
                 + "| |    _   _| | _____ \n"
                 + "| |   | | | | |/ / _ \\\n"
                 + "| |___| |_| |   <  __/\n"
                 + "|_____|\\__,_|_|\\_\\___|\n";
-        System.out.println("__________________________________________________");
-        System.out.println(("Hola Amigo! My name is\n" + logo));
-        System.out.println(("How may I assist you today?"));
-        System.out.println("__________________________________________________");
+
+        return "__________________________________________________\n"
+                + "Hola Amigo! My name is\n"
+                + logo
+                + "\n"
+                + "How may I assist you today?\n"
+                + "__________________________________________________";
     }
 
     public String readCommand() {

@@ -38,7 +38,7 @@ public class Duke {
      * Insert Javadocs
      */
     public void run() {
-        ui.showWelcome();
+        System.out.println(ui.showWelcome());
         boolean isExit = false;
         while (!isExit) {
             try {

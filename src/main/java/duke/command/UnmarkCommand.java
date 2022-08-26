@@ -43,4 +43,18 @@ public class UnmarkCommand extends Command {
         return "__________________________________________________\n"
                 + "Alright! I have marked this task as not done yet:";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof UnmarkCommand) {
+            UnmarkCommand t = (UnmarkCommand) o;
+            return t.taskNumber == this.taskNumber;
+        }
+
+        return false;
+    }
 }

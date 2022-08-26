@@ -1,5 +1,7 @@
 package duke.task;
 
+import java.util.Objects;
+
 /**
  * The Todo class extends from Task as it is a more specific/well-defined
  * task, it is differentiated by having no deadline/due dates in user-input.
@@ -24,5 +26,19 @@ public class Todo extends Task {
     @Override
     public String toString() {
         return "[T]" + super.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof Todo) {
+            Todo t = (Todo) o;
+            return Objects.equals(t.toString(), this.toString());
+        }
+
+        return false;
     }
 }

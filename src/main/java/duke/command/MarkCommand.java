@@ -43,4 +43,18 @@ public class MarkCommand extends Command {
         return "__________________________________________________\n"
                 + "Good Job! I have marked this task as done:";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof MarkCommand) {
+            MarkCommand t = (MarkCommand) o;
+            return t.taskNumber == this.taskNumber;
+        }
+
+        return false;
+    }
 }

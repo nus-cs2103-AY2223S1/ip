@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.Objects;
 
 import duke.task.Deadline;
 import duke.task.Event;
@@ -70,5 +71,21 @@ public class AddCommand extends Command {
     public String toString() {
         return "__________________________________________________\n"
                 + "Got it. I have added this task:";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof AddCommand) {
+            AddCommand t = (AddCommand) o;
+            if (t.taskType == this.taskType) {
+                return Objects.equals(t.taskDetails, this.taskDetails);
+            }
+        }
+
+        return false;
     }
 }

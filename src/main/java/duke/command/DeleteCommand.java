@@ -52,4 +52,18 @@ public class DeleteCommand extends Command {
         return "__________________________________________________\n"
                 + "Noted. I have removed this task:";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (o instanceof DeleteCommand) {
+            DeleteCommand t = (DeleteCommand) o;
+            return t.taskNumber == this.taskNumber;
+        }
+
+        return false;
+    }
 }
