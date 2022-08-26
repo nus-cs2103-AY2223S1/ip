@@ -2,16 +2,17 @@ package duke.task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-public class Event extends Task {
-    LocalDate date;
 
-    public Event(String task_description, LocalDate date) {
-        super(task_description);
+public class Event extends Task {
+    private LocalDate date;
+
+    public Event(String taskDescription, LocalDate date) {
+        super(taskDescription);
         this.date = date;
     }
 
-    public Event(String task_description, boolean isDone, LocalDate date) {
-        super(task_description, isDone);
+    public Event(String taskDescription, boolean isDone, LocalDate date) {
+        super(taskDescription, isDone);
         this.date = date;
     }
 

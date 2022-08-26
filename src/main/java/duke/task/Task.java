@@ -1,18 +1,20 @@
 package duke.task;
 
 import duke.DukeException;
-public class Task {
-    private final String task_description;
-    private boolean isDone;
-    private static final String already = "This task is already marked as ";
 
-    Task(String task_description) {
-        this.task_description = task_description;
+public class Task {
+
+    private final String taskDescription;
+    private boolean isDone;
+    private static final String ALREADY = "This task is already marked as ";
+
+    Task(String taskDescription) {
+        this.taskDescription = taskDescription;
         this.isDone = false;
     }
 
-    Task(String task_description, boolean isDone) {
-        this.task_description = task_description;
+    Task(String taskDescription, boolean isDone) {
+        this.taskDescription = taskDescription;
         this.isDone = isDone;
     }
 
@@ -20,7 +22,7 @@ public class Task {
         if (!this.isDone) {
             this.isDone = true;
         } else {
-            throw new DukeException(already + "done");
+            throw new DukeException(ALREADY + "done");
         }
     }
 
@@ -28,14 +30,14 @@ public class Task {
         if (this.isDone) {
             this.isDone = false;
         } else {
-            throw new DukeException(already + "not done");
+            throw new DukeException(ALREADY + "not done");
         }
     }
 
-    public String description() {
-        return this.task_description;
+    public String getDescription() {
+        return this.taskDescription;
     }
-    public boolean status() {
+    public boolean isDone() {
         return this.isDone;
     }
 
@@ -47,6 +49,6 @@ public class Task {
         } else {
             marker = " ";
         }
-        return "[" + marker + "] " + this.task_description;
+        return "[" + marker + "] " + this.taskDescription;
     }
 }

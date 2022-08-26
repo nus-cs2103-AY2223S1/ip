@@ -8,20 +8,22 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Storage {
-    private File f;
-    private String dirPath;
+
+    private File file;
+    private String directoryPath;
     private String filePath;
 
     Storage(String filePath) {
         this.filePath = filePath;
-        this.f = new File(filePath);
-        String [] pathDirs = filePath.split("/");
-        this.dirPath = String.join("/", Arrays.copyOfRange(pathDirs,0,pathDirs.length - 1));
+        this.file = new File(filePath);
+        String [] directoryPaths = filePath.split("/");
+        this.directoryPath = String.join("/", Arrays.copyOfRange(
+                directoryPaths,0,directoryPaths.length - 1));
     }
 
     protected String load() throws DukeException {
         try {
-            Scanner s = new Scanner(this.f);
+            Scanner s = new Scanner(this.file);
             StringBuilder data = new StringBuilder();
             while (s.hasNext()) {
                 if (!data.toString().equals("")) {
@@ -35,20 +37,22 @@ public class Storage {
             throw new DukeException("File could not be found");
         }
     }
+
     public void save(String data) throws DukeException {
         try {
-            FileWriter fw = new FileWriter(filePath);
-            fw.write(data);
-            fw.close();
+            FileWriter fileWriter = new FileWriter(filePath);
+            fileWriter.write(data);
+            fileWriter.close();
         } catch (IOException e) {
             throw new DukeException("File could not be saved");
         }
     }
+
     protected void createFile() throws DukeException {
         try {
-            File newDirectory = new File(dirPath);
+            File newDirectory = new File(directoryPath);
             newDirectory.mkdirs();
-            f.createNewFile();
+            file.createNewFile();
         } catch (IOException e) {
             throw new DukeException("File could not be created");
         }

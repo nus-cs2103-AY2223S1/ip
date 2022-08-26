@@ -1,11 +1,14 @@
 package duke;
 
 import duke.command.Command;
+
 public class Duke {
+
     private TaskList tasks;
     private Storage storage;
     private Ui ui;
     private static final String filePath = "./data/duke.txt";
+
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -20,23 +23,25 @@ public class Duke {
             }
         }
     }
+
     public void run() {
-        ui.greetings();
+        ui.greet();
         boolean isExit = false;
         while (!isExit) {
             try {
                 String response = ui.readCommand();
                 Command c = Parser.parse(response);
-                ui.lineBreak();
+                ui.showLine();
                 c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             } finally {
-                ui.lineBreak();
+                ui.showLine();
             }
         }
     }
+
     public static void main(String[] args) {
         new Duke(filePath).run();
     }
