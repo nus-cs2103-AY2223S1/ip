@@ -7,56 +7,25 @@ public class Events extends Task {
     private static DateTimeFormatter DATE_TIME_INPUT_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
     private static DateTimeFormatter DATE_TIME_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy HHmm");
 
-    public Events(String input) throws MissingDescriptionException, MissingTimingException, DateTimeParseException {
-        super();
-        try {
-            //remove initial command
-            String sub = input.substring(6);
-            int timeIndex = sub.lastIndexOf("/at");
-            //get description part of input string
-            if (timeIndex == -1) {
-                throw new MissingTimingException();
-            }
-            String description = sub.substring(0, timeIndex - 1);
-            this.description = description;
-            String timingString = sub.substring(timeIndex + 4);
-            LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
-            this.timing = timing;
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new MissingDescriptionException();
-        }
-    }
-
-    public Events(String input, boolean isDone)
-            throws MissingDescriptionException, MissingTimingException, DateTimeParseException {
-        super(isDone);
-        try {
-            //remove initial command
-            String sub = input.substring(6);
-            int timeIndex = sub.lastIndexOf("/at");
-            //get description part of input string
-            if (timeIndex == -1) {
-                throw new MissingTimingException();
-            }
-            String description = sub.substring(0, timeIndex - 1);
-            this.description = description;
-            String timingString = sub.substring(timeIndex + 4);
-            LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
-            this.timing = timing;
-        } catch (StringIndexOutOfBoundsException e) {
-            throw new MissingDescriptionException();
-        } catch (DateTimeParseException e) {
-            System.out.println("Please input a valid date in the format: DD/MM/YYYY HHMM");
-        }
-    }
-
-    public Events(String description, String timingString, boolean isDone) throws DateTimeParseException{
+    /**
+     * Constructor that creates Event object with specified description, timing, and isDone status.
+     *
+     * @param description Description of Event.
+     * @param timing Timing of the Event.
+     * @param isDone isDone status of the Event.
+     * @throws DateTimeParseException Exception thrown when format of input date is invalid.
+     */
+    public Events(String description, LocalDateTime timing, boolean isDone) throws DateTimeParseException{
         super(isDone);
         this.description = description;
-        LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
         this.timing = timing;
     }
 
+    /**
+     * Method converts Event into String representation that is stored in the storage.
+     *
+     * @return String representation of Event.
+     */
     @Override
     String processData() {
         String str;
@@ -80,4 +49,54 @@ public class Events extends Task {
         }
         return str;
     }
+
+//    public Events(String input) throws MissingDescriptionException, MissingTimingException, DateTimeParseException {
+//        super();
+//        try {
+//            //remove initial command
+//            String sub = input.substring(6);
+//            int timeIndex = sub.lastIndexOf("/at");
+//            //get description part of input string
+//            if (timeIndex == -1) {
+//                throw new MissingTimingException();
+//            }
+//            String description = sub.substring(0, timeIndex - 1);
+//            this.description = description;
+//            String timingString = sub.substring(timeIndex + 4);
+//            LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
+//            this.timing = timing;
+//        } catch (StringIndexOutOfBoundsException e) {
+//            throw new MissingDescriptionException();
+//        }
+//    }
+//
+//    public Events(String input, boolean isDone)
+//            throws MissingDescriptionException, MissingTimingException, DateTimeParseException {
+//        super(isDone);
+//        try {
+//            //remove initial command
+//            String sub = input.substring(6);
+//            int timeIndex = sub.lastIndexOf("/at");
+//            //get description part of input string
+//            if (timeIndex == -1) {
+//                throw new MissingTimingException();
+//            }
+//            String description = sub.substring(0, timeIndex - 1);
+//            this.description = description;
+//            String timingString = sub.substring(timeIndex + 4);
+//            LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
+//            this.timing = timing;
+//        } catch (StringIndexOutOfBoundsException e) {
+//            throw new MissingDescriptionException();
+//        } catch (DateTimeParseException e) {
+//            System.out.println("Please input a valid date in the format: DD/MM/YYYY HHMM");
+//        }
+//    }
+//
+//    public Events(String description, String timingString, boolean isDone) throws DateTimeParseException{
+//        super(isDone);
+//        this.description = description;
+//        LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
+//        this.timing = timing;
+//    }
 }
