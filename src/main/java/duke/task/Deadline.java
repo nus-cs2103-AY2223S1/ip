@@ -1,6 +1,7 @@
 package duke.task;
 
 import duke.exception.DukeException;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
@@ -14,6 +15,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for the Deadline Task.
+     *
      * @param description description of the task.
      */
     public Deadline(String description, LocalDateTime dueDate) {
@@ -40,6 +42,7 @@ public class Deadline extends Task {
 
     /**
      * Overriden toString method for the Deadline Task.
+     *
      * @return String representation of the Deadline.
      */
     @Override

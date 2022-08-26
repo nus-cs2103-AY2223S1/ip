@@ -2,6 +2,7 @@ package duke;
 
 import duke.exception.DukeException;
 import duke.task.Task;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -22,6 +23,10 @@ public class Duke {
         taskList = new TaskList();
         ArrayList<Task> tasks = taskList.getTasks();
         Storage.Load(tasks);
+    }
+
+    public static void main(String[] args) {
+        new Duke().run();
     }
 
     /**
@@ -72,9 +77,5 @@ public class Duke {
             in = sc.nextLine();
         }
         UI.Goodbye();
-    }
-
-    public static void main(String[] args) {
-        new Duke().run();
     }
 }
