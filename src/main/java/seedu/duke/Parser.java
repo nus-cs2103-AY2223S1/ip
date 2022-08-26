@@ -1,6 +1,4 @@
-package main.java;
-
-import main.java.DukeException;
+package seedu.duke;
 
 import java.io.IOException;
 import java.util.ArrayList;

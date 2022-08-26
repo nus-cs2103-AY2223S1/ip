@@ -1,6 +1,4 @@
-package main.java;
-
-import main.java.Event;
+package seedu.duke;
 
 import java.io.File;
 import java.io.FileNotFoundException;

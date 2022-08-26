@@ -3,3 +3,6 @@ T | 0 | return book | June 6th
 T | 1 | project meeting | Aug 6th 2-4pm
 T | 1 | join sports club
 T | 0 | project meeting | Mon 2-4pm
+T | 0 | return book | Dec 2 2019
+T | 0 | read book
+T | 0 | read book again!

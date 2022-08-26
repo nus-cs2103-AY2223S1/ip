@@ -1,4 +1,4 @@
-package main.java;
+package seedu.duke;
 
 public class Task {
     protected String description;

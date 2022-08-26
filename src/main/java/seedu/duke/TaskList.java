@@ -1,8 +1,4 @@
-package main.java;
-
-import main.java.DukeException;
-import main.java.Event;
-import main.java.Storage;
+package seedu.duke;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,6 +14,10 @@ public class TaskList {
     }
     public TaskList() {
         this.taskList = new ArrayList<>();
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return this.taskList;
     }
 
     public LocalDate getLocalDate(String date) {

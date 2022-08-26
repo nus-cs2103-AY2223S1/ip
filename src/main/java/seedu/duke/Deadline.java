@@ -1,8 +1,6 @@
-package main.java;
+package seedu.duke;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Deadline extends Task {
