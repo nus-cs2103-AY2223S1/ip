@@ -14,6 +14,10 @@ import java.util.List;
  */
 public class Parser {
 
+    /**
+     * Gets the chatbot commands in an ArrayList.
+     * @return ArrayList of chatbot commands.
+     */
     public static ArrayList<CommandMatcher> getCommands() {
         ArrayList<CommandMatcher> commands = new ArrayList<>();
 

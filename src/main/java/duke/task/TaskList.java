@@ -13,16 +13,22 @@ public class TaskList {
     /** List of tasks to remember */
     private static ArrayList<Task> taskList = new ArrayList<>();
 
+    /**
+     * Initializes the task list.
+     */
     public static void initializeTaskList() {
         taskList = TaskStorage.getTasks();
     }
 
+    /**
+     * Finalizes the task list.
+     */
     public static void finalizeTaskList() {
         TaskStorage.saveTasks(taskList);
     }
 
     /**
-     * Get task from index as string.
+     * Gets task from index as string.
      * @param index Index as a string.
      * @return Optional.of(task) if successful, else Optional.empty().
      */
@@ -40,6 +46,10 @@ public class TaskList {
         }
     }
 
+    /**
+     * Gets the task list for other classes to work on.
+     * @return The task list.
+     */
     public static List<Task> getTaskList() {
         return taskList;
     }

@@ -28,14 +28,16 @@ public class Deadline extends Task {
         datetime = new ParsedDateTime(by);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return String.format("[D]%s (by: %s)", super.toString(), datetime.toString());
     }
 
     /**
-     * Get a string array representation suitable for printing to files.
-     * @return String array representation.
+     * {@inheritDoc}
      */
     @Override
     public String[] getAsStringArray() {

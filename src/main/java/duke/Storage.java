@@ -21,6 +21,11 @@ public class Storage {
         this.fileName = fileName;
     }
 
+    /**
+     * Gets a singleton object that manages a particular file.
+     * @param fileName File name to identify file.
+     * @return Object managing the file.
+     */
     public static Storage getFileState(String fileName) {
         if (!fileStates.containsKey(fileName)) {
             fileStates.put(fileName, new Storage(fileName));
@@ -69,6 +74,10 @@ public class Storage {
         return StandardCharsets.UTF_16.decode(ByteBuffer.wrap(Base64.getDecoder().decode(input))).toString();
     }
 
+    /**
+     * Gets lines from file as a String[][].
+     * @return Array of String[], each storing comma-separated parts of a line.
+     */
     public String[][] getLines() {
         ArrayList<String[]> lines = new ArrayList<>();
         try {
@@ -79,9 +88,9 @@ public class Storage {
                 for (String str : sc.nextLine().split(",")) {
                     curLine.add(fromBase64(str));
                 }
-                lines.add(curLine.toArray(new String[] {}));
+                lines.add(curLine.toArray(new String[]{}));
             }
-            return (String[][]) lines.toArray(new String[][] {});
+            return (String[][]) lines.toArray(new String[][]{});
         } catch (FileNotFoundException ex) {
             // file not found or error
             return new String[][] {};
