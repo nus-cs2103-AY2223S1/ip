@@ -1,4 +1,0 @@
-T|0|borrow book
-D|0|Submit Assignment|2022-01-21 2300
-E|1|zoukout|2022-12-06 2230
-T|1|sleep before 3am
