@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.TaskList;
+
 import java.util.Arrays;
 
 import static java.lang.Integer.parseInt;
@@ -28,15 +30,47 @@ public class Parser {
         throw new DukeException("Duke: OOPS!!! The task is missing a date property.");
     }
 
+    /**
+     * Returns a task field.
+     *
+     * @param splitInput array of user input words
+     * @param start leftmost index of task field
+     * @param end rightmost index of task field
+     * @return task field
+     * @throws DukeException if task description or date field is empty
+     */
     private String getTaskField(String[] splitInput, int start, int end) throws DukeException {
         String field = String.join(" ", Arrays.copyOfRange(splitInput, start, end));
         if (field.equals("")) {
-            throw new DukeException("Duke: OOPS!!! The task description cannot be empty.");
+            throw new DukeException("Duke: OOPS!!! The task description/date cannot be empty.");
         }
         return field;
     }
 
-    private void parseNewTask(String[] splitInput, TaskList tasks) throws DukeException {
+    /**
+     * Edit Tasks and TaskList based on user input.
+     *
+     * @param cmd command to be executed
+     * @param splitInput array of user input words
+     * @param tasks list of stored tasks
+     * @throws DukeException if the index is out of range of the TaskList
+     */
+    private void parseEdit(String cmd, String[] splitInput, TaskList tasks) throws DukeException {
+        int len = splitInput.length;
+        if (len != 2 || !isInteger(splitInput[1])) {
+            throw new DukeException("Duke: To edit tasks, indicate the index of the task using an integer!");
+        }
+        tasks.editTaskList(cmd, parseInt(splitInput[1]) - 1);
+    }
+
+    /**
+     * Creates a new task from user input and adds it to the TaskList.
+     *
+     * @param splitInput array of user input words
+     * @param tasks list of stored tasks
+     * @throws DukeException if user input is invalid
+     */
+    private void parseCreateTask(String[] splitInput, TaskList tasks) throws DukeException {
         int len = splitInput.length;
         if (len == 0) {
             throw new DukeException("No input!");
@@ -57,6 +91,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Searches for tasks in the TaskList with the input keyword.
+     *
+     * @param splitInput array of user input words
+     * @param tasks list of stored tasks
+     * @throws DukeException if user input does not have a keyword
+     */
     private void parseFind(String[] splitInput, TaskList tasks) throws DukeException {
         int len = splitInput.length;
         if (len == 1) {
@@ -75,25 +116,22 @@ public class Parser {
      */
     public void parse(String userInput, TaskList tasks) throws DukeException {
         String[] splitInput = userInput.split(" ");
-        int len = splitInput.length;
         if (userInput.equals("bye")) {
             isExit = true;
         } else if (userInput.equals("list")) {
             Ui.printTaskList(tasks);
         } else if(splitInput[0].equals("find")) {
             parseFind(splitInput, tasks);
-        } else if (len == 2 && splitInput[0].equals("mark") && isInteger(splitInput[1])) {
-            tasks.editTaskList("mark", parseInt(splitInput[1]) - 1);
-        } else if (len == 2 && splitInput[0].equals("unmark") && isInteger(splitInput[1])) {
-            tasks.editTaskList("unmark", parseInt(splitInput[1]) - 1);
-        } else if (splitInput[0].equals("mark") || splitInput[0].equals("unmark")) {
-            throw new DukeException("Duke: To check off tasks, indicate the index of the task using an integer!");
-        } else if (len == 2 && splitInput[0].equals("delete") && isInteger(splitInput[1])) {
-            tasks.editTaskList("delete", parseInt(splitInput[1]) - 1);
+        } else if (splitInput[0].equals("mark")) {
+            parseEdit("mark", splitInput, tasks);
+        } else if (splitInput[0].equals("unmark")) {
+            parseEdit("unmark", splitInput, tasks);
+        } else if (splitInput[0].equals("delete")) {
+            parseEdit("delete", splitInput, tasks);
         } else if (splitInput[0].equals("delete")) {
             throw new DukeException("Duke: To delete tasks, indicate the index of the task using an integer!");
         } else {
-            parseNewTask(splitInput, tasks);
+            parseCreateTask(splitInput, tasks);
         }
     }
 }

@@ -1,19 +1,26 @@
 package duke;
 
+import duke.task.TaskList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class Storage {
     private static final String FILENAME = "saved-tasks.txt";
-    private File filePath;
-    private File dataFile;
+    private final File dataFile;
 
+    /**
+     * Constructs a storage containing a data file to store tasks.
+     *
+     * @param filePath directory to save tasks
+     * @throws DukeException if unable to create a data file
+     */
     public Storage(String filePath) throws DukeException {
         try {
-            this.filePath = new File(filePath);
-            if (!this.filePath.exists()) {
-                this.filePath.mkdir();
+            File fileDir = new File(filePath);
+            if (!fileDir.exists()) {
+                fileDir.mkdir();
             }
             this.dataFile = new File(filePath + "/" + FILENAME);
             if (!dataFile.exists()) {
@@ -44,8 +51,12 @@ public class Storage {
      * Returns the file with stored tasks.
      *
      * @return file with stored tasks
+     * @throws DukeException if unable to load data file
      */
-    public File load() {
+    public File load() throws DukeException {
+        if (!dataFile.exists()) {
+            throw new DukeException("File loading error.");
+        }
         return dataFile;
     }
 }

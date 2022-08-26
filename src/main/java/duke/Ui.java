@@ -1,6 +1,7 @@
 package duke;
 
 import duke.task.Task;
+import duke.task.TaskList;
 
 import java.util.Scanner;
 
@@ -64,9 +65,17 @@ public class Ui {
      * @param newTask new task added to TaskList
      * @param noOfTasks number of tasks in this TaskList
      */
-    public static void printTaskCreationMessage(Task newTask,int noOfTasks) {
+    public static void printTaskCreationMessage(Task newTask, int noOfTasks) {
         System.out.println("Got it. I've added this task:\n "
                 + newTask + "\nNow you have " + noOfTasks + " tasks in the list.");
+    }
+
+    public static void printTaskSearch(String match) {
+        if (match == "") {
+            System.out.println("Duke: Sorry! Cannot find any matching tasks in your list.");
+        } else {
+            System.out.println("Here are the matching tasks in your list:\n" + match);
+        }
     }
 
     /**

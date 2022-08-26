@@ -1,5 +1,7 @@
 package duke;
 
+import duke.task.TaskList;
+
 public class Duke {
     private Storage storage;
     private TaskList tasks;
