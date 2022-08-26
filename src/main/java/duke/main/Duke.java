@@ -96,6 +96,10 @@ public class Duke {
                     tasks.displayTaskList();
                     break;
                 }
+                case FIND: {
+                    tasks.searchTaskList(argument);
+                    break;
+                }
                 case DELETE: {
                     Task deletedTask = tasks.getTask(argument);
                     tasks.deleteTask(argument);

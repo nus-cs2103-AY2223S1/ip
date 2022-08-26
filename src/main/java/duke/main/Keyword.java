@@ -13,7 +13,8 @@ public enum Keyword {
     TODO("todo"),
     DEADLINE("deadline"),
     EVENT("event"),
-    DELETE("delete");
+    DELETE("delete"),
+    FIND("find");
 
     /* corresponding input key to Enum value */
     private final String inputKey;
