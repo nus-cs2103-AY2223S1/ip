@@ -8,6 +8,7 @@ import Duke.Command.AddCommand;
 import Duke.Command.Command;
 import Duke.Command.DelCommand;
 import Duke.Command.ExitCommand;
+import Duke.Command.FindCommand;
 import Duke.Command.InvalidCommandException;
 import Duke.Command.ListCommand;
 import Duke.Command.MarkCommand;
@@ -84,6 +85,10 @@ public class Parser {
             } catch (DateTimeParseException e) {
                 throw new InvalidCommandException(INVALID_TIME_FORMAT_MSG);
             }
+        } else if (input.startsWith("find")) {
+            errMsg = "";
+            String keyword = splitWithFormat(input, " ", errMsg)[1];
+            return new FindCommand(keyword);
         } else {
             throw new InvalidCommandException("☹ OOPS!!! I dont recognise this command!");
         }

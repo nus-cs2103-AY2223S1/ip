@@ -86,6 +86,17 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Returns if the task contains the specified keyword in its
+     * description.
+     * 
+     * @param keyword The keyword to be matched with the description.
+     * @return True if description contains the keyword, false otherwise.
+     */
+    public boolean containsKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Task) {
@@ -93,4 +104,5 @@ public abstract class Task {
         }
         return false;
     }
+
 }

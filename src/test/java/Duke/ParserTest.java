@@ -12,7 +12,8 @@ import org.junit.jupiter.api.Test;
 public class ParserTest {
 
     @Test 
-    public void parseTestEvent() {
+    public void parse_event_eventTask() {
+        // a unit test to parse commands for new event.
         Command expected = new AddCommand(new EventTask(
                 "xyz", LocalDateTime.of(1111,11,11,11,11), LocalDateTime.of(1212,12,12,12,12)));
         try {
@@ -24,7 +25,8 @@ public class ParserTest {
     }
 
     @Test 
-    public void parseTestDeadline() {
+    public void parse_deadline_deadlineTask() {
+        // a unit test to parse commands for new deadline.
         Command expected = new AddCommand(
                 new DeadlineTask("xyz", LocalDateTime.of(1111,11,11,11,11)));
         try {
