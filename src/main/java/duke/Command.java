@@ -13,6 +13,9 @@ public class Command {
         this.givenCommand = givenCommand;
     }
 
+    /**
+     * Greet the user depending on the given command
+     */
     public void printCommand() {
         switch (givenCommand) {
             case GREETINGS:

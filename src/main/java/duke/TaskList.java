@@ -8,7 +8,7 @@ public class TaskList {
     public static List<Task> taskArrayList;
 
     /**
-     * The constructor for duke.TaskList
+     * The constructor for TaskList
      */
     public TaskList() {
         taskArrayList = new ArrayList<>();

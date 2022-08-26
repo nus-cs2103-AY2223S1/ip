@@ -5,17 +5,26 @@ import java.time.LocalDate;
 
 public class Duke {
 
+    // Attributes of a Duke object
     private Ui ui;
     private Storage storage;
     private TaskList taskList;
     private final static String FILEDESTINATION = "./src/main/duke.txt";
 
+    /**
+     * The constructor for the Duke class
+     */
     public Duke() {
         ui = new Ui();
         storage = new Storage(FILEDESTINATION);
         taskList = new TaskList();
     }
 
+    /**
+     * The method to run the Duke bot
+     * @throws DukeException exception to be thrown regarding DukeException
+     * @throws IOException exception to be thrown regarding IOException
+     */
     public void run() throws DukeException, IOException {
         storage.loadTasks();
         ui.greet();
@@ -84,6 +93,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Creates a to-do object
+     * @param wordsArray the array of words entered by the user
+     * @throws DukeException exception to be thrown regarding DukeException
+     */
     public void createAndAddTodo(String[] wordsArray) throws DukeException {
         String description = "";
         if (wordsArray.length > 1) {
@@ -96,6 +110,11 @@ public class Duke {
         ui.printAddedTask(newTodo);
     }
 
+    /**
+     * Creates a deadline object
+     * @param wordsArray the array of words entered by the user
+     * @throws DukeException exception to be thrown regarding DukeException
+     */
     public void createAndAddDeadline(String[] wordsArray) throws DukeException {
         String remainingDescription = "";
         String description = "";
@@ -119,6 +138,11 @@ public class Duke {
         ui.printAddedTask(newDeadline);
     }
 
+    /**
+     * Creates an event object
+     * @param wordsArray the array of words entered by the user
+     * @throws DukeException exception to be thrown regarding DukeException
+     */
     public void createAndAddEvent(String[] wordsArray) throws DukeException {
         // If user is trying to add an event, save the description and the 'at' date
         // Have a default value in case the user did not add any description

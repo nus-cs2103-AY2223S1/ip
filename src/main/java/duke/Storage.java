@@ -11,10 +11,18 @@ public class Storage {
 
     private String fileDestination;
 
+    /**
+     * Constructor for the Storage class
+     * @param fileDestination the destination filepath of the file
+     */
     public Storage(String fileDestination) {
         this.fileDestination = fileDestination;
     }
 
+    /**
+     * Saves the tasks to the text file
+     * @throws IOException exception to be thrown
+     */
     public void saveTasks() throws IOException {
         FileWriter fileWriter = new FileWriter(fileDestination);
         String tasksString = "";
@@ -26,6 +34,11 @@ public class Storage {
         fileWriter.close();
     }
 
+    /**
+     * Loads the task to the TaskList array list
+     * @throws IOException exception to be thrown regarding IOException
+     * @throws DukeException
+     */
     public void loadTasks() throws IOException, DukeException {
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(fileDestination));

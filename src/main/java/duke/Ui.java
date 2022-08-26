@@ -25,6 +25,9 @@ public class Ui {
         System.out.println(GREETING);
     }
 
+    /**
+     * Say bye to the user
+     */
     public void bye() {
         System.out.println(BYE);
     }
@@ -33,6 +36,9 @@ public class Ui {
         return enterInput.nextLine();
     }
 
+    /**
+     * Show all the tasks the user currently has
+     */
     public void showTaskList() {
         System.out.println(LINEBREAK);
         System.out.println("Here are the tasks in your list:");
@@ -42,6 +48,10 @@ public class Ui {
         }
     }
 
+    /**
+     * Informs user that a task has been added
+     * @param task the task that is added
+     */
     public void printAddedTask(Task task) {
         System.out.println(LINEBREAK);
         System.out.println("Got it. I 've added this task:");
@@ -50,6 +60,10 @@ public class Ui {
         System.out.println(LINEBREAK);
     }
 
+    /**
+     * Informs user a task has been deleted
+     * @param index the position of the task to delete
+     */
     public void markTaskDeletedAndPrintOutput(int index) {
         Task currentTask = TaskList.taskArrayList.get(index - 1);
         System.out.println("Noted. I've removed this task:");
@@ -58,6 +72,10 @@ public class Ui {
         System.out.println("Now you have " + String.valueOf(TaskList.taskArrayList.size()) +" tasks in the list.");
     }
 
+    /**
+     * Marks a task as done and informs the user
+     * @param index the position of the task to be marked done
+     */
     public void markTaskDoneAndPrintOutput(int index) {
         Task currentTask = TaskList.taskArrayList.get(index - 1);
         System.out.println("Nice! I've marked this task as done:");
@@ -65,6 +83,10 @@ public class Ui {
         System.out.println(currentTask.toString());
     }
 
+    /**
+     * Marks a task a not done and informs the user
+     * @param index the position to mark a task as not done
+     */
     public void markTaskNotDoneAndPrintOutput(int index) {
         Task currentTask = TaskList.taskArrayList.get(index - 1);
         System.out.println("0K, I've marked this task as not done yet:");
