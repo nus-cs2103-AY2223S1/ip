@@ -11,7 +11,6 @@ public class Alpha {
     public static List<Task> tasks = new ArrayList<>();
     public static final String ANSI_YELLOW = "\u001B[33m";
 
-    static final String ANSI_RED = "\u001B[31m";
     public static final String ANSI_BLUE = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
 
@@ -42,7 +41,7 @@ public class Alpha {
 
     private static void enterMessage(Scanner in) throws AlphaException, IOException {
         String input = in.nextLine();
-        String[] inputTokens = input.split(" ");
+        String[] inputTokens = input.split(" ", 2);
         switch (inputTokens[0]) {
             case "todo": {
                 if (input.length() == 4) {
@@ -59,8 +58,8 @@ public class Alpha {
                 if (input.length() == 5) {
                     throw new AlphaException("Invalid input: Task description is missing!");
                 }
-                int separator = input.indexOf('/');
-                Task t = new Event(input.substring(6, separator - 1), input.substring(separator + 1), "E");
+                String[] taskInfo = inputTokens[1].split("/on ", 2);
+                Task t = new Event(taskInfo[0], taskInfo[1], "E");
                 tasks.add(t);
                 Event currEvent = (Event) t;
                 String textToAppend = t.getTaskType() + " | " + t.getStatus() + " | "
@@ -73,8 +72,8 @@ public class Alpha {
                 if (input.length() == 8) {
                     throw new AlphaException("Invalid input: Task description is missing!");
                 }
-                int separator = input.indexOf('/');
-                Task t = new Deadline(input.substring(9, separator - 1), input.substring(separator + 1), "D");
+                String[] taskInfo = inputTokens[1].split("/by ", 2);
+                Task t = new Deadline(taskInfo[0], taskInfo[1], "D");
                 tasks.add(t);
                 Deadline currDeadline = (Deadline) t;
                 String textToAppend = t.getTaskType() + " | " + t.getStatus() + " | "
@@ -110,17 +109,7 @@ public class Alpha {
                 //fileOperations.printFileContents();
                 int count = 1;
                 for (Task task : tasks) {
-                    System.out.print(ANSI_YELLOW + count + ") " + "[" + task.getTaskType() + "] ["
-                            + task.getStatus() + "] " + task.getDescription() + ANSI_RESET);
-                    if (task.getTaskType().equals("E")) {
-                        Event e = (Event) task;
-                        System.out.println(ANSI_RED + " on " + e.getDate() + ANSI_RESET);
-                    } else if (task.getTaskType().equals("D")) {
-                        Deadline d = (Deadline) task;
-                        System.out.println(ANSI_RED + " by " + d.getDeadline() + ANSI_RESET);
-                    } else {
-                        System.out.println();
-                    }
+                    System.out.println(ANSI_YELLOW + count + ") " + ANSI_RESET + task.toString());
                     count++;
                 }
                 break;
