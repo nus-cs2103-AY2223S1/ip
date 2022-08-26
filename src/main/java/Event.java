@@ -18,7 +18,7 @@ public class Event extends Task {
         if (time.equals("")) {
             throw new DukeException("☹ OOPS!!! The time of an event cannot be empty.");
         }
-        this.time = new DukeDate().convertToDate(time);
+        this.time = new DukeDate(time).getDateTime();
     }
 
     /**
@@ -26,7 +26,7 @@ public class Event extends Task {
      * @param newTime new time for Event
      */
     public void setTime(String newTime) {
-        this.time = new DukeDate().convertToDate(newTime);
+        this.time = new DukeDate(newTime).getDateTime();
     }
 
     @Override

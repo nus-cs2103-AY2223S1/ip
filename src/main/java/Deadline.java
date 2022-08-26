@@ -18,14 +18,14 @@ public class Deadline extends Task {
         if (deadline.equals("")) {
             throw new DukeException("☹ OOPS!!! The deadline of a deadline cannot be empty.");
         }
-        this.deadline = new DukeDate().convertToDate(deadline);
+        this.deadline = new DukeDate(deadline).getDateTime();
     }
     /**
      * Sets a new deadline for the task
      * @param newDeadline new deadline for Event
      */
     public void setDeadline(String newDeadline) {
-        this.deadline = new DukeDate().convertToDate(newDeadline);
+        this.deadline = new DukeDate(newDeadline).getDateTime();
     }
 
     @Override
