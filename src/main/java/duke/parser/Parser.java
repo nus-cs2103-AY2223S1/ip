@@ -17,7 +17,8 @@ public class Parser {
     /**
      * Initializes an instance of a Parser.
      */
-    public Parser() {}
+    public Parser() {
+    }
 
     /**
      * Parses the input of the user to an instance of a Command.
@@ -30,39 +31,39 @@ public class Parser {
         String[] arg = input.split(" ", 2);
         String command = arg[0];
         String commandArg = arg.length == 2 ? arg[1].trim() : "";
-            switch (command) {
-                case "list":
-                    if (!commandArg.equals("")) {
-                        throw new DukeException("list must not have an argument.");
-                    }
-                    return new ListCommand();
-                case "mark":
-                    return new MarkCommand(parseIntArg(commandArg));
-                case "unmark":
-                    return new UnmarkCommand(parseIntArg(commandArg));
-                case "delete":
-                    return new DeleteCommand(parseIntArg(commandArg));
-                case "find":
-                    return new FindCommand(commandArg);
-                case "todo":
-                    if (commandArg.equals("")) {
-                        throw new DukeException("A todo must contain a description.");
-                    }
-                    return new ToDoCommand(new ToDo(commandArg));
-                case "deadline" :
-                    String[] deadlineArgs = getDeadlineArgs(commandArg);
-                    return new DeadlineCommand(new Deadline(deadlineArgs[0], parseDateArg(deadlineArgs[1])));
-                case "event":
-                    String[] eventArgs = getEventArgs(commandArg);
-                    return new EventCommand(new Event(eventArgs[0], parseDateArg(eventArgs[1])));
-                case "bye":
-                    if (!commandArg.equals("")) {
-                        throw new DukeException("bye must not have any argument.");
-                    }
-                    return new ByeCommand();
-                default:
-                    throw new DukeException("Sorry, I don't understand what that means :(");
+        switch (command) {
+        case "list":
+            if (!commandArg.equals("")) {
+                throw new DukeException("list must not have an argument.");
             }
+            return new ListCommand();
+        case "mark":
+            return new MarkCommand(parseIntArg(commandArg));
+        case "unmark":
+            return new UnmarkCommand(parseIntArg(commandArg));
+        case "delete":
+            return new DeleteCommand(parseIntArg(commandArg));
+        case "find":
+            return new FindCommand(commandArg);
+        case "todo":
+            if (commandArg.equals("")) {
+                throw new DukeException("A todo must contain a description.");
+            }
+            return new ToDoCommand(new ToDo(commandArg));
+        case "deadline":
+            String[] deadlineArgs = getDeadlineArgs(commandArg);
+            return new DeadlineCommand(new Deadline(deadlineArgs[0], parseDateArg(deadlineArgs[1])));
+        case "event":
+            String[] eventArgs = getEventArgs(commandArg);
+            return new EventCommand(new Event(eventArgs[0], parseDateArg(eventArgs[1])));
+        case "bye":
+            if (!commandArg.equals("")) {
+                throw new DukeException("bye must not have any argument.");
+            }
+            return new ByeCommand();
+        default:
+            throw new DukeException("Sorry, I don't understand what that means :(");
+        }
     }
 
     private String[] getDeadlineArgs(String desc) throws DukeException {
@@ -90,7 +91,7 @@ public class Parser {
     private int parseIntArg(String index) throws DukeException {
         try {
             return Integer.parseInt(index);
-        }  catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new DukeException("You must enter the index of the task.");
         }
     }

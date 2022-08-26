@@ -9,8 +9,7 @@ import duke.Ui;
  * The Command class represents the command entered by user.
  */
 public abstract class Command {
-    /** Indicates whether the command terminates Duke. */
-    public boolean isTerminator;
+    private final boolean isTerminator;
 
     /**
      * Initializes an instance of a Command.
@@ -18,7 +17,11 @@ public abstract class Command {
      * @param isTerminator Indicates whether the command is a terminator.
      */
     protected Command(Boolean isTerminator) {
-        this.isTerminator =  isTerminator;
+        this.isTerminator = isTerminator;
+    }
+
+    public boolean isTerminatorGetter() {
+        return isTerminator;
     }
 
     /**

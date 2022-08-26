@@ -6,8 +6,8 @@ import java.util.Scanner;
  * The Ui Class encapsulates all the input and output interaction between Duke and user.
  */
 public class Ui {
-    static final String WELCOME_MSG = "Hello! I'm Duke.\nWhat can I do for you?";
-    static final String GOODBYE_MSG = "Bye. Hope to see you again soon!";
+    private static final String WELCOME_MSG = "Hello! I'm Duke.\nWhat can I do for you?";
+    private static final String GOODBYE_MSG = "Bye. Hope to see you again soon!";
     private final Scanner sc;
 
     /**
@@ -28,7 +28,7 @@ public class Ui {
 
     private void printMessage(String message) {
         String line = "____________________________________________________________";
-        String res = line + "\n" + message + "\n" +line;
+        String res = line + "\n" + message + "\n" + line;
         res = res.replaceAll("(?m)^", "\t");
         System.out.println(res);
     }
