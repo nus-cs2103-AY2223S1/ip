@@ -1,19 +1,22 @@
 package duke;
 
-import duke.task.Task;
-import duke.task.Todo;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TaskList {
+
     private ArrayList<Task> tasks = new ArrayList<>();
+
     TaskList() {
 
     }
+
     TaskList(String data) {
         if (!data.equals("")) {
             String[] tasksArray = data.split("\n");
@@ -26,26 +29,27 @@ public class TaskList {
     private TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
+
     private static Task stringToTask(String input) {
         String [] taskDetails = input.split(",");
         String taskDescription = taskDetails[2];
-        boolean completed;
-        completed = taskDetails[1].equals("1");
+        boolean isDone;
+        isDone = taskDetails[1].equals("1");
         if (taskDetails.length == 4) {
             String time = taskDetails[3];
             LocalDate date = LocalDate.parse(time, DateTimeFormatter.ofPattern("MMM dd yyyy"));
             if (taskDetails[0].equals("D")) {
-                return new Deadline(taskDescription, completed, date);
+                return new Deadline(taskDescription, isDone, date);
             } else {
-                return new Event(taskDescription, completed, date);
+                return new Event(taskDescription, isDone, date);
             }
         }
-        return new Todo(taskDescription, completed);
+        return new Todo(taskDescription, isDone);
     }
 
     private static String taskToString(Task task) {
-        String taskDescription = task.description();
-        String completed = (task.status()) ? "1" : "0";
+        String taskDescription = task.getDescription();
+        String completed = (task.isDone()) ? "1" : "0";
         String type = task.toString().substring(1,2);
         String [] splitTime = task.toString().split(":");
         if (splitTime.length == 2) {
@@ -58,15 +62,17 @@ public class TaskList {
     public void add(Task task) {
         this.tasks.add(task);
     }
-    public Task del(int ind) throws DukeException {
+
+    public Task delete(int ind) throws DukeException {
         try {
-            Task deleting_task = this.tasks.get(ind);
+            Task deletingTask = this.tasks.get(ind);
             this.tasks.remove(ind);
-            return deleting_task;
+            return deletingTask;
         } catch(IndexOutOfBoundsException e) {
             throw new DukeException("Index given is out of range");
         }
     }
+
     public Task get(int i) throws DukeException {
         try {
             return this.tasks.get(i);
@@ -91,7 +97,7 @@ public class TaskList {
         for (String word : keywords) {
             for (int i = 0; i < tasks.size(); i++) {
                 Task task = tasks.get(i);
-                if (task.description().contains(word) && added.get(i) == 0) {
+                if (task.getDescription().contains(word) && added.get(i) == 0) {
                     filteredTasks.add(task);
                     added.set(i,1);
                 }
@@ -99,9 +105,11 @@ public class TaskList {
         }
         return new TaskList(filteredTasks);
     }
+
     protected int size() {
         return this.tasks.size();
     }
+
     public String toString() {
         StringBuilder data = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {

@@ -16,6 +16,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 
 public class Parser {
+
     private static final String EXIT_COMMAND = "bye";
     private static final String LIST_COMMAND = "list";
     private static final String MARK_COMMAND = "mark";
@@ -27,8 +28,8 @@ public class Parser {
     private static final String FIND_COMMAND = "find";
 
     protected static Command parse(String response) throws DukeException {
-        String[] cmd_descp = response.split(" ");
-        String command = cmd_descp[0];
+        String[] cmdDescp = response.split(" ");
+        String command = cmdDescp[0];
         if (command.equals(EXIT_COMMAND) || command.equals(LIST_COMMAND)) {
             switch (command) {
             case EXIT_COMMAND:
@@ -37,18 +38,18 @@ public class Parser {
                 return new ListCommand();
             }
         } else if (command.equals(FIND_COMMAND)) {
-            if (cmd_descp.length < 2) {
+            if (cmdDescp.length < 2) {
                 throw new DukeException("Keyword is missing");
             }
-            String keyword = String.join(" ", Arrays.copyOfRange(cmd_descp, 1, cmd_descp.length));
+            String keyword = String.join(" ", Arrays.copyOfRange(cmdDescp, 1, cmdDescp.length));
             return new FindCommand(keyword);
         } else if (command.equals(MARK_COMMAND) || command.equals(UNMARK_COMMAND) || command.equals(DELETE_COMMAND)) {
-            if (cmd_descp.length < 2) {
+            if (cmdDescp.length < 2) {
                 throw new DukeException("Index is missing");
             }
             int ind;
             try {
-                ind = Integer.parseInt(cmd_descp[1]);
+                ind = Integer.parseInt(cmdDescp[1]);
             } catch (NumberFormatException e) {
                 throw new DukeException("Index given must be a number");
             }
@@ -61,14 +62,14 @@ public class Parser {
                 return new DeleteCommand(ind);
             }
         } else if (command.equals(TODO_COMMAND)) {
-            if (cmd_descp.length < 2) {
+            if (cmdDescp.length < 2) {
                 throw new DukeException("Task description is missing");
             }
-            String task_description = String.join(" ", Arrays.copyOfRange(cmd_descp, 1, cmd_descp.length));
-            return new AddCommand(new Todo(task_description));
+            String taskDescription = String.join(" ", Arrays.copyOfRange(cmdDescp, 1, cmdDescp.length));
+            return new AddCommand(new Todo(taskDescription));
         } else if (command.equals(DEADLINE_COMMAND) || command.equals(EVENT_COMMAND)) {
-            String[] split_slash = response.split("/");
-            if (split_slash.length < 2) {
+            String[] splitSlash = response.split("/");
+            if (splitSlash.length < 2) {
                 switch (command) {
                 case DEADLINE_COMMAND:
                     throw new DukeException("/by is missing");
@@ -76,7 +77,7 @@ public class Parser {
                     throw new DukeException("/at is missing");
                 }
             }
-            String[] details = split_slash[1].split(" ");
+            String[] details = splitSlash[1].split(" ");
             String action = details[0];
             switch (command) {
             case DEADLINE_COMMAND:
@@ -100,7 +101,7 @@ public class Parser {
             } catch (DateTimeParseException e) {
                 throw new DukeException("date not in yyyy-mm-dd format");
             }
-            String[] cmdDescp = split_slash[0].split(" ");
+            cmdDescp = splitSlash[0].split(" ");
             if (cmdDescp.length < 2) {
                 throw new DukeException("Task description is missing");
             }
