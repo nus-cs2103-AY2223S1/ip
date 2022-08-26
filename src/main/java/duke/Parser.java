@@ -23,7 +23,9 @@ public class Parser {
     public CommandType getCommandType(String userCommand) {
         if (userCommand.startsWith("bye")) {
             return CommandType.EXIT;
-        } else if (userCommand.startsWith("todo") || userCommand.startsWith("event") || userCommand.startsWith("deadline")) {
+        } else if (userCommand.startsWith("todo") ||
+                   userCommand.startsWith("event") ||
+                   userCommand.startsWith("deadline")) {
             return CommandType.ADD;
         } else if (userCommand.startsWith("remove")) {
             return CommandType.REMOVE;
@@ -42,24 +44,24 @@ public class Parser {
 
     public void execute(String userCommand) {
         switch (getCommandType(userCommand)) {
-            case ADD:
-                handleAddCommand(userCommand);
-                break;
-            case REMOVE:
-                handleRemoveCommand(userCommand);
-                break;
-            case MARK_AS_DONE:
-                handleMarkAsDoneCommand(userCommand);
-                break;
-            case MARK_AS_UNDONE:
-                handleMarkAsUndoneCommand(userCommand);
-                break;
-            case LIST:
-                handleListCommand();
-                break;
-            case SEARCH:
-                handleSearchCommand(userCommand);
-                break;
+        case ADD:
+            handleAddCommand(userCommand);
+            break;
+        case REMOVE:
+            handleRemoveCommand(userCommand);
+            break;
+        case MARK_AS_DONE:
+            handleMarkAsDoneCommand(userCommand);
+            break;
+        case MARK_AS_UNDONE:
+            handleMarkAsUndoneCommand(userCommand);
+            break;
+        case LIST:
+            handleListCommand();
+            break;
+        case SEARCH:
+            handleSearchCommand(userCommand);
+            break;
         }
     }
 
