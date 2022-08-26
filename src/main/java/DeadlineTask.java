@@ -1,26 +1,43 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class DeadlineTask extends Task {
     private static final String TASK_TYPE = "D";
-    private final String date;
-    DeadlineTask(String taskName, String date) throws EmptyTaskException, InvalidDeadlineException {
+    private final LocalDateTime taskTime;
+    private final String dateFormat;
+    DeadlineTask(String taskName, String date, String dateFormat) throws EmptyTaskException, InvalidDeadlineException {
         super(taskName);
-        this.date = date;
+        this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
-        if (this.date.equals("")) {
-            throw new InvalidDeadlineException();
+        try {
+            this.taskTime = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(dateFormat));
+        } catch (DateTimeParseException exception) {
+            throw new InvalidDeadlineException(dateFormat);
         }
     }
 
-    DeadlineTask(String taskName, String date, boolean status) throws EmptyTaskException, InvalidDeadlineException {
-        super(taskName, status);
-        this.date = date;
+    DeadlineTask(String taskName, String date, boolean status, String dateFormat) throws EmptyTaskException, InvalidDeadlineException {
+        super(taskName,  status);
+        this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
-        if (this.date.equals("")) {
-            throw new InvalidDeadlineException();
+        try {
+            this.taskTime = LocalDateTime.parse(date, DateTimeFormatter.ofPattern(dateFormat));
+        } catch (DateTimeParseException exception) {
+            throw new InvalidDeadlineException(dateFormat);
         }
+    }
+
+    public String getTaskTime() {
+        return (taskTime.getDayOfMonth() + " " +
+                taskTime.getMonth() + " " +
+                taskTime.getYear() + " | " +
+                taskTime.getHour() + ":" +
+                taskTime.getMinute());
     }
 
     @Override
@@ -30,11 +47,14 @@ public class DeadlineTask extends Task {
 
     @Override
     public String getFormattedString() {
-        return TASK_TYPE + " | " + (getStatus() ? 1 : 0) + " | " + getTaskName() + " | " + this.date + "\n";
+        return TASK_TYPE + " | " +
+                (getStatus() ? 1 : 0) + " | " +
+                getTaskName() + " | " +
+                this.taskTime + "\n";
     }
 
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + " (by:" + date + ")";
+        return "[" + TASK_TYPE + "]" + super.toString() + " (by:" + getTaskTime() + ")";
     }
 }

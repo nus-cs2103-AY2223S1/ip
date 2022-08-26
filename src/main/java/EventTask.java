@@ -1,26 +1,43 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class EventTask extends Task {
     private static final String TASK_TYPE = "E";
-    private final String duration;
-    EventTask(String taskName, String duration) throws EmptyTaskException, InvalidEventException {
-        super(taskName);
-        this.duration = duration;
+    private final LocalDateTime taskTime;
+    private final String dateFormat;
+    EventTask(String task, String duration, String dateFormat) throws EmptyTaskException, InvalidEventException {
+        super(task);
+        this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
-        if (this.duration.equals("")) {
-            throw new InvalidEventException();
+        try {
+            this.taskTime = LocalDateTime.parse(duration, DateTimeFormatter.ofPattern(dateFormat));
+        } catch (DateTimeParseException exception) {
+            throw new InvalidEventException(dateFormat);
         }
     }
 
-    EventTask(String taskName, String duration, boolean status ) throws EmptyTaskException, InvalidEventException {
+    EventTask(String taskName, String duration, boolean status, String dateFormat) throws EmptyTaskException, InvalidEventException {
         super(taskName, status);
-        this.duration = duration;
+        this.dateFormat = dateFormat;
         if (super.getTaskName().equals("")) {
             throw new EmptyTaskException();
         }
-        if (this.duration.equals("")) {
-            throw new InvalidEventException();
+        try {
+            this.taskTime = LocalDateTime.parse(duration, DateTimeFormatter.ofPattern(dateFormat));
+        } catch (DateTimeParseException exception) {
+            throw new InvalidEventException(dateFormat);
         }
+    }
+
+    public String getTaskTime() {
+        return (taskTime.getDayOfMonth() + " " +
+                taskTime.getMonth() + " " +
+                taskTime.getYear() + " | " +
+                taskTime.getHour() + ":" +
+                taskTime.getMinute());
     }
 
     @Override
@@ -30,11 +47,14 @@ public class EventTask extends Task {
 
     @Override
     public String getFormattedString() {
-        return TASK_TYPE + " | " + (getStatus() ? 1 : 0) + " | " + getTaskName() + " | " + this.duration + "\n";
+        return TASK_TYPE + " | " +
+                (getStatus() ? 1 : 0) + " | " +
+                getTaskName() + " | " +
+                this.taskTime + "\n";
     }
 
     @Override
     public String toString() {
-        return "[" + TASK_TYPE + "]" + super.toString() + " (at:" + duration + ")";
+        return "[" + TASK_TYPE + "]" + super.toString() + " (at:" + getTaskTime() + ")";
     }
 }

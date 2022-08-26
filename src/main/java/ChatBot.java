@@ -58,12 +58,12 @@ public class ChatBot {
                 case "deadline":
                     argumentScanner.useDelimiter(" /by ");
                     System.out.println(wrapMessage(taskManager.addTask(
-                            new DeadlineTask(argumentScanner.next(), argumentScanner.next()))));
+                            new DeadlineTask(argumentScanner.next(), argumentScanner.next(), taskManager.getDateFormat()))));
                     break;
                 case "event":
                     argumentScanner.useDelimiter(" /at ");
                     System.out.println(wrapMessage(taskManager.addTask(
-                            new EventTask(argumentScanner.next(), argumentScanner.next()))));
+                            new EventTask(argumentScanner.next(), argumentScanner.next(), taskManager.getDateFormat()))));
                     break;
                 case "mark":
                     System.out.println(wrapMessage(taskManager.mark(Integer.parseInt(arguments))));
@@ -85,11 +85,7 @@ public class ChatBot {
             System.out.println(wrapMessage("You need to put a number after your command!\n"));
         } catch (NoSuchElementException exception) {
             System.out.println(wrapMessage("You placed invalid arguments!\n"));
-        } catch (EmptyTaskException exception) {
-            System.out.println(wrapMessage(exception.toString()));
-        } catch (InvalidDeadlineException exception) {
-            System.out.println(wrapMessage(exception.toString()));
-        } catch (InvalidEventException exception) {
+        } catch (EmptyTaskException | InvalidDeadlineException | InvalidEventException exception) {
             System.out.println(wrapMessage(exception.toString()));
         } finally {
             inputScanner.close();

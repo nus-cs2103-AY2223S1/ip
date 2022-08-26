@@ -8,8 +8,13 @@ import java.util.Scanner;
 public class TaskManager {
     private static final String FILEPATH = "tasklist.txt";
     private final List<Task> taskList;
+    private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
     TaskManager() {
         this.taskList = new ArrayList<>();
+    }
+
+    public String getDateFormat() {
+        return DATE_FORMAT;
     }
 
     private Task processFormattedString(String formattedString) throws Exception {
@@ -22,9 +27,9 @@ public class TaskManager {
         case "T":
             return new ToDoTask(taskName, status);
         case "D":
-            return new DeadlineTask(taskName, arguments[6], status);
+            return new DeadlineTask(taskName, arguments[6], status, DATE_FORMAT);
         case "E":
-            return new EventTask(taskName, arguments[6], status);
+            return new EventTask(taskName, arguments[6], status, DATE_FORMAT);
         default:
             return new EmptyTask();
         }
