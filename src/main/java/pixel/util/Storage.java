@@ -10,68 +10,25 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.ArrayList;
 
-/**
- * Handles the storage functions
- * - Stores, modifies and deletes new tasks on external .txt file
- * - Deletes tasks from ArrayList of Tasks (in Pixel.java)
- * - (future) handles all operations on Arraylist of Tasks
- */
 public class Storage {
 
     private final String filePath;
 
-    /**
-     * Constructor for a new Storage object
-     *
-     * @param filePath absolute path of the file where the tasks will be saved
-     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
-    /**
-     * Finds if a tasks which description matches the query string exists
-     *
-     * @param userInput input from the user, starting with "find ..."
-     * @return an ArrayList containing all the matching tasks
-     * @throws IOException
-     */
-    public ArrayList<Task> findEntry(String userInput) throws IndexOutOfBoundsException {
-        ArrayList<Task> resultTasks = new ArrayList<>(100);
-        // truncate the front part
-        String queryString = userInput.substring(5).strip();
+   /* During the write operation, the characters are written to the internal buffer instead of the disk.
+   Once the buffer is filled or the writer is closed, the whole characters in the buffer are
+   written to the disk.
 
-        for (Task task : Pixel.inputTasks) {
-            if (task.getDescription().contains(queryString)) {
-                resultTasks.add(task);
-            }
-        }
-        return resultTasks;
-    }
+   Hence, the number of communication to the disk is reduced.
+   */
 
-    /* During the write operation, the characters are written to the internal buffer instead of the disk.
-    Once the buffer is filled or the writer is closed, the whole characters in the buffer are
-    written to the disk.
-
-    Hence, the number of communication to the disk is reduced.
-    */
-
-    /**
-     * Clears the output file
-     *
-     * @throws IOException
-     */
     public void resetFile() throws IOException {
         new FileWriter(this.filePath, false).close();
     }
 
-    /**
-     * Removes a task of a particular index of the list from the ArrayList
-     * and updates the external file
-     *
-     * @param userInput input from the user, starting with "delete ..."
-     * @throws IOException
-     */
     public void deleteEntry(String userInput) throws IOException {
 
         Task tempRecord;
@@ -111,12 +68,6 @@ public class Storage {
 
     }
 
-    /**
-     * Appends a new task to the external file
-     *
-     * @param task new task to be appended
-     * @throws IOException
-     */
     public void appendToFile(Task task) throws IOException {
         String textToAdd = task.formatTaskBeforeSave();
         Writer bufferedFileWriter = new BufferedWriter(new FileWriter(this.filePath, true)); // FileWriter(String fileName, boolean append)
