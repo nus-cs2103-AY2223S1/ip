@@ -35,6 +35,7 @@ public class Storage {
         try {
             File myObj = new File(this.filePath);
             if (myObj.createNewFile()) {
+                System.out.println("hello");
             } else {
                 //File already exists
             }
