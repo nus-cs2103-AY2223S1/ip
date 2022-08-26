@@ -1,12 +1,39 @@
 package dukechatbot.utility;
 import dukechatbot.dukeexception.DukeException;
+
+/**
+ *  The Parser class implements the class that will parse input commands passed to the Duke program.
+ *
+ * @author A0233290M
+ * @version Week4
+ */
 public class Parser {
+    /**
+     * Encapsulates the instance of TaskList that will be associated with this instance of the Parser.
+     */
     private TaskList tasks;
+    /**
+     * Encapsulates the instance of Ui that will be associated
+     */
     private Ui ui;
+
+    /**
+     * Constructs the instance of Parser with the Task instance and Ui instance associated with it.
+     *
+     * @param tasks the TaskList associated with the instance of Parser.
+     * @param ui the Ui associated with the instance of Parser.
+     */
     public Parser(TaskList tasks, Ui ui) {
         this.tasks = tasks;
         this.ui = ui;
     }
+
+    /**
+     * categorises the client's inputs to decide the method to be called by the program next in response to it.
+     *
+     * @param str The input passed into the method to be processed.
+     * @throws DukeException when the command input is unknown.
+     */
     public void categorise(String str) throws DukeException {
         String uncap = str.toLowerCase();
         if (uncap.startsWith("find")) {

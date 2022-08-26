@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"dukechatbot.duke"},{"l":"dukechatbot.dukeexception"},{"l":"dukechatbot.utility"}]
