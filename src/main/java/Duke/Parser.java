@@ -4,6 +4,7 @@ import Command.DeadlineCommand;
 import Command.DeleteCommand;
 import Command.EventCommand;
 import Command.ExitCommand;
+import Command.FindCommand;
 import Command.ListCommand;
 import Command.MarkCommand;
 import Command.TodoCommand;
@@ -62,6 +63,13 @@ public class Parser {
                 try {
                     String userAction = command[1];
                     nextCommand = new DeleteCommand(userAction);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    throw new DukeException("I'm sorry, but you need to provide a valid index");
+                }
+            } else if (userCommand.equals("find")) {
+                try {
+                    String userAction = command[1];
+                    nextCommand = new FindCommand(userAction);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     throw new DukeException("I'm sorry, but you need to provide a valid index");
                 }

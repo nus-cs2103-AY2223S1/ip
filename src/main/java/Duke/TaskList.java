@@ -36,17 +36,26 @@ public class TaskList {
         }
     }
 
+    public String find(String keyword) {
+        int counter = 1;
+        String list = "";
+        for (Task task : tasks) {
+            if (task.description.contains(keyword)) {
+                list = list + " " + counter + ": " + task.toString() + "\n";
+                counter += 1;
+            }
+        }
+        String findMessage = " Here are the matching tasks in your list:\n" + list;
+        return findMessage.trim();
+    }
+
     @Override
     public String toString() {
         String list = "";
         for (int i = 0; i < this.tasks.size(); i++) {
-            if (i == tasks.size() - 1) {
-                list = list + " " + (i + 1) + ": " + tasks.get(i).toString();
-                break;
-            }
             list = list + " " + (i + 1) + ": " + tasks.get(i).toString() + "\n";
         }
         String listMessage = " Here are the tasks in your list:\n" + list;
-        return listMessage;
+        return listMessage.trim();
     }
 }
