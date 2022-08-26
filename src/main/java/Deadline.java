@@ -10,4 +10,11 @@ public class Deadline extends Task {
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by + ")";
     }
+
+    @Override
+    public String toStorageString() {
+        String isDoneIndicator = super.isDone ? "1" : "0";
+
+        return "D," + isDoneIndicator + "," + description.trim() + "," + by.trim();
+    }
 }

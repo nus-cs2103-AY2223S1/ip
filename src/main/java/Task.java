@@ -26,4 +26,8 @@ public class Task {
         return "[" + getStatusIcon() + "]\t" + description;
     }
 
+    public String toStorageString() {
+        String isDoneIndicator = isDone ? "1" : "0";
+        return taskType.toUpperCase().charAt(0) + isDoneIndicator + "," + description;
+    }
 }

@@ -3,12 +3,12 @@ import java.util.Scanner;
 
 public class UwuBot {
     private static UwuChat chat = new UwuChat();
-
-    public static ArrayList<Task> userToDoArray = new ArrayList<Task>();
+//    private static Storage storedTaskList = new Storage();
 
     public static void main(String[] args) throws UwuException {
         Scanner scanner = new Scanner(System.in);
-        chat.greetingUsers();
+        Storage storedTaskList = new Storage();
+        chat.greetUsers();
 
         while(scanner.hasNextLine()) {
             String userCmd = scanner.nextLine();
@@ -17,7 +17,8 @@ public class UwuBot {
 
             try {
                 if (userCommand.equals("bye")) {
-                    chat.leavingChat();
+//                    storedTaskList.store(chat.userToDoArray);
+                    chat.leaveChat();
                     break;
                 } else if (userCommand.trim().equals("list")) {
                     chat.listTasks();
@@ -26,6 +27,12 @@ public class UwuBot {
                 } else if (userCommand.startsWith("todo") ||
                         userCommand.startsWith("deadline") ||
                         userCommand.startsWith("event")) {
+                    if (userCommand.replaceFirst("todo", "").isBlank() ||
+                            userCommand.replaceFirst("deadline", "").isBlank() ||
+                            userCommand.replaceFirst("event", "").isBlank()) {
+                        throw new EmptyInputException("No task given.");
+                    }
+
                     chat.addTask(userCommand);
                 } else if (userCommand.startsWith("delete")) {
                     chat.deleteTask(userCommand);
