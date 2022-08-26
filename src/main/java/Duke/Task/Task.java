@@ -7,12 +7,14 @@ package Duke.Task;
  */
 public abstract class Task {
 
+    /** The possible types of tasks provided by Duke */
     enum TaskType {
         TODO,
         DEADLINE,
         EVENT
     }
 
+    /** The tasktype of this task. */
     private TaskType type;
 
    /**
@@ -31,6 +33,7 @@ public abstract class Task {
         this.type = type;
     }
 
+    /** Constructor for a general task, specified by whether it has been marked */
     public Task(String description, TaskType type, boolean isMarked) {
         this.description = description;
         this.type = type;
@@ -39,6 +42,7 @@ public abstract class Task {
 
     /**
      * Marks the task as complete.
+     * 
      * @return Prompt on the result of the marking
      */
     public String markTask() {
@@ -48,6 +52,7 @@ public abstract class Task {
 
     /**
      * Unmarks the task as complete.
+     * 
      * @return Prompt on the result of the unmarking
      */
     public String unmarkTask() {
@@ -57,6 +62,7 @@ public abstract class Task {
 
     /**
      * A string representation of the task.
+     * 
      * @return String representation of the task
      */
     @Override
@@ -67,12 +73,19 @@ public abstract class Task {
     /**
      * Encodes the task for storage.
      * Format of the event is TASK_TYPE|IS_MARKED|DESCRIPTION.
+     * 
      * @return String encoding of the task.
      */
     public String encodeForStorage() {
         return String.format("%s|%s|%s", this.taskTypeString(), this.isMarked ? "Y" : "N", this.description);
     }
 
+    /**
+     * Encodes the task type by a single character. T represents Todo, 
+     * E represents Event, D respresents Deadline. 
+     * 
+     * @return The encoding for the task type.
+     */
     private String taskTypeString() {
         switch (this.type) {
         case TODO:
@@ -86,6 +99,12 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Compares this task to the given object. Returns true if both tasks are the
+     * same (i.e. having the task encoding).
+     * 
+     * @return True if both tasks are the same. False otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Task) {

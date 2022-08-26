@@ -5,11 +5,22 @@ import Duke.Ui;
 import Duke.FileStorage.Storage;
 import Duke.Task.Task;
 
+/**
+ * This class represents the unmark command that unmarks a task as
+ * completed.
+ */
 public class UnmarkCommand extends Command{
 
+    /** The id of the task to be marked. */
     private int taskID;
+
+    /** The unmarked task. */
     private Task unmarkedTask;
 
+    /** Constructs the mark command given the id of task to be marked.
+     * 
+     * @param taskID The id of the task to be marked.
+     */
     public UnmarkCommand(int taskID) {
         this.taskID = taskID;
     }

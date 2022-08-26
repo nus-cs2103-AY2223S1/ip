@@ -5,10 +5,19 @@ import Duke.Ui;
 import Duke.FileStorage.Storage;
 import Duke.Task.Task;
 
+/**
+ * This class represents the add command that inserts new tasks
+ * into the todo list.
+ */
 public class AddCommand extends Command{
 
+    /** The task to be inserted into todo list. */
     private Task task;
 
+    /** Constructs the task insertion command.
+     * 
+     * @param task The task to be inserted.
+     */
     public AddCommand(Task task) {
         this.task = task;
     }

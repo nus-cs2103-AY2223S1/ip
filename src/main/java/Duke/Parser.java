@@ -18,15 +18,31 @@ import Duke.Task.ToDoTask;
 
 public class Parser {
 
+    /** The datetime format for user input. */
     public static final DateTimeFormatter DATETIME_FORMATTER =
             DateTimeFormatter.ofPattern("d.M.yyyy HH:mm");
 
+    /** 
+     * The error string to be displayed when the date time format provided by the
+     * is wrong.
+     */
     private static final String INVALID_TIME_FORMAT_MSG = 
             "☹ OOPS!!! Please use the following format for time dd.mm.yyyy hh:mm";
 
+    /** 
+     * The error string to be displayed when the number format provided by the
+     * is wrong.
+     */
     private static final String INVALID_NUMBER_FORMAT_MSG = 
             "☹ OOPS!!! Please use the following format for time dd.mm.yyyy hh:mm";
 
+    /**
+     * Parse the user input into a command.
+     * 
+     * @param input The user input
+     * @return
+     * @throws InvalidCommandException
+     */
     public static Command parse(String input) throws InvalidCommandException {
         String errMsg = "";
         if (input.startsWith("bye")) {
@@ -89,8 +105,15 @@ public class Parser {
         }
     }
 
-
-
+    /**
+     * Checks that the string can be splitted and split it to fit the command.
+     * 
+     * @param input The user input line to be delimited.
+     * @param delimiter The delimiter used to delimit the command.
+     * @param errMsg The error message associated with the given command.
+     * @return The splitted string.
+     * @throws InvalidCommandException
+     */
     private static String[] splitWithFormat(String input, String delimiter, String errMsg) 
             throws InvalidCommandException {
         String[] processedInput = input.trim().split(delimiter, 2);
