@@ -1,5 +1,10 @@
 package duke.util;
 
+/**
+ * Class to represent parsed data.
+ * <code>ParsedData</code> can be used to store 3 seperate instance of
+ * information to be used by other classes.
+ */
 public class ParsedData {
     public final String command;
     public final String description;
@@ -25,6 +30,11 @@ public class ParsedData {
         this(command, description, "");
     }
 
+    /**
+     * Returns saved data as a string to be stored.
+     * 
+     * @return String
+     */
     public String getSavedString() {
         return String.format("%s%s%s%s%s", command, SEP, description, SEP, additionalInfo);
     }
