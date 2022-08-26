@@ -1,3 +1,8 @@
+package duke;
+
+import duke.DukeException;
+import duke.command.*;
+
 public class Parser {
     public static Command parse(String fullCommand) throws DukeException {
         String[] spacedArr = fullCommand.split(" ", 2);

@@ -1,3 +1,11 @@
+package duke;
+
+import duke.DukeException;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.task.ToDoTask;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -43,7 +51,7 @@ public class Storage {
                     task = new EventTask(sections[0], sections[1]);
                     break;
                 default:
-                    throw new DukeException("Unrecognised Task Type");
+                    throw new DukeException("Unrecognised duke.task.Task Type");
                 }
                 if (s.charAt(4) == 'X') task.mark(true);
                 data.add(task);

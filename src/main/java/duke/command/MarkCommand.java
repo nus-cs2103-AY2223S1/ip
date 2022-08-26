@@ -1,3 +1,8 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.TaskList;
+
 public class MarkCommand extends Command {
     private boolean bool;
     private int pos;

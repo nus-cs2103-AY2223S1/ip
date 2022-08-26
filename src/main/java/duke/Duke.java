@@ -1,3 +1,8 @@
+package duke;
+
+import duke.command.Command;
+import duke.command.ExitCommand;
+
 public class Duke {
     private Storage storage; 
     private TaskList tasks;
@@ -34,3 +39,5 @@ public class Duke {
         new Duke("././././data/duke.txt").run();
     }
 }
+
+// no access modifier: default, protected/private package? 

@@ -1,3 +1,8 @@
+package duke;
+
+import duke.TaskList;
+import duke.task.Task;
+
 import java.util.Scanner;
 
 public class UI {
@@ -23,7 +28,7 @@ public class UI {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?\n");
+        System.out.println("Hello! I'm duke.Duke\n" + "What can I do for you?\n");
     }
     
     public void addTask(Task task, int size) {

@@ -1,3 +1,12 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.TaskList;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
+import duke.task.Task;
+import duke.task.ToDoTask;
+
 import java.time.LocalDate;
 
 public class AddCommand extends Command {
