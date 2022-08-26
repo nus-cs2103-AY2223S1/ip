@@ -1,4 +1,4 @@
-package Qoobee;
+package qoobee;
 
 /**
  * Represents a base task.

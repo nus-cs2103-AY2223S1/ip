@@ -1,6 +1,4 @@
-package Qoobee;
-
-import java.util.Scanner;
+package qoobee;
 
 /**
  * Represents the ui the user interacts with.

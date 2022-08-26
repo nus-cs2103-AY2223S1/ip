@@ -1,6 +1,5 @@
-package Qoobee;
+package qoobee;
 
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**

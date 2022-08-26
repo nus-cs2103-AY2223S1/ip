@@ -1,4 +1,4 @@
-package Qoobee;
+package qoobee;
 
 /**
  * Represents a parser that executes commands based on user's input.

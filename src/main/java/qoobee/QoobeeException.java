@@ -1,4 +1,4 @@
-package Qoobee;
+package qoobee;
 
 /**
  * Represents an exception that would print an error given an invalid command.

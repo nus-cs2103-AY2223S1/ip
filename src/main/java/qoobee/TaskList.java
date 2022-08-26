@@ -1,6 +1,5 @@
-package Qoobee;
+package qoobee;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,8 +58,8 @@ public class TaskList {
      */
     public void addTask(Task task) throws QoobeeException {
         this.taskList.add(task);
-        System.out.println("Got it. I've added this task:\n" + task + "\n" +
-                "Now you have " + taskListSize() + " tasks in the list.");
+        System.out.println("Got it. I've added this task:\n" + task + "\n"
+                + "Now you have " + taskListSize() + " tasks in the list.");
         storage.save(taskList);
     }
 
@@ -72,10 +71,10 @@ public class TaskList {
     public void removeTask(int index) throws QoobeeException {
         try {
             Task task = taskList.remove(index);
-            System.out.println("Noted. I've removed this task:\n" + task + "\n" +
-                    "Now you have " + taskListSize() + " tasks in the list.");
+            System.out.println("Noted. I've removed this task:\n" + task + "\n"
+                    + "Now you have " + taskListSize() + " tasks in the list.");
             storage.save(taskList);
-        } catch (IndexOutOfBoundsException e){
+        } catch (IndexOutOfBoundsException e) {
             throw new QoobeeException("Please enter a right number!");
         }
     }

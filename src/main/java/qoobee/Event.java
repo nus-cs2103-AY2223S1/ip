@@ -1,4 +1,4 @@
-package Qoobee;
+package qoobee;
 
 /**
  * Represents an event with a description and date.
@@ -33,4 +33,5 @@ public class Event extends Task {
     public String toString() {
         return "[E]" + super.toString() + "(at:" + at + ")";
     }
+
 }
