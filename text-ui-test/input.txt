@@ -4,10 +4,17 @@ list
 mark 2
 mark 1
 unmark 1
-deadline kiss you /at Mon
-deadline kiss you /by Mon
+deadline kiss you /at 2022-09-15
+deadline kiss you /by 2022-09-15
 list
-event Kayak /by Today
-event kayak /at Sun
-list
+event kayak /by 2022-09-15
+event kayak /at 2022-09-15
+event audition /by 2022-10-14
+deadline ps1 /by 2022-09-15
+deadline internship application /by 2022-09-28
+event festival /at 2022-10-14
+list 2022-09-15
+list 2023-10-01
+mark 3
+
 bye

@@ -29,23 +29,46 @@ What can I possibly do for you?
 	Please your task lacks the necessary specifications
 
 	Lazily added this task for you <_>
-		[D][ ] kiss you (by: Mon)
+		[D][ ] kiss you (by: Sep 15 2022)
 	Wala now you have 2 tasks in the list.
 
 	Really? If you are so forgetful...
 	1. [T][ ] sleep
-	2. [D][ ] kiss you (by: Mon)
+	2. [D][ ] kiss you (by: Sep 15 2022)
 
 	Please your task lacks the necessary specifications
 
 	Lazily added this task for you <_>
-		[E][ ] kayak (at: Sun)
+		[E][ ] kayak (at: Sep 15 2022)
 	Wala now you have 3 tasks in the list.
 
+	Please your task lacks the necessary specifications
+
+	Lazily added this task for you <_>
+		[D][ ] ps1 (by: Sep 15 2022)
+	Wala now you have 4 tasks in the list.
+
+	Lazily added this task for you <_>
+		[D][ ] internship application (by: Sep 28 2022)
+	Wala now you have 5 tasks in the list.
+
+	Lazily added this task for you <_>
+		[E][ ] festival (at: Oct 14 2022)
+	Wala now you have 6 tasks in the list.
+
 	Really? If you are so forgetful...
-	1. [T][ ] sleep
-	2. [D][ ] kiss you (by: Mon)
-	3. [E][ ] kayak (at: Sun)
+	These are your tasks for that day
+	1. [D][ ] kiss you (by: Sep 15 2022)
+	2. [E][ ] kayak (at: Sep 15 2022)
+	3. [D][ ] ps1 (by: Sep 15 2022)
+
+	Really? If you are so forgetful...
+	Well you are a lazy bum, you have nothing on the day
+
+	Wellz, I've marked this task for YOU:
+		[E][X] kayak (at: Sep 15 2022)
+
+	Your command lacks the keyword for me to act upon
 
 	Bye. zzz FINALLY~~ <_>
 
