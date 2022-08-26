@@ -8,7 +8,19 @@ public class TaskList {
         this.list = new ArrayList<Task>();
     }
 
+    public TaskList(ArrayList<Task> list) {
+        this.list = list;
+    }
+
     public ArrayList<Task> listTasks() {
         return list;
+    }
+
+    public Task get(int i) {
+        return list.get(i);
+    }
+
+    public int size() {
+        return list.size();
     }
 }

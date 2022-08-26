@@ -40,6 +40,10 @@ public class Ui {
         System.out.println(dl.toString());
     }
 
+    public void loadingError() {
+        System.out.println("File failed to load!");
+    }
+
     public void printSummary(ArrayList<Task> list) {
         if (list.size()>1) {
             System.out.printf("Now you have %d tasks in your list.\n", list.size());

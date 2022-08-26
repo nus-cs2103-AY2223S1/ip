@@ -20,6 +20,10 @@ public class Event extends Task{
         this.date = date;
     }
 
+    public Event(Task task) {
+        super(task.name);
+    }
+
     public void dateProcess() {
         if(date.length() == 9) {
             date = "0" + date;
@@ -34,6 +38,11 @@ public class Event extends Task{
         String min = time.substring(2);
         LocalTime t1 = LocalTime.parse(hour + ":" + min);
         b = t1.format(DateTimeFormatter.ofPattern("hh:mm a"));
+    }
+
+    @Override
+    public String fileFormat() {
+        return "E" + super.fileFormat() + "|" + at + "|" + day + "|" + a + "|" + b;
     }
 
     @Override

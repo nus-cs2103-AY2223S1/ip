@@ -1,9 +1,7 @@
 package Duke;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 
 public class Deadline extends Task{
 
@@ -16,6 +14,10 @@ public class Deadline extends Task{
         super(name);
         this.date = date;
         this.time = time;
+    }
+
+    public Deadline(Task task) {
+        super(task.name);
     }
 
     public void dateProcess() {
@@ -32,6 +34,11 @@ public class Deadline extends Task{
         String min = time.substring(2);
         LocalTime t1 = LocalTime.parse(hour + ":" + min);
         b = t1.format(DateTimeFormatter.ofPattern("hh:mm a"));
+    }
+
+    @Override
+    public String fileFormat() {
+        return "D|" + super.fileFormat() + "|" + by + "|" + a + "|" + b;
     }
 
     @Override

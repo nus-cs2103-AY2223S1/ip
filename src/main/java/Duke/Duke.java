@@ -14,6 +14,12 @@ public class Duke {
         this.taskList = new TaskList();
         filePath = "/Users/yiye/Desktop/cs2103Projects/ip/duke.txt";
         storage = new Storage(filePath);
+        try {
+            taskList = new TaskList(storage.loadTasks());
+        } catch (DukeException e) {
+            ui.loadingError();
+            taskList = new TaskList();
+        }
     }
 
     public static void main(String[] args) {
@@ -22,7 +28,7 @@ public class Duke {
         duke.run(parser);
     }
 
-    public void run(Parser parser) {
+    public void run(Parser parser)  {
         ui.greet();
         parser.run();
         storage.writeTasks(taskList);
