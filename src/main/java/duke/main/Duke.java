@@ -1,14 +1,10 @@
 package duke.main;
 
-import java.util.ArrayList;
-
 import duke.command.Command;
 import duke.errors.DukeException;
-import duke.task.Task;
 import duke.task.TaskList;
 
 public class Duke {
-    public static ArrayList<Task> list = new ArrayList<>();
     public static final String FILEPATH = "data/duke.txt";
     private Storage storage;
     private TaskList tasks;

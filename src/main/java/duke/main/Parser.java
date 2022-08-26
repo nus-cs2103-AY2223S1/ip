@@ -17,7 +17,6 @@ import duke.command.UnmarkCommand;
 import duke.errors.DukeException;
 
 public class Parser {
-    // isexitcommand, islist, main logic goes here, validation can come here as well
     public static Command parse(String userReply) throws DukeException {
         String[] splitReply = userReply.split(" ");
         if (isExitCommand(userReply)) {
@@ -35,15 +34,14 @@ public class Parser {
             return new AddTodoCommand(description);
         } else if (isDeadlineCommand(splitReply)) {
             int by = validateBy(splitReply);
-            String description = validateDescription(splitReply,by);
-            // come up with conversion for time
-            LocalDateTime dateTime = validateDateTime(splitReply,by);
-            return new AddDeadlineCommand(description,dateTime);
+            String description = validateDescription(splitReply, by);
+            LocalDateTime dateTime = validateDateTime(splitReply, by);
+            return new AddDeadlineCommand(description, dateTime);
         } else if (isEventCommand(splitReply)) {
             int by = validateAt(splitReply);
-            String description = validateDescription(splitReply,by);
-            String duration = validateDuration(splitReply,by);
-            return new AddEventCommand(description,duration);
+            String description = validateDescription(splitReply, by);
+            String duration = validateDuration(splitReply, by);
+            return new AddEventCommand(description, duration);
         } else if (isDeleteCommand(splitReply)) {
             int index = validateIndex(userReply);
             return new DeleteCommand(index);
@@ -51,7 +49,6 @@ public class Parser {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
-    // is_Commands
     private static boolean isExitCommand(String userReply) {
         return userReply.equals("bye");
     }
@@ -84,7 +81,6 @@ public class Parser {
         return splitReply[0].equals("delete");
     }
 
-    //validation mtds
     private static int validateIndex(String userReply) throws DukeException {
         try {
             if (userReply.split(" ").length != 2) {
@@ -101,13 +97,12 @@ public class Parser {
         if (splitReply.length == 1) {
             throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
         }
-        String[] descriptionArray = Arrays.copyOfRange(splitReply,1, splitReply.length);
+        String[] descriptionArray = Arrays.copyOfRange(splitReply, 1, splitReply.length);
         String description = String.join(" ", descriptionArray);
         return description;
     }
 
     private static int validateBy(String[] splitReply) {
-        // add in checks in extra oop
         int by = -1;
         for (int i = 0; i < splitReply.length; i++) {
             if (splitReply[i].equals("/by")) {
@@ -119,7 +114,6 @@ public class Parser {
     }
 
     private static int validateAt(String[] splitReply) {
-        // add in checks for extra oop
         int by = -1;
         for (int i = 0; i < splitReply.length; i++) {
             if (splitReply[i].equals("/at")) {
@@ -131,13 +125,13 @@ public class Parser {
     }
 
     private static String validateDescription(String[] splitReply, int by) {
-        String[] descriptionArray = Arrays.copyOfRange(splitReply,1, by);
+        String[] descriptionArray = Arrays.copyOfRange(splitReply, 1, by);
         String description = String.join(" ", descriptionArray);
         return description;
     }
 
     private static String validateDuration(String[] splitReply, int by) {
-        String[] durationArray = Arrays.copyOfRange(splitReply, by + 1, splitReply.length );
+        String[] durationArray = Arrays.copyOfRange(splitReply, by + 1, splitReply.length);
         String duration = String.join(" ", durationArray);
         return duration;
     }

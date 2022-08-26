@@ -6,10 +6,7 @@ import duke.errors.DukeException;
 import duke.task.Task;
 import duke.task.TaskList;
 
-//deals with interactions with the user
 public class Ui {
-    // printmessage, print list, delete msg, add success,
-
     private Scanner sc;
 
     public void showWelcome() {

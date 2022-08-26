@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import duke.errors.DukeException;
 
 public class TaskList {
-//delete errors?, 1 indexed
     private ArrayList<Task> list;
 
     public TaskList() {
