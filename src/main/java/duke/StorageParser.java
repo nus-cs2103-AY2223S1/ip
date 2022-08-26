@@ -48,6 +48,8 @@ public abstract class StorageParser {
                 throw new DukeException("Unknown task");
             }
             return task;
+        } catch (NoSuchElementException e) {
+            throw new DukeException("Error reading storage file");
         }
     }
 

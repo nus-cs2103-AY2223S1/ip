@@ -31,6 +31,10 @@ public class StorageStub implements StorageInterface {
     }
 
     @Override
+    public void deleteLine(int lineIndex) throws DukeException {
+    }
+
+    @Override
     public void updateLine(int lineIndex, String updatedLine) throws DukeException {
     }
 

@@ -21,8 +21,9 @@ public class DeleteCommand extends IndexedCommand {
      */
     @Override
     public void execute() throws DukeException {
+        String emptyLine = "";
         Task task = Command.taskList.delete(super.index);
-        Command.storage.save(task);
+        Command.storage.updateLine(super.index, emptyLine);
         Command.ui.displayDeleteTaskMessage(task, Command.taskList.size());
     }
 }

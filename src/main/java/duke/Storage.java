@@ -70,6 +70,17 @@ public class Storage implements StorageInterface {
         }
     }
 
+    @Override
+    public void deleteLine(int lineIndex) throws DukeException {
+        try {
+            List<String> lines = Files.readAllLines(filePath, StandardCharsets.UTF_8);
+            lines.remove(lineIndex);
+            Files.write(filePath, lines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            throw new DukeException("Error occured when updating storage file!", e);
+        }
+    }
+
     private boolean isFileExist() {
         return Files.exists(filePath);
     }
