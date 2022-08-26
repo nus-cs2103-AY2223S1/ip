@@ -1,2 +1,3 @@
 T | 0 | read book
 T | 0 | lab1
+T | 0 | read novel

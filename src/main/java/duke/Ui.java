@@ -1,5 +1,6 @@
 package duke;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import duke.task.Task;
@@ -103,6 +104,22 @@ public class Ui {
     public void unmarkMessage(TaskList tasks, int index) {
         say("OK, I've marked this task as not done yet:", true, false);
         say(tasks.get(index).toString(), false, true);
+    }
+
+    /**
+     * Gives feedback to user when searching for a keyword in the list.
+     *
+     * @param result the tasks in the list containing the keyword
+     */
+    public void findMessage(ArrayList<Task> result) {
+        say("Here are the matching tasks in your list:", true, false);
+        for (int i = 0; i < result.size(); i++) {
+            if (i != result.size() - 1) {
+                say(i + 1 + ". " + result.get(i).toString(), false, false);
+            } else {
+                say(i + 1 + ". " + result.get(i).toString(), false, true);
+            }
+        }
     }
 
     /**
