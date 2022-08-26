@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private String filePath;
 
@@ -19,6 +22,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Loads tasks from the file.
+     *
+     * @return List of tasks.
+     * @throws DukeException  If there is an error during file parsing.
+     */
     ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
 
@@ -69,6 +78,12 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Saves tasks in the file.
+     *
+     * @param tasks list of tasks to be saved
+     * @throws DukeException  If there is an error.
+     */
     public void save(ArrayList<Task> tasks) throws DukeException {
         try {
             File file = new File(filePath);

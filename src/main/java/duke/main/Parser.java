@@ -6,7 +6,18 @@ import duke.exception.DukeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deals with making sense of the user command.
+ */
 public class Parser {
+
+    /**
+     * Parses user input into commands to be executed.
+     *
+     * @param input user input
+     * @return Command to be executed.
+     * @throws DukeException  If illegal input is entered.
+     */
     static Command parse(String input) throws DukeException {
         if (input.equals("bye")) {
             return new ExitCommand();
@@ -48,6 +59,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Identifies if the deadline entered is a date.
+     *
+     * @param input deadline entered by user
+     * @return true if the deadline entered is a date.
+     */
     private static boolean isDate(String input) {
         // Assume date is in the format 2/12/2019 1800
         String[] splitInput = input.split("/");
@@ -63,11 +80,22 @@ public class Parser {
         return true;
     }
 
-    private static LocalDateTime parseDate(String date) throws DukeException {
+    /**
+     * Parses date entered from string into LocalDateTime
+     *
+     * @param date date entered
+     */
+    private static LocalDateTime parseDate(String date) {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HHmm");
         return LocalDateTime.parse(date, dateFormatter);
     }
 
+    /**
+     * Checks whether the description is empty.
+     *
+     * @param todo description of todo
+     * @throws DukeException  If description is empty.
+     */
     public static void validateTodo(String todo) throws DukeException {
         if(todo.isEmpty()) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
@@ -80,12 +108,24 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks whether the index of task to be marked as done is in legal range.
+     *
+     * @param taskNum index of task to be marked as done
+     * @throws DukeException  If index is < 1.
+     */
     public static void validateMark(int taskNum) throws DukeException {
         if(taskNum < 1) {
             throw new DukeException("OOPS!!! The index of the task is not in the list.");
         }
     }
 
+    /**
+     * Checks whether the index of task to be deleted is in legal range.
+     *
+     * @param taskNum index of task to be deleted
+     * @throws DukeException  If index is < 1.
+     */
     public static void validateDelete(int taskNum) throws DukeException {
         if(taskNum < 1) {
             throw new DukeException("OOPS!!! The index of the task to delete is not in the list.");

@@ -5,6 +5,9 @@ import duke.task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Contains the task list and relevant operations on tasks.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
@@ -16,35 +19,72 @@ public class TaskList {
         this.tasks = tasks;
     }
 
+    /**
+     * Gets all the tasks from the list.
+     *
+     * @return all tasks in the list
+     */
     public ArrayList<Task> getAllTasks() {
         return tasks;
     }
 
-    public Task get(int zeroBasedIndex) {
-        return tasks.get(zeroBasedIndex);
+    /**
+     * Returns a specified task based on index.
+     *
+     * @param index index of the required task
+     * @return the required task
+     */
+    public Task get(int index) {
+        return tasks.get(index);
     }
 
-    public void markTaskAsDone(int zeroBasedIndex) {
-        tasks.get(zeroBasedIndex).markAsDone();
+    /**
+     * Marks a specified task based on index as done.
+     *
+     * @param index index of the task to be marked as done
+     */
+    public void markTaskAsDone(int index) {
+        tasks.get(index).markAsDone();
     }
 
-    public void markTaskAsUndone(int zeroBasedIndex) {
-        tasks.get(zeroBasedIndex).markAsUndone();
+    /**
+     * Marks a specified task based on index as undone.
+     *
+     * @param index index of the task to be marked as undone
+     */
+    public void markTaskAsUndone(int index) {
+        tasks.get(index).markAsUndone();
     }
 
+    /**
+     * Adds a task to the list.
+     *
+     * @param task task to be added to the list
+     */
     public void add(Task task) {
         tasks.add(task);
     }
 
-    public void delete(int zeroBasedIndex) throws DukeException {
-        if (zeroBasedIndex < 0 || zeroBasedIndex >= tasks.size()) {
-            throw new DukeException("\u2639 OOPS!!! The index to remove cannot be less than 0 or "
+    /**
+     * Deletes a task from the list.
+     *
+     * @param index index of task to be deleted
+     * @throws DukeException when the index is out of range
+     */
+    public void delete(int index) throws DukeException {
+        if (index < 0 || index >= tasks.size()) {
+            throw new DukeException("OOPS!!! The index to remove cannot be less than 0 or "
                     + "greater than the length of the list.");
         }
 
-        tasks.remove(zeroBasedIndex);
+        tasks.remove(index);
     }
 
+    /**
+     * Returns the number of tasks in the list
+     *
+     * @return the number of tasks in the list
+     */
     public int size() {
         return tasks.size();
     }
