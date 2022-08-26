@@ -1,5 +1,6 @@
 package DukeProgram;
 
+import DukeProgram.Facilities.TaskList;
 import DukeProgram.UI.UserInterface;
 import Exceptions.KeyNotFoundException;
 import DukeProgram.Storage.SaveManager;
@@ -27,6 +28,8 @@ public class Duke {
         } else {
             beginNewUser(userName);
         }
+
+        initialiseFacilities();
 
         UserInterface.advanceLocation("Home");
 
@@ -68,6 +71,10 @@ public class Duke {
         user = new User(userName);
 
         SaveManager.save("user", user);
+    }
+
+    private static void initialiseFacilities() {
+        TaskList.initialise();
     }
 
     public static User getUser() {

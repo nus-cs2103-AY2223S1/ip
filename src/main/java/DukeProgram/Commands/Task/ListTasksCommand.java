@@ -1,12 +1,11 @@
-package DukeProgram.Commands;
+package DukeProgram.Commands.Task;
 
+import DukeProgram.Commands.Command;
 import DukeProgram.DatedJob;
 import DukeProgram.Facilities.TaskList;
 import DukeProgram.Task;
+import DukeProgram.UiMessage;
 import Exceptions.InvalidCommandException;
-
-import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
@@ -43,14 +42,18 @@ public class ListTasksCommand extends Command {
     @Override
     public Command parse(String commandString) throws InvalidCommandException {
         switch (commandString) {
-        case "-date":
+        case "date":
             return new ListTasksByDateCommand();
 
-        case "-alphabet":
+        case "alphabet":
             return new ListTasksByAlphabetCommand();
 
         default:
-            throw new InvalidCommandException(this, commandString);
+            throw new InvalidCommandException(this, commandString,
+                    new UiMessage(
+                            String.format("Sorry! I don't know how to sort by %s", commandString)
+                    )
+            );
         }
     }
 
@@ -65,11 +68,6 @@ public class ListTasksCommand extends Command {
             );
             return true;
         }
-
-        @Override
-        public Command parse(String commandString) throws InvalidCommandException {
-            throw new InvalidCommandException(this, commandString);
-        }
     }
 
     private static class ListTasksByAlphabetCommand extends Command {
@@ -80,11 +78,6 @@ public class ListTasksCommand extends Command {
                     .sorted(Comparator.comparing(Task::getName))
             );
             return true;
-        }
-
-        @Override
-        public Command parse(String commandString) throws InvalidCommandException {
-            return null;
         }
     }
 }

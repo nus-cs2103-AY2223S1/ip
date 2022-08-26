@@ -1,10 +1,10 @@
-package DukeProgram.Commands.Annotations;
+package DukeProgram.Commands.Task.Annotations;
 
 import DukeProgram.Commands.Command;
 import DukeProgram.Facilities.TaskList;
 import DukeProgram.Task;
 import DukeProgram.UI.UserInterface;
-import DukeProgram.User;
+import DukeProgram.UiMessage;
 import Exceptions.InvalidCommandException;
 
 public abstract class AnnotateTaskCommand extends Command {
@@ -44,10 +44,5 @@ public abstract class AnnotateTaskCommand extends Command {
         }
 
         return true;
-    }
-
-    @Override
-    public Command parse(String commandString) throws InvalidCommandException {
-        throw new InvalidCommandException();
     }
 }

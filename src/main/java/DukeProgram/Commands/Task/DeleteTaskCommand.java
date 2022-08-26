@@ -1,5 +1,6 @@
-package DukeProgram.Commands;
+package DukeProgram.Commands.Task;
 
+import DukeProgram.Commands.Command;
 import DukeProgram.Facilities.TaskList;
 import DukeProgram.Task;
 import DukeProgram.UI.UserInterface;
@@ -33,10 +34,12 @@ public class DeleteTaskCommand extends Command {
                 UserInterface.printInStyle("Please only input \"yes\" or \" no\"");
             }
         } else {
+            TaskList currentTaskList = TaskList.current();
+
             try {
                 int index = Integer.parseInt(fullCommandParameters[1]) - 1;
                 Task task = TaskList.current().get(index);
-                TaskList.current().remove(index);
+                currentTaskList.remove(index);
 
                 UserInterface.printInStyle(
                         "Okay, I've removed this task as requested:",
@@ -46,14 +49,17 @@ public class DeleteTaskCommand extends Command {
                 UserInterface.printInStyle(
                         "I couldn't understand what you wanted to delete."
                 );
+            } catch (IndexOutOfBoundsException e) {
+                UserInterface.printInStyle("Sorry!",
+                        "You've specified a task number that's out of bounds!",
+                        currentTaskList.size() == 0 ? "You have no tasks in this list." :
+                                String.format(
+                                        "Please only choose numbers between 1 and %d",
+                                        currentTaskList.size())
+                );
             }
         }
 
         return true;
-    }
-
-    @Override
-    public Command parse(String commandString) throws InvalidCommandException {
-        return null;
     }
 }

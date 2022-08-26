@@ -3,6 +3,7 @@ package DukeProgram.Commands;
 import DukeProgram.Duke;
 import DukeProgram.Storage.SaveManager;
 import DukeProgram.UI.UserInterface;
+import DukeProgram.UiMessage;
 import Exceptions.InvalidCommandException;
 
 import java.util.Random;
@@ -10,7 +11,8 @@ import java.util.Random;
 public class FactoryResetCommand extends Command {
     @Override
     public Command parse(String commandString) throws InvalidCommandException {
-        throw new InvalidCommandException(this, commandString);
+        throw new InvalidCommandException(this, commandString,
+                new UiMessage("FactoryResetCommand accepts no other commands"));
     }
 
     @Override

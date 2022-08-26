@@ -17,10 +17,6 @@ public class Storage implements Serializable {
         dataObjectsInMemory.put(header, obj);
     }
 
-    public void delete(String header) {
-        dataObjectsInMemory.remove(header);
-    }
-
     public Serializable get(String header) throws KeyNotFoundException {
         if (!dataObjectsInMemory.containsKey(header)) {
             throw new KeyNotFoundException(header, "dataObjectsInMemory");

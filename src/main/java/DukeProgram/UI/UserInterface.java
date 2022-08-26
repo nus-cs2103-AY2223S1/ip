@@ -1,6 +1,7 @@
 package DukeProgram.UI;
 
 import DukeProgram.Commands.Command;
+import DukeProgram.Commands.HomepageCommand;
 import DukeProgram.Facilities.TaskList;
 import DukeProgram.Duke;
 import DukeProgram.Parser.Parser;
@@ -20,18 +21,19 @@ public class UserInterface {
     private static final List<String> location = new ArrayList<>();
 
     public static void requestCommands() {
-        boolean valid = true;
-        while (valid) {
+        boolean canContinue = true;
+        while (canContinue) {
             UserInterface.printCurrentLocation();
 
             try {
                 Command command = Parser.parse(
-                        askForInput("What would you like to do?")
+                        new HomepageCommand(),
+                        askForInput("[tasks | exit]")
                 );
 
-                valid = command.execute();
+                canContinue = command.execute();
             } catch (InvalidCommandException e) {
-                printInStyle("I didn't understand that command!");
+                printInStyle(e.getUiMessage().toString());
             }
         }
     }
@@ -46,6 +48,16 @@ public class UserInterface {
 
     public static void printCurrentLocation() {
         System.out.println("\t Location | " + String.join(" -> ", location));
+    }
+
+    /**
+     * Prints the given strings without any formatting, each on a new line
+     * @param stringsToPrint the strings to print
+     */
+    public static void print(String... stringsToPrint) {
+        for (String stringToPrint : stringsToPrint) {
+            System.out.println(stringToPrint);
+        }
     }
 
     /**

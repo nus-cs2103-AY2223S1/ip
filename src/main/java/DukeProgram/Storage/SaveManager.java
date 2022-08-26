@@ -16,6 +16,7 @@ public class SaveManager {
     );
 
     public static void save(String header, Serializable obj) {
+        System.out.println("SAVED " + header);
         dataInMemory.put(header, obj);
     }
 
@@ -24,19 +25,12 @@ public class SaveManager {
         return (T)dataInMemory.get(header);
     }
 
-    public static void delete(String header) {
-        dataInMemory.delete(header);
-    }
-
     public static void serialize(String fileName) throws IOException {
         FileOutputStream fileOutputStream;
         File saveFile = new File(PATH.toString(), fileName);
 
-        if (saveFile.getParentFile().mkdirs()) {
-            fileOutputStream = new FileOutputStream(saveFile);
-        } else {
-            fileOutputStream = new FileOutputStream(saveFile);
-        }
+        saveFile.getParentFile().mkdirs();
+        fileOutputStream = new FileOutputStream(saveFile);
 
         ObjectOutputStream objOutputStream = new ObjectOutputStream(
                 fileOutputStream
@@ -53,6 +47,7 @@ public class SaveManager {
             File file = new File(PATH.toString(), fileName);
 
             FileInputStream fileInputStream = new FileInputStream(file);
+            System.out.println(fileInputStream);
             ObjectInputStream objInputStream = new ObjectInputStream(
                     fileInputStream
             );

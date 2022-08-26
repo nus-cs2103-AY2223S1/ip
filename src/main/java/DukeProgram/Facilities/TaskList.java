@@ -2,24 +2,20 @@ package DukeProgram.Facilities;
 
 import DukeProgram.*;
 import DukeProgram.Storage.SaveManager;
-import Exceptions.InvalidJobException;
 import Exceptions.JobNameException;
-import Utilities.SerializedNamesFormatter;
-import Utilities.StringUtilities;
+import Exceptions.KeyNotFoundException;
 
 import java.io.Serializable;
+import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-
-import static DukeProgram.UI.UserInterface.*;
 
 public class TaskList implements List<Task>, Serializable {
-    private static final HashMap<String, TaskList> taskListsMapping = new HashMap<>();
+    private static HashMap<String, TaskList> taskListsMapping;
 
     private static TaskList current;
 
-    private final ArrayList<Task> checklist = new ArrayList<>(100);
+    private final ArrayList<Task> taskArrayList = new ArrayList<>(100);
     private String name;
 
     private TaskList(String name) {
@@ -28,20 +24,32 @@ public class TaskList implements List<Task>, Serializable {
         taskListsMapping.put(name, this);
     }
 
+    public static void initialise() {
+        if (taskListsMapping == null) {
+            try {
+                taskListsMapping = SaveManager.load("taskListsMapping");
+            } catch (KeyNotFoundException e) {
+                taskListsMapping = new HashMap<>();
+            }
+        } else {
+            System.out.println("TRIED TO INITIALISE TASKLIST WHEN IT ALREADY EXISTS");
+        }
+    }
+
     public static TaskList current() {
         return current;
     }
 
-    public static TaskList getTaskList(String name) {
+    public static TaskList getTaskList(String name) throws KeyNotFoundException {
+        if (!taskListsMapping.containsKey(name)) {
+            throw new KeyNotFoundException(name, "taskListMapping");
+        }
         return taskListsMapping.get(name);
     }
 
-    public static void changeTaskList(String name) {
+    public static void changeTaskList(String name) throws KeyNotFoundException{
         if (current != null) {
-            SaveManager.save(
-                    SerializedNamesFormatter.createTaskListName(current.name),
-                    current
-            );
+            SaveManager.save("taskListsMapping", taskListsMapping);
         }
 
         current = getTaskList(name);
@@ -52,11 +60,26 @@ public class TaskList implements List<Task>, Serializable {
         return taskListsMapping.size();
     }
 
+    public static String[] getAllTaskListNames() {
+        return taskListsMapping.keySet().toArray(new String[0]);
+    }
+
     public static TaskList addNewTaskList(String name) {
         TaskList taskList = new TaskList(name);
         taskListsMapping.put(taskList.name, taskList);
 
+        SaveManager.save("taskListsMapping", taskListsMapping);
+
         return taskList;
+    }
+
+    public static void removeTaskList(String name) throws KeyNotFoundException{
+        if (!taskListsMapping.containsKey(name)) {
+            throw new KeyNotFoundException(name, "taskListsMapping");
+        }
+
+        taskListsMapping.remove(name);
+        SaveManager.save("taskListsMapping", taskListsMapping);
     }
 
     public String getName() {
@@ -64,16 +87,11 @@ public class TaskList implements List<Task>, Serializable {
     }
 
     public void changeName(String newName) {
-        SaveManager.delete(SerializedNamesFormatter.createTaskListName(name));
-
         taskListsMapping.remove(name);
         this.name = newName;
         taskListsMapping.put(name, this);
 
-        SaveManager.save(
-                SerializedNamesFormatter.createTaskListName(name),
-                this
-        );
+        SaveManager.save("taskListsMapping", taskListsMapping);
     }
 
     /***
@@ -322,116 +340,116 @@ public class TaskList implements List<Task>, Serializable {
 
     @Override
     public int size() {
-        return checklist.size();
+        return taskArrayList.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return checklist.isEmpty();
+        return taskArrayList.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        return checklist.contains(o);
+        return taskArrayList.contains(o);
     }
 
     @Override
     public Iterator<Task> iterator() {
-        return checklist.iterator();
+        return taskArrayList.iterator();
     }
 
     @Override
     public Object[] toArray() {
-        return checklist.toArray();
+        return taskArrayList.toArray();
     }
 
     @Override
     public <T> T[] toArray(T[] a) {
-        return checklist.toArray(a);
+        return taskArrayList.toArray(a);
     }
 
     @Override
     public boolean add(Task task) {
-        return checklist.add(task);
+        return taskArrayList.add(task);
     }
 
     @Override
     public boolean remove(Object o) {
-        return checklist.remove(o);
+        return taskArrayList.remove(o);
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return checklist.containsAll(c);
+        return taskArrayList.containsAll(c);
     }
 
     @Override
     public boolean addAll(Collection<? extends Task> c) {
-        return checklist.addAll(c);
+        return taskArrayList.addAll(c);
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends Task> c) {
-        return checklist.addAll(index, c);
+        return taskArrayList.addAll(index, c);
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return checklist.removeAll(c);
+        return taskArrayList.removeAll(c);
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return checklist.retainAll(c);
+        return taskArrayList.retainAll(c);
     }
 
     @Override
     public void clear() {
-        checklist.clear();
+        taskArrayList.clear();
     }
 
     @Override
     public Task get(int index) {
-        return checklist.get(index);
+        return taskArrayList.get(index);
     }
 
     @Override
     public Task set(int index, Task element) {
-        return checklist.set(index, element);
+        return taskArrayList.set(index, element);
     }
 
     @Override
     public void add(int index, Task element) {
-        checklist.add(index, element);
+        taskArrayList.add(index, element);
     }
 
     @Override
     public Task remove(int index) {
-        return checklist.remove(index);
+        return taskArrayList.remove(index);
     }
 
     @Override
     public int indexOf(Object o) {
-        return checklist.indexOf(o);
+        return taskArrayList.indexOf(o);
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return checklist.lastIndexOf(o);
+        return taskArrayList.lastIndexOf(o);
     }
 
     @Override
     public ListIterator<Task> listIterator() {
-        return checklist.listIterator();
+        return taskArrayList.listIterator();
     }
 
     @Override
     public ListIterator<Task> listIterator(int index) {
-        return checklist.listIterator(index);
+        return taskArrayList.listIterator(index);
     }
 
     @Override
     public List<Task> subList(int fromIndex, int toIndex) {
-        return checklist.subList(fromIndex, toIndex);
+        return taskArrayList.subList(fromIndex, toIndex);
     }
 }

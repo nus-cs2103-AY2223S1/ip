@@ -1,12 +1,10 @@
-package DukeProgram.Commands;
+package DukeProgram.Commands.Task;
 
-import DukeProgram.Deadline;
-import DukeProgram.Event;
+import DukeProgram.*;
+import DukeProgram.Commands.Command;
 import DukeProgram.Facilities.TaskList;
-import DukeProgram.Task;
-import DukeProgram.ToDo;
+import DukeProgram.UI.UserInterface;
 import Exceptions.InvalidCommandException;
-import Exceptions.InvalidJobException;
 import Exceptions.JobNameException;
 import Utilities.StringUtilities;
 
@@ -28,6 +26,7 @@ public class AddTaskCommand extends Command {
         try {
             return parse().execute();
         } catch (InvalidCommandException ex) {
+            UserInterface.printInStyle(ex.getUiMessage().toString());
             return true;
         }
     }
@@ -38,8 +37,14 @@ public class AddTaskCommand extends Command {
 
     @Override
     public Command parse(String commandString) throws InvalidCommandException {
-        Task task;
-        String[][] nameAndDate;
+        if (fullCommandParameters.length < 2) {
+            throw new InvalidCommandException(
+                    new UiMessage(
+                            "Usage: add todo task_name\n"
+                                    + "\t\tExample: add todo mytask\n"
+                                    + "\t\tUsage: add [event | deadline] task_name /at date\n"
+                                    + "\t\tExample: add event myevent /at 22 Aug"));
+        }
 
         switch (fullCommandParameters[1]) {
         case "todo":
@@ -52,7 +57,12 @@ public class AddTaskCommand extends Command {
             return new CreateEventTask();
 
         default:
-            throw new InvalidCommandException();
+            throw new InvalidCommandException(
+                    new UiMessage(
+                            String.format("Hmm... %s does not seem to be a valid task type",
+                                    fullCommandParameters[1])
+                    )
+            );
         }
     }
 
@@ -78,7 +88,10 @@ public class AddTaskCommand extends Command {
         }
 
         @Override
-        public abstract Command parse(String commandString) throws InvalidCommandException;
+        public Command parse(String commandString) throws InvalidCommandException {
+            throw new InvalidCommandException(this, commandString,
+                    new UiMessage("I can't understand more commands from Create!"));
+        }
     }
 
     private class CreateToDoTask extends CreateTaskCommand {
@@ -94,11 +107,6 @@ public class AddTaskCommand extends Command {
                 printInStyle(ex.getMessage());
             }
             return true;
-        }
-
-        @Override
-        public Command parse(String commandString) throws InvalidCommandException {
-            throw new InvalidCommandException(this, commandString);
         }
     }
 
@@ -125,11 +133,6 @@ public class AddTaskCommand extends Command {
             }
             return true;
         }
-
-        @Override
-        public Command parse(String commandString) throws InvalidCommandException {
-            throw new InvalidCommandException(this, commandString);
-        }
     }
 
     private class CreateEventTask extends CreateTaskCommand {
@@ -151,11 +154,6 @@ public class AddTaskCommand extends Command {
                 printInStyle(ex.getMessage());
             }
             return true;
-        }
-
-        @Override
-        public Command parse(String commandString) throws InvalidCommandException {
-            throw new InvalidCommandException(this, commandString);
         }
     }
 }
