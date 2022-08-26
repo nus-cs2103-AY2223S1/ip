@@ -119,7 +119,6 @@ public class TaskList {
     public Task addTask(String description) {
         Task val = new Task(description);
         this.list.add(val);
-//                this.list[pointer] = new Task(description);
         pointer++;
         return val;
     }
@@ -132,7 +131,6 @@ public class TaskList {
     public Deadline addDeadline(String desc, String deadline) {
         Deadline val = new Deadline(desc, deadline);
         this.list.add(val);
-//                this.list[pointer] = new Deadline(desc, deadline);
         pointer++;
         return val;
     }
