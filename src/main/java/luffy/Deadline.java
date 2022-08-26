@@ -1,12 +1,15 @@
 package luffy;
 
-/** Deadline class to represent a deadline.
+/**
+ * Deadline class to represent a deadline.
+ *
  * @author Silas Tay A0233425M
  */
 public class Deadline extends Task{
 
     /**
      * Constructor for Deadline task.
+     *
      * @param description Description of Deadline
      * @param by Deadline for deadline task
      */
@@ -17,7 +20,8 @@ public class Deadline extends Task{
     }
 
     /**
-     * Returns String representation of Deadline
+     * Returns String representation of Deadline.
+     *
      * @return String representation of Deadline
      */
     @Override

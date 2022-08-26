@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * TaskList class to handle tasks.
+ *
  * @author Silas Tay (A0233425M)
  */
 public class TaskList {
@@ -19,6 +20,7 @@ public class TaskList {
 
     /**
      * Constructor for TaskList with content.
+     *
      * @param tasks Tasks to fill the TaskList with
      */
     public TaskList(ArrayList<Task> tasks) {
@@ -26,7 +28,8 @@ public class TaskList {
     }
 
     /**
-     * Gets Task at index of TaskList
+     * Gets Task at index of TaskList.
+     *
      * @param index Index of Task
      * @return Task at index
      */
@@ -36,6 +39,7 @@ public class TaskList {
 
     /**
      * Returns size of ArrayList.
+     *
      * @return Size of arrayList
      */
     public int getSize() {
@@ -44,6 +48,7 @@ public class TaskList {
 
     /**
      * Adds Task to TaskList.
+     *
      * @param task Task to add
      */
     public void add(Task task) {
@@ -54,6 +59,7 @@ public class TaskList {
 
     /**
      * Deletes Task at index.
+     *
      * @param index Index of Task to be deleted
      */
     public void delete(int index) {
@@ -65,6 +71,7 @@ public class TaskList {
 
     /**
      * Marks Task at index as completed.
+     *
      * @param index Index of Task to be marked completed
      */
     public void markCompleted(int index) {
@@ -75,6 +82,7 @@ public class TaskList {
 
     /**
      * Marks Task at index as uncompleted.
+     *
      * @param index Index of Task to be marked uncompleted
      */
     public void markUncompleted(int index) {
@@ -101,6 +109,7 @@ public class TaskList {
 
     /**
      * Returns String representation of TaskList.
+     *
      * @return String representation of TaskList
      */
     public String toString() {

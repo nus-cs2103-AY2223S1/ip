@@ -2,11 +2,13 @@ package luffy;
 
 /**
  * Event class to represent an event.
+ *
  * @author Silas Tay A0233425M
  */
 public class Event extends Task {
     /**
      * Constructor for Event task.
+     *
      * @param description Description of Event
      * @param at Time of Event
      */
@@ -18,6 +20,7 @@ public class Event extends Task {
 
     /**
      * Returns String representation of Event.
+     *
      * @return String representation of Event
      */
     @Override

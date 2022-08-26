@@ -2,6 +2,7 @@ package luffy;
 
 /**
  * Task abstract class to represent a task. Tasks consist of Deadlines, Events and Todos.
+ *
  * @author Silas Tay A0233425M
  */
 public abstract class Task {
@@ -13,6 +14,7 @@ public abstract class Task {
 
     /**
      * Abstract constructor for Task.
+     *
      * @param description Description for Task
      */
     public Task(String description) {
@@ -36,6 +38,7 @@ public abstract class Task {
 
     /**
      * Returns if the Task description contains Query String.
+     *
      * @param query Query String
      * @return If the Task contains query String
      */

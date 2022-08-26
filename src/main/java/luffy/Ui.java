@@ -2,6 +2,7 @@ package luffy;
 
 /**
  * Ui class to handle printing to console.
+ *
  * @author Silas Tay (A0233425M)
  */
 public class Ui {
@@ -37,6 +38,7 @@ public class Ui {
 
     /**
      * Prints given Error Message with prefix.
+     *
      * @param errorMessage Error message to print
      */
     public void printErrorMessage(String errorMessage) {
@@ -45,6 +47,7 @@ public class Ui {
 
     /**
      * Prints given message.
+     *
      * @param message Message to print
      */
     public void printMessage(String message) {
@@ -53,6 +56,7 @@ public class Ui {
 
     /**
      * Prints current size of TaskList.
+     *
      * @param tasks TaskList to be printed
      */
     public void printTaskListStatus(TaskList tasks) {

@@ -9,7 +9,9 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
-/** Luffy is a todolist program. Built for CS2103T Individual Project 2022 S1.
+/**
+ * Luffy is a todolist program. Built for CS2103T Individual Project 2022 S1.
+ *
  * @author Silas Tay A0233425M
  */
 public class Luffy {
@@ -21,6 +23,7 @@ public class Luffy {
 
     /**
      * Construtor for Luffy object.
+     *
      * @param filePath File path to data file
      */
     public Luffy(String filePath) {
@@ -56,6 +59,7 @@ public class Luffy {
 
     /**
      * Main method for Luffy.
+     *
      * @param args User commandline input
      */
     public static void main(String[] args) {

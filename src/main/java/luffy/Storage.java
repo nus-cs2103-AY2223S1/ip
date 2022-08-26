@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 
 /**
  * Storage class to handle save file.
+ *
  * @author Silas Tay (A0233425M)
  */
 public class Storage {
@@ -18,6 +19,7 @@ public class Storage {
 
     /**
      * Constructor for Storage class.
+     *
      * @param filePath File path of save file
      */
     public Storage(String filePath) {
@@ -27,6 +29,7 @@ public class Storage {
 
     /**
      * Loads data from save file if exists.
+     *
      * @return ArrayList of Tasks from save file
      * @throws DukeException When there is an error loading the file
      */
@@ -69,7 +72,8 @@ public class Storage {
     }
 
     /**
-     * Updates save file
+     * Updates save file.
+     *
      * @param tasks Tasklist
      * @param filePath File path to save file
      */

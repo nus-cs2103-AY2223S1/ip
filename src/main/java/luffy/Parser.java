@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 /**
  * Parser class to handle user inputs.
+ *
  * @author Silas Tay (A0233425M)
  */
 public class Parser {
@@ -20,6 +21,7 @@ public class Parser {
 
     /**
      * Parses through user inputs and takes action based on command.
+     *
      * @param s User input line
      * @param tasks Tasklist of Luffy instance
      */
