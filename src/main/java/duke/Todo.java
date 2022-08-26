@@ -1,6 +1,6 @@
 package duke;
 
-public class Todo extends Task {
+public class Todo extends Task{
 
     private String name;
     private String type;
@@ -14,17 +14,17 @@ public class Todo extends Task {
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
     public String getStatus() {
-        return status;
+        return this.status;
     }
 
     @Override
     public String getType() {
-        return type;
+        return this.type;
     }
 
     public void setStatus(String status) {
@@ -32,8 +32,8 @@ public class Todo extends Task {
     }
 
     public void print() {
-        System.out.println(Ui.ADD_TASK_HEADER + this.toString() + " Now you have " + Duke.count +
-                " tasks in the list." + "\n" + Duke.line + "\n");
+        System.out.println(Ui.ADD_TASK_HEADER + this.toString()
+                + " Now you have " + Duke.count + " tasks in the list." + "\n" + Duke.LINE + "\n");
     }
 
     public void list() {
@@ -43,6 +43,7 @@ public class Todo extends Task {
     public String description() {
         return this.getName();
     }
+
     public String toString() {
         return this.getType() + this.getStatus() + " " + this.getName() + "\n";
     }

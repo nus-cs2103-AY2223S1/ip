@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DeadlineTest {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-    LocalDateTime date = LocalDateTime.parse("12/12/2020 18:00",formatter);
+    LocalDateTime date = LocalDateTime.parse("12/12/2020 18:00", formatter);
     @Test
     public void toStringTest() {
         Deadline deadline = new Deadline("concert", date);

@@ -1,27 +1,27 @@
 package duke;
 
 import java.io.File;
-public class Duke {
-    public static final String line = "____________________________________________________________";
+public class Duke{
+
+    public static final String LINE = "____________________________________________________________";
     public static int count = 0;
     private Storage storage;
-    private TaskList tasks;
+    private TaskList tasklist;
     private Ui ui;
-
     private  Parser parser;
 
     public Duke() {
     };
 
     public Duke(String filePath) {
-        ui = new Ui();
-        storage = new Storage(filePath);
-        tasks = new TaskList();
-        parser = new Parser();
+        this.ui = new Ui();
+        this.storage = new Storage(filePath);
+        this.tasklist = new TaskList();
+        this.parser = new Parser();
     }
 
     public void run() {
-        storage.loads(new File("duke.txt"));
+        storage.load_task(new File("duke.txt"));
         parser.respond();
     }
 
