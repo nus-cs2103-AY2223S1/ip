@@ -4,7 +4,6 @@ package luffy;
  * @author Silas Tay A0233425M
  */
 public class Event extends Task {
-
     /**
      * Constructor for Event task.
      * @param description Description of Event
