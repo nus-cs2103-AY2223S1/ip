@@ -10,8 +10,8 @@ import java.util.List;
  */
 public class TaskList {
 
-    protected List<Task> tasks;
-    int count = 0;
+    private List<Task> tasks;
+    private int count = 0;
 
     /**
      * Constructs a new TaskList instance with no parameter.
