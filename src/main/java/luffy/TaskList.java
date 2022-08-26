@@ -84,6 +84,22 @@ public class TaskList {
     }
 
     /**
+     * Get Queried TaskList.
+     *
+     * @param query String Query
+     * @return Queried TaskList
+     */
+    public TaskList getQueriedTaskList(String query) {
+        ArrayList<Task> queriedTasks = new ArrayList<Task>();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).doesContain(query)) {
+                queriedTasks.add(tasks.get(i));
+            }
+        }
+        return new TaskList(queriedTasks);
+    }
+
+    /**
      * Returns String representation of TaskList.
      * @return String representation of TaskList
      */
