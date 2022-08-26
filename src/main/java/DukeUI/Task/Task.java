@@ -1,4 +1,4 @@
-package Duke.Task;
+package DukeUI.Task;
 /**
  * This is an abstract class representing the task that
  * the user wants to record. The task can be time sensitive

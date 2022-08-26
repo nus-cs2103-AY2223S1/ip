@@ -1,20 +1,20 @@
-package Duke;
+package DukeUI;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-import Duke.Command.AddCommand;
-import Duke.Command.Command;
-import Duke.Command.DelCommand;
-import Duke.Command.ExitCommand;
-import Duke.Command.InvalidCommandException;
-import Duke.Command.ListCommand;
-import Duke.Command.MarkCommand;
-import Duke.Command.UnmarkCommand;
-import Duke.Task.DeadlineTask;
-import Duke.Task.EventTask;
-import Duke.Task.ToDoTask;
+import DukeUI.Command.AddCommand;
+import DukeUI.Command.Command;
+import DukeUI.Command.DelCommand;
+import DukeUI.Command.ExitCommand;
+import DukeUI.Command.InvalidCommandException;
+import DukeUI.Command.ListCommand;
+import DukeUI.Command.MarkCommand;
+import DukeUI.Command.UnmarkCommand;
+import DukeUI.Task.DeadlineTask;
+import DukeUI.Task.EventTask;
+import DukeUI.Task.ToDoTask;
 
 public class Parser {
 

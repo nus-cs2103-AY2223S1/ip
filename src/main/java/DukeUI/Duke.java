@@ -1,9 +1,9 @@
-package Duke;
+package DukeUI;
 
-import Duke.Command.Command;
-import Duke.Command.InvalidCommandException;
-import Duke.FileStorage.InvalidStorageException;
-import Duke.FileStorage.Storage;
+import DukeUI.Command.Command;
+import DukeUI.Command.InvalidCommandException;
+import DukeUI.FileStorage.InvalidStorageException;
+import DukeUI.FileStorage.Storage;
 
 /**
  * This class represents the chatbot interface that allows

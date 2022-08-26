@@ -1,9 +1,9 @@
-package Duke.Command;
+package DukeUI.Command;
 
-import Duke.TaskList;
-import Duke.Ui;
-import Duke.FileStorage.Storage;
-import Duke.Task.Task;
+import DukeUI.TaskList;
+import DukeUI.Ui;
+import DukeUI.FileStorage.Storage;
+import DukeUI.Task.Task;
 
 public class MarkCommand extends Command{
 

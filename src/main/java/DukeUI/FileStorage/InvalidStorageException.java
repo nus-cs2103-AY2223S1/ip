@@ -1,4 +1,4 @@
-package Duke.FileStorage;
+package DukeUI.FileStorage;
 
 public class InvalidStorageException extends Exception{
     public InvalidStorageException(String errorMsg) {

@@ -1,4 +1,4 @@
-package Duke.Task;
+package DukeUI.Task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -23,7 +23,13 @@ public class EventTask extends Task{
      * @param endTime The end time for the event
      */
     public EventTask(String description, LocalDateTime startTime, LocalDateTime endTime) {
-        super(description);
+        super(description, TaskType.EVENT);
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public EventTask(String description, LocalDateTime startTime, LocalDateTime endTime, boolean isMarked) {
+        super(description, TaskType.EVENT, isMarked);
         this.startTime = startTime;
         this.endTime = endTime;
     }
