@@ -7,13 +7,26 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage deals with loading tasks from the file and saving tasks in the file.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructor for Storage
+     *
+     * @param filePath
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Saves the list of strings in taskList to the file.
+     *
+     * @param taskList List of string to be saved.
+     */
     public void saveList(ArrayList<String> taskList) {
         try {
             new File(this.filePath).getParentFile().mkdirs();
@@ -31,6 +44,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads an ArrayList of strings from a save file.
+     *
+     * @return ArrayList of strings in the save file, separated by line.
+     * @throws FileNotFoundException
+     */
     public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> taskList = new ArrayList<>();
         File f = new File(this.filePath);

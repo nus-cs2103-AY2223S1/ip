@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.LocalDate;
 
+/**
+ * Abstract class that is the parent class to all tasks.
+ */
 public abstract class Task {
 
     protected String description;
@@ -28,8 +31,18 @@ public abstract class Task {
         return "[" + getStatusIcon() + "] " + description;
     }
 
+    /**
+     * Converts the task into a string representation that can be saved into a file.
+     *
+     * @return String representation of the task.
+     */
     public abstract String save();
 
+    /**
+     * Converts a string representation of a task from a save file into a Task.
+     * @param task String representation of a task.
+     * @return The task.
+     */
     public static Task load(String task) {
         String[] split = task.split(" \\| ", 4);
         String taskType = split[0];
@@ -46,5 +59,10 @@ public abstract class Task {
         }
     }
 
+    /**
+     * Returns the time of the task, returning LocalDate.MIN if the task is a ToDo.
+     *
+     * @return Time of the task.
+     */
     public abstract LocalDate getTime();
 }
