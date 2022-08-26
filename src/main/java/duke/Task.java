@@ -45,7 +45,7 @@ public class Task {
      * @return if keyword is in description of task.
      */
     public boolean contains(String keyword) {
-        return this.toString().contains(keyword);
+        return this.name.contains(keyword);
     }
 
     /**

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class TaskList {
     private ArrayList<Task> tasks;
     private int count;
+    private static Ui ui = new Ui();
 
     /**
      * Constructor for new tasklist instance.
@@ -60,7 +61,7 @@ public class TaskList {
             try {
                 tasks.add(new Todo(str));
                 count++;
-                System.out.println(String.format("Got it. I've added this task:\n" +
+                ui.printMessage(String.format("Got it. I've added this task:\n" +
                                 "%s\n" +
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
@@ -68,7 +69,7 @@ public class TaskList {
 
             // missing name
             } catch (MissingDescriptionException err) {
-                System.out.println(err.toString());
+                ui.printMessage(err.toString());
             }
 
         // add new deadline task
@@ -79,22 +80,22 @@ public class TaskList {
                 LocalDate date = LocalDate.parse(input[1]);
                 tasks.add(new Deadline(name, date));
                 count++;
-                System.out.println(String.format("Got it. I've added this task:\n" +
+                ui.printMessage(String.format("Got it. I've added this task:\n" +
                                 "%s\n" +
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
                         count));
             // missing name
             } catch (MissingDescriptionException err) {
-                System.out.println("OOPS!!! The description of a deadline cannot be empty.");
+                ui.printMessage("OOPS!!! The description of a deadline cannot be empty.");
 
             // missing end date
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("OOPS!!! The end date of a deadline cannot be empty.");
+                ui.printMessage("OOPS!!! The end date of a deadline cannot be empty.");
 
             // date in wrong format
             } catch (DateTimeParseException e) {
-                System.out.println("input date in YYYY-MM-DD format!");
+                ui.printMessage("input date in YYYY-MM-DD format!");
             }
 
         // add new event task
@@ -110,7 +111,7 @@ public class TaskList {
                 LocalDateTime dateTime = LocalDateTime.of(dateParsed, timeParsed);
                 tasks.add(new Event(name, dateTime));
                 count++;
-                System.out.println(String.format("Got it. I've added this task:\n" +
+                ui.printMessage(String.format("Got it. I've added this task:\n" +
                                 "%s\n" +
                                 "Now you have %d tasks in the list.",
                         tasks.get(count - 1).toString(),
@@ -118,15 +119,15 @@ public class TaskList {
 
             // missing name
             } catch (MissingDescriptionException err) {
-                System.out.println("OOPS!!! The description of an event cannot be empty.");
+                ui.printMessage("OOPS!!! The description of an event cannot be empty.");
 
             // missing date or time
             } catch (ArrayIndexOutOfBoundsException e) {
-                System.out.println("OOPS!!! The time of an event cannot be empty.");
+                ui.printMessage("OOPS!!! The time of an event cannot be empty.");
 
             // date or time in wrong format
             } catch (DateTimeParseException e) {
-                System.out.println("Input date in YYYY-MM-DD and time in HH:MM format");
+                ui.printMessage("Input date in YYYY-MM-DD and time in HH:MM format");
             }
         }
     }
@@ -146,10 +147,10 @@ public class TaskList {
                             "Now you have %d tasks in the list.",
                     task.toString(),
                     count);
-            System.out.println(str);
+            ui.printMessage(str);
         // no task found
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("OOPS!!! No such task exists.");
+            ui.printMessage("OOPS!!! No such task exists.");
         }
     }
 
@@ -192,7 +193,7 @@ public class TaskList {
         }
         TaskList match = new TaskList(matches);
         String print = String.format("Here are the matching tasks in your list:\n%s", match.toString());
-        System.out.println(print);
+        ui.printMessage(print);
     }
 
     /**
