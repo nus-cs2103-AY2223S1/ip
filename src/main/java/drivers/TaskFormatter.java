@@ -30,14 +30,16 @@ public class TaskFormatter {
         String[] parsedInfo = task.split(DELIMITER);
         if (parsedInfo.length >= 3) {
             //correct amount of information.
-            this.taskType = parsedInfo[0];
-            this.statusIcon = parsedInfo[1];
-            this.description = parsedInfo[2];
+            taskType = parsedInfo[0];
+            statusIcon = parsedInfo[1];
+            description = parsedInfo[2];
         }
         if (parsedInfo.length == 4) {
-            this.timing = parsedInfo[3];
+            //Timing available. Remove T from toString of LocalDateTime class.
+            timing = parsedInfo[3].replace("T", "")
+                    .replace(":", "");
         } else {
-            this.timing = "";
+            timing = "";
         }
     }
 
@@ -63,7 +65,7 @@ public class TaskFormatter {
             markTask(todo);
             return todo;
         default:
-            throw new GeneralException("tasks.Task type is not found!");
+            throw new GeneralException("Task type is not found!");
         }
     }
 

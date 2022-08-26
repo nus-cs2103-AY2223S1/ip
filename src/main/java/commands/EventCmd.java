@@ -39,13 +39,14 @@ public class EventCmd extends Command {
             throw new DENoTimingException("at");
         } else {
             //Parse the string. Make sure there is no multiple "/at" statements.
-            String[] parse = body.replaceAll("\\s+", "").split("/at");
+            String[] parse = body.split("/at");
             if (parse.length > 2) {
                 throw new DETimingOverflowException();
             } else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank()) {
                 throw new DENoArgException();
             } else {
-                addTaskType(new Event(parse[0], parse[1]), tasks, ui);
+                addTaskType(new Event(parse[0].trim(),
+                        parse[1].replaceAll("\\s+", "")), tasks, ui);
             }
         }
 

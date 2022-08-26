@@ -39,13 +39,14 @@ public class DeadlineCmd extends Command {
             throw new DENoTimingException("by");
         } else {
             //Parse the string. Make sure there is no multiple "/by" statements.
-            String[] parse = body.replaceAll("\\s+", "").split("/by");
+            String[] parse = body.split("/by");
             if (parse.length > 2) {
                 throw new DETimingOverflowException();
             } else if (parse.length < 2 || parse[0].isBlank() || parse[1].isBlank()) {
                 throw new DENoArgException();
             } else {
-                addTaskType(new Deadline(parse[0], parse[1]), tasks, ui);
+                addTaskType(new Deadline(parse[0].trim(),
+                        parse[1].replaceAll("\\s+", "")), tasks, ui);
             }
         }
 

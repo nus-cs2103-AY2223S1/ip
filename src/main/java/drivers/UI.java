@@ -26,15 +26,6 @@ public class UI {
     }
 
     /**
-     * Says goodbye to the user.
-     * User exits the chat-bot.
-     */
-    public void goodbye() {
-        notifyUser("Goodbye, and have a nice day ahead!\n");
-        notifyUser("٩(ˊᗜˋ )و");
-    }
-
-    /**
      * Shows the line to the user indicating response from the program.
      */
     public void showLine() {
