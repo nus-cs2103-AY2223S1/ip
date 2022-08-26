@@ -26,7 +26,7 @@ public abstract class Task {
      *
      * @param description The description of the Task.
      */
-    public Task(String description) {
+    protected Task(String description) {
         this.description = description;
         this.isDone = false;
     }
@@ -66,6 +66,16 @@ public abstract class Task {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Returns True if the task description contains the query.
+     *
+     * @param query The string to test on the task description.
+     * @return True if the task description contains the query.
+     */
+    public boolean doesDescriptionContain(String query) {
+        return this.description.contains(query);
     }
 
     /**

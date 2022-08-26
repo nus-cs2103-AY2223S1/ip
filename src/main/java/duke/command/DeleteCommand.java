@@ -23,7 +23,7 @@ public class DeleteCommand extends Command {
     }
 
     /**
-     * Executes the "delete" command.
+     * Executes the delete command.
      *
      * @param taskList The taskList storing all tasks.
      * @param ui       The ui responsible for interactions with the user.
