@@ -27,7 +27,7 @@ public class MarkUnmarkCommands extends Command {
     }
 
     /**
-     * Executes the "mark"/"unmark" commands.
+     * Executes the mark"/"unmark commands.
      *
      * @param taskList The taskList storing all tasks.
      * @param ui       The ui responsible for interactions with the user.

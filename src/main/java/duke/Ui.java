@@ -3,6 +3,7 @@ package duke;
 import duke.exception.DukeException;
 import duke.task.Task;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Ui {
@@ -44,6 +45,30 @@ public class Ui {
                 System.out.println("\t" + i + ": " + this.taskList.get(i - 1));
             }
             printListCount();
+        }
+    }
+
+    /**
+     * Prints all the tasks from the given input list.
+     *
+     * @param lst The list of tasks to be printed.
+     */
+    public void printTasks(List lst) {
+        if (this.taskList.size() != 0) {
+            for (int i = 1; i <= lst.size(); i++) {
+                System.out.println("\t" + i + ": " + lst.get(i - 1));
+            }
+        }
+    }
+
+    /**
+     * Prints all the tasks in the task list.
+     */
+    public void printTasks() {
+        if (this.taskList.size() != 0) {
+            for (int i = 1; i <= this.taskList.size(); i++) {
+                System.out.println("\t" + i + ": " + this.taskList.get(i - 1));
+            }
         }
     }
 

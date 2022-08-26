@@ -1,5 +1,7 @@
 package duke.command;
 
+import duke.exception.UnknownCommandException;
+
 import java.util.Set;
 
 /**
@@ -9,7 +11,7 @@ public class Parser {
 
     /** Set to store all known commands. */
     private static final Set<String> commandList = Set.of("bye", "list", "mark", "unmark", "todo"
-            , "deadline", "event", "delete");
+            , "deadline", "event", "delete", "find");
 
     /**
      * Returns a command based on the input string.
@@ -30,9 +32,9 @@ public class Parser {
 
         switch (cmd) {
         case "bye":
-            return new OutputCommands(cmd, true);
+            return new ByeCommand();
         case "list":
-            return new OutputCommands(cmd, false);
+            return new ListCommand();
         case "todo":
             return new TodoCommand(postCmd);
         case "deadline":
@@ -44,6 +46,8 @@ public class Parser {
             return new MarkUnmarkCommands(cmd, postCmd);
         case "delete":
             return new DeleteCommand(postCmd);
+        case "find":
+            return new FindCommand(postCmd);
         }
 
         return null;

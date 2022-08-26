@@ -25,7 +25,7 @@ public class EventCommand extends Command {
     }
 
     /**
-     * Executes the "event" command.
+     * Executes the event command.
      *
      * @param taskList The taskList storing all tasks.
      * @param ui       The ui responsible for interactions with the user.

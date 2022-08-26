@@ -23,7 +23,7 @@ public class TodoCommand extends Command {
     }
 
     /**
-     * Executes the "todo" command.
+     * Executes the todo command.
      *
      * @param taskList The taskList storing all tasks.
      * @param ui       The ui responsible for interactions with the user.
