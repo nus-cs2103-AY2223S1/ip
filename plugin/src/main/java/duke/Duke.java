@@ -152,6 +152,10 @@ public class Duke extends Application {
         }
     }
 
+    /**
+     * launches programme through launcher
+     * @param args cli
+     */
     public static void main(String[] args) {
         Launcher.main(args);
     }
