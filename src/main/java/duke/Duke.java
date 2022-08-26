@@ -8,17 +8,8 @@ import duke.util.TaskList;
 import duke.util.Ui;
 
 /**
- *
- *
- *
- *
- * @param
- * @param
- * @param
- * @param
- * @param
- * @return
- * @throws
+ * The only public-facing class that interacts directly with the user.
+ * Duke is a personal time management virtual assistant, targeted at those who prefer using CLI instead of GUI.
  */
 public class Duke {
 
@@ -33,20 +24,29 @@ public class Duke {
     private final Storage storage;
     private final Parser parser;
 
-    Duke(String filePath) {
+    /**
+     * The constructor to instantiate a new Duke chatbot.
+     * @param filePath A relative file path that specifies where to save the list.
+     */
+    public Duke(String filePath) {
         this.taskList = new TaskList();
         this.ui = new Ui();
         this.storage = new Storage(filePath);
         this.parser = new Parser();
     }
 
+    /**
+     * Starts the main logic of the chatbot.
+     * It keeps listening to user input until an exit command.
+     *
+     */
     public void run() {
         greet();
         startListening();
     }
 
     private void greet() {
-        System.out.println(GREETING_MESSAGE);
+        ui.printOutput(GREETING_MESSAGE);
     }
 
     private void startListening() {

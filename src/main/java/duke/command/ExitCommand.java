@@ -13,7 +13,7 @@ public class ExitCommand extends Command {
     }
 
     @Override
-    public void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
+    protected void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
         ui.printOutput(EXIT_OUTPUT_STRING);
     }
 }

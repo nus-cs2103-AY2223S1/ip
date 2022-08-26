@@ -2,6 +2,9 @@ package duke.task;
 
 import java.time.format.DateTimeFormatter;
 
+/**
+ * An abstract class that represents a general task.
+ */
 public abstract class Task {
 
     protected static final String OUTPUT_DATE_TIME_FORMAT = "yyyy/MM/dd HH:mm:ss";
@@ -22,10 +25,16 @@ public abstract class Task {
         this.taskType = taskType;
     }
 
+    /**
+     * Changes the internal state to be done.
+     */
     public void markDone() {
         done = true;
     }
 
+    /**
+     * Changes the internal state to be undone.
+     */
     public void markUndone() {
         done = false;
     }
@@ -34,6 +43,11 @@ public abstract class Task {
         return "[" + (done ? "X" : " ") + "] " + "[" + label + "] " + displayedText;
     }
 
+    /**
+     * Returns a string representation for file saving.
+     *
+     * @return A string that is suitable to be saved as plain text.
+     */
     public abstract String getFileRepresentation();
 
     protected String getFileRepresentation(String label) {
@@ -50,6 +64,12 @@ public abstract class Task {
         return output;
     }
 
+    /**
+     * Indicates whether the task title contains a search keyword.
+     *
+     * @param keyword The keyword being looked up.
+     * @return True if the task title contains that keyword.
+     */
     public boolean contains(String keyword) {
         return taskTitle.contains(keyword);
     }

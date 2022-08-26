@@ -11,7 +11,7 @@ public class DisplayListCommand extends Command {
     }
 
     @Override
-    public void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
+    protected void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
         String output = taskList.getListInfo();
         ui.printOutput(output);
     }

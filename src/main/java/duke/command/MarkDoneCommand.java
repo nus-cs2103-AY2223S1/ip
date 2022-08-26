@@ -20,7 +20,7 @@ public class MarkDoneCommand extends Command {
     }
 
     @Override
-    public void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
+    protected void executeConcretely(Ui ui, TaskList taskList, Storage storage) {
         String output;
 
         try {

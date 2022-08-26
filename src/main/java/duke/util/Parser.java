@@ -13,17 +13,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
+/**
+ * A command parser that parses user commands. It returns the corresponding Command based on input string, employing a
+ * range of helper methods.
+ */
 public class Parser {
 
-    /**
-     * @param
-     * @param
-     * @param
-     * @param
-     * @param
-     * @return
-     * @throws
-     */
     private static final String INPUT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     private static final String DELIMITER = "/";
     private static final String BY_DATE_DELIMITER = "/by";
@@ -125,6 +120,10 @@ public class Parser {
 
     private final Map<String, Function<String, Command>> commandMap;
 
+    /**
+     * Initialises the commandMap that maps command instructions to their corresponding Command supplier/generator.
+     * The standard constructor.
+     */
     public Parser() {
         commandMap = new HashMap<>();
         commandMap.put(CommandType.ADD_DEADLINE.toString(), addDeadlineCommandSupplier);
@@ -138,6 +137,12 @@ public class Parser {
         commandMap.put(CommandType.MARK_UNDONE.toString(), markUndoneCommandSupplier);
     }
 
+    /**
+     * Transforms a command string to a real Command object, which can be subsequently executed.
+     *
+     * @param input The command string read by Ui.
+     * @return The corresponding Command object.
+     */
     public Command parse(String input) {
         String instruction = getCommandInstruction(input);
         String argument = getCommandArgument(input);
