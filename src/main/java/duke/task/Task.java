@@ -108,6 +108,16 @@ public abstract class Task {
     }
 
     /**
+     * Checks if the description of a task contains a specified keyword (or phrase).
+     *
+     * @param keyword The specified keyword (or phrase) to check.
+     * @return true if the task description contains the specified keyword (or phrase).
+     */
+    public boolean contains(String keyword) {
+        return description.contains(keyword);
+    }
+
+    /**
      * Checks if a Task occurs by/at a specific date.
      *
      * @param date The specified date to check.

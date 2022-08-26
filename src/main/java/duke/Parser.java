@@ -3,14 +3,7 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import duke.command.AddCommand;
-import duke.command.Command;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
-import duke.command.OnCommand;
-import duke.command.UnmarkCommand;
+import duke.command.*;
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Todo;
@@ -20,7 +13,7 @@ import duke.task.Todo;
  */
 public class Parser {
     private enum TempCommand {
-        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, ON
+        BYE, LIST, MARK, UNMARK, DELETE, TODO, DEADLINE, EVENT, ON, FIND
     }
 
     /**
@@ -121,6 +114,13 @@ public class Parser {
                     return new OnCommand(date);
                 } catch (DateTimeParseException e) {
                     throw new DukeException("Specify the date to check with yyyy-MM-dd.");
+                }
+
+            case FIND:
+                try {
+                    return new FindCommand(fullCommand.substring(5));
+                } catch (StringIndexOutOfBoundsException e) {
+                    throw new DukeException("Include the keyword you want to find.");
                 }
 
             default:

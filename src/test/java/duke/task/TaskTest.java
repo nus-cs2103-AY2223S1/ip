@@ -1,6 +1,8 @@
 package duke.task;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
@@ -74,5 +76,17 @@ public class TaskTest {
         } catch (DukeException e) {
             assertEquals("Invalid task data loaded.", e.getMessage());
         }
+    }
+
+    @Test
+    public void testContains_true() {
+        Task test = new Todo("success");
+        assertTrue(test.contains("success"));
+    }
+
+    @Test
+    public void testContains_false() {
+        Task test = new Todo("failure");
+        assertFalse(test.contains("success"));
     }
 }

@@ -42,6 +42,23 @@ public class TaskList {
     }
 
     /**
+     * Creates a new TaskList of every Task which description contains
+     * a specified keyword (or phrase).
+     *
+     * @param keyword The specified keyword (or phrase) within the descriptions of tasks.
+     * @return A new TaskList of every task which description contains a specified keyword (or phrase).
+     */
+    public TaskList allContaining(String keyword) {
+        ArrayList<Task> matchingList = new ArrayList<>();
+        for (Task task : tasks) {
+            if (task.contains(keyword)) {
+                matchingList.add(task);
+            }
+        }
+        return new TaskList(matchingList);
+    }
+
+    /**
      * Creates a new TaskList of every Task that occurs by/at a specified date in the
      * original TaskList.
      *
