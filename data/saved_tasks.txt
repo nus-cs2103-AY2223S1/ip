@@ -1,2 +1,3 @@
-[T][ ] task 1
-[D][ ] hw (by: 20 Oct 2345)
+[T][ ] queue
+[D][X] lab (by: Dec 2 2222)
+[E][ ] concert (at: Sep 19 2345)

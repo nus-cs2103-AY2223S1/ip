@@ -57,6 +57,7 @@ public class List {
                         if ((i > 0) && (list.get(i - 1) != null)) {
                             Task t = list.get(i - 1);
                             t.mark();
+                            System.out.println("Nice! I've marked this task as done:\n" + t);
                         } else {
                             throw new DukeException(INVALID_INDEX);
                         }
@@ -71,6 +72,7 @@ public class List {
                         if ((i > 0) && (list.get(i - 1) != null)) {
                             Task t = list.get(i - 1);
                             t.unmark();
+                            System.out.println("OK, I've marked this task as not done yet:\n" + t);
                         } else {
                             throw new DukeException(INVALID_INDEX);
                         }
@@ -89,7 +91,6 @@ public class List {
                     Deadline d = new Deadline(description, by);
                     temp.close();
                     List.add(d);
-                    sv.appendToFile(d.toString());
                 } else if (temp.hasNext("event")) {
                     temp.useDelimiter("event\\s*|\\s*/at\\s*");
                     if (!temp.hasNext()) {
@@ -103,7 +104,6 @@ public class List {
                     Event e = new Event(description, at);
                     temp.close();
                     List.add(e);
-                    sv.appendToFile(e.toString());
                 } else if (temp.hasNext("todo")) {
                     temp.useDelimiter("todo\\s*");
                     if (!temp.hasNext()) {
@@ -113,7 +113,6 @@ public class List {
                     Todo t = new Todo((description));
                     temp.close();
                     List.add(t);
-                    sv.appendToFile(t.toString());
                 } else if (temp.hasNext("delete")) {
                     temp.useDelimiter("delete\\s*");
                     if (!temp.hasNextInt()) {
@@ -130,6 +129,7 @@ public class List {
                 } else {
                     if (text.equals("bye")) {
                         System.out.println("Bye. Hope to see you again soon!");
+                        sv.writeToFile(list);
                         break;
                     } else if (text.equals("list")) {
                         List.printList();
@@ -160,7 +160,7 @@ public class List {
     /**
      * Adds the specified Task to the list.
      *
-     * @param t
+     * @param t Task to be inserted into the list.
      */
     public static void add(Task t) {
         list.add(t);

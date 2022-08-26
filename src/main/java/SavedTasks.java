@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.util.Scanner;
@@ -32,7 +33,10 @@ public class SavedTasks {
                 if (type.equals("D")) {
                     String ignore1 = temp.next();
                     String date = temp.next();
-                    Deadline d = new Deadline(description, date);
+                    DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
+                    DateTimeFormatter input = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String dateAlt = input.format(alt.parse(date));
+                    Deadline d = new Deadline(description, dateAlt);
                     if (isMarked(marked)) {
                         d.mark();
                     }
@@ -40,7 +44,11 @@ public class SavedTasks {
                 } else if (type.equals("E")) {
                     String ignore1 = temp.next();
                     String date = temp.next();
-                    Event e = new Event(description, date);
+                    DateTimeFormatter alt = DateTimeFormatter.ofPattern("MMM d yyyy");
+                    DateTimeFormatter input = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String dateAlt = input.format(alt.parse(date));
+                    Deadline d = new Deadline(description, dateAlt);
+                    Event e = new Event(description, dateAlt);
                     if (isMarked(marked)) {
                         e.mark();
                     }
@@ -61,23 +69,11 @@ public class SavedTasks {
     /**
      * Returns a boolean that represents if the Task is marked or not.
      *
-     * @param s
+     * @param s Input string to be tested.
      * @return Whether the task is marked
      */
     private boolean isMarked(String s) {
         return s.equals("X");
-    }
-
-    /**
-     * Appends the specified string to the file.
-     *
-     * @param text
-     * @throws IOException If something occurs during writing into the file
-     */
-    public void appendToFile(String text) throws IOException {
-        FileWriter fw = new FileWriter(SAVED_FILE_PATH, true);
-        fw.write(text + System.lineSeparator());
-        fw.close();
     }
 
     /**
@@ -87,5 +83,19 @@ public class SavedTasks {
      */
     public ArrayList<Task> getTasks() {
         return this.tasks;
+    }
+
+    /**
+     * Writes data from a list to the file.
+     *
+     * @param arr List that records each line to be written into the file.
+     * @throws IOException If something occurs during writing into the file.
+     */
+    public void writeToFile(ArrayList<Task> arr) throws IOException {
+        FileWriter fw = new FileWriter(SAVED_FILE_PATH);
+        for(int i = 0; i < arr.size(); i++) {
+            fw.write(arr.get(i).toString() + System.lineSeparator());
+        }
+        fw.close();
     }
 }
