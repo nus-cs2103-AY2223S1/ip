@@ -54,4 +54,8 @@ public class Task {
     public String saveTask() {
         return "";
     }
+
+    public boolean containKeyword(String keyword) {
+        return this.description.toLowerCase().contains(keyword.toLowerCase());
+    }
 }

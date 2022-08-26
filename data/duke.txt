@@ -1,3 +1,0 @@
-T , 1 , do this today! 
-T , 0 , do this by wednesday
-T , 0 , do this today

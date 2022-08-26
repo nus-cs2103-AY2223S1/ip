@@ -65,14 +65,21 @@ public class Parser {
                 } catch (InvalidCommandException e) {
                     Ui.printInvalidEventDescriptionError();
                 }
-            }  else if (inputs[0].equalsIgnoreCase("delete")) {
+            } else if (inputs[0].equalsIgnoreCase("delete")) {
                 try {
                     this.tasks.deleteItems(str);
                     this.storage.saveItems();
                 } catch (InvalidCommandException e) {
                     Ui.printInvalidMarkerError();
                 }
-            }  else {
+            } else if (inputs[0].equalsIgnoreCase("find")) {
+                try {
+                    this.tasks.findTasks(str);
+                } catch (InvalidCommandException e) {
+                    Ui.printNoFindKeywordError();
+                }
+
+            } else {
                 Ui.printInvalidCommands();
             }
             str = sc.nextLine();
