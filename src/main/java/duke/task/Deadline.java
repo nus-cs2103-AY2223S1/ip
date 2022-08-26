@@ -9,6 +9,13 @@ public class Deadline extends Task {
     }
 
     @Override
+    public String inputToTxt() {
+        return String.format("D | %s | %s | %s\n",
+                (this.isDone ? "1" : "0"),
+                this.taskName, this.deadline);
+    }
+
+    @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + deadline + ")";
     }
