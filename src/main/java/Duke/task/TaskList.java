@@ -6,20 +6,16 @@ import java.util.ArrayList;
  * @author Nam Minh Quan
  */
 public class TaskList {
-    private ArrayList<Task> tasks;
+    protected ArrayList<Task> tasks;
     protected int length;
 
-    TaskList(ArrayList<Task> taskList) {
+    public TaskList(ArrayList<Task> taskList) {
         this.tasks = taskList;
     }
     /** List out all tasks in the list
      */
-    public void listTasks() {
-        System.out.println("Here are the tasks in your list:\n");
-        for (Task task : tasks) {
-            int index = tasks.indexOf(task) + 1;
-            System.out.println(index + ". " + task.toString());
-        }
+    public ArrayList<Task> listTasks() {
+        return this.tasks;
     }
 
     public Task getTask(int index) {

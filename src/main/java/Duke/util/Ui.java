@@ -3,6 +3,8 @@ package Duke.util;
 import Duke.task.Task;
 import Duke.task.TaskList;
 
+import java.util.ArrayList;
+
 public class Ui {
     public void displayWelcome() {
         String logo = " ____        _        \n"
@@ -29,5 +31,13 @@ public class Ui {
     }
     public void respond(String response) {
        System.out.println(response);
+    }
+
+    public void listTasks(ArrayList<Task> tasks) {
+        System.out.println("Here are the tasks in your list:\n");
+        for (Task task : tasks) {
+            int index = tasks.indexOf(task) + 1;
+            System.out.println(index + ". " + task.toString());
+        }
     }
 }

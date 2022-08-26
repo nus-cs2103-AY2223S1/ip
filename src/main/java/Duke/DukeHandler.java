@@ -31,7 +31,8 @@ public class DukeHandler {
                 inputParts.add("");
             }
             if (input.equals("list")) {
-                tasks.listTasks();
+                ArrayList<Task> list = tasks.listTasks();
+                ui.listTasks(list);
             }
             else if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
                 if (inputParts.get(0).equals("mark")) {
