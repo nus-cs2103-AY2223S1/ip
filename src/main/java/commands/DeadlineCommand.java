@@ -4,8 +4,12 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import exceptions.DukeException;
+import exceptions.EmptyDateTimeException;
+import exceptions.EmptyDescriptionException;
+import exceptions.InvalidDateTimeException;
 import task.Deadline;
 import task.Task;
+import task.TaskType;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -22,12 +26,12 @@ public class DeadlineCommand extends Command {
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.inputStrings.length == 1) {
-            throw new DukeException("     ☹ OOPS!!! The description of a deadline cannot be empty.");
+            throw new EmptyDescriptionException(TaskType.D);
         }
 
         String[] deadlineStrings = inputStrings[1].split(" /by ", 2);
         if (deadlineStrings.length == 1 || deadlineStrings[1].equals("")) {
-            throw new DukeException("     ☹ OOPS!!! The date/time of a deadline cannot be empty.");
+            throw new EmptyDateTimeException(TaskType.D);
         }
         try {
             Deadline deadline = new Deadline(deadlineStrings[0], false,
@@ -36,8 +40,7 @@ public class DeadlineCommand extends Command {
 
             ui.showAddTask(deadline, tasks.size());
         } catch (DateTimeParseException exception) {
-            throw new DukeException("     ☹ OOPS!!! The datetime specified is invalid, it should have the format "
-                    + Task.DATE_TIME_INPUT_FORMAT);
+            throw new InvalidDateTimeException(Task.DATE_TIME_INPUT_FORMAT);
         }
     }
 

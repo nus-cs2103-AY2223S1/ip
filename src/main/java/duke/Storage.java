@@ -1,9 +1,11 @@
 package duke;
 
 import exceptions.DukeException;
+import exceptions.InvalidTaskException;
 import task.Deadline;
 import task.Event;
 import task.Task;
+import task.TaskType;
 import task.Todo;
 
 import java.io.File;
@@ -20,7 +22,7 @@ import java.util.Scanner;
 public class Storage {
     // Used in the encoding of task data
     public static final String DELIMITER = "|";
-    private final String filePath;
+    private final File file;
 
     /**
      * Constructs a storage to store / retrieve tasks from some file path
@@ -28,7 +30,7 @@ public class Storage {
      * @param filePath The specified path for the storage file.
      */
     public Storage(String filePath) {
-        this.filePath = filePath;
+        this.file = new File(filePath);
     }
 
     /**
@@ -37,7 +39,7 @@ public class Storage {
      * @param file The specified path to the file.
      * @throws DukeException when a subdirectory or the file is unable to be created.
      */
-    private static void createFileAndSubdirectories(File file) throws DukeException {
+    private static void createFileAndSubdirectoriesIfFileNotFound(File file) throws DukeException {
         File parent = file.getParentFile();
         if (parent != null && !parent.exists() && !parent.mkdirs()) {
             throw new DukeException("Unable to create storage file");
@@ -58,14 +60,14 @@ public class Storage {
         switch (taskValues[0]) {
         case "T": {
             if (taskValues.length != 3) {
-                throw new DukeException("     ☹ OOPS!!! Invalid format for todo.\n" + taskData);
+                throw new InvalidTaskException(TaskType.T, taskData);
             }
             decodedTask = new Todo(taskValues[2], taskValues[1].equals("1"));
             break;
         }
         case "D": {
             if (taskValues.length != 4) {
-                throw new DukeException("     ☹ OOPS!!! Invalid format for deadline.\n" + taskData);
+                throw new InvalidTaskException(TaskType.D, taskData);
             }
             decodedTask = new Deadline(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
                     Task.dateTimeParser));
@@ -73,7 +75,7 @@ public class Storage {
         }
         case "E": {
             if (taskValues.length != 4) {
-                throw new DukeException("     ☹ OOPS!!! Invalid format for event.\n" + taskData);
+                throw new InvalidTaskException(TaskType.E, taskData);
             }
             decodedTask = new Event(taskValues[2], taskValues[1].equals("1"), LocalDateTime.parse(taskValues[3],
                     Task.dateTimeParser));
@@ -86,12 +88,10 @@ public class Storage {
     public List<Task> load() throws DukeException {
         List<Task> loadedTasks = new ArrayList<>();
         try {
-            // Create storage file (and subdirectories) if they do not exist
-            File storageFile = new File(this.filePath);
-            createFileAndSubdirectories(storageFile);
+            createFileAndSubdirectoriesIfFileNotFound(this.file);
 
             // Read the existing data in the storage file into the current task list
-            Scanner scanner = new Scanner(storageFile);
+            Scanner scanner = new Scanner(this.file);
             while (scanner.hasNextLine()) {
                 String taskData = scanner.nextLine();
                 loadedTasks.add(decodeTask(taskData));
@@ -108,10 +108,9 @@ public class Storage {
      */
     public void saveTasks(TaskList taskList) {
         try {
-            File storageFile = new File(this.filePath);
-            createFileAndSubdirectories(storageFile);
+            createFileAndSubdirectoriesIfFileNotFound(this.file);
 
-            FileWriter fileWriter = new FileWriter(storageFile, false);
+            FileWriter fileWriter = new FileWriter(this.file, false);
             for (int i = 0; i < taskList.size(); i++) {
                 fileWriter.write(taskList.getTask(i).encode(DELIMITER) + "\n");
             }

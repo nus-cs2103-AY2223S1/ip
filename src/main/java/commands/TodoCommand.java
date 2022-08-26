@@ -4,6 +4,8 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import exceptions.DukeException;
+import exceptions.EmptyDescriptionException;
+import task.TaskType;
 import task.Todo;
 
 /**
@@ -18,7 +20,7 @@ public class TodoCommand extends Command {
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (inputStrings.length == 1) {
-            throw new DukeException("     ☹ OOPS!!! The description of a todo cannot be empty.");
+            throw new EmptyDescriptionException(TaskType.T);
         }
 
         Todo todo = new Todo(inputStrings[1], false);

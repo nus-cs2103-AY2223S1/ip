@@ -5,7 +5,7 @@ package exceptions;
  */
 public class DukeException extends Exception {
     /**
-     * Takes some errorString which will be printed to console if thrown
+     * Constructs an exception with a specified error message to be displayed
      *
      * @param errorString The specified error message to be displayed.
      */

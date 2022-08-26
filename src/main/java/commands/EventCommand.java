@@ -4,8 +4,12 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 import exceptions.DukeException;
+import exceptions.EmptyDateTimeException;
+import exceptions.EmptyDescriptionException;
+import exceptions.InvalidDateTimeException;
 import task.Event;
 import task.Task;
+import task.TaskType;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -22,11 +26,11 @@ public class EventCommand extends Command {
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.inputStrings.length == 1) {
-            throw new DukeException("     ☹ OOPS!!! The description of an event cannot be empty.");
+            throw new EmptyDescriptionException(TaskType.E);
         }
         String[] eventStrings = inputStrings[1].split(" /at ", 2);
         if (eventStrings.length == 1 || eventStrings[1].equals("")) {
-            throw new DukeException("     ☹ OOPS!!! The date/time of an event cannot be empty.");
+            throw new EmptyDateTimeException(TaskType.E);
         }
         try {
             Event event = new Event(eventStrings[0], false, LocalDateTime.parse(eventStrings[1],
@@ -36,8 +40,7 @@ public class EventCommand extends Command {
             ui.showAddTask(event, tasks.size());
         } catch (
                 DateTimeParseException exception) {
-            throw new DukeException("     ☹ OOPS!!! The datetime specified is invalid, it should have the format "
-                    + Task.DATE_TIME_INPUT_FORMAT);
+            throw new InvalidDateTimeException(Task.DATE_TIME_INPUT_FORMAT);
         }
     }
 
