@@ -10,4 +10,19 @@ public class Event extends Task{
     public String toString() {
         return "[E]" + super.toString() + " (by: " + this.dateAndTime + ")";
     }
+
+    private String[] splitIntoDateAndTime(String string) {
+        String[] token = string.split("", 2);
+        return token;
+    }
+
+    private String getDateFromInput(String input) {
+        String[] token = splitIntoDateAndTime(input);
+        return token[0];
+    }
+
+    private String getTimeFromInput(String input) {
+        String[] token = splitIntoDateAndTime(input);
+        return token[1];
+    }
 }
