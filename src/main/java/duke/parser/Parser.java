@@ -1,3 +1,15 @@
+package duke.parser;
+
+import duke.exception.DukeException;
+import duke.storage.Storage;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
+import duke.command.*;
+import duke.task.Deadline;
+import duke.task.DukeTask;
+import duke.task.Event;
+import duke.task.ToDo;
+
 public class Parser {
   private final TaskList itemList;
   private final Storage storage;
@@ -10,7 +22,7 @@ public class Parser {
   }
 
   /**
-   * Processes chat inputs using a switch statement, throwing a DukeException
+   * Processes chat inputs using a switch statement, throwing a duke.exception.DukeException
    * on incorrect inputs.
    * @param inputString String given to Apollo
    * @throws DukeException Indicates incorrect inputs
@@ -47,7 +59,7 @@ public class Parser {
   }
 
   /**
-   * Executes item addition commands, throwing a DukeException on incorrect
+   * Executes item addition commands, throwing a duke.exception.DukeException on incorrect
    * inputs.
    *
    * @param newItem Parsed item addition command

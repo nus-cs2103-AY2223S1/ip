@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * Encapsulates a task stored in Apollo.
  *
@@ -50,7 +52,7 @@ public abstract class DukeTask {
     return this.isDone;
   }
 
-  abstract String getStorageString();
+  public abstract String getStorageString();
 
   @Override
   public String toString() {

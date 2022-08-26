@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * Encapsulates a to-do task stored by Apollo.
  *

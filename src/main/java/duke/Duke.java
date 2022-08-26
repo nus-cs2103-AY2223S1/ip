@@ -1,6 +1,15 @@
+package duke;
+
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.parser.Parser;
+import duke.storage.Storage;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
+
 /**
  * Apollo is a chatbot that keeps tracks of various items, encapsulated
- * as a Duke instance.
+ * as a duke.Duke instance.
  *
  * @author Kartikeya
  */

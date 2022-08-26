@@ -1,3 +1,8 @@
+package duke.task;
+
+import duke.parser.DukeDateTimeFormatter;
+import duke.exception.DukeException;
+
 /**
  * Encapsulates a deadline task stored by Apollo.
  *
