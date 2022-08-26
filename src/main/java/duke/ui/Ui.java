@@ -1,3 +1,7 @@
+package duke.ui;
+
+import duke.tasklist.TaskList;
+
 public class Ui {
 
     private final static String WELCOME = "Hello! I'm Seaward,\n" +
