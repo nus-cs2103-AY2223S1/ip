@@ -3,8 +3,8 @@ package Duke.task;
 import Duke.DukeException;
 
 public class Todo extends Task {
-    public Todo(String description, boolean done) throws DukeException {
-           super(description, done);
+    public Todo(String description, boolean isDone) throws DukeException {
+           super(description, isDone);
            if (description.equals("")) {
                throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
            }

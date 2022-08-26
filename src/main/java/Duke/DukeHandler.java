@@ -1,6 +1,11 @@
 package Duke;
 
-import Duke.task.*;
+import Duke.task.Task;
+import Duke.task.Todo;
+import Duke.task.Deadline;
+import Duke.task.Event;
+import Duke.task.TaskList;
+import Duke.task.TaskStorage;
 
 import Duke.util.Ui;
 

@@ -6,8 +6,7 @@ import java.util.ArrayList;
  * @author Nam Minh Quan
  */
 public class TaskList {
-    protected ArrayList<Task> tasks;
-    protected int length;
+    private ArrayList<Task> tasks;
 
     public TaskList(ArrayList<Task> taskList) {
         this.tasks = taskList;

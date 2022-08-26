@@ -12,10 +12,10 @@ import Duke.util.DukeDate;
  */
 
 public class Deadline extends Task {
-    protected LocalDateTime deadline;
+    private LocalDateTime deadline;
 
-    public Deadline(String description, String deadline, boolean done) throws DukeException {
-        super(description, done);
+    public Deadline(String description, String deadline, boolean isDone) throws DukeException {
+        super(description, isDone);
         if (description.equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
         }

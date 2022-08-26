@@ -13,10 +13,10 @@ import Duke.util.DukeDate;
  */
 
 public class Event extends Task {
-    protected LocalDateTime time;
+    private LocalDateTime time;
 
-    public Event(String description, String time, boolean done) throws DukeException {
-        super(description, done);
+    public Event(String description, String time, boolean isDone) throws DukeException {
+        super(description, isDone);
         if (description.equals("")) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
         }

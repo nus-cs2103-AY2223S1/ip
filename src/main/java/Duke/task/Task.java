@@ -1,27 +1,27 @@
 package Duke.task;
 
 public abstract class Task {
-    protected String description;
-    protected boolean done;
+    private String description;
+    private boolean isDone;
 
     protected Task(String task, boolean done) {
         this.description = task;
-        this.done = done;
+        this.isDone = done;
     }
     public void mark() {
-        this.done = true;
+        this.isDone = true;
     }
     public void unmark() {
-        this.done = false;
+        this.isDone = false;
     }
     public String getDescription() {
         return this.description;
     }
     public String getDone() {
-        return ( done ? "1" : "0");
+        return ( isDone ? "1" : "0");
     }
     public String printDone() {
-        return (done ? "[X] " : "[ ] ");
+        return (isDone ? "[X] " : "[ ] ");
     }
     @Override
     public String toString() {
