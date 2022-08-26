@@ -27,6 +27,8 @@ public class DukeException extends Exception {
 
     /**
      * DukeException constructor with the specified error message
+     *
+     * @param message {@link String}
      */
     public DukeException(String message) {
         super(message);
@@ -44,6 +46,7 @@ public class DukeException extends Exception {
     /**
      * Returns a {@link DukeException} instance with INTEGER_INDEX_ERROR_MESSAGE.
      *
+     * @param command {@link String}
      * @return {@link DukeException}
      */
     public static DukeException integerIndexError(String command) {
@@ -53,6 +56,8 @@ public class DukeException extends Exception {
     /**
      * Returns a {@link DukeException} instance with TASK_INCORRECT_FORMAT_ERROR_MESSAGE.
      *
+     * @param separator {@link String}
+     * @param taskType {@link String}
      * @return {@link DukeException}
      */
     public static DukeException taskIncorrectFormatError(String separator, String taskType) {
@@ -62,6 +67,7 @@ public class DukeException extends Exception {
     /**
      * Returns a {@link DukeException} instance with COMMAND_NOT_RECOGNIZED_ERROR_MESSAGE.
      *
+     * @param command {@link String}
      * @return {@link DukeException}
      */
     public static DukeException commandNotRecognizedError(String command) {
@@ -80,6 +86,7 @@ public class DukeException extends Exception {
     /**
      * Returns a {@link DukeException} instance with INDEX_OUT_OF_BOUNDS_ERROR_MESSAGE.
      *
+     * @param size {@code int}
      * @return {@link DukeException}
      */
     public static DukeException indexOutOfBoundsError(int size) {
@@ -89,6 +96,7 @@ public class DukeException extends Exception {
     /**
      * Returns a {@link DukeException} instance with DATETIME_FORMAT_ERROR_MESSAGE.
      *
+     * @param datetimeString {@link String}
      * @return {@link DukeException}
      */
     public static DukeException datetimeFormatErrorMessage(String datetimeString) {
@@ -98,6 +106,7 @@ public class DukeException extends Exception {
     /**
      * Returns a {@link DukeException} instance with FILE_NOT_FOUND_ERROR_MESSAGE.
      *
+     * @param filePath {@link String}
      * @return {@link DukeException}
      */
     public static DukeException fileNotFoundError(String filePath) {
