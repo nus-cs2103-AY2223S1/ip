@@ -11,6 +11,7 @@ public class Ui {
     private static final String DELETE_MESSAGE = "Noted. I've removed this task:";
     private static final String DONE_MESSAGE = "Nice! I've marked this task as done:";
     private static final String UNDONE_MESSAGE = "OK, I've marked this task as not done yet:";
+    private static final String FIND_MESSAGE = "Here are the matching tasks in your list:";
     Scanner sc = new Scanner(System.in);
     protected void greetings() {
         System.out.println(LINE);
@@ -49,6 +50,18 @@ public class Ui {
     public void markUndone(Task task) {
         System.out.println(UNDONE_MESSAGE);
         System.out.println(task.toString());
+    }
+
+    /**
+     * Prints find task message
+     *
+     * @param tasks Task list
+     */
+    public void findTask(TaskList tasks) throws DukeException {
+        System.out.println(FIND_MESSAGE);
+        for (int i = 1; i <= tasks.size(); i++) {
+            System.out.println(i + ". " + tasks.get(i - 1).toString());
+        }
     }
     protected String readCommand() {
         return sc.nextLine();

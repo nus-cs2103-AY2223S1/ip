@@ -6,6 +6,7 @@ import duke.command.DeleteCommand;
 import duke.command.ListCommand;
 import duke.command.ExitCommand;
 import duke.command.MarkCommand;
+import duke.command.FindCommand;
 import duke.task.Deadline;
 import duke.task.Todo;
 import duke.task.Event;
@@ -23,6 +24,7 @@ public class Parser {
     private static final String DEADLINE_COMMAND = "deadline";
     private static final String EVENT_COMMAND = "event";
     private static final String DELETE_COMMAND = "delete";
+    private static final String FIND_COMMAND = "find";
 
     protected static Command parse(String response) throws DukeException {
         String[] cmd_descp = response.split(" ");
@@ -34,6 +36,12 @@ public class Parser {
             case LIST_COMMAND:
                 return new ListCommand();
             }
+        } else if (command.equals(FIND_COMMAND)) {
+            if (cmd_descp.length < 2) {
+                throw new DukeException("Keyword is missing");
+            }
+            String keyword = String.join(" ", Arrays.copyOfRange(cmd_descp, 1, cmd_descp.length));
+            return new FindCommand(keyword);
         } else if (command.equals(MARK_COMMAND) || command.equals(UNMARK_COMMAND) || command.equals(DELETE_COMMAND)) {
             if (cmd_descp.length < 2) {
                 throw new DukeException("Index is missing");
