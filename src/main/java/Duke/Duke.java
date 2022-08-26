@@ -3,7 +3,6 @@ package Duke;
 public class Duke {
 
     private Storage storage;
-    private TaskList taskList;
     private Ui ui;
     private Parser parser;
     private boolean isProcess;
