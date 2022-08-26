@@ -69,6 +69,15 @@ public class Duke {
                             createAndAddDeadline(words);
                         } else if (Parser.isAddEventTask(words)) {
                             createAndAddEvent(words);
+                        } else if (Parser.isFindTask(words)) {
+                            String keywords = Parser.joinString(words, 1);
+                            keywords = keywords.substring(0, keywords.length() - 1);
+                            System.out.println("Here are the matching tasks in your list:");
+                            for (Task task: TaskList.taskArrayList) {
+                                if (task.getDescription().contains(keywords)) {
+                                    System.out.println(task.toString());
+                                }
+                            }
                         }
                         else {
                             throw new DukeException("I'm sorry, I don't know what that means!");

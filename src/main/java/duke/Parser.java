@@ -74,6 +74,10 @@ public class Parser {
         return wordsArray[0].equals("event");
     }
 
+    public static boolean isFindTask(String[] wordsArray) {
+        return wordsArray[0].equals("find");
+    }
+
 
 
 }
