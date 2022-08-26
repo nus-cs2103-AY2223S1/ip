@@ -79,6 +79,22 @@ public class TaskList {
         return currentTask;
     }
 
+    /**
+     * Returns the task that matches the given keyword
+     * @param keyword
+     * @return
+     */
+    public String find(String keyword) {
+        String output = "";
+        for (Task task : tasks) {
+            if (task.contains(keyword)) {
+                output += task;
+                output += "\n";
+            }
+        }
+        return output;
+    }
+
     @Override
     public String toString() {
         String output = "";
