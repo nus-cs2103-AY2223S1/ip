@@ -18,7 +18,6 @@ public class Sally {
         try {
             readsFile();
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
         }
         sc = new Scanner(System.in);
         messaging();
@@ -28,9 +27,8 @@ public class Sally {
         String filePath = "D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt";
         File file = new File(filePath);
         Scanner sc = new Scanner(file);
-        int taskNum = 1;
 
-        while (sc.hasNext()) {
+        while(sc.hasNext()) {
             String input = sc.nextLine(); //scans the first input of file
             String[] arrOfInput = input.split("\\|");
 
@@ -48,7 +46,8 @@ public class Sally {
             boolean isDone = toIsDone(isDoneString);
 
             Task.makeTask(description, moreInfo, taskType, false);
-            Task task = list.get(taskNum - 1);
+            int maxLength = list.size();
+            Task task = list.get(maxLength - 1);
 
             if (isDone) {
                 task.markAsDone();
@@ -85,9 +84,6 @@ public class Sally {
     }
 
     public static void savesFile() throws IOException {
-//        printBorder();
-//        System.out.println("Saving file");
-//        printBorder();
         String filePath = "D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt";
         FileWriter writer = new FileWriter(filePath);
 
@@ -105,38 +101,28 @@ public class Sally {
             System.out.println("taskType = " + task.taskType);
             switch (task.taskType) {
                 case TODO:
-                    System.out.println("masuk TODO save file");
                     typeSymbol = "T";
                     newFile = newFile + (typeSymbol + separator + indexDone + separator + description + "\n");
                     break;
                 case DEADLINE:
-                    System.out.println("masuk DEADLINE save file");
                     typeSymbol = "D";
                     newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
                     break;
                 case EVENT:
-                    System.out.println("masuk EVENT save file");
                     typeSymbol = "E";
                     newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
                     break;
             }
 
-            writer.write((newFile));
-            writer.close();
         }
-
+        writer.write((newFile));
+        writer.close();
     }
 
     public static void messaging() {
         String message = sc.nextLine();
 
         if (message.equals("bye")) {
-//            try {
-//                savesFile();
-//            } catch (IOException e) {
-//                System.out.println("File Not Found");
-//            }
-
             printBorder();
             System.out.println("Until next time!");
             printBorder();
@@ -223,7 +209,6 @@ public class Sally {
                 }
             } else {
                 //ToDos
-                System.out.println("masuk bagian ToDos");
                 if (message.startsWith("todo")) {
                     if (message.length() > 4) {
                         String description = message.substring(5);
@@ -271,7 +256,7 @@ public class Sally {
         }
     }
 
-    private static String printList() {
+    protected static String printList() {
         String output = "";
         for (int i = 0; i < list.size(); i++) {
             int number = i + 1;

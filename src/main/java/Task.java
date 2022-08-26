@@ -14,7 +14,7 @@ public class Task {
     //Todo
     public Task(String description, boolean saveTask) {
         this.description = description;
-        this.saveTask = false;
+        this.saveTask = saveTask;
     }
 
     //Event and Deadline
@@ -90,10 +90,6 @@ public class Task {
     public void markAsUndone() {
         this.isDone = false;
     }
-
-//    public void updateMoreInfo(String moreInfo) {
-//        this.moreInfo = moreInfo;
-//    }
 
     @Override
     public String toString() {
