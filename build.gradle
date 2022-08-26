@@ -9,8 +9,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.5.0'
-    testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: '5.5.0'
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.5.0')
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-api:5.5.0')
 }
 
 test {
@@ -28,7 +28,8 @@ test {
 }
 
 application {
-    mainClassName = "duke.main.Duke"
+    //mainClassName = "duke.main.Duke"
+    getMainClass().set("duke.main.Duke")
 }
 
 shadowJar {
@@ -36,6 +37,6 @@ shadowJar {
     archiveClassifier = null
 }
 
-run{
+run {
     standardInput = System.in
 }
