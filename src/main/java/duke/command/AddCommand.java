@@ -1,9 +1,5 @@
 package duke.command;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Deadline;
@@ -12,6 +8,9 @@ import duke.task.Todo;
 import duke.ui.Ui;
 import duke.util.TaskList;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class AddCommand extends Command {
     private final ArrayList<String> words;
