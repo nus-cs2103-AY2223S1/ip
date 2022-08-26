@@ -1,3 +1,3 @@
 N|todo say hello
-N|event eat cookbook /at 2022-10-15 1500
+M|event eat cookbook /at 2022-10-15 1500
 N|deadline do task /by 2022-02-05 1900

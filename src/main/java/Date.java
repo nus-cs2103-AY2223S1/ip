@@ -37,15 +37,15 @@ public class Date {
 
         if (hours > 12) {
             hours -= 12;
-            timeOfDay = "p.m";
+            timeOfDay = "p.m.";
         } else if (hours == 12) {
-            timeOfDay = "a.m";
+            timeOfDay = "a.m.";
         }
 
         if (hours == 0) {
-            result += "12 ";
+            result += "12.";
         } else {
-            result += hours + " ";
+            result += hours + ".";
         }
 
         if (minutes == 0) {
