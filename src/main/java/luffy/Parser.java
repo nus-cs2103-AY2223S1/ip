@@ -87,6 +87,14 @@ public class Parser {
                 } catch (StringIndexOutOfBoundsException e) {
                     ui.printErrorMessage("Task index cannot be empty.");
                 }
+            }else if (s.length() >= 5 && s.substring(0, 4).equals("find")) {
+                try {
+                    String query = s.substring(5);
+                    ui.printMessage("Here are the matching tasks in your list:\n");
+                    ui.printMessage(tasks.getQueriedTaskList(query).toString());
+                } catch (StringIndexOutOfBoundsException e) {
+                    ui.printErrorMessage("Find query cannot be empty.");
+                }
             } else {
                 ui.printErrorMessage("I'm sorry, but I don't know what that means :-(");
             }

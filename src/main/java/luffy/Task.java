@@ -32,4 +32,13 @@ public abstract class Task {
     public void markUncompleted() {
         this.isDone = false;
     }
+
+    /**
+     * Returns if the Task description contains Query String.
+     * @param query Query String
+     * @return If the Task contains query String
+     */
+    public boolean doesContain(String query) {
+        return this.description.contains(query);
+    }
 }
