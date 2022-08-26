@@ -89,9 +89,10 @@ public class Storage {
                 return new EventTask(data[2], LocalDateTime.parse(data[3]), 
                         LocalDateTime.parse(data[4]), isMarked);
             default:
-                throw new InvalidFileContentException(String.format("    [Line] %s (unknown task type)\n", dataline));
+                throw new InvalidFileContentException(
+                        String.format("    [Line] %s (unknown task type)\n", dataline));
             }
-        } catch (DateTimeParseException e){
+        } catch (DateTimeParseException e) {
             throw new InvalidFileContentException(String.format("    [Line] %s (wrong time format)\n", dataline));
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new InvalidFileContentException(String.format("    [Line] %s (missing data)\n", dataline));
