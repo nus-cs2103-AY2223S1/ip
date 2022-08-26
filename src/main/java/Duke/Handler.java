@@ -53,6 +53,7 @@ public class Handler {
      *
      * @param echo description of todo.
      * @return String string returned from ui.printTask.
+     * @throws DukeEmptyDescriptionException thrown when description is empty.
      */
     public String handleToDo(String echo) throws DukeEmptyDescriptionException {
         if (echo.length() == 4) {
@@ -69,6 +70,7 @@ public class Handler {
      * @param echo description and due date of deadline.
      * @return String string returned from ui.printTask.
      * @throws DukeEmptyDescriptionException thrown when user does not input the timing required.
+     *
      */
     public String handleDeadline(String echo) throws DukeEmptyDescriptionException {
         if (echo.length() == 8) {
