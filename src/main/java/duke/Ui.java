@@ -21,7 +21,7 @@ public class Ui {
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println(logo + "Hello! I'm Yale\nWhat can I do for you?\n");
+        System.out.print(logo + "Hello! I'm Yale\nWhat can I do for you?\n");
     }
 
     public static void printGoodbyeMessage() {
