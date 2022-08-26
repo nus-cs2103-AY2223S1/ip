@@ -46,6 +46,7 @@ public class AddDeadlineCommand extends Command {
         } else {
             deadline = new Deadline(description, byDate);
         }
+
         tasks.add(deadline);
         ui.printMessage("\tGot it. I've added this task:\n\t" +
                 deadline.toString() +

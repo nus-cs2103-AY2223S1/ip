@@ -2,8 +2,8 @@ package duke.task;
 
 public class Todo extends Task {
 
-    public Todo(String descrition) {
-        super(descrition);
+    public Todo(String description) {
+        super(description);
     }
 
     public String getOutput() {
