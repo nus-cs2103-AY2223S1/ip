@@ -8,7 +8,6 @@ import duke.util.ParsedData;
 import duke.util.Parser;
 
 public class Deadline extends Task {
-    private static final String PREFIX = "by ";
     private static final String SPLIT = "/by ";
 
     private String deadline;

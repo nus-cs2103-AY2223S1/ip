@@ -8,7 +8,6 @@ import duke.util.ParsedData;
 import duke.util.Parser;
 
 public class Event extends Task {
-    private static final String PREFIX = "at ";
     private static final String SPLIT = "/at ";
 
     private String period;
