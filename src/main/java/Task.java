@@ -7,6 +7,11 @@ public abstract class Task {
         this.isDone = false;
     }
 
+    public Task(boolean isDone, String description) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
     public void markAsDone() {
         this.isDone = true;
     }
@@ -19,5 +24,10 @@ public abstract class Task {
     public String toString() {
         String checkBox = isDone ? "X" : " ";
         return "[" + checkBox + "] " + description;
+    }
+
+    public String toDbString() {
+        String binaryIsDone = isDone ? "1" : "0";
+        return binaryIsDone + " | " + description;
     }
 }
