@@ -2,6 +2,8 @@ package duke.task;
 
 import java.util.ArrayList;
 
+import java.util.List;
+import java.util.stream.Collectors;
 /**
  * A class that contains the task list
  */
@@ -44,6 +46,13 @@ public class TaskList {
         this.tasks.add(task);
     }
 
+    public TaskList filter(String keyword) {
+        List<Task> task = this.tasks.stream()
+                .filter(x -> x.description.contains(keyword))
+                .collect(Collectors.toList());
+
+        return new TaskList(new ArrayList<Task>(task));
+    }
     /**
      * This method converts tasks in the taskList to a String that can be later written into a file
      * @return tasks in String.

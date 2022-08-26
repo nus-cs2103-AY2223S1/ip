@@ -42,6 +42,20 @@ public class Parser {
 
         }
 
+        else if (input.equals("find")) {
+            StringBuilder description = new StringBuilder();
+            if (taskList.size() == 0) {
+                System.out.println("You have no task in your list.\n");
+            } else {
+                TaskList filteredTask = taskList.filter(command.split(" ")[1]);
+                System.out.println("Here are the matching tasks in your list:\n");
+                for (int j = 0; j < filteredTask.size(); j++) {
+                    System.out.println("" + String.valueOf(j + 1) + ". " + filteredTask.get(j));
+                }
+
+            }
+        }
+
         else if (input.equals("todo")) {
 
             StringBuilder description = new StringBuilder();
