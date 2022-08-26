@@ -65,6 +65,9 @@ public class Parser {
                 Integer.parseInt(argument);
                 break;
             }
+            default: {
+                break;
+            }
             }
         } catch (ArrayIndexOutOfBoundsException aioobe) {
             throw new DukeException("\tLooks like you're missing a timing / task name for this task...");

@@ -120,4 +120,31 @@ public class TaskList {
     public int size() {
         return this.tasks.size();
     }
+
+    /**
+     * Outputs list of tasks that contain the searchTerm string.
+     *
+     * @param searchTerm Term to be searched for.
+     */
+    public void searchTaskList(String searchTerm) {
+        if (this.tasks.size() == 0) {
+            System.out.println("\tLooks like you don't have any tasks for now!");
+            return;
+        }
+
+        int count = 1;
+        for (int i = 0; i < tasks.size(); i++) {
+            Task currTask = tasks.get(i);
+            if (currTask.toString().contains(searchTerm)) {
+                String output = String.format("\t%d. %s", count, currTask);
+                System.out.println(output);
+                count++;
+            }
+        }
+
+        // No tasks found
+        if (count == 1) {
+            System.out.println("\tI don't think we have that one..");
+        }
+    }
 }
