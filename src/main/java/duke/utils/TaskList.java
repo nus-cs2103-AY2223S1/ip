@@ -42,7 +42,6 @@ public class TaskList {
      * Prints the tasks in the task list.
      */
     public void read() {
-        System.out.println("Here are the tasks in your list:");
         for(int i = 0; i < size(); i++) {
             System.out.println(i + 1 + ". " + getTask(i));
         }

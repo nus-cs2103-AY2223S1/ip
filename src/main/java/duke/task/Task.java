@@ -20,6 +20,10 @@ public class Task {
         this.done = done;
     }
 
+    public String getDescription() {
+        return this.task;
+    }
+
     @Override
     public String toString() {
         return done ? "[X] " + task : "[ ] " + task;

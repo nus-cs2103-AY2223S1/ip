@@ -33,4 +33,12 @@ public class UI {
     public void showError(DukeException e) {
         System.out.println(e);
     }
+
+    public void showTasks() {
+        System.out.println("Here are the tasks in your list:");
+    }
+
+    public void showMatchingTasks() {
+        System.out.println("Here are the matching tasks in your list:");
+    }
 }
