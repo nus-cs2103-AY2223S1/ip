@@ -22,6 +22,11 @@ public class CommandParser {
     private static final Pattern COMMAND_PATTERN = Pattern.compile("^([a-zA-Z]+)(?: ([^/]*))?(?: /([a-zA-Z]+))?(?: (.*))?$");
     private final TaskList taskList;
 
+    /**
+     * Constructor specifying tasklist to parse commands into.
+     *
+     * @param tasks tasklist to store tasks in
+     */
     public CommandParser(TaskList tasks) {
         this.taskList = tasks;
     }
@@ -34,6 +39,11 @@ public class CommandParser {
         }
     }
 
+    /**
+     * Parses user commands.
+     *
+     * @param command command input by user
+     */
     public void handle(String command) {
         try {
             Matcher matcher = COMMAND_PATTERN.matcher(command);
