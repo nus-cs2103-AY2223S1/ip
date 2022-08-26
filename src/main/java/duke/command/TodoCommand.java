@@ -21,7 +21,6 @@ public class TodoCommand extends DataCommand {
 
     /**
      * Passes in the description of the todo task.
-     * 
      * @param d ParseData Description contain the task details.
      */
     public TodoCommand(ParsedData d) {
@@ -30,7 +29,6 @@ public class TodoCommand extends DataCommand {
 
     /**
      * Creates a todo task and add it to task list.
-     * 
      * @throws DukeException Thrown when the description is invalid
      * @throws IOException Thrown when data failed to save.
      */

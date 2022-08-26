@@ -51,7 +51,6 @@ public class Duke {
 
     /**
      * Creates a duke object using the sepecied filepath.
-     * 
      * @param filepath
      * @return Duke
      */
@@ -75,7 +74,6 @@ public class Duke {
 
     /**
      * Creates a Duke object with the default save path.
-     * 
      * @return Duke
      */
     public static Duke createApplication() {
@@ -106,7 +104,6 @@ public class Duke {
 
     /**
      * Runs the Duke Program
-     * 
      * @param args
      */
     public static void main(String[] args) {

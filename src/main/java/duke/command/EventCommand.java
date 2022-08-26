@@ -21,7 +21,6 @@ public class EventCommand extends DataCommand {
 
     /**
      * Creates a command that makes an Event when execute is called.
-     * 
      * @param d Parseddata containing parsed user input
      */
     public EventCommand(ParsedData d) {
@@ -30,7 +29,6 @@ public class EventCommand extends DataCommand {
 
     /**
      * Creates a new Event task and prints it to screen.
-     * 
      * @throws DukeException Thrown when input data is invalid
      * @throws IOException Thrown when data failed to be saved
      */

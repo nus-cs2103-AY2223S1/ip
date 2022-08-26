@@ -10,8 +10,15 @@ public abstract class DataCommand implements Command {
     protected ParsedData data;
 
     /**
+     * Constructor for DataCommmand.
+     * @param data ParsedData from the command input
+     */
+    DataCommand(ParsedData data) {
+        this.data = data;
+    }
+
+    /**
      * {@inheritDoc} Data commands usually always continue hence false.
-     * 
      * @return false
      */
     @Override
@@ -19,12 +26,4 @@ public abstract class DataCommand implements Command {
         return false;
     }
 
-    /**
-     * Constructor for DataCommmand.
-     * 
-     * @param data ParsedData from the command input
-     */
-    DataCommand(ParsedData data) {
-        this.data = data;
-    }
 }

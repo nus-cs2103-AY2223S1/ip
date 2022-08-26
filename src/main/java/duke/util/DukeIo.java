@@ -3,8 +3,10 @@ package duke.util;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Class to handle input/output of data
+ */
 public class DukeIo {
-    // class to handle input/output of data
     private static final String LINE = "   ____________________________________________________________";
     private static final String EMPTY_LIST = "The current list is empty!";
     private final Scanner scanner;
@@ -18,7 +20,6 @@ public class DukeIo {
 
     /**
      * Returns a line entered by the user as <code>String</code>.
-     * 
      * @return String
      */
     public String readLine() {
@@ -34,25 +35,25 @@ public class DukeIo {
 
     /**
      * Prints Text with selected features 0b01 -> with indent 0b10 -> with line wrapping
-     * 
      * @param txt
      * @param features
      */
     public void printTask(String txt, int features) {
         // 00 - no wrapper/indent
-        // 01 - indent
-        // 10 - wrapper
-        if ((features & 2) == 2)
+        // 10 - indent
+        // 01 - wrapper
+        if ((features & 2) == 2) {
             txt = addIndent(txt);
-        if ((features & 1) == 1)
+        }
+        if ((features & 1) == 1) {
             txt = addWrapper(txt);
+        }
 
         System.out.println(txt);
     }
 
     /**
      * Prints txt with indentation and line wrapper.
-     * 
      * @param txt
      */
     public void printTask(String txt) {
@@ -61,7 +62,6 @@ public class DukeIo {
 
     /**
      * Prints the content of the list to the screen numbered.
-     * 
      * @param list List to be printed
      */
     public <U> void printList(List<U> list) {
@@ -78,7 +78,6 @@ public class DukeIo {
 
     /**
      * Prints the content of an array to the screen as a list numbered.
-     * 
      * @param list Array to be printed
      */
     public <U> void printList(U[] list) {
@@ -95,7 +94,6 @@ public class DukeIo {
 
     /**
      * Prints the message of an exception
-     * 
      * @param e Exception to print
      */
     public void printError(Exception e) {
@@ -104,7 +102,6 @@ public class DukeIo {
 
     /**
      * Returns txt indented at every linebreak.
-     * 
      * @param txt Text to indent
      * @return String
      */
@@ -114,7 +111,6 @@ public class DukeIo {
 
     /**
      * Returns text wrapped between 2 lines.
-     * 
      * @param txt Text to wrapped between 2 lines
      * @return String
      */

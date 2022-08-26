@@ -13,14 +13,12 @@ import duke.util.TaskList;
 public interface Command {
     /**
      * Returns whether the program should exit after execution.
-     * 
      * @return
      */
     boolean isExit();
 
     /**
      * Runs a given command.
-     * 
      * @param tasks TaskList object used by the main loop
      * @param io DukeIo object used to handle IO
      * @param storage Storage used to interact with file system

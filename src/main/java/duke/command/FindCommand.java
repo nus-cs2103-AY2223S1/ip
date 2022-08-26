@@ -12,6 +12,9 @@ import duke.util.ParsedData;
 import duke.util.Storage;
 import duke.util.TaskList;
 
+/**
+ * Command that allows for search of data through out the list.
+ */
 public class FindCommand extends DataCommand {
 
     private static final String RED_TXT = "\u001B[31m$0\u001B[0m";
@@ -35,7 +38,8 @@ public class FindCommand extends DataCommand {
 
         io.printLine();
         io.printTask(FIND_TXT, 0);
-        String sBefore, sAfter;
+        String sBefore;
+        String sAfter;
         for (int i = 0; i < tasks.size(); i++) {
             sBefore = tasks.get(i).toString();
             sAfter = sBefore.replaceAll(searchString, RED_TXT);

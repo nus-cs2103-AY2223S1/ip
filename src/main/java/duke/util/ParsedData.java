@@ -5,18 +5,27 @@ package duke.util;
  * information to be used by other classes.
  */
 public class ParsedData {
+    private static final String SEP = " <<<< ";
+
     public final String command;
     public final String description;
     public final String additionalInfo;
 
-    private static final String SEP = " <<<< ";
-
+    /**
+     * Initiate ParseData with the parameters from the input.
+     * @param info1
+     * @param info2
+     * @param info3
+     */
     public ParsedData(String command, String description, String date) {
         this.command = command;
         this.description = description;
         this.additionalInfo = date;
     }
 
+    /**
+     * Initiate an empty ParsedData
+     */
     public ParsedData() {
         this("", "", "");
     }
@@ -31,7 +40,6 @@ public class ParsedData {
 
     /**
      * Returns saved data as a string to be stored.
-     * 
      * @return String
      */
     public String getSavedString() {

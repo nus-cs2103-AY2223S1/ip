@@ -21,7 +21,6 @@ public class DeleteCommand extends DataCommand {
 
     /**
      * Create an instance of Delete command.
-     * 
      * @param d ParsedData containing the index of the task to delete
      */
     public DeleteCommand(ParsedData d) {
@@ -30,7 +29,6 @@ public class DeleteCommand extends DataCommand {
 
     /**
      * {@inheritDoc} Removes the task given by the index (description of parsed data).
-     * 
      * @throws DukeException Thrown when invalid index is given
      * @throws IOException Thrown when saving to file failed
      */

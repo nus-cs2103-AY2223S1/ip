@@ -22,38 +22,38 @@ public class Event extends Task {
 
     /**
      * Creates an Event from ParsedData
-     * 
      * @param data ParsedData containing information for both
      * @return Event
      * @throws DukeException Throws when data given is invalid/insufficient
      */
     public static Event createEvent(ParsedData data) throws DukeException {
-        if (data.description.length() == 0)
+        if (data.description.length() == 0) {
             throw new EmptyDescriptionException("event");
+        }
 
-        if (data.additionalInfo.length() == 0)
+        if (data.additionalInfo.length() == 0) {
             throw new EmptyTimeException("event", SPLIT);
+        }
         return new Event(data.description, data.additionalInfo);
     }
 
     /**
      * Creates Deadline given the 2 seperate information.
-     * 
      * @param description Description of Task
      * @param period When/where its at
      * @return Event
      * @throws CorruptedLineException Throws when data given is invalid/insufficient
      */
     public static Event createEvent(String description, String period) throws CorruptedLineException {
-        if (description.length() == 0 || period.length() == 0)
+        if (description.length() == 0 || period.length() == 0) {
             throw new CorruptedLineException();
+        }
 
         return new Event(description, period);
     }
 
     /**
      * {@inheritDoc} Adds [E] tag to identify as event
-     * 
      * @return String
      */
     @Override
