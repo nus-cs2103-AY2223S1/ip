@@ -3,21 +3,45 @@ import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+/**
+ * Represents a list for all tasks similar to array lists.
+ */
 public class TaskList {
     public final ArrayList<Task> tasks = new ArrayList<>();
-    
+
+    /**
+     * Constructor for TaskList.
+     *
+     * @param tasks tasks varargs of tasks to be added to the list
+     */
     public TaskList(Task... tasks) {
         this.tasks.addAll(Arrays.asList(tasks));
     }
 
+    /**
+     * Obtain the number of items in the list.
+     *
+     * @return the length of the list of tasks.
+     */
     public int getLength() {
         return this.tasks.size();
     }
 
+    /**
+     * Obtain the task in the list at the specific index.
+     *
+     * @param taskIndex the index of the target task.
+     * @return the target task found at the specific index.
+     */
     public Task get(int taskIndex) {
         return this.tasks.get(taskIndex - 1);
     }
 
+    /**
+     * Adds a task to the task list via the addDescrpition method.
+     *
+     * @param input string command given by user.
+     */
     public void addTask(String input) {
         try {
             if (input.toLowerCase().startsWith("todo")) {
@@ -50,6 +74,11 @@ public class TaskList {
 
     }
 
+    /**
+     * Marks a task in the task list as completed.
+     *
+     * @param input string command given by user.
+     */
     public void markTask(String input) {
         try {
             if (input.split(" ").length != 2) {
@@ -65,6 +94,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Unmarks a task in the task list.
+     *
+     * @param input string command given by user.
+     */
     public void unmarkTask(String input) {
         try {
             if (input.split(" ").length != 2) {
@@ -80,6 +114,11 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes a task in task list.
+     *
+     * @param input string command given by user.
+     */
     public void deleteTask(String input) {
         try {
             if (input.split(" ").length != 2) {
