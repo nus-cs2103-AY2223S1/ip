@@ -28,7 +28,7 @@ public class Storage {
     public void appendToFile(String textToAppend, Ui ui) {
         try {
             FileWriter fw = new FileWriter(filePath, true);
-            fw.write(textToAppend);
+            fw.write(textToAppend + "\n");
             fw.close();
         } catch (IOException e) {
             ui.showError(e.getMessage());
@@ -85,12 +85,5 @@ public class Storage {
         }
         return task;
     }
-
-//    public String parseDate(String dateString) throws ParseException {
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd yyyy");
-//        Date date = dateFormat.parse(dateString);
-//        dateFormat.applyPattern("yyyy-MM-dd");
-//        return dateFormat.format(date);
-//    }
 
 }
