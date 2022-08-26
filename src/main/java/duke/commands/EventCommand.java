@@ -8,13 +8,27 @@ import duke.tools.Ui;
 
 import java.time.LocalDateTime;
 
+/**
+ * This class performs create an event task with specified description
+ * and date time command.
+ */
 public class EventCommand implements Command {
+    /** Event task to be added into TaskList */
     private Event event;
 
-    public EventCommand(String desc, LocalDateTime dateTime) {
-        this.event = new Event(desc, false, dateTime);
+    /**
+     * Constructor for class EventCommand.
+     *
+     * @param description Description of event.
+     * @param dateTime Date and time of event.
+     */
+    public EventCommand(String description, LocalDateTime dateTime) {
+        this.event = new Event(description, false, dateTime);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {

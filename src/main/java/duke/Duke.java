@@ -2,7 +2,6 @@ package duke;
 
 import duke.commands.Command;
 import duke.exceptions.DukeException;
-import duke.tasks.Task;
 import duke.tools.Parser;
 import duke.tools.Storage;
 import duke.tools.TaskList;
@@ -10,35 +9,64 @@ import duke.tools.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Duke is a bot that allows you to create a schedule, edit it, and memorises it.
+ */
 public class Duke {
 
+    /** Name of file where tasks are stored */
     private String fileName;
-
-    public Duke() {
-        this.fileName = "data.txt";
-    }
-
-    public Duke(String fileName) {
-        this.fileName = fileName;
-    }
+    /** Storage to be initialised */
+    private Storage storage;
+    /** TaskList to be initialised */
+    private TaskList taskList;
+    /** Ui to be initialised */
+    private Ui ui;
 
     public static void main(String[] args) {
         Duke duke = new Duke();
         duke.run();
     }
 
-    public void run() {
-        Storage storage = new Storage(this.fileName);
-        Ui ui = new Ui();
-        TaskList taskList;
+    /**
+     * Constructs Duke with a default file name.
+     */
+    public Duke() {
+        fileName = "data.txt";
+        storage = new Storage(fileName);
+        ui = new Ui();
 
         try {
             taskList = storage.loadFromFile();
         } catch (DukeException e) {
-            taskList = new TaskList(new ArrayList<Task>());
             ui.printException(e);
+            taskList = new TaskList(new ArrayList<>());
         }
 
+    }
+
+    /**
+     * Constructs Duke with a specified file name.
+     *
+     * @param fileName Specified name of file.
+     */
+    public Duke(String fileName) {
+        this.fileName = fileName;
+        storage = new Storage(fileName);
+        ui = new Ui();
+
+        try {
+            taskList = storage.loadFromFile();
+        } catch (DukeException e) {
+            ui.printException(e);
+            taskList = new TaskList(new ArrayList<>());
+        }
+    }
+
+    /**
+     * Initiate Duke program.
+     */
+    public void run() {
         ui.printGreeting();
 
         while (ui.canContinue()) {

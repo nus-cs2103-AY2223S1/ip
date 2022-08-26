@@ -8,14 +8,27 @@ import duke.tools.Ui;
 
 import java.time.LocalDate;
 
+/**
+ * This class performs create a deadline task with specified description
+ * and date command.
+ */
 public class DeadlineCommand implements Command {
-
+    /** Deadline task to be added into TaskList */
     private Deadline deadline;
 
-    public DeadlineCommand(String desc, LocalDate date) {
-        this.deadline = new Deadline(desc, false, date);
+    /**
+     * Constructor for class DeadlineCommand.
+     *
+     * @param description Description of deadline.
+     * @param date Due date of deadline.
+     */
+    public DeadlineCommand(String description, LocalDate date) {
+        this.deadline = new Deadline(description, false, date);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {

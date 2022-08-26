@@ -6,7 +6,13 @@ import duke.tools.Storage;
 import duke.tools.TaskList;
 import duke.tools.Ui;
 
+/**
+ * This class performs termination command.
+ */
 public class ByeCommand implements Command {
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute (TaskList tasks, Ui ui, Storage storage) {
         try {

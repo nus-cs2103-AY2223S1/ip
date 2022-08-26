@@ -1,10 +1,13 @@
 package duke.tasks;
 
+/**
+ * Represents a todo task.
+ */
 public class ToDo extends Task {
-
     /**
-     * Constructor for ToDos class
-     * @param description description of task to do
+     * Constructs a todo task with specified description.
+     *
+     * @param description Description of task.
      */
     public ToDo(String description, Boolean isDone) {
         super(description);
@@ -13,6 +16,9 @@ public class ToDo extends Task {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String taskToDataString() {
         String isDone;
@@ -24,6 +30,11 @@ public class ToDo extends Task {
         return String.format("T | %s | %s\n", isDone, super.description);
     }
 
+    /**
+     * Returns string representation of todo task.
+     *
+     * @return String representation.
+     */
     @Override
     public String toString() {
         return "[T]" + super.toString();
