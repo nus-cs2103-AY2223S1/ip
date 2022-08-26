@@ -22,6 +22,7 @@ public class EventCommand extends Command {
         this.time = time;
     }
 
+    @Override
     public void run() {
         taskList.add(new Event(description, time));
         System.out.println("Got it. I've added this task:");

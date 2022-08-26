@@ -15,6 +15,8 @@ public class MarkCommand extends Command {
             throw new IllegalTaskException("Task does not exist.");
         }
     }
+
+    @Override
     public void run() {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(taskList.markTask(query).toString());

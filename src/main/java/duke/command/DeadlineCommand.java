@@ -22,6 +22,7 @@ public class DeadlineCommand extends Command {
         this.time = time;
     }
 
+    @Override
     public void run() {
         taskList.add(new Deadline(description, time));
         System.out.println("Got it. I've added this task:");

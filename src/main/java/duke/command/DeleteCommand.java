@@ -15,6 +15,8 @@ public class DeleteCommand extends Command {
             throw new IllegalTaskException("Task does not exist.");
         }
     }
+
+    @Override
     public void run() {
         System.out.println("Noted. I've removed this task:");
         System.out.println(taskList.remove(query).toString());
