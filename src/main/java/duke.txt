@@ -1,4 +1,6 @@
-D | X | concert|2022-08-25
+D |   | concert|2022-08-25
 T |   | borrow book
-D |   | this|2022-08-26
+D | X | this|2022-08-26
 E |   | chill| tonight
+E |   | testing event| test date
+D |   | testing deadline|2022-08-25
