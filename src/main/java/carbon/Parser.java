@@ -19,52 +19,49 @@ public class Parser {
         }
     }
 
-    public boolean process(String input) {
+    public String process(String input) {
         String lowerCaseInput = input.toLowerCase();
+        String log;
         switch (lowerCaseInput) {
-            case "bye":
-                this.ui.exit();
-                return false;
-            case "list":
-                String log = this.taskList.listItems();
-                this.ui.printOut(log);
-                return true;
-            default:
-                // unable to process as a simple command, pass to next handler
-                this.processAdvanced(input);
-                return true;
+        case "bye":
+            this.ui.exit();
+            log = "";
+            break;
+        case "list":
+            log = this.taskList.listItems();
+            break;
+        default:
+            // unable to process as a simple command, pass to next handler
+            log = this.processAdvanced(input);
         }
+        return log;
     }
 
-    private void processAdvanced(String input) {
+    private String processAdvanced(String input) {
         String lowerCaseInput = input.toLowerCase();
+        String log;
         try {
             if (lowerCaseInput.startsWith("mark")) {
-                String log = this.taskList.validateAndMark(input, true);
-                this.ui.printOut(log);
+                log = this.taskList.validateAndMark(input, true);
             } else if (lowerCaseInput.startsWith("unmark")) {
-                String log = this.taskList.validateAndMark(input, false);
-                this.ui.printOut(log);
+                log = this.taskList.validateAndMark(input, false);
             } else if (lowerCaseInput.startsWith("delete")) {
-                String log = this.taskList.deleteTask(input);
-                this.ui.printOut(log);
+                log = this.taskList.deleteTask(input);
             } else if (lowerCaseInput.startsWith("todo")) {
-                String log = this.taskList.addTask(input, Task.Type.TODO);
-                this.ui.printOut(log);
+                log = this.taskList.addTask(input, Task.Type.TODO);
             } else if (lowerCaseInput.startsWith("deadline")) {
-                String log = this.taskList.addTask(input, Task.Type.DEADLINE);
-                this.ui.printOut(log);
+                log = this.taskList.addTask(input, Task.Type.DEADLINE);
             } else if (lowerCaseInput.startsWith("event")) {
-                String log = this.taskList.addTask(input, Task.Type.EVENT);
-                this.ui.printOut(log);
+                log = this.taskList.addTask(input, Task.Type.EVENT);
             } else {
                 // not a command, return invalid input
                 CarbonException invalidInput = new InvalidInputException(input);
                 throw invalidInput;
             }
             this.storage.saveTasks(this.taskList);
+            return log;
         } catch (CarbonException error) {
-            this.ui.printError(error);
+            throw error;
         }
     }
 }

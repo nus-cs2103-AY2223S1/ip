@@ -1,5 +1,7 @@
 package carbon;
 
+import carbon.error.CarbonException;
+
 public class Carbon {
     // own fields
     private boolean isRunning;
@@ -16,16 +18,26 @@ public class Carbon {
     }
 
     // main shell method
-    private void runShell() {
+    private void run() {
         this.isRunning = true;
         while (this.isRunning) {
-            String input = this.ui.printIn();
-            this.isRunning = this.parser.process(input);
+            try {
+                String input = this.ui.printIn();
+                String log = this.parser.process(input);
+                if (log != "") {
+                    this.ui.printOut(log);
+                } else {
+                    this.ui.exit();
+                    this.isRunning = false;
+                }
+            } catch (CarbonException error) {
+                this.ui.printError(error);
+            }
         }
     }
 
     public static void main(String[] args) {
         Carbon shell = new Carbon();
-        shell.runShell();
+        shell.run();
     }
 }
