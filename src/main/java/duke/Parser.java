@@ -108,5 +108,16 @@ public class Parser {
     public static boolean isAddEventTask(String[] wordsArray) {
         return wordsArray[0].equals("event");
     }
-    
+
+    /**
+     * Check if the command is to find tasks
+     * @param wordsArray the array of words entered by the user
+     * @return a boolean value stating whether to find tasks or not
+     */
+    public static boolean isFindTask(String[] wordsArray) {
+        return wordsArray[0].equals("find");
+    }
+
+
+
 }
