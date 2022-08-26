@@ -24,7 +24,7 @@ public class UnmarkCommand extends Command {
      *
      * @param taskList a list of tasks
      * @param storage a location to store the task information
-     * @param ui a ui to handle user interactions
+     * @param ui an ui to handle user interactions
      */
     @Override
     public void execute(TaskList taskList, Storage storage, Ui ui) {

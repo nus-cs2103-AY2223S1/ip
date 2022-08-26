@@ -105,6 +105,12 @@ public class Ui {
         System.out.println("\t\t" + task);
     }
 
+    /**
+     * Searches and prints a list of tasks which match the input description.
+     *
+     * @param description keywords for searching the TaskList
+     * @param taskList the TaskList to search in
+     */
     public void find(String description, TaskList taskList) {
         System.out.println("\tHere are the matching tasks in your list!");
         int num = 1;
