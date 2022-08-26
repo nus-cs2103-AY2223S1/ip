@@ -1,9 +1,13 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Duke {
     private ArrayList<Task> listOfTasks = new ArrayList<>();
 
     public void start(){
+        Datafile dataManager = new Datafile("data.txt");
+        dataManager.fillData(listOfTasks);
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -15,6 +19,11 @@ public class Duke {
         while(true) {
             String input = IOhelper.read();
             if (input.equals("bye")) {
+                try {
+                    dataManager.SaveToDatafile(listOfTasks);
+                } catch (IOException e) {
+                    IOhelper.print(e.getMessage());
+                }
                 IOhelper.print("Bye. Hope to see you again soon!");
                 break;
             }

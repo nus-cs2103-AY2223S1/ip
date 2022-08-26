@@ -8,6 +8,6 @@ public class IOhelper {
     }
 
     public static String read() {
-        return scanner.nextLine();
+            return scanner.nextLine();
     }
 }

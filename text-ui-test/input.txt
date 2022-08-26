@@ -1,9 +1,8 @@
-todo plant tree
-deadline send homework /by 30th Feb 6pm
-event party /at 18th Aug 9pm
+todo read book
+event watch movie|2022-08-22
+deadline send mail|2022-08-30
 list
-mark 1
 mark 2
-unmark 1
+delete 3
 list
 bye
