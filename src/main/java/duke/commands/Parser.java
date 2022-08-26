@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 /**
  * Parses a command using regex and returns the corresponding command, value, flag and additionalValues
  */
-public class CommandParser {
+public class Parser {
     private static final Pattern commandParser =
             Pattern.compile("^([a-zA-Z]+)(?:\\s([^/]+))?(?:\\s/([a-zA-Z]+))?(?:\\s(.*))?$");
 
@@ -26,9 +26,8 @@ public class CommandParser {
     }
 
     public List<String> parseCommand(String command) {
-        Matcher matcher = CommandParser.commandParser.matcher(command);
+        Matcher matcher = Parser.commandParser.matcher(command);
         matcher.find();
-        String function = matcher.group(1);
         String value = matcher.group(2);
         String flag = matcher.group(3);
         String additionalValue = matcher.group(4);

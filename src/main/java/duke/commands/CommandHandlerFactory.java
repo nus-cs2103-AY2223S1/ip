@@ -6,10 +6,10 @@ import java.util.List;
 
 public class CommandHandlerFactory {
     public CommandHandler getHandler(String input) throws DukeException {
-       CommandParser commandParser = new CommandParser();
-       Command command = commandParser.getCommand(input);
+       Parser parser = new Parser();
+       Command command = parser.getCommand(input);
 
-       List<String> args = commandParser.parseCommand(input);
+       List<String> args = parser.parseCommand(input);
        String value = args.get(0);
        String flag = args.get(1);
        String additionalValue = args.get(2);
