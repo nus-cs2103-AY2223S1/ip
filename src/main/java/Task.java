@@ -3,7 +3,6 @@ public class Task {
     private boolean isDone;
     private String taskDescription;
     private int index;
-    private String straightLine = "  ----------------------------------------------------------------------------------";
 
     /**
      * A constructor to initialize a task object.
@@ -53,8 +52,8 @@ public class Task {
 
         this.isDone = true;
 
-        System.out.println(straightLine + "\n  Good Job! You're Killing It!\n  [X] " + taskDescription
-                + "\n" + straightLine + "\n");
+        System.out.println(Ui.straightLine + "\n  Good Job! You're Killing It!\n  [X] " + taskDescription
+                + "\n" + Ui.straightLine + "\n");
     }
 
     /**
@@ -65,8 +64,8 @@ public class Task {
 
         this.isDone = false;
 
-        System.out.println(straightLine + "\n  AAaaa please get it done soon...\n  [ ] " + taskDescription
-                + "\n" + straightLine + "\n");
+        System.out.println(Ui.straightLine + "\n  AAaaa please get it done soon...\n  [ ] " + taskDescription
+                + "\n" + Ui.straightLine + "\n");
     }
 
     /**
@@ -84,7 +83,7 @@ public class Task {
      * A method to output in the console the task added to the list of tasks.
      */
     public void printAdded() {
-        System.out.println(straightLine + "\n added: " + taskDescription + "\n" + straightLine + "\n\n");
+        System.out.println(Ui.straightLine + "\n added: " + taskDescription + "\n" + Ui.straightLine + "\n\n");
     }
 
     /**
@@ -112,11 +111,19 @@ public class Task {
         }
     }
 
+    public String savedString() {
+        if (!isDone) {
+            return "GN<" + taskDescription + ">";
+        } else {
+            return "GY<" + taskDescription + ">";
+        }
+    }
+
     /**
      * A method to output in the console the task deleted from the list of tasks.
      */
     public void printDeleted() {
-        System.out.println(straightLine + "\n  Task deleted!\n" + straightLine + "\n");
+        System.out.println(Ui.straightLine + "\n  Task deleted!\n" + Ui.straightLine + "\n");
     }
 
 }

@@ -5,7 +5,6 @@ public class Deadline extends Task{
 
     private LocalDate date;
     private String time;
-    private String straightLine = "  ----------------------------------------------------------------------------------";
 
     /**
      * A constructor to initialize a Deadline object.
@@ -50,9 +49,9 @@ public class Deadline extends Task{
      */
     @Override
     public void printAdded() {
-        System.out.println(straightLine + "\n  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by: " +
+        System.out.println(Ui.straightLine + "\n  Yep, it's in!\n    [D][ ] " + this.getDescription() + " (by: " +
                             date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")\n  " +
-                            this.getIndex() + " tasks left, 頑張れ!\n" + straightLine + "\n");
+                            this.getIndex() + " tasks left, 頑張れ!\n" + Ui.straightLine + "\n");
     }
 
     /**
@@ -78,22 +77,35 @@ public class Deadline extends Task{
     public String toString() {
         if (!this.getStatus()) {
             return this.getIndex() + ".[D][ ] " + this.getDescription() + " | by: " +
-                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time;
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " | " + time;
         } else {
             return this.getIndex() + ".[D][X] " + this.getDescription() + " | by: " +
-                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time;
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " | " + time;
         }
     }
+
+    @Override
+    public String savedString() {
+        if (!this.getStatus()) {
+            return "DN<" + this.getDescription() + ">" + "(" +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")" + "{" + time + "}" + "/n";
+        } else {
+            return "DY<" + this.getDescription() + ">" + "(" +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")" + "{" + time + "}" + "/n";
+        }
+    }
+
+
 
     /**
      * Outputs the full details of the deadline being deleted in the console.
      */
     public void printDeleted() {
         if (!this.getStatus()) {
-            System.out.println(straightLine + "\n  Task deleted!\n    [D][ ] " + this.getDescription()
+            System.out.println(Ui.straightLine + "\n  Task deleted!\n    [D][ ] " + this.getDescription()
                     + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
         } else {
-            System.out.println(straightLine + "\n  Task deleted!\n    [D][X] " + this.getDescription()
+            System.out.println(Ui.straightLine + "\n  Task deleted!\n    [D][X] " + this.getDescription()
                     + "(by: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " " + time + ")");
         }
     }

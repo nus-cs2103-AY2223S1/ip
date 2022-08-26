@@ -5,7 +5,6 @@ public class Event extends Task{
 
     private LocalDate date;
     private String time;
-    private String straightLine = "  ----------------------------------------------------------------------------------";
 
     /**
      * A constructor to initialize the event.
@@ -55,9 +54,9 @@ public class Event extends Task{
      */
     @Override
     public void printAdded() {
-        System.out.println(straightLine + "\n  Looks like you have a new event:\n    [E][ ] " + this.getDescription()
+        System.out.println(Ui.straightLine + "\n  Looks like you have a new event:\n    [E][ ] " + this.getDescription()
                             + " (at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")" +
-                            "\n  " + this.getIndex() + " tasks left, 頑張れ!\n" + straightLine + "\n");
+                            "\n  " + this.getIndex() + " tasks left, 頑張れ!\n" + Ui.straightLine + "\n");
     }
 
     /**
@@ -82,11 +81,23 @@ public class Event extends Task{
     @Override
     public String toString() {
         if (!this.getStatus()) {
-            return this.getIndex() + ".[E][ ] " + this.getDescription() + " | at:" +
-                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + "/n";
+            return this.getIndex() + ".[E][ ] " + this.getDescription() + " | at: " +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " | " + time;
         } else {
-            return this.getIndex() + ".[E][X] " + this.getDescription() + " | at:" +
-                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + "/n";
+            return this.getIndex() + ".[E][X] " + this.getDescription() + " | at: " +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy"))  + " | " + time;
+        }
+    }
+
+
+    @Override
+    public String savedString() {
+        if (!this.getStatus()) {
+            return "EN<" + this.getDescription() + ">" + "(" +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")" + "{" + time + "}" + "/n";
+        } else {
+            return "EY<" + this.getDescription() + ">" + "(" +
+                    date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + ")" + "{" + time + "}" + "/n";
         }
     }
 
@@ -97,10 +108,10 @@ public class Event extends Task{
     @Override
     public void printDeleted() {
         if (!this.getStatus()) {
-            System.out.println(straightLine + "\n  Task deleted!\n    [E][ ] " + this.getDescription()
+            System.out.println(Ui.straightLine + "\n  Task deleted!\n    [E][ ] " + this.getDescription()
                     + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         } else {
-            System.out.println(straightLine + "\n  Task deleted!\n    [E][X] " + this.getDescription()
+            System.out.println(Ui.straightLine + "\n  Task deleted!\n    [E][X] " + this.getDescription()
                     + "(at: " + date.format(DateTimeFormatter.ofPattern("d MMM yyyy")) + " " + time + ")");
         }
     }

@@ -68,10 +68,18 @@ public class ToDo extends Task {
         if (!this.getStatus()) {
             return this.getIndex() + ".[T][ ] " + this.getDescription();
         } else {
-            return this.getIndex() + ".[E][X] " + this.getDescription();
+            return this.getIndex() + ".[T][X] " + this.getDescription();
         }
     }
 
+    @Override
+    public String savedString() {
+        if (!this.getStatus()) {
+            return "TN<" + this.getDescription() + ">";
+        } else {
+            return "TY<" + this.getDescription() + ">";
+        }
+    }
     /**
      * Outputs the full details of the ToDo that is deleted to the console.
      */
