@@ -2,9 +2,11 @@ package task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import exceptions.DukeException;
-
+import exceptions.StorageException;
+import storage.Storage;
 
 
 /**
@@ -12,8 +14,23 @@ import exceptions.DukeException;
  */
 public class TaskModel {
     private List<Task> tasks;
-    public TaskModel() {
+    private Storage storage;
+
+    /**
+     * Initialise TaskModel
+     * @throws StorageException - if there was an issue initialising storage related dependencies
+     */
+    public TaskModel() throws StorageException {
         this.tasks = new ArrayList<>();
+        try {
+            this.storage = new Storage();
+            tasks = storage.load()
+                    .stream()
+                    .map(TaskDeserializer::deserializeTaskString)
+                    .collect(Collectors.toList());
+        } catch (StorageException e) {
+            throw e;
+        }
     }
 
     /**
@@ -21,8 +38,8 @@ public class TaskModel {
      * @param description
      * @return The task created
      */
-    public TaskResponse addTodo(String description) {
-        Task newTask = new Todo(description);
+    public TaskResponse addTodo(String description) throws DukeException {
+        Task newTask = new Todo(description, false);
         tasks.add(newTask);
         return new TaskResponse(newTask, tasks.size());
     }
@@ -34,7 +51,7 @@ public class TaskModel {
      * @return TaskResponse object with newly added deadline task
      */
     public TaskResponse addDeadline(String description, String by) {
-        Task deadline = new Deadline(description, by);
+        Task deadline = new Deadline(description, by, false);
         tasks.add(deadline);
         return new TaskResponse(deadline, tasks.size());
     }
@@ -46,7 +63,7 @@ public class TaskModel {
      * @return TaskResponse with newly added event task
      */
     public TaskResponse addEvent(String description, String at) {
-        Task event = new Event(description, at);
+        Task event = new Event(description, at, false);
         tasks.add(event);
         return new TaskResponse(event, tasks.size());
     }
@@ -101,5 +118,15 @@ public class TaskModel {
      */
     public List<Task> getAllTasks() {
         return tasks;
+    }
+
+    /**
+     * Save current tasks to persistent storage
+     */
+    public void save() throws DukeException {
+        List<String> serialised = tasks.stream()
+                .map(t -> t.serialize())
+                .collect(Collectors.toList());
+        storage.store(serialised);
     }
 }

@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import exceptions.DukeException;
+import exceptions.StorageException;
 import input.Input;
 import task.TaskModel;
 
@@ -20,7 +21,7 @@ public class CommandRunner {
     /**
      * Creates new CommandRunner
      */
-    public CommandRunner() {
+    public CommandRunner() throws StorageException {
         TaskModel taskModel = new TaskModel();
 
         // Add new commands here
@@ -31,7 +32,7 @@ public class CommandRunner {
         Command deadline = new DeadlineCommand(taskModel);
         Command event = new EventCommand(taskModel);
         Command delete = new DeleteCommand(taskModel);
-        Command exit = new ExitCommand();
+        Command exit = new ExitCommand(taskModel);
 
         Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline, event, delete };
         commandMap = new HashMap<>();
