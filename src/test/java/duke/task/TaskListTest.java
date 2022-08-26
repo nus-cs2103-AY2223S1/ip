@@ -152,4 +152,27 @@ public class TaskListTest {
             assertEquals(expectedOutput[i], actualOutput[i]);
         }
     }
+
+    @Test
+    public void testAllContaining() {
+        TaskList testList = new TaskList();
+        TaskList expectedOutput = new TaskList();
+        Task testTask1 = new Todo("test");
+        Task testTask2 = new Deadline("testy", "2022-09-01");
+        Task testTask3 = new Todo("hidden ninja");
+        Task testTask4 = new Event(" i test +ve", "noon");
+
+        testList.add(testTask1);
+        testList.add(testTask2);
+        testList.add(testTask3);
+        testList.add(testTask4);
+
+        expectedOutput.add(testTask1);
+        expectedOutput.add(testTask2);
+        expectedOutput.add(testTask4);
+
+        TaskList actualOutput = testList.allContaining("test");
+
+        assertEquals(expectedOutput, actualOutput);
+    }
 }

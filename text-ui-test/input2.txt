@@ -1,3 +1,5 @@
 list
 deadline sleep /by tonight
+find book
+find
 bye

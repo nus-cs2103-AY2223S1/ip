@@ -82,6 +82,23 @@ public class Ui {
     }
 
     /**
+     * Shows every task found with a keyword.
+     */
+    public void showFound(TaskList tasks) {
+        showLine();
+        System.out.println(INDENTATION + "Here are the matching tasks in your list:");
+        String[] strings = tasks.allToString();
+        if (strings.length == 0) {
+            System.out.println(INDENTATION + "You have no matching tasks!");
+        } else {
+            for (int i = 0; i < strings.length; i++) {
+                System.out.println(INDENTATION + (i + 1) + "." + strings[i]);
+            }
+        }
+        showLine();
+    }
+
+    /**
      * Shows an indented horizontal line.
      */
     public void showLine() {

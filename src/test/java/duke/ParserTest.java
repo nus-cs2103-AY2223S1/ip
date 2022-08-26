@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import duke.command.AddCommand;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.OnCommand;
@@ -260,6 +261,22 @@ public class ParserTest {
             fail();
         } catch (DukeException e) {
             assertEquals("Specify the date to check with yyyy-MM-dd.",
+                    e.getMessage());
+        }
+    }
+
+    @Test
+    public void parse_findSomething_success() throws DukeException {
+        assertTrue(Parser.parse("find me") instanceof FindCommand);
+    }
+
+    @Test
+    public void parse_findNothing_exceptionThrown() {
+        try {
+            Parser.parse("find");
+            fail();
+        } catch (DukeException e) {
+            assertEquals("Include the keyword you want to find.",
                     e.getMessage());
         }
     }
