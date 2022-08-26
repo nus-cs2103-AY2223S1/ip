@@ -1,5 +1,7 @@
-import java.util.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 
 public class Bro {
 
@@ -32,6 +34,7 @@ public class Bro {
             int k = Integer.parseInt(str.substring(5));
             list1.get(k - 1).markAsDone();
             System.out.println("I have marked this task\n" + (list1.get(k-1)).toString());
+            System.out.println("You have " + list1.size() + " tasks left!");
             this.output1(sc);
         }
 
@@ -39,6 +42,7 @@ public class Bro {
             int k = Integer.parseInt(str.substring(7));
             list1.get(k - 1).markAsNotDone();
             System.out.println("I have unmarked this task\n" + (list1.get(k-1)).toString());
+            System.out.println("You have " + list1.size() + " tasks left!");
             this.output1(sc);
         }
 
@@ -47,6 +51,7 @@ public class Bro {
             t.markAsNotDone();
             list1.add(t);
             System.out.println(t.toString());
+            System.out.println("You have " + list1.size() + " tasks left!");
             this.output1(sc);
         }
 
@@ -55,6 +60,7 @@ public class Bro {
             t.markAsNotDone();
             list1.add(t);
             System.out.println(t.toString());
+            System.out.println("You have " + list1.size() + " tasks left!");
             this.output1(sc);
         }
 
@@ -63,6 +69,7 @@ public class Bro {
             t.markAsNotDone();
             list1.add(t);
             System.out.println(t.toString());
+            System.out.println("You have " + list1.size() + " tasks left!");
             this.output1(sc);
         }
 
@@ -70,6 +77,7 @@ public class Bro {
             int g = Integer.parseInt(str.substring(7));
             System.out.println("I have removed this task.\n" + (list1.get(g-1)).toString());
             list1.remove(g-1);
+            System.out.println("You have " + list1.size() + " tasks left!");
             this.output1(sc);
         }
 
