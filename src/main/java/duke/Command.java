@@ -1,3 +1,5 @@
+package duke;
+
 public enum Command {
     CREATE_EVENT,
     CREATE_DEADLINE,

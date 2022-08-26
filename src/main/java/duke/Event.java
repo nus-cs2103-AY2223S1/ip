@@ -1,21 +1,23 @@
+package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task {
+public class Event extends Task {
     protected LocalDateTime dateTime;
 
-    public Deadline(LocalDateTime dateTime, String description) {
-        super(description, "D");
+    public Event(LocalDateTime dateTime, String description) {
+        super(description, "E");
         this.dateTime = dateTime;
     }
 
-    public Deadline(LocalDateTime dateTime, String description, boolean isDone) {
-        super(description, "D", isDone);
+    public Event(LocalDateTime dateTime, String description, boolean isDone) {
+        super(description, "E", isDone);
         this.dateTime = dateTime;
     }
 
     public String getDateTime() {
-        return " (by: " +
+        return " (at: " +
                 this.dateTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy', ' hh:mm a")) + ")";
     }
 
