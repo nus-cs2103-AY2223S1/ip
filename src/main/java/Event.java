@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Event extends Task{
     protected String at;
 
@@ -8,7 +11,7 @@ public class Event extends Task{
 
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (on " + at + ")";
+        LocalDate e1 = LocalDate.parse(at);
+        return "[E]" + super.toString() + " (on: " + e1.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 }
-
