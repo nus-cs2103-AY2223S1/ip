@@ -1,3 +1,7 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 /**
  * A task to be completed by a certain time.
  * CS2103T iP
@@ -10,14 +14,18 @@ public class Deadline extends Task {
     /**
      * Time that the task needs to be completed by.
      */
-    protected String by;
+    protected LocalDate by;
 
     /**
      * A basic constructor to instantiate the Deadline.
      */
-    public Deadline(String description, String by) {
+    public Deadline(String description, String by) throws DukeException {
         super(description);
-        this.by = by;
+        try {
+            this.by = LocalDate.parse(by);
+        } catch (DateTimeParseException e) {
+            throw new DukeException("Wrong date/time format. Please use this format: yyyy-mm-dd");
+        }
     }
 
     /**
@@ -27,6 +35,15 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return "[D]" + super.toString() + " (by: " + formattedDate() + ")";
+    }
+
+    /**
+     * Formats the date into an alternative format.
+     *
+     * @return Alternative format of the date.
+     */
+    private String formattedDate() {
+        return this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
     }
 }
