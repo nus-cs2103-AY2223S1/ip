@@ -5,6 +5,9 @@ import java.io.IOException;
 import duke.exceptions.DukeException;
 import duke.lists.TaskList;
 
+/**
+ * Displays the entire list of existing tasks
+ */
 public class ShowList extends DisplayCommand {
     protected TaskList tasks;
 
@@ -14,7 +17,6 @@ public class ShowList extends DisplayCommand {
 
     /**
      * Prints the current taskings
-     * 
      * @throws DukeException
      * @throws IOException
      */

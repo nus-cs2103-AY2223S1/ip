@@ -1,7 +1,11 @@
+
 package duke.commands;
 
-import duke.enums.*;
+import duke.enums.Messages;
 
+/**
+ * Exits from main
+ */
 public class ExitCommand extends DisplayCommand {
     public ExitCommand() {
 

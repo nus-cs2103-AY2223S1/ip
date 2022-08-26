@@ -1,12 +1,13 @@
 package duke.commands;
 
-import javax.xml.catalog.Catalog;
+import duke.entities.Task;
+import duke.enums.Messages;
+import duke.exceptions.DukeException;
+import duke.lists.TaskList;
 
-import duke.entities.*;
-import duke.enums.*;
-import duke.exceptions.*;
-import duke.lists.*;
-
+/**
+ * Deletes a task from the tasklist
+ */
 public class DeleteCommand extends Mark {
     public DeleteCommand(TaskList tasks, String indx) throws DukeException {
         super(tasks, indx);
@@ -14,14 +15,13 @@ public class DeleteCommand extends Mark {
 
     /**
      * Removes the task at the indx being pointed at.
-     * 
      * @throws DukeException When the index is out of bound
      */
     @Override
     public void execute() throws DukeException {
         try {
-            Task current_task = tasks.removeTask(indx);
-            wrapWithLines(Messages.DELETE.toString(), current_task.toString());
+            Task currentTask = tasks.removeTask(indx);
+            wrapWithLines(Messages.DELETE.toString(), currentTask.toString());
 
         } catch (IndexOutOfBoundsException e) {
             // Invalid index

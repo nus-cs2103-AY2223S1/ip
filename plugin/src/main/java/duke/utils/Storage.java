@@ -1,3 +1,4 @@
+
 package duke.utils;
 
 import java.io.BufferedReader;
@@ -21,12 +22,11 @@ import duke.entities.Todo;
 import duke.enums.Regex;
 import duke.exceptions.DukeException;
 
+/**
+ * Handles writing into storage and reading from storage
+ */
 public class Storage {
-    /* Stores the file location string */
-    private final String fname;
-    private ArrayList<Task> tasks;
-    protected DateTimeFormatter datetime_format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static Pattern LOAD_REGEX = Pattern.compile(Regex.LOADING_REGEX_WITH_DEADLINE.toString());
+    private static Pattern loadRegex = Pattern.compile(Regex.LOADING_REGEX_WITH_DEADLINE.toString());
     private static final HashMap<String, String> monthToInt = new HashMap<String, String>() {
         {
             put("January", "01");
@@ -43,7 +43,17 @@ public class Storage {
             put("September", "09");
         }
     };
+    protected DateTimeFormatter datetimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    /* Stores the file location string */
+    private final String fname;
+    private ArrayList<Task> tasks;
 
+    /**
+     * Initialises the text file used to store tasks
+     * @param tasks task list used to store tasks
+     * @param fname relative address of the file
+     * @throws DukeException when there is an error
+     */
     public Storage(ArrayList<Task> tasks, String fname) throws DukeException {
         this.tasks = tasks;
         this.fname = createFile(fname);
@@ -51,15 +61,14 @@ public class Storage {
 
     /**
      * Creates file with the file name. If the file exists, return its file path.
-     * 
-     * @param fname The name of the file
+     * @param fileName The name of the file
      * @return The file path
-     * @throws IOException
-     * @throws DukeException
+     * @throws IOException when there is an IO error
+     * @throws DukeException when there is an exception
      */
-    private String createFile(String file_name) throws DukeException {
+    private String createFile(String fileName) throws DukeException {
         try {
-            File file = new File(file_name);
+            File file = new File(fileName);
             file.createNewFile();
             return file.getPath();
         } catch (IOException e) {
@@ -69,8 +78,6 @@ public class Storage {
 
     /**
      * Loads the taskings in the file into the task list
-     * 
-     * @param fname path of the file to be read
      */
     public void loadFile() throws FileNotFoundException, IOException, DukeException {
         FileReader fr = new FileReader(fname);
@@ -79,10 +86,10 @@ public class Storage {
         // Read task and add to tasks
         while (line != null) {
             System.out.println(line);
-            Matcher m = LOAD_REGEX.matcher(line);
+            Matcher m = loadRegex.matcher(line);
             m.find();
-            String task_type = m.group(1);
-            String is_marked = m.group(2);
+            String taskType = m.group(1);
+            String isMarked = m.group(2);
             String description = m.group(4);
             String hour = m.group(6);
             String min = m.group(7);
@@ -91,26 +98,25 @@ public class Storage {
             String year = m.group(11);
             String deadline = String.format("%s-%s-%s %s:%s", year, month, date, hour, min);
             // Create the task
-            Task to_add;
+            Task toAdd;
             LocalDateTime time;
-            switch (task_type) {
-                case "E":
-                    time = LocalDateTime.parse(deadline, datetime_format);
-                    to_add = new Event(description, time);
-                    tasks.add(to_add);
-                    break;
-                case "D":
-                    time = LocalDateTime.parse(deadline, datetime_format);
-                    to_add = new Deadline(description, time);
-                    tasks.add(to_add);
-                    break;
-                default:
-                    to_add = new Todo(description);
-                    tasks.add(to_add);
-
+            switch (taskType) {
+            case "E":
+                time = LocalDateTime.parse(deadline, datetimeFormat);
+                toAdd = new Event(description, time);
+                tasks.add(toAdd);
+                break;
+            case "D":
+                time = LocalDateTime.parse(deadline, datetimeFormat);
+                toAdd = new Deadline(description, time);
+                tasks.add(toAdd);
+                break;
+            default:
+                toAdd = new Todo(description);
+                tasks.add(toAdd);
             }
-            if (is_marked.equals("X")) {
-                to_add.toggleComplete();
+            if (isMarked.equals("X")) {
+                toAdd.toggleComplete();
             }
             line = reader.readLine();
         }
@@ -119,7 +125,6 @@ public class Storage {
 
     /**
      * Writes the string representation of the task into the save file
-     * 
      * @param task to be written
      * @throws IOException
      */
@@ -143,6 +148,12 @@ public class Storage {
         fo.close();
     }
 
+    /**
+     * Marks the task saved in fname
+     * @param indx of the task to be marked
+     * @param newTask string representation of marked task
+     * @throws IOException when there is an error in IO
+     */
     public void markTask(int indx, String newTask) throws IOException {
         BufferedReader file = new BufferedReader(new FileReader(fname));
         StringBuffer inputBuffer = new StringBuffer();
@@ -162,13 +173,12 @@ public class Storage {
         fo.append(inputBuffer.toString());
         fo.flush();
         fo.close();
-        ;
     }
 
     /**
      * Deletes from the task from the saved file
-     * 
-     * @param task to be deleted
+     *
+     * @param indx to be deleted
      * @throws FileNotFoundException
      * @throws IOException
      */
@@ -178,8 +188,7 @@ public class Storage {
         String line = file.readLine();
 
         while (line != null) {
-            if (indx == 0) {
-            } else {
+            if (indx != 0) {
                 inputBuffer.append(line);
                 inputBuffer.append(System.lineSeparator());
             }

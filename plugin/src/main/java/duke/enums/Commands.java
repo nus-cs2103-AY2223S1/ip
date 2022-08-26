@@ -1,10 +1,7 @@
 package duke.enums;
 
-import javax.swing.plaf.basic.BasicComboBoxUI.ComboBoxLayoutManager;
-
 /**
  * This contains the commands a user can use to trigger the bot
- * 
  * @author Pei Cheng Yi A029823Y
  */
 
@@ -20,7 +17,7 @@ public enum Commands {
     MARK("mark"),
     ERROR("");
 
-    private String command;
+    private final String command;
 
     Commands(String cmd) {
         command = cmd;

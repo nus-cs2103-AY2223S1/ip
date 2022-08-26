@@ -1,7 +1,11 @@
+
 package duke.commands;
 
-import duke.enums.*;
+import duke.enums.Messages;
 
+/**
+ * Greets the user
+ */
 public class GreetCommand extends DisplayCommand {
 
     public GreetCommand() {

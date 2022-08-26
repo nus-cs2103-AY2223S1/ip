@@ -1,4 +1,3 @@
-
 /**
  * This is Duke, he replies to messages.
  *
@@ -15,17 +14,25 @@ import java.io.InputStreamReader;
 import duke.commands.Command;
 import duke.commands.ExitCommand;
 import duke.commands.GreetCommand;
-import duke.enums.*;
-import duke.exceptions.*;
-import duke.lists.*;
-import duke.utils.*;
+import duke.enums.Commands;
+import duke.exceptions.DukeException;
+import duke.lists.TaskList;
+import duke.utils.Parser;
+import duke.utils.Ui;
 
+/**
+ * The main logic of Duke
+ */
 public class Duke {
     /* Store tasks from user */
     private static TaskList tasks;
     private static Parser cf;
     private static Ui ui;
 
+    /**
+     * Initialises Duke
+     * @param fname address to store tasks
+     */
     public Duke(String fname) {
         try {
             tasks = new TaskList(fname);
@@ -36,6 +43,11 @@ public class Duke {
         }
     }
 
+    /**
+     * Executes Duke
+     * @throws DukeException when there is an error
+     * @throws IOException when there is an IO error
+     */
     public void run() throws DukeException, IOException {
         // Setting up to read command line inputs
         BufferedReader reader = new BufferedReader(

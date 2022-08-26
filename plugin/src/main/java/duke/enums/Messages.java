@@ -1,7 +1,11 @@
 package duke.enums;
 
+/**
+ * List of common messages to display to the user
+ */
 public enum Messages {
-    LOGO("____        _        \n|  _ \\ _   _| | _____ \n| | | | | | | |/ / _ \\\n| |_| | |_| |   <  __/\n|____/ \\__,_|_|\\_\\___|\n"),
+    LOGO("____        _        \n|  _ \\ _   _| | _____ \n| | | | | | | |/ / _ "
+            + "\\\n| |_| | |_| |   <  __/\n|____/ \\__,_|_|\\_\\___|\n"),
     GREET("Hi! I am Duke, what can I do for you?"),
     EXIT("Goodbye! Hope to see you soon!"),
     LINE_SEPARATION("-*-*-*-*-*-*-*-*-*-*-*"),
@@ -18,7 +22,7 @@ public enum Messages {
     ERROR_MISSING_PARAMETERS(">:| OOPS!!! There are missing parameters."),
     ERROR_INVALID_DATETIME(">:| OOPS!!!! The time format should be yyyy-MM-dd HH:mm");
 
-    private String message;
+    private final String message;
 
     Messages(String message) {
         this.message = message;

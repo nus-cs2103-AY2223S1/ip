@@ -14,15 +14,15 @@ import duke.lists.TaskList;
  */
 public class AddDeadlineCommand extends AddTodoCommand {
     protected String deadline;
-    protected DateTimeFormatter datetime_format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    protected DateTimeFormatter datetimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
     /**
      * Adds a new deadline to the TaskList
-     * @param tasks
-     * @param desc
-     * @param input
-     * @param deadline
-     * @throws DukeException
+     * @param tasks represents the task list
+     * @param desc of the task
+     * @param input the line of input given to generate the task
+     * @param deadline local datetime object
+     * @throws DukeException when there are missing parameters
      */
     public AddDeadlineCommand(TaskList tasks, String desc, String input, String deadline) throws DukeException {
         super(tasks, desc, input);
@@ -34,15 +34,15 @@ public class AddDeadlineCommand extends AddTodoCommand {
 
     /**
      * Add new event to the task list
-     * @throws DukeException
+     * @throws DukeException when the datetime string is of the wrong format
      */
     @Override
     public void execute() throws DukeException {
         try {
-            LocalDateTime deadline = LocalDateTime.parse(this.deadline, datetime_format);
-            Deadline current_event = new Deadline(descrition, deadline);
-            tasks.addTask(current_event);
-            wrapWithLines(Messages.ADD_DEADLINE.toString(), current_event.toString());
+            LocalDateTime deadline = LocalDateTime.parse(this.deadline, datetimeFormat);
+            Deadline currentEvent = new Deadline(descrition, deadline);
+            tasks.addTask(currentEvent);
+            wrapWithLines(Messages.ADD_DEADLINE.toString(), currentEvent.toString());
         } catch (DateTimeParseException e) {
             throw new DukeException(Messages.ERROR_INVALID_DATETIME.toString());
         }

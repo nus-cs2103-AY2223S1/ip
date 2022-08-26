@@ -1,9 +1,9 @@
 package duke.commands;
 
-import duke.entities.*;
-import duke.enums.*;
-import duke.exceptions.*;
-import duke.lists.*;
+import duke.entities.Todo;
+import duke.enums.Messages;
+import duke.exceptions.DukeException;
+import duke.lists.TaskList;
 
 /**
  * Adds Todo to the tasklist
@@ -12,6 +12,12 @@ public class AddTodoCommand extends ShowList {
     protected String descrition;
     protected String instruction;
 
+    /**
+     * Adds a Todo to the tasklist
+     * @param list of tasks
+     * @param description of task
+     * @param input that generated the task
+     */
     public AddTodoCommand(TaskList list, String description, String input) {
         super(list);
         this.descrition = description;
@@ -20,18 +26,12 @@ public class AddTodoCommand extends ShowList {
 
     /**
      * Add new todo to the task list
-     * 
-     * @throws DukeException
+     * @throws DukeException when something goes wrong
      */
     @Override
     public void execute() throws DukeException {
-        Todo current_todo = new Todo(descrition);
-        tasks.addTask(current_todo);
-        wrapWithLines(Messages.ADD_TODO.toString(), current_todo.toString());
+        Todo currentTodo = new Todo(descrition);
+        tasks.addTask(currentTodo);
+        wrapWithLines(Messages.ADD_TODO.toString(), currentTodo.toString());
     }
-
-    public String getInput() {
-        return instruction;
-    }
-
 }

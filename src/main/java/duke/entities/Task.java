@@ -3,13 +3,15 @@ package duke.entities;
 import duke.enums.Messages;
 import duke.exceptions.DukeException;
 
+/**
+ * Task with a description
+ */
 public class Task {
     private Boolean isComplete = false;
     private String description;
 
     /**
      * Sets the description of the task
-     * 
      * @param desc Description of the task
      */
     public Task(String desc) throws DukeException {
@@ -28,7 +30,6 @@ public class Task {
 
     /**
      * Checks if the boolean is complete
-     * 
      * @return true if completed else false
      */
     public boolean isDone() {
@@ -37,7 +38,6 @@ public class Task {
 
     /**
      * Retrieves the description of the task
-     * 
      * @return Description of task
      */
     public String getDescription() {
