@@ -1,3 +1,5 @@
+package duke;
+
 import java.util.ArrayList;
 
 public class Ui {
@@ -13,7 +15,7 @@ public class Ui {
     }
 
     public void showFileNotFoundError() {
-        System.out.println("Task file not found!");
+        System.out.println("duke.Task file not found!");
     }
 
     public void showByeMessage() {

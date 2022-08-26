@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
@@ -81,7 +83,7 @@ public class Task {
     }
 
     public String toTxt() {
-        /* if (taskType == TaskType.TODO) {
+        /* if (taskType == duke.TaskType.TODO) {
             if (done) {
                 return taskType.toString().charAt(0) + " | 1 | " + this.taskName + "\n";
             }
