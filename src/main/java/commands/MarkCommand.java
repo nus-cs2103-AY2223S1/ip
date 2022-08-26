@@ -1,6 +1,10 @@
 package commands;
 
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 /**
  * MarkCommand marks the chosen task as completed.

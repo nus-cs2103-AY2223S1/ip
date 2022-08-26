@@ -1,6 +1,10 @@
 package commands;
 
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 /**
  * Command directs the program to take certain actions.

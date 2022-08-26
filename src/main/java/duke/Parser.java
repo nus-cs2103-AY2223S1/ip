@@ -1,14 +1,20 @@
 package duke;
 
-import commands.*;
+import commands.ByeCommand;
+import commands.Command;
+import commands.DeadlineCommand;
+import commands.DeleteCommand;
+import commands.EventCommand;
+import commands.ListCommand;
+import commands.MarkCommand;
+import commands.TodoCommand;
+import commands.UnMarkCommand;
 import dukeexceptions.DukeException;
 import dukeexceptions.NoDescriptionException;
 import dukeexceptions.NoSuchCommandException;
-import tasks.Deadlines;
-import tasks.Task;
 
 public class Parser {
-    private enum COMMANDS {
+    private enum Commands {
         BYE, LIST, MARK, UNMARK, TODO, DEADLINE, EVENT, DELETE
     }
 
@@ -21,28 +27,28 @@ public class Parser {
     public static Command parse(String input) throws DukeException {
         String[] inputSplit = input.split(" ", 2);
         if (inputSplit.length == 1) {
-            switch (COMMANDS.valueOf(inputSplit[0].strip().toUpperCase())) {
-                case BYE:
-                    return new ByeCommand();
-                case LIST:
-                    return new ListCommand();
-                case UNMARK:
-                    throw new NoDescriptionException("unmark");
-                case DEADLINE:
-                    throw new NoDescriptionException("deadline");
-                case DELETE:
-                    throw new NoDescriptionException("delete");
-                case EVENT:
-                    throw new NoDescriptionException("event");
-                case MARK:
-                    throw new NoDescriptionException("mark");
-                case TODO:
-                    throw new NoDescriptionException("todo");
-                default:
-                    throw new NoSuchCommandException();
+            switch (Commands.valueOf(inputSplit[0].strip().toUpperCase())) {
+            case BYE:
+                return new ByeCommand();
+            case LIST:
+                return new ListCommand();
+            case UNMARK:
+                throw new NoDescriptionException("unmark");
+            case DEADLINE:
+                throw new NoDescriptionException("deadline");
+            case DELETE:
+                throw new NoDescriptionException("delete");
+            case EVENT:
+                throw new NoDescriptionException("event");
+            case MARK:
+                throw new NoDescriptionException("mark");
+            case TODO:
+                throw new NoDescriptionException("todo");
+            default:
+                throw new NoSuchCommandException();
             }
         } else {
-                switch (COMMANDS.valueOf(inputSplit[0].strip().toUpperCase())) {
+                switch (Commands.valueOf(inputSplit[0].strip().toUpperCase())) {
                     case UNMARK:
                         int indUnmark = Integer.parseInt(inputSplit[1]) - 1;
                         return new UnMarkCommand(indUnmark);

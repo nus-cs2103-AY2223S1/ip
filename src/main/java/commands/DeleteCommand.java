@@ -1,7 +1,11 @@
 package commands;
 
 import duke.Ui;
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 /**
  * DeleteCommand deletes the chosen task from the task list.
@@ -27,7 +31,7 @@ public class DeleteCommand extends Command {
     public void run(TaskList taskList) {
         String descript = taskList.retrieveTask(index).toString();
         taskList.deleteTask(index);
-        Ui.deleteStatement(descript, taskList.getSize());
+        Ui.printDeleteStatement(descript, taskList.getSize());
     }
 
 }

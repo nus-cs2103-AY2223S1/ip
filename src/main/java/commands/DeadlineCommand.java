@@ -1,7 +1,11 @@
 package commands;
 
 import duke.Ui;
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 /**
  * DeadlineCommand creates and adds a new deadline to the task list.
@@ -30,6 +34,6 @@ public class DeadlineCommand extends Command {
     public void run(TaskList taskList) {
         Task toAdd = new Deadlines(this.descript, this.doBy);
         taskList.addTask(toAdd);
-        Ui.addStatement(toAdd.toString(), taskList.getSize());
+        Ui.printAddStatement(toAdd.toString(), taskList.getSize());
     }
 }

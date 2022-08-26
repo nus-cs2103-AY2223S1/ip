@@ -1,7 +1,11 @@
 package commands;
 
 import duke.Ui;
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 /**
  * EventCommand creates and adds a new event task to the task list.
@@ -30,6 +34,6 @@ public class EventCommand extends Command {
     public void run(TaskList taskList) {
         Task toAdd = new Events(this.descript, this.atTime);
         taskList.addTask(toAdd);
-        Ui.addStatement(toAdd.toString(), taskList.getSize());
+        Ui.printAddStatement(toAdd.toString(), taskList.getSize());
     }
 }

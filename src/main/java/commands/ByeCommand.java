@@ -1,7 +1,11 @@
 package commands;
 
 import duke.Ui;
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 /**
  * ByeCommand causes the program to end.
@@ -23,6 +27,6 @@ public class ByeCommand extends Command {
      * @param taskList List of tasks to save before exiting.
      */
     public void run(TaskList taskList) {
-        Ui.byeStatement();
+        Ui.printByeStatement();
     }
 }

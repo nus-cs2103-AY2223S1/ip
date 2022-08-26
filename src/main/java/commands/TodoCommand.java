@@ -1,7 +1,11 @@
 package commands;
 
-import tasks.*;
 import duke.Ui;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 /**
  * TodoCommand creates and adds a new Todos task to the task list.
@@ -29,6 +33,6 @@ public class TodoCommand extends Command {
     public void run(TaskList taskList) {
         Task toAdd = new Todos(this.descript);
         taskList.addTask(toAdd);
-        Ui.addStatement(toAdd.toString(), taskList.getSize());
+        Ui.printAddStatement(toAdd.toString(), taskList.getSize());
     }
 }

@@ -6,7 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-import tasks.*;
+import tasks.Deadlines;
+import tasks.Events;
+import tasks.Task;
+import tasks.TaskList;
+import tasks.Todos;
 
 public class Storage {
     String filePath;
