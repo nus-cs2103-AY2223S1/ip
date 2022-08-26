@@ -9,5 +9,6 @@ public enum Command {
     UNMARK,
     QUIT,
     LIST,
-    INVALID
+    INVALID,
+    FIND
 }

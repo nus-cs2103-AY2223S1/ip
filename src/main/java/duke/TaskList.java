@@ -12,6 +12,10 @@ public class TaskList {
         tasks = new ArrayList<>();
     }
 
+    public TaskList(ArrayList list) {
+        tasks = list;
+    }
+
     public void add(Task task) {
         tasks.add(task);
     }
@@ -34,6 +38,10 @@ public class TaskList {
 
     public void unmark(int index) {
         tasks.get(index).unmark();
+    }
+
+    public TaskList find(String task) {
+        return new TaskList((ArrayList) tasks.stream().filter(s -> s.toString().contains(task)).collect(Collectors.<Task>toList()));
     }
 
 }
