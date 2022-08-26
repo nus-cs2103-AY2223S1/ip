@@ -6,6 +6,10 @@ import Duke.util.Ui;
 
 import java.util.Scanner;
 
+/**
+ * Represents a chat-bot that can be used to manage
+ * and store a list of tasks for users.
+ */
 public class Duke {
     private TaskStorage storage;
     private TaskList taskList;
@@ -16,6 +20,11 @@ public class Duke {
         taskList = storage.loadTask();
     }
 
+    /**
+     * Shows users that the bot is activated successfully
+     * Reads input from the user and initialize the response
+     * object to handle this input.
+     */
     public void run() {
         try {
             ui.displayWelcome();

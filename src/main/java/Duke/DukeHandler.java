@@ -1,13 +1,17 @@
 package Duke;
 
 import Duke.task.*;
-
 import Duke.util.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represents the response handler for Duke chat-bot. Stores a list of tasks,
+ * and perform CRUD functions on both the list of tasks and the text file that
+ * saves it.
+ */
 public class DukeHandler {
     private TaskList tasks;
     private TaskStorage storage;
@@ -19,6 +23,10 @@ public class DukeHandler {
         this.ui = ui;
     }
 
+    /**
+     * Makes sense of user input and perform operations
+     * on task list, and shows output to user
+     */
     public void handleResponse(String input) throws DukeException {
         if (input.equals("bye")) {
             ui.sayGoodbye();
@@ -48,8 +56,7 @@ public class DukeHandler {
             }
             else if (input.matches("delete +\\d+")) {
                 Task task = tasks.delete(Integer.parseInt(inputParts.get(1)));
-                storage.saveTask(tasks);
-                ui.addTask(task, tasks);
+                ui.deleteTask(task, tasks);
                 storage.saveTask(tasks);
             }
             else if (inputParts.get(0).equals("todo")) {

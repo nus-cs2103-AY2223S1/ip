@@ -1,5 +1,9 @@
 package Duke.task;
 
+/**
+ * Represents the object that the chat-bot manages
+ * and users can interact with.
+ */
 public abstract class Task {
     protected String description;
     protected boolean done;
@@ -8,12 +12,24 @@ public abstract class Task {
         this.description = task;
         this.done = done;
     }
+
+    /**
+     * Changes boolean value done of a task to be true
+     * when a user completes it
+     */
     public void mark() {
         this.done = true;
     }
+
+
+    /**
+     * Changes boolean value done of a task to false
+     * when a user marks it as incomplete
+     */
     public void unmark() {
         this.done = false;
     }
+
     public String getDescription() {
         return this.description;
     }
