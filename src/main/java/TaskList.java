@@ -1,3 +1,5 @@
+import javax.swing.plaf.synth.SynthTextAreaUI;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -36,6 +38,37 @@ public class TaskList {
         String reply = "Noted. I've removed this task:\n" +
                         t + "\nNow you have " + this.taskList.size() + " tasks in the list.";
         System.out.println(reply);
+    }
+
+    public void printTasksOnSpecificDate(LocalDate date) {
+        System.out.println("Here are the tasks on: " + date + "\n");
+        int ListLength = taskList.size();
+        for (int i = 0; i < ListLength; i++) {
+            Task task = taskList.get(i);
+            if (this.getTaskType(task) == "Deadline") {
+                Deadlines d = (Deadlines) task;
+                if (d.getDate().equals(date)) {
+                    System.out.println(d);
+                }
+            } else if (this.getTaskType(taskList.get(i)) == "Event") {
+                Events e = (Events) task;
+                if (e.getDate().equals(date)) {
+                    System.out.println(e);
+                }
+            }
+        }
+    }
+    
+
+    public String getTaskType(Task task) {
+        if (task instanceof Deadlines) {
+            return "Deadline";
+        } else if (task instanceof Events) {
+            return "Event";
+        } else if (task instanceof  ToDos) {
+            return "ToDo";
+        }
+        return "";
     }
 
     public void printList() {
