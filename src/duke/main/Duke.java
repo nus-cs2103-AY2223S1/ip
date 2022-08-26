@@ -11,7 +11,7 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
-import duke.util.DukeIO;
+import duke.util.DukeIo;
 import duke.util.ParsedData;
 import duke.util.Parser;
 import duke.util.Storage;
@@ -40,12 +40,12 @@ public class Duke {
             + "  %s%n"
             + "Now you have %d tasks in the list.";
 
-    private DukeIO userIO;
+    private DukeIo userIO;
     private TaskList tasks;
     private Storage dukeData;
 
     Duke(TaskList tasks, Storage dukeData) {
-        userIO = new DukeIO();
+        userIO = new DukeIo();
         this.dukeData = dukeData;
         this.tasks = tasks;
     }
@@ -161,7 +161,7 @@ public class Duke {
     }
 
     static Duke createApplication(String filepath) {
-        DukeIO userIO = new DukeIO();
+        DukeIo userIO = new DukeIo();
         userIO.printTask(LOGO, 2);
         userIO.printTask(INTRO, 3);
         Storage dukeData;
@@ -179,7 +179,7 @@ public class Duke {
     }
 
     static Duke createApplication() {
-        DukeIO userIO = new DukeIO();
+        DukeIo userIO = new DukeIo();
         userIO.printTask(LOGO, 2);
         userIO.printTask(INTRO, 3);
         Storage dukeData;

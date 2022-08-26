@@ -2,13 +2,13 @@ package duke.util;
 import java.util.List;
 import java.util.Scanner;
 
-public class DukeIO {
+public class DukeIo {
     // class to handle input/output of data
     private static final String LINE = "   ____________________________________________________________";
     private static final String EMPTY_LIST = "The current list is empty!";
     private final Scanner scanner;
 
-    public DukeIO() {
+    public DukeIo() {
         scanner = new Scanner(System.in);
     }
 
