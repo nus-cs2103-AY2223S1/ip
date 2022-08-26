@@ -13,7 +13,7 @@ public class Duke {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello! I'm duke.Duke\nWhat can I do for you?");
+        System.out.println("Hello! I'm Duke\nWhat can I do for you?");
         Scanner sc = new Scanner(System.in);
         String command = sc.nextLine();
 

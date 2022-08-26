@@ -21,7 +21,7 @@ public class TaskList {
     private void printAddedTask(Task task) {
         System.out.println("Got it. I've added this task:");
         System.out.println(task);
-        System.out.printf("Now you have %d duke.tasks in the list.\n", tasks.size());
+        System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
     }
 
     public void markDone(String value) throws DukeException {
@@ -43,7 +43,7 @@ public class TaskList {
             System.out.println("Noted. I've removed this task:");
             printTask(index);
             tasks.remove(index);
-            System.out.printf("Now you have %d duke.tasks in the list.\n", tasks.size());
+            System.out.printf("Now you have %d tasks in the list.\n", tasks.size());
         }
     }
 
@@ -85,7 +85,7 @@ public class TaskList {
     }
 
     public void printList() {
-        System.out.println("Here are the duke.tasks in your list:");
+        System.out.println("Here are the tasks in your list:");
         System.out.println(this.toString());
     }
 
@@ -94,7 +94,7 @@ public class TaskList {
             throw new NoBeforeException();
         }
         int i = 1;
-        System.out.println("Here are the duke.tasks before the deadline " + TIME_PARSER.formatDeadline(deadline));
+        System.out.println("Here are the tasks before the deadline " + TIME_PARSER.formatDeadline(deadline));
         for (Task t : tasks) {
             if (t.isBefore(deadline)) {
                 System.out.println(i + "." + t);

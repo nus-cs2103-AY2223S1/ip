@@ -12,7 +12,7 @@ public class Storage {
 
     public void save() {
         try {
-            FileWriter myWriter = new FileWriter("tasklist.txt");
+            FileWriter myWriter = new FileWriter("data/tasklist.txt");
             myWriter.write(TASK_LIST.toString());
             myWriter.close();
         } catch (IOException e) {
@@ -23,7 +23,7 @@ public class Storage {
 
     public TaskList load() {
         try {
-            BufferedReader in = new BufferedReader(new FileReader("tasklist.txt"));
+            BufferedReader in = new BufferedReader(new FileReader("data/tasklist.txt"));
             String line = in.readLine();
             while (line != null) {
                 FILE_PARSER.handle(line);
