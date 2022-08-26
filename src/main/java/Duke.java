@@ -64,10 +64,9 @@ public class Duke {
                             if (list.get(index).getDone()) {
                                 throw new TaskStatusException("Task already marked done!");
                             }
-                            String oldDescription = list.get(index).toString();
                             list.get(index).Done();
                             Task newTask = list.get(index);
-                            fileUpdater(oldDescription, newTask, false, index);
+                            fileUpdater(newTask, false, index);
                             System.out.println("Nice! I've marked this task as done:");
                             System.out.println(list.get(index).toString());
                         }
@@ -84,10 +83,9 @@ public class Duke {
                             if (!list.get(index).getDone()) {
                                 throw new TaskStatusException("Task is currently marked undone");
                             }
-                            String oldDescription = list.get(index).toString();
                             list.get(index).unDone();
                             Task newTask = list.get(index);
-                            fileUpdater(oldDescription, newTask, false, index);
+                            fileUpdater(newTask, false, index);
                             System.out.println("Ok, I've marked this task as not done yet:");
                             System.out.println(list.get(index).toString());
                         }
@@ -101,9 +99,8 @@ public class Duke {
                         if (index >= list.size() || index < 0){
                             throw new TaskStatusException("Please provide correct task number");
                         } else {
-                            String oldDescription = list.get(index).toString();
                             Task removed = list.remove(index);
-                            fileUpdater(oldDescription, removed, true, index);
+                            fileUpdater(removed, true, index);
                             System.out.println("Noted. I've removed this task:");
                             System.out.println(removed.toString());
                             System.out.println("Now you have " + list.size() + " task(s) in the list");
@@ -211,7 +208,7 @@ public class Duke {
     }
 
     // TESTER
-    static void fileUpdater(String oldDescription, Task newTask, boolean delete, int index) {
+    static void fileUpdater(Task newTask, boolean delete, int index) {
         try {
             List<String> list = Files.readAllLines(Path.of("./tasks.txt"));
             if (delete) {
@@ -234,38 +231,6 @@ public class Duke {
     }
 
 
-    /**
-     * Helper function to update file
-     * @param oldDescription old task description to be updated
-     * @param newTask new task description
-
-    static void fileUpdater(String oldDescription, Task newTask, boolean delete) {
-        try {
-            List<String> list = Files.readAllLines(Path.of("./tasks.txt"));
-            for (int i = 0; i < list.size() - 1; i++) { // loop through all lines and find old line to update
-                if (list.get(i).toString().equals(oldDescription)) {
-                    if (!delete) {
-                        list.set(i, newTask.toString());
-                    } else {
-                        list.remove(i);
-                    }
-                    break;
-                }
-            }
-
-            // after task list is updated, rewrite to the file
-            FileWriter writer = new FileWriter("./tasks.txt", false);
-            for (String x: list) {
-                writer.write(x + "\n");
-            }
-            writer.close();
-
-        } catch (IOException e) {
-            System.out.println("Error occured while updating the file");
-
-        }
-    }
-    */
 
     static void listInit(List<Task> list) {
         try {
