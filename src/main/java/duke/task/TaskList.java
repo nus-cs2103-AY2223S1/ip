@@ -5,8 +5,12 @@ import java.util.ArrayList;
 public class TaskList {
     private ArrayList<Task> taskList;
 
+    public TaskList(ArrayList<Task> taskList) {
+        this.taskList = taskList;
+    }
+
     public TaskList() {
-        taskList = new ArrayList<>();
+        this(new ArrayList<>());
     }
 
     public void add(Task task) {
@@ -27,5 +31,17 @@ public class TaskList {
 
     public int size() {
         return taskList.size();
+    }
+
+    public TaskList findTask(String description) {
+        ArrayList<Task> list = new ArrayList<>();
+
+        for (Task task : taskList) {
+            if (task.getDescription().contains(description)) {
+                list.add(task);
+            }
+        }
+
+        return new TaskList(list);
     }
 }

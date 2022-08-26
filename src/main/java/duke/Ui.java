@@ -55,6 +55,15 @@ public class Ui {
         this.out.println("_______________________________________________________");
     }
 
+    public void printMessage(String[] strArray, String message) {
+        this.out.println("_______________________________________________________");
+        this.out.println(String.format("\t %s", message));
+        for (String str : strArray) {
+            this.out.println("\t" + str);
+        }
+        this.out.println("_______________________________________________________");
+    }
+
     public void printMessage(String str) {
         this.out.println("_______________________________________________________" + "\n\t" + str + "\n"
                 + "_______________________________________________________");

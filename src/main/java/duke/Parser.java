@@ -108,6 +108,18 @@ public class Parser {
             }
             break;
         }
+        case "find": {
+            try {
+                String withoutPrefix = inputArray[1];
+                TaskList filteredList = taskList.findTask(withoutPrefix);
+                String[] strArray = IntStream.range(0, filteredList.size())
+                        .mapToObj(i -> taskList.get(i).toString()).toArray(String[]::new);
+                ui.printMessage(strArray, "Here are the matching tasks in your list:");
+            } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+                ui.printMessage("Please use the format: find <description>");
+            }
+            break;
+        }
         default:
             ui.printMessage("I'm sorry, but I don't know what that means :-(");
         }

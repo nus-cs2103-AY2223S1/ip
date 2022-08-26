@@ -23,6 +23,10 @@ public abstract class Task {
     return isDone;
   }
 
+  public String getDescription() {
+    return description;
+  }
+
   public String getStatusIcon() {
     return (isDone ? DONE : NOT_DONE);
   }
