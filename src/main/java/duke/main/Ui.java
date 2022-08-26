@@ -53,4 +53,13 @@ public class Ui {
         }
         linePrint();
     }
+
+    public void listFoundTasks(ArrayList<Task> tasks) {
+        linePrint();
+        System.out.println("\tHere are the matching tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            System.out.println("\t" + (i + 1) + ". " + tasks.get(i).toString());
+        }
+        linePrint();
+    }
 }
