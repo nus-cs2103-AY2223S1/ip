@@ -89,4 +89,21 @@ public class TaskList {
         count--;
     }
 
+    /**
+     * Returns a new TaskList that stores tasks
+     * whose description contains the keyword.
+     *
+     * @param keyword Keyword to be checked.
+     * @return A new TaskList.
+     */
+    public TaskList findMatchingTasks(String keyword) {
+        TaskList newTaskList = new TaskList();
+        for (Task task : tasks) {
+            if (task.matchDescription(keyword)) {
+                newTaskList.add(task);
+            }
+        }
+        return newTaskList;
+    }
+
 }

@@ -43,7 +43,7 @@ public class Storage {
     public void appendToFile(String textToAppend, Ui ui) {
         try {
             FileWriter fw = new FileWriter(filePath, true);
-            fw.write(textToAppend);
+            fw.write(textToAppend + "\n");
             fw.close();
         } catch (IOException e) {
             ui.showError(e.getMessage());

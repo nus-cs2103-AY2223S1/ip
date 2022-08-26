@@ -4,6 +4,7 @@ import duke.commands.AddCommand;
 import duke.commands.Command;
 import duke.commands.DeleteCommand;
 import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
 import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.UnmarkCommand;
@@ -65,6 +66,8 @@ public class Parser {
             return parseIndex(commandWord, description);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
+        case FindCommand.COMMAND_WORD:
+            return new FindCommand(description);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
         default:
