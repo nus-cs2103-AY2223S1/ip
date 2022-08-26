@@ -13,7 +13,7 @@ class Deadline extends Task {
 
     Deadline (int id, String name, String deadline, boolean done) {
         super(id, name, done);
-        this.deadline = deadline;
+        this.deadline = LocalDate.parse(deadline);
     }
 
     @Override
