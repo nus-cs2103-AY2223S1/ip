@@ -108,4 +108,5 @@ public class Parser {
     public static boolean isAddEventTask(String[] wordsArray) {
         return wordsArray[0].equals("event");
     }
+    
 }
