@@ -9,8 +9,6 @@ public class Ui {
 
     Scanner scn;
 
-    public boolean sessionEnd = false;
-
     public void greet() {
         String logo = "\n" +
                 "   ██▓    ▄▄▄       ███▄ ▄███▓▓█████▄  ▄▄▄\n" +
@@ -47,7 +45,6 @@ public class Ui {
     public void exitTask() {
         System.out.println("\t It's a great time talking with you.\n\t See you next time!");
         scn.close();
-        sessionEnd = true;
     }
 
     public void listTask(TaskList tasks) {
