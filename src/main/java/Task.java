@@ -27,7 +27,7 @@ public class Task {
     public static void makeTask(String description, String moreInfo, Type type, boolean saveTask) {
         switch (type) {
             case TODO:
-                Task todo = new ToDo(description, saveTask);
+                ToDo todo = new ToDo(description, saveTask);
                 Sally.list.add(todo);
                 if (saveTask) {
                     printMakeTask();
@@ -35,7 +35,7 @@ public class Task {
                 }
                 break;
             case DEADLINE:
-                Task deadline = new Deadline(description, moreInfo, saveTask);
+                Deadline deadline = new Deadline(description, moreInfo, saveTask);
                 Sally.list.add(deadline);
                 if (saveTask) {
                     printMakeTask();
@@ -55,7 +55,7 @@ public class Task {
 
     public static void saveTaskToFile() {
         try {
-            Sally.savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+            Sally.savesFile();
         } catch (IOException e) {
             System.out.println("File Not Found");
         }

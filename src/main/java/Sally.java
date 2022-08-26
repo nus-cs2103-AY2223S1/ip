@@ -16,7 +16,7 @@ public class Sally {
         printBorder();
 
         try {
-            readsFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+            readsFile();
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
@@ -24,7 +24,8 @@ public class Sally {
         messaging();
     }
 
-    public static void readsFile(String filePath) throws FileNotFoundException {
+    public static void readsFile() throws FileNotFoundException {
+        String filePath = "D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt";
         File file = new File(filePath);
         Scanner sc = new Scanner(file);
         int taskNum = 1;
@@ -83,32 +84,41 @@ public class Sally {
         return Task.Type.TODO;
     }
 
-    public static void savesFile(String filePath) throws IOException {
+    public static void savesFile() throws IOException {
 //        printBorder();
 //        System.out.println("Saving file");
 //        printBorder();
-        FileWriter writer = new FileWriter("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+        String filePath = "D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt";
+        FileWriter writer = new FileWriter(filePath);
+
+        String typeSymbol;
+        String description;
+        String moreInfo;
+        String separator = " | ";
+        String newFile = "";
 
         for (Task task : list) {
             int indexDone = task.isDone ? 1 : 0;
-            String typeSymbol;
-            String description = task.description;
-            String moreInfo = task.getMoreInfo();
-            String separator = " | ";
-            String newFile = "";
+            description = task.description;
+            moreInfo = task.getMoreInfo();
 
+            System.out.println("taskType = " + task.taskType);
             switch (task.taskType) {
                 case TODO:
+                    System.out.println("masuk TODO save file");
                     typeSymbol = "T";
-                    newFile = newFile + typeSymbol + separator + indexDone + separator + description + "\n";
+                    newFile = newFile + (typeSymbol + separator + indexDone + separator + description + "\n");
                     break;
                 case DEADLINE:
+                    System.out.println("masuk DEADLINE save file");
                     typeSymbol = "D";
-                    newFile = newFile + typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n";
+                    newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
                     break;
                 case EVENT:
+                    System.out.println("masuk EVENT save file");
                     typeSymbol = "E";
-                    newFile = newFile + typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n";
+                    newFile = newFile + (typeSymbol + separator + indexDone + separator + description + separator + moreInfo + "\n");
+                    break;
             }
 
             writer.write((newFile));
@@ -122,7 +132,7 @@ public class Sally {
 
         if (message.equals("bye")) {
 //            try {
-//                savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+//                savesFile();
 //            } catch (IOException e) {
 //                System.out.println("File Not Found");
 //            }
@@ -161,7 +171,7 @@ public class Sally {
                     throw new SallyException.SallyTaskNotFoundException();
                 }
                 try {
-                    Sally.savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
+                    Sally.savesFile();
                 } catch (IOException e) {
                     System.out.println("File Not Found");
                 }
@@ -177,17 +187,17 @@ public class Sally {
                         task.markAsUndone();
                         String unmarkTask = task.toString();
                         System.out.println("Got it, I've unmarked this task for you!\n" + unmarkTask);
+                        try {
+                            Sally.savesFile();
+                        } catch (IOException e) {
+                            System.out.println("File Not Found");
+                        }
                     } else {
                         System.out.println("You have not marked: \n  " + description + "\n");
                     }
                     printBorder();
                 } else {
                     throw new SallyException.SallyTaskNotFoundException();
-                }
-                try {
-                    Sally.savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
-                } catch (IOException e) {
-                    System.out.println("File Not Found");
                 }
             } else if (!message.contains("unmark") && message.contains("mark")) {
                 int taskNum = Integer.parseInt(message.substring(5)) - 1; // -1 so that index is constant
@@ -199,6 +209,11 @@ public class Sally {
                         task.markAsDone();
                         String markTask = task.toString();
                         System.out.println("Got it, I've marked this task for you!\n" + markTask);
+                        try {
+                            savesFile();
+                        } catch (IOException e) {
+                            System.out.println("File Not Found");
+                        }
                     } else {
                         System.out.println("You have previously done: \n    " + description + "\n");
                     }
@@ -206,17 +221,14 @@ public class Sally {
                 } else {
                     throw new SallyException.SallyTaskNotFoundException();
                 }
-                try {
-                    Sally.savesFile("D:/NUS/Y2/S1/CS2103T/ip/data/Sally.txt");
-                } catch (IOException e) {
-                    System.out.println("File Not Found");
-                }
             } else {
                 //ToDos
+                System.out.println("masuk bagian ToDos");
                 if (message.startsWith("todo")) {
                     if (message.length() > 4) {
                         String description = message.substring(5);
                         Task.makeTask(description, "", Task.Type.TODO, true);
+                        System.out.println("setelah make task");
                     } else {
                         throw new SallyException.SallyNoDescriptionException();
                     }

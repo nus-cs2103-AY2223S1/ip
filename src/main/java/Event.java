@@ -3,6 +3,7 @@ public class Event extends Task {
     public Event(String description, String moreInfo, boolean saveTask) {
         super(description, moreInfo, saveTask);
         this.moreInfo = moreInfo;
+        this.taskType = Type.EVENT;
     }
 
     @Override
