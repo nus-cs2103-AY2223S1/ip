@@ -33,6 +33,15 @@ public class TaskList {
     }
 
     /**
+     * Returns the task in the ArrayList that has the given index position.
+     * @param index The index position of the task in the ArrayList.
+     * @return The task in the ArrayList that has the given index position.
+     */
+    public Task getTask(int index) {
+        return this.tasks.get(index);
+    }
+
+    /**
      * Removes a task from the ArrayList object 'tasks'.
      * @param taskNumber An integer that provides the index of the task in the ArrayList to be removed.
      */
