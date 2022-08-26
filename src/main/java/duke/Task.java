@@ -79,13 +79,24 @@ public class Task {
         System.out.println(Duke.LINE + "\n");
     }
 
+    /**
+     * Lists the description of the task.
+     */
     public void list() {
     };
 
+    /**
+     * Returns the String representation of the task.
+     * @return the String representation of the task.
+     */
     public String toString() {
         return " ";
     };
 
+    /**
+     * Returns the description of the task.
+     * @return the description of the task.
+     */
     public String description() {
         return "";
     }
