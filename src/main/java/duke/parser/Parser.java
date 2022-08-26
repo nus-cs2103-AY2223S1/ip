@@ -7,6 +7,9 @@ import duke.model.ToDo;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Deals with making sense of the user command.
+ */
 public class Parser {
 
     enum Keyword {
@@ -22,10 +25,21 @@ public class Parser {
 
         private String value;
 
+        /**
+         * A constructor for a Keyword.
+         *
+         * @param keyword a string indicating the user's intentions
+         */
         Keyword(String keyword) {
             this.value = keyword;
         }
 
+        /**
+         * Finds and returns a Keyword based on the user's input Keyword.
+         *
+         * @param inputKeyword the user's input Keyword
+         * @return the corresponding Keyword related to a Command
+         */
         public static Keyword getKeyword(String inputKeyword) {
             for (Keyword k : Keyword.values()) {
                 if (inputKeyword.toLowerCase().equals(k.value)) {
@@ -36,6 +50,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns the corresponding Command with respect to the user's input.
+     *
+     * @param userInput the user's input
+     * @return a Command associated with the user's input
+     */
     public static Command parse(String userInput) {
         String[] input = userInput.split(" ", 2);
 
