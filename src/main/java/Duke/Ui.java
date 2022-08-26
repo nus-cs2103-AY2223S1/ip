@@ -29,7 +29,7 @@ public class Ui {
     }
 
     public void showResponseHeader() {
-        System.out.println("\nDuke: ");
+        System.out.println("Duke: ");
     }
 
     public void showResponse(String response) {

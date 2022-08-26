@@ -28,12 +28,6 @@ public class EventTask extends Task{
         this.endTime = endTime;
     }
 
-    public EventTask(String description, LocalDateTime startTime, LocalDateTime endTime, boolean isMarked) {
-        super(description, TaskType.EVENT, isMarked);
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
-
     /**
      * Constructs the event task given the description, starting time and
      * ending time.
