@@ -1,7 +1,5 @@
 todo // T // read book
-deadline // T // return book // June 6th
-event // F // project meeting // Aug 6th 2-4pm
+deadline // T // return book // 2022-26-08 12:30
+event // F // project meeting // 2022-27-08 14:00
 todo // T // join sports club
-todo // T // alskdf
-deadline // F // laksdf // asdklf
-event // F // laskdjf // asdklfj
+todo // F // laskdf
