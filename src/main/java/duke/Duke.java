@@ -2,9 +2,17 @@ package duke;
 
 import duke.command.Command;
 
+/**
+ * The Duke program to manage the user's tasks.
+ */
 public class Duke {
+    /** The user interface object of Duke. */
     private Ui ui;
+
+    /** The storage object to handle saving and loading of tasks. */
     private Storage storage;
+
+    /** The list of current tasks. */
     private TaskList tasks;
 
     public Duke(String filePath) {
@@ -19,6 +27,10 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs the task manager Duke program.
+     *
+     */
     public void start() {
         ui.welcome();
         boolean isExit = false;

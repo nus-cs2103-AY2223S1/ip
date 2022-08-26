@@ -2,6 +2,9 @@ package duke;
 
 import java.util.Scanner;
 
+/**
+ * Represents the user interface of the Duke program.
+ */
 public class Ui {
     private static String BOT_NAME = "DIGITAL DADDY";
     private static String EMOJI = "\uD83E\uDD16";

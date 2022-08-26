@@ -5,8 +5,14 @@ import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
 
+/**
+ * Represents a command to mark a task as completed or uncompleted.
+ */
 public class MarkCommand extends Command {
+    /** The issued command: i.e. mark or unmark. */
     private String mark;
+
+    /** The task to be marked as done or undone. */
     private int taskNumber;
 
     public MarkCommand(String mark, int taskNumber) {

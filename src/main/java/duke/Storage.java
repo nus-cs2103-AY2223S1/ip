@@ -15,13 +15,22 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Handles the saving and loading of user's tasks.
+ */
 public class Storage {
+    /** The save file to be read from. */
     private File file;
 
     public Storage(String filePath) {
         this.file = new File(filePath);
     }
 
+    /**
+     * Saves the user's current tasks into a text file.
+     *
+     * @param list The list of current tasks.
+     */
     public void saveTasks(TaskList list) {
         FileWriter fr = null;
         try {
@@ -39,6 +48,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the user's saved tasks from a text file.
+     *
+     * @return A list of user's saved tasks.
+     * @throws DukeException If a generic error occurs trying to parse the input.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> loadedTasks = new ArrayList<>();
         Scanner sc = null;

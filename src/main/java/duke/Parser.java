@@ -15,9 +15,18 @@ import duke.task.Event;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Handles the parsing of the user's input into the appropriate command to be executed.
+ */
 public class Parser {
+    /**
+     * Returns the appropriate command from parsing the user's input.
+     *
+     * @param input The user's given input.
+     * @return The appropriate command to be executed.
+     * @throws DukeException If a generic error occurs trying to parse the input.
+     */
     public static Command parseInput(String input) throws DukeException {
-        //todo: initialize different duke.command objects
         if (input.equals("bye")) {
             return new ExitCommand();
         }

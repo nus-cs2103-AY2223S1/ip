@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Represents a user's task, without a required date.
+ */
 public class Todo extends Task {
     public Todo(String description) {
         super(description);

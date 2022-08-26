@@ -3,7 +3,11 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Represents the user's task, specifically an event on a specific date.
+ */
 public class Event extends Task {
+    /** The date of the event. */
     protected LocalDate date;
 
     public Event(String description, LocalDate date) {
