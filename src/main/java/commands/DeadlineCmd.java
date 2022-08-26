@@ -14,7 +14,7 @@ import tasks.Deadline;
  * by the user.
  */
 public class DeadlineCmd extends Command {
-    private String body;
+    private final String body;
 
     /**
      * Constructor for the DeadlineCmd class.

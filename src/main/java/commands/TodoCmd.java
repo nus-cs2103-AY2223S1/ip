@@ -12,7 +12,7 @@ import tasks.Todo;
  * by the user.
  */
 public class TodoCmd extends Command {
-    private String body;
+    private final String body;
 
     /**
      * Constructor for the TodoCmd class.

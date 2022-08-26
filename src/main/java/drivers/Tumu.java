@@ -8,9 +8,9 @@ import exceptions.TumuException;
  * and responds accordingly.
  */
 public class Tumu {
-    private Storage storage;
-    private TaskList tasks;
-    private UI ui;
+    private final Storage storage;
+    private final TaskList tasks;
+    private final UI ui;
 
     /**
      * Constructor for the Tumu class.
@@ -18,7 +18,7 @@ public class Tumu {
     public Tumu() {
         ui = new UI();
         storage = new Storage("data/Tumu.txt");
-        tasks = new TaskList(storage.loadData());
+        tasks = new TaskList(storage.loadData(ui));
     }
 
     /**

@@ -12,7 +12,7 @@ import java.util.List;
  * to add/delete tasks in the list.
  */
 public class TaskList {
-    private List<Task> userTasks;
+    private final List<Task> userTasks;
 
     /**
      * Constructor for the TaskList class.
@@ -83,8 +83,7 @@ public class TaskList {
                 throw new OutOfBoundsException(userTasks.size());
             }
         } else {
-            Task removedTask = userTasks.remove(oneIndexedNum - 1);
-            return removedTask;
+            return userTasks.remove(oneIndexedNum - 1);
         }
     }
 

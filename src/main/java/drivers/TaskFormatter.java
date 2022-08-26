@@ -19,7 +19,7 @@ public class TaskFormatter {
     private String taskType;
     private String statusIcon;
     private String description;
-    private String timing;
+    private final String timing;
 
     /**
      * Constructor for the TaskFormatter class.
@@ -72,7 +72,7 @@ public class TaskFormatter {
      * @param task Task to be marked.
      */
     private void markTask(Task task) {
-        if (statusIcon == "X") {
+        if (statusIcon.equals("X")) {
             task.markDone();
         } else {
             task.unmarkDone();

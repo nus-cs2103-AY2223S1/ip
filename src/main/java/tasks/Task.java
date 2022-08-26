@@ -5,7 +5,7 @@ package tasks;
  */
 public abstract class Task {
     private String taskDescription;
-    private boolean completedTask;
+    private boolean isCompleted;
 
     /**
      * Constructor for the Task class.
@@ -13,21 +13,21 @@ public abstract class Task {
      */
     protected Task(String taskDescription) {
         this.taskDescription = taskDescription;
-        completedTask = false;
+        isCompleted = false;
     }
 
     /**
      * Mark this specific task as done.
      */
     public void markDone() {
-        completedTask = true;
+        isCompleted = true;
     }
 
     /**
      * Unmark this specific task to be undone.
      */
     public void unmarkDone() {
-        completedTask = false;
+        isCompleted = false;
     }
 
     /**
@@ -36,7 +36,7 @@ public abstract class Task {
      * @return Status icon on whether the task is marked or unmarked.
      */
     protected String getStatusIcon() {
-        return (completedTask ? "X" : " ");
+        return (isCompleted ? "X" : " ");
     }
 
     /**

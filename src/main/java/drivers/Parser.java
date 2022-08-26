@@ -33,25 +33,25 @@ public class Parser {
         String body = input[1].trim();
 
         switch (command) {
-            case END_CHAT_BOT_CMD:
-                return new EndChatBotCmd();
-            case LIST_USER_TEXT_CMD:
-                return new ListUserTextCmd();
-            case MARK_CMD:
-                return new MarkTaskCmd(body);
-            case UNMARK_CMD:
-                return new UnmarkTaskCmd(body);
-            case TODO_CMD:
-                return new TodoCmd(body);
-            case DEADLINE_CMD:
-                return new DeadlineCmd(body);
-            case EVENT_CMD:
-                return new EventCmd(body);
-            case DELETE_CMD:
-                return new DeleteCmd(body);
-            default:
-                ui.readCommand(); //clear buffer
-                throw new UnrecognisedCommandException(command.trim());
+        case END_CHAT_BOT_CMD:
+            return new EndChatBotCmd();
+        case LIST_USER_TEXT_CMD:
+            return new ListUserTextCmd();
+        case MARK_CMD:
+            return new MarkTaskCmd(body);
+        case UNMARK_CMD:
+            return new UnmarkTaskCmd(body);
+        case TODO_CMD:
+            return new TodoCmd(body);
+        case DEADLINE_CMD:
+            return new DeadlineCmd(body);
+        case EVENT_CMD:
+            return new EventCmd(body);
+        case DELETE_CMD:
+            return new DeleteCmd(body);
+        default:
+            ui.readCommand(); //clear buffer
+            throw new UnrecognisedCommandException(command);
         }
     }
 

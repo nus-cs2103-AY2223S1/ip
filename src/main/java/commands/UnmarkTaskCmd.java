@@ -11,7 +11,7 @@ import tasks.Task;
  * by the user.
  */
 public class UnmarkTaskCmd extends Command {
-    private int taskIndex;
+    private final int taskIndex;
 
     /**
      * Constructor for the UnmarkTaskCmd class.

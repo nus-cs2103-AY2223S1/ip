@@ -14,7 +14,7 @@ import tasks.Event;
  * by the user.
  */
 public class EventCmd extends Command {
-    private String body;
+    private final String body;
 
     /**
      * Constructor for the EventCmd class.

@@ -4,6 +4,7 @@ import exceptions.TumuException;
 import tasks.Task;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.Scanner;
  */
 public class Storage {
     private static final String FOLDER_PATH = "data";
-    private String filePath;
+    private final String filePath;
 
     /**
      * Constructor for the Storage class.
@@ -31,7 +32,7 @@ public class Storage {
      * TaskList.
      * @return A list of the tasks stored within the local txt file.
      */
-    public List<Task> loadData() {
+    public List<Task> loadData(UI ui) {
         File file = getFile();
         List<Task> userTasks = new ArrayList<>();
         try {
@@ -45,10 +46,11 @@ public class Storage {
             }
             sc.close();
         } catch (TumuException e) {
-            System.out.println(e);
-        } finally {
-            return userTasks;
+            ui.notifyUser(e.toString());
+        } catch (FileNotFoundException e) {
+            ui.notifyUser("No save file is found!");
         }
+        return userTasks;
     }
 
     /**
@@ -87,13 +89,11 @@ public class Storage {
 
         File file = new File(filePath);
         try {
-            if (!file.exists()) {
-                file.createNewFile();
-            }
+            file.createNewFile();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            return file;
         }
+
+        return file;
     }
 }

@@ -11,12 +11,13 @@ import tasks.Task;
  * issued by the user.
  */
 public class DeleteCmd extends Command {
-    private int taskIndex;
+    private final int taskIndex;
 
     /**
      * Constructor for the DeleteCmd class.
      * @param body The rest of the instruction issued by the user after command.
-     * @throws NumberFormatException
+     * @throws NumberFormatException Thrown when the parsed information of task cannot be converted into
+     * an integer.
      */
     public DeleteCmd(String body) throws NumberFormatException {
         taskIndex = Integer.parseInt(body);
