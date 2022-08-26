@@ -8,8 +8,8 @@ import Duke.Todo;
 import java.io.IOException;
 
 /**
- * Handles a to-do command
- */
+* Command that adds a To-Do to the TaskList when executed.
+*/
 public class TodoCommand extends Command {
     boolean exit;
     private String userAction;

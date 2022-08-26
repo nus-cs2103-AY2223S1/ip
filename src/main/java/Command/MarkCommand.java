@@ -7,8 +7,8 @@ import Duke.TaskList;
 import java.io.IOException;
 
 /**
- * Marks a task as done in the tasklist
- */
+* Command that marks a specified task as complete when executed.
+*/
 public class MarkCommand extends Command {
 
     boolean exit;

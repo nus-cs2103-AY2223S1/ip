@@ -10,7 +10,6 @@ import Command.MarkCommand;
 import Command.TodoCommand;
 import Command.UnmarkCommand;
 
-
 /**
 * Parser deals with making sense of the user command by formatting user inputs
 * such that Duke can handle them through the Command Class and Ui Class
@@ -81,7 +80,7 @@ public class Parser {
                     String userAction = command[1];
                     nextCommand = new FindCommand(userAction);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    throw new DukeException("I'm sorry, but you need to provide a valid index");
+                    throw new DukeException("I'm sorry, but you need to provide a keyword to search for");
                 }
             } else if (userCommand.equals("bye")) {
                 nextCommand = new ExitCommand();

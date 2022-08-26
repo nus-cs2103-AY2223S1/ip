@@ -7,8 +7,8 @@ import Duke.TaskList;
 import java.io.IOException;
 
 /**
- * Marks a task as undone in the tasklist
- */
+* Command that marks a specified task as incomplete when executed.
+*/
 public class UnmarkCommand extends Command {
     boolean exit;
     private String userAction;

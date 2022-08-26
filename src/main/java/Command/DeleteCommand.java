@@ -7,8 +7,8 @@ import Duke.TaskList;
 import java.io.IOException;
 
 /**
- * Deletes a task from the tasklist
- */
+* Command that deletes a task from the TaskList when executed.
+*/
 public class DeleteCommand extends Command {
     boolean exit;
     private String userAction;

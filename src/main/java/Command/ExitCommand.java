@@ -6,8 +6,8 @@ import Duke.TaskList;
 import java.io.IOException;
 
 /**
- * Adds to the tasklist
- */
+* Command that exits the program when executed.
+*/
 public class ExitCommand extends Command {
 
     boolean exit;

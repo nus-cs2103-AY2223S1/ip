@@ -57,23 +57,41 @@ public class TaskList {
     }
 
     /**
+     * builds a string based on the list of tasks contained in the ArrayList of Task objects
+     * to be displayed to the user filtered using the specified keyword by using command "find"
+     *
+     * @param keyword the keyword to search for tasks containing the keyword.
+     * @return the details of all tasks that matches the specified keyword in
+     * chronological order of which the user added to the TaskList.
+     */
+    public String find(String keyword) {
+        int counter = 1;
+        String list = "";
+        for (Task task : tasks) {
+            if (task.description.contains(keyword)) {
+                list = list + " " + counter + ": " + task.toString() + "\n";
+                counter += 1;
+            }
+        }
+        String findMessage = "Here are the matching tasks in your list:\n" + list;
+        return " " + findMessage.trim();
+    }
+
+
+    /**
      * Builds a string based on the list of tasks contained in the ArrayList
      * of Task objects to be displayed to the user using command "list".
      *
      * @return the details of all tasks previously added by the user which are indexed
-     * in chronological order of which the user added to the task list.
+     * in chronological order of which the user added to the TaskList.
      */
     @Override
     public String toString() {
         String list = "";
         for (int i = 0; i < this.tasks.size(); i++) {
-            if (i == tasks.size() - 1) {
-                list = list + " " + (i + 1) + ": " + tasks.get(i).toString();
-                break;
-            }
             list = list + " " + (i + 1) + ": " + tasks.get(i).toString() + "\n";
         }
-        String listMessage = " Here are the tasks in your list:\n" + list;
-        return listMessage;
+        String listMessage = "Here are the tasks in your list:\n" + list;
+        return " " + listMessage.trim();
     }
 }

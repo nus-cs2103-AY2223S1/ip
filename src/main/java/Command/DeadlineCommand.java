@@ -8,8 +8,8 @@ import Duke.TaskList;
 import java.io.IOException;
 
 /**
- * Handles a deadline command
- */
+* Command that adds a Deadline to the TaskList when executed.
+*/
 public class DeadlineCommand extends Command {
     boolean exit;
     private String userAction;

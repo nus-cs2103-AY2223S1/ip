@@ -3,8 +3,8 @@ import Duke.DukeUi;
 import Duke.Storage;
 import Duke.TaskList;
 /**
- * Handles a to-do command
- */
+* Command that prints out the list of user's tasks when executed.
+*/
 public class ListCommand extends Command {
 
     boolean exit;

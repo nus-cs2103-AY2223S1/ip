@@ -8,8 +8,8 @@ import Duke.TaskList;
 import java.io.IOException;
 
 /**
- * Adds an event to the tasklist
- */
+* Command that adds an Event to the TaskList when executed.
+*/
 public class EventCommand extends Command {
     boolean exit;
     private String userAction;
