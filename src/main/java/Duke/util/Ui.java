@@ -1,3 +1,8 @@
+package Duke.util;
+
+import Duke.task.Task;
+import Duke.task.TaskList;
+
 public class Ui {
     public void displayWelcome() {
         String logo = " ____        _        \n"
@@ -6,7 +11,7 @@ public class Ui {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-        System.out.println("Hello! I'm Duke\n" + "What can I do for you?");
+        System.out.println("Hello! I'm Duke.Duke\n" + "What can I do for you?");
     }
 
     public void sayGoodbye() {
@@ -18,7 +23,7 @@ public class Ui {
     }
 
     public void addTask(Task task, TaskList tasks) {
-        System.out.println( "Noted. I've removed this task: \n" + task.toString() +
+        System.out.println( "Noted. I've removed this Duke.Duke.task: \n" + task.toString() +
                 "\nNow you have " + tasks.getLength()
                 + " tasks in the list");
     }

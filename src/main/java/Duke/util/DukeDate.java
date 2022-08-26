@@ -1,6 +1,7 @@
+package Duke.util;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
 
 public class DukeDate {
     protected LocalDateTime dateTime;

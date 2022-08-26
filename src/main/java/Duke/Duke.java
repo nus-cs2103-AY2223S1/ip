@@ -1,3 +1,9 @@
+package Duke;
+
+import Duke.task.TaskList;
+import Duke.task.TaskStorage;
+import Duke.util.Ui;
+
 import java.util.Scanner;
 
 public class Duke {

@@ -1,3 +1,5 @@
+package Duke.task;
+
 import java.util.ArrayList;
 
 /** Represents a list of tasks
@@ -28,16 +30,16 @@ public class TaskList {
         return this.tasks.size();
     }
 
-    /** Adds a new task into the list
-     * @param task the task to be added
+    /** Adds a new Duke.Duke.task into the list
+     * @param task the Duke.Duke.task to be added
      */
     public void addTask(Task task) {
         tasks.add(task);
     }
 
     /**
-     * Mark a task in the list as done
-     * @param index index of the task to be marked as done
+     * Mark a Duke.Duke.task in the list as done
+     * @param index index of the Duke.Duke.task to be marked as done
      */
     public Task mark(int index) {
         Task temp = tasks.get(index-1);
@@ -45,8 +47,8 @@ public class TaskList {
         return temp;
     }
     /**
-     * Mark a task in the list as not done
-     * @param index index of the task to be unmarked
+     * Mark a Duke.Duke.task in the list as not done
+     * @param index index of the Duke.Duke.task to be unmarked
      */
     public Task unmark(int index) {
         Task temp = tasks.get(index-1);
@@ -55,8 +57,8 @@ public class TaskList {
     }
 
     /**
-     * Delete a task from the task list
-     * @param index index of the task to be deleted
+     * Delete a Duke.Duke.task from the Duke.Duke.task list
+     * @param index index of the Duke.Duke.task to be deleted
      */
     public Task delete(int index) {
         Task temp = tasks.get(index-1);

@@ -1,9 +1,11 @@
+package Duke.task;
+
+import Duke.DukeException;
+
 import java.io.File;
 import java.io.FileWriter;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -11,7 +13,7 @@ import java.util.Scanner;
 public class TaskStorage {
     protected String filePath;
 
-    TaskStorage(String filePath) {
+    public TaskStorage(String filePath) {
         this.filePath = filePath;
     }
     public void saveTask(TaskList taskList) {

@@ -1,3 +1,9 @@
+package Duke;
+
+import Duke.task.*;
+
+import Duke.util.Ui;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,7 +19,7 @@ public class DukeHandler {
         this.ui = ui;
     }
 
-    public void handleResponse(String input) throws DukeException{
+    public void handleResponse(String input) throws DukeException {
         if (input.equals("bye")) {
             ui.sayGoodbye();
             System.exit(0);
@@ -30,12 +36,12 @@ public class DukeHandler {
             else if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
                 if (inputParts.get(0).equals("mark")) {
                     Task task = tasks.mark(Integer.parseInt(inputParts.get(1)));
-                    ui.respond("Nice! I've marked this task as done: \n" + task.toString());
+                    ui.respond("Nice! I've marked this Duke.Duke.task as done: \n" + task.toString());
                     storage.saveTask(tasks);
                 }
                 if (inputParts.get(0).equals("unmark")) {
                     Task task = tasks.unmark(Integer.parseInt(inputParts.get(1)));
-                    ui.respond("OK, I've marked this task as not done yet: \n" + task.toString());
+                    ui.respond("OK, I've marked this Duke.Duke.task as not done yet: \n" + task.toString());
                     storage.saveTask(tasks);
                 }
             }

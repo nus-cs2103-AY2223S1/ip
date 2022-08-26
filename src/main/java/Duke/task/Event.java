@@ -1,16 +1,21 @@
+package Duke.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import Duke.DukeException;
+import Duke.util.DukeDate;
+
 /**
- * Event class inherits from Task
- * Event objects are tasks with specific start and end time
+ * Duke.Duke.task.task.Event class inherits from Task
+ * Duke.Duke.task.task.Event objects are tasks with specific start and end time
  * @author Nam Minh Quan
  */
 
 public class Event extends Task {
     protected LocalDateTime time;
 
-    public Event(String description, String time, boolean done) throws DukeException{
+    public Event(String description, String time, boolean done) throws DukeException {
         super(description, done);
         if (description.equals("")) {
             throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
@@ -27,7 +32,7 @@ public class Event extends Task {
 
     /**
      * Sets a new start and end time
-     * @param newTime new time for Event
+     * @param newTime new time for Duke.Duke.task.task.Event
      */
     public void setTime(String newTime) {
         this.time = new DukeDate(newTime).getDateTime();

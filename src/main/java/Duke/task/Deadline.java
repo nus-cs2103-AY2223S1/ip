@@ -1,6 +1,10 @@
+package Duke.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import Duke.DukeException;
+import Duke.util.DukeDate;
 /**
  * Deadline class inherits from Task
  * Deadline objects are tasks with deadlines
@@ -10,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     protected LocalDateTime deadline;
 
-    public Deadline(String description, String deadline, boolean done) throws DukeException{
+    public Deadline(String description, String deadline, boolean done) throws DukeException {
         super(description, done);
         if (description.equals("")) {
             throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
@@ -22,8 +26,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Sets a new deadline for the task
-     * @param newDeadline new deadline for Event
+     * Sets a new deadline for the Duke.Duke.task
+     * @param newDeadline new deadline for Duke.Duke.task.task.Event
      */
     public void setDeadline(String newDeadline) {
         this.deadline = new DukeDate(newDeadline).getDateTime();
