@@ -6,10 +6,8 @@ import java.time.format.DateTimeFormatter;
 public class TaskWithDate extends Task {
 
     protected LocalDateTime datetime;
-    public static final DateTimeFormatter inDateTimeFormatter =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    public static final DateTimeFormatter outDateTimeFormatter =
-            DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
+    public static final DateTimeFormatter inDateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter outDateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm");
 
     public TaskWithDate(String description, String datetime) {
         super(description);

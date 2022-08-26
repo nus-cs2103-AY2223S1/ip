@@ -1,6 +1,7 @@
 package piggy;
 
 import java.util.Scanner;
+
 import piggy.task.Task;
 
 class Ui {
