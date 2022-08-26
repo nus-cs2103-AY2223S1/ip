@@ -1,9 +1,16 @@
-import java.util.ArrayList;
+package duke.command;
 
-public class DeleteCommand extends Command {
+import java.util.ArrayList;
+import duke.Ui;
+import duke.Storage;
+import duke.TaskList;
+import duke.DukeException;
+import duke.task.Task;
+
+public class UnmarkCommand extends Command {
     private int index;
 
-    public DeleteCommand(int index) {
+    public UnmarkCommand(int index) {
         this.index = index;
     }
 
@@ -15,10 +22,10 @@ public class DeleteCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         ArrayList<Task> list = taskList.getTaskArrayList();
-        if ((index > 0) && (list.get(index - 1) != null)) {
+        if ((index > 0) && index < list.size() && (list.get(index - 1) != null)) {
             Task t = list.get(index - 1);
-            taskList.delete(this.index);
-            ui.showDelete(t, list.size());
+            taskList.unmark(this.index);
+            ui.showUnmark(t);
         } else {
             String s = "☹ OOPS!!! The index of the task to be marked/unmarked/deleted must be valid/within range.";
             throw new DukeException(s);

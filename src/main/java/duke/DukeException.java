@@ -1,6 +1,5 @@
-/**
- * An exception that occurs during the running of Duke chatbot.
- */
+package duke;
+
 public class DukeException extends Exception {
     public DukeException(String message) {
         super(message);

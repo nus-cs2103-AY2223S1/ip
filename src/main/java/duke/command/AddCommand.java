@@ -1,3 +1,13 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Ui;
+import duke.Storage;
+import duke.TaskList;
+import duke.task.Todo;
+import duke.task.Event;
+import duke.task.Deadline;
+
 public class AddCommand extends Command {
     private String type;
     private String description;
