@@ -8,8 +8,18 @@ import duke.task.Todo;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Parser class to deal with making sense of the user command
+ */
 public class Parser {
 
+    /**
+     * Returns the corresponding Command object based on user input.
+     * If user input is incorrect, an IncorrectCommand object is returned.
+     * 
+     * @param fullCommand Standard input read from user
+     * @return Command Object
+     */
     public static Command parse(String fullCommand) {
         String[] input = fullCommand.split(" ", 2);
         String commandInput = input[0].toLowerCase();

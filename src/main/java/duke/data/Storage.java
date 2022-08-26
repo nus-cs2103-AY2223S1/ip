@@ -12,14 +12,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Storage class to load tasks from file and save tasks in the file.
+ */
 public class Storage {
     public static char LINE_SEPARATOR = '|';
     private File file;
 
+    /**
+     * Initializes Storage object with the filePath
+     * 
+     * @param filePath Path to local file
+     */
     public Storage(String filePath) {
         this.setup(filePath);
     }
 
+    /**
+     * Creates the data folder and file locally if it does not exist.
+     * 
+     * @param filePath
+     */
     public void setup(String filePath) {
         String curDirectory = System.getProperty("user.dir");
         String directoryName = "data";
@@ -40,6 +53,11 @@ public class Storage {
         this.file = file;
     }
 
+    /**
+     * Loads tasks from the local disk storage 
+     * 
+     * @return ArrayList of tasks to be used to initialize a TaskList object
+     */
     public List<Task> load() {
         List<Task> newList = new ArrayList<>();
         try {
@@ -78,6 +96,11 @@ public class Storage {
         return newList;
     }
 
+    /**
+     * Stores the TaskList in the local disk storage
+     * 
+     * @param taskList ArrayList of tasks to be saved
+     */
     public void store(TaskList taskList) {
         String dataList = taskList.getDataList();
         try {

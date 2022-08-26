@@ -4,6 +4,9 @@ import duke.data.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * Command class
+ */
 abstract public class Command {
 
     protected boolean isExit = false;

@@ -4,6 +4,9 @@ import duke.data.Storage;
 import duke.task.TaskList;
 import duke.ui.Ui;
 
+/**
+ * MarkCommand class
+ */
 public class MarkCommand extends Command {
 
     private final int taskIndex;
@@ -14,6 +17,13 @@ public class MarkCommand extends Command {
         this.action = action;
     }
 
+    /**
+     * Mark task in task list and update disk storage
+     *
+     * @param storage Disk storage
+     * @param tasks Task list
+     * @param ui Ui to display to users
+     */
     @Override
     public void execute(Storage storage, TaskList tasks, Ui ui) {
         try {
