@@ -1,7 +1,6 @@
 package duke;
-public class Ui {
 
-    public static Object welcomeMsg;
+public class Ui {
 
     static void addedMsg(Task task) {
         System.out.println("Got it. I've added this task: \n" +
@@ -16,6 +15,7 @@ public class Ui {
                 "\n Now you have " + TaskList.taskList.size() +
                 (TaskList.taskList.size() > 1 ? " tasks in your list." : " task in your list."));
     }
+
     static void welcomeMsg() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -30,7 +30,7 @@ public class Ui {
     }
 
     static void unmarkMsg(int index) {
-        System.out.println( "Nice! I've marked this task as not done yet: \n" + TaskList.taskList.get(index).toString());
+        System.out.println("Nice! I've marked this task as not done yet: \n" + TaskList.taskList.get(index).toString());
 
     }
 
@@ -40,5 +40,9 @@ public class Ui {
 
     static void errorMsg(String message) {
         System.out.println(message);
+    }
+
+    public static void resultsMsg() {
+        System.out.println("Here are the matching tasks in your list:");
     }
 }

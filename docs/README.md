@@ -1,6 +1,6 @@
 # User Guide
 
-## Features 
+## Features
 
 ### Feature-ABC
 
@@ -16,7 +16,7 @@ Description of the feature.
 
 Describe the action and its outcome.
 
-Example of usage: 
+Example of usage:
 
 `keyword (optional arguments)`
 

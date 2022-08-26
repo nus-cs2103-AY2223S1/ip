@@ -1,4 +1,5 @@
 package duke;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -13,7 +14,7 @@ public class Deadline extends Task {
         super(description);
         this.oldDate = dateTime;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
-        this.dateTime =  LocalDateTime.parse(dateTime,formatter);
+        this.dateTime = LocalDateTime.parse(dateTime, formatter);
         formattedDateTime = this.dateTime.format(DateTimeFormatter
                 .ofLocalizedDate(FormatStyle.FULL)) + " " + this.dateTime.format(DateTimeFormatter
                 .ofLocalizedTime(FormatStyle.SHORT));
@@ -23,7 +24,9 @@ public class Deadline extends Task {
         return formattedDateTime;
     }
 
-    public String getOldDate() {return this.oldDate;}
+    public String getOldDate() {
+        return this.oldDate;
+    }
 
     @Override
     public String toString() {
