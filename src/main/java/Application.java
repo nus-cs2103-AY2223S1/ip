@@ -1,10 +1,23 @@
+import java.util.List;
 import java.util.Scanner;
 
 public class Application {
-    private TaskList taskList = new TaskList();
+    private TaskList taskList;
+    private Db db = new Db();
     boolean active = true;
 
     public void run() {
+        // try to load in from db first
+        List<Task> persistedTasks = db.load();
+        printResponse("Attempting to load previously stored tasks...");
+        // note db.load() returns empty ArrayList if there is no db record
+        this.taskList = new TaskList(db, persistedTasks);
+        if (persistedTasks.isEmpty()) {
+            // no tasks in db
+            printResponse("No tasks found in storage :(");
+        } else {
+            printResponse("Stored tasks have been found!");
+        }
         Scanner sc = new Scanner(System.in);
         while (active) {
             printResponse("please choose from these commands: add | delete | mark | unmark | list | bye");
