@@ -1,3 +1,4 @@
+package duke;
 
 class DukeException extends Exception {
 
