@@ -1,6 +1,6 @@
-package BetaGo.Tasks;
+package betago.tasks;
 
-import BetaGo.Exceptions.InvalidCommandException;
+import betago.exceptions.InvalidCommandException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

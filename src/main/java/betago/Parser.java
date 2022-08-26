@@ -1,7 +1,7 @@
-package BetaGo;
+package betago;
 
-import BetaGo.Exceptions.EmptyListException;
-import BetaGo.Exceptions.InvalidCommandException;
+import betago.exceptions.EmptyListException;
+import betago.exceptions.InvalidCommandException;
 
 import java.util.Scanner;
 

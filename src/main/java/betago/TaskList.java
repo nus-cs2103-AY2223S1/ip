@@ -1,12 +1,12 @@
-package BetaGo;
+package betago;
 
-import BetaGo.Exceptions.EmptyListException;
-import BetaGo.Exceptions.InvalidCommandException;
-import BetaGo.Exceptions.InvalidDataFileException;
-import BetaGo.Tasks.Deadline;
-import BetaGo.Tasks.Event;
-import BetaGo.Tasks.Task;
-import BetaGo.Tasks.Todo;
+import betago.exceptions.EmptyListException;
+import betago.exceptions.InvalidCommandException;
+import betago.exceptions.InvalidDataFileException;
+import betago.tasks.Deadline;
+import betago.tasks.Event;
+import betago.tasks.Task;
+import betago.tasks.Todo;
 
 import java.io.IOException;
 import java.time.LocalDate;

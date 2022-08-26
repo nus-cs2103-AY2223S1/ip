@@ -1,4 +1,4 @@
-package BetaGo.Tasks;
+package betago.tasks;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package BetaGo.Tasks;
+package betago.tasks;
 
 public class Task {
         protected String description;

@@ -1,4 +1,4 @@
-package BetaGo;
+package betago;
 
 public class Ui {
 

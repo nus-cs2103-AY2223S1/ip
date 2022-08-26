@@ -1,6 +1,6 @@
-package BetaGo.Tasks;
+package betago.tasks;
 
-import BetaGo.Exceptions.InvalidCommandException;
+import betago.exceptions.InvalidCommandException;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

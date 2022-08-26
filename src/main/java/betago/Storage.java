@@ -1,6 +1,6 @@
-package BetaGo;
+package betago;
 
-import BetaGo.Exceptions.InvalidDataFileException;
+import betago.exceptions.InvalidDataFileException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ public class Storage {
     public Storage(TaskList tasks) {
         this.tasks = tasks;
     }
+
     public void loadFile() {
         try {
             File dir = new File("data");

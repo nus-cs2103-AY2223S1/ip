@@ -1,4 +1,4 @@
-package BetaGo.Exceptions;
+package betago.exceptions;
 
 public class EmptyListException extends Exception{
     public EmptyListException(String message) {
