@@ -20,8 +20,8 @@ public class Task {
     public void markAsDone() {
         this.isDone = true;
         System.out.println("     Task has been marked as done!: \n"
-                          + "       "
-                          + this.toString());
+                + "       "
+                + this.toString());
     }
 
     public void markAsUnDone() {

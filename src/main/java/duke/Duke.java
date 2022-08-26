@@ -1,9 +1,7 @@
 package duke;
 
-import java.io.*;
-import java.util.Scanner;
-import java.util.ArrayList;
-import java.nio.file.*;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 
 public class Duke {
 

@@ -12,7 +12,7 @@ public class Event extends Task {
     public Event(String description, String at) {
         super(description);
         this.at = at;
-        dateTimeConverter(at);
+        convertToDateTime(at);
     }
 
     public Event(String description, LocalDate atDate, LocalTime atTime) {
@@ -21,7 +21,7 @@ public class Event extends Task {
         this.atTime = atTime;
     }
 
-    private void dateTimeConverter(String at) {
+    private void convertToDateTime(String at) {
         if (at.length() > 10) {
             int spacePos = at.indexOf(" ");
             String date = at.substring(0, spacePos);
@@ -40,7 +40,7 @@ public class Event extends Task {
                 + " | "
                 + this.atDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ((this.atTime == null)
-                    ? ""
-                    : " | " + this.atTime.toString()));
+                        ? ""
+                        : " | " + this.atTime.toString()));
     }
 }

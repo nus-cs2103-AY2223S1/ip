@@ -22,21 +22,21 @@ public class TaskList {
         Task t = tasks.get(taskNumber);
         tasks.remove(taskNumber);
         System.out.println("     Ok! I have removed the following task!:\n"
-                    + "       " + t.toString() + "\n"
-                    + "     You now have a total of " + tasks.size() + " tasks!");
+                + "       " + t.toString() + "\n"
+                + "     You now have a total of " + tasks.size() + " tasks!");
     }
 
     public void addTask(Task t) {
         tasks.add(t);
         System.out.println("     Ok! I have added the following "
-                    + ((t instanceof Todo)
+                + ((t instanceof Todo)
                         ? "Todo "
                         : (t instanceof Event)
                         ? "Event "
                         : "Deadline ")
-                    + "task!:\n"
-                    + "       " + t.toString() + "\n"
-                    + "     You now have a total of " + tasks.size() + " tasks!");
+                + "task!:\n"
+                + "       " + t.toString() + "\n"
+                + "     You now have a total of " + tasks.size() + " tasks!");
     }
 
     public static void main(String[] args) {
