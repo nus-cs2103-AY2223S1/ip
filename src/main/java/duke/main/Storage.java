@@ -16,7 +16,7 @@ import duke.task.ToDos;
 
 /**
  * Represents a Storage to store tasks in the text file.
- * Storage contains the file path where the text file is located.
+ * Storage contains the file path for the text file is located.
  */
 public class Storage {
     private String filePath;

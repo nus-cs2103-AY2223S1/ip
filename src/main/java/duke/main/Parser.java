@@ -18,7 +18,7 @@ import duke.errors.DukeException;
 
 public class Parser {
     /**
-     * Parses user inputs and creates the necessary commands
+     * Parses user input and creates the necessary commands
      * @param userReply String from the user
      * @return Commands for Duke to execute
      * @throws DukeException exception thrown in validation methods

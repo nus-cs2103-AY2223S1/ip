@@ -7,7 +7,7 @@ import duke.task.Task;
 import duke.task.TaskList;
 
 /**
- * Ui deals with interactions with the user.
+ * Ui deals with interactions with user.
  */
 public class Ui {
     private Scanner sc;
