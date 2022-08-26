@@ -1,5 +1,6 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
@@ -18,7 +19,7 @@ public abstract class Command {
      * @param ui the UI
      * @param storage the storage
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage);
+    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Returns a boolean value represent whether to exit the programme
