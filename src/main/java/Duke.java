@@ -1,20 +1,34 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.io.FileWriter;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
-        ArrayList<Task> list = new ArrayList<>();
-        /* FileWriter write = null;
-        try {
-            write = new FileWriter("data/duke.txt");
-        } catch (IOException e) {
-            System.out.println("e");
-        } */
 
-        String line = " _______________________________________ \n";
-        System.out.println(line + " I'm Dukie\n" + " What can I do for you?\n" + line);
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+    private ArrayList<Task> list;
+
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+            list = tasks.list();
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+            list = tasks.list();
+        } catch (FileNotFoundException e) {
+            ui.showFileNotFoundError();
+        }
+    }
+
+    public void run() {
+        ui.sayHello();
 
         Scanner myObj = new Scanner(System.in);  // Create a Scanner object
         String userInput = "0";
@@ -22,119 +36,52 @@ public class Duke {
         while (true) {
 
             userInput = myObj.nextLine();  // Read user input
+            String command = Parser.parseUserInput(userInput);
 
-            if (userInput.equals("bye")) {
-                System.out.println("Goodbaiiiii\n");
-                System.exit(0);
-            } else if (userInput.startsWith("list")) {
-                if (list.isEmpty()) {
-                    System.out.println(line + "nuuuu list empty! add an item first :-DD\n" + line);
-                } else {
-                    System.out.println(line + makeList(list) + line);
-                }
-            } else if (userInput.startsWith("mark")) {
-                String task = userInput.substring(4).trim();
-                String s = markDone(task, list);
-                System.out.println(line + s + line);
-                writeItems(list);
-            } else if (userInput.startsWith("unmark")) {
-                String task = userInput.substring(6).trim();
-                String s = unmarkDone(task, list);
-                System.out.println(line + s + line);
-                writeItems(list);
-            } else if (userInput.startsWith("delete")) {
-                try {
-                    deleteItem(userInput.substring(7), list);
-                    writeItems(list);
-                } catch (DukeException e) {
-                    System.out.println(line + e.getMessage() + "\n" + line);
-                }
-            } else if (userInput.startsWith("schedule")) {
-                String date = userInput.substring(9);
-                System.out.println(line + getSchedule(date, list) + line);
-            } else {
-                try {
-                    addTask(userInput, list);
-                    writeItems(list);
-                } catch (DukeException e) {
-                    System.out.println(line + e.getMessage() + "\n" + line);
-                }
+            switch (command) {
+                case "bye":
+                    ui.showByeMessage();
+                    storage.writeItems(list);
+                    System.exit(0);
+                case "list":
+                    ui.showList(this.list);
+                    break;
+                case "mark":
+                    String markMessage = this.tasks.markDone(Parser.getTaskName(userInput));
+                    ui.showMessage(markMessage);
+                    break;
+                case "unmark":
+                    String unmarkMessage = this.tasks.unmarkDone(Parser.getTaskName(userInput));
+                    ui.showMessage(unmarkMessage);
+                    break;
+                case "delete":
+                    try {
+                        this.tasks.deleteTask(Parser.getTaskName(userInput));
+                    } catch (DukeException e) {
+                        ui.showMessage(e.getMessage());
+                    }
+                case "schedule":
+                    String date = Parser.getDate(userInput);
+                    ui.showSchedule(date, list);
+                    break;
+                case "todo":
+                case "deadline":
+                case "event":
+                    try {
+                        this.tasks.addTask(userInput);
+                    } catch (DukeException e) {
+                        ui.showMessage(e.getMessage());
+                    }
+                    break;
+                default:
+                    ui.showDoNotKnowMessage();
+                    break;
+
             }
         }
     }
 
-    public static String makeList(ArrayList<Task> ls) {
-        String s = "";
-        for (int i = 0; i < ls.size(); i++) {
-            int index = i + 1;
-            s += " " + index + "." + ls.get(i).toString() + "\n";
-        }
-        return s;
-    }
-
-    public static String markDone(String task, ArrayList<Task> ls) {
-        for (int i = 0; i < ls.size(); i++) {
-            if (ls.get(i).getTask().equals(task)) {
-                ls.get(i).markDone();
-                return " okie! " + task + " is done ~\n [X] " + task + "\n";
-            }
-        }
-        return task + " not found :(\n";
-    }
-
-    public static String unmarkDone(String task, ArrayList<Task> ls) {
-        for (int i = 0; i < ls.size(); i++) {
-            if (ls.get(i).getTask().equals(task)) {
-                ls.get(i).unmarkDone();
-                return " owh ;< so you haven't done " + task + ". unmarked ~\n [ ] " + task + "\n";
-            }
-        }
-        return task + " not found :(\n";
-    }
-
-    public static void addTask(String userInput, ArrayList<Task> ls) throws DukeException {
-        String line = " _______________________________________ \n";
-        if (!userInput.startsWith("todo") && !userInput.startsWith("deadline") && !userInput.startsWith("event")) {
-            throw new DukeException("sowwie idk what this means.");
-        } else if (!userInput.contains(" ") || userInput.substring(userInput.indexOf(" ")).trim().isEmpty()) {
-            throw new DukeException("the description of a task cannot be empty.");
-        }
-        Task t = new Task(userInput.substring(userInput.indexOf(" ") + 1),
-                userInput.substring(0, userInput.indexOf(" ")).toUpperCase(), false);
-        ls.add(t);
-        System.out.println(line + " okie! i've added: \n " + t + "\n now you have " + ls.size() + " task(s) in your list!\n" + line);
-    }
-
-    public static void deleteItem(String userInput, ArrayList<Task> ls) throws DukeException {
-        String line = " _______________________________________ \n";
-        int index = Integer.parseInt(userInput.trim());
-        if (index <= 0 || index > ls.size()) {
-            throw new DukeException("sowwie this item is not found. enter a valid index number from list please!");
-        }
-        Task taskRemoved = ls.get(index - 1);
-        ls.remove(index - 1);
-        System.out.println(line + " okie! i've removed: \n " + taskRemoved + "\n now you have " + ls.size() + " task(s) in your list!\n" + line);
-    }
-
-    public static void writeItems(ArrayList<Task> al) {
-        try {
-            FileWriter writer = new FileWriter("data/duke.txt");
-            for (int i = 0; i < al.size(); i++) {
-                writer.write(al.get(i).toTxt());
-            }
-            writer.close();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-    }
-
-    public static String getSchedule(String date, ArrayList<Task> al) {
-        ArrayList<Task> scheduleList = new ArrayList<>();
-        for (int i = 0; i < al.size(); i++) {
-            if (al.get(i).onDate(date)) {
-                scheduleList.add(al.get(i));
-            }
-        }
-        return makeList(scheduleList);
+    public static void main(String[] args) {
+        new Duke("data/duke.txt").run();
     }
 }

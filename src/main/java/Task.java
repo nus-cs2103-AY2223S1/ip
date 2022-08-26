@@ -46,6 +46,24 @@ public class Task {
         }
     }
 
+    public Task (String taskName, String taskType, String timing, boolean done) {
+        this.done = done;
+        this.taskName = taskName;
+        switch (taskType) {
+            case "T":
+                this.taskType = TaskType.TODO;
+                return;
+            case "D":
+                this.taskType = TaskType.DEADLINE;
+                this.date = LocalDate.parse(timing);
+                return;
+            case "E":
+                this.taskType = TaskType.EVENT;
+                this.date = LocalDate.parse(timing);
+        }
+    }
+
+
     public String getTask() {
         return this.taskName;
     }
@@ -59,19 +77,16 @@ public class Task {
 
     @Override
     public String toString() {
-        if (done) {
-            return "[" + taskType.toString().charAt(0) + "][X] " + this.taskName + " " + this.date;
-        }
-        return "[" + taskType.toString().charAt(0) + "][ ] " + this.taskName + " " + this.date;
+        return "[" + taskType.toString().charAt(0) + "]" + isDoneString() + " " + this.taskName + " " + this.date;
     }
 
     public String toTxt() {
-        if (taskType == TaskType.TODO) {
+        /* if (taskType == TaskType.TODO) {
             if (done) {
                 return taskType.toString().charAt(0) + " | 1 | " + this.taskName + "\n";
             }
             return taskType.toString().charAt(0) + " | 0 | " + this.taskName + "\n";
-        }
+        } */
         if (done) {
             return taskType.toString().charAt(0) + " | 1 | " + this.taskName + " | " + this.date + timeToString(this.time) + "\n";
         }
@@ -87,6 +102,9 @@ public class Task {
     }
 
     public boolean onDate(String date) {
+        if (this.date == null) {
+            return false;
+        }
         return this.date.toString().equals(date);
     }
 
