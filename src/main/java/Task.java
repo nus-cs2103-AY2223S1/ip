@@ -48,6 +48,6 @@ public abstract class Task {
         if (this.isDone) {
             return "[X] " + this.description;
         }
-        return "[ ] " + this.description;
+        return "[] " + this.description;
     }
 }
