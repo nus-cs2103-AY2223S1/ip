@@ -165,22 +165,22 @@ public class Parser {
      * @return LocalDateTime
      */
     private static LocalDateTime parseDateTime(String dateText) throws DukeException {
-        final DukeException WRONG_FORMAT = new DukeException("Date and time is in the wrong format! "
+        final DukeException wrongFormat = new DukeException("Date and time is in the wrong format! "
                 + "Correct format: yyyy-mm-dd HH:MM");
-        final DukeException CANNOT_PARSE = new DukeException("Date and time may have invalid values!");
+        final DukeException cannotParse = new DukeException("Date and time may have invalid values!");
 
         String[] dateTextTokens = dateText.split(" ");
         if (dateTextTokens.length != 2) {
-            throw WRONG_FORMAT;
+            throw wrongFormat;
         }
 
         String unparsedDate = dateTextTokens[0];
         String[] dateTokens = unparsedDate.split("[-./|]");
         if (dateTokens.length != 3) {
-            throw WRONG_FORMAT;
+            throw wrongFormat;
         }
         if (dateTokens[0].length() != 4 || dateTokens[1].length() != 2 || dateTokens[2].length() != 2) {
-            throw WRONG_FORMAT;
+            throw wrongFormat;
         }
         String parsedDate = String.join("-", dateTokens);
 
@@ -188,10 +188,10 @@ public class Parser {
         String[] timeTokens = unparsedTime.split("[-:.|]");
 
         if (timeTokens.length != 2) {
-            throw WRONG_FORMAT;
+            throw wrongFormat;
         }
         if (timeTokens[0].length() != 2 || timeTokens[1].length() != 2) {
-            throw WRONG_FORMAT;
+            throw wrongFormat;
         }
         String parsedTime = String.join(":", timeTokens);
 
@@ -200,7 +200,7 @@ public class Parser {
         try {
             return LocalDateTime.parse(parsedDateTime);
         } catch (DateTimeParseException e) {
-            throw CANNOT_PARSE;
+            throw cannotParse;
         }
     }
 }
