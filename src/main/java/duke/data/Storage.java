@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Storage {
     public static char LINE_SEPARATOR = '|';
     private File file;
-    
+
     public Storage(String filePath) {
         this.setup(filePath);
     }
@@ -28,7 +28,7 @@ public class Storage {
         if (!directory.exists()) {
             directory.mkdir();
         }
-        
+
         File file = new File(curDirectory + "/" + filePath);
         try {
             if (!file.exists()) {
@@ -50,7 +50,7 @@ public class Storage {
                 String[] strArr = line.split("\\|");
                 Task task;
                 String desc = strArr[2];
-                switch(strArr[0]) {
+                switch (strArr[0]) {
                     case "T":
                         task = new Todo(desc);
                         break;

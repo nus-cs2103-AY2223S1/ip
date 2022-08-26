@@ -17,6 +17,6 @@ public class IncorrectCommand extends Command {
     
     @Override
     public void execute(Storage storage, TaskList tasks, Ui ui) {
-        System.out.println(feedbackToUser);    
+        System.out.println(feedbackToUser);
     }
 }
