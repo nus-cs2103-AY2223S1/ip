@@ -10,7 +10,7 @@ public class Duke {
      * @param filePath The path to the save file where data is stored.
      */
     public Duke(String filePath) {
-        save = new Storage("data/duke.txt");
+        save = new Storage(filePath);
 
         TaskList taskList = new TaskList(save);
         ui = new Ui(taskList);
@@ -26,6 +26,8 @@ public class Duke {
 
     public static void main(String[] args) {
         new Duke("data/tasks.txt").run();
+        new Duke("data/duke.txt").run();
+
     }
 
 }
