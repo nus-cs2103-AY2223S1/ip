@@ -31,7 +31,6 @@ public class UI {
      */
     public void goodbye() {
         notifyUser("Goodbye, and have a nice day ahead!\n");
-        notifyUser("٩(ˊᗜˋ )و");
     }
 
     /**

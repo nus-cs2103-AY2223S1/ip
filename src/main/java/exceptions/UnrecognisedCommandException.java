@@ -23,7 +23,7 @@ public class UnrecognisedCommandException extends TumuException {
      */
     @Override
     public String toString() {
-        return String.format("°՞(ᗒᗣᗕ)՞° Sorry, I don't " +
+        return String.format("Oops! Sorry, I don't " +
                 "understand this command: %s", command);
     }
 }
