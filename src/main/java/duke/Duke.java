@@ -16,6 +16,12 @@ public class Duke {
     private SaveTasks savedTasks;
     private TaskList taskList;
 
+    /**
+     * Constructor for Duke.
+     *
+     * @param fileDir the directory of an existing text database
+     * @param filePath the path to an existing text database
+     */
     public Duke(String fileDir, String filePath) {
         this.savedTasks = new SaveTasks(fileDir, filePath);
         this.ui = new Ui();
@@ -25,6 +31,7 @@ public class Duke {
             this.taskList = new TaskList();
         }
     }
+
     public void run() {
         while (true) {
             String temp = this.ui.readInput();

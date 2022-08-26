@@ -3,6 +3,9 @@ package duke.util;
 import duke.DukeException;
 import duke.task.*;
 
+/**
+ * A class that handles user inputs
+ */
 public class Parser {
     private static final String LINE = "\n----------------------------------------------------------------\n";
 

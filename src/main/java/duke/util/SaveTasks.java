@@ -17,10 +17,21 @@ public class SaveTasks {
     private String fileDir;
     private String filePath;
 
+    /**
+     * A constructor for SaveTasks
+     * @param fileDir the directory of the txt database file
+     * @param filePath the path to the txt database file
+     */
     public SaveTasks(String fileDir, String filePath) {
         this.fileDir = fileDir;
         this.filePath = filePath;
     }
+
+    /**
+     * A method that loads data straight from the hard disk from the start up.
+     * @return the taskList in the database
+     * @throws DukeException if the user input can't be read, throws an exception.
+     */
     public ArrayList<Task> load() throws DukeException {
         try {
             File dir = new File(this.fileDir);

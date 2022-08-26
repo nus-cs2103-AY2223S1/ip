@@ -11,10 +11,17 @@ public class Ui {
         this.command = new Scanner(System.in);
     }
 
+    /**
+     * A method that reads the input of the user
+     * @return
+     */
     public String readInput() {
         return this.command.nextLine();
     }
 
+    /**
+     * A method that closes the input scanner
+     */
     public void closeInput() {
         this.command.close();
     }
