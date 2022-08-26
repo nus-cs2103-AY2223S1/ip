@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -49,23 +50,27 @@ public class Duke {
      */
     private void execute(String input) throws DukeException {
         String[] inputs = input.split(" ", 2);
-        String command = inputs[0].toLowerCase();
+        CommandType command = CommandType.fromString(inputs[0].toUpperCase());
+
+        if (command == null) {
+            throw new DukeException("Invalid command: Please try again.");
+        }
 
         Map<String, String> map = new HashMap<>();
         String description;
 
         switch (command) {
-        case "bye":
+        case BYE:
             IOParser.printMsg("Bye. Hope to see you again soon!");
             tasksEnd = true;
             break;
-        case "list":
+        case LIST:
             IOParser.printMsg(String.format("Here are the tasks in your list:\n%s",
                     taskList));
             break;
-        case "":
+        case EMPTY:
             break;
-        case "mark":
+        case MARK:
             if (inputs.length == 1) {
                 throw new DukeException("Wrong number of arguments.");
             }
@@ -80,7 +85,7 @@ public class Duke {
                 throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
             }
             break;
-        case "unmark":
+        case UNMARK:
             if (inputs.length == 1) {
                 throw new DukeException("Wrong number of arguments.");
             }
@@ -95,7 +100,7 @@ public class Duke {
                 throw new DukeException("Invalid argument: Index of task should be between 1 and the number of tasks.");
             }
             break;
-        case "todo":
+        case TODO:
             if (inputs.length == 1) {
                 throw new DukeException("Wrong number of arguments.");
             }
@@ -104,12 +109,12 @@ public class Duke {
                 throw new DukeException("Invalid argument: Description cannot be empty.");
             }
             map.put("description", description);
-            taskList.addTask(command, map);
+            taskList.addTask(command.getString(), map);
             IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                     taskList.get(taskList.size() - 1),
                     taskList.lengthString()));
             break;
-        case "deadline":
+        case DEADLINE:
             if (inputs.length == 1) {
                 throw new DukeException("Wrong number of arguments.");
             }
@@ -124,7 +129,7 @@ public class Duke {
                 }
                 map.put("description", description);
                 map.put("by", deadline);
-                taskList.addTask(command, map);
+                taskList.addTask(command.getString(), map);
                 IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                         taskList.get(taskList.size() - 1),
                         taskList.lengthString()));
@@ -132,7 +137,7 @@ public class Duke {
                 throw new DukeException("Invalid argument: Use /by flag to specify the deadline of the task");
             }
             break;
-        case "event":
+        case EVENT:
             if (inputs.length == 1) {
                 throw new DukeException("Wrong number of arguments.");
             }
@@ -147,7 +152,7 @@ public class Duke {
                 }
                 map.put("description", description);
                 map.put("at", time);
-                taskList.addTask(command, map);
+                taskList.addTask(command.getString(), map);
                 IOParser.printMsg(String.format("Got it. I've added this task:\n %s\nNow you have %s in the list.",
                         taskList.get(taskList.size() - 1),
                         taskList.lengthString()));
@@ -155,7 +160,7 @@ public class Duke {
                 throw new DukeException("Invalid argument: Use /at flag to specify the date and time of the event.");
             }
             break;
-        case "delete":
+        case DELETE:
             if (inputs.length == 1) {
                 throw new DukeException("Wrong number of arguments.");
             }
