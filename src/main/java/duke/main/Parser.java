@@ -27,7 +27,10 @@ public class Parser {
                     return new AddEventsCommand(task, inputs[3]);
                 } else if (command.equals("delete")) {
                     return new DeleteCommand(inputs[1]);
-                } else {
+                } else if (command.equals("find")) {
+                    return new FindCommand(inputs[1]);
+                }
+                else {
                     return new ErrorCommand();
                 }
             }
