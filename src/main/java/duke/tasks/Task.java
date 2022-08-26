@@ -50,14 +50,20 @@ public abstract class Task {
     public abstract String taskToDataString();
 
     /**
+     * Returns true if keyword was found in current task, else false.
+     *
+     * @param keyword Keyword to search for.
+     * @return If keyword was found in current task.
+     */
+    public Boolean findInDescription(String keyword) {
+        return description.contains(keyword);
+    }
+
+    /**
      * Returns string representation of task.
      *
      * @return String representation.
      */
-    public Boolean findInDescription(String searchString) {
-        return description.contains(searchString);
-    }
-
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), description);

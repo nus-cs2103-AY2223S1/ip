@@ -10,7 +10,7 @@ import duke.tools.Ui;
 public interface Command {
     /**
      * Executes command.
-     * Displays a message, modifies TaskList and store tasks based on command executed.
+     * Displays a message, modifies TaskList, find or store tasks based on command executed.
      *
      * @param tasks TaskList to store tasks.
      * @param ui User interface that handles interaction with user.

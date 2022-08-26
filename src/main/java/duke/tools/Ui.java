@@ -64,11 +64,18 @@ public class Ui {
         }
     }
 
-    public void printTaskFind(TaskList taskList, String searchString) throws DukeException {
+    /**
+     * Prints message of all task found containing keyword.
+     *
+     * @param taskList TaskList to search through with keyword.
+     * @param keyword Keyword to find.
+     * @throws DukeException
+     */
+    public void printTaskFind(TaskList taskList, String keyword) throws DukeException {
         System.out.println("Here are the matching tasks in your list:");
         int findCount = 0;
         for (int i = 0; i < taskList.getSize(); i++) {
-            if (taskList.getTask(i).findInDescription(searchString)) {
+            if (taskList.getTask(i).findInDescription(keyword)) {
                 System.out.println(String.format("%d. %s", i + 1, taskList.getTask(i)));
                 findCount++;
             }
@@ -88,7 +95,7 @@ public class Ui {
      */
     public void markAsDone(int index, Task task) {
         System.out.println("Nice! I've marked this task as done:\n"
-                + String.format("%d. %s", index - 1, task));
+                + String.format("%d. %s", index + 1, task));
     }
 
     /**
@@ -99,7 +106,7 @@ public class Ui {
      */
     public void markAsUndone(int index, Task task) {
         System.out.println("Ok! I've marked this task as not done yet:\n"
-                + String.format("%d. %s", index - 1, task));
+                + String.format("%d. %s", index + 1, task));
     }
 
     /**
