@@ -1,0 +1,36 @@
+package task;
+
+import date.DeadlineDateTime;
+import date.EventDateTime;
+import exception.DukeException;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class DeadlineTest {
+
+    @Test
+    void testToString_for_unmarked_deadline() throws DukeException {
+        DeadlineDateTime date = DeadlineDateTime.parseDate("2022-01-01 00:00:00");
+        Deadline test = new Deadline("Testing!", date);
+        String expected = "[D][ ] Testing! (by: Jan 1 2022 00:00:00)";
+        assertEquals(expected, test.toString());
+    }
+
+    @Test
+    void testToString_for_marked_deadline() throws DukeException {
+        DeadlineDateTime date = DeadlineDateTime.parseDate("2022-01-01 00:00:00");
+        Deadline test = new Deadline("Testing!", date);
+        test.setIsMarked(true);
+        String expected = "[D][X] Testing! (by: Jan 1 2022 00:00:00)";
+        assertEquals(expected, test.toString());
+    }
+
+    @Test
+    void encode() throws DukeException {
+        DeadlineDateTime date = DeadlineDateTime.parseDate("2022-01-01 00:00:00");
+        Deadline test = new Deadline("Testing!", date);
+        String expected = "D,0,Testing!,2022-01-01|00:00:00\n";
+        assertEquals(expected, test.encode());
+    }
+}
