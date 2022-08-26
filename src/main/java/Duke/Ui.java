@@ -43,8 +43,7 @@ public class Ui {
 
     public void showLoadingError() {
         System.out.println("Uhoh! Duke is unable to access file storage.");
-        System.out.
-        println("Your list will not be saved locally.");
+        System.out.println("Your list will not be saved locally.");
     }
 
     public void showErr(String errorMsg) {

@@ -72,7 +72,6 @@ public class Storage {
         if (!storageWarnings.isEmpty()) {
             storageWarnings = "The following lines were ignored from the file:\n" + storageWarnings;
         }
-        System.out.println(retreivedTasks);
         return retreivedTasks;
     }
 
@@ -81,7 +80,6 @@ public class Storage {
         try {
             String taskType = data[0];
             boolean isMarked = data[1].equals("Y") ? true : false;
-            System.out.println(data[1].equals("Y"));
             switch (taskType) {
             case "T":
                 return new ToDoTask(data[2], isMarked);

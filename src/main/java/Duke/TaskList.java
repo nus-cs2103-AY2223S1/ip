@@ -55,7 +55,7 @@ public class TaskList {
      */
     @Override
     public String toString() {
-        String res = ("Here are the tasks in your list:\n");
+        String res = ("Here are the tasks in your list:");
         for (int i = 0; i <  tasks.size(); i++) {
             if (tasks.get(i) == null) {
                 break;

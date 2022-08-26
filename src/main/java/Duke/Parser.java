@@ -78,7 +78,6 @@ public class Parser {
             String taskDetailsStr = splitWithFormat(input, " ", errMsg)[1];
             String[] taskDetails = splitWithFormat(taskDetailsStr, "/by", errMsg);
             String taskDesription = taskDetails[0]; 
-            System.out.println(taskDetails[1]);
             try {
                 LocalDateTime deadline = LocalDateTime.parse(taskDetails[1], DATETIME_FORMATTER);
                 return new AddCommand(new DeadlineTask(taskDesription, deadline));
