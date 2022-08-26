@@ -1,4 +1,4 @@
-package duke;
+package ploopy;
 
 public class UI {
     private static final String TEXT_ART = "\n" +

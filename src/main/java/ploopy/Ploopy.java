@@ -1,4 +1,4 @@
-package duke;
+package ploopy;
 
 import java.util.Scanner;
 

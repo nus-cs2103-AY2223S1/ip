@@ -1,4 +1,4 @@
-package duke;
+package ploopy;
 
 public class PloopyException extends Exception {
 

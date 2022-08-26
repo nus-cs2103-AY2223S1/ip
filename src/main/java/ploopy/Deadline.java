@@ -1,4 +1,4 @@
-package duke;
+package ploopy;
 
 public class Deadline extends Task {
 
