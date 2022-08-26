@@ -3,9 +3,9 @@ public class Task {
     protected String name;
     protected boolean isDone;
 
-    public Task(String name, boolean isDone) throws DukeException {
+    protected Task(String name, boolean isDone) throws DukeTaskException {
         if (name.equals("") || name.equals(" ")) {
-            throw new DukeException("the name of a task can't be empty");
+            throw new DukeTaskException("the name of a task can't be empty");
         }
         this.name = name;
         this.isDone = isDone;
@@ -17,6 +17,10 @@ public class Task {
 
     public void Unmark() {
         isDone = false;
+    }
+
+    public String saveString() {
+        return name + "|" + isDone;
     }
 
     @Override
