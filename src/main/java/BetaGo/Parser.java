@@ -5,12 +5,25 @@ import BetaGo.Exceptions.InvalidCommandException;
 
 import java.util.Scanner;
 
+/**
+ * Parser class that reads input from user and calls the corresponding methods accordingly.
+ */
 public class Parser {
     private TaskList tasks;
+    private Storage storage;
 
-    public Parser(TaskList tasks) {
+    /**
+     * Constructor for Parser.
+     * Initialises TaskList variable.
+     */
+    public Parser(TaskList tasks, Storage storage) {
         this.tasks = tasks;
+        this.storage = storage;
     }
+
+    /**
+     * Reads input from the user and calls the corresponding methods.
+     */
     public void readCommands() {
 
         Scanner sc = new Scanner(System.in);
@@ -27,35 +40,35 @@ public class Parser {
             } else if (inputs[0].equalsIgnoreCase("mark") || inputs[0].equalsIgnoreCase("unmark")) {
                 try {
                     this.tasks.markUnmarkItems(str);
-                    this.tasks.saveItems();
+                    this.storage.saveItems();
                 } catch (InvalidCommandException e) {
                     Ui.printInvalidMarkerError();
                 }
             } else if (inputs[0].equalsIgnoreCase("todo")) {
                 try {
                     this.tasks.addTodo(str);
-                    this.tasks.saveItems();
+                    this.storage.saveItems();
                 } catch (InvalidCommandException e) {
                     Ui.printInvalidTodoDescriptionError();
                 }
             } else if (inputs[0].equalsIgnoreCase("deadline")) {
                 try {
                     this.tasks.addDeadline(str);
-                    this.tasks.saveItems();
+                    this.storage.saveItems();
                 } catch (InvalidCommandException e) {
                     Ui.printInvalidDeadlineDescriptionError();
                 }
             } else if (inputs[0].equalsIgnoreCase("event")) {
                 try {
                     this.tasks.addEvent(str);
-                    this.tasks.saveItems();
+                    this.storage.saveItems();
                 } catch (InvalidCommandException e) {
                     Ui.printInvalidEventDescriptionError();
                 }
             }  else if (inputs[0].equalsIgnoreCase("delete")) {
                 try {
                     this.tasks.deleteItems(str);
-                    this.tasks.saveItems();
+                    this.storage.saveItems();
                 } catch (InvalidCommandException e) {
                     Ui.printInvalidMarkerError();
                 }
