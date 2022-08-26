@@ -1,11 +1,14 @@
 package duke.command;
 
+import duke.DukeException;
 import duke.Storage;
 import duke.task.Task;
 import duke.TaskList;
 import duke.Ui;
 
 public class DeleteCommand extends Command {
+
+    private Task task;
     private int idx;
 
     public DeleteCommand(int idx) {
@@ -13,10 +16,15 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Task toBeRemoved = tasks.get(idx - 1);
-        ui.DeleteTask(tasks, toBeRemoved);
-        tasks.remove(idx - 1);
-        storage.update(tasks.getTasks());
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        try {
+            task = tasks.get(idx);
+            tasks.remove(idx);
+            ui.DeleteTask(tasks, task);
+            storage.update(tasks.getTasks());
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeException("Invalid index.");
+        }
+
     }
 }

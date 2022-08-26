@@ -1,6 +1,5 @@
 package duke;
 import duke.command.*;
-import duke.task.Task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -8,112 +7,87 @@ import java.time.format.DateTimeParseException;
 public class Parser {
 
     public static Command parse(TaskList tasks, String s) throws DukeException {
-        if (s.equals("bye")) {
-            return new ExitCommand();
-        }
-        else if (s.equals("list")) {
-            return new ListCommand();
-        }
-        else if (s.startsWith("todo")) {
-            try {
-                String afterCommand = s.substring(4);
-                return new TodoCommand(afterCommand);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("The description of a todo cannot be empty.");
-            }
-        }
-        else if (s.startsWith("deadline")) {
-            try {
-                String afterCommand = s.substring(8);
-                if (!afterCommand.contains("/by")) {
-                    throw new DukeException("You must specify /by for a deadline task.");
-                }
-                if (afterCommand.indexOf("/by") == 0) {
-                    throw new DukeException("The description of a deadline cannot be empty.");
-                }
-                String[] strArray = afterCommand.split("/by");
-                if (strArray[0].isEmpty()) {
-                    throw new DukeException("The date field of a deadline cannot be empty.");
-                }
-                LocalDate date = LocalDate.parse(strArray[1].trim());
-                return new DeadlineCommand(strArray[0], date);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("The description of a deadline cannot be empty.");
-            } catch (DateTimeParseException e) {
-                throw new DukeException("Invalid date format. Please use yyyy-mm-dd.");
-            }
-        }
-        else if (s.startsWith("event")) {
-            try {
-                String afterCommand = s.substring(5);
-                if (!afterCommand.contains("/at")) {
-                    throw new DukeException("You must specify /at for an event task.");
-                }
-                if (afterCommand.indexOf("/at") == 0) {
-                    throw new DukeException("The description of an event cannot be empty.");
-                }
-                String[] strArray = afterCommand.split("/at");
-                if (strArray[0].isEmpty()) {
-                    throw new DukeException("The remark of an event cannot be empty.");
-                }
-                return new EventCommand(strArray[0], strArray[1]);
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("The description of an remark cannot be empty.");
-            }
-        }
-        else if (s.startsWith("mark")) {
-            try {
-                Task task;
-                String afterCommand = s.substring(4);
-                int idx = Integer.parseInt(String.valueOf(afterCommand).trim());
+        String[] str = s.split(" ", 2);
+        String[] splitDescription;
+
+        switch (str[0]) {
+            case "bye":
+                return new ExitCommand();
+            case "list":
+                return new ListCommand();
+            case "todo":
                 try {
-                    task = tasks.get(idx - 1);
+                    if (str[1].length() == 0) {
+                        throw new DukeException("The description of todo cannot be empty.");
+                    }
+                    return new TodoCommand(str[1]);
                 } catch (IndexOutOfBoundsException e) {
-                    throw new DukeException("Invalid index.");
+                    throw new DukeException("The description of todo cannot be empty.");
                 }
-                return new MarkCommand(task);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Argument is not an integer.");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Argument cannot be empty.");
-            }
-        }
-        else if (s.startsWith("unmark")) {
-            try {
-                Task task;
-                String afterCommand = s.substring(6);
-                int idx = Integer.parseInt(String.valueOf(afterCommand).trim());
+            case "deadline":
+                if (str.length != 2) {
+                    throw new DukeException("The description of deadline cannot be empty.");
+                }
+                splitDescription = str[1].split(" /by ", 2);
+                if (splitDescription.length != 2) {
+                    throw new DukeException("Command are missing either description or date.");
+                }
                 try {
-                    task = tasks.get(idx - 1);
-                } catch (IndexOutOfBoundsException e) {
-                    throw new DukeException("Invalid index.");
+                    LocalDate date = LocalDate.parse(splitDescription[1]);
+                    return new DeadlineCommand(splitDescription[0], date);
+                } catch (DateTimeParseException e) {
+                    throw new DukeException("Please use yyyy-mm-dd as the date format.");
                 }
-                return new UnmarkCommand(task);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Argument is not an integer.");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Argument cannot be empty.");
-            }
-        }
-        else if (s.startsWith("delete")) {
-            try {
-                Task task;
-                String afterCommand = s.substring(6);
-                int idx = Integer.parseInt(String.valueOf(afterCommand).trim());
+            case "event":
+                if (str.length != 2) {
+                    throw new DukeException("The description of event cannot be empty.");
+                }
+                splitDescription = str[1].split(" /at ", 2);
+                if (splitDescription.length != 2) {
+                    throw new DukeException("Command are missing either description or remark.");
+                }
+                return new EventCommand(splitDescription[0], splitDescription[1]);
+            case "mark":
                 try {
-                    task = tasks.get(idx);
+                    int idx = Integer.parseInt(str[1]);
+                    try {
+                        return new MarkCommand(idx - 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new DukeException("Invalid index.");
+                    }
                 } catch (IndexOutOfBoundsException e) {
-                    throw new DukeException("Invalid index.");
+                    throw new DukeException("Argument of mark cannot be empty.");
+                } catch (NumberFormatException e) {
+                    throw new DukeException("The argument you've input is not an integer");
                 }
-                return new DeleteCommand(idx);
-            } catch (NumberFormatException e) {
-                throw new DukeException("Argument is not an integer.");
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeException("Argument cannot be empty.");
-            }
-        }
-        else {
-            return new InvalidCommand();
+            case "unmark":
+                try {
+                    int idx = Integer.parseInt(str[1]);
+                    try {
+                        return new UnmarkCommand(idx - 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new DukeException("Invalid index.");
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException("Argument of unmark cannot be empty.");
+                } catch (NumberFormatException e) {
+                    throw new DukeException("The argument you've input is not an integer");
+                }
+            case "delete":
+                try {
+                    int idx = Integer.parseInt(str[1]);
+                    try {
+                        return new DeleteCommand(idx - 1);
+                    } catch (IndexOutOfBoundsException e) {
+                        throw new DukeException("Invalid index.");
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    throw new DukeException("Argument of delete cannot be empty.");
+                } catch (NumberFormatException e) {
+                    throw new DukeException("The argument you've input is not an integer");
+                }
+            default:
+                return new InvalidCommand();
         }
     }
 }
