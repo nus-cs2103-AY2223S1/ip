@@ -1,8 +1,8 @@
 public class MarkCommand extends Command {
   private int taskIndex;
 
-  public MarkCommand(int taskIndex) {
-    this.taskIndex = taskIndex;
+  public MarkCommand(int givenIndex) {
+    taskIndex = givenIndex - 1;
   }
 
   @Override

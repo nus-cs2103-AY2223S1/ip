@@ -1,8 +1,8 @@
 public class UnmarkCommand extends Command {
   private int taskIndex;
 
-  public UnmarkCommand(int taskIndex) {
-    this.taskIndex = taskIndex;
+  public UnmarkCommand(int givenIndex) {
+    taskIndex = givenIndex - 1;
   }
 
   @Override
