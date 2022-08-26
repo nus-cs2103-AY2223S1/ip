@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -18,41 +19,80 @@ public enum Command {
         this.name = name;
     }
 
-    public void run(String args) {
-        if (!isCorrectUse(args)) {
+    public void run(String args, Duke duke) {
+        UI ui = duke.getUI();
+        TaskList taskList = duke.getTaskList();
+        Storage storage = duke.getStorage();
+
+        if (!isCorrectUse(args, duke)) {
             return;
         }
         switch(name) {
             case "delete":
                 int index = Integer.parseInt(args) - 1;
-                Duke.deleteTask(index);
+                Task t = taskList.deleteTask(index);
+                ui.printTaskDeleted(t, taskList.getCount());
+                try {
+                    storage.rewriteFile(taskList.getTasks());
+                } catch (IOException e) {
+                    ui.printError("Unable to write to file.");
+                }
                 break;
 
             case "list":
-                Duke.listTasks();
+                ui.printTasks(duke.getTaskList().getTasks());
                 break;
 
             case "deadline":
                 String[] temp = args.split(" /by ", 2);
-                Duke.addTask(new Deadline(temp[0], LocalDate.parse(temp[1],
-                        DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT))));
+                t = new Deadline(temp[0], LocalDate.parse(temp[1],
+                        DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
+                taskList.addTask(t);
+                ui.printTaskAdded(t, taskList.getCount());
+                try {
+                    storage.appendTaskToFile(t);
+                } catch (IOException e) {
+                    ui.printError("Unable to write to file.");
+                }
                 break;
 
             case "event":
                 temp = args.split(" /at ", 2);
-                Duke.addTask(new Event(temp[0], LocalDate.parse(temp[1],
-                        DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT))));
+                t = new Event(temp[0], LocalDate.parse(temp[1],
+                        DateTimeFormatter.ofPattern(INPUT_DATE_FORMAT)));
+                taskList.addTask(t);
+                ui.printTaskAdded(t, taskList.getCount());
+                try {
+                    storage.appendTaskToFile(t);
+                } catch (IOException e) {
+                    ui.printError("Unable to write to file.");
+                }
                 break;
 
             case "todo":
-                Duke.addTask(new ToDo(args));
+                t = new ToDo(args);
+                taskList.addTask(t);
+                ui.printTaskAdded(t, taskList.getCount());
+                try {
+                    storage.appendTaskToFile(t);
+                } catch (IOException e) {
+                    ui.printError("Unable to write to file.");
+                }
                 break;
 
             case "mark":
 
             case "unmark":
                 index = Integer.parseInt(args) - 1;
-                Duke.markTask(Duke.getTasks().get(index), name.equals("mark"));
+                t = taskList.getTasks().get(index);
+                boolean b = name.equals("mark");
+                taskList.markTask(t, b);
+                ui.printTaskMarked(t, b);
+                try {
+                    storage.rewriteFile(taskList.getTasks());
+                } catch (IOException e) {
+                    ui.printError("Unable to write to file.");
+                }
                 break;
         }
     }
@@ -66,20 +106,22 @@ public enum Command {
         }
     }
 
-    public boolean isCorrectUse(String args) {
+    public boolean isCorrectUse(String args, Duke duke) {
+        UI ui = duke.getUI();
+        TaskList taskList = duke.getTaskList();
         String usage = correctUsage();
         switch(name) {
             case "delete":
                 if (args.isEmpty()) {
-                    Duke.printBot("----Error----\nPlease specify a task number.\n\n"
-                                   + usage);
+                    ui.printError("Please specify a task number.\n\n"
+                            + usage);
                     return false;
                 }
                 return true;
 
             case "list":
                 if (!args.isEmpty()) {
-                    Duke.printBot("----Error----\n'list' expects no arguments.");
+                    ui.printError("'list' expects no arguments.");
                     return false;
                 }
                 return true;
@@ -87,14 +129,12 @@ public enum Command {
             case "deadline":
                 String[] temp = args.split(" /by ", 2);
                 if (temp.length < 2) {
-                    Duke.printBot("----Error----\n"
-                                   + "Please specify a task and deadline.\n\n"
-                                   + usage);
+                    ui.printError("Please specify a task and deadline.\n\n"
+                            + usage);
                     return false;
                 } else if (!isValidDate(temp[1])) {
-                    Duke.printBot("----Error----\n"
-                                  + "Please specify the due date in the right format.\n\n"
-                                  + usage);
+                    ui.printError("Please specify the due date in the right format.\n\n"
+                            + usage);
                     return false;
                 }
                 return true;
@@ -102,21 +142,19 @@ public enum Command {
             case "event":
                 temp = args.split(" /at ", 2);
                 if (temp.length < 2) {
-                    Duke.printBot("----Error----\n"
-                                   + "Please specify an event and date.\n\n"
-                                   + usage);
+                    ui.printError("Please specify an event and date.\n\n"
+                            + usage);
                     return false;
                 } else if (!isValidDate(temp[1])) {
-                    Duke.printBot("----Error----\n"
-                                   + "Please specify the event date in the right format.\n\n"
-                                   + usage);
+                    ui.printError("Please specify the event date in the right format.\n\n"
+                            + usage);
                     return false;
                 }
                 return true;
 
             case "todo":
                 if (args.isEmpty()) {
-                    Duke.printBot("----Error----\nPlease specify a task.\n\n" + usage);
+                    ui.printError("Please specify a task.\n\n" + usage);
                     return false;
                 }
                 return true;
@@ -125,19 +163,19 @@ public enum Command {
 
             case "unmark":
                 if (args.isEmpty()) {
-                    Duke.printBot("----Error----\nPlease specify a task number\n\n" + usage);
+                    ui.printError("Please specify a task number\n\n" + usage);
                 } else {
                     try {
                         int index = Integer.parseInt(args) - 1;
-                        if (index < 0 || index >= Duke.getCount()) {
-                            Duke.printBot("----Error----\nPlease specify a valid task number.\n"
-                                           + "There are " + Duke.getCount()
-                                           + " task(s) in the list.\n\n" + usage);
+                        if (index < 0 || index >= taskList.getCount()) {
+                            ui.printError("Please specify a valid task number.\n"
+                                    + "There are " + taskList.getCount()
+                                    + " task(s) in the list.\n\n" + usage);
                             return false;
                         }
                         return true;
                     } catch (NumberFormatException e) {
-                        Duke.printBot("----Error----\nPlease specify a task number.\n\n"
+                        ui.printError("Please specify a task number.\n\n"
                                 + "\"" + args + "\"" + " is not an item number\n" + usage);
                         return false;
                     }
