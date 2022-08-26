@@ -2,16 +2,16 @@ import java.util.Scanner;
 
 public class Duke {
     private final TaskList tasks;
+    private Ui ui;
     //    private Storage storage;
 
     public Duke() {
+        ui = new Ui();
         tasks = new TaskList(Storage.readData());
     }
 
     public void run() {
-        String name = "Duke";
-        System.out.println("Hello! I'm " + name + "\nHow can I help you?");
-
+        ui.printWelcome();
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
@@ -19,7 +19,7 @@ public class Duke {
             if (command.equals("bye")) {
                 // Write tasks data to storage before terminating program
                 Storage.writeData(tasks.toString());
-                System.out.println("Bye! See you again :)");
+                ui.printGoodbye();
                 return;
             } else if (command.equals("list")) {
                 tasks.printList();
@@ -27,16 +27,16 @@ public class Duke {
             } else if (command.contains("unmark")) {
                 int index = Integer.parseInt(command.split(" ")[1]) - 1;
                 tasks.unmark(index);
-                System.out.println("Okay, this task is now unchecked:\n" + tasks.getTask(index));
+                ui.printUnmark(tasks.getTask(index));
             } else if (command.contains("mark")) {
                 int index = Integer.parseInt(command.split(" ")[1]) - 1;
                 tasks.mark(index);
-                System.out.println("Great! This task is completed:\n" + tasks.getTask(index));
+                ui.printMark(tasks.getTask(index));
             } else if (command.contains("delete")) {
                 int index = Integer.parseInt(command.split(" ")[1]) - 1;
                 Task temp = tasks.getTask(index);
                 tasks.remove(index);
-                System.out.println("Noted. I've removed this task:\n" + temp);
+                ui.printDelete(temp);
             } else {
                 try {
                     if (command.contains("todo")) {
@@ -46,17 +46,17 @@ public class Duke {
                         }
                         Task newTodoTask = new Todo(taskName);
                         tasks.add(newTodoTask);
-                        System.out.println("Got it. I've added this task:\n" + newTodoTask);
+                        ui.printAdd(newTodoTask);
                     } else if (command.contains("deadline")) {
                         String[] res = command.split("deadline ")[1].split("\\\\by ");
                         Task newDeadlineTask = new Deadline(res[0], res[1]);
                         tasks.add(newDeadlineTask);
-                        System.out.println("Got it. I've added this task:\n" + newDeadlineTask);
+                        ui.printAdd(newDeadlineTask);
                     } else if (command.contains("event")) {
                         String[] res = command.split("event ")[1].split("\\\\at ");
                         Task newEventTask = new Event(res[0], res[1]);
                         tasks.add(newEventTask);
-                        System.out.println("Got it. I've added this task:\n" + newEventTask);
+                        ui.printAdd(newEventTask);
                     } else {
                         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
