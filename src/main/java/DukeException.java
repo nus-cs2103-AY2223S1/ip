@@ -4,7 +4,7 @@
  *
  * @author lauralee
  */
-public class DukeException {
+public class DukeException extends Exception {
 
     /**
      * todo Exception handler
@@ -18,5 +18,12 @@ public class DukeException {
      */
     public static void taskException() {
         System.out.println("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+    }
+
+    /**
+     * date time Exception Handler
+     */
+    public static void dateTimeException() {
+        System.out.println("☹ OOPS!!! Please provide a date in yyyy-mm-dd format");
     }
 }

@@ -1,5 +1,7 @@
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 public class Duke {
     public static void main(String[] args) {
@@ -72,7 +74,13 @@ public class Duke {
                 String description = a.substring(9, a.lastIndexOf("/") - 1);
                 String day = a.substring(a.lastIndexOf("/by") + 4);
                 String dayDescription = " (by: " + day + ")";
-                Deadline newTask = new Deadline(description, dayDescription);
+                try {
+                    LocalDate.parse(day);
+                } catch (DateTimeParseException exception) {
+                    DukeException.dateTimeException();
+                    a = sc.nextLine();
+                }
+                Deadline newTask = new Deadline(description, day);
                 arr[Task.getNumberTasks()] = newTask;
                 System.out.println("Got it. I've added this task:");
                 System.out.println(newTask.output());
@@ -82,7 +90,7 @@ public class Duke {
                 String description = a.substring(6, a.lastIndexOf("/") - 1);
                 String time = a.substring(a.lastIndexOf("/at") + 4);
                 String timeDescription = " (at: " + time + ")";
-                Event newTask = new Event(description, timeDescription);
+                Event newTask = new Event(description, time);
                 arr[Task.getNumberTasks()] = newTask;
                 System.out.println("Got it. I've added this task:");
                 System.out.println(newTask.output());
