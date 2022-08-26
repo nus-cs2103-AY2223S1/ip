@@ -4,6 +4,7 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
@@ -20,6 +21,7 @@ public class Parser {
     public static final String MARKCOMMAND = "mark";
     public static final String UNMARKCOMMAND = "unmark";
     public static final String DELETECOMMAND = "delete";
+    public static final String FINDCOMMAND = "find";
 
     //The Strings representing the 3 types of Tasks
     public static final String TODO = "todo";
@@ -90,6 +92,13 @@ public class Parser {
                 throw new DukeException(errorMessage);
             }
             return new AddCommand(2, array[1]);
+        } else if (firstText.equals(FINDCOMMAND)) {
+            if (array.length == 1) {
+                String errorMessage = "__________________________________________________\n"
+                        + "OOPS!!! The keyword to search cannot be empty.";
+                throw new DukeException(errorMessage);
+            }
+            return new FindCommand(array[1]);
         } else {
             return new WrongCommand();
         }
