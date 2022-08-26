@@ -39,6 +39,16 @@ public class Task {
     }
 
     /**
+     * checks if task description contains keyword.
+     *
+     * @param keyword String to contain in description.
+     * @return if keyword is in description of task.
+     */
+    public boolean contains(String keyword) {
+        return this.toString().contains(keyword);
+    }
+
+    /**
      * Returns string representation of task.
      *
      * @return string with type, completed or not, name, and date time(if applicable)

@@ -186,7 +186,7 @@ public class TaskList {
         ArrayList<Task> matches = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             Task task = tasks.get(i);
-            if (task.toString().contains(keyword)) {
+            if (task.contains(keyword)) {
                 matches.add(task);
             }
         }
