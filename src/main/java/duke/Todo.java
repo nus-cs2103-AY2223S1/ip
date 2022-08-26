@@ -1,3 +1,7 @@
+package duke;
+
+import duke.Task;
+
 public class Todo extends Task {
 
     public Todo(String description) {
@@ -10,7 +14,7 @@ public class Todo extends Task {
     }
 
     @Override
-    public String savedString() {
+    public String saveString() {
         return "T | " + (this.isDone ? "1 | " : "0 | ") + this.description;
     }
 }

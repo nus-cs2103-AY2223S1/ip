@@ -1,3 +1,5 @@
+package duke;
+
 public abstract class Task {
 
     protected String description;
@@ -28,5 +30,5 @@ public abstract class Task {
         return "[" + this.getStatusIcon() + "] " + this.getDescription();
     }
 
-    public abstract String savedString();
+    public abstract String saveString();
 }

@@ -1,3 +1,5 @@
+package duke;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -6,7 +8,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Storage class that saves and loads the tasks from/to local file.
+ */
 public class Storage {
+    //File to store the list of tasks inputted by user
     private File listOfTasks;
 
     public Storage(String listOfTasks) {
@@ -71,7 +77,7 @@ public class Storage {
         try {
             FileWriter fw = new FileWriter(listOfTasks.getPath());
             for (Task task : tasklist.getTasks()) {
-                fw.write(task.savedString() + System.lineSeparator());
+                fw.write(task.saveString() + System.lineSeparator());
             }
             fw.close();
         } catch (IOException e) {
