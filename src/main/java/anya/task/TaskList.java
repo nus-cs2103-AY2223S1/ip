@@ -15,18 +15,42 @@ public class TaskList {
     }
 
     // Instance methods
+
+    /**
+     * Appends the task to end of the ArrayList.
+     *
+     * @param task the task to be added in the ArrayList.
+     */
     public void addTask(Task task) {
         this.tasks.add(task);
     }
 
+    /**
+     * Removes the task at the specified index of the ArrayList.
+     * The ArrayList is One-Indexed.
+     *
+     * @param taskIndex the index of the task in the ArrayList to be deleted.
+     */
     public void deleteTaskFromIndex(int taskIndex) {
         this.tasks.remove(taskIndex - 1);
     }
 
+    /**
+     * Gets the number of tasks in the ArrayList.
+     *
+     * @return the length of the ArrayList
+     */
     public int getLength() {
         return this.tasks.size();
     }
 
+    /**
+     * Gets the task at the specified index of the ArrayList.
+     * The ArrayList is One-Indexed.
+     *
+     * @param taskIndex the index of the task in the ArrayList to retrieve.
+     * @return the task at specified index. 
+     */
     public Task getTaskFromIndex(int taskIndex) {
         return this.tasks.get(taskIndex - 1);
     }
