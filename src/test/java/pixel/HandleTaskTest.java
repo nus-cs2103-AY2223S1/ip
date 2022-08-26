@@ -3,26 +3,22 @@ package pixel;
 import org.junit.jupiter.api.Test;
 import pixel.util.IncorrectFormatException;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.InvalidPropertiesFormatException;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AddTaskTest {
+public class HandleTaskTest {
 
     Pixel pixelBot = new Pixel("C:/!Education/CS2103/gitFolderOne/data/pixel.txt"); // output file address
 
 //    @Test
 //    public void testAddingTasks() throws FileNotFoundException {
-        //String inputFileAddress = "C:/!Education/CS2103/gitFolderOne/data/testInput.txt";
-        //File text = new File(inputFileAddress);
-        //Scanner inputScanner = new Scanner(text);
+    //String inputFileAddress = "C:/!Education/CS2103/gitFolderOne/data/testInput.txt";
+    //File text = new File(inputFileAddress);
+    //Scanner inputScanner = new Scanner(text);
 
-        //Reading each line of the file using Scanner class
+    //Reading each line of the file using Scanner class
 //        int lineNumber = 1;
 //        while (inputScanner.hasNextLine()){
 //            String line = inputScanner.nextLine();
@@ -67,53 +63,13 @@ public class AddTaskTest {
         }
     }
 
-//        // test case 1
-//        pixelBot.(new String[]{"E001", "E002"});
-//        assertEquals(6400, p.totalSalary());
-//
-//         .handleNewTask(String userInput, int indexOfSlash, String type)
-//
-//        // test case 2
-//        p.setEmployees(new String[]{"E001"});
-//        assertEquals(2300, p.totalSalary());
-//
-//        // more tests...
+    // Unit tests
+/*
+DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("uuuu-MM-dd", Locale.US)
+    .withResolverStyle(ResolverStyle.STRICT);
+DateValidator validator = new DateValidatorUsingDateTimeFormatter(dateFormatter);
 
-//    @Test
-//    public void dummyTest() {
-//        assertEquals(2, 2);
-//    }
-//
-//    @Test
-//    public void anotherDummyTest(){
-//        assertEquals(4, 4);
-//    }
+assertTrue(validator.isValid("2019-02-28"));
+assertFalse(validator.isValid("2019-02-30"));
+    */
 }
-
-//public class PayrollTest {
-//    public static void main(String[] args) throws Exception {
-//
-//        // test setup
-//        Payroll p = new Payroll();
-//
-//        // test case 1
-//        p.setEmployees(new String[]{"E001", "E002"});
-//        // automatically verify the response
-//        if (p.totalSalary() != 6400) {
-//            throw new Error("case 1 failed ");
-//        }
-//
-//        // test case 2
-//        p.setEmployees(new String[]{"E001"});
-//        if (p.totalSalary() != 2300) {
-//            throw new Error("case 2 failed ");
-//        }
-//
-//        // more tests...
-//
-//        System.out.println("All tests passed");
-//    }
-//
-//}
-//
-//
