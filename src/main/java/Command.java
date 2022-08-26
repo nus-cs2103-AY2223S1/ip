@@ -165,13 +165,17 @@ abstract class Command {
                 if (super.context.getTasks().checkTask(number)) {
                     super.context.respond("Task has been marked as done!");
                 } else {
-                    super.context.respond("Task not modified: it is already done!");
+                    super.context.respond(String.format(
+                            "Task not modified! Either the task is already done, or you specified an invalid task number %d.",
+                            number));
                 }
             } else {
                 if (super.context.getTasks().uncheckTask(number)) {
                     super.context.respond("Task has been marked as not done!");
                 } else {
-                    super.context.respond("Task not modified: it is still not done!");
+                    super.context.respond(String.format(
+                            "Task not modified! Either the task is still not done, or you specified an invalid task number %d.",
+                            number));
                 }
             }
         }
@@ -199,7 +203,9 @@ abstract class Command {
             if (super.context.getTasks().deleteTask(number)) {
                 super.context.respond("Task has been deleted successfully!");
             } else {
-                super.context.respond("Something went wrong while deleting the task");
+                super.context.respond(String.format(
+                        "Something went wrong when deleting task %d! Likely, you specified a task number that is out of range.",
+                        number));
             }
         }
     }
