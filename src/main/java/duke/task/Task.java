@@ -45,4 +45,8 @@ abstract public class Task {
             return "";  //should not come here
         }
     }
+
+    public boolean contains(String keyword) {
+        return this.description.contains(keyword);
+    }
 }

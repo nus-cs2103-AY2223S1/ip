@@ -1,14 +1,12 @@
 package duke.logic;
 
 import duke.command.*;
-import duke.exception.IllegalDescriptionException;
-import duke.exception.IllegalTaskException;
-import duke.exception.IllegalTimeException;
-import duke.exception.IllegalTokenException;
+import duke.exception.*;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Parser {
     private TaskList taskList;
@@ -30,15 +28,16 @@ public class Parser {
     public Runnable parse(String response) {
         //strip() to allow for any (unintentional) whitespaces before or after
         response = response.strip();
+        String lresponse = response.toLowerCase();  //for any caps commands
 
-        if (response.equals("bye")) {   //bye command
+        if (lresponse.equals("bye")) {   //bye command
             return new ByeCommand();
-        } else if (response.equals("list")) {   //list command
+        } else if (lresponse.equals("list")) {   //list command
             return new ListCommand(taskList);
         }
 
         try {
-            if (response.equals("mark") || response.startsWith("mark ")) {  //mark command
+            if (lresponse.equals("mark") || lresponse.startsWith("mark ")) {  //mark command
                 //no task specified, mark<space> is 5 char long
                 if (response.length() < 6) {
                     throw new IllegalTaskException("No task specified.");
@@ -47,7 +46,7 @@ public class Parser {
                 //minus 1 to convert into index starting from 0
                 int query = Integer.parseInt(response.substring(5).strip()) - 1;
                 return new MarkCommand(taskList, query);    //will throw illegaltaskexception
-            } else if (response.equals("unmark") || response.startsWith("unmark ")) {   //unmark command
+            } else if (lresponse.equals("unmark") || lresponse.startsWith("unmark ")) {   //unmark command
                 //no task specified, unmark<space> is 7 char long
                 if (response.length() < 8) {
                     throw new IllegalTaskException("No task specified.");
@@ -56,7 +55,7 @@ public class Parser {
                 //minus 1 to convert into index starting from 0
                 int query = Integer.parseInt(response.substring(7).strip()) - 1;
                 return new UnmarkCommand(taskList, query);  //will throw illegaltaskexception
-            } else if (response.equals("delete") || response.startsWith("delete ")) {   //delete command
+            } else if (lresponse.equals("delete") || lresponse.startsWith("delete ")) {   //delete command
                 //no task specified, delete<space> is 7 char long
                 if (response.length() < 8) {
                     throw new IllegalTaskException("No task specified.");
@@ -65,15 +64,26 @@ public class Parser {
                 //minus 1 to convert into index starting from 0
                 int query = Integer.parseInt(response.substring(7).strip()) - 1;
                 return new DeleteCommand(taskList, query);
+            } else if (lresponse.equals("find") || lresponse.startsWith("find ")) {
+                //no keywords specified, find<space> is 5 char long
+                if (response.length() < 6) {
+                    throw new IllegalKeywordException("No keyword specified.");
+                }
+                //taking index 5 inclusive onward
+                return new FindCommand(taskList, response.substring(5).stripLeading()); //ensure no leading whitespaces
             }
         } catch (NumberFormatException | IllegalTaskException e) {
             return () -> {
                 System.out.println(" ☹ OOPS!!! The task number you have inputted does not exist or is invalid.");
             };
+        } catch (IllegalKeywordException e) {
+            return () -> {
+                System.out.println(" ☹ OOPS!!! You have not specified a keyword.");
+            };
         }
 
         try {
-            if (response.equals("todo") || response.startsWith("todo ")) {
+            if (lresponse.equals("todo") || lresponse.startsWith("todo ")) {
                 //completely nothing after command, todo<space> is 5 char long
                 //todo command with whitespaces followed are not valid descriptions.
                 if (response.length() < 6) {
@@ -83,7 +93,7 @@ public class Parser {
                 //should be atleast 1 char by now
                 String description = response.substring(5);
                 return new ToDoCommand(taskList, description);
-            } else if (response.equals("deadline") || response.startsWith("deadline ")) {
+            } else if (lresponse.equals("deadline") || lresponse.startsWith("deadline ")) {
                 //completely nothing after command, deadline<space> is 9 char long
                 if (response.length() < 10) {
                     throw new IllegalTokenException("No token found.");
@@ -113,7 +123,7 @@ public class Parser {
                 //strip leading get rid of white spaces infront, back alr dealt with
                 time = time.stripLeading();
                 return new DeadlineCommand(taskList, description, Parser.parseTime(time));
-            } else if (response.equals("event") || response.startsWith("event ")) {
+            } else if (lresponse.equals("event") || lresponse.startsWith("event ")) {
                 if (response.length() < 7) {
                     throw new IllegalTokenException("No token found.");
                 }
