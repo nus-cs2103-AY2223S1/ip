@@ -20,13 +20,13 @@ public class Ui {
 
     public void showError(String errorMessage) {
         System.out.println(separator);
-        System.out.println("OOPS! " + errorMessage);
+        System.out.print("OOPS! " + errorMessage);
         System.out.println(separator);
     }
 
     public void showResponse(String response) {
         System.out.println(separator);
-        System.out.println(response);
+        System.out.print(response);
         System.out.println(separator);
     }
 }
