@@ -1,8 +1,60 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 class Checklist {
-    private final List<Task> taskList = new ArrayList<>();
+    private final List<Task> taskList;
+
+    Checklist() {
+        taskList = new ArrayList<>();
+    }
+
+    Checklist(Stream<String> lines) {
+        taskList = populateList(lines);
+    }
+
+    static List<Task> populateList(Stream<String> lines) {
+        ArrayList<Task> arrayList = new ArrayList<>();
+        lines.forEach(x -> {
+            int id = Integer.parseInt(x.substring(0, 1));
+            char type = x.charAt(3);
+            boolean done = x.charAt(6) == 'X';
+            String task;
+            if (type == 'D' || type == 'E') {
+                task = x.substring(9, x.indexOf("(") - 1);
+                String additional = x.substring(x.indexOf("(") + 5);
+                if (type == 'D') {
+                    arrayList.add(new Deadline(id, task, additional, done));
+                } else {
+                    arrayList.add(new Event(id, task, additional, done));
+                }
+            } else {
+                task = x.substring(9);
+                arrayList.add(new Todo(id, task, done));
+            }
+        });
+        return arrayList;
+    }
+
+    void save() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("./tasks.txt"));
+            taskList.forEach(x -> {
+                try {
+                    writer.write(x.toString());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            writer.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     void list() {
         System.out.println("Here are the tasks in your list: ");

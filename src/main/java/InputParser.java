@@ -1,6 +1,7 @@
 class InputParser {
     void parse(String input, Checklist tasks) throws EmptyTextException, IllegalCommandException, EndProgramException {
         if (input.equals("bye")) {
+            tasks.save();
             throw new EndProgramException();
         } else if (input.equals("list")) {
             tasks.list();

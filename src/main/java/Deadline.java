@@ -7,6 +7,11 @@ class Deadline extends Task {
         this.deadline = deadline;
     }
 
+    Deadline (int id, String name, String deadline, boolean done) {
+        super(id, name, done);
+        this.deadline = deadline;
+    }
+
     @Override
     public String toString() {
         String out = super.getId() + ".[D][";
