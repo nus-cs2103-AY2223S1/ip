@@ -50,6 +50,10 @@ public class Parser {
             int taskNum = Integer.parseInt(input.replace("delete ", ""));
             validateDelete(taskNum);
             return new DeleteCommand(taskNum);
+        } else if (input.startsWith("find ")) {
+            String toFind = input.replace("find ", "");
+            validateFind(toFind);
+            return new FindCommand(toFind);
         } else {
             throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
@@ -95,6 +99,12 @@ public class Parser {
     public static void validateTodo(String todo) throws DukeException {
         if(todo.isEmpty()) {
             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+        }
+    }
+
+    public static void validateFind(String toFind) throws DukeException {
+        if(toFind.isEmpty()) {
+            throw new DukeException("OOPS!!! The task to find cannot be empty.");
         }
     }
 
