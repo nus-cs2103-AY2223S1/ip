@@ -58,6 +58,11 @@ public class TaskList {
     public void deleteTask(int taskNo) {
         Task t = this.getTask(taskNo);
         this.taskList.remove(taskNo - 1);
+        try {
+            FileDataHandler.save(this.taskList);
+        } catch (IOException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
         String reply = "Noted. I've removed this task:\n" +
                         t + "\nNow you have " + this.taskList.size() + " tasks in the list.";
         System.out.println(reply);

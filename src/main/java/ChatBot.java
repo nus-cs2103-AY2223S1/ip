@@ -30,7 +30,8 @@ public class ChatBot {
                 int taskNo = Integer.parseInt(arguments[1]);
                 this.taskList.markTask(taskNo);
             } else if (input.toLowerCase().contains("todo")) {
-                String[] arguments = input.split(" ");
+                //Split the string into maximum two parts only
+                String[] arguments = input.split(" ", 2);
                 if (arguments.length > 1) {
                     String toDo = arguments[1];
                     this.taskList.addTask(new ToDos(toDo));
