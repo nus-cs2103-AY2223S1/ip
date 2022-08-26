@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
-    ArrayList<Task> taskArrayList;
+    private ArrayList<Task> taskArrayList;
     enum TaskEnum {
         Todo,
         Deadline,
@@ -13,6 +13,10 @@ public class TaskList {
 
     TaskList() {
         this.taskArrayList = new ArrayList<>();
+    }
+
+    public ArrayList<Task> getTaskArrayList() {
+        return this.taskArrayList;
     }
 
     // Todo: include more support for date string
@@ -47,32 +51,29 @@ public class TaskList {
             curr.setDone(isDone);
             this.addTask(curr);
             break;
-
         case "E":
             description = line.split("\\|", 4)[2];
-            description = description.substring(1, description.length()-1);
+            description = description.substring(1, description.length() - 1);
             localDate = LocalDate.parse(line.split("\\|", 4)[3].substring(1));
             curr = new Event(description, localDate);
             curr.setDone(isDone);
             this.addTask(curr);
             break;
-
         case "D":
             description = line.split("\\|", 4)[2];
-            description = description.substring(1, description.length()-1);
+            description = description.substring(1, description.length() - 1);
             localDate = LocalDate.parse(line.split("\\|", 4)[3].substring(1));
             curr = new Deadline(description, localDate);
             curr.setDone(isDone);
             this.addTask(curr);
             break;
-
         default:
             // unrecognized pre-created task
         }
     }
 
-    private void createEvent(TaskEnum taskEnum, String command) throws DukeException{
-        String args[];
+    private void createEvent(TaskEnum taskEnum, String command) throws DukeException {
+        String[] args;
         Task res;
         switch (taskEnum) {
         case Todo:
@@ -99,22 +100,13 @@ public class TaskList {
             throw new DukeException("Invalid Input");
         }
         this.addTask(res);
-        Ui.FormatPrint("Got it. I've added this task:\n" + res.toString());
+        Ui.formatPrint("Got it. I've added this task:\n" + res.toString());
     }
 
-    private static void TaskStateChangePrint(Task t, boolean b) {
-        String res;
-        if (b) {
-            res = "Nice! I've marked this task as done:\n";
-        } else {
-            res = "OK, I've marked this task as not done yet:\n";
-        }
-        Ui.FormatPrint(res + t.toString());
-    }
 
 
     private void handleDelete(String command) throws DukeException {
-        String args[] = command.split(" ", 2);
+        String[] args = command.split(" ", 2);
         int index;
         try {
             index = Integer.parseInt(args[1]) - 1;
@@ -123,7 +115,7 @@ public class TaskList {
         }
         Task curr = this.taskArrayList.get(index);
         this.remove(index);
-        Ui.FormatPrint("Noted. I've removed this task:\n" + curr.toString()
+        Ui.formatPrint("Noted. I've removed this task:\n" + curr.toString()
                 + "Now you have " + this.taskArrayList.size() + " tasks in the list.");
     }
 
@@ -134,11 +126,11 @@ public class TaskList {
     private void remove(int index) {
         ArrayList<Task> arr = this.taskArrayList;
         ArrayList<Task> newArr = new ArrayList<>();
-        if(index < 0 || index > arr.size()) {
+        if (index < 0 || index > arr.size()) {
             return;
         }
-        for(int i = 0; i < arr.size(); i++) {
-            if(i == index) {
+        for (int i = 0; i < arr.size(); i++) {
+            if (i == index) {
                 i++;
             }
             newArr.add(arr.get(i));
@@ -155,18 +147,18 @@ public class TaskList {
         if (command[0].equals("mark")) {
             if (!curr.isDone) {
                 curr.isDone = true;
-                TaskStateChangePrint(curr, true);
+                Ui.taskStateChangePrint(curr, true);
             }
         } else { // command [0].equals("unmark")
             if (curr.isDone) {
                 curr.isDone = false;
-                TaskStateChangePrint(curr, false);
+                Ui.taskStateChangePrint(curr, false);
             }
         }
     }
 
-    void parseInstructions(String args) throws DukeException{
-        String arguments[] = args.split(" ", 2);
+    void parseInstructions(String args) throws DukeException {
+        String[] arguments = args.split(" ", 2);
         try {
             switch (arguments[0]) {
             case "mark": // same flow as case "unmark"
