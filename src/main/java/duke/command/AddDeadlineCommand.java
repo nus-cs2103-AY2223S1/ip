@@ -34,7 +34,7 @@ public class AddDeadlineCommand extends Command {
         if (!details.contains("/by")) {
             throw new DukeException("OOPS!!! The deadline is required. (/by)");
         }
-        String[] split = details.split("/");
+        String[] split = details.split(" /");
         String desc = split[0];
         if (desc.equals("") || desc.equals(" ")) {
             throw new DukeException("OOPS!!! Description of deadline is required.");

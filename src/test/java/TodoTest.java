@@ -14,7 +14,7 @@ public class TodoTest {
     @Test
     public void markTest() {
         Todo todo = new Todo("read book");
-        todo.markAsDone();
+        todo.markTask();
         assertEquals(todo.toString(),
                 "[T][X] read book");
     }
@@ -22,7 +22,7 @@ public class TodoTest {
     @Test
     public void unmarkTest() {
         Todo todo = new Todo("read book");
-        todo.markAsDone();
+        todo.markTask();
         todo.unmarkTask();
         assertEquals(todo.toString(),
                 "[T][ ] read book");

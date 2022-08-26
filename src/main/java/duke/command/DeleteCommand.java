@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
             throw new DukeException("OOPS!!! The index is invalid.");
         }
         Task deleted = tasks.delete(index);
-        ui.showMessage("Noted. I've removed this duke.task:");
+        ui.showMessage("Noted. I've removed this task:");
         ui.showMessage(" " + deleted);
         ui.showMessage("Now you have " + tasks.getSize() + " tasks in the list.");
     }

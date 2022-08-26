@@ -14,7 +14,7 @@ public class DeadlineTest {
     @Test
     public void markTest() {
         Deadline deadline = new Deadline("return book", "2022-10-29");
-        deadline.markAsDone();
+        deadline.markTask();
         assertEquals(deadline.toString(),
                 "[D][X] return book (by: Oct 29 2022)");
     }
@@ -22,7 +22,7 @@ public class DeadlineTest {
     @Test
     public void unmarkTest() {
         Deadline deadline = new Deadline("return book", "2022-10-29");
-        deadline.markAsDone();
+        deadline.markTask();
         deadline.unmarkTask();
         assertEquals(deadline.toString(),
                 "[D][ ] return book (by: Oct 29 2022)");

@@ -24,12 +24,13 @@ public class Ui {
     public void showWelcome() {
         System.out.println(BORDER);
         String content;
-        String logo = "      ____        _        \n"
-                + "     |  _ \\ _   _| | _____ \n"
-                + "     | | | | | | | |/ / _ \\\n"
-                + "     | |_| | |_| |   <  __/\n"
-                + "     |____/ \\__,_|_|\\_\\___|\n";
-        content = logo + "\n" + INDENT + "Hello! I'm Duke\n" + INDENT + "What can I do for you?\n";
+        String logo = "      ______  ______  _    _  ______\n"
+                + "     |  ____||  ____|| |  | ||  __  |\n"
+                + "     | |____ | |     | |__| || |  | |\n"
+                + "     |  ____|| |     |  __  || |  | |\n"
+                + "     | |____ | |____ | |  | || |__| |\n"
+                + "     |______||______||_|  |_||______|\n";
+        content = logo + "\n" + INDENT + "Hello! I'm Echo\n" + INDENT + "What can I do for you?\n";
         System.out.print(content);
         System.out.println(BORDER);
     }
