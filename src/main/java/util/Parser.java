@@ -1,9 +1,6 @@
 package util;
 
-import alanExceptions.AlanException;
-import alanExceptions.NoDescriptionException;
-import alanExceptions.NoTimeException;
-import alanExceptions.NoValueException;
+import alanExceptions.*;
 
 // Enum for input types
 enum InputType {
@@ -13,6 +10,7 @@ enum InputType {
     deadline,
     event,
     delete,
+    find,
 }
 
 /**
@@ -38,12 +36,28 @@ public class Parser {
             case event:
                 result = parseTimedTask(input);
                 break;
+            case find:
+                result = parseFind(input);
+                break;
             default:
                 //for now default is for mark and unmark
                 result = parseListMod(input);
         }
 
         return result;
+    }
+
+    private ParsedData parseFind(String input) throws AlanException {
+        String first[] = input.split(" ", 2);
+        String command = first[0];
+        String keyword;
+
+        try {
+            keyword = first[1];
+        } catch (IndexOutOfBoundsException e) {
+            throw new NoKeywordException(command);
+        }
+        return new ParsedData(keyword);
     }
 
     private ParsedData parseListMod(String input) throws AlanException {
@@ -53,7 +67,7 @@ public class Parser {
 
         try {
             listIndex = Integer.parseInt(first[1]);
-        } catch (IndexOutOfBoundsException exception) {
+        } catch (IndexOutOfBoundsException | NumberFormatException e) {
             throw new NoValueException(command);
         }
 
@@ -71,7 +85,7 @@ public class Parser {
         //if second split is null then no description was added
         try {
             second = first[1].split(" /", 2);
-        } catch (IndexOutOfBoundsException exception) {
+        } catch (IndexOutOfBoundsException e) {
             throw new NoDescriptionException(command);
         }
         task = second[0];
@@ -81,7 +95,7 @@ public class Parser {
             third = second[1].split(" ", 2);
             during = third[0];
             time = third[1];
-        } catch (IndexOutOfBoundsException exception) {
+        } catch (IndexOutOfBoundsException e) {
             throw new NoTimeException(command);
         }
 
@@ -96,7 +110,7 @@ public class Parser {
         try {
             String[] second = first[1].split(" /", 2);
             task = second[0];
-        } catch (IndexOutOfBoundsException exception) {
+        } catch (IndexOutOfBoundsException e) {
             throw new NoDescriptionException(command);
         }
 

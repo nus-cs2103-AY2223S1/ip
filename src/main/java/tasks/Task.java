@@ -15,7 +15,7 @@ public abstract class Task {
      * @param parsedData Data used to create the Task.
      */
     public Task(ParsedData parsedData) {
-        this.description = parsedData.getTaskName();
+        this.description = parsedData.getDescription();
         this.isDone = parsedData.getStatus();
     }
 

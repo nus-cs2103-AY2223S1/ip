@@ -82,6 +82,9 @@ public class Alan {
                     case "todo":
                         executor.excTodo(taskList, userInput);
                         break;
+                    case "find":
+                        executor.excFind(taskList, userInput);
+                        break;
                     case "mark":
                         executor.excMark(taskList, userInput);
                         break;

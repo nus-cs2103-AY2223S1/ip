@@ -11,7 +11,7 @@ public class ParsedData {
     private final String DEFAULT_TIME_FORMAT = "dd/MM/yyyy HH:mm";
     private DateTimeFormatter formatter;
     private boolean isDone;
-    private String task;
+    private String description;
     private String during;
     private String timeText;
     private LocalDateTime dateTime;
@@ -20,12 +20,12 @@ public class ParsedData {
     /**
      * Constructor
      *
-     * @param task Task.
+     * @param description Task.
      * @param during Time keyword.
      * @param time Time.
      */
-    public ParsedData(String task, String during, String time) {
-        this.task = task;
+    public ParsedData(String description, String during, String time) {
+        this.description = description;
         this.during = during;
         try {
             this.formatter = DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT);
@@ -44,12 +44,12 @@ public class ParsedData {
      * Constructor
      *
      * @param status Status.
-     * @param task Task.
+     * @param description Task.
      * @param during Time keyword.
      * @param time Time.
      */
-    public ParsedData(String status, String task, String during, String time) {
-        this.task = task;
+    public ParsedData(String status, String description, String during, String time) {
+        this.description = description;
         this.during = during;
         try {
             this.formatter = DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT);
@@ -67,10 +67,10 @@ public class ParsedData {
     /**
      * Constructor
      *
-     * @param task Task.
+     * @param description Task.
      */
-    public ParsedData(String task) {
-        this.task = task;
+    public ParsedData(String description) {
+        this.description = description;
     }
 
     /**
@@ -82,8 +82,8 @@ public class ParsedData {
         this.listIndex = listIndex;
     }
 
-    public String getTaskName() {
-        return this.task;
+    public String getDescription() {
+        return this.description;
     }
 
     public String getDuring() {

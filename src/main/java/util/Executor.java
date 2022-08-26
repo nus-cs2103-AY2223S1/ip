@@ -4,6 +4,8 @@ import alanExceptions.AlanException;
 import alanExceptions.InvalidValueException;
 import tasks.*;
 
+import java.util.List;
+
 /**
  * This class is used for executing commands.
  */
@@ -82,6 +84,12 @@ public class Executor {
         // Append new task to save File
         alanIO.append(fileFormatter.formatTask(currentTask));
         System.out.println(ui.addTask(currentTask, taskList.size()));
+    }
+
+    public void excFind(TaskList taskList, String userInput) throws AlanException {
+        ParsedData parsedData = parser.parse(InputType.find, userInput);
+        List<Task> result = taskList.find(parsedData.getDescription());
+        System.out.println(ui.find(taskList, result));
     }
 
     /**

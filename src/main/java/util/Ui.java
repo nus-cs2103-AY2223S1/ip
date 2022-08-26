@@ -1,6 +1,7 @@
 package util;
 
 import tasks.Task;
+import tasks.TaskList;
 
 import java.util.List;
 
@@ -45,6 +46,19 @@ public class Ui {
             reply.append("  ").append(count++).append(". ").append(task.toString()).append("\n");
         }
         reply.setLength(reply.length() - 1);
+        return addSeparator(reply.toString());
+    }
+
+    public String find(TaskList taskList, List<Task> result) {
+        StringBuilder reply = new StringBuilder();
+        reply.append("Here are the matching tasks in your list:\n");
+        if (result.isEmpty()) {
+            return addSeparator("There are no matching tasks.");
+        }
+        for (Task task: result) {
+            int index = taskList.getTaskList().indexOf(task) + 1;
+            reply.append("  ").append(index).append(". ").append(task.toString()).append("\n");
+        }
         return addSeparator(reply.toString());
     }
 

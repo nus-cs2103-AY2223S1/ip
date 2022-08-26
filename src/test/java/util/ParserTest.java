@@ -26,7 +26,7 @@ public class ParserTest {
     public void validInput3() throws AlanException {
         assertEquals("do hw",
                 parser.parse(InputType.todo, " do hw").
-                        getTaskName());
+                        getDescription());
     }
     @Test
     public void invalidNoValueException() {
