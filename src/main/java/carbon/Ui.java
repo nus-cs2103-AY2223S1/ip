@@ -1,6 +1,7 @@
 package carbon;
 
 import carbon.error.CarbonException;
+
 import java.util.Random;
 import java.util.Scanner;
 
