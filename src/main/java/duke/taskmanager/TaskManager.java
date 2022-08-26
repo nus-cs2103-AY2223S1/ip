@@ -1,3 +1,6 @@
+package duke.taskmanager;
+
+import duke.taskmanager.task.*;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,7 +12,7 @@ public class TaskManager {
     private static final String FILEPATH = "tasklist.txt";
     private final List<Task> taskList;
     private static final String DATE_FORMAT = "dd/MM/yyyy,HHmm";
-    TaskManager() {
+    public TaskManager() {
         this.taskList = new ArrayList<>();
     }
 

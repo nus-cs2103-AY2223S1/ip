@@ -1,5 +1,7 @@
+package duke.taskmanager.task;
+
 public class EmptyTask extends Task {
-    EmptyTask() {
+    public EmptyTask() {
         super("");
     }
 

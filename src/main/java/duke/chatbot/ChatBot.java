@@ -1,3 +1,8 @@
+package duke.chatbot;
+
+import duke.taskmanager.TaskManager;
+import duke.taskmanager.task.*;
+import duke.taskmanager.exceptions.*;
 import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
@@ -5,7 +10,7 @@ public class ChatBot {
     private final String name;
     private boolean runningState;
     private final TaskManager taskManager;
-    ChatBot(String name) {
+    public ChatBot(String name) {
         this.name =  name;
         this.runningState = false;
         this.taskManager = new TaskManager();
