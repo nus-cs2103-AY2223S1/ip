@@ -14,13 +14,17 @@ public class TaskList {
     TaskList() {
 
     }
-    TaskList (String data) {
+    TaskList(String data) {
         if (!data.equals("")) {
             String[] tasksArray = data.split("\n");
             for (String task : tasksArray) {
                 this.tasks.add(stringToTask(task));
             }
         }
+    }
+
+    private TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
     }
     private static Task stringToTask(String input) {
         String [] taskDetails = input.split(",");
@@ -69,6 +73,31 @@ public class TaskList {
         } catch(IndexOutOfBoundsException e) {
             throw new DukeException("Index given is out of range");
         }
+    }
+
+    /**
+     * Returns a task list filtered by a keyword
+     *
+     * @param keyword Keyword phrase
+     * @return Filtered task list
+     */
+    public TaskList find(String keyword) {
+        String[] keywords = keyword.split(" ");
+        ArrayList<Task> filteredTasks = new ArrayList<>();
+        ArrayList<Integer> added = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++) {
+            added.add(0);
+        }
+        for (String word : keywords) {
+            for (int i = 0; i < tasks.size(); i++) {
+                Task task = tasks.get(i);
+                if (task.description().contains(word) && added.get(i) == 0) {
+                    filteredTasks.add(task);
+                    added.set(i,1);
+                }
+            }
+        }
+        return new TaskList(filteredTasks);
     }
     protected int size() {
         return this.tasks.size();

@@ -13,6 +13,7 @@ public class MarkCommand extends Command {
         this.ind = ind;
         this.toMark = toMark;
     }
+    @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         Task current = tasks.get(ind - 1);
         if (toMark) {
