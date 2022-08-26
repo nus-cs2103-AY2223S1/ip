@@ -4,11 +4,16 @@ import java.util.ArrayList;
 public class TaskList {
     public static ArrayList<Task> taskList = new ArrayList<>();
 
+    /**
+     * Copies contents of old list into new list.
+     * @param oldArr the old array to be copied from.
+     */
     static void copyList(ArrayList<Task> oldArr) {
         for (int i = 1; i <= oldArr.size(); i++) {
             taskList.add(oldArr.get(i-1));
         }
     }
+
     public static void add(String input) {
         Task newTask = new Task("");
         try {
@@ -75,6 +80,9 @@ public class TaskList {
         }
     }
 
+    /**
+     * Method to show contents of list.
+     */
     static void showList() {
         if (taskList.size() == 0) {
             System.out.println(new DukeException("ERROR: empty list.").getMessage());

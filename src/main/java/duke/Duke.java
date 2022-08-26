@@ -5,10 +5,14 @@ import java.io.IOException;
 
 public class Duke {
     Scanner sc;
-    public Storage storage;
-    public TaskList tasklist;
-    public Ui ui =  new Ui();
+    private Storage storage;
+    private TaskList tasklist;
+    private Ui ui =  new Ui();
 
+    /**
+     * Sets up required objects, loads the data from the storage file.
+     * @param filePath Filepath to the text file.
+     */
     public Duke(String filePath) {
         storage = new Storage("src/filestorage/dummylist.txt");
         tasklist = new TaskList();
@@ -21,6 +25,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Sends welcome greeting and processes inputs.
+     */
     public void run() {
         TaskHandler taskHandler = new TaskHandler(tasklist);
         ui.welcomeMsg();

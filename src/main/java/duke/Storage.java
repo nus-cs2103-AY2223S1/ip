@@ -4,19 +4,28 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Represents the file storing the list.
+ */
 public class Storage {
     private String filePath;
 
+    /**
+     * Default constructor for Storage given a filePath.
+     * @param filePath Filepath of where to load/save the data.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+
+    /**
+     * Reads the data into the list.
+     * @throws DukeException If the file is unreadable.
+     */
     public void readData() throws DukeException{
         File f = new File(this.filePath);
         try {
-//            if (!f.createNewFile()) {
-//                System.out.println("File already exists.");
-//            }
             if (!f.exists()) {
                 f.getParentFile().mkdirs();
                 f.createNewFile();
@@ -42,6 +51,9 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes the data into the text file.
+     */
     public void writeData() {
         try {
             FileWriter fileWriter = new FileWriter(filePath);

@@ -9,6 +9,11 @@ public class Event extends Task {
     private String formattedDateTime;
     private String oldDate;
 
+    /**
+     * Default constructor for Event.
+     * @param description Description of task.
+     * @param dateTime Datetime of task.
+     */
     public Event(String description, String dateTime) {
         super(description);
         this.oldDate = dateTime;

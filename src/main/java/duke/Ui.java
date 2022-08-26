@@ -1,4 +1,7 @@
 package duke;
+/**
+ * Default constructor for Ui.
+ */
 public class Ui {
 
     public static Object welcomeMsg;
