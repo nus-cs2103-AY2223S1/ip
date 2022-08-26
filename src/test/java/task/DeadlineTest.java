@@ -1,11 +1,11 @@
 package task;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class DeadlineTest {
 
@@ -21,13 +21,13 @@ public class DeadlineTest {
 
     @Test
     public void testMarkedToString() {
-        String correct = "[D][X] Marked (by: 2020-01-05 05:05)";
+        String correct = "[D][X] Marked (by: 5 January 2020 05:05)";
         Assertions.assertEquals(correct, this.markedTask.toString());
     }
 
     @Test
     public void testUnmarkedToString() {
-        String correct = "[D][ ] Unmarked (by: 2020-01-05 05:05)";
+        String correct = "[D][ ] Unmarked (by: 5 January 2020 05:05)";
         Assertions.assertEquals(correct, this.unmarkedTask.toString());
     }
 }

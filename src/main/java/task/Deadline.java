@@ -11,7 +11,7 @@ public class Deadline extends Task {
     private final LocalDateTime time;
 
     /**
-     * Constructs an unmarked {@code Deadline} object.
+     * Constructs an unmarked {@link Deadline} object.
      *
      * @param name Name of the task.
      * @param time Time of the task's deadline.
@@ -22,7 +22,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Constructs a marked or an unmarked {@code Deadline} object.
+     * Constructs a marked or an unmarked {@link Deadline} object.
      *
      * @param name Name of the task.
      * @param time Deadline of the task.
@@ -49,7 +49,7 @@ public class Deadline extends Task {
     }
 
     public String getTime() {
-        return this.time.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        return this.time.format(DateTimeFormatter.ofPattern("d MMMM yyyy HH:mm"));
     }
 
     public String getType() {

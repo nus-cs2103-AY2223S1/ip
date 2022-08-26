@@ -1,9 +1,12 @@
 package task;
 
+/**
+ * Represents todo tasks in the task list.
+ */
 public class Todo extends Task {
 
     /**
-     * Constructs an unmarked {@code Todo} object.
+     * Constructs an unmarked {@link Todo} object.
      *
      * @param name Name of the task.
      */
@@ -12,7 +15,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Constructs a marked or an unmarked {@code Todo} object.
+     * Constructs a marked or an unmarked {@link Todo} object.
      *
      * @param name Name of the task.
      * @param isDone The marked status of the task.

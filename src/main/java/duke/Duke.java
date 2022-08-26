@@ -10,17 +10,16 @@ import ui.Ui;
  */
 public class Duke {
 
+    private static final String DUKE_NAME = "Bocil";
+    private static final String FILE_DIRECTORY_STRING = "./data/";
+    private static final String FILE_NAME = "duke.txt";
     private final Parser parser;
     private final Storage storage;
     private final TaskList taskList;
     private final Ui ui;
 
-    private static final String DUKE_NAME = "Bocil";
-    private static final String FILE_DIRECTORY_STRING = "./data/";
-    private static final String FILE_NAME = "duke.txt";
-
     /**
-     * Constructs a {@code} Duke object using pre-defined name and storage directory.
+     * Constructs a {@link Duke} object using pre-defined name and storage directory.
      *
      * @throws DukeException If file is unable to be loaded.
      */
@@ -53,17 +52,17 @@ public class Duke {
      * Accepts user input and prints the response.
      */
     public void run() {
-        try {
-            while (true) {
-                String input = this.ui.readInput();
+        while (true) {
+            String input = this.ui.readInput();
+            try {
                 this.ui.printOutput(this.parser.processInput(input, taskList));
                 if (this.ui.isEnd(input)) {
                     break;
                 }
+            } catch (DukeException e) {
+                this.ui.printError(e);
             }
-            this.storage.writeFile(this.taskList);
-        } catch(DukeException e) {
-            this.ui.printError(e);
         }
+        this.storage.writeFile(this.taskList);
     }
 }

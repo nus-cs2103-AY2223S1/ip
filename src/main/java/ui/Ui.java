@@ -7,12 +7,12 @@ import java.util.Scanner;
  */
 public class Ui {
 
+    private static final String BORDER = "_".repeat(60);
     private final String name;
     private final Scanner sc;
-    private static final String BORDER = "____________________________________________________________";
 
     /**
-     * Constructs a {@code Ui} object.
+     * Constructs a {@link Ui} object.
      *
      * @param name Name of the Duke's UI.
      */
@@ -22,18 +22,9 @@ public class Ui {
     }
 
     /**
-     * Prints the introduction line of the UI.
-     */
-    public void introduce() {
-        String line1 = String.format("Hello! I'm %s", this.name);
-        String line2 = "What can I do for you?";
-        System.out.println(String.format("%s\n%s\n%s\n%s\n", BORDER, line1, line2, BORDER));
-    }
-
-    /**
      * Scans for user input.
      *
-     * @return User input line in a string. q
+     * @return User input line in a string.
      */
     public String readInput() {
         return this.sc.nextLine();
@@ -56,6 +47,16 @@ public class Ui {
      */
     public void printOutput(String output) {
         System.out.println(prettifyOutput(output));
+    }
+
+    /**
+     * Prints the introduction line of the UI.
+     */
+    public void introduce() {
+        String line1 = String.format("Hello! I'm %s", this.name);
+        String line2 = "What can I do for you?";
+        String join = String.join("\n", line1, line2);
+        this.printOutput(join);
     }
 
     /**

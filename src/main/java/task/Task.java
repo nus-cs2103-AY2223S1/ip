@@ -1,12 +1,15 @@
 package task;
 
+/**
+ * Represents tasks in the task list.
+ */
 public abstract class Task {
 
     private final String name;
     private boolean isDone;
 
     /**
-     * Constructs an unmarked {@code Task} object.
+     * Constructs an unmarked {@link Task} object.
      *
      * @param name Name of the task.
      */
@@ -16,7 +19,7 @@ public abstract class Task {
     }
 
     /**
-     * Constructs a marked or an unmarked {@code Task} object.
+     * Constructs a marked or an unmarked {@link Task} object.
      *
      * @param name Name of the task.
      * @param isDone The marked status of the task.

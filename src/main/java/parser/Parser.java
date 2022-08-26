@@ -1,15 +1,15 @@
 package parser;
 
-import duke.DukeException;
-import task.Task;
-import task.Todo;
-import task.Deadline;
-import task.Event;
-import task.TaskList;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+
+import duke.DukeException;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 
 /**
  * Handles the processing of user input and commands the Duke to do specific tasks.
@@ -17,27 +17,28 @@ import java.time.format.DateTimeParseException;
 public class Parser {
 
     /** Date patterns accepted by the parser. */
+    @SuppressWarnings("checkstyle:Indentation")
     private static final String[] DATE_PATTERNS = {
-            "yyyy-M-d HH:mm", "yyyy/M/d HH:mm", "yyyy M d HH:mm",
-            "d-M-yyyy HH:mm", "d/M/yyyy HH:mm", "d M yyyy HH:mm",
-            "yyyy-MM-d HH:mm", "yyyy/MM/d HH:mm", "yyyy MM d HH:mm",
-            "d-MM-yyyy HH:mm", "d/MM/yyyy HH:mm", "d MM yyyy HH:mm",
-            "yyyy-MMM-d HH:mm", "yyyy/MMM/d HH:mm", "yyyy MMM d HH:mm",
-            "d-MMM-yyyy HH:mm", "d/MMM/yyyy HH:mm", "d MMM yyyy HH:mm",
-            "yyyy-MMMM-d HH:mm", "yyyy/MMMM/d HH:mm", "yyyy MMMM d HH:mm",
-            "d-MMMM-yyyy HH:mm", "d/MMMM/yyyy HH:mm", "d MMMM yyyy HH:mm",
-            "yyyy-M-dd HH:mm", "yyyy/M/dd HH:mm", "yyyy M dd HH:mm",
-            "dd-M-yyyy HH:mm", "dd/M/yyyy HH:mm", "dd M yyyy HH:mm",
-            "yyyy-MM-dd HH:mm", "yyyy/MM/dd HH:mm", "yyyy MM dd HH:mm",
-            "dd-MM-yyyy HH:mm", "dd/MM/yyyy HH:mm", "dd MM yyyy HH:mm",
-            "yyyy-MMM-dd HH:mm", "yyyy/MMM/dd HH:mm", "yyyy MMM dd HH:mm",
-            "dd-MMM-yyyy HH:mm", "dd/MMM/yyyy HH:mm", "dd MMM yyyy HH:mm",
-            "yyyy-MMMM-dd HH:mm", "yyyy/MMMM/dd HH:mm", "yyyy MMMM dd HH:mm",
-            "dd-MMMM-yyyy HH:mm", "dd/MMMM/yyyy HH:mm", "dd MMMM yyyy HH:mm"
+        "yyyy-M-d HH:mm", "yyyy/M/d HH:mm", "yyyy M d HH:mm",
+        "d-M-yyyy HH:mm", "d/M/yyyy HH:mm", "d M yyyy HH:mm",
+        "yyyy-MM-d HH:mm", "yyyy/MM/d HH:mm", "yyyy MM d HH:mm",
+        "d-MM-yyyy HH:mm", "d/MM/yyyy HH:mm", "d MM yyyy HH:mm",
+        "yyyy-MMM-d HH:mm", "yyyy/MMM/d HH:mm", "yyyy MMM d HH:mm",
+        "d-MMM-yyyy HH:mm", "d/MMM/yyyy HH:mm", "d MMM yyyy HH:mm",
+        "yyyy-MMMM-d HH:mm", "yyyy/MMMM/d HH:mm", "yyyy MMMM d HH:mm",
+        "d-MMMM-yyyy HH:mm", "d/MMMM/yyyy HH:mm", "d MMMM yyyy HH:mm",
+        "yyyy-M-dd HH:mm", "yyyy/M/dd HH:mm", "yyyy M dd HH:mm",
+        "dd-M-yyyy HH:mm", "dd/M/yyyy HH:mm", "dd M yyyy HH:mm",
+        "yyyy-MM-dd HH:mm", "yyyy/MM/dd HH:mm", "yyyy MM dd HH:mm",
+        "dd-MM-yyyy HH:mm", "dd/MM/yyyy HH:mm", "dd MM yyyy HH:mm",
+        "yyyy-MMM-dd HH:mm", "yyyy/MMM/dd HH:mm", "yyyy MMM dd HH:mm",
+        "dd-MMM-yyyy HH:mm", "dd/MMM/yyyy HH:mm", "dd MMM yyyy HH:mm",
+        "yyyy-MMMM-dd HH:mm", "yyyy/MMMM/dd HH:mm", "yyyy MMMM dd HH:mm",
+        "dd-MMMM-yyyy HH:mm", "dd/MMMM/yyyy HH:mm", "dd MMMM yyyy HH:mm"
     };
 
     /**
-     * Reads user input and executes task on the {@code taskList}.
+     * Reads user input and executes task on the {@link TaskList} object.
      *
      * @param input String line that the user inputs.
      * @param taskList TaskList object at the moment when the method is called.
@@ -52,7 +53,7 @@ public class Parser {
         Task task;
         String[] split = input.split("\\s+", 2);
         if (input.matches("\\s*")) {
-            throw DukeException.DukeEmptyInputException();
+            throw DukeException.dukeEmptyInputException();
         }
         String command = split[0];
 
@@ -70,7 +71,7 @@ public class Parser {
                     task = new Event(details[0], this.parseTime(details[1]));
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw DukeException.DukeInvalidFormatException();
+                throw DukeException.dukeInvalidFormatException();
             }
             taskList.addTask(task);
             header = "Got it. I've added this task:";
@@ -88,10 +89,10 @@ public class Parser {
                     line = String.format("  %s", task);
                     response = String.format("%s\n%s", header, line);
                 } else {
-                    throw DukeException.DukeInvalidIndexException();
+                    throw DukeException.dukeInvalidIndexException();
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw DukeException.DukeInvalidIndexException();
+                throw DukeException.dukeInvalidIndexException();
             }
             break;
         case "unmark":
@@ -104,10 +105,10 @@ public class Parser {
                     line = String.format("  %s", task);
                     response = String.format("%s\n%s", header, line);
                 } else {
-                    throw DukeException.DukeInvalidIndexException();
+                    throw DukeException.dukeInvalidIndexException();
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw DukeException.DukeInvalidIndexException();
+                throw DukeException.dukeInvalidIndexException();
             }
             break;
         case "delete":
@@ -120,10 +121,10 @@ public class Parser {
                     line = String.format("  %s", task.toString());
                     response = String.format("%s\n%s", header, line);
                 } else {
-                    throw DukeException.DukeInvalidIndexException();
+                    throw DukeException.dukeInvalidIndexException();
                 }
             } catch (NumberFormatException | IndexOutOfBoundsException e) {
-                throw DukeException.DukeInvalidIndexException();
+                throw DukeException.dukeInvalidIndexException();
             }
             break;
         case "find":
@@ -137,14 +138,14 @@ public class Parser {
                     response = "There are no matching tasks in your list";
                 }
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw DukeException.DukeUnknownCommandException();
+                throw DukeException.dukeUnknownCommandException();
             }
             break;
         case "bye":
             if (input.equals("bye")) {
                 response = "Bye. Hope to see you again soon!";
             } else {
-                throw DukeException.DukeUnknownCommandException();
+                throw DukeException.dukeUnknownCommandException();
             }
             break;
         case "list":
@@ -156,20 +157,20 @@ public class Parser {
                     response = "There are no tasks in your list";
                 }
             } else {
-                throw DukeException.DukeUnknownCommandException();
+                throw DukeException.dukeUnknownCommandException();
             }
             break;
         default:
-            throw DukeException.DukeUnknownCommandException();
+            throw DukeException.dukeUnknownCommandException();
         }
         return response;
     }
 
     /**
-     * Converts date from user input into a {@code LocalDateTime} object.
+     * Converts date from user input into a {@link LocalDateTime} object.
      *
      * @param date Date string that the user inputs.
-     * @return Date in the form of {@code LocalDateTime}.
+     * @return Date in the form of {@link LocalDateTime}.
      * @throws DukeException If inputted date is not of the accepted format.
      */
     public LocalDateTime parseTime(String date) throws DukeException {
@@ -178,8 +179,9 @@ public class Parser {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
                 return LocalDateTime.parse(date, formatter);
             } catch (DateTimeParseException e) {
+                // An empty catch block
             }
         }
-        throw DukeException.DukeInvalidDateFormatException();
+        throw DukeException.dukeInvalidDateFormatException();
     }
 }

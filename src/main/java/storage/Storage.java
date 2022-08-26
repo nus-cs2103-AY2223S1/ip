@@ -1,19 +1,18 @@
 package storage;
 
-import duke.DukeException;
-import parser.Parser;
-import task.Task;
-import task.Todo;
-import task.Deadline;
-import task.Event;
-import task.TaskList;
-
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileNotFoundException;
-
 import java.util.Scanner;
+
+import duke.DukeException;
+import parser.Parser;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.TaskList;
+import task.Todo;
 
 /**
  * Stores the task list in a text file.
@@ -24,7 +23,7 @@ public class Storage {
     private final Parser parser;
 
     /**
-     * Constructs a {@code Storage} object.
+     * Constructs a {@link Storage} object.
      *
      * @param fileDirectoryString Folder directory to put the storage in.
      * @param fileName File name of the storage.
@@ -47,10 +46,10 @@ public class Storage {
     }
 
     /**
-     * Converts the {@code inputLine} into a {@code Task} object.
+     * Converts the {@code inputLine} into a {@link Task} object.
      *
      * @param inputLine String line that the user inputs.
-     * @return One of the 3 {@code Task} object subclass.
+     * @return One of the 3 {@link Task} object's subclasses.
      * @throws DukeException If inputted date is not of the accepted format.
      */
     public Task createTask(String inputLine) throws DukeException {
@@ -65,17 +64,16 @@ public class Storage {
         case "D":
             task = new Deadline(split[2], parser.parseTime(split[3]), isDone);
             break;
-        case "E":
+        default:
             task = new Event(split[2], parser.parseTime(split[3]), isDone);
-            break;
         }
         return task;
     }
 
     /**
-     * Reads the stored {@code TaskList} object.
+     * Reads the stored {@link TaskList} object.
      *
-     * @return The last saved {@code TaskList} object.
+     * @return The last saved {@link TaskList} object.
      * @throws DukeException If inputted date is not of the accepted format.
      */
     public TaskList readFile() throws DukeException {
@@ -88,20 +86,20 @@ public class Storage {
                 taskList.addTask(createTask(line));
             }
         } catch (FileNotFoundException e) {
-            throw DukeException.DukeFileNotFoundException();
+            throw DukeException.dukeFileNotFoundException();
         }
         return taskList;
     }
 
     /**
-     * Saves the latest version of the {@code taskList}.
+     * Saves the latest version of the {@link TaskList} object.
      *
-     * @param taskList List of {@code Task} objects to be saved to the file.
+     * @param taskList List of {@link Task} objects to be saved to the file.
      */
     public void writeFile(TaskList taskList) {
         String text = "";
-        for (int i=0; i<taskList.getSize(); i++) {
-            Task task = taskList.getTask(i+1);
+        for (int i = 0; i < taskList.getSize(); i++) {
+            Task task = taskList.getTask(i + 1);
             String line = task.toFileString();
             text = String.format("%s%s\n", text, line);
         }

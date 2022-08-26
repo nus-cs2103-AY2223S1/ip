@@ -25,7 +25,7 @@ public class TaskListTest {
         try {
             this.taskList.removeTask(1);
             Assertions.assertEquals(0, this.taskList.getSize());
-        } catch(Exception e) {
+        } catch (Exception e) {
             Assertions.fail("No exception should have occurred");
         }
     }

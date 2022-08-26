@@ -1,6 +1,9 @@
 package duke;
 
-public class DukeException extends Exception{
+/**
+ * Describes all the exception handled by the program.
+ */
+public class DukeException extends Exception {
 
     private static final String EMPTY_INPUT = "Please enter something!";
     private static final String FILE_NOT_FOUND = "I cannot find your file";
@@ -13,27 +16,27 @@ public class DukeException extends Exception{
         super(message);
     }
 
-    public static DukeException DukeEmptyInputException() {
+    public static DukeException dukeEmptyInputException() {
         return new DukeException(EMPTY_INPUT);
     }
 
-    public static DukeException DukeFileNotFoundException() {
+    public static DukeException dukeFileNotFoundException() {
         return new DukeException(FILE_NOT_FOUND);
     }
 
-    public static DukeException DukeInvalidIndexException() {
+    public static DukeException dukeInvalidIndexException() {
         return new DukeException(INVALID_INDEX);
     }
 
-    public static DukeException DukeInvalidFormatException() {
+    public static DukeException dukeInvalidFormatException() {
         return new DukeException(INVALID_FORMAT);
     }
 
-    public static DukeException DukeInvalidDateFormatException() {
+    public static DukeException dukeInvalidDateFormatException() {
         return new DukeException(INVALID_DATE_FORMAT);
     }
 
-    public static DukeException DukeUnknownCommandException() {
+    public static DukeException dukeUnknownCommandException() {
         return new DukeException(UNKNOWN_COMMAND);
     }
 }
