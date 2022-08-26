@@ -1,4 +1,3 @@
-import java.io.FileWriter;
 import java.util.Objects;
 
 public abstract class Parser {
