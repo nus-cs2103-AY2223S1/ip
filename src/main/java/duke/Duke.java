@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
+//test
 public class Duke {
     private static ArrayList<Task> listOfTask = new ArrayList<>();
     private final static String DIRECTORY = "./DATA";
