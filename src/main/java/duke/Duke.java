@@ -24,9 +24,9 @@ public class Duke {
      * @throws DukeException If file is unable to be loaded.
      */
     public Duke() throws DukeException {
-        this.parser = new Parser();
         this.storage = new Storage(FILE_DIRECTORY_STRING, FILE_NAME);
         this.taskList = this.storage.readFile();
+        this.parser = new Parser(this.taskList);
         this.ui = new Ui(DUKE_NAME);
     }
 
@@ -55,7 +55,7 @@ public class Duke {
         while (true) {
             String input = this.ui.readInput();
             try {
-                this.ui.printOutput(this.parser.processInput(input, taskList));
+                this.ui.printOutput(this.parser.processInput(input));
                 if (this.ui.isEnd(input)) {
                     break;
                 }

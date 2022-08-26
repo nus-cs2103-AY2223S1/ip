@@ -56,7 +56,7 @@ public class Storage {
         String[] split = inputLine.split("\\|\\|");
         String command = split[0];
         boolean isDone = Boolean.parseBoolean(split[1]);
-        Task task = null;
+        Task task;
         switch (command) {
         case "T":
             task = new Todo(split[2], isDone);
