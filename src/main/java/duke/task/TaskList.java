@@ -1,6 +1,6 @@
 package duke.task;
 
-import duke.fp.Streamable;
+import fp.Streamable;
 
 import java.util.ArrayList;
 import java.util.List;

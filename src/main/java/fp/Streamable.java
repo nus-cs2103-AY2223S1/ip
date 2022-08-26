@@ -1,4 +1,4 @@
-package duke.fp;
+package fp;
 
 import java.util.stream.Stream;
 
