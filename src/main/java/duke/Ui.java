@@ -3,9 +3,9 @@ package duke;
 import java.util.Scanner;
 
 public class Ui {
-    private static String botName = "DIGITAL DADDY";
-    private static String emoji = "\uD83E\uDD16";
-    private static String lineSeparator =
+    private static String BOT_NAME = "DIGITAL DADDY";
+    private static String EMOJI = "\uD83E\uDD16";
+    private static String LINE_SEPARATOR =
             "____________________________________________________________";
     private Scanner sc;
 
@@ -17,30 +17,30 @@ public class Ui {
         return sc.nextLine();
     }
 
-    public void botReply(String message) {
-        String reply = String.format("%s\n%s %s %s \n%s \n%s", lineSeparator, emoji,
-                botName, emoji, message, lineSeparator);
-        System.out.println(reply);
+    public void reply(String message) {
+        String botReply = String.format("%s\n%s %s %s \n%s \n%s", LINE_SEPARATOR, EMOJI,
+                BOT_NAME, EMOJI, message, LINE_SEPARATOR);
+        System.out.println(botReply);
     }
 
     public void welcome() {
-        botReply("Hello! I'm " + botName + "\nWhat can I do for you?");
+        reply("Hello! I'm " + BOT_NAME + "\nWhat can I do for you?");
     }
 
-    public void goodbye() {
-        botReply("Bye. Hope to see you again soon!");
+    public void sayGoodbye() {
+        reply("Bye. Hope to see you again soon!");
         this.sc.close();
     }
 
     public void showTasks(TaskList tasks) {
-        botReply(tasks.toString());
+        reply(tasks.toString());
     }
 
     public void showError(String message) {
-        botReply("\uD83E\uDD22" + " OOPS!!! " + message);
+        reply("\uD83E\uDD22" + " OOPS!!! " + message);
     }
 
     public void showLoadingError(DukeException e) {
-        botReply(e.getMessage());
+        reply(e.getMessage());
     }
 }
