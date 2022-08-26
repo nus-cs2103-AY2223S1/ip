@@ -105,6 +105,15 @@ public class Parser {
                     break;
                 }
 
+                if (line.matches("find .*")) {
+                    String search = line.substring(5);
+                    TaskList results = todolist.find(search);
+                    System.out.println("These are the matching results I could find:");
+                    results.printData();
+                    Ui.divider();
+                    break;
+                }
+
                 throw new InvalidInputException();
         }
         return 0;

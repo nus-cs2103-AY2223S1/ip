@@ -124,6 +124,16 @@ public class TaskList {
         return val;
     }
 
+    public TaskList find(String keyword) {
+        TaskList result = new TaskList();
+        for (Task task : this.list) {
+            if (task.getDescription().contains(keyword)) {
+                result.list.add(task);
+            }
+        }
+        return result;
+    }
+
     public int getLength() {
         return this.list.size();
     }
