@@ -1,0 +1,3 @@
+[T][ ] read
+[D][ ] reaad (by: sun)
+[E][ ] read (at: sun)

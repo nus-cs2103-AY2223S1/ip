@@ -1,11 +1,11 @@
 public class Event extends Task{
     protected String description;
     protected boolean isDone;
-    protected String date;
+    protected DateFormat date;
 
     public Event(String description, String date) {
         this.description = description;
-        this.date = date;
+        this.date = new DateFormat(date);
     }
 
     public void isMark(boolean bool) {
@@ -19,6 +19,6 @@ public class Event extends Task{
     @Override
     public String toString() {
         return "[E][" + this.getStatusIcon() + "] " +
-                this.description + " (at: " + this.date + ")";
+                this.description + " (at: " + this.date.toString() + ")";
     }
 }

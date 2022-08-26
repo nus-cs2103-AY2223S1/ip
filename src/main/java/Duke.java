@@ -7,7 +7,7 @@ public class Duke {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?\n");
 
         String currReply = reply.nextLine();
-        ArrayList<Task> list = new ArrayList<Task>(100);
+        ArrayList<Task> list = new ArrayList<>(100);
 
         while (!currReply.equals("bye")) {
             if (currReply.equals("list")) {
