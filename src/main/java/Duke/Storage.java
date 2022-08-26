@@ -17,9 +17,6 @@ public class Storage {
             File file = new File(filePath);
             if (!file.exists()) {
                 file.createNewFile();
-            } else {
-                file.getParentFile().mkdir();
-                file.createNewFile();
             }
             Scanner sc = new Scanner(file);
             while (sc.hasNext()) {
