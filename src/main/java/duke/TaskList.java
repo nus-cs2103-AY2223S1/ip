@@ -3,38 +3,38 @@ package duke;
 import java.util.ArrayList;
 
 /**
- * Represents a list of tasks
+ * Represents a list of tasks.
  */
 public class TaskList {
 
     private ArrayList<Task> tasks;
 
     /**
-     * Constructor for the TaskList class
-     * @param tasks An ArrayList object containing Task objects
+     * Constructor for the TaskList class.
+     * @param tasks An ArrayList object containing Task objects.
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
     /**
-     * Another constructor for the TaskList class
+     * Another constructor for the TaskList class.
      */
     public TaskList() {
         this.tasks = new ArrayList<Task>();
     }
 
     /**
-     * Returns the ArrayList object that contains Task objects
-     * @return The instance field 'tasks' that is an ArrayList object
+     * Returns the ArrayList object that contains Task objects.
+     * @return The instance field 'tasks' that is an ArrayList object.
      */
     public ArrayList<Task> getTasks() {
         return this.tasks;
     }
 
     /**
-     * Removes a task from the ArrayList object 'tasks'
-     * @param taskNumber An integer that provides the index of the task in the ArrayList to be removed
+     * Removes a task from the ArrayList object 'tasks'.
+     * @param taskNumber An integer that provides the index of the task in the ArrayList to be removed.
      */
     public void deleteTask(int taskNumber) {
         Task t = tasks.get(taskNumber);
@@ -45,8 +45,8 @@ public class TaskList {
     }
 
     /**
-     * Adds a task to the ArrayList object 'tasks'
-     * @param t The Task object to be added into the ArrayList object
+     * Adds a task to the ArrayList object 'tasks'.
+     * @param t The Task object to be added into the ArrayList object.
      */
     public void addTask(Task t) {
         tasks.add(t);

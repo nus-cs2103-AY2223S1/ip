@@ -3,7 +3,7 @@ package duke;
 import java.util.Scanner;
 
 /**
- * A class in charge of interactions with the user
+ * A class in charge of interactions with the user.
  */
 public class Ui {
 
@@ -11,13 +11,13 @@ public class Ui {
     private String response = "";
 
     /**
-     * Constructor for the Ui class
+     * Constructor for the Ui class.
      */
     public Ui() {
     }
 
     /**
-     * Begins the interaction/chat with the user
+     * Begins the interaction/chat with the user.
      */
     public void start() {
         String greetings = "Good day to you! I'm Jake!\n"
@@ -27,22 +27,22 @@ public class Ui {
     }
 
     /**
-     * Returns the user input stored in the instance field 'response'
-     * @return The user input
+     * Returns the user input stored in the instance field 'response'.
+     * @return The user input.
      */
     public String getResponse() {
         return this.response;
     }
 
     /**
-     * Allow user to type their input
+     * Makes it possible for user to type their input.
      */
     public void askForInput() {
         this.response = input.nextLine();
     }
 
     /**
-     * Alerts user that given file path does not contain a file
+     * Alerts user that given file path does not contain a file.
      */
     public void showLoadingError() {
         System.err.println("File path does not contain a file!\n"

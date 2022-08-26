@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.nio.file.*;
 
 /**
- * Main class of the Duke chat-bot
+ * Main class of the Duke chat-bot.
  */
 public class Duke {
 
@@ -15,8 +15,8 @@ public class Duke {
     private Ui ui;
 
     /**
-     * Constructor for the Duke class
-     * @param filePath Provides the file location for loading and storing tasks
+     * Constructor for the Duke class.
+     * @param filePath Provides the file location for loading and storing tasks.
      */
     public Duke(String filePath) {
         ui = new Ui();
@@ -30,7 +30,7 @@ public class Duke {
     }
 
     /**
-     * Starts the Duke chat-bot
+     * Starts the Duke chat-bot.
      */
     public void run() {
         Parser parser = new Parser();

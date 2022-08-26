@@ -5,7 +5,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Represents a task that has to be done by a certain date and/or time
+ * Represents a task that has to be done by a certain date and/or time.
  */
 public class Deadline extends Task {
     protected String by = "";
@@ -13,9 +13,9 @@ public class Deadline extends Task {
     protected LocalTime byTime;
 
     /**
-     * Constructor for the Deadline class
-     * @param description A string that provides information for the task
-     * @param by A string that provides the deadline that the task has to be completed by
+     * Constructor for the Deadline class.
+     * @param description A string that provides information for the task.
+     * @param by A string that provides the deadline that the task has to be completed by.
      */
     public Deadline(String description, String by) {
         super(description);
@@ -24,10 +24,10 @@ public class Deadline extends Task {
     }
 
     /**
-     * Another constructor for the Deadline class
-     * @param description A string that provides information for the task
-     * @param byDate A LocalDate object that provides information about the date that the task has to be completed by
-     * @param byTime A LocalTime object that provides information about the time that the task has to be completed by
+     * Another constructor for the Deadline class.
+     * @param description A string that provides information for the task.
+     * @param byDate A LocalDate object that provides information about the date that the task has to be completed by.
+     * @param byTime A LocalTime object that provides information about the time that the task has to be completed by.
      */
     public Deadline(String description, LocalDate byDate, LocalTime byTime) {
         super(description);
@@ -48,8 +48,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns the deadline task as a string
-     * @return The deadline task as a string
+     * Returns the deadline task as a string.
+     * @return The deadline task as a string.
      */
     @Override
     public String toString() {

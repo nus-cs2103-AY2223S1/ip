@@ -8,23 +8,23 @@ import java.util.ArrayList;
 import java.nio.file.*;
 
 /**
- * A class that loads saves tasks into a file, as specified by the given file path
+ * A class that loads saves tasks into a file, as specified by the given file path.
  */
 public class Storage {
 
     private String filePath;
 
     /**
-     * Constructor for the Storage class
-     * @param filePath Provides the file path for the file that the tasks should be loaded from and saved to
+     * Constructor for the Storage class.
+     * @param filePath Provides the file path for the file that the tasks should be loaded from and saved to.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
     /**
-     * Saves the given tasks in the TaskList object into the file, as specified by this.filePath
-     * @param tasks The TaskList object that contain the tasks to be saved into the file
+     * Saves the given tasks in the TaskList object into the file, as specified by this.filePath.
+     * @param tasks The TaskList object that contain the tasks to be saved into the file.
      */
     public void save(TaskList tasks) {
         try {
@@ -42,9 +42,9 @@ public class Storage {
     }
 
     /**
-     * Returns an ArrayList object that contains the tasks loaded from the file
-     * @return An ArrayList object
-     * @throws DukeException If this.filePath does not contain a file
+     * Returns an ArrayList object that contains the tasks loaded from the file.
+     * @return An ArrayList object.
+     * @throws DukeException If this.filePath does not contain a file.
      */
     public ArrayList<Task> load() throws DukeException {
         boolean pathExists = Files.exists(Path.of(this.filePath));
