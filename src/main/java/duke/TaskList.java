@@ -6,14 +6,14 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 /**
- * to contain list of tasks in Duke
+ * to contain list of tasks in Duke.
  */
 public class TaskList {
     private ArrayList<Task> tasks;
     private int count;
 
     /**
-     * constructor for new tasklist instance
+     * Constructor for new tasklist instance.
      */
     public TaskList() {
         this.tasks = new ArrayList<>();
@@ -21,8 +21,9 @@ public class TaskList {
     }
 
     /**
-     * constructor for new tasklist instance from arraylist of tasks
-     * @param tasks ArrayList of tasks to copy over
+     * Constructor for new tasklist instance from arraylist of tasks.
+     *
+     * @param tasks ArrayList of tasks to copy over.
      */
     public TaskList(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -30,25 +31,28 @@ public class TaskList {
     }
 
     /**
-     * mark task in arraylist to done
-     * @param index index of task to mark, in 1 indexing
+     * Mark task in arraylist to done.
+     *
+     * @param index index of task to mark, in 1 indexing.
      */
     public void mark(int index) {
         tasks.get(index - 1).mark();
     }
 
     /**
-     * unmark task in arraylist to not done
-     * @param index index of task to unmark, in 1 indexing
+     * Unmark task in arraylist to not done.
+     *
+     * @param index index of task to unmark, in 1 indexing.
      */
     public void unmark(int index) {
         tasks.get(index - 1).unmark();
     }
 
     /**
-     * adds new task into arraylist
-     * @param str command input by user with information
-     * @param type enum of task type
+     * Adds new task into arraylist.
+     *
+     * @param str command input by user with information.
+     * @param type enum of task type.
      */
     public void add(String str, Duke.Type type) {
         // add new todo task
@@ -100,11 +104,11 @@ public class TaskList {
                 String name = input[0].replace("event", "");
                 String[] end = input[1].split(" ");
                 String date = end[0];
-                LocalDate d = LocalDate.parse(date);
+                LocalDate dateParsed = LocalDate.parse(date);
                 String time = end[1];
-                LocalTime t = LocalTime.parse(time);
-                LocalDateTime dt = LocalDateTime.of(d, t);
-                tasks.add(new Event(name, dt));
+                LocalTime timeParsed = LocalTime.parse(time);
+                LocalDateTime dateTime = LocalDateTime.of(dateParsed, timeParsed);
+                tasks.add(new Event(name, dateTime));
                 count++;
                 System.out.println(String.format("Got it. I've added this task:\n" +
                                 "%s\n" +
@@ -128,18 +132,19 @@ public class TaskList {
     }
 
     /**
-     * deletes tasks from arraylist
-     * @param command command input by user, with index to delete
+     * Deletes tasks from arraylist.
+     *
+     * @param command command input by user, with index to delete.
      */
     public void delete(String command) {
         try {
             int index = Integer.valueOf(command.split(" ")[1]);
-            Task t = tasks.remove(index - 1);
+            Task task = tasks.remove(index - 1);
             count--;
             String str =  String.format("Noted. I've removed this task:\n" +
                             "%s\n" +
                             "Now you have %d tasks in the list.",
-                    t.toString(),
+                    task.toString(),
                     count);
             System.out.println(str);
         // no task found
@@ -149,17 +154,19 @@ public class TaskList {
     }
 
     /**
-     * return string representation of specific task in arraylist
-     * @param index index of task to get the string representation of, in 1 indexing
-     * @return
+     * Return string representation of specific task in arraylist.
+     *
+     * @param index index of task to get the string representation of, in 1 indexing.
+     * @return String representation of specific task.
      */
     public String getString(int index) {
         return tasks.get(index - 1).toString();
     }
 
     /**
-     * return string representation of tasks to be written into text file
-     * @return string representation of tasks to be written into text file
+     * Return string representation of tasks to be written into text file.
+     *
+     * @return string representation of tasks to be written into text file.
      */
     public String toData() {
         String data = "";
@@ -171,8 +178,9 @@ public class TaskList {
     }
 
     /**
-     * searches and prints out matching tasks
-     * @param keyword word to search in tasks
+     * Searches and prints out matching tasks.
+     *
+     * @param keyword word to search in tasks.
      */
     public void find(String keyword) {
         ArrayList<Task> matches = new ArrayList<>();
@@ -188,8 +196,9 @@ public class TaskList {
     }
 
     /**
-     * returns string representation of all tasks with indexing
-     * @return string representation of all tasks
+     * Returns string representation of all tasks with indexing.
+     *
+     * @return string representation of all tasks.
      */
     @Override
     public String toString() {

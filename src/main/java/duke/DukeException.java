@@ -7,7 +7,8 @@ public class DukeException extends Exception {
     private String message;
 
     /**
-     * constructor for new instance
+     * Constructor for new instance
+     *
      * @param message message to be printed for users
      */
     public DukeException(String message) {
@@ -16,7 +17,8 @@ public class DukeException extends Exception {
     }
 
     /**
-     * String representation of exception
+     * Returns string representation of exception
+     *
      * @return string for message
      */
     @Override

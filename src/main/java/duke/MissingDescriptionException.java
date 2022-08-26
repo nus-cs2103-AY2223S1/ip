@@ -5,14 +5,15 @@ package duke;
  */
 public class MissingDescriptionException extends DukeException {
     /**
-     * constructor for new instance
+     * Constructor for new instance
      */
     public MissingDescriptionException() {
         super("OOPS!!! The description of a task cannot be empty.");
     }
 
     /**
-     * String representation of exception
+     * Returns string representation of exception
+     *
      * @return string for message
      */
     @Override

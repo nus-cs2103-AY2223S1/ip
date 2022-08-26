@@ -7,10 +7,11 @@ public class Parser {
     private static Ui ui = new Ui();
 
     /**
-     * Interprets the user command and executes followup actions
-     * @param command input passed by user
-     * @param tasks the TaskList for current Duke instance to be modified
-     * @throws DukeException wrong input
+     * Interprets the user command and executes followup actions.
+     *
+     * @param command input passed by user.
+     * @param tasks the TaskList for current Duke instance to be modified.
+     * @throws DukeException wrong input.
      */
     public static void parse(String command, TaskList tasks) throws DukeException {
         // user wants to display list

@@ -11,23 +11,25 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * deals with loading tasks from text file and saving tasks in the file in Duke
+ * Deals with loading tasks from text file and saving tasks in the file in Duke
  */
 public class Storage {
     private String filePath;
 
     /**
-     * constructor for new instance
-     * @param filePath path for text file to read and write from
+     * Constructor for new instance.
+     *
+     * @param filePath path for text file to read and write from.
      */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
     /**
-     * read text file and obtain new array of tasks from it
-     * @return new ArrayList of tasks
-     * @throws DukeException error reading file
+     * Read text file and obtain new array of tasks from it.
+     *
+     * @return new ArrayList of tasks.
+     * @throws DukeException error reading file.
      */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<>();
@@ -74,9 +76,10 @@ public class Storage {
     }
 
     /**
-     * write the tasks from current program into text file
-     * @param tasks TaskList containing current list of tasks
-     * @throws DukeException error writing tasks
+     * Write the tasks from current program into text file.
+     *
+     * @param tasks TaskList containing current list of tasks.
+     * @throws DukeException error writing tasks.
      */
     public void save(TaskList tasks) throws DukeException {
         try {
@@ -90,23 +93,24 @@ public class Storage {
     }
 
     /**
-     * create the directory and text file in the path if not created
-     * @return true if file created, false otherwise
-     * @throws DukeException error when creating file
+     * Create the directory and text file in the path if not created.
+     *
+     * @return true if file created, false otherwise.
+     * @throws DukeException error when creating file.
      */
     private boolean createFile() throws DukeException {
-        boolean created = false;
+        boolean beenCreated = false;
         File data = new File("data");
         File f = new File(filePath);
         try {
             data.mkdir();
             if (!f.createNewFile()) {
-                created = true;
+                beenCreated = true;
             }
         } catch (IOException e) {
             throw new DukeException("Error creating text file");
         }
-        return created;
+        return beenCreated;
 
     }
 }

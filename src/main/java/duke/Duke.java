@@ -2,7 +2,7 @@ package duke;
 import java.util.Scanner;
 
 /**
- * Duke is a program that helps uses keep track of their tasks
+ * Duke is a program that helps uses keep track of their tasks.
  */
 public class Duke {
     private Storage storage;
@@ -16,7 +16,8 @@ public class Duke {
     }
 
     /**
-     * constructor for Duke
+     * Constructor for Duke.
+     *
      * @param filePath string for path for file to read and write task list from
      */
     public Duke(String filePath) {
@@ -31,7 +32,7 @@ public class Duke {
     }
 
     /**
-     * method to start program
+     * Executes the program.
      */
     public void run() {
         ui.greet();
@@ -55,7 +56,7 @@ public class Duke {
             ui.printMessage(e.toString());
         }
 
-        ui.bye();
+        ui.sayBye();
 
     }
 
