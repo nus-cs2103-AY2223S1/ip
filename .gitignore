@@ -17,3 +17,9 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 /data/
 
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
