@@ -11,7 +11,7 @@ import java.time.LocalDate;
  *
  * @author Eugene Tan
  */
-public class EventCommand extends Command{
+public class EventCommand extends Command {
     String description;
     LocalDate at;
 

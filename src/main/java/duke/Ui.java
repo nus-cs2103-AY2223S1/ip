@@ -77,7 +77,7 @@ public class Ui {
     public void printAdd(String add, int size) {
         System.out.println("Got it. I've added this Bob task:");
         System.out.println(add);
-        System.out.println(String.format("Now you have %d Bob task%s in the list.",size, size != 1 ? "s" : ""));
+        System.out.println(String.format("Now you have %d Bob task%s in the list.", size, size != 1 ? "s" : ""));
     }
 
     /**
@@ -89,7 +89,7 @@ public class Ui {
     public void printDelete(String delete, int size) {
         System.out.println("Noted. I've removed this bob task:");
         System.out.println(delete);
-        System.out.println(String.format("Now you have %d Bob task%s in the list.",size, size != 1 ? "s" : ""));
+        System.out.println(String.format("Now you have %d Bob task%s in the list.", size, size != 1 ? "s" : ""));
     }
 
     /**
@@ -107,8 +107,4 @@ public class Ui {
     public void printAnyOtherMessage(String message) {
         System.out.println(message);
     }
-
-
-
-
 }

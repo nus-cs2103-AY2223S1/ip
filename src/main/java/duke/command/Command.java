@@ -32,7 +32,7 @@ public abstract class Command {
      *
      * @return boolean value of isExit.
      */
-    public boolean isExit(){
+    public boolean isExit() {
         return this.isExit;
     }
 

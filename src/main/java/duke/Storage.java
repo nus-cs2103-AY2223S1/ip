@@ -30,7 +30,7 @@ public class Storage {
      * @return List contating the lines read from the file.
      * @throws FileNotFoundException if the file cannot be found.
      */
-    public ArrayList<String> load() throws FileNotFoundException{
+    public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> loadedData = new ArrayList<>();
         File file = new File(filePath);
         Scanner sc = new Scanner(file);

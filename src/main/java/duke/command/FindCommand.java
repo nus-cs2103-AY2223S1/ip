@@ -9,7 +9,7 @@ import duke.Ui;
  *
  * @author Eugene Tan
  */
-public class FindCommand extends Command{
+public class FindCommand extends Command {
 
     String wordToFind;
 
