@@ -6,9 +6,10 @@ import java.util.Scanner;
  * Represents a <code>Ui</code> that handles user interaction.
  */
 public class Ui {
+
+    private static final String LINE = "__________________________________";
     private static final String MESSAGE_WELCOME = "Hi there! Baymax at your service. Let me retrieve your stored task list!";
     private static final String MESSAGE_BYE = "Goodbye!";
-    private static final String LINE = "__________________________________";
     private static final Scanner sc = new Scanner(System.in);
 
     /**
@@ -50,6 +51,20 @@ public class Ui {
     }
 
     /**
+     * Prints the number of tasks in the <code>TaskList</code>.
+     *
+     * @param size The number of tasks in the <code>TaskList</code>.
+     */
+
+    public static void printNumberOfTasks(int size) {
+        if (size < 2) {
+            System.out.println("Now you have " + size + " task in the list.");
+        } else {
+            System.out.println("Now you have " + size + " tasks in the list.");
+        }
+    }
+
+    /**
      * Prints <code>Task</code> added into the <code>TaskList</code> message.
      *
      * @param task <code>Task</code> to be added.
@@ -59,20 +74,7 @@ public class Ui {
         System.out.println("Got it. I've added this task:\n " + task);
         printNumberOfTasks(size);
     }
-
-    /**
-     * Prints the number of tasks in the <code>TaskList</code>.
-     *
-     * @param size The number of tasks in the <code>TaskList</code>.
-     */
-    public static void printNumberOfTasks(int size) {
-        if (size < 2) {
-            System.out.println("Now you have " + size + " task in the list.");
-        } else {
-            System.out.println("Now you have " + size + " tasks in the list.");
-        }
-    }
-
+    
     /**
      * Prints <code>Task</code> deleted from the <code>TaskList</code> message.
      *
