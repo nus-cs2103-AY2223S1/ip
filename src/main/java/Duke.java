@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.time.LocalDate;
+
 
 /**
  *  Duke Class
@@ -94,6 +96,8 @@ public class Duke {
                 "\n" + str + "\n" +
                 "\n" + "_______________________________________________________";
     }
+
+
 
     /**
      *Save updates to the file
@@ -237,7 +241,7 @@ public class Duke {
                 else if (instruction.equals("todo"))
                 {
                   try {
-                      str = str.split(" ", 2)[1];
+                      str = str.split(" ", 2)[1].trim();
                       ToDo tasktoDo = new ToDo(str);
                       inputs.add(tasktoDo);
                       System.out.println(addition(tasktoDo.toString()));
@@ -272,6 +276,7 @@ public class Duke {
                       Event taskEvent = new Event(desc, at);
                       inputs.add(taskEvent);
                       System.out.println(addition(taskEvent.toString()));
+                      System.out.println("l" + at + "l");
                   } catch (ArrayIndexOutOfBoundsException e) {
                       throw new DukeException(("OOPS!!! The description of an Event cannot be empty/incomplete."));
                   }
@@ -279,7 +284,7 @@ public class Duke {
                 }
                 else if(instruction.equals("delete"))
                 {
-                    str = str.split(" ", 2)[1];
+                    str = str.split(" ", 2)[1].trim();
                     int index = Integer.valueOf(str) - 1;
                     Task content = inputs.get(index);
                     inputs.remove(content);
