@@ -8,10 +8,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.*;
+
 import chatbot.tasks.Task;
 import chatbot.tasks.Event;
 import chatbot.tasks.Deadline;
 import chatbot.tasks.Todo;
+import chatbot.tasks.TaskBucket;
 
 /**
  * The Duke chatbot named Zlimez functions as a todo list
@@ -27,6 +32,7 @@ public class Duke {
     private final String emoji = "<_>";
     private final Scanner reader = new Scanner(System.in);
     private List<Task> todos = new ArrayList<>();
+    private HashMap<LocalDate, TaskBucket> taskByDates = new HashMap<>();
 
     /**
      * The enumerations serves to represent three possible actions
@@ -93,15 +99,23 @@ public class Duke {
         Scanner in = new Scanner(dataPath);
         while (in.hasNextLine()) {
             String[] nextTaskInfo = in.nextLine().split(" \\| ");
+            Task newTask;
             switch (nextTaskInfo[0]) {
                 case "T":
-                    todos.add(new Todo(nextTaskInfo[2], nextTaskInfo[1].equals("1")));
+                    newTask = new Todo(nextTaskInfo[2], nextTaskInfo[1].equals("1"));
+                    todos.add(newTask);
                     break;
                 case "D":
-                    todos.add(new Deadline(nextTaskInfo[2], nextTaskInfo[1].equals("1"), nextTaskInfo[3]));
+                    newTask = new Deadline(nextTaskInfo[2], nextTaskInfo[1].equals("1"), nextTaskInfo[3]);
+                    todos.add(newTask);
+                    LocalDate deadlineDate = ((Deadline) newTask).getDate();
+                    bucketTasks(deadlineDate, newTask);
                     break;
                 case "E":
-                    todos.add(new Event(nextTaskInfo[2], nextTaskInfo[1].equals("1"), nextTaskInfo[3]));
+                    newTask = new Event(nextTaskInfo[2], nextTaskInfo[1].equals("1"), nextTaskInfo[3]);
+                    todos.add(newTask);
+                    LocalDate eventDate = ((Event) newTask).getDate();
+                    bucketTasks(eventDate, newTask);
                     break;
                 default:
                     throw new DukeException("You have corrupted the data I saved");
@@ -109,6 +123,16 @@ public class Duke {
         }
 
         in.close();
+    }
+
+    private void bucketTasks(LocalDate date, Task task) {
+        if (taskByDates.containsKey(date)) {
+            taskByDates.get(date).addTask(task);
+        } else {
+            TaskBucket newBucket = new TaskBucket();
+            newBucket.addTask(task);
+            taskByDates.put(date, newBucket);
+        }
     }
 
     /**
@@ -136,8 +160,8 @@ public class Duke {
         String userInput = reader.nextLine();
         if (userInput.equals("bye")) {
             bye();
-        } else if (userInput.equals("list")) {
-            listTasks();
+        } else if (userInput.startsWith("list")) {
+            listTasks(userInput);
         } else if (userInput.startsWith("mark")) {
             markTask(Action.MARK.process(userInput));
         } else if (userInput.startsWith("unmark")) {
@@ -166,8 +190,14 @@ public class Duke {
             newTask = new Todo(task);
         } else if (task.startsWith("deadline")) {
             newTask = new Deadline(task);
+            LocalDate date = ((Deadline) newTask).getDate();
+            bucketTasks(date, newTask);
+
         } else if (task.startsWith("event")) {
             newTask= new Event(task);
+            LocalDate date = ((Event) newTask).getDate();
+            bucketTasks(date, newTask);
+
         } else {
             // Fallback should not occur
             throw new DukeException("Your command lacks the keyword for me to act upon");
@@ -177,6 +207,18 @@ public class Duke {
         todos.add(newTask);
         System.out.println("\t\t" + newTask);
         System.out.println("\tWala now you have " + todos.size() + " tasks in the list.");
+    }
+
+    private void getTaskOn(LocalDate date) {
+        if (taskByDates.containsKey(date)) {
+            System.out.println("\tThese are your tasks for that day");
+            List<Task> tasksToday = taskByDates.get(date).getTasks();
+            for (int i = 1; i <= tasksToday.size(); i++) {
+                System.out.println("\t" + i + ". " + tasksToday.get(i - 1));
+            }
+        } else {
+            System.out.println("\tWell you are a lazy bum, you have nothing on the day");
+        }
     }
 
     /**
@@ -199,10 +241,22 @@ public class Duke {
     /**
      * The method lists out all the tasks in the todo list.
      */
-    private void listTasks() {
+    private void listTasks(String date) throws DukeException {
         System.out.println("\tReally? If you are so forgetful...");
-        for (int i = 1; i <= todos.size(); i++) {
-            System.out.println("\t" + i + ". " + todos.get(i - 1));
+        Scanner dateParser = new Scanner(date);
+        dateParser.next();
+
+        if (dateParser.hasNext()) {
+            try {
+                getTaskOn(LocalDate.parse(dateParser.next()));
+            } catch (DateTimeParseException e) {
+                throw new DukeException("Your date is rubbish");
+            }
+        } else {
+            // List all tasks
+            for (int i = 1; i <= todos.size(); i++) {
+                System.out.println("\t" + i + ". " + todos.get(i - 1));
+            }
         }
     }
 
