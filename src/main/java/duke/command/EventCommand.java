@@ -43,6 +43,7 @@ public class EventCommand extends Command {
     /**
      * Adds new event to the list of tasks.
      */
+    @Override
     public void run() {
         taskList.add(new Event(description, time));
         System.out.println("Got it. I've added this task:");

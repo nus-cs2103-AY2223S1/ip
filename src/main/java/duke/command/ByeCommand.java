@@ -16,6 +16,7 @@ public class ByeCommand extends Command {
     /**
      * Terminates the program.
      */
+    @Override
     public void run() {
         System.out.println("Bye. Hope to see you again soon!");
         System.exit(0);

@@ -16,6 +16,8 @@ dependencies {
 clean.doLast{
     file('test/history.txt').delete()
     file('test').deleteDir()
+    file('data/history.txt').delete()   //remove task history files of duke
+    file('data').deleteDir()
 }
 
 test {

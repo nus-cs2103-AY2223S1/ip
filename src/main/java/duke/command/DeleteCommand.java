@@ -34,6 +34,7 @@ public class DeleteCommand extends Command {
     /**
      * Removes the specified task.
      */
+    @Override
     public void run() {
         System.out.println("Noted. I've removed this task:");
         System.out.println(taskList.remove(query).toString());

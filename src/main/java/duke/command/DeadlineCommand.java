@@ -43,6 +43,7 @@ public class DeadlineCommand extends Command {
     /**
      * Adds new deadline to the list of tasks.
      */
+    @Override
     public void run() {
         taskList.add(new Deadline(description, time));
         System.out.println("Got it. I've added this task:");

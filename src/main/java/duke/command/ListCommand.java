@@ -1,7 +1,6 @@
 package duke.command;
 
 import duke.logic.TaskList;
-import duke.task.Task;
 
 /**
  * ListCommand is a command for Duke to list the task list.
@@ -25,11 +24,9 @@ public class ListCommand extends Command {
     /**
      * Lists the tasks in the user task list.
      */
+    @Override
     public void run() {
-        int order = 1;
         System.out.println("Here are the tasks in your list:");
-        for (Task task : taskList) {
-            System.out.println(order++ + "." + task.toString());
-        }
+        System.out.print(this.taskList.toString());
     }
 }

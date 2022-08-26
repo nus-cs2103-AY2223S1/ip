@@ -35,6 +35,10 @@ public class TaskList extends ArrayList<Task> {
                 LocalDate.parse(line.substring(index + length))));
     }
 
+    private TaskList() {
+        super();
+    }
+
     /**
      * Constructs a task list.
      *
@@ -61,6 +65,12 @@ public class TaskList extends ArrayList<Task> {
     public boolean exists(int query) {
         return query < super.size() && query >= 0;
     }
+    
+    private void updateStorage() {
+        if (this.storage != null) {
+            this.storage.update(this);
+        }
+    }
 
     /**
      * Removes the task at the specified position from this task list.
@@ -70,7 +80,7 @@ public class TaskList extends ArrayList<Task> {
     @Override
     public Task remove(int index) {
         Task temp = super.remove(index);
-        storage.update(this);
+        this.updateStorage();
         return temp;
     }
 
@@ -83,7 +93,7 @@ public class TaskList extends ArrayList<Task> {
     @Override
     public boolean add(Task task) {
         boolean bool = super.add(task);
-        storage.update(this);
+        this.updateStorage();
         return bool;
     }
 
@@ -95,7 +105,7 @@ public class TaskList extends ArrayList<Task> {
      */
     public Task markTask(int index) {
         this.get(index).mark();
-        storage.update(this);
+        this.updateStorage();
         return this.get(index);
     }
 
@@ -107,7 +117,7 @@ public class TaskList extends ArrayList<Task> {
      */
     public Task unmarkTask(int index) {
         this.get(index).unmark();
-        storage.update(this);
+        this.updateStorage();
         return this.get(index);
     }
 
@@ -150,7 +160,7 @@ public class TaskList extends ArrayList<Task> {
             }
             index++;    //increment to first index of task description
             //retrieve task according to char
-            Task toAdd = taskMap.get(line.charAt(0)).apply(index, length).apply(line);
+            Task toAdd = TaskList.taskMap.get(line.charAt(0)).apply(index, length).apply(line);
             if (toAdd != null) {
                 if (line.charAt(1) == '1') {
                     toAdd.mark();
@@ -162,5 +172,25 @@ public class TaskList extends ArrayList<Task> {
             }
         }
         retriever.close();
+    }
+
+    public TaskList search(String keyword) {
+        TaskList result = new TaskList();
+        for (Task task : this) {
+            if (task.contains(keyword)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        String list = "";
+        int order = 1;
+        for (Task task : this) {
+            list += order++ + "." + task.toString() + "\n";
+        }
+        return list;
     }
 }
