@@ -3,6 +3,9 @@ package main.java.duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Class for parsing strings into commands.
+ */
 public class Parser {
     class EmptyInputException extends RuntimeException {
         public EmptyInputException() {
@@ -16,6 +19,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses a string into a command.
+     * @param line - the string to parse
+     * @param todolist - the task list to modify
+     * @return 1 if the user wants to quit, 0 otherwise
+     */
     public int parse(String line, TaskList todolist) {
         switch (line) {
             case "":

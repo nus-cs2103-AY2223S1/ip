@@ -6,7 +6,14 @@ import java.io.IOException;
 import java.io.FileReader;
 import java.io.BufferedReader;
 
+/**
+ * Class for storing and loading tasks from a file.
+ */
 public class Storage {
+    /**
+     * Saves the contents of a TaskList into the a file.
+     * @param list - the list of tasks to load into
+     */
     public static void save(TaskList list) {
         try {
             File file = new File("./data/duke.txt");
@@ -23,6 +30,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the contents of a TaskList into the program.
+     * @param filePath - the name of the file to load from
+     * @return the list of tasks loaded from the file
+     */
     public static TaskList load(String filePath) {
         try {
             File file = new File(filePath);

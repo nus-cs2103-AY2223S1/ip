@@ -1,5 +1,8 @@
 package main.java.duke;
 
+/**
+ * Class for Ui components of Duke.
+ */
 public class Ui {
 
     public static String divider() {
