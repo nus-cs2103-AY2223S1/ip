@@ -18,32 +18,12 @@ public class Storage {
         this.filePath = filePath;
     }
 
-    /**
-     * Finds if a tasks which description matches the query string exists
-     *
-     * @param userInput input from the user, starting with "find ..."
-     * @return an ArrayList containing all the matching tasks
-     * @throws IOException
-     */
-    public ArrayList<Task> findEntry(String userInput) throws IndexOutOfBoundsException {
-        ArrayList<Task> resultTasks = new ArrayList<>(100);
-        // truncate the front part
-        String queryString = userInput.substring(5).strip();
+   /* During the write operation, the characters are written to the internal buffer instead of the disk.
+   Once the buffer is filled or the writer is closed, the whole characters in the buffer are
+   written to the disk.
 
-        for (Task task : Pixel.inputTasks) {
-            if (task.getDescription().contains(queryString)) {
-                resultTasks.add(task);
-            }
-        }
-        return resultTasks;
-    }
-
-    /* During the write operation, the characters are written to the internal buffer instead of the disk.
-    Once the buffer is filled or the writer is closed, the whole characters in the buffer are
-    written to the disk.
-
-    Hence, the number of communication to the disk is reduced.
-    */
+   Hence, the number of communication to the disk is reduced.
+   */
 
     public void resetFile() throws IOException {
         new FileWriter(this.filePath, false).close();

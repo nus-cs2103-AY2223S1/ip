@@ -108,17 +108,9 @@ public class Task {
         return "[" + getStatusIcon() + "] " + this.description;
     }
 
-    public String getDescription() {
-        return this.description;
-    }
-
     private String getStatusIcon() {
         return (this.isDone ? "X" : " "); // mark done task with X
     }
-
-//    public boolean taskDone() {
-//        return this.isDone;
-//    }
 
 }
 

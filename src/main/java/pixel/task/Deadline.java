@@ -16,6 +16,6 @@ public class Deadline extends Task {
             ? this.commandWord
             : " (" + this.commandWord + ": " + this.due + ")";
 
-        return "[" + TAG + "]" + super.toString() + end;
+        return "[" + Deadline.TAG + "]" + super.toString() + end;
     }
 }

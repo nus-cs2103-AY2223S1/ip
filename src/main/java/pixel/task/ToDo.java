@@ -16,6 +16,6 @@ public class ToDo extends Task {
             ? this.commandWord
             : " (" + this.commandWord + ": " + this.due + ")";
 
-        return "[" + TAG + "]" + super.toString() + end;
+        return "[" + this.TAG + "]" + super.toString() + end;
     }
 }

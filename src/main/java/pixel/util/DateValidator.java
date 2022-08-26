@@ -4,15 +4,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class DateValidator {
-    private final DateTimeFormatter dateTimeFormatter;
+    private DateTimeFormatter dateFormatter;
 
     public DateValidator(DateTimeFormatter dateFormatter) {
-        this.dateTimeFormatter = dateFormatter;
+        this.dateFormatter = dateFormatter;
     }
 
     public boolean isValid(String dateStr) {
         try {
-            this.dateTimeFormatter.parse(dateStr);
+            this.dateFormatter.parse(dateStr);
         } catch (DateTimeParseException e) {
             return false;
         }

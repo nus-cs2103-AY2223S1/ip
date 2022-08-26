@@ -21,10 +21,6 @@ public class UserInterface {
         " end -- leaves the chatbot \n" +
         "   Your input: ");
 
-    public static final String GOOD_BYE_MESSAGE = "Bye. Hope to see you again soon!";
+    public static final String GOODBYE_MESSAGE = "Bye. Hope to see you again soon!";
 
-//    @Override
-//    public String toString() {
-//        return introMessage;
-//    }
 }

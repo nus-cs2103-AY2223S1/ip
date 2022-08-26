@@ -16,6 +16,6 @@ public class Event extends Task {
             ? this.commandWord
             : " (" + this.commandWord + ": " + this.due + ")";
 
-        return "[" + TAG + "]" + super.toString() + end;
+        return "[" + Event.TAG + "]" + super.toString() + end;
     }
 }
