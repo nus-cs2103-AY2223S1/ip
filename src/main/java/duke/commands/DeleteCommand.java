@@ -28,10 +28,14 @@ public class DeleteCommand implements Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) {
         try {
-            Task task = taskList.getTask(index);
-            taskList.deleteTask(index);
-            storage.saveToFile(taskList);
-            ui.deleteTask(index, task);
+            if (taskList.isEmpty()) {
+                ui.printDeleteOnEmptyList();
+            } else {
+                Task task = taskList.getTask(index);
+                taskList.deleteTask(index);
+                storage.saveToFile(taskList);
+                ui.printDeleteTask(index, task);
+            }
         } catch (DukeException e) {
             ui.printException(e);
         }

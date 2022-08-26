@@ -72,18 +72,22 @@ public class Ui {
      * @throws DukeException
      */
     public void printTaskFind(TaskList taskList, String keyword) throws DukeException {
-        System.out.println("Here are the matching tasks in your list:");
-        int findCount = 0;
-        for (int i = 0; i < taskList.getSize(); i++) {
-            if (taskList.getTask(i).findInDescription(keyword)) {
-                System.out.println(String.format("%d. %s", i + 1, taskList.getTask(i)));
-                findCount++;
-            }
-        }
-        if (findCount == 0) {
-            System.out.println("Oh no, there are no matching tasks found :(");
+        if (taskList.isEmpty()) {
+            System.out.println("There are currently no tasks in your list");
         } else {
-            System.out.printf("There are %d matching tasks found\n", findCount);
+            System.out.println("Here are the matching tasks in your list:");
+            int findCount = 0;
+            for (int i = 0; i < taskList.getSize(); i++) {
+                if (taskList.getTask(i).isFoundInDescription(keyword)) {
+                    System.out.println(String.format("%d. %s", i + 1, taskList.getTask(i)));
+                    findCount++;
+                }
+            }
+            if (findCount == 0) {
+                System.out.println("Oh no, there are no matching tasks found :(");
+            } else {
+                System.out.printf("There are %d matching tasks found\n", findCount);
+            }
         }
     }
 
@@ -93,7 +97,7 @@ public class Ui {
      * @param index Index of task that is marked.
      * @param task Task marked as done.
      */
-    public void markAsDone(int index, Task task) {
+    public void printMarkAsDone(int index, Task task) {
         System.out.println("Nice! I've marked this task as done:\n"
                 + String.format("%d. %s", index + 1, task));
     }
@@ -104,7 +108,7 @@ public class Ui {
      * @param index Index of task that is marked.
      * @param task Task marked as undone.
      */
-    public void markAsUndone(int index, Task task) {
+    public void printMarkAsUndone(int index, Task task) {
         System.out.println("Ok! I've marked this task as not done yet:\n"
                 + String.format("%d. %s", index + 1, task));
     }
@@ -115,9 +119,16 @@ public class Ui {
      * @param index Index of task that is deleted.
      * @param task Task that was deleted.
      */
-    public void deleteTask(int index, Task task) {
+    public void printDeleteTask(int index, Task task) {
         System.out.println("Noted. I've removed this task:\n"
                 + String.format("%d. %s", index + 1, task));
+    }
+
+    /**
+     * Prints message that TaskList is empty and no task can be deleted.
+     */
+    public void printDeleteOnEmptyList() {
+        System.out.println("OOPS!!! There are currently no task to delete");
     }
 
     /**
@@ -125,9 +136,8 @@ public class Ui {
      *
      * @param task Task that was added.
      */
-    public void addTask(Task task) {
-        System.out.println("Got it! I've added this task:\n"
-                + "> " + task);
+    public void printAddTask(Task task) {
+        System.out.println("Got it! I've added this task:\n> " + task);
     }
 
     /**

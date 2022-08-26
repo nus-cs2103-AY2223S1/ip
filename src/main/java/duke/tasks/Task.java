@@ -55,7 +55,7 @@ public abstract class Task {
      * @param keyword Keyword to search for.
      * @return If keyword was found in current task.
      */
-    public Boolean findInDescription(String keyword) {
+    public Boolean isFoundInDescription(String keyword) {
         return description.contains(keyword);
     }
 

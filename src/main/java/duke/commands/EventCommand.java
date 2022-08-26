@@ -34,7 +34,7 @@ public class EventCommand implements Command {
         try {
             taskList.addTask(event);
             storage.appendToFile(event);
-            ui.addTask(event);
+            ui.printAddTask(event);
             ui.printListSize(taskList);
         } catch (DukeException e) {
             ui.printException(e);

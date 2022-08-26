@@ -29,7 +29,7 @@ public class UnmarkCommand implements Command {
         try {
             taskList.getTask(index).markAsUndone();
             storage.saveToFile(taskList);
-            ui.markAsUndone(index, taskList.getTask(index));
+            ui.printMarkAsUndone(index, taskList.getTask(index));
         } catch (DukeException e) {
             ui.printException(e);
         }

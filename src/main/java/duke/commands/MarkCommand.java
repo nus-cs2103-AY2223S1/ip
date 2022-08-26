@@ -29,7 +29,7 @@ public class MarkCommand implements Command {
         try {
             taskList.getTask(index).markAsDone();
             storage.saveToFile(taskList);
-            ui.markAsDone(index, taskList.getTask(index));
+            ui.printMarkAsDone(index, taskList.getTask(index));
         } catch (DukeException e) {
             ui.printException(e);
         }

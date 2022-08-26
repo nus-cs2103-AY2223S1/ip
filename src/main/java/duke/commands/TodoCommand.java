@@ -30,7 +30,7 @@ public class TodoCommand implements Command {
         try {
             taskList.addTask(todo);
             storage.appendToFile(todo);
-            ui.addTask(todo);
+            ui.printAddTask(todo);
             ui.printListSize(taskList);
         } catch (DukeException e) {
             ui.printException(e);

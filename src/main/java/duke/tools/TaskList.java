@@ -31,12 +31,21 @@ public class TaskList {
     }
 
     /**
-     * Returns current size of list.
+     * Returns current number of tasks in TaskList.
      *
-     * @return Size of list.
+     * @return Number of tasks in TaskList.
      */
     public int getSize() {
         return taskList.size();
+    }
+
+    /**
+     * Returns true if taskList is empty, else false.
+     *
+     * @return If taskList is empty.
+     */
+    public Boolean isEmpty() {
+        return taskList.isEmpty();
     }
 
     /**
