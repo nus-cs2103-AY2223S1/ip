@@ -78,7 +78,10 @@ public class Parser {
                     } catch (NumberFormatException e) {
                         throw new QoobeeException("Please enter a right number!");
                     }
-                } else {
+                } else if (input.startsWith("find")) {
+                    tasks.findTask(command[1]);
+                }
+                else {
                     throw new QoobeeException("I'm sorry, but I don't know what that means :^(");
                 }
             }

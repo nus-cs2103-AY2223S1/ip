@@ -1,5 +1,6 @@
 package qoobee;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -99,6 +100,25 @@ public class TaskList {
         task.markAsDone();
         System.out.println("Nice! I've marked this task as done:\n" + task);
         storage.save(taskList);
+    }
+
+    public void findTask(String description) {
+        List<Task> foundTasks = new ArrayList<>();
+        for (int i = 0; i < taskListSize(); i++) {
+            Task curr = taskList.get(i);
+            if (taskList.get(i).getDescription().contains(description)) {
+                foundTasks.add(curr);
+            }
+        }
+        if (foundTasks.size() == 0) {
+            System.out.println("No such task!");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < foundTasks.size(); i++) {
+                Task currentTask = foundTasks.get(i);
+                System.out.println((i + 1) + "." + currentTask);
+            }
+        }
     }
 
 }
