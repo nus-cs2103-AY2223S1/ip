@@ -3,7 +3,7 @@ package duke.util;
 /**
  * Class to represent parsed data.
  * <code>ParsedData</code> can be used to store 3 seperate instance of
- * information to be used by other classes.
+ * String information to be used by other classes.
  */
 public class ParsedData {
     public final String command;
