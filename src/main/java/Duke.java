@@ -1,43 +1,41 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
+    private final TaskList tasks;
+    //    private Storage storage;
+
+    public Duke() {
+        tasks = new TaskList(Storage.readData());
+    }
+
+    public void run() {
         String name = "Duke";
         System.out.println("Hello! I'm " + name + "\nHow can I help you?");
 
-        // Initializing the Duke chatbot
-        ArrayList<Task> tasksList = Storage.readData();
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
             if (command.equals("bye")) {
                 // Write tasks data to storage before terminating program
-                StringBuilder data = new StringBuilder();
-                for (Task task : tasksList) {
-                    data.append(task.toString() + "\n");
-                }
-                Storage.writeData(data.toString());
+                Storage.writeData(tasks.toString());
                 System.out.println("Bye! See you again :)");
                 return;
             } else if (command.equals("list")) {
-                for (int i = 0; i < tasksList.size(); i++) {
-                    System.out.println(i + 1 + ". " + tasksList.get(i));
-                }
+                tasks.printList();
                 continue;
             } else if (command.contains("unmark")) {
                 int index = Integer.parseInt(command.split(" ")[1]) - 1;
-                tasksList.get(index).unmark();
-                System.out.println("Okay, this task is now unchecked:\n" + tasksList.get(index));
+                tasks.unmark(index);
+                System.out.println("Okay, this task is now unchecked:\n" + tasks.getTask(index));
             } else if (command.contains("mark")) {
                 int index = Integer.parseInt(command.split(" ")[1]) - 1;
-                tasksList.get(index).mark();
-                System.out.println("Great! This task is completed:\n" + tasksList.get(index));
+                tasks.mark(index);
+                System.out.println("Great! This task is completed:\n" + tasks.getTask(index));
             } else if (command.contains("delete")) {
                 int index = Integer.parseInt(command.split(" ")[1]) - 1;
-                Task temp = tasksList.get(index);
-                tasksList.remove(index);
+                Task temp = tasks.getTask(index);
+                tasks.remove(index);
                 System.out.println("Noted. I've removed this task:\n" + temp);
             } else {
                 try {
@@ -46,16 +44,19 @@ public class Duke {
                         if (taskName.isBlank()) {
                             throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
                         }
-                        tasksList.add(new Todo(taskName));
-                        System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
+                        Task newTodoTask = new Todo(taskName);
+                        tasks.add(newTodoTask);
+                        System.out.println("Got it. I've added this task:\n" + newTodoTask);
                     } else if (command.contains("deadline")) {
                         String[] res = command.split("deadline ")[1].split("\\\\by ");
-                        tasksList.add(new Deadline(res[0], res[1]));
-                        System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
+                        Task newDeadlineTask = new Deadline(res[0], res[1]);
+                        tasks.add(newDeadlineTask);
+                        System.out.println("Got it. I've added this task:\n" + newDeadlineTask);
                     } else if (command.contains("event")) {
                         String[] res = command.split("event ")[1].split("\\\\at ");
-                        tasksList.add(new Event(res[0], res[1]));
-                        System.out.println("Got it. I've added this task:\n" + tasksList.get(tasksList.size() - 1));
+                        Task newEventTask = new Event(res[0], res[1]);
+                        tasks.add(newEventTask);
+                        System.out.println("Got it. I've added this task:\n" + newEventTask);
                     } else {
                         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                     }
@@ -66,5 +67,9 @@ public class Duke {
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Duke().run();
     }
 }
