@@ -1,20 +1,22 @@
+package duke;
+
 public class Task {
     private boolean done;
     private String description;
     private char tag;
 
-    Task(String description, char tag, boolean done) {
+    public Task(String description, char tag, boolean done) {
         this.description = description;
         this.tag = tag;
         this.done = done;
     }
 
-    private Task(String description, boolean done) {
-        this(description, 'T', done);
+    public Task(String description) {
+        this(description,false);
     }
 
-    Task(String description) {
-        this(description,false);
+    private Task(String description, boolean done) {
+        this(description, 'T', done);
     }
 
     public static Task fromSaveString(String saveString) throws RuntimeException {
@@ -39,7 +41,7 @@ public class Task {
         return String.format("[%s][%s] %s", this.tag, this.done ? 'X' : ' ', this.description);
     }
 
-    public String saveData() {
+    public String toSaveData() {
         return String.format("%s,%s,\"%s\"", this.tag, this.done ? '1' : '0', this.description);
     }
 }

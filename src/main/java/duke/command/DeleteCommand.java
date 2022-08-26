@@ -1,0 +1,25 @@
+package duke.command;
+
+import duke.DukeException;
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.Task;
+
+public class DeleteCommand extends Command {
+    private int index;
+
+    public DeleteCommand(int index) {
+        super();
+        this.index = index;
+    }
+
+    @Override
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        if (index == -1 || index >= tasks.size()) {
+            throw new DukeException(String.format("Task number %d not found! Unable to delete task.", index + 1));
+        }
+        Task deleted = tasks.remove(index);
+        ui.wrapPrint("Noted. I've removed this task:\n" + deleted.toString());
+    }
+}

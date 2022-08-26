@@ -1,3 +1,5 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -5,6 +7,10 @@ import java.util.stream.Collectors;
 
 public class Deadline extends Task {
     protected LocalDate by;
+
+    public Deadline(String description, String by) {
+        this(description, by, false);
+    }
 
     public Deadline(String description, String by, boolean done) {
         super(description, 'D', done);
@@ -29,7 +35,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String saveData() {
-        return super.saveData() + String.format(",\"%s\"", this.by.toString());
+    public String toSaveData() {
+        return super.toSaveData() + String.format(",\"%s\"", this.by.toString());
     }
 }

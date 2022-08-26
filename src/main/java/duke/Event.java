@@ -1,15 +1,21 @@
+package duke;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
 public class Event extends Task {
-    protected LocalDate by;
+    protected LocalDate on;
 
-    public Event(String description, String by, boolean done) {
+    public Event(String description, String on) {
+        this(description, on, false);
+    }
+
+    public Event(String description, String on, boolean done) {
         super(description, 'E', done);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        this.by = LocalDate.parse(Arrays.stream(by.split(" ")).skip(1).collect(Collectors.joining("")), formatter);
+        this.on = LocalDate.parse(Arrays.stream(on.split(" ")).skip(1).collect(Collectors.joining("")), formatter);
     }
 
     public static Event fromSaveString(String saveString) throws RuntimeException {
@@ -18,18 +24,18 @@ public class Event extends Task {
             throw new RuntimeException("Tried to read unexpected save data.");
         }
         String description = splitSaveString[1];
-        String by = "on " + splitSaveString[2];
+        String on = "on " + splitSaveString[2];
         boolean done = splitSaveString[0].endsWith("1");
-        return new Event(description, by, done);
+        return new Event(description, on, done);
     }
 
     @Override
     public String toString() {
-        return super.toString() + " (by " + by.toString() + ")";
+        return super.toString() + " (on " + on.toString() + ")";
     }
 
     @Override
-    public String saveData() {
-        return super.saveData() + String.format(",\"%s\"", this.by.toString());
+    public String toSaveData() {
+        return super.toSaveData() + String.format(",\"%s\"", this.on.toString());
     }
 }

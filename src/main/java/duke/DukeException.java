@@ -1,5 +1,7 @@
-public class DukeException extends Exception {
-    DukeException (String s) {
+package duke;
+
+public class DukeException extends RuntimeException {
+    public DukeException(String s) {
         super(s);
     }
 
