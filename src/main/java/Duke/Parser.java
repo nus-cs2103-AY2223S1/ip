@@ -1,3 +1,15 @@
+package Duke;
+import Command.Command;
+import Command.DeadlineCommand;
+import Command.DeleteCommand;
+import Command.EventCommand;
+import Command.ExitCommand;
+import Command.ListCommand;
+import Command.MarkCommand;
+import Command.TodoCommand;
+import Command.UnmarkCommand;
+
+
 /**
  * The Parser deals with making sense of the user command
  *
