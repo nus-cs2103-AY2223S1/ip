@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.File;
 
 public class Duke {
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
@@ -39,7 +38,6 @@ public class Duke {
     }
 
     public void runBot() {
-
         try {
             storage.load();
         } catch (DukeException e) {
