@@ -18,6 +18,9 @@ public class ByeCommand extends Command {
         storage.saveTasks(tasks);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return true;
     }

@@ -32,9 +32,9 @@ public class Event extends Task {
     }
 
     /**
-     * {@inheritDoc}
-     * <p>
      * Event has an additional datetime field for timing
+     * <p>
+     * {@inheritDoc}
      */
     @Override
     public String encode(String delimiter) {

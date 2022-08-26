@@ -14,10 +14,20 @@ import task.Todo;
 public class TodoCommand extends Command {
     private final String[] inputStrings;
 
+    /**
+     * Constructs a todo command, which creates a new todo based on the input strings
+     *
+     * @param inputStrings The specified input strings.
+     */
     public TodoCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
+    /**
+     * Creates a new todo
+     * <p>
+     * {@inheritDoc}
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (inputStrings.length == 1) {
             throw new EmptyDescriptionException(TaskType.T);
@@ -29,6 +39,9 @@ public class TodoCommand extends Command {
         ui.showAddTask(todo, tasks.size());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

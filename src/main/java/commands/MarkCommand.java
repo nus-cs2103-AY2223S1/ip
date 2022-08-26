@@ -12,10 +12,20 @@ import task.Task;
 public class MarkCommand extends Command {
     private final String[] inputStrings;
 
+    /**
+     * Constructs a mark command, which marks the task with the input index as done
+     *
+     * @param inputStrings The specified input strings.
+     */
     public MarkCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
+    /**
+     * Marks the task as complete
+     * <p>
+     * {@inheritDoc}
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
@@ -30,6 +40,9 @@ public class MarkCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

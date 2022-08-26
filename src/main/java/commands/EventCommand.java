@@ -20,10 +20,20 @@ import java.time.format.DateTimeParseException;
 public class EventCommand extends Command {
     private final String[] inputStrings;
 
+    /**
+     * Constructs an event command, which creates a new event based on input strings
+     *
+     * @param inputStrings The specified input strings.
+     */
     public EventCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
+    /**
+     * Creates a new event and stores it in the current task list
+     * <p>
+     * {@inheritDoc}
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.inputStrings.length == 1) {
             throw new EmptyDescriptionException(TaskType.E);
@@ -44,6 +54,9 @@ public class EventCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

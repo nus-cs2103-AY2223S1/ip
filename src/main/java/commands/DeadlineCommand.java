@@ -20,10 +20,20 @@ import java.time.format.DateTimeParseException;
 public class DeadlineCommand extends Command {
     private final String[] inputStrings;
 
+    /**
+     * Constructs a deadline command, using the input strings to generate the deadline
+     *
+     * @param inputStrings The specified input strings.
+     */
     public DeadlineCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
+    /**
+     * Creates a new deadline
+     * <p>
+     * {@inheritDoc}
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (this.inputStrings.length == 1) {
             throw new EmptyDescriptionException(TaskType.D);
@@ -44,6 +54,9 @@ public class DeadlineCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

@@ -12,10 +12,20 @@ import task.Task;
 public class DeleteCommand extends Command {
     private final String[] inputStrings;
 
+    /**
+     * Constructs a delete command, which deletes a task based on the input strings
+     *
+     * @param inputStrings The specified input strings.
+     */
     public DeleteCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
+    /**
+     * Deletes the task in the task list based on the input index
+     * <p>
+     * {@inheritDoc}
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
         // Hence, we need to account for this offset here
@@ -25,6 +35,9 @@ public class DeleteCommand extends Command {
         ui.showRemoveTask(task, tasks.size());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }

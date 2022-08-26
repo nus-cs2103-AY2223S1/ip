@@ -12,10 +12,20 @@ import task.Task;
 public class UnmarkCommand extends Command {
     private final String[] inputStrings;
 
+    /**
+     * Constructs an unmark command, which marks the task with the specified task index as not done
+     *
+     * @param inputStrings The specified input strings.
+     */
     public UnmarkCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
+    /**
+     * Marks a task as not done
+     * <p>
+     * {@inheritDoc}
+     */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         try {
             // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
@@ -31,8 +41,10 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public boolean isExit() {
         return false;
     }
-
 }
