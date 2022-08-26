@@ -20,7 +20,7 @@ public class Deadline extends Task {
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
-        dateTimeConverter(by);
+        convertToDateTime(by);
     }
 
     /**
@@ -35,7 +35,7 @@ public class Deadline extends Task {
         this.byTime = byTime;
     }
 
-    private void dateTimeConverter(String by) {
+    private void convertToDateTime(String by) {
         if (by.length() > 10) {
             int spacePos = by.indexOf(" ");
             String date = by.substring(0, spacePos);
@@ -58,7 +58,7 @@ public class Deadline extends Task {
                 + " | "
                 + this.byDate.format(DateTimeFormatter.ofPattern("MMM d yyyy"))
                 + ((this.byTime == null)
-                    ? ""
-                    : " | " + this.byTime.toString()));
+                        ? ""
+                        : " | " + this.byTime.toString()));
     }
 }
