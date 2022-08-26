@@ -22,7 +22,12 @@ public class FileReader {
             Scanner reader = new Scanner(this.file);
             while (reader.hasNextLine()) {
                 String[] taskInfo = reader.nextLine().split("\\|");
-                data.add(Task.MakeTask(taskInfo[0], Boolean.parseBoolean(taskInfo[1]), taskInfo[2], LocalDateTime.parse(taskInfo[3])));
+                if (taskInfo.length == 3) {
+                    data.add(Task.MakeTask(taskInfo[0], Boolean.parseBoolean(taskInfo[1]), taskInfo[2], null));
+                } else {
+                    data.add(Task.MakeTask(taskInfo[0], Boolean.parseBoolean(taskInfo[1]), taskInfo[2], LocalDateTime.parse(taskInfo[3])));
+                }
+
             }
         } catch (FileNotFoundException e) {
             System.out.println(e);

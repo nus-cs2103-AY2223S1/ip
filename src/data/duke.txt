@@ -1,3 +1,2 @@
-D|false|do work|2022-12-01T18:00
-E|false|club|2022-08-29T19:00
-T|true|123
+T|false|123
+E|true|123|2020-09-01T14:00

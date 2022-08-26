@@ -5,32 +5,19 @@ import java.util.*;
 
 public class Duke {
     private static FileReader fileReader = new FileReader();
-    private static ArrayList<Task> todo = fileReader.readFile();
+    private static ArrayList<Task> todo;
     private static String[] commandList = new String[]{"list", "Bye", "todo", "mark", "unmark", "event", "deadline", "delete"};
     enum Commands {
-        list,
-        Bye,
-        todo,
-        mark,
-        unmark,
-        event,
-        deadline,
-        delete
+        LIST,
+        BYE,
+        TODO,
+        MARK,
+        UNMARK,
+        EVENT,
+        DEADLINE,
+        DELETE
     }
-    private static String formatList(ArrayList<Task> lst) {
 
-        String result = "";
-        int length = lst.size();
-        for (int i = 0; i < length; i++) {
-            Task curr = lst.get(i);
-            result +=String.format("%d. %s \n",i + 1, curr.formatTask());
-        }
-        return result;
-    }
-    private static void toggleTaskStatus(int index) {
-       Task task =  todo.get(index);
-       task.toggleStatus();
-    }
 
     public static String validateDescription(String description) throws descriptionException {
         if (description != "todo") {
@@ -39,14 +26,7 @@ public class Duke {
         throw new descriptionException();
     }
 
-    public static Boolean validateCommand(String command) throws NoSuchCommandException {
-        for (String x : commandList) {
-            if (x.equals(command)) {
-                return true;
-            }
-        }
-        throw new NoSuchCommandException();
-    }
+
 
     public static LocalDateTime formatTime(String dateTime) {
         String[] dateTimeArr = dateTime.split(" ");
@@ -59,83 +39,70 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        Ui ui = new Ui();
         Scanner scanner = new Scanner((System.in));
-        System.out.println("Hello! I'm Duke\n What can i do for you?\n");
+        Parser parser = new Parser();
+        TaskList taskList = new TaskList(fileReader.readFile());
 
-        //test
-
+        ui.showGreeting();
         loop: while (true) {
             String input = scanner.nextLine();
             String arr[] = input.split(" ");
             String commandString = arr[0];
+
             try {
-                validateCommand(commandString);
-                Commands command = Commands.valueOf(commandString);
                 String description ;
                 int startIndex;
                 String deadline;
-                Task task;
-
+                Duke.Commands command = parser.analyzeCommand(input);
                 switch (command) {
-                    case Bye:
-                        System.out.println("Bye. Hope to see you again soon");
+                    case BYE:
+                        ui.showBye();
+                        fileReader.writeFile(taskList.list);
                         break loop;
-                    case list:
-                        System.out.println(formatList(todo));
+                    case LIST:
+                        ui.showAllTask(taskList);
                         break;
-                    case mark:
+                    case MARK:
+                        int indexToUnMark = Integer.valueOf(arr[1]) - 1;
+                        taskList.toggleTaskStatus(indexToUnMark);
+                        ui.showMarkTask(taskList.get(indexToUnMark));
+                        break;
+                    case UNMARK:
                         int indexToMark = Integer.valueOf(arr[1]) - 1;
+                        taskList.toggleTaskStatus(indexToMark);
 
-                        toggleTaskStatus(indexToMark);
-                        System.out.println("Nice! I'hv marked this task as done:\n" + todo.get(indexToMark).formatTask());
-                        fileReader.writeFile(todo);
+                        ui.showUnmarkTask(taskList.get(indexToMark));
                         break;
-                    case unmark:
-                        int indexToUnmark = Integer.valueOf(arr[1]) - 1;
-                        toggleTaskStatus(indexToUnmark);
-                        System.out.println("Sadge u are not done :(\n" + todo.get(indexToUnmark).formatTask());
-                        fileReader.writeFile(todo);
-                        break;
-                    case todo:
+                    case TODO:
                         try {
                             description = validateDescription(String.join(" ", Arrays.copyOfRange(arr, 1, arr.length)));
-                            task = new Task(description);
-                            todo.add(task);
-                            System.out.println(String.format("Got it. I'hv added this task:\n   %s", task.formatTask()));
-                            System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
-                            fileReader.writeFile(todo);
+
+                            taskList.addTask(command, description);
+                            ui.showAddTask(taskList, taskList.get(taskList.length() - 1));
                         } catch (descriptionException err) {
                             System.out.println(err.toString());
                         }
                         break;
-                    case deadline:
-                    case event:
+                    case DEADLINE:
+                    case EVENT:
                         startIndex = Arrays.asList(arr).indexOf(commandString.equals("deadline") ? "/by" : "/at");
                         try {
                             description = validateDescription(String.join(" ", Arrays.copyOfRange(arr, 1, startIndex)));
                             deadline = String.join(" ", Arrays.copyOfRange(arr, startIndex + 1, arr.length));
-                            task = commandString.equals("deadline") ? Task.MakeTask("D", false, description, formatTime(deadline)) : Task.MakeTask("E", false, description, formatTime(deadline)) ;
-                            todo.add(task);
-                            System.out.println(String.format("Got it. I'hv added this task:\n   %s", task.formatTask()));
-                            System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
-                            fileReader.writeFile(todo);
+                            taskList.addTask(command, description, formatTime(deadline));
+                            ui.showAddTask(taskList, taskList.get(taskList.length() - 1));
+
                         } catch (descriptionException err) {
                             System.out.println(err.toString());
                         }
                         break;
-                    case delete:
-                        int index = Integer.valueOf(arr[1]) - 1;
-                        task = todo.get(index);
-                        todo.remove(index);
-                        System.out.println(String.format("Noted. I've removed this task:\n   %s", task.formatTask()));
-                        System.out.println(String.format("Now you have %d task in the list\n", todo.size()));
-                        fileReader.writeFile(todo);
+                    case DELETE:
+                        int index = Integer.valueOf(arr[1]);
+                        Task task = taskList.get(index - 1);
+                        taskList.deleteTask(index);
+                        ui.showRemoveTask(taskList, task);
+
                     default:
                 }
             } catch (NoSuchCommandException err) {
