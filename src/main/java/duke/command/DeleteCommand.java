@@ -13,7 +13,7 @@ public class DeleteCommand extends Command {
     private static final String ERROR_MESSAGE =
             "Oops! Do check the index range, and the format should be \"delete <index>\"";
 
-    private int taskIndex;
+    private final int taskIndex;
 
     public DeleteCommand(int taskIndex) {
         super(CommandType.DELETE);

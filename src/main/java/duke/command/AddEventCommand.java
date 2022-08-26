@@ -8,7 +8,7 @@ import duke.util.Ui;
 
 public class AddEventCommand extends Command {
 
-    private EventTask task;
+    private final EventTask task;
 
     public AddEventCommand(EventTask task) {
         super(CommandType.ADD_EVENT);

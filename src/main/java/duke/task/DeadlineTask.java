@@ -6,7 +6,7 @@ public class DeadlineTask extends Task {
 
     private static final String LABEL = "D";
 
-    private LocalDateTime deadline;
+    private final LocalDateTime deadline;
 
     public DeadlineTask(String taskTitle, LocalDateTime deadline) {
         super(taskTitle, TaskType.DEADLINE);

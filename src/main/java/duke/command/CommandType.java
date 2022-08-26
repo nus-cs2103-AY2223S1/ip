@@ -13,7 +13,7 @@ public enum CommandType {
     ADD_TODO("todo"),
     ADD_DEADLINE("deadline");
 
-    private String commandString;
+    private final String commandString;
 
     CommandType(String commandString) {
         this.commandString = commandString;

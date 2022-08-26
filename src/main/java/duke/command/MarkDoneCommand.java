@@ -12,7 +12,7 @@ public class MarkDoneCommand extends Command {
     private static final String ERROR_MESSAGE =
             "Oops! Do check the index range, and the format should be \"mark <index>\"";
 
-    int taskIndex;
+    private final int taskIndex;
 
     public MarkDoneCommand(int taskIndex) {
         super(CommandType.MARK_DONE);

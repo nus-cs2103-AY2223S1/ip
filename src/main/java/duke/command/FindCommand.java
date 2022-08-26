@@ -8,7 +8,7 @@ public class FindCommand extends Command {
 
     private static final String OUTPUT_MESSAGE = "Here are what I found: ";
 
-    private String keyword;
+    private final String keyword;
 
     public FindCommand(String keyword) {
         super(CommandType.FIND);

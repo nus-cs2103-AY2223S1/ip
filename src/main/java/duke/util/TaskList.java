@@ -14,7 +14,7 @@ public class TaskList {
     private static final String NOTHING_FOUND_MESSAGE = "Sorry, nothing found in the list.";
 
 
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
     public TaskList() {
         tasks = new ArrayList<>();
@@ -27,10 +27,7 @@ public class TaskList {
         }
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < len; i++) {
-            stringBuilder
-                    .append(i + 1)
-                    .append(". ")
-                    .append(tasks.get(i));
+            stringBuilder.append(i + 1).append(". ").append(tasks.get(i));
             if (i < len - 1) {
                 stringBuilder.append('\n' + TAB);
             }
@@ -38,9 +35,7 @@ public class TaskList {
         return stringBuilder.toString();
     }
 
-    public String addNewTask(Task newTask)
-            throws DukeCommandFormatException, DukeMissingTaskTitleException, DukeMissingTaskDateTimeException,
-            DukeDateTimeFormatException {
+    public String addNewTask(Task newTask) throws DukeCommandFormatException, DukeMissingTaskTitleException, DukeMissingTaskDateTimeException, DukeDateTimeFormatException {
         tasks.add(newTask);
         return "added: " + newTask.toString();
     }
@@ -77,9 +72,7 @@ public class TaskList {
     public String getFileStream() {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < tasks.size(); i++) {
-            stringBuilder
-                    .append(tasks.get(i).getFileRepresentation())
-                    .append('\n');
+            stringBuilder.append(tasks.get(i).getFileRepresentation()).append('\n');
         }
         return stringBuilder.toString();
     }
@@ -97,11 +90,7 @@ public class TaskList {
         for (int i = 0; i < len; i++) {
             Task curr = tasks.get(i);
             if (curr.contains(keyword)) {
-                stringBuilder
-                        .append('\n' + TAB)
-                        .append(displayIndex++)
-                        .append(". ")
-                        .append(curr);
+                stringBuilder.append('\n' + TAB).append(displayIndex++).append(". ").append(curr);
             }
         }
 

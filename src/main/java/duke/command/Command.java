@@ -7,10 +7,6 @@ import duke.util.TaskList;
 import duke.util.Ui;
 
 /**
- *
- *
- *
- *
  * @param
  * @param
  * @param
@@ -22,9 +18,8 @@ import duke.util.Ui;
 public abstract class Command {
 
     private static final String COMMAND_ALREADY_EXECUTED_ERROR_MESSAGE = "Oops! This command has been executed";
-
-    private CommandType commandType;
-    boolean isExecuted;
+    private boolean isExecuted;
+    private final CommandType commandType;
 
     public Command(CommandType commandType) {
         this.commandType = commandType;

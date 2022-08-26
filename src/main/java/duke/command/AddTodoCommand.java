@@ -8,7 +8,7 @@ import duke.util.Ui;
 
 public class AddTodoCommand extends Command {
 
-    private TodoTask task;
+    private final TodoTask task;
 
     public AddTodoCommand(TodoTask task) {
         super(CommandType.ADD_TODO);

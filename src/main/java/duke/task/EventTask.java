@@ -6,7 +6,7 @@ public class EventTask extends Task {
 
     private static final String LABEL = "E";
 
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
 
     public EventTask(String taskTitle, LocalDateTime dateTime) {
         super(taskTitle, TaskType.EVENT);

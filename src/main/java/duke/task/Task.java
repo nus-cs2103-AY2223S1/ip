@@ -8,21 +8,6 @@ public abstract class Task {
     protected static final DateTimeFormatter OUTPUT_FORMATTER = DateTimeFormatter.ofPattern(OUTPUT_DATE_TIME_FORMAT);
     private static final String FILE_WRITING_DELIMITER = "|";
 
-
-    /**
-     *
-     *
-     *
-     *
-     *@param
-     *@param
-     *@param
-     *@param
-     *@param
-     *@return
-     *@throws
-     */
-
     protected String taskTitle;
     protected boolean done;
     protected TaskType taskType;
@@ -46,13 +31,7 @@ public abstract class Task {
     }
 
     protected String getStringRepresentation(String label, String displayedText) {
-        return "["
-                + (done ? "X" : " ")
-                + "] "
-                + "["
-                + label
-                + "] "
-                + displayedText;
+        return "[" + (done ? "X" : " ") + "] " + "[" + label + "] " + displayedText;
     }
 
     public abstract String getFileRepresentation();
@@ -61,35 +40,12 @@ public abstract class Task {
         return getFileRepresentation(label, null);
     }
 
-    /**
-     *
-     *
-     *
-     *
-     *@param
-     *@param
-     *@param
-     *@param
-     *@param
-     *@return
-     *@throws
-     */
-
     protected String getFileRepresentation(String label, String dateTime) {
-        String output = label
-                + " "
-                + FILE_WRITING_DELIMITER
-                + " "
+        String output = label + " " + FILE_WRITING_DELIMITER + " "
                 + (done ? "1" : "0")
-                + " "
-                + FILE_WRITING_DELIMITER
-                + " "
-                + taskTitle;
+                + " " + FILE_WRITING_DELIMITER + " " + taskTitle;
         if (dateTime != null) {
-            output += " "
-                    + FILE_WRITING_DELIMITER
-                    + " "
-                    + dateTime;
+            output += " " + FILE_WRITING_DELIMITER + " " + dateTime;
         }
         return output;
     }

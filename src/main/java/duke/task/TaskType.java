@@ -1,11 +1,10 @@
 package duke.task;
 
 public enum TaskType {
-    TODO("todo"),
-    EVENT("event"),
-    DEADLINE("deadline");
+    TODO("todo"), EVENT("event"), DEADLINE("deadline");
 
     private final String stringRepresentation;
+
     TaskType(String stringRepresentation) {
         this.stringRepresentation = stringRepresentation;
     }

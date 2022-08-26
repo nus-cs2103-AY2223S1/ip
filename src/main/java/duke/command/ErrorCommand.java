@@ -6,7 +6,7 @@ import duke.util.Ui;
 
 public class ErrorCommand extends Command {
 
-    private String errorMessage;
+    private final String errorMessage;
 
     public ErrorCommand(String errorMessage) {
         super(CommandType.ERROR);
