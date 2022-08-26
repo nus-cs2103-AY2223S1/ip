@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
- * Creates a new event
+ * Creates a new event.
  */
 public class EventCommand extends Command {
     private final String[] inputStrings;

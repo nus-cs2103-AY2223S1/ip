@@ -7,7 +7,7 @@ import exceptions.DukeException;
 import task.Task;
 
 /**
- * Deletes the specified task
+ * Deletes the specified task.
  */
 public class DeleteCommand extends Command {
     private final String[] inputStrings;
@@ -17,8 +17,7 @@ public class DeleteCommand extends Command {
     }
 
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        // Tasks are displayed as 1-indexed, but they are stored as 0-indexed
-        // Hence, we need to account for this offset here
+        // Tasks are displayed as 1-indexed, but they are stored as 0-indexed.
         int taskIndex = Integer.parseInt(inputStrings[1]) - 1;
         Task task = tasks.removeTask(taskIndex);
 

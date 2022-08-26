@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 
 /**
- * Creates a new deadline
+ * Creates a new deadline.
  */
 public class DeadlineCommand extends Command {
     private final String[] inputStrings;

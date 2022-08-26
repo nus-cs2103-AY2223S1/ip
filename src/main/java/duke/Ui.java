@@ -5,36 +5,36 @@ import task.Task;
 import java.util.Scanner;
 
 /**
- * Deals with the interaction of the user and messages to be displayed
+ * Deals with the interaction of the user and messages to be displayed.
  */
 public class Ui {
     private final Scanner scanner;
 
     /**
-     * Constructs a new Ui object, with a scanner object used to read user inputs
+     * Constructs a new Ui object, with a scanner object used to read user inputs.
      */
     public Ui() {
         this.scanner = new Scanner(System.in);
     }
 
     /**
-     * Reads user input and returns the string value
+     * Reads user input and returns the string value.
      *
-     * @return the specified user input as a String
+     * @return the specified user input as a String.
      */
     public String readCommand() {
         return this.scanner.nextLine();
     }
 
     /**
-     * Prints out a long line
+     * Prints out a long line.
      */
     public void showLine() {
         System.out.println("    ____________________________________________________________");
     }
 
     /**
-     * Prints the messages after adding a task, based on the task's fields
+     * Prints the messages after adding a task, based on the task's fields.
      *
      * @param task              The specified task.
      * @param numberOfTasksLeft The number of tasks left.
@@ -46,7 +46,7 @@ public class Ui {
     }
 
     /**
-     * Prints the messages after removing a task, based on the task's fields
+     * Prints the messages after removing a task, based on the task's fields.
      *
      * @param task              The specified task.
      * @param numberOfTasksLeft The number of tasks left.
@@ -58,7 +58,7 @@ public class Ui {
     }
 
     /**
-     * Prints the messages after marking a task as done, based on the task's fields
+     * Prints the messages after marking a task as done, based on the task's fields.
      *
      * @param task The specified task.
      */
@@ -68,7 +68,7 @@ public class Ui {
     }
 
     /**
-     * Prints the messages after marking a task as not done, based on the task's fields
+     * Prints the messages after marking a task as not done, based on the task's fields.
      *
      * @param task The specified task.
      */
@@ -81,11 +81,11 @@ public class Ui {
      * Prints the error message involved with retrieving tasks from a storage file.
      */
     public void showLoadingError() {
-        System.out.println("     There was some error initialising the chatbot, no tasks are loaded.");
+        System.out.println("     There was some error initializing the chatbot, no tasks are loaded.");
     }
 
     /**
-     * Prints the welcome message whenever the chatbot starts running
+     * Prints the welcome message whenever the chatbot starts running.
      */
     public void showWelcome() {
         this.showLine();
@@ -95,14 +95,14 @@ public class Ui {
     }
 
     /**
-     * Prints the goodbye message when the chatbot shuts down
+     * Prints the goodbye message when the chatbot shuts down.
      */
     public void showGoodbye() {
         System.out.println("     Bye. Hope to see you again soon!");
     }
 
     /**
-     * Prints the error message to the user
+     * Prints the error message to the user.
      *
      * @param errorMessage The specified error message.
      */

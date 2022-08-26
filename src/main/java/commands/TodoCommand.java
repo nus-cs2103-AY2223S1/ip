@@ -9,7 +9,7 @@ import task.TaskType;
 import task.Todo;
 
 /**
- * Creates a new Todo
+ * Creates a new Todo.
  */
 public class TodoCommand extends Command {
     private final String[] inputStrings;
