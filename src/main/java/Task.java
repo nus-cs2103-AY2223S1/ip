@@ -18,9 +18,6 @@ public class Task {
 
     @Override
     public String toString() {
-<<<<<<< HEAD
-        return String.format("[%c] %s", isMarked ? 'X' : ' ', description);
-=======
         return String.format("[%s][%s] %s", this.taskTypeString(),isMarked ? "X" : " ", description);
     }
 
@@ -44,6 +41,5 @@ public class Task {
         default:
             return "";
         }
->>>>>>> 038da11 (Refactor using OOP)
     }
 }

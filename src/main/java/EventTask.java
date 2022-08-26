@@ -27,13 +27,11 @@ public class EventTask extends Task{
         this.endTime = endTime;
     }
 
-<<<<<<< HEAD
-=======
+
     /**
      * Returns the string representation of the event.
      * @return String representation of the event.
      */
->>>>>>> 038da11 (Refactor using OOP)
     @Override
     public String toString() {
         String startTimeString = this.startTime.format(DateTimeFormatter.ofPattern("d/MMM/yy HH:mm"));
