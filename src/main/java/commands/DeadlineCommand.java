@@ -4,6 +4,7 @@ import java.util.List;
 
 import arguments.Argument;
 import arguments.ByArgument;
+import arguments.DatetimeArgument;
 import arguments.DescriptionArgument;
 import exceptions.DukeException;
 import input.Input;
@@ -21,7 +22,7 @@ import task.TaskResponse;
 public class DeadlineCommand extends Command {
     protected TaskModel taskModel;
     protected DescriptionArgument description;
-    protected ByArgument by;
+    protected DatetimeArgument by;
 
     /**
      * Creates new Deadline command
@@ -36,7 +37,7 @@ public class DeadlineCommand extends Command {
     @Override
     public CommandResponse run(Input input) throws DukeException {
         description = new DescriptionArgument(input);
-        by = new ByArgument(input);
+        by = new DatetimeArgument(input);
 
         List<String> errs = Argument.validateArguments(description, by);
 

@@ -1,5 +1,6 @@
 package task;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,7 +51,7 @@ public class TaskModel {
      * @param by When to finish deadline by
      * @return TaskResponse object with newly added deadline task
      */
-    public TaskResponse addDeadline(String description, String by) {
+    public TaskResponse addDeadline(String description, LocalDateTime by) {
         Task deadline = new Deadline(description, by, false);
         tasks.add(deadline);
         return new TaskResponse(deadline, tasks.size());

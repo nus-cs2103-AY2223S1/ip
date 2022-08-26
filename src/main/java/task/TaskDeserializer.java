@@ -2,6 +2,8 @@ package task;
 
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
+
 /**
  * Class that deserialises tasks - needs to be changed each time a task format is updated or added
  */
@@ -19,7 +21,8 @@ public class TaskDeserializer {
         case EVENT:
             return new Event(description, taskObj.getString("at"), isDone);
         case DEADLINE:
-            return new Deadline(description, taskObj.getString("by"), isDone);
+            LocalDateTime by = LocalDateTime.parse(taskObj.getString("by"), Deadline.DATE_FORMATTER);
+            return new Deadline(description, by, isDone);
         default:
             return null;
         }
