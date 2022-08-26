@@ -5,6 +5,4 @@ public abstract class UpdateCommand extends Command {
         super(command);
         this.task = task;
     }
-
-    public abstract void execute();
 }

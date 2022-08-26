@@ -24,7 +24,13 @@ public class UpdateMarkCommand extends UpdateCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(TaskList taskList) {
         super.task.mark();
+    }
+
+    @Override
+    public void execute(TaskList taskList, Ui ui) {
+        this.execute(taskList);
+        ui.printWithDivider(String.format("Nice! I've marked this task as done:\n  %s", super.task.toString()));
     }
 }

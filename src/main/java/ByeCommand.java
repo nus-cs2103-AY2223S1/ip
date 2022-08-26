@@ -4,8 +4,13 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    public void execute() {
-        System.out.println("Bye. Hope to see you again soon!\n");
-        System.exit(0);
+    public void execute(TaskList taskList) {
+        super.isExit = true;
+    }
+
+    @Override
+    public void execute(TaskList taskList, Ui ui) {
+        this.execute(taskList);
+        ui.printWithDivider("Bye. Hope to see you again soon!");
     }
 }

@@ -24,7 +24,13 @@ public class UpdateUnmarkCommand extends UpdateCommand {
     }
 
     @Override
-    public void execute() {
+    public void execute(TaskList taskList) {
         super.task.unmark();
+    }
+
+    @Override
+    public void execute(TaskList taskList, Ui ui) {
+        this.execute(taskList);
+        ui.printWithDivider(String.format("OK, I've marked this task as not done yet:\n  %s", super.task.toString()));
     }
 }

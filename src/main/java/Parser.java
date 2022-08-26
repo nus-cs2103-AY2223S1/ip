@@ -36,7 +36,7 @@ public abstract class Parser {
                     command = new ByeCommand(commandString);
                     break;
                 case list:
-                    command = new ListCommand(commandString, taskList);
+                    command = new ListCommand(commandString);
                     break;
             }
         }

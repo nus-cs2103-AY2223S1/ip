@@ -6,8 +6,14 @@ public abstract class AddCommand extends Command {
         this.task = task;
     }
 
-    // take in storage and ui
-    public void execute() throws IllegalArgumentException {
-        // call storage to add the task in (into both list of commands and current list of tasks)
+    @Override
+    public void execute(TaskList taskList) {
+        taskList.add(this.task, super.command);
+    }
+
+    @Override
+    public void execute(TaskList taskList, Ui ui) {
+        this.execute(taskList);
+        ui.printWithDivider(String.format("added: %s", this.task.toString()));
     }
 }

@@ -16,10 +16,12 @@ public class Duke {
     // starts taking in the user's commands
     public void run() {
         Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
+        boolean isExit = false;
+        while (!isExit && scanner.hasNext()) {
             String commandString = scanner.nextLine();
             Command command = Parser.parse(commandString, taskList);
-            command.execute();
+            command.execute(this.taskList, this.ui);
+            isExit = command.getIsExit();
         }
     }
 
