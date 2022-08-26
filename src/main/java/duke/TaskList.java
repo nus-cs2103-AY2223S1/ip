@@ -11,6 +11,10 @@ public class TaskList {
 
     private ArrayList<Task> taskArrayList;
 
+    /**
+     * Constructor.
+     * @param s Initialisation of TaskList involves loading data from the file.
+     */
     public TaskList(Scanner s) {
         taskArrayList = new ArrayList<>();
         while (s.hasNext()) {
@@ -66,28 +70,52 @@ public class TaskList {
     }
 
     /**
-     * Method to add a task.
+     * Adds a task to the task list.
+     * @param task The task to be added.
      */
     public void addTask(Task task) {
         taskArrayList.add(task);
     }
 
+    /**
+     * Deletes a task from the task list.
+     * @param index The index of the task to be deleted.
+     */
     public void deleteTask(int index) {
         taskArrayList.remove(index - 1);
     }
 
+    /**
+     * Marks a tast from the task list as done.
+     * @param index The index of the task to be marked.
+     */
     public void markTask(int index) { taskArrayList.get(index-1).markDone(); }
 
+    /**
+     * Unmarks a test from the task list as not done yet.
+     * @param index The index of the task to be unmarked.
+     */
     public void unmarkTask(int index) { taskArrayList.get(index-1).unmarkDone(); }
 
+    /**
+     * Retrieves a task from the task list.
+     * @param index The index of the task to be retrieved.
+     * @return The retrieved task.
+     */
     public Task getTask(int index) {
         return taskArrayList.get(index-1);
     }
 
+    /**
+     * @return The number of tasks in the task list.
+     */
     public int listSize() {
         return taskArrayList.size();
     }
 
+    /**
+     * @return Iterator object that returns the tasks in the task list.
+     */
     public ListIterator<Task> getIterator() {
         return taskArrayList.listIterator();
     }

@@ -9,12 +9,19 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor.
+     * @param filePath
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         tasks = new TaskList(storage.load());
     }
 
+    /**
+     * Initialises key objects and prompts user input.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
