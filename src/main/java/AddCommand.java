@@ -12,7 +12,7 @@ public class AddCommand extends Command {
     public void execute(TaskList tasks) throws DukeException {
         switch(type) {
             case "todo":
-                Task tTask = new ToDoTask(description.split(" ")[0]);
+                Task tTask = new ToDoTask(description);
                 tasks.addTask(tTask);
                 break;
             case "deadline":

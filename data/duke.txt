@@ -1,0 +1,5 @@
+[T][X] borrow book
+[T][X] read book
+[D][ ] return book (by: MAR 04 2022)
+[E][ ] book session (at: Monday 3pm )
+[T][X] book review 

@@ -41,4 +41,3 @@ public class TaskList {
     }
 }
 // must wait for data to be saved before entering another command
-// do not open duke.txt before running as opening it will create the first empty line 
