@@ -1,10 +1,5 @@
 package duke;
 
-import javafx.scene.Scene;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 /**
  * The main class of the Duke application.
  */

@@ -1,3 +1,5 @@
+package duke.ui;
+
 import duke.Duke;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,10 +8,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.util.Objects;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
+ * Source: https://se-education.org/guides/tutorials/javaFxPart4.html
  */
 public class MainWindow extends AnchorPane {
+    private static final Image USER_IMAGE = new Image(Objects.requireNonNull(MainWindow.class.getResourceAsStream(
+            "/images/DaUser.png")));
+    private static final Image DUKE_IMAGE = new Image(Objects.requireNonNull(MainWindow.class.getResourceAsStream(
+            "/images/DaDuke.png")));
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -18,22 +28,18 @@ public class MainWindow extends AnchorPane {
     private TextField userInput;
     @FXML
     private Button sendButton;
-
     private Duke duke;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
-    private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/DaDuke.png"));
+    public MainWindow() {
+    }
 
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
-    public void setDuke(Duke d) {
-        duke = d;
-    }
-
-    public MainWindow() {
+    public void setDuke(Duke duke) {
+        this.duke = duke;
     }
 
     /**
@@ -45,8 +51,8 @@ public class MainWindow extends AnchorPane {
         String input = userInput.getText();
         String response = duke.getResponse(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getDukeDialog(response, dukeImage)
+                DialogBox.getUserDialog(input, USER_IMAGE),
+                DialogBox.getDukeDialog(response, DUKE_IMAGE)
         );
         userInput.clear();
     }

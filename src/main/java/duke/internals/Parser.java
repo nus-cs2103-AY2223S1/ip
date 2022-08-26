@@ -1,4 +1,4 @@
-package duke;
+package duke.internals;
 
 import duke.command.ByeCommand;
 import duke.command.Command;
