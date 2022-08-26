@@ -61,11 +61,11 @@ public class Parser {
 
         String inputKeyword = input[0];
 
-        Keyword k = Keyword.getKeyword(inputKeyword);
+        Keyword keyword = Keyword.getKeyword(inputKeyword);
 
         String[] description;
 
-        switch (k) {
+        switch (keyword) {
             case BYE:
                 return new ExitCommand();
             case LIST:
