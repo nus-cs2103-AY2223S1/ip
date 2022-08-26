@@ -1,8 +1,15 @@
+package storage;
+
+import duke.DukeException;
+import task.Event;
+import task.Task;
+import task.Todo;
+import task.TaskList;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Storage {
@@ -71,7 +78,7 @@ public class Storage {
                 arr.add(add);
             }
         }
-        //if Deadline
+        //if task.Deadline
         else if (t.equals("D")) {
             int pos = str.indexOf("(") - 1;
             if (d) {

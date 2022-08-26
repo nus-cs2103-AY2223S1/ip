@@ -1,8 +1,11 @@
+package task;
+
+import task.Task;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 
-public class Deadline extends Task{
+public class Deadline extends Task {
     protected String by;
 
     protected String output;

@@ -1,8 +1,18 @@
+package parser;
+
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
+import task.TaskList;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
+
+
 
 public class Parser {
 
@@ -19,7 +29,7 @@ public class Parser {
     public Parser(TaskList list, String str) {
         String[] input = str.split(" ");
         this.taskList = list;
-        this.listOfActions = this.taskList.taskArray;
+        this.listOfActions = this.taskList.getTaskList();
         if (input.length == 1) {
             if (input[0].equals("bye")) {
                 this.type = "bye";
@@ -56,7 +66,7 @@ public class Parser {
         } else if (input[0].equals("mark")) {
             if (input.length == 2) {
                 this.type = "mark";
-                list.taskArray.get(Integer.parseInt(input[1]) - 1).mark();
+                list.getTaskList().get(Integer.parseInt(input[1]) - 1).mark();
                 System.out.println("----------------------\n" + "Congrats on completing :)\n" +
                         listOfActions.get(Integer.parseInt(input[1]) - 1) + "\n----------------------\n");
                 this.isErreneous = false;
@@ -64,7 +74,7 @@ public class Parser {
         } else if (input[0].equals("unmark")) {
             if (input.length == 2) {
                 this.type = "unmark";
-                list.taskArray.get(Integer.parseInt(input[1]) - 1).unMark();
+                list.getTaskList().get(Integer.parseInt(input[1]) - 1).unMark();
                 System.out.println("----------------------\n" + "One more mission ;)\n" +
                         listOfActions.get(Integer.parseInt(input[1]) - 1) + "\n----------------------\n");
                 this.isErreneous = false;

@@ -1,4 +1,6 @@
-public class Event extends Task{
+package task;
+
+public class Event extends Task {
     protected String at;
     protected String string_Date;
     protected String string_Time;

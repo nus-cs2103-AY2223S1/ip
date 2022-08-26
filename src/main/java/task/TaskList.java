@@ -1,3 +1,8 @@
+package task;
+
+import duke.DukeException;
+import task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -52,8 +57,8 @@ public class TaskList {
         size--;
     }
 
-    public void increaseSize() {
-        size++;
+    public ArrayList<Task> getTaskList() {
+        return this.taskArray;
     }
 
     public String getList() {

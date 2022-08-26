@@ -1,7 +1,15 @@
+package duke;
+
 import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
+import ui.UI;
+import task.*;
+import storage.Storage;
+import parser.Parser;
+
+
 
 public class Duke {
 
@@ -38,14 +46,15 @@ public class Duke {
         String userInput = sc.nextLine();
         while (end != 1) {
             //If user wants to check the list
-            String output = list(tasks.taskArray, currentAction);
+            String output = list(tasks.getTaskList(), currentAction);
             String[] input = userInput.split(" ");
-            Parser parse = new Parser(this.tasks, userInput);
+            Parser parse = new Parser(tasks, userInput);
             if (parse.isErreneous()) {
                 type = parse.getType();
                 ui.showInaccurateInput();
             } else  {
-                if (parse.isAction) {
+                //change from action to getAction()
+                if (parse.getIsAction()) {
                     currentAction++;
                 }
                 type = parse.getType();
