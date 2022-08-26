@@ -1,3 +1,5 @@
+package duke.task;
+
 public class Event extends Task{
     protected String at;
 
@@ -5,6 +7,11 @@ public class Event extends Task{
         super(description);
         this.type = Type.EVENT;
         this.at = at;
+    }
+
+    @Override
+    public String toDataString() {
+        return "E" + super.toDataString() + at;
     }
 
     @Override

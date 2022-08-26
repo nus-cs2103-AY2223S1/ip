@@ -1,1 +1,6 @@
-DEADLINE|false|todo|2019-10-15
+D|true|todo|2019-10-15
+T|false|hello|
+T|true|da da thing|
+T|false|fsdfsfgergr|
+T|false|something|
+D|false|aws|2000-10-02

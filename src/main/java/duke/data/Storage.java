@@ -1,3 +1,7 @@
+package duke.data;
+
+import duke.task.*;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,25 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Database {
-    
+public class Storage {
+    public static char LINE_SEPARATOR = '|';
     private File file;
-    public static char LINE_SEPARATOR = '|';    
-    public Database() {
-        setup();
-    }
     
-    public void setup() {
+    public Storage(String filePath) {
+        this.setup(filePath);
+    }
+
+    public void setup(String filePath) {
         String curDirectory = System.getProperty("user.dir");
         String directoryName = "data";
-        String fileName = "duke.txt";
 
         File directory = new File(curDirectory + "/" + directoryName);
         if (!directory.exists()) {
             directory.mkdir();
         }
-
-        File file = new File(directoryName + "/" + fileName);
+        
+        File file = new File(curDirectory + "/" + filePath);
         try {
             if (!file.exists()) {
                 file.createNewFile();
@@ -34,10 +37,9 @@ public class Database {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
-        
         this.file = file;
     }
-    
+
     public List<Task> load() {
         List<Task> newList = new ArrayList<>();
         try {
@@ -49,66 +51,42 @@ public class Database {
                 Task task;
                 String desc = strArr[2];
                 switch(strArr[0]) {
-                    case "TODO":
+                    case "T":
                         task = new Todo(desc);
                         break;
-                    case "EVENT":
+                    case "E":
                         task = new Event(desc, strArr[3]);
                         break;
-                    case "DEADLINE":
+                    case "D":
                         task = new Deadline(desc, LocalDate.parse(strArr[3]));
                         break;
                     default:
                         throw new IOException();
                 }
                 if (strArr[1].equals("true")) {
-                    Task.markAsDone(task);    
+                    TaskList.markAsDone(task);
                 }
                 newList.add(task);
             }
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
-            System.out.println("Error: Could not load file into array");
+            System.out.println("Error with input file");
         } catch (DateTimeParseException e) {
             System.out.println("Deadline format is incorrect");
         }
         return newList;
     }
-    
-    public void store(List<Task> taskList) {
 
-        StringBuilder buffer = new StringBuilder();
-    
-        
-        for (Task task : taskList) {
-            StringBuilder row = new StringBuilder();
-            row.append(task.type);
-            row.append(LINE_SEPARATOR);
-            row.append(task.isDone);
-            row.append(LINE_SEPARATOR);
-            row.append(task.description);
-            
-            switch (task.type) {
-                case EVENT:
-                    row.append(LINE_SEPARATOR);
-                    row.append(((Event) task).at);
-                case DEADLINE:
-                    row.append(LINE_SEPARATOR);
-                    row.append(((Deadline) task).by);
-                default:
-                    break;
-            }
-            buffer.append(row).append("\n");
-        }
-        
+    public void store(TaskList taskList) {
+        String dataList = taskList.getDataList();
         try {
             PrintWriter pw = new PrintWriter(file);
-            pw.print(buffer.toString());
+            pw.print(dataList);
             pw.close();
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
 }

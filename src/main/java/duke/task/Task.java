@@ -1,0 +1,37 @@
+package duke.task;
+
+import static duke.common.Constants.LINE_SEPARATOR;
+
+public class Task {
+    protected String description;
+    protected boolean isDone;
+    protected enum Type {
+        DEADLINE,
+        EVENT,
+        TODO
+    }
+    protected Type type;
+    
+    public Task(String description) {
+        this.description = description;
+        this.isDone = false;
+    }
+
+    public String getStatusIcon() {
+        return (isDone ? "X" : " ");
+    }
+    
+    public String toDataString() {
+        return LINE_SEPARATOR 
+                + isDone 
+                + LINE_SEPARATOR 
+                + description 
+                + LINE_SEPARATOR;
+    }
+    
+    @Override
+    public String toString() {
+        return "[" + getStatusIcon() + "] " + description;
+    }
+
+}
