@@ -15,9 +15,9 @@ public class Task {
     @Override
     public String toString(){
         if (done) {
-            return "[X] " + task;
+            return " | X | " + task;
         } else {
-            return "[ ] " + task;
+            return " |   |  " + task;
         }
     }
 
