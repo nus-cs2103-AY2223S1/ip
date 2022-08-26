@@ -1,7 +1,9 @@
 package dobby;
 
-import dobby.commands.*;
-import dobby.tasks.*;
+import dobby.tasks.Deadline;
+import dobby.tasks.Event;
+import dobby.tasks.Task;
+import dobby.tasks.Todo;
 
 import java.util.ArrayList;
 import java.util.List;

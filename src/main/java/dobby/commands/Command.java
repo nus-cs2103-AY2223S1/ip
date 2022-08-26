@@ -1,8 +1,9 @@
 package dobby.commands;
 
-import dobby.*;
-
 import java.io.IOException;
+
+import dobby.DobbyList;
+import dobby.UserInput;
 
 /**
  * The abstract class for all commands.

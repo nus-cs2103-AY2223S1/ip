@@ -1,11 +1,10 @@
 package dobby;
 
-import dobby.commands.*;
-import dobby.tasks.*;
+import dobby.commands.Command;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
+import java.io.IOException;
+
 
 /**
  * Dobby is a chat-bot that helps user track their daily tasks.
@@ -20,14 +19,11 @@ public class Dobby {
      *
      * @param filePath Path of file to be used for storing tasks.
      */
+    @SuppressWarnings("checkstyle:EmptyCatchBlock")
     public Dobby(String filePath) {
         dobbyList = new DobbyList();
         ui = new UserInput();
-        try {
-            DobbyIO.load(dobbyList, filePath);
-        } catch (FileNotFoundException e) {
-
-        }
+        DobbyIO.load(dobbyList, filePath);
     }
 
     /**

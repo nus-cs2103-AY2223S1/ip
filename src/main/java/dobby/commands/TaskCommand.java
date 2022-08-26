@@ -1,14 +1,13 @@
 package dobby.commands;
 
+import java.util.Objects;
+
 import dobby.DobbyChat;
 import dobby.DobbyList;
 import dobby.UserInput;
 import dobby.tasks.Deadline;
 import dobby.tasks.Event;
 import dobby.tasks.Todo;
-
-
-import java.util.Objects;
 
 /**
  * Class that adds new tasks to the list
@@ -36,8 +35,7 @@ public class TaskCommand extends Command {
             } else {
                 date = ui.getDate();
                 if (Objects.equals(date, "wrongDateFormat")) {
-//                    //this is blanked out to prevent double wrongDateFormat messages
-//                    DobbyChat.wrongDateFormat();
+
                 } else if (Objects.equals(date, "noDate")) {
                     if (cmd.equals("event")) {
                         DobbyChat.noEventDate();

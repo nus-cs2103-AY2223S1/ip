@@ -1,12 +1,11 @@
 package dobby;
 
-import java.io.BufferedWriter;
 import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FileReader;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 
 /**
  * DobbyIO is a class that handles the loading and saving of tasks to and from the file.
@@ -31,9 +30,8 @@ public class DobbyIO {
      *
      * @param dl list of tasks to load to
      * @param filePath path of file to load from
-     * @throws FileNotFoundException file cannot be found
      */
-    public static void load(DobbyList dl, String filePath) throws FileNotFoundException {
+    public static void load(DobbyList dl, String filePath) {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
             String task;
