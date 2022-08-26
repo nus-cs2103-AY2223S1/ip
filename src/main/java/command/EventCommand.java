@@ -27,9 +27,9 @@ public class EventCommand extends Command {
                 } else {
                     LocalDate ld = LocalDate.parse(split[1]);
                     tasks.addTask(new Event(split[0], ld));
-                    storage.saveLocalData(tasks.TASKS);
+                    storage.saveLocalData(tasks.getTasks());
                     System.out.println("Got it, I've added this task:");
-                    System.out.println(tasks.TASKS.get(tasks.size() - 1));
+                    System.out.println(tasks.getTasks().get(tasks.size() - 1));
                     System.out.println("Now you have " + tasks.size() + " tasks in the list.");
                 }
             } else {

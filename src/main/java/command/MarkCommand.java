@@ -17,10 +17,10 @@ public class MarkCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         int index = Integer.parseInt(str.substring(5));
         if (index <= tasks.size() && index > 0) {
-            Task task = tasks.TASKS.get(index - 1);
+            Task task = tasks.getTasks().get(index - 1);
             if (!task.isDone()) {
                 task.toggleDoneness();
-                storage.saveLocalData(tasks.TASKS);
+                storage.saveLocalData(tasks.getTasks());
                 System.out.println("Good job for doing this task!");
                 System.out.println(task);
             } else {

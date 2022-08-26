@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class TaskList {
 
-    public final ArrayList<Task> TASKS;
+    private final ArrayList<Task> TASKS;
 
     /**
      * Initializes a TaskList object with an empty ArrayList.
@@ -32,6 +32,17 @@ public class TaskList {
     public TaskList(ArrayList<Task> taskList) {
         TASKS = taskList;
     }
+
+    /**
+     * Gets the ArrayList in the TaskList.
+     *
+     * @returns The ArrayList.
+     */
+
+    public ArrayList<Task> getTasks() {
+        return this.TASKS;
+    }
+
 
     /**
      * Adds the given task.
