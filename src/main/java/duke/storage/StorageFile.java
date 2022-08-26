@@ -1,7 +1,11 @@
 package duke.storage;
 
 import duke.exceptions.UnableToSaveException;
-import duke.task.*;
+import duke.task.TaskList;
+import duke.task.Task;
+import duke.task.TodoTask;
+import duke.task.DeadlineTask;
+import duke.task.EventTask;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -73,15 +77,15 @@ public class StorageFile {
                 taskDescription = inputArray[2];
                 Task task = null;
                 switch (taskType) {
-                    case "T":
-                        task = new TodoTask(taskDescription);
-                        break;
-                    case "D":
-                        task = new DeadlineTask(taskDescription, inputArray[3]);
-                        break;
-                    case "E":
-                        task = new EventTask(taskDescription, inputArray[3]);
-                        break;
+                case "T":
+                    task = new TodoTask(taskDescription);
+                    break;
+                case "D":
+                    task = new DeadlineTask(taskDescription, inputArray[3]);
+                    break;
+                case "E":
+                    task = new EventTask(taskDescription, inputArray[3]);
+                    break;
                 }
 
                 if (task != null && inputArray[1].equals("Done")) {

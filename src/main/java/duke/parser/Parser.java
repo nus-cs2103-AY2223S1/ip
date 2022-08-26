@@ -32,26 +32,26 @@ public class Parser {
         final String command = matcher.group("commandWord").toLowerCase();
 
         switch (command) {
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
-            case TodoCommand.COMMAND_WORD:
-                return prepareTodoTask();
-            case DeadlineCommand.COMMAND_WORD:
-                return prepareDeadlineTask();
-            case EventCommand.COMMAND_WORD:
-                return prepareEventTask();
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
-            case MarkCommand.COMMAND_WORD:
-                return prepareMark();
-            case DeleteCommand.COMMAND_WORD:
-                return prepareDelete();
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
-            case FindCommand.COMMAND_WORD:
-                return prepareFindTask();
-            default:
-                return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
+        case TodoCommand.COMMAND_WORD:
+            return prepareTodoTask();
+        case DeadlineCommand.COMMAND_WORD:
+            return prepareDeadlineTask();
+        case EventCommand.COMMAND_WORD:
+            return prepareEventTask();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
+        case MarkCommand.COMMAND_WORD:
+            return prepareMark();
+        case DeleteCommand.COMMAND_WORD:
+            return prepareDelete();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
+        case FindCommand.COMMAND_WORD:
+            return prepareFindTask();
+        default:
+            return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
         }
     }
 

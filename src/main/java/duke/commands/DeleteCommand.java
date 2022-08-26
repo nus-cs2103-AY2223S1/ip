@@ -23,7 +23,8 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
+    public void execute(
+            TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException {
         taskList.deleteTask(taskNumber);
         storage.saveList(taskList);
     }
