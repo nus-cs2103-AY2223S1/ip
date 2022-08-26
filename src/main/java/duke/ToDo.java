@@ -1,7 +1,8 @@
 package duke;
-public class ToDos extends Task{
+
+public class ToDo extends Task{
     private String type;
-    ToDos(String name, boolean isDone) {
+    ToDo(String name, boolean isDone) {
         super(name, isDone);
         this.type = "[T]";
     }
@@ -10,3 +11,4 @@ public class ToDos extends Task{
         return this.type + super.getStatus();
     }
 }
+

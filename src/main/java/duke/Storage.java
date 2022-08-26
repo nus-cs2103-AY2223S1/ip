@@ -3,10 +3,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Scanner;
 
 public class Storage {
@@ -31,9 +28,9 @@ public class Storage {
 
                 if (typeOfTask.equals("T")) {
                     if (gotMarkSymbol) {
-                        listStored.add(new ToDos(string.substring(7), true));
+                        listStored.add(new ToDo(string.substring(7), true));
                     } else {
-                        listStored.add(new ToDos(string.substring(6), false));
+                        listStored.add(new ToDo(string.substring(6), false));
                     }
                 } else {
                     int openBracketIndex = string.indexOf("(");
@@ -44,18 +41,18 @@ public class Storage {
 
                     if (typeOfTask.equals("D")) {
                         if (gotMarkSymbol) {
-                            listStored.add(new Deadlines(nameOfMarkedTaskForDeadlineOrEventTask,
+                            listStored.add(new Deadline(nameOfMarkedTaskForDeadlineOrEventTask,
                                     true, atOrByInfo));
                         } else {
-                            listStored.add(new Deadlines(nameOfUnmarkedTaskForDeadlineOrEventTask,
+                            listStored.add(new Deadline(nameOfUnmarkedTaskForDeadlineOrEventTask,
                                     false, atOrByInfo));
                         }
                     } else if (typeOfTask.equals("E")) {
                         if (gotMarkSymbol) {
-                            listStored.add(new Events(nameOfMarkedTaskForDeadlineOrEventTask,
+                            listStored.add(new Event(nameOfMarkedTaskForDeadlineOrEventTask,
                                     true, atOrByInfo));
                         } else {
-                            listStored.add(new Events(nameOfUnmarkedTaskForDeadlineOrEventTask,
+                            listStored.add(new Event(nameOfUnmarkedTaskForDeadlineOrEventTask,
                                     false, atOrByInfo));
                         }
                     }

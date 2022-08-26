@@ -1,8 +1,9 @@
 package duke;
-public class Events extends Task{
+
+public class Event extends Task{
     String time;
     String type;
-    Events(String name, boolean isDone, String time){
+    Event(String name, boolean isDone, String time){
         super(name, isDone);
         this.time = time;
         this.type = "[E]";

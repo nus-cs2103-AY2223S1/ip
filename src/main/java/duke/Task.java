@@ -4,13 +4,13 @@ public class Task {
     protected String name;
     protected boolean isDone;
 
-    Task(String name, boolean isDone){
+    Task(String name, boolean isDone) {
         this.name = name;
         this.isDone = isDone;
     }
 
     public String getStatusIcon() {
-       return(this.isDone? "[X] " : "[] " );
+        return (this.isDone ? "[X] " : "[] ");
     }
 
     public void mark() {
@@ -28,8 +28,7 @@ public class Task {
     public String getStatus() {
         return this.getStatusIcon() + "" + this.name;
     }
-
-    }
+}
 
 
 

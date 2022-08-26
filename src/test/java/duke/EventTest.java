@@ -8,6 +8,6 @@ public class EventTest {
     @Test
     public void toStringTest() {
         assertEquals("[E][] outing (at: 2-4pm)",
-                new Events("outing",false, "2-4pm").toString());
+                new Event("outing",false, "2-4pm").toString());
     }
 }

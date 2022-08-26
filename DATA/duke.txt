@@ -3,4 +3,9 @@
 [T][] 3
 [T][] 1
 [T][] 2
-[D][X] proj (by: Aug 20 2022)
+[T][] book 
+[T][] book read
+[D][] study book (by: Aug 20 2002)
+[T][] 100
+[D][X] test (by: Feb 22 2022)
+[E][] outing (at: 2pm)

@@ -1,4 +1,5 @@
 package duke;
+
 public class Parser {
     String stringToParse;
     Parser(String stringToParse) {

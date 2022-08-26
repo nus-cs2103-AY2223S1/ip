@@ -8,7 +8,7 @@ public class TaskList {
         this.list = list;
     }
 
-    void showList(){
+    void showList() {
         Ui ui = new Ui();
         ui.displayListUi(this.list);
     }
