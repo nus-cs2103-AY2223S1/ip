@@ -9,6 +9,7 @@ import java.time.format.DateTimeParseException;
  */
 public class ParsedData {
     private final String DEFAULT_TIME_FORMAT = "dd/MM/yyyy HH:mm";
+    private final String PRINT_TIME_FORMAT = "MMM dd yyyy HH:mm";
     private DateTimeFormatter formatter;
     private boolean isDone;
     private String description;
@@ -30,7 +31,8 @@ public class ParsedData {
         try {
             this.formatter = DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT);
             this.dateTime = LocalDateTime.parse(time, this.formatter);
-            this.timeText = this.formatter.format(this.dateTime).
+            DateTimeFormatter printFormat = DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT);
+            this.timeText = printFormat.format(this.dateTime).
                     toString().replaceAll("-", "/").
                     replace('T', ' ');
         } catch (DateTimeParseException e) {
@@ -54,7 +56,8 @@ public class ParsedData {
         try {
             this.formatter = DateTimeFormatter.ofPattern(DEFAULT_TIME_FORMAT);
             this.dateTime = LocalDateTime.parse(time, this.formatter);
-            this.timeText = this.formatter.format(this.dateTime).
+            DateTimeFormatter printFormat = DateTimeFormatter.ofPattern(PRINT_TIME_FORMAT);
+            this.timeText = printFormat.format(this.dateTime).
                     toString().replaceAll("-", "/").
                     replace('T', ' ');
         } catch (DateTimeParseException e) {

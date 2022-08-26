@@ -1,5 +1,5 @@
-D| |buy things|by|tonight
-D| |throw stuff|by|tomorrow
-T| |throw stuff||
-D|X|fix bugs|by|26/08/2022 12:00
-E| |watch lecture|by|30/04/2023 13:14
+D| |buy things|by|tonight|
+D| |throw stuff|by|tomorrow|
+T| |throw stuff|||
+D|X|fix bugs|by|Aug 26 2022 12:00|
+E| |watch lecture|by|Apr 30 2023 13:14|
