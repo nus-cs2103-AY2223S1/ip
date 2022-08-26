@@ -3,24 +3,32 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Storage {
     private Scanner scanner;
 
-    public Storage(Ui ui, String outputFileFolder, String outputFileName) {
+    // for third arg, e.g. src/main/data/data.txt -> pass in src, main, data, data.txt
+    public Storage(Ui ui, String fileName, String... directories) {
+        // platform independent paths
+        String directoriesString = Arrays
+                .stream(directories)
+                .reduce("", (prev, curr) -> prev + curr + File.separator);
+        String pathString = directoriesString + fileName;
+
         // create file and directory if does not exist
-        if (!Files.exists(Paths.get(outputFileFolder))) {
+        if (!Files.exists(Paths.get(pathString))) {
             try {
-                Files.createDirectories(Paths.get(outputFileName));
+                Files.createDirectories(Paths.get(directoriesString));
             } catch (IOException e) {
                 ui.printWithDivider("There was a problem creating the output file directory.");
                 System.exit(1);
             }
 
             try {
-                Files.createFile(Paths.get(outputFileFolder + File.separator + outputFileName));
+                Files.createFile(Paths.get(pathString));
             } catch (IOException e) {
                 ui.printWithDivider("There was a problem creating the output file.");
                 System.exit(1);
@@ -28,7 +36,7 @@ public class Storage {
         }
 
         // initialise the scanner for the file
-        File file = new File(outputFileFolder + File.separator + outputFileName);
+        File file = new File(pathString);
         try {
             this.scanner = new Scanner(file);
         } catch (FileNotFoundException e) {
@@ -43,8 +51,8 @@ public class Storage {
             ui.printWithDivider("No previous tasks found, starting with empty task list!");
             return;
         } else {
-            ui.printWithDivider("Reading previous tasks...");
             ui.printDivider();
+            ui.println("Reading previous tasks...");
             while (this.scanner.hasNext()) {
                 String commandString = this.scanner.nextLine();
                 String[] commandArr = commandString.split(" ");
@@ -75,7 +83,7 @@ public class Storage {
                 }
 
                 if (!Objects.isNull(command)) {
-                    command.execute();
+                    command.execute(taskList);
                 }
             }
             ui.printDivider();

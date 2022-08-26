@@ -5,9 +5,9 @@ public class Duke {
     private TaskList taskList;
     private Ui ui;
 
-    public Duke(String path, String fileName) {
+    public Duke(String fileName, String... directories) {
         this.ui = new Ui();
-        this.storage = new Storage(ui, path, fileName);
+        this.storage = new Storage(ui, fileName, directories);
         this.taskList = new TaskList();
         ui.showWelcome();
         storage.load(taskList, ui);
@@ -26,6 +26,6 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("data", "data.txt").run();
+        new Duke("data.txt", "data").run();
     }
 }
