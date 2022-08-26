@@ -161,9 +161,9 @@ public class Duke {
                 String time = input.split("/")[1];
                 String[] description = inputSlashSplit[0].split(" ");
                 if (inputSplit[0].equals("deadline")) {
-                    taskList.add(new Deadline(String.join(" ", Arrays.copyOfRange(description, 1, description.length)), time));
+                    taskList.add(new Deadline(String.join(" ", Arrays.copyOfRange(description, 1, description.length)), time, false));
                 } else {
-                    taskList.add(new Event(String.join(" ", Arrays.copyOfRange(description, 1, description.length)), time));
+                    taskList.add(new Event(String.join(" ", Arrays.copyOfRange(description, 1, description.length)), time, false));
                 }
                 printAddTaskSuccessfully(taskList);
                 break;

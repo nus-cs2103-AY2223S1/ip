@@ -1,14 +1,15 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class Deadline extends Task {
-    protected String by;
+    protected LocalDate by;
 
-    Deadline(String description, String by, boolean done) {
+    public Deadline(String description, String by, boolean done) {
         super(description, 'D', done);
-        this.by = by;
-    }
-
-    public Deadline(String description, String by) {
-        super(description, 'D', false);
-        this.by = by;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        this.by = LocalDate.parse(Arrays.stream(by.split(" ")).skip(1).collect(Collectors.joining("")), formatter);
     }
 
     public static Deadline fromSaveString(String saveString) throws RuntimeException {
@@ -17,18 +18,18 @@ public class Deadline extends Task {
             throw new RuntimeException("Tried to read unexpected save data.");
         }
         String description = splitSaveString[1];
-        String by = splitSaveString[2];
+        String by = "by " + splitSaveString[2];
         boolean done = splitSaveString[0].endsWith("1");
         return new Deadline(description, by, done);
     }
 
     @Override
     public String toString() {
-        return super.toString() + " (" + by.replaceFirst(" ", ": ") + ")";
+        return super.toString() + " (on " + by.toString() + ")";
     }
 
     @Override
     public String saveData() {
-        return super.saveData() + String.format(",\"%s\"", this.by);
+        return super.saveData() + String.format(",\"%s\"", this.by.toString());
     }
 }
