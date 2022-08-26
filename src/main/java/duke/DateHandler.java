@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 
+/**
+ * Constructor for DateHandler
+ */
 public class DateHandler {
     /**
      * Returns a pre-configured DateTimeFormatter
