@@ -3,7 +3,14 @@ package duke;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * A class that tests the Event class.
+ */
 public class EventTest {
+
+    /**
+     * Tests if the toString() method of the Event class works as expected.
+     */
     @Test
     public void descriptionTest() {
         String description = "soccer match";

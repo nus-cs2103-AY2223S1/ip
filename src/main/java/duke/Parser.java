@@ -3,17 +3,29 @@ package duke;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * A class that handles the user input commands.
+ */
 public class Parser {
 
     private TaskList taskList;
 
     private Storage storage;
 
+    /**
+     * A constructor that initialises the Parser object.
+     *
+     * @param taskList List of tasks stored as an array.
+     * @param storage Stores the data of the list of tasks.
+     */
     public Parser(TaskList taskList, Storage storage) {
         this.taskList = taskList;
         this.storage = storage;
     }
 
+    /**
+     * Parses the input commands entered by the user.
+     */
     public void parse() {
         try {
             Scanner sc = new Scanner(System.in);

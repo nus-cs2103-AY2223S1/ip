@@ -5,11 +5,20 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
+/**
+ * A class that creates deadline task.
+ */
 public class Deadline extends Task {
     protected String by;
     protected LocalDate date;
     protected LocalTime time;
 
+    /**
+     * A constructor that initialises the deadline task.
+     *
+     * @param description Description of the deadline task.
+     * @param by Describes the date and time for the deadline.
+     */
     public Deadline(String description, String by) {
         super(description);
         this.by = by;
@@ -19,6 +28,9 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Stores the date and time of the task as LocalDate and LocalTime.
+     */
     public void setDateAndTime() {
         int space = this.by.indexOf(' ');
         String date = this.by.substring(0, space);
@@ -50,6 +62,12 @@ public class Deadline extends Task {
         this.time = LocalTime.parse(time);
     }
 
+    /**
+     * Returns string of the deadline task.
+     *
+     * @inheritDoc Inherits from toString() method but returns description of deadline task.
+     * @return String that describes the deadline task and its deadline.
+     */
     @Override
     public String toString() {
         if (by.contains("/") || by.contains("-")) {

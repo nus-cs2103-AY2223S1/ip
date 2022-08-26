@@ -9,6 +9,10 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * A class that initialises and runs the Duke bot.
+ *
+ */
 public class Duke {
     private Storage storage;
     private TaskList taskList;
@@ -16,6 +20,13 @@ public class Duke {
 
     private Parser parser;
 
+    /**
+     * A constructor that initialises the Duke bot
+     *
+     * @param taskList List of tasks.
+     * @param pathName The path of the text file to store and load data.
+     * @throws IOException
+     */
     public Duke(TaskList taskList, String pathName) throws IOException {
         this.taskList = taskList;
         this.storage = new Storage(pathName, this.taskList);
@@ -26,14 +37,25 @@ public class Duke {
 
     }
 
+    /**
+     * Runs the UI of the bot.
+     */
     public void runUi() {
         this.ui.run();
     }
 
+    /**
+     * Parses the input entered by the user.
+     */
     public void parse() {
         this.parser.parse();
     }
 
+    /**
+     * Runs the Duke bot.
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         try {
             Duke dukeBot = new Duke(new TaskList(new ArrayList<>(100)), "taskList.txt");

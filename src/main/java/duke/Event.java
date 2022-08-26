@@ -4,11 +4,21 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+
+/**
+ * A class that creates the Event task.
+ */
 public class Event extends Task{
     protected String at;
     protected LocalDate date;
     protected LocalTime time;
 
+    /**
+     * A constructor for the Event task.
+     *
+     * @param description Describes the activity of the Event task.
+     * @param at Date and time of the Event task.
+     */
     public Event(String description, String at) {
         super(description);
         this.at = at;
@@ -18,6 +28,9 @@ public class Event extends Task{
         }
     }
 
+    /**
+     * Stores the date and time of the task as LocalDate and LocalTime.
+     */
     public void setDateAndTime() {
         int space = this.at.indexOf(' ');
         String date = this.at.substring(0, space);
@@ -48,6 +61,12 @@ public class Event extends Task{
         this.date = LocalDate.parse(date);
         this.time = LocalTime.parse(time);
     }
+
+    /**
+     * Returns the description of the Event task.
+     *
+     * @return String that describes the activity, date and time of the Event task.
+     */
     @Override
     public String toString() {
         if (this.at.contains("/") || at.contains("-")) {

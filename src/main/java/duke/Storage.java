@@ -8,12 +8,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
+/**
+ * A class that creates the Storage object.
+ */
 public class Storage {
     private String pathName;
     private File file;
 
     private TaskList previousTaskList;
 
+    /**
+     * A constructor that intialises the Storage object.
+     *
+     * @param pathName Path name of the text file where the list of tasks is stored.
+     * @param previousTaskList ArrayList of tasks.
+     * @throws IOException
+     */
     public Storage(String pathName, TaskList previousTaskList) throws IOException {
         this.pathName = pathName;
         this.file = new File(pathName);
@@ -24,12 +34,22 @@ public class Storage {
         }
     }
 
+    /**
+     * Updates the text file where the list of tasks is stored.
+     *
+     * @throws IOException
+     */
     public void writeToFile() throws IOException {
         FileWriter fw = new FileWriter("taskList.txt", false);
         fw.write(this.previousTaskList.printList());
         fw.close();
     }
 
+    /**
+     * Loads the list of tasks from the text file.
+     *
+     * @throws IOException
+     */
     public void loadUpData() throws IOException {
         Scanner sc = new Scanner(this.file);
 
