@@ -52,24 +52,24 @@ public class DukeHandler {
             else if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
                 if (inputParts.get(0).equals("mark")) {
                     Task task = tasks.mark(Integer.parseInt(inputParts.get(1)));
-                    ui.respond("Nice! I've marked this Duke.Duke.task as done: \n" + task.toString());
+                    ui.printResponse("Nice! I've marked this task as done: \n" + task.toString());
                     storage.saveTask(tasks);
                 }
                 if (inputParts.get(0).equals("unmark")) {
                     Task task = tasks.unmark(Integer.parseInt(inputParts.get(1)));
-                    ui.respond("OK, I've marked this Duke.Duke.task as not done yet: \n" + task.toString());
+                    ui.printResponse("OK, I've marked this task as not done yet: \n" + task.toString());
                     storage.saveTask(tasks);
                 }
             }
             else if (input.matches("delete +\\d+")) {
                 Task task = tasks.delete(Integer.parseInt(inputParts.get(1)));
-                ui.deleteTask(task, tasks);
+                ui.printDeletedTask(task, tasks);
                 storage.saveTask(tasks);
             }
             else if (inputParts.get(0).equals("todo")) {
                 Todo newTodo = new Todo(inputParts.get(1), false);
                 tasks.addTask(newTodo);
-                ui.addTask(newTodo, tasks);
+                ui.printAddedTask(newTodo, tasks);
                 storage.saveTask(tasks);
             }
             else if (inputParts.get(0).equals("deadline")) {
@@ -83,7 +83,7 @@ public class DukeHandler {
                         + " 00:00" : deadlineParts[1];
                 Deadline deadlineTask = new Deadline(deadlineParts[0], deadlineDate, false);
                 tasks.addTask(deadlineTask);
-                ui.addTask(deadlineTask, tasks);
+                ui.printAddedTask(deadlineTask, tasks);
                 storage.saveTask(tasks);
             } else if (inputParts.get(0).equals("event")) {
                 String[] eventParts = inputParts.get(1).split(" /at ", 2);
@@ -95,7 +95,7 @@ public class DukeHandler {
                         + " 00:00" : eventParts[1];
                 Event newEvent = new Event(eventParts[0], eventDate, false);
                 tasks.addTask(newEvent);
-                ui.addTask(newEvent, tasks);
+                ui.printAddedTask(newEvent, tasks);
                 storage.saveTask(tasks);
             } else if (inputParts.get(0).equals("find")) {
                 ArrayList<Task> searchResult = tasks.find(inputParts.get(1));

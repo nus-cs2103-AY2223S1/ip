@@ -42,7 +42,7 @@ public class Ui {
      * @param task the task added
      * @param tasks the list of task being modified
      */
-    public void addTask(Task task, TaskList tasks) {
+    public void printAddedTask(Task task, TaskList tasks) {
         System.out.println( "Got it. I've added this task: \n" + task.toString() +
                 "\nNow you have " + tasks.getLength()
                 + " tasks in the list");
@@ -54,7 +54,7 @@ public class Ui {
      * @param task
      * @param tasks
      */
-    public void deleteTask(Task task, TaskList tasks) {
+    public void printDeletedTask(Task task, TaskList tasks) {
         System.out.println( " Noted. I've removed this task: \n" + task.toString() +
                 "\nNow you have " + tasks.getLength()
                 + " tasks in the list");
@@ -64,7 +64,7 @@ public class Ui {
      * Prints out a message that responds to the user input
      * @param response to be printed
      */
-    public void respond(String response) {
+    public void printResponse(String response) {
        System.out.println(response);
     }
 
