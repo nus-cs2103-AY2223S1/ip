@@ -1,4 +1,4 @@
-package tasks;
+package duke.tasks;
 
 /**
  * Tasks with only a description

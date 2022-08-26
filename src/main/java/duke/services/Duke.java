@@ -1,8 +1,10 @@
+package duke.services;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import tasks.*;
+import duke.tasks.*;
 
 /**
  * Personal Assistant that helps you keep track of your tasks
@@ -118,13 +120,13 @@ public class Duke {
         }
 
         ++currWordIndex;
-        StringBuilder dateBuilder = new StringBuilder();
+        StringBuilder timingBuilder = new StringBuilder();
 
         while (currWordIndex < words.length) {
-            dateBuilder.append(words[currWordIndex++]).append(" ");
+            timingBuilder.append(words[currWordIndex++]).append(" ");
         }
 
-        return dateBuilder.deleteCharAt(dateBuilder.length()-1).toString();
+        return timingBuilder.deleteCharAt(timingBuilder.length()-1).toString();
     }
 
     /**

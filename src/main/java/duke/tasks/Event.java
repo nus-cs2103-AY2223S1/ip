@@ -1,4 +1,4 @@
-package tasks;
+package duke.tasks;
 
 /**
  * Tasks that occur at a certain time

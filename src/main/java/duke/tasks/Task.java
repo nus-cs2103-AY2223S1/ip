@@ -1,4 +1,4 @@
-package tasks;
+package duke.tasks;
 
 /**
  * Tasks that can be marked as done or not done
