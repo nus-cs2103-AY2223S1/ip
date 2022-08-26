@@ -14,6 +14,12 @@ public abstract class Command {
         this.commandName = commandName;
     }
 
+    /**
+     * Process the input received and return an appropriate CommandResponse
+     * @param input Input argument
+     * @return CommandResponse with message and exit boolean
+     * @throws DukeException - if any issues occur
+     */
     // Each Command implements its own run method to perform its behaviour (validate necessary arguments, interact
     // with some state and return a response
     public abstract CommandResponse run(Input input) throws DukeException;
