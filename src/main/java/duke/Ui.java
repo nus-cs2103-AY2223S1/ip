@@ -4,6 +4,9 @@ import duke.task.Task;
 
 import java.util.Scanner;
 
+/**
+ * Represents the user interface
+ */
 public class Ui {
 
     private static final String GREETINGS = "Hello! I'm Duke\n" + "What can I do for you?";
@@ -18,30 +21,55 @@ public class Ui {
 
     Scanner sc = new Scanner(System.in);
 
+    /**
+     * Prints greeting message
+     */
     protected void greet() {
         System.out.println(LINE);
         System.out.println(GREETINGS);
         System.out.println(LINE);
     }
 
+    /**
+     * Prints exit message
+     */
     public void exit() {
         System.out.println(EXIT_MESSAGE);
     }
 
+    /**
+     * Prints line break
+     */
     protected void showLine() {
         System.out.println(LINE);
     }
 
+    /**
+     * Prints error message
+     *
+     * @param message Error message
+     */
     protected void showError(String message) {
         System.err.println(message);
     }
 
+    /**
+     * Prints add task message
+     *
+     * @param task Target task
+     * @param tasks Task list
+     */
     public void addTaskMessage(Task task, TaskList tasks) {
         System.out.println(ADD_MESSAGE);
         System.out.println(task.toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 
+    /**
+     * Displays all task in task list
+     *
+     * @param tasks Task list
+     */
     public void displayTasks(TaskList tasks) throws DukeException {
         System.out.println(LIST_MESSAGE);
         for (int i = 1; i <= tasks.size(); i++) {
@@ -49,17 +77,33 @@ public class Ui {
         }
     }
 
+    /**
+     * Prints delete task message
+     *
+     * @param task Task to be deleted
+     * @param tasks Task list
+     */
     public void deleteTaskMessage(Task task, TaskList tasks) {
         System.out.println(DELETE_MESSAGE);
         System.out.println(task.toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
     }
 
+    /**
+     * Prints mark done message
+     *
+     * @param task Target task
+     */
     public void markDone(Task task) {
         System.out.println(DONE_MESSAGE);
         System.out.println(task.toString());
     }
 
+    /**
+     * Prints mark undone message
+     *
+     * @param task Target task
+     */
     public void markUndone(Task task) {
         System.out.println(UNDONE_MESSAGE);
         System.out.println(task.toString());
@@ -77,6 +121,11 @@ public class Ui {
         }
     }
 
+    /**
+     * Reads user's input
+     *
+     * @return user's input
+     */
     protected String readCommand() {
         return sc.nextLine();
     }

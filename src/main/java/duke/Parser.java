@@ -27,6 +27,13 @@ public class Parser {
     private static final String DELETE_COMMAND = "delete";
     private static final String FIND_COMMAND = "find";
 
+    /**
+     * Parses user's input to be a recognisable command
+     *
+     * @param response User's input
+     * @return command
+     * @throws DukeException if User's input is in the wrong format
+     */
     protected static Command parse(String response) throws DukeException {
         String[] cmdDescp = response.split(" ");
         String command = cmdDescp[0];

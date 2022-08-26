@@ -7,12 +7,20 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+/**
+ * Represents storage
+ */
 public class Storage {
 
     private File file;
     private String directoryPath;
     private String filePath;
 
+    /**
+     * Constructs storage
+     *
+     * @param filePath file path to store data
+     */
     Storage(String filePath) {
         this.filePath = filePath;
         this.file = new File(filePath);
@@ -21,6 +29,12 @@ public class Storage {
                 directoryPaths,0,directoryPaths.length - 1));
     }
 
+    /**
+     * Loads existing file
+     *
+     * @return data from file
+     * @throws DukeException if file does not exist
+     */
     protected String load() throws DukeException {
         try {
             Scanner s = new Scanner(this.file);
@@ -38,6 +52,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Saves data
+     *
+     * @param data Data to be saved
+     * @throws DukeException if error in saving file
+     */
     public void save(String data) throws DukeException {
         try {
             FileWriter fileWriter = new FileWriter(filePath);
@@ -48,6 +68,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Creates file
+     *
+     * @throws DukeException if error in creating file
+     */
     protected void createFile() throws DukeException {
         try {
             File newDirectory = new File(directoryPath);
