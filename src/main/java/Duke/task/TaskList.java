@@ -61,4 +61,21 @@ public class TaskList {
         tasks.remove(index-1);
         return temp;
     }
+
+    /**
+     * Returns an ArrayList of Task objects that contains
+     * the searchItem string in the description
+     * @param searchItem
+     * @return ArrayList of Task
+     */
+    public ArrayList<Task> find(String searchItem) {
+        ArrayList<Task> result = new ArrayList<Task>();
+        for (Task task : tasks) {
+            String description = task.getDescription();
+            if (description.contains(searchItem)) {
+                result.add(task);
+            }
+        }
+        return result;
+    }
 }

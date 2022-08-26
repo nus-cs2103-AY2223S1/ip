@@ -40,4 +40,16 @@ public class Ui {
             System.out.println(index + ". " + task.toString());
         }
     }
+
+    /**
+     * Prints out the matching tasks
+     * @param tasks ArrayList of matching Tasks
+     */
+    public void printFoundTask(ArrayList<Task> tasks) {
+        System.out.println("Here are the matching tasks in your list:\n");
+        for (Task task : tasks) {
+            int index = tasks.indexOf(task) + 1;
+            System.out.println(index + ". " + task.toString());
+        }
+    }
 }

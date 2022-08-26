@@ -34,6 +34,7 @@ public class DukeHandler {
                 ArrayList<Task> list = tasks.listTasks();
                 ui.listTasks(list);
             }
+
             else if (input.matches("mark +\\d+") || input.matches("unmark +\\d+")) {
                 if (inputParts.get(0).equals("mark")) {
                     Task task = tasks.mark(Integer.parseInt(inputParts.get(1)));
@@ -83,6 +84,9 @@ public class DukeHandler {
                 tasks.addTask(newEvent);
                 ui.addTask(newEvent, tasks);
                 storage.saveTask(tasks);
+            } else if (inputParts.get(0).equals("find")) {
+                ArrayList<Task> searchResult = tasks.find(inputParts.get(1));
+                ui.printFoundTask(searchResult);
             } else {
                 throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
