@@ -12,7 +12,7 @@ public class Events extends Task {
     private final LocalDateTime time;
 
     /**
-     * Constructor of Events class.
+     * Constructs Events object.
      * Allows the program to change isDone status and LocalDateTime of Events.
      *
      * @param detail String of detail extracted from user's raw input.
@@ -25,7 +25,7 @@ public class Events extends Task {
     }
 
     /**
-     * Constructor of Events class.
+     * Constructs Events object.
      * isDone is set to false by default using super class constructor.
      *
      * @param detail String of detail extracted from user's raw input.

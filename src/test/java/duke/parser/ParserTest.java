@@ -1,12 +1,13 @@
 package duke.parser;
 
-import duke.DukeException;
-import duke.ui.BotUI;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
+
+import duke.DukeException;
+import duke.ui.BotUI;
 
 public class ParserTest {
     private static final BotUI UI = new BotUI();
@@ -40,7 +41,7 @@ public class ParserTest {
     }
 
     @Test
-    public void testConvertTime() {
+    public void testConvertTime_validInput_convertSuccess() {
         assertEquals(LocalDateTime.of(2011, 1, 1, 19, 0),
                 Parser.convertTime("Jan 01 2011 19:00"));
     }

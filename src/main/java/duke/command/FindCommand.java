@@ -1,7 +1,5 @@
 package duke.command;
 
-import static duke.common.Messages.MESSAGE_FOUND_TASK;
-
 import duke.storage.TaskRecords;
 import duke.task.Task;
 import duke.ui.BotUI;
@@ -16,7 +14,7 @@ public class FindCommand extends Command {
     private final String details;
 
     /**
-     * Constructor of DeleteCommand
+     * Constructs DeleteCommand object
      *
      * @param command command of the user input
      * @param details details of the user input as String type Integer
@@ -35,22 +33,27 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskRecords taskList, BotUI ui) {
-        StringBuilder foundTasks = new StringBuilder(MESSAGE_FOUND_TASK + "\n");
+        TaskRecords foundList = new TaskRecords();
         boolean found = false;
         for (Task t : taskList.getList()) {
             if (t.getDetail().contains(this.details)) {
-                foundTasks.append(t).append("\n");
+                foundList.addProcess(t);
                 found = true;
             }
         }
         if (found) {
-            System.out.println(ui.botSpeak(foundTasks.toString()));
+            ui.taskFound(foundList);
         } else {
-            System.out.println(ui.botSpeak("Nothing found!"));
+            ui.taskNotFound();
         }
 
     }
-
+    /**
+     * Returns the true/false of the command exit status that
+     * will cause duke stop running
+     *
+     * @return the true/false of the command exit status
+     */
     @Override
     public boolean isExit() {
         return false;

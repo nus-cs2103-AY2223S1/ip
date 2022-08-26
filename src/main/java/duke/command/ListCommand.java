@@ -11,7 +11,7 @@ import duke.ui.BotUI;
 public class ListCommand extends Command {
 
     /**
-     * Constructor of ListCommand
+     * Constructs ListCommand object
      *
      * @param command command of the user input
      */
@@ -21,7 +21,7 @@ public class ListCommand extends Command {
 
     @Override
     public void execute(TaskRecords taskList, BotUI ui) {
-        System.out.print(ui.showList(taskList));
+        ui.showList(taskList);
     }
 
     /**

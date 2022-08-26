@@ -2,11 +2,10 @@ package duke.common;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import duke.DukeException;
-import duke.ui.BotUI;
-
 import org.junit.jupiter.api.Test;
 
+import duke.DukeException;
+import duke.ui.BotUI;
 
 
 public class InputCheckerTest {
@@ -99,7 +98,7 @@ public class InputCheckerTest {
             InputChecker.checkInput("deadline dummyDeadline /by 2022-08-25 1700");
             InputChecker.checkInput("todo dummyToDo");
             InputChecker.checkInput("event dummyEvent /at 2022-08-25 1700");
-            assertEquals("pass","pass");
+            assertEquals("pass", "pass");
         } catch (DukeException ex) {
             System.out.println("fail");
         }

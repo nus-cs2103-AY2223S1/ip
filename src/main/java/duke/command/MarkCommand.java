@@ -14,7 +14,7 @@ public class MarkCommand extends Command {
     private final String details;
 
     /**
-     * Constructor of MarkCommand
+     * Constructs MarkCommand object
      *
      * @param command command of the user input
      * @param details details of the user input as String type Integer
@@ -40,7 +40,7 @@ public class MarkCommand extends Command {
             Task currTask = taskList.get(taskIdx);
             currTask = (super.getCommand().equals("mark")) ? currTask.markDone() : currTask.unmarkDone();
             taskList.addProcess(currTask);
-            System.out.print(ui.informMarkStatus(taskList.get(taskIdx)));
+            ui.informMarkStatus(taskList.get(taskIdx));
         } catch (NumberFormatException ex) {
             throw new DukeException(ui.invalidCheckFormat());
         } catch (IndexOutOfBoundsException ex) {

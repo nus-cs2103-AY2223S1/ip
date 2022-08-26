@@ -19,9 +19,9 @@ public class Duke {
     private final TaskRecords taskList;
 
     /**
-     * Constructor of Duke class.
+     * Constructs Duke object.
      * The taskList is assigned to the previous duke chatBot data if the file is found.
-     * TaskList will be initialised to an empty list if file is not found.
+     * TaskRecords will be initialised to an empty taskList if file is not found.
      */
     Duke() {
         this.ui = new BotUI();
@@ -38,12 +38,11 @@ public class Duke {
      * Runs the duke chatBot program.
      */
     void runBot() {
-        System.out.print(ui.sayHello());
+        ui.sayHello();
         boolean exitDuke = false;
         while (!exitDuke) {
             try {
-                String rawCommand = ui.readCommand();
-                Command c = Parser.parse(rawCommand);
+                Command c = Parser.parse(ui.readCommand());
                 c.execute(taskList, ui);
                 FileManager.write(this.taskList);
                 exitDuke = c.isExit();
@@ -53,15 +52,11 @@ public class Duke {
                 System.out.println("Error while Saving File!");
             }
         }
-
-        System.out.print(ui.botDivider());
-        System.out.println(ui.sayBye());
     }
     /**
      * Main method of the program.
      */
     public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.runBot();
+        new Duke().runBot();
     }
 }

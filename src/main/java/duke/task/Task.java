@@ -25,7 +25,7 @@ public abstract class Task {
     }
 
     /**
-     * Constructor of Task class.
+     * Constructs Task object.
      * Allows the changes of done/undone status of task.
      *
      * @param detail String of detail extracted from user's raw input.

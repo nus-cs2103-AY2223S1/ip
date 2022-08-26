@@ -11,7 +11,7 @@ import duke.ui.BotUI;
 public class ExitCommand extends Command {
 
     /**
-     * Constructor of ExitCommand
+     * Constructs ExitCommand object
      *
      * @param command command of the user input
      */
@@ -21,7 +21,8 @@ public class ExitCommand extends Command {
 
     @Override
     public void execute(TaskRecords taskList, BotUI ui) {
-
+        ui.botDivider();
+        ui.sayBye();
     }
 
     /**

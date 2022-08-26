@@ -13,7 +13,7 @@ public class Deadlines extends Task {
     private final LocalDateTime time;
 
     /**
-     * Constructor of Deadlines class.
+     * Constructs Deadlines object.
      * Allows the program to change isDone status and LocalDateTime of Events.
      *
      * @param detail String of detail extracted from user's raw input.
@@ -26,7 +26,7 @@ public class Deadlines extends Task {
     }
 
     /**
-     * Constructor of Deadlines class.
+     * Constructs Deadlines object.
      * isDone is set to false by default using super class constructor.
      *
      * @param detail String of detail extracted from user's raw input.

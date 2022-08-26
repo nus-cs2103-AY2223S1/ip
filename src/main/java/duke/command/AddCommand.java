@@ -21,7 +21,7 @@ public class AddCommand extends Command {
     private final String details;
 
     /**
-     * Constructor of AddCommand
+     * Constructs AddCommand object
      *
      * @param command command of the user input
      * @param details details of the user input AFTER command is filtered
@@ -48,21 +48,21 @@ public class AddCommand extends Command {
             case "todo":
                 Task taskToDo = new ToDos(details);
                 taskList.addProcess(taskToDo);
-                System.out.print((ui.addStatus(taskList, taskToDo)));
+                ui.addStatus(taskList, taskToDo);
                 break;
             case "deadline":
                 String deadlineDetail = Parser.extractDetail(details, " /by ");
                 LocalDateTime deadlineDateTime = Parser.extractDateTime(details, " /by ");
                 Task taskDeadline = new Deadlines(deadlineDetail, deadlineDateTime);
                 taskList.addProcess(taskDeadline);
-                System.out.print((ui.addStatus(taskList, taskDeadline)));
+                ui.addStatus(taskList, taskDeadline);
                 break;
             case "event":
                 String eventDetail = Parser.extractDetail(details, " /at ");
                 LocalDateTime eventDateTime = Parser.extractDateTime(details, " /at ");
                 Task taskEvent = new Events(eventDetail, eventDateTime);
                 taskList.addProcess(taskEvent);
-                System.out.print(ui.addStatus(taskList, taskEvent));
+                ui.addStatus(taskList, taskEvent);
                 break;
             default:
                 System.out.print("Adding process fail!");

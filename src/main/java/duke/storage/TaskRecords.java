@@ -1,5 +1,5 @@
 package duke.storage;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
 import duke.task.Task;
@@ -13,11 +13,11 @@ public class TaskRecords {
     private final ArrayList<Task> lst;
 
     /**
-     * Constructor of TaskRecords.
+     * Constructs TaskRecords object.
      * Creates and assigns an empty ArrayList to lst attribute.
      */
     public TaskRecords() {
-        this.lst = new ArrayList<Task>();
+        this.lst = new ArrayList<>();
     }
 
     /**

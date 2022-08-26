@@ -13,7 +13,7 @@ public class DeleteCommand extends Command {
     private final String details;
 
     /**
-     * Constructor of DeleteCommand
+     * Constructs DeleteCommand object
      *
      * @param command command of the user input
      * @param details details of the user input as String type Integer
@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
     public void execute(TaskRecords taskList, BotUI ui) throws DukeException {
         try {
             int taskIdx = Integer.parseInt(details) - 1;
-            System.out.print(ui.successRemoved(taskList, taskList.delete(taskIdx)));
+            ui.successRemoved(taskList, taskList.delete(taskIdx));
         } catch (NumberFormatException ex) {
             throw new DukeException(ui.invalidCheckFormat());
         } catch (IndexOutOfBoundsException ex) {
