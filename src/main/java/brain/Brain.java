@@ -37,6 +37,33 @@ public class Brain {
     }
 
     /**
+     * Returns an {@link ArrayList} of {@link Task}s inside the file in the specified path.
+     *
+     * @param task {@link Task} object to add to <code>taskList</code>
+     */
+    public void add(Task task) {
+        taskList.add(task);
+    }
+
+    /**
+     * Returns the size of <code>taskList</code>.
+     *
+     * @return {@code int}
+     */
+    public int size() {
+        return taskList.size();
+    }
+
+    /**
+     * Removes a {@link Task} in the specified index of <code>taskList</code>.
+     *
+     * @param index index of the {@link Task} in <code>taskList</code> to remove
+     */
+    public void remove(int index) {
+        taskList.remove(index);
+    }
+
+    /**
      * Returns a {@link String} of {@link Task}s inside <code>brain</code>.
      *
      * @return {@link String}
@@ -45,22 +72,6 @@ public class Brain {
         ArrayList<String> result = new ArrayList<>();
         result.add("Abrakadabraaa! Here's what's inside Tob Tob's Brain:");
         result.add(toString());
-
-        return String.join("\n", result);
-    }
-
-    /**
-     * Returns a {@link String} representation of a <code>brain</code>.
-     *
-     * @return {@link String}
-     */
-    @Override
-    public String toString() {
-        ArrayList<String> result = new ArrayList<>();
-        for (int i = 0; i < taskList.size(); i++) {
-            Task task = taskList.get(i);
-            result.add(String.format("%s.%s", i + 1, task.toString()));
-        }
 
         return String.join("\n", result);
     }
@@ -81,33 +92,6 @@ public class Brain {
     }
 
     /**
-     * Returns the size of <code>taskList</code>.
-     *
-     * @return {@code int}
-     */
-    public int size() {
-        return taskList.size();
-    }
-
-    /**
-     * Returns an {@link ArrayList} of {@link Task}s inside the file in the specified path.
-     *
-     * @param task {@link Task} object to add to <code>taskList</code>
-     */
-    public void add(Task task) {
-        taskList.add(task);
-    }
-
-    /**
-     * Removes a {@link Task} in the specified index of <code>taskList</code>.
-     *
-     * @param index index of the {@link Task} in <code>taskList</code> to remove
-     */
-    public void remove(int index) {
-        taskList.remove(index);
-    }
-
-    /**
      * Returns a {@link Brain} instance with the matching {@link Task}s
      *
      * @param keyword a {@link String} that wants to be searched
@@ -121,5 +105,21 @@ public class Brain {
             }
         }
         return new Brain(tempTaskList);
+    }
+
+    /**
+     * Returns a {@link String} representation of a <code>brain</code>.
+     *
+     * @return {@link String}
+     */
+    @Override
+    public String toString() {
+        ArrayList<String> result = new ArrayList<>();
+        for (int i = 0; i < taskList.size(); i++) {
+            Task task = taskList.get(i);
+            result.add(String.format("%s.%s", i + 1, task.toString()));
+        }
+
+        return String.join("\n", result);
     }
 }
