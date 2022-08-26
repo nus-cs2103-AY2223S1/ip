@@ -14,6 +14,10 @@ class DukeException extends Exception {
         this.msg = s;
     }
 
+    /**
+     * Gets String message
+     * @return message string
+     */
     public String getMsg() {
         return this.msg;
     }

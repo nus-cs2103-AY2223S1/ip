@@ -21,6 +21,11 @@ public class TaskList {
         this.taskArrayList = new ArrayList<>();
     }
 
+    /**
+     * Gets the array list stored in this instance.
+     *
+     * @return an array list of tasks
+     */
     public ArrayList<Task> getTaskArrayList() {
         return this.taskArrayList;
     }
@@ -164,7 +169,7 @@ public class TaskList {
             }
         }
     }
-    
+
     private TaskList findSimilarItems(String arg) {
         TaskList res = new TaskList();
         for (Task t : this.taskArrayList) {

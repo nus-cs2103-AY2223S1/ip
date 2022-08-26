@@ -34,6 +34,11 @@ public class Todo extends Task {
         return "[T]" + super.toString();
     }
 
+    /**
+     * Returns true if obj is equal to this instance else false
+     * @param obj object to be compared with
+     * @return true if obj is equal to this instance else false
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

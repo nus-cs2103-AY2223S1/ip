@@ -42,6 +42,11 @@ public class Event extends Task {
         return "[E]" + super.toString() + " (at: " + at.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
     }
 
+    /**
+     * Returns true if obj is equal to this instance else false
+     * @param obj object to be compared with
+     * @return true if obj is equal to this instance else false
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == this) {

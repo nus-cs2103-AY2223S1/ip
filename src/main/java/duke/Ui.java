@@ -85,10 +85,19 @@ class Ui {
         System.out.println(arg);
     }
 
+    /**
+     * Prints output for no matching result case.
+     */
     protected static void processUnfoundResult() {
         Ui.formatPrint(ERROR_UNFOUND_MESSAGE);
     }
 
+    /**
+     * Prints output when task state has been changed.
+     *
+     * @param t task object to be modified on
+     * @param b the state the task object is changed to
+     */
     protected static void taskStateChangePrint(Task t, boolean b) {
         String res;
         if (b) {
