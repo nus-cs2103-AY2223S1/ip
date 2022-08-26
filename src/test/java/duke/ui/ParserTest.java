@@ -1,14 +1,20 @@
 package duke.ui;
 
-import duke.command.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.ExitCommand;
+import duke.command.IncorrectCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
 
 public class ParserTest {
 
     @Test
-    public void parseCorrectCommand(){
+    public void parseCorrectCommand() {
         Command command;
         command = Parser.parse("bye");
         assertEquals(command.getClass(), ExitCommand.class);
@@ -21,7 +27,7 @@ public class ParserTest {
     }
 
     @Test
-    public void parseIncorrectCommand(){
+    public void parseIncorrectCommand() {
         Command command = Parser.parse("gibberish");
         assertEquals(command.getClass(), IncorrectCommand.class);
     }

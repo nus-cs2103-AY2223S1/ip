@@ -1,9 +1,15 @@
 package duke.task;
 
 /**
- * Todo class 
+ * Todo class
  */
-public class Todo extends Task{
+public class Todo extends Task {
+
+    /**
+     * Initialises a todo task
+     *
+     * @param description Description of todo task
+     */
     public Todo(String description) {
         super(description);
         this.type = Type.TODO;

@@ -7,7 +7,7 @@ import duke.ui.Ui;
 /**
  * Command class
  */
-abstract public class Command {
+public abstract class Command {
 
     protected boolean isExit = false;
 

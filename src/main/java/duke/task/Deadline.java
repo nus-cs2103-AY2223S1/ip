@@ -10,6 +10,12 @@ public class Deadline extends Task {
 
     protected LocalDate by;
 
+    /**
+     * Initializes Deadline object
+     *
+     * @param description Description of deadline task
+     * @param by          Deadline
+     */
     public Deadline(String description, LocalDate by) {
         super(description);
         this.by = by;

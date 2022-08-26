@@ -6,6 +6,12 @@ package duke.task;
 public class Event extends Task {
     protected String at;
 
+    /**
+     * Initializes Event object
+     *
+     * @param description Description of deadline task
+     * @param at          Event time
+     */
     public Event(String description, String at) {
         super(description);
         this.type = Type.EVENT;

@@ -8,21 +8,28 @@ import static duke.common.Constants.LINE_SEPARATOR;
 public class Task {
     protected String description;
     protected boolean isDone;
+
     protected enum Type {
         DEADLINE,
         EVENT,
         TODO
     }
+
     protected Type type;
-    
-    public Task(String description) {
+
+    /**
+     * Initializes common elements of tasks
+     *
+     * @param description Description of a task
+     */
+    protected Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
     /**
      * Returns string representation of isDone field
-     * 
+     *
      * @return X for done, empty string otherwise
      */
     public String getStatusIcon() {
@@ -30,18 +37,18 @@ public class Task {
     }
 
     /**
-     * Returns task as data in disk storage 
-     * 
+     * Returns task as data in disk storage
+     *
      * @return Data representation of task
      */
     public String toDataString() {
-        return LINE_SEPARATOR 
-                + isDone 
-                + LINE_SEPARATOR 
-                + description 
+        return LINE_SEPARATOR
+                + isDone
+                + LINE_SEPARATOR
+                + description
                 + LINE_SEPARATOR;
     }
-    
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;

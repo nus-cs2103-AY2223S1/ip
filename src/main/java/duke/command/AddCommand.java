@@ -18,10 +18,10 @@ public class AddCommand extends Command {
 
     /**
      * Add task to task list and disk storage
-     * 
+     *
      * @param storage Disk storage
-     * @param tasks Task list
-     * @param ui Ui to display to users
+     * @param tasks   Task list
+     * @param ui      Ui to display to users
      */
     @Override
     public void execute(Storage storage, TaskList tasks, Ui ui) {

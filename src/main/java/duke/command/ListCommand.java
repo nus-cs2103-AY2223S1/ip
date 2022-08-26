@@ -5,7 +5,7 @@ import duke.task.TaskList;
 import duke.ui.Ui;
 
 /**
- * ListCommand class 
+ * ListCommand class
  */
 public class ListCommand extends Command {
     @Override
