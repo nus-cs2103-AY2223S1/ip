@@ -6,6 +6,15 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class Parser {
+    /**
+     * Parses the input and returns if the scanner should scan a new line
+     *
+     * @param first The users input
+     * @param lst The tasklist object
+     * @param store The storage object
+     * @return boolean A boolean that represents whether the scanner should continue with
+     *                 a new line
+     */
     public static boolean parse(String first, TaskList lst, Storage store) {
         try {
             if (first.equals("bye")) {
@@ -44,8 +53,11 @@ public class Parser {
             return false;
         }
     }
+
     /**
      * Prints the list when user types "list"
+     *
+     * @param lst The tasklist
      */
     public static void listMessage(TaskList lst) throws DukeException{
         if (lst.count() == 0) {
@@ -61,6 +73,8 @@ public class Parser {
      * Marks a task as completed
      *
      * @param str The users input
+     * @param lst The tasklist
+     * @param storage the storage object
      */
     public static void markMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         char index = str.charAt(5);
@@ -76,6 +90,8 @@ public class Parser {
      * Marks a task as incomplete
      *
      * @param str The users input
+     * @param lst The tasklist
+     * @param storage the storage object
      */
     public static void unmarkMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         char index = str.charAt(7);
@@ -88,9 +104,11 @@ public class Parser {
     }
 
     /**
-     * Adds a Todo to the list
+     * Adds a Todo to the tasklist
      *
      * @param str The users input
+     * @param lst The tasklist
+     * @param storage the storage object
      */
     public static void todoMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         if(str.length() > 5) {
@@ -106,9 +124,11 @@ public class Parser {
     }
 
     /**
-     * Adds a Deadline to the list
+     * Adds a Deadline to the tasklist
      *
      * @param str The users input
+     * @param lst The tasklist
+     * @param storage the storage object
      */
     public static void deadlineMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         if(str.length() > 9) {
@@ -137,9 +157,11 @@ public class Parser {
     }
 
     /**
-     * Adds a Event to the list
+     * Adds a Event to the tasklist
      *
      * @param str The users input
+     * @param lst The tasklist
+     * @param storage the storage object
      */
     public static void eventMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         if (str.length() > 6) {
@@ -161,9 +183,11 @@ public class Parser {
     }
 
     /**
-     * Deletes a task from the list
+     * Deletes a task from the tasklist
      *
      * @param str The users input
+     * @param lst The tasklist
+     * @param storage the storage object
      */
     public static void deleteMessage(String str, TaskList lst, Storage storage) throws DukeException, IOException {
         if (str.length() > 7) {

@@ -2,20 +2,24 @@ package duke;
 
 import java.util.Scanner;
 public class Ui {
-    private Scanner sc;
 
-    public Ui() {
-        this.sc = new Scanner(System.in);
-    }
-
+    /**
+     * Method that prints a hello message
+     */
     public static void helloMessage() {
         System.out.println("Hello! I'm SmartBot\nWhat can I do for you?");
     }
 
+    /**
+     * Method that prints a bye message
+     */
     public static void byeMessage() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 
+    /**
+     * Method that prints a loading error message
+     */
     public static void showLoadingError() {
         System.out.println("Loading error...");
     }

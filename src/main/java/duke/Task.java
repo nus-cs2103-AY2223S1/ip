@@ -38,16 +38,24 @@ public class Task {
     }
 
     /**
-     * Function that unmark a task
+     * Function that unmarks a task
      */
     public void unmark() {
         this.isDone = false;
     }
 
+    /**
+     * Returns a string that represents the Task
+     * @return String A string that represents the current object
+     */
     public String toString() {
         return description;
     }
 
+    /**
+     * Returns a string that represents the Task in text file format
+     * @return String A string that represents the current object
+     */
     public String toFileString() {
         return null;
     }

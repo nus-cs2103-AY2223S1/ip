@@ -10,12 +10,23 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
+    /**
+     * The file path of the text file that stores the date
+     */
     private final String filePath;
 
+    /**
+     * A constructor that initializes the storage object with the filepath
+     *
+     * @param filePath the file path of the text file
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Method to get the text file or create one if it does not exist
+     */
     public void getFile() throws IOException {
         File file = new File(this.filePath);
         if (file.createNewFile()) {
@@ -25,6 +36,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Method that updates the textfile with the latest tasklist
+     *
+     * @param lst latest tasklist
+     */
     public void updateFile(TaskList lst) throws IOException {
         File file = new File(this.filePath);
         FileWriter writer = new FileWriter(file);
@@ -34,6 +50,11 @@ public class Storage {
         writer.close();
     }
 
+    /**
+     * Method that loads an arraylist with the task based on the data read
+     *
+     * @return ArrayList<Task> arraylist containing tasks from the text file
+     */
     public ArrayList<Task> load() throws FileNotFoundException, IOException {
         ArrayList<Task> lst = new ArrayList<>();
         File file = new File("./src/main/java/duke.txt");

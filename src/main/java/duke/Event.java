@@ -7,7 +7,7 @@ public class Event extends Task{
     protected String at;
 
     /**
-     * A constructor to intialize the Event object with the description and timings
+     * A constructor to initialize the Event object with the description and timings
      *
      * @param description The task
      * @param at The timings
@@ -17,11 +17,19 @@ public class Event extends Task{
         this.at = at;
     }
 
+    /**
+     * Returns a string that represents the Event
+     * @return String A string that represents the current object
+     */
     @Override
     public String toString() {
         return "[E][" + this.getStatusIcon() + "] " + super.toString() + " (at: " + at + ")";
     }
 
+    /**
+     * Returns a string that represents the Event in text file format
+     * @return String A string that represents the current object
+     */
     @Override
     public String toFileString() {
         return "E | " +  this.getFileStatus() + " | " + super.toString() + " | " + this.at;

@@ -7,9 +7,21 @@ import java.io.IOException;
 
 public class Duke {
 
+    /**
+     * Storage object that handles loading tasks from the
+     * file and saving tasks in the file
+     */
     private final Storage storage;
+
+    /**
+     * TaskLists object that contains a task list containing Task objects
+     */
     private TaskList tasks;
 
+    /**
+     * A constructor that initializes the Duke object
+     * @param filePath the filepath of the Duke text file
+     */
     public Duke(String filePath) {
         Ui ui = new Ui();
         storage = new Storage(filePath);
@@ -23,6 +35,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Method that runs the Duke bot
+     */
     public void run() {
         Ui.helloMessage();
         Scanner first = new Scanner(System.in);

@@ -10,6 +10,10 @@ public class DukeException extends Exception{
         super(message);
     }
 
+    /**
+     * Returns a string that represents the Exception object
+     * @return String A string that represents the current object
+     */
     @Override
     public String toString() {
         return "OOPS!!! " + getMessage();

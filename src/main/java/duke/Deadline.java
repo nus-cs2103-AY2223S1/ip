@@ -11,7 +11,7 @@ public class Deadline extends Task{
 
     /**
      * A constructor to intialize the Deadline object with the description and deadline
-     *  @param description The task
+     * @param description The task
      * @param by The deadline
      */
     public Deadline(String description, LocalDate by) {
@@ -19,12 +19,20 @@ public class Deadline extends Task{
         this.by = by;
     }
 
+    /**
+     * Returns a string that represents the Deadline
+     * @return String A string that represents the current object
+     */
     @Override
     public String toString() {
         String date = this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
         return "[D][" + this.getStatusIcon() + "] " + super.toString() + " (by: " + date + ")";
     }
 
+    /**
+     * Returns a string that represents the Deadline in the format for the textfile
+     * @return String A string that represents the current object
+     */
     @Override
     public String toFileString() {
         String date = this.by.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
