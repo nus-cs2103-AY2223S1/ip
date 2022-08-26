@@ -1,2 +1,2 @@
-M|todo say hello
-N|deadline 2103T project /by 5 pm
+N|todo say hello
+N|event eat cookbook /at 2022-10-15 1500
