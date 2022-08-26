@@ -34,6 +34,10 @@ public class Task {
         numOfTasks -= 1;
     }
 
+    public boolean contains(String description) {
+        return this.description.contains(description);
+    }
+
     public String toStorage() {
         return "";
     }
