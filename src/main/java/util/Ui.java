@@ -5,7 +5,7 @@ import tasks.Task;
 import java.util.List;
 
 /**
- * This class is used to format outputs.
+ * This class is used to format outputs to the command line.
  */
 public class Ui {
     /**
