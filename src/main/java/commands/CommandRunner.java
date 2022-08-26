@@ -33,8 +33,9 @@ public class CommandRunner {
         Command event = new EventCommand(taskModel);
         Command delete = new DeleteCommand(taskModel);
         Command exit = new ExitCommand(taskModel);
+        Command find = new FindCommand(taskModel);
 
-        Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline, event, delete };
+        Command[] commands = new Command[] { list, add, mark, exit, unmark, deadline, event, delete, find };
         commandMap = new HashMap<>();
 
         for (int i = 0; i < commands.length; i++) {
