@@ -1,6 +1,3 @@
-[D][ ] do homework (by: no idea hhahah a hof)
-[D][ ] do homework (by: no idea)
-[D][ ] do homework (by: no idea :-p)
-[D][ ] return book (by: Sunday)
-[T][X] i ffkn hate cs2130
-[E][ ] project meeting (at: Mon 2-4pm)
+[E][ ] project meeting (at: Dec 12 2022)
+[E][ ] project meeting (at: Dec 12 2022)
+[E][ ] project meeting (at: Dec 12 2022)

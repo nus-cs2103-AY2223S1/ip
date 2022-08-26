@@ -131,7 +131,7 @@ public class Duke {
              String taskContentHelper = task[4].split(" ", 2)[1];//the task and time without the brackets
              String taskContent = taskContentHelper.split("\\(")[0].trim();//just the task
              //System.out.println("task main content" + taskContentHelper);
-             System.out.println("task1 " + taskContent);
+             //System.out.println("task1 " + taskContent);
              String taskMark = task[3];
              String taskType = task[1];
              Task newTask;
@@ -275,8 +275,7 @@ public class Duke {
                       String at = str.split("/at")[1].trim();
                       Event taskEvent = new Event(desc, at);
                       inputs.add(taskEvent);
-                      System.out.println(addition(taskEvent.toString()));
-                      System.out.println("l" + at + "l");
+                      System.out.println(addition(taskEvent.toString()));;
                   } catch (ArrayIndexOutOfBoundsException e) {
                       throw new DukeException(("OOPS!!! The description of an Event cannot be empty/incomplete."));
                   }

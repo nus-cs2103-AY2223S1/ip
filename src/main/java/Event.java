@@ -26,9 +26,9 @@ public class Event extends Task{
             this.localDate = LocalDate.parse(this.at);
         } catch (DateTimeParseException e) {
             try {
-                this.localDate = LocalDate.parse(at.trim(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                this.localDate = LocalDate.parse(at.trim(), DateTimeFormatter.ofPattern("yyyy-mm-dd"));
             } catch (DateTimeParseException e1) {
-                System.out.println("Please provide the date in the correct format, which is yyyy-MM-dd");
+                System.out.println("Please provide the date in the correct format, which is yyyy-mm-dd");
                 return;
             }
         }
@@ -44,5 +44,3 @@ public class Event extends Task{
     }
 
 }
-//event project meeting /at 2022-12-12
-//event project meeting /at Dec 12 2022
