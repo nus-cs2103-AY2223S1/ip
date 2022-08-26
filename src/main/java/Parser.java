@@ -3,39 +3,35 @@ public class Parser {
   public static Command parse(String fullCommand) throws CheeseException {
     String[] fullCommandArray = fullCommand.split(" ", 2);
     String command = fullCommandArray[0];
-    try {
-      switch (command) {
-        case "bye":
-          validateCommandHasNArguments(fullCommandArray, 0);
-          return new ByeCommand();
-        case "list":
-          validateCommandHasNArguments(fullCommandArray, 0);
-          return new ListCommand();
-        case "mark":
-          validateCommandHasNArguments(fullCommandArray, 1);
-          String markArgument = fullCommandArray[1];
-          return new MarkCommand(parseArgumentToInt(markArgument));
-        case "unmark":
-          validateCommandHasNArguments(fullCommandArray, 1);
-          String unmarkArgument = fullCommandArray[1];
-          return new UnmarkCommand(parseArgumentToInt(unmarkArgument));
-        case "delete":
-          validateCommandHasNArguments(fullCommandArray, 1);
-          String deleteArgument = fullCommandArray[1];
-          return new DeleteCommand(parseArgumentToInt(deleteArgument));
-        case "todo":
-          validateCommandHasNArguments(fullCommandArray, 1);
-          String todoArgument = fullCommandArray[1];
-          return new TodoCommand(todoArgument);
-        case "deadline":
-          return parseDeadlineCommand(fullCommandArray);
-        case "event":
-          return parseEventCommand(fullCommandArray);
-        default:
-          throw new CheeseException();
-      }
-    } catch (CheeseException e) {
-      System.out.println(e.getMessage());
+    switch (command) {
+      case "bye":
+        validateCommandHasNArguments(fullCommandArray, 0);
+        return new ByeCommand();
+      case "list":
+        validateCommandHasNArguments(fullCommandArray, 0);
+        return new ListCommand();
+      case "mark":
+        validateCommandHasNArguments(fullCommandArray, 1);
+        String markArgument = fullCommandArray[1];
+        return new MarkCommand(parseArgumentToInt(markArgument));
+      case "unmark":
+        validateCommandHasNArguments(fullCommandArray, 1);
+        String unmarkArgument = fullCommandArray[1];
+        return new UnmarkCommand(parseArgumentToInt(unmarkArgument));
+      case "delete":
+        validateCommandHasNArguments(fullCommandArray, 1);
+        String deleteArgument = fullCommandArray[1];
+        return new DeleteCommand(parseArgumentToInt(deleteArgument));
+      case "todo":
+        validateCommandHasNArguments(fullCommandArray, 1);
+        String todoArgument = fullCommandArray[1];
+        return new TodoCommand(todoArgument);
+      case "deadline":
+        return parseDeadlineCommand(fullCommandArray);
+      case "event":
+        return parseEventCommand(fullCommandArray);
+      default:
+        return new UnknownCommand();
     }
   }
 

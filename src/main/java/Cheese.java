@@ -32,25 +32,4 @@ public class Cheese {
   public static void main(String[] args) {
     new Cheese("data/cheese.txt").run();
   }
-
-  /**
-   * Gets task from list
-   * 
-   * @param inputArray array containing user input after splitting by space
-   * @return specified task from list
-   * @throws CheeseException       if given item number is empty or item number is
-   *                               not in range
-   * @throws NumberFormatException if given item number is not in integer format
-   */
-  // private static Task getTaskFromList(String[] inputArray) throws
-  // CheeseException, NumberFormatException {
-  // if (inputArray.length == 1 || inputArray[1].length() == 0) {
-  // throw new CheeseException("Sowwy, the item number cannot be empty.");
-  // }
-  // int itemIdx = Integer.parseInt(inputArray[1]) - 1;
-  // if (itemIdx < 0 || itemIdx >= Cheese.list.size()) {
-  // throw new CheeseException("Item number is not in list range.");
-  // }
-  // return Cheese.list.get(itemIdx);
-  // }
 }

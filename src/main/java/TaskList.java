@@ -53,7 +53,7 @@ public class TaskList {
   public String toString() {
     String taskListString = "";
     for (int i = 0; i < taskList.size(); i++) {
-      int displayIndex = i++;
+      int displayIndex = i + 1;
       Task task = taskList.get(i);
       taskListString += displayIndex + ". " + task;
       taskListString += System.lineSeparator();
