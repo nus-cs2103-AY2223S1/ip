@@ -10,6 +10,9 @@ public class Ui {
         System.out.println("\t" + DIV);
     }
 
+    /**
+     * Displays greeting messages.
+     */
     void greet() {
         String logo =     "   ▄████████    ▄████████    ▄█   ▄█▄ ███    █▄     ▄████████    ▄████████             ▄■▄          \n"
                         + "  ███    ███   ███    ███   ███ ▄███▀ ███    ███   ███    ███   ███    ███       ▄■██■█   █■██■▄    \n"
@@ -28,11 +31,21 @@ public class Ui {
         System.out.println("\t" + DIV2 + "\n");
     }
 
+    /**
+     * Displays exit messages.
+     */
     public void showExit() {
         System.out.println("\tBye Senpai! It was a pleasure serving you, see you again soon!");
         System.out.println("\t" + DIV2 + "\n");
     }
 
+    /**
+     * Adds a particular task input by the user into the list of tasks.
+     * Displays add message to user.
+     *
+     * @param tasks current list of tasks.
+     * @param newTask new task to be added.
+     */
     public static void addDescription(List<Task> tasks, Task newTask) {
         tasks.add(newTask);
         System.out.println("\tYes Sir! I've added this task: \n\t  "
@@ -42,6 +55,12 @@ public class Ui {
                 + " tasks in the list.");
     }
 
+    /**
+     * Displays delete message to user.
+     *
+     * @param tasks current list of tasks.
+     * @param deletedTask task to be deleted.
+     */
     public static void deleteDescription(List<Task> tasks, Task deletedTask) {
         System.out.println("\tRight away Sir! I've SHREDDED this task: \n\t  "
                 + deletedTask
@@ -50,6 +69,11 @@ public class Ui {
                 + " tasks in the list.");
     }
 
+    /**
+     * Displays all the tasks in the list.
+     *
+     * @param tasks current list of tasks.
+     */
     public static void showAllTask(List<Task> tasks) {
         String list = "\tSir, these are the tasks in your list:";
         for (int i = 0; i < tasks.size(); i++) {

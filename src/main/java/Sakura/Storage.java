@@ -4,13 +4,26 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Represents the storage that loads data from and saves data to the database file.
+ */
 public class Storage {
     private final String filePath;
 
+    /**
+     * Constructor for Storage.
+     *
+     * @param filePath the path to the txt database file.
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Load data from the txt database file.
+     *
+     * @return a Task[] array of tasks found in the database.
+     */
     public Task[] loadData() {
         File database = new File(this.filePath);
         ArrayList<Task> taskList = new ArrayList<>();
@@ -26,6 +39,12 @@ public class Storage {
         return taskList.toArray(new Task[0]);
     }
 
+    /**
+     * Read data from the txt database file into specific task format.
+     *
+     * @param entry Formatted string from the txt database to be read into program.
+     * @return Task in a specific format, Todo, Deadline, or Event.
+     */
     private Task readEntry(String entry) {
         String[] data = entry.split("\\|");
         Task dataTask = null;
@@ -45,6 +64,9 @@ public class Storage {
         return dataTask;
     }
 
+    /**
+     * Creates a database file if txt database file does not exist.
+     */
     private void createDatabase() {
         File database = new File(this.filePath);
         File dir = new File(database.getParent());
@@ -61,6 +83,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Save data in the Command-Line Interface to the txt database file.
+     *
+     * @param taskList list of tasks to be written to the file which will overwrite the database.
+     * @throws IOException if unknown error is thrown while writting to the database.
+     */
     public void saveData(TaskList taskList) throws IOException {
         FileWriter fw = new FileWriter(this.filePath, false);
         BufferedWriter bw = new BufferedWriter(fw);
