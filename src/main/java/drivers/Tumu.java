@@ -10,13 +10,13 @@ import exceptions.TumuException;
 public class Tumu {
     private final Storage storage;
     private final TaskList tasks;
-    private final UI ui;
+    private final Ui ui;
 
     /**
      * Constructor for the Tumu class.
      */
     public Tumu() {
-        ui = new UI();
+        ui = new Ui();
         storage = new Storage("data/Tumu.txt");
         tasks = new TaskList(storage.loadData(ui));
     }

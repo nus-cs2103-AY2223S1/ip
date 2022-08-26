@@ -5,13 +5,13 @@ import java.util.Scanner;
 /**
  * Deals with interactions from the user.
  */
-public class UI {
+public class Ui {
     private Scanner sc;
 
     /**
      * Constructor for the UI class.
      */
-    public UI() {
+    public Ui() {
         sc = new Scanner(System.in);
     }
 

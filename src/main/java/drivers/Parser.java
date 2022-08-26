@@ -27,7 +27,7 @@ public class Parser {
      * @throws NumberFormatException Exception is thrown when the String cannot be parsed
      *                               into an integer.
      */
-    public static Command parse(String fullCommand, UI ui) throws TumuException, NumberFormatException {
+    public static Command parse(String fullCommand, Ui ui) throws TumuException, NumberFormatException {
         String[] input = fullCommand.split(" ", 2);
         String command = input[0].trim().toLowerCase();
         String body = input[1].trim();

@@ -32,7 +32,7 @@ public class Storage {
      * TaskList.
      * @return A list of the tasks stored within the local txt file.
      */
-    public List<Task> loadData(UI ui) {
+    public List<Task> loadData(Ui ui) {
         File file = getFile();
         List<Task> userTasks = new ArrayList<>();
         try {

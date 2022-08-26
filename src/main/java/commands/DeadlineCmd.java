@@ -2,7 +2,7 @@ package commands;
 
 import drivers.Storage;
 import drivers.TaskList;
-import drivers.UI;
+import drivers.Ui;
 import exceptions.DENoArgException;
 import exceptions.DENoTimingException;
 import exceptions.DETimingOverflowException;
@@ -33,7 +33,7 @@ public class DeadlineCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws TumuException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         //Check for "/by", if not available then prompt user to add timing.
         if (!body.contains("/by")) {
             throw new DENoTimingException("by");
