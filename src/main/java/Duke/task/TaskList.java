@@ -70,7 +70,7 @@ public class TaskList {
     /**
      * Returns an ArrayList of Task objects that contains
      * the searchItem string in the description
-     * @param searchItem
+     * @param searchItem keyword used for searching
      * @return ArrayList of Task
      */
     public ArrayList<Task> find(String searchItem) {
