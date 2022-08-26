@@ -22,6 +22,8 @@ public class Deadline extends Task {
 
     @Override
     public String save() {
-        return "D" + super.save() + " | " + this.deadline;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String deadlineStr = this.deadline.format(formatter);
+        return "D" + super.save() + " | " + deadlineStr;
     }
 }

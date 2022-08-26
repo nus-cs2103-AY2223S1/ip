@@ -22,6 +22,8 @@ public class Event extends Task {
 
     @Override
     public String save() {
-        return "E" + super.save() + " | " + this.date;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String dateStr = this.date.format(formatter);
+        return "E" + super.save() + " | " + dateStr;
     }
 }
