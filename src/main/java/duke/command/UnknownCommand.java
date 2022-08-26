@@ -9,7 +9,7 @@ public class UnknownCommand extends Command {
     /**
      * Constructor for Unknown command.
      *
-     * @param command input given by user that resulted in this command.
+     * @param command Input given by user that resulted in this command.
      */
     public UnknownCommand(String command) {
         super.isExit = false;

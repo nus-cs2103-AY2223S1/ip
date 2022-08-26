@@ -21,7 +21,7 @@ public class Storage implements StorageInterface {
     /**
      * Constructor for Storage.
      *
-     * @param filePath path of storage file.
+     * @param filePath Path of storage file.
      */
     public Storage(Path filePath) {
         this.filePath = filePath;
@@ -30,7 +30,7 @@ public class Storage implements StorageInterface {
     /**
      * Constructor for Storage.
      *
-     * @param filePath path of storage file.
+     * @param filePath Path of storage file.
      */
     public Storage(String filePath) {
         this(Paths.get(filePath));

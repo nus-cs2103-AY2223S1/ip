@@ -33,8 +33,8 @@ public class Ui {
     /**
      * Reads user input.
      *
-     * @return user input.
-     * @throws DukeException when error reading input.
+     * @return User input.
+     * @throws DukeException When error reading input.
      */
     String readCommand() throws DukeException {
         try {
@@ -47,7 +47,7 @@ public class Ui {
     /**
      * Pads the text.
      *
-     * @param text text to pad.
+     * @param text Text to pad.
      * @return Left padded text.
      */
     String leftPad(String text) {
@@ -57,7 +57,7 @@ public class Ui {
     /**
      * Formats texts before displaying them to the user.
      *
-     * @param texts texts to display to the user.
+     * @param texts Texts to display to the user.
      */
     public void formatAndPrint(List<? extends String> texts) {
         System.out.println(DIVIDER);
@@ -68,7 +68,7 @@ public class Ui {
     /**
      * Formats text before displaying it to the user.
      *
-     * @param text text to display to ther user.
+     * @param text Text to display to ther user.
      */
     void formatAndPrint(String text) {
         formatAndPrint(List.of(text));
@@ -77,7 +77,7 @@ public class Ui {
     /**
      * Displays error message to the user.
      *
-     * @param errorMessage message to display.
+     * @param errorMessage Message to display.
      */
     void displayErrorMessage(String errorMessage) {
         formatAndPrint("Error! " + errorMessage);
@@ -95,9 +95,9 @@ public class Ui {
     /**
      * Wrapper funtion for displaying update message.
      *
-     * @param task task that was added / deleted / updated.
-     * @param updateMessage message to display first.
-     * @param taskListSize size of TaskList.
+     * @param task Task that was added / deleted / updated.
+     * @param updateMessage Message to display first.
+     * @param taskListSize Size of TaskList.
      */
     private void displayUpdateMessage(Task task, String updateMessage, Optional<Integer> taskListSize) {
         List<String> toPrint = new ArrayList<>();
@@ -111,21 +111,20 @@ public class Ui {
      * Returns a list of strings corresponding to the task in the list.
      * Each string is prefixed with their corresponding index in the list.
      *
-     * @param tasks list of tasks.
+     * @param tasks List of tasks.
      *
      * @return List of task Strings.
      */
     List<String> formatTaskList(List<Task> tasks) {
-        List<String> indexedList = IntStream.range(0,
+        return IntStream.range(0,
                 tasks.size()).mapToObj((index) -> String.format("%d. %s", index + 1, tasks.get(index).toString()))
                 .collect(Collectors.toList());
-        return indexedList;
     }
 
     /**
      * Displays a list of tasks that is formatted by {@code formatTaskList}.
      *
-     * @param tasks list of tasks.
+     * @param tasks List of tasks.
      */
     public void displayTaskList(List<Task> tasks) {
         List<String> toPrint = formatTaskList(tasks);
@@ -137,7 +136,7 @@ public class Ui {
      * with a search message. Will display a unsuccessful message if task list is
      * empty.
      *
-     * @param tasks list of tasks.
+     * @param tasks List of tasks.
      */
     public void displayTaskListSearch(List<Task> tasks) {
         if (tasks.isEmpty()) {
@@ -153,8 +152,8 @@ public class Ui {
     /**
      * Displays add task message.
      *
-     * @param task task that was added.
-     * @param taskListSize size of TaskList.
+     * @param task Task that was added.
+     * @param taskListSize Size of TaskList.
      */
     public void displayAddTaskMessage(Task task, int taskListSize) {
         displayUpdateMessage(task, "Task added: ", Optional.of(taskListSize));
@@ -163,8 +162,8 @@ public class Ui {
     /**
      * Displays delete task message.
      *
-     * @param task task that was deleted.
-     * @param taskListSize size of TaskList.
+     * @param task Task that was deleted.
+     * @param taskListSize Size of TaskList.
      */
     public void displayDeleteTaskMessage(Task task, int taskListSize) {
         displayUpdateMessage(task, "Task deleted: ", Optional.of(taskListSize));
@@ -173,7 +172,7 @@ public class Ui {
     /**
      * Displays mark task message.
      *
-     * @param task task that was marked.
+     * @param task Task that was marked.
      */
     public void displayMarkTaskMessage(Task task) {
         displayUpdateMessage(task, "I have marked this task as done: ", Optional.empty());
@@ -182,7 +181,7 @@ public class Ui {
     /**
      * Displays unmark task message.
      *
-     * @param task task that was unmarked.
+     * @param task Task that was unmarked.
      */
     public void displayUnmarkTaskMessage(Task task) {
         displayUpdateMessage(task, "I have unmarked the completion of this task: ", Optional.empty());
@@ -198,10 +197,10 @@ public class Ui {
     /**
      * Displays unknown command message.
      *
-     * @param input unknown command text.
+     * @param input Unknown command text.
      */
     public void displayUnknownCommandMessage(String input) {
         formatAndPrint("Unknown command: " + input);
-    };
+    }
 
 }

@@ -14,7 +14,7 @@ public class FindCommand extends Command {
     /**
      * Constructor for FindCommand.
      *
-     * @param query query string.
+     * @param query Query string.
      */
     public FindCommand(String query) {
         super.isExit = false;

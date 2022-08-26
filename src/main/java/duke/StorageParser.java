@@ -26,9 +26,9 @@ public abstract class StorageParser {
     /**
      * Parses a line of text in storage file into a Task.
      *
-     * @param line line of text in storage file format.
+     * @param line Line of text in storage file format.
      * @return Task that was parsed from line.
-     * @throws DukeException when error parsing the text.
+     * @throws DukeException When error parsing the text.
      */
     public static Task parse(String line) throws DukeException {
         try (Scanner scanner = createScanner(line)) {
@@ -60,9 +60,9 @@ public abstract class StorageParser {
     /**
      * Parses line of text into a Todo Task.
      *
-     * @param line line of text in storage file format.
+     * @param line Line of text in storage file format.
      * @return Todo that was parsed from line.
-     * @throws DukeException when error parsing the text.
+     * @throws DukeException When error parsing the text.
      */
     static Todo parseTodo(String line) throws DukeException {
         try (Scanner lineScanner = createScanner(line)) {
@@ -78,9 +78,9 @@ public abstract class StorageParser {
     /**
      * Parses line of text into a Deadline Task.
      *
-     * @param line line of text in storage file format.
+     * @param line Line of text in storage file format.
      * @return Deadline that was parsed from line.
-     * @throws DukeException when error parsing the text.
+     * @throws DukeException When error parsing the text.
      */
     static Deadline parseDeadline(String line) throws DukeException {
         try (Scanner lineScanner = createScanner(line)) {
@@ -97,9 +97,9 @@ public abstract class StorageParser {
     /**
      * Parses line of text into an Event Task.
      *
-     * @param line line of text in storage file format.
+     * @param line Line of text in storage file format.
      * @return Event that was parsed from line.
-     * @throws DukeException when error parsing the text.
+     * @throws DukeException When error parsing the text.
      */
     static Event parseEvent(String line) throws DukeException {
         try (Scanner lineScanner = createScanner(line)) {

@@ -10,7 +10,7 @@ public class UnmarkCommand extends IndexedCommand {
     /**
      * Constructor for UnmarkCommand.
      *
-     * @param index index of Task to mark as incomplete.
+     * @param index Index of Task to mark as incomplete.
      */
     public UnmarkCommand(int index) {
         super(index);

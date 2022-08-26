@@ -7,8 +7,8 @@ public class DukeException extends Exception {
     /**
      * Constructor for DukeException.
      *
-     * @param message error message.
-     * @param error error that resulted in this error.
+     * @param message Error message.
+     * @param error Error that resulted in this error.
      */
     public DukeException(String message, Throwable error) {
         super(message, error);
@@ -17,7 +17,7 @@ public class DukeException extends Exception {
     /**
      * Constructor for DukeException.
      *
-     * @param message error message.
+     * @param message Error message.
      */
     public DukeException(String message) {
         super(message);

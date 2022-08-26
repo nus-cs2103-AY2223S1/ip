@@ -14,9 +14,9 @@ public class Deadline extends Task {
     /**
      * Constructor for Deadline.
      *
-     * @param description description of task.
-     * @param isComplete whether task is complete.
-     * @param by deadline date.
+     * @param description Description of task.
+     * @param isComplete Whether task is complete.
+     * @param by Deadline date.
      */
     Deadline(String description, boolean isComplete, LocalDate by) {
         super(description, isComplete);
@@ -26,8 +26,8 @@ public class Deadline extends Task {
     /**
      * Constructor for Deadline. {@code isComplete} defaults to {@code false}.
      *
-     * @param description description of task.
-     * @param by deadline date.
+     * @param description Description of task.
+     * @param by Deadline date.
      */
     Deadline(String description, LocalDate by) {
         this(description, false, by);
@@ -36,9 +36,9 @@ public class Deadline extends Task {
     /**
      * Constructor for Deadline.
      *
-     * @param description description of task.
-     * @param isComplete whether task is complete.
-     * @param by deadline date in String format.
+     * @param description Description of task.
+     * @param isComplete Whether task is complete.
+     * @param by Deadline date in String format.
      */
     public Deadline(String description, boolean isComplete, String by) throws DukeException {
         this(description, isComplete, Parser.parseDate(by));
@@ -47,8 +47,8 @@ public class Deadline extends Task {
     /**
      * Constructor for Deadline. {@code isComplete} defaults to {@code false}.
      *
-     * @param description description of task.
-     * @param by deadline date in String format.
+     * @param description Description of task.
+     * @param by Deadline date in String format.
      */
     public Deadline(String description, String by) throws DukeException {
         this(description, false, Parser.parseDate(by));
@@ -57,7 +57,7 @@ public class Deadline extends Task {
     /**
      * Returns deadline of task as a LocalDate object.
      *
-     * @return deadline of task.
+     * @return Deadline of task.
      */
     LocalDate getDate() {
         return this.by;
@@ -66,7 +66,7 @@ public class Deadline extends Task {
     /**
      * Returns deadline of task as a formatted String.
      *
-     * @return deadline of task.
+     * @return Deadline of task.
      */
     String getFormattedDate() {
         return this.getDate().format(DATE_FORMAT);

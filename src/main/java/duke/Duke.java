@@ -16,7 +16,7 @@ public class Duke {
      * Constructor for Duke.
      * Initialises, Ui, TaskList and Storage used by the application.
      *
-     * @param storagePath filepath to use to store Tasks.
+     * @param storagePath Filepath to use to store Tasks.
      */
     Duke(String storagePath) {
         this.ui = new Ui();
@@ -63,8 +63,7 @@ public class Duke {
     /**
      * Main function for the chatbot.
      *
-     * @param args
-     *            System arguments. Not used for this program.
+     * @param args System arguments. Not used for this program.
      */
 
     public static void main(String[] args) {

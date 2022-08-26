@@ -7,8 +7,8 @@ public class Todo extends Task {
     /**
      * Constructor for Todo.
      *
-     * @param description description of task.
-     * @param isComplete whether task is complete.
+     * @param description Description of task.
+     * @param isComplete Whether task is complete.
      */
     public Todo(String description, boolean isComplete) {
         super(description, isComplete);
@@ -17,7 +17,7 @@ public class Todo extends Task {
     /**
      * Constructor for Todo. {@code isComplete} defaults to {@code false}.
      *
-     * @param description description of task.
+     * @param description Description of task.
      */
     public Todo(String description) {
         this(description, false);

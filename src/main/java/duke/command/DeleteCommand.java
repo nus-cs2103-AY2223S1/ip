@@ -10,7 +10,7 @@ public class DeleteCommand extends IndexedCommand {
     /**
      * Constructor for DeleteCommand.
      *
-     * @param index index of Task in TaskList to delete.
+     * @param index Index of Task in TaskList to delete.
      */
     public DeleteCommand(int index) {
         super(index);

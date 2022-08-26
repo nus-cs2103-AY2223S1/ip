@@ -13,8 +13,8 @@ public abstract class Task {
     /**
      * Constructor for Task.
      *
-     * @param description description of Task.
-     * @param isComplete whether Task is complete.
+     * @param description Description of Task.
+     * @param isComplete Whether Task is complete.
      */
     Task(String description, boolean isComplete) {
         this.description = description;
@@ -24,7 +24,7 @@ public abstract class Task {
     /**
      * Constructor for Task. {@code isComplete} defaults to {@code true}.
      *
-     * @param description description of Task.
+     * @param description Description of Task.
      */
     public Task(String description) {
         this(description, false);

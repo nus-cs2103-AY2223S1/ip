@@ -69,9 +69,9 @@ public abstract class Parser {
     /**
      * Retrieves Optional argument or throws DukeException if Optional is empty.
      *
-     * @param argument arugment wrapped in Optional.
-     * @return argument in the Optional.
-     * @throws DukeException when argument is empty.
+     * @param argument Arugment wrapped in Optional.
+     * @return Argument in the Optional.
+     * @throws DukeException When argument is empty.
      */
     static String getCommandArgument(Optional<String> argument) throws DukeException {
         return argument.orElseThrow(() -> new DukeException("Required arguments not found!"));
@@ -80,9 +80,9 @@ public abstract class Parser {
     /**
      * Parses input into corresponding Command object.
      *
-     * @param input user input.
+     * @param input User input.
      * @return Command object.
-     * @throws DukeException when error in parsing or executing command.
+     * @throws DukeException When error in parsing or executing command.
      */
     static Command parse(String input) throws DukeException {
         Map.Entry<String, Optional<String>> commandString = getCommandAndArguments(input);

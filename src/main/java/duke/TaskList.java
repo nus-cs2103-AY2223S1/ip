@@ -31,7 +31,7 @@ public class TaskList {
     /**
      * Returns number of tasks in TaskList.
      *
-     * @return number of tasks.
+     * @return Number of tasks.
      */
     public int size() {
         return this.logs.size();
@@ -40,7 +40,7 @@ public class TaskList {
     /**
      * Add task to list.
      *
-     * @param task task to add.
+     * @param task Task to add.
      * @return Task which was added.
      */
     public Task add(Task task) {
@@ -51,7 +51,7 @@ public class TaskList {
     /**
      * Deletes task at specified index from list.
      *
-     * @param index index of task to delete.
+     * @param index Index of task to delete.
      * @return Task which was deleted
      * @throws DukeException when index specified is out of range.
      */
@@ -66,7 +66,7 @@ public class TaskList {
     /**
      * Returns task at specified index.
      *
-     * @param index index of task.
+     * @param index Index of task.
      * @return Task at specified index.
      * @throws DukeException when index specified is out of range.
      */
@@ -81,7 +81,7 @@ public class TaskList {
     /**
      * Marks task at index as complete.
      *
-     * @param index index of task to mark.
+     * @param index Index of task to mark.
      * @return Updated Task that was marked.
      * @throws DukeException when index specified is out of range.
      */
@@ -97,7 +97,7 @@ public class TaskList {
     /**
      * Marks task at index as incomplete.
      *
-     * @param index index of task to unmark.
+     * @param index Index of task to unmark.
      * @return Updated Task that was unmarked.
      * @throws DukeException when index specified is out of range.
      */
