@@ -32,7 +32,7 @@ public class Duke {
 
     public static void main(String[] args) {
         try {
-            new Duke("D:\\SouceTree Projects\\CS2103T_Ip\\storage.txt").run();
+            new Duke("storage.txt").run();
         } catch (DukeException de) {
             System.out.println("--------------------------------------\n");
             System.out.println(de.getMessage());

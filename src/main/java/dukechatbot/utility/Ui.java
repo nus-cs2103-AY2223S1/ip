@@ -32,11 +32,6 @@ public class Ui {
         throw new IOException("File Loading Error!");
     }
 
-    public void askForPath() {
-        System.out.println("--------------------------------------\n");
-        System.out.println("Please enter path name for me to read: ");
-        System.out.println("--------------------------------------\n");
-    }
     public void added(Task t) {
         System.out.println("------------------------------\n");
         System.out.printf("\tGot it. I've added this task: \n\t\t%s\n", t.toString());
