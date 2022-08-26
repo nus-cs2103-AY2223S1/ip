@@ -1,3 +1,1 @@
-1.[T][ ] read book
-2.[D][ ] return book (by: 10月 15 2019)
-3.[T][ ] run
+deadline return book /by 2019-5-29
