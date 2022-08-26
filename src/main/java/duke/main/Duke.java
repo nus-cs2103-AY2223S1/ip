@@ -9,6 +9,9 @@ import duke.util.Parser;
 import duke.util.Storage;
 import duke.util.TaskList;
 
+/**
+ * Main class for cli version of Duke
+ */
 public class Duke {
     private static final String LOGO = "Welcome to\n"
             + " ____        _        \n"
@@ -21,18 +24,17 @@ public class Duke {
     private static final String INTRO = "Hello! I'm Duke\n"
             + "What can I do for you?";
 
-    
     private DukeIo userIO;
     private TaskList tasks;
     private Storage dukeData;
 
-    Duke(TaskList tasks, Storage dukeData) {
+    private Duke(TaskList tasks, Storage dukeData) {
         userIO = new DukeIo();
         this.dukeData = dukeData;
         this.tasks = tasks;
     }
 
-    boolean handleInput() {
+    private boolean handleInput() {
         String txt = userIO.readLine();
         Command c = Parser.parseCommand(txt);
         try {
@@ -47,7 +49,13 @@ public class Duke {
         return !c.isExit();
     }
 
-    static Duke createApplication(String filepath) {
+    /**
+     * Creates a duke object using the sepecied filepath.
+     * 
+     * @param filepath
+     * @return Duke
+     */
+    public static Duke createApplication(String filepath) {
         DukeIo userIO = new DukeIo();
         userIO.printTask(LOGO, 2);
         userIO.printTask(INTRO, 3);
@@ -65,7 +73,12 @@ public class Duke {
         return new Duke(tasks, dukeData);
     }
 
-    static Duke createApplication() {
+    /**
+     * Creates a Duke object with the default save path.
+     * 
+     * @return Duke
+     */
+    public static Duke createApplication() {
         DukeIo userIO = new DukeIo();
         userIO.printTask(LOGO, 2);
         userIO.printTask(INTRO, 3);
@@ -83,12 +96,22 @@ public class Duke {
         return new Duke(tasks, dukeData);
     }
 
+    /**
+     * Initiate the running loop.
+     * Will exit when <code>handleInput</code> returns false.
+     */
+    public void run() {
+        while (handleInput()) {
+        }
+    }
+
+    /**
+     * Runs the Duke Program
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         Duke duke = createApplication();
-        if (duke == null) {
-            return;
-        }
-        while (duke.handleInput()) {
-        }
+        duke.run();
     }
 }

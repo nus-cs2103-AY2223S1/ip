@@ -5,37 +5,54 @@ import java.util.Optional;
 
 import duke.util.ParsedData;
 
+/**
+ * Parent task class for all other Tasks.
+ */
 public abstract class Task implements Comparable<Task> {
     protected final String description;
     protected boolean completed;
     protected Optional<LocalDateTime> dateTime;
 
-    Task(String description, Optional<LocalDateTime> dateTime) {
+    protected Task(String description, Optional<LocalDateTime> dateTime) {
         this.description = description;
         this.completed = false;
         this.dateTime = dateTime;
     }
 
-    Task(String description) {
+    protected Task(String description) {
         this(description, Optional.empty());
     }
 
+    /**
+     * Marks the task as complete.
+     */
     public void mark() {
         completed = true;
     }
 
+    /**
+     * Marks the task as incomplete.
+     */
     public void unmark() {
         completed = false;
     }
 
+    /**
+     * Check if task is completed.
+     * 
+     * @return
+     */
     public boolean isCompleted() {
         return completed;
     }
 
-    Optional<LocalDateTime> getTimestamp() {
-        return dateTime;
-    }
-
+    /**
+     * {@inheritDoc}
+     * Compares order based on data assigned to task.
+     * 
+     * @param o The other task
+     * @return a task is bigger if its time higher and biggest if non-existent
+     */
     @Override
     public int compareTo(Task o) {
         if (!o.dateTime.isPresent()) {
@@ -47,6 +64,12 @@ public abstract class Task implements Comparable<Task> {
         return dateTime.get().compareTo(o.dateTime.get());
     }
 
+    /**
+     * Useful comparison with time directly
+     * 
+     * @param o
+     * @return int
+     */
     public int compareTo(LocalDateTime o) {
         if (!dateTime.isPresent()) {
             return 1;
@@ -55,10 +78,20 @@ public abstract class Task implements Comparable<Task> {
         return dateTime.get().compareTo(o);
     }
 
+    /**
+     * Returns the [complete status] description.
+     * 
+     * @return String
+     */
     @Override
     public String toString() {
         return String.format("[%s] %s", (completed) ? "X" : " ", description);
     }
 
+    /**
+     * Convert the current task data into parsedata to be saved.
+     * 
+     * @return converted Task
+     */
     abstract public ParsedData convertToParseData();
 }
