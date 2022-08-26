@@ -7,9 +7,9 @@ public class Event extends Task{
         super(description);
         this.at = at;
 
-        String[] split_Description = description.split(" ");
-        this.string_Date = split_Description[4];
-        this.string_Time = split_Description[5];
+        String[] split_Description = at.split(" ");
+        this.string_Date = split_Description[0];
+        this.string_Time = split_Description[1];
 
 
     }

@@ -1,191 +1,77 @@
-import java.io.IOException;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
-    public static void main(String[] args) {
 
-        int currentAction = 0;
-        int end = 0;
+    private UI ui;
+    private Storage storage;
+    private TaskList tasks;
 
-        //Create new file
-        File file = Path.of("data/duke.txt").toFile();
-        ArrayList<Task> listOfActions = new ArrayList<Task>(100);
-        if (file.length() == 0 || !file.exists()) {
-            try {
-                file.createNewFile();
-                System.out.println("Hi new user, Lets get productive");
-            } catch (IOException e) {
-                System.out.println("Hmmm There seems to be a problem");
-            }
-        } else {
-            try {
-                currentAction = addBack(listOfActions, file, currentAction);
-                System.out.println("Ooo looks like you already have a todo list");
-            } catch (FileNotFoundException e) {
-                System.out.println("Hmmm There seems to be a problem ...");
-            }
+    private File file = Path.of("data/duke.txt").toFile();
+
+    private ArrayList<Task> listOfActions = new ArrayList<Task>(100);
+
+    public Duke(String filePath) {
+        ui = new UI();
+        storage = new Storage(filePath);
+        try {
+            this.tasks = new TaskList(storage.load());
+            //Ok got shit in the task
+            this.tasks.printContent();
+            ui.showGotTask();
+        } catch (DukeException e) {
+            ui.showNoTask();
+            //does nothing but instantiate a object
+            this.tasks = new TaskList();
         }
 
-        Scanner sc= new Scanner(System.in);
-
-        System.out.println("----------------------\nHello! I'm HelperBot\nWhat can I do for you?\n----------------------\n");
-        String userInput = sc.nextLine();
-
-        while (end != 1) {
-            //System.out.println();
-            //If user wants to check the list
-            String output = list(listOfActions, currentAction);
-
-            if (userInput.equals("bye")) {
-                break;
-            }
-
-            else if (userInput.equals("list")) {
-                System.out.println("----------------------\n" + output + "----------------------\n");
-            }
-
-            else if (userInput.length() >= 4) {
-
-                //Td
-                if (userInput.substring(0,4).equals("todo")) {
-                    try {
-                        toDo(userInput, listOfActions, currentAction);
-                        currentAction++;
-                    } catch (DukeException e) {
-                        System.out.println("----------------------\nSorry you can't do nothing :(\n" +
-                                "----------------------\n");
-                    }
-                }
-
-                else if (userInput.length() == 4 && !userInput.equals("todo")) {
-                    System.out.println("----------------------\nI am sorry pls input again\n" +
-                            "----------------------\n");
-                }
-
-                else if (userInput.length() > 4) {
-
-                    //event
-                    if (userInput.substring(0, 5).equals("event")) {
-                        try {
-                            event(userInput, listOfActions, currentAction);
-                            currentAction++;
-                        } catch (DukeException e) {
-                            System.out.println("----------------------\nNo event no good :(\n" +
-                                    "----------------------\n");
-                        }
-                    }
-
-                    else if (userInput.length() > 5) {
-
-                        //Marking done
-                        if (userInput.length() == 6) {
-                            if (userInput.substring(0, 4).equals("mark")) {
-                                try {
-                                    mark(userInput, listOfActions);
-                                } catch (DukeException e) {
-                                    System.out.println("----------------------\nI am sorry pls input again\n" +
-                                            "----------------------\n");
-                                }
-                            }
-
-                            //Delete
-
-                            else if (userInput.substring(0, 6).equals("delete")) {
-                                    System.out.println("----------------------\nI am sorry pls input again\n" +
-                                            "----------------------\n");
-                            }
-
-
-                            else {
-                                System.out.println("----------------------\nI am sorry pls input again\n" +
-                                        "----------------------\n");
-                            }
-                        }
-
-                        else if (userInput.length() > 7) {
-
-
-                            if (userInput.substring(0, 6).equals("delete")) {
-                                try {
-                                    removeTask(userInput, listOfActions, currentAction);
-                                    currentAction--;
-                                } catch (DukeException e) {
-                                    System.out.println("----------------------\nI am sorry pls input again\n" +
-                                            "----------------------\n");
-                                }
-                            }
-
-                            //deadline
-                            else if (userInput.substring(0, 8).equals("deadline")) {
-                                try {
-                                    deadLine(userInput, listOfActions, currentAction);
-                                    currentAction++;
-                                } catch (DukeException e) {
-                                    System.out.println("----------------------\nNo deadline? Impossible !!!\n" +
-                                            "----------------------\n");
-                                }
-
-                            }
-
-                            //Unmarking
-                            else if (userInput.length() == 8) {
-                                if (userInput.substring(0, 6).equals("unmark")) {
-                                    try {
-                                        unMark(userInput, listOfActions);
-                                    } catch (DukeException e) {
-                                        System.out.println("----------------------\nI am sorry pls input again\n" +
-                                                "----------------------\n");
-                                    }
-                                } else {
-                                    System.out.println("----------------------\nI am sorry pls input again\n" +
-                                            "----------------------\n");
-                                }
-                            }
-
-                            else {
-                                System.out.println("----------------------\nI am sorry pls input again\n" +
-                                        "----------------------\n");
-                            }
-                        }
-                        else {
-                            System.out.println("----------------------\nI am sorry pls input again\n" +
-                                    "----------------------\n");
-                        }
-                    }
-
-                    else {
-                        System.out.println("----------------------\nI am sorry pls input again\n" +
-                                "----------------------\n");
-                    }
-
-                }
-
-
-
-                //If random words longer than 4
-                else {
-                    System.out.println("----------------------\nI am sorry pls input again\n" +
-                            "----------------------\n");
-                }
-            }
-
-            //If random words <4
-            else {
-                System.out.println("----------------------\nI am sorry pls input again\n" +
-                        "----------------------\n");
-            }
-            userInput = sc.nextLine();
-        }
-        bye(listOfActions, file);
-        end = 1;
     }
 
-    public static void bye(ArrayList<Task> listOfActions, File file) {
+    public void run() {
+        String type;
+        int currentAction = this.storage.getSize();
+        int end = 0;
+        ui.welcomeMessage();
+        Scanner sc = new Scanner(System.in);
+        String userInput = sc.nextLine();
+        while (end != 1) {
+            //If user wants to check the list
+            String output = list(tasks.taskArray, currentAction);
+            String[] input = userInput.split(" ");
+            Parser parse = new Parser(this.tasks, userInput);
+            if (parse.isErreneous()) {
+                type = parse.getType();
+                ui.showInaccurateInput();
+            } else  {
+                if (parse.isAction) {
+                    currentAction++;
+                }
+                type = parse.getType();
+            }
+            if (type.equals("bye")) {
+                ui.goodByeMessage();
+                break;
+            } else if (type.equals("list")) {
+                ui.showList(tasks.getList());
+            } else if (type.equals("delete")) {
+                currentAction--;
+            }
+
+            userInput = sc.nextLine();
+        }
+    }
+
+
+    public static void main(String[] args) {
+
+        new Duke("data/duke.txt").run();
+
+    }
+
+    /*public static void bye(ArrayList<Task> listOfActions, File file) {
+
         System.out.println("Thank you and ATB :)");
         try {
             FileWriter writer = new FileWriter(file.getPath());
@@ -293,69 +179,17 @@ public class Duke {
         }
     }
 
-
-    public static int addBack(ArrayList<Task> arr, File f, int currentAction) throws FileNotFoundException {
-        Scanner myReader = new Scanner(f);
-        while (myReader.hasNextLine()) {
-            currentAction = currentAction + 1;
-            String data = myReader.nextLine();
-            checkTask(data, arr);
-        }
-        return currentAction;
-    }
-
-    public static void checkTask(String str, ArrayList<Task> arr) {
-        //check what task
-        String t = Character.toString(str.charAt(1));
-        String done = Character.toString(str.charAt(4));
-        Boolean d = !done.equals(" ");
-        //If td
-
-        if (t.equals("T")) {
-            //check done
-            if (d) {
-                Todo add = new Todo(str.substring(7));
-                add.mark();
-                arr.add(add);
-            } else {
-                Todo add = new Todo(str.substring(7));
-                arr.add(add);
-            }
-        }
-        //If event
-        else if (t.equals("E")) {
-            int pos = str.indexOf("(") - 1;
-            if (d) {
-                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                add.mark();
-                arr.add(add);
-            } else {
-                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                arr.add(add);
-            }
-        }
-        //if Deadline
-        else if (t.equals("D")) {
-            int pos = str.indexOf("(") - 1;
-            if (d) {
-                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                add.mark();
-                arr.add(add);
-            } else {
-                Event add = new Event(str.substring(7, pos), str.substring(pos + 5, -1));
-                arr.add(add);
-            }
-        }
-    }
-
+     */
 
     public static String list(ArrayList<Task> listOfActions, int currentAction) {
-        String output = "";
+        String o = "";
         for (int i = 0; i < currentAction; i++) {
-            output = output + String.format("%d", i + 1) + "." + listOfActions.get(i) + "\n";
+            o = o + String.format("%d", i + 1) + "." + listOfActions.get(i) + "\n";
         }
-        return output;
+        return o;
     }
+
+
 
 
 
