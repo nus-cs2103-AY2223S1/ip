@@ -1,7 +1,55 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Scruffles {
+    private static void printList(String filePath) throws FileNotFoundException {
+        File newFile = new File(filePath);
+        Scanner scan = new Scanner(newFile);
+        while (scan.hasNext()) {
+            System.out.println(scan.nextLine());
+        }
+    }
+
+    private static void loadArray(String filePath, ArrayList<Task> array) throws FileNotFoundException {
+        File newFile = new File(filePath);
+        Scanner scan = new Scanner(newFile);
+        while (scan.hasNext()) {
+            String taskString = scan.nextLine();
+            String[] inputArray = taskString.split(" / ");
+            Task task = new Task("");
+            boolean isDone = false;
+
+            if (inputArray[1].equals("X")) {
+                isDone = true;
+            }
+
+            if (inputArray[0].equals("T")) {
+                task = new Todo(inputArray[2], isDone);
+            } else if (inputArray[0].equals("D")) {
+                String[] deadline = inputArray[2].split(" /by ");
+                task = new Deadline(deadline[0], deadline[1], isDone);
+            } else if (inputArray[0].equals("E")) {
+                String[] event = inputArray[2].split(" /at ");
+                task = new Event(event[0], event[1], isDone);
+            } else {
+                continue;
+            }
+
+            array.add(task);
+        }
+    }
+
+    private static void addToList(String filePath, String input) throws IOException {
+        File newFile = new File(filePath);
+        newFile.createNewFile();
+        FileWriter fileWriter = new FileWriter(filePath, true);
+        fileWriter.write(input);
+        fileWriter.close();
+    }
     public static void main(String[] args) {
 
         System.out.println("woof! I'm scruffles the task tracking doggo\n" + "what can I woof for you today?");
@@ -9,14 +57,43 @@ public class Scruffles {
         Scanner sc = new Scanner(System.in);
         String input = "";
 
+        String textPath = "/Users/shamustan/Desktop/University/AY22:23 S1/CS2103T/list.txt";
+
         ArrayList<Task> list = new ArrayList<Task>(100);
         int taskCount = 0;
+
+        try {
+            printList(textPath);
+            loadArray(textPath, list);
+        } catch (FileNotFoundException e) {
+            System.out.println("woof file not found woof!");
+        }
 
         while (true) {
 
             input = sc.nextLine();
 
             if (input.equals("bye")) {
+                try {
+                    for (int i = 0; i < list.size(); i++) {
+                        String textInput = "";
+                        String isDone = "O / ";
+                        if (list.get(i).isDone) {
+                            isDone = "X / ";
+                        }
+
+                        if (list.get(i) instanceof Todo) {
+                            textInput = "T / " + isDone + list.get(i).taskName + "\n";
+                        } else if (list.get(i) instanceof Deadline) {
+                            textInput = "D / " + isDone + list.get(i).taskName + " /by " + ((Deadline) list.get(i)).by + "\n";
+                        } else if (list.get(i) instanceof Event) {
+                            textInput = "E / " + isDone + list.get(i).taskName + " /at " + ((Event) list.get(i)).at + "\n";
+                        }
+                        addToList(textPath, textInput);
+                    }
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
                 System.out.println("woof see you again woof!");
                 break;
             } else if (input.equals("list")) {
