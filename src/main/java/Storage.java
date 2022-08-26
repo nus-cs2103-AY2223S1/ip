@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class FileHandler {
+/**
+ * Deals with loading tasks from the file and saving tasks in the file
+ */
+public class Storage {
 
     private static final String DIRECTORY = "data";
     private static final String PATH_NAME = "data/duke.txt";

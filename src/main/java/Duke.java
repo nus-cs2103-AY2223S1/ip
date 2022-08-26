@@ -7,7 +7,7 @@ public class Duke {
         System.out.println("Hello! I'm " + name + "\nHow can I help you?");
 
         // Initializing the Duke chatbot
-        ArrayList<Task> tasksList = FileHandler.readData();
+        ArrayList<Task> tasksList = Storage.readData();
         Scanner scanner = new Scanner(System.in);
 
         while (scanner.hasNextLine()) {
@@ -18,7 +18,7 @@ public class Duke {
                 for (Task task : tasksList) {
                     data.append(task.toString() + "\n");
                 }
-                FileHandler.writeData(data.toString());
+                Storage.writeData(data.toString());
                 System.out.println("Bye! See you again :)");
                 return;
             } else if (command.equals("list")) {
