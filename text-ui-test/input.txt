@@ -1,0 +1,14 @@
+deadline send help /by tomorrow
+DEADLINE Project /by wed
+eat
+event rest /on 10pm tonight
+to-do sleep
+list
+mark 3
+mark 3
+mark 6
+mark 4
+unmark 2
+unmark 3
+list
+bye
