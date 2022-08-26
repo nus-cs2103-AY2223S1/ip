@@ -185,8 +185,8 @@ public class TaskList {
      * @param args string of command in the relevant formats
      * @throws DukeException the exception containing the error message when encountered error
      */
-    protected void parseInstructions(String args) throws DukeException{
-        String arguments[] = args.split(" ", 2);
+    protected void parseInstructions(String args) throws DukeException {
+        String[] arguments = args.split(" ", 2);
         try {
             switch (arguments[0]) {
             case "mark": // same flow as case "unmark"
