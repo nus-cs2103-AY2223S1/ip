@@ -17,7 +17,12 @@ import duke.command.UnmarkCommand;
 import duke.errors.DukeException;
 
 public class Parser {
-    // isexitcommand, islist, main logic goes here, validation can come here as well
+    /**
+     * Parses user inputs and creates the necessary commands
+     * @param userReply String from the user
+     * @return Commands for Duke to execute
+     * @throws DukeException exception thrown in validation methods
+     */
     public static Command parse(String userReply) throws DukeException {
         String[] splitReply = userReply.split(" ");
         if (isExitCommand(userReply)) {
@@ -60,27 +65,27 @@ public class Parser {
         return userReply.equals("list");
     }
 
-    public static boolean isMarkCommand(String[] splitReply) {
+    private static boolean isMarkCommand(String[] splitReply) {
         return splitReply[0].equals("mark");
     }
 
-    public static boolean isUnmarkCommand(String[] splitReply) {
+    private static boolean isUnmarkCommand(String[] splitReply) {
         return splitReply[0].equals("unmark");
     }
 
-    public static boolean isTodoCommand(String[] splitReply) {
+    private static boolean isTodoCommand(String[] splitReply) {
         return splitReply[0].equals("todo");
     }
 
-    public static boolean isDeadlineCommand(String[] splitReply) {
+    private static boolean isDeadlineCommand(String[] splitReply) {
         return splitReply[0].equals("deadline");
     }
 
-    public static boolean isEventCommand(String[] splitReply) {
+    private static boolean isEventCommand(String[] splitReply) {
         return splitReply[0].equals("event");
     }
 
-    public static boolean isDeleteCommand(String[] splitReply) {
+    private static boolean isDeleteCommand(String[] splitReply) {
         return splitReply[0].equals("delete");
     }
 

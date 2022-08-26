@@ -14,9 +14,17 @@ import duke.task.Task;
 import duke.task.TaskList;
 import duke.task.ToDos;
 
+/**
+ * Represents a Storage to store tasks in the text file.
+ * Storage contains the file path where the text file is located.
+ */
 public class Storage {
-    String filePath;
+    private String filePath;
 
+    /**
+     * Constructor for Storage
+     * @param file String describing the location of the file
+     */
     public Storage(String file) {
         filePath = file;
     }
@@ -34,11 +42,12 @@ public class Storage {
         return file;
     };
 
-    //tasktype | mark | description | dateline(optional)
-    //T | 1 | read book
-    //D | 0 | return book | June 6th
-    //E | 0 | project meeting | Aug 6th 2-4pm
-    //T | 1 | join sports club
+    /**
+     * Creates an arraylist to store existing tasks in text file into the array
+     * or creates a new text file
+     * @return ArrayList containing the tasks
+     * @throws DukeException exception thrown in reading the file
+     */
     // reads existing file and stores into an array or creates a new file
     public ArrayList<Task> load() throws DukeException {
         try {
@@ -84,6 +93,12 @@ public class Storage {
 
     // saves the whole array and rewrites the entire file (for extra oop add in mtd to append
     // when adding files and use this for deletion)
+
+    /**
+     * Saves Task from TaskList into the text file
+     * @param tasks TaskList containing tasks
+     * @throws DukeException thrown in reading the file
+     */
     public void save(TaskList tasks) throws DukeException {
         try {
             FileWriter fw = new FileWriter(filePath);
