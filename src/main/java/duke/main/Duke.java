@@ -4,12 +4,19 @@ import duke.command.Command;
 import duke.errors.DukeException;
 import duke.task.TaskList;
 
+/**
+ * Represents the Duke program. Carries out the commands and handles exceptions
+ */
 public class Duke {
     private static final String FILEPATH = "data/duke.txt";
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Constructor for Duke
+     * @param filePath String of file path of text file
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -21,6 +28,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Runs main program
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -37,6 +47,10 @@ public class Duke {
         ui.showBye();
     };
 
+    /**
+     * Runs main method
+     * @param args
+     */
     public static void main(String[] args) {
         new Duke(FILEPATH).run();
     }
