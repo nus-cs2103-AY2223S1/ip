@@ -1,5 +1,6 @@
 package Rabbit.util;
 
+import java.lang.module.FindException;
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import Rabbit.Task.Task;
@@ -10,6 +11,7 @@ import Rabbit.RabbitException.AddToListException;
 import Rabbit.RabbitException.MarkUnmarkException;
 import Rabbit.RabbitException.DeleteException;
 import Rabbit.RabbitException.ImportDataException;
+import Rabbit.RabbitException.FindFormatException;
 
 public class Parser {
     public Parser(){};
@@ -105,6 +107,18 @@ public class Parser {
             }
         }
         return input.length();
+    }
+
+    public static String parseFind(String input, TaskList list) throws FindFormatException {
+        try {
+            String content = input.substring(5);
+            if (content.length() == 0) {
+                throw new FindFormatException();
+            }
+            return content;
+        } catch (StringIndexOutOfBoundsException e) {
+            throw new FindFormatException();
+        }
     }
 
     public static int parseMark(String input, TaskList list) throws MarkUnmarkException {

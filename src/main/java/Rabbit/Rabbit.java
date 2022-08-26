@@ -51,6 +51,10 @@ public class Rabbit {
                 case "list":
                     this.taskList.list();
                     break;
+                case "find ":
+                    content = this.taskList.find(input);
+                    this.ui.showFind(content);
+                    break;
                 case "mark ":
                     this.taskList.mark(input);
                     this.storage.exportData(this.taskList);

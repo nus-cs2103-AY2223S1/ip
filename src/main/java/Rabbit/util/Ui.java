@@ -37,6 +37,10 @@ public class Ui {
         System.out.println(e);
     }
 
+    public void showFind(String output) {
+        System.out.println(output);
+    }
+
     public void showAddToList(String content) {
         System.out.println("Okay...noted.\n" + content + "...Huh? Hope you can remember it.");
     }

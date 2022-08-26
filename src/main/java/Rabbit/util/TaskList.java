@@ -2,6 +2,8 @@ package Rabbit.util;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import Rabbit.RabbitException.FindFormatException;
 import Rabbit.Task.Task;
 import Rabbit.Task.Event;
 import Rabbit.Task.Deadline;
@@ -21,6 +23,40 @@ public class TaskList {
         this.list = new ArrayList<>();
     }
 
+    /**
+     * Returns tasks in the list that match
+     * the searching keyword.
+     *
+     * @param input the searching keyword.
+     * @return the tasks matching the searching keyword.
+     * @throws FindFormatException
+     */
+    public String find(String input) throws FindFormatException {
+        try {
+            String keyword = Parser.parseFind(input, this);
+            if (keyword.equals(" ")) {
+                throw new FindFormatException();
+            }
+            String output = "";
+            for (int i = 0; i < this.list.size(); i++) {
+                String content = this.list.get(i).getContent();
+
+                if (content.length() < keyword.length()) {
+                    continue;
+                }
+
+                for (int j = 0; j < content.length() - keyword.length() + 1; j++) {
+                    if (content.substring(j, j + keyword.length()).equals(keyword)) {
+                        output += list.get(i).toString();
+                    }
+                }
+            }
+            return output.length() == 0 ? "I can't find a matching task." : output;
+        } catch (FindFormatException e) {
+            throw e;
+        }
+    }
+    
     /**
      *  Adds the input lines the user types into
      *  a list with a size no more than 100.
