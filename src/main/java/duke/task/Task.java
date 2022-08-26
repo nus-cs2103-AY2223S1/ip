@@ -3,7 +3,7 @@ package duke.task;
 /**
  * Stores the description of a task and whether it is done.
  */
-public class Task {
+public abstract class Task {
   private static final String DONE = "X";
   private static final String NOT_DONE = " ";
   private String description;
@@ -17,6 +17,10 @@ public class Task {
   public Task(String description, boolean isDone) {
     this.description = description;
     this.isDone = isDone;
+  }
+
+  public boolean isDone() {
+    return isDone;
   }
 
   public String getStatusIcon() {
