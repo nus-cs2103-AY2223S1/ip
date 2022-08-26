@@ -1,8 +1,0 @@
-T | [ ] | test
-T | [ ] | test
-E | [ ] | test | Jan 01 2022 11:11
-D | [ ] | test | Jan 01 2022 11:11
-E | [ ] | test | Feb 02 2022 22:22
-D | [ ] | test | Feb 02 2022 22:22
-E | [ ] | test | Feb 02 2022 02:02
-E | [ ] | test | wrongEvent
