@@ -17,7 +17,7 @@ public class TaskList extends ArrayList<Task> {
      * @param args The map of strings representing the arguments to be supplied to the constructor.
      */
     public void addTask(String taskType, Map<String, String> args) {
-        this.add(Task.of(taskType, args));
+        add(Task.of(taskType, args));
     }
 
     /**
@@ -27,7 +27,7 @@ public class TaskList extends ArrayList<Task> {
      * @param isDone Whether the Task is to be marked as done or undone.
      */
     public void setDone(int index, boolean isDone) {
-        this.get(index).setDone(isDone);
+        get(index).setDone(isDone);
     }
 
     /**
@@ -36,9 +36,9 @@ public class TaskList extends ArrayList<Task> {
      * @return The string representing the length of the TaskList.
      */
     public String lengthString() {
-        return this.size() == 1
-                ? String.format("%d task", this.size())
-                : String.format("%d tasks", this.size());
+        return size() == 1
+                ? String.format("%d task", size())
+                : String.format("%d tasks", size());
     }
 
     /**
@@ -49,7 +49,7 @@ public class TaskList extends ArrayList<Task> {
     @Override
     public String toString() {
         AtomicInteger i = new AtomicInteger(1);
-        return this.stream().map(task -> WordUtils.wrap(String.format("%d. %s\n", i.getAndIncrement(), task),
+        return stream().map(task -> WordUtils.wrap(String.format("%d. %s\n", i.getAndIncrement(), task),
                         40, "\n   ", false))
                 .reduce("", String::concat);
     }

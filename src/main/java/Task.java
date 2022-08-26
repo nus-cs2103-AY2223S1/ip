@@ -3,7 +3,7 @@ import java.util.Map;
 abstract class Task {
     private final String description;
     private final char symbol;
-    private boolean isDone;
+    private boolean isDone = false;
 
     /**
      * Initialises a Task with a symbol and description.
@@ -14,7 +14,6 @@ abstract class Task {
     private Task(char symbol, String description) {
         this.symbol = symbol;
         this.description = description;
-        this.isDone = false;
     }
 
     /**
@@ -33,7 +32,7 @@ abstract class Task {
         case "event":
             return new EventTask(args);
         default:
-            return new OtherTask(args);
+            return null;
         }
     }
 
@@ -62,7 +61,7 @@ abstract class Task {
      */
     @Override
     public String toString() {
-        return String.format("[%c][%s] %s", this.symbol, this.getStatusIcon(), this.description);
+        return String.format("[%c][%s] %s", symbol, getStatusIcon(), description);
     }
 
     private static class TodoTask extends Task {
@@ -76,7 +75,7 @@ abstract class Task {
 
         public DeadlineTask(Map<String, String> args) {
             super( 'D', args.get("description"));
-            this.deadline = args.get("by");
+            deadline = args.get("by");
         }
 
         @Override
@@ -90,18 +89,12 @@ abstract class Task {
 
         public EventTask(Map<String, String> args) {
             super( 'E', args.get("description"));
-            this.time = args.get("at");
+            time = args.get("at");
         }
 
         @Override
         public String toString() {
             return String.format("%s (at: %s)", super.toString(), time);
-        }
-    }
-
-    private static class OtherTask extends Task {
-        public OtherTask(Map<String, String> args) {
-            super('O', args.get("description"));
         }
     }
 }
