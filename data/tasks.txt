@@ -1,4 +1,6 @@
-T | 0 |  project
-E | 1 |  meeting  |  22 Dec 2022 19:00 PM
-D | 0 |  chem hw  |  10 Jan 2022 01:00 AM
-T | 1 | homework
+T | 0 |    project
+E | 1 |    meeting    |    22 Dec 2022 19:00 PM
+D | 0 |    chem hw    |    10 Jan 2022 01:00 AM
+T | 1 |   homework
+T | 1 |  clean chores
+E | 0 | festival | 12 Dec 2022 15:00 PM
