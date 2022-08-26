@@ -12,7 +12,14 @@ public class MarkCommand extends Command {
         this.pos = pos;
     }
 
+    /**
+     * Executes the command by marking the item at pos in list.
+     *
+     * @param tasks The user's current list of tasks.
+     * 
+     * @throws DukeException If the data file cannot be accessed.
+     */
     public void execute(TaskList tasks) throws DukeException {
-        tasks.markTask(pos, true);
+        tasks.markTask(pos, bool);
     }
 }

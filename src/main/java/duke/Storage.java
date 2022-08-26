@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
 
+
 public class Storage {
     private final String FILE_PATH;
     
@@ -22,6 +23,12 @@ public class Storage {
         this.FILE_PATH = FILE_PATH;
     }
     
+    /**
+     * Retrieves information from the data file to populate an ArrayList
+     *
+     * @return ArrayList of Tasks represented in the data file. 
+     * @throws DukeException If data file cannot be accessed.
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> data = new ArrayList<>();
         try {

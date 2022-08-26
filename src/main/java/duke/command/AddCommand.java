@@ -30,6 +30,13 @@ public class AddCommand extends Command {
         }
     }
 
+    /**
+     * Executes the command by adding a todo, deadline or event item.
+     *
+     * @param tasks The user's current list of tasks.
+     * 
+     * @throws DukeException If the data file cannot be accessed.
+     */
     public void execute(TaskList tasks) throws DukeException {
         switch(type) {
             case "todo":
