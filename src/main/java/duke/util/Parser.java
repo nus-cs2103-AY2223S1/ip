@@ -13,8 +13,8 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
     private final TaskList list;
-    enum ListCommands {
-        todo, deadline, event, mark, unmark, delete,
+    public enum ListCommands {
+        todo, deadline, event, mark, unmark, delete, find
     }
 
     public Parser(TaskList list) {
@@ -95,6 +95,10 @@ public class Parser {
                     Ui.deleteTask(list.delete(index));
                     return;
                 }
+            case find:
+                String keyword = arr[1];
+                Ui.findKeyword(keyword, list.searchFor(keyword));
+                return;
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new WrongArgumentException(arr[1], e);

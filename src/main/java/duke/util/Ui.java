@@ -5,6 +5,7 @@ import duke.exception.FileParseException;
 import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
 import duke.task.Task;
+import java.util.ArrayList;
 
 /**
  * For anything related to printing statements in Duke.
@@ -74,6 +75,16 @@ public class Ui {
 
     public static void getListSize(TaskList list) {
         System.out.println("You currently have " + list.getSize() + " tasks in the list");
+    }
+
+    public static void findKeyword(String keyword, ArrayList<Task> list) {
+        System.out.println("I have found the following tasks containing '" + keyword + "'\n");
+        int number = 1;
+        for (Task t : list) {
+            System.out.println("\t" + number + "." + t);
+            number++;
+        }
+        System.out.println();
     }
 
     public static void warnCorruptedLine(FileParseException e) {
