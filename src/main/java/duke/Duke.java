@@ -1,5 +1,10 @@
 package duke;
 
+import duke.task.TaskList;
+import duke.util.Parser;
+import duke.util.StoredTasks;
+import duke.util.Ui;
+
 import java.io.File;
 
 public class Duke {
