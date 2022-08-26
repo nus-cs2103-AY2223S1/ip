@@ -1,2 +1,3 @@
 T , 1 , do this today! 
 T , 0 , do this by wednesday
+D , 0 , assignment , Aug 8 2019, 6pm

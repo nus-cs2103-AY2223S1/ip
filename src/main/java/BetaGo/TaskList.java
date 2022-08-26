@@ -210,4 +210,28 @@ public class TaskList {
             Ui.printSaveError();
         }
     }
+
+    public void findTasks(String str) throws InvalidCommandException {
+        String[] inputs = str.split(" ", 2);
+        if (inputs.length != 2) {
+            throw new InvalidCommandException("No keyword input");
+        } else {
+            ArrayList<Task> matched = new ArrayList<>();
+            for(int i = 0; i < this.list.size(); i++) {
+               if(this.list.get(i).containKeyword(inputs[1])) {
+                   matched.add(this.list.get(i));
+               }
+            }
+            if (matched.size() == 0) {
+                System.out.println("There are no matching tasks found.\n");
+            } else {
+                System.out.println("Here are the matching tasks in your list:");
+                for (int i = 0; i < matched.size(); i++) {
+                    System.out.print(i+1);
+                    System.out.println(". " + matched.get(i).toString());
+                }
+                System.out.print("\n");
+            }
+        }
+    }
 }

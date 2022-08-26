@@ -48,4 +48,7 @@ public class Ui {
         System.out.println("There is an error when saving list to data file.\n");
 
     }
+    public static void printNoFindKeywordError() {
+        System.out.println("Please indicate the keyword that you would like to search for.\n");
+    }
 }
