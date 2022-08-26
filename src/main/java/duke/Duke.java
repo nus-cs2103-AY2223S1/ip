@@ -9,6 +9,12 @@ public class Duke {
     private TaskList tasks;
     private final Ui ui;
 
+    /**
+     * The main game.
+     *
+     * @param filePath
+     */
+
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);

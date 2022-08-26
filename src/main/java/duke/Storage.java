@@ -18,6 +18,14 @@ public class Storage {
         this.filePath = filePath;
     }
 
+    /**
+     * Load tasks from a file.
+     *
+     * @return
+     * @throws DukeException
+     * @throws FileNotFoundException
+     */
+
     public ArrayList<Task> load() throws DukeException, FileNotFoundException {
 
         ArrayList<Task> tasks = new ArrayList<Task>();
@@ -52,6 +60,13 @@ public class Storage {
         fileScanner.close();
         return tasks;
     }
+
+    /**
+     * Save tasks into a file.
+     *
+     * @param tasks
+     * @throws IOException
+     */
 
     public void save(ArrayList<Task> tasks) throws IOException {
         FileWriter fw = new FileWriter(filePath);

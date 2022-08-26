@@ -6,6 +6,13 @@ public class Event extends Task {
 
     protected LocalDateTime at;
 
+    /**
+     * An event class which is a task with a date.
+     *
+     * @param description
+     * @param at
+     */
+
     public Event(String description, LocalDateTime at) {
         super(description);
         this.at = at;
@@ -15,6 +22,12 @@ public class Event extends Task {
     public LocalDateTime getDateTime() {
         return this.at;
     }
+
+    /**
+     * Formats a string to be written in the file.
+     *
+     * @return
+     */
 
     @Override
     public String getWriteString() {

@@ -10,6 +10,14 @@ public class Parser {
     private static final String TIME_INPUT_PATTERN = "dd-MM-yyyy HHmm";
     private static final String DEADLINE_TIME_INPUT_PATTERN = "dd-MM-yyyy";
 
+    /**
+     * Parser to interpret the commands.
+     *
+     * @param fullCommand
+     * @return
+     * @throws DukeException
+     */
+
     public static Command parse(String fullCommand) throws DukeException {
 
         String instruction = fullCommand.contains(" ") ? fullCommand.split(" ", 2)[0] : fullCommand;
