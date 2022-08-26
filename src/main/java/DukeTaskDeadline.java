@@ -1,6 +1,6 @@
 import java.time.LocalDateTime;
 
-class DukeTaskDeadline extends DukeTask {
+public class DukeTaskDeadline extends DukeTask {
     
     LocalDateTime ldt;
 

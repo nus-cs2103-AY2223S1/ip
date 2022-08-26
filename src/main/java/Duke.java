@@ -1,66 +1,54 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-
 public class Duke {
+    private Storage storage;
+    private ArrayList<DukeTask> tasklist;
+    private Ui ui;
 
-    public static void read() {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("list.txt"));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] temp = line.split("/");
-                if (temp.length == 3) {
-                    tasklist.add(new DukeTask(temp[2], temp[1].contains("X"), temp[0].charAt(0)));
-                } else {
-                    // OOP will be made better later on
-                    if (temp[0].contains("D")){
-                        LocalDateTime ldt1 = LocalDateTime.parse(temp[3].substring(1, temp[3].length() - 1));
-                        tasklist.add(new DukeTaskDeadline(temp[2], temp[1].contains("X"), temp[0].charAt(0), ldt1));
-                    } else {
-                        tasklist.add(new DukeTaskEvent(temp[2], temp[1].contains("X"), temp[0].charAt(0), temp[3]));
-                    }
-                }
-
-            }
-            reader.close();
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
-        }
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage();
+        tasklist = new ArrayList<DukeTask>();
+        Storage.setOnce(tasklist, filePath);
+        // try {
+        //     tasks = new DukeTaskList(storage.load());
+        // } catch (DukeException e) {
+        //     ui.showLoadingError();
+        //     tasks = new DukeTaskList();
+        // }
     }
 
-    public static void save() {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("list.txt"));
-            for (int i = 0; i < tasklist.size(); i ++) {
-                DukeTask t = tasklist.get(i);
-                if (t.taskType == 'D') {
-                    DukeTaskDeadline tD = (DukeTaskDeadline) t;
-                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + "(" + tD.ldt.toString() + ")" +"\n");
-                } else if (t.taskType == 'E') {
-                    DukeTaskEvent tE = (DukeTaskEvent) t;
-                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task + "/" + tE.time +"\n");
-                } else {
-                    writer.write(t.taskType + "/" + (t.isMarked ? 'X' : 'O') + "/" + t.task +"\n");
+    public void run() {
+        storage.read();
+        Scanner input = new Scanner(System.in);
+        System.out.println("What are your commands sir:");
+        boolean isRunning = true;
+        while(isRunning) {
+            if (input.hasNext()) {
+                String str = input.nextLine();
+                Command cmd = Parser.parse(str);
+                if (cmd instanceof ByeCommand) {
+                    System.out.println("Goodbye, hope to see you again");
+                    isRunning = false;
+                    input.close();
+                    break;
+                }
+                try {
+                    cmd.deconstruct(tasklist, ui, storage);
+                } catch (Exception e) {
+                    System.out.println(e);
                 }
                 
             }
-            writer.close();
-
-        } catch (IOException e) {
-            System.out.println("Error: " + e);
         }
-
     }
 
+    public static void main(String[] args) {
+        new Duke("list.txt").run();
+    }
+}
+/* 
     private static final ArrayList<DukeTask> tasklist = new ArrayList<>();
     public static void main(String[] args) {
         read();
@@ -167,4 +155,5 @@ public class Duke {
         }
 
     }
-}
+    */
+
