@@ -1,6 +1,7 @@
 package executor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import belly.Belly;
 import brain.Brain;
@@ -218,6 +219,21 @@ public class Executor {
         result += "Byeee! Tob Tob is sick of you\n";
         result += "Don't you dare come back\n";
         result += "Tob Tob hates you";
+
+        return result;
+    }
+
+    /**
+     * Returns a {@link String} of {@link Task}s that have the specified keyword.
+     *
+     * @param keyword a {@link String} that wants to be searched
+     * @return String
+     */
+    public String findInBrain(String keyword) {
+        String result = "";
+        result += "Ulalaaa! Here are the matching tasks in your list:\n";
+
+        result += brain.findInTask(keyword).toString();
 
         return result;
     }
