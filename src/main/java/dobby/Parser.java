@@ -26,8 +26,14 @@ public class Parser {
      * @return String of task description
      */
     public static String getDesc(String rest) {
-        int endIndex = rest.indexOf("/") - 1;
-        return rest.substring(0, endIndex);
+        try {
+            int endIndex = rest.indexOf("/") - 1;
+            return rest.substring(0, endIndex);
+        } catch (StringIndexOutOfBoundsException e) {
+            return "missingDate";
+        } catch(NullPointerException e) {
+            return "";
+        }
     }
 
     /**
@@ -41,15 +47,17 @@ public class Parser {
         try {
             int i = rest.indexOf("/");
             if (i == -1) {
-                return "noDate";
+                dateFormatted = "noDate";
+            } else {
+                String dateString = rest.substring(i + 4);
+                dateFormatted = dateFormat(dateString, "yyyy-MM-dd HHmm", "MMM dd yyyy HH:mm");
             }
-            String dateString = rest.substring(i + 4);
-            dateFormatted = dateFormat(dateString, "yyyy-MM-dd HHmm");
-            return dateFormatted;
         } catch (DateTimeParseException e) {
-            DobbyChat.wrongDateFormat();
+            dateFormatted = "wrongDateFormat";
+        } catch (StringIndexOutOfBoundsException e) {
+            dateFormatted = "wrongDateFormat";
         }
-        return "wrongDateFormat";
+        return dateFormatted;
     }
 
     /**
@@ -72,6 +80,17 @@ public class Parser {
         int firstSpace = task.indexOf(" ");
         String rest = task.substring(firstSpace + 1);
         return rest;
+    }
+
+    public static String getDateType(String rest) {
+        String dateType;
+        try {
+            int i = rest.indexOf("/");
+            dateType = rest.substring(i + 1, i + 3);
+        } catch (StringIndexOutOfBoundsException e) {
+            dateType = "noDate";
+        }
+        return dateType;
     }
 
     //methods for interpreting .txt file
@@ -137,14 +156,15 @@ public class Parser {
      * Converts the input string of date and returns in a specified date format.
      *
      * @param dateString Input string of date
-     * @param datePattern Specified date format
+     * @param dateInputPattern Specified input date format
+     * @param dateOutputPattern Specified output date format
      * @return
      */
-    public static String dateFormat(String dateString, String datePattern) {
+    public static String dateFormat(String dateString, String dateInputPattern, String dateOutputPattern) {
         //date format for intended input
-        DateTimeFormatter form = DateTimeFormatter.ofPattern(datePattern);
+        DateTimeFormatter form = DateTimeFormatter.ofPattern(dateInputPattern);
         LocalDateTime date = LocalDateTime.parse(dateString, form);
-        String dateFormatted = date.format(DateTimeFormatter.ofPattern("MMM dd yyyy HH:mm"));
+        String dateFormatted = date.format(DateTimeFormatter.ofPattern(dateOutputPattern));
         return dateFormatted;
     }
 

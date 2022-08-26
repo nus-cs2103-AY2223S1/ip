@@ -13,6 +13,7 @@ public class Dobby {
     private static Scanner scanner = new Scanner(System.in);
     private static DobbyList dobbyList;
     private static UserInput ui;
+    private static String filePath;
 
     /**
      * Constructor for Dobby class.
@@ -23,7 +24,8 @@ public class Dobby {
     public Dobby(String filePath) {
         dobbyList = new DobbyList();
         ui = new UserInput();
-        DobbyIO.load(dobbyList, filePath);
+        this.filePath = filePath;
+        DobbyStorage.load(dobbyList, filePath);
     }
 
     /**
@@ -42,11 +44,14 @@ public class Dobby {
             isBye = cmd.isBye();
         }
     }
+    public static String getFilePath() {
+        return filePath;
+    }
 
     /**
      * Main method that runs the program.
      */
     public static void main(String[] args) throws IOException {
-        new Dobby("./src/main/dobbyList.txt").dobbyStart();
+        new Dobby("./data/dobbyList.txt").dobbyStart();
     }
 }
