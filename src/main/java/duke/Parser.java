@@ -15,10 +15,18 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
+/**
+ * Parser deals with making sense of the user command.
+ */
 public class Parser {
     private String cmd;
     private Optional<String> task;
 
+    /**
+     * Constructor for Parser.
+     *
+     * @param str String given by user input.
+     */
     public Parser(String str) {
         String[] split = str.split(" ", 2);
         this.cmd = split[0];
@@ -112,6 +120,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Returns a Command to be executed by Duke.
+     *
+     * @return Command according to the input of the user.
+     * @throws DukeException
+     */
     public Command getCommand() throws DukeException {
         if (cmd.equals("mark")) {
             return new MarkCommand(getTaskNumber());

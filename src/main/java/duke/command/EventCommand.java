@@ -7,14 +7,30 @@ import duke.task.Event;
 
 import java.time.LocalDate;
 
+/**
+ * EventCommand is the command to add an event to the TaskList.
+ */
 public class EventCommand extends Command {
     private final Event event;
 
+    /**
+     * Constructor for EventCommand.
+     *
+     * @param description Description of the task.
+     * @param time Time of the task.
+     */
     public EventCommand(String description, LocalDate time) {
         super();
         this.event = new Event(description, time);
     }
 
+    /**
+     * Executes the specific command corresponding to the type of input the user gives.
+     *
+     * @param list List of tasks.
+     * @param ui Ui to print messages.
+     * @param storage To save the list after making changes.
+     */
     @Override
     public void execCommand(TaskList list, Ui ui, Storage storage) {
         list.addTask(this.event);
