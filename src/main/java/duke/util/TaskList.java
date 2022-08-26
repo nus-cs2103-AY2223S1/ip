@@ -9,6 +9,10 @@ public class TaskList {
     public final ArrayList<Task> tasks;
 
     // Constructor
+    public TaskList(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     public TaskList() {
         tasks = new ArrayList<>();
     }

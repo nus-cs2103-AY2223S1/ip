@@ -8,16 +8,20 @@ import duke.ui.Ui;
 import duke.util.TaskList;
 
 public class Duke {
-    private final Storage storage;
-    private final TaskList tasklist;
-    private final Ui ui;
+    private Storage storage;
+    private TaskList tasklist;
+    private Ui ui;
 
     // Constructor
-    public Duke() {
+    public Duke(String filePath) {
         ui = new Ui();
-        storage = new Storage();
-        tasklist = new TaskList();
-
+        storage = new Storage(filePath);
+        try {
+            tasklist = new TaskList(storage.load());
+        } catch (DukeException e) {
+            System.out.println(e.getMessage());
+            tasklist = new TaskList();
+        }
     }
 
     /**
@@ -39,7 +43,7 @@ public class Duke {
 
     // Main Method
     public static void main(String[] args) {
-        Duke dk = new Duke();
+        Duke dk = new Duke("data/duke.txt");
         dk.run();
     }
 }

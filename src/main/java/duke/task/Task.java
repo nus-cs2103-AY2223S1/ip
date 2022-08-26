@@ -3,7 +3,7 @@ package duke.task;
 public class Task {
     // Class Fields
     protected String taskName;
-    protected boolean isDone;
+    public boolean isDone;
 
     // Constructor
     public Task(String taskName) {
@@ -31,6 +31,10 @@ public class Task {
      */
     public String getStatusIcon() {
         return this.isDone ? "✔" : " ";
+    }
+
+    public String inputToTxt() {
+        return null;
     }
 
     @Override
