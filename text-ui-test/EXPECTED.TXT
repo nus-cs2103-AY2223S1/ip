@@ -1,23 +1,30 @@
 Hello! I'm THE BRO
 What can I do for you?
 [D][ ]CS2103T  (by:  thursday)
+You have 1 tasks left!
 [E][ ]party in sentosa  (at:  7-9pm friday)
+You have 2 tasks left!
 1.[D][ ]CS2103T  (by:  thursday)
 2.[E][ ]party in sentosa  (at:  7-9pm friday)
 I have marked this task
 [D][X]CS2103T  (by:  thursday)
+You have 2 tasks left!
 [T][ ]eat dinner
+You have 3 tasks left!
 1.[D][X]CS2103T  (by:  thursday)
 2.[E][ ]party in sentosa  (at:  7-9pm friday)
 3.[T][ ]eat dinner
 I have marked this task
 [E][X]party in sentosa  (at:  7-9pm friday)
+You have 3 tasks left!
 1.[D][X]CS2103T  (by:  thursday)
 2.[E][X]party in sentosa  (at:  7-9pm friday)
 3.[T][ ]eat dinner
 [T][ ]go for walking
+You have 4 tasks left!
 I have unmarked this task
 [D][ ]CS2103T  (by:  thursday)
+You have 4 tasks left!
 1.[D][ ]CS2103T  (by:  thursday)
 2.[E][X]party in sentosa  (at:  7-9pm friday)
 3.[T][ ]eat dinner
