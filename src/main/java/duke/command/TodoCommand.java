@@ -1,14 +1,21 @@
 package duke.command;
 
+import duke.task.Task;
+import duke.task.ToDo;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
-import duke.task.Task;
-import duke.task.ToDo;
 
-public class TodoCommand extends Command{
+/**
+ * Created when user inputs "todo".
+ */
+public class TodoCommand extends Command {
     private String taskDetails;
 
+    /**
+     * Constructor for a todo command.
+     * @param taskDetails The description of the task.
+     */
     public TodoCommand(String taskDetails) {
         this.taskDetails = taskDetails;
     }

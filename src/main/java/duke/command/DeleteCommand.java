@@ -1,13 +1,19 @@
 package duke.command;
 
+import duke.exception.MarkException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
-import duke.exception.MarkException;
 
-public class DeleteCommand extends Command{
+/**
+ * Created when user inputs "delete".
+ */
+public class DeleteCommand extends Command {
     private int num;
-
+    /**
+     * Constructor for a delete command.
+     * @param num The number of the associated task.
+     */
     public DeleteCommand(int num) {
         this.num = num;
     }

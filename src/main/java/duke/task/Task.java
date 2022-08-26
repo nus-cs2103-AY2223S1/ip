@@ -1,5 +1,8 @@
 package duke.task;
 
+/**
+ * Represents a task in Duke.
+ */
 public class Task {
     private String task;
     private boolean done;
@@ -20,6 +23,10 @@ public class Task {
         this.done = done;
     }
 
+    /**
+     * Gets the String output of the task.
+     * @return A description of the task.
+     */
     public String getDescription() {
         return this.task;
     }

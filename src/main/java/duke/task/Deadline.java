@@ -3,7 +3,10 @@ package duke.task;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadline extends Task{
+/**
+ * Represents a task with a deadline in Duke.
+ */
+public class Deadline extends Task {
     private LocalDateTime time;
 
     /**
@@ -19,6 +22,7 @@ public class Deadline extends Task{
 
     @Override
     public String toString() {
-        return "[D]" + super.toString() + "(" + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
+        return "[D]" + super.toString() + "("
+                + this.time.format(DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm")) + ")";
     }
 }

@@ -1,6 +1,9 @@
 package duke.task;
 
-public class ToDo extends Task{
+/**
+ * Represents a task to be done in Duke.
+ */
+public class ToDo extends Task {
     public ToDo(String task) {
         super(task);
     }

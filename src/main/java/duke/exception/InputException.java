@@ -1,9 +1,11 @@
 package duke.exception;
 
-public class InputException extends DukeException{
-    public InputException() {
-        super();
-    }
+/**
+ * Represents an error during parsing of input from the user.
+ * This error will occur when user input is not in the following list:
+ * bye, list, mark, unmark, todo, deadline, event, find
+ */
+public class InputException extends DukeException {
 
     @Override
     public String toString() {

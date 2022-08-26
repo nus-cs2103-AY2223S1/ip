@@ -3,8 +3,12 @@ package duke.utils;
 import duke.exception.DukeException;
 import java.util.Scanner;
 
+/**
+ * Duke utility function to handle common outputs to be printed.
+ */
 public class UI {
-    Scanner reader;
+
+    private Scanner reader;
 
     public UI() {
         reader = new Scanner(System.in);
@@ -19,6 +23,7 @@ public class UI {
 
     /**
      * Reads the input from the user.
+     *
      * @return String input.
      */
     public String readCommand() {
@@ -27,6 +32,7 @@ public class UI {
 
     /**
      * Prints Duke error messages.
+     *
      * @param e Errors related to Duke.
      * @see DukeException
      */

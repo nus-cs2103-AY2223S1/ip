@@ -1,6 +1,12 @@
 package duke.exception;
 
-public class DukeException extends Exception{
+/**
+ * Represents an error during parsing of input from the user.
+ */
+public class DukeException extends Exception {
+    /**
+     * Constructor for an error for Duke.
+     */
     public DukeException() {
         super();
     }

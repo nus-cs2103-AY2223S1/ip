@@ -1,17 +1,20 @@
 package duke.command;
 
+import duke.exception.DukeException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
-import duke.exception.DukeException;
 
+/**
+ * A Command task used by the app.
+ */
 public abstract class Command {
-    Storage storage;
-    UI ui;
-    TaskList taskList;
+    protected Storage storage;
+    protected UI ui;
+    protected TaskList taskList;
 
     /**
-     * Constructs a specified Command task for Duke.
+     * Constructs a specified Command command for Duke.
      *
      * @param storage Storage of the current Duke program.
      * @param ui UI of the current Duke program.

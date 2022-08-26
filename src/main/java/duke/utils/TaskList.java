@@ -3,7 +3,11 @@ package duke.utils;
 import duke.task.Task;
 import java.util.List;
 
+/**
+ * Duke utility function to handle updating of the task list while Duke is running.
+ */
 public class TaskList {
+
     private List<Task> tasks;
 
 
@@ -13,6 +17,7 @@ public class TaskList {
 
     /**
      * Adds a task into the task list.
+     *
      * @param task A Duke Task
      * @see Task
      */
@@ -22,6 +27,7 @@ public class TaskList {
 
     /**
      * Deletes a task from the task list.
+     *
      * @param num The number of the task.
      */
     public void delete(int num) {
@@ -30,6 +36,7 @@ public class TaskList {
 
     /**
      * Gets a task from the task list.
+     *
      * @param num The number of the task.
      * @return A Duke Task
      * @see Task
@@ -42,13 +49,14 @@ public class TaskList {
      * Prints the tasks in the task list.
      */
     public void read() {
-        for(int i = 0; i < size(); i++) {
+        for (int i = 0; i < size(); i++) {
             System.out.println(i + 1 + ". " + getTask(i));
         }
     }
 
     /**
      * Returns size of current task list.
+     *
      * @return Number of tasks in the task list.
      */
     public int size() {
@@ -57,6 +65,7 @@ public class TaskList {
 
     /**
      * Returns current task list.
+     *
      * @return Task list.
      */
     public List<Task> list() {

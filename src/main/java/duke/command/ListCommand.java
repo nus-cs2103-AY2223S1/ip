@@ -4,7 +4,10 @@ import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
 
-public class ListCommand extends Command{
+/**
+ * Created when user inputs "list".
+ */
+public class ListCommand extends Command {
 
     /**
      * Outputs the current task list.

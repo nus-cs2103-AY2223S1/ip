@@ -1,9 +1,10 @@
 package duke.exception;
 
-public class TaskException extends DukeException{
-    public TaskException() {
-        super();
-    }
+/**
+ * Represents an error during parsing of input from the user.
+ * This error will occur when the user attempts to create a task without any description.
+ */
+public class TaskException extends DukeException {
 
     @Override
     public String toString() {

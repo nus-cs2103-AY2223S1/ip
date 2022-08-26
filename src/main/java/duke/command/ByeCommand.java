@@ -4,7 +4,10 @@ import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
 
-public class ByeCommand extends Command{
+/**
+ * Created when user inputs "bye".
+ */
+public class ByeCommand extends Command {
 
     /**
      * Exits the program.

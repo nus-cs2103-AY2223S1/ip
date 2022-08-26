@@ -1,13 +1,20 @@
 package duke.command;
 
+import duke.exception.MarkException;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
-import duke.exception.MarkException;
 
+/**
+ * Created when user inputs "unmark".
+ */
 public class UnmarkCommand extends Command {
     private int num;
 
+    /**
+     * Constructor for an unmark command.
+     * @param num The number of the associated task.
+     */
     public UnmarkCommand(int num) {
         this.num = num;
     }

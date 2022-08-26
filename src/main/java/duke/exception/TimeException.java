@@ -1,9 +1,9 @@
 package duke.exception;
 
-public class TimeException extends DukeException{
-    public TimeException() {
-        super();
-    }
+/**
+ * Represents an error during parsing of input
+ */
+public class TimeException extends DukeException {
 
     @Override
     public String toString() {

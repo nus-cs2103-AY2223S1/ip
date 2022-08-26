@@ -16,19 +16,25 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Duke utility function to handle both saving and reading of the task list into local drive.
+ */
 public class Storage {
 
     /**
-     * Saves the current task list of the user into the duke/duke.txt file in the project root folder.
+     * Saves the current task list of the user into the duke/duke.txt file in the project root
+     * folder.
+     *
      * @param tasks Task list of the user.
      */
-    public void save(List<Task> tasks)  {
+    public void save(List<Task> tasks) {
         try {
             //duke.txt will always exist since we have already created it upon loading up the duke program
             //however, users may delete the directory and hence we still need to check for the existence
 
             //reference from https://stackoverflow.com/a/28620461
-            String savePath = System.getProperty("user.dir") + System.getProperty("file.separator") + "duke";
+            String savePath =
+                System.getProperty("user.dir") + System.getProperty("file.separator") + "duke";
             File saveLocation = new File(savePath);
             if (!saveLocation.exists()) {
                 saveLocation.mkdir();
@@ -52,19 +58,23 @@ public class Storage {
     }
 
     /**
-     * Reads the duke/duke.txt file in the project root folder and generates the task list accordingly.
+     * Reads the duke/duke.txt file in the project root folder and generates the task list
+     * accordingly.
+     *
      * @return The task list for the Duke program.
      */
     public List<Task> read() {
         ArrayList<Task> tasks = new ArrayList<>();
-        String path = System.getProperty("user.dir") + System.getProperty("file.separator") + "duke";
+        String path =
+            System.getProperty("user.dir") + System.getProperty("file.separator") + "duke";
         File saveLocation = new File(path);
         if (!saveLocation.exists()) {
             saveLocation.mkdir();
             File myFile = new File(path, "duke.txt");
         } else {
             try {
-                BufferedReader reader = new BufferedReader(new FileReader(new File(path, "duke.txt")));
+                BufferedReader reader = new BufferedReader(
+                    new FileReader(new File(path, "duke.txt")));
                 String line;
                 try {
                     //reference from https://stackoverflow.com/a/16104650
@@ -76,8 +86,9 @@ public class Storage {
                     System.out.println("Error: " + e);
                 }
             } catch (FileNotFoundException e) {
-                System.out.println("Error: " + e );
-                System.out.println("Don't worry I'll create the file when you create your task list!");
+                System.out.println("Error: " + e);
+                System.out.println(
+                    "Don't worry I'll create the file when you create your task list!");
             }
         }
         return tasks;
@@ -90,17 +101,21 @@ public class Storage {
         //regex reference from https://stackoverflow.com/a/17779833
         String[] event = txt.substring(7).split("\\(");
         switch (eventType) {
-            case 'T':
-                list.add(new ToDo(event[0]));
-                break;
-            case 'D':
-                LocalDateTime time = LocalDateTime.parse(event[1].substring(0,event[1].indexOf(")")), DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
-                list.add(new Deadline(event[0], time));
-                break;
-            case 'E':
-                time = LocalDateTime.parse(event[1].substring(0,event[1].indexOf(")")),DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
-                list.add(new Event(event[0], time));
-                break;
+        case 'T':
+            list.add(new ToDo(event[0]));
+            break;
+        case 'D':
+            LocalDateTime time = LocalDateTime.parse(event[1].substring(0, event[1].indexOf(")")),
+                DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
+            list.add(new Deadline(event[0], time));
+            break;
+        case 'E':
+            time = LocalDateTime.parse(event[1].substring(0, event[1].indexOf(")")),
+                DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm"));
+            list.add(new Event(event[0], time));
+            break;
+        default:
+            break;
         }
         list.get(list.size() - 1).setDone(isDone);
     }

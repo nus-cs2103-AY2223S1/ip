@@ -1,17 +1,25 @@
 package duke.command;
 
+import duke.task.Event;
+import duke.task.Task;
 import duke.utils.Storage;
 import duke.utils.TaskList;
 import duke.utils.UI;
-import duke.task.Event;
-import duke.task.Task;
 
 import java.time.LocalDateTime;
 
-public class EventCommand extends Command{
+/**
+ * Created when user inputs "event".
+ */
+public class EventCommand extends Command {
     private String taskDetails;
     private LocalDateTime time;
 
+    /**
+     * Constructor for an event command.
+     * @param taskDetails The description of the task.
+     * @param time The time of the task, given in "yyyy-MM-dd HH:mm" format.
+     */
     public EventCommand(String taskDetails, LocalDateTime time) {
         this.taskDetails = taskDetails;
         this.time = time;
