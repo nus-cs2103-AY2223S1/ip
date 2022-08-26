@@ -2,7 +2,7 @@ package duke.task;
 
 public abstract class Task {
     protected String name;
-    protected Boolean done = false;
+    protected Boolean isDone = false;
     public Task(String name) {
         this.name = name;
     }
@@ -10,8 +10,8 @@ public abstract class Task {
      * sets a task to be done
      *
      */
-    public void done() {
-        this.done = true;
+    public void setDone() {
+        this.isDone = true;
     }
 
     /**
@@ -19,15 +19,15 @@ public abstract class Task {
      *
      * @param input
      */
-    public void unDone() {
-        this.done = false;
+    public void setUndone() {
+        this.isDone = false;
     }
 
     public abstract String writeData();
 
     @Override
     public String toString() {
-        String mark = done ? "X" : "";
+        String mark = isDone ? "X" : "";
         return "[" + mark + "] " + this.name;
     }
 }

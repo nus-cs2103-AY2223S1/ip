@@ -12,7 +12,7 @@ public class Events extends Task {
 
     @Override
     public String writeData() {
-        int mark = done ? 1 : 0;
+        int mark = isDone ? 1 : 0;
         return "E#" + mark + "#" + this.name + "#" + this.atDate;
     }
 

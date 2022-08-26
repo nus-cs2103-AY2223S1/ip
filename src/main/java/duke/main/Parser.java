@@ -7,13 +7,13 @@ import java.time.DateTimeException;
 public class Parser {
 
     public Command parse(String input) {
-        String [] inputSplit = input.split(" ");
-        String command = inputSplit[0];
+        String [] inputs = input.split(" ");
+        String command = inputs[0];
         try {
             if (command.equals("list")) {
                 return new ListCommand();
             } else {
-                String task = inputSplit[1];
+                String task = inputs[1];
 
                 if (command.equals("mark")) {
                     return new MarkCommand(task);
@@ -22,11 +22,11 @@ public class Parser {
                 } else if (command.equals("todo")) {
                     return new AddTodoCommand(task);
                 } else if (command.equals("deadline")) {
-                    return new AddDeadlineCommand(task, inputSplit[3]);
+                    return new AddDeadlineCommand(task, inputs[3]);
                 } else if (command.equals("event")) {
-                    return new AddEventsCommand(task, inputSplit[3]);
+                    return new AddEventsCommand(task, inputs[3]);
                 } else if (command.equals("delete")) {
-                    return new DeleteCommand(inputSplit[1]);
+                    return new DeleteCommand(inputs[1]);
                 } else {
                     return new ErrorCommand();
                 }

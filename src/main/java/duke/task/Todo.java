@@ -7,7 +7,7 @@ public class Todo extends Task {
 
     @Override
     public String writeData() {
-        int mark = done ? 1 : 0;
+        int mark = isDone ? 1 : 0;
         return "T#" + mark + "#" + this.name;
     }
 

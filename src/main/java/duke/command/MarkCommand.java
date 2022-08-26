@@ -16,7 +16,7 @@ public class MarkCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws NullPointerException,
             IndexOutOfBoundsException, NumberFormatException {
         Task task = taskList.getTask(index - 1);
-        task.done();
+        task.setDone();
         storage.saveTasks(taskList);
         ui.repeater(task + " marked!");
     }

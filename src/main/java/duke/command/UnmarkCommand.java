@@ -16,7 +16,7 @@ public class UnmarkCommand extends Command {
     public void execute(TaskList taskList, Ui ui, Storage storage) throws NullPointerException,
             IndexOutOfBoundsException, NumberFormatException {
             Task task = taskList.getTask(index - 1);
-            task.unDone();
+            task.setUndone();
             storage.saveTasks(taskList);
             ui.repeater(task + " unmarked");
     }

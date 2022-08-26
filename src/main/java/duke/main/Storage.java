@@ -71,7 +71,7 @@ public class Storage {
                 }
 
                 if (done.equals("1")) {
-                    task.done();
+                    task.setDone();
                 }
                 taskList.add(index, task);
                 index++;
