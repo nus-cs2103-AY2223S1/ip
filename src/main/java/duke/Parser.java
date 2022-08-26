@@ -9,18 +9,22 @@ import duke.command.AddCommand;
 import duke.command.Command;
 import duke.command.DeleteCommand;
 import duke.command.ExitCommand;
+import duke.command.FindCommand;
 import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnknownCommand;
 import duke.command.UnmarkCommand;
+
 import duke.exception.DukeException;
 import duke.exception.InvalidDateException;
 import duke.exception.InvalidInputException;
 import duke.exception.MissingInputException;
+
 import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.Task;
 import duke.task.Todo;
+
 
 
 public class Parser {
@@ -41,41 +45,45 @@ public class Parser {
      * @return The mapped Command if all input is valid.
      * @throws DukeException if input formats not met or missing/invalid input.
      */
-
     public Command parse(String input) throws DukeException {
 
         String[] splitInput = input.split(" ");
         String command = splitInput[0];
         String[] arguments = Arrays.copyOfRange(splitInput, 1, splitInput.length);
 
-        if (command.equals("mark")) {
-            checkMarkInputs(splitInput);
-            return new MarkCommand(arguments[0]);
-        } else if (command.equals("unmark")) {
-            checkUnmarkInputs(splitInput);
-            return new UnmarkCommand(arguments[0]);
-        } else if (command.equals("deadline")) {
-            int byIndex = checkDeadlineInput(splitInput);
-            Task task = getDeadline(splitInput, byIndex);
-            return new AddCommand(task);
-        } else if (command.equals("todo")) {
-            checkTodoInputs(splitInput);
-            Task task = new Todo(String.join(" ", arguments));
-            return new AddCommand(task);
-        } else if (command.equals("event")) {
-            int atIndex = checkEventInput(splitInput);
-            Task task = getEvent(splitInput, atIndex);
-            return new AddCommand(task);
-        } else if (command.equals("delete")) {
-            checkDeleteInputs(splitInput);
-            return new DeleteCommand(arguments[0]);
-        } else if (command.equals("bye") && splitInput.length == 1) {
-            return new ExitCommand();
-        } else if (command.equals("list")) {
-            return new ListCommand();
-        } else {
-            throw new UnknownCommand();
-        }
+            if (command.equals("mark")) {
+                checkMarkInputs(splitInput);
+                return new MarkCommand(arguments[0]);
+            } else if (command.equals("unmark")){
+                checkUnmarkInputs(splitInput);
+                return new UnmarkCommand(arguments[0]);
+            } else if (command.equals("deadline")) {
+               int byIndex = checkDeadlineInput(splitInput);
+               Task task = getDeadline(splitInput, byIndex);
+               return new AddCommand(task);
+            } else if (command.equals("todo")) {
+                checkTodoInputs(splitInput);
+                Task task = new Todo(String.join(" ", arguments));
+                return new AddCommand(task);
+            } else if (command.equals("event")) {
+                int atIndex = checkEventInput(splitInput);
+                Task task = getEvent(splitInput, atIndex);
+                return new AddCommand(task);
+            } else if (command.equals("delete")) {
+                checkDeleteInputs(splitInput);
+                return new DeleteCommand(arguments[0]);
+            } else if (command.equals("bye") && splitInput.length == 1) {
+                return new ExitCommand();
+            } else if (command.equals("list")) {
+                return new ListCommand();
+            } else if (command.equals("find")){
+                if (splitInput.length == 1) {
+                    throw new MissingInputException("keyword", "find");
+                }
+                return new FindCommand(String.join(" ", arguments));
+            } else {
+                throw new UnknownCommand();
+            }
     }
 
     /**
