@@ -37,7 +37,7 @@ public class Duke {
             }
         }
         ui.close();
-        Ui.sayBye();
+        ui.sayBye();
         ui.showDivider();
     }
 }
