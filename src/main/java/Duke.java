@@ -1,11 +1,8 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Tasklist tl = new Tasklist();
-//        ArrayList<Boolean> marked = new ArrayList<>();
-//        ArrayList<String> type = new ArrayList<>();
+        Tasklist.initTaskList();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -27,35 +24,35 @@ public class Duke {
                 } else if (msgWords[i].equalsIgnoreCase("list")) {
                     System.out.println(line_divider);
                     System.out.println("Here are your tasks la:");
-                    for (int j = 0; j < tl.size(); j++) {
-                        System.out.println(j + 1 + ":" + tl.get(j).toString());
+                    for (int j = 0; j < Tasklist.size(); j++) {
+                        System.out.println(j + 1 + ":" + Tasklist.get(j).toString());
                     }
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("mark")) {
                     int index = Integer.parseInt(msgWords[2]) - 1;
-                    tl.get(index).mark();
+                    Tasklist.mark(index);
                     System.out.println(line_divider);
                     System.out.println("Ok ticked this already");
-                    System.out.println(tl.get(index).toString());
+                    System.out.println(Tasklist.get(index).toString());
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("unmark")) {
                     int index = Integer.parseInt(msgWords[2]) - 1;
-                    tl.get(index).unMark();
+                    Tasklist.unMark(index);
                     System.out.println(line_divider);
                     System.out.println("Ok not done yet ah");
-                    System.out.println(tl.get(index).toString());
+                    System.out.println(Tasklist.get(index).toString());
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("delete")) {
                     int index = Integer.parseInt(msgWords[2]) - 1;
-                    Task removed = tl.get(index);
-                    tl.remove(index);
+                    Task removed = Tasklist.get(index);
+                    Tasklist.remove(index);
                     System.out.println(line_divider);
                     System.out.println("I remove this ah:");
                     System.out.println(removed.toString());
-                    System.out.println("Now " + tl.size() + " tasks only");
+                    System.out.println("Now " + Tasklist.size() + " tasks only");
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("todo")) {
@@ -63,12 +60,12 @@ public class Duke {
                         System.out.println("☹ OOPS!!! Why empty");
                         break;
                     }
-                    String item = curr.substring(5);
-                    Todo newTodo = new Todo(item);
-                    tl.add(newTodo);
+                    String item = curr.substring(4);
+                    Todo newTodo = new Todo(item, false);
+                    Tasklist.add(newTodo);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
-                    System.out.println(newTodo + "\nNow " + tl.size() + " tasks already");
+                    System.out.println(newTodo + "\nNow " + Tasklist.size() + " tasks already");
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("deadline")) {
@@ -77,13 +74,13 @@ public class Duke {
                         break;
                     }
                     int slashPos = curr.indexOf("/by");
-                    String taskName = curr.substring(9, slashPos - 1);
+                    String taskName = curr.substring(8, slashPos - 1) + " ";
                     String deadline = curr.substring(slashPos + 3);
-                    Deadline newDL = new Deadline(taskName, deadline);
-                    tl.add(newDL);
+                    Deadline newDL = new Deadline(taskName, deadline, false);
+                    Tasklist.add(newDL);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
-                    System.out.println(newDL + "\nNow " + tl.size() + " tasks already!");
+                    System.out.println(newDL + "\nNow " + Tasklist.size() + " tasks already!");
                     System.out.println(line_divider);
                     break;
                 } else if (msgWords[i].equalsIgnoreCase("event")) {
@@ -92,13 +89,13 @@ public class Duke {
                         break;
                     }
                     int slashPos = curr.indexOf("/at");
-                    String taskName = curr.substring(6, slashPos - 1);
+                    String taskName = curr.substring(5, slashPos - 1) + " ";
                     String deadline = curr.substring(slashPos + 3);
-                    Event newEvent = new Event(taskName, deadline);
-                    tl.add(newEvent);
+                    Event newEvent = new Event(taskName, deadline, false);
+                    Tasklist.add(newEvent);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
-                    System.out.println(newEvent + "\nNow " + tl.size() + " tasks already!");
+                    System.out.println(newEvent + "\nNow " + Tasklist.size() + " tasks already!");
                     System.out.println(line_divider);
                     break;
                 } else {

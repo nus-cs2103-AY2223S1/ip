@@ -1,13 +1,18 @@
 public class Deadline extends Task {
-    private final String dueBy;
+    final String dueBy;
 
-    public Deadline(String taskName, String dueBy) {
-        super(taskName);
+    public Deadline(String taskName, String dueBy, boolean isDone) {
+        super(taskName, isDone);
         this.dueBy = dueBy;
     }
 
     @Override
+    public String taskToFileString() {
+        return " D " + "| " + (this.done ? "1 " : "0 ") + "|" + this.taskName + "|" + this.dueBy;
+    }
+
+    @Override
     public String toString() {
-        return "[D]" + (this.done ? "[X] " : "[ ] ") + this.taskName + " (by:" + this.dueBy + ")";
+        return "[D]" + (this.done ? "[X]" : "[ ]") + this.taskName + "(by:" + this.dueBy + ")";
     }
 }
