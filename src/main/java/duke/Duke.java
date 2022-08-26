@@ -66,6 +66,10 @@ public class Duke {
                     Ui.printErrorMessage(new DukeException(
                             "OOPS!!! I'm sorry, but I don't know what that means :-("));
                     continue;
+                case FIND:
+                    TaskList filtered = tasks.find(command.replace("find", "").trim());
+                    Ui.printTasks(filtered);
+                    continue;
             }
         }
     }
