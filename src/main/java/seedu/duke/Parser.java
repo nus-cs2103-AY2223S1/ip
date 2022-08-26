@@ -13,6 +13,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Takes in a user input and informs Duke what to do.
+     * @param command The main action of Duke.
+     * @param input The whole user input.
+     * @param taskList tasks attribute of Duke.
+     * @param isOpen ArrayList containing a boolean to check whether Duke is open or closed
+     * @param scanner Scanner object.
+     */
     public static void parse(String command, String input, TaskList taskList, ArrayList<Boolean> isOpen, Scanner scanner) {
 
         String[] inputArr = input.split(" ");
@@ -97,7 +105,5 @@ public class Parser {
             }
 
         }
-
         }
-
     }

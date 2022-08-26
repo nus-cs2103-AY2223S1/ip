@@ -16,6 +16,10 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Represents the Duke Application.
+     * @param filePath Path to extract the current list of tasks Duke has kept track of.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -28,6 +32,11 @@ public class Duke {
     }
 
 
+    /**
+     * Prints the initial tasks Duke has based on data/duke.txt.
+     * @param filePath Path to duke.txt.
+     * @throws FileNotFoundException
+     */
     private static void printFileContents(String filePath) throws FileNotFoundException {
         File f = new File(filePath); // create a File for the given file path
         Scanner s = new Scanner(f); // create a Scanner using the File as the source
@@ -36,11 +45,9 @@ public class Duke {
         }
     }
 
-
-    // taken from Week 3 topics
-
-
-
+    /**
+     * Runs Duke.
+     */
     public void run() {
         try {
             File file = new File("data/duke.txt");
