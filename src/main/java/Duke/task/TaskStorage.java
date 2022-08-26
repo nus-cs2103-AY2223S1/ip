@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 
 public class TaskStorage {
-    protected String filePath;
+    private String filePath;
 
     public TaskStorage(String filePath) {
         this.filePath = filePath;

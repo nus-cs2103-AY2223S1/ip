@@ -5,12 +5,12 @@ package Duke.task;
  * and users can interact with.
  */
 public abstract class Task {
-    protected String description;
-    protected boolean done;
+    private String description;
+    private boolean isDone;
 
     protected Task(String task, boolean done) {
         this.description = task;
-        this.done = done;
+        this.isDone = done;
     }
 
     /**
@@ -18,7 +18,7 @@ public abstract class Task {
      * when a user completes it
      */
     public void mark() {
-        this.done = true;
+        this.isDone = true;
     }
 
 
@@ -27,17 +27,17 @@ public abstract class Task {
      * when a user marks it as incomplete
      */
     public void unmark() {
-        this.done = false;
+        this.isDone = false;
     }
 
     public String getDescription() {
         return this.description;
     }
     public String getDone() {
-        return ( done ? "1" : "0");
+        return ( isDone ? "1" : "0");
     }
     public String printDone() {
-        return (done ? "[X] " : "[ ] ");
+        return (isDone ? "[X] " : "[ ] ");
     }
     @Override
     public String toString() {

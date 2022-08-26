@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class DukeDate {
-    protected LocalDateTime dateTime;
+    private LocalDateTime dateTime;
 
     public DukeDate(String input) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
