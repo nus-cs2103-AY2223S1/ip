@@ -5,7 +5,7 @@ import duke.TaskList;
 import duke.Ui;
 import duke.exception.DukeException;
 
-public class ListCommand extends Command{
+public class ListCommand extends Command {
 
     /**
      * Constructor for ListCommand.

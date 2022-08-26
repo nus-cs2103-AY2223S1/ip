@@ -1,8 +1,11 @@
 package duke;
+
+import java.util.ArrayList;
+
 import duke.exception.DukeException;
 import duke.exception.InvalidInputException;
 import duke.task.Task;
-import java.util.ArrayList;
+
 
 
 public class TaskList {
@@ -24,7 +27,7 @@ public class TaskList {
             System.out.println("No tasks in list, great job!");
         }
         while (i < list.size()) {
-            System.out.println(i+1 + ". " +list.get(i));
+            System.out.println(i + 1 + ". " + list.get(i));
             i++;
         }
     }
@@ -69,16 +72,15 @@ public class TaskList {
      */
     public void removeTask(String num) throws DukeException {
         int index = Integer.parseInt(num);
-            try {
-                Task task = list.get(index-1);
-                System.out.println("Ok, I have removed this task:");
-                System.out.println(task);
-                list.remove(index-1);
-                System.out.println("You now have " + list.size() + " tasks left in the list");
-            } catch (NumberFormatException e){
-
-                throw new InvalidInputException(num ,"delete");
-            }
+        try {
+            Task task = list.get(index - 1);
+            System.out.println("Ok, I have removed this task:");
+            System.out.println(task);
+            list.remove(index - 1);
+            System.out.println("You now have " + list.size() + " tasks left in the list");
+        } catch (NumberFormatException e) {
+            throw new InvalidInputException(num, "delete");
+        }
     }
 
 }

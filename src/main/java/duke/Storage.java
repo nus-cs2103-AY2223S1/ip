@@ -1,11 +1,10 @@
 package duke;
-import duke.task.Task;
 import java.io.File;
-import java.util.Scanner;
-import java.io.IOException;
 import java.io.FileWriter;
-import java.util.List;
+import java.io.IOException;
+import java.util.Scanner;
 
+import duke.task.Task;
 
 
 public class Storage {
@@ -40,13 +39,13 @@ public class Storage {
         try {
             FileWriter writer = new FileWriter(filePath);
             int i = 0;
-            while(i < taskList.getsize()) {
+            while (i < taskList.getsize()) {
                 writer.write(taskList.get(i).tofileString());
                 writer.write(System.getProperty("line.separator"));
                 i++;
             }
             writer.close();
-        } catch (IOException e){
+        } catch (IOException e) {
             System.out.println("Directory does not exist, creating new directory now");
             File f = new File("data");
             f.mkdir();

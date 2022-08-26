@@ -1,5 +1,5 @@
 package duke.exception;
-public class MissingInputException extends DukeException{
+public class MissingInputException extends DukeException {
 
     /**
      * Constructor for MissingInputException.

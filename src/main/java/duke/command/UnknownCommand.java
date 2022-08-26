@@ -2,7 +2,7 @@ package duke.command;
 
 import duke.exception.DukeException;
 
-public class UnknownCommand extends DukeException{
+public class UnknownCommand extends DukeException {
 
     /**
      * Constructor for UnknownCommand.

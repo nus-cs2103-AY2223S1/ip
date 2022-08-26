@@ -1,11 +1,13 @@
 package duke.command;
 
-import duke.exception.DukeException;
 import duke.Storage;
 import duke.TaskList;
 import duke.Ui;
+import duke.exception.DukeException;
 
-public class ExitCommand extends Command{
+
+public class ExitCommand extends Command {
+
     /**
      * Constructor for ExitCommand.
      */

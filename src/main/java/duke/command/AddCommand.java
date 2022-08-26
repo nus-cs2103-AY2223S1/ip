@@ -6,7 +6,9 @@ import duke.TaskList;
 import duke.Ui;
 
 
+
 public class AddCommand extends Command {
+
     /**
      * Constructor for AddCommand.
      *
@@ -15,6 +17,7 @@ public class AddCommand extends Command {
     public AddCommand(Task task) {
         super(task);
     }
+
     /**
      * Carry out command to add task to task list.
      *

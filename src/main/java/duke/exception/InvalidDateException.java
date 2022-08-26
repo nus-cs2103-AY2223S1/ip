@@ -1,5 +1,6 @@
 package duke.exception;
-public class InvalidDateException extends DukeException{
+
+public class InvalidDateException extends DukeException {
 
     /**
      * Constructor for InvalidDateException.

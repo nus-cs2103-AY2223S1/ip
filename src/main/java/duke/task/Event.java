@@ -1,6 +1,6 @@
 package duke.task;
-public class Event extends Task{
-    public String date;
+public class Event extends Task {
+    private String date;
 
     /**
      * Constructor for Event.
@@ -8,6 +8,7 @@ public class Event extends Task{
      * @param command The String array containing description and date of event.
      */
     public Event (String[] command) {
+
         super(command[0]);
         this.date = command[1];
     }

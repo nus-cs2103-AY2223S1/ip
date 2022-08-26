@@ -1,5 +1,6 @@
 package duke.exception;
-public class InvalidInputException extends DukeException{
+
+public class InvalidInputException extends DukeException {
 
     /**
      * Constructor for InvalidInputException.

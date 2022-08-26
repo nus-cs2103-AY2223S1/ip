@@ -2,7 +2,14 @@ package duke;
 import java.util.Scanner;
 
 public class Ui {
-    public Scanner sc;
+    private Scanner sc;
+
+    /**
+     * Constructor for Ui
+     */
+    public Ui() {
+        sc = new Scanner(System.in);
+    }
 
     /**
      * Reads next input from user
@@ -32,12 +39,6 @@ public class Ui {
         System.out.println("Hello from\n" + logo);
     }
 
-    /**
-     * Constructor for Ui
-     */
-    public Ui() {
-        sc = new Scanner(System.in);
-    }
-
-
 }
+
+
