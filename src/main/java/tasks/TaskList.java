@@ -10,7 +10,7 @@ enum SortType {
 }
 
 /**
- * This class encapsulates a list of tasks.
+ * This class encapsulates a list of tasks and allows manipulation.
  */
 public class TaskList {
     private List<Task> taskList;
