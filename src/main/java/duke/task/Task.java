@@ -40,6 +40,6 @@ public abstract class Task {
   }
 
   public String[] getPrintRepresentation() {
-    return new String[]{"Task", description, String.valueOf(isDone)};
+    return new String[] { "Task", description, String.valueOf(isDone) };
   }
 }

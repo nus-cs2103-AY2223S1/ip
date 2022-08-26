@@ -1,9 +1,6 @@
 package duke;
 
-import duke.task.Task;
 import duke.task.TaskList;
-
-import java.util.stream.IntStream;
 
 class Duke {
   private static final String FILEPATH = "./data/duke.txt";

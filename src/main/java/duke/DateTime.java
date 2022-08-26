@@ -10,7 +10,8 @@ public class DateTime {
     private static final DateTimeFormatter formatter = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd")
             .optionalStart().appendPattern(" HHmm").optionalEnd().parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
             .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0).toFormatter();
-    private static final DateTimeFormatter[] formatters = {formatter, DateTimeFormatter.ofPattern("MMM dd yyyy HHmm")};
+    private static final DateTimeFormatter[] formatters = { formatter,
+            DateTimeFormatter.ofPattern("MMM dd yyyy HHmm") };
     private String input;
     private LocalDateTime dateTime;
 

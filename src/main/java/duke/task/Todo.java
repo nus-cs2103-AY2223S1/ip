@@ -17,6 +17,6 @@ public class Todo extends Task {
   @Override
   public String[] getPrintRepresentation() {
     String[] strArray = super.getPrintRepresentation();
-    return new String[]{"Todo", strArray[1], strArray[2]};
+    return new String[] { "Todo", strArray[1], strArray[2] };
   }
 }
