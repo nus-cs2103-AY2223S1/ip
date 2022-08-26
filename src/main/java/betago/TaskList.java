@@ -8,20 +8,49 @@ import betago.tasks.Event;
 import betago.tasks.Task;
 import betago.tasks.Todo;
 
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.io.FileWriter;
 
+/**
+ * TaskList class that stores Tasks in an ArrayList.
+ */
 public class TaskList {
-    protected ArrayList<Task> list;
+    private ArrayList<Task> list;
 
+    /**
+     * Constructor for TaskList.
+     * Initialises ArrayList variable.
+     */
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
+    /**
+     * Gets the task in the specific index of the ArrayList.
+     *
+     * @param index Index of the task to be returned.
+     * @return Task in the index of the ArrayList.
+     */
+    public Task get(int index) {
+        return this.list.get(index);
+    }
+
+    /**
+     * Returns the number of items in the current list.
+     *
+     * @return Number of items in the ArrayList.
+     */
+    public int size() {
+        return this.list.size();
+    }
+
+    /**
+     * Returns the list of Tasks in the current TaskList.
+     *
+     * @throws EmptyListException If there are no Tasks in the list.
+     */
     public void listItems() throws EmptyListException {
         if (list.size() == 0) {
             throw new EmptyListException("There are no items in the list.");
@@ -34,6 +63,12 @@ public class TaskList {
         System.out.print("\n");
     }
 
+    /**
+     * Marks or unmarks the Task in the specific index of the TaskList.
+     *
+     * @param str Mark or Unmark command that the user provided.
+     * @throws InvalidCommandException If there are no Tasks in the list.
+     */
     public void markUnmarkItems(String str) throws InvalidCommandException {
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
@@ -59,6 +94,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a Todo Task in the ArrayList.
+     *
+     * @param str Add todo command that the user provided.
+     * @throws InvalidCommandException If no description is provided.
+     */
     public void addTodo(String str) throws InvalidCommandException{
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
@@ -71,6 +112,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds a Deadline Task in the ArrayList.
+     *
+     * @param str Add deadline command that the user provided.
+     * @throws InvalidCommandException If no description or deadline provided.
+     */
     public void addDeadline(String str) throws InvalidCommandException {
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
@@ -92,6 +139,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Adds an Event Task in the ArrayList.
+     *
+     * @param str Add event command that the user provided.
+     * @throws InvalidCommandException If no description or location provided.
+     */
     public void addEvent(String str) throws InvalidCommandException {
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
@@ -109,6 +162,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes the Task in the specific index of the ArrayList.
+     *
+     * @param str Delete command that the user provided.
+     * @throws InvalidCommandException If no task number is provided or task number is out of range.
+     */
     public void deleteItems(String str) throws InvalidCommandException {
         String[] inputs = str.split(" ", 2);
         if (inputs.length != 2) {
@@ -130,6 +189,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Read todo task from the data file and add a todo task accordingly into the TaskList.
+     *
+     * @param str Line of text from the data file to load task.
+     * @throws InvalidDataFileException If marker is not 1 or 0, or str is of the wrong format.
+     */
     public void loadTodo(String str) throws InvalidDataFileException {
         String[] inputs = str.split(" , ", 3);
         if (inputs.length != 3) {
@@ -148,6 +213,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Read deadline task from the data file and add a deadline task accordingly into the TaskList.
+     *
+     * @param str Line of text from the data file to load task.
+     * @throws InvalidDataFileException If marker is not 1 or 0, or str is of the wrong format.
+     */
     public void loadDeadline(String str) throws InvalidDataFileException{
         String[] inputs = str.split(" , ", 4);
         if (inputs.length != 4) {
@@ -181,6 +252,12 @@ public class TaskList {
         }
     }
 
+    /**
+     * Read event task from the data file and add an event task accordingly into the TaskList.
+     *
+     * @param str Line of text from the data file to load task.
+     * @throws InvalidDataFileException If marker is not 1 or 0, or str is of the wrong format.
+     */
     public void loadEvent(String str) throws InvalidDataFileException{
         String[] inputs = str.split(" , ", 4);
         if (inputs.length != 4) {
@@ -198,16 +275,5 @@ public class TaskList {
         }
     }
 
-    public void saveItems() {
-        try {
-            FileWriter fw = new FileWriter("data/duke.txt", false);
-            for(int i = 0; i < this.list.size(); i++) {
-                Task temp = this.list.get(i);
-                fw.write(temp.saveTask());
-            }
-            fw.close();
-        } catch (IOException e) {
-            Ui.printSaveError();
-        }
-    }
+
 }
