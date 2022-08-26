@@ -136,7 +136,6 @@ public class TaskList {
      */
     public int mark(String input) throws MarkUnmarkException {
         int i = Parser.parseMark(input, this);
-
         System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is marked as done.");
         list.get(i - 1).markDone();
         return i - 1;
@@ -151,7 +150,6 @@ public class TaskList {
      */
     public int unmark(String input) throws MarkUnmarkException {
         int i = Parser.parseUnmark(input, this);
-
         System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is unmarked.");
         list.get(i - 1).unmark();
         return i - 1;
@@ -170,7 +168,6 @@ public class TaskList {
      */
     public int delete(String input) throws DeleteException {
         int i = Parser.parseDelete(input, this);
-
         System.out.println("Okay...task: " + list.get(i - 1).getContent() + " is deleted.");
         list.remove(i - 1);
         return i - 1;
