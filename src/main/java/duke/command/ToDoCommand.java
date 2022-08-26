@@ -6,17 +6,17 @@ import duke.Ui;
 import duke.task.ToDo;
 
 public class ToDoCommand extends Command {
-    private final ToDo todo;
+    private final ToDo toDo;
 
     public ToDoCommand(String description) {
         super();
-        this.todo = new ToDo(description);
+        this.toDo = new ToDo(description);
     }
 
     @Override
     public void execCommand(TaskList list, Ui ui, Storage storage) {
-        list.addTask(this.todo);
-        ui.showAdd(this.todo, list.getSize());
+        list.addTask(this.toDo);
+        ui.showAdd(this.toDo, list.getSize());
         storage.saveList(list.save());
     }
 }
