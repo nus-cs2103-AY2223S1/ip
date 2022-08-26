@@ -30,18 +30,20 @@ public class Mark extends ShowList {
 
     /**
      * Unmarks the indx being pointed at
+     *
+     * @return wrapped message
      * @throws DukeException When the index is out of bound
-     * @throws IOException when there is an IO error
+     * @throws IOException   when there is an IO error
      */
     @Override
-    public void execute() throws DukeException, IOException {
+    public String execute() throws DukeException, IOException {
         try {
             Task currentTask = tasks.markTask(indx);
             // out.display the marked message
             if (currentTask.isDone()) {
-                wrapWithLines(Messages.MARK_DONE.toString(), currentTask.toString());
+                return wrapWithoutLines(Messages.MARK_DONE.toString(), currentTask.toString());
             } else {
-                wrapWithLines(Messages.MARK_UNDONE.toString(), currentTask.toString());
+                return wrapWithoutLines(Messages.MARK_UNDONE.toString(), currentTask.toString());
             }
         } catch (IndexOutOfBoundsException e) {
             // Invalid index

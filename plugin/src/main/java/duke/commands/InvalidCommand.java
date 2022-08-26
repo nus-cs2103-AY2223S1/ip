@@ -14,9 +14,11 @@ public class InvalidCommand extends DisplayCommand {
 
     /**
      * Throws invalid command error
+     *
+     * @return the wrapped message
      * @throws DukeException when the message is wrong
      */
-    public void execute() throws DukeException {
-        wrapWithLines(message);
+    public String execute() throws DukeException {
+        return wrapWithoutLines(message);
     }
 }

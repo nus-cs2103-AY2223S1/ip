@@ -26,12 +26,14 @@ public class AddTodoCommand extends ShowList {
 
     /**
      * Add new todo to the task list
+     *
+     * @return wrapped message
      * @throws DukeException when something goes wrong
      */
     @Override
-    public void execute() throws DukeException {
+    public String execute() throws DukeException {
         Todo currentTodo = new Todo(descrition);
         tasks.addTask(currentTodo);
-        wrapWithLines(Messages.ADD_TODO.toString(), currentTodo.toString());
+        return wrapWithoutLines(Messages.ADD_TODO.toString(), currentTodo.toString());
     }
 }
