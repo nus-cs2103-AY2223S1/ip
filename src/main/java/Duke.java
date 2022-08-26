@@ -1,7 +1,22 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.File;
 
 public class Duke {
+
+    private static void writeToFile (String filePath, ArrayList<Task> textToAdd) throws IOException {
+        FileWriter fw = new FileWriter(filePath);
+        File f = new File(filePath);
+        String output = "";
+        for (Task item : textToAdd) {
+            output = output + (textToAdd.indexOf(item) + 1) + "." + item  + "\n";
+        }
+        fw.write(output);
+        fw.close();
+    }
+
     public static void main(String[] args) throws Exception {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -13,6 +28,10 @@ public class Duke {
         System.out.println("Hello! I'm Duke\nWhat can I do for you?");
 
         ArrayList<Task> inputList = new ArrayList<>();
+        String filepath = "./././data/duke.txt";
+
+
+
 
         while(true) {
 
@@ -37,12 +56,14 @@ public class Duke {
                 Integer num = Integer.parseInt(word[1]);
                 inputList.get(num - 1).mark();
                 System.out.println(inputList.get(num - 1));
+                writeToFile(filepath, inputList);
 
             } else if (word[0].equals("unmark")) {
                 System.out.println("Nice! I've marked this task as done:");
                 Integer num = Integer.parseInt(word[1]);
                 inputList.get(num - 1).unmark();
                 System.out.println(inputList.get(num - 1));
+                writeToFile(filepath, inputList);
 
 
             } else if (word[0].equals("todo")) {
@@ -56,6 +77,7 @@ public class Duke {
                 System.out.println(td);
                 inputList.add(td);
                 System.out.println("Now you have " + inputList.size() + " tasks in the list.");
+                writeToFile(filepath, inputList);
 
             } else if (word[0].equals("deadline")) {
                 if (s.endsWith("deadline")) {
@@ -70,6 +92,7 @@ public class Duke {
                 System.out.println(dl);
                 inputList.add(dl);
                 System.out.println("Now you have " + inputList.size() + " tasks in the list.");
+                writeToFile(filepath, inputList);
 
 
             } else if (word[0].equals("event")) {
@@ -85,6 +108,7 @@ public class Duke {
                 System.out.println(ev);
                 inputList.add(ev);
                 System.out.println("Now you have " + inputList.size() + " tasks in the list.");
+                writeToFile(filepath, inputList);
 
             } else if (word[0].equals("delete")) {
                 Integer num = Integer.parseInt(word[1]);
@@ -94,6 +118,7 @@ public class Duke {
                 Integer newSize = inputList.size() - 1;
                 inputList.remove(num-1);
                 System.out.println("Now you have " + newSize + " tasks in the list.");
+                writeToFile(filepath, inputList);
 
             } else {
                 throw new DukeException("Oooops, sorry I don't know what you are talking about :(");
@@ -101,5 +126,12 @@ public class Duke {
 
         }
 
+
+
     }
+
+
+
+
+
 }
