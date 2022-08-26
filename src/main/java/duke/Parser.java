@@ -8,15 +8,29 @@ import duke.task.Event;
 
 import java.util.stream.IntStream;
 
+/**
+ * Represents an abstraction that handles inputs from the user.
+ */
 public class Parser {
     private TaskList taskList;
     private Ui ui;
 
+    /**
+     * Initialises the parser.
+     *
+     * @param taskList TaskList
+     * @param ui Ui
+     */
     public Parser(TaskList taskList, Ui ui) {
         this.taskList = taskList;
         this.ui = ui;
     }
 
+    /**
+     * Parses the input from the user
+     *
+     * @param input Input from the user
+     */
     public void parse(String input) {
         String[] inputArray = input.split(" ", 2);
 

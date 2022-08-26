@@ -1,10 +1,25 @@
 package duke.task;
 
+/**
+ * A representation of Todo
+ */
 public class Todo extends Task {
+
+  /**
+   * Initialises Todo
+   *
+   * @param description
+   * @param isDone
+   */
   public Todo(String description, boolean isDone) {
     super(description, isDone);
   }
 
+  /**
+   * Initialises Todo
+   *
+   * @param description
+   */
   public Todo(String description) {
     super(description);
   }
