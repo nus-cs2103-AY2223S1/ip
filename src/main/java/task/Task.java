@@ -1,4 +1,4 @@
-package myDuke;
+package task;
 /**
  * This class encapsulates the idea of a generic task.
  */
@@ -25,7 +25,7 @@ public class Task {
     }
 
     /**
-     * String representation of the task.
+     * Returns a string representation to be stored in text file.
      * @return a string
      */
     public String getDescription() {

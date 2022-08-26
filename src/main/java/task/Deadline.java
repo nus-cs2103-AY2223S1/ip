@@ -1,4 +1,6 @@
-package myDuke;
+package task;
+import task.Task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

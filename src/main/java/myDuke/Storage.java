@@ -1,4 +1,8 @@
-package myDuke;
+package myduke;
+import task.Deadline;
+import task.Event;
+import task.ToDo;
+
 import java.time.LocalDateTime;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -65,11 +69,9 @@ public class Storage {
      */
     public void saveToFile(TaskList taskLists) {
         try {
-            System.out.println(taskLists.getNumOfTask());
+            this.writer = new BufferedWriter(new FileWriter(STORAGEFILE));
             for (int i = 0; i < taskLists.getNumOfTask(); i++) {
-                this.writer = new BufferedWriter(new FileWriter(STORAGEFILE));
                 writer.write(taskLists.getTask(i).getDescription());
-                System.out.println(i);
             }
             writer.close();
         }

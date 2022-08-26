@@ -1,4 +1,7 @@
-package myDuke;
+package task;
+
+import task.Task;
+
 /**
  * This class encapsulates the idea of a event.
  */
@@ -17,7 +20,7 @@ public class Event extends Task {
     }
 
     /**
-     * Converts the event to string representation to be stored in text file
+     * Converts the event to string representation to be stored in text file.
      * @return a string
      */
     @Override
@@ -27,7 +30,7 @@ public class Event extends Task {
     }
 
     /**
-     * Converts the event to string representation for user
+     * Converts the event to string representation for user.
      * @return a string
      */
     @Override

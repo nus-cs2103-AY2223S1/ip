@@ -1,4 +1,4 @@
-package myDuke;
+package myduke;
 /**
  * This class encapsulates the exceptions that are specific to chatbot
  */

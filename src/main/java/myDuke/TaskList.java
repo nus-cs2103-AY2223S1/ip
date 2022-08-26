@@ -1,4 +1,6 @@
-package myDuke;
+package myduke;
+import task.Task;
+
 import java.util.ArrayList;
 
 /**

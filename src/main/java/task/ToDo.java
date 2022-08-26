@@ -1,4 +1,7 @@
-package myDuke;
+package task;
+
+import task.Task;
+
 /**
  * This class encapsulates the idea of a todo.
  */

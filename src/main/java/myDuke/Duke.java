@@ -1,4 +1,4 @@
-package myDuke;
+package myduke;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
@@ -50,7 +50,7 @@ public class Duke {
     }
 
     public static void main(String[] args) {
-        new Duke("C:\\Users\\xudao\\Documents\\nus\\year 2\\sem 1\\" +
-                "2103t\\git stuff\\individual project\\src\\data\\storage.txt").run();
+        new Duke("C:\\Users\\xudao\\OneDrive\\Documents\\NUS FILES\\" +
+                "year 2\\sem 1\\cs2103t\\git\\ip\\src\\data\\storage.txt").run();
     }
 }
