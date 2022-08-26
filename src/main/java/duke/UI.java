@@ -27,7 +27,7 @@ public class UI {
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
 
-        System.out.println("Hello! I'm duke.Duke\n" + "What can I do for you?\n");
+        System.out.println("Hello! I'm Duke\n" + "What can I do for you?\n");
     }
     
     public void addTask(Task task, int size) {
@@ -48,8 +48,8 @@ public class UI {
                 task + "\n" +
                 "Now you have " + size + " tasks in the list.\n");
     }
-    
-    public static void printList(TaskList tasks) {
-        System.out.print(tasks);
+
+    public static void print(String string) {
+        System.out.print(string);
     }
 }

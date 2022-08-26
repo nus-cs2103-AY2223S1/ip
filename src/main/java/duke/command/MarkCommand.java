@@ -13,6 +13,6 @@ public class MarkCommand extends Command {
     }
 
     public void execute(TaskList tasks) throws DukeException {
-        tasks.markTask(pos, true);
+        tasks.markTask(pos, bool);
     }
 }
