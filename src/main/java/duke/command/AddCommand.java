@@ -3,11 +3,8 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.list.TaskList;
 import duke.storage.ListLoader;
-import duke.task.Deadline;
-import duke.task.Event;
-import duke.task.Task;
-import duke.task.Task_Id;
-import duke.task.Todo;
+import duke.task.*;
+import duke.task.TaskId;
 import duke.ui.Ui;
 
 /**
@@ -17,7 +14,7 @@ import duke.ui.Ui;
  */
 public class AddCommand extends Command {
 
-    private Task_Id id;
+    private TaskId id;
     private String content = "";
     private String time = "";
 
@@ -27,7 +24,7 @@ public class AddCommand extends Command {
      * @param id Type of task.
      * @param content String representing description of task.
      */
-    public AddCommand(Task_Id id, String content) {
+    public AddCommand(TaskId id, String content) {
         this.id = id;
         this.content = content;
     }
@@ -39,7 +36,7 @@ public class AddCommand extends Command {
      * @param content String representing description of task.
      * @param time String representing time of task.
      */
-    public AddCommand(Task_Id id, String content, String time) {
+    public AddCommand(TaskId id, String content, String time) {
         this.id = id;
         this.content = content;
         this.time = time;

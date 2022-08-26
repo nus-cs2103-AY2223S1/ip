@@ -1,3 +1,8 @@
+T | 0 | new
+T | 0 | test
 T | 0 | hello
-T | 0 | tmr
-T | 0 | more
+D | 0 | tonight | tonight
+T | 0 | eat
+D | 0 | eat lunch | 12
+E | 0 | dinner | 6
+T | 0 | hello

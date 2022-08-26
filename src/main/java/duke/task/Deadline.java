@@ -26,12 +26,12 @@ public class Deadline extends Task {
      * @param isCompleted boolean representing whether the task is completed.
      */
     public Deadline(String description, String by, boolean isCompleted) {
-        super(Task_Id.D, description, isCompleted);
+        super(TaskId.D, description, isCompleted);
         this.by = by;
         try {
             Pattern date = Pattern.compile("\\d\\d\\d\\d-\\d\\d-\\d\\d");
             Matcher dateMatcher = date.matcher(by);
-            if(dateMatcher.find()) {
+            if (dateMatcher.find()) {
                 this.date = LocalDate.parse(dateMatcher.group());
             }
         } catch (DateTimeParseException e) {
@@ -41,7 +41,7 @@ public class Deadline extends Task {
         try {
             Pattern time = Pattern.compile("\\d\\d\\d\\d\\z");
             Matcher timeMatcher = time.matcher(by);
-            if(timeMatcher.find()) {
+            if (timeMatcher.find()) {
                 this.time = LocalTime.parse(timeMatcher.group(), DateTimeFormatter.ofPattern("HHmm"));
             }
         } catch (DateTimeParseException e) {

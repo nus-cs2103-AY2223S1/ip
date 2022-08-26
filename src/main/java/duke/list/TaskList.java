@@ -85,7 +85,7 @@ public class TaskList {
      */
     public String[] giveList() {
         String[] list = new String[tasksLeft()];
-        for(int i = 0; i < tasksLeft(); i++) {
+        for (int i = 0; i < tasksLeft(); i++) {
             Task t = this.list.get(i);
             list[i] = i + 1 + ". " + t;
         }

@@ -8,7 +8,7 @@ import duke.command.ListCommand;
 import duke.command.MarkCommand;
 import duke.command.UnmarkCommand;
 import duke.exception.DukeException;
-import duke.task.Task_Id;
+import duke.task.TaskId;
 
 /**
  * Interprets user inputted String as Commands.
@@ -18,7 +18,7 @@ import duke.task.Task_Id;
 public class Parser {
 
     /** Commands to interact with duke.Duke program */
-    public enum Duke_Command {
+    public enum DukeCommand {
         TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, LIST, BYE
     }
 
@@ -43,47 +43,47 @@ public class Parser {
         }
 
         try {
-            Duke_Command c = Duke_Command.valueOf(cmd.toUpperCase());
+            DukeCommand c = DukeCommand.valueOf(cmd.toUpperCase());
             switch (c) {
             case TODO:
                 if (content == null) {
                     throw new DukeException("Input 'todo ABC' to add task ABC\n");
                 }
-                return new AddCommand(Task_Id.T, content);
+                return new AddCommand(TaskId.T, content);
             case EVENT:
                 if (content == null || content.split(" /at ").length != 2) {
-                    throw new DukeException("Input 'event ABC /at DATE' to add " +
-                            "event ABC on DATE\n");
+                    throw new DukeException("Input 'event ABC /at DATE' to add "
+                            + "event ABC on DATE\n");
                 }
                 // Split content into event description and date
                 String[] inputE = content.split(" /at ");
-                return new AddCommand(Task_Id.E, inputE[0], inputE[1]);
+                return new AddCommand(TaskId.E, inputE[0], inputE[1]);
             case DEADLINE:
                 if (content == null || content.split(" /by ").length != 2) {
-                    throw new DukeException("Input 'deadline ABC /by DATE' to add " +
-                            "deadline ABC due by DATE\n");
+                    throw new DukeException("Input 'deadline ABC /by DATE' to add "
+                            + "deadline ABC due by DATE\n");
                 }
                 // Split content into deadline description and date
                 String[] inputD = content.split(" /by ");
-                return new AddCommand(Task_Id.D, inputD[0], inputD[1]);
+                return new AddCommand(TaskId.D, inputD[0], inputD[1]);
             case MARK:
                 if (content == null) {
-                    throw new DukeException("Input 'mark xxx' to mark task xxx" +
-                            " as complete\n");
+                    throw new DukeException("Input 'mark xxx' to mark task xxx"
+                            + " as complete\n");
                 }
                 position = Integer.parseInt(content);
                 return new MarkCommand(position);
             case UNMARK:
                 if (content == null) {
-                    throw new DukeException("Input 'unmark xxx' to mark task xxx" +
-                            " as incomplete\n");
+                    throw new DukeException("Input 'unmark xxx' to mark task xxx"
+                            + " as incomplete\n");
                 }
                 position = Integer.parseInt(content);
                 return new UnmarkCommand(position);
             case DELETE:
                 if (content == null) {
-                    throw new DukeException("Input 'delete xxx' to delete task xxx" +
-                            " from the list\n");
+                    throw new DukeException("Input 'delete xxx' to delete task xxx"
+                            + " from the list\n");
                 }
                 position = Integer.parseInt(content);
                 return new DeleteCommand(position);

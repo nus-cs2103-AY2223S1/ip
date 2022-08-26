@@ -15,7 +15,7 @@ public class Todo extends Task {
      * @param isCompleted boolean representing whether the task is completed.
      */
     public Todo(String description, boolean isCompleted) {
-        super(Task_Id.T, description, isCompleted);
+        super(TaskId.T, description, isCompleted);
     }
 
     /**

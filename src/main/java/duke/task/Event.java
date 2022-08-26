@@ -26,13 +26,13 @@ public class Event extends Task {
      * @param isCompleted boolean representing whether the task is completed.
      */
     public Event(String description, String at, boolean isCompleted) {
-        super(Task_Id.E, description, isCompleted);
+        super(TaskId.E, description, isCompleted);
         this.at = at;
 
         try {
             Pattern date = Pattern.compile("\\d\\d\\d\\d-\\d\\d-\\d\\d");
             Matcher dateMatcher = date.matcher(at);
-            if(dateMatcher.find()) {
+            if (dateMatcher.find()) {
                 this.date = LocalDate.parse(dateMatcher.group());
             }
         } catch (DateTimeParseException e) {
@@ -42,7 +42,7 @@ public class Event extends Task {
         try {
             Pattern time = Pattern.compile("\\d\\d\\d\\d\\z");
             Matcher timeMatcher = time.matcher(at);
-            if(timeMatcher.find()) {
+            if (timeMatcher.find()) {
                 this.time = LocalTime.parse(timeMatcher.group(), DateTimeFormatter.ofPattern("HHmm"));
             }
         } catch (DateTimeParseException e) {

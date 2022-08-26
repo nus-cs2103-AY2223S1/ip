@@ -5,23 +5,23 @@ package duke.task;
  *
  * @author WR3nd3
  */
-abstract public class Task {
+public abstract class Task {
 
-    protected final Task_Id id;
+    protected final TaskId id;
     protected String description;
     protected boolean isCompleted;
     private String addOn = "nya!";
     private String notDoneSymbol = "[Zzzzzzz]";
-    private String doneSymbol    = "[=^._.^=]";
+    private String doneSymbol = "[=^._.^=]";
 
     /**
      * Constructor of the task.Task object to be called by its subclasses.
      *
-     * @param id duke.task.Task_Id detailing the type of the task.
+     * @param id duke.task.TaskId detailing the type of the task.
      * @param description String representing the details of the task.
      * @param isCompleted Boolean representing whether the task is completed.
      */
-    public Task(Task_Id id, String description, boolean isCompleted) {
+    public Task(TaskId id, String description, boolean isCompleted) {
         this.id = id;
         this.description = description;
         this.isCompleted = isCompleted;
@@ -51,9 +51,9 @@ abstract public class Task {
     /**
      * Returns the type of the task.
      *
-     * @return duke.task.Task_Id type of the task.
+     * @return duke.task.TaskId type of the task.
      */
-    public Task_Id getType() {
+    public TaskId getType() {
         return id;
     }
     /**

@@ -1,7 +1,7 @@
 package duke.ui;
 
-import duke.task.Task_Id;
 import duke.task.Task;
+import duke.task.TaskId;
 
 import java.util.Scanner;
 
@@ -43,7 +43,7 @@ public class Ui {
      */
     public String readCommand() {
         String input = "";
-        Scanner sc= new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         if (sc.hasNextLine()) {
             input = sc.nextLine().trim();
@@ -82,7 +82,7 @@ public class Ui {
      */
     public void showAdd(Task task, int tasksLeft) {
         String message = "";
-        Task_Id id = task.getType();
+        TaskId id = task.getType();
         switch(id) {
         case T:
             message = "Meow! I'm a cat. I've added this task:\n";
@@ -124,6 +124,7 @@ public class Ui {
      * Prints confirmation message that task has been deleted from the list.
      *
      * @param t task.Task to be deleted.
+     * @param tasksLeft Integer representing the number of tasks left in the list.
      */
     public void showDelete(Task t, int tasksLeft) {
         String msg = "It's dead!! It's deadsss!\n";

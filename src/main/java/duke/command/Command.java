@@ -9,7 +9,7 @@ import duke.ui.Ui;
  *
  * @author WR3nd3
  */
-abstract public class Command {
+public abstract class Command {
 
     /**
      * Executes relevant procedures to this command to the task list, UI, and list loader.
@@ -18,7 +18,7 @@ abstract public class Command {
      * @param ui duke.ui.Ui that interacts with the input of users and output from duke.Duke.
      * @param storage duke.storage.ListLoader that updates duke.list.TaskList information on a separate file.
      */
-    abstract public void execute(TaskList tasks, Ui ui, ListLoader storage);
+    public abstract void execute(TaskList tasks, Ui ui, ListLoader storage);
 
     /**
      * Returns whether the command is an exit command.

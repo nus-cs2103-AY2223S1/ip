@@ -2,9 +2,9 @@ package duke.storage;
 
 import duke.exception.DukeException;
 import duke.list.TaskList;
-import duke.task.Task_Id;
 import duke.task.Deadline;
 import duke.task.Event;
+import duke.task.TaskId;
 import duke.task.Todo;
 
 import java.io.BufferedReader;
@@ -65,7 +65,7 @@ public class ListLoader {
                 Boolean isCompleted = inputArray[1].equals("1") ? true : false;
                 String description = inputArray[2];
 
-                switch (Task_Id.valueOf(command)) {
+                switch (TaskId.valueOf(command)) {
                 case T:
                     taskList.addTask(new Todo(description, isCompleted));
                     break;
@@ -84,7 +84,7 @@ public class ListLoader {
                 reader.close();
                 listText.delete(); //need to delete after close reader
                 throw new DukeException("Failed to load file: Unable to decipher contents");
-            } catch (IOException e1){
+            } catch (IOException e1) {
                 throw new DukeException("Failed to load file: Unable to decipher contents");
             }
         } finally {
