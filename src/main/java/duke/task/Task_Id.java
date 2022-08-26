@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * Identifiers to be used for tasks.
  */

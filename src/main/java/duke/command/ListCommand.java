@@ -1,5 +1,11 @@
+package duke.command;
+
+import duke.list.TaskList;
+import duke.storage.ListLoader;
+import duke.ui.Ui;
+
 /**
- * Represents command to Duke to print list.
+ * Represents command to duke.Duke to print list.
  *
  * @author WR3nd3
  */

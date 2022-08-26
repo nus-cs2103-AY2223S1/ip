@@ -1,3 +1,15 @@
+package duke.parser;
+
+import duke.command.AddCommand;
+import duke.command.Command;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+import duke.command.UnmarkCommand;
+import duke.exception.DukeException;
+import duke.task.Task_Id;
+
 /**
  * Interprets user inputted String as Commands.
  *
@@ -5,16 +17,16 @@
  */
 public class Parser {
 
-    /** Commands to interact with Duke program */
+    /** Commands to interact with duke.Duke program */
     public enum Duke_Command {
         TODO, EVENT, DEADLINE, MARK, UNMARK, DELETE, LIST, BYE
     }
 
     /**
-     * Returns valid command for Duke to execute from recognised terms in input.
+     * Returns valid command for duke.Duke to execute from recognised terms in input.
      *
-     * @param input String input from user interacting with Duke.
-     * @return Command to be executed.
+     * @param input String input from user interacting with duke.Duke.
+     * @return command.Command to be executed.
      * @throws DukeException for invalid commands inputted.
      */
     public static Command parse(String input) throws DukeException{

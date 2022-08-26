@@ -1,5 +1,11 @@
+package duke.command;
+
+import duke.list.TaskList;
+import duke.storage.ListLoader;
+import duke.ui.Ui;
+
 /**
- * Represents an input command to the Duke application.
+ * Represents an input command to the duke.Duke application.
  *
  * @author WR3nd3
  */
@@ -8,9 +14,9 @@ abstract public class Command {
     /**
      * Executes relevant procedures to this command to the task list, UI, and list loader.
      *
-     * @param tasks TaskList containing the tasks on the list.
-     * @param ui Ui that interacts with the input of users and output from Duke.
-     * @param storage ListLoader that updates TaskList information on a separate file.
+     * @param tasks duke.list.TaskList containing the tasks on the list.
+     * @param ui duke.ui.Ui that interacts with the input of users and output from duke.Duke.
+     * @param storage duke.storage.ListLoader that updates duke.list.TaskList information on a separate file.
      */
     abstract public void execute(TaskList tasks, Ui ui, ListLoader storage);
 

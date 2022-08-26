@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -6,7 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Represents a Event task.
+ * Represents a task.Event task.
  *
  * @author WR3nd3
  */
@@ -17,7 +19,7 @@ public class Event extends Task {
     protected LocalTime time = null;
 
     /**
-     * Constructor for the Event task.
+     * Constructor for the task.Event task.
      *
      * @param description String representing the description of the event.
      * @param at String representing the time of the event.

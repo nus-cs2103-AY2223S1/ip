@@ -1,3 +1,7 @@
+package duke.list;
+
+import duke.task.Task;
+
 import java.util.ArrayList;
 
 /**
@@ -31,7 +35,7 @@ public class TaskList {
     /**
      * Adds a task to the list.
      *
-     * @param task Task to be added to the list.
+     * @param task task.Task to be added to the list.
      */
     public void addTask(Task task) {
         list.add(task);
@@ -41,7 +45,7 @@ public class TaskList {
      * Returns task in the given rank in the list.
      *
      * @param rank Integer representation of a task in the list.
-     * @return Task of the given rank.
+     * @return task.Task of the given rank.
      */
     public Task retrieveRank(int rank) {
         return list.get(rank - 1);

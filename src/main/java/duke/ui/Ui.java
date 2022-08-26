@@ -1,3 +1,8 @@
+package duke.ui;
+
+import duke.task.Task_Id;
+import duke.task.Task;
+
 import java.util.Scanner;
 
 /**
@@ -6,7 +11,7 @@ import java.util.Scanner;
  * @author WR3nd3
  */
 public class Ui {
-    /** Welcome symbol to be displayed to users upon running Duke */
+    /** Welcome symbol to be displayed to users upon running duke.Duke */
     private static final String CAT_SYMBOL = "     /\\_____/\\\n"
             + "    /  o   o  \\\n"
             + "   ( ==  ^  == )\n"
@@ -23,10 +28,10 @@ public class Ui {
     /** Border enclosing output */
     private static final String BORDER = "____________________________________________________________\n";
 
-    /** Welcome message printed when running Duke */
+    /** Welcome message printed when running duke.Duke */
     private static final String SERVICE = "What can I do for mew?\n";
 
-    /** Goodbye message printed when exiting Duke */
+    /** Goodbye message printed when exiting duke.Duke */
     private static final String GOODBYE = "Bye! See nya later!\n";
 
     private static final String TAB = "    ";
@@ -54,7 +59,7 @@ public class Ui {
     }
 
     /**
-     * Prints composed welcome message on running Duke.
+     * Prints composed welcome message on running duke.Duke.
      */
     public void showWelcome() {
         showLine();
@@ -63,7 +68,7 @@ public class Ui {
     }
 
     /**
-     * Prints goodbye message on exiting Duke.
+     * Prints goodbye message on exiting duke.Duke.
      */
     public void showGoodbye() {
         System.out.println(GOODBYE);
@@ -72,7 +77,7 @@ public class Ui {
     /**
      * Prints confirmation message that a task has been added to the list.
      *
-     * @param task Task added to the list.
+     * @param task task.Task added to the list.
      * @param tasksLeft Number of tasks left in list.
      */
     public void showAdd(Task task, int tasksLeft) {
@@ -98,7 +103,7 @@ public class Ui {
     /**
      * Prints confirmation message that task has been marked as complete.
      *
-     * @param t Task to be marked.
+     * @param t task.Task to be marked.
      */
     public void showMark(Task t) {
         String msg = "Nyace! One step closer to nap!\n";
@@ -108,7 +113,7 @@ public class Ui {
     /**
      * Prints confirmation message that task has been marked as incomplete.
      *
-     * @param t Task to be marked as incomplete.
+     * @param t task.Task to be marked as incomplete.
      */
     public void showUnmark(Task t) {
         String msg = "You nyapped for too long!\n";
@@ -118,7 +123,7 @@ public class Ui {
     /**
      * Prints confirmation message that task has been deleted from the list.
      *
-     * @param t Task to be deleted.
+     * @param t task.Task to be deleted.
      */
     public void showDelete(Task t, int tasksLeft) {
         String msg = "It's dead!! It's deadsss!\n";

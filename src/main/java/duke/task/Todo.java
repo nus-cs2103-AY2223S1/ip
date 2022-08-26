@@ -1,5 +1,7 @@
+package duke.task;
+
 /**
- * Represents a Todo task.
+ * Represents a task.Todo task.
  *
  * @author WR3nd3
  */

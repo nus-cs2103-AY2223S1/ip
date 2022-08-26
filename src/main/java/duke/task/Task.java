@@ -1,3 +1,5 @@
+package duke.task;
+
 /**
  * Abstract class that represents a task.
  *
@@ -13,9 +15,9 @@ abstract public class Task {
     private String doneSymbol    = "[=^._.^=]";
 
     /**
-     * Constructor of the Task object to be called by its subclasses.
+     * Constructor of the task.Task object to be called by its subclasses.
      *
-     * @param id Task_Id detailing the type of the task.
+     * @param id duke.task.Task_Id detailing the type of the task.
      * @param description String representing the details of the task.
      * @param isCompleted Boolean representing whether the task is completed.
      */
@@ -40,7 +42,7 @@ abstract public class Task {
     }
 
     /**
-     * Returns summary of the task that can be deciphered by ListLoader.
+     * Returns summary of the task that can be deciphered by duke.storage.ListLoader.
      *
      * @return String representing summary of task.
      */
@@ -49,7 +51,7 @@ abstract public class Task {
     /**
      * Returns the type of the task.
      *
-     * @return Task_Id type of the task.
+     * @return duke.task.Task_Id type of the task.
      */
     public Task_Id getType() {
         return id;

@@ -1,5 +1,11 @@
+package duke.command;
+
+import duke.list.TaskList;
+import duke.storage.ListLoader;
+import duke.ui.Ui;
+
 /**
- * Represents command to Duke to exit the application.
+ * Represents command to duke.Duke to exit the application.
  *
  * @author WR3nd3
  */

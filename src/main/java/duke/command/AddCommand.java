@@ -1,5 +1,17 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.list.TaskList;
+import duke.storage.ListLoader;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Task_Id;
+import duke.task.Todo;
+import duke.ui.Ui;
+
 /**
- * Represents command to Duke to add a task to the list.
+ * Represents command to duke.Duke to add a task to the list.
  *
  * @author WR3nd3
  */
@@ -10,7 +22,7 @@ public class AddCommand extends Command {
     private String time = "";
 
     /**
-     * Constructs AddCommand for a task without a date tagged to it.
+     * Constructs command.AddCommand for a task without a date tagged to it.
      *
      * @param id Type of task.
      * @param content String representing description of task.
@@ -21,7 +33,7 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Constructs AddCommand for a task with a date tagged to it.
+     * Constructs command.AddCommand for a task with a date tagged to it.
      *
      * @param id Type of task.
      * @param content String representing description of task.

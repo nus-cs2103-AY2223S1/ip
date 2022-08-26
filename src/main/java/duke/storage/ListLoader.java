@@ -1,3 +1,12 @@
+package duke.storage;
+
+import duke.exception.DukeException;
+import duke.list.TaskList;
+import duke.task.Task_Id;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Todo;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -11,17 +20,17 @@ import java.io.IOException;
  * @author WR3nd3
  */
 public class ListLoader {
-    /** File to read and write TaskList tasks to */
+    /** File to read and write duke.list.TaskList tasks to */
     private File listText = new File("data/duke.txt");
 
-    /** TaskList to update */
+    /** duke.list.TaskList to update */
     private TaskList taskList;
 
 
     /**
-     * Constructor for ListLoader.
+     * Constructor for duke.storage.ListLoader.
      *
-     * @param taskList The TaskList to be updated with the stored data.
+     * @param taskList The duke.list.TaskList to be updated with the stored data.
      */
     public ListLoader(TaskList taskList) {
         this.taskList = taskList;

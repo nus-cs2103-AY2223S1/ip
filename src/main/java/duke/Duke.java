@@ -1,20 +1,29 @@
+package duke;
+
+import duke.command.Command;
+import duke.exception.DukeException;
+import duke.list.TaskList;
+import duke.parser.Parser;
+import duke.storage.ListLoader;
+import duke.ui.Ui;
+
 /**
  * Represents an interactive 'ToDo list' with set commands to add, modify, and remove tasks.
  *
  * @author WR3nd3
  */
 public class Duke {
-    /** ListLoader used to load and save remaining tasks  */
+    /** duke.storage.ListLoader used to load and save remaining tasks  */
     private ListLoader storage;
 
-    /** TaskList storing current tasks */
+    /** duke.list.TaskList storing current tasks */
     private TaskList tasks;
 
-    /** Ui handling interactions of input and output with users */
+    /** duke.ui.Ui handling interactions of input and output with users */
     private Ui ui;
 
     /**
-     * Constructs Duke object and its components.
+     * Constructs duke.Duke object and its components.
      */
     public Duke() {
         ui = new Ui();
@@ -34,7 +43,7 @@ public class Duke {
     }
 
     /**
-     * Executes the running of the Duke program.
+     * Executes the running of the duke.Duke program.
      */
     public void run() {
         ui.showWelcome();
@@ -56,7 +65,7 @@ public class Duke {
     }
 
     /**
-     * Provides entry point into Duke program.
+     * Provides entry point into duke.Duke program.
      *
      * @param args The command line arguments.
      **/

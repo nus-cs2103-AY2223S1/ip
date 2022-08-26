@@ -1,3 +1,5 @@
+package duke.exception;
+
 /**
  * Exception representing invalid commands fed to application.
  *
@@ -32,14 +34,14 @@ public class DukeException extends IllegalArgumentException{
             + TAB + OUTRO;
 
     /**
-     * Constructs DukeException object with default error message.
+     * Constructs duke.exception.DukeException object with default error message.
      */
     public DukeException() {
         super(defaultMsg);
     }
 
     /**
-     * Constructs DukeException object with custom error message.
+     * Constructs duke.exception.DukeException object with custom error message.
      *
      * @param message String representing error message to be displayed.
      */

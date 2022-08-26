@@ -1,5 +1,13 @@
+package duke.command;
+
+import duke.exception.DukeException;
+import duke.list.TaskList;
+import duke.storage.ListLoader;
+import duke.task.Task;
+import duke.ui.Ui;
+
 /**
- * Represents command to Duke to mark a task as complete.
+ * Represents command to duke.Duke to mark a task as complete.
  *
  * @author WR3nd3
  */
@@ -8,7 +16,7 @@ public class MarkCommand extends Command {
     private int position;
 
     /**
-     * Constructs MarkCommand for a given task.
+     * Constructs command.MarkCommand for a given task.
      *
      * @param position Integer representing position of task to be marked as complete in the list.
      */
