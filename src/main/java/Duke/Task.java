@@ -11,7 +11,7 @@ public class Task {
     }
 
     public String getStatus() {
-        return (isDone ? "\u2714" : "\u2718");
+        return (isDone ? "x" : " ");
     }
 
     public void markAsDone() {
