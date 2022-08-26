@@ -19,9 +19,9 @@ public class TaskList {
                 try {
                     p.parseInput(line, true);
                 } catch (FileParseException e) {
-                    Ui.corruptedLine(e);
+                    Ui.warnCorruptedLine(e);
                 } catch (DukeException e) {
-                    Ui.unknownError();
+                    Ui.showUnknownError();
                 }
             }
         }
@@ -37,13 +37,13 @@ public class TaskList {
 
     public Task markAsDone(int i) {
         Task task = this.store.get(i);
-        task.isDone = true;
+        task.setDone(true);
         return task;
     }
 
     public Task markAsNotDone(int i) {
         Task task = this.store.get(i);
-        task.isDone = false;
+        task.setDone(false);
         return task;
     }
 

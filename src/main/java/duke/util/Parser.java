@@ -13,7 +13,9 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
     private final TaskList list;
-    enum LIST_COMMANDS {todo, deadline, event, mark, unmark, delete, }
+    enum ListCommands {
+        todo, deadline, event, mark, unmark, delete,
+    }
 
     public Parser(TaskList list) {
         this.list = list;
@@ -34,12 +36,12 @@ public class Parser {
         if (isListCommand(userInput.split(" ")[0])) {
             this.parseListCommands(userInput, fromSave);
         } else if (userInput.equals("bye")) {
-            Ui.bye();
+            Ui.showBye();
             return true;
         } else if (userInput.equals("list")) {
             Ui.displayList(list);
         } else if (userInput.equals("/?")) {
-            Ui.help();
+            Ui.showHelp();
         } else {
             System.out.println("what's this?! REDO!!!!");
         }
@@ -47,7 +49,7 @@ public class Parser {
     }
 
     private boolean isListCommand(String input) {
-        for (LIST_COMMANDS c : LIST_COMMANDS.values()) {
+        for (ListCommands c : ListCommands.values()) {
             if (c.name().equals(input)) {
                 return true;
             }
@@ -74,23 +76,23 @@ public class Parser {
         } else {
             arr = input.split(" ", 2);
         }
-       LIST_COMMANDS command = LIST_COMMANDS.valueOf(arr[0]);
+       ListCommands command = ListCommands.valueOf(arr[0]);
 
         try {
             switch (command) {
                 case mark: {
                     int index = Integer.parseInt(arr[1]) - 1;
-                    Ui.taskMarkedDone(list.markAsDone(index));
+                    Ui.markTaskDone(list.markAsDone(index));
                     return;
                 }
                 case unmark: {
                     int index = Integer.parseInt(arr[1]) - 1;
-                    Ui.taskMarkedNotDone(list.markAsNotDone(index));
+                    Ui.markTaskNotDone(list.markAsNotDone(index));
                     return;
                 }
                 case delete: {
                     int index = Integer.parseInt(arr[1]) - 1;
-                    Ui.taskDeleted(list.delete(index));
+                    Ui.deleteTask(list.delete(index));
                     return;
                 }
             }
@@ -118,7 +120,7 @@ public class Parser {
                         if (e instanceof ArrayIndexOutOfBoundsException) {
                             throw new NoArgumentException(1, e);
                         } else {
-                            //e will definitely be a DateTimeParseException
+                            // e will definitely be a DateTimeParseException
                             throw new WrongArgumentException(((DateTimeParseException) e).getParsedString(), e);
                         }
                     }
@@ -147,10 +149,9 @@ public class Parser {
         if (mark != null && mark.equals("X")) {
             list.markAsDone(list.getSize() - 1);
         }
-
         if (!fromSave) {
-            Ui.taskAdded(list.lastTaskAdded());
-            Ui.listSize(list);
+            Ui.addTask(list.lastTaskAdded());
+            Ui.getListSize(list);
         }
 
     }

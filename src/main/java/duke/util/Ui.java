@@ -13,19 +13,22 @@ public class Ui {
     public static final String[] COMMAND_HELP = new String[] { "todo [description]",
                                                                 "deadline [description] /by [dd/MM/yy] <24hr time>",
                                                                 "event [description] /at [dd/MM/yy] <24hr time>",
+                                                                "mark [index]",
+                                                                "unmark [index]",
+                                                                "delete [index]",
                                                                 "list",
                                                                 "bye" };
 
-    public static void hello() {
+    public static void showHello() {
         System.out.println("\nHello! What plans do you currently have?");
-        System.out.println("Use '/?' for help");
+        System.out.println("Use /? for help");
     }
 
-    public static void bye() {
+    public static void showBye() {
         System.out.println("\tBye! Hope that I was of service!");
     }
 
-    public static void help() {
+    public static void showHelp() {
         System.out.println("These are the commands available:\n");
         for (String desc : COMMAND_HELP) {
             System.out.println("\t" + desc);
@@ -35,7 +38,7 @@ public class Ui {
 
     public static void displayList(TaskList list) {
         if (list.getSize() == 0) {
-            Ui.listSize(list);
+            Ui.getListSize(list);
             return;
         }
         System.out.println("Here are your plans:\n");
@@ -45,40 +48,40 @@ public class Ui {
             number++;
         }
         System.out.println();
-        Ui.listSize(list);
+        Ui.getListSize(list);
         System.out.println("Pls don't procrastinate on the above tasks!");
 
     }
 
-    public static void taskMarkedDone(Task task) {
+    public static void markTaskDone(Task task) {
         System.out.println("\tnice! I've marked this task as done:");
         System.out.println("\t\t" + task);
     }
 
-    public static void taskMarkedNotDone(Task task) {
+    public static void markTaskNotDone(Task task) {
         System.out.println("\tOk! I've marked this task as not done yet:");
         System.out.println("\t\t" + task);
     }
 
-    public static void taskDeleted(Task task) {
+    public static void deleteTask(Task task) {
         System.out.println("\tOk! I've deleted this task:");
         System.out.println("\t\t" + task);
     }
 
-    public static void taskAdded(Task task) {
+    public static void addTask(Task task) {
         System.out.println("\tadded: " + task);
     }
 
-    public static void listSize(TaskList list) {
+    public static void getListSize(TaskList list) {
         System.out.println("You currently have " + list.getSize() + " tasks in the list");
     }
 
-    public static void corruptedLine(FileParseException e) {
-        System.out.println("The following line has been corrupted:\n\t" + e.getMessage());
+    public static void warnCorruptedLine(FileParseException e) {
+        System.out.println("The following line is corrupted:\n\t" + e.getMessage());
         System.out.println("Pls note that it'll be deleted\n");
     }
 
-    public static void errorOccurred(DukeException e) {
+    public static void showErrorOccurred(DukeException e) {
         if (e instanceof WrongArgumentException) {
             System.out.println("'" + e.getMessage() + "' is an invalid argument");
             Ui.tryAgain();
@@ -92,7 +95,7 @@ public class Ui {
         System.out.println("Pls try again");
     }
 
-    public static void unknownError() {
+    public static void showUnknownError() {
         System.out.println("A particular error occurred where it's impossible for the error to occur");
     }
 }

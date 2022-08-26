@@ -30,14 +30,14 @@ public class Duke {
     }
 
     public void run() {
-        Ui.hello();
+        Ui.showHello();
         Scanner sc = new Scanner(System.in);
         do {
             String userInput = sc.nextLine();
             try {
                 isExiting = p.parseInput(userInput, false);
             } catch (DukeException e) {
-                Ui.errorOccurred(e);
+                Ui.showErrorOccurred(e);
             }
         } while (!isExiting);
         sc.close();
