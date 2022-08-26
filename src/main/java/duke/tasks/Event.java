@@ -5,9 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 public class Event extends Task {
-    public final static String TASK_WORD = "event";
+    public static final String TASK_WORD = "event";
 
-    private LocalDateTime at;
+    private final LocalDateTime at;
 
     public Event(String description, boolean done, LocalDateTime at) {
         super(description, done);

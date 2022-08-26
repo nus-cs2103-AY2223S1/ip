@@ -22,12 +22,13 @@ public class UnmarkCommand extends Command {
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {
         if (this.taskIndex > taskList.size() - 1 || this.taskIndex < 0) {
-            throw new DukeException("There is no such task index... Try 'list' to view all the tasks and their index!");
+            throw new DukeException("There is no such task index... "
+                    + "Try 'list' to view all the tasks and their index!");
         }
         taskList.unmarkTask(this.taskIndex);
 
         String msgBegin = "OK, I've marked this task as not done yet:\n ";
-        String msg = msgBegin + taskList.getTask(taskIndex).toString();
+        String msg = msgBegin + taskList.getTask(taskIndex);
         ui.prettyPrint(msg);
 
         Storage.writeAllToStorage(taskList);

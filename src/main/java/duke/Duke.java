@@ -1,13 +1,13 @@
 package duke;
 
+import java.io.FileNotFoundException;
+
 import duke.commands.Command;
 import duke.exceptions.DukeException;
-import duke.utils.TaskList;
 import duke.utils.Parser;
 import duke.utils.Storage;
+import duke.utils.TaskList;
 import duke.utils.Ui;
-
-import java.io.FileNotFoundException;
 
 public class Duke {
     private TaskList taskList;

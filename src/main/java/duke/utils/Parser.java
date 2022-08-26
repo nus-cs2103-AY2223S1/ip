@@ -1,21 +1,20 @@
 package duke.utils;
 
-import duke.exceptions.DukeException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 
-import duke.commands.Command;
 import duke.commands.AddCommand;
+import duke.commands.Command;
 import duke.commands.DeleteCommand;
-import duke.commands.MarkCommand;
-import duke.commands.UnmarkCommand;
-import duke.commands.ListCommand;
 import duke.commands.ExitCommand;
 import duke.commands.InvalidCommand;
+import duke.commands.ListCommand;
+import duke.commands.MarkCommand;
+import duke.commands.UnmarkCommand;
+import duke.exceptions.DukeException;
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeParseException;
 
 /**
  * This class parses the user input.

@@ -6,11 +6,11 @@ import duke.utils.TaskList;
 import duke.utils.Ui;
 
 public class InvalidCommand extends Command {
+    private final String errorMsg;
+
     public InvalidCommand(String errorMsg) {
         this.errorMsg = errorMsg;
     }
-
-    private final String errorMsg;
 
     @Override
     public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {

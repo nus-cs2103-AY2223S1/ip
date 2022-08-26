@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 public abstract class Task {
-    private String description;
+    private final String description;
     private boolean done;
 
     public Task(String description, boolean done) {
