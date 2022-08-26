@@ -22,6 +22,16 @@ public abstract class Task {
         this.isDone = done;
     }
 
+    /**
+     * Returns whether the description of the task contains the given keyword.
+     *
+     * @param keyword The given string keyword.
+     * @return Whether the description of the task contains the given keyword.
+     */
+    public boolean doesContainKeyword(String keyword) {
+        return this.description.contains(keyword);
+    }
+
     public abstract String getTask();
 
     @Override

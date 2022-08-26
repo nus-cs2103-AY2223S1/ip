@@ -1,11 +1,6 @@
 package duke;
 
-import duke.command.Command;
-import duke.command.AddCommand;
-import duke.command.DeleteCommand;
-import duke.command.ExitCommand;
-import duke.command.ListCommand;
-import duke.command.MarkCommand;
+import duke.command.*;
 
 import duke.task.Task;
 import duke.task.Deadline;
@@ -134,6 +129,13 @@ public class Parser {
             Task newTask = new Event(description, date);
 
             return new AddCommand(newTask);
+        }
+
+        if (input.startsWith("find")) {
+            String[] parts = input.split(" ");
+            String keyword = parts[1];
+
+            return new FindCommand(keyword);
         }
 
         throw new DukeException("I'm sorry, but I don't know what that means :-(");
