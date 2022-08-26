@@ -17,16 +17,29 @@ import java.io.OutputStream;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
-
+/**
+ * Represents a storage that is used to load and save tasks upon start up
+ * and changes to the tasklist respectively
+ */
 public class Storage {
     private static String filePath;
     private static ArrayList<Task> taskList;
 
+    /**
+     * Constructor for Storage
+     *
+     * @param filePath
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.taskList = new ArrayList<>();
     }
 
+    /**
+     * loadTasks method that checks and loads all task from a text file
+     *
+     * @return ArrayList<Task>
+     */
     public ArrayList<Task> loadTasks() {
         try {
             int index = 0;
@@ -87,8 +100,9 @@ public class Storage {
     }
 
     /**
-     * Saves all tasks in a file
+     * saveTasks method that saves changes to the tasklist into a Duke.txt file
      *
+     * @param taskList
      */
     public void saveTasks(TaskList taskList) {
         try {
