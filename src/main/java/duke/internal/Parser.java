@@ -1,5 +1,8 @@
 package duke.internal;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
@@ -11,9 +14,6 @@ import duke.command.MarkCommand;
 import duke.command.TodoCommand;
 import duke.command.UnmarkCommand;
 
-import java.util.Arrays;
-import java.util.stream.IntStream;
-
 /**
  * A parser object can parse a command from a string,
  * and determine which Command object should be used to execute it.
@@ -21,7 +21,6 @@ import java.util.stream.IntStream;
 public class Parser {
     /**
      * Parses a command from a string.
-     * 
      * @param str the string to parse
      * @return the Command object to execute
      */
@@ -84,7 +83,6 @@ public class Parser {
 
     /**
      * Splits a string into an array of arguments, delimited by spaces.
-     * 
      * @param command the string to split
      * @return the array of arguments
      */
@@ -97,7 +95,6 @@ public class Parser {
 
     /**
      * Returns the index of the first occurrence of a search string in an array of arguments.
-     * 
      * @param arguments the array of arguments
      * @param query the search string
      * @return the index of the first occurrence of the search string
@@ -114,7 +111,6 @@ public class Parser {
 
     /**
      * Joins an array of arguments into a single string, with spaces between them.
-     * 
      * @param arguments the array of arguments
      * @param start the index of the first argument (inclusive)
      * @param end the end index of the last argument (exclusive)
@@ -131,7 +127,6 @@ public class Parser {
      * Joins an array of arguments into a single string, with spaces between them.
      * Overloaded variant which concatenates all arguments from the start index,
      * to the end of the array.
-     * 
      * @param arguments the array of arguments
      * @param start the index of the first argument (inclusive)
      * @return the joined string

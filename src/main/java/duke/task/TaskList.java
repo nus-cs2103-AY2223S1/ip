@@ -1,11 +1,11 @@
 package duke.task;
 
-import fp.Streamable;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import fp.Streamable;
 
 /**
  * A TaskList stores a list of tasks.
@@ -13,17 +13,17 @@ import java.util.stream.Stream;
 public class TaskList implements Streamable<Task> {
     private final List<Task> list;
 
-    @Override
-    public Stream<Task> stream() {
-        return list.stream();
-    }
-
     public TaskList() {
         this.list = new ArrayList<>();
     }
 
     public TaskList(List<Task> list) {
         this.list = list;
+    }
+
+    @Override
+    public Stream<Task> stream() {
+        return list.stream();
     }
 
     /**

@@ -1,15 +1,16 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.io.IOException;
-
 /**
  * A command to mark a task in the task list as done.
- * Usage: mark <index>
+ * Usage: mark [0]
+ * [0]: index of the task to mark as done
  * Note that the index starts at 1.
  */
 public class MarkCommand extends Command {

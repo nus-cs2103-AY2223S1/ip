@@ -1,14 +1,14 @@
 package duke.ui;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import duke.Duke;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 
 /**
  * A GUI for Duke using FXML.
@@ -20,8 +20,8 @@ public class Main extends Application {
             "duke",
             "tasks.txt"
     );
-    public static final String MAIN_WINDOW_FXML = "/view/MainWindow.fxml";
     private static final Duke DUKE = new Duke(PATH);
+    private static final String MAIN_WINDOW_FXML = "/view/MainWindow.fxml";
 
     @Override
     public void start(Stage stage) {

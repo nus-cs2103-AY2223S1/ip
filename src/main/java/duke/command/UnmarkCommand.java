@@ -1,15 +1,16 @@
 package duke.command;
 
+import java.io.IOException;
+
 import duke.internal.Storage;
 import duke.internal.Ui;
 import duke.task.Task;
 import duke.task.TaskList;
 
-import java.io.IOException;
-
 /**
  * A command to unmark a task in the task list as done.
- * Usage: unmark <index>
+ * Usage: unmark [0]
+ * [0]: index of the task to unmark as done
  * Note that the index starts at 1.
  */
 public class UnmarkCommand extends Command {

@@ -1,9 +1,9 @@
 package duke.internal;
 
-import duke.task.TaskList;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import duke.task.TaskList;
 
 /**
  * Handles the displaying of the user interface.
@@ -33,11 +33,11 @@ public class Ui {
      * Prints the welcome message.
      */
     public Ui showWelcome() {
-        String logo = " ____        _        \n" +
-                "|  _ \\ _   _| | _____ \n" +
-                "| | | | | | | |/ / _ \\\n" +
-                "| |_| | |_| |   <  __/\n" +
-                "|____/ \\__,_|_|\\_\\___|\n";
+        String logo = " ____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n";
         responses.add(logo);
         responses.add("Hello! I'm Duke!");
         responses.add("What can I do for you?");
@@ -46,7 +46,6 @@ public class Ui {
 
     /**
      * Prints an error message to the command line.
-     *
      * @param message the error message to print
      * @return this UI object for method chaining
      */
@@ -57,7 +56,6 @@ public class Ui {
 
     /**
      * Prints a normal message to the command line.
-     *
      * @param message the message to print
      * @return this UI object for method chaining
      */
@@ -68,7 +66,6 @@ public class Ui {
 
     /**
      * Prints the size of a task list to the command line.
-     *
      * @param tasks the task list
      * @return this UI object for method chaining
      */
