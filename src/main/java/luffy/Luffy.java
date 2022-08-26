@@ -9,8 +9,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
-/**
- * Luffy is a tasklist program. Built for CS2103T Individual Project 2022 S1.
+/** Luffy is a todolist program. Built for CS2103T Individual Project 2022 S1.
  * @author Silas Tay A0233425M
  */
 public class Luffy {
