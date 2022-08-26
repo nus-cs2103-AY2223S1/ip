@@ -47,6 +47,16 @@ public class TaskList {
         ui.printMessage("  " + tasks.get(index));
     }
 
+    public TaskList getQueriedTasks(String query) {
+        ArrayList<Task> taskList = new ArrayList<Task>();
+        for (int i = 0; i < this.tasks.size(); i++) {
+            if (this.tasks.get(i).description.contains(query)) {
+                taskList.add(this.tasks.get(i));
+            }
+        }
+        return new TaskList(taskList);
+    }
+
     public String toString() {
         String returnString = "";
         for (int i = 0; i < this.tasks.size(); i++) {
