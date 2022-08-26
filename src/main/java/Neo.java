@@ -1,5 +1,7 @@
 import java.util.*;
+import java.io.File;
 public class Neo {
+
     public static void main(String[] args) throws NeoException {
 
         List<String> arrayList = new ArrayList<String>();
@@ -58,7 +60,7 @@ public class Neo {
                         if (arr.length > 1 && arr[0].equals("deadline")) {
                             String tempi = arr[1];
                             String arri[];
-                            arri = tempi.split("/by");
+                            arri = tempi.split("/by ");
                             String temp2 = arri[0];
                             String temp3 = arri[1];
                             Deadline d = new Deadline(temp2, temp3);
@@ -69,7 +71,7 @@ public class Neo {
                         if (arr.length > 1 && arr[0].equals("event")) {
                             String tempi = arr[1];
                             String arri[];
-                            arri = tempi.split("/at");
+                            arri = tempi.split("/at ");
                             String temp2 = arri[0];
                             String temp3 = arri[1];
                             Event e = new Event(temp2, temp3);
@@ -96,4 +98,5 @@ public class Neo {
         }
     }
 }
+
 
