@@ -56,7 +56,7 @@ public class Duke {
 
                 } else if (input.startsWith("todo")) {
                     if (input.equals("todo")) {
-                        throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
+                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
                     }
                     start = 5;
                     number += 1;
@@ -68,7 +68,7 @@ public class Duke {
 
                 } else if (input.startsWith("deadline")) {
                     if (input.equals("deadline")) {
-                        throw new DukeException("☹ OOPS!!! The description of a deadline cannot be empty.");
+                        throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
                     }
                     counter = input.indexOf("/");
                     number += 1;
@@ -82,7 +82,7 @@ public class Duke {
 
                 } else if (input.startsWith("event")) {
                     if (input.equals("event")) {
-                        throw new DukeException("☹ OOPS!!! The description of an event cannot be empty.");
+                        throw new DukeException("OOPS!!! The description of an event cannot be empty.");
                     }
                     counter = input.indexOf("/");
                     number += 1;
@@ -95,7 +95,7 @@ public class Duke {
 
 
                 } else { //random input
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
                 }
             } catch (DukeException e){
                     System.out.println(e.toString().substring(15));
