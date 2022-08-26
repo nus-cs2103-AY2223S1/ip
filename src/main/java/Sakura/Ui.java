@@ -75,10 +75,10 @@ public class Ui {
      * @param tasks current list of tasks.
      */
     public static void showAllTask(List<Task> tasks) {
-        String list = "\tSir, these are the tasks in your list:";
+        StringBuilder list = new StringBuilder("\tSir, these are the tasks in your list:");
         for (int i = 0; i < tasks.size(); i++) {
             int index = i + 1;
-            list += "\n\t" + index + ". " + tasks.get(i);
+            list.append("\n\t").append(index).append(". ").append(tasks.get(i));
         }
         System.out.println(list);
     }

@@ -95,7 +95,7 @@ public class TaskList {
     }
 
     /**
-     * Unmarks a task in the task list.
+     * Un-marks a task in the task list.
      *
      * @param input string command given by user.
      */
