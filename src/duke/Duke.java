@@ -1,5 +1,6 @@
 package duke;
 
+import duke.command.Command;
 import duke.exceptions.DukeException;
 import duke.exceptions.ImproperFormatException;
 
@@ -25,7 +26,7 @@ public class Duke {
                 String fullCommand = this.ui.readCommand();
                 ui.showLine(); // show the divider line ("_______")
                 Command c = Parser.parse(fullCommand);
-                c.execute(this.ui, this.taskList);
+                c.execute(this.ui, this.taskList, this.storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
@@ -46,6 +47,5 @@ public class Duke {
             System.out.println("CORRUPTED DATA");
         }
         duke.run();
-        duke.storage.save(duke.taskList);
     }
 }

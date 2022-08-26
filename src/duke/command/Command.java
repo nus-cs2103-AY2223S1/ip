@@ -1,5 +1,8 @@
-package duke;
+package duke.command;
 
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
 import duke.exceptions.DukeException;
 
 public abstract class Command {
@@ -13,6 +16,6 @@ public abstract class Command {
         return this.isExit;
     }
 
-    public void execute(Ui ui, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
     }
 }

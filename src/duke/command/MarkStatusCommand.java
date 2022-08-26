@@ -1,5 +1,10 @@
-package duke;
+package duke.command;
 
+import duke.Storage;
+import duke.Task;
+import duke.TaskList;
+import duke.Ui;
+import duke.command.Command;
 import duke.exceptions.DukeException;
 
 public class MarkStatusCommand extends Command {
@@ -10,8 +15,9 @@ public class MarkStatusCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
         Task success = taskList.markStatus(this.toggleTask);
+        storage.save(taskList);
         ui.showToggleSuccess(success);
     }
 }

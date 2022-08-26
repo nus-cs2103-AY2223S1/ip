@@ -1,5 +1,9 @@
-package duke;
+package duke.command;
 
+import duke.Storage;
+import duke.Task;
+import duke.TaskList;
+import duke.Ui;
 import duke.exceptions.DukeException;
 
 public class DeleteCommand extends Command {
@@ -11,8 +15,9 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public void execute(Ui ui, TaskList taskList) throws DukeException {
+    public void execute(Ui ui, TaskList taskList, Storage storage) throws DukeException {
         Task success = taskList.deleteTask(this.deleteTask);
+        storage.save(taskList);
         ui.showDeleteSuccess(success, taskList.numOfTask());
     }
 }

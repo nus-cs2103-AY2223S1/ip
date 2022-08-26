@@ -1,9 +1,14 @@
-package duke;
+package duke.command;
 
-public class ExitCommand extends Command{
+import duke.Storage;
+import duke.TaskList;
+import duke.Ui;
+import duke.command.Command;
+
+public class ExitCommand extends Command {
 
     @Override
-    public void execute(Ui ui, TaskList taskList) {
+    public void execute(Ui ui, TaskList taskList, Storage storage) {
         toggleExit();
         ui.showBye();
     }
