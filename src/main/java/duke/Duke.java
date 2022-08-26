@@ -9,6 +9,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Main code for Duke.
+ */
 public class Duke {
     private final Storage storage;
     private TaskList list;

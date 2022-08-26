@@ -5,6 +5,9 @@ import duke.exception.FileParseException;
 import duke.task.Task;
 import java.util.ArrayList;
 
+/**
+ * Handles anything that is related to TaskList and Tasks.
+ */
 public class TaskList {
     private final ArrayList<Task> store;
 

@@ -3,6 +3,9 @@ package duke.task;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * Class for tasks that happens at a particular time.
+ */
 public class Event extends Task{
     private final String dateTime;
     protected LocalDate atDate;

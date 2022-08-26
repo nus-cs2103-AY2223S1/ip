@@ -7,9 +7,10 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
 import java.time.format.DateTimeParseException;
-import duke.util.TaskList;
 
-
+/**
+ * To handle the user's input and execute the commands.
+ */
 public class Parser {
     private final TaskList list;
     enum LIST_COMMANDS {todo, deadline, event, mark, unmark, delete, }
@@ -18,6 +19,17 @@ public class Parser {
         this.list = list;
     }
 
+    /**
+     * Parses the string from either the save file or user.
+     * Returns whether the program should exit.
+     *
+     * @param userInput String to be parsed.
+     * @param fromSave true if input is from save file, false if from user.
+     * @return true if program should exit, if not false.
+     * @throws WrongArgumentException If argument is of the wrong format.
+     * @throws FileParseException If there's an error when the line was written to save file previously.
+     * @throws NoArgumentException If only the command is given without any arguments.
+     */
     public boolean parseInput(String userInput, boolean fromSave) throws WrongArgumentException, FileParseException, NoArgumentException {
         if (isListCommand(userInput.split(" ")[0])) {
             this.parseListCommands(userInput, fromSave);
@@ -43,6 +55,15 @@ public class Parser {
         return false;
     }
 
+    /**
+     * Parses the string if the command is one that is handled by the TaskList, and it will call the appropriate methods
+     *
+     * @param input String from save file or user.
+     * @param fromSave true if string is from file, false if not
+     * @throws WrongArgumentException If argument is of the wrong format.
+     * @throws FileParseException If there's an error when the line was written to save file previously.
+     * @throws NoArgumentException If only the command is given without any arguments.
+     */
     private void parseListCommands(String input, boolean fromSave) throws WrongArgumentException, FileParseException, NoArgumentException {
         String mark = null;
         String[] arr;
