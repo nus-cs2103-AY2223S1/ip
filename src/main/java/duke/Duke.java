@@ -33,7 +33,7 @@ public class Duke {
     /**
      * Handling of the .txt file containing the list of tasks.
      */
-    String filePath = "../../../data/duke.txt";
+    String filePath = "/Users/kw/Library/Mobile Documents/com~apple~CloudDocs/MODS/cs2103/projects/ip/data/duke.txt";
     Storage storage = new Storage(filePath);
     tasks = storage.getTasks();
 
