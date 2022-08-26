@@ -4,6 +4,7 @@ import task.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Used to keep track of the current task of the chatbot.
@@ -56,6 +57,13 @@ public class TaskList {
      */
     public Task removeTask(int index) throws IndexOutOfBoundsException {
         return this.list.remove(index);
+    }
+
+    public TaskList filter(String query) {
+        return new TaskList(this.list.stream()
+                .filter(task -> task.getDescription().contains(query))
+                .collect(Collectors.toList())
+        );
     }
 
     /**

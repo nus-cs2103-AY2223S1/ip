@@ -5,6 +5,7 @@ import commands.Command;
 import commands.DeadlineCommand;
 import commands.DeleteCommand;
 import commands.EventCommand;
+import commands.FindCommand;
 import commands.ListCommand;
 import commands.MarkCommand;
 import commands.TodoCommand;
@@ -49,6 +50,9 @@ public class Parser {
         }
         case "delete": {
             return new DeleteCommand(inputValues);
+        }
+        case "find": {
+            return new FindCommand(inputValues);
         }
         default: {
             throw new DukeException("     ☹ OOPS!!! I'm sorry, but I don't know what that means :-(");

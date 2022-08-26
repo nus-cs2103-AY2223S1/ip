@@ -35,11 +35,11 @@ public class EventCommand extends Command {
      * {@inheritDoc}
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        if (this.inputStrings.length == 1) {
+        if (this.inputStrings.length == 1 || this.inputStrings[1].trim().isEmpty()) {
             throw new EmptyDescriptionException(TaskType.E);
         }
         String[] eventStrings = inputStrings[1].split(" /at ", 2);
-        if (eventStrings.length == 1 || eventStrings[1].equals("")) {
+        if (eventStrings.length == 1 || eventStrings[1].trim().isEmpty()) {
             throw new EmptyDateTimeException(TaskType.E);
         }
         try {

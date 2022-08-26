@@ -35,12 +35,12 @@ public class DeadlineCommand extends Command {
      * {@inheritDoc}
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        if (this.inputStrings.length == 1) {
+        if (this.inputStrings.length == 1 || inputStrings[1].trim().isEmpty()) {
             throw new EmptyDescriptionException(TaskType.D);
         }
 
         String[] deadlineStrings = inputStrings[1].split(" /by ", 2);
-        if (deadlineStrings.length == 1 || deadlineStrings[1].equals("")) {
+        if (deadlineStrings.length == 1 || deadlineStrings[1].trim().isEmpty()) {
             throw new EmptyDateTimeException(TaskType.D);
         }
         try {

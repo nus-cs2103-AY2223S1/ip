@@ -5,38 +5,33 @@ import duke.TaskList;
 import duke.Ui;
 import exceptions.DukeException;
 import exceptions.EmptyDescriptionException;
-import task.TaskType;
-import task.Todo;
 
 /**
- * Creates a new Todo.
+ * Finds all tasks that have a matching description field.
  */
-public class TodoCommand extends Command {
+public class FindCommand extends Command {
     private final String[] inputStrings;
 
     /**
-     * Constructs a todo command, which creates a new todo based on the input strings.
+     * Constructs find command, which filters the current tasks with some query and prints them to the console.
      *
      * @param inputStrings The specified input strings.
      */
-    public TodoCommand(String[] inputStrings) {
+    public FindCommand(String[] inputStrings) {
         this.inputStrings = inputStrings;
     }
 
     /**
-     * Creates a new todo.
+     * Filters tasks and prints the tasks that match the query string.
      * <p>
      * {@inheritDoc}
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        if (inputStrings.length == 1) {
-            throw new EmptyDescriptionException(TaskType.T);
+        if (this.inputStrings.length == 1 || this.inputStrings[1].trim().isEmpty()) {
+            throw new EmptyDescriptionException();
         }
-
-        Todo todo = new Todo(inputStrings[1].trim(), false);
-        tasks.addTask(todo);
-
-        ui.showAddTask(todo, tasks.size());
+        TaskList filteredTasks = tasks.filter(this.inputStrings[1]);
+        ui.showMatchingTasks(filteredTasks);
     }
 
     /**
