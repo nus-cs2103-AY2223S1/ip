@@ -67,6 +67,9 @@ public class Parser {
             } else if (input.equals("list")) {
                 l.list();
                 respond();
+            } else if (command.equals("find")) {
+                l.find(l,arr[1]);
+                respond();
             } else {
                 throw new InvalidCommandException(command);
             }

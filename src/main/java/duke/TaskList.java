@@ -46,4 +46,17 @@ public class TaskList {
         System.out.println(Ui.UNMARK_HEADER + "[ ] " + t.getList().get(index-1).description());
         t.getList().get(index-1).setStatus("[ ]");
     }
+
+    public void find(TaskList t, String keyword) {
+        System.out.println(Ui.FIND_HEADER);
+        Task b = null;
+        int find = 1;
+        for (int i = 0; i < Duke.count; i++) {
+            b = t.get(i);
+            String findings = b.getName();
+            if (findings.contains(keyword)) {
+                System.out.println(find++ +"." + b.toString());
+            }
+        } System.out.println(Duke.line);
+    }
 }

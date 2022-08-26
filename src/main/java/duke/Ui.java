@@ -7,6 +7,7 @@ public class Ui {
     public static final String UNMARK_HEADER = Duke.line + "\n" + "OK, I've marked this task as not done yet:" + "\n";
     public static final String MARK_HEADER =  Duke.line + "\n" + "Nice! I've marked this task as done:" + "\n";
     public static final String ADD_TASK_HEADER = Duke.line + "\n" + "Got it. I've added this task:" + "\n";
+    public static final String FIND_HEADER = Duke.line + "\n" + "Here are the matching tasks in your list:" + "\n";
     public Ui() {
         System.out.println(
                 Duke.line + "\n" +
