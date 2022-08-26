@@ -1,3 +1,0 @@
-T : 1 : focus
-D : 0 : die  : 05 May 2022 12:00 PM
-D : 0 : finish iP  : 05 May 2022 11:00 PM
