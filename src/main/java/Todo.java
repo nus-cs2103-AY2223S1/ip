@@ -5,26 +5,23 @@
  */
 public class Todo extends Task {
 
-    protected String id = "[T]";
 
     /**
      * Constructor for the todo task.
      *
      * @param description String representing the description of the todo task.
-     * @param isCompleted Boolean representing whether the task is completed.
+     * @param isCompleted boolean representing whether the task is completed.
      */
-    public Todo(String description, Boolean isCompleted) {
-        super(description, isCompleted);
+    public Todo(String description, boolean isCompleted) {
+        super(Task_Id.T, description, isCompleted);
     }
 
     /**
-     * Returns ListLoader friendly summary of the todo task.
-     *
-     * @return String representing summary of the todo task.
+     * {@inheritDoc}
      */
-    public  String summary() {
+    public String summary() {
         String status = isCompleted ? "1" : "0";
-        String message = "T | " + status + " | " + description;
+        String message = id + " | " + status + " | " + description;
         return message;
     }
 
@@ -35,6 +32,6 @@ public class Todo extends Task {
      */
     @Override
     public String toString() {
-        return id + super.toString();
+        return "[" + id + "] " + super.toString();
     }
 }

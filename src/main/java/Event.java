@@ -15,23 +15,21 @@ public class Event extends Task {
     protected String at;
     protected LocalDate date = null;
     protected LocalTime time = null;
-    protected String id = "[E]";
 
     /**
      * Constructor for the Event task.
      *
      * @param description String representing the description of the event.
      * @param at String representing the time of the event.
-     * @param isCompleted Boolean representing whether the task is completed.
+     * @param isCompleted boolean representing whether the task is completed.
      */
-    public Event(String description, String at, Boolean isCompleted) {
-        super(description, isCompleted);
+    public Event(String description, String at, boolean isCompleted) {
+        super(Task_Id.E, description, isCompleted);
         this.at = at;
 
         try {
             Pattern date = Pattern.compile("\\d\\d\\d\\d-\\d\\d-\\d\\d");
             Matcher dateMatcher = date.matcher(at);
-
             if(dateMatcher.find()) {
                 this.date = LocalDate.parse(dateMatcher.group());
             }
@@ -42,7 +40,6 @@ public class Event extends Task {
         try {
             Pattern time = Pattern.compile("\\d\\d\\d\\d\\z");
             Matcher timeMatcher = time.matcher(at);
-
             if(timeMatcher.find()) {
                 this.time = LocalTime.parse(timeMatcher.group(), DateTimeFormatter.ofPattern("HHmm"));
             }
@@ -52,13 +49,11 @@ public class Event extends Task {
     }
 
     /**
-     * Returns ListLoader friendly summary of the event task.
-     *
-     * @return String representing summary of the event task.
+     * {@inheritDoc}
      */
-    public  String summary() {
+    public String summary() {
         String status = isCompleted ? "1" : "0";
-        String message = "E | " + status + " | " + description + " | " + at;
+        String message = id + " | " + status + " | " + description + " | " + at;
         return message;
     }
 
@@ -80,6 +75,6 @@ public class Event extends Task {
             when = at;
         }
 
-        return id + super.toString() + " (at: " + when + ")";
+        return "[" + id + "] " + super.toString() + " (at: " + when + ")";
     }
 }

@@ -1,90 +1,56 @@
 import java.util.ArrayList;
 
 /**
- * Represents a list of tasks created based on input and to print the list as output.
+ * Represents a list of tasks.
  *
  * @author WR3nd3
  */
 public class TaskList {
 
-    private ArrayList<Task> allTaskList = new ArrayList<>();
-    private ListLoader updater = new ListLoader(this);
+    private ArrayList<Task> list = new ArrayList<>();
 
-
+    /**
+     * Returns number of tasks left in the list.
+     *
+     * @return Integer representing number of tasks left in the list.
+     */
     public int tasksLeft() {
-        return allTaskList.size();
+        return list.size();
     }
 
+    /**
+     * Returns whether there is a task in the given list position.
+     *
+     * @param position Integer representation of a task in the list.
+     * @return boolean representing whether it is a valid position.
+     */
     public boolean isValidPosition(int position) {
         return !(position <= 0 || position > tasksLeft());
     }
 
-
-//    /**
-//     * Creates Todo task representing the description and adds it to the list.
-//     * Prints message indicating completion of the action.
-//     *
-//     * @param description String representing the description of the task.
-//     * @param isCompleted Boolean representing whether the task is completed.
-//     * @param isNewTask Boolean representing whether to save task to data list.
-//     * @return String representation of addition of task and list status.
-//     */
+    /**
+     * Adds a task to the list.
+     *
+     * @param task Task to be added to the list.
+     */
     public void addTask(Task task) {
-        allTaskList.add(task);
-
+        list.add(task);
     }
 
+    /**
+     * Returns task in the given rank in the list.
+     *
+     * @param rank Integer representation of a task in the list.
+     * @return Task of the given rank.
+     */
     public Task retrieveRank(int rank) {
-        return allTaskList.get(rank - 1);
+        return list.get(rank - 1);
     }
-//
-//    /**
-//     * Creates Event task representing the description and adds it to the list.
-//     * Prints message indicating completion of the action.
-//     *
-//     * @param description String representing the description of the task.
-//     * @param date String representing the time of the event.
-//     * @param isCompleted Boolean representing whether the task is completed.
-//     * @param isNewTask Boolean representing whether to save task to data list.
-//     * @return String representation of addition of task and list status.
-//     */
-//    public String addEvent(String description, String date, Boolean isCompleted, Boolean isNewTask) {
-//        Task task = new Event(description, date, isCompleted);
-//        allTaskList.add(task);
-//        if (isNewTask) {
-//            updater.appendToList(task.summary());
-//        }
-//        return "Moo! I'm a cat. I've added this task:\n"
-//                + task + "\n"
-//                + tasksLeft();
-//    }
-//
-//    /**
-//     * Creates Deadline task representing the description and adds it to the list.
-//     * Prints message indicating completion of the action.
-//     *
-//     * @param description String representing the description of the task.
-//     * @param date String representing the deadline of the event.
-//     * @param isCompleted Boolean representing whether the task is completed.
-//     * @param isNewTask Boolean representing whether to save task to data list.
-//     * @return String representation of addition of task and list status.
-//     */
-//    public String addDeadline(String description, String date, Boolean isCompleted, Boolean isNewTask) {
-//        totalTasks++;
-//        Task task = new Deadline(description, date, isCompleted);
-//        allTaskList.add(task);
-//        if (isNewTask) {
-//            updater.appendToList(task.summary());
-//        }
-//        return "Woof! I'm a cat. I've added this task:\n"
-//                + task + "\n"
-//                + tasksLeft();
-//    }
 
     /**
      * Marks the task represented by the rank in the list as complete.
      *
-     * @param rank Integer indicating the position of the task relative in the list.
+     * @param rank Integer indicating the position of the task in the list.
      */
     public void mark(Integer rank) {
         retrieveRank(rank).markAsDone();
@@ -93,7 +59,7 @@ public class TaskList {
     /**
      * Marks the task represented by the rank in the list as incomplete.
      *
-     * @param rank Integer indicating the position of the task relative in the list.
+     * @param rank Integer indicating the position of the task in the list.
      */
     public void unmark(Integer rank) {
         retrieveRank(rank).markAsNotDone();
@@ -102,20 +68,22 @@ public class TaskList {
     /**
      * Deletes the task represented by the rank in the list from the list.
      *
-     * @param rank Integer indicating the position of the task relative in the list.
+     * @param rank Integer indicating the position of the task in the list.
      */
     public void delete(Integer rank) {
-        allTaskList.remove(allTaskList.get(rank - 1));
+        list.remove(list.get(rank - 1));
     }
 
     /**
-     * Prints the status of the list to the command line interface.
+     * Returns collection of task descriptions as a String array.
+     *
+     * @return String array of the descriptions of tasks in the list.
      */
     public String[] giveList() {
         String[] list = new String[tasksLeft()];
         for(int i = 0; i < tasksLeft(); i++) {
-            Task t = allTaskList.get(i);
-            list[i] = i + 1 + "." + t;
+            Task t = this.list.get(i);
+            list[i] = i + 1 + ". " + t;
         }
         return list;
     }

@@ -3,22 +3,24 @@
  *
  * @author WR3nd3
  */
-
 abstract public class Task {
-    private  String modifier = "[?]";
+
+    protected final Task_Id id;
     protected String description;
+    protected boolean isCompleted;
     private String addOn = "nya!";
-    protected Boolean isCompleted;
     private String notDoneSymbol = "[Zzzzzzz]";
     private String doneSymbol    = "[=^._.^=]";
 
     /**
      * Constructor of the Task object to be called by its subclasses.
      *
+     * @param id Task_Id detailing the type of the task.
      * @param description String representing the details of the task.
      * @param isCompleted Boolean representing whether the task is completed.
      */
-    public Task(String description, Boolean isCompleted) {
+    public Task(Task_Id id, String description, boolean isCompleted) {
+        this.id = id;
         this.description = description;
         this.isCompleted = isCompleted;
     }
@@ -38,12 +40,20 @@ abstract public class Task {
     }
 
     /**
-     * Returns ListLoader friendly summary of task.
+     * Returns summary of the task that can be deciphered by ListLoader.
      *
      * @return String representing summary of task.
      */
     public abstract String summary();
 
+    /**
+     * Returns the type of the task.
+     *
+     * @return Task_Id type of the task.
+     */
+    public Task_Id getType() {
+        return id;
+    }
     /**
      * Returns a string representation of the task.
      *

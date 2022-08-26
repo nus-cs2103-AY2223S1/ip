@@ -11,47 +11,52 @@ import java.io.IOException;
  * @author WR3nd3
  */
 public class ListLoader {
-    public enum Command {
-        T, D, E
-    }
+    /** File to read and write TaskList tasks to */
     private File listText = new File("data/duke.txt");
+
+    /** TaskList to update */
     private TaskList taskList;
 
 
     /**
-     * Constructor for ListLoader object which ensures the necessary files are in place.
-     * Updates TaskList with saved data in file.
+     * Constructor for ListLoader.
      *
-     * @param taskList The TaskList to be updated with the saved data.
+     * @param taskList The TaskList to be updated with the stored data.
      */
     public ListLoader(TaskList taskList) {
         this.taskList = taskList;
     }
 
-    public void load() {
+    /**
+     * Reads stored data in the saved list and updates the task list.
+     *
+     * @throws DukeException for failing to load the file.
+     */
+    public void load() throws DukeException {
         BufferedReader reader = null;
         try {
+            // Create necessary save file if it does not exist
             if (!new File("data").exists()) {
                 new File("data").mkdir();
             }
             if (!listText.exists()) {
                 listText.createNewFile();
             }
-            this.taskList = taskList;
-            reader = new BufferedReader(new FileReader(listText));
 
+            reader = new BufferedReader(new FileReader(listText));
             String currentLine;
             while ((currentLine = reader.readLine()) != null) {
+                // Ignore empty lines in the stored data
                 if (currentLine.isBlank()) {
                     continue;
                 }
-
+                // Decipher stored data to create tasks to be added to the task list
                 String[] inputArray = currentLine.split(" \\| ", 4);
                 String command = inputArray[0];
                 Boolean isCompleted = inputArray[1].equals("1") ? true : false;
                 String description = inputArray[2];
 
-                switch (Command.valueOf(command)) {
+                switch (Task_Id.valueOf(command)) {
                 case T:
                     taskList.addTask(new Todo(description, isCompleted));
                     break;
@@ -63,48 +68,52 @@ public class ListLoader {
                     break;
                 }
             }
-
         } catch (IOException e) {
-            System.out.println("listloader error");
-            //throw new DukeException();
+            throw new DukeException("Failed to load file");
         } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
-            //throw new DukeException();
-            System.out.println("listloader error");
+            try {
+                reader.close();
+                listText.delete(); //need to delete after close reader
+                throw new DukeException("Failed to load file: Unable to decipher contents");
+            } catch (IOException e1){
+                throw new DukeException("Failed to load file: Unable to decipher contents");
+            }
         } finally {
             try {
                 reader.close();
             } catch (IOException e) {
-                //throw new DukeException();
-                System.out.println("listloader error");
+                throw new DukeException("Failed to complete loading file");
             }
         }
     }
 
     /**
-     * Appends task of given parameters to saved task list.
+     * Appends task of given description to saved task list.
      *
      * @param summary String representing summarised description of task.
+     * @throws DukeException for failing to write to file.
      */
-    public void appendToList(String summary) {
+    public void appendToList(String summary) throws DukeException {
         BufferedReader reader = null;
         BufferedWriter writer = null;
         try {
+            // Safe to open writer with reader since it is set to append
             writer = new BufferedWriter(new FileWriter(listText, true));
             reader = new BufferedReader(new FileReader(listText));
             String firstLine;
+            // If the current stored task list is empty, do not add a new line
             if ((firstLine = reader.readLine()) != null && !firstLine.isBlank()) {
                 writer.newLine();
             }
             writer.write(summary);
         } catch (IOException e) {
-            System.err.println(e);
-            System.exit(1);
+            throw new DukeException("Failed to complete writing to file");
         } finally {
             try {
                 reader.close();
                 writer.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new DukeException("Failed to complete writing to file");
             }
         }
     }
@@ -113,8 +122,9 @@ public class ListLoader {
      * Marks the task represented by the given summary as complete in the saved list.
      *
      * @param summary String representing summarised description of task.
+     * @throws DukeException for failing to modify the file.
      */
-    public void markTask(String summary) {
+    public void markTask(String summary) throws DukeException {
         String oldContent = "";
         String newContent = "";
         String[] strArray = summary.trim().split(" \\| ", 3);
@@ -126,6 +136,7 @@ public class ListLoader {
             reader = new BufferedReader(new FileReader(listText));
             String currentLine;
 
+            // Ignore empty lines in the stored data
             while ((currentLine = reader.readLine()) != null) {
                 if (currentLine.isBlank()) {
                     continue;
@@ -135,13 +146,12 @@ public class ListLoader {
 
             newContent = oldContent.replaceFirst("\\Q" + summary + "\\E", newString).trim();
         } catch (IOException e) {
-            System.err.println(e);
-            System.exit(1);
+            throw new DukeException("Failed to complete reading from file");
         } finally {
             try {
                 reader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new DukeException("Failed to complete reading from file");
             }
         }
 
@@ -149,13 +159,12 @@ public class ListLoader {
             writer = new BufferedWriter(new FileWriter(listText, false));
             writer.write(newContent);
         } catch (IOException e) {
-            System.err.println(e);
-            System.exit(1);
+            throw new DukeException("Failed to complete writing to file");
         } finally {
             try {
                 writer.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new DukeException("Failed to complete writing to file");
             }
         }
     }
@@ -164,8 +173,9 @@ public class ListLoader {
      * Marks the task represented by the given summary as incomplete in the saved list.
      *
      * @param summary String representing summarised description of task.
+     * @throws DukeException for failing to modify the file.
      */
-    public void unmarkTask(String summary) {
+    public void unmarkTask(String summary) throws DukeException {
         String oldContent = "";
         String newContent = "";
         String[] strArray = summary.trim().split(" \\| ", 3);
@@ -177,6 +187,7 @@ public class ListLoader {
             reader = new BufferedReader(new FileReader(listText));
             String currentLine;
 
+            // Ignore empty lines in file
             while ((currentLine = reader.readLine()) != null) {
                 if (currentLine.isBlank()) {
                     continue;
@@ -186,13 +197,12 @@ public class ListLoader {
 
             newContent = oldContent.replaceFirst("\\Q" + summary + "\\E", newString).trim();
         } catch (IOException e) {
-            System.err.println(e);
-            System.exit(1);
+            throw new DukeException("Failed to complete reading from file");
         } finally {
             try {
                 reader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new DukeException("Failed to complete reading from file");
             }
         }
 
@@ -200,13 +210,12 @@ public class ListLoader {
             writer = new BufferedWriter(new FileWriter(listText, false));
             writer.write(newContent);
         } catch (IOException e) {
-            System.err.println(e);
-            System.exit(1);
+            throw new DukeException("Failed to complete writing to file");
         } finally {
             try {
                 writer.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new DukeException("Failed to complete writing to file");
             }
         }
     }
@@ -215,8 +224,9 @@ public class ListLoader {
      * Delete the task represented by the given summary in the saved list.
      *
      * @param summary String representing summarised description of task.
+     * @throws DukeException for failing to modify file.
      */
-    public void deleteTask(String summary) {
+    public void deleteTask(String summary) throws DukeException {
         String newContent = "";
         String[] strArray = summary.trim().split(" \\| ", 3);
         String newString = strArray[0] + " | " + 1 + " | " + strArray[2];
@@ -227,6 +237,7 @@ public class ListLoader {
             reader = new BufferedReader(new FileReader(listText));
             String currentLine;
 
+            // Ignore empty lines in file
             while ((currentLine = reader.readLine()) != null) {
                 if (currentLine.equals(summary) || currentLine.isBlank()) {
                     continue;
@@ -234,13 +245,12 @@ public class ListLoader {
                 newContent += currentLine + "\n";
             }
         } catch (IOException e) {
-            System.err.println(e);
-            System.exit(1);
+            throw new DukeException("Failed to complete reading from file");
         } finally {
             try {
                 reader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new DukeException("Failed to complete reading from file");
             }
         }
 
@@ -248,15 +258,13 @@ public class ListLoader {
             writer = new BufferedWriter(new FileWriter(listText, false));
             writer.write(newContent.trim());
         } catch (IOException e) {
-            System.err.println(e);
-            System.exit(1);
+            throw new DukeException("Failed to complete writing to file");
         } finally {
             try {
                 writer.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                throw new DukeException("Failed to complete writing to file");
             }
         }
     }
-
 }

@@ -1,4 +1,13 @@
+/**
+ * Represents command to Duke to print list.
+ *
+ * @author WR3nd3
+ */
 public class ListCommand extends Command {
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void execute(TaskList tasks, Ui ui, ListLoader storage) {
         int tasksLeft = tasks.tasksLeft();

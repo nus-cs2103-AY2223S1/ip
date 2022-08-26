@@ -15,22 +15,20 @@ public class Deadline extends Task {
     protected String by;
     protected LocalDate date = null;
     protected LocalTime time = null;
-    protected String id = "[D]";
 
     /**
      * Constructor for the deadline task.
      *
      * @param description String representing the description of the deadline.
      * @param by String representing the time of the deadline.
-     * @param isCompleted Boolean representing whether the task is completed.
+     * @param isCompleted boolean representing whether the task is completed.
      */
-    public Deadline(String description, String by, Boolean isCompleted) {
-        super(description, isCompleted);
+    public Deadline(String description, String by, boolean isCompleted) {
+        super(Task_Id.D, description, isCompleted);
         this.by = by;
         try {
             Pattern date = Pattern.compile("\\d\\d\\d\\d-\\d\\d-\\d\\d");
             Matcher dateMatcher = date.matcher(by);
-
             if(dateMatcher.find()) {
                 this.date = LocalDate.parse(dateMatcher.group());
             }
@@ -41,7 +39,6 @@ public class Deadline extends Task {
         try {
             Pattern time = Pattern.compile("\\d\\d\\d\\d\\z");
             Matcher timeMatcher = time.matcher(by);
-
             if(timeMatcher.find()) {
                 this.time = LocalTime.parse(timeMatcher.group(), DateTimeFormatter.ofPattern("HHmm"));
             }
@@ -51,13 +48,11 @@ public class Deadline extends Task {
     }
 
     /**
-     * Returns ListLoader friendly summary of the deadline task.
-     *
-     * @return String representing summary of the deadline task.
+     * {@inheritDoc}
      */
-    public  String summary() {
+    public String summary() {
         String status = isCompleted ? "1" : "0";
-        String message = "D | " + status + " | " + description + " | " + by;
+        String message = id + " | " + status + " | " + description + " | " + by;
         return message;
     }
 
@@ -78,6 +73,6 @@ public class Deadline extends Task {
         } else {
             when = by;
         }
-        return id + super.toString() + " (by: " + when + ")";
+        return "[" + id + "] " + super.toString() + " (by: " + when + ")";
     }
 }

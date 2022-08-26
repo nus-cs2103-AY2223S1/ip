@@ -6,18 +6,21 @@
 public class DukeException extends IllegalArgumentException{
 
     private static final String INTRO = "Nyat a valid instruction! Rub my belly instead!\n";
-    private static final String TODO = "'todo ABC' to add task ABC\n";
-    private static final String EVENT = "'event ABC /at DATE' to add event ABC on DATE\n";
-    private static final String DEADLINE = "'deadline ABC /by DATE' to add deadline ABC due by DATE\n";
-    private static final String MARK = "'mark x' to mark task x as complete\n";
-    private static final String UNMARK = "'delete x' to delete task x from the list\n";
-    private static final String DELETE = "'delete x' to delete task x from the list\n";
-    private static final String LIST = "'list' for overview\n";
-    private static final String BYE = "'bye' to exit.\n";
+    private static final String TODO = "Input 'todo ABC' to add task ABC\n";
+    private static final String EVENT = "Input 'event ABC /at DATE' to add event ABC on" +
+            " DATE\n";
+    private static final String DEADLINE = "Input 'deadline ABC /by DATE' to add deadline" +
+            " ABC due by DATE\n";
+    private static final String MARK = "Input 'mark xxx' to mark task xxx as complete\n";
+    private static final String UNMARK = "Input 'unmark xxx' to mark task xxx as incomplete\n";
+    private static final String DELETE = "Input 'delete xxx' to delete task xxx from the list\n";
+    private static final String LIST = "Input 'list' for overview\n";
+    private static final String BYE = "Input 'bye' to exit.\n";
     private static final String OUTRO =  "NYAAAAAA!\n";
     private static final String TAB = "    ";
 
-    private static String msg = INTRO
+    /** Default error message for invalid commands */
+    private static String defaultMsg = INTRO
             + TAB + TODO
             + TAB + EVENT
             + TAB + DEADLINE
@@ -28,10 +31,18 @@ public class DukeException extends IllegalArgumentException{
             + TAB + BYE
             + TAB + OUTRO;
 
-
+    /**
+     * Constructs DukeException object with default error message.
+     */
     public DukeException() {
-        super(msg);
+        super(defaultMsg);
     }
+
+    /**
+     * Constructs DukeException object with custom error message.
+     *
+     * @param message String representing error message to be displayed.
+     */
     public DukeException(String message) {
         super(message);
     }
