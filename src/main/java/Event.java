@@ -13,8 +13,8 @@ public class Event extends Task {
     }
 
     @Override
-    public String getDate() {
-        return time;
+    public LocalDate getDate() {
+        return eventDate;
     }
 
     @Override

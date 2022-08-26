@@ -13,7 +13,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String getDate() {
+    public LocalDate getDate() {
         return deadline;
     }
 

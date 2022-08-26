@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public abstract class Task {
     private String description;
     private boolean marked;
@@ -8,7 +10,7 @@ public abstract class Task {
     }
 
     public abstract String getType();
-    public abstract String getDate();
+    public abstract LocalDate getDate();
 
     public String getTask() {
         return description;
