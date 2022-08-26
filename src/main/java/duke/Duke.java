@@ -35,16 +35,16 @@ public class Duke {
     private void run() {
         ui.showWelcome();
         ui.showLine();
-        boolean terminated = false;
+        boolean isTerminated = false;
 
-        while (!terminated) {
+        while (!isTerminated) {
             try {
                 String next = ui.readCommand();
                 ui.showLine();
                 Parser input = new Parser(next);
                 Command cmd = input.getCommand();
                 cmd.execCommand(this.list, this.ui, this.storage);
-                terminated = cmd.isTerminated();
+                isTerminated = cmd.isTerminated();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
             } finally {
