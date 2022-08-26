@@ -1,6 +1,5 @@
 T|1| hi
 D|0| ps1|2022-08-31
 E|1| party|1800-12-11
-D|0| test1|1980-09-01
 T|0| book
-D|0| return book|1900-12-01
+T|0| hi

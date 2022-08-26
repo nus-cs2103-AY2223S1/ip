@@ -105,7 +105,7 @@ public class Ui {
      * @param tasks The list of all Tasks.
      */
     public void printDeleteTask(Task task, TaskList tasks) {
-        print("Got it. I've added this duke.task:");
+        print("Noted. I've removed this task:");
         print("  " + task.toString());
         print("Now you have " + tasks.getSize() + " tasks in the list.");
     }

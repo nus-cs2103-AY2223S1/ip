@@ -70,7 +70,7 @@ public class Parser {
             // Fallthrough
         case DELETE:
             int delNum = Integer.parseInt(command.replace("delete ", ""));
-            return new DeleteCommand(delNum);
+            return new DeleteCommand(delNum - 1);
             // Fallthrough
         case FIND:
             String findKey = command.replace("find ", "");
