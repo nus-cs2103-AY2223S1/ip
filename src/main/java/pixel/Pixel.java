@@ -52,7 +52,7 @@ public class Pixel {
 
             try {
                 if (userInput.strip().equals("bye")) {
-                    System.out.println(UserInterface.goodbyeMessage);
+                    System.out.println(UserInterface.GOODBYE_MESSAGE);
                     System.exit(0);
 
                 } else if (userInput.strip().startsWith("todo ")) {
@@ -195,12 +195,12 @@ public class Pixel {
             System.out.println("Got it. I've added this task:");
             System.out.println(newTask);
             System.out.println("Now you have " + count + " tasks in the list.");
-            // run();
         }
     }
+
     public static void main(String[] args) {
         Pixel test = new Pixel("C:/!Education/CS2103/gitFolderOne/data/pixel.txt");
-        System.out.println(UserInterface.introMessage);
+        System.out.println(UserInterface.INTRO_MESSAGE);
         test.run();
     }
 }

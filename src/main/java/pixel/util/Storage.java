@@ -27,6 +27,7 @@ public class Storage {
     public Storage(String filePath) {
         this.filePath = filePath;
     }
+
    /* During the write operation, the characters are written to the internal buffer instead of the disk.
    Once the buffer is filled or the writer is closed, the whole characters in the buffer are
    written to the disk.

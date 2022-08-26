@@ -8,7 +8,7 @@ import java.util.Objects;
  */
 public class ToDo extends Task {
 
-    public final String tag = "T";
+    public static final String TAG = "T";
 
     /**
      * Constructor for a new ToDo object
@@ -31,6 +31,7 @@ public class ToDo extends Task {
         String end = Objects.equals(this.commandWord, "")
             ? this.commandWord
             : " (" + this.commandWord + ": " + this.due + ")";
-        return "[" + this.tag + "]" + super.toString() + end;
+
+        return "[" + this.TAG + "]" + super.toString() + end;
     }
 }
