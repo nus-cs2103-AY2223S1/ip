@@ -1,15 +1,16 @@
 package duke.utils;
 
-import duke.exceptions.DukeException;
-
-import duke.commands.Command;
 import duke.commands.AddCommand;
+import duke.commands.Command;
 import duke.commands.DeleteCommand;
+import duke.commands.ExitCommand;
+import duke.commands.FindCommand;
+import duke.commands.InvalidCommand;
+import duke.commands.ListCommand;
 import duke.commands.MarkCommand;
 import duke.commands.UnmarkCommand;
-import duke.commands.ListCommand;
-import duke.commands.ExitCommand;
-import duke.commands.InvalidCommand;
+import duke.exceptions.DukeException;
+
 import duke.tasks.Deadline;
 import duke.tasks.Event;
 import duke.tasks.Todo;
@@ -41,6 +42,8 @@ public class Parser {
             return prepareUnmark(userInput);
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+        case FindCommand.COMMAND_WORD:
+            return prepareFind(userInput);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:
@@ -129,6 +132,14 @@ public class Parser {
         } catch (NumberFormatException e) {
             return NUMBER_FORMAT;
         }
+    }
+
+    private Command prepareFind(String userInput) {
+        String[] tokens = userInput.split(" ", 2);
+        if (tokens.length < 2) {
+            return new InvalidCommand("Oh no! Try find <keyword>!");
+        }
+        return new FindCommand(tokens[1]);
     }
 
     /**

@@ -2,6 +2,8 @@ package duke.utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import duke.tasks.Task;
 
@@ -69,6 +71,24 @@ public class TaskList {
     public void unmarkTask(int index) {
         Task task = this.tasks.get(index);
         task.setNotDone();
+    }
+
+    /**
+     * Finds and returns a TaskList with subset of tasks with description matching the keyword.
+     *
+     * @param keyword String to match the descriptions
+     * @return TaskList of matching tasks
+     */
+    public TaskList findMatchingTasks(String keyword) {
+        TaskList result = new TaskList();
+        Pattern pattern = Pattern.compile(keyword);
+        for (Task task : this.tasks) {
+            Matcher matcher = pattern.matcher(task.getDescription());
+            if (matcher.find()) {
+                result.addTask(task);
+            }
+        }
+        return result;
     }
 
     /**
