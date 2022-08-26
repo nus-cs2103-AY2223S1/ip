@@ -10,9 +10,9 @@ import java.util.regex.Pattern;
 public class DeadlineParser extends Parser {
     private final Pattern pattern = Pattern.compile("[\\S+]\\s/by\\s[\\S+]");
     private final String DEADLINE_FORMAT_ERROR =
-            "Deadline must be in this format: <Description> /by <DateTime>\n";
+            "Deadline must be in this format: <Description> /by <DateTime>";
     private final String DATE_FORMAT_ERROR =
-            "Your date must be a valid date in dd/MM/yyyy format\n";
+            "Your date must be a valid date in dd/MM/yyyy format";
 
     public Deadline parseDeadline(String content) throws DukeException {
         if (!pattern.matcher(content).find()) {

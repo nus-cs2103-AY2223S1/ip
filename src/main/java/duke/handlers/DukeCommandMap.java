@@ -18,7 +18,7 @@ public class DukeCommandMap {
 
     public DukeCommand getCommand(String keyword) throws DukeException {
         if (!commandMap.containsKey(keyword)) {
-            throw new DukeException("Command not found!\n");
+            throw new DukeException("Command not found!");
         }
         return commandMap.get(keyword);
     }

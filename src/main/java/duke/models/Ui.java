@@ -20,7 +20,7 @@ public class Ui {
 
     public void showError(String errorMessage) {
         System.out.println(separator);
-        System.out.print("OOPS! " + errorMessage);
+        System.out.println("OOPS! " + errorMessage);
         System.out.println(separator);
     }
 
