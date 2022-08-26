@@ -26,6 +26,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Writes taskList into duke.txt
+     * Overwrites the whole file with current taskList
+     * @param taskList the taskList we are saving
+     */
     public void write(ArrayList<Task> taskList) {
         try {
             FileWriter dbWriter = new FileWriter(this.filePath);
