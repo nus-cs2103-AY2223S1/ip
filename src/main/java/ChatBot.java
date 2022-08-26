@@ -44,8 +44,7 @@ public class ChatBot {
                 case "event":
                     throw new EmptyTaskException();
                 default:
-                    printError(input);
-                    break;
+                    throw new InvalidCommandException();
                 }
             } else {
                 String arguments = inputScanner.nextLine().substring(1);
@@ -75,8 +74,7 @@ public class ChatBot {
                     System.out.println(wrapMessage(taskManager.delete(Integer.parseInt(arguments))));
                     break;
                 default:
-                    printError(input);
-                    break;
+                    throw new InvalidCommandException();
                 }
                 argumentScanner.close();
                 taskManager.save();
@@ -87,6 +85,8 @@ public class ChatBot {
             System.out.println(wrapMessage("You placed invalid arguments!\n"));
         } catch (EmptyTaskException | InvalidDeadlineException | InvalidEventException exception) {
             System.out.println(wrapMessage(exception.toString()));
+        } catch (InvalidCommandException exception) {
+            System.out.println(wrapMessage("Sorry, I don't understand what you mean by \"" + input + "\"\n"));
         } finally {
             inputScanner.close();
         }
@@ -94,13 +94,9 @@ public class ChatBot {
 
     private String wrapMessage(String str) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("--------------------------------------------------\n");
+        stringBuilder.append("------------------------------------------------------------\n");
         stringBuilder.append(str);
-        stringBuilder.append("--------------------------------------------------");
+        stringBuilder.append("------------------------------------------------------------");
         return stringBuilder.toString();
-    }
-
-    private void printError(String input) {
-        System.out.println(wrapMessage("Sorry, I don't understand what you mean by \"" + input + "\"\n"));
     }
 }
