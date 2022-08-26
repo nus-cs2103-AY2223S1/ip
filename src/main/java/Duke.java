@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -5,8 +9,64 @@ public class Duke {
     private String greeting = "Hello";
     private String bye = "Goodbye";
     private ArrayList<Task> list = new ArrayList<>();
+    private File directory = new File("data");
+    private File file = new File("data/duke.txt");
 
     public Duke() {
+    }
+
+    public void getTasksFromDisk() throws FileNotFoundException, DukeException {
+        if (this.file.exists()) {
+            Scanner s = new Scanner(this.file);
+            while (s.hasNext()) {
+                String line = s.nextLine();
+                String[] taskArr = line.split(" \\| ");
+                if (taskArr[0].equals("T")) {
+                    String done = taskArr[1];
+                    String description = taskArr[2];
+                    Todo t = new Todo(description);
+                    if (done.equals("X")) {
+                        t.markDone();
+                    }
+                    this.loadTask("todo", t);
+                } else if (taskArr[0].equals("D")) {
+                    String done = taskArr[1];
+                    String description = taskArr[2];
+                    String date = taskArr[3];
+                    Deadline t = new Deadline(description, date);
+                    if (done.equals("X")) {
+                        t.markDone();
+                    }
+                    this.loadTask("deadline", t);
+                } else if (taskArr[0].equals("E")) {
+                    String done = taskArr[1];
+                    String description = taskArr[2];
+                    String date = taskArr[3];
+                    Event t = new Event(description, date);
+                    if (done.equals("X")) {
+                        t.markDone();
+                    }
+                    this.loadTask("event", t);
+                } else {
+                    throw new DukeException("Oops, unknown task type.");
+                }
+            }
+            System.out.println("Loaded tasks.");
+        }
+    }
+
+    public void saveTasks() throws IOException {
+        if (!this.directory.exists()) {
+            this.directory.mkdir();
+        }
+        if (!this.file.exists()) {
+            this.file.createNewFile();
+        }
+        FileWriter fw = new FileWriter(this.file);
+        for (int i = 0; i < this.list.size(); i++) {
+            fw.write(this.list.get(i).save() + System.lineSeparator());
+        }
+        fw.close();
     }
 
     public void doGreeting() {
@@ -37,6 +97,16 @@ public class Duke {
         } else {
             this.list.get(ind).markNotDone();
             System.out.println("Task not done: " + this.list.get(ind));
+        }
+    }
+
+    public void loadTask(String type, Task task) {
+        if (type.equals("todo")) {
+            this.list.add(this.list.size(), task);
+        } else if (type.equals("deadline")) {
+            this.list.add(this.list.size(), task);
+        } else if (type.equals("event")) {
+            this.list.add(this.list.size(), task);
         }
     }
 
@@ -122,21 +192,33 @@ public class Duke {
         }
     }
 
-    public static void main(String[] args) {
-        Duke duke = new Duke();
-        duke.doGreeting();
-
+    public void start() throws FileNotFoundException, IOException, DukeException {
+        this.doGreeting();
+        this.getTasksFromDisk();
         String input;
         Scanner sc = new Scanner(System.in);
         input = sc.nextLine();
-        while (!duke.isBye(input)) {
+        while (!this.isBye(input)) {
             try {
-                duke.giveInput(input);
+                this.giveInput(input);
             } catch (DukeException e) {
                 System.out.println(e);
             }
             input = sc.nextLine();
         }
-        duke.doBye();
+        this.saveTasks();
+        this.doBye();
+    }
+
+    public static void main(String[] args) {
+        Duke duke = new Duke();
+        try {
+            duke.start();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Oops, something went wrong: " + e.getMessage());
+        } catch (DukeException e) {
+        }
     }
 }

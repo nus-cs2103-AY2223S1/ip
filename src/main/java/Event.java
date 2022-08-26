@@ -14,4 +14,9 @@ public class Event extends Task {
     public String getDate() {
         return this.date;
     }
+
+    @Override
+    public String save() {
+        return "E" + super.save() + " | " + this.date;
+    }
 }

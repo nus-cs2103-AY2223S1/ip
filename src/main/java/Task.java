@@ -20,13 +20,16 @@ public class Task {
         return this.description;
     }
 
-
     public void markDone() {
         this.isDone = true;
     }
 
     public void markNotDone() {
         this.isDone = false;
+    }
+
+    public String save() {
+        return " | " + (this.isDone ? "X" : " ") + " | " + this.description;
     }
 
 }

@@ -14,4 +14,9 @@ public class Deadline extends Task {
     public String getDeadline() {
         return this.deadline;
     }
+
+    @Override
+    public String save() {
+        return "D" + super.save() + " | " + this.deadline;
+    }
 }
