@@ -13,7 +13,7 @@ public class Duke {
 
     private TaskList taskList;
     private final String KEY_SEPARATOR = "//";
-    private final String fileName = "data/tasks.txt";
+    private final String fileName = "bin/tasks.txt";
     private Storage storage;
     private Ui ui;
 
@@ -28,6 +28,23 @@ public class Duke {
         }
 
     }
+
+    public class DukeException extends Exception {
+
+        public static final String UNRECOGNISED_COMMAND = "i don't know what that means!";
+        public static final String OUT_OF_RANGE = "there's nothing there :<";
+        public static final String MISSING_INDEX = "pls enter an index!";
+        public static final String MISSING_DESCRIPTION = "description cannot be empty!!";
+        public static final String MISSING_DATE= "date cannot be empty!";
+        public static final String WRONG_FORMAT = "wrong format!";
+        public static final String WRONG_FORMAT_DATE = "wrong date format! pls re-enter using yyyy-mm-dd";
+
+        public DukeException(String message) {
+            super(message);
+        }
+
+
+    }
     public class Ui {
 
         public final String ADDED = "oke i added this:";
@@ -35,16 +52,20 @@ public class Duke {
         public final String MARKED = "oke this is done now:";
         public final String UNMARKED = "oke this is undone now:";
 
+        Scanner scanner;
+
         public Ui () {
             System.out.println("----------------------");
         }
 
         public void showWelcome() {
             System.out.println("hi im chompers what can i do for u today!");
+            scanner = new Scanner(System.in);
         }
 
         public void showExit() {
             System.out.println("bye see u");
+            scanner.close();
         }
 
         public void displayTask(String message, Task task) {
@@ -67,9 +88,9 @@ public class Duke {
 
         public String readCommand() {
             String str = "";
-            Scanner scanner = new Scanner(System.in);
+            scanner = new Scanner(System.in);
             str = scanner.nextLine();
-            scanner.close();
+            //scanner.close();
             return str;
         }
     }
@@ -215,7 +236,7 @@ public class Duke {
                 fw.write(taskList.formatTasks());
                 fw.close();
             } catch (IOException e) {
-                ui.showError("file not found");
+                ui.showError("there is a problem with saving");
                 return;
             }
         }
@@ -234,7 +255,7 @@ public class Duke {
                         break;
                     case "D": task = new Deadline(taskStr[2], LocalDate.parse(taskStr[3]));
                         break;
-                    case "E": task = new Event(taskStr[2], taskStr[3]);
+                    case "E": task = new Event(taskStr[2], LocalDate.parse(taskStr[3]));
                         break;
                     default: task = new Task(taskStr[2]);
                         break;
@@ -258,7 +279,7 @@ public class Duke {
 
         }
 
-        public Command parse(String input) {
+        public Command parse(String input) throws DukeException {
             input = input.toLowerCase();
             if(input.equals(exit)) {
                 return new ExitCommand();
@@ -271,47 +292,44 @@ public class Duke {
                 switch (substr[0]) {
                     case "mark":
                         if(substr.length == 1) { // no number was given
-                            ui.showError("enter an index!");
-                            break;
+                            throw new DukeException(DukeException.MISSING_INDEX);
                         }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
                             if(index < 0 || index >= taskList.getSize()) { // to check if index is out of range
-                                ui.showError("thrs nth there :<");
+                                throw new DukeException(DukeException.OUT_OF_RANGE);
                                 //System.out.println("thrs nth there :<");
                             }
 
                             return new MarkCommand(index);
                         } catch (NumberFormatException e) {
-                            ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
+                            throw new DukeException(DukeException.WRONG_FORMAT);
+                            //ui.showError("Invalid input"); // if index given cannot be converted or was the wrong format
                         }
-                        break;
                     case "unmark":
                         if(substr.length == 1) {
-                            ui.showError("enter an index!");
-                            break;
+                            throw new DukeException(DukeException.MISSING_INDEX);
                         }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
                             if(index < 0 || index >= taskList.getSize()) { // check if index is out of range
-                                ui.showError("thrs nth there :<");
+                                throw new DukeException(DukeException.OUT_OF_RANGE);
                             }
                             return new UnmarkCommand(index);
 
                         } catch (NumberFormatException e) {
-                            ui.showError("Invalid input");
+                            throw new DukeException(DukeException.WRONG_FORMAT);
+                           // ui.showError("Invalid input");
                         }
 
-                        break;
                     case "delete":
                         if(substr.length == 1) {
-                            ui.showError("enter an index!");
-                            break;
+                            throw new DukeException(DukeException.MISSING_INDEX);
                         }
                         try {
                             index = Integer.parseInt(substr[1]) - 1;
                             if(index < 0 || index >= taskList.getSize()) {
-                                ui.showError("thrs nth there :<");
+                                throw new DukeException(DukeException.OUT_OF_RANGE);
 
                             }
                             return new DeleteCommand(index);
@@ -321,21 +339,18 @@ public class Duke {
                         break;
                     case "todo":
                         if(substr.length == 1) {
-                            ui.showError("The description cannot be empty!");
-                            break;
+                            throw new DukeException(DukeException.MISSING_DESCRIPTION);
                         }
                         temp = new Todo(substr[1]);
                         return new AddCommand(temp);
 
                     case "deadline":
                         if(substr.length == 1) {
-                            ui.showError("The description cannot be empty!");
-                            break;
+                            throw new DukeException(DukeException.MISSING_DESCRIPTION);
                         }
                         String[] dlDesc = substr[1].split(" /by ", 2);
                         if(dlDesc.length < 2) {
-                            ui.showError("The deadline cannot be empty");
-                            break;
+                            throw new DukeException(DukeException.MISSING_DATE);
                         }
                         try {
                             LocalDate date = LocalDate.parse(dlDesc[1]);
@@ -343,28 +358,31 @@ public class Duke {
                             return new AddCommand(temp);
                             //break;
                         } catch (DateTimeParseException e) {
-                            ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
-                            break;
+                            throw new DukeException(DukeException.WRONG_FORMAT_DATE);
+                            //ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
+
                         }
 
 
                     case "event":
                         if(substr.length == 1) {
-                            ui.showError("The description cannot be empty!");
-                            break;
+                            throw new DukeException(DukeException.MISSING_DESCRIPTION);
                         }
                         String[] eventDesc = substr[1].split(" /at ", 2);
                         if(eventDesc.length < 2) {
-                            ui.showError("The date cannot be empty");
-                            break;
+                            throw new DukeException(DukeException.MISSING_DATE);
                         }
+                        try {
+                            LocalDate date = LocalDate.parse(eventDesc[1]);
+                            temp = new Event(eventDesc[0], date);
+                            return new AddCommand(temp);
+                        } catch (DateTimeParseException e) {
+                            throw new DukeException(DukeException.WRONG_FORMAT_DATE);
+                            //ui.showError("Please re-enter the task with the following deadline format: \nyyyy-mm-dd");
 
-                        temp = new Event(eventDesc[0], eventDesc[1]);
-                        return new AddCommand(temp);
-                        //break;
+                        }
                     default:
-                        ui.showError("idk what that means :(");
-                        break;
+                        throw new DukeException(DukeException.UNRECOGNISED_COMMAND);
                 }
 
             }
@@ -521,14 +539,14 @@ public class Duke {
     }
 
     public class Event extends Task {
-        protected String at;
+        protected LocalDate at;
 
         /**
          * Takes in a description and time for the task
          * @param description task description
          * @param at time of task
          */
-        public Event(String description, String at) {
+        public Event(String description, LocalDate at) {
             super(description);
             this.at = at;
         }
@@ -558,23 +576,20 @@ public class Duke {
         String exit = "bye"; // the keyword to exit
         Parser parser = new Parser();
         boolean isExit = false;
-
-        try {
-            storage.load();
-        } catch (FileNotFoundException e) {
-            ui.showError("File not found");
-            return;
-        }
-        ui = new Ui();
         ui.showWelcome();
 
         while(!isExit) {
 //            Scanner scanIn = new Scanner(System.in);
 //            reply = scanIn.nextLine(); // read from input
-            reply = ui.readCommand();
-            Command c = parser.parse(reply);
-            c.execute(ui, storage);
-            isExit = c.isExit();
+            try {
+                reply = ui.readCommand();
+                Command c = parser.parse(reply);
+                c.execute(ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            }
+
 
 //            if(reply.equals(exit)) {
 //                Command c = new ExitCommand();
