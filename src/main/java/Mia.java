@@ -3,9 +3,12 @@ public class Mia {
     private static final String logo = "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━┓\n" +
                                        "┃ You are talking to MIA... ┃\n" +
                                        "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━┛\n";
-
-    private final TaskManager tasksManager = new TaskManager("data/Mia.txt");
+    private final TaskManager tasksManager;
     private final ChatWindow window = new ChatWindow(50);
+
+    public Mia(String dataPath) {
+        tasksManager = new TaskManager(dataPath);
+    }
 
     public void respond(String message) {
         window.printResponse(new Span(message));
