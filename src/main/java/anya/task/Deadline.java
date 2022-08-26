@@ -30,7 +30,7 @@ public class Deadline extends Task {
      * Date is represented in dd/mm/yy format and time is represented in 24-hour notion hh:mm.
      *
      * @return D, an integer representing whether the task is completed, the task name,
-     * the date and time to complete the task by.
+     *     the date and time to complete the task by.
      */
     @Override
     public String toSave() {

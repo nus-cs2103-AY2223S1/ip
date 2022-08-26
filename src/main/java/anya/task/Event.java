@@ -46,7 +46,7 @@ public class Event extends Task {
      * The location of the event is a String.
      *
      * @return E, an integer representing whether the task is completed, the task name,
-     * and the location of the event.
+     *     and the location of the event.
      */
     @Override
     public String toSave() {

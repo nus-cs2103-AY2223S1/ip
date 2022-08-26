@@ -1,7 +1,6 @@
 package anya.task;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 
 public class TaskList {
     private ArrayList<Task> tasks;
@@ -50,7 +49,7 @@ public class TaskList {
      * The ArrayList is One-Indexed.
      *
      * @param taskIndex the index of the task in the ArrayList to retrieve.
-     * @return the task at specified index. 
+     * @return the task at specified index.
      */
     public Task getTaskFromIndex(int taskIndex) {
         return this.tasks.get(taskIndex - 1);
