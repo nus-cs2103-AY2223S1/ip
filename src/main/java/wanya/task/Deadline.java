@@ -1,3 +1,7 @@
+package wanya.task;
+
+import wanya.parser.DateTimeParser;
+
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
@@ -24,6 +28,6 @@ public class Deadline extends Task{
 
     @Override
     public String toStorageString() {
-        return TASK_TYPE + "|" + super.toStorageString() + "|" + dueDate;
+        return TASK_TYPE + "|" + super.toStorageString() + "|" + PARSER.getDateTimeStorage(dueDate);
     }
 }

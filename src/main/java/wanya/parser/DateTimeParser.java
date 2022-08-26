@@ -1,3 +1,5 @@
+package wanya.parser;
+
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -27,5 +29,9 @@ public class DateTimeParser {
     public String getDateTimeString(LocalDateTime dateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd yyyy hh:mm a");
         return dateTime.format(formatter);
+    }
+
+    public String getDateTimeStorage(LocalDateTime dateTime) {
+        return DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm").format(dateTime);
     }
 }

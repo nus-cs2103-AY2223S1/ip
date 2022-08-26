@@ -1,3 +1,8 @@
+package wanya;
+
+import wanya.parser.Parser;
+import wanya.task.TaskList;
+
 public class Wanya {
     private TaskList tasks;
     private Storage storage;

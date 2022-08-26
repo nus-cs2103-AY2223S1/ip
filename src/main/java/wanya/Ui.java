@@ -1,3 +1,5 @@
+package wanya;
+
 import java.util.Scanner;
 
 public class Ui {

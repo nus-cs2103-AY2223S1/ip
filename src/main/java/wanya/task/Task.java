@@ -1,3 +1,5 @@
+package wanya.task;
+
 public abstract class Task {
     private boolean hasCompleted = false;
     private String taskName;
@@ -21,7 +23,7 @@ public abstract class Task {
 
     public void completedTask() {
         if (this.hasCompleted) {
-            System.out.println("Wanya.java is confused errrrr... You have already marked this task as done!\n");
+            System.out.println("Wanya is confused errrrr... You have already marked this task as done!\n");
         }
         this.hasCompleted = true;
         System.out.println("Hehe well done! One task down, one step closer to play time!\n" +
@@ -31,7 +33,7 @@ public abstract class Task {
 
     public void uncompletedTask() {
         if (!this.hasCompleted) {
-            System.out.println("Wanya.java is confused errrrr... This task is not done yet!\n");
+            System.out.println("Wanya is confused errrrr... This task is not done yet!\n");
         }
         this.hasCompleted = false;
         System.out.println("Oh nooo!!! Gotta buck up and finish up your tasks before you can play games.\n" +

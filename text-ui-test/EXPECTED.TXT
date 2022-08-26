@@ -1,6 +1,11 @@
+....Loa....Loading....Please wait....
+
+Whoopsie!!! Oops! File not found hehe maybe a spy stole the file awayyy...
+Wanya shall create a new list for you
+
 Hello!!! My name is Wanya! 
 WWaku WWaku! 
-How can I help you? 
+How can I help you?
 
 Whoopsie!!! Invalid task number!
 
@@ -24,7 +29,8 @@ Include '/by' and date with format "yyyy-mm-dd" at the back
 Whoopsie!!! Deadline must have a due date
 Include '/by' and date with format "yyyy-mm-dd" at the back
 
-Please enter a valid date behind /by with the format "yyyy-mm-dd HH:mm" where time is optional. If time is provided, leave it in 24 hours format.
+Please enter a valid date behind /by with the format "yyyy-mm-dd HH:mm" where time is optional.
+ If time is provided, leave it in 24 hours format.
 
 You have added: 
 [E][ ] project meeting (at: Aug 28 2022 09:00 pm)
@@ -36,7 +42,8 @@ Include '/at' and date with format "yyyy-mm-dd" at the back
 Whoopsie!!! Event must have a date
 Include '/at' and date with format "yyyy-mm-dd" at the back
 
-Please enter a valid date behind /at with the format "yyyy-mm-dd HH:mm" where time is optional. If time is provided, leave it in 24 hours format.
+Please enter a valid date behind /at with the format "yyyy-mm-dd HH:mm" where time is optional.
+ If time is provided, leave it in 24 hours format.
 
 Hehe well done! One task down, one step closer to play time!
 This task has been completed:
@@ -74,3 +81,4 @@ Now you have 2 tasks in your list.
 Whoopsie!!! I am sorry. Wanya doesn't like to study so Wanya don't know what that means.
 
 Yayyy Wanya gets to slack and watch shows now. Bye bye! :)
+

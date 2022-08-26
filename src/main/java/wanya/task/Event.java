@@ -1,3 +1,7 @@
+package wanya.task;
+
+import wanya.parser.DateTimeParser;
+
 import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
@@ -23,6 +27,7 @@ public class Event extends Task {
 
     @Override
     public String toStorageString() {
-        return TASK_TYPE + "|" + super.toStorageString() + "|" + date;
+        return TASK_TYPE + "|" + super.toStorageString()
+                + "|" + PARSER.getDateTimeStorage(date);
     }
 }
