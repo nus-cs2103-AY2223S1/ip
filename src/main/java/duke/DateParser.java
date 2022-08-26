@@ -8,15 +8,15 @@ import java.time.format.DateTimeParseException;
  */
 public class DateParser {
     /**
-     *
+     * Takes the date string and parses it into LocalDate object
      * @param date
      * @return LocalDate object for the date string
      */
-    public static LocalDate parseDate(String date){
+    public static LocalDate parseDate(String date) {
         LocalDate parsedDate = null;
-        try{
+        try {
             parsedDate = LocalDate.parse(date);
-        }catch (DateTimeParseException e) {
+        } catch (DateTimeParseException e) {
             e.printStackTrace();
         }
         return parsedDate;

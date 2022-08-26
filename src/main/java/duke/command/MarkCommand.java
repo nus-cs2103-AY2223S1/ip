@@ -3,6 +3,9 @@ package duke.command;
 import duke.TaskList;
 import duke.storage.Storage;
 
+/**
+ * Marks the Task in the TaskList
+ */
 public class MarkCommand extends Command {
     private final int index;
 
