@@ -10,8 +10,6 @@ import duke.ui.Ui;
 
 public class Duke {
 
-
-
     private StorageFile storageFile;
     private TaskList tasks;
     private Ui ui;
@@ -33,6 +31,7 @@ public class Duke {
         exit();
     }
 
+    /** Runs the program loop, ends if an exit command is inputted */
     public void runProgram() {
         boolean hasEnded = false;
         while (!hasEnded) {
@@ -46,7 +45,7 @@ public class Duke {
             }
         }
     }
-
+    /** Exits the program on call */
     public void exit() {
         System.exit(0);
     }

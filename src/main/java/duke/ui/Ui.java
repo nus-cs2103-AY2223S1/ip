@@ -18,7 +18,7 @@ public class Ui {
     private static final PrintStream out = System.out;
 
     /**
-     * Constructor for UI
+     * Constructor for UI.
      */
 //    public Ui() {
 //        this.scanner = new Scanner(System.in);
@@ -32,6 +32,10 @@ public class Ui {
         System.out.println(END_PROGRAM);
     }
 
+    /**
+     * Reads the user input.
+     * @return the user command
+     */
     public String getUserCommand() {
         out.print("What's next: ");
         return scanner.nextLine();
@@ -40,12 +44,10 @@ public class Ui {
         return scanner.nextLine();
     }
 
-    public static int readNextInt() {
-        int taskNumber = scanner.nextInt();
-        scanner.nextLine();
-        return taskNumber;
-    }
-
+    /**
+     * Shows the list of messages.
+     * @param messages the list of messages to be shown
+     */
     public void showMessages(String... messages) {
         for (String m : messages) {
             System.out.println(m);

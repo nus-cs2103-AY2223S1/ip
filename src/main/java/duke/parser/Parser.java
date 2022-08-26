@@ -1,6 +1,5 @@
 package duke.parser;
 
-import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,12 +10,16 @@ import duke.exceptions.EmptyBodyException;
 import duke.exceptions.InvalidInputException;
 import duke.ui.Ui;
 
+/**
+ * Parses user input.
+ */
 public class Parser {
 
     // commandWord arguments (. - matches any character, * - zero or more times)
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern DATE_FORMAT = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
     private static final Pattern NUMBER_FORMAT = Pattern.compile("\\d+");
+
     /**
      * Parses user input into command for execution.
      *

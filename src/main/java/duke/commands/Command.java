@@ -25,6 +25,7 @@ public abstract class Command {
      * @param ui manages Duke's interaction with the user
      * @param storage manages the storage of Duke's data
      * @throws UnableToSaveException unable to save file
+     * @throws InvalidInputException invalid input given
      */
     public abstract void execute(TaskList taskList, Ui ui, StorageFile storage) throws UnableToSaveException, InvalidInputException;
 

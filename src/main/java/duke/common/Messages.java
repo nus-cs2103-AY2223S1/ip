@@ -1,5 +1,8 @@
 package duke.common;
 
+/**
+ * List of messages which can be shown to user.
+ */
 public class Messages {
 
     public static final String MESSAGE_DEADLINE = "When does this need to get completed by?";
