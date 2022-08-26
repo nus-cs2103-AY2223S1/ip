@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;  // Import the Scanner class
+
 public class Duke {
 
     private final ArrayList<Task> tasks = new ArrayList<>();
@@ -16,13 +17,13 @@ public class Duke {
 
     private void list() {
         for (int j = 0; j < totalTasks; j++) {
-            System.out.println(j+1 + ": " + tasks.get(j));
+            System.out.println((j + 1) + ": " + tasks.get(j));
         }
     }
 
     private void markAsDone(int taskNumber) {
         //mark task number as done
-        if(taskNumber < totalTasks && taskNumber >= 0){
+        if (taskNumber < totalTasks && taskNumber >= 0) {
             tasks.get(taskNumber).markAsDone();
             System.out.println("Nice! I've marked this task as done:\n  " + tasks.get(taskNumber));
         }
@@ -30,7 +31,7 @@ public class Duke {
 
     private void markAsUndone(int taskNumber) {
         //mark task number as undone
-        if(taskNumber < totalTasks && taskNumber >= 0){
+        if (taskNumber < totalTasks && taskNumber >= 0) {
             tasks.get(taskNumber).markAsUndone();
             System.out.println("OK, I've marked this task as not done yet:\n  " + tasks.get(taskNumber));
         }
@@ -43,22 +44,24 @@ public class Duke {
     private void addTask(Task task) {
         //add todo
         tasks.add(task);
-        totalTasks +=1;
+        totalTasks += 1;
         System.out.println(toPrintOnAdd(totalTasks - 1));
     }
 
     private String toPrintOnDelete(int taskNum) {
         return "Noted. I've deleted this task:\n  " + tasks.get(taskNum) + "\nNow you have " + totalTasks + " tasks in the list.";
     }
+
     private void deleteTask(int taskNumber) {
-        if(taskNumber >=0 && taskNumber < totalTasks) {
+        if (taskNumber >= 0 && taskNumber < totalTasks) {
             totalTasks -= 1;
             System.out.println(toPrintOnDelete(taskNumber));
             tasks.remove(taskNumber);
         }
     }
+
     private void parseCommand(String command) throws DukeException {
-        if(command.equals("bye")) {
+        if (command.equals("bye")) {
             //exit program
             System.out.println("Bye. Hope to see you again soon!");
         } else if (command.equals("list")) {
@@ -81,7 +84,7 @@ public class Duke {
             try {
                 String description = command.split(" ", 2)[1];
                 addTask(new Todo(description));
-            } catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println(e);
                 throw new DukeException("☹ OOPS!!! The description of a todo cannot be empty.");
             }
@@ -116,6 +119,7 @@ public class Duke {
 
         saveFile(DIRECTORY, FILENAME);
     }
+
     private void greet() {
         String logo = """
                  ____        _       \s
@@ -148,7 +152,7 @@ public class Duke {
         String[] parts = line.split(" \\| ");
         Task task = null;
 
-        switch(parts[0]) {
+        switch (parts[0]) {
             case "T":
                 task = new Todo(parts[2]);
                 break;
@@ -160,7 +164,7 @@ public class Duke {
                 break;
         }
 
-        switch(parts[1]) {
+        switch (parts[1]) {
             case "0":
                 task.markAsUndone();
                 break;
@@ -171,6 +175,7 @@ public class Duke {
         tasks.add(task);
         totalTasks += 1;
     }
+
     private void loadFile(String directory, String filename) {
         File data = createFileWithDirIfNotExist(directory, filename);
         BufferedReader reader;
@@ -191,7 +196,7 @@ public class Duke {
         ArrayList<String> tasksAsStrings = new ArrayList<>();
         String currString;
 
-        for(Task currTask : tasks){
+        for (Task currTask : tasks) {
             currString = "";
             if (currTask instanceof Todo) {
                 currString += "T | ";
@@ -213,6 +218,7 @@ public class Duke {
 
         return tasksAsStrings;
     }
+
     private void saveFile(String directory, String filename) {
         try {
             File data = createFileWithDirIfNotExist(directory, filename);
@@ -223,7 +229,7 @@ public class Duke {
             writer = new BufferedWriter(new FileWriter(data));
             ArrayList<String> toWrite = tasksToString();
 
-            for(String str: toWrite) {
+            for (String str : toWrite) {
                 writer.write(str + System.lineSeparator());
             }
 
@@ -233,6 +239,7 @@ public class Duke {
             return;
         }
     }
+
     private File createFileWithDirIfNotExist(String directory, String filename) {
         File f = new File(directory + filename);
         try {
