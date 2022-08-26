@@ -1,7 +1,5 @@
 package duke.logic;
 
-import duke.logic.Storage;
-import duke.logic.TaskList;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileWriter;
