@@ -6,6 +6,8 @@ import duke.exception.NoArgumentException;
 import duke.exception.WrongArgumentException;
 import duke.task.Task;
 
+import java.util.ArrayList;
+
 public class Ui {
     public static final String[] COMMAND_HELP = new String[] { "todo [description]",
                                                                 "deadline [description] /by [dd/MM/yy] <24hr time>",
@@ -64,6 +66,16 @@ public class Ui {
 
     public static void taskAdded(Task task) {
         System.out.println("\tadded: " + task);
+    }
+
+    public static void findKeyword(String keyword, ArrayList<Task> list) {
+        System.out.println("I have found the following tasks containing '" + keyword + "'\n");
+        int number = 1;
+        for (Task t : list) {
+            System.out.println("\t" + number + "." + t);
+            number++;
+        }
+        System.out.println();
     }
 
     public static void listSize(TaskList list) {

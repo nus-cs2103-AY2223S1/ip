@@ -7,12 +7,11 @@ import duke.task.Deadline;
 import duke.task.Event;
 import duke.task.ToDo;
 import java.time.format.DateTimeParseException;
-import duke.util.TaskList;
 
 
 public class Parser {
     private final TaskList list;
-    enum LIST_COMMANDS {todo, deadline, event, mark, unmark, delete, }
+    enum LIST_COMMANDS { todo, deadline, event, mark, unmark, delete, find, }
 
     public Parser(TaskList list) {
         this.list = list;
@@ -72,6 +71,10 @@ public class Parser {
                     Ui.taskDeleted(list.delete(index));
                     return;
                 }
+            case find:
+                String keyword = arr[1];
+                Ui.findKeyword(keyword, list.searchFor(keyword));
+                return;
             }
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
                 throw new WrongArgumentException(arr[1], e);

@@ -56,6 +56,16 @@ public class TaskList {
         return this.store.size();
     }
 
+    public ArrayList<Task> searchFor(String keyword) {
+        ArrayList<Task> output = new ArrayList<>();
+        for (Task t : this.store) {
+            if (t.getDescription().contains(keyword)) {
+                output.add(t);
+            }
+        }
+        return output;
+    }
+
     public Task lastTaskAdded() {
         return this.store.get(this.store.size() - 1);
     }
