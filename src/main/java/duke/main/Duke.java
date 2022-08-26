@@ -1,20 +1,19 @@
-package duke;
+package duke.main;
 
 import java.util.Scanner;
-import javafx.application.Application;
-import javafx.fxml.FXML;
+
+import duke.DialogueBox;
+import duke.parser.Parser;
+import duke.Storage;
+import duke.TaskList;
+import duke.ui.Ui;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.scene.layout.Region;
-import javafx.scene.control.Label;
 
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /**
  * Main class of the program
@@ -51,7 +50,7 @@ public class Duke {
      * @param input
      * @return
      */
-    String getResponse(String input) {
+    public String getResponse(String input) {
         return Parser.parseData(input, tasks);
     }
     public Duke() {

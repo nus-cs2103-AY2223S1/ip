@@ -1,5 +1,5 @@
-package duke;
-import java.io.*;
+package duke.events;
+import java.io.Serializable;
 public class Task implements Serializable {
     protected String description;
     protected boolean isDone;

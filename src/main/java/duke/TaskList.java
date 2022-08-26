@@ -1,5 +1,8 @@
 package duke;
 
+import duke.events.Task;
+import duke.ui.Ui;
+
 import java.util.List;
 import java.util.ArrayList;
 

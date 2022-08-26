@@ -1,4 +1,13 @@
-package duke;
+package duke.parser;
+
+import duke.events.Task;
+import duke.TaskList;
+import duke.events.Todo;
+import duke.events.Deadline;
+import duke.events.Event;
+import duke.exceptions.EmptyTaskException;
+import duke.exceptions.InvalidCommandException;
+import duke.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.Arrays;
