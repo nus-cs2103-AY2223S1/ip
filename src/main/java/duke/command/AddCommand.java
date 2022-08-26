@@ -1,3 +1,11 @@
+package duke.command;
+
+import duke.*;
+import duke.task.Deadline;
+import duke.task.Task;
+import duke.task.TaskList;
+import duke.task.ToDo;
+
 public class AddCommand implements Command{
     String[] inputs;
     String commandType;

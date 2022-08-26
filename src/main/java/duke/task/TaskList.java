@@ -1,5 +1,6 @@
+package duke.task;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class TaskList {
@@ -18,6 +19,9 @@ public class TaskList {
         lines[0] = "Here are the tasks in your list: ";
         for (int i = 1; i < tasks.size() + 1; i++) {
             lines[i] = tasks.get(i - 1).toStringWithIndex(i);
+        }
+        if (lines.length == 1) {
+            lines[0] = "No tasks found in the list!";
         }
         return lines;
     }

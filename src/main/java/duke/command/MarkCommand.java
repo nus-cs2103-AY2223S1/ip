@@ -1,3 +1,9 @@
+package duke.command;
+
+import duke.Storage;
+import duke.task.TaskList;
+import duke.Ui;
+
 public class MarkCommand implements Command{
     private final int toMark;
 

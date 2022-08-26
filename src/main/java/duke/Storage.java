@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.*;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,7 +27,7 @@ public class Storage {
         } catch (FileNotFoundException e) {
             try {
                 Files.createDirectories(Paths.get("./data"));
-                File f = new File("data/duke.txt");
+                File f = new File("data/tasks.txt");
             } catch (IOException ex) {
                 System.out.println("Something went wrong: " + e.getMessage());
             }
@@ -41,7 +45,7 @@ public class Storage {
             throw new DukeException(e.getMessage());
         }
         this.file.delete();
-        temp.renameTo(new File("data/duke.txt"));
+        temp.renameTo(new File("data/tasks.txt"));
         this.file = temp;
     }
 
@@ -57,7 +61,7 @@ public class Storage {
 
     private Task fileLineToTask(String fileLine) {
         String delimiter = " \\| ";
-        String[] strings = fileLine.split(delimiter, 3);
+        String[] strings = fileLine.split(delimiter, 4);
         boolean isDone = strings[1].equals("1");
         if (strings[0].equals("T")) {
             return new ToDo(strings[2], isDone);
