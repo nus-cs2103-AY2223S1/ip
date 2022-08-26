@@ -7,8 +7,7 @@ import java.util.ArrayList;
  */
 public class Ui {
 
-    public Ui() {
-    }
+    public Ui() {}
 
     /**
      * The method is a static and takes in a parameter
