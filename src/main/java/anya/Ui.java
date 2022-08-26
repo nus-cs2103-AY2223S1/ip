@@ -1,9 +1,9 @@
 package anya;
 
+import java.util.Scanner;
+
 import anya.task.Task;
 import anya.task.TaskList;
-
-import java.util.Scanner;
 
 public class Ui {
 
