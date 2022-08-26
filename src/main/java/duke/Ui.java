@@ -82,6 +82,21 @@ public class Ui {
     /**
      * Generic method to print a message.
      *
+     * @param strArray
+     * @param message
+     */
+    public void printMessage(String[] strArray, String message) {
+        this.out.println("_______________________________________________________");
+        this.out.println(String.format("\t %s", message));
+        for (String str : strArray) {
+            this.out.println("\t" + str);
+        }
+        this.out.println("_______________________________________________________");
+    }
+
+    /**
+     * Generic method to print a message.
+     *
      * @param str
      */
     public void printMessage(String str) {

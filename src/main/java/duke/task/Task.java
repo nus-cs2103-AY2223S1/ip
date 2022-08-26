@@ -30,8 +30,22 @@ public abstract class Task {
     this.isDone = isDone;
   }
 
+  /**
+   * Method that returns the boolean isDone of the task.
+   *
+   * @return isDone
+   */
   public boolean isDone() {
     return isDone;
+  }
+
+  /**
+   * Method that returns the description of the task.
+   *
+   * @return description
+   */
+  public String getDescription() {
+    return description;
   }
 
   /**
