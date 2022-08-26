@@ -15,11 +15,6 @@ public class Storage {
     public Storage(String path) {
         this.path = path;
     }
-    public void writeToFile(Task task) throws IOException {
-            FileWriter fw = new FileWriter(this.path, true); // create a FileWriter in append mode
-            fw.write(task.toString());
-            fw.close();
-    }
 
     public ArrayList<String> load() throws FileNotFoundException {
         ArrayList<String> lst = new ArrayList<>();
