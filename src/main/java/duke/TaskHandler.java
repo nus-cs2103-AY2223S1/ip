@@ -1,24 +1,34 @@
 package duke;
+
 public class TaskHandler {
     private TaskList taskList;
-    public TaskHandler(TaskList taskList) {
+    private Ui ui;
+
+    public TaskHandler(TaskList taskList, Ui ui) {
         this.taskList = taskList;
+        this.ui = ui;
     }
 
-    static void addTask(String input) {
-        TaskList.add(input);
+    void addTask(String input) {
+        taskList.add(input);
     }
 
-    static void deleteTask(String input) {
-        TaskList.delete(input);
+    void deleteTask(String input) {
+        taskList.delete(input);
     }
-    public static void markChild(String input) {
+
+    public void markChild(String input) {
         int index = Integer.parseInt(input.substring(5)) - 1;
-        TaskList.markChild(index);
+        taskList.markChild(index);
     }
 
-    public static void unmarkChild(String input) {
+    public void unmarkChild(String input) {
         int index = Integer.parseInt(input.substring(7)) - 1;
-        TaskList.unmarkChild(index);
+        taskList.unmarkChild(index);
+    }
+
+    public void findTask(String input) {
+        String formattedInput = input.substring(5);
+        taskList.find(formattedInput);
     }
 }

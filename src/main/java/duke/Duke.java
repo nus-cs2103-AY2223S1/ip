@@ -1,19 +1,17 @@
 package duke;
+
 import java.util.Scanner;
-import java.io.IOException;
 
 
 public class Duke {
-    Scanner sc;
-    public Storage storage;
-    public TaskList tasklist;
-    public Ui ui =  new Ui();
+    private Scanner sc;
+    private Storage storage;
+    private TaskList tasklist;
+    private Ui ui = new Ui();
 
     public Duke(String filePath) {
-        storage = new Storage("src/filestorage/dummylist.txt");
-        tasklist = new TaskList();
+        storage = new Storage(filePath);
         try {
-            this.tasklist = new TaskList();
             storage.readData();
         } catch (DukeException e) {
             this.tasklist = new TaskList();
@@ -22,25 +20,27 @@ public class Duke {
     }
 
     public void run() {
-        TaskHandler taskHandler = new TaskHandler(tasklist);
+        TaskHandler taskHandler = new TaskHandler(tasklist, ui);
         ui.welcomeMsg();
-        boolean bye = false;
-        Scanner sc = new Scanner(System.in);
-        while (!bye) {
+        boolean isDone = false;
+        sc = new Scanner(System.in);
+        while (!isDone) {
             String input = sc.nextLine();
             if (input.equals("bye")) {
-                bye = true;
+                isDone = true;
                 ui.farewellMsg();
             } else if (input.equals("list")) {
-                TaskList.showList();
+                tasklist.showList();
             } else if (input.startsWith("mark ")) {
-                TaskHandler.markChild(input);
+                taskHandler.markChild(input);
             } else if (input.startsWith("unmark ")) {
-                TaskHandler.unmarkChild(input);
+                taskHandler.unmarkChild(input);
             } else if (input.startsWith("delete ")) {
-                TaskHandler.deleteTask(input);
+                taskHandler.deleteTask(input);
+            } else if (input.startsWith("find ")) {
+                taskHandler.findTask(input);
             } else {
-                TaskHandler.addTask(input);
+                taskHandler.addTask(input);
             }
         }
         storage.writeData();
