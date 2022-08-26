@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+<<<<<<< HEAD:src/main/java/Iana.java
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+=======
+>>>>>>> parent of c3cc791 (Add DataLoader to load saved data):src/main/java/Duke.java
 
 public class Iana {
     static ArrayList<Task> vocabList = new ArrayList<Task>();
@@ -37,6 +40,7 @@ public class Iana {
     }
 
     public static void main(String[] args) {
+<<<<<<< HEAD:src/main/java/Iana.java
         Path storagePath = Paths.get("src", "main/data", "DataStorage.txt");
         String absPath = storagePath.toAbsolutePath().toString();
 
@@ -51,6 +55,15 @@ public class Iana {
         }
 
         String printText = "\t> Hello there~ I'm IANA.\n\tWhat can I do for you today? : )\n";
+=======
+        String logo = "____        _        \n"
+                + "|  _ \\ _   _| | _____ \n"
+                + "| | | | | | | |/ / _ \\\n"
+                + "| |_| | |_| |   <  __/\n"
+                + "|____/ \\__,_|_|\\_\\___|\n\n";
+        String welcomeMessage = "> What can I do for you today? : )\n";
+        String printText = String.format("> Hello from\n %s%s", logo, welcomeMessage);
+>>>>>>> parent of c3cc791 (Add DataLoader to load saved data):src/main/java/Duke.java
         System.out.println(printText);
         boolean isActive = true;
 
