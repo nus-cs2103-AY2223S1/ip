@@ -16,7 +16,7 @@ public class Todo extends Task {
         return new Todo(data.description);
     }
 
-   public static Todo createTodo(String description) throws CorruptedLineException {
+    public static Todo createTodo(String description) throws CorruptedLineException {
         if (description.length() == 0)
             throw new CorruptedLineException();
 
@@ -32,6 +32,5 @@ public class Todo extends Task {
     public ParsedData convertToParseData() {
         return new ParsedData(completed ? "Tc" : "Tx", description);
     }
-
 
 }
