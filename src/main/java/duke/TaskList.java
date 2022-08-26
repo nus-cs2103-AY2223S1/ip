@@ -79,9 +79,11 @@ public class TaskList {
             Task currTask = tasks.get(taskNo - 1);
             if (markStatus == Command.MARK) {
                 currTask.markDone();
+                Storage.Save(tasks, true);
                 System.out.println("Task successfully marked!");
             } else {
                 currTask.markUndone();
+                Storage.Save(tasks, true);
                 System.out.println("Task successfully unmarked!");
             }
             System.out.println(currTask + "\n");
