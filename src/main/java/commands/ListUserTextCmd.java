@@ -2,7 +2,7 @@ package commands;
 
 import drivers.Storage;
 import drivers.TaskList;
-import drivers.UI;
+import drivers.Ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class ListUserTextCmd extends Command {
      * @param storage Stores and retrieves data from a local .txt file.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) {
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
         ui.notifyUser("Here are your current tasks:");
         List<String> taskPrint = new ArrayList<>();
         tasks.fillTaskPrint(taskPrint);

@@ -2,7 +2,7 @@ package commands;
 
 import drivers.Storage;
 import drivers.TaskList;
-import drivers.UI;
+import drivers.Ui;
 import exceptions.TumuException;
 import tasks.Task;
 
@@ -32,7 +32,7 @@ public class MarkTaskCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws TumuException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         Task task = tasks.markTask(taskIndex);
         if (task != null) {
             ui.notifyUser("Alright, I have marked this task as done:\n\t" + task);

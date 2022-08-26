@@ -2,7 +2,7 @@ package commands;
 
 import drivers.Storage;
 import drivers.TaskList;
-import drivers.UI;
+import drivers.Ui;
 import exceptions.TodoException;
 import exceptions.TumuException;
 import tasks.Todo;
@@ -31,7 +31,7 @@ public class TodoCmd extends Command {
      * @throws TumuException Parent exception for the program.
      */
     @Override
-    public void execute(TaskList tasks, UI ui, Storage storage) throws TumuException {
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws TumuException {
         if (body.isBlank()) {
             throw new TodoException();
         } else {
