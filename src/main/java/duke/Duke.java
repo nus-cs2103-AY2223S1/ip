@@ -33,14 +33,14 @@ public class Duke {
                 String result = command.run(taskList, parser.parseContent(userInput));
                 ui.showResponse(result);
             } catch (DukeException e) {
-                ui.showError(e.errorMessage);
+                ui.showError(e.getMessage());
             }
             userInput = sc.nextLine();
         }
         try {
             Storage.saveTaskToDisk(taskList);
         } catch (DukeException e) {
-            ui.showError(e.errorMessage);
+            ui.showError(e.getMessage());
         }
         ui.exit();
     }
