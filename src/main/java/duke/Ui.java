@@ -1,5 +1,8 @@
 package duke;
 
+/**
+ * Interacts with the user.
+ */
 public class Ui {
 
     public static final String DELETE_HEADER = Duke.LINE + "\n"
@@ -15,11 +18,17 @@ public class Ui {
     public static final String FIND_HEADER = Duke.LINE + "\n"
             + "Here are the matching tasks in your list:" + "\n";
 
+    /**
+     * Constructs a UI by greeting the user.
+     */
     public Ui() {
         System.out.println(Duke.LINE + "\n" + "Hello! I'm Duke" + "\n"
                 + "What can I do for you?" + "\n" + Duke.LINE + "\n");
     }
 
+    /**
+     * Closes the program.
+     */
     public static void bye() {
         System.out.println(Duke.LINE + "\n" +
                         "Bye. Hope to see you again soon!" + "\n" + Duke.LINE);

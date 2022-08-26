@@ -7,22 +7,33 @@ import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Stores the data of the bot.
+ */
 public class Storage {
 
     private String filepath;
     private File file;
 
+    /**
+     * Constructs a storage space.
+     * @param filepath the file path for the file to be stored.
+     */
     public Storage(String filepath) {
         this.file = new File(filepath);
         this.filepath = filepath;
     }
 
+    /**
+     * Loads the task in the file.
+     * @param file the file to be load.
+     */
     public void load_task(File file) {
             System.out.println("Loading tasks...");
             load_initial(file);
     }
 
-    public void load_initial(File file) {
+    private void load_initial(File file) {
         TaskList tl = new TaskList();
         BufferedReader br = null;
         String st;
@@ -51,6 +62,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns the task list in the specified file.
+     * @param file the file that stores the task list.
+     * @return the task list in the specified file.
+     */
     public TaskList load(File file) {
         TaskList tl = new TaskList();
         Duke.count = 0;
@@ -75,6 +91,11 @@ public class Storage {
         return tl;
     }
 
+    /**
+     * Adds task to a file.
+     * @param file the file that the tasks is being added to.
+     * @param task the task to be added.
+     */
     public void addTaskToFile(File file, Task task) {
         try {
             FileWriter fw = new FileWriter(file, true);
@@ -85,6 +106,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Overwrites the task list in a file.
+     * @param file the file that needs to be overwritten.
+     * @param taskList the new task list.
+     */
     public void overwriteFile(File file, TaskList taskList) {
         try {
             FileWriter fw = new FileWriter(file);
@@ -99,6 +125,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Converts string representation of the task to task.
+     * @param s string representation of the task.
+     * @return the task that given the description of the string.
+     */
     public Task stringToTask(String s) {
         if (s.length() == 0) {
             return null;

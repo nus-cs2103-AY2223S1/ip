@@ -2,6 +2,9 @@ package duke;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents a task.
+ */
 public class Task {
 
     private String status;
@@ -9,34 +12,64 @@ public class Task {
     private String name;
     private LocalDateTime time;
 
+    /**
+     * Constructs a task.
+     */
     public Task() {
     };
 
+    /**
+     * Constructs a task given a name.
+     * @param name the task name.
+     */
     public Task(String name) {
         this.status = "[ ]";
         this.name = name;
     }
 
+    /**
+     * Returns a string representation of the type of the task.
+     * @return the task type.
+     */
     public String getType() {
         return this.type;
     }
 
+    /**
+     * Returns a string representation of the name of the task.
+     * @return the task name.
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Returns a string representation of the status of the task.
+     * @return the task status.
+     */
     public String getStatus() {
         return this.status;
     }
 
+    /**
+     * Returns the time of the task.
+     * @return the task time.
+     */
     public LocalDateTime getTime() {
         return this.time;
     }
 
+    /**
+     * Sets the status of the task as specified.
+     * @param status the status of the task. [X] for done, [ ] for undone.
+     */
     public void setStatus(String status) {
         this.status = status;
     }
 
+    /**
+     * Prints the task list.
+     */
     public void print() {
         TaskList t = new TaskList();
         System.out.println(Duke.LINE);

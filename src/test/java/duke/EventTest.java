@@ -6,11 +6,17 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Tests the Event class.
+ */
 public class EventTest {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     LocalDateTime date = LocalDateTime.parse("12/12/2020 18:00", formatter);
 
+    /**
+     * Tests the toString method in the Event class.
+     */
     @Test
     public void toStringTest() {
         Event event = new Event("concert", date);

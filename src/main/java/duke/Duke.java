@@ -2,6 +2,9 @@ package duke;
 
 import java.io.File;
 
+/**
+ * Represents the bot that can interact with user based on the command being input.
+ */
 public class Duke {
 
     public static final String LINE = "____________________________________________________________";
@@ -11,9 +14,16 @@ public class Duke {
     private Ui ui;
     private  Parser parser;
 
+    /**
+     * Constructs a Duke bot.
+     */
     public Duke() {
     };
 
+    /**
+     * Constructs a Duke bot.
+     * @param filePath the file path in which the data is being stored.
+     */
     public Duke(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -21,6 +31,9 @@ public class Duke {
         this.parser = new Parser();
     }
 
+    /**
+     * Runs the bot.
+     */
     public void run() {
         storage.load_task(new File("duke.txt"));
         parser.respond();

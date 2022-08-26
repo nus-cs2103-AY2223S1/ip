@@ -8,15 +8,24 @@ import java.time.format.DateTimeParseException;
 
 import java.util.Scanner;
 
+/**
+ * Parses the user command.
+ */
 public class Parser {
 
     Scanner sc = new Scanner(System.in);
     private String filepath = "duke.txt";
     private Storage storage = new Storage(filepath);
 
+    /**
+     * Constructs a parser.
+     */
     public Parser() {
     }
 
+    /**
+     * Interacts with the user based on the command line input.
+     */
     public void respond() {
         try {
             String input = sc.nextLine();
@@ -87,6 +96,11 @@ public class Parser {
         }
     }
 
+    /**
+     * Converts strings to date format.
+     * @param s string representation of the date.
+     * @return the date as specified by the string.
+     */
     public LocalDateTime parseString(String s) {
         DateTimeFormatter formatter = null;
         LocalDateTime date = null;
@@ -100,6 +114,11 @@ public class Parser {
         return date;
     }
 
+    /**
+     * Converts the strings in a file to date format.
+     * @param s string representation of the date.
+     * @return the date as specified by the string.
+     */
     public LocalDateTime parseFileString(String s) {
         DateTimeFormatter formatter = null;
         LocalDateTime date = null;
