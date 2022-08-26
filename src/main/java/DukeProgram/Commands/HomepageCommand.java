@@ -1,8 +1,8 @@
-package DukeProgram.Commands;
+package dukeprogram.commands;
 
-import DukeProgram.Commands.TaskList.SelectTaskListsCommand;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.tasklist.SelectTaskListsCommand;
+import dukeprogram.UiMessage;
+import exceptions.InvalidCommandException;
 
 public class HomepageCommand extends Command {
     @Override

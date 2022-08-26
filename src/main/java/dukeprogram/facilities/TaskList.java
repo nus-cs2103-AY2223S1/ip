@@ -1,16 +1,14 @@
-package DukeProgram.Facilities;
+package dukeprogram.facilities;
 
-import DukeProgram.*;
-import DukeProgram.Storage.SaveManager;
-import Exceptions.JobNameException;
-import Exceptions.KeyNotFoundException;
+import dukeprogram.Task;
+import dukeprogram.storage.SaveManager;
+import exceptions.KeyNotFoundException;
 
 import java.io.Serializable;
-import java.security.Key;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class TaskList implements List<Task>, Serializable {
+public class TaskList implements Serializable {
     private static HashMap<String, TaskList> taskListsMapping;
 
     private static TaskList current;
@@ -323,133 +321,27 @@ public class TaskList implements List<Task>, Serializable {
                 String.format("Now you have %d tasks in the list", checklist.size()));
     }*/
 
-
     /**
-     * A helper method to concat a string array given in the format from System.in
-     * @param input The string array given in the format from System.in
-     * @return the actual name of the job to be created
-     * @throws JobNameException if there is no name provided
+     * Retrieves the size of all the stored task lists
+     * @return the size of all task lists
      */
-    private static String concatName(String[] input) throws JobNameException {
-        String name = Arrays.stream(input).skip(1).collect(Collectors.joining(" "));
-        if (name.equals("")) {
-            throw new JobNameException(input[0]);
-        }
-        return name;
-    }
-
-    @Override
-    public int size() {
+    public int getSize() {
         return taskArrayList.size();
     }
 
-    @Override
-    public boolean isEmpty() {
-        return taskArrayList.isEmpty();
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        return taskArrayList.contains(o);
-    }
-
-    @Override
-    public Iterator<Task> iterator() {
-        return taskArrayList.iterator();
-    }
-
-    @Override
-    public Object[] toArray() {
-        return taskArrayList.toArray();
-    }
-
-    @Override
-    public <T> T[] toArray(T[] a) {
-        return taskArrayList.toArray(a);
-    }
-
-    @Override
     public boolean add(Task task) {
         return taskArrayList.add(task);
     }
 
-    @Override
-    public boolean remove(Object o) {
-        return taskArrayList.remove(o);
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return taskArrayList.containsAll(c);
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends Task> c) {
-        return taskArrayList.addAll(c);
-    }
-
-    @Override
-    public boolean addAll(int index, Collection<? extends Task> c) {
-        return taskArrayList.addAll(index, c);
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return taskArrayList.removeAll(c);
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return taskArrayList.retainAll(c);
-    }
-
-    @Override
     public void clear() {
         taskArrayList.clear();
     }
 
-    @Override
     public Task get(int index) {
         return taskArrayList.get(index);
     }
 
-    @Override
-    public Task set(int index, Task element) {
-        return taskArrayList.set(index, element);
-    }
-
-    @Override
-    public void add(int index, Task element) {
-        taskArrayList.add(index, element);
-    }
-
-    @Override
     public Task remove(int index) {
         return taskArrayList.remove(index);
-    }
-
-    @Override
-    public int indexOf(Object o) {
-        return taskArrayList.indexOf(o);
-    }
-
-    @Override
-    public int lastIndexOf(Object o) {
-        return taskArrayList.lastIndexOf(o);
-    }
-
-    @Override
-    public ListIterator<Task> listIterator() {
-        return taskArrayList.listIterator();
-    }
-
-    @Override
-    public ListIterator<Task> listIterator(int index) {
-        return taskArrayList.listIterator(index);
-    }
-
-    @Override
-    public List<Task> subList(int fromIndex, int toIndex) {
-        return taskArrayList.subList(fromIndex, toIndex);
     }
 }

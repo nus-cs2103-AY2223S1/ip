@@ -1,10 +1,10 @@
-package DukeProgram;
+package dukeprogram;
 
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.UI.UserInterface;
-import Exceptions.KeyNotFoundException;
-import DukeProgram.Storage.SaveManager;
-import Utilities.SerializedNamesFormatter;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.ui.UserInterface;
+import exceptions.KeyNotFoundException;
+import dukeprogram.storage.SaveManager;
+import utilities.SerializedNamesFormatter;
 
 import java.io.IOException;
 

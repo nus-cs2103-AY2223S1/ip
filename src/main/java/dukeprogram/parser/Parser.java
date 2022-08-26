@@ -1,8 +1,7 @@
-package DukeProgram.Parser;
+package dukeprogram.parser;
 
-import DukeProgram.Commands.*;
-import DukeProgram.Commands.TaskList.SelectTaskListsCommand;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import exceptions.InvalidCommandException;
 
 public class Parser {
     public static Command parse(Command contextCommand, String commandString)

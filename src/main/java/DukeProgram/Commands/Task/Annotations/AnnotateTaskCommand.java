@@ -1,11 +1,9 @@
-package DukeProgram.Commands.Task.Annotations;
+package dukeprogram.commands.task.Annotations;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.Task;
-import DukeProgram.UI.UserInterface;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.Task;
+import dukeprogram.ui.UserInterface;
 
 public abstract class AnnotateTaskCommand extends Command {
 

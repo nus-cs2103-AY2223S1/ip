@@ -1,19 +1,11 @@
-package DukeProgram.Commands.TaskList;
+package dukeprogram.commands.tasklist;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Commands.ExitCommand;
-import DukeProgram.Commands.Task.Annotations.MarkTaskCommand;
-import DukeProgram.Commands.Task.Annotations.UnmarkTaskCommand;
-import DukeProgram.Commands.Task.AddTaskCommand;
-import DukeProgram.Commands.Task.DeleteTaskCommand;
-import DukeProgram.Commands.Task.ListTasksCommand;
-import DukeProgram.Commands.Task.TaskPageCommand;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.Parser.Parser;
-import DukeProgram.UI.UserInterface;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
-import Exceptions.KeyNotFoundException;
+import dukeprogram.commands.Command;
+import dukeprogram.commands.task.TaskPageCommand;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.ui.UserInterface;
+import exceptions.InvalidCommandException;
+import exceptions.KeyNotFoundException;
 
 public class LoadTaskListCommand extends Command {
 

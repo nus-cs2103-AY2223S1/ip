@@ -1,4 +1,4 @@
-package DukeProgram;
+package dukeprogram;
 
 public class Deadline extends DatedJob {
 

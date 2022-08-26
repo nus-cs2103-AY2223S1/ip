@@ -1,4 +1,4 @@
-package DukeProgram;
+package dukeprogram;
 
 public class ToDo extends Task {
     public ToDo(String name) {

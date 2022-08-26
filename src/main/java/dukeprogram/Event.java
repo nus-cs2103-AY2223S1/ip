@@ -1,4 +1,4 @@
-package DukeProgram;
+package dukeprogram;
 
 public class Event extends DatedJob {
 

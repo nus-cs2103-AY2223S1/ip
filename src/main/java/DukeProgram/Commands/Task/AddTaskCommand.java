@@ -1,17 +1,17 @@
-package DukeProgram.Commands.Task;
+package dukeprogram.commands.task;
 
-import DukeProgram.*;
-import DukeProgram.Commands.Command;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.UI.UserInterface;
-import Exceptions.InvalidCommandException;
-import Exceptions.JobNameException;
-import Utilities.StringUtilities;
+import dukeprogram.*;
+import dukeprogram.commands.Command;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.ui.UserInterface;
+import exceptions.InvalidCommandException;
+import exceptions.JobNameException;
+import utilities.StringUtilities;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static DukeProgram.UI.UserInterface.printInStyle;
+import static dukeprogram.ui.UserInterface.printInStyle;
 
 public class AddTaskCommand extends Command {
 
@@ -83,7 +83,7 @@ public class AddTaskCommand extends Command {
             printInStyle(
                     "Got it. I've added this task:",
                     task.toString(),
-                    String.format("Now you have %d tasks in the list", TaskList.current().size()));
+                    String.format("Now you have %d tasks in the list", TaskList.current().getSize()));
             return true;
         }
 

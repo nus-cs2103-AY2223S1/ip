@@ -1,10 +1,10 @@
-package DukeProgram.Commands.TaskList;
+package dukeprogram.commands.tasklist;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Commands.ExitCommand;
-import DukeProgram.UI.UserInterface;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.commands.ExitCommand;
+import dukeprogram.ui.UserInterface;
+import dukeprogram.UiMessage;
+import exceptions.InvalidCommandException;
 import java.util.Arrays;
 
 public class SelectTaskListsCommand extends Command {

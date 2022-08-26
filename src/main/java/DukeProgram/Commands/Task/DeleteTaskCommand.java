@@ -1,10 +1,9 @@
-package DukeProgram.Commands.Task;
+package dukeprogram.commands.task;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.Task;
-import DukeProgram.UI.UserInterface;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.Task;
+import dukeprogram.ui.UserInterface;
 
 public class DeleteTaskCommand extends Command {
 
@@ -52,10 +51,10 @@ public class DeleteTaskCommand extends Command {
             } catch (IndexOutOfBoundsException e) {
                 UserInterface.printInStyle("Sorry!",
                         "You've specified a task number that's out of bounds!",
-                        currentTaskList.size() == 0 ? "You have no tasks in this list." :
+                        currentTaskList.getSize() == 0 ? "You have no tasks in this list." :
                                 String.format(
                                         "Please only choose numbers between 1 and %d",
-                                        currentTaskList.size())
+                                        currentTaskList.getSize())
                 );
             }
         }

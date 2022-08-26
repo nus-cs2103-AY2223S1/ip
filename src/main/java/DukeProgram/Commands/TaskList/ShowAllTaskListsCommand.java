@@ -1,10 +1,8 @@
-package DukeProgram.Commands.TaskList;
+package dukeprogram.commands.tasklist;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.UI.UserInterface;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.ui.UserInterface;
 
 public class ShowAllTaskListsCommand extends Command {
 

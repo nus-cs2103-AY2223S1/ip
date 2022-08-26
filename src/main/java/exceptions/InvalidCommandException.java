@@ -1,7 +1,7 @@
-package Exceptions;
+package exceptions;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.UiMessage;
+import dukeprogram.commands.Command;
+import dukeprogram.UiMessage;
 
 public class InvalidCommandException extends Exception {
     private final UiMessage uiMessage;

@@ -1,15 +1,15 @@
-package DukeProgram.Commands.Task;
+package dukeprogram.commands.task;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.DatedJob;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.Task;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.DatedJob;
+import dukeprogram.facilities.TaskList;
+import dukeprogram.Task;
+import dukeprogram.UiMessage;
+import exceptions.InvalidCommandException;
 import java.util.Comparator;
 import java.util.stream.IntStream;
 
-import static DukeProgram.UI.UserInterface.printInStyle;
+import static dukeprogram.ui.UserInterface.printInStyle;
 
 public class ListTasksCommand extends Command {
 
@@ -24,7 +24,7 @@ public class ListTasksCommand extends Command {
         if (fullCommandParameters.length == 1) {
             TaskList currentTaskList = TaskList.current();
             printInStyle(IntStream
-                    .range(0, currentTaskList.size())
+                    .range(0, currentTaskList.getSize())
                     .mapToObj(i -> String.format("%d: %s", i + 1, currentTaskList.get(i).toString()))
             );
             return true;

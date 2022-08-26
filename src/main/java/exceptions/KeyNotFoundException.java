@@ -1,4 +1,4 @@
-package Exceptions;
+package exceptions;
 
 public class KeyNotFoundException extends Exception{
     public KeyNotFoundException(String keyName, String collectionName) {

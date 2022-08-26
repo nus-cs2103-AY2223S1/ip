@@ -1,16 +1,12 @@
-package DukeProgram.UI;
+package dukeprogram.ui;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Commands.HomepageCommand;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.Duke;
-import DukeProgram.Parser.Parser;
-import DukeProgram.Storage.SaveManager;
-import Exceptions.InvalidCommandException;
+import dukeprogram.commands.Command;
+import dukeprogram.commands.HomepageCommand;
+import dukeprogram.parser.Parser;
+import exceptions.InvalidCommandException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.Stream;
 

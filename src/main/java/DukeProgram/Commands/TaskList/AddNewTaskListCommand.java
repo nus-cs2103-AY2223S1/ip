@@ -1,11 +1,8 @@
-package DukeProgram.Commands.TaskList;
+package dukeprogram.commands.tasklist;
 
-import DukeProgram.Commands.Command;
-import DukeProgram.Facilities.TaskList;
-import DukeProgram.UiMessage;
-import Exceptions.InvalidCommandException;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import dukeprogram.commands.Command;
+import dukeprogram.facilities.TaskList;
+import exceptions.InvalidCommandException;
 
 public class AddNewTaskListCommand extends Command {
 
