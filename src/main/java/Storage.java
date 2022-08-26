@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-  private final String filefolder = "data";
-  private final String filename = "duke.txt";
-  private final String filepath = filefolder + File.separator + filename;
+  private static final String FILE_FOLDER_NAME = "data";
+  private static final String FILENAME = "duke.txt";
+  private static final String FILEPATH = FILE_FOLDER_NAME + File.separator + FILENAME;
 
   public Storage() throws DukeException {
     this.createStorageFile();
@@ -16,11 +16,11 @@ public class Storage {
 
   private void createStorageFile() throws DukeException {
     try {
-      File directory = new File(filefolder);
+      File directory = new File(FILE_FOLDER_NAME);
       if (!directory.exists()) {
         directory.mkdir();
       }
-      File saved = new File(filepath);
+      File saved = new File(FILEPATH);
       if (!saved.exists()) {
         saved.createNewFile();
       }
@@ -32,7 +32,7 @@ public class Storage {
   public ArrayList<DukeTask> load() throws DukeException {
     ArrayList<DukeTask> taskList = new ArrayList<>();
     try {
-      File f = new File(filepath);
+      File f = new File(FILEPATH);
       Scanner s = new Scanner(f);
       while (s.hasNext()) {
         String[] taskSplit = s.nextLine().split(" >> ");
@@ -71,7 +71,7 @@ public class Storage {
 
   public void save(ArrayList<DukeTask> itemList) {
     try {
-      FileWriter fw = new FileWriter(filepath);
+      FileWriter fw = new FileWriter(FILEPATH);
       for (DukeTask t : itemList) {
         fw.write(t.getStorageString() + "\n");
       }
