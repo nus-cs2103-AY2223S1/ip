@@ -8,15 +8,28 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+/**
+ * Storage class to handle save file.
+ * @author Silas Tay (A0233425M)
+ */
 public class Storage {
     private String filePath;
     private Ui ui;
 
+    /**
+     * Constructor for Storage class.
+     * @param filePath File path of save file
+     */
     public Storage(String filePath) {
         this.filePath = filePath;
         this.ui = ui;
     }
 
+    /**
+     * Loads data from save file if exists.
+     * @return ArrayList of Tasks from save file
+     * @throws DukeException When there is an error loading the file
+     */
     public ArrayList<Task> load() throws DukeException {
         ArrayList<Task> tasks = new ArrayList<Task>();
 
@@ -55,6 +68,11 @@ public class Storage {
         return tasks;
     }
 
+    /**
+     * Updates save file
+     * @param tasks Tasklist
+     * @param filePath File path to save file
+     */
     public void updateSaveFile(TaskList tasks, String filePath) {
         try {
             PrintWriter pw = new PrintWriter(this.filePath);

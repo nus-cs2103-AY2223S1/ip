@@ -4,13 +4,25 @@ import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+/**
+ * Parser class to handle user inputs.
+ * @author Silas Tay (A0233425M)
+ */
 public class Parser {
     private Ui ui;
 
+    /**
+     * Constructor for Parser class.
+     */
     public Parser() {
         this.ui = new Ui();
     }
 
+    /**
+     * Parses through user inputs and takes action based on command.
+     * @param s User input line
+     * @param tasks Tasklist of Luffy instance
+     */
     public void parse(String s, TaskList tasks) {
         ui.printDivider();
         if (s.equals("list")) {

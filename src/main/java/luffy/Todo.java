@@ -1,6 +1,7 @@
 package luffy;
 
-/** Todo class to represent a todo.
+/**
+ * Todo class to represent a todo.
  * @author Silas Tay A0233425M
  */
 public class Todo extends Task {
@@ -14,7 +15,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Returns String representation of Todo
+     * Returns String representation of Todo.
      * @return String representation of Todo
      */
     @Override

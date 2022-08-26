@@ -1,6 +1,7 @@
 package luffy;
 
-/** Task abstract class to represent a task. Tasks consist of Deadlines, Events and Todos.
+/**
+ * Task abstract class to represent a task. Tasks consist of Deadlines, Events and Todos.
  * @author Silas Tay A0233425M
  */
 public abstract class Task {
@@ -11,7 +12,7 @@ public abstract class Task {
     protected String at;
 
     /**
-     * Abstract constructor for Task
+     * Abstract constructor for Task.
      * @param description Description for Task
      */
     public Task(String description) {

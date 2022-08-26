@@ -9,17 +9,21 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.regex.Pattern;
 
-/** Luffy is a tasklist program. Built for CS2103T Individual Project 2022 S1.
+/**
+ * Luffy is a tasklist program. Built for CS2103T Individual Project 2022 S1.
  * @author Silas Tay A0233425M
  */
 public class Luffy {
-
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
 
     private static final String FILE_PATH = "./data/data.txt";
 
+    /**
+     * Construtor for Luffy object.
+     * @param filePath File path to data file
+     */
     public Luffy(String filePath) {
         this.ui = new Ui();
         this.storage = new Storage(filePath);
@@ -31,6 +35,9 @@ public class Luffy {
         }
     }
 
+    /**
+     * Runs Luffy program.
+     */
     public void run() {
         this.ui.printWelcome();
 
@@ -48,6 +55,10 @@ public class Luffy {
         }
     }
 
+    /**
+     * Main method for Luffy.
+     * @param args User commandline input
+     */
     public static void main(String[] args) {
         new Luffy(FILE_PATH).run();
     }
