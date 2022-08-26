@@ -1,8 +1,8 @@
 package duke.task;
 
-import duke.common.DukeException;
-
 import java.time.LocalDate;
+
+import duke.common.DukeException;
 
 /**
  * A task specified by the user to Duke.
@@ -117,7 +117,7 @@ public abstract class Task {
      * @return the string encoding
      */
     public String encode() {
-        return this.getTaskTypeIcon() + Task.ENCODING_SEPARATOR +
-                this.getStatusIcon() + Task.ENCODING_SEPARATOR + this.description;
+        return this.getTaskTypeIcon() + Task.ENCODING_SEPARATOR
+                + this.getStatusIcon() + Task.ENCODING_SEPARATOR + this.description;
     }
 }

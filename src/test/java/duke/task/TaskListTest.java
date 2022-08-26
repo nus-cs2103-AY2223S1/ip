@@ -1,14 +1,14 @@
 package duke.task;
-import duke.common.DukeException;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import org.junit.jupiter.api.Test;
+
+import duke.common.DukeException;
 
 public class TaskListTest {
     @Test
@@ -54,7 +54,8 @@ public class TaskListTest {
 
         assertEquals(3, taskList.size());
         assertEquals(arrayList, taskList.getTasks());
-        assertEquals("1. [T][ ] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][X] event (at: Dec 12, 2012)\n", taskList.toString());
+        assertEquals("1. [T][ ] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][X] event (at: Dec 12, 2012)\n",
+                taskList.toString());
 
         try {
             taskList.markTask(0);
@@ -64,7 +65,8 @@ public class TaskListTest {
 
         assertEquals(3, taskList.size());
         assertEquals(arrayList, taskList.getTasks());
-        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][X] event (at: Dec 12, 2012)\n", taskList.toString());
+        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][X] event (at: Dec 12, 2012)\n",
+                taskList.toString());
 
         try {
             taskList.unMarkTask(2);
@@ -74,11 +76,15 @@ public class TaskListTest {
 
         assertEquals(3, taskList.size());
         assertEquals(arrayList, taskList.getTasks());
-        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][ ] event (at: Dec 12, 2012)\n", taskList.toString());
+        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n3. [E][ ] event (at: Dec 12, 2012)\n",
+                taskList.toString());
 
-        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n", taskList.filter(x -> x.getStatusIcon() == 'X').toString());
-        assertEquals("1. [D][X] deadline (by: Dec 12, 2022)\n2. [E][ ] event (at: Dec 12, 2012)\n", taskList.filter(x -> x.getTaskTypeIcon() != 'T').toString());
-        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n", taskList.filter(x -> x.getDescription().contains("d")).toString());
+        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n",
+                taskList.filter(x -> x.getStatusIcon() == 'X').toString());
+        assertEquals("1. [D][X] deadline (by: Dec 12, 2022)\n2. [E][ ] event (at: Dec 12, 2012)\n",
+                taskList.filter(x -> x.getTaskTypeIcon() != 'T').toString());
+        assertEquals("1. [T][X] todo\n2. [D][X] deadline (by: Dec 12, 2022)\n",
+                taskList.filter(x -> x.getDescription().contains("d")).toString());
 
         try {
             taskList.deleteTask(1);

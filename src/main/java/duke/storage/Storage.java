@@ -1,13 +1,13 @@
 package duke.storage;
 
-import duke.common.DukeException;
-import duke.task.Task;
-import duke.task.TaskList;
-
 import java.io.File;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import duke.common.DukeException;
+import duke.task.Task;
+import duke.task.TaskList;
 
 /**
  * Deals with loading tasks from the save file and saving tasks in the save file.

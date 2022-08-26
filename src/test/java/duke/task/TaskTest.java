@@ -1,11 +1,11 @@
 package duke.task;
-import duke.common.DukeException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import duke.common.DukeException;
 
 public class TaskTest {
     @Test
@@ -96,7 +96,8 @@ public class TaskTest {
             Task task = Task.decode("E | X | my todo | 2012-02-30");
             fail();
         } catch (DukeException exception) {
-            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.",
+                    exception.getMessage());
         } catch (Exception exception) {
             fail();
         }
@@ -151,7 +152,8 @@ public class TaskTest {
             Task task = Task.decode("D | X | my todo | 2012-02-30");
             fail();
         } catch (DukeException exception) {
-            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.", exception.getMessage());
+            assertEquals("OOPS!!! Can't recognize the date :(. Please input the date in yyyy-mm-dd format.",
+                    exception.getMessage());
         } catch (Exception exception) {
             fail();
         }

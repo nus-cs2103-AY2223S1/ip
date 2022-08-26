@@ -1,9 +1,9 @@
 package duke.task;
 
-import duke.common.DukeException;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+
+import duke.common.DukeException;
 
 /**
  * Represents an event-type task.
@@ -33,8 +33,8 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return super.toString() + " (at: " +
-                this.localDate.format(DateTimeFormatter.ofPattern("MMM d, yyyy")) + ")";
+        return super.toString() + " (at: "
+                + this.localDate.format(DateTimeFormatter.ofPattern("MMM d, yyyy")) + ")";
     }
 
     /**
@@ -44,7 +44,7 @@ public class Event extends Task {
      */
     @Override
     public String encode() {
-        return super.encode() + Task.ENCODING_SEPARATOR +
-                this.localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        return super.encode() + Task.ENCODING_SEPARATOR
+                + this.localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
     }
 }

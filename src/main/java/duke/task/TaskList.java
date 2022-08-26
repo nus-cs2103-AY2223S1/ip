@@ -1,10 +1,10 @@
 package duke.task;
 
-import duke.common.DukeException;
-
 import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import duke.common.DukeException;
 
 /**
  * The list of tasks saved by Duke.
