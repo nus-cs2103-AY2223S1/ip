@@ -20,6 +20,9 @@ public class Rabbit {
     private Storage storage;
     private TaskList taskList;
 
+    /**
+     * Constructor of Rabbit.
+     */
     public Rabbit() {
         this.ui = new Ui();
         this.storage = new Storage();
@@ -49,21 +52,22 @@ public class Rabbit {
                 String content = "";
                 switch (function) {
                 case "list":
-                    this.taskList.list();
+                    content = this.taskList.list();
+                    this.ui.showList(content);
                     break;
                 case "find ":
                     content = this.taskList.find(input);
                     this.ui.showFind(content);
                     break;
                 case "mark ":
-                    this.taskList.mark(input);
+                    content = this.taskList.mark(input);
                     this.storage.exportData(this.taskList);
-                    this.ui.showMark();
+                    this.ui.showMark(content);
                     break;
                 case "unmark ":
-                    this.taskList.unmark(input);
+                    content = this.taskList.unmark(input);
                     this.storage.exportData(this.taskList);
-                    this.ui.showUnmark();
+                    this.ui.showUnmark(content);
                     break;
                 case "todo ":
                     content = this.taskList.addToList(TaskList.TaskType.TODO, input);
@@ -81,9 +85,9 @@ public class Rabbit {
                     this.ui.showAddToList(content);
                     break;
                 case "delete ":
-                    this.taskList.delete(input);
+                    content = this.taskList.delete(input);
                     this.storage.exportData(this.taskList);
-                    this.ui.showDelete();
+                    this.ui.showDelete(content);
                     break;
                 default:
                     // the user keyed in an invalid input

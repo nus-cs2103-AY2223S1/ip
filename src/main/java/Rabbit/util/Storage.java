@@ -29,7 +29,7 @@ public class Storage {
     }
 
     /**
-     * Check if ./data and ./data/data.txt exists.
+     * Checks if ./data and ./data/data.txt exists.
      * If not, create one.
      */
     public void initiate() {
@@ -46,7 +46,6 @@ public class Storage {
             Files.createFile(path);
         } catch (IOException e) {
             // file already exists
-           return;
         }
 
     }

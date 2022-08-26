@@ -16,6 +16,14 @@ import Rabbit.RabbitException.FindFormatException;
 public class Parser {
     public Parser(){};
 
+    /**
+     * Parses the lines in data.txt to tasks that
+     * are added into the list.
+     *
+     * @param input lines of tasks from data.txt.
+     * @return the task to be added.
+     * @throws ImportDataException
+     */
     public static Task parseImport(String input) throws ImportDataException {
         char type = input.charAt(0);
         /** indicates the index of the second "|" */
@@ -109,6 +117,14 @@ public class Parser {
         return input.length();
     }
 
+    /**
+     * Returns the tasks matching the keyword of find.
+     *
+     * @param input the user's input
+     * @param list the list.
+     * @return the matching tasks.
+     * @throws FindFormatException
+     */
     public static String parseFind(String input, TaskList list) throws FindFormatException {
         try {
             String content = input.substring(5);
@@ -121,6 +137,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the user's input to mark command.
+     *
+     * @param input the user's command.
+     * @param list the list of tasks.
+     * @return the index of the task.
+     * @throws MarkUnmarkException
+     */
     public static int parseMark(String input, TaskList list) throws MarkUnmarkException {
         try {
             Integer.parseInt(input.substring(5));
@@ -143,6 +167,14 @@ public class Parser {
         return i;
     }
 
+    /**
+     * Parses the user's input to unmark command.
+     *
+     * @param input the user's command.
+     * @param list the list of tasks.
+     * @return the index of the task.
+     * @throws MarkUnmarkException
+     */
     public static int parseUnmark(String input, TaskList list) throws MarkUnmarkException {
         try {
             Integer.parseInt(input.substring(7));
@@ -164,6 +196,14 @@ public class Parser {
         return i;
     }
 
+    /**
+     * Parses the user's input to delete command.
+     *
+     * @param input the user's command.
+     * @param list the list of tasks.
+     * @return the index of the task.
+     * @throws MarkUnmarkException
+     */
     public static int parseDelete(String input, TaskList list) throws DeleteException {
         try {
             Integer.parseInt(input.substring(7));
