@@ -1,9 +1,12 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 class Event extends Task {
 
-    String eventTime;
+    LocalDate eventTime;
     Event (int id, String name, String eventTime) {
         super(id, name);
-        this.eventTime = eventTime;
+        this.eventTime = LocalDate.parse(eventTime);
     }
     Event (int id, String name, String eventTime, boolean done) {
         super(id, name, done);
@@ -17,7 +20,7 @@ class Event extends Task {
             out += "X";
         else
             out += " ";
-        out += "] " + super.toString() + "(at : " + eventTime + ")";
+        out += "] " + super.toString() + "(at : " + eventTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
         return out;
     }
 }

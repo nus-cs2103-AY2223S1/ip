@@ -1,10 +1,14 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+
 class Deadline extends Task {
 
-    String deadline;
+    LocalDate deadline;
 
     Deadline (int id, String name, String deadline) {
         super(id, name);
-        this.deadline = deadline;
+        this.deadline = LocalDate.parse(deadline);
     }
 
     Deadline (int id, String name, String deadline, boolean done) {
@@ -19,7 +23,7 @@ class Deadline extends Task {
             out += "X";
         else
             out += " ";
-        out += "] " + super.toString() + "(by : " + deadline + ")";
+        out += "] " + super.toString() + "(by : " + deadline.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ")";
         return out;
     }
 
