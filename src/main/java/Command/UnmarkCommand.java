@@ -1,5 +1,9 @@
+package Command;
 import Duke.DukeException;
-
+import Duke.DukeUi;
+import Duke.Storage;
+import Duke.Task;
+import Duke.TaskList;
 import java.io.IOException;
 
 /**
@@ -34,7 +38,7 @@ public class UnmarkCommand extends Command {
                     Task task = tasks.getTasks().get(index);
                     task.markAsUndone();
                     storage.save();
-                    DukeUi.sendMessage(" Nice! I've marked this task as undone:\n" + "   " + task.toString());
+                    ui.sendMessage(" Nice! I've marked this task as undone:\n" + "   " + task.toString());
                 }
             }
         } catch (DukeException | IOException e) {
@@ -42,5 +46,9 @@ public class UnmarkCommand extends Command {
         }
     }
 
+    @Override
+    public String toString() {
+        return "this is an unmark command : unmark " + userAction;
+    }
 }
 

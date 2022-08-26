@@ -1,5 +1,10 @@
+package Command;
 import Duke.DukeException;
-
+import Duke.DukeUi;
+import Duke.Storage;
+import Duke.Task;
+import Duke.TaskList;
+import Duke.Todo;
 import java.io.IOException;
 
 /**
@@ -22,11 +27,16 @@ public class TodoCommand extends Command {
             } else{
                 tasks.addTask(newTodo);
                 storage.save();
-                DukeUi.sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
+                ui.sendMessage(" Got it. I've added this task:\n" + "   " + newTodo.toString()
                         + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
             }
         } catch (DukeException | IOException e) {
             throw new DukeException(e.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "this is a todo command : todo " + userAction;
     }
 }

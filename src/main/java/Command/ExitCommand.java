@@ -1,3 +1,8 @@
+package Command;
+import Duke.DukeException;
+import Duke.DukeUi;
+import Duke.Storage;
+import Duke.TaskList;
 import java.io.IOException;
 
 /**
@@ -26,4 +31,8 @@ public class ExitCommand extends Command {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "this is an exit command";
+    }
 }

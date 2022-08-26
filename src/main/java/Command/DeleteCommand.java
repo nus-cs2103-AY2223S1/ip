@@ -1,3 +1,9 @@
+package Command;
+import Duke.DukeException;
+import Duke.DukeUi;
+import Duke.Storage;
+import Duke.Task;
+import Duke.TaskList;
 import java.io.IOException;
 
 /**
@@ -34,12 +40,17 @@ public class DeleteCommand extends Command {
                     Task task = tasks.getTasks().get(index);
                     tasks.getTasks().remove(index);
                     storage.save();
-                    DukeUi.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
+                    ui.sendMessage(" Noted. I've removed this task:\n" + "   " + task.toString()
                             + "\n Now you have " + tasks.getTaskListSize() + " tasks in the list.");
                 }
             }
         } catch (IOException e) {
             throw new DukeException(e.getMessage());
         }
+    }
+
+    @Override
+    public String toString() {
+        return "this is a delete command : delete " + userAction;
     }
 }
