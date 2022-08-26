@@ -1,10 +1,13 @@
 package duke.command;
+
 import duke.main.Ui;
 import duke.main.TaskList;
 import duke.main.Storage;
 
+/**
+ * Represents an abstract command type
+ */
 public abstract class Command {
-//    multiple children classes that extend from command and can call run to do something
 
     /**
      * Execute will add a task into the tasklist, save the new tasklist in storage

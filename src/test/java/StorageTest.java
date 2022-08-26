@@ -6,6 +6,9 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the storage class
+ */
 public class StorageTest {
     private final String FILE_PATH = "src/test/data/Duke.txt";
 
