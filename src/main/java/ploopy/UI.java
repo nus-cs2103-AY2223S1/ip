@@ -1,16 +1,18 @@
 package ploopy;
 
 public class UI {
-    private static final String TEXT_ART = "\n" +
-            "\t███████████████████████████████████\n" +
-            "\t█▄─▄▄─█▄─▄███─▄▄─█─▄▄─█▄─▄▄─█▄─█─▄█\n" +
-            "\t██─▄▄▄██─██▀█─██─█─██─██─▄▄▄██▄─▄██\n" +
-            "\t▀▄▄▄▀▀▀▄▄▄▄▄▀▄▄▄▄▀▄▄▄▄▀▄▄▄▀▀▀▀▄▄▄▀▀";
+   private static final String TEXT_ART = "PLOOPY";
+//    "\n" +
+//            "\t███████████████████████████████████\n" +
+//            "\t█▄─▄▄─█▄─▄███─▄▄─█─▄▄─█▄─▄▄─█▄─█─▄█\n" +
+//            "\t██─▄▄▄██─██▀█─██─█─██─██─▄▄▄██▄─▄██\n" +
+//            "\t▀▄▄▄▀▀▀▄▄▄▄▄▀▄▄▄▄▀▄▄▄▄▀▄▄▄▀▀▀▀▄▄▄▀▀";
 
-    private static final String TOP_WINDOW = "╔════════════════════════════════════════════════════╗";
-    private static final String BOTTOM_WINDOW = "╚════════════════════════════════════════════════════╝";
+    private static final String TOP_WINDOW = "---------------------------------------------------";
 
-    private static final String GREETING = "Hi, I'm duke.Ploopy! Nice to meet you!\n\tWhats up?";
+    private static final String BOTTOM_WINDOW = "---------------------------------------------------";
+
+    private static final String GREETING = "Hi, I'm Ploopy! Nice to meet you!\n\tWhats up?";
     private static final String FAREWELL = "Okay then, see ya later :)";
 
     private static final String COMPLETED_TASK = "Nice! You've completed this task. I'll mark it as done.";
@@ -18,9 +20,9 @@ public class UI {
     private static final String ADDED_TASK = "I've added this task to your list.\n\tHere you go: ";
 
     //Exceptions:
-    private static final String NO_INPUT_MESSAGE = "You didn't say what I should do! (ಠ_ʖಠ)";
+    private static final String NO_INPUT_MESSAGE = "You didn't say what I should do!"; // (ಠ_ʖಠ)";
     private static final String EMPTY_COMMAND_MESSAGE = "What should I do with the ";
-    private static final String NONSENSE_INPUT_MESSAGE = "I can't do that right now, sorry ┐(‘～`；)┌";
+    private static final String NONSENSE_INPUT_MESSAGE = "I can't do that right now, sorry";
     private static final String IO_ERROR = "Something went wrong creating your files!";
 
     public void greeting() {
