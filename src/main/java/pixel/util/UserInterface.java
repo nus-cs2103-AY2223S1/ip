@@ -10,7 +10,7 @@ public class UserInterface {
     // System.out.println("Hello from\n" + logo);
     // System.out.println("Hello from\n");
 
-    public static final String introMessage = ("Hello! I'm Pixel \r\n" +
+    public static final String INTRO_MESSAGE = ("Hello! I'm Pixel \r\n" +
         "You can input the following commands \n" +
         " todo/ event/ deadline + <task description> + /by or /at + <due> \n" +
         " ***date format for due has to be in <yyyy-MM-dd(SPACE)HHmm(24h)> format \n" +
@@ -21,7 +21,7 @@ public class UserInterface {
         " end -- leaves the chatbot \n" +
         "   Your input: ");
 
-    public static final String goodbyeMessage = "Bye. Hope to see you again soon!";
+    public static final String GOOD_BYE_MESSAGE = "Bye. Hope to see you again soon!";
 
 //    @Override
 //    public String toString() {

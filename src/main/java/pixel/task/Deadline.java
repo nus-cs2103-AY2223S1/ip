@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Deadline extends Task {
 
-    public final String tag = "D";
+    public static final String TAG = "D";
 
     public Deadline (String description, String due, String commandWord) {
         super(description, due, commandWord);
@@ -15,6 +15,7 @@ public class Deadline extends Task {
         String end = Objects.equals(this.commandWord, "")
             ? this.commandWord
             : " (" + this.commandWord + ": " + this.due + ")";
-        return "[" + this.tag + "]" + super.toString() + end;
+
+        return "[" + TAG + "]" + super.toString() + end;
     }
 }
