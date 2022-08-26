@@ -42,10 +42,19 @@ public class UwuChat {
                 throw new IncorrectFormatException("Incorrect Format given for deadline task.");
             }
 
+            if (userCmd.trim().endsWith("/by")) {
+                throw new InvalidDateException("No date entered.");
+            }
+
             int deadlineStart = userCmd.indexOf("/by ");
             int userCmdLen = userCmd.length();
             String description = userCmd.substring(8, deadlineStart);
-            String by = userCmd.substring(deadlineStart + 3, userCmdLen);
+
+            if (description.isBlank()) {
+                throw new EmptyInputException("No task entered.");
+            }
+
+            String by = userCmd.substring(deadlineStart + 3, userCmdLen).trim();
 
             task = new Deadline(description, by);
             userToDoArray.add(task);
@@ -56,10 +65,19 @@ public class UwuChat {
                 throw new IncorrectFormatException("Incorrect Format given for event task.");
             }
 
+            if (userCmd.trim().endsWith("/at")) {
+                throw new InvalidDateException("No date entered.");
+            }
+
             int eventStart = userCmd.indexOf("/at");
             int userCmdLen = userCmd.length();
-            String description = userCmd.substring(8, eventStart);
-            String at = userCmd.substring(eventStart + 3, userCmdLen);
+            String description = userCmd.substring(5, eventStart);
+
+            if (description.isBlank()) {
+                throw new EmptyInputException("No task entered.");
+            }
+
+            String at = userCmd.substring(eventStart + 3, userCmdLen).trim();
 
             task = new Event(description, at);
             userToDoArray.add(task);
@@ -143,7 +161,7 @@ public class UwuChat {
     }
 
     public void unknownCommand() {
-        chatify("\n\tsorry >< i don't know what that means TT");
+        chatify("\n\tsorry >< \n\ti don't know what that means TT");
     }
 
     public void emptyInput() {
@@ -157,5 +175,10 @@ public class UwuChat {
 
     public void nullTask() {
         chatify("\n\t no such task found uwu");
+    }
+
+    public void invalidDate() {
+        chatify("\n\tplease enter a valid date, using the format: \n\t\t'yyyy-mm-dd HH:mm' \n" +
+                "\n\tif you do not have a time, enter the date only~");
     }
 }
