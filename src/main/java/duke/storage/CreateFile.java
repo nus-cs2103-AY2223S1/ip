@@ -15,27 +15,27 @@ import duke.ui.Ui;
  */
 class CreateFile {
 
-  /**
-   * Creates a file in the specified location.
-   *
-   * @param filePath The location that the file should be created in.
-   * @throws DukeException Throws a DukeException if an IOException is caught.
-   */
-  public static void makeFile(String filePath) throws DukeException {
-    try {
-      File file = new File(filePath);
-      if (file.createNewFile()) {
-        Ui.print("Mumbot: A .txt file has been created in " +
-            filePath + " , which will contain your list of tasks once this session " +
-            "terminates <3");
-      } else {
-        Ui.print("Mumbot: A .txt file already existing in " +
-            filePath + " will be used for loading your previous list of tasks; and for " + 
-            "saving your list of tasks when this session terminates <3");
-      }
-    } catch (IOException e) {
-      throw new DukeException("Honey! There was a problem with creating or obtaining " + 
-          "your list of tasks at " + filePath + " ! :(");
+    /**
+     * Creates a file in the specified location.
+     *
+     * @param filePath The location that the file should be created in.
+     * @throws DukeException Throws a DukeException if an IOException is caught.
+     */
+    public static void makeFile(String filePath) throws DukeException {
+        try {
+            File file = new File(filePath);
+            if (file.createNewFile()) {
+                Ui.print("Mumbot: A .txt file has been created in " +
+                        filePath + " , which will contain your list of tasks once this session " +
+                        "terminates <3");
+            } else {
+                Ui.print("Mumbot: A .txt file already existing in " +
+                        filePath + " will be used for loading your previous list of tasks; and for " + 
+                        "saving your list of tasks when this session terminates <3");
+            }
+        } catch (IOException e) {
+            throw new DukeException("Honey! There was a problem with creating or obtaining " + 
+                    "your list of tasks at " + filePath + " ! :(");
+        }
     }
-  }
 }
