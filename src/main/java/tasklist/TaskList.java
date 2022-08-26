@@ -47,4 +47,21 @@ public class TaskList {
     public int getTaskCount() {
         return this.list.size();
     }
+
+    public ArrayList<String> find(String searchText) {
+        ArrayList<String> res = new ArrayList<>();
+
+        if (searchText.strip().equals("")) {
+            return res;
+        }
+
+        for (int i = 0; i < list.size(); i++) {
+            Task t = list.get(i);
+            if (t.toString().contains(searchText)) {
+                String searchedResult = String.format("%d.%s", i + 1, t.toString());
+                res.add(searchedResult);
+            }
+        }
+        return res;
+    }
 }
