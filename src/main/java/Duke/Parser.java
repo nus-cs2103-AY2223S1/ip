@@ -1,3 +1,5 @@
+package Duke;
+
 public class Parser {
 
     public String replaceAll(String input, String regex) {
