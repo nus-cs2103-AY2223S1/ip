@@ -1,7 +1,6 @@
 public abstract class Task {
     protected String taskName;
     protected boolean done;
-
     public abstract String taskToFileString();
 
     public static Task fileStringToTask(String task) {
@@ -11,9 +10,9 @@ public abstract class Task {
             case " T ":
                 return new Todo(taskSplit[2], taskSplit[1].equals("1"));
             case " E ":
-                return new Event(taskSplit[2], taskSplit[3], taskSplit[1].equals("1"));
+                return new Event(taskSplit[2], Utility.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
             case " D ":
-                return new Deadline(taskSplit[2], taskSplit[3], taskSplit[1].equals("1"));
+                return new Deadline(taskSplit[2], Utility.dateParser(taskSplit[3]), taskSplit[1].equals("1"));
             default:
                 return null;
         }

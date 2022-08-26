@@ -76,7 +76,7 @@ public class Duke {
                     int slashPos = curr.indexOf("/by");
                     String taskName = curr.substring(8, slashPos - 1) + " ";
                     String deadline = curr.substring(slashPos + 3);
-                    Deadline newDL = new Deadline(taskName, deadline, false);
+                    Deadline newDL = new Deadline(taskName, Utility.dateParser(deadline), false);
                     Tasklist.add(newDL);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
@@ -91,7 +91,7 @@ public class Duke {
                     int slashPos = curr.indexOf("/at");
                     String taskName = curr.substring(5, slashPos - 1) + " ";
                     String deadline = curr.substring(slashPos + 3);
-                    Event newEvent = new Event(taskName, deadline, false);
+                    Event newEvent = new Event(taskName, Utility.dateParser(deadline), false);
                     Tasklist.add(newEvent);
                     System.out.println(line_divider);
                     System.out.println("Ok I add your task already:");
