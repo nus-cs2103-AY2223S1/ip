@@ -1,10 +1,5 @@
 package mia;
 
-import mia.tasks.Deadline;
-import mia.tasks.Event;
-import mia.tasks.Task;
-import mia.tasks.Todo;
-
 abstract class Command {
     private final Mia context;
     private final boolean isExit;
