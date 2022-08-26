@@ -1,6 +1,9 @@
 package duke;
 
 
+import duke.events.Deadline;
+import duke.events.Event;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
