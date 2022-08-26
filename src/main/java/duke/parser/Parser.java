@@ -4,16 +4,7 @@ import java.time.format.DateTimeParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import duke.commands.Command;
-import duke.commands.DeadlineCommand;
-import duke.commands.DeleteCommand;
-import duke.commands.EventCommand;
-import duke.commands.ExitCommand;
-import duke.commands.HelpCommand;
-import duke.commands.InvalidCommand;
-import duke.commands.ListCommand;
-import duke.commands.MarkCommand;
-import duke.commands.TodoCommand;
+import duke.commands.*;
 import duke.common.Messages;
 
 import duke.exceptions.EmptyBodyException;
@@ -57,6 +48,8 @@ public class Parser {
                 return prepareDelete();
             case ExitCommand.COMMAND_WORD:
                 return new ExitCommand();
+            case FindCommand.COMMAND_WORD:
+                return prepareFindTask();
             default:
                 return new InvalidCommand(Messages.MESSAGE_INVALID_COMMAND);
         }
@@ -120,6 +113,19 @@ public class Parser {
             }
             return new MarkCommand(Integer.parseInt(taskNumber));
         } catch (Exception e) {
+            return new InvalidCommand(e.getMessage());
+        }
+    }
+
+    private Command prepareFindTask() {
+        try {
+            System.out.println(Messages.MESSAGE_FIND_TASK);
+            final String taskSubstring = Ui.readNextLine();
+            if (taskSubstring.equals("")) {
+                throw new EmptyBodyException();
+            }
+            return new FindCommand(taskSubstring);
+        } catch (EmptyBodyException e) {
             return new InvalidCommand(e.getMessage());
         }
     }

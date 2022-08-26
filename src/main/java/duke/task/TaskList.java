@@ -96,6 +96,22 @@ public class TaskList {
         System.out.printf(MESSAGE_TASK_MARKED, taskNumber);
     }
 
+    public void findTask(String taskSubstring) {
+        StringBuilder sb = new StringBuilder();
+        for (Task task : tasks) {
+            if (task.toString().contains(taskSubstring)) {
+                sb.append(task).append("\n");
+            }
+        }
+
+        if (sb.toString().isEmpty()) {
+            System.out.println(MESSAGE_NO_TASK_FOUND);
+        } else {
+            System.out.println(sb);
+        }
+    }
+
+
     private int checkIndex(int taskNumber) throws InvalidInputException {
         int actualTaskIndex = taskNumber - 1;
         if (actualTaskIndex >= tasks.size() || actualTaskIndex < 0) {
