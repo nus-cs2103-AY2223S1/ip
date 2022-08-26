@@ -54,6 +54,10 @@ public abstract class Task {
      *
      * @return String representation.
      */
+    public Boolean findInDescription(String searchString) {
+        return description.contains(searchString);
+    }
+
     @Override
     public String toString() {
         return String.format("[%s] %s", this.getStatusIcon(), description);
