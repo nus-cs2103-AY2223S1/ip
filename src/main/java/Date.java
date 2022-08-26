@@ -1,18 +1,28 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeParseException;
 
 public class Date {
 
     protected LocalDate date = LocalDate.now();
     protected int time;
 
-    public Date(String str) {
+    public Date(String str) throws DukeInvalidDateException {
         String[] splitted = str.split("\\s+");
-        this.date = LocalDate.parse(splitted[0]);
+        this.date = parse(splitted[0]);
         if (splitted.length > 1) {
             this.time = Integer.valueOf(splitted[1]);
         }
+    }
+
+    private LocalDate parse(String str) throws DukeInvalidDateException {
+        LocalDate date;
+        try {
+            date = LocalDate.parse(str);
+        } catch (DateTimeParseException e) {
+            throw new DukeInvalidDateException();
+        }
+        return date;
     }
 
     private String dateToString() {
