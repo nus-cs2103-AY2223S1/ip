@@ -25,9 +25,14 @@ public class Storage {
         BufferedReader br = null;
         String st;
         try {
+            if (!file.exists()) {
+                file.createNewFile();
+            }
             br = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
         while (true) {
             try {
