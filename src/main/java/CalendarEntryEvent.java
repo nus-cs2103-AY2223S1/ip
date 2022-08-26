@@ -1,14 +1,14 @@
 public class CalendarEntryEvent extends CalendarEntry {
-    private String startTime;
-    private String endTime;
-    public CalendarEntryEvent(String title, String startTime, String endTime){
+    private CalendarTime startTime;
+    private CalendarTime endTime;
+    public CalendarEntryEvent(String title, String startTime, String endTime) throws Exception {
         super(title);
-        this.startTime = startTime;
-        this.endTime = endTime;
+        this.startTime = CalendarTime.parseInput(startTime);
+        this.endTime = CalendarTime.parseInput(endTime);
     }
 
     @Override
     public String toString(){
-        return "[E]"+super.toString()+" (at: "+this.startTime +" - "+this.endTime +")";
+        return "[E]"+super.toString()+" (at: "+this.startTime.toString() +" - "+this.endTime.toString() +")";
     }
 }
