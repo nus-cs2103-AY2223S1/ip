@@ -19,7 +19,10 @@ public class Duke {
             try {
                 String line = scanner.nextLine();
                 System.out.println(Ui.divider());
+
+                // Returns 0 if line has parsed without issue, 1 if program has ended
                 int result = this.parser.parse(line, tasks);
+
                 if (result == 1) {
                     break;
                 }
