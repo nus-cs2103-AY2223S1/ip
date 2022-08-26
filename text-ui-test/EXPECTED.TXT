@@ -1,44 +1,44 @@
 
 ====================================================================================================
 [33mBlob says: [0m
-	Hello... me Blob...
-	How can Blob help...?
+	Hello... me blob...
+	How can blob help...?
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Sorry... Blob no understand your command...
+	Sorry... blob no understand your command...
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 0 task(s)...
-	Give Blob task to remember...?
+	blob remembers 0 task(s)...
+	Give blob task to remember...?
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob needs to know details of task...
+	blob needs to know details of task...
 	USAGE: todo/event/deadline <description> (...)
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob will remember task...
+	blob will remember task...
 
 		[T][ ] ToDo task1
 
-	Blob now remembers 1 task(s)...
+	blob now remembers 1 task(s)...
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob needs to know details of task...
+	blob needs to know details of task...
 	USAGE: todo/event/deadline <description> (...)
 ====================================================================================================
 
@@ -46,7 +46,7 @@
 
 ====================================================================================================
 [33mBlob says: [0m
-	Blob needs to know timeframe of your task...
+	blob needs to know timeframe of your task...
 	USAGE: event <description> /by <timeframe>
 ====================================================================================================
 
@@ -54,41 +54,41 @@
 
 ====================================================================================================
 [33mBlob says: [0m
-	Blob will remember task...
+	blob will remember task...
 
 		[E][ ] Event task2 (at: Sunday 2pm-10pm)
 
-	Blob now remembers 2 task(s)...
+	blob now remembers 2 task(s)...
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob needs to know details of task...
+	blob needs to know details of task...
 	USAGE: todo/event/deadline <description> (...)
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob needs to know deadline of your task...
+	blob needs to know deadline of your task...
 	USAGE: deadline <description> /by <deadline>
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob will remember task...
+	blob will remember task...
 
 		[D][ ] Deadline task3.1 (by: Tomorrow)
 
-	Blob now remembers 3 task(s)...
+	blob now remembers 3 task(s)...
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 3 task(s)...
+	blob remembers 3 task(s)...
 
 		1. [T][ ] ToDo task1
 		2. [E][ ] Event task2 (at: Sunday 2pm-10pm)
@@ -99,7 +99,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob congratulates on task well done...
+	blob congratulates on task well done...
 
 		[T][?] ToDo task1
 
@@ -108,7 +108,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 3 task(s)...
+	blob remembers 3 task(s)...
 
 		1. [T][?] ToDo task1
 		2. [E][ ] Event task2 (at: Sunday 2pm-10pm)
@@ -119,7 +119,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob will mark as undone...
+	blob will mark as undone...
 
 		[T][ ] ToDo task1
 
@@ -128,7 +128,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 3 task(s)...
+	blob remembers 3 task(s)...
 
 		1. [T][ ] ToDo task1
 		2. [E][ ] Event task2 (at: Sunday 2pm-10pm)
@@ -139,7 +139,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob congratulates on task well done...
+	blob congratulates on task well done...
 
 		[E][?] Event task2 (at: Sunday 2pm-10pm)
 
@@ -148,7 +148,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 3 task(s)...
+	blob remembers 3 task(s)...
 
 		1. [T][ ] ToDo task1
 		2. [E][?] Event task2 (at: Sunday 2pm-10pm)
@@ -159,7 +159,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob will mark as undone...
+	blob will mark as undone...
 
 		[E][ ] Event task2 (at: Sunday 2pm-10pm)
 
@@ -168,7 +168,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 3 task(s)...
+	blob remembers 3 task(s)...
 
 		1. [T][ ] ToDo task1
 		2. [E][ ] Event task2 (at: Sunday 2pm-10pm)
@@ -179,7 +179,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob congratulates on task well done...
+	blob congratulates on task well done...
 
 		[D][?] Deadline task3.1 (by: Tomorrow)
 
@@ -188,7 +188,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 3 task(s)...
+	blob remembers 3 task(s)...
 
 		1. [T][ ] ToDo task1
 		2. [E][ ] Event task2 (at: Sunday 2pm-10pm)
@@ -199,7 +199,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob will mark as undone...
+	blob will mark as undone...
 
 		[D][ ] Deadline task3.1 (by: Tomorrow)
 
@@ -208,7 +208,7 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 3 task(s)...
+	blob remembers 3 task(s)...
 
 		1. [T][ ] ToDo task1
 		2. [E][ ] Event task2 (at: Sunday 2pm-10pm)
@@ -219,13 +219,13 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob cannot find that task..., maybe task no exist...?
+	blob cannot find that task..., maybe task no exist...?
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob remembers 3 task(s)...
+	blob remembers 3 task(s)...
 
 		1. [T][ ] ToDo task1
 		2. [E][ ] Event task2 (at: Sunday 2pm-10pm)
@@ -236,13 +236,13 @@
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Blob cannot find that task..., maybe task no exist...?
+	blob cannot find that task..., maybe task no exist...?
 ====================================================================================================
 
 >>
 ====================================================================================================
 [33mBlob says: [0m
-	Thanks for talking to Blob...
-	Blob see you soon...
+	Thanks for talking to blob...
+	blob see you soon...
 ====================================================================================================
 
