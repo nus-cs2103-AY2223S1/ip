@@ -2,42 +2,44 @@ package seedu.duke;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
+/**
+ * Represents a list of tasks for Duke.
+ */
 public class TaskList {
 
     public static ArrayList<Task> taskList;
 
+    /**
+     * Creates a list of tasks for Duke.
+     * @param taskList
+     */
     public TaskList(ArrayList<Task> taskList) {
         this.taskList = taskList;
     }
+
+    /**
+     * Represents a list of tasks for Duke.
+     */
     public TaskList() {
         this.taskList = new ArrayList<>();
     }
 
+    /**
+     * Returns ArrayList<Task> of tasks of TaskList object.
+     * @return task list.
+     */
     public ArrayList<Task> getTaskList() {
         return this.taskList;
     }
 
-    public LocalDate getLocalDate(String date) {
-        String[] dateDetails = date.split("-");
-        String day = dateDetails[0];
-        String month = dateDetails[1];
-        String year = dateDetails[2];
-        if (day.length() == 1) {
-            day = "0" + day;
-        }
-        if (month.length() == 1) {
-            month = "0" + month;
-        }
-        List<String> list = Arrays.asList(year, month, day);
 
-        String dateToParse = String.join("-", list);
-        System.out.println(dateToParse);
-        return LocalDate.parse(dateToParse);
-    }
-
+    /**
+     * Adds Task to this.tasklist.
+     * @param taskType Either a "todo", "deadline" or "event"
+     * @param input User input
+     * @throws DukeException
+     */
     public static void addTask(String taskType, String input) throws DukeException {
 
         switch (taskType) {
@@ -97,6 +99,10 @@ public class TaskList {
 
     }
 
+    /**
+     * Removes tasks at ith index of this.tasklist, assuming the this.tasklist starts from index 1.
+     * @param num index of task in this.tasklist.
+     */
     public void deleteTask(int num) {
         System.out.println("Noted. I've removed this task:");
         System.out.println("  " + this.taskList.get(num - 1));
@@ -105,11 +111,19 @@ public class TaskList {
         System.out.println(numTask);
     }
 
+    /**
+     * Marks Task at ith index of this.tasklist as done, assuming the this.tasklist starts from index 1.
+     * @param num index of task in this.tasklist.
+     */
     public void markTask(int num) {
         Task task = this.taskList.get(num - 1);
         task.mark();
     }
 
+    /**
+     * Marks Task at ith index of this.tasklist as undone, assuming the this.tasklist starts from index 1.
+     * @param num index of task in this.tasklist.
+     */
     public void unmarkTask(int num) {
         Task task = this.taskList.get(num - 1);
         task.unmark();
@@ -127,6 +141,9 @@ public class TaskList {
         return matchingTasks;
     }
 
+    /**
+     * Prints tasks in data/duke.txt when Duke is initialized.
+     */
     public void printList() {
         System.out.println("Here are the tasks in your list:");
         for (int i = 0; i < this.taskList.size(); i++) {
@@ -134,10 +151,4 @@ public class TaskList {
             System.out.println(line);
         }
     }
-
-
-//    public String toString() {
-//        String output = String.join("\n", this.taskList);
-//    }
-
 }

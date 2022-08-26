@@ -1,7 +1,14 @@
 package seedu.duke;
 
+/**
+ * Represents a ToDo task.
+ */
 public class ToDo extends Task {
 
+    /**
+     * Creates a ToDo task.
+     * @param description description of ToDo task.
+     */
     public ToDo(String description) {
         super(description);
     }

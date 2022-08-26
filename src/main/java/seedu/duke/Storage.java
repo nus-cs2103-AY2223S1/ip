@@ -10,6 +10,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Represents the Storage for Duke.
+ */
 public class Storage {
 
     public String filePath;
@@ -21,12 +24,22 @@ public class Storage {
     }
 
 
+    /**
+     * Returns list of tasks in an ArrayList based on lines in data/duke.txt
+     * @return list of tasks.
+     * @throws FileNotFoundException
+     */
     public ArrayList<Task> load() throws FileNotFoundException{
         ArrayList<Task> taskList = new ArrayList<>();
         this.getTasks(taskList);
         return taskList;
     }
 
+    /**
+     * Returns LocalDate object of task.
+     * @param date given by user input
+     * @return LocalDate object.
+     */
     public static LocalDate getLocalDate(String date) {
         String[] dateDetails = date.split("-");
         String day = dateDetails[0];
@@ -45,6 +58,12 @@ public class Storage {
         return LocalDate.parse(dateToParse);
     }
 
+    /**
+     * Adds ToDo object to tasklist in TaskList.
+     * @param taskList this.tasklist of TaskList object.
+     * @param isMarked true if the task being read is marked.
+     * @param description Task description.
+     */
     public void addToDo(ArrayList<Task> taskList, String isMarked, String description) {
 //        System.out.println("added T");
         ToDo todo = new ToDo(description);
@@ -54,6 +73,14 @@ public class Storage {
         taskList.add(todo);
     }
 
+    /**
+     * Adds Deadline or Event object to tasklist in TaskList.
+     * @param taskList this.tasklist of TaskList object.
+     * @param s String differentiates between a Deadline or Event object.
+     * @param isMarked true if the task being read is marked.
+     * @param description Task description.
+     * @param datetime String datetime based on user input.
+     */
     public void addDeadlineOrEvent(ArrayList<Task> taskList, String s, String isMarked, String description, String datetime){
 //        System.out.println("type:" + s);
         if (s.equals("D")){
@@ -88,6 +115,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Reads lines from data/duke.txt and updates Duke.tasks with tasks stored in duke.txt.
+     * @param taskList tasklist of Storage object.
+     * @throws FileNotFoundException
+     */
     // settled reading task from text file
     public void getTasks(ArrayList<Task> taskList) throws FileNotFoundException{
         File f = new File("data/duke.txt");
@@ -103,15 +135,32 @@ public class Storage {
         }
     }
 
+    /**
+     * Returns the string representation of the Event object.
+     * @param event
+     * @return string representation of the Event object.
+     */
     public static String getEventDueDate(Event event) {
         return event.getDueTime();
     }
+
+    /**
+     * Returns the string representation of the Deadline object.
+     * @param deadline
+     * @return string representation of the Deadline object.
+     */
     public static String getDeadlineDueDate(Deadline deadline) {
         return deadline.dueDateToString();
     }
 
     // delete file, add lines to write, put string together and write in file writer
     // NEVER DELETE WRITE THE FILE IN THE SAME METHOD
+
+    /**
+     * Updates data/duke.txt whenever there is a change to the list of tasks.
+     * @param tl
+     * @throws IOException
+     */
     public static void rewriteTasks(TaskList tl) throws IOException{
         ArrayList<Task> currTaskList = tl.taskList;
         String path = "data/duke.txt";
