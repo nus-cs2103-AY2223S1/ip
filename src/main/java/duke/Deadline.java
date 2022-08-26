@@ -3,10 +3,11 @@ package duke;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+
 /**
  * Task with a date to complete the task by
  */
-public class Deadline extends Task{
+public class Deadline extends Task {
     /**
      * Deadline object by field which indicates the deadline
      */
