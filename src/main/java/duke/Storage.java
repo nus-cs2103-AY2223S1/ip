@@ -1,3 +1,10 @@
+package duke;
+
+import duke.tasks.DeadlinesTask;
+import duke.tasks.EventTask;
+import duke.tasks.Task;
+import duke.tasks.TodoTask;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -40,13 +47,13 @@ public class Storage {
         boolean isMarked = entryArray[1].equals("X");
         Task newTask;
         if (taskType.equals("T")) {
-            newTask = new Todo(name);
+            newTask = new TodoTask(name);
         } else if (taskType.equals("D")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HHmm");
             LocalDateTime date = LocalDateTime.parse(entryArray[3], formatter);
-            newTask = new Deadlines(name, date);
+            newTask = new DeadlinesTask(name, date);
         } else {
-            newTask = new Event(name, entryArray[3]);
+            newTask = new EventTask(name, entryArray[3]);
         }
 
         if (isMarked) {

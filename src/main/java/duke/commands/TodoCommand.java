@@ -1,15 +1,19 @@
-public class EventCommand implements Command {
-    private String eventName;
-    private String eventLocationString;
+package duke.commands;
 
-    public EventCommand(String eventName, String eventLocationString) {
-        this.eventName = eventName;
-        this.eventLocationString = eventLocationString;
+import duke.tasks.TodoTask;
+import duke.TaskList;
+import duke.Storage;
+import duke.DukeException;
+public class TodoCommand implements Command {
+    private String taskName;
+
+    public TodoCommand(String taskName) {
+        this.taskName = taskName;
     }
 
     @Override
     public void execute(TaskList tasks, Storage storage) throws DukeException {
-        Event newTask = new Event(eventName,eventLocationString);
+        TodoTask newTask = new TodoTask(taskName);
         tasks.add(newTask);
         System.out.println("Got it. I've added this task:");
         System.out.println(newTask);

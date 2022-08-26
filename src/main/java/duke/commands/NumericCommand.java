@@ -1,3 +1,7 @@
+package duke.commands;
+import duke.TaskList;
+import duke.Storage;
+import duke.DukeException;
 public class NumericCommand implements Command {
     private String command;
     private int index;

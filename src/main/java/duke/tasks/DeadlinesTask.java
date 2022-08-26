@@ -1,10 +1,11 @@
+package duke.tasks;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Deadlines extends Task {
+public class DeadlinesTask extends Task {
     private LocalDateTime deadline;
 
-    public Deadlines(String name, LocalDateTime deadline) {
+    public DeadlinesTask(String name, LocalDateTime deadline) {
         super(name);
         this.deadline = deadline;
     }

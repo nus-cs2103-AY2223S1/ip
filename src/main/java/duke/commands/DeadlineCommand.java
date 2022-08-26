@@ -1,3 +1,9 @@
+package duke.commands;
+
+import duke.tasks.DeadlinesTask;
+import duke.TaskList;
+import duke.Storage;
+import duke.DukeException;
 import java.time.LocalDateTime;
 
 public class DeadlineCommand implements Command {
@@ -11,7 +17,7 @@ public class DeadlineCommand implements Command {
 
     @Override
     public void execute(TaskList tasks, Storage storage) throws DukeException {
-        Deadlines newTask = new Deadlines(taskName, deadlineDate);
+        DeadlinesTask newTask = new DeadlinesTask(taskName, deadlineDate);
         tasks.add(newTask);
         System.out.println("Got it. I've added this task:");
         System.out.println(newTask);

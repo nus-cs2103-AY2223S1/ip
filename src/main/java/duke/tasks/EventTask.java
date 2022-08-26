@@ -1,7 +1,9 @@
-public class Event extends Task {
+package duke.tasks;
+
+public class EventTask extends Task {
     private String time;
 
-    public Event(String name, String time) {
+    public EventTask(String name, String time) {
         super(name);
         this.time = time;
     }
