@@ -1,4 +1,8 @@
+package duke;
+
 import java.util.ArrayList;
+
+import duke.task.Task;
 
 public class TaskList {
     private ArrayList<Task> list;
@@ -25,7 +29,7 @@ public class TaskList {
             task = this.list.get(taskIndex);
             this.list.remove(taskIndex);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Task number doesn't exist!");
+            throw new DukeException("duke.task.Task number doesn't exist!");
         }
         return task.toString();
     }
@@ -36,7 +40,7 @@ public class TaskList {
             task = this.list.get(taskIndex);
             task.markTask(done);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeException("Task number doesn't exist!");
+            throw new DukeException("duke.task.Task number doesn't exist!");
         }
         return task.toString();
     }

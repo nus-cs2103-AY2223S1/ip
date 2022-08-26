@@ -1,9 +1,23 @@
+package duke;
+
+import duke.command.Command;
+import duke.command.AddCommand;
+import duke.command.DeleteCommand;
+import duke.command.ExitCommand;
+import duke.command.ListCommand;
+import duke.command.MarkCommand;
+
+import duke.task.Task;
+import duke.task.Deadline;
+import duke.task.Todo;
+import duke.task.Event;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 public class Parser {
     public static Command parseInput(String input) throws DukeException {
-        //todo: initialize different command objects
+        //todo: initialize different duke.command objects
         if (input.equals("bye")) {
             return new ExitCommand();
         }
@@ -26,7 +40,7 @@ public class Parser {
             try {
                 taskIndex = Integer.parseInt(parts[1]) - 1;
             } catch (NumberFormatException e) {
-                throw new DukeException("Please enter a valid task number! mark/unmark <item number>\ne.g. 'mark 3'");
+                throw new DukeException("Please enter a valid duke.task number! mark/unmark <item number>\ne.g. 'mark 3'");
             }
 
             return new MarkCommand(mark, taskIndex);
@@ -45,7 +59,7 @@ public class Parser {
             try {
                 taskIndex = Integer.parseInt(parts[1]) - 1;
             } catch (NumberFormatException e) {
-                throw new DukeException("Please enter a valid task number! delete <item number>\ne.g. 'delete 3'");
+                throw new DukeException("Please enter a valid duke.task number! delete <item number>\ne.g. 'delete 3'");
             }
 
             return new DeleteCommand(taskIndex);
@@ -79,11 +93,11 @@ public class Parser {
             try {
                 String inputDate = details[1].trim();
                 if (inputDate.equals("")) {
-                    throw new DukeException("A deadline needs a by date! e.g. deadline buy dinner /by 6pm");
+                    throw new DukeException("A deadline needs a by date! e.g. deadline complete homework /by 2022-04-05");
                 }
                 date = LocalDate.parse(inputDate);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("A deadline needs a by date! e.g. deadline buy dinner /by 6pm");
+                throw new DukeException("A deadline needs a by date! e.g. deadline complete homework /by 2022-04-05");
             } catch (DateTimeParseException e) {
                 throw new DukeException("Date must be in proper format!");
             }
@@ -108,11 +122,11 @@ public class Parser {
             try {
                 String inputDate = details[1].trim();
                 if (inputDate.equals("")) {
-                    throw new DukeException("An event needs a date! e.g. event meeting /at 2pm-4pm");
+                    throw new DukeException("An event needs a date! e.g. event meeting /at 2023-04-05");
                 }
                 date = LocalDate.parse(inputDate);
             } catch (ArrayIndexOutOfBoundsException e) {
-                throw new DukeException("An event needs a date! e.g. event meeting /at 2pm-4pm");
+                throw new DukeException("An event needs a date! e.g. event meeting /at 2023-04-05");
             } catch (DateTimeParseException e) {
                 throw new DukeException("Date must be in proper format!");
             }

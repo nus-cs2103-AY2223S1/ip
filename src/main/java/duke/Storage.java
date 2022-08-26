@@ -1,8 +1,17 @@
+package duke;
+
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.Task;
+import duke.task.Todo;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+
 import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -50,7 +59,7 @@ public class Storage {
         }
 
         while (sc.hasNext()) {
-            //store each task into an array
+            //store each duke.task into an array
             String taskString = sc.nextLine();
             String[] taskData = taskString.split("\\|");
 
@@ -59,7 +68,7 @@ public class Storage {
                 taskData[i] = taskData[i].trim();
             }
 
-            //organise task data into named variables
+            //organise duke.task data into named variables
             String taskType = taskData[0];
             boolean isTaskDone = taskData[1].equals("1");
             String taskDescription = taskData[2];
@@ -68,7 +77,7 @@ public class Storage {
                 taskDate = LocalDate.parse(taskData[3]);
             }
 
-            //Create task and add to list
+            //Create duke.task and add to list
             Task newTask;
             switch (taskType) {
                 case "T":
@@ -81,7 +90,7 @@ public class Storage {
                     newTask = new Event(isTaskDone, taskDescription, taskDate);
                     break;
                 default:
-                    throw new DukeException("Task type not defined!");
+                    throw new DukeException("duke.task.Task type not defined!");
             }
 
             loadedTasks.add(newTask);
