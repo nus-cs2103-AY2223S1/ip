@@ -18,6 +18,12 @@ public class TaskList {
         return this.taskList;
     }
 
+    /**
+     * Lists out all the tasks currently
+     * in the task list
+     *
+     * @return String list of tasks
+     */
     public String handleList(){
         String log = "Tasks that you have:";
         for (int i = 0; i < taskList.size(); i++) {
@@ -25,6 +31,15 @@ public class TaskList {
         }
         return log;
     }
+
+    /**
+     * Marks the task specified as done
+     *
+     * @param cmd User input
+     * @return String Mark message
+     * @throws IncompleteParamException incomplete cmd
+     * @throws OutOfListException Task number is not within list
+     */
 
     public String handleMark(String cmd) throws DukeException {
         int min_length = "mark ".length();
@@ -42,6 +57,14 @@ public class TaskList {
         }
     }
 
+    /**
+     * Marks the task specified as undone
+     *
+     * @param cmd User input
+     * @return String Unmark message
+     * @throws IncompleteParamException incomplete cmd
+     * @throws OutOfListException Task number is not within list
+     */
     public String handleUnmark(String cmd) throws DukeException {
         int min_length = "unmark ".length();
         if (cmd.length() <= min_length) {
@@ -59,8 +82,13 @@ public class TaskList {
         }
     }
 
-
-
+    /**
+     * Creates new ToDo task to be added into task list.
+     *
+     * @param cmd User input
+     * @return String Add message
+     * @throws IncompleteParamException incomplete cmd
+     */
     public String handleToDo(String cmd) throws DukeException{
         int min_length = "todo ".length();
         if (cmd.length() <= min_length) {
@@ -73,6 +101,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Creates new Deadline task to be added into task list.
+     *
+     * @param cmd User input
+     * @return String Add message
+     * @throws IncompleteParamException incomplete cmd
+     */
     public String handleDeadline(String cmd) throws DukeException {
         int endPointer = cmd.indexOf('/');
         if (cmd.length() <= endPointer + 3 || endPointer == -1) {
@@ -86,6 +121,13 @@ public class TaskList {
         }
     }
 
+    /**
+     * Creates new Event task to be added into task list.
+     *
+     * @param cmd User input
+     * @return String Add message
+     * @throws IncompleteParamException incomplete cmd
+     */
     public String handleEvent(String cmd) throws DukeException {
         int endPointer = cmd.indexOf('/');
         if (cmd.length() <= endPointer + 3 || endPointer == -1) {
@@ -100,6 +142,14 @@ public class TaskList {
         }
     }
 
+    /**
+     * Deletes task from list
+     *
+     * @param cmd User input
+     * @return String Delete message
+     * @throws IncompleteParamException incomplete cmd
+     * @throws OutOfListException Task number is not within list
+     */
     public String handleDelete(String cmd) throws DukeException{
         int min_length = "delete ".length();
         if (cmd.length() <= min_length) {

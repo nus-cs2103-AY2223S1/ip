@@ -7,6 +7,12 @@ public class Parser {
     private TaskList taskList;
     private Storage storage;
 
+    /**
+     * Constructor to create instance of Parser
+     * which will make sense of user input
+     * Loads the file from data
+     *
+     */
     public Parser(Ui ui,Storage storage) {
         this.ui = ui;
         this.storage = storage;
@@ -17,6 +23,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Processes the user input and if
+     * it is exiting, will return false
+     * else return true
+     *
+     * @return Boolean of the process
+     */
     public Boolean process(String cmd) {
         try {
             if (cmd.toLowerCase().equals("bye")) {

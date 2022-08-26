@@ -10,10 +10,21 @@ import java.io.File;
 public class Storage {
     private final String pathFile;
 
+    /**
+     * Constructor to create instance of Storage
+     *
+     * @param pathFile path
+     */
     public Storage(String pathFile){
         this.pathFile = pathFile;
     }
 
+    /**
+     * Saves the taskList into a file
+     * in the path
+     *
+     * @param taskList List of tasks
+     */
     public void save(ArrayList<Task> taskList){
         try{
             FileWriter fw = new FileWriter(pathFile,false);
@@ -28,6 +39,13 @@ public class Storage {
         }
     }
 
+    /**
+     * Loads the taskList from the file
+     * in the path
+     *
+     * @return Task List
+     * @throws IOException If IO error occurs
+     */
     public TaskList load() throws IOException{
         TaskList taskList = new TaskList();
         File file = new File(this.pathFile);
@@ -56,8 +74,4 @@ public class Storage {
         }
         return taskList;
     }
-
-
-
-
 }

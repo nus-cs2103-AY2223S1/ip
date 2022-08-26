@@ -21,11 +21,22 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Returns the new format of String
+     * to be loaded
+     *
+     * @return String
+     */
     public String changeFormat() {
         String done = isDone ? "1" : "0";
         return "|" + done + "|" + this.description;
     }
 
+    /**
+     * Returns the String of the Object
+     *
+     * @return String
+     */
     @Override
     public String toString(){
         return "[" + this.getStatusIcon() + "]" + " " + this.description;
