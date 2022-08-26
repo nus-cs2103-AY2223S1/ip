@@ -6,8 +6,8 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Duke {
-    private String greeting = "Hello";
-    private String bye = "Goodbye";
+    private final String GREETING = "Hello";
+    private final String BYE = "Goodbye";
     private ArrayList<Task> list = new ArrayList<>();
     private File directory = new File("data");
     private File file = new File("data/duke.txt");
@@ -70,11 +70,11 @@ public class Duke {
     }
 
     public void doGreeting() {
-        System.out.println(this.greeting);
+        System.out.println(this.GREETING);
     }
 
     public void doBye() {
-        System.out.println(this.bye);
+        System.out.println(this.BYE);
     }
 
     public boolean isBye(String input) {
@@ -170,7 +170,7 @@ public class Duke {
                 throw new DukeException("Oops, no deadline given for deadline task.");
             }
             String[] str = input.split(" /by ", 2);
-            String s1 = str[0].substring(9, str[0].length());
+            String s1 = str[0].substring(9);
             this.addTask("deadline", s1, str[1]);
         } else if (input.startsWith("event")) {
             if (input.length() < 7) {
