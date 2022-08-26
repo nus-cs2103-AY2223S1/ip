@@ -4,13 +4,18 @@ import duke.tools.Parser;
 
 import java.time.LocalDateTime;
 
+/**
+ * Represents an event task.
+ */
 public class Event extends Task {
+    /** Date and time of event */
     private LocalDateTime dateAndTime;
 
     /**
-     * Constructor for Event class.
-     * @param description Description for event
-     * @param dateAndTime Date and time of event
+     * Constructs an event with specified description and date time.
+     *
+     * @param description Description of event.
+     * @param dateAndTime Date and time of event.
      */
     public Event(String description, Boolean isDone, LocalDateTime dateAndTime) {
         super(description);
@@ -20,6 +25,9 @@ public class Event extends Task {
         this.dateAndTime = dateAndTime;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String taskToDataString() {
         String isDone;
@@ -32,6 +40,11 @@ public class Event extends Task {
                 Parser.formatDateTimeToData(dateAndTime));
     }
 
+    /**
+     * Returns string representation of event task.
+     *
+     * @return String representation.
+     */
     @Override
     public String toString() {
         return String.format("[E]%s (at: %s)", super.toString(),
