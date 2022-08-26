@@ -107,4 +107,27 @@ public class TaskList {
     public int getSize() {
         return tasks.size();
     }
+
+  /**
+   * Searches through its tasks whos descriptions fit the input String.
+   *
+   * @param searchString The String to be used to search the tasks.
+   * @return A <code>TaskList<Task></code> containing the tasks,
+   */
+  public TaskList searchUsingString(String searchString) {
+    ArrayList<Task> foundTasks = new ArrayList<Task>();
+    for (Task task : tasks) {
+      if (task.taskDescription != null) {
+        if (task.taskDescription.contains(searchString)) {
+          foundTasks.add(task);
+        }
+      } else if (task.miscDescription != null) {
+        if (task.miscDescription.contains(searchString)) {
+          foundTasks.add(task);
+        }
+      }
+    }
+
+    return new TaskList(foundTasks);
+  }
 }

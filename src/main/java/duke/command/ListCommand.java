@@ -11,8 +11,12 @@ import duke.ui.Ui;
 public class ListCommand extends Command {
 
     /**
-     * Initialises a ListCommand to store the details of the
-     * user's input and the TaskList.
+     * Initialises a ListCommand.
+     *
+     * @param commandArgs An array of Strings containing information
+     * pertaining to this specific mark command.
+     * @param tasks An <code>ArrayList<Task></code>, containing the
+     * current existing tasks in the programme.
      */
     public ListCommand(String[] commandArgs, TaskList tasks) {
         super(commandArgs, tasks);
@@ -20,11 +24,13 @@ public class ListCommand extends Command {
 
     /**
      * Lists all the tasks of the user's TaskList.
-     * Returns true to indicate that the programme should continue
-     * prompting for user input.
+     *
+     * @return Returns true for the main Duke class to know to
+     * continue asking for input.
      */
     @Override
     public boolean performAction() {
+        Ui.print("Sweetie, here is the list of tasks that you have <3");
         tasks.list();
         return true;
     }
