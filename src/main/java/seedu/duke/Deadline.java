@@ -1,8 +1,6 @@
 package seedu.duke;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 public class Deadline extends Task {
     protected String by;
