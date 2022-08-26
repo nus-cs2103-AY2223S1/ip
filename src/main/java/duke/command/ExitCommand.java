@@ -14,7 +14,7 @@ public class ExitCommand extends Command {
     private Ui ui;
 
     /**
-     * Creates DeleteCommand with the given TasksList, Storage, and Ui.
+     * Creates ExitCommand with the given TasksList, Storage, and Ui.
      *
      * @param ui The Ui to end the session with.
      * @param storage The Storage associated with the TasksList.

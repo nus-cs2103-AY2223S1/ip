@@ -11,6 +11,6 @@ public class InvalidCommand extends Command {
      */
     @Override
     public void execute() throws DukeException {
-        throw new DukeException("Unknown command. Please try again.");
+        throw new DukeException("Unknown command, please try again! Type \"help\" for a list of commands.");
     }
 }
