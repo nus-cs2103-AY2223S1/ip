@@ -1,3 +1,5 @@
+package duke;
+
 public class Parser {
     private Command command;
     private String args;
