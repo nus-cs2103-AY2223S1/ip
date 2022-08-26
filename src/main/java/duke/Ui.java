@@ -78,8 +78,8 @@ public class Ui {
     /**
      * Display for users to notify them that the system is saving their task list.
      */
-    public void showSaving() {
-        System.out.println("Saving your current task list...");
+    public void showBye() {
+        System.out.println("Thank you for the great chat!\n\nSaving your current task list...");
     }
 
     /**
@@ -94,5 +94,9 @@ public class Ui {
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + "." + tasks.get(i));
         }
+    }
+
+    public void showUnknown() {
+        System.out.println("OOPS!! I'm sorry, but I don't know what that means :-(");
     }
 }

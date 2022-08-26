@@ -1,5 +1,5 @@
   [T] [ ] Buy eggs
   [T] [X] Charge laptop
-  [D] [ ] Watch MA2104 Lecture (by: 2022-08-24)
   [E] [ ] Attend Web3 Meetup (at: Raffles Place)
-  [T] [X] Finish 2103T Project
+  [D] [ ] Drink water (by: 2022-08-26)
+  [E] [ ] Huiwen's Birthday (at: Huiwen's house)
