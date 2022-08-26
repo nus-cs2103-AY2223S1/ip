@@ -1,4 +1,6 @@
 [T][] 1
-[D][X] do Homework (by: Monday)
+[T][X] 1
+[T][] 3
+[T][] 1
 [T][] 2
-[E][] outing 1 (at: Monday)
+[D][X] proj (by: Aug 20 2022)

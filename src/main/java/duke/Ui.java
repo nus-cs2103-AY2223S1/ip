@@ -1,5 +1,7 @@
 package duke;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Ui {
     public void greetUi() {
@@ -48,11 +50,24 @@ public class Ui {
     public void markHelperUi(Task task) {
         System.out.println("Nice! I've marked this task as done:");
         System.out.println(task.toString());
-
     }
 
     public void unmarkHelperUi(Task task) {
         System.out.println("OK, I've marked this task as not done yet:");
         System.out.println(task.toString());
     }
+//    public String readCommand() {
+//        Scanner input = new Scanner(System.in);
+//        String s = "";
+//        while (input.hasNext()) {
+//             s = input.nextLine();
+//             Parser parser = new Parser(s);
+//             if (parser.isSubStringForExitCommand()){
+//                 ExitCommand exitCommand = new ExitCommand();
+//                 exitCommand.execute(s,listOfTask,ui,storage);
+//                 break;
+//             }
+//        }
+//        return s;
+//    }
 }
