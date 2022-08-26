@@ -8,13 +8,13 @@ import java.util.ArrayList;
 public class DeadlineCommand extends Command{
 
     @Override
-    void execute(String taskName, ArrayList<Task> listOfTasks, Ui ui, Storage storage) throws IOException, DukeDeadlineEmptyException {
-        if(taskName.length() == 8){
+    void execute(String fullCommand, ArrayList<Task> listOfTasks, Ui ui, Storage storage) throws IOException, DukeDeadlineEmptyException {
+        if(fullCommand.length() == 8){
             throw new DukeDeadlineEmptyException();
         }
-        int index = taskName.indexOf("/");
-        String subS = taskName.substring(9, index - 1);
-        String subString = taskName.substring(index + 4);
+        int index = fullCommand.indexOf("/");
+        String subS = fullCommand.substring(9, index - 1);
+        String subString = fullCommand.substring(index + 4);
         TaskList taskList = new TaskList(listOfTasks);
         try {
             LocalDate date = LocalDate.parse(subString);
