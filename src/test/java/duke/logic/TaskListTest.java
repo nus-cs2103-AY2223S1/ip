@@ -1,4 +1,4 @@
-package duke.task;
+package duke.logic;
 
 import duke.logic.Storage;
 import duke.logic.TaskList;

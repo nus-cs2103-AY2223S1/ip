@@ -1,9 +1,9 @@
-package duke.task;
+package duke.logic;
 
 import duke.command.*;
-import duke.logic.Parser;
-import duke.logic.Storage;
-import duke.logic.TaskList;
+import duke.task.Deadline;
+import duke.task.Event;
+import duke.task.ToDo;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
