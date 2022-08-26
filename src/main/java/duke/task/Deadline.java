@@ -39,6 +39,6 @@ public class Deadline extends Task {
   @Override
   public String[] getPrintRepresentation() {
     String[] strArray = super.getPrintRepresentation();
-    return new String[]{"Deadline", strArray[1], strArray[2], this.dateTime.toString()};
+    return new String[] { "Deadline", strArray[1], strArray[2], this.dateTime.toString() };
   }
 }

@@ -8,8 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 /**
- * UI of the application
- * Inspired by AddressBook
+ * UI of the application Inspired by AddressBook
  */
 public class Ui {
     private final BufferedReader in;
