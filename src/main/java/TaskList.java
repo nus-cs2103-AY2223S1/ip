@@ -10,17 +10,6 @@ public class TaskList {
         this.addCommands = new ArrayList<>();
     }
 
-    // takes in a string of add commands
-    public TaskList(String commands) {
-        this.tasks = new ArrayList<>();
-        this.addCommands = new ArrayList<>();
-        String[] commandArr = commands.split("\n");
-        for(String commandString: commandArr) {
-            Command command = Parser.parse(commandString, this);      // should get the command, then execute it to change the task list
-            command.execute();
-        }
-    }
-
     public void add(Task task, String command) {
         this.tasks.add(task);
         this.addCommands.add(command);
