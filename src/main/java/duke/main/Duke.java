@@ -97,8 +97,7 @@ public class Duke {
     }
 
     /**
-     * Initiate the running loop.
-     * Will exit when <code>handleInput</code> returns false.
+     * Initiate the running loop. Will exit when <code>handleInput</code> returns false.
      */
     public void run() {
         while (handleInput()) {

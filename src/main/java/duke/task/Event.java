@@ -8,8 +8,7 @@ import duke.util.ParsedData;
 import duke.util.Parser;
 
 /**
- * Task that potentiall have a duration/start time
- * Identified by /at
+ * Task that potentiall have a duration/start time Identified by /at
  */
 public class Event extends Task {
     private static final String SPLIT = "/at ";
@@ -41,7 +40,7 @@ public class Event extends Task {
      * Creates Deadline given the 2 seperate information.
      * 
      * @param description Description of Task
-     * @param period      When/where its at
+     * @param period When/where its at
      * @return Event
      * @throws CorruptedLineException Throws when data given is invalid/insufficient
      */
@@ -53,8 +52,7 @@ public class Event extends Task {
     }
 
     /**
-     * {@inheritDoc}
-     * Adds [E] tag to identify as event
+     * {@inheritDoc} Adds [E] tag to identify as event
      * 
      * @return String
      */

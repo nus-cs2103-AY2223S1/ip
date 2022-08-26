@@ -32,7 +32,7 @@ public class EventCommand extends DataCommand {
      * Creates a new Event task and prints it to screen.
      * 
      * @throws DukeException Thrown when input data is invalid
-     * @throws IOException   Thrown when data failed to be saved
+     * @throws IOException Thrown when data failed to be saved
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {

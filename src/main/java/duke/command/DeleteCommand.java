@@ -29,11 +29,10 @@ public class DeleteCommand extends DataCommand {
     }
 
     /**
-     * {@inheritDoc}
-     * Removes the task given by the index (description of parsed data).
+     * {@inheritDoc} Removes the task given by the index (description of parsed data).
      * 
      * @throws DukeException Thrown when invalid index is given
-     * @throws IOException   Thrown when saving to file failed
+     * @throws IOException Thrown when saving to file failed
      */
     @Override
     public void execute(TaskList tasks, DukeIo io, Storage storage) throws DukeException, IOException {

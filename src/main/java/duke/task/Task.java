@@ -47,8 +47,7 @@ public abstract class Task implements Comparable<Task> {
     }
 
     /**
-     * {@inheritDoc}
-     * Compares order based on data assigned to task.
+     * {@inheritDoc} Compares order based on data assigned to task.
      * 
      * @param o The other task
      * @return a task is bigger if its time higher and biggest if non-existent

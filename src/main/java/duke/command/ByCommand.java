@@ -24,8 +24,7 @@ public class ByCommand extends DataCommand {
     }
 
     /**
-     * {@inheritDoc}
-     * Prints all task (with datetime assigned) that is before the specified date.
+     * {@inheritDoc} Prints all task (with datetime assigned) that is before the specified date.
      * 
      * @throws InvalidTimeFormatException raised if no datetime format is detected
      */

@@ -3,7 +3,7 @@ package duke.exceptions;
 /**
  * Parent class of all Duke related class.
  */
-abstract public class DukeException extends Exception {
+public abstract class DukeException extends Exception {
 
     /**
      * Parent of all Duke related component

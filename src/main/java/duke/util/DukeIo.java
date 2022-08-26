@@ -33,9 +33,7 @@ public class DukeIo {
     }
 
     /**
-     * Prints Text with selected features
-     * 0b01 -> with indent
-     * 0b10 -> with line wrapping
+     * Prints Text with selected features 0b01 -> with indent 0b10 -> with line wrapping
      * 
      * @param txt
      * @param features

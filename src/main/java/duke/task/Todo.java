@@ -41,8 +41,7 @@ public class Todo extends Task {
     }
 
     /**
-     * {@inheritDoc}
-     * Adds [T] to identify as Todo task
+     * {@inheritDoc} Adds [T] to identify as Todo task
      * 
      * @return String
      */
