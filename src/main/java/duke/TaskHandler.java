@@ -5,14 +5,17 @@ package duke;
  */
 public class TaskHandler {
     private TaskList taskList;
+    private Ui ui;
 
     /**
      * Default constructor for TaskHandler.
      *
      * @param taskList TaskList to edit the list.
      */
-    public TaskHandler(TaskList taskList) {
+
+    public TaskHandler(TaskList taskList, Ui ui) {
         this.taskList = taskList;
+        this.ui = ui;
     }
 
     /**
@@ -38,9 +41,9 @@ public class TaskHandler {
      *
      * @param input Input to be marked in the list.
      */
-    public static void markChild(String input) {
+    public void markChild(String input) {
         int index = Integer.parseInt(input.substring(5)) - 1;
-        TaskList.markChild(index);
+        taskList.markChild(index);
     }
 
     /**
@@ -48,8 +51,13 @@ public class TaskHandler {
      *
      * @param input Input to be unmarked in the list.
      */
-    public static void unmarkChild(String input) {
+    public void unmarkChild(String input) {
         int index = Integer.parseInt(input.substring(7)) - 1;
-        TaskList.unmarkChild(index);
+        taskList.unmarkChild(index);
+    }
+
+    public void findTask(String input) {
+        String formattedInput = input.substring(5);
+        taskList.find(formattedInput);
     }
 }

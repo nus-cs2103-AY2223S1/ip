@@ -1,4 +1,5 @@
 package duke;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -6,12 +7,13 @@ public class TaskList {
 
     /**
      * Copies contents of old list into new list.
-     * @param oldArr the old array to be copied from.
+     * @param newArr the new arraylist to be copied into.
      */
-    static void copyList(ArrayList<Task> oldArr) {
-        for (int i = 1; i <= oldArr.size(); i++) {
-            taskList.add(oldArr.get(i-1));
+    static ArrayList<Task> copyToList(ArrayList<Task> newArr) {
+        for (int i = 1; i <= taskList.size(); i++) {
+            newArr.add(taskList.get(i - 1));
         }
+        return newArr;
     }
 
     public static void add(String input) {
@@ -23,8 +25,7 @@ public class TaskList {
                         String newInput = input.replace("todo ", "");
                         if (newInput.trim().length() == 0) {
                             throw new DukeToDoIncorrectException();
-                        }
-                        else {
+                        } else {
                             Todo todoTask = new Todo(newInput);
                             taskList.add(todoTask);
                             newTask = todoTask;
@@ -66,6 +67,7 @@ public class TaskList {
         }
 
     }
+
     public static void delete(String input) {
         if (!input.equals("delete")) {
             try {
@@ -83,12 +85,12 @@ public class TaskList {
     /**
      * Method to show contents of list.
      */
-    static void showList() {
+    public static void showList() {
         if (taskList.size() == 0) {
             System.out.println(new DukeException("ERROR: empty list.").getMessage());
         }
         for (int i = 1; i <= taskList.size(); i++) {
-            Task currTask = taskList.get(i-1);
+            Task currTask = taskList.get(i - 1);
             System.out.println(i + "." + currTask.toString());
         }
     }
@@ -101,5 +103,19 @@ public class TaskList {
     static void unmarkChild(int index) {
         taskList.get(index).unmark();
         Ui.unmarkMsg(index);
+    }
+
+    public static void find(String input) {
+        Ui.resultsMsg();
+        ArrayList<Task> temp = new ArrayList<>();
+        copyToList(temp).removeIf(s -> !s.getDescription().contains(input));
+        ;
+        if (temp.size() == 0) {
+            System.out.println(new DukeException("ERROR: empty list.").getMessage());
+        }
+        for (int i = 1; i <= temp.size(); i++) {
+            Task currTask = temp.get(i - 1);
+            System.out.println(i + "." + currTask.toString());
+        }
     }
 }
