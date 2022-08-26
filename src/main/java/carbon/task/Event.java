@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.Temporal;
 
+/**
+ * Encapsulates information regarding Events.
+ */
 public class Event extends Task {
     public static final String FLAG = " /at";
     private static final int TYPEKEY = Task.getTypeKey(Task.Type.EVENT);
@@ -59,7 +62,12 @@ public class Event extends Task {
         }
     }
 
-
+    /**
+     * Creates a new Task object.
+     *
+     * @param input User input.
+     * @return Task object.
+     */
     public static Task createTask(String input) {
         String name = Event.extractName(input);
         Temporal dateTime = Event.extractTime(input);
@@ -67,6 +75,14 @@ public class Event extends Task {
         return event;
     }
 
+    /**
+     * Loads a task that was saved.
+     *
+     * @param name Name of the task.
+     * @param isDone Whether the task is done or not.
+     * @param time Date or time of the task.
+     * @return Task object.
+     */
     public static Task loadTask(String name, Boolean isDone, String time) {
         Temporal dateTime = Event.formatTime(time);
         Task event = new Event(name, isDone, dateTime);
@@ -80,6 +96,7 @@ public class Event extends Task {
         this.dateTime = dateTime;
     }
 
+    /** @inheritDoc */
     @Override
     public String encode() {
         int typeKey = Event.TYPEKEY;
@@ -106,6 +123,7 @@ public class Event extends Task {
         return timeFormatted;
     }
 
+    /** @inheritDoc */
     @Override
     public String toString() {
         String type = "\u001B[34m(EVNT)\u001B[0m";

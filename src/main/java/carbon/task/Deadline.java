@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.Temporal;
 
+/**
+ * Encapsulates information regarding Deadlines.
+ */
 public class Deadline extends Task {
     public static final String FLAG = " /by";
     private static final int TYPEKEY = Task.getTypeKey(Task.Type.DEADLINE);
@@ -59,6 +62,12 @@ public class Deadline extends Task {
         }
     }
 
+    /**
+     * Creates a new Task object.
+     *
+     * @param input User text input.
+     * @return Task object.
+     */
     public static Task createTask(String input) {
         String name = Deadline.extractName(input);
         Temporal dateTime = Deadline.extractTime(input);
@@ -66,6 +75,13 @@ public class Deadline extends Task {
         return deadline;
     }
 
+    /**
+     * Loads a task that was saved.
+     *
+     * @param name Name of the task.
+     * @param isDone Whether the task is done or not.
+     * @param time Date or time of the task.
+     */
     public static Task loadTask(String name, Boolean isDone, String time) {
         Temporal dateTime = Deadline.formatTime(time);
         Task deadline = new Deadline(name, isDone, dateTime);
@@ -79,6 +95,7 @@ public class Deadline extends Task {
         this.dateTime = dateTime;
     }
 
+    /** @inheritDoc */
     @Override
     public String encode() {
         int typeKey = Deadline.TYPEKEY;
@@ -105,6 +122,7 @@ public class Deadline extends Task {
         return timeFormatted;
     }
 
+    /** @inheritDoc */
     @Override
     public String toString() {
         String type = "\u001B[32m(DEAD)\u001B[0m";
