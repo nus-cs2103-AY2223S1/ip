@@ -4,6 +4,10 @@ import Duke.TaskList;
 import Duke.Ui;
 import Duke.FileStorage.Storage;
 
+/**
+ * This class represents the list command that returns the current todo list
+ * kept by Duke.
+ */
 public class ListCommand extends Command{
 
     @Override

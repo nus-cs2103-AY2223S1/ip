@@ -12,19 +12,30 @@ public class DeadlineTask extends Task{
 
     /**
      * Constructor for an deadline task.
-     * @param description A description of the deadline
-     * @param deadline The time at which the task will expire
+     * @param description A description of the deadline.
+     * @param deadline The time at which the task will expire.
      */
     public DeadlineTask(String description, LocalDateTime deadline) {
         super(description, TaskType.DEADLINE);
         this.deadline = deadline;
     }
 
+    /**
+     * Constructor for an deadline task and also specifying if it is marked..
+     * @param description A description of the deadline.
+     * @param deadline The time at which the task will expire.
+     * @param isMarked The marking for the task.
+     */
     public DeadlineTask(String description, LocalDateTime deadline, boolean isMarked) {
         super(description, TaskType.DEADLINE, isMarked);
         this.deadline = deadline;
     }
 
+    /**
+     * Returns the string representation of the deadline.
+     * 
+     * @return The string representation of the deadline.
+     */
     @Override
     public String toString() {
         return String.format("%s (by: %s)", 

@@ -5,11 +5,22 @@ import Duke.Ui;
 import Duke.FileStorage.Storage;
 import Duke.Task.Task;
 
+/**
+ * This class represents the mark command that marks a task as
+ * completed.
+ */
 public class MarkCommand extends Command{
 
+    /** The id of the task to be marked. */
     private int taskID;
+
+    /** The marked task. */
     private Task markedTask;
 
+    /** Constructs the mark command given the id of task to be marked.
+     * 
+     * @param taskID The id of the task to be marked.
+     */
     public MarkCommand(int taskID) {
         this.taskID = taskID;
     }

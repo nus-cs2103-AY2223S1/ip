@@ -15,6 +15,10 @@ import Duke.Task.EventTask;
 import Duke.Task.Task;
 import Duke.Task.ToDoTask;
 
+/**
+ * This class handles the writing and retrieval of todo list from
+ * a given filepath.
+ */
 public class Storage {
 
     private File storageFile;
@@ -34,6 +38,12 @@ public class Storage {
         storageWarnings = "";
     }
 
+    /**
+     * Loads the todo list from the file.
+     * 
+     * @return The todo list retrieved from the file.
+     * @throws InvalidStorageException
+     */
     public ArrayList<Task> load() 
             throws InvalidStorageException{
         if (!parentDirectory.exists()) {
@@ -75,6 +85,15 @@ public class Storage {
         return retreivedTasks;
     }
 
+    /**
+     * Parses the given line into a task for Duke. The line of data should be
+     * given in the format of [_TASK_TYPE_|_marked_|_description_|___], delimited
+     * by "|".
+     * 
+     * @param dataline The task to be parsed.
+     * @return The task parsed from the line given.
+     * @throws InvalidFileContentException
+     */
     private static Task parseLine(String dataline) throws InvalidFileContentException {
         String[] data = dataline.split("\\|");
         try {
@@ -98,10 +117,20 @@ public class Storage {
         }   
     }
 
+    /**
+     * Returns the lines skipped during retrieval of tasks from the file.
+     * 
+     * @return The list of lines skipped.
+     */
     public String getWarnings() {
         return this.storageWarnings;
     }
 
+    /**
+     * Writes the tasks list to file.
+     * 
+     * @param tasks The list of tasks to be written to the file.
+     */
     public void writeListToFile(TaskList tasks) {
         try {
             ArrayList<Task> taskList= tasks.getList();

@@ -11,10 +11,21 @@ import Duke.FileStorage.Storage;
  */
 public class Duke {
 
+    /** The handler for reading and writing the tasks list from and to file. */
     private Storage storage;
+
+    /** The list of tasks tracked by Duke. */
     private TaskList tasks;
+
+    /** The ui which the user interact with. */
     private Ui ui;
 
+    /**
+     * Constructs the Duke todo list agent.
+     * 
+     * @param filePath The file path where the list will be written to and
+     * retrieved from.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -31,6 +42,9 @@ public class Duke {
         } 
     }
 
+    /**
+     * Runs the main logic of Duke.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
