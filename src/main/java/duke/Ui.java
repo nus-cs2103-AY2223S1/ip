@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.Task;
+
 import java.util.Scanner;
 
 public class Ui {
@@ -5,14 +9,14 @@ public class Ui {
     private static String NAME = "DoiMoiBot: ";
 
     /**
-     * Constructor to create instance of Ui.
+     * Constructor to create instance of duke.Ui.
      */
     public Ui() {
          this.sc = new Scanner(System.in);
     }
 
     /**
-     * Method prints out Duke's default greeting.
+     * Method prints out duke.Duke's default greeting.
      */
     public void greet() {
         System.out.println(NAME + "Hello! I'm doimoibot\n" + "What can I do you for?");
@@ -26,7 +30,7 @@ public class Ui {
     }
 
     /**
-     * Method prints Duke's default farewell.
+     * Method prints duke.Duke's default farewell.
      */
     public void farewell() {
         System.out.println(NAME + "Goodbye! See you soon!");
@@ -44,10 +48,10 @@ public class Ui {
     /**
      * Method prints out notification that specified task has been added to task list.
      *
-     * @param task Task to be added to task list.
+     * @param task duke.task.Task to be added to task list.
      */
     public void notifyAdded(Task task) {
-        System.out.println("Successfully added Task!\n" + task);
+        System.out.println("Successfully added duke.task.Task!\n" + task);
     }
 
     /**
@@ -67,7 +71,7 @@ public class Ui {
     /**
      * Method prints notification that specified task has been deleted from task list.
      *
-     * @param task Task to be deleted from task list.
+     * @param task duke.task.Task to be deleted from task list.
      */
     public void notifyDeleted(Task task) {
         System.out.println("Deleted task!\n" + task);
@@ -75,7 +79,7 @@ public class Ui {
 
     /**
      * Method prints out the information currently stored in the task list.
-     * @param tasks TaskList object whose information will be printed.
+     * @param tasks duke.TaskList object whose information will be printed.
      */
     public void printList(TaskList tasks) {
         for (int i = 1; i < tasks.size() + 1; i++) {

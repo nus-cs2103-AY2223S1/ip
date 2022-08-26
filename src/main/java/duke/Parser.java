@@ -1,3 +1,14 @@
+package duke;
+
+import duke.command.*;
+import duke.dukeexception.MissingDeadlineException;
+import duke.dukeexception.MissingTimingException;
+import duke.dukeexception.UnknownCommandException;
+import duke.task.Deadlines;
+import duke.task.Events;
+import duke.task.Task;
+import duke.task.ToDos;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,7 +23,7 @@ public class Parser {
      * Method that takes in user input and parses through it to return an executable command.
      *
      * @param input String input that the user keys in.
-     * @return Command object that can be executed by Duke.
+     * @return Command object that can be executed by duke.Duke.
      * @throws UnknownCommandException When the input is invalid and is not executable.
      */
     public static Command parse(String input) throws UnknownCommandException {
@@ -38,13 +49,13 @@ public class Parser {
                 int taskIndex = Integer.parseInt(substring) - 1;
                 return new MarkCommand(taskIndex, false);
             }
-            //logic to create ToDos
+            //logic to create duke.task.ToDos
             if (input.indexOf("todo") == 0) {
                 String description = input.substring(5);
                 ToDos todo = new ToDos(description, false);
                 return new AddCommand(todo);
             }
-            //logic to create Deadlines
+            //logic to create duke.task.Deadlines
             if (input.indexOf("deadline") == 0) {
                 //remove initial command
                 String sub = input.substring(9);
@@ -59,7 +70,7 @@ public class Parser {
                 Deadlines deadline = new Deadlines(description, timing, false);
                 return new AddCommand(deadline);
             }
-            //logic to create Events
+            //logic to create duke.task.Events
             if (input.indexOf("event") == 0) {
                 //remove initial command
                 String sub = input.substring(6);
@@ -85,7 +96,7 @@ public class Parser {
         } catch (NumberFormatException e) {
             System.out.println("Please input a valid task index!");
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Task with that index does not exist!");
+            System.out.println("duke.task.Task with that index does not exist!");
         } catch (MissingTimingException e) {
             System.out.println("Please specify the timeline!");
         } catch (DateTimeParseException e) {
@@ -97,10 +108,10 @@ public class Parser {
     }
 
     /**
-     * Static method that reads task data stored in hard disk storage and returns the Task representation of the task.
+     * Static method that reads task data stored in hard disk storage and returns the duke.task.Task representation of the task.
      *
      * @param data String data representing a task.
-     * @return Task object that encapsulates the specified task.
+     * @return duke.task.Task object that encapsulates the specified task.
      */
     public static Task dataToInfo(String data) {
         String currData = data;

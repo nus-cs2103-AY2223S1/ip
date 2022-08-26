@@ -1,3 +1,5 @@
+package duke.task;
+
 abstract public class Task {
     protected String description;
     private boolean isDone;
@@ -38,7 +40,7 @@ abstract public class Task {
         return this.isDone;
     }
 
-    abstract String processData();
+    public abstract String processData();
 
     @Override
     public String toString() {

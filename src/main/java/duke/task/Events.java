@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -27,7 +29,7 @@ public class Events extends Task {
      * @return String representation of Event.
      */
     @Override
-    String processData() {
+    public String processData() {
         String str;
         if (this.getIsDone()){
             str = String.format("E|true|%s|%s|", this.getDescription(), this.timing.format(DATE_TIME_INPUT_FORMAT));
@@ -50,7 +52,7 @@ public class Events extends Task {
         return str;
     }
 
-//    public Events(String input) throws MissingDescriptionException, MissingTimingException, DateTimeParseException {
+//    public duke.task.Events(String input) throws duke.dukeexception.MissingDescriptionException, duke.dukeexception.MissingTimingException, DateTimeParseException {
 //        super();
 //        try {
 //            //remove initial command
@@ -58,7 +60,7 @@ public class Events extends Task {
 //            int timeIndex = sub.lastIndexOf("/at");
 //            //get description part of input string
 //            if (timeIndex == -1) {
-//                throw new MissingTimingException();
+//                throw new duke.dukeexception.MissingTimingException();
 //            }
 //            String description = sub.substring(0, timeIndex - 1);
 //            this.description = description;
@@ -66,12 +68,12 @@ public class Events extends Task {
 //            LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
 //            this.timing = timing;
 //        } catch (StringIndexOutOfBoundsException e) {
-//            throw new MissingDescriptionException();
+//            throw new duke.dukeexception.MissingDescriptionException();
 //        }
 //    }
 //
-//    public Events(String input, boolean isDone)
-//            throws MissingDescriptionException, MissingTimingException, DateTimeParseException {
+//    public duke.task.Events(String input, boolean isDone)
+//            throws duke.dukeexception.MissingDescriptionException, duke.dukeexception.MissingTimingException, DateTimeParseException {
 //        super(isDone);
 //        try {
 //            //remove initial command
@@ -79,7 +81,7 @@ public class Events extends Task {
 //            int timeIndex = sub.lastIndexOf("/at");
 //            //get description part of input string
 //            if (timeIndex == -1) {
-//                throw new MissingTimingException();
+//                throw new duke.dukeexception.MissingTimingException();
 //            }
 //            String description = sub.substring(0, timeIndex - 1);
 //            this.description = description;
@@ -87,13 +89,13 @@ public class Events extends Task {
 //            LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);
 //            this.timing = timing;
 //        } catch (StringIndexOutOfBoundsException e) {
-//            throw new MissingDescriptionException();
+//            throw new duke.dukeexception.MissingDescriptionException();
 //        } catch (DateTimeParseException e) {
 //            System.out.println("Please input a valid date in the format: DD/MM/YYYY HHMM");
 //        }
 //    }
 //
-//    public Events(String description, String timingString, boolean isDone) throws DateTimeParseException{
+//    public duke.task.Events(String description, String timingString, boolean isDone) throws DateTimeParseException{
 //        super(isDone);
 //        this.description = description;
 //        LocalDateTime timing = LocalDateTime.parse(timingString, DATE_TIME_INPUT_FORMAT);

@@ -1,10 +1,15 @@
+package duke;
+
+import duke.command.Command;
+import duke.dukeexception.DukeException;
+
 public class Duke {
     private Ui ui;
     private TaskList tasks;
     private Storage storage;
 
     /**
-     * Constructor that creates an instance of Duke linked to the specified file path.
+     * Constructor that creates an instance of duke.Duke linked to the specified file path.
      *
      * @param filePath The file path name on a computer.
      */
@@ -20,7 +25,7 @@ public class Duke {
     }
 
     /**
-     * Method runs Duke list making program.
+     * Method runs duke.Duke list making program.
      */
     public void run() {
         this.ui.greet();

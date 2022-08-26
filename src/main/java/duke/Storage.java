@@ -1,3 +1,7 @@
+package duke;
+
+import duke.task.Task;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -9,7 +13,7 @@ public class Storage {
     private File file;
 
     /**
-     * Constructor to create Storage object linked to file in specified file path.
+     * Constructor to create duke.Storage object linked to file in specified file path.
      *
      * @param filePath File path specified as a String.
      */
@@ -28,9 +32,9 @@ public class Storage {
     }
 
     /**
-     * Method to read data from storage file into the current instance of Duke.
+     * Method to read data from storage file into the current instance of duke.Duke.
      *
-     * @param tasks TaskList object that will store the parsed data from the storage file.
+     * @param tasks duke.TaskList object that will store the parsed data from the storage file.
      */
     public void readData(TaskList tasks) {
         try {
@@ -62,9 +66,9 @@ public class Storage {
     }
 
     /**
-     * Method to override data in storage file, replacing it with data from specified TaskList.
+     * Method to override data in storage file, replacing it with data from specified duke.TaskList.
      *
-     * @param tasks TaskList whose data will be written onto the storage file.
+     * @param tasks duke.TaskList whose data will be written onto the storage file.
      */
     public void overwriteData(TaskList tasks) {
         try {

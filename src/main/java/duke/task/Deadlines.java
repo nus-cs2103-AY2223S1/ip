@@ -1,3 +1,5 @@
+package duke.task;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -46,8 +48,8 @@ public class Deadlines extends Task {
         return str;
     }
 
-//    public Deadlines(String input)
-//            throws MissingDescriptionException, MissingDeadlineException, DateTimeParseException {
+//    public duke.task.Deadlines(String input)
+//            throws duke.dukeexception.MissingDescriptionException, duke.dukeexception.MissingDeadlineException, DateTimeParseException {
 //        super();
 //        try {
 //            //remove initial command
@@ -55,7 +57,7 @@ public class Deadlines extends Task {
 //            int timeIndex = sub.lastIndexOf("/by");
 //            //get description part of input string
 //            if (timeIndex == -1) {
-//                throw new MissingDeadlineException();
+//                throw new duke.dukeexception.MissingDeadlineException();
 //            }
 //            String description = sub.substring(0, timeIndex - 1);
 //            this.description = description;
@@ -63,12 +65,12 @@ public class Deadlines extends Task {
 //            LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
 //            this.deadline = deadline;
 //        } catch (StringIndexOutOfBoundsException e) {
-//            throw new MissingDescriptionException();
+//            throw new duke.dukeexception.MissingDescriptionException();
 //        }
 //    }
 //
-//    public Deadlines(String input, boolean isDone)
-//            throws MissingDescriptionException, MissingDeadlineException, DateTimeParseException {
+//    public duke.task.Deadlines(String input, boolean isDone)
+//            throws duke.dukeexception.MissingDescriptionException, duke.dukeexception.MissingDeadlineException, DateTimeParseException {
 //        super(isDone);
 //        try {
 //            //remove initial command
@@ -76,7 +78,7 @@ public class Deadlines extends Task {
 //            int timeIndex = sub.lastIndexOf("/by");
 //            //get description part of input string
 //            if (timeIndex == -1) {
-//                throw new MissingDeadlineException();
+//                throw new duke.dukeexception.MissingDeadlineException();
 //            }
 //            String description = sub.substring(0, timeIndex - 1);
 //            this.description = description;
@@ -84,11 +86,11 @@ public class Deadlines extends Task {
 //            LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);
 //            this.deadline = deadline;
 //        } catch (StringIndexOutOfBoundsException e) {
-//            throw new MissingDescriptionException();
+//            throw new duke.dukeexception.MissingDescriptionException();
 //        }
 //    }
 //
-//    public Deadlines(String description, String deadlineString, boolean isDone) throws DateTimeParseException {
+//    public duke.task.Deadlines(String description, String deadlineString, boolean isDone) throws DateTimeParseException {
 //        super(isDone);
 //        this.description = description;
 //        LocalDateTime deadline = LocalDateTime.parse(deadlineString, DATE_TIME_INPUT_FORMAT);

@@ -1,6 +1,4 @@
-T|false|your mother|0|
 D|true|your sister|20/02/2023 1900|
-E|false|your daddy|20/07/2044 1800|
 T|false|your mother|0|
 D|true|your mate|20/02/2000 1900|
 T|false|your mother|0|

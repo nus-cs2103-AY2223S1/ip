@@ -1,11 +1,11 @@
-import java.time.format.DateTimeParseException;
+package duke.task;
 
 public class ToDos extends Task {
     /**
-     * Constructor that creates ToDos object with specified description and isDone status.
+     * Constructor that creates duke.task.ToDos object with specified description and isDone status.
      *
-     * @param description Description of ToDos.
-     * @param isDone isDone status of the ToDos.
+     * @param description Description of duke.task.ToDos.
+     * @param isDone isDone status of the duke.task.ToDos.
      */
     public ToDos(String description, boolean isDone) {
         super(isDone);
@@ -13,9 +13,9 @@ public class ToDos extends Task {
     }
 
     /**
-     * Method converts ToDos into String representation that is stored in the storage.
+     * Method converts duke.task.ToDos into String representation that is stored in the storage.
      *
-     * @return String representation of ToDos.
+     * @return String representation of duke.task.ToDos.
      */
     @Override
     public String processData() {
@@ -39,13 +39,13 @@ public class ToDos extends Task {
         return str;
     }
 
-//    public ToDos(String description) throws MissingDescriptionException {
+//    public duke.task.ToDos(String description) throws duke.dukeexception.MissingDescriptionException {
 //        super();
 //        try {
 //            String substring = description.substring(5);
 //            this.description = substring;
 //        } catch (StringIndexOutOfBoundsException e) {
-//            throw new MissingDescriptionException();
+//            throw new duke.dukeexception.MissingDescriptionException();
 //        }
 //    }
 }
