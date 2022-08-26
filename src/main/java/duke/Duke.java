@@ -29,11 +29,11 @@ public class Duke {
         boolean terminateFlag = false;
         ui.printWelcome();
 
-        while(!terminateFlag) {
+        while (!terminateFlag) {
             try {
                 Command currentCommand = parser.parse(ui.getCommand());
                 currentCommand.execute(taskList, ui, storage);
-                terminateFlag = currentCommand.isTerminator;
+                terminateFlag = currentCommand.isTerminatorGetter();
             } catch (DukeException e) {
                 ui.printException(e);
             }

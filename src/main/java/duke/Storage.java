@@ -41,15 +41,15 @@ public class Storage {
                 String taskDesc = taskSplit[2].trim();
                 String taskDate = taskSplit.length == 4 ? taskSplit[3].trim() : "";
                 switch (taskType) {
-                    case "T":
-                        newTask = new ToDo(taskDesc, isDone);
-                        break;
-                    case "D":
-                        newTask = new Deadline(taskDesc, LocalDate.parse(taskDate), isDone);
-                        break;
-                    case "E":
-                        newTask = new Event(taskDesc, LocalDate.parse(taskDate), isDone);
-                        break;
+                case "T":
+                    newTask = new ToDo(taskDesc, isDone);
+                    break;
+                case "D":
+                    newTask = new Deadline(taskDesc, LocalDate.parse(taskDate), isDone);
+                    break;
+                case "E":
+                    newTask = new Event(taskDesc, LocalDate.parse(taskDate), isDone);
+                    break;
                 }
                 taskList.addTask(newTask);
             }
@@ -59,7 +59,7 @@ public class Storage {
             return new TaskList();
         } catch (DateTimeParseException e) {
             throw new DukeException("Saved file is corrupted.");
-        }finally {
+        } finally {
             if (sc != null) sc.close();
         }
     }
