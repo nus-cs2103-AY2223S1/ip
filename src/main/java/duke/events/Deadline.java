@@ -6,8 +6,6 @@ package duke.events;
  * And prints it out in a readable format via the toString method
  */
 
-import duke.Task;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 

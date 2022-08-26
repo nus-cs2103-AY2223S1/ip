@@ -3,6 +3,8 @@ package duke;
 
 import duke.events.Deadline;
 import duke.events.Event;
+import duke.events.Task;
+import duke.events.Todo;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -82,7 +84,6 @@ public class Storage {
             ArrayList<Task> readTaskList = new ArrayList<>();
             while ((line = bf.readLine()) != null) {
                 String[] values = line.split("//");
-                System.out.println(values[0]);
                 if (values[0].equals("T")) {
                     readTaskList.add(Todo.readTask(values));
                 } else if (values[0].equals("E")) {

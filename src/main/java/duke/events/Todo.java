@@ -1,4 +1,4 @@
-package duke;
+package duke.events;
 
 /**
  * Extension class To Do from Task.

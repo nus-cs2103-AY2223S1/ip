@@ -1,8 +1,8 @@
 package duke.parser;
 
-import duke.Task;
+import duke.events.Task;
 import duke.TaskList;
-import duke.Todo;
+import duke.events.Todo;
 import duke.events.Deadline;
 import duke.events.Event;
 import duke.exceptions.EmptyTaskException;

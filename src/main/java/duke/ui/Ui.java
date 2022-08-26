@@ -1,6 +1,6 @@
 package duke.ui;
 
-import duke.Task;
+import duke.events.Task;
 
 import java.util.List;
 

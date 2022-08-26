@@ -1,4 +1,5 @@
 import duke.*;
+import duke.events.Task;
 import duke.parser.Parser;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
